@@ -100,7 +100,7 @@ public final class MicrophoneRecorderView extends FrameLayout implements View.On
       case MotionEvent.ACTION_DOWN:
         if (!Permissions.hasAll(getContext(), Manifest.permission.RECORD_AUDIO)) {
           if (listener != null) listener.onRecordPermissionRequired();
-        } else {
+        } else if (state == State.NOT_RUNNING) {
           state = State.RUNNING_HELD;
           floatingRecordButton.display(event.getX(), event.getY());
           lockDropTarget.display();

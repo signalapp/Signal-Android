@@ -162,7 +162,9 @@
   <string name="ContactsCursorLoader_phone_number_search">Пребарување по телефонски број</string>
   <string name="ContactsCursorLoader_username_search">Пребарување по корисничко име</string>
   <!--Label for my stories when selecting who to send media to-->
+  <string name="ContactsCursorLoader_my_stories">Мои приказни</string>
   <!--Action for creating a new story-->
+  <string name="ContactsCursorLoader_new_story">Нова приказна</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Порака %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal повик %s</string>
@@ -315,8 +317,10 @@
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s вклучен</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">Да го блокирам барањето?</string>
   <!--Dialog message for block group link join requests-->
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">Блокирај барање</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">Откажи</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -759,6 +763,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Се случи мрежна грешка.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Групниот линк не е активен</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Не може да се приклучите на групата</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
   <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Не можете да се приклучите на оваа група преку групниот линк бидејќи администратор Ве отстрани.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
@@ -1244,6 +1249,7 @@
   <!--Recipient-->
   <string name="Recipient_you">Вие</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">Моја приказна</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Блокирај</string>
   <string name="RecipientPreferenceActivity_unblock">Одблокирај</string>
@@ -1748,6 +1754,7 @@
   <string name="ConversationUpdateItem_enable_call_notifications">Вклучи известувања за повици</string>
   <string name="ConversationUpdateItem_update_contact">Ажурирај контакт</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">Блокирај барање</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Немате заеднички групи. Прегледувајте ги барањата внимателно.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Нема контакти во оваа група. Внимателно разгледајте ги барањата.</string>
   <string name="ConversationUpdateItem_view">Поглед</string>
@@ -3450,6 +3457,7 @@
   <string name="ManageDonationsFragment__my_support">Моја поддршка</string>
   <string name="ManageDonationsFragment__manage_subscription">Управување со претплатата</string>
   <!--Label for Tax Receipts button-->
+  <string name="ManageDonationsFragment__tax_receipts">Даночни потврди</string>
   <string name="ManageDonationsFragment__badges">Беџови</string>
   <string name="ManageDonationsFragment__subscription_faq">ЧПП за претплата</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Грешка при добивање на претплата.</string>
@@ -3681,38 +3689,50 @@
   <!--Donation receipts one time tab label-->
   <string name="DonationReceiptListFragment__one_time">Еднаш</string>
   <!--Donation receipts boost row label-->
+  <string name="DonationReceiptListFragment__boost">Поттик</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Детали</string>
   <!--Donation receipts donation type heading-->
   <!--Donation receipts date paid heading-->
   <string name="DonationReceiptDetailsFragment__date_paid">Датум на плаќање</string>
   <!--Donation receipts share PNG-->
+  <string name="DonationReceiptDetailsFragment__share_receipt">Сподели потврда</string>
   <!--Donation receipts list end note-->
+  <string name="DonationReceiptListFragment__if_you_have">Ако сте го реинсталирале Signal, потврдите за претходни донации нема да бидат достапни. </string>
   <!--Donation receipts document title-->
+  <string name="DonationReceiptDetailsFragment__donation_receipt">Потврда за донација</string>
   <!--Donation receipts amount title-->
   <string name="DonationReceiptDetailsFragment__amount">Износ</string>
   <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Ви благодариме што го поддржувате Signal. Вашиот придонес помага за развивање на технологија за приватност со отворен код која го штити слободното изразување и овозможува безбедна глобална комуникација за милиони луѓе низ целиот свет. Ако сте жител на Соединетите Американски Држави, Ве молиме чувајте ја оваа потврда за Вашата даночна евиденција. Signal Technology Foundation е непрофитна организација која е ослободена од данок во Соединетите Американски Држави според член 501c3 од законот за внатрешни приходи (Internal Revenue Code). Нашата федерална даночна идентификација е 82–4506840.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Разговори</string>
   <!--Label for Stories tab in home app screen-->
+  <string name="ConversationListTabs__stories">Приказни</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
   <!--Title for "My Stories" row item in Stories landing page-->
+  <string name="StoriesLandingFragment__my_stories">Мои приказни</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
+  <string name="StoriesLandingFragment__add_a_story">Додај приказна</string>
   <!--Displayed when there are no stories to display-->
   <!--Context menu option to hide a story-->
+  <string name="StoriesLandingItem__hide_story">Сокриј приказна</string>
   <!--Context menu option to unhide a story-->
+  <string name="StoriesLandingItem__unhide_story">Врати приказна</string>
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">Препрати</string>
   <!--Context menu option to share a story-->
   <string name="StoriesLandingItem__share">Сподели…</string>
   <!--Context menu option to go to story chat-->
+  <string name="StoriesLandingItem__go_to_chat">Оди до разговорот</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Се испраќа…</string>
   <!--Label when a story fails to send-->
+  <string name="StoriesLandingItem__couldnt_send">Не може да се испрати</string>
   <!--Title of dialog confirming decision to hide a story-->
   <!--Message of dialog confirming decision to hide a story-->
   <!--Positive action of dialog confirming decision to hide a story-->
@@ -3741,6 +3761,7 @@
   <string name="StoryViewerPageFragment__reply">Одговори</string>
   <!--Displayed when a story has no views-->
   <!--Displayed when a story has no replies yet-->
+  <string name="StoryGroupReplyFragment__no_replies_yet">Сè уште нема одговори</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
   <!--Label for story views tab-->
   <!--Label for story replies tab-->
@@ -3756,12 +3777,20 @@
   <!--Story settings page title-->
   <!--Story settings private stories heading-->
   <!--Option label for creating a new private story-->
+  <string name="StorySettingsFragment__new_private_story">Нова приватна приказна</string>
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">Моја приказна</string>
   <!--Section heading for story visibility-->
   <!--Clickable option for selecting people to hide your story from-->
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <plurals name="MyStorySettingsFragment__d_people">
+    <item quantity="one">%1$d личност</item>
+    <item quantity="other">%1$d луѓе</item>
+  </plurals>
   <!--Section header for options related to replies and reactions-->
+  <string name="MyStorySettingsFragment__replies_amp_reactions">Одговори и реакции</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
+  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Дозволи одговори и реакции</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
   <!--Note about default sharing-->
   <!--Signal connections linked text that opens the Signal Connections sheet-->
@@ -3777,14 +3806,18 @@
   <!--Positive action label when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__remove">Отстрани</string>
   <!--Dialog title when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__are_you_sure">Дали сте сигурни?</string>
   <!--Dialog message when deleting a private story-->
   <!--Page title for editing a private story name-->
   <!--Input field hint when editing a private story name-->
   <!--Save button label when editing a private story name-->
   <string name="EditPrivateStoryNameFragment__save">Зачувај</string>
   <!--Displayed in text post creator before user enters text-->
+  <string name="TextStoryPostCreationFragment__tap_to_add_text">Допри да додадеш текст</string>
   <!--Button label for changing font when creating a text post-->
+  <string name="TextStoryPostTextEntryFragment__aa">Аа</string>
   <!--Displayed in text post creator when prompting user to enter text-->
+  <string name="TextStoryPostTextEntryFragment__add_text">Додај текст</string>
   <!--Content description for \'done\' button when adding text to a story post-->
   <!--Text label for media selection toggle-->
   <string name="MediaSelectionActivity__text">Текст</string>
@@ -3811,6 +3844,7 @@
   <!--Name story screen title-->
   <!--Name story screen label hint-->
   <!--Name story screen viewers subheading-->
+  <string name="CreateStoryWithViewersFragment__viewers">Гледачи</string>
   <!--Name story screen create button label-->
   <string name="CreateStoryWithViewersFragment__create">Создај</string>
   <!--Name story screen error when save attempted with no label-->
@@ -3820,21 +3854,29 @@
   <string name="BaseStoryRecipientSelectionFragment__select_all">Избери сѐ</string>
   <!--Choose story type bottom sheet title-->
   <!--Choose story type bottom sheet new story row title-->
+  <string name="ChooseStoryTypeBottomSheet__new_private_story">Нова приватна приказна</string>
   <!--Choose story type bottom sheet new story row summary-->
+  <string name="ChooseStoryTypeBottomSheet__visible_only_to">Видливо само за одредени луѓе</string>
   <!--Choose story type bottom sheet group story title-->
+  <string name="ChooseStoryTypeBottomSheet__group_story">Групна приказна</string>
   <!--Choose story type bottom sheet group story summary-->
+  <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Сподели со постоечка група</string>
   <!--Choose groups bottom sheet title-->
+  <string name="ChooseGroupStoryBottomSheet__choose_groups">Избери групи</string>
   <!--Displayed when copying group story reply text to clipboard-->
   <string name="StoryGroupReplyFragment__copied_to_clipboard">Ископирано на таблата со исечоци</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
+  <string name="StoryViewerPageFragment__see_more">… Види повеќе</string>
   <!--Displayed in toast after sending a direct reply-->
   <string name="StoryDirectReplyDialogFragment__reply_sent">Одговорот е испратен</string>
   <!--Displayed in toast after sending a direct reaction-->
   <string name="StoryDirectReplyDialogFragment__reaction_sent">Реакцијата е испратена</string>
   <!--Displayed in the viewer when a story is no longer available-->
+  <string name="StorySlateView__this_story_is_no_longer_available">Оваа приказна повеќе не е достапна.</string>
   <!--Displayed in the viewer when the network is not available-->
   <string name="StorySlateView__no_internet_connection">Нема интернет конекција</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <string name="StorySlateView__couldnt_load_content">Не може да се вчита содржината</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Да се ​​исклучи заобиколувањето на цензурата?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -3848,5 +3890,6 @@
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Види повеќе</string>
+  <string name="StoriesLinkPopup__visit_link">Посети го линкот</string>
   <!--EOF-->
 </resources>

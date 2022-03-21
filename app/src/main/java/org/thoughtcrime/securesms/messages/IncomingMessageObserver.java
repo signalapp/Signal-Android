@@ -2,7 +2,11 @@ package org.thoughtcrime.securesms.messages;
 
 import android.app.Application;
 import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.IBinder;
 
 import androidx.annotation.NonNull;
@@ -17,7 +21,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraintObserver;
 import org.thoughtcrime.securesms.jobs.PushDecryptDrainedJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.messages.IncomingMessageProcessor.Processor;
@@ -50,10 +53,10 @@ public class IncomingMessageObserver {
 
   private static final AtomicInteger INSTANCE_COUNT = new AtomicInteger(0);
 
-  private final Application                               context;
-  private final SignalServiceNetworkAccess                networkAccess;
-  private final List<Runnable>                            decryptionDrainedListeners;
-  private final NetworkConstraintObserver.NetworkListener networkListener;
+  private final Application                context;
+  private final SignalServiceNetworkAccess networkAccess;
+  private final List<Runnable>             decryptionDrainedListeners;
+  private final BroadcastReceiver          connectionReceiver;
 
   private boolean appVisible;
 
@@ -88,18 +91,22 @@ public class IncomingMessageObserver {
       }
     });
 
-    networkListener = this::networkChanged;
-    NetworkConstraintObserver.getInstance(this.context).addListener(networkListener);
-  }
+    connectionReceiver = new BroadcastReceiver() {
+      @Override
+      public void onReceive(Context context, Intent intent) {
+        synchronized (IncomingMessageObserver.this) {
+          if (!NetworkConstraint.isMet(context)) {
+            Log.w(TAG, "Lost network connection. Shutting down our websocket connections and resetting the drained state.");
+            networkDrained    = false;
+            decryptionDrained = false;
+            disconnect();
+          }
+          IncomingMessageObserver.this.notifyAll();
+        }
+      }
+    };
 
-  private synchronized void networkChanged() {
-    if (!NetworkConstraint.isMet(context)) {
-      Log.w(TAG, "Lost network connection. Shutting down our websocket connections and resetting the drained state.");
-      networkDrained    = false;
-      decryptionDrained = false;
-      disconnect();
-    }
-    IncomingMessageObserver.this.notifyAll();
+    context.registerReceiver(connectionReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
   }
 
   public synchronized void notifyRegistrationChanged() {
@@ -169,7 +176,7 @@ public class IncomingMessageObserver {
   public void terminateAsync() {
     INSTANCE_COUNT.decrementAndGet();
 
-    NetworkConstraintObserver.getInstance(context).removeListener(networkListener);
+    context.unregisterReceiver(connectionReceiver);
 
     SignalExecutors.BOUNDED.execute(() -> {
       Log.w(TAG, "Beginning termination.");

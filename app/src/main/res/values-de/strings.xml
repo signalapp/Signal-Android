@@ -124,9 +124,9 @@
   <string name="CameraContacts__menu_search">Suchen</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
-  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Zensurumgehung deaktivieren?</string>
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Zensurumgehung ausschalten?</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
-  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Du kannst dich jetzt mit dem Signal-Dienst, für eine bessere Erfahrung, direkt verbinden.</string>
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Für eine besseres Erlebnis kannst du dich nun direkt mit dem Signal-Dienst verbinden.</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">Ausschalten</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
@@ -319,7 +319,7 @@
   <!--Dialog title for block group link join requests-->
   <string name="ConversationFragment__block_request">Anfrage blockieren?</string>
   <!--Dialog message for block group link join requests-->
-  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s kann dieser Gruppe nicht über den Gruppenlink beitreten oder eine Beitrittsanfrage stellen. Ein manuelles Hinzufügen zu der Gruppe ist jedoch möglich.</string>
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s kann dieser Gruppe über den Gruppen-Link nicht beitreten oder eine Beitrittsanfrage stellen. Ein manuelles Hinzufügen zur Gruppe ist jedoch möglich.</string>
   <!--Dialog confirm block request button-->
   <string name="ConversationFragment__block_request_button">Anfrage blockieren</string>
   <!--Dialog cancel block request button-->
@@ -428,7 +428,7 @@
   <!--Couldn\'t read the selected backup-->
   <string name="RestoreBackupFragment__backup_could_not_be_read">Datensicherung konnte nicht gelesen werden.</string>
   <!--Backup has an unsupported file extension-->
-  <string name="RestoreBackupFragment__backup_has_a_bad_extension">Datensicherung hat eine falsche Dateiendung.</string>
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">Datensicherung besitzt eine falsche Dateiendung.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Unterhaltungen sichern</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Datensicherungen sind mit einer Passphrase verschlüsselt und auf deinem Gerät gespeichert.</string>
@@ -768,10 +768,11 @@
   <!--Title shown when there was an known issue getting group information from a group link-->
   <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Gruppenbeitritt nicht möglich</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
-  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Du kannst dieser Gruppe nicht über den Gruppen-Link beitreten, da ein Gruppen-Admin dich entfernt hat.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Du kannst dieser Gruppe nicht über den Gruppen-Link beitreten, da dich ein Gruppen-Admin entfernt hat.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Dieser Gruppen-Link ist nicht mehr gültig.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">Fehler beim Verwenden eines Links</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
   <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Ein Beitreten über diesen Link war nicht möglich. Versuche es später erneut.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Möchtest du dieser Gruppe beitreten und deinen Namen und dein Foto mit deren Mitgliedern teilen?</string>
@@ -799,6 +800,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">%1$s zur Gruppe hinzufügen?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Anfrage von %1$s ablehnen?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Beitrittsanfrage von »%1$s« ablehnen? Eine weitere Beitrittsanfrage über den Gruppen-Link ist dann nicht mehr möglich.</string>
   <string name="RequestConfirmationDialog_add">Hinzufügen</string>
   <string name="RequestConfirmationDialog_deny">Ablehnen</string>
   <!--ImageEditorHud-->
@@ -1088,6 +1090,10 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Du hast eine Gruppenbeitrittsanfrage gesendet.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s hat eine Beitrittsanfrage über den Gruppen-Link gestellt.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="one">%1$s hat eine Beitrittsanfrage über den Gruppen-Link gestellt und abgebrochen.</item>
+    <item quantity="other">%1$s hat %2$d Beitrittsanfragen über den Gruppen-Link gestellt und abgebrochen.</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s hat deine Gruppenbeitrittsanfrage bestätigt.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s hat eine Gruppenbeitrittsanfrage von %2$s bestätigt.</string>
@@ -1714,8 +1720,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   </plurals>
   <!--Displays number of viewers for a story-->
   <plurals name="contact_selection_list_item__number_of_viewers">
-    <item quantity="one">%1$d Besucher</item>
-    <item quantity="other">%1$d Besucher</item>
+    <item quantity="one">%1$d Zuschauer</item>
+    <item quantity="other">%1$d Zuschauer</item>
   </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal-Nachricht</string>
@@ -2831,7 +2837,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s wird diese Gruppe und deren Mitglieder bearbeiten können.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s aus dieser Gruppe entfernen?</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
-  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">%1$s aus der Gruppe entfernen? Ein Wiederanmelden über den Gruppenlink ist nicht möglich.</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">%1$s aus der Gruppe entfernen? Ein Wiederanmelden über den Gruppen-Link ist nicht möglich.</string>
   <string name="RecipientBottomSheet_remove">Entfernen</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">In Zwischenablage kopiert</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
@@ -3305,7 +3311,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ConversationSettingsFragment__conversation_muted_forever">Unterhaltung dauerhaft stummgeschaltet</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Rufnummer in Zwischenablage kopiert.</string>
   <string name="ConversationSettingsFragment__phone_number">Rufnummer</string>
-  <string name="ConversationSettingsFragment__get_badges">Erhalte Abzeichen für dein Profil, indem du Signal unterstützt. Tippe auf ein Abzeichen, um mehr zu erfahren.</string>
+  <string name="ConversationSettingsFragment__get_badges">Unterstütze Signal und erhalte Abzeichen für dein Profil. Tippe auf ein Abzeichen, um mehr zu erfahren.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Mitglieder hinzufügen</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Gruppendetails bearbeiten</string>
@@ -3458,12 +3464,12 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Zum ausgewählten Abzeichen machen</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Fertig</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Falls du mehrere Abzeichen hast, kannst du eines davon auswählen, das andere in deinem Profil sehen können.</string>
-  <string name="BecomeASustainerFragment__get_badges">Erhalte Abzeichen für dein Profil, indem du Signal unterstützt.</string>
+  <string name="BecomeASustainerFragment__get_badges">Unterstütze Signal und erhalte Abzeichen für dein Profil.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal ist eine gemeinnützige Organisation ohne Werbekunden oder Investoren, die nur von Menschen wie dir unterstützt wird.</string>
   <string name="ManageDonationsFragment__my_support">Meine Unterstützung</string>
   <string name="ManageDonationsFragment__manage_subscription">Regelmäßige Spende verwalten</string>
   <!--Label for Tax Receipts button-->
-  <string name="ManageDonationsFragment__tax_receipts">Steuereinnahmen</string>
+  <string name="ManageDonationsFragment__tax_receipts">Steuerbeleg</string>
   <string name="ManageDonationsFragment__badges">Abzeichen</string>
   <string name="ManageDonationsFragment__subscription_faq">FAQ für regelmäßige Spenden</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Die regelmäßige Spende konnte nicht abgerufen werden.</string>
@@ -3694,18 +3700,23 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Donation receipts recurring tab label-->
   <string name="DonationReceiptListFragment__recurring">Wiederkehrend</string>
   <!--Donation receipts one time tab label-->
-  <string name="DonationReceiptListFragment__one_time">Einmal</string>
+  <string name="DonationReceiptListFragment__one_time">Einmalig</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Boost</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Details</string>
   <!--Donation receipts donation type heading-->
-  <string name="DonationReceiptDetailsFragment__donation_type">Spendeart</string>
+  <string name="DonationReceiptDetailsFragment__donation_type">Spendenart</string>
   <!--Donation receipts date paid heading-->
+  <string name="DonationReceiptDetailsFragment__date_paid">Zahlungsdatum</string>
   <!--Donation receipts share PNG-->
+  <string name="DonationReceiptDetailsFragment__share_receipt">Bescheinigung teilen</string>
   <!--Donation receipts list end note-->
+  <string name="DonationReceiptListFragment__if_you_have">Falls du Signal erneut installierst hast, sind Bescheinigungen früherer Spenden nicht verfügbar.</string>
   <!--Donation receipts document title-->
+  <string name="DonationReceiptDetailsFragment__donation_receipt">Spendenbescheinigung</string>
   <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">Betrag</string>
   <!--Donation receipts thanks-->
   <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Vielen Dank, dass du Signal unterstützt. Deine Spende trägt dazu bei, die Entwicklung von Open-Source-Datenschutztechnologien voranzutreiben, die die freie Meinungsäußerung schützen und eine sichere globale Kommunikation für Millionen von Menschen auf der ganzen Welt ermöglichen. Wenn du deinen Wohnsitz in den Vereinigten Staaten hast, bewahre bitte diese Quittung für deine Steuerunterlagen auf. Die Signal Technology Foundation ist eine steuerbefreite gemeinnützige Organisation in den Vereinigten Staaten gemäß Abschnitt 501c3 des Internal Revenue Code. Unsere Federal Tax ID lautet 82-4506840.</string>
   <!--Donation receipt type-->
@@ -3836,6 +3847,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Note at the bottom of the Signal connections sheet-->
   <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Deine Beziehungen können deinen Namen und dein Foto sehen, sowie Beiträge unter »Meine Story« sehen, es sei denn, du verbirgst sie vor ihnen.</string>
   <!--Clickable option to add a viewer to a private story-->
+  <string name="PrivateStorySettingsFragment__add_viewer">Zuschauer hinzufügen</string>
   <!--Clickable option to delete a custom story-->
   <string name="PrivateStorySettingsFragment__delete_private_story">Private Story löschen</string>
   <!--Dialog title when attempting to remove someone from a private story-->
@@ -3861,6 +3873,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Displayed in text post creator when prompting user to enter text-->
   <string name="TextStoryPostTextEntryFragment__add_text">Text hinzufügen</string>
   <!--Content description for \'done\' button when adding text to a story post-->
+  <string name="TextStoryPostTextEntryFragment__done_adding_text">Fertig mit dem Hinzufügen von Text</string>
   <!--Text label for media selection toggle-->
   <string name="MediaSelectionActivity__text">Text</string>
   <!--Camera label for media selection toggle-->
@@ -3868,9 +3881,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Hint for entering a URL for a text post-->
   <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">URL eingeben oder einfügen</string>
   <!--Displayed prior to the user entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Teile einen Link mit den Zuschauern deiner Story</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Suchen</string>
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
+  <string name="HideStoryFromFragment__hide_story_from">Story verbergen für …</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Fertig</string>
   <!--Dialog title for first time adding something to a story-->
@@ -3880,16 +3895,26 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <string name="StoryDialogs__add_to_story">Zu einer Story hinzufügen</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <string name="StoryDialogs__edit_viewers">Zuschauer bearbeiten</string>
   <!--Privacy Settings toggle title for stories-->
+  <string name="PrivacySettingsFragment__share_and_view_stories">Teile &amp; Betrachte Stories</string>
   <!--Privacy Settings toggle summary for stories-->
+  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Wenn diese Option deaktiviert ist, können keine Stories geteilt und angesehen werden.</string>
   <!--New story viewer selection screen title-->
+  <string name="CreateStoryViewerSelectionFragment__choose_viewers">Zuschauer auswählen</string>
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">Weiter</string>
   <!--New story viewer selection screen title as recipients are selected-->
+  <plurals name="SelectViewersFragment__d_viewers">
+    <item quantity="one">%1$d Zuschauer</item>
+    <item quantity="other">%1$d Zuschauer</item>
+  </plurals>
   <!--Name story screen title-->
+  <string name="CreateStoryWithViewersFragment__name_story">Name der Story</string>
   <!--Name story screen label hint-->
   <string name="CreateStoryWithViewersFragment__story_name_required">Storyname (erforderlich)</string>
   <!--Name story screen viewers subheading-->
+  <string name="CreateStoryWithViewersFragment__viewers">Zuschauer</string>
   <!--Name story screen create button label-->
   <string name="CreateStoryWithViewersFragment__create">Erstellen</string>
   <!--Name story screen error when save attempted with no label-->
@@ -3905,7 +3930,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Choose story type bottom sheet new story row summary-->
   <string name="ChooseStoryTypeBottomSheet__visible_only_to">Sichtbar nur für bestimmte Personen</string>
   <!--Choose story type bottom sheet group story title-->
-  <string name="ChooseStoryTypeBottomSheet__group_story">Gruppenstory</string>
+  <string name="ChooseStoryTypeBottomSheet__group_story">Gruppen-Story</string>
   <!--Choose story type bottom sheet group story summary-->
   <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Mit einer bestehenden Gruppe teilen</string>
   <!--Choose groups bottom sheet title-->
@@ -3913,7 +3938,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Displayed when copying group story reply text to clipboard-->
   <string name="StoryGroupReplyFragment__copied_to_clipboard">In Zwischenablage kopiert</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
-  <string name="StoryViewerPageFragment__see_more"> … mehr anzeigen</string>
+  <string name="StoryViewerPageFragment__see_more">… mehr anzeigen</string>
   <!--Displayed in toast after sending a direct reply-->
   <string name="StoryDirectReplyDialogFragment__reply_sent">Antwort gesendet</string>
   <!--Displayed in toast after sending a direct reaction-->

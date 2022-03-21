@@ -36,8 +36,14 @@ final class GroupSendJobHelper {
         skipped.add(recipient.getId());
       }
 
-      if (sendMessageResult.getSuccess()         != null ||
-          sendMessageResult.getIdentityFailure() != null ||
+      if (sendMessageResult.getProofRequiredFailure() != null) {
+        Log.w(TAG, "Proof required failure for " + recipient.getId());
+        skipped.add(recipient.getId());
+      }
+
+      if (sendMessageResult.getSuccess()               != null ||
+          sendMessageResult.getIdentityFailure()       != null ||
+          sendMessageResult.getProofRequiredFailure()  != null ||
           sendMessageResult.isUnregisteredFailure())
       {
         completions.add(recipient);

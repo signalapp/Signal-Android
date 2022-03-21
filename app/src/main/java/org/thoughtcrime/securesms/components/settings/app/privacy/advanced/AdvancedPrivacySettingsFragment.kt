@@ -1,9 +1,14 @@
 package org.thoughtcrime.securesms.components.settings.app.privacy.advanced
 
 import android.app.ProgressDialog
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.graphics.drawable.Drawable
+import android.net.ConnectivityManager
 import android.text.SpannableStringBuilder
 import android.widget.TextView
 import android.widget.Toast
@@ -27,7 +32,9 @@ import org.thoughtcrime.securesms.util.ViewUtil
 
 class AdvancedPrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__advanced) {
 
-  lateinit var viewModel: AdvancedPrivacySettingsViewModel
+  private lateinit var viewModel: AdvancedPrivacySettingsViewModel
+
+  private var networkReceiver: NetworkReceiver? = null
 
   private val sealedSenderSummary: CharSequence by lazy {
     SpanUtil.learnMore(
@@ -60,6 +67,12 @@ class AdvancedPrivacySettingsFragment : DSLSettingsFragment(R.string.preferences
   override fun onResume() {
     super.onResume()
     viewModel.refresh()
+    registerNetworkReceiver()
+  }
+
+  override fun onPause() {
+    super.onPause()
+    unregisterNetworkReceiver()
   }
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
@@ -193,6 +206,29 @@ class AdvancedPrivacySettingsFragment : DSLSettingsFragment(R.string.preferences
       PhoneNumberFormatter.prettyPrint(SignalStore.account().e164!!)
     } else {
       getString(R.string.preferences__free_private_messages_and_calls)
+    }
+  }
+
+  @Suppress("DEPRECATION")
+  private fun registerNetworkReceiver() {
+    val context: Context? = context
+    if (context != null && networkReceiver == null) {
+      networkReceiver = NetworkReceiver()
+      context.registerReceiver(networkReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+    }
+  }
+
+  private fun unregisterNetworkReceiver() {
+    val context: Context? = context
+    if (context != null && networkReceiver != null) {
+      context.unregisterReceiver(networkReceiver)
+      networkReceiver = null
+    }
+  }
+
+  private inner class NetworkReceiver : BroadcastReceiver() {
+    override fun onReceive(context: Context, intent: Intent) {
+      viewModel.refresh()
     }
   }
 }

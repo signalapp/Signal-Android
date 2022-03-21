@@ -163,6 +163,7 @@
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">マイストーリー</string>
   <!--Action for creating a new story-->
+  <string name="ContactsCursorLoader_new_story">新規ストーリー</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%s にメッセージを送る</string>
   <string name="ContactsDatabase_signal_call_s">Signal通話 %s</string>
@@ -309,8 +310,11 @@
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s 有効</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">申請をブロックしますか？</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s はこのグループリンクからの参加申請ができなくなりますが、手動でグループに追加されることはできます。</string>
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">申請をブロックする</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">キャンセル</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -399,8 +403,11 @@
   <string name="RestoreBackupFragment__choose_folder">フォルダを選択する</string>
   <string name="RestoreBackupFragment__not_now">今はしない</string>
   <!--Couldn\'t find the selected backup-->
+  <string name="RestoreBackupFragment__backup_not_found">バックアップが見つかりません。</string>
   <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">バックアップを読み込めませんでした。</string>
   <!--Backup has an unsupported file extension-->
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">バックアップの拡張子が正しくありません。</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">チャットのバックアップ</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">バックアップはパスフレーズを用いて暗号化され、この端末内に保存されます。</string>
@@ -717,11 +724,13 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">ネットワークエラーが発生しました。</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">このグループリンクは利用できません</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">グループに参加できません</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
-  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">管理者があなたを削除したため、グループリンクからこのグループに参加することができません。</string>
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">管理者があなたを削除したため、グループリンクからはこのグループに参加できません。</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">このグループリンクはすでに無効です。</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">リンクエラー</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
   <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">このリンク経由での参加に失敗しました。あとで再度試してください。</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">このグループに参加して、あなたの名前と画像をそのメンバーと共有しますか？</string>
@@ -748,6 +757,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">「%1$s」をこのグループに追加しますか？</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">「%1$s」からの申請を拒否しますか？</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">「%1$s」からの申請を拒否しますか？申請者は、このグループリンクから再申請できなくなります。</string>
   <string name="RequestConfirmationDialog_add">追加する</string>
   <string name="RequestConfirmationDialog_deny">拒否する</string>
   <!--ImageEditorHud-->
@@ -1023,6 +1033,9 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">グループ参加を申請しました。</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s がグループリンクから参加を申請しました。</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="other">%1$s がグループリンクから参加を申請して、%2$d件の申請をキャンセルしました。</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s がグループ参加申請を承認しました。</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s が %2$s からのグループ参加申請を承認しました。</string>
@@ -1179,6 +1192,7 @@
   <!--Recipient-->
   <string name="Recipient_you">あなた</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">マイストーリー</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">ブロックする</string>
   <string name="RecipientPreferenceActivity_unblock">ブロックを解除する</string>
@@ -1630,6 +1644,9 @@
     <item quantity="other">メンバー %1$d人</item>
   </plurals>
   <!--Displays number of viewers for a story-->
+  <plurals name="contact_selection_list_item__number_of_viewers">
+    <item quantity="other">閲覧者 %1$d人</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signalメッセージ</string>
   <string name="conversation_activity__type_message_sms_insecure">安全でないSMS</string>
@@ -1668,6 +1685,7 @@
   <string name="ConversationUpdateItem_enable_call_notifications">着信通知を有効にする</string>
   <string name="ConversationUpdateItem_update_contact">連絡先を更新する</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">申請をブロック</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">共通のグループはありません。慎重に申請を確認してください。</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">このグループに連絡先の人はいません。慎重に申請を確認してください。</string>
   <string name="ConversationUpdateItem_view">表示する</string>
@@ -1689,7 +1707,9 @@
   <string name="QuoteView_you">あなた</string>
   <string name="QuoteView_original_missing">元のメッセージが見つかりません</string>
   <!--Author formatting for group stories-->
+  <string name="QuoteView_s_story">%1$s ストーリー</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">あなたのストーリー</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">一番下までスクロール</string>
   <!--BubbleOptOutTooltip-->
@@ -2543,7 +2563,7 @@
   <string name="LocalBackupJobApi29_there_is_not_enough_space">バックアップを保存できる十分なスペースがありません。</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">タップしてバックアップを管理</string>
   <string name="ProgressPreference_d_messages_so_far">これまで%d件のメッセージ</string>
-  <string name="RegistrationActivity_wrong_number">番号が違います</string>
+  <string name="RegistrationActivity_wrong_number">電話番号を訂正</string>
   <string name="RegistrationActivity_call_me_instead_available_in">代わりに電話してください\n (利用可能になるまで %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Signalサポートに問い合わせ</string>
   <string name="RegistrationActivity_code_support_subject">Signal登録 - Android用認証コード</string>
@@ -2602,7 +2622,7 @@
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
   <string name="NewDeviceTransferInstructions__tap_on_account">「アカウント」をタップ</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">両方の端末で「アカウントの移転」、「続ける」の順にタップします</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">両方の端末で「アカウントの移行」、「続ける」の順にタップします</string>
   <!--NewDeviceTransferSetupFragment-->
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">古いAndroid端末への接続を準備しています…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">しばらくお待ちください</string>
@@ -2725,6 +2745,7 @@
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">「%1$s」がこのグループの設定やメンバーを編集できるようになります。</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">このグループから %1$s を削除しますか？</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">%1$s をこのグループから削除しますか？このユーザーは、このグループリンクから再申請できなくなります。</string>
   <string name="RecipientBottomSheet_remove">削除する</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">クリップボードにコピーしました</string>
   <string name="GroupRecipientListItem_admin">管理者</string>
@@ -2813,6 +2834,7 @@
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">アカウントを削除しています…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
+  <string name="DeleteAccountFragment__canceling_your_subscription">サブスクリプションを解除しています…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <string name="DeleteAccountFragment__depending_on_the_number_of_groups">参加しているグループ数によっては数分かかることがあります</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
@@ -3346,6 +3368,7 @@
   <string name="ManageDonationsFragment__my_support">マイサポート</string>
   <string name="ManageDonationsFragment__manage_subscription">サブスクリプションの管理</string>
   <!--Label for Tax Receipts button-->
+  <string name="ManageDonationsFragment__tax_receipts">税金受領書</string>
   <string name="ManageDonationsFragment__badges">バッジ</string>
   <string name="ManageDonationsFragment__subscription_faq">サブスクリプションのよくある質問</string>
   <string name="ManageDonationsFragment__error_getting_subscription">サブスクリプションを取得できませんでした。</string>
@@ -3570,29 +3593,38 @@
   <!--Description shown for the Signal Release Notes channel-->
   <string name="ReleaseNotes__signal_release_notes_and_news">Signalリリースノート&amp;ニュース</string>
   <!--Donation receipts activity title-->
-  <string name="DonationReceiptListFragment__all_activity">すべてのアクティビティ</string>
+  <string name="DonationReceiptListFragment__all_activity">すべての活動</string>
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">すべて</string>
   <!--Donation receipts recurring tab label-->
   <!--Donation receipts one time tab label-->
   <string name="DonationReceiptListFragment__one_time">1回</string>
   <!--Donation receipts boost row label-->
+  <string name="DonationReceiptListFragment__boost">ブースト</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">詳細</string>
   <!--Donation receipts donation type heading-->
+  <string name="DonationReceiptDetailsFragment__donation_type">寄付の種類</string>
   <!--Donation receipts date paid heading-->
+  <string name="DonationReceiptDetailsFragment__date_paid">支払い日</string>
   <!--Donation receipts share PNG-->
+  <string name="DonationReceiptDetailsFragment__share_receipt">領収書を共有</string>
   <!--Donation receipts list end note-->
   <!--Donation receipts document title-->
+  <string name="DonationReceiptDetailsFragment__donation_receipt">寄付の領収書</string>
   <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">寄付額</string>
   <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Signalをサポートいただき、ありがとうございます。皆様のご寄付は、表現の自由を守り、世界中の何百万人もの人々に安全なグローバルコミュニケーションを可能にするオープンソースのプライバシー技術の開発というミッションの推進に役立っています。米国にお住まいの方は、この領収書を税務記録のために保管しておいてください。Signal Technology Foundationは、米国内国歳入法第501c3条に基づく非課税の非営利団体です。連邦税IDは82-4506840です。</string>
   <!--Donation receipt type-->
+  <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">チャット</string>
   <!--Label for Stories tab in home app screen-->
   <string name="ConversationListTabs__stories">ストーリー</string>
   <!--String for counts above 99 in conversation list tabs-->
+  <string name="ConversationListTabs__99p">99+</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">マイストーリー</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
@@ -3601,90 +3633,138 @@
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">ストーリーを閉じる</string>
   <!--Context menu option to unhide a story-->
+  <string name="StoriesLandingItem__unhide_story">ストーリーを再表示</string>
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">転送</string>
   <!--Context menu option to share a story-->
+  <string name="StoriesLandingItem__share">共有…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">チャットする</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">送信しています…</string>
   <!--Label when a story fails to send-->
+  <string name="StoriesLandingItem__couldnt_send">送信できませんでした</string>
   <!--Title of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__hide_story">ストーリーを非表示にしますか？</string>
   <!--Message of dialog confirming decision to hide a story-->
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">閉じる</string>
   <!--Displayed in Snackbar after story is hidden-->
+  <string name="StoriesLandingFragment__story_hidden">ストーリーを非表示にしました</string>
   <!--Section header for hidden stories-->
+  <string name="StoriesLandingFragment__hidden_stories">非表示のストーリー</string>
   <!--Displayed on each sent story under My Stories-->
+  <plurals name="MyStories__d_views">
+    <item quantity="other">閲覧 %1$d件</item>
+  </plurals>
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">転送</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
+  <string name="MyStories__ss_story">%1$s ストーリー</string>
   <!--Title of dialog to confirm deletion of story-->
+  <string name="MyStories__delete_story">ストーリーを削除しますか？</string>
   <!--Message of dialog to confirm deletion of story-->
+  <string name="MyStories__this_story_will_be_deleted">このストーリーは、あなたと受け取ったすべての人から削除されます。</string>
   <!--Displayed at bottom of story viewer when current item has views-->
+  <plurals name="StoryViewerFragment__d_views">
+    <item quantity="other">閲覧 %1$d件</item>
+  </plurals>
   <!--Displayed at bottom of story viewer when current item has replies-->
+  <plurals name="StoryViewerFragment__d_replies">
+    <item quantity="other">返信 %1$d件</item>
+  </plurals>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
   <string name="StoryViewerPageFragment__you">あなた</string>
   <!--Displayed when viewing a post displayed to a group-->
-  <string name="StoryViewerPageFragment__s_to_s">%1$s～%2$s</string>
+  <string name="StoryViewerPageFragment__s_to_s">%1$s から %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">返信</string>
   <!--Displayed when a story has no views-->
+  <string name="StoryViewsFragment__no_views_yet">閲覧 なし</string>
   <!--Displayed when a story has no replies yet-->
+  <string name="StoryGroupReplyFragment__no_replies_yet">返信 なし</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
-  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">ストーリーにリアクションされました</string>
+  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">ストーリーにリアクションがありました</string>
   <!--Label for story views tab-->
   <string name="StoryViewsAndRepliesDialogFragment__views">閲覧</string>
   <!--Label for story replies tab-->
   <string name="StoryViewsAndRepliesDialogFragment__replies">返信</string>
   <!--Description of action for reaction button-->
+  <string name="StoryReplyComposer__react_to_this_story">ストーリーにリアクション</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
+  <string name="StoryReplyComposer__replying_privately_to_s">%1$s に個人的に返信しています</string>
   <!--Context menu item to privately reply to a story response-->
+  <string name="StoryGroupReplyItem__private_reply">プライベートに返信</string>
   <!--Context menu item to copy a story response-->
   <string name="StoryGroupReplyItem__copy">コピー</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">削除</string>
   <!--Story settings page title-->
+  <string name="StorySettingsFragment__story_settings">ストーリーの設定</string>
   <!--Story settings private stories heading-->
+  <string name="StorySettingsFragment__private_stories">プライベートストーリー</string>
   <!--Option label for creating a new private story-->
+  <string name="StorySettingsFragment__new_private_story">新規プライベートストーリー</string>
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">マイストーリー</string>
   <!--Section heading for story visibility-->
+  <string name="MyStorySettingsFragment__who_can_see_this_story">ストーリーを閲覧できる人</string>
   <!--Clickable option for selecting people to hide your story from-->
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <plurals name="MyStorySettingsFragment__d_people">
+    <item quantity="other">%1$d人</item>
+  </plurals>
   <!--Section header for options related to replies and reactions-->
+  <string name="MyStorySettingsFragment__replies_amp_reactions">返信とリアクション</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
+  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">返信とリアクションを許可する</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
+  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">あなたのストーリーを閲覧可能なユーザーに返信とリアクションを許可します</string>
   <!--Note about default sharing-->
   <!--Signal connections linked text that opens the Signal Connections sheet-->
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
   <!--Signal connections sheet bullet point 1-->
+  <string name="SignalConnectionsBottomSheet__starting_a_conversation">チャットを開始</string>
   <!--Signal connections sheet bullet point 2-->
+  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">メッセージ申請を承認しています</string>
   <!--Signal connections sheet bullet point 3-->
   <!--Note at the bottom of the Signal connections sheet-->
   <!--Clickable option to add a viewer to a private story-->
+  <string name="PrivateStorySettingsFragment__add_viewer">閲覧できる人を追加</string>
   <!--Clickable option to delete a custom story-->
+  <string name="PrivateStorySettingsFragment__delete_private_story">プライベートストーリーを削除</string>
   <!--Dialog title when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__remove_s">%1$s を削除しますか？</string>
   <!--Dialog message when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__this_person_will_no_longer">このユーザーは、あなたのストーリを見ることができなくなります。</string>
   <!--Positive action label when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__remove">削除</string>
   <!--Dialog title when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__are_you_sure">本当に削除しますか？</string>
   <!--Dialog message when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__this_action_cannot">削除すると復元することはできません。</string>
   <!--Page title for editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__edit_story_name">ストーリーの題名を編集</string>
   <!--Input field hint when editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__story_name">ストーリーの題名</string>
   <!--Save button label when editing a private story name-->
   <string name="EditPrivateStoryNameFragment__save">保存</string>
   <!--Displayed in text post creator before user enters text-->
+  <string name="TextStoryPostCreationFragment__tap_to_add_text">タップしてテキストを追加</string>
   <!--Button label for changing font when creating a text post-->
+  <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
   <!--Displayed in text post creator when prompting user to enter text-->
   <string name="TextStoryPostTextEntryFragment__add_text">テキストを追加</string>
   <!--Content description for \'done\' button when adding text to a story post-->
+  <string name="TextStoryPostTextEntryFragment__done_adding_text">テキストを追加しました</string>
   <!--Text label for media selection toggle-->
   <string name="MediaSelectionActivity__text">テキスト</string>
   <!--Camera label for media selection toggle-->
   <string name="MediaSelectionActivity__camera">カメラ</string>
   <!--Hint for entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">URLを入力するか貼り付けてください</string>
   <!--Displayed prior to the user entering a URL for a text post-->
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">検索</string>
@@ -3692,39 +3772,62 @@
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">完了</string>
   <!--Dialog title for first time adding something to a story-->
+  <string name="StoryDialogs__add_to_story_q">ストーリーに追加しますか？</string>
   <!--Dialog message for first time adding something to a story-->
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
+  <string name="StoryDialogs__add_to_story">ストーリーに追加</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <string name="StoryDialogs__edit_viewers">閲覧者を編集</string>
   <!--Privacy Settings toggle title for stories-->
+  <string name="PrivacySettingsFragment__share_and_view_stories">ストーリーの共有と閲覧</string>
   <!--Privacy Settings toggle summary for stories-->
   <!--New story viewer selection screen title-->
+  <string name="CreateStoryViewerSelectionFragment__choose_viewers">閲覧できる人を選択</string>
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">次へ</string>
   <!--New story viewer selection screen title as recipients are selected-->
+  <plurals name="SelectViewersFragment__d_viewers">
+    <item quantity="other">閲覧者 %1$d人</item>
+  </plurals>
   <!--Name story screen title-->
   <!--Name story screen label hint-->
+  <string name="CreateStoryWithViewersFragment__story_name_required">ストーリー名 (必須)</string>
   <!--Name story screen viewers subheading-->
+  <string name="CreateStoryWithViewersFragment__viewers">閲覧者</string>
   <!--Name story screen create button label-->
   <string name="CreateStoryWithViewersFragment__create">作成</string>
   <!--Name story screen error when save attempted with no label-->
-  <string name="CreateStoryWithViewersFragment__this_field_is_required">この項目の入力は必須です。</string>
+  <string name="CreateStoryWithViewersFragment__this_field_is_required">この項目は必須です。</string>
   <!--Name story screen error when save attempted but label is duplicate-->
+  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">このストーリー名はすでに存在します。</string>
   <!--Text for select all action when editing recipients for a story-->
   <string name="BaseStoryRecipientSelectionFragment__select_all">すべて選択</string>
   <!--Choose story type bottom sheet title-->
+  <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">ストーリーの種類</string>
   <!--Choose story type bottom sheet new story row title-->
+  <string name="ChooseStoryTypeBottomSheet__new_private_story">新規プライベートストーリー</string>
   <!--Choose story type bottom sheet new story row summary-->
+  <string name="ChooseStoryTypeBottomSheet__visible_only_to">特定のユーザーのみ閲覧可能</string>
   <!--Choose story type bottom sheet group story title-->
+  <string name="ChooseStoryTypeBottomSheet__group_story">グループストーリー</string>
   <!--Choose story type bottom sheet group story summary-->
+  <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">既存のグループに共有</string>
   <!--Choose groups bottom sheet title-->
+  <string name="ChooseGroupStoryBottomSheet__choose_groups">グループを選択</string>
   <!--Displayed when copying group story reply text to clipboard-->
   <string name="StoryGroupReplyFragment__copied_to_clipboard">クリップボードにコピーしました</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
+  <string name="StoryViewerPageFragment__see_more">…続き</string>
   <!--Displayed in toast after sending a direct reply-->
+  <string name="StoryDirectReplyDialogFragment__reply_sent">返信を送信しました</string>
   <!--Displayed in toast after sending a direct reaction-->
+  <string name="StoryDirectReplyDialogFragment__reaction_sent">リアクションを送信しました</string>
   <!--Displayed in the viewer when a story is no longer available-->
+  <string name="StorySlateView__this_story_is_no_longer_available">このストーリーはすでに削除されています。</string>
   <!--Displayed in the viewer when the network is not available-->
+  <string name="StorySlateView__no_internet_connection">インターネット接続がありません</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <string name="StorySlateView__couldnt_load_content">コンテンツを読み込めませんでした</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">検閲回避を無効にしますか？</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -3734,9 +3837,12 @@
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">無効にする</string>
   <!--Conversation Item label for reactions to a story-->
+  <string name="ConversationItem__s_dot_story">%1$s · ストーリー</string>
   <!--Conversation Item label for reactions to an unavailable story-->
+  <string name="ConversationItem__reacted_to_a_story">ストーリーにリアクションがありました</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="ExpandModel__view_more">続き</string>
   <string name="StoriesLinkPopup__visit_link">表示</string>
   <!--EOF-->
 </resources>

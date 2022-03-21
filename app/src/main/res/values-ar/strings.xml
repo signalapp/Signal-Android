@@ -38,7 +38,7 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">الرقم التعريفي الشخصي غير مُفعَّل.</string>
   <string name="ApplicationPreferencesActivity_hide">إخفاء</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">إخفاء التذكير؟</string>
-  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">تسجيل جملة استعادة الدفوعات</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">تسجيل جملة استعادة المدفوعات</string>
   <string name="ApplicationPreferencesActivity_record_phrase">تسجيل جملة</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">قبل تعطيل رقمك التعريفي الشخصي، يجب عليك تسجيل جملة استعادة الدفوعات للتأكد من إمكانية استعادة حساب دفوعاتك.</string>
   <!--AppProtectionPreferenceFragment-->
@@ -128,6 +128,7 @@
   <string name="CameraContacts__menu_search">بحث</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention"> هل تريدإ بطال تجاوز الرقابة </string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">أطفىء</string>
@@ -4206,6 +4207,7 @@
   <string name="StorySlateView__no_internet_connection">لا يوجد اتصال بشبكة الإنترنت</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention"> هل تريدإ بطال تجاوز الرقابة </string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_no_thanks">لا شكراً</string>

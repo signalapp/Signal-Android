@@ -166,6 +166,7 @@
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Mano istorijos</string>
   <!--Action for creating a new story-->
+  <string name="ContactsCursorLoader_new_story">Nauja istorija</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Žinutė %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal skambutis %s</string>
@@ -462,8 +463,11 @@
   <string name="RestoreBackupFragment__choose_folder">Pasirinkti aplanką</string>
   <string name="RestoreBackupFragment__not_now">Ne dabar</string>
   <!--Couldn\'t find the selected backup-->
+  <string name="RestoreBackupFragment__backup_not_found">Atsarginė kopija nerasta.</string>
   <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">Nepavyko perskaityti atsarginės kopijos.</string>
   <!--Backup has an unsupported file extension-->
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">Atsarginė kopija turi neteisingą prievardį.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Pokalbių atsarginės kopijos</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Atsarginės kopijos yra šifruojamos naudojant slaptafrazę ir yra laikomos jūsų įrenginyje.</string>
@@ -843,11 +847,13 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Susidurta su tinklo klaida.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Šios grupės nuoroda nėra aktyvi</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Nepavyksta prisijungti prie grupės</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
   <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Jūs negalite prisijungti prie grupės per šią grupės nuorodą, nes administratorius jus pašalino.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Ši grupės nuoroda daugiau nebegalioja.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">Nuorodos klaida</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
   <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Nepavyko prisijungti per šią nuorodą. Bandykite prisijungti dar kartą vėliau.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Ar norite prisijungti prie šios grupės ir bendrinti su jos nariais savo vardą ir nuotrauką?</string>
@@ -1372,6 +1378,7 @@
   <!--Recipient-->
   <string name="Recipient_you">Jūs</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">Mano istorija</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Užblokuoti</string>
   <string name="RecipientPreferenceActivity_unblock">Atblokuoti</string>
@@ -1925,6 +1932,7 @@
   <string name="QuoteView_original_missing">Pradinė žinutė nerasta</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Jūsų istorija</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Slinkti į apačią</string>
   <!--BubbleOptOutTooltip-->
@@ -3656,6 +3664,7 @@
   <string name="ManageDonationsFragment__my_support">Mano palaikymas</string>
   <string name="ManageDonationsFragment__manage_subscription">Tvarkyti prenumeratą</string>
   <!--Label for Tax Receipts button-->
+  <string name="ManageDonationsFragment__tax_receipts">Mokesčio kvitai</string>
   <string name="ManageDonationsFragment__badges">Ženkliukai</string>
   <string name="ManageDonationsFragment__subscription_faq">DUK apie prenumeratą</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Klaida gaunant prenumeratą.</string>
@@ -3884,17 +3893,23 @@
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">Visi</string>
   <!--Donation receipts recurring tab label-->
+  <string name="DonationReceiptListFragment__recurring">Pasikartojantys</string>
   <!--Donation receipts one time tab label-->
   <string name="DonationReceiptListFragment__one_time">Vieną kartą</string>
   <!--Donation receipts boost row label-->
+  <string name="DonationReceiptListFragment__boost">Paskatinimas</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Išsamesnė informacija</string>
   <!--Donation receipts donation type heading-->
+  <string name="DonationReceiptDetailsFragment__donation_type">Paaukojimo tipas</string>
   <!--Donation receipts date paid heading-->
+  <string name="DonationReceiptDetailsFragment__date_paid">Mokėjimo data</string>
   <!--Donation receipts share PNG-->
+  <string name="DonationReceiptDetailsFragment__share_receipt">Bendrinti kvitą</string>
   <!--Donation receipts list end note-->
   <!--Donation receipts document title-->
   <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">Suma</string>
   <!--Donation receipts thanks-->
   <!--Donation receipt type-->
   <!--region "Stories Tab"-->
@@ -3919,6 +3934,7 @@
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Siunčiama…</string>
   <!--Label when a story fails to send-->
+  <string name="StoriesLandingItem__couldnt_send">Nepavyko išsiųsti</string>
   <!--Title of dialog confirming decision to hide a story-->
   <!--Message of dialog confirming decision to hide a story-->
   <!--Positive action of dialog confirming decision to hide a story-->
@@ -3957,14 +3973,22 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Ištrinti</string>
   <!--Story settings page title-->
+  <string name="StorySettingsFragment__story_settings">Istorijos nustatymai</string>
   <!--Story settings private stories heading-->
+  <string name="StorySettingsFragment__private_stories">Privačios istorijos</string>
   <!--Option label for creating a new private story-->
+  <string name="StorySettingsFragment__new_private_story">Nauja privati istorija</string>
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">Mano istorija</string>
   <!--Section heading for story visibility-->
+  <string name="MyStorySettingsFragment__who_can_see_this_story">Kas gali matyti šią istoriją</string>
   <!--Clickable option for selecting people to hide your story from-->
+  <string name="MyStorySettingsFragment__hide_story_from">Slėpti istoriją nuo</string>
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
   <!--Section header for options related to replies and reactions-->
+  <string name="MyStorySettingsFragment__replies_amp_reactions">Atsakymai ir reakcijos</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
+  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Leisti atsakymus ir reakcijas</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
   <!--Note about default sharing-->
   <!--Signal connections linked text that opens the Signal Connections sheet-->
@@ -3975,11 +3999,15 @@
   <!--Note at the bottom of the Signal connections sheet-->
   <!--Clickable option to add a viewer to a private story-->
   <!--Clickable option to delete a custom story-->
+  <string name="PrivateStorySettingsFragment__delete_private_story">Ištrinti privačią istoriją</string>
   <!--Dialog title when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__remove_s">Šalinti %1$s?</string>
   <!--Dialog message when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Šis žmogus daugiau nebematys jūsų istorijos.</string>
   <!--Positive action label when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__remove">Šalinti</string>
   <!--Dialog title when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__are_you_sure">Ar tikrai?</string>
   <!--Dialog message when deleting a private story-->
   <!--Page title for editing a private story name-->
   <!--Input field hint when editing a private story name-->
@@ -3987,6 +4015,7 @@
   <string name="EditPrivateStoryNameFragment__save">Įrašyti</string>
   <!--Displayed in text post creator before user enters text-->
   <!--Button label for changing font when creating a text post-->
+  <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
   <!--Displayed in text post creator when prompting user to enter text-->
   <string name="TextStoryPostTextEntryFragment__add_text">Pridėti tekstą</string>
   <!--Content description for \'done\' button when adding text to a story post-->
@@ -4023,6 +4052,7 @@
   <string name="BaseStoryRecipientSelectionFragment__select_all">Žymėti visus</string>
   <!--Choose story type bottom sheet title-->
   <!--Choose story type bottom sheet new story row title-->
+  <string name="ChooseStoryTypeBottomSheet__new_private_story">Nauja privati istorija</string>
   <!--Choose story type bottom sheet new story row summary-->
   <!--Choose story type bottom sheet group story title-->
   <!--Choose story type bottom sheet group story summary-->
@@ -4034,7 +4064,9 @@
   <!--Displayed in toast after sending a direct reaction-->
   <!--Displayed in the viewer when a story is no longer available-->
   <!--Displayed in the viewer when the network is not available-->
+  <string name="StorySlateView__no_internet_connection">Nėra interneto ryšio</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <string name="StorySlateView__couldnt_load_content">Nepavyko įkelti turinio</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Išjungti cenzūravimo apėjimą?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -4044,9 +4076,11 @@
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Išjungti</string>
   <!--Conversation Item label for reactions to a story-->
+  <string name="ConversationItem__s_dot_story">%1$s · Istorija</string>
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="ExpandModel__view_more">Rodyti daugiau</string>
   <string name="StoriesLinkPopup__visit_link">Aplankyti tinklalapį</string>
   <!--EOF-->
 </resources>

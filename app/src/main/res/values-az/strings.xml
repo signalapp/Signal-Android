@@ -164,6 +164,7 @@
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Hekayələrim</string>
   <!--Action for creating a new story-->
+  <string name="ContactsCursorLoader_new_story">Yeni Hekayə</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mesaj %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal Zəngi %s</string>
@@ -316,8 +317,11 @@
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s açıqdır</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">Tələb əngəllənsin?</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s, qrup bağlantısı vasitəsilə bu qrupa qoşula və ya qoşulma tələbi göndərə bilməz. Yenə də qrupa manual olaraq əlavə edilə bilər.</string>
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">Tələbi əngəllə</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">İmtina</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -420,8 +424,11 @@
   <string name="RestoreBackupFragment__choose_folder">Qovluq seçin</string>
   <string name="RestoreBackupFragment__not_now">İndi yox</string>
   <!--Couldn\'t find the selected backup-->
+  <string name="RestoreBackupFragment__backup_not_found">Nüsxə tapılmadı.</string>
   <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">Nüsxə oxuna bilmədi.</string>
   <!--Backup has an unsupported file extension-->
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">Nüsxənin yanlış bir genişləndirməsi var.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Söhbət nüsxələri</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Nüsxələr bir parolla şifrələnib və cihazınızda saxlanılıb.</string>
@@ -759,11 +766,15 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Şəbəkə xətası ilə qarşılaşıldı.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Qrup bağlantısı aktiv deyil</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Qrupa qoşula bilmir</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Bir admin sizi çıxartdığı üçün bu qrupa qrup bağlantısı vasitəsilə qoşula bilməzsiniz.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Qrup bağlantısı artıq etibarsızdır</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">Bağlantı xətası</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
+  <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Bu bağlantı vasitəsilə qoşulma uğursuz oldu. Daha sonra yenidən qoşulmağa cəhd edin.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Bu qrupa qoşulmaq və adınızı və fotunuzu üzvlərlə paylaşmaq istəyirsiniz?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Bu qrupa qoşula bilməyiniz üçün qrupdan bir admin tələbinizi təsdiqləməlidir. Siz qoşulma tələbi göndərəndə, adınız və fotonuz üzvlərlə paylaşılacaq.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
@@ -789,6 +800,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">\"%1$s\" qrupa əlavə edilsin?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">\"%1$s\" göndərən tələb rədd edilsin?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">\"%1$s\" göndərən tələblər rədd edilsin? Yenidən qrup bağlantısı vasitəsilə qoşulma tələbi göndərə bilməyəcək.</string>
   <string name="RequestConfirmationDialog_add">Əlavə et</string>
   <string name="RequestConfirmationDialog_deny">Rədd et</string>
   <!--ImageEditorHud-->
@@ -1078,6 +1090,10 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Qrupa qoşulma tələbi göndərdiniz.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s qrup bağlantısı vasitəsilə qrupa qoşulma tələbi göndərdi.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="one">%1$s, qrup bağlantısı vasitəsilə qoşulmaq üçün göndərdiyi tələbi ləğv etdi.</item>
+    <item quantity="other">%1$s, qrup bağlantısı vasitəsilə qoşulmaq üçün göndərdiyi %2$d tələbi ləğv etdi.</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s qrupa qoşulma tələbinizi təsdiqlədi.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s, %2$s tərəfindən göndərilən qrupa qoşulma tələbini təsdiqlədi.</string>
@@ -1242,6 +1258,7 @@
   <!--Recipient-->
   <string name="Recipient_you">Siz</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">Hekayəm</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Əngəllə</string>
   <string name="RecipientPreferenceActivity_unblock">Əngəldən çıxart</string>
@@ -1713,6 +1730,10 @@
     <item quantity="other">%1$d üzv</item>
   </plurals>
   <!--Displays number of viewers for a story-->
+  <plurals name="contact_selection_list_item__number_of_viewers">
+    <item quantity="one">%1$d baxış</item>
+    <item quantity="other">%1$d baxış</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal mesajı</string>
   <string name="conversation_activity__type_message_sms_insecure">Güvənli olmayan SMS</string>
@@ -1751,6 +1772,7 @@
   <string name="ConversationUpdateItem_enable_call_notifications">Zəng bildirişlərini fəallaşdır</string>
   <string name="ConversationUpdateItem_update_contact">Əlaqəni yenilə</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">Tələbi əngəllə</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Heç bir ortaq qrup yoxdur. Tələbləri diqqətlə nəzərdən keçirin.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Bu qrupda heç bir əlaqə yoxdur. Tələbləri diqqətlə nəzərdən keçirin.</string>
   <string name="ConversationUpdateItem_view">Bax</string>
@@ -1772,7 +1794,9 @@
   <string name="QuoteView_you">Siz</string>
   <string name="QuoteView_original_missing">Orijinal mesaj tapılmadı</string>
   <!--Author formatting for group stories-->
+  <string name="QuoteView_s_story">%1$s paylaşan hekayə</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Hekayəniz</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Aşağı sürüşdür</string>
   <!--BubbleOptOutTooltip-->
@@ -2824,6 +2848,7 @@
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\", bu qrupa və üzvlərinə düzəliş edə biləcək.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s qrupdan çıxarılsın?</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">%1$s, qrupdan çıxarılsın? Qrup bağlantısı vasitəsilə yenidən qoşula bilməyəcək.</string>
   <string name="RecipientBottomSheet_remove">Çıxart</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Lövhəyə kopyalandı</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
@@ -2914,6 +2939,7 @@
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">Hesab silinir…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
+  <string name="DeleteAccountFragment__canceling_your_subscription">Abunəliyiniz ləğv edilir…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Bu, üzv olduğunuz qrup sayına görə bir neçə dəqiqə çəkə bilər</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
@@ -3401,8 +3427,8 @@
   <string name="MediaCountIndicatorButton__send">Göndər</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">Çıxartmaq üçün toxunun</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Seçmək üçün toxunun</string>
-  <string name="MediaReviewImagePageFragment__discard">Ləğv et</string>
-  <string name="MediaReviewImagePageFragment__discard_changes">Dəyişikliklər ləğv edilsin?</string>
+  <string name="MediaReviewImagePageFragment__discard">Sil</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Dəyişikliklər silinsin?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Bu foto üzərində etdiyiniz bütün dəyişiklikləri itirəcəksiniz.</string>
   <string name="CameraFragment__failed_to_open_camera">Kamera açılmadı</string>
   <string name="BadgesOverviewFragment__my_badges">Nişanlarım</string>
@@ -3454,6 +3480,7 @@
   <string name="ManageDonationsFragment__my_support">Dəstəyim</string>
   <string name="ManageDonationsFragment__manage_subscription">Abunəliyi idarə et</string>
   <!--Label for Tax Receipts button-->
+  <string name="ManageDonationsFragment__tax_receipts">Vergi qəbzləri</string>
   <string name="ManageDonationsFragment__badges">Nişanlar</string>
   <string name="ManageDonationsFragment__subscription_faq">Abunəlik üçün TSS</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Abunəlik alma xətası.</string>
@@ -3682,55 +3709,89 @@
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">Hamısı</string>
   <!--Donation receipts recurring tab label-->
+  <string name="DonationReceiptListFragment__recurring">Təkrarlanan</string>
   <!--Donation receipts one time tab label-->
   <string name="DonationReceiptListFragment__one_time">Bir dəfə</string>
   <!--Donation receipts boost row label-->
+  <string name="DonationReceiptListFragment__boost">Gücləndirmə</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Təfsilatlar</string>
   <!--Donation receipts donation type heading-->
+  <string name="DonationReceiptDetailsFragment__donation_type">İanə növü</string>
   <!--Donation receipts date paid heading-->
+  <string name="DonationReceiptDetailsFragment__date_paid">Ödəniş tarixi</string>
   <!--Donation receipts share PNG-->
+  <string name="DonationReceiptDetailsFragment__share_receipt">Qəbzi paylaş</string>
   <!--Donation receipts list end note-->
+  <string name="DonationReceiptListFragment__if_you_have">Signal-ı yenidən quraşdırmısınızsa, əvvəlki ianələrin qəbzləri mövcud olmayacaq.</string>
   <!--Donation receipts document title-->
+  <string name="DonationReceiptDetailsFragment__donation_receipt">İanə qəbzi</string>
   <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">Məbləğ</string>
   <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Signal-ı dəstəklədiyiniz üçün təşəkkürlər. Töhfəniz, dünyadakı milyonlarla insan üçün güvənli qlobal ünsiyyəti təmin edən və azad ifadəni qoruyan açıq mənbəli gizlilik texnologiyasının inkişaf missiyasını dəstəkləməyə kömək edir. Əgər Birləşmiş Ştatlarda yaşayırsınızsa, zəhmət olmasa bu qəbzi vergi qeydlərinizin arasında saxlayın. Signal texnologiya fondu, Daxili Gəlir Məcəlləsinin 501c3 maddəsinə əsasən Birləşmiş Ştatlarda vergidən azad edilmiş qeyri-kommersiya təşkilatıdır. Federal Vergi Kimliyimiz: 82–4506840.</string>
   <!--Donation receipt type-->
+  <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Söhbətlər</string>
   <!--Label for Stories tab in home app screen-->
   <string name="ConversationListTabs__stories">Hekayələr</string>
   <!--String for counts above 99 in conversation list tabs-->
+  <string name="ConversationListTabs__99p">99+</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Hekayələrim</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Bir hekayə əlavə et</string>
   <!--Displayed when there are no stories to display-->
+  <string name="StoriesLandingFragment__no_recent_updates">Hal-hazırda göstəriləcək yeni bir hekayə yoxdur.</string>
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Hekayəni gizlət</string>
   <!--Context menu option to unhide a story-->
+  <string name="StoriesLandingItem__unhide_story">Hekayəni göstər</string>
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">Yönləndir</string>
   <!--Context menu option to share a story-->
+  <string name="StoriesLandingItem__share">Paylaş…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Söhbətə get</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Göndərilir…</string>
   <!--Label when a story fails to send-->
+  <string name="StoriesLandingItem__couldnt_send">Göndərilə bilmədi</string>
   <!--Title of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__hide_story">Hekayə gizlədilsin?</string>
   <!--Message of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__new_story_updates">%1$s paylaşan yeni hekayələr artıq hekayələr siyahısının başında görünməyəcək.</string>
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">Gizlət</string>
   <!--Displayed in Snackbar after story is hidden-->
+  <string name="StoriesLandingFragment__story_hidden">Hekayə gizlədildi</string>
   <!--Section header for hidden stories-->
+  <string name="StoriesLandingFragment__hidden_stories">Gizli hekayələr</string>
   <!--Displayed on each sent story under My Stories-->
+  <plurals name="MyStories__d_views">
+    <item quantity="one">%1$d baxış</item>
+    <item quantity="other">%1$d baxış</item>
+  </plurals>
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">Yönləndir</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
+  <string name="MyStories__ss_story">%1$s paylaşan hekayə</string>
   <!--Title of dialog to confirm deletion of story-->
+  <string name="MyStories__delete_story">Hekayə silinsin?</string>
   <!--Message of dialog to confirm deletion of story-->
+  <string name="MyStories__this_story_will_be_deleted">Bu hekayə sizin və bunu alan hər kəs üçün silinəcək</string>
   <!--Displayed at bottom of story viewer when current item has views-->
+  <plurals name="StoryViewerFragment__d_views">
+    <item quantity="one">%1$d baxış</item>
+    <item quantity="other">%1$d baxış</item>
+  </plurals>
   <!--Displayed at bottom of story viewer when current item has replies-->
+  <plurals name="StoryViewerFragment__d_replies">
+    <item quantity="one">%1$d cavab</item>
+    <item quantity="other">%1$d cavab</item>
+  </plurals>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3740,7 +3801,9 @@
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Cavabla</string>
   <!--Displayed when a story has no views-->
+  <string name="StoryViewsFragment__no_views_yet">Hələ ki, baxış yoxdur</string>
   <!--Displayed when a story has no replies yet-->
+  <string name="StoryGroupReplyFragment__no_replies_yet">Hələ ki, cavab yoxdur</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
   <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Hekayəyə reaksiya verildi</string>
   <!--Label for story views tab-->
@@ -3748,91 +3811,155 @@
   <!--Label for story replies tab-->
   <string name="StoryViewsAndRepliesDialogFragment__replies">Cavab</string>
   <!--Description of action for reaction button-->
+  <string name="StoryReplyComposer__react_to_this_story">Bu hekayəyə reaksiya ver</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
+  <string name="StoryReplyComposer__replying_privately_to_s">%1$s hekayəsinə özəl olaraq cavab göndərilir</string>
   <!--Context menu item to privately reply to a story response-->
+  <string name="StoryGroupReplyItem__private_reply">Özəl cavab</string>
   <!--Context menu item to copy a story response-->
   <string name="StoryGroupReplyItem__copy">Kopyala</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Sil</string>
   <!--Story settings page title-->
+  <string name="StorySettingsFragment__story_settings">Hekayə tənzimləmələri</string>
   <!--Story settings private stories heading-->
+  <string name="StorySettingsFragment__private_stories">Özəl hekayələr</string>
   <!--Option label for creating a new private story-->
+  <string name="StorySettingsFragment__new_private_story">Yeni özəl hekayə</string>
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">Hekayəm</string>
   <!--Section heading for story visibility-->
+  <string name="MyStorySettingsFragment__who_can_see_this_story">Bu hekayəni kim görə bilər</string>
   <!--Clickable option for selecting people to hide your story from-->
+  <string name="MyStorySettingsFragment__hide_story_from">Hekayəni gizlət</string>
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <plurals name="MyStorySettingsFragment__d_people">
+    <item quantity="one">%1$d nəfər</item>
+    <item quantity="other">%1$d nəfər</item>
+  </plurals>
   <!--Section header for options related to replies and reactions-->
+  <string name="MyStorySettingsFragment__replies_amp_reactions">Cavablar &amp; reaksiyalar</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
+  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Cavablara &amp; reaksiyalara icazə ver</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
+  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Hekayələrinizi görən şəxslərin reaksiya və cavab verməsinə icazə verin</string>
   <!--Note about default sharing-->
+  <string name="MyStorySettingsFragment__hide_your_story_from">Hekayələrinizi müəyyən şəxslərdən gizlədin. İlkin olaraq hekayələriniz %1$s ilə paylaşılır</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
+  <string name="MyStorySettingsFragment__signal_connections">Signal bağlantıları</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Signal bağlantıları</strong>, aşağıdakılardan birinə güvənməyi seçdiyiniz şəxslərdir:</string>
   <!--Signal connections sheet bullet point 1-->
+  <string name="SignalConnectionsBottomSheet__starting_a_conversation">Bir danışıq başlatdığınız</string>
   <!--Signal connections sheet bullet point 2-->
+  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Bir mesaj tələbi qəbul etdiyiniz</string>
   <!--Signal connections sheet bullet point 3-->
+  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Sistem əlaqə kitabçanızda mövcud olan</string>
   <!--Note at the bottom of the Signal connections sheet-->
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Bağlantılarınız, adınızı və fotonuzu görə bilər, onlardan gizlətmədiyiniz müddətcə hekayələrinizdəki göndərişləri də görə bilər.</string>
   <!--Clickable option to add a viewer to a private story-->
+  <string name="PrivateStorySettingsFragment__add_viewer">İzləyici əlavə et</string>
   <!--Clickable option to delete a custom story-->
+  <string name="PrivateStorySettingsFragment__delete_private_story">Özəl hekayəni sil</string>
   <!--Dialog title when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__remove_s">%1$s çıxarılsın?</string>
   <!--Dialog message when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Bu şəxs artıq hekayənizə baxa bilməyəcək.</string>
   <!--Positive action label when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__remove">Çıxart</string>
   <!--Dialog title when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__are_you_sure">Əminsiniz?</string>
   <!--Dialog message when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__this_action_cannot">Bu əməliyyatın geri dönüşü yoxdur.</string>
   <!--Page title for editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__edit_story_name">Hekayə adına düzəliş et</string>
   <!--Input field hint when editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__story_name">Hekayə adı</string>
   <!--Save button label when editing a private story name-->
   <string name="EditPrivateStoryNameFragment__save">Saxla</string>
   <!--Displayed in text post creator before user enters text-->
+  <string name="TextStoryPostCreationFragment__tap_to_add_text">Mətn əlavə etmək üçün toxunun</string>
   <!--Button label for changing font when creating a text post-->
+  <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
   <!--Displayed in text post creator when prompting user to enter text-->
   <string name="TextStoryPostTextEntryFragment__add_text">Mətn əlavə et</string>
   <!--Content description for \'done\' button when adding text to a story post-->
+  <string name="TextStoryPostTextEntryFragment__done_adding_text">Mətn əlavə etmə hazırdır</string>
   <!--Text label for media selection toggle-->
   <string name="MediaSelectionActivity__text">Mətn</string>
   <!--Camera label for media selection toggle-->
   <string name="MediaSelectionActivity__camera">Kamera</string>
   <!--Hint for entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Yazın və ya bir URL yapışdırın</string>
   <!--Displayed prior to the user entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Hekayənizin bir bağlantısını izləyicilərlə paylaşın</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Axtar</string>
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
+  <string name="HideStoryFromFragment__hide_story_from">Hekayəni gizlət..</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Bitdi</string>
   <!--Dialog title for first time adding something to a story-->
+  <string name="StoryDialogs__add_to_story_q">Bir hekayə əlavə edilsin?</string>
   <!--Dialog message for first time adding something to a story-->
+  <string name="StoryDialogs__adding_content">Hekayənizə məzmun əlavə etmək, Signal bağlantılarınızın 24 saat ərzində ona baxmasını təmin edir. Hekayələrinizə kimlərin baxa biləcəyini tənzimləmələrdən dəyişdirə bilərsiniz.</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
+  <string name="StoryDialogs__add_to_story">Hekayəyə əlavə et</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <string name="StoryDialogs__edit_viewers">İzləyicilərə düzəliş et</string>
   <!--Privacy Settings toggle title for stories-->
+  <string name="PrivacySettingsFragment__share_and_view_stories">Hekayələrə bax &amp; onları paylaş</string>
   <!--Privacy Settings toggle summary for stories-->
+  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Bu seçim bağlı olduqda hekayələrə baxa və ya onları paylaşa bilməyəcəksiniz.</string>
   <!--New story viewer selection screen title-->
+  <string name="CreateStoryViewerSelectionFragment__choose_viewers">İzləyiciləri seç</string>
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">Növbəti</string>
   <!--New story viewer selection screen title as recipients are selected-->
+  <plurals name="SelectViewersFragment__d_viewers">
+    <item quantity="one">%1$d izləyici</item>
+    <item quantity="other">%1$d izləyici</item>
+  </plurals>
   <!--Name story screen title-->
+  <string name="CreateStoryWithViewersFragment__name_story">Hekayə adı</string>
   <!--Name story screen label hint-->
+  <string name="CreateStoryWithViewersFragment__story_name_required">Hekayə adı (tələb olunur)</string>
   <!--Name story screen viewers subheading-->
+  <string name="CreateStoryWithViewersFragment__viewers">İzləyici</string>
   <!--Name story screen create button label-->
   <string name="CreateStoryWithViewersFragment__create">Yarat</string>
   <!--Name story screen error when save attempted with no label-->
   <string name="CreateStoryWithViewersFragment__this_field_is_required">Bu sahə doldurulmalıdır.</string>
   <!--Name story screen error when save attempted but label is duplicate-->
+  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">Bu adda artıq bir hekayə var.</string>
   <!--Text for select all action when editing recipients for a story-->
   <string name="BaseStoryRecipientSelectionFragment__select_all">Hamısını seç</string>
   <!--Choose story type bottom sheet title-->
+  <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Hekayə növünü seçin</string>
   <!--Choose story type bottom sheet new story row title-->
+  <string name="ChooseStoryTypeBottomSheet__new_private_story">Yeni özəl hekayə</string>
   <!--Choose story type bottom sheet new story row summary-->
+  <string name="ChooseStoryTypeBottomSheet__visible_only_to">Yalnız müəyyən şəxslərə görünən</string>
   <!--Choose story type bottom sheet group story title-->
+  <string name="ChooseStoryTypeBottomSheet__group_story">Qrup hekayəsi</string>
   <!--Choose story type bottom sheet group story summary-->
+  <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Mövcud bir qrupla paylaş</string>
   <!--Choose groups bottom sheet title-->
+  <string name="ChooseGroupStoryBottomSheet__choose_groups">Qrupları seç</string>
   <!--Displayed when copying group story reply text to clipboard-->
   <string name="StoryGroupReplyFragment__copied_to_clipboard">Lövhəyə kopyalandı</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
+  <string name="StoryViewerPageFragment__see_more">… Daha çoxu</string>
   <!--Displayed in toast after sending a direct reply-->
+  <string name="StoryDirectReplyDialogFragment__reply_sent">Cavab göndərildi</string>
   <!--Displayed in toast after sending a direct reaction-->
+  <string name="StoryDirectReplyDialogFragment__reaction_sent">Reaksiya göndərildi</string>
   <!--Displayed in the viewer when a story is no longer available-->
+  <string name="StorySlateView__this_story_is_no_longer_available">Bu hekayə artıq mövcud deyil.</string>
   <!--Displayed in the viewer when the network is not available-->
+  <string name="StorySlateView__no_internet_connection">İnternet bağlantısı yoxdur</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <string name="StorySlateView__couldnt_load_content">Məzmun yüklənilə bilmədi</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Senzuradan yayınma söndürülsün?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -3842,8 +3969,12 @@
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Söndür</string>
   <!--Conversation Item label for reactions to a story-->
+  <string name="ConversationItem__s_dot_story">%1$s · Hekayə</string>
   <!--Conversation Item label for reactions to an unavailable story-->
+  <string name="ConversationItem__reacted_to_a_story">Hekayəyə reaksiya verildi</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="ExpandModel__view_more">Daha çoxuna bax</string>
+  <string name="StoriesLinkPopup__visit_link">Dəvət bağlantısı</string>
   <!--EOF-->
 </resources>

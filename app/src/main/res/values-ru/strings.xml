@@ -4024,7 +4024,7 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Удалить</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Настройки истории</string>
+  <string name="StorySettingsFragment__story_settings">Настройки историй</string>
   <!--Story settings private stories heading-->
   <string name="StorySettingsFragment__private_stories">Частные истории</string>
   <!--Option label for creating a new private story-->
