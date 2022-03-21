@@ -79,6 +79,7 @@ import org.thoughtcrime.securesms.jobs.NullMessageSendJob;
 import org.thoughtcrime.securesms.jobs.PaymentLedgerUpdateJob;
 import org.thoughtcrime.securesms.jobs.PaymentTransactionCheckJob;
 import org.thoughtcrime.securesms.jobs.ProfileKeySendJob;
+import org.thoughtcrime.securesms.jobs.PushProcessEarlyMessagesJob;
 import org.thoughtcrime.securesms.jobs.PushProcessMessageJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
@@ -896,6 +897,7 @@ public final class MessageContentProcessor {
     if (targetMessage == null) {
       warn(String.valueOf(content.getTimestamp()), "[handleReaction] Could not find matching message! Putting it in the early message cache. timestamp: " + reaction.getTargetSentTimestamp() + "  author: " + targetAuthor.getId());
       ApplicationDependencies.getEarlyMessageCache().store(targetAuthor.getId(), reaction.getTargetSentTimestamp(), content);
+      PushProcessEarlyMessagesJob.enqueue();
       return null;
     }
 
@@ -952,6 +954,7 @@ public final class MessageContentProcessor {
     } else if (targetMessage == null) {
       warn(String.valueOf(content.getTimestamp()), "[handleRemoteDelete] Could not find matching message! timestamp: " + delete.getTargetSentTimestamp() + "  author: " + senderRecipient.getId());
       ApplicationDependencies.getEarlyMessageCache().store(senderRecipient.getId(), delete.getTargetSentTimestamp(), content);
+      PushProcessEarlyMessagesJob.enqueue();
       return null;
     } else {
       warn(String.valueOf(content.getTimestamp()), String.format(Locale.ENGLISH, "[handleRemoteDelete] Invalid remote delete! deleteTime: %d, targetTime: %d, deleteAuthor: %s, targetAuthor: %s",
@@ -2133,6 +2136,10 @@ public final class MessageContentProcessor {
       warn(String.valueOf(content.getTimestamp()), "[handleViewedReceipt] Could not find matching message! timestamp: " + id.getTimetamp() + "  author: " + senderRecipient.getId());
       ApplicationDependencies.getEarlyMessageCache().store(senderRecipient.getId(), id.getTimetamp(), content);
     }
+
+    if (unhandled.size() > 0) {
+      PushProcessEarlyMessagesJob.enqueue();
+    }
   }
 
   @SuppressLint("DefaultLocale")
@@ -2151,6 +2158,10 @@ public final class MessageContentProcessor {
     for (SyncMessageId id : unhandled) {
       warn(String.valueOf(content.getTimestamp()), "[handleDeliveryReceipt] Could not find matching message! timestamp: " + id.getTimetamp() + "  author: " + senderRecipient.getId());
       // Early delivery receipts are special-cased in the database methods
+    }
+
+    if (unhandled.size() > 0) {
+      PushProcessEarlyMessagesJob.enqueue();
     }
 
     SignalDatabase.messageLog().deleteEntriesForRecipient(message.getTimestamps(), senderRecipient.getId(), content.getSenderDevice());
@@ -2177,6 +2188,10 @@ public final class MessageContentProcessor {
     for (SyncMessageId id : unhandled) {
       warn(String.valueOf(content.getTimestamp()), "[handleReadReceipt] Could not find matching message! timestamp: " + id.getTimetamp() + "  author: " + senderRecipient.getId());
       ApplicationDependencies.getEarlyMessageCache().store(senderRecipient.getId(), id.getTimetamp(), content);
+    }
+
+    if (unhandled.size() > 0) {
+      PushProcessEarlyMessagesJob.enqueue();
     }
   }
 

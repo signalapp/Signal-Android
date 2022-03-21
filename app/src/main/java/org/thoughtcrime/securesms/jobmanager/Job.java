@@ -242,7 +242,7 @@ public abstract class Job {
   public static final class Parameters {
 
     public static final String MIGRATION_QUEUE_KEY = "MIGRATION";
-    public static final int    IMMORTAL            = -1;
+    public static final long   IMMORTAL            = -1;
     public static final int    UNLIMITED           = -1;
 
     private final String       id;

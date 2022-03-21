@@ -2,9 +2,14 @@ package org.thoughtcrime.securesms.util;
 
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.database.MessageDatabase;
+import org.thoughtcrime.securesms.database.model.MessageId;
+import org.thoughtcrime.securesms.database.model.ServiceMessageId;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -17,14 +22,14 @@ import java.util.Optional;
  */
 public final class EarlyMessageCache {
 
-  private final LRUCache<MessageId, List<SignalServiceContent>> cache = new LRUCache<>(100);
+  private final LRUCache<ServiceMessageId, List<SignalServiceContent>> cache = new LRUCache<>(100);
 
   /**
    * @param targetSender        The sender of the message this message depends on.
    * @param targetSentTimestamp The sent timestamp of the message this message depends on.
    */
-  public void store(@NonNull RecipientId targetSender, long targetSentTimestamp, @NonNull SignalServiceContent content) {
-    MessageId                  messageId   = new MessageId(targetSender, targetSentTimestamp);
+  public synchronized void store(@NonNull RecipientId targetSender, long targetSentTimestamp, @NonNull SignalServiceContent content) {
+    ServiceMessageId           messageId   = new ServiceMessageId(targetSender, targetSentTimestamp);
     List<SignalServiceContent> contentList = cache.get(messageId);
 
     if (contentList == null) {
@@ -41,31 +46,15 @@ public final class EarlyMessageCache {
    * @param sender        The sender of the message in question.
    * @param sentTimestamp The sent timestamp of the message in question.
    */
-  public Optional<List<SignalServiceContent>> retrieve(@NonNull RecipientId sender, long sentTimestamp) {
-    return Optional.ofNullable(cache.remove(new MessageId(sender, sentTimestamp)));
+  public synchronized Optional<List<SignalServiceContent>> retrieve(@NonNull RecipientId sender, long sentTimestamp) {
+    return Optional.ofNullable(cache.remove(new ServiceMessageId(sender, sentTimestamp)));
   }
 
-  private static final class MessageId {
-    private final RecipientId sender;
-    private final long        sentTimestamp;
-
-    private MessageId(@NonNull RecipientId sender, long sentTimestamp) {
-      this.sender        = sender;
-      this.sentTimestamp = sentTimestamp;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-      MessageId messageId = (MessageId) o;
-      return sentTimestamp == messageId.sentTimestamp &&
-          Objects.equals(sender, messageId.sender);
-    }
-
-    @Override
-    public int hashCode() {
-      return Objects.hash(sentTimestamp, sender);
-    }
+  /**
+   * Returns a collection of all of the {@link ServiceMessageId}s referenced in the cache at the  moment of inquiry.
+   * Caution: There is no guarantee that this list will be relevant for any amount of time afterwards.
+   */
+  public synchronized @NonNull Collection<ServiceMessageId> getAllReferencedIds() {
+    return new HashSet<>(cache.keySet());
   }
 }

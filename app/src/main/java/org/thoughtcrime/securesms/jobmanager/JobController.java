@@ -26,6 +26,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Predicate;
 
 /**
  * Manages the queue of jobs. This is the only class that should write to {@link JobStorage} to
@@ -188,6 +189,13 @@ class JobController {
     jobStorage.updateJobs(updatedJobs);
 
     notifyAll();
+  }
+
+  @WorkerThread
+  synchronized List<JobSpec> findJobs(@NonNull Predicate<JobSpec> predicate) {
+    return Stream.of(jobStorage.getAllJobSpecs())
+                 .filter(predicate::test)
+                 .toList();
   }
 
   @WorkerThread
