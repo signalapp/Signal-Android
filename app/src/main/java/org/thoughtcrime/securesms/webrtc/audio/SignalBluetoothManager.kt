@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.webrtc.audio
 
+import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothHeadset
@@ -19,6 +20,7 @@ import java.util.concurrent.TimeUnit
  * reports that to the [SignalAudioManager], and then handles connecting/disconnecting
  * to the device if requested by [SignalAudioManager].
  */
+@SuppressLint("MissingPermission") // targetSdkVersion is still 30 (https://issuetracker.google.com/issues/201454155)
 class SignalBluetoothManager(
   private val context: Context,
   private val audioManager: FullSignalAudioManager,
