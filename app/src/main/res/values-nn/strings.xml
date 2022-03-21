@@ -162,7 +162,9 @@
   <string name="ContactsCursorLoader_phone_number_search">Søk etter telefonnummer</string>
   <string name="ContactsCursorLoader_username_search">Søk etter brukarnamn</string>
   <!--Label for my stories when selecting who to send media to-->
+  <string name="ContactsCursorLoader_my_stories">Mine historier</string>
   <!--Action for creating a new story-->
+  <string name="ContactsCursorLoader_new_story">Ny historie</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Melding %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-anrop %s</string>
@@ -316,8 +318,10 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s på</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">Blokker førespurnad?</string>
   <!--Dialog message for block group link join requests-->
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">Blokker førespurnad</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">Avbryt</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -420,8 +424,11 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="RestoreBackupFragment__choose_folder">Vel mappe</string>
   <string name="RestoreBackupFragment__not_now">Ikkje no</string>
   <!--Couldn\'t find the selected backup-->
+  <string name="RestoreBackupFragment__backup_not_found">Fann ingen reservekopi.</string>
   <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">Klarte ikkje lesa reservekopi.</string>
   <!--Backup has an unsupported file extension-->
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">Reservekopien har feil filending.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Reservekopiar av meldingar</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Reservekopiar er krypterte med ein passordfrase og lagra på eininga di.</string>
@@ -763,11 +770,15 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Fekk ein nettverksfeil.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Denne gruppelenka er ikkje aktiv</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Klarte ikkje bli med i gruppa</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Du kan ikkje bli med i gruppa via gruppelenka fordi ein administrator fjerna deg.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Gruppelenkja er ikkje lenger gyldig.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">Lenkefeil</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
+  <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Klarte ikkje bli med via denne lenka. Prøv igjen seinare.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Vil du bli med i denne gruppa og dela namn og bilde med medlemmane?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Ein gruppeadministrator må godkjenna førespurnaden din før du kan bli med i denne gruppa. Når du spør om å bli med, blir namnet og bildet ditt delt med medlemmane.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
@@ -1247,6 +1258,7 @@ Viss du ikkje klarer å hugsa PIN-en, kan du oppretta ein ny ein. Du kan registr
   <!--Recipient-->
   <string name="Recipient_you">Du</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">Mi historie</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blokker</string>
   <string name="RecipientPreferenceActivity_unblock">Fjern blokkering</string>
@@ -1718,6 +1730,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
     <item quantity="other">%1$d medlemmar</item>
   </plurals>
   <!--Displays number of viewers for a story-->
+  <plurals name="contact_selection_list_item__number_of_viewers">
+    <item quantity="one">%1$d sjåar</item>
+    <item quantity="other">%1$d sjåarar</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal-melding</string>
   <string name="conversation_activity__type_message_sms_insecure">Usikra SMS</string>
@@ -1756,6 +1772,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Skru på samtalevarsel</string>
   <string name="ConversationUpdateItem_update_contact">Oppdater kontakt</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">Blokker førespurnad</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ingen felles grupper. Sjå nøye gjennom førespurnader.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Ingen kontaktar i denne gruppa. Sjå nøye gjennom førespurnader.</string>
   <string name="ConversationUpdateItem_view">Vis</string>
@@ -1777,7 +1794,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="QuoteView_you">Deg</string>
   <string name="QuoteView_original_missing">Fann ikkje den opphavlege meldinga</string>
   <!--Author formatting for group stories-->
+  <string name="QuoteView_s_story">%1$s historie</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Di historie</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rull til botnen</string>
   <!--BubbleOptOutTooltip-->
@@ -1959,6 +1978,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="message_details_recipient_header__read_by">Lesen av</string>
   <string name="message_details_recipient_header__not_sent">Ikkje sendt</string>
   <string name="message_details_recipient_header__viewed">Sett av</string>
+  <string name="message_details_recipient_header__skipped">Hoppa over</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Sending mislukkast</string>
   <string name="message_details_recipient__new_safety_number">Nytt tryggingsnummer</string>
@@ -2920,6 +2940,7 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">Slettar konto …</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
+  <string name="DeleteAccountFragment__canceling_your_subscription">Avsluttar abonnementet ditt …</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Dette kan ta nokre minutt, avhengig av kor mange grupper du er med i …</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
@@ -3468,6 +3489,7 @@ Sjekkar igjen no …</string>
   <string name="ManageDonationsFragment__my_support">Mi støtte</string>
   <string name="ManageDonationsFragment__manage_subscription">Handter abonnement</string>
   <!--Label for Tax Receipts button-->
+  <string name="ManageDonationsFragment__tax_receipts">Skattekvitteringar</string>
   <string name="ManageDonationsFragment__badges">Merke</string>
   <string name="ManageDonationsFragment__subscription_faq">Ofte spurde spørsmål om abonnement</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Klarte ikkje henta abonnement</string>
@@ -3696,47 +3718,74 @@ Sjekkar igjen no …</string>
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">Alt</string>
   <!--Donation receipts recurring tab label-->
+  <string name="DonationReceiptListFragment__recurring">Gjentakande</string>
   <!--Donation receipts one time tab label-->
   <string name="DonationReceiptListFragment__one_time">Éin gong</string>
   <!--Donation receipts boost row label-->
+  <string name="DonationReceiptListFragment__boost">Auke</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Detaljar</string>
   <!--Donation receipts donation type heading-->
+  <string name="DonationReceiptDetailsFragment__donation_type">Donasjonstype</string>
   <!--Donation receipts date paid heading-->
+  <string name="DonationReceiptDetailsFragment__date_paid">Betalingsdato</string>
   <!--Donation receipts share PNG-->
+  <string name="DonationReceiptDetailsFragment__share_receipt">Del kvittering</string>
   <!--Donation receipts list end note-->
+  <string name="DonationReceiptListFragment__if_you_have">Kvitteringar frå tidlegare donasjonar er ikkje tilgjengelege viss du har installert Signal på nytt.</string>
   <!--Donation receipts document title-->
+  <string name="DonationReceiptDetailsFragment__donation_receipt">Donasjonskvittering</string>
   <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">Beløp</string>
   <!--Donation receipts thanks-->
   <!--Donation receipt type-->
+  <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s – %2$s</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Samtalar</string>
   <!--Label for Stories tab in home app screen-->
+  <string name="ConversationListTabs__stories">Historier</string>
   <!--String for counts above 99 in conversation list tabs-->
+  <string name="ConversationListTabs__99p">99+</string>
   <!--Title for "My Stories" row item in Stories landing page-->
+  <string name="StoriesLandingFragment__my_stories">Mine historier</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
+  <string name="StoriesLandingFragment__add_a_story">Lag historie</string>
   <!--Displayed when there are no stories to display-->
   <!--Context menu option to hide a story-->
+  <string name="StoriesLandingItem__hide_story">Skjul historie</string>
   <!--Context menu option to unhide a story-->
+  <string name="StoriesLandingItem__unhide_story">Syn historie</string>
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">Vidaresend</string>
   <!--Context menu option to share a story-->
+  <string name="StoriesLandingItem__share">Del …</string>
   <!--Context menu option to go to story chat-->
+  <string name="StoriesLandingItem__go_to_chat">Gå til samtale</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Sendar …</string>
   <!--Label when a story fails to send-->
+  <string name="StoriesLandingItem__couldnt_send">Klarte ikkje senda</string>
   <!--Title of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__hide_story">Skjul historie?</string>
   <!--Message of dialog confirming decision to hide a story-->
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">Skjul</string>
   <!--Displayed in Snackbar after story is hidden-->
+  <string name="StoriesLandingFragment__story_hidden">Historie skjult</string>
   <!--Section header for hidden stories-->
+  <string name="StoriesLandingFragment__hidden_stories">Skjulte historier</string>
   <!--Displayed on each sent story under My Stories-->
+  <plurals name="MyStories__d_views">
+    <item quantity="one">%1$d visning</item>
+    <item quantity="other">%1$d visningar</item>
+  </plurals>
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">Vidaresend</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
+  <string name="MyStories__ss_story">Historia til %1$s</string>
   <!--Title of dialog to confirm deletion of story-->
+  <string name="MyStories__delete_story">Slett historie?</string>
   <!--Message of dialog to confirm deletion of story-->
   <!--Displayed at bottom of story viewer when current item has views-->
   <!--Displayed at bottom of story viewer when current item has replies-->
@@ -3764,6 +3813,7 @@ Sjekkar igjen no …</string>
   <!--Story settings private stories heading-->
   <!--Option label for creating a new private story-->
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">Mi historie</string>
   <!--Section heading for story visibility-->
   <!--Clickable option for selecting people to hide your story from-->
   <!--Summary of clickable option displaying how many people you have hidden your story from-->

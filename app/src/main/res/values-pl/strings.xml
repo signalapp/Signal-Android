@@ -4043,79 +4043,130 @@ danych, rozważ miesięczną subskrypcję.</string>
     <item quantity="other">%1$d osoby</item>
   </plurals>
   <!--Section header for options related to replies and reactions-->
+  <string name="MyStorySettingsFragment__replies_amp_reactions">Odpowiedzi i reakcje</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
+  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Pozwalaj na odpowiedzi i reakcje</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
+  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Pozwól ludziom, oglądającym Twoją historię zareagować i odpowiedzieć</string>
   <!--Note about default sharing-->
+  <string name="MyStorySettingsFragment__hide_your_story_from">Ukryj swoją historię przed określonymi osobami. Domyślnie Twoją historię widzą %1$s</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
+  <string name="MyStorySettingsFragment__signal_connections">Kontakty Signal</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Kontakty Signal</strong> to osoby, którym postanowiłeś(aś) zaufać przez:</string>
   <!--Signal connections sheet bullet point 1-->
+  <string name="SignalConnectionsBottomSheet__starting_a_conversation">Rozpoczęcie konwersacji</string>
   <!--Signal connections sheet bullet point 2-->
+  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Zaakceptowanie prośby o kontakt</string>
   <!--Signal connections sheet bullet point 3-->
+  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Posiadanie ich w systemowej książce kontaktów</string>
   <!--Note at the bottom of the Signal connections sheet-->
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Twoje kontakty widzą Twoje imię i zdjęcie, i widzą posty w \"Moja historia\", chyba, że je przed nimi ukryjesz.</string>
   <!--Clickable option to add a viewer to a private story-->
+  <string name="PrivateStorySettingsFragment__add_viewer">Dodaj widza</string>
   <!--Clickable option to delete a custom story-->
+  <string name="PrivateStorySettingsFragment__delete_private_story">Usuń prywatną historię</string>
   <!--Dialog title when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__remove_s">Usunąć %1$s?</string>
   <!--Dialog message when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Ta osoba nie będzie już widzieć Twojej historii.</string>
   <!--Positive action label when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__remove">Usuń</string>
   <!--Dialog title when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__are_you_sure">Na pewno chcesz to zrobić?</string>
   <!--Dialog message when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__this_action_cannot">Tego działania nie można cofnąć.</string>
   <!--Page title for editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__edit_story_name">Edytuj tytuł historii</string>
   <!--Input field hint when editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__story_name">Tytuł historii</string>
   <!--Save button label when editing a private story name-->
   <string name="EditPrivateStoryNameFragment__save">Zapisz</string>
   <!--Displayed in text post creator before user enters text-->
+  <string name="TextStoryPostCreationFragment__tap_to_add_text">Stuknij, aby dodać tekst</string>
   <!--Button label for changing font when creating a text post-->
+  <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
   <!--Displayed in text post creator when prompting user to enter text-->
   <string name="TextStoryPostTextEntryFragment__add_text">Dodaj tekst</string>
   <!--Content description for \'done\' button when adding text to a story post-->
+  <string name="TextStoryPostTextEntryFragment__done_adding_text">Skończ dodawać tekst</string>
   <!--Text label for media selection toggle-->
   <string name="MediaSelectionActivity__text">Tekst</string>
   <!--Camera label for media selection toggle-->
   <string name="MediaSelectionActivity__camera">Kamera</string>
   <!--Hint for entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Napisz coś albo wklej link</string>
   <!--Displayed prior to the user entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Udostępnij link widzom swojej historii</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Szukaj</string>
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
+  <string name="HideStoryFromFragment__hide_story_from">Ukryj historię przed…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Gotowe</string>
   <!--Dialog title for first time adding something to a story-->
+  <string name="StoryDialogs__add_to_story_q">Dodać do historii?</string>
   <!--Dialog message for first time adding something to a story-->
+  <string name="StoryDialogs__adding_content">Dodanie treści do Twojej historii pozwoli Twoim kontaktom widzieć ją przez 24 godziny. Możesz zmienić, kto może zobaczyć Twoją historię w Ustawieniach.</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
+  <string name="StoryDialogs__add_to_story">Dodaj do historii</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <string name="StoryDialogs__edit_viewers">Edytuj widzów</string>
   <!--Privacy Settings toggle title for stories-->
+  <string name="PrivacySettingsFragment__share_and_view_stories">Udostępniaj i oglądaj historie</string>
   <!--Privacy Settings toggle summary for stories-->
+  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Gdy ta opcja jest wyłączona, nie będziesz w stanie udostępniać, ani oglądać historii.</string>
   <!--New story viewer selection screen title-->
+  <string name="CreateStoryViewerSelectionFragment__choose_viewers">Wybierz widzów</string>
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">Dalej</string>
   <!--New story viewer selection screen title as recipients are selected-->
+  <plurals name="SelectViewersFragment__d_viewers">
+    <item quantity="one">%1$d widz</item>
+    <item quantity="few">%1$d widzów</item>
+    <item quantity="many">%1$d widzów</item>
+    <item quantity="other">%1$d widzów</item>
+  </plurals>
   <!--Name story screen title-->
+  <string name="CreateStoryWithViewersFragment__name_story">Nazwij historię</string>
   <!--Name story screen label hint-->
+  <string name="CreateStoryWithViewersFragment__story_name_required">Tytuł historii (wymagane)</string>
   <!--Name story screen viewers subheading-->
+  <string name="CreateStoryWithViewersFragment__viewers">Widzowie</string>
   <!--Name story screen create button label-->
   <string name="CreateStoryWithViewersFragment__create">Utwórz</string>
   <!--Name story screen error when save attempted with no label-->
   <string name="CreateStoryWithViewersFragment__this_field_is_required">To pole jest wymagane.</string>
   <!--Name story screen error when save attempted but label is duplicate-->
+  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">Już istnieje historia o takiej nazwie.</string>
   <!--Text for select all action when editing recipients for a story-->
   <string name="BaseStoryRecipientSelectionFragment__select_all">Zaznacz wszystko</string>
   <!--Choose story type bottom sheet title-->
+  <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Wybierz rodzaj historii</string>
   <!--Choose story type bottom sheet new story row title-->
   <string name="ChooseStoryTypeBottomSheet__new_private_story">Nowa, prywatna historia</string>
   <!--Choose story type bottom sheet new story row summary-->
+  <string name="ChooseStoryTypeBottomSheet__visible_only_to">Widoczna tylko dla określonych osób</string>
   <!--Choose story type bottom sheet group story title-->
+  <string name="ChooseStoryTypeBottomSheet__group_story">Historia grupowa</string>
   <!--Choose story type bottom sheet group story summary-->
+  <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Udostępnij istniejącej grupie</string>
   <!--Choose groups bottom sheet title-->
+  <string name="ChooseGroupStoryBottomSheet__choose_groups">Wybierz grupy</string>
   <!--Displayed when copying group story reply text to clipboard-->
   <string name="StoryGroupReplyFragment__copied_to_clipboard">Skopiowano do schowka</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
+  <string name="StoryViewerPageFragment__see_more">… Czytaj dalej</string>
   <!--Displayed in toast after sending a direct reply-->
+  <string name="StoryDirectReplyDialogFragment__reply_sent">Odpowiedź wysłana</string>
   <!--Displayed in toast after sending a direct reaction-->
+  <string name="StoryDirectReplyDialogFragment__reaction_sent">Reakcja wysłana</string>
   <!--Displayed in the viewer when a story is no longer available-->
+  <string name="StorySlateView__this_story_is_no_longer_available">Ta historia nie jest już dostępna.</string>
   <!--Displayed in the viewer when the network is not available-->
   <string name="StorySlateView__no_internet_connection">Brak połączenia z internetem</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <string name="StorySlateView__couldnt_load_content">Nie można załadować zawartości</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Wyłączyć omijanie cenzury?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -4125,9 +4176,12 @@ danych, rozważ miesięczną subskrypcję.</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Wyłącz</string>
   <!--Conversation Item label for reactions to a story-->
+  <string name="ConversationItem__s_dot_story">%1$s · Historia</string>
   <!--Conversation Item label for reactions to an unavailable story-->
+  <string name="ConversationItem__reacted_to_a_story">Zareagowano na historię</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="ExpandModel__view_more">Pokaż więcej</string>
   <string name="StoriesLinkPopup__visit_link">Odwiedź link</string>
   <!--EOF-->
 </resources>

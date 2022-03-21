@@ -166,6 +166,7 @@
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Moje príbehy</string>
   <!--Action for creating a new story-->
+  <string name="ContactsCursorLoader_new_story">Nový príbeh</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Správa %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal Hovor %s</string>
@@ -330,8 +331,11 @@
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s na</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">Blokovať žiadosť?</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s sa nebude môcť pripojiť, alebo požiadať o pripojenie k tejto skupine prostredníctvom odkazu na skupinu. Stále ich možno pridať do skupiny manuálne.</string>
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">Blokovať žiadosť</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">Zrušiť</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -462,8 +466,11 @@
   <string name="RestoreBackupFragment__choose_folder">Zvoľte priečinok</string>
   <string name="RestoreBackupFragment__not_now">Teraz nie</string>
   <!--Couldn\'t find the selected backup-->
+  <string name="RestoreBackupFragment__backup_not_found">Záloha sa nenašla.</string>
   <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">Zálohu sa nepodarilo prečítať.</string>
   <!--Backup has an unsupported file extension-->
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">Záloha má zlé rozšírenie.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Zálohy chatu</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Zálohy budú šifrované pomocou hesla a uložené vo vašom zariadení.</string>
@@ -843,11 +850,13 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Vyskytla sa chyba siete.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Tento odkaz do skupiny nie je aktívny</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Nedá sa pripojiť ku skupine</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
   <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">K tejto skupine sa nemôžete pripojiť prostredníctvom odkazu na skupinu, pretože vás odstránil správca.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Tento odkaz do skupiny už nie je platný.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">Chyba odkazu</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
   <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Pripojenie cez tento odkaz zlyhalo. Skúste sa pripojiť znova neskôr.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Chcete sa pridať do tejto skupiny a zdieľať vaše meno a foto s jej členmi?</string>
@@ -877,6 +886,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">Pridať “%1$s” do skupiny?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Odmietnuť žiadosť od “%1$s”?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Odmietnuť žiadosť od „%1$s“? Nebudú môcť znova požiadať o pripojenie prostredníctvom odkazu na skupinu.</string>
   <string name="RequestConfirmationDialog_add">Pridať</string>
   <string name="RequestConfirmationDialog_deny">Odmietnuť</string>
   <!--ImageEditorHud-->
@@ -1194,6 +1204,12 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Poslali ste žiadosť o členstvo v skupine.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s žiada o členstvo prostredníctvom odkazu do skupiny.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="one">%1$s požiadal a zrušil svoju žiadosť o pripojenie prostredníctvom odkazu na skupinu.</item>
+    <item quantity="few">%1$s vyžiadal a zrušil %2$d žiadostí o pripojenie cez odkaz na skupinu.</item>
+    <item quantity="many">%1$s vyžiadal a zrušil %2$d žiadostí o pripojenie cez odkaz na skupinu.</item>
+    <item quantity="other">%1$s vyžiadal a zrušil %2$d žiadostí o pripojenie cez odkaz na skupinu.</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s schválil/a vašu žiadosť o členstvo v skupine.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s schválil/a žiadosť o členstvo v skupine od %2$s.</string>
@@ -1371,6 +1387,7 @@
   <!--Recipient-->
   <string name="Recipient_you">Vy</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">Môj príbeh</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blokovať</string>
   <string name="RecipientPreferenceActivity_unblock">Odblokovať</string>
@@ -1864,6 +1881,12 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
     <item quantity="other">%1$d členov</item>
   </plurals>
   <!--Displays number of viewers for a story-->
+  <plurals name="contact_selection_list_item__number_of_viewers">
+    <item quantity="one">%1$d sledujúci</item>
+    <item quantity="few">%1$d sledujúci</item>
+    <item quantity="many">%1$d sledujúcich</item>
+    <item quantity="other">%1$d sledujúcich</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal správa</string>
   <string name="conversation_activity__type_message_sms_insecure">Nezabezpečená SMS</string>
@@ -1902,6 +1925,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ConversationUpdateItem_enable_call_notifications">Povoliť upozornenia na hovory</string>
   <string name="ConversationUpdateItem_update_contact">Aktualizovať kontakt</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">Blokovať žiadosť</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Žiadne spoločné skupiny. Žiadosti starostlivo skontrolujte.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">V tejto skupine nie sú žiadne kontakty. Žiadosti starostlivo skontrolujte.</string>
   <string name="ConversationUpdateItem_view">Zobraziť</string>
@@ -1923,7 +1947,9 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="QuoteView_you">Vy</string>
   <string name="QuoteView_original_missing">Pôvodná správa sa nenašla</string>
   <!--Author formatting for group stories-->
+  <string name="QuoteView_s_story">%1$s Príbeh</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Tvoj príbeh</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Na koniec</string>
   <!--BubbleOptOutTooltip-->
@@ -3959,6 +3985,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Story settings private stories heading-->
   <!--Option label for creating a new private story-->
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">Môj príbeh</string>
   <!--Section heading for story visibility-->
   <!--Clickable option for selecting people to hide your story from-->
   <!--Summary of clickable option displaying how many people you have hidden your story from-->

@@ -760,7 +760,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Ez a csoporthivatkozás nem aktív</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
-  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Egy admin távolított el ebből a csoportból, így már nem tudsz csoporthivatkozás használatával csatlakozni ehhez a csoporthoz.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Egy admin eltávolított ebből a csoportból, így már nem tudsz csoporthivatkozás használatával csatlakozni ehhez a csoporthoz.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Ez a csoporthivatkozás már nem érvényes.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->

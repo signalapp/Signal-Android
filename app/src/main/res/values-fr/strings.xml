@@ -315,8 +315,10 @@
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s activé</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">Bloquer la demande ?</string>
   <!--Dialog message for block group link join requests-->
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">Bloquer la demande</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">Annuler</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -419,7 +421,9 @@
   <string name="RestoreBackupFragment__choose_folder">Sélectionner un dossier</string>
   <string name="RestoreBackupFragment__not_now">Pas maintenant</string>
   <!--Couldn\'t find the selected backup-->
+  <string name="RestoreBackupFragment__backup_not_found">Sauvegarde non trouvée.</string>
   <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">Impossible de lire la sauvegarde.</string>
   <!--Backup has an unsupported file extension-->
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Sauvegardes des conversations</string>
@@ -758,7 +762,9 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Une erreur réseau est survenue.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Ce lien de groupe est inactif</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Impossible de se joindre au groupe</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Vous ne pouvez pas vous joindre au groupe avec le lien du groupe car un administrateur vous a supprimé.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Ce lien de groupe n’est plus valide.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
@@ -1079,6 +1085,10 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Vous avez demandé à vous joindre au groupe.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s a demandé à se joindre au groupe grâce au lien du groupe.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="one">%1$s a demandé et annulé sa demande à se joindre au groupe grâce au lien du groupe.</item>
+    <item quantity="other">%1$s a demandé et annulé %2$d demandes à se joindre au groupe grâce au lien du groupe.</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s a approuvé votre demande de vous joindre au groupe.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s a approuvé une demande de %2$s de se joindre au groupe.</string>
@@ -1100,7 +1110,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Un message de %s n’a pas pu être remis</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s a changé de numéro de téléphone</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Vous aimez cette nouvelle fonction ? Dites merci avec un coup de pouce.</string>
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Aimez-vous cette nouvelle fonction ? Dites merci avec un Coup de pouce.</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal est propulsé par des personnes comme vous. Devenez un donateur mensuel dès aujourd’hui.</string>
   <!--Group Calling update messages-->
@@ -1705,6 +1715,10 @@
     <item quantity="other">%1$d membres</item>
   </plurals>
   <!--Displays number of viewers for a story-->
+  <plurals name="contact_selection_list_item__number_of_viewers">
+    <item quantity="one">%1$d spectateur</item>
+    <item quantity="other">%1$d spectateurs</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Message Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">Texto non sécurisé</string>
@@ -1743,6 +1757,7 @@
   <string name="ConversationUpdateItem_enable_call_notifications">Activer les notifications d’appels</string>
   <string name="ConversationUpdateItem_update_contact">Mettre le contact à jour</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">Bloquer la demande</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Aucun groupe en commun. Examinez les demandes avec attention.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Aucun contact dans ce groupe. Examinez les demandes avec attention.</string>
   <string name="ConversationUpdateItem_view">Afficher</string>
@@ -1988,7 +2003,7 @@
     <item>Rétroaction</item>
     <item>Autre</item>
     <item>Paiements (MobileCoin)</item>
-    <item>Donateurs mensuels et coups de pouce à Signal</item>
+    <item>Donateurs mensuels et Coups de pouce à Signal</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ce message</string>
@@ -3436,7 +3451,7 @@ Nouvelle tentative…</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal s\'engage à développer une technologie de protection de la vie privée à code source ouvert qui protège la libre expression et permet une communication mondiale sécurisée.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Votre contribution alimente cette cause et permet de financer le développement et le fonctionnement d’une appli utilisée par des millions de personnes pour des communications confidentielles et protégées. Aucune publicité, aucun traqueur, vraiment.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Merci pour votre soutien !</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Merci pour le coup de pouce !</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Merci pour le Coup de pouce !</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Vous avez obtenu le macaron %s ! Aidez Signal à se faire connaître en affichant ce macaron sur votre profil.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Vous avez obtenu un macaron Encouragement. Aidez Signal à se faire connaître en affichant ce macaron sur votre profil.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Vous pouvez aussi</string>
@@ -3453,11 +3468,11 @@ Nouvelle tentative…</string>
   <string name="ManageDonationsFragment__badges">Macarons</string>
   <string name="ManageDonationsFragment__subscription_faq">FAQ Abonnement</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Erreur de lecture de l\'abonnement</string>
-  <string name="BoostFragment__give_signal_a_boost">Donnez un coup de pouce à Signal</string>
+  <string name="BoostFragment__give_signal_a_boost">Donnez un Coup de pouce à Signal</string>
   <string name="BoostFragment__say_thanks_and_earn">Dites « Merci ! » et gagnez le macaron Encouragement pour %1$d jours.   </string>
   <string name="Boost__enter_custom_amount">Saisissez un montant personnalisé</string>
   <string name="Boost__one_time_contribution">Contribution unique</string>
-  <string name="MySupportPreference__add_a_signal_boost">Donner un coup de pouce à Signal</string>
+  <string name="MySupportPreference__add_a_signal_boost">Donner un Coup de pouce à Signal</string>
   <string name="MySupportPreference__s_per_month">%1$s/mois</string>
   <string name="MySupportPreference__renews_s">Renouvellement %1$s</string>
   <string name="MySupportPreference__processing_transaction">Traitement de la transaction…</string>
@@ -3471,7 +3486,7 @@ Nouvelle tentative…</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Vous pouvez réactiver votre macaron Encouragement pour 30 jours supplémentaires en versant une somme unique.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Pour continuer à soutenir la technologie conçue pour vous, veuillez envisager de devenir un donateur mensuel.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Devenir donateur mensuel</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Donner un coup de pouce</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Donner un Coup de pouce</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Pas maintenant</string>
   <!--Copy displayed when badge expires after user inactivity-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Votre don mensuel a automatiquement été résilié en raison d’une inaction trop longue. Votre macaron %1$s n’est plus visible sur votre profil.</string>
@@ -3681,11 +3696,14 @@ Nouvelle tentative…</string>
   <!--Donation receipts one time tab label-->
   <string name="DonationReceiptListFragment__one_time">Une fois</string>
   <!--Donation receipts boost row label-->
+  <string name="DonationReceiptListFragment__boost">Coup de pouce</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Détails</string>
   <!--Donation receipts donation type heading-->
+  <string name="DonationReceiptDetailsFragment__donation_type">Type de don</string>
   <!--Donation receipts date paid heading-->
   <!--Donation receipts share PNG-->
+  <string name="DonationReceiptDetailsFragment__share_receipt">Partager le reçu</string>
   <!--Donation receipts list end note-->
   <!--Donation receipts document title-->
   <!--Donation receipts amount title-->
@@ -3718,12 +3736,20 @@ Nouvelle tentative…</string>
   <!--Displayed in Snackbar after story is hidden-->
   <!--Section header for hidden stories-->
   <!--Displayed on each sent story under My Stories-->
+  <plurals name="MyStories__d_views">
+    <item quantity="one">%1$d vue</item>
+    <item quantity="other">%1$d vues</item>
+  </plurals>
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">Transférer</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
   <!--Title of dialog to confirm deletion of story-->
   <!--Message of dialog to confirm deletion of story-->
   <!--Displayed at bottom of story viewer when current item has views-->
+  <plurals name="StoryViewerFragment__d_views">
+    <item quantity="one">%1$d vue</item>
+    <item quantity="other">%1$d vues</item>
+  </plurals>
   <!--Displayed at bottom of story viewer when current item has replies-->
   <plurals name="StoryViewerFragment__d_replies">
     <item quantity="one">%1$d réponse</item>
@@ -3738,9 +3764,12 @@ Nouvelle tentative…</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Répondre</string>
   <!--Displayed when a story has no views-->
+  <string name="StoryViewsFragment__no_views_yet">Aucune vue pour le moment</string>
   <!--Displayed when a story has no replies yet-->
+  <string name="StoryGroupReplyFragment__no_replies_yet">Aucune réponse pour le moment</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
   <!--Label for story views tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__views">Vues</string>
   <!--Label for story replies tab-->
   <string name="StoryViewsAndRepliesDialogFragment__replies">Réponses</string>
   <!--Description of action for reaction button-->
@@ -3768,14 +3797,21 @@ Nouvelle tentative…</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
   <!--Note about default sharing-->
   <!--Signal connections linked text that opens the Signal Connections sheet-->
+  <string name="MyStorySettingsFragment__signal_connections">Relations Signal.</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Les <strong>relations Signal</strong> sont des personnes en qui vous avez choisi d’avoir confiance, que ce soit en :</string>
   <!--Signal connections sheet bullet point 1-->
+  <string name="SignalConnectionsBottomSheet__starting_a_conversation">Engageant une conversation</string>
   <!--Signal connections sheet bullet point 2-->
+  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Acceptant une demande d’échange de messages</string>
   <!--Signal connections sheet bullet point 3-->
+  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Les ayant comme contacts dans votre système</string>
   <!--Note at the bottom of the Signal connections sheet-->
   <!--Clickable option to add a viewer to a private story-->
+  <string name="PrivateStorySettingsFragment__add_viewer">Ajouter un spectateur</string>
   <!--Clickable option to delete a custom story-->
   <!--Dialog title when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__remove_s">Supprimer %1$s ?</string>
   <!--Dialog message when attempting to remove someone from a private story-->
   <!--Positive action label when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__remove">Supprimer</string>
@@ -3812,6 +3848,10 @@ Nouvelle tentative…</string>
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">Suivant</string>
   <!--New story viewer selection screen title as recipients are selected-->
+  <plurals name="SelectViewersFragment__d_viewers">
+    <item quantity="one">%1$d spectateur</item>
+    <item quantity="other">%1$d spectateurs</item>
+  </plurals>
   <!--Name story screen title-->
   <!--Name story screen label hint-->
   <!--Name story screen viewers subheading-->
@@ -3851,5 +3891,6 @@ Nouvelle tentative…</string>
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="StoriesLinkPopup__visit_link">Visitez le lien</string>
   <!--EOF-->
 </resources>

@@ -420,6 +420,7 @@
   <string name="RestoreBackupFragment__choose_folder">Valitse kansio</string>
   <string name="RestoreBackupFragment__not_now">Ei nyt</string>
   <!--Couldn\'t find the selected backup-->
+  <string name="RestoreBackupFragment__backup_not_found">Varmuuskopiota ei löydy.</string>
   <!--Couldn\'t read the selected backup-->
   <!--Backup has an unsupported file extension-->
   <!--BackupsPreferenceFragment-->
@@ -760,6 +761,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Tämä ryhmälinkki ei ole aktiivinen</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Et voi liittyä ryhmään linkin avulla koska ylläpitäjä poisti sinut ryhmästä.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Tämä ryhmälinkki ei ole enää kelvollinen.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
@@ -3449,6 +3451,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ManageDonationsFragment__my_support">Antamani tuki</string>
   <string name="ManageDonationsFragment__manage_subscription">Hallinnoi tilausta</string>
   <!--Label for Tax Receipts button-->
+  <string name="ManageDonationsFragment__tax_receipts">Kuitit verotusta varten</string>
   <string name="ManageDonationsFragment__badges">Merkit</string>
   <string name="ManageDonationsFragment__subscription_faq">Tilausten UKK</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Virhe tilausta hakiessa.</string>
@@ -3677,17 +3680,21 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">Kaikki</string>
   <!--Donation receipts recurring tab label-->
+  <string name="DonationReceiptListFragment__recurring">Toistuva</string>
   <!--Donation receipts one time tab label-->
   <string name="DonationReceiptListFragment__one_time">Kerran</string>
   <!--Donation receipts boost row label-->
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Lisätietoja</string>
   <!--Donation receipts donation type heading-->
+  <string name="DonationReceiptDetailsFragment__donation_type">Lahjoituksen tyyppi</string>
   <!--Donation receipts date paid heading-->
+  <string name="DonationReceiptDetailsFragment__date_paid">Maksun päivämäärä</string>
   <!--Donation receipts share PNG-->
   <!--Donation receipts list end note-->
   <!--Donation receipts document title-->
   <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">Summa</string>
   <!--Donation receipts thanks-->
   <!--Donation receipt type-->
   <!--region "Stories Tab"-->
@@ -3696,6 +3703,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Label for Stories tab in home app screen-->
   <string name="ConversationListTabs__stories">Tarinat</string>
   <!--String for counts above 99 in conversation list tabs-->
+  <string name="ConversationListTabs__99p">99+</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Omat tarinat</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
@@ -3780,6 +3788,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="EditPrivateStoryNameFragment__save">Tallenna</string>
   <!--Displayed in text post creator before user enters text-->
   <!--Button label for changing font when creating a text post-->
+  <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
   <!--Displayed in text post creator when prompting user to enter text-->
   <string name="TextStoryPostTextEntryFragment__add_text">Lisää teksti</string>
   <!--Content description for \'done\' button when adding text to a story post-->
@@ -3788,6 +3797,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Camera label for media selection toggle-->
   <string name="MediaSelectionActivity__camera">Kamera</string>
   <!--Hint for entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Kirjoita tai liitä osoite</string>
   <!--Displayed prior to the user entering a URL for a text post-->
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Haku</string>
@@ -3820,10 +3830,12 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Choose story type bottom sheet group story title-->
   <!--Choose story type bottom sheet group story summary-->
   <!--Choose groups bottom sheet title-->
+  <string name="ChooseGroupStoryBottomSheet__choose_groups">Valitse ryhmät</string>
   <!--Displayed when copying group story reply text to clipboard-->
   <string name="StoryGroupReplyFragment__copied_to_clipboard">Kopioitu leikepöydälle</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
   <!--Displayed in toast after sending a direct reply-->
+  <string name="StoryDirectReplyDialogFragment__reply_sent">Vastaus lähetetty</string>
   <!--Displayed in toast after sending a direct reaction-->
   <!--Displayed in the viewer when a story is no longer available-->
   <!--Displayed in the viewer when the network is not available-->
@@ -3841,5 +3853,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="ExpandModel__view_more">Näytä lisää</string>
+  <string name="StoriesLinkPopup__visit_link">Avaa linkki</string>
   <!--EOF-->
 </resources>
