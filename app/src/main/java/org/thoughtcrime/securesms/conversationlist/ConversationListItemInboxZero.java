@@ -60,4 +60,9 @@ public class ConversationListItemInboxZero extends LinearLayout implements Binda
   public void updateTypingIndicator(@NonNull Set<Long> typingThreads) {
 
   }
+
+  @Override
+  public void updateTimestampIfRequired() {
+
+  }
 }

@@ -62,4 +62,9 @@ public class ConversationListItemAction extends FrameLayout implements BindableC
   public void updateTypingIndicator(@NonNull Set<Long> typingThreads) {
 
   }
+
+  @Override
+  public void updateTimestampIfRequired() {
+
+  }
 }
