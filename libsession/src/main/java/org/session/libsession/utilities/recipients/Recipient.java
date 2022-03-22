@@ -209,6 +209,8 @@ public class Recipient implements RecipientModifiedListener {
             Recipient.this.callRingtone           = result.callRingtone;
             Recipient.this.mutedUntil             = result.mutedUntil;
             Recipient.this.blocked                = result.blocked;
+            Recipient.this.approved               = result.approved;
+            Recipient.this.approvedMe             = result.approvedMe;
             Recipient.this.messageVibrate         = result.messageVibrateState;
             Recipient.this.callVibrate            = result.callVibrateState;
             Recipient.this.expireMessages         = result.expireMessages;
@@ -259,6 +261,8 @@ public class Recipient implements RecipientModifiedListener {
     this.mutedUntil             = details.mutedUntil;
     this.notifyType             = details.notifyType;
     this.blocked                = details.blocked;
+    this.approved               = details.approved;
+    this.approvedMe             = details.approvedMe;
     this.messageVibrate         = details.messageVibrateState;
     this.callVibrate            = details.callVibrateState;
     this.expireMessages         = details.expireMessages;

@@ -37,7 +37,6 @@ import org.session.libsession.utilities.recipients.Recipient.UnidentifiedAccessM
 import org.session.libsession.utilities.recipients.Recipient.VibrateState;
 import org.session.libsignal.utilities.guava.Optional;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -52,10 +51,6 @@ class RecipientProvider {
 
   private static final RecipientCache  recipientCache         = new RecipientCache();
   private static final ExecutorService asyncRecipientResolver = Util.newSingleThreadedLifoExecutor();
-
-  private static final Map<String, RecipientDetails> STATIC_DETAILS = new HashMap<String, RecipientDetails>() {{
-    put("262966", new RecipientDetails("Amazon", null, false, false, null, null));
-  }};
 
   @NonNull Recipient getRecipient(@NonNull Context context, @NonNull Address address, @NonNull Optional<RecipientSettings> settings, @NonNull Optional<GroupRecord> groupRecord, boolean asynchronous) {
     Recipient cachedRecipient = recipientCache.get(address);
@@ -117,13 +112,9 @@ class RecipientProvider {
       settings = Optional.fromNullable(MessagingModuleConfiguration.shared.getStorage().getRecipientSettings(address));
     }
 
-    if (!settings.isPresent() && STATIC_DETAILS.containsKey(address.serialize())) {
-      return STATIC_DETAILS.get(address.serialize());
-    } else {
-      boolean systemContact = settings.isPresent() && !TextUtils.isEmpty(settings.get().getSystemDisplayName());
-      boolean isLocalNumber = address.serialize().equals(TextSecurePreferences.getLocalNumber(context));
-      return new RecipientDetails(null, null, systemContact, isLocalNumber, settings.orNull(), null);
-    }
+    boolean systemContact = settings.isPresent() && !TextUtils.isEmpty(settings.get().getSystemDisplayName());
+    boolean isLocalNumber = address.serialize().equals(TextSecurePreferences.getLocalNumber(context));
+    return new RecipientDetails(null, null, systemContact, isLocalNumber, settings.orNull(), null);
   }
 
   private @NonNull RecipientDetails getGroupRecipientDetails(Context context, Address groupId, Optional<GroupRecord> groupRecord, Optional<RecipientSettings> settings, boolean asynchronous) {
