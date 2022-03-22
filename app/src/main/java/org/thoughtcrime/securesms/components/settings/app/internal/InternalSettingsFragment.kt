@@ -55,18 +55,6 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
   private fun getConfiguration(state: InternalSettingsState): DSLConfiguration {
     return configure {
-      sectionHeaderPref(R.string.preferences__internal_payments)
-
-      clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_payment_copy_data),
-        summary = DSLSettingsText.from(R.string.preferences__internal_payment_copy_data_description),
-        onClick = {
-          copyPaymentsDataToClipboard()
-        }
-      )
-
-      dividerPref()
-
       sectionHeaderPref(R.string.preferences__internal_account)
 
       clickPref(
@@ -74,6 +62,14 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         summary = DSLSettingsText.from(R.string.preferences__internal_refresh_attributes_description),
         onClick = {
           refreshAttributes()
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_refresh_profile),
+        summary = DSLSettingsText.from(R.string.preferences__internal_refresh_profile_description),
+        onClick = {
+          refreshProfile()
         }
       )
 
@@ -112,6 +108,18 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         isChecked = state.shakeToReport,
         onClick = {
           viewModel.setShakeToReport(!state.shakeToReport)
+        }
+      )
+
+      dividerPref()
+
+      sectionHeaderPref(R.string.preferences__internal_payments)
+
+      clickPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_payment_copy_data),
+        summary = DSLSettingsText.from(R.string.preferences__internal_payment_copy_data_description),
+        onClick = {
+          copyPaymentsDataToClipboard()
         }
       )
 
@@ -442,6 +450,11 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       .then(RefreshOwnProfileJob())
       .enqueue()
     Toast.makeText(context, "Scheduled attribute refresh", Toast.LENGTH_SHORT).show()
+  }
+
+  private fun refreshProfile() {
+    ApplicationDependencies.getJobManager().add(RefreshOwnProfileJob())
+    Toast.makeText(context, "Scheduled profile refresh", Toast.LENGTH_SHORT).show()
   }
 
   private fun rotateProfileKey() {
