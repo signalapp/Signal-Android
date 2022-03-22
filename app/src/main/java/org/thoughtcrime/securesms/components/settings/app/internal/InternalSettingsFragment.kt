@@ -7,6 +7,7 @@ import android.content.DialogInterface
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.signal.core.util.AppUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.ringrtc.CallManager
 import org.thoughtcrime.securesms.BuildConfig
@@ -19,6 +20,7 @@ import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.database.LocalMetricsDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobs.DownloadLatestEmojiDataJob
 import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
@@ -33,6 +35,8 @@ import org.thoughtcrime.securesms.payments.DataExportUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask
+import java.util.Optional
+import java.util.concurrent.TimeUnit
 import kotlin.math.max
 
 class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__internal_preferences) {
@@ -446,8 +450,16 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
   }
 
   private fun refreshRemoteValues() {
-    ApplicationDependencies.getJobManager().add(RemoteConfigRefreshJob())
-    Toast.makeText(context, "Scheduled remote config refresh", Toast.LENGTH_SHORT).show()
+    Toast.makeText(context, "Running remote config refresh, app will restart after completion.", Toast.LENGTH_LONG).show()
+    SignalExecutors.BOUNDED.execute {
+      val result: Optional<JobTracker.JobState> = ApplicationDependencies.getJobManager().runSynchronously(RemoteConfigRefreshJob(), TimeUnit.SECONDS.toMillis(10))
+
+      if (result.isPresent && result.get() == JobTracker.JobState.SUCCESS) {
+        AppUtil.restart(requireContext())
+      } else {
+        Toast.makeText(context, "Failed to refresh config remote config.", Toast.LENGTH_SHORT).show()
+      }
+    }
   }
 
   private fun forceStorageServiceSync() {
