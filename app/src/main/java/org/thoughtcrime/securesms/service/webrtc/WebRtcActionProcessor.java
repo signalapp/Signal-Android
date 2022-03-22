@@ -444,10 +444,6 @@ public abstract class WebRtcActionProcessor {
              .callState(WebRtcViewModel.State.UNTRUSTED_IDENTITY)
              .putParticipant(activePeer.getRecipient(), untrusted)
              .commit();
-    } else {
-      builder.changeCallInfoState()
-             .callState(errorCallState)
-             .commit();
     }
 
     return builder.build();
