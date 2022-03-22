@@ -36,7 +36,8 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
 
   private enum Payload {
     TYPING_INDICATOR,
-    SELECTION
+    SELECTION,
+    ITEM_TIMESTAMP
   }
 
   private final GlideRequests               glideRequests;
@@ -113,8 +114,10 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
 
           if (payload == Payload.SELECTION) {
             ((ConversationViewHolder) holder).getConversationListItem().setSelectedConversations(selectedConversations);
-          } else {
+          } else if(payload == Payload.TYPING_INDICATOR) {
             ((ConversationViewHolder) holder).getConversationListItem().updateTypingIndicator(typingSet);
+          } else if (payload == Payload.ITEM_TIMESTAMP) {
+            ((ConversationViewHolder) holder).getConversationListItem().updateTimestampIfRequired();
           }
         }
       }
@@ -178,6 +181,10 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
   void setSelectedConversations(@NonNull ConversationSet conversations) {
     selectedConversations = conversations;
     notifyItemRangeChanged(0, getItemCount(), Payload.SELECTION);
+  }
+
+  void updateItemsTimestamp() {
+    notifyItemRangeChanged(0, getItemCount(), Payload.ITEM_TIMESTAMP);
   }
 
   @Override
