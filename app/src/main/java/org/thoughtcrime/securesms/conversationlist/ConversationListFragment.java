@@ -110,6 +110,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.Un
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlayerView;
 import org.thoughtcrime.securesms.conversation.ConversationFragment;
+import org.thoughtcrime.securesms.conversation.ConversationUpdateTick;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
 import org.thoughtcrime.securesms.conversationlist.model.UnreadPayments;
 import org.thoughtcrime.securesms.database.MessageDatabase.MarkedMessageInfo;
@@ -226,6 +227,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private VoiceNotePlayerView            voiceNotePlayerView;
   private SignalBottomActionBar          bottomActionBar;
   private TopToastPopup                  previousTopToastPopup;
+  private ConversationUpdateTick         conversationListUpdateTick;
 
   protected ConversationListArchiveItemDecoration archiveDecoration;
   protected ConversationListItemAnimator          itemAnimator;
@@ -319,6 +321,9 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     initializeSearchListener();
     initializeVoiceNotePlayer();
 
+    conversationListUpdateTick = new ConversationUpdateTick(this::updateConversationListItemTimestamp);
+    getViewLifecycleOwner().getLifecycle().addObserver(conversationListUpdateTick);
+
     RatingManager.showRatingDialogIfNecessary(requireContext());
 
     TooltipCompat.setTooltipText(searchAction, getText(R.string.SearchToolbar_search_for_conversations_contacts_and_messages));
@@ -349,10 +354,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     if ((!searchToolbar.resolved() || !searchToolbar.get().isVisible()) && list.getAdapter() != defaultAdapter) {
       list.removeItemDecoration(searchAdapterDecoration);
       setAdapter(defaultAdapter);
-    }
-
-    if (activeAdapter != null) {
-      activeAdapter.notifyItemRangeChanged(0, activeAdapter.getItemCount());
     }
 
     SignalProxyUtil.startListeningToWebsocket();
@@ -605,6 +606,12 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         }
       });
     });
+  }
+
+  private void updateConversationListItemTimestamp() {
+    if (defaultAdapter != null) {
+      defaultAdapter.updateItemsTimestamp();
+    }
   }
 
   private void initializeVoiceNotePlayer() {
