@@ -19,7 +19,9 @@ public final class StringUtil {
                                                                       '\u200F',  // right-to-left mark
                                                                       '\u2007',  // figure space
                                                                       '\u200B',  // zero-width space
-                                                                      '\u2800'); // braille blank
+                                                                      '\u200C',  // zero-width non-joiner
+                                                                      '\u2800');  // braille blank
+                                                                       
 
 
   private static final class Bidi {
