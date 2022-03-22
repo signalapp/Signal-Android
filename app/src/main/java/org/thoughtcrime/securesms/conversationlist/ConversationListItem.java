@@ -198,13 +198,7 @@ public final class ConversationListItem extends ConstraintLayout
 
     observeDisplayBody(getThreadDisplayBody(getContext(), thread, glideRequests, thumbSize, thumbTarget));
 
-    if (thread.getDate() > 0) {
-      CharSequence date = DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, thread.getDate());
-      dateView.setText(date);
-      dateView.setTypeface(thread.isRead() ? LIGHT_TYPEFACE : BOLD_TYPEFACE);
-      dateView.setTextColor(thread.isRead() ? ContextCompat.getColor(getContext(), R.color.signal_text_secondary)
-                                            : ContextCompat.getColor(getContext(), R.color.signal_text_primary));
-    }
+    updateTimestampIfRequired();
 
     if (thread.isArchived()) {
       this.archivedView.setVisibility(View.VISIBLE);
@@ -329,6 +323,18 @@ public final class ConversationListItem extends ConstraintLayout
       this.typingView.stopAnimation();
 
       this.subjectView.setVisibility(VISIBLE);
+    }
+  }
+
+  @Override
+  public void updateTimestampIfRequired() {
+    CharSequence date = thread.getDate() > 0 ? DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, thread.getDate()) : null;
+
+    if (date != null && !date.equals(dateView.getText())) {
+      dateView.setText(date);
+      dateView.setTypeface(thread.isRead() ? LIGHT_TYPEFACE : BOLD_TYPEFACE);
+      dateView.setTextColor(thread.isRead() ? ContextCompat.getColor(getContext(), R.color.signal_text_secondary)
+                                            : ContextCompat.getColor(getContext(), R.color.signal_text_primary));
     }
   }
 
