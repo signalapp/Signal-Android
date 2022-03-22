@@ -39,6 +39,10 @@ public class MessageCountsViewModel extends ViewModel {
         return counts;
       }
 
+      if (observer != null) {
+        ApplicationDependencies.getDatabaseObserver().unregisterObserver(observer);
+      }
+
       observer = new DatabaseObserver.Observer() {
         private int previousUnreadCount = -1;
 
