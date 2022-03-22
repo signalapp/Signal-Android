@@ -146,12 +146,13 @@ public class SignalServiceAccountManager {
                                      int deviceId,
                                      String password,
                                      String signalAgent,
-                                     boolean automaticNetworkRetry)
+                                     boolean automaticNetworkRetry,
+                                     int maxGroupSize)
   {
     this(configuration,
          new StaticCredentialsProvider(aci, pni, e164, deviceId, password),
          signalAgent,
-         new GroupsV2Operations(ClientZkOperations.create(configuration)),
+         new GroupsV2Operations(ClientZkOperations.create(configuration), maxGroupSize),
          automaticNetworkRetry);
   }
 

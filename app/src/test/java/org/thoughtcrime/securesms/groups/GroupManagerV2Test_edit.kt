@@ -85,7 +85,7 @@ class GroupManagerV2Test_edit {
 
     groupDatabase = mock(GroupDatabase::class.java)
     groupsV2API = mock(GroupsV2Api::class.java)
-    groupsV2Operations = GroupsV2Operations(clientZkOperations)
+    groupsV2Operations = GroupsV2Operations(clientZkOperations, 1000)
     groupsV2Authorization = mock(GroupsV2Authorization::class.java)
     groupsV2StateProcessor = mock(GroupsV2StateProcessor::class.java)
     groupCandidateHelper = mock(GroupCandidateHelper::class.java)

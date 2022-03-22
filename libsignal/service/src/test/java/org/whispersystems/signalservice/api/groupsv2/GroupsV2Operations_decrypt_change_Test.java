@@ -58,7 +58,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
     server             = new TestZkGroupServer();
     groupSecretParams  = GroupSecretParams.deriveFromMasterKey(new GroupMasterKey(Util.getSecretBytes(32)));
     clientZkOperations = new ClientZkOperations(server.getServerPublicParams());
-    groupOperations    = new GroupsV2Operations(clientZkOperations).forGroup(groupSecretParams);
+    groupOperations    = new GroupsV2Operations(clientZkOperations, 1000).forGroup(groupSecretParams);
   }
 
   @Test
@@ -157,7 +157,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
   public void can_decrypt_member_removals_field4() {
     UUID oldMember = UUID.randomUUID();
 
-    assertDecryption(groupOperations.createRemoveMembersChange(Collections.singleton(oldMember), false)
+    assertDecryption(groupOperations.createRemoveMembersChange(Collections.singleton(oldMember), false, Collections.emptyList())
                                     .setRevision(10),
                      DecryptedGroupChange.newBuilder()
                                          .setRevision(10)
@@ -341,7 +341,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
   public void can_decrypt_member_requests_refusals_field17() {
     UUID newRequestingMember = UUID.randomUUID();
 
-    assertDecryption(groupOperations.createRefuseGroupJoinRequest(Collections.singleton(newRequestingMember), true)
+    assertDecryption(groupOperations.createRefuseGroupJoinRequest(Collections.singleton(newRequestingMember), true, Collections.emptyList())
                                     .setRevision(10),
                      DecryptedGroupChange.newBuilder()
                                          .setRevision(10)
@@ -393,7 +393,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
   public void can_decrypt_member_bans_field22() {
     UUID ban = UUID.randomUUID();
 
-    assertDecryption(groupOperations.createBanUuidsChange(Collections.singleton(ban), false)
+    assertDecryption(groupOperations.createBanUuidsChange(Collections.singleton(ban), false, Collections.emptyList())
                                     .setRevision(13),
                      DecryptedGroupChange.newBuilder()
                                          .setRevision(13)

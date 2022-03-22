@@ -105,7 +105,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   @Override
   public @NonNull GroupsV2Operations provideGroupsV2Operations() {
-    return new GroupsV2Operations(provideClientZkOperations());
+    return new GroupsV2Operations(provideClientZkOperations(), FeatureFlags.groupLimits().getHardLimit());
   }
 
   @Override

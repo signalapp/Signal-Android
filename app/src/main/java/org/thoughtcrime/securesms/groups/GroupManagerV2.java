@@ -309,6 +309,7 @@ final class GroupManagerV2 {
   final class GroupEditor extends LockOwner {
 
     private final GroupId.V2                         groupId;
+    private final GroupDatabase.V2GroupProperties    v2GroupProperties;
     private final GroupMasterKey                     groupMasterKey;
     private final GroupSecretParams                  groupSecretParams;
     private final GroupsV2Operations.GroupOperations groupOperations;
@@ -316,10 +317,10 @@ final class GroupManagerV2 {
     GroupEditor(@NonNull GroupId.V2 groupId, @NonNull Closeable lock) {
       super(lock);
 
-      GroupDatabase.GroupRecord       groupRecord       = groupDatabase.requireGroup(groupId);
-      GroupDatabase.V2GroupProperties v2GroupProperties = groupRecord.requireV2GroupProperties();
+      GroupDatabase.GroupRecord groupRecord = groupDatabase.requireGroup(groupId);
 
       this.groupId           = groupId;
+      this.v2GroupProperties = groupRecord.requireV2GroupProperties();
       this.groupMasterKey    = v2GroupProperties.getGroupMasterKey();
       this.groupSecretParams = GroupSecretParams.deriveFromMasterKey(groupMasterKey);
       this.groupOperations   = groupsV2Operations.forGroup(groupSecretParams);
@@ -428,7 +429,7 @@ final class GroupManagerV2 {
                               .map(r -> Recipient.resolved(r).requireServiceId().uuid())
                               .collect(Collectors.toSet());
 
-      return commitChangeWithConflictResolution(groupOperations.createRefuseGroupJoinRequest(uuids, true));
+      return commitChangeWithConflictResolution(groupOperations.createRefuseGroupJoinRequest(uuids, true, v2GroupProperties.getDecryptedGroup().getBannedMembersList()));
     }
 
     @WorkerThread
@@ -463,7 +464,11 @@ final class GroupManagerV2 {
     @NonNull GroupManager.GroupActionResult ejectMember(@NonNull ServiceId serviceId, boolean allowWhenBlocked, boolean ban)
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {
-      return commitChangeWithConflictResolution(groupOperations.createRemoveMembersChange(Collections.singleton(serviceId.uuid()), ban), allowWhenBlocked);
+      return commitChangeWithConflictResolution(groupOperations.createRemoveMembersChange(Collections.singleton(serviceId.uuid()),
+                                                                                          ban,
+                                                                                          ban ? v2GroupProperties.getDecryptedGroup().getBannedMembersList()
+                                                                                              : Collections.emptyList()),
+                                                allowWhenBlocked);
     }
 
     @WorkerThread
@@ -530,11 +535,18 @@ final class GroupManagerV2 {
       return commitChangeWithConflictResolution(groupOperations.createAcceptInviteChange(groupCandidate.getProfileKeyCredential().get()));
     }
 
-    public GroupManager.GroupActionResult ban(Set<UUID> uuids, boolean rejectJoinRequest) throws GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException, IOException {
-      return commitChangeWithConflictResolution(groupOperations.createBanUuidsChange(uuids, rejectJoinRequest));
+    public GroupManager.GroupActionResult ban(UUID uuid)
+        throws GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException, IOException
+    {
+      ByteString uuidByteString    = UuidUtil.toByteString(uuid);
+      boolean    rejectJoinRequest = v2GroupProperties.getDecryptedGroup().getRequestingMembersList().stream().anyMatch(m -> m.getUuid().equals(uuidByteString));
+
+      return commitChangeWithConflictResolution(groupOperations.createBanUuidsChange(Collections.singleton(uuid), rejectJoinRequest, v2GroupProperties.getDecryptedGroup().getBannedMembersList()));
     }
 
-    public GroupManager.GroupActionResult unban(Set<UUID> uuids) throws GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException, IOException {
+    public GroupManager.GroupActionResult unban(Set<UUID> uuids)
+        throws GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException, IOException
+    {
       return commitChangeWithConflictResolution(groupOperations.createUnbanUuidsChange(uuids));
     }
 
@@ -1102,7 +1114,7 @@ final class GroupManagerV2 {
 
       GroupChange signedGroupChange;
       try {
-        signedGroupChange = commitCancelChangeWithConflictResolution(groupOperations.createRefuseGroupJoinRequest(uuids, false));
+        signedGroupChange = commitCancelChangeWithConflictResolution(groupOperations.createRefuseGroupJoinRequest(uuids, false, Collections.emptyList()));
       } catch (GroupLinkNotActiveException e) {
         Log.d(TAG, "Unexpected unable to leave group due to group link off");
         throw new GroupChangeFailedException(e);

@@ -44,6 +44,7 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -67,12 +68,14 @@ public final class GroupsV2Operations {
   private final ServerPublicParams        serverPublicParams;
   private final ClientZkProfileOperations clientZkProfileOperations;
   private final ClientZkAuthOperations    clientZkAuthOperations;
+  private final int                       maxGroupSize;
   private final SecureRandom              random;
 
-  public GroupsV2Operations(ClientZkOperations clientZkOperations) {
+  public GroupsV2Operations(ClientZkOperations clientZkOperations, int maxGroupSize) {
     this.serverPublicParams        = clientZkOperations.getServerPublicParams();
     this.clientZkProfileOperations = clientZkOperations.getProfileOperations();
     this.clientZkAuthOperations    = clientZkOperations.getAuthOperations();
+    this.maxGroupSize              = maxGroupSize;
     this.random                    = new SecureRandom();
   }
 
@@ -209,8 +212,8 @@ public final class GroupsV2Operations {
       return actions;
     }
 
-    public GroupChange.Actions.Builder createRefuseGroupJoinRequest(Set<UUID> requestsToRemove, boolean alsoBan) {
-      GroupChange.Actions.Builder actions = alsoBan ? createBanUuidsChange(requestsToRemove, false)
+    public GroupChange.Actions.Builder createRefuseGroupJoinRequest(Set<UUID> requestsToRemove, boolean alsoBan, List<DecryptedBannedMember> bannedMembers) {
+      GroupChange.Actions.Builder actions = alsoBan ? createBanUuidsChange(requestsToRemove, false, bannedMembers)
                                                     : GroupChange.Actions.newBuilder();
 
       for (UUID uuid : requestsToRemove) {
@@ -235,8 +238,8 @@ public final class GroupsV2Operations {
       return actions;
     }
 
-    public GroupChange.Actions.Builder createRemoveMembersChange(final Set<UUID> membersToRemove, boolean alsoBan) {
-      GroupChange.Actions.Builder actions = alsoBan ? createBanUuidsChange(membersToRemove, false)
+    public GroupChange.Actions.Builder createRemoveMembersChange(final Set<UUID> membersToRemove, boolean alsoBan, List<DecryptedBannedMember> bannedMembers) {
+      GroupChange.Actions.Builder actions = alsoBan ? createBanUuidsChange(membersToRemove, false, bannedMembers)
                                                     : GroupChange.Actions.newBuilder();
 
       for (UUID remove: membersToRemove) {
@@ -249,7 +252,7 @@ public final class GroupsV2Operations {
     }
 
     public GroupChange.Actions.Builder createLeaveAndPromoteMembersToAdmin(UUID self, List<UUID> membersToMakeAdmin) {
-      GroupChange.Actions.Builder actions = createRemoveMembersChange(Collections.singleton(self), false);
+      GroupChange.Actions.Builder actions = createRemoveMembersChange(Collections.singleton(self), false, Collections.emptyList());
 
       for (UUID member : membersToMakeAdmin) {
         actions.addModifyMemberRoles(GroupChange.Actions.ModifyMemberRoleAction
@@ -350,9 +353,22 @@ public final class GroupsV2Operations {
                                                                        .setAnnouncementsOnly(isAnnouncementGroup));
     }
 
-    public GroupChange.Actions.Builder createBanUuidsChange(Set<UUID> banUuids, boolean rejectJoinRequest) {
-      GroupChange.Actions.Builder builder = rejectJoinRequest ? createRefuseGroupJoinRequest(banUuids, false)
+    public GroupChange.Actions.Builder createBanUuidsChange(Set<UUID> banUuids, boolean rejectJoinRequest, List<DecryptedBannedMember> bannedMembersList) {
+      GroupChange.Actions.Builder builder = rejectJoinRequest ? createRefuseGroupJoinRequest(banUuids, false, Collections.emptyList())
                                                               : GroupChange.Actions.newBuilder();
+
+      int spacesToFree = bannedMembersList.size() + banUuids.size() - maxGroupSize;
+      if (spacesToFree > 0) {
+        List<ByteString> unban = bannedMembersList.stream()
+                                                  .sorted(Comparator.comparingLong(DecryptedBannedMember::getTimestamp))
+                                                  .limit(spacesToFree)
+                                                  .map(DecryptedBannedMember::getUuid)
+                                                  .collect(Collectors.toList());
+
+        for (ByteString uuid : unban) {
+          builder.addDeleteBannedMembers(GroupChange.Actions.DeleteBannedMemberAction.newBuilder().setDeletedUserId(encryptUuid(UuidUtil.fromByteString(uuid))));
+        }
+      }
 
       for (UUID uuid : banUuids) {
         builder.addAddBannedMembers(GroupChange.Actions.AddBannedMemberAction.newBuilder().setAdded(BannedMember.newBuilder().setUserId(encryptUuid(uuid)).build()));
@@ -458,7 +474,7 @@ public final class GroupsV2Operations {
       }
 
       for (BannedMember member : group.getBannedMembersList()) {
-        decryptedBannedMembers.add(DecryptedBannedMember.newBuilder().setUuid(decryptUuidToByteString(member.getUserId())).build());
+        decryptedBannedMembers.add(DecryptedBannedMember.newBuilder().setUuid(decryptUuidToByteString(member.getUserId())).setTimestamp(member.getTimestamp()).build());
       }
 
       return DecryptedGroup.newBuilder()
@@ -662,7 +678,7 @@ public final class GroupsV2Operations {
 
       // Field 22
       for (GroupChange.Actions.AddBannedMemberAction action : actions.getAddBannedMembersList()) {
-        builder.addNewBannedMembers(DecryptedBannedMember.newBuilder().setUuid(decryptUuidToByteString(action.getAdded().getUserId())).build());
+        builder.addNewBannedMembers(DecryptedBannedMember.newBuilder().setUuid(decryptUuidToByteString(action.getAdded().getUserId())).setTimestamp(action.getAdded().getTimestamp()).build());
       }
 
       // Field 23

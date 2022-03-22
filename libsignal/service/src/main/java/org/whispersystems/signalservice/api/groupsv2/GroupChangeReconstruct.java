@@ -108,9 +108,10 @@ public final class GroupChangeReconstruct {
       builder.addNewPendingMembers(invitedMember);
     }
 
-    Set<ByteString>                  consistentMemberUuids = intersect(fromStateMemberUuids, toStateMemberUuids);
-    Set<DecryptedMember>             changedMembers        = intersectByUUID(subtract(toState.getMembersList(), fromState.getMembersList()), consistentMemberUuids);
-    Map<ByteString, DecryptedMember> membersUuidMap        = uuidMap(fromState.getMembersList());
+    Set<ByteString>                        consistentMemberUuids = intersect(fromStateMemberUuids, toStateMemberUuids);
+    Set<DecryptedMember>                   changedMembers        = intersectByUUID(subtract(toState.getMembersList(), fromState.getMembersList()), consistentMemberUuids);
+    Map<ByteString, DecryptedMember>       membersUuidMap        = uuidMap(fromState.getMembersList());
+    Map<ByteString, DecryptedBannedMember> bannedMembersUuidMap  = bannedUuidMap(toState.getBannedMembersList());
 
     for (DecryptedMember newState : changedMembers) {
       DecryptedMember oldState = membersUuidMap.get(newState.getUuid());
@@ -152,7 +153,13 @@ public final class GroupChangeReconstruct {
     }
 
     for (ByteString uuid : newBannedMemberUuids) {
-      builder.addNewBannedMembers(DecryptedBannedMember.newBuilder().setUuid(uuid).build());
+      DecryptedBannedMember.Builder newBannedBuilder = DecryptedBannedMember.newBuilder().setUuid(uuid);
+      DecryptedBannedMember         bannedMember     = bannedMembersUuidMap.get(uuid);
+      if (bannedMember != null) {
+        newBannedBuilder.setTimestamp(bannedMember.getTimestamp());
+      }
+
+      builder.addNewBannedMembers(newBannedBuilder);
     }
 
     return builder.build();
@@ -161,6 +168,14 @@ public final class GroupChangeReconstruct {
   private static Map<ByteString, DecryptedMember> uuidMap(List<DecryptedMember> membersList) {
     Map<ByteString, DecryptedMember> map = new LinkedHashMap<>(membersList.size());
     for (DecryptedMember member : membersList) {
+      map.put(member.getUuid(), member);
+    }
+    return map;
+  }
+
+  private static Map<ByteString, DecryptedBannedMember> bannedUuidMap(List<DecryptedBannedMember> membersList) {
+    Map<ByteString, DecryptedBannedMember> map = new LinkedHashMap<>(membersList.size());
+    for (DecryptedBannedMember member : membersList) {
       map.put(member.getUuid(), member);
     }
     return map;

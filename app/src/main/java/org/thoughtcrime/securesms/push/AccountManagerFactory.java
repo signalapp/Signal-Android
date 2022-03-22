@@ -43,7 +43,8 @@ public class AccountManagerFactory {
                                            deviceId,
                                            password,
                                            BuildConfig.SIGNAL_AGENT,
-                                           FeatureFlags.okHttpAutomaticRetry());
+                                           FeatureFlags.okHttpAutomaticRetry(),
+                                           FeatureFlags.groupLimits().getHardLimit());
   }
 
   /**
@@ -65,7 +66,14 @@ public class AccountManagerFactory {
     }
 
     return new SignalServiceAccountManager(new SignalServiceNetworkAccess(context).getConfiguration(number),
-                                           null, null, number, deviceId, password, BuildConfig.SIGNAL_AGENT, FeatureFlags.okHttpAutomaticRetry());
+                                           null,
+                                           null,
+                                           number,
+                                           deviceId,
+                                           password,
+                                           BuildConfig.SIGNAL_AGENT,
+                                           FeatureFlags.okHttpAutomaticRetry(),
+                                           FeatureFlags.groupLimits().getHardLimit());
   }
 
 }

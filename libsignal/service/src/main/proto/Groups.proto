@@ -46,7 +46,8 @@ message RequestingMember {
 }
 
 message BannedMember {
-  bytes userId = 1;
+  bytes  userId    = 1;
+  uint64 timestamp = 2;
 }
 
 message AccessControl {

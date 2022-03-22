@@ -28,7 +28,7 @@ public final class GroupsV2Operations_decrypt_groupJoinInfo_Test {
     ClientZkOperations clientZkOperations = new ClientZkOperations(server.getServerPublicParams());
     GroupSecretParams  groupSecretParams  = GroupSecretParams.deriveFromMasterKey(new GroupMasterKey(Util.getSecretBytes(32)));
 
-    groupOperations   = new GroupsV2Operations(clientZkOperations).forGroup(groupSecretParams);
+    groupOperations   = new GroupsV2Operations(clientZkOperations, 1000).forGroup(groupSecretParams);
   }
 
   /**

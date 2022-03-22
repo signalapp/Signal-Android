@@ -34,7 +34,8 @@ message DecryptedRequestingMember {
 }
 
 message DecryptedBannedMember {
-  bytes uuid = 1;
+  bytes  uuid      = 1;
+  uint64 timestamp = 2;
 }
 
 message DecryptedPendingMemberRemoval {
