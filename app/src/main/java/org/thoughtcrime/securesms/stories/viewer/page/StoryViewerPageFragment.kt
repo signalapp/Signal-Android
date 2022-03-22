@@ -477,8 +477,8 @@ class StoryViewerPageFragment :
 
   @SuppressLint("SetTextI18n")
   private fun presentCaption(caption: TextView, largeCaption: TextView, largeCaptionOverlay: View, storyPost: StoryPost) {
-    val displayBody = if (storyPost.content is StoryPost.Content.AttachmentContent) {
-      storyPost.conversationMessage.getDisplayBody(requireContext())
+    val displayBody: String = if (storyPost.content is StoryPost.Content.AttachmentContent) {
+      storyPost.content.attachment.caption ?: ""
     } else {
       ""
     }

@@ -93,6 +93,7 @@ class MediaSelectionRepository(context: Context) {
 
       for (media in updatedMedia) {
         Log.w(TAG, media.uri.toString() + " : " + media.transformProperties.map { t: TransformProperties -> "" + t.isVideoTrim }.orElse("null"))
+        media.setCaption(trimmedBody)
       }
 
       val singleRecipient: Recipient? = singleContact?.let { Recipient.resolved(it.recipientId) }
