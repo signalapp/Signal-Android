@@ -549,6 +549,8 @@ public class SignalServiceMessageSender {
       return sendVerifiedSyncMessage(message.getVerified().get());
     } else if (message.getRequest().isPresent()) {
       content = createRequestContent(message.getRequest().get().getRequest());
+    } else if (message.getPniIdentity().isPresent()) {
+      content = createPniIdentityContent(message.getPniIdentity().get());
     } else {
       throw new IOException("Unsupported sync message!");
     }
@@ -1397,6 +1399,13 @@ public class SignalServiceMessageSender {
 
     Content.Builder     container = Content.newBuilder();
     SyncMessage.Builder builder   = SyncMessage.newBuilder().setRequest(request);
+
+    return container.setSyncMessage(builder).build();
+  }
+
+  private Content createPniIdentityContent(SyncMessage.PniIdentity proto) {
+    Content.Builder     container = Content.newBuilder();
+    SyncMessage.Builder builder   = SyncMessage.newBuilder().setPniIdentity(proto);
 
     return container.setSyncMessage(builder).build();
   }

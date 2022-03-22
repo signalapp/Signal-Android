@@ -565,6 +565,7 @@ message SyncMessage {
   optional MessageRequestResponse messageRequestResponse = 14;
   optional OutgoingPayment        outgoingPayment        = 15;
   repeated Viewed                 viewed                 = 16;
+  optional PniIdentity            pniIdentity            = 17;
 }
 
 message AttachmentPointer {
