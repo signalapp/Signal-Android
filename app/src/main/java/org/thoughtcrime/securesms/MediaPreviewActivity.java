@@ -214,7 +214,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
             to = threadRecipient.getDisplayName(this);
           }
         } else {
-          to = getString(R.string.MediaPreviewActivity_you);
+          to = getString(R.string.MediaPreviewActivity_to_you);
         }
       }
 
