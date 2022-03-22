@@ -86,13 +86,29 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <org.thoughtcrime.securesms.components.ComposeText
+        android:id="@+id/fake_compose_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@null"
+        android:clickable="false"
+        android:enabled="false"
+        android:focusable="false"
+        android:paddingBottom="2dp"
+        android:textAppearance="@style/Signal.Text.Body"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/bubble"
+        app:layout_goneMarginTop="0dp" />
+
     <ViewSwitcher
         android:id="@+id/reply_reaction_switch"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginEnd="6dp"
-        app:layout_constraintBottom_toBottomOf="@id/bubble"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintBottom_toBottomOf="@id/fake_compose_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/fake_compose_text">
 
         <ImageView
             android:id="@+id/reaction"
