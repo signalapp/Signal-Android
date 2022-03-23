@@ -321,7 +321,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     initializeSearchListener();
     initializeVoiceNotePlayer();
 
-    conversationListUpdateTick = new ConversationUpdateTick(this::updateConversationListItemTimestamp);
+    conversationListUpdateTick = new ConversationUpdateTick(this::updateConversationListTimestamps);
     getViewLifecycleOwner().getLifecycle().addObserver(conversationListUpdateTick);
 
     RatingManager.showRatingDialogIfNecessary(requireContext());
@@ -608,8 +608,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     });
   }
 
-  private void updateConversationListItemTimestamp() {
-    if (defaultAdapter != null) {
+  private void updateConversationListTimestamps() {
+    if (searchToolbar.resolved() && searchToolbar.get().isVisible() && searchAdapter != null){
+      searchAdapter.updateTimestamps();
+    } else if (defaultAdapter != null) {
       defaultAdapter.updateItemsTimestamp();
     }
   }

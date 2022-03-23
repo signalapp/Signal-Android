@@ -146,6 +146,10 @@ class ConversationListSearchAdapter extends    RecyclerView.Adapter<Conversation
     notifyDataSetChanged();
   }
 
+  public void updateTimestamps() {
+    notifyItemRangeChanged(0, getItemCount(), Payload.ITEM_TIMESTAMP);
+  }
+
   @Nullable
   private ThreadRecord getConversationResult(int position) {
     if (position < searchResult.getConversations().size()) {
