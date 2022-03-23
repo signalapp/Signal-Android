@@ -93,6 +93,7 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
 
     storyTextPostView.setTextViewClickListener {
       storyTextPostView.hidePostContent()
+      storyTextPostView.isEnabled = false
       TextStoryPostTextEntryFragment().show(childFragmentManager, null)
     }
 
@@ -123,6 +124,7 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
   override fun onTextStoryPostTextEntryDismissed() {
     storyTextPostView.postDelayed(resources.getInteger(R.integer.text_entry_exit_duration).toLong()) {
       storyTextPostView.showPostContent()
+      storyTextPostView.isEnabled = true
     }
   }
 }
