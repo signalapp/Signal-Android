@@ -162,7 +162,9 @@
   <string name="ContactsCursorLoader_phone_number_search">Recherche par numéro de téléphone</string>
   <string name="ContactsCursorLoader_username_search">Recherche par nom d’utilisateur</string>
   <!--Label for my stories when selecting who to send media to-->
+  <string name="ContactsCursorLoader_my_stories">Mes histoires</string>
   <!--Action for creating a new story-->
+  <string name="ContactsCursorLoader_new_story">Nouvelle histoire</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Message %s</string>
   <string name="ContactsDatabase_signal_call_s">Appel Signal %s</string>
@@ -1253,6 +1255,7 @@
   <!--Recipient-->
   <string name="Recipient_you">Vous</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">Mon histoire</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Bloquer</string>
   <string name="RecipientPreferenceActivity_unblock">Débloquer</string>
@@ -1779,7 +1782,9 @@
   <string name="QuoteView_you">Vous</string>
   <string name="QuoteView_original_missing">Le message original est introuvable</string>
   <!--Author formatting for group stories-->
+  <string name="QuoteView_s_story">Histoire de %1$s</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Votre histoire</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Faire défiler vers le bas</string>
   <!--BubbleOptOutTooltip-->
@@ -3453,7 +3458,7 @@ Nouvelle tentative…</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Merci pour votre soutien !</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Merci pour le Coup de pouce !</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Vous avez obtenu le macaron %s ! Aidez Signal à se faire connaître en affichant ce macaron sur votre profil.</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Vous avez obtenu un macaron Encouragement. Aidez Signal à se faire connaître en affichant ce macaron sur votre profil.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Vous avez obtenu un macaron Coup de pouce. Aidez Signal à se faire connaître en affichant ce macaron sur votre profil.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Vous pouvez aussi</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">devenir un donateur mensuel.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Afficher sur le profil</string>
@@ -3469,7 +3474,7 @@ Nouvelle tentative…</string>
   <string name="ManageDonationsFragment__subscription_faq">FAQ Abonnement</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Erreur de lecture de l\'abonnement</string>
   <string name="BoostFragment__give_signal_a_boost">Donnez un Coup de pouce à Signal</string>
-  <string name="BoostFragment__say_thanks_and_earn">Dites « Merci ! » et gagnez le macaron Encouragement pour %1$d jours.   </string>
+  <string name="BoostFragment__say_thanks_and_earn">Dites « Merci ! » et gagnez le macaron Coup de pouce pour %1$d jours.</string>
   <string name="Boost__enter_custom_amount">Saisissez un montant personnalisé</string>
   <string name="Boost__one_time_contribution">Contribution unique</string>
   <string name="MySupportPreference__add_a_signal_boost">Donner un Coup de pouce à Signal</string>
@@ -3479,11 +3484,11 @@ Nouvelle tentative…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Impossible d\'ajouter un macaron. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Veuillez contacter l’assistance.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Votre macaron a expiré</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Macaron expiré</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonnement annulé</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Votre macaron Encouragement est expiré et n’est plus visible par les autres sur votre profil.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Vous pouvez réactiver votre macaron Encouragement pour 30 jours supplémentaires en versant une somme unique.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Votre macaron est expiré</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Le macaron est expiré</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">L’abonnement est annulé</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Votre macaron Coup de pouce est expiré et n’est plus visible par les autres sur votre profil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Vous pouvez réactiver votre macaron Coup de pouce pour 30 jours supplémentaires en versant une somme unique.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Pour continuer à soutenir la technologie conçue pour vous, veuillez envisager de devenir un donateur mensuel.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Devenir donateur mensuel</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Donner un Coup de pouce</string>
@@ -3529,7 +3534,7 @@ Nouvelle tentative…</string>
   <!--Stripe decline code purchase not supported-->
   <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Votre carte ne permet pas ce type d’achat. Essayez un autre mode de paiement.</string>
   <!--Stripe decline code your card has expired-->
-  <string name="DeclineCode__your_card_has_expired">Votre carte a expiré. Mettez à jour votre mode de paiement dans Google Pay puis réessayez.</string>
+  <string name="DeclineCode__your_card_has_expired">Votre carte est expirée. Mettez à jour votre mode de paiement dans Google Pay, puis réessayez.</string>
   <!--Stripe decline code go to google pay action label-->
   <string name="DeclineCode__go_to_google_pay">Allez sur Google Pay</string>
   <!--Stripe decline code incorrect card number-->
@@ -3717,10 +3722,14 @@ Nouvelle tentative…</string>
   <!--Label for Stories tab in home app screen-->
   <!--String for counts above 99 in conversation list tabs-->
   <!--Title for "My Stories" row item in Stories landing page-->
+  <string name="StoriesLandingFragment__my_stories">Mes histoires</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
+  <string name="StoriesLandingFragment__add_a_story">Ajouter une histoire</string>
   <!--Displayed when there are no stories to display-->
   <!--Context menu option to hide a story-->
+  <string name="StoriesLandingItem__hide_story">Cacher l’histoire</string>
   <!--Context menu option to unhide a story-->
+  <string name="StoriesLandingItem__unhide_story">Afficher l’histoire</string>
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">Transférer</string>
   <!--Context menu option to share a story-->
@@ -3730,10 +3739,13 @@ Nouvelle tentative…</string>
   <string name="StoriesLandingItem__sending">Envoi…</string>
   <!--Label when a story fails to send-->
   <!--Title of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__hide_story">Cacher l’histoire ?</string>
   <!--Message of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__new_story_updates">Les nouvelles mises à jour d’histoire de %1$s n’apparaîtront plus en haut de la liste des histoires.</string>
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">Cacher</string>
   <!--Displayed in Snackbar after story is hidden-->
+  <string name="StoriesLandingFragment__story_hidden">L’histoire a été cachée</string>
   <!--Section header for hidden stories-->
   <!--Displayed on each sent story under My Stories-->
   <plurals name="MyStories__d_views">
@@ -3743,7 +3755,9 @@ Nouvelle tentative…</string>
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">Transférer</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
+  <string name="MyStories__ss_story">Histoire de %1$s</string>
   <!--Title of dialog to confirm deletion of story-->
+  <string name="MyStories__delete_story">Supprimer l’histoire ?</string>
   <!--Message of dialog to confirm deletion of story-->
   <!--Displayed at bottom of story viewer when current item has views-->
   <plurals name="StoryViewerFragment__d_views">
@@ -3785,6 +3799,7 @@ Nouvelle tentative…</string>
   <!--Story settings private stories heading-->
   <!--Option label for creating a new private story-->
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">Mon histoire</string>
   <!--Section heading for story visibility-->
   <!--Clickable option for selecting people to hide your story from-->
   <!--Summary of clickable option displaying how many people you have hidden your story from-->

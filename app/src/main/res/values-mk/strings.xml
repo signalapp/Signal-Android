@@ -192,7 +192,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Да се вратам на нешифрирани MMS пораки?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Оваа порака <b>нема</b> да биде шифрирана бидејќи примачот повеќе не е корисник на Signal.\n\nДа испратам небезбедна порака?</string>
   <string name="ConversationItem_unable_to_open_media">Не е пронајдена апликација која може да го отвори овој тип на медија.</string>
-  <string name="ConversationItem_copied_text">Ископирано %s</string>
+  <string name="ConversationItem_copied_text">Копирано %s</string>
   <string name="ConversationItem_from_s">од %s</string>
   <string name="ConversationItem_to_s">до %s</string>
   <string name="ConversationItem_read_more">  Прочитај повеќе</string>
@@ -767,10 +767,10 @@
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
   <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Не можете да се приклучите на оваа група преку групниот линк бидејќи администратор Ве отстрани.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
-  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Линкот за групата повеќе не е валиден.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Групниот линк повеќе не е валиден.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
-  <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Приклучување преку линкот не успеа. Пробајте повторно подоцна.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Приклучување преку овој линк не успеа. Обидете се повторно подоцна.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Дали сакате да се приклучите на оваа група и да го споделите Вашето име и слика со нејзините членови?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Администраторот на ова група мора да го одобри Вашето барање пред да се приклучите. Кога барате да се приклучите, Вашето име и слика ќе бидат споделени со членовите.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
@@ -796,6 +796,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">Да го/ја додадам „%1$s“ во групата?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Да одбијам барање од „%1$s“?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Да се одбие барањето од „%1$s”? Овој корисник нема да може повторно да поднесе барање за приклучување на групата преку групниот линк.</string>
   <string name="RequestConfirmationDialog_add">Додај</string>
   <string name="RequestConfirmationDialog_deny">Одбиј</string>
   <!--ImageEditorHud-->
@@ -1470,7 +1471,7 @@
   <string name="SubmitDebugLogActivity_submit">Достави</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Не успеав да ги испратам записите</string>
   <string name="SubmitDebugLogActivity_success">Успешно! </string>
-  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Ископирајте го ова URL и додајте го на Вашиот извештај или е-пошта до тимот за поддршка :\n\n<b>%1$s</b></string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kопирајте го ова URL и додајте го на Вашиот извештај или е-пошта до тимот за поддршка :\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Сподели</string>
   <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Овој запис ќе биде објавен јавно на интернет за да можат да го видат придонесувачите. Можете да го прегледате пред да го испратите.</string>
   <!--SupportEmailUtil-->
@@ -1546,7 +1547,7 @@
   <string name="VerifyIdentityActivity_share_safety_number_via">Сподели сигурносен број преку…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Нашиот Signal сигурносен број:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Изгледа дека немате апликации преку кои може да споделите.</string>
-  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Во таблата со исечоци не е пронајден сигурносен број за проверка</string>
+  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">На таблата со исечоци не е пронајден сигурносен број за споредба</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal има потреба од дозвола до камерата за да може да го скенира QR кодот. Оваа дозвола е трајно одбиена. Ве молиме продолжете во поставувања, изберете „Дозволи“ и вклучете „Камера“.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Не можам да го скенирам QR кодот без дозвола за камерата</string>
   <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Мора да размените пораки за да можете да го видите сигурносниот број на %1$s.</string>
@@ -2283,8 +2284,8 @@
   <string name="PaymentsAddMoneyFragment__add_funds">Додај средства</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">Адреса на Вашиот паричник</string>
   <string name="PaymentsAddMoneyFragment__copy">Копирај</string>
-  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Ископирано на таблата со исечоци</string>
-  <string name="PaymentsAddMoneyFragment__to_add_funds">За да додадете средства, испратете MobileCoin на адресата на Вашиот паричник. Започнете трансакција од Вашата сметка на берза која што поддржува MobileCoin, потоа скенирајте го QR кодот или ископирајте ја адресата на Вашиот паричник.</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Копирано на таблата со исечоци</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">За да додадете средства, испратете MobileCoin на адресата на Вашиот паричник. Започнете трансакција од Вашата сметка на берза која што поддржува MobileCoin, потоа скенирајте го QR кодот или копирајте ја адресата на Вашиот паричник.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Детали</string>
   <string name="PaymentsDetailsFragment__status">Статус</string>
@@ -2460,11 +2461,11 @@
   <string name="text_secure_normal__mark_all_as_read">Обележи сѐ како прочитано</string>
   <string name="text_secure_normal__invite_friends">Покани пријатели</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Копирај на табелата со исечоци</string>
-  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Спореди со табелата за исечоци</string>
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Копирај на таблата со исечоци</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Спореди со таблата со исечоци</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_import_title">Увези SMS од системот</string>
-  <string name="reminder_header_sms_import_text">Допрете за да ги увезете SMS пораките од телефонот во шифрираната база на податоци на Signal.</string>
+  <string name="reminder_header_sms_import_text">Допрете за да ги копирате SMS пораките од телефонот во шифрираната база на податоци на Signal.</string>
   <string name="reminder_header_push_title">Вклучи Signal пораки и повици</string>
   <string name="reminder_header_push_text">Надградете го Вашето комуникациско искуство.</string>
   <string name="reminder_header_service_outage_text">Signal се соочува со технички потешкотии. Работиме напорно да ја вратиме услугата што е можно побрзо.</string>
@@ -2632,7 +2633,7 @@
   <string name="BackupDialog_delete_backups_statement">Избриши резервни копии</string>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">За да вклучите резервни копии, изберете папка. Резервните копии ќе бидат зачувани на таа локација.</string>
   <string name="BackupDialog_choose_folder">Избери папка</string>
-  <string name="BackupDialog_copied_to_clipboard">Ископирано на таблата со исечоци</string>
+  <string name="BackupDialog_copied_to_clipboard">Копирано на таблата со исечоци</string>
   <string name="BackupDialog_no_file_picker_available">Не е достапен одбирач за датотеки.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Внесете ја Вашата лозинка за резервни копии за проверка</string>
   <string name="BackupDialog_verify">Провери</string>
@@ -2827,8 +2828,9 @@
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">„%1$s“ ќе може да ја уредува оваа група и нејзините членови.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">Да го/ја отстранам %1$s од групата?</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Да се отстрани %1$s од групата? Овој корисник нема да може повторно да се приклучи на групата преку групниот линк.</string>
   <string name="RecipientBottomSheet_remove">Отстрани</string>
-  <string name="RecipientBottomSheet_copied_to_clipboard">Ископирано на таблата со исечоци</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">Копирано на таблата со исечоци</string>
   <string name="GroupRecipientListItem_admin">Администратор</string>
   <string name="GroupRecipientListItem_approve_description">Дозволи</string>
   <string name="GroupRecipientListItem_deny_description">Одбиј</string>
@@ -2846,7 +2848,7 @@
   <string name="GroupLinkBottomSheet_copy">Копирај</string>
   <string name="GroupLinkBottomSheet_qr_code">QR код</string>
   <string name="GroupLinkBottomSheet_share">Сподели</string>
-  <string name="GroupLinkBottomSheet_copied_to_clipboard">Ископирано на таблата со исечоци</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">Копирано на таблата со исечоци</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Линкот не е активен моментално</string>
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Не успеа да се пушти гласовната порака</string>
@@ -3297,7 +3299,7 @@
   <string name="ConversationSettingsFragment__unmute">Вклучи известувања</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Известувањата се исклучени до %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Известувањата се исклучени засекогаш</string>
-  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Телефонски број копиран на таблата со исечоци.</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Телефонскиот број е копиран на таблата со исечоци.</string>
   <string name="ConversationSettingsFragment__phone_number">Телефонски број</string>
   <string name="ConversationSettingsFragment__get_badges">Добијте беџ за Вашиот профил со поддршка на Signal. Допрете на беџот за да дознаете повеќе.</string>
   <!--PermissionsSettingsFragment-->
@@ -3745,6 +3747,7 @@
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
   <!--Title of dialog to confirm deletion of story-->
   <!--Message of dialog to confirm deletion of story-->
+  <string name="MyStories__this_story_will_be_deleted">Оваа приказна ќе биде избришана за Вас и сите кои ја примиле.</string>
   <!--Displayed at bottom of story viewer when current item has views-->
   <!--Displayed at bottom of story viewer when current item has replies-->
   <plurals name="StoryViewerFragment__d_replies">
@@ -3781,6 +3784,7 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Моја приказна</string>
   <!--Section heading for story visibility-->
+  <string name="MyStorySettingsFragment__who_can_see_this_story">Кој може да ја види оваа приказна</string>
   <!--Clickable option for selecting people to hide your story from-->
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
   <plurals name="MyStorySettingsFragment__d_people">
@@ -3794,6 +3798,7 @@
   <!--Summary for switchable option allowing replies and reactions on your story-->
   <!--Note about default sharing-->
   <!--Signal connections linked text that opens the Signal Connections sheet-->
+  <string name="MyStorySettingsFragment__signal_connections">Signal врски.</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
   <!--Signal connections sheet bullet point 1-->
   <!--Signal connections sheet bullet point 2-->
@@ -3810,6 +3815,7 @@
   <!--Dialog message when deleting a private story-->
   <!--Page title for editing a private story name-->
   <!--Input field hint when editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__story_name">Име на приказна</string>
   <!--Save button label when editing a private story name-->
   <string name="EditPrivateStoryNameFragment__save">Зачувај</string>
   <!--Displayed in text post creator before user enters text-->
@@ -3864,7 +3870,7 @@
   <!--Choose groups bottom sheet title-->
   <string name="ChooseGroupStoryBottomSheet__choose_groups">Избери групи</string>
   <!--Displayed when copying group story reply text to clipboard-->
-  <string name="StoryGroupReplyFragment__copied_to_clipboard">Ископирано на таблата со исечоци</string>
+  <string name="StoryGroupReplyFragment__copied_to_clipboard">Копирано на таблата со исечоци</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
   <string name="StoryViewerPageFragment__see_more">… Види повеќе</string>
   <!--Displayed in toast after sending a direct reply-->

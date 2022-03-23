@@ -73,10 +73,10 @@
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">封鎖咗嘅使用者</string>
   <string name="BlockedUsersActivity__add_blocked_user">加個要封鎖嘅使用者</string>
-  <string name="BlockedUsersActivity__blocked_users_will">封鎖咗嘅使用者就無得畀訊息或同您通話。</string>
+  <string name="BlockedUsersActivity__blocked_users_will">封鎖咗嘅使用者就無得同您通話或者寫訊息畀您。</string>
   <string name="BlockedUsersActivity__no_blocked_users">無封鎖到任何使用者</string>
   <string name="BlockedUsersActivity__block_user">係咪要封鎖呢個使用者？</string>
-  <string name="BlockedUserActivity__s_will_not_be_able_to">「%1$s」之後就無得再畀訊息或同您通話。</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">「%1$s」之後就無得再同您通話或者寫訊息畀您。</string>
   <string name="BlockedUsersActivity__block">封鎖</string>
   <string name="BlockedUsersActivity__unblock_user">係咪要解除封鎖呢個使用者？</string>
   <string name="BlockedUsersActivity__do_you_want_to_unblock_s">您係咪要解除封鎖「%1$s」？</string>
@@ -161,7 +161,9 @@
   <string name="ContactsCursorLoader_phone_number_search">查電話冧把</string>
   <string name="ContactsCursorLoader_username_search">查使用者名稱</string>
   <!--Label for my stories when selecting who to send media to-->
+  <string name="ContactsCursorLoader_my_stories">我嘅是日花生</string>
   <!--Action for creating a new story-->
+  <string name="ContactsCursorLoader_new_story">整多味是日花生</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">寫個訊息畀 %s</string>
   <string name="ContactsDatabase_signal_call_s">同 %s 用 Signal 通話</string>
@@ -308,8 +310,11 @@
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s 揀揀單單</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">係咪要封鎖請求？</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s 之後就無得再用條谷拎加入或者請求加入呢個谷。手動加佢入嚟呢個谷都仲得嘅。</string>
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">封鎖請求</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">取消</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -398,8 +403,11 @@
   <string name="RestoreBackupFragment__choose_folder">揀一個資料夾</string>
   <string name="RestoreBackupFragment__not_now">遲啲先啦</string>
   <!--Couldn\'t find the selected backup-->
+  <string name="RestoreBackupFragment__backup_not_found">個備份搵唔到。</string>
   <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">個備份讀取唔到。</string>
   <!--Backup has an unsupported file extension-->
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">個備份嘅副檔名唔妥。</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">傾偈備份</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">啲備份會用一個密碼加密，然後儲存喺您部機上面。</string>
@@ -716,12 +724,15 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">網絡有問題。</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">呢條谷拎未有生效</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">加入唔到個谷</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
   <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">您用條谷拎加入唔到呢個谷，因為話事人已經踢咗您出谷。</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">呢條谷拎已經失效。</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">條拎發生錯誤</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
+  <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">用呢條拎加入嘅時候搞唔掂。陣間再試下加入啦。</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">係咪要加入呢個谷，並且向所有成員分享您嘅名同埋相？</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">呢個谷嘅話事人要先審批您嘅請求，先可以畀您加入呢個谷。當您請求加入嘅時候，您嘅名同埋相將會向呢個谷嘅成員分享。</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
@@ -746,6 +757,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">係咪要加「%1$s」入去個谷度？</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">係咪要拒絕「%1$s」嘅請求？</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">係咪要拒絕「%1$s」嘅請求？佢之後就無得再用條谷拎請求加入呢個谷。</string>
   <string name="RequestConfirmationDialog_add">加入去</string>
   <string name="RequestConfirmationDialog_deny">拒絕</string>
   <!--ImageEditorHud-->
@@ -1021,6 +1033,9 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">您已發送請求加入呢個谷。</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s 已用條谷拎請求加入。</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="other">%1$s 已用條谷拎請求、然後又撤回 %2$d 個加入嘅請求。</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s 已批准您加入呢個谷嘅請求。</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s 已批准 %2$s 加入呢個谷嘅請求。</string>
@@ -1178,6 +1193,7 @@
   <!--Recipient-->
   <string name="Recipient_you">您</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">我嘅是日花生</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">封鎖</string>
   <string name="RecipientPreferenceActivity_unblock">解除封鎖</string>
@@ -1638,6 +1654,9 @@
     <item quantity="other">%1$d 位成員</item>
   </plurals>
   <!--Displays number of viewers for a story-->
+  <plurals name="contact_selection_list_item__number_of_viewers">
+    <item quantity="other">%1$d 位花生友</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal 訊息</string>
   <string name="conversation_activity__type_message_sms_insecure">無加密嘅短訊</string>
@@ -1676,6 +1695,7 @@
   <string name="ConversationUpdateItem_enable_call_notifications">啟用通話通知</string>
   <string name="ConversationUpdateItem_update_contact">更新聯絡人</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">封鎖請求</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">無有緣相遇嘅谷。請您金睛火眼睇清楚啲請求。</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">呢個谷入面無您識得嘅聯絡人。請您金睛火眼睇清楚啲請求。</string>
   <string name="ConversationUpdateItem_view">睇下</string>
@@ -1697,7 +1717,9 @@
   <string name="QuoteView_you">您</string>
   <string name="QuoteView_original_missing">搵唔到原來嘅訊息</string>
   <!--Author formatting for group stories-->
+  <string name="QuoteView_s_story">%1$s 是日花生</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">您嘅是日花生</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">拉到落最底</string>
   <!--BubbleOptOutTooltip-->
@@ -1977,7 +1999,7 @@
   <string name="preferences__change_your_passphrase">更改您個密碼</string>
   <string name="preferences__enable_passphrase">啟用密碼畫面鎖</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">用密碼將畫面同通知上鎖</string>
-  <string name="preferences__screen_security">畫面安全性</string>
+  <string name="preferences__screen_security">畫面要遮掩</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">喺最近使用清單同 app 入面封鎖截圖</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">指定嘅閒置時間過後自動將 Signal 上鎖</string>
   <string name="preferences__inactivity_timeout_passphrase">閒置逾時密碼</string>
@@ -2121,7 +2143,7 @@
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
   <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">您已經手動停用封網迴避。</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
-  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">您已經連接上 Signal 服務，故毋需封網迴避。</string>
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">您同 Signal 服務已經連線，毋需封網迴避。</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
   <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">封網迴避要連咗上網先可以啟用。</string>
   <string name="preferences_communication__category_sealed_sender">封密發送人</string>
@@ -2733,6 +2755,7 @@
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">「%1$s」將會可以編輯呢個谷同埋個谷嘅成員。</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">係咪要踼 %1$s 出呢個谷？</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">係咪要踼 %1$s 出呢個谷？佢之後就無得用條谷拎重新加入呢個谷。</string>
   <string name="RecipientBottomSheet_remove">移除</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">複製咗去剪貼簿</string>
   <string name="GroupRecipientListItem_admin">話事人</string>
@@ -2821,6 +2844,7 @@
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">刪除緊帳戶…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
+  <string name="DeleteAccountFragment__canceling_your_subscription">取消緊您嘅課金計劃…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <string name="DeleteAccountFragment__depending_on_the_number_of_groups">視乎您有幾多個谷啦，可能要幾分鐘時間</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
@@ -3063,7 +3087,7 @@
   <string name="PrivacySettingsFragment__messaging">發訊息</string>
   <string name="PrivacySettingsFragment__disappearing_messages">過眼雲煙訊息</string>
   <string name="PrivacySettingsFragment__app_security">App 保安措施</string>
-  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">喺最近使用清單同 app 入面封鎖截圖</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">遮掩最近使用清單同埋 app 入面嘅畫面唔俾截圖</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal 訊息同通話、一律轉駁通話同封密發送人</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">為新嘅傾偈預設倒數限期</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">幫您發起嘅所有新對話，都預先設定一個過眼雲煙訊息倒數限期。</string>
@@ -3354,6 +3378,7 @@
   <string name="ManageDonationsFragment__my_support">我擔當後援</string>
   <string name="ManageDonationsFragment__manage_subscription">管理課金計劃</string>
   <!--Label for Tax Receipts button-->
+  <string name="ManageDonationsFragment__tax_receipts">稅務收據</string>
   <string name="ManageDonationsFragment__badges">襟章</string>
   <string name="ManageDonationsFragment__subscription_faq">課金計劃問答</string>
   <string name="ManageDonationsFragment__error_getting_subscription">攞返課金計劃嘅時候發生錯誤。</string>
@@ -3582,94 +3607,159 @@
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">全部</string>
   <!--Donation receipts recurring tab label-->
+  <string name="DonationReceiptListFragment__recurring">長期</string>
   <!--Donation receipts one time tab label-->
-  <string name="DonationReceiptListFragment__one_time">一次</string>
+  <string name="DonationReceiptListFragment__one_time">單次</string>
   <!--Donation receipts boost row label-->
+  <string name="DonationReceiptListFragment__boost">集氣</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">詳情</string>
   <!--Donation receipts donation type heading-->
+  <string name="DonationReceiptDetailsFragment__donation_type">捐款類型</string>
   <!--Donation receipts date paid heading-->
+  <string name="DonationReceiptDetailsFragment__date_paid">已付日期</string>
   <!--Donation receipts share PNG-->
+  <string name="DonationReceiptDetailsFragment__share_receipt">分享收據</string>
   <!--Donation receipts list end note-->
+  <string name="DonationReceiptListFragment__if_you_have">若然您重新裝過 Signal，先前嘅捐款恕未能提供收據。</string>
   <!--Donation receipts document title-->
+  <string name="DonationReceiptDetailsFragment__donation_receipt">捐款收據</string>
   <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">金額</string>
   <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">感謝您力撐 Signal。全靠您嘅捐款做後援，我哋得以秉持初心，開發開放原始碼嘅私隱技術，去守護表達自由，同時令通訊變得安全、無遠弗屆，等世界上數以百萬計嘅人，都用到同一個 app 做私密通訊，開住個「爐」為對方焗一份蘋果派。如果您係美國居民，請保存呢張收據作為您嘅稅務紀錄。Signal Technology Foundation 乃係喺美國根據《國稅法規》(IRC) 第 501c3 條之下嘅免稅非盈利組織。我哋嘅聯邦稅識別號碼係 82–4506840。</string>
   <!--Donation receipt type-->
+  <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">傾偈</string>
   <!--Label for Stories tab in home app screen-->
-  <string name="ConversationListTabs__stories">榕樹台</string>
+  <string name="ConversationListTabs__stories">是日花生</string>
   <!--String for counts above 99 in conversation list tabs-->
+  <string name="ConversationListTabs__99p">99+</string>
   <!--Title for "My Stories" row item in Stories landing page-->
+  <string name="StoriesLandingFragment__my_stories">我嘅是日花生</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
+  <string name="StoriesLandingFragment__add_a_story">發辦一味是日花生</string>
   <!--Displayed when there are no stories to display-->
+  <string name="StoriesLandingFragment__no_recent_updates">最新動靜目前未有得睇。</string>
   <!--Context menu option to hide a story-->
+  <string name="StoriesLandingItem__hide_story">隱藏是日花生</string>
   <!--Context menu option to unhide a story-->
+  <string name="StoriesLandingItem__unhide_story">取消隱藏是日花生</string>
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">轉寄</string>
   <!--Context menu option to share a story-->
+  <string name="StoriesLandingItem__share">分享…</string>
   <!--Context menu option to go to story chat-->
+  <string name="StoriesLandingItem__go_to_chat">跳去傾偈</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">送緊出去…</string>
   <!--Label when a story fails to send-->
+  <string name="StoriesLandingItem__couldnt_send">發送唔到</string>
   <!--Title of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__hide_story">係咪要隱藏是日花生？</string>
   <!--Message of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__new_story_updates">%1$s 放送嘅是日花生有咩新動靜，都唔會再排喺是日花生清單最頂個囉噃。</string>
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">隱藏</string>
   <!--Displayed in Snackbar after story is hidden-->
+  <string name="StoriesLandingFragment__story_hidden">是日花生隱藏咗</string>
   <!--Section header for hidden stories-->
+  <string name="StoriesLandingFragment__hidden_stories">隱藏嘅是日花生</string>
   <!--Displayed on each sent story under My Stories-->
+  <plurals name="MyStories__d_views">
+    <item quantity="other">%1$d 次遊覽</item>
+  </plurals>
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">轉寄</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
+  <string name="MyStories__ss_story">%1$s 嘅是日花生</string>
   <!--Title of dialog to confirm deletion of story-->
+  <string name="MyStories__delete_story">係咪要刪除是日花生？</string>
   <!--Message of dialog to confirm deletion of story-->
+  <string name="MyStories__this_story_will_be_deleted">呢味是日花生，您同埋收到佢嘅全世界都會剷走佢個囉噃。</string>
   <!--Displayed at bottom of story viewer when current item has views-->
+  <plurals name="StoryViewerFragment__d_views">
+    <item quantity="other">%1$d 次遊覽</item>
+  </plurals>
   <!--Displayed at bottom of story viewer when current item has replies-->
+  <plurals name="StoryViewerFragment__d_replies">
+    <item quantity="other">%1$d 個回覆</item>
+  </plurals>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
   <string name="StoryViewerPageFragment__you">您</string>
   <!--Displayed when viewing a post displayed to a group-->
-  <string name="StoryViewerPageFragment__s_to_s">由 %1$s 到 %2$s</string>
+  <string name="StoryViewerPageFragment__s_to_s">%1$s 放送 %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">回覆</string>
   <!--Displayed when a story has no views-->
+  <string name="StoryViewsFragment__no_views_yet">未有人遊覽</string>
   <!--Displayed when a story has no replies yet-->
+  <string name="StoryGroupReplyFragment__no_replies_yet">未有人回覆</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
+  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">對呢味是日花生畀咗心情</string>
   <!--Label for story views tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__views">遊覽</string>
   <!--Label for story replies tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__replies">回覆</string>
   <!--Description of action for reaction button-->
+  <string name="StoryReplyComposer__react_to_this_story">對呢味是日花生畀心情</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
+  <string name="StoryReplyComposer__replying_privately_to_s">私底下回覆緊 %1$s</string>
   <!--Context menu item to privately reply to a story response-->
+  <string name="StoryGroupReplyItem__private_reply">私底下回覆</string>
   <!--Context menu item to copy a story response-->
   <string name="StoryGroupReplyItem__copy">複製</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">刪除</string>
   <!--Story settings page title-->
+  <string name="StorySettingsFragment__story_settings">是日花生設定</string>
   <!--Story settings private stories heading-->
+  <string name="StorySettingsFragment__private_stories">私伙放送是日花生</string>
   <!--Option label for creating a new private story-->
+  <string name="StorySettingsFragment__new_private_story">整多味私伙放送是日花生</string>
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">我嘅是日花生</string>
   <!--Section heading for story visibility-->
+  <string name="MyStorySettingsFragment__who_can_see_this_story">邊個可以見到呢味是日花生</string>
   <!--Clickable option for selecting people to hide your story from-->
+  <string name="MyStorySettingsFragment__hide_story_from">隱藏是日花生唔俾佢睇</string>
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <plurals name="MyStorySettingsFragment__d_people">
+    <item quantity="other">%1$d 個人</item>
+  </plurals>
   <!--Section header for options related to replies and reactions-->
+  <string name="MyStorySettingsFragment__replies_amp_reactions">回覆與心情</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
+  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">俾人哋回覆同埋畀心情</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
+  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">可以遊覽是日花生嘅花生友，都開放畀佢哋回覆同畀心情</string>
   <!--Note about default sharing-->
+  <string name="MyStorySettingsFragment__hide_your_story_from">隱藏您嘅是日花生唔俾某啲人睇到。您嘅是日花生預設會分享畀您嘅 %1$s遊覽。</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
+  <string name="MyStorySettingsFragment__signal_connections">Signal 交遊</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Signal 交遊</strong>係您揀過信任嘅人，當您：</string>
   <!--Signal connections sheet bullet point 1-->
+  <string name="SignalConnectionsBottomSheet__starting_a_conversation">同佢發起過對話</string>
   <!--Signal connections sheet bullet point 2-->
+  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">接受過佢嘅訊息請求</string>
   <!--Signal connections sheet bullet point 3-->
+  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">系統聯絡人入面有佢喺度</string>
   <!--Note at the bottom of the Signal connections sheet-->
   <!--Clickable option to add a viewer to a private story-->
+  <string name="PrivateStorySettingsFragment__add_viewer">加位花生友</string>
   <!--Clickable option to delete a custom story-->
+  <string name="PrivateStorySettingsFragment__delete_private_story">刪除私伙放送是日花生</string>
   <!--Dialog title when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__remove_s">係咪要剷走 %1$s？</string>
   <!--Dialog message when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__this_person_will_no_longer">呢位仁兄唔會再睇到您嘅是日花生個囉噃。</string>
   <!--Positive action label when attempting to remove someone from a private story-->
-  <string name="PrivateStorySettingsFragment__remove">移除</string>
+  <string name="PrivateStorySettingsFragment__remove">剷走佢</string>
   <!--Dialog title when deleting a private story-->
   <!--Dialog message when deleting a private story-->
   <!--Page title for editing a private story name-->
@@ -3678,6 +3768,7 @@
   <string name="EditPrivateStoryNameFragment__save">儲存</string>
   <!--Displayed in text post creator before user enters text-->
   <!--Button label for changing font when creating a text post-->
+  <string name="TextStoryPostTextEntryFragment__aa">字</string>
   <!--Displayed in text post creator when prompting user to enter text-->
   <!--Content description for \'done\' button when adding text to a story post-->
   <!--Text label for media selection toggle-->
@@ -3685,6 +3776,7 @@
   <!--Camera label for media selection toggle-->
   <string name="MediaSelectionActivity__camera">影相</string>
   <!--Hint for entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">打或貼上一個 URL</string>
   <!--Displayed prior to the user entering a URL for a text post-->
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">搜尋</string>
@@ -3713,18 +3805,23 @@
   <string name="BaseStoryRecipientSelectionFragment__select_all">全部揀晒</string>
   <!--Choose story type bottom sheet title-->
   <!--Choose story type bottom sheet new story row title-->
+  <string name="ChooseStoryTypeBottomSheet__new_private_story">整多味私伙放送是日花生</string>
   <!--Choose story type bottom sheet new story row summary-->
   <!--Choose story type bottom sheet group story title-->
   <!--Choose story type bottom sheet group story summary-->
   <!--Choose groups bottom sheet title-->
+  <string name="ChooseGroupStoryBottomSheet__choose_groups">揀邊啲谷</string>
   <!--Displayed when copying group story reply text to clipboard-->
   <string name="StoryGroupReplyFragment__copied_to_clipboard">複製咗去剪貼簿</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
+  <string name="StoryViewerPageFragment__see_more">… 睇埋佢</string>
   <!--Displayed in toast after sending a direct reply-->
   <!--Displayed in toast after sending a direct reaction-->
   <!--Displayed in the viewer when a story is no longer available-->
   <!--Displayed in the viewer when the network is not available-->
+  <string name="StorySlateView__no_internet_connection">連唔到上網</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <string name="StorySlateView__couldnt_load_content">載入唔到內容</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">封網迴避使唔使閂咗佢？</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -3737,6 +3834,7 @@
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="ExpandModel__view_more">睇多啲</string>
   <string name="StoriesLinkPopup__visit_link">打開條拎去睇</string>
   <!--EOF-->
 </resources>

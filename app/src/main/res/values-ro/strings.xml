@@ -326,6 +326,7 @@
   <!--Dialog title for block group link join requests-->
   <string name="ConversationFragment__block_request">Blochez cererea?</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s nu se va mai putea alătura grupului folosind linkul acestuia. Dar vei putea în continuare să-i adaugi manual.</string>
   <!--Dialog confirm block request button-->
   <string name="ConversationFragment__block_request_button">Blochează cererea</string>
   <!--Dialog cancel block request button-->
@@ -815,6 +816,7 @@
   <!--Title shown when there was an unknown issue getting group information from a group link-->
   <string name="GroupJoinBottomSheetDialogFragment_link_error">Eroare de link</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
+  <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Alăturarea cu acest link a eșuat. Încearcă din nou mai târziu.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Dorești să te alături acestui grup și să îți împărtășești numele și fotografia cu membrii săi?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Un administrator al acestui grup trebuie să îți aprobe solicitarea înainte de a te putea alătura grupului. Când soliciți să te înscrii, numele și fotografia ta vor fi distribuite membrilor săi.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
@@ -841,6 +843,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">Adaugi pe „%1$s” la grup?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Respingi cererea de la „%1$s”?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Refuzi cererea de la ”%1$s”? Nu vor mai putea cere din nou să se alăture, folosind linkul grupului.</string>
   <string name="RequestConfirmationDialog_add">Adaugă</string>
   <string name="RequestConfirmationDialog_deny">Refuză</string>
   <!--ImageEditorHud-->
@@ -1144,6 +1147,11 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Ai trimis o cerere de alăturare la grup.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s a solicitat să se alăture prin linkul grupului.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="one">%1$s a solicitat și apoi a anulat solicitarea sa de alăturare folosind linkul grupului.</item>
+    <item quantity="few">%1$s a solicitat și apoi a anulat %2$d solicitări de alăturare folosind linkul grupului.</item>
+    <item quantity="other">%1$s a solicitat și apoi a anulat %2$d de solicitări de alăturare folosind linkul grupului.</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s a aprobat solicitarea ta de a te alătura grupului.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s a aprobat o cerere de alăturare la grup de la %2$s.</string>
@@ -1794,6 +1802,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
     <item quantity="other">%1$d de membri</item>
   </plurals>
   <!--Displays number of viewers for a story-->
+  <plurals name="contact_selection_list_item__number_of_viewers">
+    <item quantity="one">%1$d spectator</item>
+    <item quantity="few">%1$d spectatori</item>
+    <item quantity="other">%1$d de spectatori</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Mesaj Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS nesecurizat</string>
@@ -2924,6 +2937,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" va putea edita acest grup și membrii acestuia.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">Elimini pe %1$s din grup?</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Elimini pe %1$s din grup? Nu se vor mai putea alătura din nou folosind linkul grupului.</string>
   <string name="RecipientBottomSheet_remove">Elimină</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">S-a copiat în clipboard</string>
   <string name="GroupRecipientListItem_admin">Administrator</string>
@@ -3016,6 +3030,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">Se șterge contul…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
+  <string name="DeleteAccountFragment__canceling_your_subscription">Se anulează abonamentul…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <string name="DeleteAccountFragment__depending_on_the_number_of_groups">În funcție de numărul de grupuri în care te afli, acest lucru poate dura câteva minute</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
@@ -3563,6 +3578,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ManageDonationsFragment__my_support">Sprijinul meu</string>
   <string name="ManageDonationsFragment__manage_subscription">Gestionare abonament</string>
   <!--Label for Tax Receipts button-->
+  <string name="ManageDonationsFragment__tax_receipts">Bonuri fiscale</string>
   <string name="ManageDonationsFragment__badges">Insigne</string>
   <string name="ManageDonationsFragment__subscription_faq">FAQ Abonament</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Eroare la obținerea abonamentului.</string>
@@ -3791,9 +3807,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">Toate</string>
   <!--Donation receipts recurring tab label-->
+  <string name="DonationReceiptListFragment__recurring">Recurente</string>
   <!--Donation receipts one time tab label-->
   <string name="DonationReceiptListFragment__one_time">O dată</string>
   <!--Donation receipts boost row label-->
+  <string name="DonationReceiptListFragment__boost">Boost</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Detalii</string>
   <!--Donation receipts donation type heading-->
@@ -3803,11 +3821,13 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Donation receipts share PNG-->
   <string name="DonationReceiptDetailsFragment__share_receipt">Partajează chitanța</string>
   <!--Donation receipts list end note-->
+  <string name="DonationReceiptListFragment__if_you_have">Dacă ai reinstalat Signal, bonurile fiscale ale donațiilor precedente nu vor mai fi disponibile.</string>
   <!--Donation receipts document title-->
   <string name="DonationReceiptDetailsFragment__donation_receipt">Chitanță donație</string>
   <!--Donation receipts amount title-->
   <string name="DonationReceiptDetailsFragment__amount">Suma</string>
   <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Mulțumim pentru că susții Signal. Contribuția ta ajută la dezvoltarea tehnologiilor open source pentru confidențialitate care protejează libertatea de exprimare și facilitează o comunicare globală sigură pentru milioane de oameni din întreaga lume. Dacă ești rezident al Statelor Unite, te rugăm să păstrezi acest bon pentru dosarul tău fiscal. Signal Technology Foundation este o organizație non-profit scutită de impozit în Statele Unite, conform secțiunii 501c3 din Codul fiscal intern. Numărul nostru de identificare fiscală este 82-4506840.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--region "Stories Tab"-->
@@ -3822,9 +3842,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Adaugă o poveste</string>
   <!--Displayed when there are no stories to display-->
+  <string name="StoriesLandingFragment__no_recent_updates">Nu există actualizări recente de afișat în acest moment.</string>
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Ascunde povestea</string>
   <!--Context menu option to unhide a story-->
+  <string name="StoriesLandingItem__unhide_story">Afișează povestea</string>
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">Redirecționează</string>
   <!--Context menu option to share a story-->
@@ -3838,6 +3860,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Ascunzi povestea?</string>
   <!--Message of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__new_story_updates">Actualizări despre povești noi de la %1$s nu vor mai fi afișate la începutul listei.</string>
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">Ascunde</string>
   <!--Displayed in Snackbar after story is hidden-->
@@ -3857,6 +3880,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Title of dialog to confirm deletion of story-->
   <string name="MyStories__delete_story">Ștergi povestea?</string>
   <!--Message of dialog to confirm deletion of story-->
+  <string name="MyStories__this_story_will_be_deleted">Această poveste va fi ștearsă pentru tine și toți cei care au primit-o.</string>
   <!--Displayed at bottom of story viewer when current item has views-->
   <plurals name="StoryViewerFragment__d_views">
     <item quantity="one">%1$d vizualizare</item>
@@ -3890,7 +3914,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Description of action for reaction button-->
   <string name="StoryReplyComposer__react_to_this_story">Reacționează la această poveste</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
+  <string name="StoryReplyComposer__replying_privately_to_s">Răspuns privat către %1$s</string>
   <!--Context menu item to privately reply to a story response-->
+  <string name="StoryGroupReplyItem__private_reply">Răspuns privat</string>
   <!--Context menu item to copy a story response-->
   <string name="StoryGroupReplyItem__copy">Copiere</string>
   <!--Context menu item to delete a story response-->
@@ -3920,12 +3946,15 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Summary for switchable option allowing replies and reactions on your story-->
   <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Permite oamenilor care îți pot vedea povestea să reacționeze și să răspundă</string>
   <!--Note about default sharing-->
+  <string name="MyStorySettingsFragment__hide_your_story_from">Ascunde-ți povestea de anumite persoane. În mod implicit povestea ta este distribuită %1$s</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
   <string name="MyStorySettingsFragment__signal_connections">Conexiuni Signal.</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
   <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Conexiunile Signal</strong> sunt oameni în care ai ales să ai încredere, fie de către:</string>
   <!--Signal connections sheet bullet point 1-->
+  <string name="SignalConnectionsBottomSheet__starting_a_conversation">Începi o conversație</string>
   <!--Signal connections sheet bullet point 2-->
+  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Acceptă o solicitare de mesaj</string>
   <!--Signal connections sheet bullet point 3-->
   <!--Note at the bottom of the Signal connections sheet-->
   <!--Clickable option to add a viewer to a private story-->
@@ -4014,6 +4043,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Displayed in the viewer when the network is not available-->
   <string name="StorySlateView__no_internet_connection">Lipsește Conexiunea cu Internetul</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <string name="StorySlateView__couldnt_load_content">Conținutul nu a putut fi încărcat</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Dezactivezi ocolirea cenzurii?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->

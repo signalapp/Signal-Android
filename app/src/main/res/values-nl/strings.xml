@@ -428,11 +428,11 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="RestoreBackupFragment__choose_folder">Map kiezen</string>
   <string name="RestoreBackupFragment__not_now">Niet nu</string>
   <!--Couldn\'t find the selected backup-->
-  <string name="RestoreBackupFragment__backup_not_found">Backup-bestand niet gevonden.</string>
+  <string name="RestoreBackupFragment__backup_not_found">Back-upbestand niet gevonden.</string>
   <!--Couldn\'t read the selected backup-->
-  <string name="RestoreBackupFragment__backup_could_not_be_read">Backupbestand kon niet worden gelezen.</string>
+  <string name="RestoreBackupFragment__backup_could_not_be_read">Back-upbestand kon niet worden gelezen.</string>
   <!--Backup has an unsupported file extension-->
-  <string name="RestoreBackupFragment__backup_has_a_bad_extension">Backup-bestand heeft verkeerde extentie.</string>
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">Back-upbestand heeft verkeerde extentie.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Back-upbestanden maken</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Back-upbestanden worden versleuteld met een wachtwoord en worden alleen offline op je eigen apparaat opgeslagen. Als je het maken van back-upbestanden inschakelt maakt Signal automatisch elke dag een nieuw back-upbestand van al je gesprekken en media. Alleen de twee meest recente geslaagde back-upbestanden blijven bewaard, oudere back-upbestanden worden overschreven.</string>
@@ -2666,7 +2666,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="BackupDialog_verify">Verifiëren</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Je hebt het juiste back-upwachtwoord ingevoerd</string>
   <string name="BackupDialog_passphrase_was_not_correct">Je hebt niet het juiste back-upwachtwoord ingevoerd.</string>
-  <string name="LocalBackupJob_creating_signal_backup">Signal backupbestand aan het maken …</string>
+  <string name="LocalBackupJob_creating_signal_backup">Back-upbestand aan het maken …</string>
   <string name="LocalBackupJobApi29_backup_failed">Het maken van een back-upbestand is mislukt</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Je back-up directory is verwijderd of verplaatst.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Je back-upbestand is te groot om op dit volume op te slaan.</string>
@@ -3736,6 +3736,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--Donation receipts amount title-->
   <string name="DonationReceiptDetailsFragment__amount">Hoeveelheid</string>
   <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Bedankt dat je Signal steunt. Jouw bijdrage helpt bij het voortzetten van onze missie om privacytechnologie met open broncode te ontwikkelen waarmee vrijheid van expressie wordt beschermd en waarmee miljoenen mensen wereldwijd beveiligd communiceren. Bewaar deze afschrift als je een inwoner bent van de Verenigde Staten van Amerika, zodat je je donatie kunt opgeven bij je belastingaangifte. Signal Technology Foundation is een van belasting uitgezonderde organisatie zonder winstoogmerk volgens sectie 501c3 van het Internal Revenue Code (het Amerikaanse belastingregelement). Ons federale-belasting-ID is 82–4506840.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--region "Stories Tab"-->
@@ -3811,7 +3812,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Nog geen reacties</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
-  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Reactie op dit verhaal</string>
+  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Reageerde op dit verhaal</string>
   <!--Label for story views tab-->
   <string name="StoryViewsAndRepliesDialogFragment__views">Aantal weergaven</string>
   <!--Label for story replies tab-->
@@ -3864,6 +3865,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--Note at the bottom of the Signal connections sheet-->
   <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Je Signal-kennissen kunnen jouw profielnaam en -foto zien en kunnen je “Mijn verhaal”-plaatsingen zien tenzij je die spesifiek voor hem of haar verbergt.</string>
   <!--Clickable option to add a viewer to a private story-->
+  <string name="PrivateStorySettingsFragment__add_viewer">Persoon toevoegen</string>
   <!--Clickable option to delete a custom story-->
   <string name="PrivateStorySettingsFragment__delete_private_story">Privéverhaal wissen</string>
   <!--Dialog title when attempting to remove someone from a private story-->
@@ -3875,6 +3877,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--Dialog title when deleting a private story-->
   <string name="PrivateStorySettingsFragment__are_you_sure">Weet je het zeker?</string>
   <!--Dialog message when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__this_action_cannot">Als je dit privéverhaal wist kan dat niet ongedaan worden gemaakt.</string>
   <!--Page title for editing a private story name-->
   <string name="EditPrivateStoryNameFragment__edit_story_name">Verhaalnaam wijzigen</string>
   <!--Input field hint when editing a private story name-->
@@ -3896,6 +3899,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--Hint for entering a URL for a text post-->
   <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Typ of plak een URL</string>
   <!--Displayed prior to the user entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Een verwijzing delen met de personen die je verhaal bekijken</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Zoeken</string>
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
@@ -3905,21 +3909,30 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--Dialog title for first time adding something to a story-->
   <string name="StoryDialogs__add_to_story_q">Toevoegen aan verhaal?</string>
   <!--Dialog message for first time adding something to a story-->
+  <string name="StoryDialogs__adding_content">Wanneer je een nieuw deel aan je verhaal toevoegd dan kunnen je Signal-kennissen dat deel van je verhaal voor de komende 24 uur bekijken. Je kunt in de instellingen aanpassen welke personen je verhaal kunnen bekijken.</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <string name="StoryDialogs__add_to_story">Een verhaal toevoegen</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <string name="StoryDialogs__edit_viewers">Wijzigen wie dit kan bekijken</string>
   <!--Privacy Settings toggle title for stories-->
   <string name="PrivacySettingsFragment__share_and_view_stories">Verhaal weergeven &amp; doorsturen</string>
   <!--Privacy Settings toggle summary for stories-->
+  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Zolang deze optie is uitgeschakeld kun je geen verhalen bekijken en delen.</string>
   <!--New story viewer selection screen title-->
+  <string name="CreateStoryViewerSelectionFragment__choose_viewers">Kies wie dit kan bekijken</string>
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">Volgende</string>
   <!--New story viewer selection screen title as recipients are selected-->
+  <plurals name="SelectViewersFragment__d_viewers">
+    <item quantity="one">%1$d persoon</item>
+    <item quantity="other">%1$d personen</item>
+  </plurals>
   <!--Name story screen title-->
   <string name="CreateStoryWithViewersFragment__name_story">Geef je verhaal een naam</string>
   <!--Name story screen label hint-->
   <string name="CreateStoryWithViewersFragment__story_name_required">Verhaalnaam (vereist)</string>
   <!--Name story screen viewers subheading-->
+  <string name="CreateStoryWithViewersFragment__viewers">Personen</string>
   <!--Name story screen create button label-->
   <string name="CreateStoryWithViewersFragment__create">Aanmaken</string>
   <!--Name story screen error when save attempted with no label-->
@@ -3939,6 +3952,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--Choose story type bottom sheet group story summary-->
   <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Doorsturen naar een bestaande Signal-groep</string>
   <!--Choose groups bottom sheet title-->
+  <string name="ChooseGroupStoryBottomSheet__choose_groups">Groepen kiezen</string>
   <!--Displayed when copying group story reply text to clipboard-->
   <string name="StoryGroupReplyFragment__copied_to_clipboard">Gekopieerd naar het klembord</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
@@ -3962,7 +3976,9 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Uitschakelen</string>
   <!--Conversation Item label for reactions to a story-->
+  <string name="ConversationItem__s_dot_story">%1$s · Verhaal</string>
   <!--Conversation Item label for reactions to an unavailable story-->
+  <string name="ConversationItem__reacted_to_a_story">Reageerde op een verhaal</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Meer weergeven</string>
