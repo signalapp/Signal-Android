@@ -10,6 +10,8 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.viewModels
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.BaseTransientBottomBar
@@ -140,14 +142,15 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
   private fun createStoryLandingItem(data: StoriesLandingItemData): StoriesLandingItem.Model {
     return StoriesLandingItem.Model(
       data = data,
-      onRowClick = {
-        if (it.data.storyRecipient.isMyStory) {
+      onRowClick = { model, preview ->
+        if (model.data.storyRecipient.isMyStory) {
           startActivity(Intent(requireContext(), MyStoriesActivity::class.java))
-        } else if (it.data.primaryStory.messageRecord.isOutgoing && it.data.primaryStory.messageRecord.isFailed) {
-          lifecycleDisposable += viewModel.resend(it.data.primaryStory.messageRecord).subscribe()
+        } else if (model.data.primaryStory.messageRecord.isOutgoing && model.data.primaryStory.messageRecord.isFailed) {
+          lifecycleDisposable += viewModel.resend(model.data.primaryStory.messageRecord).subscribe()
           Toast.makeText(requireContext(), R.string.message_recipients_list_item__resend, Toast.LENGTH_SHORT).show()
         } else {
-          startActivity(StoryViewerActivity.createIntent(requireContext(), it.data.storyRecipient.id))
+          val options = ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity(), preview, ViewCompat.getTransitionName(preview) ?: "")
+          startActivity(StoryViewerActivity.createIntent(requireContext(), model.data.storyRecipient.id), options.toBundle())
         }
       },
       onForwardStory = {

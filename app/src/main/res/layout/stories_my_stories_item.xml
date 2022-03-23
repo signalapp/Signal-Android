@@ -14,6 +14,7 @@
         android:layout_height="84dp"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
+        android:transitionName="story"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

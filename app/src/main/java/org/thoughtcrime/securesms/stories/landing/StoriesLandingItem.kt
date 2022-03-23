@@ -35,7 +35,7 @@ object StoriesLandingItem {
 
   class Model(
     val data: StoriesLandingItemData,
-    val onRowClick: (Model) -> Unit,
+    val onRowClick: (Model, View) -> Unit,
     val onHideStory: (Model) -> Unit,
     val onForwardStory: (Model) -> Unit,
     val onShareStory: (Model) -> Unit,
@@ -166,7 +166,7 @@ object StoriesLandingItem {
     }
 
     private fun setUpClickListeners(model: Model) {
-      itemView.setOnClickListener { model.onRowClick(model) }
+      itemView.setOnClickListener { model.onRowClick(model, storyPreview) }
 
       if (model.data.storyRecipient.isMyStory) {
         itemView.setOnLongClickListener(null)

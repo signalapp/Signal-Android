@@ -102,6 +102,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:padding="2dp"
+        android:transitionName="story"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

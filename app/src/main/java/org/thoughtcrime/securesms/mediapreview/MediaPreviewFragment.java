@@ -77,6 +77,7 @@ public abstract class MediaPreviewFragment extends Fragment {
   public void onResume() {
     super.onResume();
     checkMediaStillAvailable();
+    requireActivity().supportStartPostponedEnterTransition();
   }
 
   public void cleanUp() {

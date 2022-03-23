@@ -16,6 +16,8 @@ class StoryViewerActivity : PassphraseRequiredActivity() {
   }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    supportPostponeEnterTransition()
+
     super.onCreate(savedInstanceState, ready)
     setContentView(R.layout.fragment_container)
 

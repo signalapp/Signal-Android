@@ -32,7 +32,7 @@ object MyStoriesItem {
 
   class Model(
     val distributionStory: ConversationMessage,
-    val onClick: (Model) -> Unit,
+    val onClick: (Model, View) -> Unit,
     val onSaveClick: (Model) -> Unit,
     val onDeleteClick: (Model) -> Unit,
     val onForwardClick: (Model) -> Unit,
@@ -81,7 +81,7 @@ object MyStoriesItem {
 
     override fun bind(model: Model) {
       storyPreview.isClickable = false
-      itemView.setOnClickListener { model.onClick(model) }
+      itemView.setOnClickListener { model.onClick(model, storyPreview) }
       downloadTarget.setOnClickListener { model.onSaveClick(model) }
       moreTarget.setOnClickListener { showContextMenu(model) }
       presentDateOrStatus(model)
