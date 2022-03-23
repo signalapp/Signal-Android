@@ -38,7 +38,7 @@ import org.thoughtcrime.securesms.shakereport.ShakeToReport;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.EarlyMessageCache;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
-import org.thoughtcrime.securesms.util.Hex;
+import org.signal.core.util.Hex;
 import org.thoughtcrime.securesms.util.IasKeyStore;
 import org.thoughtcrime.securesms.video.exo.GiphyMp4Cache;
 import org.thoughtcrime.securesms.video.exo.SimpleExoPlayerPool;

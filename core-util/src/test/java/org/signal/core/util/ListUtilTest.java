@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util;
+package org.signal.core.util;
 
 import org.junit.Test;
 
@@ -7,21 +7,21 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class UtilTest {
+public class ListUtilTest {
 
   @Test
   public void chunk_oneChunk() {
     List<String> input = Arrays.asList("A", "B", "C");
 
-    List<List<String>> output = Util.chunk(input, 3);
+    List<List<String>> output = ListUtil.chunk(input, 3);
     assertEquals(1, output.size());
     assertEquals(input, output.get(0));
 
-    output = Util.chunk(input, 4);
+    output = ListUtil.chunk(input, 4);
     assertEquals(1, output.size());
     assertEquals(input, output.get(0));
 
-    output = Util.chunk(input, 100);
+    output = ListUtil.chunk(input, 100);
     assertEquals(1, output.size());
     assertEquals(input, output.get(0));
   }
@@ -30,18 +30,18 @@ public class UtilTest {
   public void chunk_multipleChunks() {
     List<String> input = Arrays.asList("A", "B", "C", "D", "E");
 
-    List<List<String>> output = Util.chunk(input, 4);
+    List<List<String>> output = ListUtil.chunk(input, 4);
     assertEquals(2, output.size());
     assertEquals(Arrays.asList("A", "B", "C", "D"), output.get(0));
     assertEquals(Arrays.asList("E"), output.get(1));
 
-    output = Util.chunk(input, 2);
+    output = ListUtil.chunk(input, 2);
     assertEquals(3, output.size());
     assertEquals(Arrays.asList("A", "B"), output.get(0));
     assertEquals(Arrays.asList("C", "D"), output.get(1));
     assertEquals(Arrays.asList("E"), output.get(2));
 
-    output = Util.chunk(input, 1);
+    output = ListUtil.chunk(input, 1);
     assertEquals(5, output.size());
     assertEquals(Arrays.asList("A"), output.get(0));
     assertEquals(Arrays.asList("B"), output.get(1));

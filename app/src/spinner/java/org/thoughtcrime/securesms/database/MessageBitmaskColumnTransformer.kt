@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.database
 
 import android.database.Cursor
+import org.signal.core.util.requireLong
 import org.signal.spinner.ColumnTransformer
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types.BAD_DECRYPT_TYPE
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types.BASE_DRAFT_TYPE

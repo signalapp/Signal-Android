@@ -30,7 +30,7 @@ import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
-import org.thoughtcrime.securesms.util.SqlUtil;
+import org.signal.core.util.SqlUtil;
 
 import java.util.ArrayList;
 import java.util.HashSet;

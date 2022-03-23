@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util;
+package org.signal.core.util;
 
 import android.database.Cursor;
 
@@ -44,7 +44,7 @@ public final class CursorUtil {
   }
 
   public static int requireMaskedInt(@NonNull Cursor cursor, @NonNull String column, int position, int flagBitSize) {
-    return Util.toIntExact(Bitmask.read(requireLong(cursor, column), position, flagBitSize));
+    return Conversions.toIntExact(Bitmask.read(requireLong(cursor, column), position, flagBitSize));
   }
 
   public static Optional<String> getString(@NonNull Cursor cursor, @NonNull String column) {

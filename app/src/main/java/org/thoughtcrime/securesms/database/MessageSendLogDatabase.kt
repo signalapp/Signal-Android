@@ -3,15 +3,15 @@ package org.thoughtcrime.securesms.database
 import android.content.ContentValues
 import android.content.Context
 import net.zetetic.database.sqlcipher.SQLiteConstraintException
+import org.signal.core.util.CursorUtil
+import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageLogEntry
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.CursorUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.RecipientAccessList
-import org.thoughtcrime.securesms.util.SqlUtil
 import org.whispersystems.signalservice.api.crypto.ContentHint
 import org.whispersystems.signalservice.api.messages.SendMessageResult
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos

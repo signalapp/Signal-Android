@@ -2,9 +2,12 @@ package org.thoughtcrime.securesms.database
 
 import android.content.Context
 import androidx.core.content.contentValuesOf
+import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
+import org.signal.core.util.requireInt
+import org.signal.core.util.requireLong
+import org.signal.core.util.requireNonNullString
 import org.thoughtcrime.securesms.util.Base64
-import org.thoughtcrime.securesms.util.SqlUtil
 import org.whispersystems.libsignal.InvalidKeyException
 import org.whispersystems.libsignal.ecc.Curve
 import org.whispersystems.libsignal.ecc.ECKeyPair

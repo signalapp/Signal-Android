@@ -21,8 +21,8 @@ import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.stickers.BlessedPacks;
 import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent;
-import org.thoughtcrime.securesms.util.CursorUtil;
-import org.thoughtcrime.securesms.util.SqlUtil;
+import org.signal.core.util.CursorUtil;
+import org.signal.core.util.SqlUtil;
 
 import java.io.Closeable;
 import java.io.File;

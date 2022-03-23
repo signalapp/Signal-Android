@@ -11,6 +11,7 @@ import androidx.annotation.WorkerThread;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.ListUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.profiles.ProfileKey;
@@ -296,7 +297,7 @@ public class RetrieveProfileJob extends BaseJob {
 
 
     //noinspection SimplifyStreamApiCallChains
-    Util.chunk(operationState.profiles, 150).stream().forEach(list -> {
+    ListUtil.chunk(operationState.profiles, 150).stream().forEach(list -> {
       SignalDatabase.runInTransaction(() -> {
         for (Pair<Recipient, ProfileAndCredential> profile : list) {
           process(profile.first(), profile.second());

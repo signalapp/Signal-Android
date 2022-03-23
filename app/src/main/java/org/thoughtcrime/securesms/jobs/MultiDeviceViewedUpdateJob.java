@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.annimon.stream.Stream;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import org.signal.core.util.ListUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
@@ -19,7 +20,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
@@ -68,7 +68,7 @@ public class MultiDeviceViewedUpdateJob extends BaseJob {
    */
   public static void enqueue(@NonNull List<SyncMessageId> messageIds) {
     JobManager                jobManager      = ApplicationDependencies.getJobManager();
-    List<List<SyncMessageId>> messageIdChunks = Util.chunk(messageIds, SendReadReceiptJob.MAX_TIMESTAMPS);
+    List<List<SyncMessageId>> messageIdChunks = ListUtil.chunk(messageIds, SendReadReceiptJob.MAX_TIMESTAMPS);
 
     if (messageIdChunks.size() > 1) {
       Log.w(TAG, "Large receipt count! Had to break into multiple chunks. Total count: " + messageIds.size());

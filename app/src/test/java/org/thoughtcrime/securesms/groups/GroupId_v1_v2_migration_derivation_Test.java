@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.signal.zkgroup.groups.GroupMasterKey;
-import org.thoughtcrime.securesms.util.Hex;
+import org.signal.core.util.Hex;
 
 import java.util.Arrays;
 import java.util.Collection;

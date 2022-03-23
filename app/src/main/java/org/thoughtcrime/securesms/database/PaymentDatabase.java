@@ -27,8 +27,8 @@ import org.thoughtcrime.securesms.payments.State;
 import org.thoughtcrime.securesms.payments.proto.PaymentMetaData;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.CursorUtil;
-import org.thoughtcrime.securesms.util.SqlUtil;
+import org.signal.core.util.CursorUtil;
+import org.signal.core.util.SqlUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.whispersystems.signalservice.api.payments.Money;
 

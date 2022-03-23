@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.database
 import android.app.Application
 import android.content.Context
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
+import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.crypto.AttachmentSecret
 import org.thoughtcrime.securesms.crypto.DatabaseSecret
@@ -20,7 +21,6 @@ import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob.DatabaseUpgradeListener
 import org.thoughtcrime.securesms.service.KeyCachingService
-import org.thoughtcrime.securesms.util.SqlUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import java.io.File
 

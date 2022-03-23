@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.contacts.paged
 
 import android.content.Context
 import android.database.Cursor
+import org.signal.core.util.CursorUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.ContactRepository
 import org.thoughtcrime.securesms.database.DistributionListDatabase
@@ -10,7 +11,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.CursorUtil
 
 /**
  * Database boundary interface which allows us to safely unit test the data source without

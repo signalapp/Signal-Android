@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.service.UpdateApkReadyListener;
 import org.thoughtcrime.securesms.util.FileUtils;
-import org.thoughtcrime.securesms.util.Hex;
+import org.signal.core.util.Hex;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 

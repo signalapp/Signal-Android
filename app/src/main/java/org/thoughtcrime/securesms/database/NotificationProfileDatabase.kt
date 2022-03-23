@@ -4,12 +4,17 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import net.zetetic.database.sqlcipher.SQLiteConstraintException
+import org.signal.core.util.SqlUtil
+import org.signal.core.util.requireBoolean
+import org.signal.core.util.requireInt
+import org.signal.core.util.requireLong
+import org.signal.core.util.requireString
+import org.signal.core.util.toInt
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileSchedule
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.SqlUtil
 import java.time.DayOfWeek
 
 /**

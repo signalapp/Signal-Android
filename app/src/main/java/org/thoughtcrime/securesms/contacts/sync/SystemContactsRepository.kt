@@ -10,13 +10,14 @@ import android.net.Uri
 import android.os.RemoteException
 import android.provider.BaseColumns
 import android.provider.ContactsContract
+import org.signal.core.util.ListUtil
+import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
+import org.signal.core.util.requireInt
+import org.signal.core.util.requireString
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.database.requireInt
-import org.thoughtcrime.securesms.database.requireString
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
-import org.thoughtcrime.securesms.util.SqlUtil
 import org.thoughtcrime.securesms.util.Util
 import java.util.ArrayList
 import java.util.HashMap
@@ -92,7 +93,7 @@ object SystemContactsRepository {
     val operations: ArrayList<ContentProviderOperation> = ArrayList()
     val currentContacts: Map<String, SignalContact> = getSignalRawContacts(context, account)
 
-    val registeredChunks: List<List<String>> = Util.chunk(registeredAddressList, 50)
+    val registeredChunks: List<List<String>> = ListUtil.chunk(registeredAddressList, 50)
     for (registeredChunk in registeredChunks) {
       for (registeredAddress in registeredChunk) {
         if (!currentContacts.containsKey(registeredAddress)) {
@@ -484,7 +485,7 @@ object SystemContactsRepository {
     operations: List<ContentProviderOperation>,
     batchSize: Int
   ) {
-    val batches = Util.chunk(operations, batchSize)
+    val batches = ListUtil.chunk(operations, batchSize)
     for (batch in batches) {
       contentResolver.applyBatch(authority, ArrayList(batch))
     }

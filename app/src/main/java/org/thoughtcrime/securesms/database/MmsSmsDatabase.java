@@ -35,8 +35,8 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.notifications.v2.MessageNotifierV2;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.CursorUtil;
-import org.thoughtcrime.securesms.util.SqlUtil;
+import org.signal.core.util.CursorUtil;
+import org.signal.core.util.SqlUtil;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
 

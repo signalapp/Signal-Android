@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.notifications.v2
 
 import androidx.annotation.WorkerThread
+import org.signal.core.util.CursorUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.MmsSmsColumns
 import org.thoughtcrime.securesms.database.MmsSmsDatabase
@@ -11,7 +12,6 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.CursorUtil
 
 /**
  * Queries the message databases to determine messages that should be in notifications.

@@ -1,17 +1,11 @@
-package org.thoughtcrime.securesms.util;
+package org.signal.core.util;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
-
-import com.annimon.stream.Stream;
-
-import net.zetetic.database.sqlcipher.SQLiteDatabase;
-
-import org.thoughtcrime.securesms.database.model.DatabaseId;
-import org.whispersystems.signalservice.api.util.Preconditions;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,16 +24,16 @@ public final class SqlUtil {
 
   private SqlUtil() {}
 
-  public static boolean tableExists(@NonNull SQLiteDatabase db, @NonNull String table) {
-    try (Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type=? AND name=?", new String[] { "table", table })) {
+  public static boolean tableExists(@NonNull SupportSQLiteDatabase db, @NonNull String table) {
+    try (Cursor cursor = db.query("SELECT name FROM sqlite_master WHERE type=? AND name=?", new String[] { "table", table })) {
       return cursor != null && cursor.moveToNext();
     }
   }
 
-  public static @NonNull List<String> getAllTables(@NonNull SQLiteDatabase db) {
+  public static @NonNull List<String> getAllTables(@NonNull SupportSQLiteDatabase db) {
     List<String> tables = new LinkedList<>();
 
-    try (Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type=?", new String[] { "table" })) {
+    try (Cursor cursor = db.query("SELECT name FROM sqlite_master WHERE type=?", new String[] { "table" })) {
       while (cursor.moveToNext()) {
         tables.add(cursor.getString(0));
       }
@@ -53,13 +47,13 @@ public final class SqlUtil {
    * only one statement per line, and that each statement is terminated by a semi-colon.
    */
   public static @NonNull List<String> splitStatements(@NonNull String sql) {
-    return Stream.of(Arrays.asList(sql.split(";\n")))
+    return Arrays.stream(sql.split(";\n"))
                  .map(String::trim)
-                 .toList();
+                 .collect(Collectors.toList());
   }
 
-  public static boolean isEmpty(@NonNull SQLiteDatabase db, @NonNull String table) {
-    try (Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM " + table, null)) {
+  public static boolean isEmpty(@NonNull SupportSQLiteDatabase db, @NonNull String table) {
+    try (Cursor cursor = db.query("SELECT COUNT(*) FROM " + table, null)) {
       if (cursor.moveToFirst()) {
         return cursor.getInt(0) == 0;
       } else {
@@ -68,8 +62,8 @@ public final class SqlUtil {
     }
   }
 
-  public static boolean columnExists(@NonNull SQLiteDatabase db, @NonNull String table, @NonNull String column) {
-    try (Cursor cursor = db.rawQuery("PRAGMA table_info(" + table + ")", null)) {
+  public static boolean columnExists(@NonNull SupportSQLiteDatabase db, @NonNull String table, @NonNull String column) {
+    try (Cursor cursor = db.query("PRAGMA table_info(" + table + ")", null)) {
       int nameColumnIndex = cursor.getColumnIndexOrThrow("name");
 
       while (cursor.moveToNext()) {
@@ -106,7 +100,7 @@ public final class SqlUtil {
 
   /**
    * Returns an updated query and args pairing that will only update rows that would *actually*
-   * change. In other words, if {@link SQLiteDatabase#update(String, ContentValues, String, String[])}
+   * change. In other words, if {@link SupportSQLiteDatabase#update(String, int, ContentValues, String, Object[])}
    * returns > 0, then you know something *actually* changed.
    */
   public static @NonNull Query buildTrueUpdateQuery(@NonNull String selection,
@@ -146,7 +140,9 @@ public final class SqlUtil {
   }
 
   public static @NonNull Query buildCollectionQuery(@NonNull String column, @NonNull Collection<? extends Object> values) {
-    Preconditions.checkArgument(values.size() > 0);
+    if (values.isEmpty()) {
+      throw new IllegalArgumentException("Must have values!");
+    }
 
     StringBuilder query = new StringBuilder();
     Object[]      args  = new Object[values.size()];
@@ -175,10 +171,10 @@ public final class SqlUtil {
   static @NonNull List<Query> buildCustomCollectionQuery(@NonNull String query, @NonNull List<String[]> argList, int maxQueryArgs) {
     int batchSize = maxQueryArgs / argList.get(0).length;
 
-    return Util.chunk(argList, batchSize)
-               .stream()
-               .map(argBatch -> buildSingleCustomCollectionQuery(query, argBatch))
-               .collect(Collectors.toList());
+    return ListUtil.chunk(argList, batchSize)
+                   .stream()
+                   .map(argBatch -> buildSingleCustomCollectionQuery(query, argBatch))
+                   .collect(Collectors.toList());
   }
 
   private static @NonNull Query buildSingleCustomCollectionQuery(@NonNull String query, @NonNull List<String[]> argList) {
@@ -223,10 +219,10 @@ public final class SqlUtil {
   static List<Query> buildBulkInsert(@NonNull String tableName, @NonNull String[] columns, List<ContentValues> contentValues, int maxQueryArgs) {
     int batchSize = maxQueryArgs / columns.length;
 
-    return Util.chunk(contentValues, batchSize)
-               .stream()
-               .map(batch -> buildSingleBulkInsert(tableName, columns, batch))
-               .collect(Collectors.toList());
+    return ListUtil.chunk(contentValues, batchSize)
+                   .stream()
+                   .map(batch -> buildSingleBulkInsert(tableName, columns, batch))
+                   .collect(Collectors.toList());
   }
 
   private static Query buildSingleBulkInsert(@NonNull String tableName, @NonNull String[] columns, List<ContentValues> contentValues) {

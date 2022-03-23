@@ -6,10 +6,10 @@ import okhttp3.Request
 import okhttp3.Response
 import okio.HashingSink
 import okio.sink
+import org.signal.core.util.Hex
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.util.EncryptedStreamUtils
-import org.thoughtcrime.securesms.util.Hex
 import org.thoughtcrime.securesms.util.JsonUtils
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.websocket.DefaultErrorMapper

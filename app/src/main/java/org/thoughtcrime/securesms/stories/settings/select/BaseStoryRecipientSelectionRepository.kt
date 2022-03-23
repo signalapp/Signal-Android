@@ -2,12 +2,12 @@ package org.thoughtcrime.securesms.stories.settings.select
 
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.util.CursorUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.CursorUtil
 
 class BaseStoryRecipientSelectionRepository {
   fun updateDistributionListMembership(distributionListId: DistributionListId, recipients: Set<RecipientId>) {

@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.database
 
 import android.database.Cursor
+import org.signal.core.util.requireBlob
+import org.signal.core.util.requireString
 import org.signal.spinner.ColumnTransformer
 import org.signal.storageservice.protos.groups.local.DecryptedGroup
 

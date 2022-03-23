@@ -1,8 +1,4 @@
-package org.thoughtcrime.securesms.util;
-
-
-
-import org.whispersystems.signalservice.api.util.Preconditions;
+package org.signal.core.util;
 
 import java.util.Locale;
 
@@ -27,10 +23,10 @@ public final class Bitmask {
    * @return The value at the requested position
    */
   public static long read(long value, int position, int flagBitSize) {
-    Preconditions.checkArgument(flagBitSize >= 0, "Must have a positive bit size! size: " + flagBitSize);
+    checkArgument(flagBitSize >= 0, "Must have a positive bit size! size: " + flagBitSize);
 
     int bitsToShift = position * flagBitSize;
-    Preconditions.checkArgument(bitsToShift + flagBitSize <= 64 && position >= 0, String.format(Locale.US, "Your position is out of bounds! position: %d, flagBitSize: %d", position, flagBitSize));
+    checkArgument(bitsToShift + flagBitSize <= 64 && position >= 0, String.format(Locale.US, "Your position is out of bounds! position: %d, flagBitSize: %d", position, flagBitSize));
 
     long shifted = value >>> bitsToShift;
     long mask    = twoToThe(flagBitSize) - 1;
@@ -55,12 +51,12 @@ public final class Bitmask {
    * @return The updated bitmask
    */
   public static long update(long existing, int position, int flagBitSize, long value) {
-    Preconditions.checkArgument(flagBitSize >= 0, "Must have a positive bit size! size: " + flagBitSize);
-    Preconditions.checkArgument(value >= 0, "Value must be positive! value: " + value);
-    Preconditions.checkArgument(value < twoToThe(flagBitSize), String.format(Locale.US, "Value is larger than you can hold for the given bitsize! value: %d, flagBitSize: %d", value, flagBitSize));
+    checkArgument(flagBitSize >= 0, "Must have a positive bit size! size: " + flagBitSize);
+    checkArgument(value >= 0, "Value must be positive! value: " + value);
+    checkArgument(value < twoToThe(flagBitSize), String.format(Locale.US, "Value is larger than you can hold for the given bitsize! value: %d, flagBitSize: %d", value, flagBitSize));
 
     int bitsToShift = position * flagBitSize;
-    Preconditions.checkArgument(bitsToShift + flagBitSize <= 64 && position >= 0, String.format(Locale.US, "Your position is out of bounds! position: %d, flagBitSize: %d", position, flagBitSize));
+    checkArgument(bitsToShift + flagBitSize <= 64 && position >= 0, String.format(Locale.US, "Your position is out of bounds! position: %d, flagBitSize: %d", position, flagBitSize));
 
     long clearMask    = ~((twoToThe(flagBitSize) - 1) << bitsToShift);
     long cleared      = existing & clearMask;
@@ -72,5 +68,11 @@ public final class Bitmask {
   /** Simple method to do 2^n. Giving it a name just so it's clear what's happening. */
   private static long twoToThe(long n) {
     return 1 << n;
+  }
+
+  private static void checkArgument(boolean state, String message) {
+    if (!state) {
+      throw new IllegalArgumentException(message);
+    }
   }
 }

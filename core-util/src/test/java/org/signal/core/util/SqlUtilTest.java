@@ -1,13 +1,14 @@
-package org.thoughtcrime.securesms.util;
+package org.signal.core.util;
 
 import android.app.Application;
 import android.content.ContentValues;
+
+import androidx.annotation.NonNull;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -132,7 +133,7 @@ public final class SqlUtilTest {
 
   @Test
   public void buildCollectionQuery_multipleRecipientIds() {
-    SqlUtil.Query updateQuery = SqlUtil.buildCollectionQuery("a", Arrays.asList(RecipientId.from(1), RecipientId.from(2), RecipientId.from(3)));
+    SqlUtil.Query updateQuery = SqlUtil.buildCollectionQuery("a", Arrays.asList(new TestId(1), new TestId(2), new TestId(3)));
 
     assertEquals("a IN (?, ?, ?)", updateQuery.getWhere());
     assertArrayEquals(new String[] { "1", "2", "3" }, updateQuery.getWhereArgs());
@@ -278,6 +279,19 @@ public final class SqlUtilTest {
       return Hex.fromStringCondensed(hex);
     } catch (IOException e) {
       throw new AssertionError(e);
+    }
+  }
+
+  private static class TestId implements DatabaseId {
+    private final long id;
+
+    private TestId(long id) {
+      this.id = id;
+    }
+
+    @Override
+    public @NonNull String serialize() {
+      return String.valueOf(id);
     }
   }
 }

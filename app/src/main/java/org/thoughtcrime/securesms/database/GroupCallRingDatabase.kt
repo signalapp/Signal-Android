@@ -2,9 +2,9 @@ package org.thoughtcrime.securesms.database
 
 import android.content.ContentValues
 import android.content.Context
+import org.signal.core.util.CursorUtil
+import org.signal.core.util.SqlUtil
 import org.signal.ringrtc.CallManager
-import org.thoughtcrime.securesms.util.CursorUtil
-import org.thoughtcrime.securesms.util.SqlUtil
 import java.util.concurrent.TimeUnit
 
 /**

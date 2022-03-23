@@ -7,7 +7,7 @@ import android.database.Cursor;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.CursorUtil;
+import org.signal.core.util.CursorUtil;
 
 import java.util.HashMap;
 import java.util.LinkedList;

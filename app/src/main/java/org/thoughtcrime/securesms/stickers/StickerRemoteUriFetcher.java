@@ -7,7 +7,7 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.data.DataFetcher;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.util.Hex;
+import org.signal.core.util.Hex;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 

@@ -1,9 +1,12 @@
 package org.thoughtcrime.securesms.database
 
 import android.content.Context
+import org.signal.core.util.CursorUtil
+import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.util.CursorUtil
-import org.thoughtcrime.securesms.util.SqlUtil
+import org.signal.core.util.requireInt
+import org.signal.core.util.requireNonNullBlob
+import org.signal.core.util.requireNonNullString
 import org.whispersystems.libsignal.SignalProtocolAddress
 import org.whispersystems.libsignal.state.SessionRecord
 import org.whispersystems.signalservice.api.push.ServiceId

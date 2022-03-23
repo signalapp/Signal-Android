@@ -1,12 +1,13 @@
 package org.thoughtcrime.securesms.database
 
 import android.database.Cursor
+import org.signal.core.util.CursorUtil
+import org.signal.core.util.requireLong
 import org.signal.spinner.ColumnTransformer
 import org.signal.spinner.DefaultColumnTransformer
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.UpdateDescription
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.util.CursorUtil
 
 object GV2UpdateTransformer : ColumnTransformer {
   override fun matches(tableName: String?, columnName: String): Boolean {

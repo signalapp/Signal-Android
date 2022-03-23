@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import org.junit.Test;
+import org.signal.core.util.Bitmask;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;

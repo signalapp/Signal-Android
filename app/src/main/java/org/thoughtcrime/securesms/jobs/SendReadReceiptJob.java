@@ -6,6 +6,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 
+import org.signal.core.util.ListUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.MessageDatabase.MarkedMessageInfo;
@@ -101,7 +102,7 @@ public class SendReadReceiptJob extends BaseJob {
     }
 
     JobManager                    jobManager      = ApplicationDependencies.getJobManager();
-    List<List<MarkedMessageInfo>> messageIdChunks = Util.chunk(markedMessageInfos, MAX_TIMESTAMPS);
+    List<List<MarkedMessageInfo>> messageIdChunks = ListUtil.chunk(markedMessageInfos, MAX_TIMESTAMPS);
 
     if (messageIdChunks.size() > 1) {
       Log.w(TAG, "Large receipt count! Had to break into multiple chunks. Total count: " + markedMessageInfos.size());

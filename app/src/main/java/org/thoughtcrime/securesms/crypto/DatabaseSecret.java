@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.crypto;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.util.Hex;
+import org.signal.core.util.Hex;
 
 import java.io.IOException;
 

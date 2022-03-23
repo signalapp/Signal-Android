@@ -18,6 +18,7 @@ import org.mockito.Mockito.reset
 import org.mockito.Mockito.verify
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.util.Hex.fromStringCondensed
 import org.signal.core.util.logging.Log
 import org.signal.storageservice.protos.groups.local.DecryptedGroup
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
@@ -38,7 +39,6 @@ import org.thoughtcrime.securesms.groups.GroupsV2Authorization
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
-import org.thoughtcrime.securesms.util.Hex.fromStringCondensed
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api
 import org.whispersystems.signalservice.api.groupsv2.PartialDecryptedGroup

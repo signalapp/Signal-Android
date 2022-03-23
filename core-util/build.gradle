@@ -49,7 +49,11 @@ dependencies {
 
     implementation libs.androidx.core.ktx
     implementation libs.google.protobuf.javalite
+    implementation libs.androidx.sqlite
 
     testImplementation testLibs.junit.junit
     testImplementation testLibs.mockito.core
+    testImplementation (testLibs.robolectric.robolectric) {
+        exclude group: 'com.google.protobuf', module: 'protobuf-java'
+    }
 }

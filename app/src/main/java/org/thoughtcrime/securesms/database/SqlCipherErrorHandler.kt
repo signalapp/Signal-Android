@@ -5,11 +5,11 @@ import net.zetetic.database.DatabaseErrorHandler
 import net.zetetic.database.sqlcipher.SQLiteConnection
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteDatabaseHook
+import org.signal.core.util.CursorUtil
 import org.signal.core.util.ExceptionUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.util.CursorUtil
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.atomic.AtomicReference
 

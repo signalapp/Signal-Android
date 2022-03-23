@@ -5,12 +5,12 @@ import android.app.Application
 import android.content.ContentValues
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
+import org.signal.core.util.CursorUtil
+import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.crypto.DatabaseSecret
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
 import org.thoughtcrime.securesms.database.model.LocalMetricsEvent
-import org.thoughtcrime.securesms.util.CursorUtil
-import org.thoughtcrime.securesms.util.SqlUtil
 import java.util.concurrent.TimeUnit
 
 /**

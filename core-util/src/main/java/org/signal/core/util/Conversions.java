@@ -177,4 +177,11 @@ public class Conversions {
       ((bytes[offset + 6] & 0xffL) << 8)  |
       ((bytes[offset + 7] & 0xffL));
   }
+
+  public static int toIntExact(long value) {
+    if ((int)value != value) {
+      throw new ArithmeticException("integer overflow");
+    }
+    return (int)value;
+  }
 }

@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.database
 
 import org.junit.Assert
 import org.junit.Test
+import org.signal.core.util.SqlUtil
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.SqlUtil
 
 class ContactSearchSelectionBuilderTest {
   @Test(expected = IllegalStateException::class)

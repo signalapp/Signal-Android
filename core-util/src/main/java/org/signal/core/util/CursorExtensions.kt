@@ -1,7 +1,6 @@
-package org.thoughtcrime.securesms.database
+package org.signal.core.util
 
 import android.database.Cursor
-import org.thoughtcrime.securesms.util.CursorUtil
 import java.util.Optional
 
 fun Cursor.requireString(column: String): String? {

@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.groups.GroupIdentifier;
 import org.signal.zkgroup.groups.GroupMasterKey;
-import org.thoughtcrime.securesms.util.Hex;
+import org.signal.core.util.Hex;
 
 import java.io.IOException;
 

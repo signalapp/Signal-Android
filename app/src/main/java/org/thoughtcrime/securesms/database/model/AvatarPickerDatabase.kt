@@ -3,14 +3,14 @@ package org.thoughtcrime.securesms.database.model
 import android.content.ContentValues
 import android.content.Context
 import android.net.Uri
+import org.signal.core.util.CursorUtil
+import org.signal.core.util.SqlUtil
 import org.thoughtcrime.securesms.avatar.Avatar
 import org.thoughtcrime.securesms.avatar.Avatars
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.CustomAvatar
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.util.CursorUtil
-import org.thoughtcrime.securesms.util.SqlUtil
 
 /**
  * Database which manages the record keeping for custom created avatars.

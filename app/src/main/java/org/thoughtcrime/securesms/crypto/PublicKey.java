@@ -19,7 +19,7 @@ package org.thoughtcrime.securesms.crypto;
 
 import org.signal.core.util.Conversions;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.util.Hex;
+import org.signal.core.util.Hex;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.ecc.Curve;

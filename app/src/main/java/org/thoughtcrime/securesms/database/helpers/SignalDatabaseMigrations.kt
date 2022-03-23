@@ -14,7 +14,11 @@ import androidx.core.content.contentValuesOf
 import com.annimon.stream.Stream
 import com.google.protobuf.InvalidProtocolBufferException
 import net.zetetic.database.sqlcipher.SQLiteDatabase
+import org.signal.core.util.CursorUtil
+import org.signal.core.util.Hex
+import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
+import org.signal.core.util.requireString
 import org.thoughtcrime.securesms.color.MaterialColor
 import org.thoughtcrime.securesms.contacts.avatars.ContactColorsLegacy
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
@@ -24,7 +28,6 @@ import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.databaseprotos.ReactionList
-import org.thoughtcrime.securesms.database.requireString
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob
@@ -36,11 +39,8 @@ import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.Base64
-import org.thoughtcrime.securesms.util.CursorUtil
 import org.thoughtcrime.securesms.util.FileUtils
-import org.thoughtcrime.securesms.util.Hex
 import org.thoughtcrime.securesms.util.ServiceUtil
-import org.thoughtcrime.securesms.util.SqlUtil
 import org.thoughtcrime.securesms.util.Stopwatch
 import org.thoughtcrime.securesms.util.Triple
 import org.thoughtcrime.securesms.util.Util

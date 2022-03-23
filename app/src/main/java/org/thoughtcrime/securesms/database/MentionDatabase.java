@@ -12,8 +12,8 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.CursorUtil;
-import org.thoughtcrime.securesms.util.SqlUtil;
+import org.signal.core.util.CursorUtil;
+import org.signal.core.util.SqlUtil;
 
 import java.util.Collection;
 import java.util.HashMap;

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.database
 
 import android.net.Uri
+import org.signal.core.util.Bitmask
 import org.signal.zkgroup.profiles.ProfileKeyCredential
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
@@ -11,7 +12,6 @@ import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientDetails
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.Bitmask
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.whispersystems.signalservice.api.push.ServiceId
 import java.util.Optional

@@ -3,11 +3,11 @@ package org.thoughtcrime.securesms.emoji
 import android.net.Uri
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.signal.core.util.Hex
 import org.thoughtcrime.securesms.components.emoji.CompositeEmojiPageModel
 import org.thoughtcrime.securesms.components.emoji.Emoji
 import org.thoughtcrime.securesms.components.emoji.EmojiPageModel
 import org.thoughtcrime.securesms.components.emoji.StaticEmojiPageModel
-import org.thoughtcrime.securesms.util.Hex
 import java.io.InputStream
 import java.nio.charset.Charset
 
