@@ -39,7 +39,7 @@ object BioTextPreference {
 
     override fun getHeadlineText(context: Context): CharSequence {
       val name = recipient.getDisplayNameOrUsername(context)
-      return if (recipient.isReleaseNotes) {
+      return if (recipient.showVerified()) {
         SpannableStringBuilder(name).apply {
           SpanUtil.appendCenteredImageSpan(this, ContextUtil.requireDrawable(context, R.drawable.ic_official_28), 28, 28)
         }

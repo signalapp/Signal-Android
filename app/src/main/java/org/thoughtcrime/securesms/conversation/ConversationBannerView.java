@@ -83,7 +83,7 @@ public class ConversationBannerView extends ConstraintLayout {
 
   public String setTitle(@NonNull Recipient recipient) {
     SpannableStringBuilder title = new SpannableStringBuilder(recipient.isSelf() ? getContext().getString(R.string.note_to_self) : recipient.getDisplayNameOrUsername(getContext()));
-    if (recipient.isReleaseNotes()) {
+    if (recipient.showVerified()) {
       SpanUtil.appendCenteredImageSpan(title, ContextUtil.requireDrawable(getContext(), R.drawable.ic_official_28), 28, 28);
     }
     contactTitle.setText(title);

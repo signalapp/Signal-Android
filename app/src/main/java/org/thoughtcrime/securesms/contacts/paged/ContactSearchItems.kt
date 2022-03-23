@@ -6,6 +6,7 @@ import android.widget.TextView
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.components.AvatarImageView
+import org.thoughtcrime.securesms.components.FromTextView
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -131,7 +132,7 @@ object ContactSearchItems {
     protected val avatar: AvatarImageView = itemView.findViewById(R.id.contact_photo_image)
     protected val badge: BadgeImageView = itemView.findViewById(R.id.contact_badge)
     protected val checkbox: CheckBox = itemView.findViewById(R.id.check_box)
-    protected val name: TextView = itemView.findViewById(R.id.name)
+    protected val name: FromTextView = itemView.findViewById(R.id.name)
     protected val number: TextView = itemView.findViewById(R.id.number)
     protected val label: TextView = itemView.findViewById(R.id.label)
     protected val smsTag: View = itemView.findViewById(R.id.sms_tag)
@@ -144,12 +145,7 @@ object ContactSearchItems {
         return
       }
 
-      if (getRecipient(model).isSelf) {
-        name.setText(R.string.note_to_self)
-      } else {
-        name.text = getRecipient(model).getDisplayName(context)
-      }
-
+      name.setText(getRecipient(model))
       avatar.setAvatar(getRecipient(model))
       badge.setBadgeFromRecipient(getRecipient(model))
 

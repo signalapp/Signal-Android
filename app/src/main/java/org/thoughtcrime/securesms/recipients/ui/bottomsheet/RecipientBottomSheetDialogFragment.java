@@ -181,7 +181,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
         Drawable systemContact = DrawableUtil.tint(ContextUtil.requireDrawable(requireContext(), R.drawable.ic_profile_circle_outline_16),
                                                    ContextCompat.getColor(requireContext(), R.color.signal_text_primary));
         SpanUtil.appendCenteredImageSpan(nameBuilder, systemContact, 16, 16);
-      } else if (recipient.isReleaseNotes()) {
+      } else if (recipient.showVerified()) {
         SpanUtil.appendCenteredImageSpan(nameBuilder, ContextUtil.requireDrawable(requireContext(), R.drawable.ic_official_28), 28, 28);
       }
       fullName.setText(nameBuilder);

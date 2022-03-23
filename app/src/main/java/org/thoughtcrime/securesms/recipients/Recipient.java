@@ -1149,6 +1149,10 @@ public class Recipient {
     return isReleaseNotesRecipient;
   }
 
+  public boolean showVerified() {
+    return isReleaseNotesRecipient || isSelf;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
