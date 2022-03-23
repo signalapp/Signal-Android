@@ -338,6 +338,14 @@ public final class ConversationListItem extends ConstraintLayout
     }
   }
 
+  public synchronized void updateSearchItemTimestampIfRequired(long value) {
+    CharSequence date = value > 0 ? DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, value) : null;
+
+    if (date != null && !date.equals(dateView.getText())) {
+      dateView.setText(date);
+    }
+  }
+
   public Recipient getRecipient() {
     return recipient.get();
   }

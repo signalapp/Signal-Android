@@ -187,6 +187,14 @@ class ConversationListSearchAdapter extends    RecyclerView.Adapter<Conversation
       root.setOnClickListener(view -> eventListener.onMessageClicked(messageResult));
     }
 
+    void updateTimestamp(ThreadRecord conversationResult) {
+      root.updateSearchItemTimestampIfRequired(conversationResult.getDate());
+    }
+
+    void updateTimestamp(MessageResult messageResult) {
+      root.updateSearchItemTimestampIfRequired(messageResult.getReceivedTimestampMs());
+    }
+
     void recycle() {
       root.unbind();
       root.setOnClickListener(null);
