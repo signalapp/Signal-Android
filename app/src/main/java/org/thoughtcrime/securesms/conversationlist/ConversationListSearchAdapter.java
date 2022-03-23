@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.search.SearchResult;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
 class ConversationListSearchAdapter extends    RecyclerView.Adapter<ConversationListSearchAdapter.SearchResultViewHolder>
@@ -35,6 +36,10 @@ class ConversationListSearchAdapter extends    RecyclerView.Adapter<Conversation
   @NonNull
   private SearchResult searchResult = SearchResult.EMPTY;
 
+  private enum Payload {
+    ITEM_TIMESTAMP
+  }
+
   ConversationListSearchAdapter(@NonNull GlideRequests glideRequests,
                                 @NonNull EventListener eventListener,
                                 @NonNull Locale        locale)
@@ -49,6 +54,37 @@ class ConversationListSearchAdapter extends    RecyclerView.Adapter<Conversation
     return new SearchResultViewHolder(LayoutInflater.from(parent.getContext())
                                                     .inflate(R.layout.conversation_list_item_view, parent, false));
   }
+
+
+  @Override
+  public void onBindViewHolder(@NonNull SearchResultViewHolder holder, int position, @NonNull List<Object> payloads) {
+    if (payloads.isEmpty()) {
+      onBindViewHolder(holder, position);
+    } else if (payloadsContain(payloads, Payload.ITEM_TIMESTAMP)) {
+      MessageResult messageResult = getMessageResult(position);
+
+      if (messageResult != null) {
+        holder.updateTimestamp(messageResult);
+        return;
+      }
+
+      ThreadRecord conversationResult = getConversationResult(position);
+
+      if (conversationResult != null) {
+        holder.updateTimestamp(conversationResult);
+        return;
+      }
+
+    }
+  }
+
+  private boolean payloadsContain(List<Object> payloads, Payload specificPayload) {
+    return payloads.stream()
+                   .filter(payload ->  payload instanceof Payload)
+                   .map(payload -> (Payload) payload)
+                   .anyMatch(payload -> payload == specificPayload);
+  }
+
 
   @Override
   public void onBindViewHolder(@NonNull SearchResultViewHolder holder, int position) {
