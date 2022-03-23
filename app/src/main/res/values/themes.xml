@@ -146,6 +146,12 @@
         <item name="theme_type">light</item>
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
 
+        <!-- Material 3 -->
+        <item name="colorPrimaryContainer">@color/signal_colorPrimaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/signal_colorOnPrimaryContainer</item>
+        <item name="colorSecondaryContainer">@color/signal_colorSecondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/signal_colorOnSecondaryContainer</item>
+
         <item name="search_view_style">@style/Signal.SearchView</item>
 
         <item name="bottomSheetDialogTheme">@style/Theme.Design.Light.BottomSheetDialog</item>
@@ -205,6 +211,12 @@
     <style name="TextSecure.BaseDarkTheme" parent="@style/Theme.MaterialComponents.Bridge">
         <item name="theme_type">dark</item>
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
+
+        <!-- Material 3 -->
+        <item name="colorPrimaryContainer">@color/signal_colorPrimaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/signal_colorOnPrimaryContainer</item>
+        <item name="colorSecondaryContainer">@color/signal_colorSecondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/signal_colorOnSecondaryContainer</item>
 
         <item name="search_view_style">@style/Signal.SearchView</item>
 

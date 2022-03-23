@@ -101,6 +101,11 @@
     <color name="conversation_list_camera_button_background">@color/core_grey_85</color>
     <color name="conversation_list_selected_color">#4c6191f3</color>
 
+    <color name="signal_colorPrimaryContainer">#464B5C</color>
+    <color name="signal_colorOnPrimaryContainer">#E2E1E5</color>
+    <color name="signal_colorSecondaryContainer">#23242A</color>
+    <color name="signal_colorOnSecondaryContainer">#E2E1E5</color>
+
     <color name="camera_icon_background_tint">@color/core_grey_75</color>
 
     <color name="debuglog_color_none">@color/debuglog_dark_none</color>
