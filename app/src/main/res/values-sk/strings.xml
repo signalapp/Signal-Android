@@ -3033,6 +3033,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" bude môcť upravovať túto skupinu a jej členov.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">Odstrániť %1$s zo skupiny?</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Odstrániť %1$s zo skupiny? Nebudú sa môcť znova pripojiť prostredníctvom odkazu na skupinu.</string>
   <string name="RecipientBottomSheet_remove">Odstrániť</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Skopírované do schránky</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
@@ -3127,6 +3128,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">Odstraňuje sa účet…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
+  <string name="DeleteAccountFragment__canceling_your_subscription">Ruší sa váš odber…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <string name="DeleteAccountFragment__depending_on_the_number_of_groups">V závislosti od počtu skupín, v ktorých ste, to môže trvať niekoľko minút</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
@@ -3681,6 +3683,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ManageDonationsFragment__my_support">Moja podpora</string>
   <string name="ManageDonationsFragment__manage_subscription">Spravovať prispievanie</string>
   <!--Label for Tax Receipts button-->
+  <string name="ManageDonationsFragment__tax_receipts">Daňové doklady</string>
   <string name="ManageDonationsFragment__badges">Odznaky</string>
   <string name="ManageDonationsFragment__subscription_faq">Časté otázky o prispievaním</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Chyba pri získavaní prispievania.</string>
@@ -3909,53 +3912,81 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">Všetko</string>
   <!--Donation receipts recurring tab label-->
+  <string name="DonationReceiptListFragment__recurring">Opakujúce sa</string>
   <!--Donation receipts one time tab label-->
   <string name="DonationReceiptListFragment__one_time">Raz</string>
   <!--Donation receipts boost row label-->
+  <string name="DonationReceiptListFragment__boost">Podpora</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Podrobnosti</string>
   <!--Donation receipts donation type heading-->
+  <string name="DonationReceiptDetailsFragment__donation_type">Typ daru</string>
   <!--Donation receipts date paid heading-->
+  <string name="DonationReceiptDetailsFragment__date_paid">Dátum zaplatenia</string>
   <!--Donation receipts share PNG-->
+  <string name="DonationReceiptDetailsFragment__share_receipt">Zdieľať potvrdenie</string>
   <!--Donation receipts list end note-->
+  <string name="DonationReceiptListFragment__if_you_have">Ak ste preinštalovali Signal, potvrdenky z predchádzajúcich darov nebudú k dispozícii.</string>
   <!--Donation receipts document title-->
+  <string name="DonationReceiptDetailsFragment__donation_receipt">Potvrdenie o dare</string>
   <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">Suma</string>
   <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Ďakujeme, že podporujete Signal. Váš príspevok pomáha podporiť misiu vývoja technológie ochrany súkromia s otvoreným zdrojom, ktorá chráni slobodu prejavu a umožňuje bezpečnú globálnu komunikáciu pre milióny ľudí na celom svete. Ak ste rezidentom Spojených štátov, uchovajte si toto potvrdenie pre svoje daňové záznamy. Signal Technology Foundation je nezisková organizácia v Spojených štátoch oslobodená od daní podľa oddielu 501c3 zákona o vnútorných výnosoch. Naše federálne daňové identifikačné číslo je 82–4506840.</string>
   <!--Donation receipt type-->
+  <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Konverzácie</string>
   <!--Label for Stories tab in home app screen-->
   <string name="ConversationListTabs__stories">Príbehy</string>
   <!--String for counts above 99 in conversation list tabs-->
+  <string name="ConversationListTabs__99p">99+</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Moje príbehy</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Pridajte príbeh</string>
   <!--Displayed when there are no stories to display-->
+  <string name="StoriesLandingFragment__no_recent_updates">Momentálne nie sú k dispozícii žiadne najnovšie aktualizácie.</string>
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Skryť príbeh</string>
   <!--Context menu option to unhide a story-->
+  <string name="StoriesLandingItem__unhide_story">Odkryť príbeh</string>
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">Preposlať</string>
   <!--Context menu option to share a story-->
+  <string name="StoriesLandingItem__share">Zdieľam…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Prejsť na konverzáciu</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Odosiela sa…</string>
   <!--Label when a story fails to send-->
+  <string name="StoriesLandingItem__couldnt_send">Nepodarilo sa odoslať</string>
   <!--Title of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__hide_story">Skryť príbeh?</string>
   <!--Message of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__new_story_updates">Nové aktualizácie príbehov od %1$s sa už nebudú zobrazovať na začiatku zoznamu príbehov.</string>
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">Skryť</string>
   <!--Displayed in Snackbar after story is hidden-->
+  <string name="StoriesLandingFragment__story_hidden">Príbeh skrytý</string>
   <!--Section header for hidden stories-->
+  <string name="StoriesLandingFragment__hidden_stories">Skryté príbehy</string>
   <!--Displayed on each sent story under My Stories-->
+  <plurals name="MyStories__d_views">
+    <item quantity="one">%1$d pozretie</item>
+    <item quantity="few">%1$d pozretia</item>
+    <item quantity="many">%1$d pozretí</item>
+    <item quantity="other">%1$d pozretí</item>
+  </plurals>
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">Preposlať</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
+  <string name="MyStories__ss_story">%1$s príbeh</string>
   <!--Title of dialog to confirm deletion of story-->
+  <string name="MyStories__delete_story">Odstrániť príbeh?</string>
   <!--Message of dialog to confirm deletion of story-->
+  <string name="MyStories__this_story_will_be_deleted">Tento príbeh bude odstránený pre vás a všetkých, ktorí ho dostali.</string>
   <!--Displayed at bottom of story viewer when current item has views-->
   <!--Displayed at bottom of story viewer when current item has replies-->
   <!--Used to join views and replies when both exist on a story item-->
@@ -3967,7 +3998,9 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Odpovedať</string>
   <!--Displayed when a story has no views-->
+  <string name="StoryViewsFragment__no_views_yet">Zatiaľ žiadne zobrazenia</string>
   <!--Displayed when a story has no replies yet-->
+  <string name="StoryGroupReplyFragment__no_replies_yet">Zatiaľ žiadne odpovede</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
   <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Reagoval na príbeh</string>
   <!--Label for story views tab-->
@@ -3975,25 +4008,44 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Label for story replies tab-->
   <string name="StoryViewsAndRepliesDialogFragment__replies">Odpovede</string>
   <!--Description of action for reaction button-->
+  <string name="StoryReplyComposer__react_to_this_story">Reagujte na tento príbeh</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
+  <string name="StoryReplyComposer__replying_privately_to_s">Súkromne odpovedáte %1$s</string>
   <!--Context menu item to privately reply to a story response-->
+  <string name="StoryGroupReplyItem__private_reply">Súkromná odpoveď</string>
   <!--Context menu item to copy a story response-->
   <string name="StoryGroupReplyItem__copy">Kopírovať</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Odstrániť</string>
   <!--Story settings page title-->
+  <string name="StorySettingsFragment__story_settings">Nastavenia príbehu</string>
   <!--Story settings private stories heading-->
+  <string name="StorySettingsFragment__private_stories">Súkromné ​​príbehy</string>
   <!--Option label for creating a new private story-->
+  <string name="StorySettingsFragment__new_private_story">Nový súkromný príbeh</string>
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Môj príbeh</string>
   <!--Section heading for story visibility-->
+  <string name="MyStorySettingsFragment__who_can_see_this_story">Kto môže vidieť tento príbeh</string>
   <!--Clickable option for selecting people to hide your story from-->
+  <string name="MyStorySettingsFragment__hide_story_from">Skryť príbeh od</string>
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <plurals name="MyStorySettingsFragment__d_people">
+    <item quantity="one">%1$d osoba</item>
+    <item quantity="few">%1$d ľudia</item>
+    <item quantity="many">%1$d ľudí</item>
+    <item quantity="other">%1$d ľudí</item>
+  </plurals>
   <!--Section header for options related to replies and reactions-->
+  <string name="MyStorySettingsFragment__replies_amp_reactions">Odpovede a reakcie</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
+  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Povoliť odpovede a reakcie</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
+  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Umožnite ľuďom, ktorí si môžu zobraziť váš príbeh, reagovať a odpovedať</string>
   <!--Note about default sharing-->
+  <string name="MyStorySettingsFragment__hide_your_story_from">Skryte svoj príbeh pred konkrétnymi ľuďmi. V predvolenom nastavení sa váš príbeh zdieľa s vaším %1$s</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
+  <string name="MyStorySettingsFragment__signal_connections">Signal spojenia.</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
   <!--Signal connections sheet bullet point 1-->
   <!--Signal connections sheet bullet point 2-->
@@ -4049,10 +4101,12 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="BaseStoryRecipientSelectionFragment__select_all">Označiť všetko</string>
   <!--Choose story type bottom sheet title-->
   <!--Choose story type bottom sheet new story row title-->
+  <string name="ChooseStoryTypeBottomSheet__new_private_story">Nový súkromný príbeh</string>
   <!--Choose story type bottom sheet new story row summary-->
   <!--Choose story type bottom sheet group story title-->
   <!--Choose story type bottom sheet group story summary-->
   <!--Choose groups bottom sheet title-->
+  <string name="ChooseGroupStoryBottomSheet__choose_groups">Vyberte skupiny</string>
   <!--Displayed when copying group story reply text to clipboard-->
   <string name="StoryGroupReplyFragment__copied_to_clipboard">Skopírované do schránky</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
@@ -4073,6 +4127,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="ExpandModel__view_more">Vidieť viac</string>
   <string name="StoriesLinkPopup__visit_link">Navštívte odkaz</string>
   <!--EOF-->
 </resources>

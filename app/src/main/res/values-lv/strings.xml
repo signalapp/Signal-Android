@@ -1781,6 +1781,11 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
     <item quantity="other">%1$d dalībnieki</item>
   </plurals>
   <!--Displays number of viewers for a story-->
+  <plurals name="contact_selection_list_item__number_of_viewers">
+    <item quantity="zero">%1$d skatītāji</item>
+    <item quantity="one">%1$d skatītājs</item>
+    <item quantity="other">%1$d skatītāji</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal ziņa</string>
   <string name="conversation_activity__type_message_sms_insecure">Nedroša SMS</string>

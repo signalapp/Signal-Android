@@ -3322,7 +3322,7 @@
   <string name="ConversationSettingsFragment__conversation_muted_forever">Danışıq həmişəlik səssizə alındı</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefon nömrəsi lövhəyə kopyalandı.</string>
   <string name="ConversationSettingsFragment__phone_number">Telefon nömrəsi</string>
-  <string name="ConversationSettingsFragment__get_badges">Signal dəstəkləyərək profiliniz üçün nişanlar qazanın. Daha ətraflı məlumat üçün bir nişana toxunun.</string>
+  <string name="ConversationSettingsFragment__get_badges">Signal-ı dəstəkləyərək profiliniz üçün nişanlar qazanın. Daha ətraflı məlumat üçün bir nişana toxunun.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Üzv əlavə edə bilmə</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Qrup məlumatına düzəliş edə bilmə</string>
@@ -3475,7 +3475,7 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Xüsusi nişan hazırla</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Bitdi</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Bir neçə nişana sahib olanda, profilinizdə başqalarının görməsi üçün birini seçə bilərsiniz.</string>
-  <string name="BecomeASustainerFragment__get_badges">Signal dəstəkləyərək profiliniz üçün nişanlar qazanın.</string>
+  <string name="BecomeASustainerFragment__get_badges">Signal-ı dəstəkləyərək profiliniz üçün nişanlar qazanın.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal, reklamları və ya investoru olmayan və yalnız sizin kimi insanlardan dəstək alan qeyri-kommersiya təşkilatıdır.</string>
   <string name="ManageDonationsFragment__my_support">Dəstəyim</string>
   <string name="ManageDonationsFragment__manage_subscription">Abunəliyi idarə et</string>
