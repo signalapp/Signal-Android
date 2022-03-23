@@ -27,8 +27,8 @@ import java.util.Map;
  * Repository for all contacts. Allows you to filter them via queries.
  *
  * Currently this is implemented to return cursors. This is to ease the migration between this class
- * and the previous way we'd query contacts: {@link ContactsDatabase}. It's much easier in the
- * short-term to mock the cursor interface rather than try to switch everything over to models.
+ * and the previous way we'd query contacts. It's much easier in the short-term to mock the cursor
+ * interface rather than try to switch everything over to models.
  */
 public class ContactRepository {
 

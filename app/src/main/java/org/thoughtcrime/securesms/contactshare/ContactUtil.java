@@ -113,7 +113,7 @@ public final class ContactUtil {
     }
   }
 
-  public static @NonNull String getNormalizedPhoneNumber(@NonNull Context context, @NonNull String number) {
+  public static @NonNull String getNormalizedPhoneNumber(@NonNull Context context, @Nullable String number) {
     return PhoneNumberFormatter.get(context).format(number);
   }
 

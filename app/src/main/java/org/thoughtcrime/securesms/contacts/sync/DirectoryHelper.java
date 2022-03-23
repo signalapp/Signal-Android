@@ -19,10 +19,7 @@ import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
-import org.thoughtcrime.securesms.contacts.ContactsDatabase;
 import org.thoughtcrime.securesms.database.MessageDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.BulkOperationsHandle;
@@ -307,7 +304,7 @@ class DirectoryHelper {
       return;
     }
 
-    AccountHolder account = getOrCreateSystemAccount(context);
+    Account account = SystemContactsRepository.getOrCreateSystemAccount(context);
 
     if (account == null) {
       Log.w(TAG, "Failed to create an account!");
@@ -315,15 +312,14 @@ class DirectoryHelper {
     }
 
     try {
-      ContactsDatabase  contactsDatabase = SignalDatabase.contacts();
-      List<String>      activeAddresses  = Stream.of(activeIds)
-                                                 .map(Recipient::resolved)
-                                                 .filter(Recipient::hasE164)
-                                                 .map(Recipient::requireE164)
-                                                 .toList();
+      List<String> activeAddresses  = Stream.of(activeIds)
+                                            .map(Recipient::resolved)
+                                            .filter(Recipient::hasE164)
+                                            .map(Recipient::requireE164)
+                                            .toList();
 
-      contactsDatabase.removeDeletedRawContacts(account.getAccount());
-      contactsDatabase.setRegisteredUsers(account.getAccount(), activeAddresses, removeMissing);
+      SystemContactsRepository.removeDeletedRawContacts(context, account);
+      SystemContactsRepository.setRegisteredUsers(context, account, activeAddresses, removeMissing);
 
       syncRecipientInfoWithSystemContacts(context, rewrites);
     } catch (RemoteException | OperationApplicationException e) {
@@ -423,39 +419,6 @@ class DirectoryHelper {
 
   private static @NonNull String getMimeType(@NonNull Cursor cursor) {
     return CursorUtil.requireString(cursor, ContactsContract.Data.MIMETYPE);
-  }
-
-  private static @Nullable AccountHolder getOrCreateSystemAccount(Context context) {
-    AccountManager accountManager = AccountManager.get(context);
-    Account[]      accounts       = accountManager.getAccountsByType(BuildConfig.APPLICATION_ID);
-
-    AccountHolder account;
-
-    if (accounts.length == 0) {
-      account = createAccount(context);
-    } else {
-      account = new AccountHolder(accounts[0], false);
-    }
-
-    if (account != null && !ContentResolver.getSyncAutomatically(account.getAccount(), ContactsContract.AUTHORITY)) {
-      ContentResolver.setSyncAutomatically(account.getAccount(), ContactsContract.AUTHORITY, true);
-    }
-
-    return account;
-  }
-
-  private static @Nullable AccountHolder createAccount(Context context) {
-    AccountManager accountManager = AccountManager.get(context);
-    Account        account        = new Account(context.getString(R.string.app_name), BuildConfig.APPLICATION_ID);
-
-    if (accountManager.addAccountExplicitly(account, null, null)) {
-      Log.i(TAG, "Created new account...");
-      ContentResolver.setIsSyncable(account, ContactsContract.AUTHORITY, 1);
-      return new AccountHolder(account, true);
-    } else {
-      Log.w(TAG, "Failed to create account!");
-      return null;
-    }
   }
 
   private static void notifyNewUsers(@NonNull  Context context,
@@ -609,25 +572,6 @@ class DirectoryHelper {
       @NonNull UnlistedResult build() {
         return new UnlistedResult(potentiallyActiveIds, retries);
       }
-    }
-  }
-
-  private static class AccountHolder {
-    private final boolean fresh;
-    private final Account account;
-
-    private AccountHolder(Account account, boolean fresh) {
-      this.fresh   = fresh;
-      this.account = account;
-    }
-
-    @SuppressWarnings("unused")
-    public boolean isFresh() {
-      return fresh;
-    }
-
-    public Account getAccount() {
-      return account;
     }
   }
 }

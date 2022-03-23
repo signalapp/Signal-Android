@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.contacts.ContactsDatabase
 import org.thoughtcrime.securesms.crypto.AttachmentSecret
 import org.thoughtcrime.securesms.crypto.DatabaseSecret
 import org.thoughtcrime.securesms.crypto.MasterSecret
@@ -49,7 +48,6 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
   val pushDatabase: PushDatabase = PushDatabase(context, this)
   val groupDatabase: GroupDatabase = GroupDatabase(context, this)
   val recipientDatabase: RecipientDatabase = RecipientDatabase(context, this)
-  val contactsDatabase: ContactsDatabase = ContactsDatabase(context)
   val groupReceiptDatabase: GroupReceiptDatabase = GroupReceiptDatabase(context, this)
   val preKeyDatabase: OneTimePreKeyDatabase = OneTimePreKeyDatabase(context, this)
   val signedPreKeyDatabase: SignedPreKeyDatabase = SignedPreKeyDatabase(context, this)
@@ -331,11 +329,6 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     @get:JvmName("chatColors")
     val chatColors: ChatColorsDatabase
       get() = instance!!.chatColorsDatabase
-
-    @get:JvmStatic
-    @get:JvmName("contacts")
-    val contacts: ContactsDatabase
-      get() = instance!!.contactsDatabase
 
     @get:JvmStatic
     @get:JvmName("distributionLists")
