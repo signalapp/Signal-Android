@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import android.graphics.Rect
 import android.graphics.RectF
 import android.util.AttributeSet
 import androidx.annotation.ColorInt
@@ -12,7 +11,8 @@ import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 
 class StoryTextView @JvmOverloads constructor(
-  context: Context, attrs: AttributeSet? = null
+  context: Context,
+  attrs: AttributeSet? = null
 ) : EmojiTextView(context, attrs) {
 
   private val textBounds: RectF = RectF()

@@ -34,11 +34,14 @@ class MyStoriesFragment : DSLSettingsFragment(
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
     MyStoriesItem.register(adapter)
 
-    requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-      override fun handleOnBackPressed() {
-        requireActivity().finish()
+    requireActivity().onBackPressedDispatcher.addCallback(
+      viewLifecycleOwner,
+      object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+          requireActivity().finish()
+        }
       }
-    })
+    )
 
     lifecycleDisposable.bindTo(viewLifecycleOwner)
     viewModel.state.observe(viewLifecycleOwner) {

@@ -706,7 +706,7 @@ class StoryViewerPageFragment :
       sharedViewModel.setIsChildScrolling(isXMagnitudeGreaterThanYMagnitude || isFirstAndHasYTranslationOrNegativeY)
       if (isFirstStory) {
         val delta = max(0f, (e2.rawY - e1.rawY)) / 3f
-        val percent = INTERPOLATOR.getInterpolation(delta/maxSlide)
+        val percent = INTERPOLATOR.getInterpolation(delta / maxSlide)
         val distance = maxSlide * percent
 
         viewToTranslate.animate().cancel()

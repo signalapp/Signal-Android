@@ -100,11 +100,13 @@ class ScaleTransition : Transition {
     end.view.scaleX = (startWidth / endWidth) * startScaleX
     end.view.scaleY = (startHeight / endHeight) * startScaleY
 
-    return ObjectAnimator.ofPropertyValuesHolder(end.view,
+    return ObjectAnimator.ofPropertyValuesHolder(
+      end.view,
       ofFloat(View.TRANSLATION_X, 0f),
       ofFloat(View.TRANSLATION_Y, 0f),
       ofFloat(View.SCALE_X, 1f),
-      ofFloat(View.SCALE_Y, 1f)).apply {
+      ofFloat(View.SCALE_Y, 1f)
+    ).apply {
       addListener(object : AnimatorListenerAdapter() {
         override fun onAnimationEnd(animation: Animator?) {
           resetValues(start.view)

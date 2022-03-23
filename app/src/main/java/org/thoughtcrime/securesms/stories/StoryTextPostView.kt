@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.stories
 
 import android.content.Context
-import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
@@ -10,11 +9,9 @@ import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.Px
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.doOnNextLayout
 import androidx.core.view.isVisible
-import com.airbnb.lottie.SimpleColorFilter
 import com.google.android.material.imageview.ShapeableImageView
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
@@ -120,6 +117,12 @@ class StoryTextPostView @JvmOverloads constructor(
     setText(
       state.body.ifEmpty {
         context.getString(R.string.TextStoryPostCreationFragment__tap_to_add_text)
+      }.let {
+        if (state.textFont.isAllCaps) {
+          it.toString().toUpperCase(Locale.getDefault())
+        } else {
+          it
+        }
       },
       state.body.isEmpty()
     )
@@ -137,13 +140,20 @@ class StoryTextPostView @JvmOverloads constructor(
 
     textAlignment = TextAlignment.CENTER
 
+    val font = TextFont.fromStyle(storyTextPost.style)
     setPostBackground(ChatColors.forChatColor(ChatColors.Id.NotSet, storyTextPost.background).chatBubbleMask)
-    setText(storyTextPost.body, false)
+
+    if (font.isAllCaps) {
+      setText(storyTextPost.body.toUpperCase(Locale.getDefault()), false)
+    } else {
+      setText(storyTextPost.body, false)
+    }
+
     setTextColor(storyTextPost.textForegroundColor)
     setTextBackgroundColor(storyTextPost.textBackgroundColor)
     setTextGravity(TextAlignment.CENTER)
 
-    when (val fontResult = Fonts.resolveFont(context, Locale.getDefault(), TextFont.fromStyle(storyTextPost.style))) {
+    when (val fontResult = Fonts.resolveFont(context, Locale.getDefault(), font)) {
       is Fonts.FontResult.Immediate -> setTypeface(fontResult.typeface)
       is Fonts.FontResult.Async -> setTypeface(fontResult.future.get())
     }
