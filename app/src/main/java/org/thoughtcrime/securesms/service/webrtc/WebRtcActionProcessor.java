@@ -459,6 +459,11 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
+  public @NonNull WebRtcServiceState handleCallReconnect(@NonNull WebRtcServiceState currentState, @NonNull CallManager.CallEvent event) {
+    Log.i(tag, "handleCallReconnect not processed");
+    return currentState;
+  }
+
   //endregion Active call
 
   //region Call setup

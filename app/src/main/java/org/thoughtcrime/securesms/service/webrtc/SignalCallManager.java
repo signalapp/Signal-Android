@@ -445,11 +445,8 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         case REMOTE_RINGING:
           return p.handleRemoteRinging(s, remotePeer);
         case RECONNECTING:
-          Log.i(TAG, "Reconnecting: NOT IMPLEMENTED");
-          break;
         case RECONNECTED:
-          Log.i(TAG, "Reconnected: NOT IMPLEMENTED");
-          break;
+          return p.handleCallReconnect(s, event);
         case LOCAL_CONNECTED:
         case REMOTE_CONNECTED:
           return p.handleCallConnected(s, remotePeer);

@@ -1486,6 +1486,8 @@
     <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
     <string name="WebRtcCallActivity__calling">Calling…</string>
     <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Group is too large to ring the participants.</string>
+    <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
+    <string name="WebRtcCallActivity__reconnecting">Reconnecting…</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal Call</string>

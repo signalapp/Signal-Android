@@ -27,7 +27,7 @@ public final class NotInCallConstraint implements Constraint {
 
   public static boolean isNotInConnectedCall() {
     WebRtcViewModel viewModel = EventBus.getDefault().getStickyEvent(WebRtcViewModel.class);
-    return viewModel == null || viewModel.getState() != WebRtcViewModel.State.CALL_CONNECTED;
+    return viewModel == null || (viewModel.getState() != WebRtcViewModel.State.CALL_CONNECTED && viewModel.getState() != WebRtcViewModel.State.CALL_RECONNECTING);
   }
 
   @Override

@@ -278,7 +278,7 @@ data class CallParticipantsState(
       if (isExpanded && (localParticipant.isVideoEnabled || isNonIdleGroupCall)) {
         return WebRtcLocalRenderState.EXPANDED
       } else if (displayLocal || showVideoForOutgoing) {
-        if (callState == WebRtcViewModel.State.CALL_CONNECTED) {
+        if (callState == WebRtcViewModel.State.CALL_CONNECTED || callState == WebRtcViewModel.State.CALL_RECONNECTING) {
           localRenderState = if (isViewingFocusedParticipant || numberOfRemoteParticipants > 1) {
             WebRtcLocalRenderState.SMALLER_RECTANGLE
           } else if (numberOfRemoteParticipants == 1) {

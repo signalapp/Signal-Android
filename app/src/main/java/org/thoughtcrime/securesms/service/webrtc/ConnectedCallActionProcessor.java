@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallManager;
+import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
@@ -72,6 +73,16 @@ public class ConnectedCallActionProcessor extends DeviceAwareActionProcessor {
     }
 
     return currentState;
+  }
+
+  @Override
+  public @NonNull WebRtcServiceState handleCallReconnect(@NonNull WebRtcServiceState currentState, @NonNull CallManager.CallEvent event) {
+    Log.i(TAG, "handleCallReconnect(): event: " + event);
+
+    return currentState.builder()
+                       .changeCallInfoState()
+                       .callState(event == CallManager.CallEvent.RECONNECTING ? WebRtcViewModel.State.CALL_RECONNECTING : WebRtcViewModel.State.CALL_CONNECTED)
+                       .build();
   }
 
   @Override

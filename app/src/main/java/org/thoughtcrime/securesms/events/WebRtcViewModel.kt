@@ -23,6 +23,7 @@ class WebRtcViewModel(state: WebRtcServiceState) {
     CALL_DISCONNECTED,
     CALL_DISCONNECTED_GLARE,
     CALL_NEEDS_PERMISSION,
+    CALL_RECONNECTING,
 
     // Error states
     NETWORK_FAILURE,

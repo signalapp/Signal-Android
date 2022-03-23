@@ -501,6 +501,10 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     }
   }
 
+  private void handleCallReconnecting() {
+    callScreen.setStatus(getString(R.string.WebRtcCallActivity__reconnecting));
+  }
+
   private void handleRecipientUnavailable() {
     EventBus.getDefault().removeStickyEvent(WebRtcViewModel.class);
     callScreen.setStatus(getString(R.string.RedPhone_recipient_unavailable));
@@ -623,6 +627,8 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
         handleCallPreJoin(event); break;
       case CALL_CONNECTED:
         handleCallConnected(event); break;
+      case CALL_RECONNECTING:
+        handleCallReconnecting(); break;
       case NETWORK_FAILURE:
         handleServerFailure(); break;
       case CALL_RINGING:
