@@ -43,13 +43,13 @@
 
                     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
                         android:id="@+id/quote_author"
-                        style="@style/Signal.Text.Caption"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:maxLines="1"
+                        android:textSize="14sp"
                         android:textColor="@color/core_black"
-                        android:textStyle="bold"
+                        android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
                         tools:text="Peter Parker" />
 
                     <LinearLayout
@@ -83,13 +83,12 @@
 
                     <TextView
                         android:id="@+id/media_type"
-                        style="@style/Signal.Text.Caption"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:paddingTop="4dp"
-                        android:textColor="@color/core_grey_90"
-                        android:textStyle="italic"
+                        android:textSize="14sp"
+                        android:textColor="@color/core_black"
                         android:visibility="gone"
                         tools:text="Photo"
                         tools:visibility="visible" />

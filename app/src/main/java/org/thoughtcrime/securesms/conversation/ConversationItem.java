@@ -1424,7 +1424,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       Quote quote = ((MediaMmsMessageRecord)current).getQuote();
 
       if (((MediaMmsMessageRecord) current).getParentStoryId() != null) {
-        quoteView.setMessageType(QuoteView.MessageType.STORY_REPLY);
+        quoteView.setMessageType(current.isOutgoing() ? QuoteView.MessageType.STORY_REPLY_OUTGOING : QuoteView.MessageType.STORY_REPLY_INCOMING);
       } else {
         quoteView.setMessageType(current.isOutgoing() ? QuoteView.MessageType.OUTGOING : QuoteView.MessageType.INCOMING);
       }

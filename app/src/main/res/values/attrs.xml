@@ -171,8 +171,9 @@
             <enum name="preview" value="0" />
             <enum name="outgoing" value="1" />
             <enum name="incoming" value="2" />
-            <enum name="story_reply" value="3" />
-            <enum name="story_reply_preview" value="4" />
+            <enum name="story_reply_outgoing" value="3" />
+            <enum name="story_reply_incoming" value="4" />
+            <enum name="story_reply_preview" value="5" />
         </attr>
         <attr name="quote_colorPrimary" format="color" />
         <attr name="quote_colorSecondary" format="color" />
