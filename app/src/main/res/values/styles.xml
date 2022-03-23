@@ -50,6 +50,10 @@
         <item name="android:windowExitAnimation">@anim/slide_to_bottom</item>
     </style>
 
+    <style name="TextSecure.Animation.TextStoryPostEntryDialog" parent="Animation.AppCompat.Dialog">
+        <item name="android:windowEnterAnimation">@anim/text_entry_enter</item>
+        <item name="android:windowExitAnimation">@anim/text_entry_exit</item>
+    </style>
 
     <!-- ActionBar styles -->
     <style name="TextSecure.DarkActionBar"

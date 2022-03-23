@@ -5,6 +5,7 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.drawToBitmap
+import androidx.core.view.postDelayed
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -120,6 +121,8 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
   }
 
   override fun onTextStoryPostTextEntryDismissed() {
-    storyTextPostView.showPostContent()
+    storyTextPostView.postDelayed(resources.getInteger(R.integer.text_entry_exit_duration).toLong()) {
+      storyTextPostView.showPostContent()
+    }
   }
 }
