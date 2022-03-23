@@ -19,15 +19,12 @@ class StoryTextPostViewModel(recordId: Long, repository: StoryTextPostRepository
 
   init {
     disposables += repository.getRecord(recordId)
-      .map { record ->
-        StoryTextPost.parseFrom(Base64.decode(record.body)) to record.linkPreviews.firstOrNull()
-      }
       .subscribeBy(
-        onSuccess = { (post, previews) ->
+        onSuccess = { record ->
           store.update { state ->
             state.copy(
-              storyTextPost = post,
-              linkPreview = previews,
+              storyTextPost = StoryTextPost.parseFrom(Base64.decode(record.body)),
+              linkPreview = record.linkPreviews.firstOrNull(),
               loadState = StoryTextPostState.LoadState.LOADED
             )
           }

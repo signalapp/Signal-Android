@@ -8,7 +8,6 @@ import android.util.TypedValue
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.Px
-import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.doOnNextLayout
 import androidx.core.view.isVisible
@@ -161,10 +160,6 @@ class StoryTextPostView @JvmOverloads constructor(
     hideCloseButton()
 
     postAdjustLinkPreviewTranslationY()
-
-    doOnNextLayout {
-      (context as? AppCompatActivity)?.supportStartPostponedEnterTransition()
-    }
   }
 
   fun bindLinkPreview(linkPreview: LinkPreview?): ListenableFuture<Boolean> {

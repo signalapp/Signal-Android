@@ -169,7 +169,7 @@ class StoryViewerPageFragment :
         val canCloseFromHorizontalSlide = requireView().translationX > DimensionUnit.DP.toPixels(56f)
         val canCloseFromVerticalSlide = requireView().translationY > DimensionUnit.DP.toPixels(56f)
         if ((canCloseFromHorizontalSlide || canCloseFromVerticalSlide) && event.actionMasked == MotionEvent.ACTION_UP) {
-          requireActivity().finish()
+          requireActivity().onBackPressed()
         } else {
           requireView().animate()
             .setInterpolator(StoryGestureListener.INTERPOLATOR)

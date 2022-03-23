@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Rect
 import android.graphics.RectF
 import android.util.AttributeSet
 import androidx.annotation.ColorInt
@@ -15,6 +16,7 @@ class StoryTextView @JvmOverloads constructor(
   attrs: AttributeSet? = null
 ) : EmojiTextView(context, attrs) {
 
+  private val canvasBounds: Rect = Rect()
   private val textBounds: RectF = RectF()
   private val wrappedBackgroundPaint = Paint().apply {
     style = Paint.Style.FILL
@@ -34,8 +36,9 @@ class StoryTextView @JvmOverloads constructor(
   }
 
   override fun onDraw(canvas: Canvas) {
-    if (wrappedBackgroundPaint.color != Color.TRANSPARENT) {
-      textBounds.set(left.toFloat(), top.toFloat(), right.toFloat(), bottom.toFloat())
+    if (wrappedBackgroundPaint.color != Color.TRANSPARENT && layout != null) {
+      canvas.getClipBounds(canvasBounds)
+      textBounds.set(canvasBounds)
 
       val maxWidth = (0 until layout.lineCount).map {
         layout.getLineWidth(it)
