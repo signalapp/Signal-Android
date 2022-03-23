@@ -36,6 +36,10 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
     val adapter = StoryViewerPagerAdapter(this, storyId)
     storyPager.adapter = adapter
 
+    viewModel.isChildScrolling.observe(viewLifecycleOwner) {
+      storyPager.isUserInputEnabled = !it
+    }
+
     viewModel.state.observe(viewLifecycleOwner) { state ->
       adapter.setPages(state.pages)
       if (state.pages.isNotEmpty() && storyPager.currentItem != state.page) {

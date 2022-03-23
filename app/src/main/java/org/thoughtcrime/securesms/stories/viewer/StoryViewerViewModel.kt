@@ -22,6 +22,9 @@ class StoryViewerViewModel(
   private val scrollStatePublisher: MutableLiveData<Boolean> = MutableLiveData(false)
   val isScrolling: LiveData<Boolean> = scrollStatePublisher
 
+  private val childScrollStatePublisher: MutableLiveData<Boolean> = MutableLiveData(false)
+  val isChildScrolling: LiveData<Boolean> = childScrollStatePublisher
+
   init {
     refresh()
   }
@@ -101,6 +104,10 @@ class StoryViewerViewModel(
         indexOfStartRecipient
       }
     }
+  }
+
+  fun setIsChildScrolling(isChildScrolling: Boolean) {
+    childScrollStatePublisher.value = isChildScrolling
   }
 
   class Factory(

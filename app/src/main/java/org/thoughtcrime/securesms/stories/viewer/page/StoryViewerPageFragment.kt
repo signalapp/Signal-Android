@@ -10,15 +10,16 @@ import android.os.Bundle
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
+import android.view.animation.Interpolator
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.GestureDetectorCompat
+import androidx.core.view.animation.PathInterpolatorCompat
 import androidx.core.view.doOnNextLayout
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
@@ -61,6 +62,7 @@ import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
+import kotlin.math.max
 
 class StoryViewerPageFragment :
   Fragment(R.layout.stories_viewer_fragment_page),
@@ -148,7 +150,9 @@ class StoryViewerPageFragment :
         cardWrapper,
         viewModel::goToNextPost,
         viewModel::goToPreviousPost,
-        this::startReply
+        this::startReply,
+        sharedViewModel = sharedViewModel
+
       )
     )
 
@@ -161,6 +165,18 @@ class StoryViewerPageFragment :
       } else if (event.actionMasked == MotionEvent.ACTION_UP || event.actionMasked == MotionEvent.ACTION_CANCEL) {
         viewModel.setIsUserTouching(false)
         showChrome()
+
+        val canCloseFromHorizontalSlide = requireView().translationX > DimensionUnit.DP.toPixels(56f)
+        val canCloseFromVerticalSlide = requireView().translationY > DimensionUnit.DP.toPixels(56f)
+        if ((canCloseFromHorizontalSlide || canCloseFromVerticalSlide) && event.actionMasked == MotionEvent.ACTION_UP) {
+          requireActivity().finish()
+        } else {
+          requireView().animate()
+            .setInterpolator(StoryGestureListener.INTERPOLATOR)
+            .setDuration(100)
+            .translationX(0f)
+            .translationY(0f)
+        }
       }
 
       result
@@ -664,15 +680,46 @@ class StoryViewerPageFragment :
     private val container: View,
     private val onGoToNext: () -> Unit,
     private val onGoToPrevious: () -> Unit,
-    private val onReplyToPost: () -> Unit
+    private val onReplyToPost: () -> Unit,
+    private val viewToTranslate: View = container.parent as View,
+    private val sharedViewModel: StoryViewerViewModel
   ) : GestureDetector.SimpleOnGestureListener() {
 
     companion object {
       private const val BOUNDARY_NEXT = 0.80f
       private const val BOUNDARY_PREV = 1f - BOUNDARY_NEXT
+
+      val INTERPOLATOR: Interpolator = PathInterpolatorCompat.create(0.4f, 0f, 0.2f, 1f)
     }
 
+    private val maxSlide = DimensionUnit.DP.toPixels(56f * 2)
+
     override fun onDown(e: MotionEvent?): Boolean {
+      return true
+    }
+
+    override fun onScroll(e1: MotionEvent, e2: MotionEvent, distanceX: Float, distanceY: Float): Boolean {
+      val isFirstStory = sharedViewModel.state.value?.page == 0
+      val isXMagnitudeGreaterThanYMagnitude = abs(distanceX) > abs(distanceY) || viewToTranslate.translationX > 0f
+      val isFirstAndHasYTranslationOrNegativeY = isFirstStory && (viewToTranslate.translationY > 0f || distanceY < 0f)
+
+      sharedViewModel.setIsChildScrolling(isXMagnitudeGreaterThanYMagnitude || isFirstAndHasYTranslationOrNegativeY)
+      if (isFirstStory) {
+        val delta = max(0f, (e2.rawY - e1.rawY)) / 3f
+        val percent = INTERPOLATOR.getInterpolation(delta/maxSlide)
+        val distance = maxSlide * percent
+
+        viewToTranslate.animate().cancel()
+        viewToTranslate.translationY = distance
+      }
+
+      val delta = max(0f, (e2.rawX - e1.rawX)) / 3f
+      val percent = INTERPOLATOR.getInterpolation(delta / maxSlide)
+      val distance = maxSlide * percent
+
+      viewToTranslate.animate().cancel()
+      viewToTranslate.translationX = distance
+
       return true
     }
 
