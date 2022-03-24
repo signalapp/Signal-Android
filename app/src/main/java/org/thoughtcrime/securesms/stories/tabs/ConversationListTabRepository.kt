@@ -11,12 +11,12 @@ class ConversationListTabRepository {
   fun getNumberOfUnreadConversations(): Observable<Long> {
     return Observable.create<Long> {
       val listener = DatabaseObserver.Observer {
-        it.onNext(SignalDatabase.threads.unreadThreadCount)
+        it.onNext(SignalDatabase.threads.tabBarUnreadCount)
       }
 
       ApplicationDependencies.getDatabaseObserver().registerConversationListObserver(listener)
       it.setCancellable { ApplicationDependencies.getDatabaseObserver().unregisterObserver(listener) }
-      it.onNext(SignalDatabase.threads.unreadThreadCount)
+      it.onNext(SignalDatabase.threads.tabBarUnreadCount)
     }.subscribeOn(Schedulers.io())
   }
 
