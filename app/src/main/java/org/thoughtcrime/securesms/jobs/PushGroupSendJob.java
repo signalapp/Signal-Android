@@ -253,8 +253,10 @@ public final class PushGroupSendJob extends PushSendJob {
           final SignalServiceStoryMessage storyMessage;
           if (message.getStoryType().isTextStory()) {
             storyMessage = SignalServiceStoryMessage.forTextAttachment(Recipient.self().getProfileKey(), groupContext, StorySendUtil.deserializeBodyToStoryTextAttachment(message, this::getPreviewsFor), message.getStoryType().isStoryWithReplies());
-          } else {
+          } else if (!attachmentPointers.isEmpty()) {
             storyMessage = SignalServiceStoryMessage.forFileAttachment(Recipient.self().getProfileKey(), groupContext, attachmentPointers.get(0), message.getStoryType().isStoryWithReplies());
+          } else {
+            throw new UndeliverableMessageException("No attachment on non-text story.");
           }
 
           return GroupSendUtil.sendGroupStoryMessage(context, groupId.requireV2(), destinations, isRecipientUpdate, new MessageId(messageId, true), message.getSentTimeMillis(), storyMessage);
