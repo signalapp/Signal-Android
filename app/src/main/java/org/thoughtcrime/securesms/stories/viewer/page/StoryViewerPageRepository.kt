@@ -14,12 +14,14 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewedUpdateJob
 import org.thoughtcrime.securesms.jobs.SendViewedReceiptJob
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.Base64
 
 class StoryViewerPageRepository(context: Context) {
 
@@ -175,12 +177,26 @@ class StoryViewerPageRepository(context: Context) {
     return if (record.storyType.isTextStory || record.slideDeck.asAttachments().isEmpty()) {
       StoryPost.Content.TextContent(
         uri = Uri.parse("story_text_post://${record.id}"),
-        recordId = record.id
+        recordId = record.id,
+        hasBody = canParseToTextStory(record.body)
       )
     } else {
       StoryPost.Content.AttachmentContent(
         attachment = record.slideDeck.asAttachments().first()
       )
+    }
+  }
+
+  private fun canParseToTextStory(body: String): Boolean {
+    return if (body.isNotEmpty()) {
+      try {
+        StoryTextPost.parseFrom(Base64.decode(body))
+        return true
+      } catch (e: Exception) {
+        false
+      }
+    } else {
+      false
     }
   }
 }

@@ -66,10 +66,10 @@ class StoryTextPostPreviewFragment : Fragment(R.layout.stories_text_post_preview
           } else {
             storyTextPostView.setLinkPreviewClickListener(null)
           }
-          requireActivity().supportStartPostponedEnterTransition()
           loadPreview(storyTextThumb, storyTextPostView)
         }
         StoryTextPostState.LoadState.FAILED -> {
+          requireActivity().supportStartPostponedEnterTransition()
           requireListener<MediaPreviewFragment.Events>().mediaNotAvailable()
         }
       }

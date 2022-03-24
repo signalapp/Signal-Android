@@ -204,7 +204,11 @@ public class MessageSender {
     }
   }
 
-  public static void sendMediaBroadcast(@NonNull Context context, @NonNull List<OutgoingSecureMediaMessage> messages, @NonNull Collection<PreUploadResult> preUploadResults) {
+  public static void sendMediaBroadcast(@NonNull Context context,
+                                        @NonNull List<OutgoingSecureMediaMessage> messages,
+                                        @NonNull Collection<PreUploadResult> preUploadResults,
+                                        @NonNull List<OutgoingStoryMessage> storyMessages)
+  {
     Log.i(TAG, "Sending media broadcast to " + Stream.of(messages).map(m -> m.getRecipient().getId()).toList());
     Preconditions.checkArgument(messages.size() > 0, "No messages!");
     Preconditions.checkArgument(Stream.of(messages).allMatch(m -> m.getAttachments().isEmpty()), "Messages can't have attachments! They should be pre-uploaded.");
@@ -230,12 +234,13 @@ public class MessageSender {
       attachmentDatabase.updateMessageId(preUploadAttachmentIds, primaryMessageId, primaryMessage.getStoryType().isStory());
       messageIds.add(primaryMessageId);
 
+      List<DatabaseAttachment> preUploadAttachments = Stream.of(preUploadAttachmentIds)
+                                                            .map(attachmentDatabase::getAttachment)
+                                                            .toList();
+
       if (messages.size() > 0) {
         List<OutgoingSecureMediaMessage> secondaryMessages    = messages.subList(1, messages.size());
         List<List<AttachmentId>>         attachmentCopies     = new ArrayList<>();
-        List<DatabaseAttachment>         preUploadAttachments = Stream.of(preUploadAttachmentIds)
-                                                                      .map(attachmentDatabase::getAttachment)
-                                                                      .toList();
 
         for (int i = 0; i < preUploadAttachmentIds.size(); i++) {
           attachmentCopies.add(new ArrayList<>(messages.size()));
@@ -261,6 +266,34 @@ public class MessageSender {
 
         for (int i = 0; i < attachmentCopies.size(); i++) {
           Job copyJob = new AttachmentCopyJob(preUploadAttachmentIds.get(i), attachmentCopies.get(i));
+          jobManager.add(copyJob, preUploadJobIds);
+          messageDependsOnIds.add(copyJob.getId());
+        }
+      }
+
+      for (final OutgoingStoryMessage storyMessage : storyMessages) {
+        OutgoingSecureMediaMessage message = storyMessage.getOutgoingSecureMediaMessage();
+
+        if (!message.getStoryType().isStory()) {
+          throw new AssertionError("Only story messages can be sent via this method.");
+        }
+
+        long                         allocatedThreadId   = threadDatabase.getOrCreateThreadIdFor(message.getRecipient(), message.getDistributionType());
+        long                         messageId           = mmsDatabase.insertMessageOutbox(storyMessage.getOutgoingSecureMediaMessage(), allocatedThreadId, false, null);
+        Optional<DatabaseAttachment> preUploadAttachment = preUploadAttachments.stream()
+                                                                               .filter(a -> a.getAttachmentId().equals(storyMessage.getPreUploadResult().getAttachmentId()))
+                                                                               .findFirst();
+
+        if (!preUploadAttachment.isPresent()) {
+          Log.w(TAG, "Dropping story message without pre-upload attachment.");
+          mmsDatabase.markAsSentFailed(messageId);
+        } else {
+          AttachmentId attachmentCopyId = attachmentDatabase.insertAttachmentForPreUpload(preUploadAttachment.get()).getAttachmentId();
+          attachmentDatabase.updateMessageId(Collections.singletonList(attachmentCopyId), messageId, true);
+          messageIds.add(messageId);
+          messages.add(storyMessage.getOutgoingSecureMediaMessage());
+
+          Job copyJob = new AttachmentCopyJob(storyMessage.getPreUploadResult().getAttachmentId(), Collections.singletonList(attachmentCopyId));
           jobManager.add(copyJob, preUploadJobIds);
           messageDependsOnIds.add(copyJob.getId());
         }

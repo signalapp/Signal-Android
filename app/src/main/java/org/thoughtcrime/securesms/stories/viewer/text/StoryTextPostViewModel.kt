@@ -19,12 +19,19 @@ class StoryTextPostViewModel(recordId: Long, repository: StoryTextPostRepository
 
   init {
     disposables += repository.getRecord(recordId)
+      .map {
+        if (it.body.isNotEmpty()) {
+          StoryTextPost.parseFrom(Base64.decode(it.body)) to it.linkPreviews.firstOrNull()
+        } else {
+          throw Exception("Text post message body is empty.")
+        }
+      }
       .subscribeBy(
-        onSuccess = { record ->
+        onSuccess = { (post, previews) ->
           store.update { state ->
             state.copy(
-              storyTextPost = StoryTextPost.parseFrom(Base64.decode(record.body)),
-              linkPreview = record.linkPreviews.firstOrNull(),
+              storyTextPost = post,
+              linkPreview = previews,
               loadState = StoryTextPostState.LoadState.LOADED
             )
           }

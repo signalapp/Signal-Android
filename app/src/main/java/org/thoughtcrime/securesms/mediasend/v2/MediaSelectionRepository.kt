@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.sms.MessageSender.PreUploadResult
+import org.thoughtcrime.securesms.sms.OutgoingStoryMessage
 import org.thoughtcrime.securesms.util.MessageUtil
 import java.util.Collections
 import java.util.concurrent.TimeUnit
@@ -254,12 +255,19 @@ class MediaSelectionRepository(context: Context) {
       }
     }
 
-    storyMessages.forEach { (preUploadResult, messages) ->
-      MessageSender.sendMediaBroadcast(context, messages, Collections.singleton(preUploadResult))
-    }
-
     if (broadcastMessages.isNotEmpty()) {
-      MessageSender.sendMediaBroadcast(context, broadcastMessages, preUploadResults)
+      MessageSender.sendMediaBroadcast(
+        context,
+        broadcastMessages,
+        preUploadResults,
+        storyMessages.flatMap { (preUploadResult, messages) ->
+          messages.map { OutgoingStoryMessage(it, preUploadResult) }
+        }
+      )
+    } else {
+      storyMessages.forEach { (preUploadResult, messages) ->
+        MessageSender.sendMediaBroadcast(context, messages, Collections.singleton(preUploadResult), Collections.emptyList())
+      }
     }
   }
 }
