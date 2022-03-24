@@ -66,11 +66,6 @@ public class SearchUtil {
       default:
         throw new InvalidParameterException("match mode must be STRICT or MATCH_ALL: " + matchMode);
     }
-    if (matchMode == STRICT) {
-      ranges = getStrictHighlightRanges(locale, text.toString(), highlight);
-    } else {
-      ranges = getHighlightRanges(locale, text.toString(), highlight);
-    }
 
     for (Pair<Integer, Integer> range : ranges) {
       spanned.setSpan(styleFactory.create(), range.first(), range.second(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
