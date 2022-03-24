@@ -106,7 +106,7 @@ public class PhoneNumberFormatter {
   }
 
 
-  public String format(@Nullable String number) {
+  public @NonNull String format(@Nullable String number) {
     if (number == null)                       return "Unknown";
     if (GroupId.isEncodedGroup(number))       return number;
     if (ALPHA_PATTERN.matcher(number).find()) return number.trim();

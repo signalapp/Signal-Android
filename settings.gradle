@@ -16,6 +16,8 @@ include ':donations'
 include ':donations-app'
 include ':spinner'
 include ':spinner-app'
+include ':contacts'
+include ':contacts-app'
 
 project(':app').name = 'Signal-Android'
 project(':paging').projectDir = file('paging/lib')
@@ -34,6 +36,9 @@ project(':donations-app').projectDir = file('donations/app')
 
 project(':spinner').projectDir = file('spinner/lib')
 project(':spinner-app').projectDir = file('spinner/app')
+
+project(':contacts').projectDir = file('contacts/lib')
+project(':contacts-app').projectDir = file('contacts/app')
 
 rootProject.name='Signal'
 

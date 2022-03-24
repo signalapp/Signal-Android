@@ -4,20 +4,20 @@ import android.Manifest;
 import android.accounts.Account;
 import android.content.Context;
 import android.content.OperationApplicationException;
-import android.database.Cursor;
 import android.os.RemoteException;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
+import org.signal.contacts.SystemContactsRepository;
+import org.signal.contacts.SystemContactsRepository.ContactDetails;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.contacts.ContactAccessor;
+import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MessageDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.BulkOperationsHandle;
@@ -36,13 +36,11 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.registration.RegistrationUtil;
 import org.thoughtcrime.securesms.sms.IncomingJoinedMessage;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
-import org.signal.core.util.CursorUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
@@ -50,7 +48,6 @@ import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.services.ProfileService;
-import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 
 import java.io.IOException;
@@ -60,7 +57,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -94,10 +90,12 @@ class DirectoryHelper {
     }
 
     RecipientDatabase recipientDatabase = SignalDatabase.recipients();
-    Set<String>       databaseNumbers   = sanitizeNumbers(recipientDatabase.getAllPhoneNumbers());
-    Set<String>       systemNumbers     = sanitizeNumbers(ContactAccessor.getInstance().getAllContactsWithNumbers(context));
+    Set<String>       databaseE164s     = sanitizeNumbers(recipientDatabase.getAllE164s());
+    Set<String>       systemE164s       = sanitizeNumbers(Stream.of(SystemContactsRepository.getAllDisplayNumbers(context))
+                                                                .map(number -> PhoneNumberFormatter.get(context).format(number))
+                                                                .collect(Collectors.toSet()));
 
-    refreshNumbers(context, databaseNumbers, systemNumbers, notifyOfNewUsers, true);
+    refreshNumbers(context, databaseE164s, systemE164s, notifyOfNewUsers, true);
 
     StorageSyncHelper.scheduleSyncForDataChange();
   }
@@ -302,7 +300,10 @@ class DirectoryHelper {
       return;
     }
 
-    Account account = SystemContactsRepository.getOrCreateSystemAccount(context);
+    Stopwatch stopwatch = new Stopwatch("contacts");
+
+    Account account = SystemContactsRepository.getOrCreateSystemAccount(context, BuildConfig.APPLICATION_ID, context.getString(R.string.app_name));
+    stopwatch.split("account");
 
     if (account == null) {
       Log.w(TAG, "Failed to create an account!");
@@ -310,16 +311,23 @@ class DirectoryHelper {
     }
 
     try {
-      List<String> activeAddresses  = Stream.of(activeIds)
-                                            .map(Recipient::resolved)
-                                            .filter(Recipient::hasE164)
-                                            .map(Recipient::requireE164)
-                                            .toList();
+      Set<String> activeE164s = Stream.of(activeIds)
+                                      .map(Recipient::resolved)
+                                      .filter(Recipient::hasE164)
+                                      .map(Recipient::requireE164)
+                                      .collect(Collectors.toSet());
 
-      SystemContactsRepository.removeDeletedRawContacts(context, account);
-      SystemContactsRepository.setRegisteredUsers(context, account, activeAddresses, removeMissing);
+      SystemContactsRepository.removeDeletedRawContactsForAccount(context, account);
+      stopwatch.split("remove-deleted");
+      SystemContactsRepository.addMessageAndCallLinksToContacts(context,
+                                                                ContactDiscovery.buildContactLinkConfiguration(context, account),
+                                                                activeE164s,
+                                                                removeMissing);
+      stopwatch.split("add-links");
 
       syncRecipientInfoWithSystemContacts(context, rewrites);
+      stopwatch.split("sync-info");
+      stopwatch.stop(TAG);
     } catch (RemoteException | OperationApplicationException e) {
       Log.w(TAG, "Failed to update contacts.", e);
     }
@@ -329,59 +337,25 @@ class DirectoryHelper {
     RecipientDatabase     recipientDatabase = SignalDatabase.recipients();
     BulkOperationsHandle  handle            = recipientDatabase.beginBulkSystemContactUpdate();
 
-    try (Cursor cursor = ContactAccessor.getInstance().getAllSystemContacts(context)) {
-      while (cursor != null && cursor.moveToNext()) {
-        String mimeType = getMimeType(cursor);
+    try (SystemContactsRepository.ContactIterator iterator = SystemContactsRepository.getAllSystemContacts(context, rewrites, (number) -> PhoneNumberFormatter.get(context).format(number))) {
+      while (iterator.hasNext()) {
+        ContactDetails          contact = iterator.next();
+        ContactHolder           holder  = new ContactHolder();
+        StructuredNameRecord    name    = new StructuredNameRecord(contact.getGivenName(), contact.getFamilyName());
+        List<PhoneNumberRecord> phones  = Stream.of(contact.getNumbers())
+                                                .map(number -> {
+                                                  return new PhoneNumberRecord.Builder()
+                                                      .withRecipientId(Recipient.externalContact(context, number.getNumber()).getId())
+                                                      .withContactUri(number.getContactUri())
+                                                      .withDisplayName(number.getDisplayName())
+                                                      .withContactPhotoUri(number.getPhotoUri())
+                                                      .withContactLabel(number.getLabel())
+                                                      .build();
+                                                }).toList();
 
-        if (!isPhoneMimeType(mimeType)) {
-          continue;
-        }
-
-        String        lookupKey     = getLookupKey(cursor);
-        ContactHolder contactHolder = new ContactHolder(lookupKey);
-
-        while (!cursor.isAfterLast() && getLookupKey(cursor).equals(lookupKey) && isPhoneMimeType(getMimeType(cursor))) {
-          String number = CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.NUMBER);
-
-          if (isValidContactNumber(number)) {
-            String formattedNumber = PhoneNumberFormatter.get(context).format(number);
-            String realNumber      = Util.getFirstNonEmpty(rewrites.get(formattedNumber), formattedNumber);
-
-            PhoneNumberRecord.Builder builder = new PhoneNumberRecord.Builder();
-
-            builder.withRecipientId(Recipient.externalContact(context, realNumber).getId());
-            builder.withDisplayName(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-            builder.withContactPhotoUri(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.PHOTO_URI));
-            builder.withContactLabel(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.LABEL));
-            builder.withPhoneType(CursorUtil.requireInt(cursor, ContactsContract.CommonDataKinds.Phone.TYPE));
-            builder.withContactUri(ContactsContract.Contacts.getLookupUri(CursorUtil.requireLong(cursor, ContactsContract.CommonDataKinds.Phone._ID),
-                CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY)));
-
-            contactHolder.addPhoneNumberRecord(builder.build());
-          } else {
-            Log.w(TAG, "Skipping phone entry with invalid number");
-          }
-
-          cursor.moveToNext();
-        }
-
-        if (!cursor.isAfterLast() && getLookupKey(cursor).equals(lookupKey)) {
-          if (isStructuredNameMimeType(getMimeType(cursor))) {
-            StructuredNameRecord.Builder builder = new StructuredNameRecord.Builder();
-
-            builder.withGivenName(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME));
-            builder.withFamilyName(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
-
-            contactHolder.setStructuredNameRecord(builder.build());
-          } else {
-            Log.i(TAG, "Skipping invalid mimeType " + mimeType);
-          }
-        } else {
-          Log.i(TAG, "No structured name for user, rolling back cursor.");
-          cursor.moveToPrevious();
-        }
-
-        contactHolder.commit(handle);
+        holder.setStructuredNameRecord(name);
+        holder.addPhoneNumberRecords(phones);
+        holder.commit(handle);
       }
     } catch (IllegalStateException e) {
       Log.w(TAG, "Hit an issue with the cursor while reading!", e);
@@ -397,26 +371,6 @@ class DirectoryHelper {
         }
       }
     }
-  }
-
-  private static boolean isPhoneMimeType(@NonNull String mimeType) {
-    return ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE.equals(mimeType);
-  }
-
-  private static boolean isStructuredNameMimeType(@NonNull String mimeType) {
-    return ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE.equals(mimeType);
-  }
-
-  private static boolean isValidContactNumber(@Nullable String number) {
-    return !TextUtils.isEmpty(number) && !UuidUtil.isUuid(number);
-  }
-
-  private static @NonNull String getLookupKey(@NonNull Cursor cursor) {
-    return Objects.requireNonNull(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY));
-  }
-
-  private static @NonNull String getMimeType(@NonNull Cursor cursor) {
-    return CursorUtil.requireString(cursor, ContactsContract.Data.MIMETYPE);
   }
 
   private static void notifyNewUsers(@NonNull  Context context,

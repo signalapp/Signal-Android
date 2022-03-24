@@ -455,6 +455,7 @@ dependencies {
     implementation project(':device-transfer')
     implementation project(':image-editor')
     implementation project(':donations')
+    implementation project(':contacts')
 
     implementation libs.signal.client.android
     implementation libs.google.protobuf.javalite

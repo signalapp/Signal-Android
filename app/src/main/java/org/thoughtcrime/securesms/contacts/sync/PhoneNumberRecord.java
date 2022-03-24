@@ -77,12 +77,12 @@ final class PhoneNumberRecord {
       return this;
     }
 
-    @NonNull Builder withContactLabel(@NonNull String contactLabel) {
+    @NonNull Builder withContactLabel(@Nullable String contactLabel) {
       this.contactLabel = contactLabel;
       return this;
     }
 
-    @NonNull Builder withContactPhotoUri(@NonNull String contactPhotoUri) {
+    @NonNull Builder withContactPhotoUri(@Nullable String contactPhotoUri) {
       this.contactPhotoUri = contactPhotoUri;
       return this;
     }

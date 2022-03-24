@@ -17,21 +17,12 @@ final class ContactHolder {
 
   private static final String TAG = Log.tag(ContactHolder.class);
 
-  private final String                  lookupKey;
   private final List<PhoneNumberRecord> phoneNumberRecords = new LinkedList<>();
 
   private StructuredNameRecord structuredNameRecord;
 
-  ContactHolder(@NonNull String lookupKey) {
-    this.lookupKey = lookupKey;
-  }
-
-  @NonNull String getLookupKey() {
-    return lookupKey;
-  }
-
-  public void addPhoneNumberRecord(@NonNull PhoneNumberRecord phoneNumberRecord) {
-    phoneNumberRecords.add(phoneNumberRecord);
+  public void addPhoneNumberRecords(@NonNull List<PhoneNumberRecord> phoneNumberRecords) {
+    this.phoneNumberRecords.addAll(phoneNumberRecords);
   }
 
   public void setStructuredNameRecord(@NonNull StructuredNameRecord structuredNameRecord) {

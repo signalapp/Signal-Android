@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:clipToPadding="false"
+    android:clipChildren="false">
+
+  <androidx.cardview.widget.CardView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:cardElevation="5dp"
+      app:cardCornerRadius="5dp"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintStart_toStartOf="parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="4dp"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+      <TextView
+          android:id="@+id/given_name"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:fontFamily="monospace"
+          tools:text="Spider-Man"/>
+
+      <TextView
+          android:id="@+id/family_name"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="4dp"
+          android:fontFamily="monospace"
+          tools:text="Spider-Man"/>
+
+      <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/phone_list"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:clipChildren="false"
+          android:clipToPadding="false"/>
+
+    </LinearLayout>
+
+  </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

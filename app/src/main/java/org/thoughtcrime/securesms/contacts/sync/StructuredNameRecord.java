@@ -12,9 +12,9 @@ final class StructuredNameRecord {
   private final String givenName;
   private final String familyName;
 
-  StructuredNameRecord(@NonNull StructuredNameRecord.Builder builder) {
-    this.givenName  = builder.givenName;
-    this.familyName = builder.familyName;
+  public StructuredNameRecord(@Nullable String givenName, @Nullable String familyName) {
+    this.givenName  = givenName;
+    this.familyName = familyName;
   }
 
   public boolean hasGivenName() {
@@ -23,24 +23,5 @@ final class StructuredNameRecord {
 
   public @NonNull ProfileName asProfileName() {
     return ProfileName.fromParts(givenName, familyName);
-  }
-
-  final static class Builder {
-    private String givenName;
-    private String familyName;
-
-    @NonNull Builder withGivenName(@Nullable String givenName) {
-      this.givenName = givenName;
-      return this;
-    }
-
-    @NonNull Builder withFamilyName(@Nullable String familyName) {
-      this.familyName = familyName;
-      return this;
-    }
-
-    @NonNull StructuredNameRecord build() {
-      return new StructuredNameRecord(this);
-    }
   }
 }

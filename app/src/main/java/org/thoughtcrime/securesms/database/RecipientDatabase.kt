@@ -1901,7 +1901,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
   }
 
-  fun getAllPhoneNumbers(): Set<String> {
+  fun getAllE164s(): Set<String> {
     val results: MutableSet<String> = HashSet()
     readableDatabase.query(TABLE_NAME, arrayOf(PHONE), null, null, null, null, null).use { cursor ->
       while (cursor != null && cursor.moveToNext()) {
