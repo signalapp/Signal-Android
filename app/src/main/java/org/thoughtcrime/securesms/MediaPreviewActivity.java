@@ -203,23 +203,25 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
     else                                  from = "";
 
     if (showThread) {
-      String    to              = null;
+      String    titleText       = null;
       Recipient threadRecipient = mediaItem.threadRecipient;
 
       if (threadRecipient != null) {
-        if (mediaItem.outgoing || threadRecipient.isGroup()) {
+        if (mediaItem.outgoing) {
           if (threadRecipient.isSelf()) {
-            from = getString(R.string.note_to_self);
+            titleText = getString(R.string.note_to_self);
           } else {
-            to = threadRecipient.getDisplayName(this);
+            titleText = getString(R.string.MediaPreviewActivity_you_to_s, threadRecipient.getDisplayName(this));
           }
         } else {
-          to = getString(R.string.MediaPreviewActivity_you);
+          if (threadRecipient.isGroup()) {
+            titleText = getString(R.string.MediaPreviewActivity_s_to_s, from, threadRecipient.getDisplayName(this));
+          } else {
+            titleText = getString(R.string.MediaPreviewActivity_s_to_you, from);
+          }
         }
       }
-
-      return to != null ? getString(R.string.MediaPreviewActivity_s_to_s, from, to)
-                        : from;
+      return titleText != null ? titleText : from;
     } else {
       return from;
     }
