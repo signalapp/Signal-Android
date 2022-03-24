@@ -8,7 +8,8 @@
     android:background="@drawable/selectable_list_item_background"
     android:paddingHorizontal="8dp"
     android:paddingTop="6dp"
-    android:paddingBottom="6dp">
+    android:paddingBottom="6dp"
+    android:clipToPadding="false">
 
     <View
         android:id="@+id/bubble"
@@ -51,6 +52,7 @@
         android:layout_marginBottom="7dp"
         android:maxWidth="242dp"
         android:textAppearance="@style/Signal.Text.Body"
+        app:measureLastLine="true"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
