@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.InvalidKeyException;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.UnknownStorageIdDatabase;
@@ -19,7 +20,6 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.storage.StorageSyncModels;
 import org.thoughtcrime.securesms.storage.StorageSyncValidations;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
-import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;

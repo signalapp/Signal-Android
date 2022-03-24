@@ -37,6 +37,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
@@ -84,7 +85,6 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import org.signal.core.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.io.IOException;

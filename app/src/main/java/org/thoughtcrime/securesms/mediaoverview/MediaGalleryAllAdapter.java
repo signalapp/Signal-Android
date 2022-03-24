@@ -34,6 +34,7 @@ import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.codewaves.stickyheadergrid.StickyHeaderGridAdapter;
 
+import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.components.AudioView;
@@ -51,7 +52,6 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.livedata.LiveDataPair;
-import org.whispersystems.libsignal.util.Pair;
 
 import java.util.Collection;
 import java.util.HashMap;

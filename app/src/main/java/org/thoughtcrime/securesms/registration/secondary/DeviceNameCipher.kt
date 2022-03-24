@@ -1,10 +1,10 @@
 package org.thoughtcrime.securesms.registration.secondary
 
 import com.google.protobuf.ByteString
+import org.signal.libsignal.protocol.IdentityKeyPair
+import org.signal.libsignal.protocol.ecc.Curve
+import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.thoughtcrime.securesms.devicelist.DeviceNameProtos
-import org.whispersystems.libsignal.IdentityKeyPair
-import org.whispersystems.libsignal.ecc.Curve
-import org.whispersystems.libsignal.ecc.ECKeyPair
 import java.nio.charset.Charset
 import javax.crypto.Cipher
 import javax.crypto.Mac

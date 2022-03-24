@@ -1,12 +1,12 @@
 package org.whispersystems.signalservice.internal.contacts.crypto;
 
+import org.signal.libsignal.protocol.util.ByteUtil;
 import org.threeten.bp.Instant;
 import org.threeten.bp.LocalDateTime;
 import org.threeten.bp.Period;
 import org.threeten.bp.ZoneId;
 import org.threeten.bp.ZonedDateTime;
 import org.threeten.bp.format.DateTimeFormatter;
-import org.whispersystems.libsignal.util.ByteUtil;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.internal.contacts.entities.RemoteAttestationResponse;
 import org.whispersystems.signalservice.internal.util.Hex;

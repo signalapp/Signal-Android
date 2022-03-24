@@ -221,14 +221,14 @@ public class SignalServiceEnvelope {
   }
 
   /**
-   * @return true if the containing message is a {@link org.whispersystems.libsignal.protocol.SignalMessage}
+   * @return true if the containing message is a {@link org.signal.libsignal.protocol.message.SignalMessage}
    */
   public boolean isSignalMessage() {
     return envelope.getType().getNumber() == Envelope.Type.CIPHERTEXT_VALUE;
   }
 
   /**
-   * @return true if the containing message is a {@link org.whispersystems.libsignal.protocol.PreKeySignalMessage}
+   * @return true if the containing message is a {@link org.signal.libsignal.protocol.message.PreKeySignalMessage}
    */
   public boolean isPreKeySignalMessage() {
     return envelope.getType().getNumber() == Envelope.Type.PREKEY_BUNDLE_VALUE;

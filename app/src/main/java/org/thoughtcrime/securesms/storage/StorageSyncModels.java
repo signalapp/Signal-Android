@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
-import org.signal.zkgroup.groups.GroupMasterKey;
+import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;

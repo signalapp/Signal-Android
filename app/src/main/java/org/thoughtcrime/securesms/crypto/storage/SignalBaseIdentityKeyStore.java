@@ -6,6 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.IdentityKey;
+import org.signal.libsignal.protocol.SignalProtocolAddress;
+import org.signal.libsignal.protocol.state.IdentityKeyStore;
 import org.thoughtcrime.securesms.crypto.storage.SignalIdentityKeyStore.SaveResult;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
@@ -19,9 +22,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.LRUCache;
-import org.whispersystems.libsignal.IdentityKey;
-import org.whispersystems.libsignal.SignalProtocolAddress;
-import org.whispersystems.libsignal.state.IdentityKeyStore;
 import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.util.ArrayList;

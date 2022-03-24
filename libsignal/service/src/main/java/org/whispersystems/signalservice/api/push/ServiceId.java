@@ -2,7 +2,7 @@ package org.whispersystems.signalservice.api.push;
 
 import com.google.protobuf.ByteString;
 
-import org.whispersystems.libsignal.SignalProtocolAddress;
+import org.signal.libsignal.protocol.SignalProtocolAddress;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.Collection;

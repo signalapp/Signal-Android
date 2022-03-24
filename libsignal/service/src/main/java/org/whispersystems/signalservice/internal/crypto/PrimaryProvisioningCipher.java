@@ -8,11 +8,11 @@ package org.whispersystems.signalservice.internal.crypto;
 
 import com.google.protobuf.ByteString;
 
-import org.whispersystems.libsignal.InvalidKeyException;
-import org.whispersystems.libsignal.ecc.Curve;
-import org.whispersystems.libsignal.ecc.ECKeyPair;
-import org.whispersystems.libsignal.ecc.ECPublicKey;
-import org.whispersystems.libsignal.kdf.HKDF;
+import org.signal.libsignal.protocol.InvalidKeyException;
+import org.signal.libsignal.protocol.ecc.Curve;
+import org.signal.libsignal.protocol.ecc.ECKeyPair;
+import org.signal.libsignal.protocol.ecc.ECPublicKey;
+import org.signal.libsignal.protocol.kdf.HKDF;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.security.NoSuchAlgorithmException;

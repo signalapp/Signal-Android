@@ -13,6 +13,8 @@ import com.google.android.mms.pdu_alt.NotificationInd;
 import net.zetetic.database.sqlcipher.SQLiteStatement;
 
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.IdentityKey;
+import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.database.documents.Document;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchSet;
@@ -35,8 +37,6 @@ import org.signal.core.util.CursorUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.signal.core.util.SqlUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.IdentityKey;
-import org.whispersystems.libsignal.util.Pair;
 
 import java.io.Closeable;
 import java.io.IOException;

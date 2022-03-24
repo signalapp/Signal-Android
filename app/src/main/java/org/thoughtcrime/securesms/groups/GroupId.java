@@ -3,13 +3,13 @@ package org.thoughtcrime.securesms.groups;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.signal.zkgroup.InvalidInputException;
-import org.signal.zkgroup.groups.GroupIdentifier;
-import org.signal.zkgroup.groups.GroupMasterKey;
-import org.signal.zkgroup.groups.GroupSecretParams;
 import org.signal.core.util.Hex;
+import org.signal.libsignal.protocol.kdf.HKDFv3;
+import org.signal.libsignal.zkgroup.InvalidInputException;
+import org.signal.libsignal.zkgroup.groups.GroupIdentifier;
+import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
+import org.signal.libsignal.zkgroup.groups.GroupSecretParams;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.kdf.HKDFv3;
 
 import java.io.IOException;
 import java.security.SecureRandom;

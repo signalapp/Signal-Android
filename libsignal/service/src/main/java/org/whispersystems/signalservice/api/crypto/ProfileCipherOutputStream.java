@@ -1,6 +1,6 @@
 package org.whispersystems.signalservice.api.crypto;
 
-import org.signal.zkgroup.profiles.ProfileKey;
+import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 
 import java.io.IOException;
 import java.io.OutputStream;

@@ -1,6 +1,6 @@
 package org.whispersystems.signalservice.api.messages;
 
-import org.whispersystems.libsignal.InvalidMessageException;
+import org.signal.libsignal.protocol.InvalidMessageException;
 
 import java.util.Optional;
 

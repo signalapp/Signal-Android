@@ -4,8 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.core.util.Hex;
+import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
 
 import java.util.Arrays;
 import java.util.Collection;

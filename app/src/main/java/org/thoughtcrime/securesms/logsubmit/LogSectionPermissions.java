@@ -6,8 +6,8 @@ import android.content.pm.PackageManager;
 
 import androidx.annotation.NonNull;
 
+import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.BuildConfig;
-import org.whispersystems.libsignal.util.Pair;
 
 import java.util.ArrayList;
 import java.util.Collections;

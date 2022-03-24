@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.SmoothScroller
 import com.google.android.material.appbar.AppBarLayout
+import org.signal.libsignal.protocol.util.Pair
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.DatabaseObserver
@@ -26,7 +27,6 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList
 import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.fragments.requireListener
-import org.whispersystems.libsignal.util.Pair
 import java.util.Optional
 import kotlin.math.abs
 import kotlin.math.max

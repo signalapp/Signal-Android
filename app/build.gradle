@@ -456,7 +456,7 @@ dependencies {
     implementation project(':image-editor')
     implementation project(':donations')
 
-    implementation libs.signal.client.android
+    implementation libs.libsignal.android
     implementation libs.google.protobuf.javalite
 
     implementation(libs.mobilecoin) {

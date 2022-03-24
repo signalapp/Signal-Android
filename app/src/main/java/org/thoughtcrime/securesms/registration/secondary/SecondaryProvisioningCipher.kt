@@ -1,12 +1,12 @@
 package org.thoughtcrime.securesms.registration.secondary
 
-import org.signal.zkgroup.profiles.ProfileKey
+import org.signal.libsignal.protocol.IdentityKey
+import org.signal.libsignal.protocol.IdentityKeyPair
+import org.signal.libsignal.protocol.ecc.Curve
+import org.signal.libsignal.protocol.ecc.ECPublicKey
+import org.signal.libsignal.protocol.kdf.HKDF
+import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
-import org.whispersystems.libsignal.IdentityKey
-import org.whispersystems.libsignal.IdentityKeyPair
-import org.whispersystems.libsignal.ecc.Curve
-import org.whispersystems.libsignal.ecc.ECPublicKey
-import org.whispersystems.libsignal.kdf.HKDF
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.crypto.PrimaryProvisioningCipher
 import org.whispersystems.signalservice.internal.push.ProvisioningProtos

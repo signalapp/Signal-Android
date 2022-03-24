@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.api;
 
-import org.whispersystems.libsignal.InvalidKeyException;
-import org.whispersystems.libsignal.logging.Log;
+import org.signal.libsignal.protocol.InvalidKeyException;
+import org.signal.libsignal.protocol.logging.Log;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.kbs.HashedPin;
 import org.whispersystems.signalservice.api.kbs.KbsData;

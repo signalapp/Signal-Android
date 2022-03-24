@@ -1,9 +1,9 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
-import org.signal.zkgroup.ServerPublicParams;
-import org.signal.zkgroup.auth.ClientZkAuthOperations;
-import org.signal.zkgroup.profiles.ClientZkProfileOperations;
-import org.signal.zkgroup.receipts.ClientZkReceiptOperations;
+import org.signal.libsignal.zkgroup.ServerPublicParams;
+import org.signal.libsignal.zkgroup.auth.ClientZkAuthOperations;
+import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
+import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 
 /**

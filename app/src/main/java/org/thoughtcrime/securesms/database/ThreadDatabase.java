@@ -32,8 +32,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.jsoup.helper.StringUtil;
 import org.signal.core.util.logging.Log;
-import org.signal.zkgroup.InvalidInputException;
-import org.signal.zkgroup.groups.GroupMasterKey;
+import org.signal.libsignal.zkgroup.InvalidInputException;
+import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
 import org.thoughtcrime.securesms.database.MessageDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;

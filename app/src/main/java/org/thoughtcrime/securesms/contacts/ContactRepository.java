@@ -10,13 +10,13 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
+import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.util.CursorUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;

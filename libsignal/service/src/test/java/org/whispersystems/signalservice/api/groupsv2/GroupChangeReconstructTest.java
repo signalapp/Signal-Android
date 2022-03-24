@@ -3,13 +3,13 @@ package org.whispersystems.signalservice.api.groupsv2;
 import com.google.protobuf.ByteString;
 
 import org.junit.Test;
+import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.signal.storageservice.protos.groups.AccessControl;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedString;
 import org.signal.storageservice.protos.groups.local.DecryptedTimer;
 import org.signal.storageservice.protos.groups.local.EnabledState;
-import org.signal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 

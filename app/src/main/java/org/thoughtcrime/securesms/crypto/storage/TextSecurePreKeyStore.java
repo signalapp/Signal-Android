@@ -3,12 +3,12 @@ package org.thoughtcrime.securesms.crypto.storage;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.InvalidKeyIdException;
+import org.signal.libsignal.protocol.state.PreKeyRecord;
+import org.signal.libsignal.protocol.state.PreKeyStore;
+import org.signal.libsignal.protocol.state.SignedPreKeyRecord;
+import org.signal.libsignal.protocol.state.SignedPreKeyStore;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.whispersystems.libsignal.InvalidKeyIdException;
-import org.whispersystems.libsignal.state.PreKeyRecord;
-import org.whispersystems.libsignal.state.PreKeyStore;
-import org.whispersystems.libsignal.state.SignedPreKeyRecord;
-import org.whispersystems.libsignal.state.SignedPreKeyStore;
 import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.util.List;

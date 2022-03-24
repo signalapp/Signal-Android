@@ -1,10 +1,10 @@
 package org.thoughtcrime.securesms.groups;
 
 import org.junit.Test;
-import org.signal.zkgroup.InvalidInputException;
-import org.signal.zkgroup.groups.GroupIdentifier;
-import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.core.util.Hex;
+import org.signal.libsignal.zkgroup.InvalidInputException;
+import org.signal.libsignal.zkgroup.groups.GroupIdentifier;
+import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
 
 import java.io.IOException;
 

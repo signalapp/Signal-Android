@@ -1,6 +1,6 @@
 package org.whispersystems.signalservice.api;
 
-import org.whispersystems.libsignal.logging.Log;
+import org.signal.libsignal.protocol.logging.Log;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;

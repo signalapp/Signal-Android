@@ -8,19 +8,19 @@ package org.whispersystems.signalservice.api;
 import com.google.protobuf.ByteString;
 
 import org.signal.libsignal.metadata.certificate.SenderCertificate;
-import org.signal.zkgroup.profiles.ClientZkProfileOperations;
-import org.whispersystems.libsignal.InvalidKeyException;
-import org.whispersystems.libsignal.InvalidRegistrationIdException;
-import org.whispersystems.libsignal.NoSessionException;
-import org.whispersystems.libsignal.SessionBuilder;
-import org.whispersystems.libsignal.SignalProtocolAddress;
-import org.whispersystems.libsignal.groups.GroupSessionBuilder;
-import org.whispersystems.libsignal.logging.Log;
-import org.whispersystems.libsignal.protocol.DecryptionErrorMessage;
-import org.whispersystems.libsignal.protocol.PlaintextContent;
-import org.whispersystems.libsignal.protocol.SenderKeyDistributionMessage;
-import org.whispersystems.libsignal.state.PreKeyBundle;
-import org.whispersystems.libsignal.util.Pair;
+import org.signal.libsignal.protocol.InvalidKeyException;
+import org.signal.libsignal.protocol.InvalidRegistrationIdException;
+import org.signal.libsignal.protocol.NoSessionException;
+import org.signal.libsignal.protocol.SessionBuilder;
+import org.signal.libsignal.protocol.SignalProtocolAddress;
+import org.signal.libsignal.protocol.groups.GroupSessionBuilder;
+import org.signal.libsignal.protocol.logging.Log;
+import org.signal.libsignal.protocol.message.DecryptionErrorMessage;
+import org.signal.libsignal.protocol.message.PlaintextContent;
+import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage;
+import org.signal.libsignal.protocol.state.PreKeyBundle;
+import org.signal.libsignal.protocol.util.Pair;
+import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherOutputStream;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent;
@@ -1853,7 +1853,7 @@ public class SignalServiceMessageSender {
       byte[] ciphertext;
       try {
         ciphertext = cipher.encryptForGroup(distributionId, targetInfo.destinations, senderCertificate, content.toByteArray(), contentHint, groupId);
-      } catch (org.whispersystems.libsignal.UntrustedIdentityException e) {
+      } catch (org.signal.libsignal.protocol.UntrustedIdentityException e) {
         throw new UntrustedIdentityException("Untrusted during group encrypt", e.getName(), e.getUntrustedIdentity());
       }
 
@@ -2084,7 +2084,7 @@ public class SignalServiceMessageSender {
             SignalProtocolAddress preKeyAddress  = new SignalProtocolAddress(recipient.getIdentifier(), preKey.getDeviceId());
             SignalSessionBuilder  sessionBuilder = new SignalSessionBuilder(sessionLock, new SessionBuilder(store, preKeyAddress));
             sessionBuilder.process(preKey);
-          } catch (org.whispersystems.libsignal.UntrustedIdentityException e) {
+          } catch (org.signal.libsignal.protocol.UntrustedIdentityException e) {
             throw new UntrustedIdentityException("Untrusted identity key!", recipient.getIdentifier(), preKey.getIdentityKey());
           }
         }
@@ -2099,7 +2099,7 @@ public class SignalServiceMessageSender {
 
     try {
       return cipher.encrypt(signalProtocolAddress, unidentifiedAccess, plaintext);
-    } catch (org.whispersystems.libsignal.UntrustedIdentityException e) {
+    } catch (org.signal.libsignal.protocol.UntrustedIdentityException e) {
       throw new UntrustedIdentityException("Untrusted on send", recipient.getIdentifier(), e.getUntrustedIdentity());
     }
   }
@@ -2118,7 +2118,7 @@ public class SignalServiceMessageSender {
         try {
           SignalSessionBuilder sessionBuilder = new SignalSessionBuilder(sessionLock, new SessionBuilder(store, new SignalProtocolAddress(recipient.getIdentifier(), missingDeviceId)));
           sessionBuilder.process(preKey);
-        } catch (org.whispersystems.libsignal.UntrustedIdentityException e) {
+        } catch (org.signal.libsignal.protocol.UntrustedIdentityException e) {
           throw new UntrustedIdentityException("Untrusted identity key!", recipient.getIdentifier(), preKey.getIdentityKey());
         }
       }

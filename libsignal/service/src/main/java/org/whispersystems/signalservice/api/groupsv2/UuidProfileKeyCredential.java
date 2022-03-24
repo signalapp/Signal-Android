@@ -1,6 +1,6 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
-import org.signal.zkgroup.profiles.ProfileKeyCredential;
+import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredential;
 
 import java.util.UUID;
 

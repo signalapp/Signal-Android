@@ -3,9 +3,9 @@ package org.thoughtcrime.securesms.groups;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.signal.zkgroup.VerificationFailedException;
-import org.signal.zkgroup.auth.AuthCredentialResponse;
-import org.signal.zkgroup.groups.GroupSecretParams;
+import org.signal.libsignal.zkgroup.VerificationFailedException;
+import org.signal.libsignal.zkgroup.auth.AuthCredentialResponse;
+import org.signal.libsignal.zkgroup.groups.GroupSecretParams;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2AuthorizationString;
 import org.whispersystems.signalservice.api.groupsv2.NoCredentialForRedemptionTimeException;

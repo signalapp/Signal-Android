@@ -100,6 +100,8 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.InvalidMessageException;
+import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.BlockUnblockDialog;
 import org.thoughtcrime.securesms.GroupMembersDialog;
 import org.thoughtcrime.securesms.MainActivity;
@@ -296,8 +298,6 @@ import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil;
-import org.whispersystems.libsignal.InvalidMessageException;
-import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.signalservice.api.SignalSessionLock;
 
 import java.io.IOException;

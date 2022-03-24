@@ -73,7 +73,7 @@ public final class LogDetectorTest {
     lint()
       .files(serviceLogStub,
         java("package foo;\n" +
-               "import org.whispersystems.libsignal.logging.Log;\n" +
+               "import org.signal.libsignal.protocol.logging.Log;\n" +
                "public class Example {\n" +
                "  public void log() {\n" +
                "    Log.d(\"TAG\", \"msg\");\n" +
@@ -97,7 +97,7 @@ public final class LogDetectorTest {
     lint()
       .files(serviceLogStub,
         java("package foo;\n" +
-               "import org.whispersystems.libsignal.logging.Log;\n" +
+               "import org.signal.libsignal.protocol.logging.Log;\n" +
                "public class Example {\n" +
                "  public void log() {\n" +
                "    Log.w(\"TAG\", \"msg\", new Exception());\n" +

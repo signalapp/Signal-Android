@@ -8,8 +8,8 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupJoinInfo;
-import org.signal.zkgroup.VerificationFailedException;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
 import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
 import org.thoughtcrime.securesms.groups.GroupManager;

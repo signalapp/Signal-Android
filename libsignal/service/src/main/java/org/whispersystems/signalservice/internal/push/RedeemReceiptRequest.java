@@ -3,7 +3,7 @@ package org.whispersystems.signalservice.internal.push;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.signal.zkgroup.receipts.ReceiptCredentialPresentation;
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation;
 
 /**
  * POST /v1/donation/redeem-receipt

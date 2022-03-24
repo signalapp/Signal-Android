@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms.events
 
 import android.content.Context
+import org.signal.libsignal.protocol.IdentityKey
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.ringrtc.CameraState
-import org.whispersystems.libsignal.IdentityKey
 
 data class CallParticipant constructor(
   val callParticipantId: CallParticipantId = CallParticipantId(Recipient.UNKNOWN),

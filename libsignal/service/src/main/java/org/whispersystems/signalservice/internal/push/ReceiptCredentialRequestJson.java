@@ -2,7 +2,7 @@ package org.whispersystems.signalservice.internal.push;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.signal.zkgroup.receipts.ReceiptCredentialRequest;
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequest;
 import org.whispersystems.util.Base64;
 
 class ReceiptCredentialRequestJson {

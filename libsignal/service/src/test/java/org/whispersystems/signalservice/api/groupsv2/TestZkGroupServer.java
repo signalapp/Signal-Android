@@ -1,14 +1,14 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
-import org.signal.zkgroup.ServerPublicParams;
-import org.signal.zkgroup.ServerSecretParams;
-import org.signal.zkgroup.VerificationFailedException;
-import org.signal.zkgroup.groups.GroupPublicParams;
-import org.signal.zkgroup.profiles.ProfileKeyCommitment;
-import org.signal.zkgroup.profiles.ProfileKeyCredentialPresentation;
-import org.signal.zkgroup.profiles.ProfileKeyCredentialRequest;
-import org.signal.zkgroup.profiles.ProfileKeyCredentialResponse;
-import org.signal.zkgroup.profiles.ServerZkProfileOperations;
+import org.signal.libsignal.zkgroup.ServerPublicParams;
+import org.signal.libsignal.zkgroup.ServerSecretParams;
+import org.signal.libsignal.zkgroup.VerificationFailedException;
+import org.signal.libsignal.zkgroup.groups.GroupPublicParams;
+import org.signal.libsignal.zkgroup.profiles.ProfileKeyCommitment;
+import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialPresentation;
+import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialRequest;
+import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialResponse;
+import org.signal.libsignal.zkgroup.profiles.ServerZkProfileOperations;
 import org.whispersystems.signalservice.testutil.LibSignalLibraryUtil;
 
 import java.util.UUID;

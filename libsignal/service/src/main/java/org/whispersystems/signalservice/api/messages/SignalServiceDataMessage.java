@@ -6,8 +6,8 @@
 
 package org.whispersystems.signalservice.api.messages;
 
-import org.signal.zkgroup.groups.GroupSecretParams;
-import org.whispersystems.libsignal.InvalidMessageException;
+import org.signal.libsignal.protocol.InvalidMessageException;
+import org.signal.libsignal.zkgroup.groups.GroupSecretParams;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;

@@ -4,7 +4,7 @@ import com.annimon.stream.Stream;
 import com.google.common.collect.Sets;
 
 import org.signal.core.util.Conversions;
-import org.whispersystems.libsignal.util.ByteUtil;
+import org.signal.libsignal.protocol.util.ByteUtil;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;

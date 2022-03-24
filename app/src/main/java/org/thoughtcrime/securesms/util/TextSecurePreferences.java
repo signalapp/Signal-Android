@@ -15,7 +15,7 @@ import androidx.core.app.NotificationCompat;
 
 import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
-import org.signal.zkgroup.profiles.ProfileKey;
+import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupProtos;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;

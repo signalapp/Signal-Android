@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.internal.push.http;
 
 
-import org.signal.zkgroup.profiles.ProfileKey;
+import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.crypto.DigestingOutputStream;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherOutputStream;
 

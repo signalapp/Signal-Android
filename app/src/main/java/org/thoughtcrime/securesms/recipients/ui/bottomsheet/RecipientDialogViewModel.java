@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.ThreadUtil;
+import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.BlockUnblockDialog;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity;
@@ -34,7 +35,6 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
-import org.whispersystems.libsignal.util.Pair;
 
 import java.util.Objects;
 

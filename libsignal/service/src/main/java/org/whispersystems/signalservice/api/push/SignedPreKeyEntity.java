@@ -16,7 +16,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import org.whispersystems.libsignal.ecc.ECPublicKey;
+import org.signal.libsignal.protocol.ecc.ECPublicKey;
 import org.whispersystems.signalservice.internal.push.PreKeyEntity;
 import org.whispersystems.util.Base64;
 

@@ -7,9 +7,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import org.signal.zkgroup.InvalidInputException;
-import org.signal.zkgroup.profiles.ProfileKeyCredentialResponse;
-import org.whispersystems.libsignal.logging.Log;
+import org.signal.libsignal.protocol.logging.Log;
+import org.signal.libsignal.zkgroup.InvalidInputException;
+import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialResponse;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
 

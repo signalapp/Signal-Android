@@ -7,7 +7,7 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.data.DataFetcher;
 
 import org.signal.core.util.logging.Log;
-import org.whispersystems.libsignal.InvalidMessageException;
+import org.signal.libsignal.protocol.InvalidMessageException;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream;
 
 import java.io.File;

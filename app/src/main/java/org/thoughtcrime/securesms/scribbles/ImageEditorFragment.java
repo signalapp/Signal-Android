@@ -41,6 +41,7 @@ import org.signal.imageeditor.core.model.EditorModel;
 import org.signal.imageeditor.core.renderers.BezierDrawingRenderer;
 import org.signal.imageeditor.core.renderers.FaceBlurRenderer;
 import org.signal.imageeditor.core.renderers.MultiLineTextRenderer;
+import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.ResizeAnimation;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -62,7 +63,6 @@ import org.thoughtcrime.securesms.util.ThrottledDebouncer;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
-import org.whispersystems.libsignal.util.Pair;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Collections;

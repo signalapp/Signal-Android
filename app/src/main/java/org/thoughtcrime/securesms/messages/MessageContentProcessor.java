@@ -13,8 +13,12 @@ import com.annimon.stream.Stream;
 import com.mobilecoin.lib.exceptions.SerializationException;
 
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.SignalProtocolAddress;
+import org.signal.libsignal.protocol.ecc.ECPublicKey;
+import org.signal.libsignal.protocol.message.DecryptionErrorMessage;
+import org.signal.libsignal.protocol.state.SessionRecord;
+import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.signal.ringrtc.CallId;
-import org.signal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
@@ -128,10 +132,6 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.SignalProtocolAddress;
-import org.whispersystems.libsignal.ecc.ECPublicKey;
-import org.whispersystems.libsignal.protocol.DecryptionErrorMessage;
-import org.whispersystems.libsignal.state.SessionRecord;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
@@ -1861,8 +1861,8 @@ public final class MessageContentProcessor {
       }
     }
 
-    List<org.whispersystems.libsignal.util.Pair<RecipientId, Boolean>> unidentifiedStatus = Stream.of(members)
-                                                                                                  .map(m -> new org.whispersystems.libsignal.util.Pair<>(m.getId(), message.isUnidentified(m.requireServiceId().toString())))
+    List<org.signal.libsignal.protocol.util.Pair<RecipientId, Boolean>> unidentifiedStatus = Stream.of(members)
+                                                                                                  .map(m -> new org.signal.libsignal.protocol.util.Pair<>(m.getId(), message.isUnidentified(m.requireServiceId().toString())))
                                                                                                   .toList();
     receiptDatabase.setUnidentified(unidentifiedStatus, messageId);
   }

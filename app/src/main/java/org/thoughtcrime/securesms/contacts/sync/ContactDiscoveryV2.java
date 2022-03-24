@@ -9,12 +9,12 @@ import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.InvalidKeyException;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper.DirectoryResult;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.push.IasTrustStore;
 import org.thoughtcrime.securesms.util.SetUtil;
-import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.TrustStore;

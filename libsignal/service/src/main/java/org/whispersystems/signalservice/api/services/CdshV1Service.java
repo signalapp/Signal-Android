@@ -4,7 +4,7 @@ import com.google.protobuf.ByteString;
 
 import org.signal.cds.ClientRequest;
 import org.signal.cds.ClientResponse;
-import org.whispersystems.libsignal.util.ByteUtil;
+import org.signal.libsignal.protocol.util.ByteUtil;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.internal.ServiceResponse;

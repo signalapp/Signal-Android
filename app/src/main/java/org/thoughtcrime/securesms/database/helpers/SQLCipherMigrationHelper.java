@@ -15,6 +15,7 @@ import com.annimon.stream.function.BiFunction;
 import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.InvalidMessageException;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.AsymmetricMasterCipher;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
@@ -25,7 +26,6 @@ import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.InvalidMessageException;
 
 import java.io.IOException;
 import java.util.HashSet;

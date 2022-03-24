@@ -1,13 +1,13 @@
 package org.whispersystems.signalservice.api.services;
 
-import org.signal.zkgroup.VerificationFailedException;
-import org.signal.zkgroup.profiles.ClientZkProfileOperations;
-import org.signal.zkgroup.profiles.ProfileKey;
-import org.signal.zkgroup.profiles.ProfileKeyCredential;
-import org.signal.zkgroup.profiles.ProfileKeyCredentialRequest;
-import org.signal.zkgroup.profiles.ProfileKeyCredentialRequestContext;
-import org.signal.zkgroup.profiles.ProfileKeyVersion;
-import org.whispersystems.libsignal.util.Pair;
+import org.signal.libsignal.protocol.util.Pair;
+import org.signal.libsignal.zkgroup.VerificationFailedException;
+import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
+import org.signal.libsignal.zkgroup.profiles.ProfileKey;
+import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredential;
+import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialRequest;
+import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialRequestContext;
+import org.signal.libsignal.zkgroup.profiles.ProfileKeyVersion;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.SignalWebSocket;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;

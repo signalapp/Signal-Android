@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.api.messages.multidevice;
 
 
-import org.whispersystems.libsignal.IdentityKey;
+import org.signal.libsignal.protocol.IdentityKey;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 public class VerifiedMessage {

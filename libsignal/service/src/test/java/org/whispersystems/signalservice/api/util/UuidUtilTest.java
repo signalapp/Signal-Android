@@ -3,7 +3,7 @@ package org.whispersystems.signalservice.api.util;
 import com.google.protobuf.ByteString;
 
 import org.junit.Test;
-import org.whispersystems.libsignal.util.Hex;
+import org.signal.libsignal.protocol.util.Hex;
 
 import java.io.IOException;
 import java.util.UUID;
