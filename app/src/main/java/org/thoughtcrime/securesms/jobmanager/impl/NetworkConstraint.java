@@ -47,8 +47,6 @@ public class NetworkConstraint implements Constraint {
     ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
     NetworkInfo         activeNetworkInfo   = connectivityManager.getActiveNetworkInfo();
 
-    NewNetworkConnectivity.consistencyCheck();
-
     return activeNetworkInfo != null && activeNetworkInfo.isConnected();
   }
 
