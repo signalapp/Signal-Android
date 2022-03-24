@@ -170,10 +170,11 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
         throw new IOException("Could not validate receipt credential");
       }
 
+      ReceiptCredentialPresentation receiptCredentialPresentation = getReceiptCredentialPresentation(receiptCredential);
+
       Log.d(TAG, "Validated credential. Recording receipt and handing off to redemption job.", true);
       SignalDatabase.donationReceipts().addReceipt(DonationReceiptRecord.createForSubscription(subscription));
 
-      ReceiptCredentialPresentation receiptCredentialPresentation = getReceiptCredentialPresentation(receiptCredential);
       setOutputData(new Data.Builder().putBlobAsString(DonationReceiptRedemptionJob.INPUT_RECEIPT_CREDENTIAL_PRESENTATION,
                                                        receiptCredentialPresentation.serialize())
                                       .build());
