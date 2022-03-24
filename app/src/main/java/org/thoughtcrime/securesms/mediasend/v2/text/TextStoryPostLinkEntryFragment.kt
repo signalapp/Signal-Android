@@ -43,7 +43,14 @@ class TextStoryPostLinkEntryFragment : KeyboardEntryDialogFragment(
 
     input.addTextChangedListener(
       afterTextChanged = {
-        linkPreviewViewModel.onTextChanged(requireContext(), it!!.toString(), input.selectionStart, input.selectionEnd)
+        val scheme = "https://"
+        val (uriString, selectionStart, selectionEnd) = if (it!!.startsWith(scheme)) {
+          Triple(it, input.selectionStart, input.selectionEnd)
+        } else {
+          Triple("$scheme$it", input.selectionStart + scheme.length, input.selectionEnd + scheme.length)
+        }
+
+        linkPreviewViewModel.onTextChanged(requireContext(), uriString.toString(), selectionStart, selectionEnd)
       }
     )
 
