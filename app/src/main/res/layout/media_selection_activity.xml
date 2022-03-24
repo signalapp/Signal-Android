@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,82 +12,54 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/switch_widget"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
         android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/story_pill_toggle_background">
+        android:layout_marginBottom="8dp">
 
-        <FrameLayout
-            android:id="@+id/text_switch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <View
+            android:id="@+id/selected_pill"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="@drawable/story_pill_button_background"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/camera_switch"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintBottom_toBottomOf="@id/camera_switch"
+            app:layout_constraintEnd_toEndOf="@id/camera_switch"
+            app:layout_constraintStart_toStartOf="@id/camera_switch"
+            app:layout_constraintTop_toTopOf="@id/camera_switch" />
 
-            <TextView
-                android:id="@+id/camera_switch_mirror"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:paddingHorizontal="18dp"
-                android:text="@string/MediaSelectionActivity__camera"
-                android:textAppearance="@style/TextAppearance.Signal.Body2"
-                android:textColor="@color/story_pill_text_color"
-                android:visibility="invisible" />
-
-            <TextView
-                android:id="@+id/text_switch_actual"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:paddingHorizontal="18dp"
-                android:text="@string/MediaSelectionActivity__text"
-                android:textAppearance="@style/TextAppearance.Signal.Body2"
-                android:textColor="@color/story_pill_text_color" />
-        </FrameLayout>
-
-        <FrameLayout
+        <TextView
             android:id="@+id/camera_switch"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
-            android:background="@drawable/story_pill_button_background"
+            android:layout_height="36sp"
+            android:gravity="center"
+            android:paddingHorizontal="18dp"
+            android:shadowColor="@color/black"
+            android:text="@string/MediaSelectionActivity__camera"
+            android:textAppearance="@style/TextAppearance.Signal.Body2"
+            android:textColor="@color/story_pill_text_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/text_switch"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/red" />
 
-            <TextView
-                android:id="@+id/text_switch_mirror"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:paddingHorizontal="18dp"
-                android:text="@string/MediaSelectionActivity__text"
-                android:textAppearance="@style/TextAppearance.Signal.Body2"
-                android:textColor="@color/story_pill_text_color"
-                android:visibility="invisible" />
-
-            <TextView
-                android:id="@+id/camera_switch_actual"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:paddingHorizontal="18dp"
-                android:text="@string/MediaSelectionActivity__camera"
-                android:textAppearance="@style/TextAppearance.Signal.Body2"
-                android:textColor="@color/story_pill_text_color" />
-        </FrameLayout>
+        <TextView
+            android:id="@+id/text_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="36sp"
+            android:gravity="center"
+            android:paddingHorizontal="18dp"
+            android:shadowColor="@color/black"
+            android:shadowRadius="3"
+            android:text="@string/MediaSelectionActivity__text"
+            android:textAppearance="@style/TextAppearance.Signal.Body2"
+            android:textColor="@color/story_pill_text_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/camera_switch"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/green" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -1,18 +1,24 @@
 package org.thoughtcrime.securesms.mediasend.v2
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.KeyEvent
-import android.view.View
-import android.view.ViewGroup
+import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
+import androidx.transition.AutoTransition
+import androidx.transition.TransitionManager
+import com.google.android.material.animation.ArgbEvaluatorCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
@@ -43,6 +49,11 @@ class MediaSelectionActivity :
   EmojiSearchFragment.Callback,
   SearchConfigurationProvider {
 
+  private var animateInShadowLayerValueAnimator: ValueAnimator? = null
+  private var animateInTextColorValueAnimator: ValueAnimator? = null
+  private var animateOutShadowLayerValueAnimator: ValueAnimator? = null
+  private var animateOutTextColorValueAnimator: ValueAnimator? = null
+
   lateinit var viewModel: MediaSelectionViewModel
 
   private val textViewModel: TextStoryPostCreationViewModel by viewModels()
@@ -69,9 +80,16 @@ class MediaSelectionActivity :
     val factory = MediaSelectionViewModel.Factory(destination, transportOption, initialMedia, message, isReply, MediaSelectionRepository(this))
     viewModel = ViewModelProvider(this, factory)[MediaSelectionViewModel::class.java]
 
-    val textStoryToggle: ViewGroup = findViewById(R.id.switch_widget)
-    val textSwitch: View = findViewById(R.id.text_switch)
-    val cameraSwitch: View = findViewById(R.id.camera_switch)
+    val textStoryToggle: ConstraintLayout = findViewById(R.id.switch_widget)
+    val cameraSelectedConstraintSet = ConstraintSet().apply {
+      clone(textStoryToggle)
+    }
+    val textSelectedConstraintSet = ConstraintSet().apply {
+      clone(this@MediaSelectionActivity, R.layout.media_selection_activity_text_selected_constraints)
+    }
+
+    val textSwitch: TextView = findViewById(R.id.text_switch)
+    val cameraSwitch: TextView = findViewById(R.id.camera_switch)
 
     textSwitch.setOnClickListener {
       viewModel.sendCommand(HudCommand.GoToText)
@@ -101,19 +119,53 @@ class MediaSelectionActivity :
       when (d.id) {
         R.id.mediaCaptureFragment -> {
           textStoryToggle.visible = canDisplayStorySwitch()
-          textSwitch.isSelected = false
-          cameraSwitch.isSelected = true
+
+          animateTextStyling(cameraSwitch, textSwitch, 200)
+          TransitionManager.beginDelayedTransition(textStoryToggle, AutoTransition().setDuration(200))
+          cameraSelectedConstraintSet.applyTo(textStoryToggle)
         }
         R.id.textStoryPostCreationFragment -> {
           textStoryToggle.visible = canDisplayStorySwitch()
-          textSwitch.isSelected = true
-          cameraSwitch.isSelected = false
+
+          animateTextStyling(textSwitch, cameraSwitch, 200)
+          TransitionManager.beginDelayedTransition(textStoryToggle, AutoTransition().setDuration(200))
+          textSelectedConstraintSet.applyTo(textStoryToggle)
         }
         else -> textStoryToggle.visible = false
       }
     }
 
     onBackPressedDispatcher.addCallback(OnBackPressed())
+  }
+
+  private fun animateTextStyling(selectedSwitch: TextView, unselectedSwitch: TextView, duration: Long) {
+    animateInShadowLayerValueAnimator?.cancel()
+    animateInTextColorValueAnimator?.cancel()
+    animateOutShadowLayerValueAnimator?.cancel()
+    animateOutTextColorValueAnimator?.cancel()
+
+    animateInShadowLayerValueAnimator = ValueAnimator.ofFloat(selectedSwitch.shadowRadius, 0f).apply {
+      this.duration = duration
+      addUpdateListener { selectedSwitch.setShadowLayer(it.animatedValue as Float, 0f, 0f, Color.BLACK) }
+      start()
+    }
+    animateInTextColorValueAnimator = ValueAnimator.ofInt(selectedSwitch.currentTextColor, Color.BLACK).apply {
+      setEvaluator(ArgbEvaluatorCompat.getInstance())
+      this.duration = duration
+      addUpdateListener { selectedSwitch.setTextColor(it.animatedValue as Int) }
+      start()
+    }
+    animateOutShadowLayerValueAnimator = ValueAnimator.ofFloat(unselectedSwitch.shadowRadius, 3f).apply {
+      this.duration = duration
+      addUpdateListener { unselectedSwitch.setShadowLayer(it.animatedValue as Float, 0f, 0f, Color.BLACK) }
+      start()
+    }
+    animateOutTextColorValueAnimator = ValueAnimator.ofInt(unselectedSwitch.currentTextColor, Color.WHITE).apply {
+      setEvaluator(ArgbEvaluatorCompat.getInstance())
+      this.duration = duration
+      addUpdateListener { unselectedSwitch.setTextColor(it.animatedValue as Int) }
+      start()
+    }
   }
 
   private fun canDisplayStorySwitch(): Boolean {
