@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 
-import org.whispersystems.libsignal.util.Pair;
+import org.signal.libsignal.protocol.util.Pair;
 
 public final class LiveDataPair<A, B> extends MediatorLiveData<Pair<A, B>> {
   private A a;

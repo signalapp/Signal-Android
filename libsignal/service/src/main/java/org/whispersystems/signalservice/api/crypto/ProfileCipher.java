@@ -1,8 +1,8 @@
 package org.whispersystems.signalservice.api.crypto;
 
 
-import org.signal.zkgroup.profiles.ProfileKey;
-import org.whispersystems.libsignal.util.ByteUtil;
+import org.signal.libsignal.protocol.util.ByteUtil;
+import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.IOException;

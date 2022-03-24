@@ -6,7 +6,7 @@
 
 package org.whispersystems.signalservice.internal.util;
 
-import org.whispersystems.libsignal.util.Pair;
+import org.signal.libsignal.protocol.util.Pair;
 import org.whispersystems.signalservice.api.push.TrustStore;
 
 import java.io.IOException;

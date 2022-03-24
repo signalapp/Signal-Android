@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.api;
 
-import org.whispersystems.libsignal.SignalProtocolAddress;
-import org.whispersystems.libsignal.state.SessionStore;
+import org.signal.libsignal.protocol.SignalProtocolAddress;
+import org.signal.libsignal.protocol.state.SessionStore;
 
 import java.util.List;
 import java.util.Set;

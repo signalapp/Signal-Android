@@ -1,8 +1,8 @@
 package org.whispersystems.signalservice.api.crypto;
 
 import org.signal.libsignal.crypto.Aes256GcmDecryption;
-import org.signal.zkgroup.profiles.ProfileKey;
-import org.whispersystems.libsignal.InvalidKeyException;
+import org.signal.libsignal.protocol.InvalidKeyException;
+import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.FilterInputStream;

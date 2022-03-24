@@ -21,10 +21,10 @@ import androidx.appcompat.app.AlertDialog;
 import org.signal.core.util.MapUtil;
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
-import org.whispersystems.libsignal.util.Pair;
 
 import java.io.File;
 import java.io.FileOutputStream;

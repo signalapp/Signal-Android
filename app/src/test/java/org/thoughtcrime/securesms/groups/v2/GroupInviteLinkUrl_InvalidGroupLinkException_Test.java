@@ -6,8 +6,8 @@ import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.junit.Test;
+import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.storageservice.protos.groups.GroupInviteLink;
-import org.signal.zkgroup.InvalidInputException;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.util.Base64UrlSafe;
 

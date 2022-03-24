@@ -2,8 +2,8 @@ package org.whispersystems.signalservice.internal.websocket;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 
-import org.whispersystems.libsignal.logging.Log;
-import org.whispersystems.libsignal.util.Pair;
+import org.signal.libsignal.protocol.logging.Log;
+import org.signal.libsignal.protocol.util.Pair;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.TrustStore;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;

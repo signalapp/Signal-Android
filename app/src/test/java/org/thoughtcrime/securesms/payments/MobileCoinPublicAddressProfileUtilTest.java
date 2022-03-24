@@ -4,10 +4,10 @@ import com.google.protobuf.ByteString;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.signal.libsignal.protocol.IdentityKey;
+import org.signal.libsignal.protocol.IdentityKeyPair;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.IdentityKey;
-import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

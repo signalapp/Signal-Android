@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.api.messages;
 
-import org.signal.zkgroup.InvalidInputException;
-import org.signal.zkgroup.groups.GroupMasterKey;
+import org.signal.libsignal.zkgroup.InvalidInputException;
+import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 /**

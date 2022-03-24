@@ -67,7 +67,7 @@ public final class SignalLogDetector extends Detector implements Detector.UastSc
       context.report(LOG_NOT_SIGNAL, call, context.getLocation(call), "Using 'org.signal.glide.Log' instead of a Signal Logger", fix);
     }
 
-    if (evaluator.isMemberInClass(method, "org.whispersystems.libsignal.logging.Log")) {
+    if (evaluator.isMemberInClass(method, "org.signal.libsignal.protocol.logging.Log")) {
       LintFix fix = quickFixIssueLog(call);
       context.report(LOG_NOT_APP, call, context.getLocation(call), "Using Signal server logger instead of app level Logger", fix);
     }

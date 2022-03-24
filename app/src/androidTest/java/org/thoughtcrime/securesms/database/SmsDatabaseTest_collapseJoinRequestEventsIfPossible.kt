@@ -8,7 +8,7 @@ import org.hamcrest.Matchers.nullValue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.signal.zkgroup.groups.GroupMasterKey
+import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
 import org.thoughtcrime.securesms.database.model.databaseprotos.addMember
 import org.thoughtcrime.securesms.database.model.databaseprotos.addRequestingMember

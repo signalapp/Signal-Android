@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms.database.model.databaseprotos
 
 import com.google.protobuf.ByteString
+import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.storageservice.protos.groups.Member
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
 import org.signal.storageservice.protos.groups.local.DecryptedMember
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember
-import org.signal.zkgroup.groups.GroupMasterKey
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos

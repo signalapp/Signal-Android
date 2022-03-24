@@ -2,8 +2,8 @@ package org.whispersystems.signalservice.internal.push;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.signal.zkgroup.InvalidInputException;
-import org.signal.zkgroup.receipts.ReceiptCredentialResponse;
+import org.signal.libsignal.zkgroup.InvalidInputException;
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse;
 import org.whispersystems.util.Base64;
 
 import java.io.IOException;

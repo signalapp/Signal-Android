@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.groups;
 
 import androidx.annotation.NonNull;
 
-import org.signal.zkgroup.auth.AuthCredentialResponse;
+import org.signal.libsignal.zkgroup.auth.AuthCredentialResponse;
 
 import java.util.Collections;
 import java.util.HashMap;

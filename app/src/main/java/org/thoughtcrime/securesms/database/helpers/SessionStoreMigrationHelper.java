@@ -8,8 +8,9 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.signal.core.util.Conversions;
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.InvalidMessageException;
+import org.signal.libsignal.protocol.state.SessionRecord;
 import org.thoughtcrime.securesms.database.SessionDatabase;
-import org.whispersystems.libsignal.state.SessionRecord;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.io.File;
@@ -78,7 +79,7 @@ public final class SessionStoreMigrationHelper {
             contentValues.put(SessionDatabase.RECORD, sessionRecord.serialize());
 
             database.insert(SessionDatabase.TABLE_NAME, null, contentValues);
-          } catch (NumberFormatException | IOException e) {
+          } catch (NumberFormatException | IOException | InvalidMessageException e) {
             Log.w(TAG, e);
           }
         }

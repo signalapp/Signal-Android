@@ -1,6 +1,6 @@
 package org.whispersystems.signalservice.api;
 
-import org.whispersystems.libsignal.state.SignalProtocolStore;
+import org.signal.libsignal.protocol.state.SignalProtocolStore;
 
 /**
  * And extension of the normal protocol store interface that has additional methods that are needed

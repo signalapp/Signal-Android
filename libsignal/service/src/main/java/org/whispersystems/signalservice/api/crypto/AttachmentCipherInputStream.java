@@ -6,9 +6,9 @@
 
 package org.whispersystems.signalservice.api.crypto;
 
-import org.whispersystems.libsignal.InvalidMacException;
-import org.whispersystems.libsignal.InvalidMessageException;
-import org.whispersystems.libsignal.kdf.HKDFv3;
+import org.signal.libsignal.protocol.InvalidMacException;
+import org.signal.libsignal.protocol.InvalidMessageException;
+import org.signal.libsignal.protocol.kdf.HKDFv3;
 import org.whispersystems.signalservice.internal.util.ContentLengthInputStream;
 import org.whispersystems.signalservice.internal.util.Util;
 

@@ -4,8 +4,8 @@ import com.google.protobuf.ByteString;
 
 import org.signal.cds.ClientRequest;
 import org.signal.cds.ClientResponse;
-import org.signal.zkgroup.profiles.ProfileKey;
-import org.whispersystems.libsignal.util.ByteUtil;
+import org.signal.libsignal.protocol.util.ByteUtil;
+import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.PNI;

@@ -1,6 +1,6 @@
 package org.whispersystems.signalservice.internal.util.concurrent;
 
-import org.whispersystems.libsignal.logging.Log;
+import org.signal.libsignal.protocol.logging.Log;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -24,10 +24,12 @@ import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
+import org.signal.libsignal.protocol.IdentityKey
+import org.signal.libsignal.protocol.InvalidKeyException
+import org.signal.libsignal.zkgroup.InvalidInputException
+import org.signal.libsignal.zkgroup.profiles.ProfileKey
+import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredential
 import org.signal.storageservice.protos.groups.local.DecryptedGroup
-import org.signal.zkgroup.InvalidInputException
-import org.signal.zkgroup.profiles.ProfileKey
-import org.signal.zkgroup.profiles.ProfileKeyCredential
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.Badges.toDatabaseBadge
 import org.thoughtcrime.securesms.badges.models.Badge
@@ -87,9 +89,6 @@ import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperFactory
 import org.thoughtcrime.securesms.wallpaper.WallpaperStorage
-import org.whispersystems.libsignal.IdentityKey
-import org.whispersystems.libsignal.InvalidKeyException
-import org.whispersystems.libsignal.util.Pair
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
 import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.push.PNI
@@ -483,8 +482,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         }
 
         if (remapped != null) {
-          Recipient.live(remapped.first()).refresh(remapped.second())
-          ApplicationDependencies.getRecipientCache().remap(remapped.first(), remapped.second())
+          Recipient.live(remapped.first).refresh(remapped.second)
+          ApplicationDependencies.getRecipientCache().remap(remapped.first, remapped.second)
         }
 
         if (recipientsNeedingRefresh.isNotEmpty() || remapped != null) {
@@ -1701,9 +1700,9 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       val rowsUpdated = database.update(TABLE_NAME, values, where, null)
       if (rowsUpdated == idWithWallpaper.size) {
         for (pair in idWithWallpaper) {
-          ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(pair.first())
-          if (pair.second() != null) {
-            WallpaperStorage.onWallpaperDeselected(context, Uri.parse(pair.second()))
+          ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(pair.first)
+          if (pair.second != null) {
+            WallpaperStorage.onWallpaperDeselected(context, Uri.parse(pair.second))
           }
         }
       } else {

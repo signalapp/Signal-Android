@@ -6,8 +6,8 @@ import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.signal.core.util.logging.Log;
-import org.signal.zkgroup.InvalidInputException;
-import org.signal.zkgroup.auth.AuthCredentialResponse;
+import org.signal.libsignal.zkgroup.InvalidInputException;
+import org.signal.libsignal.zkgroup.auth.AuthCredentialResponse;
 import org.thoughtcrime.securesms.database.model.databaseprotos.TemporalAuthCredentialResponse;
 import org.thoughtcrime.securesms.database.model.databaseprotos.TemporalAuthCredentialResponses;
 import org.thoughtcrime.securesms.groups.GroupsV2Authorization;

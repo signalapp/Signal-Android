@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.database.model
 
+import org.signal.libsignal.protocol.IdentityKey
 import org.thoughtcrime.securesms.database.IdentityDatabase
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.whispersystems.libsignal.IdentityKey
 
 data class IdentityStoreRecord(
   val addressName: String,

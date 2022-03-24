@@ -6,7 +6,7 @@
 
 package org.whispersystems.signalservice.api.crypto;
 
-import org.whispersystems.libsignal.IdentityKey;
+import org.signal.libsignal.protocol.IdentityKey;
 
 public class UntrustedIdentityException extends Exception {
 

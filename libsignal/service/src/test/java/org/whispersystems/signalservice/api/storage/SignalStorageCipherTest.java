@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.api.storage;
 
 import org.junit.Test;
-import org.whispersystems.libsignal.InvalidKeyException;
+import org.signal.libsignal.protocol.InvalidKeyException;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import static org.junit.Assert.assertArrayEquals;

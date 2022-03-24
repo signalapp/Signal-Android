@@ -9,8 +9,8 @@ import com.bumptech.glide.util.ContentLengthInputStream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.Pair;
 
 import java.io.FilterInputStream;
 import java.io.IOException;

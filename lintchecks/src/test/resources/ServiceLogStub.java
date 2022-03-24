@@ -1,4 +1,4 @@
-package org.whispersystems.libsignal.logging;
+package org.signal.libsignal.protocol.logging;
 
 public class Log {
 

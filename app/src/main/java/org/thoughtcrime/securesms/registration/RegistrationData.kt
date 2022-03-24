@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.registration
 
-import org.signal.zkgroup.profiles.ProfileKey
+import org.signal.libsignal.zkgroup.profiles.ProfileKey
 
 data class RegistrationData(
   val code: String,

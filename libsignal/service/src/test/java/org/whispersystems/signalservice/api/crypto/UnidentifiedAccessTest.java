@@ -3,8 +3,8 @@ package org.whispersystems.signalservice.api.crypto;
 import junit.framework.TestCase;
 
 import org.conscrypt.OpenSSLProvider;
-import org.signal.zkgroup.InvalidInputException;
-import org.signal.zkgroup.profiles.ProfileKey;
+import org.signal.libsignal.zkgroup.InvalidInputException;
+import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 
 import java.security.Security;
 import java.util.Arrays;

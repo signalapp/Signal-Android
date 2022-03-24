@@ -8,11 +8,11 @@ import org.mockito.Mockito.mock
 import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.`when`
+import org.signal.libsignal.protocol.IdentityKey
+import org.signal.libsignal.protocol.SignalProtocolAddress
+import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.thoughtcrime.securesms.database.IdentityDatabase
 import org.thoughtcrime.securesms.database.model.IdentityStoreRecord
-import org.whispersystems.libsignal.IdentityKey
-import org.whispersystems.libsignal.SignalProtocolAddress
-import org.whispersystems.libsignal.ecc.ECPublicKey
 import org.whispersystems.signalservice.test.LibSignalLibraryUtil.assumeLibSignalSupportedOnOS
 
 class SignalBaseIdentityKeyStoreTest {

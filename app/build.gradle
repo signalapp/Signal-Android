@@ -457,7 +457,7 @@ dependencies {
     implementation project(':donations')
     implementation project(':contacts')
 
-    implementation libs.signal.client.android
+    implementation libs.libsignal.android
     implementation libs.google.protobuf.javalite
 
     implementation(libs.mobilecoin) {
