@@ -78,12 +78,22 @@ class StoryTextPostPreviewFragment : Fragment(R.layout.stories_text_post_preview
 
   private fun loadPreview(storyTextThumb: ImageView, storyTextPreview: StoryTextPostView) {
     storyTextPreview.doOnNextLayout {
-      storyTextThumb.setImageBitmap(storyTextPreview.drawToBitmap())
-      requireActivity().supportStartPostponedEnterTransition()
-      storyTextThumb.postDelayed({
-        storyTextThumb.visible = false
-      }, 200)
+      if (it.isLaidOut) {
+        actualLoadPreview(storyTextThumb, storyTextPreview)
+      } else {
+        it.post {
+          actualLoadPreview(storyTextThumb, storyTextPreview)
+        }
+      }
     }
+  }
+
+  private fun actualLoadPreview(storyTextThumb: ImageView, storyTextPreview: StoryTextPostView) {
+    storyTextThumb.setImageBitmap(storyTextPreview.drawToBitmap())
+    requireActivity().supportStartPostponedEnterTransition()
+    storyTextThumb.postDelayed({
+      storyTextThumb.visible = false
+    }, 200)
   }
 
   @SuppressLint("AlertDialogBuilderUsage")
