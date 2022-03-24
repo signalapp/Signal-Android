@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.ActionMenuView
 import androidx.appcompat.widget.Toolbar
@@ -14,8 +15,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.components.SearchToolbar
@@ -59,6 +60,12 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
   private var previousTopToastPopup: TopToastPopup? = null
 
   private val destinationChangedListener = DestinationChangedListener()
+
+  private val openSettings = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+    if (result.resultCode == MainActivity.RESULT_CONFIG_CHANGED) {
+      requireActivity().recreate()
+    }
+  }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     _toolbar = view.findViewById(R.id.toolbar)
@@ -192,7 +199,7 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
 
   private fun initializeSettingsTouchTarget() {
     val touchArea = requireView().findViewById<View>(R.id.toolbar_settings_touch_area)
-    touchArea.setOnClickListener { startActivity(AppSettingsActivity.home(requireContext())) }
+    touchArea.setOnClickListener { openSettings.launch(AppSettingsActivity.home(requireContext())) }
   }
 
   private fun handleNotificationProfile() {
