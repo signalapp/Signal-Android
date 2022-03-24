@@ -191,7 +191,7 @@ public class MessageSender {
       List<AttachmentId> attachmentIds = Stream.of(preUploadResults).map(PreUploadResult::getAttachmentId).toList();
       List<String>       jobIds        = Stream.of(preUploadResults).map(PreUploadResult::getJobIds).flatMap(Stream::of).toList();
 
-      attachmentDatabase.updateMessageId(attachmentIds, messageId);
+      attachmentDatabase.updateMessageId(attachmentIds, messageId, message.getStoryType().isStory());
 
       sendMediaMessage(context, recipient, false, messageId, jobIds);
       onMessageSent();
@@ -227,7 +227,7 @@ public class MessageSender {
                                                                                     false,
                                                                                     null);
 
-      attachmentDatabase.updateMessageId(preUploadAttachmentIds, primaryMessageId);
+      attachmentDatabase.updateMessageId(preUploadAttachmentIds, primaryMessageId, primaryMessage.getStoryType().isStory());
       messageIds.add(primaryMessageId);
 
       if (messages.size() > 0) {
@@ -255,7 +255,7 @@ public class MessageSender {
             attachmentIds.add(attachmentId);
           }
 
-          attachmentDatabase.updateMessageId(attachmentIds, messageId);
+          attachmentDatabase.updateMessageId(attachmentIds, messageId, secondaryMessage.getStoryType().isStory());
           messageIds.add(messageId);
         }
 
