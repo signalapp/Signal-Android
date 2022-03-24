@@ -17,8 +17,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.Conversions;
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
-import org.signal.libsignal.protocol.kdf.HKDFv3;
-import org.signal.libsignal.protocol.util.ByteUtil;
 import org.thoughtcrime.securesms.backup.BackupProtos.Attachment;
 import org.thoughtcrime.securesms.backup.BackupProtos.BackupFrame;
 import org.thoughtcrime.securesms.backup.BackupProtos.DatabaseVersion;
@@ -39,6 +37,8 @@ import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.BackupUtil;
 import org.signal.core.util.SqlUtil;
+import org.whispersystems.libsignal.kdf.HKDFv3;
+import org.whispersystems.libsignal.util.ByteUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

@@ -7,8 +7,8 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.requireNonNullString
-import org.signal.libsignal.protocol.SignalProtocolAddress
-import org.signal.libsignal.protocol.state.SessionRecord
+import org.whispersystems.libsignal.SignalProtocolAddress
+import org.whispersystems.libsignal.state.SessionRecord
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import java.io.IOException

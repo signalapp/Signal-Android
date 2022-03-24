@@ -10,12 +10,12 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
 import org.signal.core.util.concurrent.SignalExecutors;
-import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor;
+import org.whispersystems.libsignal.util.Pair;
 
 import java.util.concurrent.Executor;
 

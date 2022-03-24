@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
-import org.signal.libsignal.protocol.util.Pair;
+import org.whispersystems.libsignal.util.Pair;
 
 import java.security.InvalidParameterException;
 import java.util.Collections;

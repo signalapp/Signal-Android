@@ -1,6 +1,6 @@
 package org.whispersystems.signalservice.internal.push;
 
-import org.signal.libsignal.protocol.logging.Log;
+import org.whispersystems.libsignal.logging.Log;
 
 import java.io.IOException;
 import java.net.InetAddress;

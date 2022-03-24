@@ -20,11 +20,11 @@ package org.thoughtcrime.securesms.crypto;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.signal.libsignal.protocol.InvalidMessageException;
-import org.signal.libsignal.protocol.ecc.Curve;
-import org.signal.libsignal.protocol.ecc.ECPrivateKey;
 import org.thoughtcrime.securesms.util.Base64;
 import org.signal.core.util.Hex;
+import org.whispersystems.libsignal.InvalidMessageException;
+import org.whispersystems.libsignal.ecc.Curve;
+import org.whispersystems.libsignal.ecc.ECPrivateKey;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -86,12 +86,12 @@ public class MasterCipher {
   }
 	
   public ECPrivateKey decryptKey(byte[] key)
-      throws org.signal.libsignal.protocol.InvalidKeyException
+      throws org.whispersystems.libsignal.InvalidKeyException
   {
     try {
       return Curve.decodePrivatePoint(decryptBytes(key));
     } catch (InvalidMessageException ime) {
-      throw new org.signal.libsignal.protocol.InvalidKeyException(ime);
+      throw new org.whispersystems.libsignal.InvalidKeyException(ime);
     }
   }
 	

@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.database
 
 import android.net.Uri
 import org.signal.core.util.Bitmask
-import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredential
+import org.signal.zkgroup.profiles.ProfileKeyCredential
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.ChatColors

@@ -8,7 +8,7 @@ import com.bumptech.glide.load.data.DataFetcher;
 
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.Hex;
-import org.signal.libsignal.protocol.InvalidMessageException;
+import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 
 import java.io.IOException;

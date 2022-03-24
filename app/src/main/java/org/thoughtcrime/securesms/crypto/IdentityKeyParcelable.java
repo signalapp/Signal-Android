@@ -22,8 +22,8 @@ import android.os.Parcelable;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.util.ParcelUtil;
-import org.signal.libsignal.protocol.IdentityKey;
-import org.signal.libsignal.protocol.InvalidKeyException;
+import org.whispersystems.libsignal.IdentityKey;
+import org.whispersystems.libsignal.InvalidKeyException;
 
 public class IdentityKeyParcelable implements Parcelable {
 

@@ -7,11 +7,11 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
-import org.signal.libsignal.protocol.InvalidKeyException
-import org.signal.libsignal.protocol.ecc.Curve
-import org.signal.libsignal.protocol.ecc.ECKeyPair
-import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 import org.thoughtcrime.securesms.util.Base64
+import org.whispersystems.libsignal.InvalidKeyException
+import org.whispersystems.libsignal.ecc.Curve
+import org.whispersystems.libsignal.ecc.ECKeyPair
+import org.whispersystems.libsignal.state.SignedPreKeyRecord
 import org.whispersystems.signalservice.api.push.ServiceId
 import java.io.IOException
 import java.util.LinkedList

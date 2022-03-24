@@ -18,8 +18,6 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase;
 import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.Conversions;
 import org.signal.core.util.logging.Log;
-import org.signal.libsignal.protocol.kdf.HKDFv3;
-import org.signal.libsignal.protocol.util.ByteUtil;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
@@ -53,6 +51,8 @@ import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.libsignal.kdf.HKDFv3;
+import org.whispersystems.libsignal.util.ByteUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;

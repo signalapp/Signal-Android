@@ -34,7 +34,7 @@ dependencies {
     api libs.google.libphonenumber
     api libs.jackson.core
 
-    implementation libs.libsignal.client
+    implementation libs.signal.client.java
     api libs.square.okhttp3
     api libs.square.okio
     implementation libs.threeten.threetenbp
@@ -46,7 +46,7 @@ dependencies {
     testImplementation testLibs.conscrypt.openjdk.uber
     testImplementation testLibs.mockito.core
 
-    testFixturesImplementation libs.libsignal.client
+    testFixturesImplementation libs.signal.client.java
     testFixturesImplementation testLibs.junit.junit
 }
 

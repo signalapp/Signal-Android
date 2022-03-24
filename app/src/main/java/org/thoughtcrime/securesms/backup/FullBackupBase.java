@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.greenrobot.eventbus.EventBus;
-import org.signal.libsignal.protocol.util.ByteUtil;
+import org.whispersystems.libsignal.util.ByteUtil;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
