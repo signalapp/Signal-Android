@@ -428,10 +428,14 @@ public class ThumbnailView extends FrameLayout {
 
   public void clear(GlideRequests glideRequests) {
     glideRequests.clear(image);
+    image.setImageDrawable(null);
 
     if (transferControls.isPresent()) {
       getTransferControls().clear();
     }
+
+    glideRequests.clear(blurhash);
+    blurhash.setImageDrawable(null);
 
     slide = null;
   }

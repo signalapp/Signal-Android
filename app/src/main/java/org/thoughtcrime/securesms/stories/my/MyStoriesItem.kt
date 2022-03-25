@@ -103,9 +103,9 @@ object MyStoriesItem {
       if (record.storyType.isTextStory) {
         storyPreview.setImageResource(GlideApp.with(storyPreview), StoryTextPostModel.parseFrom(record), 0, 0)
       } else if (thumbnail != null) {
-        storyPreview.setImageResource(GlideApp.with(itemView), thumbnail, false, true)
+        storyPreview.setImageResource(GlideApp.with(storyPreview), thumbnail, false, true)
       } else {
-        storyPreview.clear(GlideApp.with(itemView))
+        storyPreview.clear(GlideApp.with(storyPreview))
       }
     }
 

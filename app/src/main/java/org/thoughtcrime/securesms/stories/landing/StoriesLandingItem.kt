@@ -136,6 +136,7 @@ object StoriesLandingItem {
           storyMulti.visible = false
         }
       } else {
+        storyMulti.clear(GlideApp.with(storyPreview))
         storyMulti.visible = false
       }
 
