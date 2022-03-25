@@ -143,7 +143,8 @@ public class SmsSendJob extends SendJob {
       throw new UndeliverableMessageException("Not a valid SMS destination! " + recipient);
     }
 
-    ArrayList<String> messages                = SmsManager.getDefault().divideMessage(message.getBody());
+    SmsManager               smsManager       = getSmsManagerFor(message.getSubscriptionId());
+    ArrayList<String>        messages         = smsManager.divideMessage(message.getBody());
     ArrayList<PendingIntent> sentIntents      = constructSentIntents(message.getId(), message.getType(), messages);
     ArrayList<PendingIntent> deliveredIntents = constructDeliveredIntents(message.getId(), message.getType(), messages);
 
@@ -152,7 +153,7 @@ public class SmsSendJob extends SendJob {
     // catching it and marking the message as a failure.  That way at least it doesn't
     // repeatedly crash every time you start the app.
     try {
-      getSmsManagerFor(message.getSubscriptionId()).sendMultipartTextMessage(recipient, null, messages, sentIntents, deliveredIntents);
+      smsManager.sendMultipartTextMessage(recipient, null, messages, sentIntents, deliveredIntents);
     } catch (NullPointerException | IllegalArgumentException npe) {
       warn(TAG, npe);
       log(TAG, String.valueOf(message.getDateSent()), "Recipient: " + recipient);
@@ -160,9 +161,8 @@ public class SmsSendJob extends SendJob {
 
       try {
         for (int i=0;i<messages.size();i++) {
-          getSmsManagerFor(message.getSubscriptionId()).sendTextMessage(recipient, null, messages.get(i),
-                                                                        sentIntents.get(i),
-                                                                        deliveredIntents == null ? null : deliveredIntents.get(i));
+          smsManager.sendTextMessage(recipient, null, messages.get(i), sentIntents.get(i),
+                                     deliveredIntents == null ? null : deliveredIntents.get(i));
         }
       } catch (NullPointerException | IllegalArgumentException npe2) {
         warn(TAG, npe);
