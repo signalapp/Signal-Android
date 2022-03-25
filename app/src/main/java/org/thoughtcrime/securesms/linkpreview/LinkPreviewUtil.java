@@ -39,6 +39,7 @@ public final class LinkPreviewUtil {
   private static final Pattern DOMAIN_PATTERN             = Pattern.compile("^(https?://)?([^/]+).*$");
   private static final Pattern ALL_ASCII_PATTERN          = Pattern.compile("^[\\x00-\\x7F]*$");
   private static final Pattern ALL_NON_ASCII_PATTERN      = Pattern.compile("^[^\\x00-\\x7F]*$");
+  private static final Pattern ILLEGAL_CHARACTERS_PATTERN = Pattern.compile("[\u202C\u202D\u202E\u2500-\u25FF]");
   private static final Pattern OPEN_GRAPH_TAG_PATTERN     = Pattern.compile("<\\s*meta[^>]*property\\s*=\\s*\"\\s*og:([^\"]+)\"[^>]*/?\\s*>");
   private static final Pattern ARTICLE_TAG_PATTERN        = Pattern.compile("<\\s*meta[^>]*property\\s*=\\s*\"\\s*article:([^\"]+)\"[^>]*/?\\s*>");
   private static final Pattern OPEN_GRAPH_CONTENT_PATTERN = Pattern.compile("content\\s*=\\s*\"([^\"]*)\"");
@@ -80,6 +81,10 @@ public final class LinkPreviewUtil {
   }
 
   public static boolean isLegalUrl(@NonNull String url) {
+    if (ILLEGAL_CHARACTERS_PATTERN.matcher(url).find()) {
+      return false;
+    }
+
     Matcher matcher = DOMAIN_PATTERN.matcher(url);
 
     if (matcher.matches()) {

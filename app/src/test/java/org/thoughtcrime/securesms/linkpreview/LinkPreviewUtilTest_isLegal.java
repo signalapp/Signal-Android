@@ -30,6 +30,12 @@ public class LinkPreviewUtilTest_isLegal {
         { "http://foo.кц.рф",                      false },
         { "https://abcdefg.onion",                 false },
         { "https://abcdefg.i2p",                   false },
+        { "кц.рф\u202C",                           false },
+        { "кц.рф\u202D",                           false },
+        { "кц.рф\u202E",                           false },
+        { "кц.рф\u2500",                           false },
+        { "кц.рф\u25AA",                           false },
+        { "кц.рф\u25FF",                           false },
         { "",                                      false }
     });
   }
