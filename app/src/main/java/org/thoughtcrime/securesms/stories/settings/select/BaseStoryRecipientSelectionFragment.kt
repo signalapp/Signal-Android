@@ -137,7 +137,7 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
   private fun initializeContactSelectionFragment() {
     val contactSelectionListFragment = ContactSelectionListFragment()
     val arguments = ContactSelectionArguments(
-      displayMode = ContactsCursorLoader.DisplayMode.FLAG_PUSH,
+      displayMode = ContactsCursorLoader.DisplayMode.FLAG_PUSH or ContactsCursorLoader.DisplayMode.FLAG_HIDE_NEW,
       isRefreshable = false,
       displayRecents = false,
       selectionLimits = SelectionLimits.NO_LIMITS,
