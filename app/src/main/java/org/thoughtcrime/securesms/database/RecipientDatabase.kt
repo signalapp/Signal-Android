@@ -11,6 +11,7 @@ import com.google.protobuf.ByteString
 import com.google.protobuf.InvalidProtocolBufferException
 import net.zetetic.database.sqlcipher.SQLiteConstraintException
 import org.signal.core.util.Bitmask
+import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.optionalBlob
@@ -597,6 +598,17 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         put(PROFILE_SHARING, 1)
       }
     ).recipientId
+  }
+
+  fun getDistributionListRecipientIds(): List<RecipientId> {
+    val recipientIds = mutableListOf<RecipientId>()
+    readableDatabase.query(TABLE_NAME, arrayOf(ID), "$DISTRIBUTION_LIST_ID is not NULL", null, null, null, null).use { cursor ->
+      while (cursor != null && cursor.moveToNext()) {
+        recipientIds.add(RecipientId.from(CursorUtil.requireLong(cursor, ID)))
+      }
+    }
+
+    return recipientIds
   }
 
   fun getOrInsertFromGroupId(groupId: GroupId): RecipientId {

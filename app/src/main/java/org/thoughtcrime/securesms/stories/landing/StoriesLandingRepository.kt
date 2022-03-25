@@ -70,11 +70,11 @@ class StoriesLandingRepository(context: Context) {
   }
 
   private fun createStoriesLandingItemData(sender: Recipient, messageRecords: List<MessageRecord>): Observable<StoriesLandingItemData> {
-    return Observable.create { emitter ->
+    val itemDataObservable = Observable.create<StoriesLandingItemData> { emitter ->
       fun refresh(sender: Recipient) {
         val itemData = StoriesLandingItemData(
           storyRecipient = sender,
-          storyViewState = getStoryViewState(messageRecords),
+          storyViewState = StoryViewState.NONE,
           hasReplies = messageRecords.any { SignalDatabase.mms.getNumberOfStoryReplies(it.id) > 0 },
           hasRepliesFromSelf = messageRecords.any { SignalDatabase.mms.hasSelfReplyInStory(it.id) },
           isHidden = sender.shouldHideStory(),
@@ -106,24 +106,17 @@ class StoriesLandingRepository(context: Context) {
 
       refresh(sender)
     }
+
+    val storyViewedStateObservable = StoryViewState.getForRecipientId(if (sender.isMyStory) Recipient.self().id else sender.id)
+
+    return Observable.combineLatest(itemDataObservable, storyViewedStateObservable) { data, state ->
+      data.copy(storyViewState = state)
+    }
   }
 
   fun setHideStory(recipientId: RecipientId, hideStory: Boolean): Completable {
     return Completable.fromAction {
       SignalDatabase.recipients.setHideStory(recipientId, hideStory)
     }.subscribeOn(Schedulers.io())
-  }
-
-  private fun getStoryViewState(messageRecords: List<MessageRecord>): StoryViewState {
-    val incoming = messageRecords.filterNot { it.isOutgoing }
-    if (incoming.isEmpty()) {
-      return StoryViewState.NONE
-    }
-
-    if (incoming.any { it.viewedReceiptCount == 0 }) {
-      return StoryViewState.UNVIEWED
-    }
-
-    return StoryViewState.VIEWED
   }
 }
