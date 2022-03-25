@@ -399,6 +399,7 @@ public class ThumbnailView extends FrameLayout {
 
     GlideRequest request = glideRequests.load(model)
                                         .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                        .placeholder(model.getPlaceholder())
                                         .transition(withCrossFade());
 
     if (width > 0 && height > 0) {

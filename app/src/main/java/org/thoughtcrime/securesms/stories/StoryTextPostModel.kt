@@ -1,6 +1,9 @@
 package org.thoughtcrime.securesms.stories
 
 import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.core.graphics.scale
 import androidx.core.view.drawToBitmap
@@ -9,6 +12,7 @@ import com.bumptech.glide.load.Options
 import com.bumptech.glide.load.ResourceDecoder
 import com.bumptech.glide.load.engine.Resource
 import com.bumptech.glide.load.resource.SimpleResource
+import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
@@ -35,6 +39,14 @@ data class StoryTextPostModel(
   }
 
   val text: String = storyTextPost.body
+
+  fun getPlaceholder(): Drawable {
+    return if (storyTextPost.hasBackground()) {
+      ChatColors.forChatColor(ChatColors.Id.NotSet, storyTextPost.background).chatBubbleMask
+    } else {
+      ColorDrawable(Color.TRANSPARENT)
+    }
+  }
 
   companion object {
 
