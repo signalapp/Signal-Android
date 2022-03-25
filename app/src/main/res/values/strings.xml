@@ -1850,8 +1850,8 @@
     <string name="MediaPreviewActivity_s_to_s">%1$s to %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of 'You' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">You to %1$s</string>
-    <!-- ALl media preview title when viewing media sent by another recipient to you (allows changing of 'You' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s to You</string>
+    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of 'You' based on context) -->
+    <string name="MediaPreviewActivity_s_to_you">%1$s to you</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Media no longer available.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Can\'t find an app able to share this media.</string>
 
