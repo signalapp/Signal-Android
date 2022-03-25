@@ -76,6 +76,7 @@ import org.thoughtcrime.securesms.util.FullscreenHelper;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThrottledDebouncer;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.VibrateUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.webrtc.CallParticipantsViewState;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
@@ -92,6 +93,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   private static final String TAG = Log.tag(WebRtcCallActivity.class);
 
   private static final int STANDARD_DELAY_FINISH = 1000;
+  private static final int VIBRATE_DURATION      = 50;
 
   public static final String ANSWER_ACTION   = WebRtcCallActivity.class.getCanonicalName() + ".ANSWER_ACTION";
   public static final String DENY_ACTION     = WebRtcCallActivity.class.getCanonicalName() + ".DENY_ACTION";
@@ -503,6 +505,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
   private void handleCallReconnecting() {
     callScreen.setStatus(getString(R.string.WebRtcCallActivity__reconnecting));
+    VibrateUtil.vibrate(this, VIBRATE_DURATION);
   }
 
   private void handleRecipientUnavailable() {

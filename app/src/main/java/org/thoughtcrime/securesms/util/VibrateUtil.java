@@ -14,13 +14,17 @@ public final class VibrateUtil {
   private VibrateUtil() { }
 
   public static void vibrateTick(@NonNull Context context) {
+    vibrate(context, TICK_LENGTH);
+  }
+
+  public static void vibrate(@NonNull Context context, int duration) {
     Vibrator vibrator = ServiceUtil.getVibrator(context);
 
     if (Build.VERSION.SDK_INT >= 26) {
-      VibrationEffect effect = VibrationEffect.createOneShot(TICK_LENGTH, 64);
+      VibrationEffect effect = VibrationEffect.createOneShot(duration, 64);
       vibrator.vibrate(effect);
     } else {
-      vibrator.vibrate(TICK_LENGTH);
+      vibrator.vibrate(duration);
     }
   }
 }
