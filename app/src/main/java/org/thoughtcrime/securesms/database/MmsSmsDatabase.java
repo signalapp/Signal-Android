@@ -456,13 +456,16 @@ public class MmsSmsDatabase extends Database {
 
       for (MessageUpdate update : messageUpdates) {
         threadDatabase.updateSilently(update.getThreadId(), false);
-        ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(update.getMessageId());
-        ApplicationDependencies.getDatabaseObserver().notifyVerboseConversationListeners(Collections.singleton(update.getThreadId()));
       }
 
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
+
+      for (MessageUpdate update : messageUpdates) {
+        ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(update.getMessageId());
+        ApplicationDependencies.getDatabaseObserver().notifyVerboseConversationListeners(Collections.singleton(update.getThreadId()));
+      }
 
       if (messageUpdates.size() > 0) {
         notifyConversationListListeners();
