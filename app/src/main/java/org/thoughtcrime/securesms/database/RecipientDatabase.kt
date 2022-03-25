@@ -593,6 +593,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       DISTRIBUTION_LIST_ID,
       distributionListId.serialize(),
       ContentValues().apply {
+        put(GROUP_TYPE, GroupType.DISTRIBUTION_LIST.id)
         put(DISTRIBUTION_LIST_ID, distributionListId.serialize())
         put(STORAGE_SERVICE_ID, Base64.encodeBytes(StorageSyncHelper.generateKey()))
         put(PROFILE_SHARING, 1)
@@ -1071,10 +1072,10 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       $STORAGE_SERVICE_ID NOT NULL AND (
         ($GROUP_TYPE = ? AND $SERVICE_ID NOT NULL AND $ID != ?)
         OR
-        $GROUP_TYPE IN (?)
+        $GROUP_TYPE IN (?, ?)
       )
     """.trimIndent()
-    val args = SqlUtil.buildArgs(GroupType.NONE.id, Recipient.self().id, GroupType.SIGNAL_V1.id)
+    val args = SqlUtil.buildArgs(GroupType.NONE.id, Recipient.self().id, GroupType.SIGNAL_V1.id, GroupType.DISTRIBUTION_LIST.id)
     val out: MutableMap<RecipientId, StorageId> = HashMap()
 
     readableDatabase.query(TABLE_NAME, arrayOf(ID, STORAGE_SERVICE_ID, GROUP_TYPE), query, args, null, null, null).use { cursor ->
@@ -1087,6 +1088,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         when (groupType) {
           GroupType.NONE -> out[id] = StorageId.forContact(key)
           GroupType.SIGNAL_V1 -> out[id] = StorageId.forGroupV1(key)
+          GroupType.DISTRIBUTION_LIST -> out[id] = StorageId.forStoryDistributionList(key)
           else -> throw AssertionError()
         }
       }
@@ -2504,7 +2506,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
 
     val query = "$ID = ? AND ($GROUP_TYPE IN (?, ?, ?) OR $REGISTERED = ?)"
-    val args = SqlUtil.buildArgs(recipientId, GroupType.SIGNAL_V1.id, GroupType.SIGNAL_V2.id, GroupType.DISTRIBUTION_LIST, RegisteredState.REGISTERED.id)
+    val args = SqlUtil.buildArgs(recipientId, GroupType.SIGNAL_V1.id, GroupType.SIGNAL_V2.id, GroupType.DISTRIBUTION_LIST.id, RegisteredState.REGISTERED.id)
     writableDatabase.update(TABLE_NAME, values, query, args)
   }
 

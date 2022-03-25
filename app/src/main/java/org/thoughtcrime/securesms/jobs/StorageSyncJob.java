@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper.IdDifferenceResult;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.WriteOperationResult;
 import org.thoughtcrime.securesms.storage.StorageSyncModels;
 import org.thoughtcrime.securesms.storage.StorageSyncValidations;
+import org.thoughtcrime.securesms.storage.StoryDistributionListRecordProcessor;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -48,10 +49,12 @@ import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
 import org.whispersystems.signalservice.api.storage.SignalRecord;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
+import org.whispersystems.signalservice.api.storage.SignalStoryDistributionListRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
 import org.whispersystems.signalservice.api.storage.StorageKey;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
+import org.whispersystems.signalservice.internal.storage.protos.StoryDistributionListRecord;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -269,11 +272,12 @@ public class StorageSyncJob extends BaseJob {
           Log.w(TAG, "[Remote Sync] Could not find all remote-only records! Requested: " + idDifference.getRemoteOnlyIds().size() + ", Found: " + remoteOnly.size() + ". These stragglers should naturally get deleted during the sync.");
         }
 
-        List<SignalContactRecord> remoteContacts = new LinkedList<>();
-        List<SignalGroupV1Record> remoteGv1      = new LinkedList<>();
-        List<SignalGroupV2Record> remoteGv2      = new LinkedList<>();
-        List<SignalAccountRecord> remoteAccount  = new LinkedList<>();
-        List<SignalStorageRecord> remoteUnknown  = new LinkedList<>();
+        List<SignalContactRecord>               remoteContacts               = new LinkedList<>();
+        List<SignalGroupV1Record>               remoteGv1                    = new LinkedList<>();
+        List<SignalGroupV2Record>               remoteGv2                    = new LinkedList<>();
+        List<SignalAccountRecord>               remoteAccount                = new LinkedList<>();
+        List<SignalStorageRecord>               remoteUnknown                = new LinkedList<>();
+        List<SignalStoryDistributionListRecord> remoteStoryDistributionLists = new LinkedList<>();
 
         for (SignalStorageRecord remote : remoteOnly) {
           if (remote.getContact().isPresent()) {
@@ -284,6 +288,8 @@ public class StorageSyncJob extends BaseJob {
             remoteGv2.add(remote.getGroupV2().get());
           } else if (remote.getAccount().isPresent()) {
             remoteAccount.add(remote.getAccount().get());
+          } else if (remote.getStoryDistributionList().isPresent()) {
+            remoteStoryDistributionLists.add(remote.getStoryDistributionList().get());
           } else if (remote.getId().isUnknown()) {
             remoteUnknown.add(remote);
           } else {
@@ -302,6 +308,7 @@ public class StorageSyncJob extends BaseJob {
           new GroupV2RecordProcessor(context).process(remoteGv2, StorageSyncHelper.KEY_GENERATOR);
           self = freshSelf();
           new AccountRecordProcessor(context, self).process(remoteAccount, StorageSyncHelper.KEY_GENERATOR);
+          new StoryDistributionListRecordProcessor().process(remoteStoryDistributionLists, StorageSyncHelper.KEY_GENERATOR);
 
           List<SignalStorageRecord> unknownInserts = remoteUnknown;
           List<StorageId>           unknownDeletes = Stream.of(idDifference.getLocalOnlyIds()).filter(StorageId::isUnknown).toList();
@@ -423,6 +430,16 @@ public class StorageSyncJob extends BaseJob {
             throw new AssertionError("Local storage ID doesn't match self!");
           }
           records.add(StorageSyncHelper.buildAccountRecord(context, self));
+          break;
+        case ManifestRecord.Identifier.Type.STORY_DISTRIBUTION_LIST_VALUE:
+          RecipientRecord record = recipientDatabase.getByStorageId(id.getRaw());
+          if (record != null) {
+            if (record.getDistributionListId() != null) {
+              records.add(StorageSyncModels.localToRemoteRecord(record));
+            } else {
+              throw new MissingRecipientModelError("Missing local recipient model! Type: " + id.getType());
+            }
+          }
           break;
         default:
           SignalStorageRecord unknown = storageIdDatabase.getById(id.getRaw());

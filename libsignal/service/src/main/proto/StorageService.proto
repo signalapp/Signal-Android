@@ -38,11 +38,12 @@ message WriteOperation {
 message ManifestRecord {
   message Identifier {
     enum Type {
-      UNKNOWN = 0;
-      CONTACT = 1;
-      GROUPV1 = 2;
-      GROUPV2 = 3;
-      ACCOUNT = 4;
+      UNKNOWN                 = 0;
+      CONTACT                 = 1;
+      GROUPV1                 = 2;
+      GROUPV2                 = 3;
+      ACCOUNT                 = 4;
+      STORY_DISTRIBUTION_LIST = 5;
     }
 
     bytes raw  = 1;
@@ -55,10 +56,11 @@ message ManifestRecord {
 
 message StorageRecord {
   oneof record {
-    ContactRecord contact = 1;
-    GroupV1Record groupV1 = 2;
-    GroupV2Record groupV2 = 3;
-    AccountRecord account = 4;
+    ContactRecord               contact               = 1;
+    GroupV1Record               groupV1               = 2;
+    GroupV2Record               groupV2               = 3;
+    AccountRecord               account               = 4;
+    StoryDistributionListRecord storyDistributionList = 5;
   }
 }
 
@@ -155,4 +157,12 @@ message AccountRecord {
            string                 subscriberCurrencyCode        = 22;
            bool                   displayBadgesOnProfile        = 23;
            bool                   subscriptionManuallyCancelled = 24;
+}
+
+message StoryDistributionListRecord {
+           bytes  identifier         = 1;
+           string name               = 2;
+  repeated string recipientUuids     = 3;
+           uint64 deletedAtTimestamp = 4;
+           bool   allowsReplies      = 5;
 }

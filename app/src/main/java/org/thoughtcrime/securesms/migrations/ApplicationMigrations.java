@@ -100,9 +100,10 @@ public class ApplicationMigrations {
     static final int PNI_IDENTITY                  = 56;
     static final int PNI_IDENTITY_2                = 57;
     static final int PNI_IDENTITY_3                = 58;
+    static final int STORY_DISTRIBUTION_LIST_SYNC  = 59;
   }
 
-  public static final int CURRENT_VERSION = 58;
+  public static final int CURRENT_VERSION = 59;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -434,6 +435,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.PNI_IDENTITY_3) {
       jobs.put(Version.PNI_IDENTITY_3, new PniAccountInitializationMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.STORY_DISTRIBUTION_LIST_SYNC) {
+      jobs.put(Version.STORY_DISTRIBUTION_LIST_SYNC, new StorageServiceMigrationJob());
     }
 
     return jobs;

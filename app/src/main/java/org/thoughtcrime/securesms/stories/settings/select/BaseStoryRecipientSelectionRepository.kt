@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.stories.Stories
 
 class BaseStoryRecipientSelectionRepository {
   fun updateDistributionListMembership(distributionListId: DistributionListId, recipients: Set<RecipientId>) {
@@ -23,6 +24,8 @@ class BaseStoryRecipientSelectionRepository {
       newNotOld.forEach {
         SignalDatabase.distributionLists.addMemberToList(distributionListId, it)
       }
+
+      Stories.onStorySettingsChanged(distributionListId)
     }
   }
 

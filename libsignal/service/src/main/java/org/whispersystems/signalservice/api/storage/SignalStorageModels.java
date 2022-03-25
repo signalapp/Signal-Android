@@ -44,6 +44,8 @@ public final class SignalStorageModels {
       return SignalStorageRecord.forGroupV2(id, new SignalGroupV2Record(id, record.getGroupV2()));
     } else if (record.hasAccount() && type == ManifestRecord.Identifier.Type.ACCOUNT_VALUE) {
       return SignalStorageRecord.forAccount(id, new SignalAccountRecord(id, record.getAccount()));
+    } else if (record.hasStoryDistributionList() && type == ManifestRecord.Identifier.Type.STORY_DISTRIBUTION_LIST_VALUE) {
+      return SignalStorageRecord.forStoryDistributionList(id, new SignalStoryDistributionListRecord(id, record.getStoryDistributionList()));
     } else {
       if (StorageId.isKnownType(type)) {
         Log.w(TAG, "StorageId is of known type (" + type + "), but the data is bad! Falling back to unknown.");
@@ -63,6 +65,8 @@ public final class SignalStorageModels {
       builder.setGroupV2(record.getGroupV2().get().toProto());
     } else if (record.getAccount().isPresent()) {
       builder.setAccount(record.getAccount().get().toProto());
+    } else if (record.getStoryDistributionList().isPresent()) {
+      builder.setStoryDistributionList(record.getStoryDistributionList().get().toProto());
     } else {
       throw new InvalidStorageWriteError();
     }
