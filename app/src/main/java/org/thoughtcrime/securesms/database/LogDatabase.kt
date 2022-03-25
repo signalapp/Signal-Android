@@ -8,6 +8,7 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.getTableRowCount
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.crypto.DatabaseSecret
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
@@ -16,6 +17,7 @@ import org.thoughtcrime.securesms.util.ByteUnit
 import org.thoughtcrime.securesms.util.Stopwatch
 import java.io.Closeable
 import java.util.concurrent.TimeUnit
+import kotlin.math.abs
 
 /**
  * Stores logs.
@@ -164,7 +166,13 @@ class LogDatabase private constructor(
     stopwatch.split("keepers-size")
 
     if (remainingSize <= 0) {
-      writableDatabase.delete(TABLE_NAME, "$KEEP_LONGER = ?", arrayOf("0"))
+      if (abs(remainingSize) > MAX_FILE_SIZE / 2) {
+        // Not only are KEEP_LONGER logs putting us over the storage limit, it's doing it by a lot! Delete half.
+        val logCount = readableDatabase.getTableRowCount(TABLE_NAME)
+        writableDatabase.execSQL("DELETE FROM $TABLE_NAME WHERE $ID < (SELECT MAX($ID) FROM (SELECT $ID FROM $TABLE_NAME LIMIT ${logCount / 2}))")
+      } else {
+        writableDatabase.delete(TABLE_NAME, "$KEEP_LONGER = ?", arrayOf("0"))
+      }
       return
     }
 
