@@ -1153,7 +1153,9 @@ public class ConversationParentFragment extends Fragment
     } else if (container.isInputOpen()) {
       container.hideCurrentInput(composeText);
     } else if (isSearchRequested) {
-      searchViewItem.collapseActionView();
+      if (searchViewItem != null) {
+        searchViewItem.collapseActionView();
+      }
     } else {
       requireActivity().finish();
     }
