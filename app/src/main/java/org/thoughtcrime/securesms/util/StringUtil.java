@@ -78,7 +78,7 @@ public final class StringUtil {
   }
 
   /**
-   * @return A charsequence with no leading or trailing whitespace. Only creates a new charsequence
+   * @return A char sequence with no leading or trailing whitespace. Only creates a new char sequence
    *         if it has to.
    */
   public static @NonNull CharSequence trim(@NonNull CharSequence charSequence) {
