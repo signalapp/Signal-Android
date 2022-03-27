@@ -164,7 +164,7 @@ public final class LogDetectorTest {
                       "    Log.d(TAG, \"msg\")\n" +
                       "  }\n" +
                       "}\n"+
-                      "fun logOutsie() {\n" +
+                      "fun logOutside() {\n" +
                       "  Log.d(Example.TAG, \"msg\")\n" +
                       "}\n")
         )
