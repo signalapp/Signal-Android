@@ -43,14 +43,14 @@ import java.util.concurrent.TimeUnit
  * 1. Ask GooglePay for a payment token. This will pop up the Google Pay Sheet, which allows the user to select a payment method.
  * 1. Generate and send a SubscriberId, which is a 32 byte ID representing this user, to Signal Service, which creates a Stripe Customer
  * 1. Create a SetupIntent via the Stripe API
- * 1. Create a PaymentMethod vai the Stripe API, utilizing the token from Google Pay
+ * 1. Create a PaymentMethod via the Stripe API, utilizing the token from Google Pay
  * 1. Confirm the SetupIntent via the Stripe API
  * 1. Set the default PaymentMethod for the customer, using the PaymentMethod id, via the Signal service
  *
  * For Boosts:
  * 1. Ask GooglePay for a payment token. This will pop up the Google Pay Sheet, which allows the user to select a payment method.
  * 1. Create a PaymentIntent via the Stripe API
- * 1. Create a PaymentMethod vai the Stripe API, utilizing the token from Google Pay
+ * 1. Create a PaymentMethod via the Stripe API, utilizing the token from Google Pay
  * 1. Confirm the PaymentIntent via the Stripe API
  */
 class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, StripeApi.SetupIntentHelper {
