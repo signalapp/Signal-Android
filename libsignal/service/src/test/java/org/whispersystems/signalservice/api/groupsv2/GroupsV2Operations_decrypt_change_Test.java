@@ -381,7 +381,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
   }
 
   @Test
-  public void can_pass_through_new_announcment_only_field21() {
+  public void can_pass_through_new_announcement_only_field21() {
     assertDecryption(GroupChange.Actions.newBuilder()
                                         .setModifyAnnouncementsOnly(GroupChange.Actions.ModifyAnnouncementsOnlyAction.newBuilder()
                                                                                                                      .setAnnouncementsOnly(true)),
