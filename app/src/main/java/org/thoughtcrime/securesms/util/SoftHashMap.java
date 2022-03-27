@@ -83,7 +83,7 @@ public class SoftHashMap<K, V> implements Map<K, V> {
   private final ReferenceQueue<? super V> queue;
 
   /**
-   * Creates a new SoftHashMap with a default retention size size of
+   * Creates a new SoftHashMap with a default retention size of
    * {@link #DEFAULT_RETENTION_SIZE DEFAULT_RETENTION_SIZE} (100 entries).
    *
    * @see #SoftHashMap(int)
