@@ -989,7 +989,7 @@ public class Base64
                     e++;
                     lineLength = 0;
                 }   // end if: end of line
-            }   // en dfor: each piece of array
+            }   // end for: each piece of array
 
             if( d < len ) {
                 encode3to4( source, d+off, len - d, outBuff, e, options );
