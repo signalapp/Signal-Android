@@ -257,7 +257,7 @@ public final class LiveDataUtil {
         addSource(liveDataA, (a) -> {
           if (a != null) {
             this.a = a;
-            //noinspection unchecked: A is B if live datas are same instance
+            //noinspection unchecked: A is B if live data are same instance
             this.b = (B) a;
             setValue(combine.apply(a, b));
           }

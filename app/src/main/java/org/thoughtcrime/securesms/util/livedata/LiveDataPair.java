@@ -31,7 +31,7 @@ public final class LiveDataPair<A, B> extends MediatorLiveData<Pair<A, B>> {
       addSource(liveDataA, (a) -> {
         if (a != null) {
           this.a = a;
-          //noinspection unchecked: A is B if live datas are same instance
+          //noinspection unchecked: A is B if live data are same instance
           this.b = (B) a;
         }
         setValue(new Pair<>(a, b));

@@ -37,10 +37,10 @@ public final class LiveDataTriple<A, B, C> extends MediatorLiveData<Triple<A, B,
         if (a != null) {
           this.a = a;
 
-          //noinspection unchecked: A is B if live datas are same instance
+          //noinspection unchecked: A is B if live data are same instance
           this.b = (B) a;
 
-          //noinspection unchecked: A is C if live datas are same instance
+          //noinspection unchecked: A is C if live data are same instance
           this.c = (C) a;
         }
 
@@ -53,7 +53,7 @@ public final class LiveDataTriple<A, B, C> extends MediatorLiveData<Triple<A, B,
         if (a != null) {
           this.a = a;
 
-          //noinspection unchecked: A is B if live datas are same instance
+          //noinspection unchecked: A is B if live data are same instance
           this.b = (B) a;
         }
 
@@ -73,7 +73,7 @@ public final class LiveDataTriple<A, B, C> extends MediatorLiveData<Triple<A, B,
         if (a != null) {
           this.a = a;
 
-          //noinspection unchecked: A is C if live datas are same instance
+          //noinspection unchecked: A is C if live data are same instance
           this.c = (C) a;
         }
 
@@ -93,7 +93,7 @@ public final class LiveDataTriple<A, B, C> extends MediatorLiveData<Triple<A, B,
         if (b != null) {
           this.b = b;
 
-          //noinspection unchecked: A is C if live datas are same instance
+          //noinspection unchecked: A is C if live data are same instance
           this.c = (C) b;
         }
 
