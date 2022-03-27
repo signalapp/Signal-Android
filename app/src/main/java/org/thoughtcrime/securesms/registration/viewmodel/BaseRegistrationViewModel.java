@@ -28,7 +28,7 @@ import io.reactivex.rxjava3.core.Single;
 
 /**
  * Base view model used in registration and change number flow. Handles the storage of all data
- * shared between the two flows, orchestrating verification, and calling to subclasses to peform
+ * shared between the two flows, orchestrating verification, and calling to subclasses to perform
  * the specific verify operations for each flow.
  */
 public abstract class BaseRegistrationViewModel extends ViewModel {
