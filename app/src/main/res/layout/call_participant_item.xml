@@ -29,7 +29,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <View
-        android:id="@+id/call_participant_badge_offseter"
+        android:id="@+id/call_participant_badge_offsetter"
         android:layout_width="36dp"
         android:layout_height="32dp"
         app:layout_constraintBottom_toBottomOf="@id/call_participant_item_avatar"
@@ -40,8 +40,8 @@
         android:layout_width="36dp"
         android:layout_height="36dp"
         app:badge_size="large"
-        app:layout_constraintEnd_toEndOf="@id/call_participant_badge_offseter"
-        app:layout_constraintTop_toTopOf="@id/call_participant_badge_offseter" />
+        app:layout_constraintEnd_toEndOf="@id/call_participant_badge_offsetter"
+        app:layout_constraintTop_toTopOf="@id/call_participant_badge_offsetter" />
 
     <ImageView
         android:id="@+id/call_participant_item_pip_avatar"
