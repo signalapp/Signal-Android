@@ -246,6 +246,6 @@ public final class PaymentDetailsFragment extends LoggingFragment {
   }
 
   private @NonNull CharSequence getStatusFromPayment(@NonNull Payment payment) {
-    return getResources().getString(R.string.PaymentsDeatilsFragment__payment_completed_s, DateUtils.getTimeString(requireContext(), Locale.getDefault(), payment.getDisplayTimestamp()));
+    return getResources().getString(R.string.PaymentsDetailsFragment__payment_completed_s, DateUtils.getTimeString(requireContext(), Locale.getDefault(), payment.getDisplayTimestamp()));
   }
 }
