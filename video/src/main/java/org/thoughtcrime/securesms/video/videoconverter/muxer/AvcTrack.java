@@ -153,7 +153,7 @@ abstract class AvcTrack extends AbstractStreamingTrack {
     if (sps.pic_order_cnt_type == 0) {
       addTrackExtension(new CompositionTimeTrackExtension());
     } else if (sps.pic_order_cnt_type == 1) {
-      throw new MuxingException("Have not yet imlemented pic_order_cnt_type 1");
+      throw new MuxingException("Have not yet implemented pic_order_cnt_type 1");
     }
   }
 
