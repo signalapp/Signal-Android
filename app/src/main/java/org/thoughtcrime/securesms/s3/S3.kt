@@ -55,7 +55,7 @@ object S3 {
         return response.body()?.bytes()?.let { String(it).trim().toLongOrNull() } ?: throw IOException()
       }
     } catch (e: IOException) {
-      Log.w(TAG, "Failed to retreive long value from S3")
+      Log.w(TAG, "Failed to retrieve long value from S3")
       throw e
     }
   }

@@ -233,7 +233,7 @@ final class GroupManagerV2 {
     if (joinedVersion != null) {
       return joinedVersion;
     } else {
-      Log.w(TAG, "Unable to retreive exact version joined at, using latest");
+      Log.w(TAG, "Unable to retrieve exact version joined at, using latest");
       return latest;
     }
   }
