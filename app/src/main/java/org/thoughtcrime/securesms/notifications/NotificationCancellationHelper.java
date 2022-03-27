@@ -27,7 +27,7 @@ import java.util.Set;
 /**
  * Consolidates Notification Cancellation logic to one class.
  *
- * Because Bubbles are tied to Notifications, and disappear when those Notificaitons are cancelled,
+ * Because Bubbles are tied to Notifications, and disappear when those Notifications are cancelled,
  * we want to be very surgical about what notifications we dismiss and when. Behaviour on API levels
  * previous to {@link org.thoughtcrime.securesms.util.ConversationUtil#CONVERSATION_SUPPORT_VERSION}
  * is preserved.
