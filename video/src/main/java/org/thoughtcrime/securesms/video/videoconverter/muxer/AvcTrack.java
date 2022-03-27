@@ -142,7 +142,7 @@ abstract class AvcTrack extends AbstractStreamingTrack {
         maxDecFrameBuffering = sps.vuiParams.bitstreamRestriction.max_dec_frame_buffering;
       }
     } else {
-      Log.w(TAG, "Can't determine frame rate as SPS does not contain vuiParama");
+      Log.w(TAG, "Can't determine frame rate as SPS does not contain vuiParams");
       _timescale = 0;
       _frametick = 0;
     }
