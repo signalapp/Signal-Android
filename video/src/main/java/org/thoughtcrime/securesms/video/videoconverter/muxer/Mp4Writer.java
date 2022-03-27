@@ -227,7 +227,7 @@ final class Mp4Writer extends DefaultBoxes implements SampleSink {
    * will be added to the fragment buffer later.
    *
    * @param streamingTrack track to test
-   * @param next           the lastest samples
+   * @param next           the latest samples
    * @return true if a chunk is to b e created.
    */
   private boolean isChunkReady(StreamingTrack streamingTrack, StreamingSample next) {
