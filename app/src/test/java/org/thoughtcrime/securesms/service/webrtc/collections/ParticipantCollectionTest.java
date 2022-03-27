@@ -176,7 +176,7 @@ public class ParticipantCollectionTest {
     assertThat(afterHenrySpoke.getGridParticipants(), Matchers.contains(id(1), id(2), id(3), id(4), id(5), id(8)));
     assertThat(afterHenrySpoke.getListParticipants(), Matchers.contains(id(6), id(7), id(9), id(10)));
 
-    // Ignace asks how everone's holidays were
+    // Ignace asks how everyone's holidays were
 
     List<CallParticipant> ignaceSpoke = Arrays.asList(participant(1, 1, 1),
                                                         participant(2, 2, 1),
