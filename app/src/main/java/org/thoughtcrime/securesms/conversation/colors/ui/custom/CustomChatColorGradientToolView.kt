@@ -66,8 +66,8 @@ class CustomChatColorGradientToolView @JvmOverloads constructor(
   private val thumbBorder: Float = ViewUtil.dpToPx(THUMB_BORDER).toFloat()
   private val thumbBorderSelected: Float = ViewUtil.dpToPx(THUMB_BORDER_SELECTED).toFloat()
   private val opaqueThumbRadius: Float = ViewUtil.dpToPx(OPAQUE_THUMB_RADIUS).toFloat()
-  private val opaqueThumbPadding: Float = ViewUtil.dpToPx(OPAGUE_THUMB_PADDING).toFloat()
-  private val opaqueThumbPaddingSelected: Float = ViewUtil.dpToPx(OPAGUE_THUMB_PADDING_SELECTED).toFloat()
+  private val opaqueThumbPadding: Float = ViewUtil.dpToPx(OPAQUE_THUMB_PADDING).toFloat()
+  private val opaqueThumbPaddingSelected: Float = ViewUtil.dpToPx(OPAQUE_THUMB_PADDING_SELECTED).toFloat()
   private val pipeWidth: Float = ViewUtil.dpToPx(PIPE_WIDTH).toFloat()
   private val pipeBorder: Float = ViewUtil.dpToPx(PIPE_BORDER).toFloat()
 
@@ -331,10 +331,10 @@ class CustomChatColorGradientToolView @JvmOverloads constructor(
     private const val OPAQUE_THUMB_RADIUS = 20
 
     @Dimension(unit = Dimension.DP)
-    private const val OPAGUE_THUMB_PADDING = 2
+    private const val OPAQUE_THUMB_PADDING = 2
 
     @Dimension(unit = Dimension.DP)
-    private const val OPAGUE_THUMB_PADDING_SELECTED = 1
+    private const val OPAQUE_THUMB_PADDING_SELECTED = 1
 
     @Dimension(unit = Dimension.DP)
     private const val PIPE_WIDTH = 6
