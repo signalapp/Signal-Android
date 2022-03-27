@@ -17,7 +17,7 @@ data class InternalSettingsState(
   val audioProcessingMethod: CallManager.AudioProcessingMethod,
   val useBuiltInEmojiSet: Boolean,
   val emojiVersion: EmojiFiles.Version?,
-  val removeSenderKeyMinimium: Boolean,
+  val removeSenderKeyMinimum: Boolean,
   val delayResends: Boolean,
   val disableStorageService: Boolean,
   val disableStories: Boolean

@@ -281,9 +281,9 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       switchPref(
         title = DSLSettingsText.from(R.string.preferences__internal_remove_two_person_minimum),
         summary = DSLSettingsText.from(R.string.preferences__internal_remove_the_requirement_that_you_need),
-        isChecked = state.removeSenderKeyMinimium,
+        isChecked = state.removeSenderKeyMinimum,
         onClick = {
-          viewModel.setRemoveSenderKeyMinimum(!state.removeSenderKeyMinimium)
+          viewModel.setRemoveSenderKeyMinimum(!state.removeSenderKeyMinimum)
         }
       )
 

@@ -124,7 +124,7 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     audioProcessingMethod = SignalStore.internalValues().audioProcessingMethod(),
     useBuiltInEmojiSet = SignalStore.internalValues().forceBuiltInEmoji(),
     emojiVersion = null,
-    removeSenderKeyMinimium = SignalStore.internalValues().removeSenderKeyMinimum(),
+    removeSenderKeyMinimum = SignalStore.internalValues().removeSenderKeyMinimum(),
     delayResends = SignalStore.internalValues().delayResends(),
     disableStorageService = SignalStore.internalValues().storageServiceDisabled(),
     disableStories = SignalStore.storyValues().isFeatureDisabled
