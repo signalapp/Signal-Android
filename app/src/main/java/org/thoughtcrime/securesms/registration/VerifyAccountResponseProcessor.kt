@@ -54,7 +54,7 @@ class VerifyAccountResponseWithoutKbs(response: ServiceResponse<VerifyAccountRes
 
 /**
  * Verify processor specific to verifying and successfully retrieving KBS information to
- * later attempt to verif with registration lock data (pin).
+ * later attempt to verify with registration lock data (pin).
  */
 class VerifyAccountResponseWithSuccessfulKbs(
   response: ServiceResponse<VerifyAccountResponse>,
