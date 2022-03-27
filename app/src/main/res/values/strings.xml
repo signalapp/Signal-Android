@@ -4558,7 +4558,7 @@
     <!-- Dialog title for first time adding something to a story -->
     <string name="StoryDialogs__add_to_story_q">Add to story?</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">Adding content to your story allows your Signal connections to view it for 24 hours. You can change who can view your story in Setttings.</string>
+    <string name="StoryDialogs__adding_content">Adding content to your story allows your Signal connections to view it for 24 hours. You can change who can view your story in Settings.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
     <string name="StoryDialogs__add_to_story">Add to story</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
