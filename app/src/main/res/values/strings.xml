@@ -3113,7 +3113,7 @@
 
     <!-- KBS Megaphone -->
     <string name="KbsMegaphone__create_a_pin">Create a PIN</string>
-    <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PINs keep information that’s stored with Signal encrypted.</string>
+    <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrypted">PINs keep information that’s stored with Signal encrypted.</string>
     <string name="KbsMegaphone__create_pin">Create PIN</string>
 
     <!-- transport_selection_list_item -->
