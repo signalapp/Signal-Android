@@ -69,7 +69,7 @@ final class H264Utils {
 
   /**
    * Finds next Nth H.264 bitstream NAL unit (0x00000001) and returns the data
-   * that preceeds it as a ByteBuffer slice
+   * that precedes it as a ByteBuffer slice
    * <p>
    * Segment byte order is always little endian
    * <p>
