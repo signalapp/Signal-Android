@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import java.io.IOException;
 
 /**
- * SlideFactory encapsulates logic related to constructing slides from a set of paramaeters as defined
+ * SlideFactory encapsulates logic related to constructing slides from a set of parameters as defined
  * by {@link SlideFactory#getSlide}.
  */
 public final class SlideFactory {
