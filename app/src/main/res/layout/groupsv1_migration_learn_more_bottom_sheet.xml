@@ -104,7 +104,7 @@
                         android:layout_width="wrap_content"
                         android:textAppearance="@style/TextAppearance.Signal.Body1"
                         android:textColor="@color/signal_text_primary"
-                        tools:text="Plurized string for pending members." />
+                        tools:text="Pluralized string for pending members." />
 
                     <org.thoughtcrime.securesms.groups.ui.GroupMemberListView
                         android:id="@+id/gv1_learn_more_pending_list"
@@ -145,7 +145,7 @@
                         android:layout_width="wrap_content"
                         android:textAppearance="@style/TextAppearance.Signal.Body1"
                         android:textColor="@color/signal_text_primary"
-                        tools:text="Plurized string for ineligible members." />
+                        tools:text="Pluralized string for ineligible members." />
 
                     <org.thoughtcrime.securesms.groups.ui.GroupMemberListView
                         android:id="@+id/gv1_learn_more_dropped_list"
