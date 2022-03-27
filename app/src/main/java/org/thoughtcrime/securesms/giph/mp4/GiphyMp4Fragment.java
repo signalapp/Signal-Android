@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.R;
 import java.util.List;
 
 /**
- * Fragment which displays GyphyImages.
+ * Fragment which displays GiphyImages.
  */
 public class GiphyMp4Fragment extends Fragment {
 
