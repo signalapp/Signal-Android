@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.DecryptionsDrainedConstraint;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
 /**
- * Allows the enqueueing of one peek operation per group while the web socket is not drained.
+ * Allows the enqueuing of one peek operation per group while the web socket is not drained.
  */
 public final class GroupCallPeekJob extends BaseJob {
 

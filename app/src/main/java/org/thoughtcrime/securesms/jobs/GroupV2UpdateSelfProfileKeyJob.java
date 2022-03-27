@@ -126,7 +126,7 @@ public final class GroupV2UpdateSelfProfileKeyJob extends BaseJob {
                                                                                                   .orElse(null);
 
         if (selfMember != null && !selfMember.getProfileKey().equals(selfProfileKey)) {
-          Log.w(TAG, "Profile key mismatch for group " + id + " -- enqueueing job");
+          Log.w(TAG, "Profile key mismatch for group " + id + " -- enqueuing job");
           foundMismatch = true;
           ApplicationDependencies.getJobManager().add(GroupV2UpdateSelfProfileKeyJob.withQueueLimits(id));
         }

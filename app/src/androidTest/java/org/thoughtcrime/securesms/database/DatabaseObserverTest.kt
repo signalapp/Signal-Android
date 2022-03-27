@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 
 /**
- * When writing tests, be very careful to call [DatabaseObserver.flush] before asserting any observer state. Internally, the observer is enqueueing tasks on
+ * When writing tests, be very careful to call [DatabaseObserver.flush] before asserting any observer state. Internally, the observer is enqueuing tasks on
  * an executor, and failing to flush the executor will lead to incorrect/flaky tests.
  */
 @RunWith(AndroidJUnit4::class)
