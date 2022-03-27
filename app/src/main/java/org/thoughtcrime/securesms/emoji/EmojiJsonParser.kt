@@ -35,7 +35,7 @@ object EmojiJsonParser {
 
   private fun buildEmojiSourceFromNode(node: JsonNode, uriFactory: UriFactory): ParsedEmojiData {
     val format: String = node["format"].textValue()
-    val obsolete: List<ObsoleteEmoji> = node["obsolete"].toObseleteList()
+    val obsolete: List<ObsoleteEmoji> = node["obsolete"].toObsoleteList()
     val dataPages: List<EmojiPageModel> = getDataPages(format, node["emoji"], uriFactory)
     val jumboPages: Map<String, String> = getJumboPages(node["jumbomoji"])
     val displayPages: List<EmojiPageModel> = mergeToDisplayPages(dataPages)
@@ -105,7 +105,7 @@ object EmojiJsonParser {
   }
 }
 
-private fun JsonNode?.toObseleteList(): List<ObsoleteEmoji> {
+private fun JsonNode?.toObsoleteList(): List<ObsoleteEmoji> {
   return if (this == null) {
     listOf()
   } else {

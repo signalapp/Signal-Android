@@ -116,7 +116,7 @@ class EmojiJsonParserTest {
   }
 
   @Test
-  fun `Given sample without obselete, when I parse, then I expect source without obsolete`() {
+  fun `Given sample without obsolete, when I parse, then I expect source without obsolete`() {
     val result: ParsedEmojiData = EmojiJsonParser.parse(SAMPLE_JSON_WITHOUT_OBSOLETE.byteInputStream(), this::uriFactory).getOrThrow()
 
     Assert.assertTrue(result.obsolete.isEmpty())
