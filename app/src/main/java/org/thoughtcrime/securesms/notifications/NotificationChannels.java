@@ -424,7 +424,7 @@ public class NotificationChannels {
    * means receiving notifications in some capacity -- a user could have it enabled, but set it to a
    * lower importance.
    *
-   * This could also return true if the specific channnel is enabled, but notifications *overall*
+   * This could also return true if the specific channel is enabled, but notifications *overall*
    * are disabled, or the messages category is disabled. Check
    * {@link #areNotificationsEnabled(Context)} and {@link #isMessagesChannelGroupEnabled(Context)}
    * to be safe.
