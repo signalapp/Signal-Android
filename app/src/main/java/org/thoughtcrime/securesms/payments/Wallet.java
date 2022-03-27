@@ -229,8 +229,8 @@ public final class Wallet {
   @WorkerThread
   public @NonNull TransactionStatusResult getSentTransactionStatus(@NonNull PaymentTransactionId transactionId) throws IOException {
     try {
-      PaymentTransactionId.MobileCoin mobcoinTransaction = (PaymentTransactionId.MobileCoin) transactionId;
-      Transaction                     transaction        = Transaction.fromBytes(mobcoinTransaction.getTransaction());
+      PaymentTransactionId.MobileCoin mobilecoinTransaction = (PaymentTransactionId.MobileCoin) transactionId;
+      Transaction                     transaction        = Transaction.fromBytes(mobilecoinTransaction.getTransaction());
       Transaction.Status              status             = mobileCoinClient.getAccountSnapshot()
                                                                            .getTransactionStatus(transaction);
 
