@@ -2634,7 +2634,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Dodaj do kontaktów</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Lista odbiorców</string>
+  <string name="conversation_group_options__recipients_list">Lista odbiorców</string>
   <string name="conversation_group_options__delivery">Dostarczanie</string>
   <string name="conversation_group_options__conversation">Konwersacja</string>
   <string name="conversation_group_options__broadcast">Nadawanie</string>

@@ -2471,7 +2471,7 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Legg til i kontaktar</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Mottakarliste</string>
+  <string name="conversation_group_options__recipients_list">Mottakarliste</string>
   <string name="conversation_group_options__delivery">Levering</string>
   <string name="conversation_group_options__conversation">Samtale</string>
   <string name="conversation_group_options__broadcast">Kringkast</string>

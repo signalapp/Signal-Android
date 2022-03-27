@@ -2253,7 +2253,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Legg til i kontakter</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Mottakerliste</string>
+  <string name="conversation_group_options__recipients_list">Mottakerliste</string>
   <string name="conversation_group_options__delivery">Levering</string>
   <string name="conversation_group_options__conversation">Samtale</string>
   <string name="conversation_group_options__broadcast">Kringkast</string>

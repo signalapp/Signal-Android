@@ -2459,7 +2459,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Zu Kontakten hinzufügen</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Empfängerliste</string>
+  <string name="conversation_group_options__recipients_list">Empfängerliste</string>
   <string name="conversation_group_options__delivery">Zustellung</string>
   <string name="conversation_group_options__conversation">Unterhaltung</string>
   <string name="conversation_group_options__broadcast">Broadcast</string>

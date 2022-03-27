@@ -2298,7 +2298,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">رابطوں میں شامل کریں</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">وصول کنندگان کی فہرست</string>
+  <string name="conversation_group_options__recipients_list">وصول کنندگان کی فہرست</string>
   <string name="conversation_group_options__delivery">سپردگی</string>
   <string name="conversation_group_options__conversation">گفتگو</string>
   <string name="conversation_group_options__broadcast">نشر کرنا</string>

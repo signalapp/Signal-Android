@@ -1107,7 +1107,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Yupaymashiman churay</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Chaskikkunapa shutikuna</string>
+  <string name="conversation_group_options__recipients_list">Chaskikkunapa shutikuna</string>
   <string name="conversation_group_options__delivery">Kuna</string>
   <string name="conversation_group_options__conversation">Rimarikuna</string>
   <string name="conversation_group_options__broadcast">Wayraman llukchina</string>

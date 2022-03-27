@@ -2351,7 +2351,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Lisa kontaktidesse</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Saajate nimekiri</string>
+  <string name="conversation_group_options__recipients_list">Saajate nimekiri</string>
   <string name="conversation_group_options__delivery">Kohaletoimetamine</string>
   <string name="conversation_group_options__conversation">Vestlus</string>
   <string name="conversation_group_options__broadcast">Kanna üle</string>

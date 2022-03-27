@@ -2452,7 +2452,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">संपर्कात जोडा</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">प्राप्तकर्ते यादी</string>
+  <string name="conversation_group_options__recipients_list">प्राप्तकर्ते यादी</string>
   <string name="conversation_group_options__delivery">पोचवणी</string>
   <string name="conversation_group_options__conversation">संभाषण</string>
   <string name="conversation_group_options__broadcast">प्रक्षेपण</string>

@@ -2641,7 +2641,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Pridať medzi kontakty</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Zoznam príjemcov</string>
+  <string name="conversation_group_options__recipients_list">Zoznam príjemcov</string>
   <string name="conversation_group_options__delivery">Doručenie</string>
   <string name="conversation_group_options__conversation">Konverzácia</string>
   <string name="conversation_group_options__broadcast">Poslať všetkým</string>

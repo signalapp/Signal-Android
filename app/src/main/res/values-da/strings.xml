@@ -2469,7 +2469,7 @@ nummer (%s) er ugyldigt</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Føj til kontakter</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Modtagerliste</string>
+  <string name="conversation_group_options__recipients_list">Modtagerliste</string>
   <string name="conversation_group_options__delivery">Levering</string>
   <string name="conversation_group_options__conversation">Samtale</string>
   <string name="conversation_group_options__broadcast">Transmission</string>

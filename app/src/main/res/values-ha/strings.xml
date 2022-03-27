@@ -1421,7 +1421,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Sa a lambobin sadarwa</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Jerin masu karban sako</string>
+  <string name="conversation_group_options__recipients_list">Jerin masu karban sako</string>
   <string name="conversation_group_options__delivery">Sako ya isa</string>
   <string name="conversation_group_options__conversation">Hira</string>
   <string name="conversation_group_options__broadcast">Yada</string>

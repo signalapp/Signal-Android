@@ -2226,7 +2226,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">添加到联系人</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">接收人列表</string>
+  <string name="conversation_group_options__recipients_list">接收人列表</string>
   <string name="conversation_group_options__delivery">送达</string>
   <string name="conversation_group_options__conversation">对话</string>
   <string name="conversation_group_options__broadcast">广播</string>

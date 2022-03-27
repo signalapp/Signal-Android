@@ -2414,7 +2414,7 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">संपर्क के खाते में जोड़ दे</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">प्राप्तकर्ता सूची</string>
+  <string name="conversation_group_options__recipients_list">प्राप्तकर्ता सूची</string>
   <string name="conversation_group_options__delivery">वितरण</string>
   <string name="conversation_group_options__conversation">संभाषण</string>
   <string name="conversation_group_options__broadcast">प्रसारण</string>

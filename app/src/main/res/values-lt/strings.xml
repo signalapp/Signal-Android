@@ -2624,7 +2624,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Įtraukti į adresatus</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Gavėjų sąrašas</string>
+  <string name="conversation_group_options__recipients_list">Gavėjų sąrašas</string>
   <string name="conversation_group_options__delivery">Pristatymas</string>
   <string name="conversation_group_options__conversation">Pokalbis</string>
   <string name="conversation_group_options__broadcast">Transliavimas</string>

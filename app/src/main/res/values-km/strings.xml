@@ -2355,7 +2355,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">បន្ថែមទៅបញ្ជីទំនាក់ទំនង</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">បញ្ជីអ្នកទទួល</string>
+  <string name="conversation_group_options__recipients_list">បញ្ជីអ្នកទទួល</string>
   <string name="conversation_group_options__delivery">ការបញ្ជូន</string>
   <string name="conversation_group_options__conversation">សន្ទនា</string>
   <string name="conversation_group_options__broadcast">ផ្សព្វផ្សាយ</string>

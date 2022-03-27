@@ -2089,7 +2089,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Kontaktuetara gehitu</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Hartzaileen zerrenda</string>
+  <string name="conversation_group_options__recipients_list">Hartzaileen zerrenda</string>
   <string name="conversation_group_options__delivery">Banatu</string>
   <string name="conversation_group_options__conversation">Solasaldia</string>
   <string name="conversation_group_options__broadcast">Difusioa</string>

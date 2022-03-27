@@ -2438,7 +2438,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Kişilere ekle</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Alıcı listesi</string>
+  <string name="conversation_group_options__recipients_list">Alıcı listesi</string>
   <string name="conversation_group_options__delivery">İletim</string>
   <string name="conversation_group_options__conversation">Konuşma</string>
   <string name="conversation_group_options__broadcast">Yayın</string>

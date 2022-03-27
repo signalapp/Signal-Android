@@ -2380,7 +2380,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">新增至聯絡人</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">收件人清單</string>
+  <string name="conversation_group_options__recipients_list">收件人清單</string>
   <string name="conversation_group_options__delivery">傳送</string>
   <string name="conversation_group_options__conversation">對話</string>
   <string name="conversation_group_options__broadcast">訊息廣播</string>

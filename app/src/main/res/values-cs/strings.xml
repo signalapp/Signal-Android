@@ -2614,7 +2614,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Přidat do kontaktů</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Seznam příjemců</string>
+  <string name="conversation_group_options__recipients_list">Seznam příjemců</string>
   <string name="conversation_group_options__delivery">Doručení</string>
   <string name="conversation_group_options__conversation">Konverzace</string>
   <string name="conversation_group_options__broadcast">Rozeslat</string>

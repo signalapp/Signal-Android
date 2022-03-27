@@ -2337,7 +2337,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">தொடர்புகளுடன் சேர்க்க</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">பெறுநர்கள் பட்டியல்</string>
+  <string name="conversation_group_options__recipients_list">பெறுநர்கள் பட்டியல்</string>
   <string name="conversation_group_options__delivery">விநியோகம்</string>
   <string name="conversation_group_options__conversation">உரையாடல்</string>
   <string name="conversation_group_options__broadcast">ஒளிபரப்பு</string>

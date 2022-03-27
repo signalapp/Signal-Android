@@ -2446,7 +2446,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Aldoni al kontaktoj</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Ricevontolisto</string>
+  <string name="conversation_group_options__recipients_list">Ricevontolisto</string>
   <string name="conversation_group_options__delivery">Livero</string>
   <string name="conversation_group_options__conversation">Interparolo</string>
   <string name="conversation_group_options__broadcast">Dissendo</string>

@@ -2135,7 +2135,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">పరిచయాలకు జోడించండి</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">గ్రహీతల జాబితా</string>
+  <string name="conversation_group_options__recipients_list">గ్రహీతల జాబితా</string>
   <string name="conversation_group_options__delivery">చేర్చుట</string>
   <string name="conversation_group_options__conversation">సంభాషణ</string>
   <string name="conversation_group_options__broadcast">ప్రసారం </string>

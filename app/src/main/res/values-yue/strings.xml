@@ -2384,7 +2384,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">加入去聯絡人</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">收件人名單</string>
+  <string name="conversation_group_options__recipients_list">收件人名單</string>
   <string name="conversation_group_options__delivery">傳遞</string>
   <string name="conversation_group_options__conversation">對話</string>
   <string name="conversation_group_options__broadcast">廣播</string>

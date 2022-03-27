@@ -1503,7 +1503,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Idagdag sa mga kontak</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Listahan ng mga tatanggap</string>
+  <string name="conversation_group_options__recipients_list">Listahan ng mga tatanggap</string>
   <string name="conversation_group_options__delivery">Paghahatid</string>
   <string name="conversation_group_options__conversation">Pag-uusap</string>
   <string name="conversation_group_options__broadcast">Broadcast</string>

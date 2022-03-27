@@ -2362,7 +2362,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Tambah ke kontak</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Daftar Penerima</string>
+  <string name="conversation_group_options__recipients_list">Daftar Penerima</string>
   <string name="conversation_group_options__delivery">Pengiriman</string>
   <string name="conversation_group_options__conversation">Percakapan</string>
   <string name="conversation_group_options__broadcast">Siaran</string>

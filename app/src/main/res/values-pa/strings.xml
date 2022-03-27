@@ -2400,7 +2400,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">ਸੰਪਰਕਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">ਪ੍ਰਾਪਤਕਰਤਾ ਸੂਚੀ</string>
+  <string name="conversation_group_options__recipients_list">ਪ੍ਰਾਪਤਕਰਤਾ ਸੂਚੀ</string>
   <string name="conversation_group_options__delivery">ਡਿਲਿਵਰੀ</string>
   <string name="conversation_group_options__conversation">ਗੱਲਬਾਤ</string>
   <string name="conversation_group_options__broadcast">ਬ੍ਰੌਡਕਾਸਟ</string>

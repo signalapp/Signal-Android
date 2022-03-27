@@ -2124,7 +2124,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">ସମ୍ପର୍କଗୁଡିକରେ ଯୋଡନ୍ତୁ</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">ପ୍ରାପ୍ତକର୍ତ୍ତା ତାଲିକା</string>
+  <string name="conversation_group_options__recipients_list">ପ୍ରାପ୍ତକର୍ତ୍ତା ତାଲିକା</string>
   <string name="conversation_group_options__delivery">ବିତରଣ</string>
   <string name="conversation_group_options__conversation">ବାର୍ତ୍ତାଳାପ</string>
   <string name="conversation_group_options__broadcast">ପ୍ରସାରଣ</string>

@@ -708,7 +708,7 @@ gy\'olonze (%s) sintuufu.</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Ggatta ku kontakiti zo.</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">olukalala lwabafunye obubaka</string>
+  <string name="conversation_group_options__recipients_list">olukalala lwabafunye obubaka</string>
   <string name="conversation_group_options__delivery">okutuusibwa</string>
   <string name="conversation_group_options__conversation">Emboozi</string>
   <string name="conversation_group_options__broadcast">Okusasaanya mubutongole</string>

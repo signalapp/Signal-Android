@@ -2235,7 +2235,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">เพิ่มลงในรายชื่อผู้ติดต่อ</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">รายชื่อผู้รับ</string>
+  <string name="conversation_group_options__recipients_list">รายชื่อผู้รับ</string>
   <string name="conversation_group_options__delivery">ส่ง</string>
   <string name="conversation_group_options__conversation">สนทนา</string>
   <string name="conversation_group_options__broadcast">เผยแพร่</string>

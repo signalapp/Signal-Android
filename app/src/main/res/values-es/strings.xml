@@ -2470,7 +2470,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Añadir a contactos</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Lista de participantes</string>
+  <string name="conversation_group_options__recipients_list">Lista de participantes</string>
   <string name="conversation_group_options__delivery">Entrega</string>
   <string name="conversation_group_options__conversation">Chat</string>
   <string name="conversation_group_options__broadcast">Transmisión</string>

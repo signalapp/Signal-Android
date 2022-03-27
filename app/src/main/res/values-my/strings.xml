@@ -2169,7 +2169,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">အဆက်အသွယ်စာရင်းထဲ ထည့်ပါ</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">လက်ခံမည့်သူ စာရင်း</string>
+  <string name="conversation_group_options__recipients_list">လက်ခံမည့်သူ စာရင်း</string>
   <string name="conversation_group_options__delivery">ပေးပို့ခြင်း</string>
   <string name="conversation_group_options__conversation">စကားဝိုင်း</string>
   <string name="conversation_group_options__broadcast">ထုတ်လွှင့်ပါ</string>

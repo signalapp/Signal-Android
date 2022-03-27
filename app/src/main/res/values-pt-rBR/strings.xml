@@ -2461,7 +2461,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Adicionar aos contatos</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Lista de destinatários</string>
+  <string name="conversation_group_options__recipients_list">Lista de destinatários</string>
   <string name="conversation_group_options__delivery">Entrega</string>
   <string name="conversation_group_options__conversation">Conversa</string>
   <string name="conversation_group_options__broadcast">Transmissão</string>

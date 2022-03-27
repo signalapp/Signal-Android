@@ -2477,7 +2477,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Aan contactenlijst toevoegen</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Lijst met ontvangers</string>
+  <string name="conversation_group_options__recipients_list">Lijst met ontvangers</string>
   <string name="conversation_group_options__delivery">Verzending</string>
   <string name="conversation_group_options__conversation">Gesprek</string>
   <string name="conversation_group_options__broadcast">Uitzenden</string>

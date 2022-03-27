@@ -2328,7 +2328,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Tambah ke kenalan</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Senarai penerima</string>
+  <string name="conversation_group_options__recipients_list">Senarai penerima</string>
   <string name="conversation_group_options__delivery">Penghantaran</string>
   <string name="conversation_group_options__conversation">Perbualan</string>
   <string name="conversation_group_options__broadcast">Siaran</string>

@@ -2464,7 +2464,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Lägg till som kontakt</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Mottagarlista</string>
+  <string name="conversation_group_options__recipients_list">Mottagarlista</string>
   <string name="conversation_group_options__delivery">Leverans</string>
   <string name="conversation_group_options__conversation">Konversation</string>
   <string name="conversation_group_options__broadcast">Sändning</string>

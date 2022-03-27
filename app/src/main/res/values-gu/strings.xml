@@ -2292,7 +2292,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">સંપર્કોમાં ઉમેરો </string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">પ્રાપ્તકર્તાઓની સૂચિ</string>
+  <string name="conversation_group_options__recipients_list">પ્રાપ્તકર્તાઓની સૂચિ</string>
   <string name="conversation_group_options__delivery">ડિલિવરી</string>
   <string name="conversation_group_options__conversation">સંવાદ</string>
   <string name="conversation_group_options__broadcast">બ્રોડકાસ્ટ</string>

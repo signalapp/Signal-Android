@@ -2374,7 +2374,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">連絡先に追加</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">宛先リスト</string>
+  <string name="conversation_group_options__recipients_list">宛先リスト</string>
   <string name="conversation_group_options__delivery">配送</string>
   <string name="conversation_group_options__conversation">チャット</string>
   <string name="conversation_group_options__broadcast">一斉送信</string>

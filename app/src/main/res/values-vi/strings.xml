@@ -2339,7 +2339,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Thêm vào danh bạ</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Danh sách người nhận</string>
+  <string name="conversation_group_options__recipients_list">Danh sách người nhận</string>
   <string name="conversation_group_options__delivery">Cách chuyển tin</string>
   <string name="conversation_group_options__conversation">Trò chuyện</string>
   <string name="conversation_group_options__broadcast">Phát rộng</string>

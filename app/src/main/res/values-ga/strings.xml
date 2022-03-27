@@ -1056,7 +1056,7 @@ a shonrú</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Cuir lena teagmhálaithe</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Liosta faighteoirí</string>
+  <string name="conversation_group_options__recipients_list">Liosta faighteoirí</string>
   <string name="conversation_group_options__delivery">Seachadadh</string>
   <string name="conversation_group_options__conversation">Comhrá</string>
   <string name="conversation_group_options__broadcast">Craoladh</string>

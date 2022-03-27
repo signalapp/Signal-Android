@@ -2296,7 +2296,7 @@ nambari yako ya simu</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Ongeza kwa wawasiliani</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Orodha ya wapokeaji</string>
+  <string name="conversation_group_options__recipients_list">Orodha ya wapokeaji</string>
   <string name="conversation_group_options__delivery">Uwasilishaji</string>
   <string name="conversation_group_options__conversation">Mazungumzo</string>
   <string name="conversation_group_options__broadcast">Tangaza</string>

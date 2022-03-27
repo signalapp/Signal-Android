@@ -2143,7 +2143,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Rnu γer inermisen</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Tabdart n yiɣerwiḍen</string>
+  <string name="conversation_group_options__recipients_list">Tabdart n yiɣerwiḍen</string>
   <string name="conversation_group_options__delivery">Asiweḍ</string>
   <string name="conversation_group_options__conversation">Adiwenni</string>
   <string name="conversation_group_options__broadcast">Tuzzna i meṛṛa</string>

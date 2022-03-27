@@ -2792,7 +2792,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">أضف إلى جهات الاتصال</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">قائمة المستلمون</string>
+  <string name="conversation_group_options__recipients_list">قائمة المستلمون</string>
   <string name="conversation_group_options__delivery">تسليم</string>
   <string name="conversation_group_options__conversation">محادثة</string>
   <string name="conversation_group_options__broadcast">بث</string>

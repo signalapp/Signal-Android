@@ -2528,7 +2528,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Pievienot kontaktiem</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Adresātu saraksts</string>
+  <string name="conversation_group_options__recipients_list">Adresātu saraksts</string>
   <string name="conversation_group_options__delivery">Piegāde</string>
   <string name="conversation_group_options__conversation">Saruna</string>
   <string name="conversation_group_options__broadcast">Plašsaziņa/Pārraide</string>

@@ -2556,7 +2556,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Dodaj među kontakte</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Popis primalaca</string>
+  <string name="conversation_group_options__recipients_list">Popis primalaca</string>
   <string name="conversation_group_options__delivery">Isporuka</string>
   <string name="conversation_group_options__conversation">Konverzacija</string>
   <string name="conversation_group_options__broadcast">Emitovanje</string>

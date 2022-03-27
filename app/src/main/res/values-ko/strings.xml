@@ -2279,7 +2279,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">연락처에 추가</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">수신자 목록</string>
+  <string name="conversation_group_options__recipients_list">수신자 목록</string>
   <string name="conversation_group_options__delivery">전송</string>
   <string name="conversation_group_options__conversation">대화</string>
   <string name="conversation_group_options__broadcast">방송</string>

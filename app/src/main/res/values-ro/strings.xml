@@ -2552,7 +2552,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Adaugă la contacte</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Lista destinatari</string>
+  <string name="conversation_group_options__recipients_list">Lista destinatari</string>
   <string name="conversation_group_options__delivery">Trimitere</string>
   <string name="conversation_group_options__conversation">Conversație</string>
   <string name="conversation_group_options__broadcast">Difuzare</string>

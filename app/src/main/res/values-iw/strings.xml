@@ -2642,7 +2642,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">הוסף לאנשי הקשר</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">רשימת מקבלים</string>
+  <string name="conversation_group_options__recipients_list">רשימת מקבלים</string>
   <string name="conversation_group_options__delivery">מסירה</string>
   <string name="conversation_group_options__conversation">שיחה</string>
   <string name="conversation_group_options__broadcast">שידור</string>

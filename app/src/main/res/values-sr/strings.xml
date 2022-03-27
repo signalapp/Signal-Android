@@ -2550,7 +2550,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Додај у контакте</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Списак прималаца</string>
+  <string name="conversation_group_options__recipients_list">Списак прималаца</string>
   <string name="conversation_group_options__delivery">Испорука</string>
   <string name="conversation_group_options__conversation">Преписка</string>
   <string name="conversation_group_options__broadcast">Емитовање</string>

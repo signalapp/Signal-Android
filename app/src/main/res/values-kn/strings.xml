@@ -2298,7 +2298,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">ಸಂಪರ್ಕಗಳಿಗೆ ಸೇರಿಸು</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">ಸ್ವೀಕೃತದಾರರ ಪಟ್ಟಿ</string>
+  <string name="conversation_group_options__recipients_list">ಸ್ವೀಕೃತದಾರರ ಪಟ್ಟಿ</string>
   <string name="conversation_group_options__delivery">ಡೆಲಿವರಿ</string>
   <string name="conversation_group_options__conversation">ಸಂಭಾಷಣೆ</string>
   <string name="conversation_group_options__broadcast">ಪ್ರಸಾರ ಮಾಡಿ</string>

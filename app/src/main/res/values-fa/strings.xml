@@ -2443,7 +2443,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">افزودن به مخاطبین</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">فهرست گیرندگان</string>
+  <string name="conversation_group_options__recipients_list">فهرست گیرندگان</string>
   <string name="conversation_group_options__delivery">تحویل</string>
   <string name="conversation_group_options__conversation">مکالمه</string>
   <string name="conversation_group_options__broadcast">پخش</string>
