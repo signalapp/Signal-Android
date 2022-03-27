@@ -56,7 +56,7 @@ object Avatars {
     "avatar_fox" to DefaultAvatar(R.drawable.ic_avatar_fox, "A190"),
     "avatar_tucan" to DefaultAvatar(R.drawable.ic_avatar_tucan, "A120"),
     "avatar_sloth" to DefaultAvatar(R.drawable.ic_avatar_sloth, "A160"),
-    "avatar_dinosaur" to DefaultAvatar(R.drawable.ic_avatar_dinosour, "A130"),
+    "avatar_dinosaur" to DefaultAvatar(R.drawable.ic_avatar_dinosaur, "A130"),
     "avatar_pig" to DefaultAvatar(R.drawable.ic_avatar_pig, "A180"),
     "avatar_incognito" to DefaultAvatar(R.drawable.ic_avatar_incognito, "A220"),
     "avatar_ghost" to DefaultAvatar(R.drawable.ic_avatar_ghost, "A100")
