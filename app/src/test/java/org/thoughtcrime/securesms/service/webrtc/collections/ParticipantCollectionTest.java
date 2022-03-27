@@ -45,7 +45,7 @@ public class ParticipantCollectionTest {
   }
 
   @Test
-  public void givenAnEmptyColletion_whenIAdd4Participants_thenIExpectThemToBeOrderedByLastSpokenThenAddedToCallTime() {
+  public void givenAnEmptyCollection_whenIAdd4Participants_thenIExpectThemToBeOrderedByLastSpokenThenAddedToCallTime() {
     // GIVEN
     List<CallParticipant> input = Arrays.asList(participant(1, 1, 2),
                                                 participant(2, 5, 2),
