@@ -115,7 +115,7 @@ import java.util.concurrent.TimeUnit;
  *
  * == Syncing a new field on an existing record ==
  *
- * - Add the field the the respective proto
+ * - Add the field the respective proto
  * - Update the respective model (i.e. {@link SignalContactRecord})
  *     - Add getters
  *     - Update the builder

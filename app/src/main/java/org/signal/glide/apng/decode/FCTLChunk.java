@@ -46,7 +46,7 @@ class FCTLChunk extends Chunk {
      * The delay_num and delay_den parameters together specify a fraction indicating the time to
      * display the current frame, in seconds. If the denominator is 0, it is to be treated as if it
      * were 100 (that is, delay_num then specifies 1/100ths of a second).
-     * If the the value of the numerator is 0 the decoder should render the next frame as quickly as
+     * If the value of the numerator is 0 the decoder should render the next frame as quickly as
      * possible, though viewers may impose a reasonable lower bound.
      * <p>
      * Frame timings should be independent of the time required for decoding and display of each frame,
