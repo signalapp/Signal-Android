@@ -4255,7 +4255,7 @@
 
     <!-- Button use to permanently delete a notification profile -->
     <string name="NotificationProfileDetails__delete_profile">Delete profile</string>
-    <!-- Snakbar message shown when removing a recipient from a profile -->
+    <!-- Snackbar message shown when removing a recipient from a profile -->
     <string name="NotificationProfileDetails__s_removed">\"%1$s\" removed.</string>
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">Undo</string>
