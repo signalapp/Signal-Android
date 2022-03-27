@@ -75,7 +75,7 @@ class NotificationProfileDatabaseTest {
   }
 
   @Test
-  fun `updateProfile changes all updateable fields`() {
+  fun `updateProfile changes all updatable fields`() {
     val profile: NotificationProfile = database.createProfile(
       name = "Profile",
       emoji = "avatar",
