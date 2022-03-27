@@ -1817,7 +1817,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
         TextView body  = Objects.requireNonNull(dialog.findViewById(R.id.safety_number_learn_more_body));
 
         title.setText(getString(R.string.ConversationFragment_your_safety_number_with_s_changed, recipient.getDisplayName(requireContext())));
-        body.setText(getString(R.string.ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal, recipient.getDisplayName(requireContext())));
+        body.setText(getString(R.string.ConversationFragment_your_safety_number_with_s_changed_likely_because_they_reinstalled_signal, recipient.getDisplayName(requireContext())));
       });
 
       dialog.show();
