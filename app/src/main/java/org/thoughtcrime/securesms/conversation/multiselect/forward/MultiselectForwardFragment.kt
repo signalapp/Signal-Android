@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.conversation.mutiselect.forward
+package org.thoughtcrime.securesms.conversation.multiselect.forward
 
 import android.os.Bundle
 import android.os.Handler

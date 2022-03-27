@@ -10,8 +10,8 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.Conversions;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
-import org.thoughtcrime.securesms.conversation.mutiselect.Multiselect;
-import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectCollection;
+import org.thoughtcrime.securesms.conversation.multiselect.Multiselect;
+import org.thoughtcrime.securesms.conversation.multiselect.MultiselectCollection;
 import org.thoughtcrime.securesms.database.MentionUtil;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;

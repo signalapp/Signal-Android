@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.conversation.mutiselect.forward
+package org.thoughtcrime.securesms.conversation.multiselect.forward
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

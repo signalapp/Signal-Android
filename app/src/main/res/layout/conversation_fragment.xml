@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="@android:id/list"
         app:layout_constraintTop_toTopOf="@android:id/list" />
 
-    <org.thoughtcrime.securesms.conversation.mutiselect.MultiselectRecyclerView
+    <org.thoughtcrime.securesms.conversation.multiselect.MultiselectRecyclerView
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

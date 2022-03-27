@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.conversation;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
+import org.thoughtcrime.securesms.conversation.multiselect.MultiselectPart;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;

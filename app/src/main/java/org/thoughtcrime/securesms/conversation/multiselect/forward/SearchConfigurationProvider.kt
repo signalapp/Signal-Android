@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.conversation.mutiselect.forward
+package org.thoughtcrime.securesms.conversation.multiselect.forward
 
 import androidx.fragment.app.FragmentManager
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration

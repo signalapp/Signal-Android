@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.conversation.mutiselect
+package org.thoughtcrime.securesms.conversation.multiselect
 
 import android.animation.Animator
 import android.animation.AnimatorSet
