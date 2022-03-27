@@ -140,7 +140,7 @@ public class ParticipantCollectionTest {
     assertThat(initialCollection.getGridParticipants(), Matchers.contains(id(1), id(2), id(3), id(4), id(5), id(6)));
     assertThat(initialCollection.getListParticipants(), Matchers.contains(id(7), id(8), id(9), id(10)));
 
-    // Bob speaks about his trip to antigua...
+    // Bob speaks about his trip to Antigua...
 
     List<CallParticipant> bobSpoke = Arrays.asList(participant(1, 1, 1),
                                                    participant(2, 2, 1),

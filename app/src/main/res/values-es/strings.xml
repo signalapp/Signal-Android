@@ -137,7 +137,7 @@
   <string name="ClearProfileActivity_remove_group_photo">¿Eliminar imagen del grupo?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Actualiza Signal</string>
-  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Esta versión de Signal es antigua y ya no está soportada. Para continuar recibiendo y enviando mensajes, actualiza a la versión más reciente.</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Esta versión de Signal es Antigua y ya no está soportada. Para continuar recibiendo y enviando mensajes, actualiza a la versión más reciente.</string>
   <string name="ClientDeprecatedActivity_update">Actualizar</string>
   <string name="ClientDeprecatedActivity_dont_update">No actualizar</string>
   <string name="ClientDeprecatedActivity_warning">Advertencia</string>
@@ -943,7 +943,7 @@
   <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Toca para enviar el registro de depuración (log)</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Desconocid@</string>
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Has recibido un mensaje cifrado con una versión de Signal antigua que ya no está disponible. Por favor, solicita a esta persona a actualizar a la versión más reciente y a reenviar el mensaje.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Has recibido un mensaje cifrado con una versión de Signal Antigua que ya no está disponible. Por favor, solicita a esta persona a actualizar a la versión más reciente y a reenviar el mensaje.</string>
   <string name="MessageRecord_left_group">Has abandonado el grupo.</string>
   <string name="MessageRecord_you_updated_group">Has actualizado el grupo.</string>
   <string name="MessageRecord_the_group_was_updated">Se actualizó el grupo.</string>
@@ -1172,7 +1172,7 @@
   </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">¡Las claves no coinciden!</string>
-  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">¡Clave de acceso antigua incorrecta!</string>
+  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">¡Clave de acceso Antigua incorrecta!</string>
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">¡Introduce una nueva clave de acceso!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">¿Enlazar este dispositivo?</string>
@@ -1554,7 +1554,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
     <item quantity="other">¡%d de tus amistades usan Signal!</item>
   </plurals>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Esta persona usa una versión antigua de Signal. Por favor, pídele que actualice antes de verificar tus cifras de seguridad.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Esta persona usa una versión Antigua de Signal. Por favor, pídele que actualice antes de verificar tus cifras de seguridad.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Esta persona usa una versión de Signal con un formato de código QR incompatible. Por favor, pídele que actualice para verificar.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">El código QR escaneado no tiene un formato de código de verificación de cifras de seguridad correcto. Por favor, intenta escanearlo de nuevo.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Compartir cifras de seguridad por …</string>
