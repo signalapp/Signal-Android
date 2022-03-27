@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.util.SqlUtil
 import java.time.DayOfWeek
 
 /**
- * Database for maintaining Notification Profiles, Notification Profile Schedules, and Notification Profile allowed memebers.
+ * Database for maintaining Notification Profiles, Notification Profile Schedules, and Notification Profile allowed members.
  */
 class NotificationProfileDatabase(context: Context, databaseHelper: SignalDatabase) : Database(context, databaseHelper) {
 
