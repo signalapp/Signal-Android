@@ -75,7 +75,7 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
           .append(" ")
           .append(
             SpanUtil.clickable(
-              getString(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer),
+              getString(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_monthly_sustainer),
               ContextCompat.getColor(requireContext(), R.color.signal_accent_primary),
             ) {
               requireActivity().finish()
