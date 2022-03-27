@@ -27,21 +27,21 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/old_device_trasnfer_complete_fragment_subtitle"
+            android:id="@+id/old_device_transfer_complete_fragment_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/transfer_item_spacing"
             android:gravity="center"
             android:text="@string/NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration"
             android:textAppearance="@style/TextAppearance.Signal.Body1"
-            app:layout_constraintBottom_toTopOf="@+id/old_device_trasnfer_complete_fragment_success"
+            app:layout_constraintBottom_toTopOf="@+id/old_device_transfer_complete_fragment_success"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/new_device_transfer_complete_fragment_title"
             app:layout_constraintVertical_bias="0" />
 
         <org.thoughtcrime.securesms.components.SquareImageView
-            android:id="@+id/old_device_trasnfer_complete_fragment_success"
+            android:id="@+id/old_device_transfer_complete_fragment_success"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_gravity="center"
@@ -61,9 +61,9 @@
             android:text="@string/NewDeviceTransferComplete__transfer_complete"
             android:textAppearance="@style/TextAppearance.Signal.Body1"
             app:layout_constraintBottom_toTopOf="@+id/new_device_transfer_complete_fragment_continue_registration"
-            app:layout_constraintEnd_toEndOf="@+id/old_device_trasnfer_complete_fragment_success"
-            app:layout_constraintStart_toStartOf="@+id/old_device_trasnfer_complete_fragment_success"
-            app:layout_constraintTop_toBottomOf="@+id/old_device_trasnfer_complete_fragment_success"
+            app:layout_constraintEnd_toEndOf="@+id/old_device_transfer_complete_fragment_success"
+            app:layout_constraintStart_toStartOf="@+id/old_device_transfer_complete_fragment_success"
+            app:layout_constraintTop_toBottomOf="@+id/old_device_transfer_complete_fragment_success"
             app:layout_constraintVertical_bias="0" />
 
         <com.google.android.material.button.MaterialButton

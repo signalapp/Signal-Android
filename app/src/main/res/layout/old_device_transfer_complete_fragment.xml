@@ -16,7 +16,7 @@
         android:gravity="center"
         android:text="@string/OldDeviceTransferComplete__go_to_your_new_device"
         android:textAppearance="@style/Signal.Text.Headline.Registration"
-        app:layout_constraintBottom_toTopOf="@+id/old_device_trasnfer_complete_fragment_subtitle"
+        app:layout_constraintBottom_toTopOf="@+id/old_device_transfer_complete_fragment_subtitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,7 +24,7 @@
         app:layout_constraintVertical_chainStyle="packed" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/old_device_trasnfer_complete_fragment_subtitle"
+        android:id="@+id/old_device_transfer_complete_fragment_subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/transfer_item_spacing"
@@ -32,20 +32,20 @@
         android:gravity="center"
         android:text="@string/OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device"
         android:textAppearance="@style/TextAppearance.Signal.Body1"
-        app:layout_constraintBottom_toTopOf="@+id/old_device_trasnfer_complete_fragment_success"
+        app:layout_constraintBottom_toTopOf="@+id/old_device_transfer_complete_fragment_success"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/old_device_transfer_complete_fragment_title" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/old_device_trasnfer_complete_fragment_success"
+        android:id="@+id/old_device_transfer_complete_fragment_success"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/old_device_transfer_complete_fragment_close"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/old_device_trasnfer_complete_fragment_subtitle"
+        app:layout_constraintTop_toBottomOf="@+id/old_device_transfer_complete_fragment_subtitle"
         app:srcCompat="@drawable/ic_complete_reg" />
 
 
@@ -58,7 +58,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/old_device_trasnfer_complete_fragment_success"
+        app:layout_constraintTop_toBottomOf="@+id/old_device_transfer_complete_fragment_success"
         app:strokeWidth="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
