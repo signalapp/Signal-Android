@@ -277,7 +277,7 @@ final class SignalCameraXModule {
 
     setZoomRatio(UNITY_ZOOM_SCALE);
     mCurrentLifecycle.getLifecycle().addObserver(mCurrentLifecycleObserver);
-    // Enable flash setting in ImageCapture after use cases are created and binded.
+    // Enable flash setting in ImageCapture after use cases are created and bound.
     setFlash(getFlash());
   }
 
