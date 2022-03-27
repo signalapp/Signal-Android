@@ -140,12 +140,12 @@ public final class MainActivity extends AppCompatActivity {
 
     EditorElement elementF = new EditorElement(new UrlRenderer("https://purepng.com/public/uploads/large/purepng.com-black-top-hathatsstandard-sizeblacktop-14215263591972x0zh.png"));
     elementF.getLocalMatrix().postScale(0.2f, 0.2f);
-    //elementF.getLocalMatrix().postRotatF(60);
+    //elementF.getLocalMatrix().postRotate(60);
     model.addElement(elementF);
 
     EditorElement elementG = new EditorElement(new UriRenderer(Uri.parse("file:///android_asset/food/apple.png")));
     elementG.getLocalMatrix().postScale(0.2f, 0.2f);
-    //elementG.getLocalMatrix().postRotatG(60);
+    //elementG.getLocalMatrix().postRotate(60);
     model.addElement(elementG);
 
     EditorElement elementH = new EditorElement(new MultiLineTextRenderer("Hello, World!", 0xff0000ff, MultiLineTextRenderer.Mode.REGULAR));
