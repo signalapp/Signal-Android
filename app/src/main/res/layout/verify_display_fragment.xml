@@ -218,7 +218,7 @@
                         tools:text="32440" />
 
                     <TextView
-                        android:id="@+id/code_twelth"
+                        android:id="@+id/code_twelfth"
                         style="@style/IdentityKey"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

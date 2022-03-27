@@ -168,7 +168,7 @@ public class VerifyDisplayFragment extends Fragment implements ViewTreeObserver.
     this.codes[8]         = view.findViewById(R.id.code_ninth);
     this.codes[9]         = view.findViewById(R.id.code_tenth);
     this.codes[10]        = view.findViewById(R.id.code_eleventh);
-    this.codes[11]        = view.findViewById(R.id.code_twelth);
+    this.codes[11]        = view.findViewById(R.id.code_twelfth);
 
     this.qrCodeContainer.setOnClickListener(v -> callback.onQrCodeContainerClicked());
     this.registerForContextMenu(numbersContainer);
