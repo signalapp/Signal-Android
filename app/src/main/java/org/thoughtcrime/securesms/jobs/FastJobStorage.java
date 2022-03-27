@@ -322,11 +322,11 @@ public class FastJobStorage implements JobStorage {
       dependenciesByJobId.remove(jobId);
 
       for (Map.Entry<String, List<DependencySpec>> entry : dependenciesByJobId.entrySet()) {
-        Iterator<DependencySpec> depedencyIter = entry.getValue().iterator();
+        Iterator<DependencySpec> dependencyIter = entry.getValue().iterator();
 
-        while (depedencyIter.hasNext()) {
-          if (depedencyIter.next().getDependsOnJobId().equals(jobId)) {
-            depedencyIter.remove();
+        while (dependencyIter.hasNext()) {
+          if (dependencyIter.next().getDependsOnJobId().equals(jobId)) {
+            dependencyIter.remove();
           }
         }
       }
