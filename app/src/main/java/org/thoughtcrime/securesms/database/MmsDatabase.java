@@ -1884,7 +1884,7 @@ public class MmsDatabase extends MessageDatabase {
       }
     }
 
-    SignalDatabase.threads().updateLastSeenAndMarkSentAndLastScrolledSilenty(threadId);
+    SignalDatabase.threads().updateLastSeenAndMarkSentAndLastScrolledSilently(threadId);
 
     if (!message.getStoryType().isStory()) {
       ApplicationDependencies.getDatabaseObserver().notifyMessageInsertObservers(threadId, new MessageId(messageId, true));

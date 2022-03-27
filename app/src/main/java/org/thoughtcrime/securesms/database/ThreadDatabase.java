@@ -1156,7 +1156,7 @@ public class ThreadDatabase extends Database {
     return getThreadIdIfExistsFor(recipientId) > -1;
   }
 
-  public void updateLastSeenAndMarkSentAndLastScrolledSilenty(long threadId) {
+  public void updateLastSeenAndMarkSentAndLastScrolledSilently(long threadId) {
     ContentValues contentValues = new ContentValues(3);
     contentValues.put(LAST_SEEN, System.currentTimeMillis());
     contentValues.put(HAS_SENT, 1);
