@@ -127,7 +127,7 @@ class RotationDialView @JvmOverloads constructor(
     indicatorRect.offset(-dimensions.spaceBetweenAngleIndicators.toFloat(), 0f)
     currentDegree -= 1
 
-    while (indicatorRect.left >= 0 && currentDegree >= floor(MIN_DEGRESS)) {
+    while (indicatorRect.left >= 0 && currentDegree >= floor(MIN_DEGREES)) {
       angleIndicatorPaint.color = Colors.colorForOtherDegree(currentDegree)
       indicatorRect.top = bottom.toFloat() - dimensions.getHeightForDegree(currentDegree)
       canvas.drawRect(indicatorRect, angleIndicatorPaint)
@@ -192,8 +192,8 @@ class RotationDialView @JvmOverloads constructor(
       val prevDialDegrees = getDialDegrees(degrees)
       val newDialDegrees = getDialDegrees(degrees + degreeIncrement)
 
-      val offEndOfMax = prevDialDegrees >= MAX_DEGREES / 2f && newDialDegrees <= MIN_DEGRESS / 2f
-      val offEndOfMin = newDialDegrees >= MAX_DEGREES / 2f && prevDialDegrees <= MIN_DEGRESS / 2f
+      val offEndOfMax = prevDialDegrees >= MAX_DEGREES / 2f && newDialDegrees <= MIN_DEGREES / 2f
+      val offEndOfMin = newDialDegrees >= MAX_DEGREES / 2f && prevDialDegrees <= MIN_DEGREES / 2f
 
       if (prevDialDegrees.roundToInt() != newDialDegrees.roundToInt() && isHapticFeedbackEnabled) {
         performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP)
@@ -286,7 +286,7 @@ class RotationDialView @JvmOverloads constructor(
 
   companion object {
     private const val MAX_DEGREES: Float = 44.99999f
-    private const val MIN_DEGRESS: Float = -44.99999f
+    private const val MIN_DEGREES: Float = -44.99999f
   }
 
   interface Listener {
