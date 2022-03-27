@@ -406,7 +406,7 @@ public interface MmsSmsColumns {
 //    public static final int SECURE_SENT_TYPE     = 44;  // Messages were sent with async encryption.
 //    public static final int SECURE_RECEIVED_TYPE = 45;  // Messages were received with async decryption.
 //    public static final int FAILED_DECRYPT_TYPE  = 46;  // Messages were received with async encryption and failed to decrypt.
-//    public static final int DECRYPTING_TYPE      = 47;  // Messages are in the process of being asymmetricaly decrypted.
+//    public static final int DECRYPTING_TYPE      = 47;  // Messages are in the process of being asymmetrically decrypted.
 //    public static final int NO_SESSION_TYPE      = 48;  // Messages were received with async encryption but there is no session yet.
 //
 //    public static final int OUTGOING_KEY_EXCHANGE_TYPE  = 49;
