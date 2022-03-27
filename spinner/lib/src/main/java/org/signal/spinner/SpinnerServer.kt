@@ -19,7 +19,7 @@ import kotlin.math.max
 import kotlin.math.min
 
 /**
- * The workhorse of this lib. Handles all of our our web routing and response generation.
+ * The workhorse of this lib. Handles all of our web routing and response generation.
  *
  * In general, you add routes in [serve], and then build a response by creating a handlebars template (in the assets folder) and then passing in a data class
  * to [renderTemplate].
