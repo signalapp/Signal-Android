@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.mediasend.v2.text.send
 
-import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.ThreadUtil
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
@@ -44,6 +43,7 @@ class TextStoryPostSendRepository {
   private fun performSend(contactSearchKey: Set<ContactSearchKey>, textStoryPostCreationState: TextStoryPostCreationState, linkPreview: LinkPreview?): Single<TextStoryPostSendResult> {
     return Single.fromCallable {
       val messages: MutableList<OutgoingSecureMediaMessage> = mutableListOf()
+      val distributionListSentTimestamp = System.currentTimeMillis()
 
       for (contact in contactSearchKey) {
         val recipient = Recipient.resolved(contact.requireShareContact().recipientId.get())
@@ -63,7 +63,7 @@ class TextStoryPostSendRepository {
           recipient,
           serializeTextStoryState(textStoryPostCreationState),
           emptyList(),
-          System.currentTimeMillis(),
+          if (recipient.isDistributionList) distributionListSentTimestamp else System.currentTimeMillis(),
           -1,
           0,
           false,
@@ -83,9 +83,9 @@ class TextStoryPostSendRepository {
         ThreadUtil.sleep(5)
       }
 
-      messages.map { Stories.sendIndividualStory(it) }
+      Stories.sendTextStories(messages)
     }.flatMap { messages ->
-      Completable.concat(messages).toSingleDefault<TextStoryPostSendResult>(TextStoryPostSendResult.Success)
+      messages.toSingleDefault<TextStoryPostSendResult>(TextStoryPostSendResult.Success)
     }
   }
 

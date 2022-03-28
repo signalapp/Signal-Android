@@ -5,13 +5,11 @@ import androidx.fragment.app.FragmentManager
 import io.reactivex.rxjava3.core.Completable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.HeaderAction
-import org.thoughtcrime.securesms.database.GroupReceiptDatabase.GroupReceiptInfo
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.v2.stories.ChooseStoryTypeBottomSheet
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
+import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
@@ -40,29 +38,16 @@ object Stories {
   }
 
   @WorkerThread
-  fun sendIndividualStory(message: OutgoingMediaMessage): Completable {
+  fun sendTextStories(messages: List<OutgoingSecureMediaMessage>): Completable {
     return Completable.create { emitter ->
-      MessageSender.send(
-        ApplicationDependencies.getApplication(),
-        message,
-        -1L,
-        false,
-        null
-      ) {
-        emitter.onComplete()
-      }
+      MessageSender.sendMediaBroadcast(ApplicationDependencies.getApplication(), messages, listOf(), listOf())
+      emitter.onComplete()
     }
   }
 
   @JvmStatic
-  fun getRecipientsToSendTo(distributionListId: DistributionListId, messageId: Long): List<Recipient> {
-    val destinations: List<GroupReceiptInfo> = SignalDatabase.groupReceipts.getGroupReceiptInfo(messageId)
-
-    val recipientIds: List<RecipientId> = if (destinations.isNotEmpty()) {
-      destinations.map(GroupReceiptInfo::getRecipientId)
-    } else {
-      SignalDatabase.distributionLists.getMembers(distributionListId)
-    }
+  fun getRecipientsToSendTo(messageId: Long, sentTimestamp: Long, allowsReplies: Boolean): List<Recipient> {
+    val recipientIds: List<RecipientId> = SignalDatabase.storySends.getRecipientsToSendTo(messageId, sentTimestamp, allowsReplies)
 
     return RecipientUtil.getEligibleForSending(recipientIds.map(Recipient::resolved))
   }

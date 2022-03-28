@@ -6,6 +6,7 @@ import com.google.android.mms.pdu_alt.PduHeaders
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * Helper methods for inserting an MMS message into the MMS table.
@@ -15,6 +16,7 @@ object TestMms {
   fun insert(
     db: SQLiteDatabase,
     recipient: Recipient = Recipient.UNKNOWN,
+    recipientId: RecipientId = Recipient.UNKNOWN.id,
     body: String = "body",
     sentTimeMillis: Long = System.currentTimeMillis(),
     receivedTimestampMillis: Long = System.currentTimeMillis(),
@@ -51,6 +53,7 @@ object TestMms {
     return insert(
       db = db,
       message = message,
+      recipientId = recipientId,
       body = body,
       type = type,
       unread = unread,
@@ -63,6 +66,7 @@ object TestMms {
   fun insert(
     db: SQLiteDatabase,
     message: OutgoingMediaMessage,
+    recipientId: RecipientId = message.recipient.id,
     body: String = message.body,
     type: Long = MmsSmsColumns.Types.BASE_INBOX_TYPE,
     unread: Boolean = false,
@@ -81,7 +85,7 @@ object TestMms {
       put(MmsSmsColumns.SUBSCRIPTION_ID, message.subscriptionId)
       put(MmsSmsColumns.EXPIRES_IN, message.expiresIn)
       put(MmsDatabase.VIEW_ONCE, message.isViewOnce)
-      put(MmsSmsColumns.RECIPIENT_ID, message.recipient.id.serialize())
+      put(MmsSmsColumns.RECIPIENT_ID, recipientId.serialize())
       put(MmsSmsColumns.DELIVERY_RECEIPT_COUNT, 0)
       put(MmsSmsColumns.RECEIPT_TIMESTAMP, 0)
       put(MmsSmsColumns.VIEWED_RECEIPT_COUNT, if (viewed) 1 else 0)
@@ -93,5 +97,18 @@ object TestMms {
     }
 
     return db.insert(MmsDatabase.TABLE_NAME, null, contentValues)
+  }
+
+  fun markAsRemoteDelete(db: SQLiteDatabase, messageId: Long) {
+    val values = ContentValues()
+    values.put(MmsSmsColumns.REMOTE_DELETED, 1)
+    values.putNull(MmsSmsColumns.BODY)
+    values.putNull(MmsDatabase.QUOTE_BODY)
+    values.putNull(MmsDatabase.QUOTE_AUTHOR)
+    values.putNull(MmsDatabase.QUOTE_ATTACHMENT)
+    values.putNull(MmsDatabase.QUOTE_ID)
+    values.putNull(MmsDatabase.LINK_PREVIEWS)
+    values.putNull(MmsDatabase.SHARED_CONTACTS)
+    db.update(MmsDatabase.TABLE_NAME, values, Database.ID_WHERE, arrayOf(messageId.toString()))
   }
 }

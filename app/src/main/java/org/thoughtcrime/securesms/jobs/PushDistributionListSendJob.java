@@ -145,7 +145,7 @@ public final class PushDistributionListSendJob extends PushSendJob {
       List<Recipient> target;
 
       if (!existingNetworkFailures.isEmpty()) target = Stream.of(existingNetworkFailures).map(nf -> nf.getRecipientId(context)).distinct().map(Recipient::resolved).toList();
-      else target = Stream.of(Stories.getRecipientsToSendTo(listRecipient.requireDistributionListId(), messageId)).distinctBy(Recipient::getId).toList();
+      else target = Stream.of(Stories.getRecipientsToSendTo(messageId, message.getSentTimeMillis(), message.getStoryType().isStoryWithReplies())).distinctBy(Recipient::getId).toList();
 
       List<SendMessageResult> results = deliver(message, target);
       Log.i(TAG, JobLogger.format(this, "Finished send."));

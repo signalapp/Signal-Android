@@ -34,6 +34,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -72,12 +73,7 @@ public class RemoteDeleteSendJob extends BaseJob {
 
     List<RecipientId> recipients;
     if (conversationRecipient.isDistributionList()) {
-      DistributionListId distributionListId = conversationRecipient.requireDistributionListId();
-
-      recipients = Stories.getRecipientsToSendTo(distributionListId, messageId)
-                          .stream()
-                          .map(Recipient::getId)
-                          .collect(Collectors.toList());
+      recipients = SignalDatabase.storySends().getRemoteDeleteRecipients(message.getId(), message.getTimestamp());
     } else {
       recipients = conversationRecipient.isGroup() ? Stream.of(conversationRecipient.getParticipants()).map(Recipient::getId).toList()
                                                    : Stream.of(conversationRecipient.getId()).toList();

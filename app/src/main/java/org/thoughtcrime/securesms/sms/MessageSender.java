@@ -72,6 +72,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
+import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.util.ParcelUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -304,14 +305,9 @@ public class MessageSender {
         OutgoingSecureMediaMessage message   = messages.get(i);
         Recipient                  recipient = message.getRecipient();
 
-        if (isLocalSelfSend(context, recipient, false)) {
-          sendLocalMediaSelf(context, messageId);
-        } else if (recipient.isPushGroup()) {
-          jobManager.add(new PushGroupSendJob(messageId, recipient.getId(), null, true), messageDependsOnIds, recipient.getId().toQueueKey());
-        } else if (recipient.isDistributionList()) {
-          jobManager.add(new PushDistributionListSendJob(messageId, recipient.getId(), true), messageDependsOnIds, recipient.getId().toQueueKey());
-        } else {
-          jobManager.add(new PushMediaSendJob(messageId, recipient, true), messageDependsOnIds, recipient.getId().toQueueKey());
+        if (recipient.isDistributionList()) {
+          List<RecipientId> members = SignalDatabase.distributionLists().getMembers(recipient.requireDistributionListId());
+          SignalDatabase.storySends().insert(messageId, members, message.getSentTimeMillis(), message.getStoryType().isStoryWithReplies());
         }
       }
 
@@ -319,8 +315,24 @@ public class MessageSender {
       mmsDatabase.setTransactionSuccessful();
     } catch (MmsException e) {
       Log.w(TAG, "Failed to send messages.", e);
+      return;
     } finally {
       mmsDatabase.endTransaction();
+    }
+
+    for (int i = 0; i < messageIds.size(); i++) {
+      long      messageId = messageIds.get(i);
+      Recipient recipient = messages.get(i).getRecipient();
+
+      if (isLocalSelfSend(context, recipient, false)) {
+        sendLocalMediaSelf(context, messageId);
+      } else if (recipient.isPushGroup()) {
+        jobManager.add(new PushGroupSendJob(messageId, recipient.getId(), null, true), messageDependsOnIds, recipient.getId().toQueueKey());
+      } else if (recipient.isDistributionList()) {
+        jobManager.add(new PushDistributionListSendJob(messageId, recipient.getId(), true), messageDependsOnIds, recipient.getId().toQueueKey());
+      } else {
+        jobManager.add(new PushMediaSendJob(messageId, recipient, true), messageDependsOnIds, recipient.getId().toQueueKey());
+      }
     }
   }
 

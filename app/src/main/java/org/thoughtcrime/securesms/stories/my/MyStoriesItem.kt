@@ -88,8 +88,8 @@ object MyStoriesItem {
 
       viewCount.text = context.resources.getQuantityString(
         R.plurals.MyStories__d_views,
-        model.distributionStory.messageRecord.readReceiptCount,
-        model.distributionStory.messageRecord.readReceiptCount
+        model.distributionStory.messageRecord.viewedReceiptCount,
+        model.distributionStory.messageRecord.viewedReceiptCount
       )
 
       if (STATUS_CHANGE in payload) {

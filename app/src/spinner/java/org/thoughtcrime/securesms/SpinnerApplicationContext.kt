@@ -8,6 +8,7 @@ import org.signal.spinner.Spinner.DatabaseConfig
 import org.thoughtcrime.securesms.database.DatabaseMonitor
 import org.thoughtcrime.securesms.database.GV2Transformer
 import org.thoughtcrime.securesms.database.GV2UpdateTransformer
+import org.thoughtcrime.securesms.database.IsStoryTransformer
 import org.thoughtcrime.securesms.database.JobDatabase
 import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.database.LocalMetricsDatabase
@@ -39,7 +40,7 @@ class SpinnerApplicationContext : ApplicationContext() {
       linkedMapOf(
         "signal" to DatabaseConfig(
           db = SignalDatabase.rawDatabase,
-          columnTransformers = listOf(MessageBitmaskColumnTransformer, GV2Transformer, GV2UpdateTransformer)
+          columnTransformers = listOf(MessageBitmaskColumnTransformer, GV2Transformer, GV2UpdateTransformer, IsStoryTransformer)
         ),
         "jobmanager" to DatabaseConfig(db = JobDatabase.getInstance(this).sqlCipherDatabase),
         "keyvalue" to DatabaseConfig(db = KeyValueDatabase.getInstance(this).sqlCipherDatabase),

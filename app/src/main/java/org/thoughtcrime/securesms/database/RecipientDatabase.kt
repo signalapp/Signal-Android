@@ -53,6 +53,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase.Companion.notification
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.reactions
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.runPostSuccessfulTransaction
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.sessions
+import org.thoughtcrime.securesms.database.SignalDatabase.Companion.storySends
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.threads
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.RecipientRecord
@@ -2706,6 +2707,9 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
     // DistributionLists
     distributionLists.remapRecipient(byE164, byAci)
+
+    // Story Sends
+    storySends.remapRecipient(byE164, byAci)
 
     // Recipient
     Log.w(TAG, "Deleting recipient $byE164", true)
