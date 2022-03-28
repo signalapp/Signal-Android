@@ -12,6 +12,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 public final class StringUtil {
 
@@ -21,6 +22,8 @@ public final class StringUtil {
                                                                       '\u200B',  // zero-width space
                                                                       '\u2800'); // braille blank
 
+
+  private static final Pattern ALL_ASCII_PATTERN = Pattern.compile("^[\\x00-\\x7F]*$");
 
   private static final class Bidi {
     /** Override text direction  */
@@ -214,6 +217,10 @@ public final class StringUtil {
     }
 
     if (Util.isEmpty(text)) {
+      return text;
+    }
+
+    if (ALL_ASCII_PATTERN.matcher(text).matches()) {
       return text;
     }
 
