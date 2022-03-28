@@ -323,7 +323,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--Dialog title for block group link join requests-->
   <string name="ConversationFragment__block_request">Verzoeken blokkeren?</string>
   <!--Dialog message for block group link join requests-->
-  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s zal niet langer via de groepsverwijzing lid kunnen worden van deze groep. Hij of zij kan dan nog wel lid worden via een uitnodiging.</string>
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s zal niet langer via de groepsverwijzing lid kunnen worden van deze groep en ook niet kunnen verzoeken om lid te worden van de groep. Hij of zij kan dan nog wel lid worden via een uitnodiging.</string>
   <!--Dialog confirm block request button-->
   <string name="ConversationFragment__block_request_button">Verzoeken blokkeren</string>
   <!--Dialog cancel block request button-->
@@ -804,7 +804,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="RequestConfirmationDialog_add_s_to_the_group">“%1$s” toevoegen aan de groep?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Verzoek van “%1$s” afwijzen?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
-  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Wil je lidmaatschapverzoeken van “%1$s” blokkeren? Als je dit doet dan kan hij of zij niet langer via de groepsverwijzing verzoeken om lid te worden van de groep.</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Wil je het lidmaatschapverzoek van “%1$s” afwijzen? Als je dit doet dan kan hij of zij niet opnieuw via de groepsverwijzing verzoeken om lid te worden van de groep.</string>
   <string name="RequestConfirmationDialog_add">Toevoegen</string>
   <string name="RequestConfirmationDialog_deny">Afwijzen</string>
   <!--ImageEditorHud-->
@@ -2855,7 +2855,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">“%1$s” zal de groepsinformatie en groepslidmaatschap kunnen aanpassen.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s van deze groep verwijderen?</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
-  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Wil je “%1$s” van de groep verwijderen? Als je dit doet dan zal hij of zij niet langer via de groepsverwijzing verzoeken om lid te worden van de groep.</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Wil je “%1$s” van de groep verwijderen? Als je dit doet dan zal hij of zij niet via de groepsverwijzing verzoeken om opnieuw lid te worden van de groep.</string>
   <string name="RecipientBottomSheet_remove">Verwijderen</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Gekopieerd naar klembord</string>
   <string name="GroupRecipientListItem_admin">Beheerder</string>
@@ -3123,9 +3123,9 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Telefoonnummer wijzigen</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Je oude telefoonnummer</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Je nieuwe telefoonnummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Je oude telefoonnummer</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Je nieuwe telefoonnummer</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nieuw telefoonnummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Je nieuwe telefoonnummer</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Het telefoonnummer dat je hebt ingevuld komt niet overeen met het telefoonnummer waarmee je staat geregistreerd bij Signal.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Je moet je oude landcode aangeven</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Je moet je oude telefoonnummer invullen</string>
@@ -3470,7 +3470,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/maand · Verloopt %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal is een organisatie zonder winstoogmerk zonder adverteerders en zonder investeerders, uitsluitend mogelijk gemaakt door mensen die de app gebruiken en die er waarde aan hechten. Geef een maandelijkse donatie en ontvang een profiel-badge die je—als je dat wilt—kunt weergeven op je profiel om te laten zien dat je Signal ondersteunt.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Waarom bijdragen?</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">We ontwikkelen open-broncode privacy-technologieën waarmee vrijheid van meningsuiting wordt beschermd en waarmee op een beveiligde manier over de hele wereld kan worden gecommuniceerd.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">We ontwikkelen open-broncode privacy-technologieën waarmee vrijheid van expressie wordt gewaarborgd en waarmee beveiligde communicatie over de hele wereld mogelijk wordt gemaakt.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Mede met jou bijdrage wordt deze missie mogelijk gemaakt en wordt betaald voor de ontwikkeling en het in werking houden van apps waardoor miljoenen mensen wereldwijd in vrijheid gesprekken kunnen voeren. Geen advertenties, geen volgers, geen grapje.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Bedankt voor je ondersteuning!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Bedankt voor je bijdrage!</string>
@@ -3736,7 +3736,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--Donation receipts amount title-->
   <string name="DonationReceiptDetailsFragment__amount">Hoeveelheid</string>
   <!--Donation receipts thanks-->
-  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Bedankt dat je Signal steunt. Jouw bijdrage helpt bij het voortzetten van onze missie om privacytechnologie met open broncode te ontwikkelen waarmee vrijheid van expressie wordt beschermd en waarmee miljoenen mensen wereldwijd beveiligd communiceren. Bewaar deze afschrift als je een inwoner bent van de Verenigde Staten van Amerika, zodat je je donatie kunt opgeven bij je belastingaangifte. Signal Technology Foundation is een van belasting uitgezonderde organisatie zonder winstoogmerk volgens sectie 501c3 van het Internal Revenue Code (het Amerikaanse belastingregelement). Ons federale-belasting-ID is 82–4506840.</string>
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Bedankt dat je Signal steunt. Jouw bijdrage helpt bij het voortzetten van onze missie om open-broncode privacy-technologieën te ontwikkelen waarmee van miljoenen mensen de vrijheid van expressie wordt gewaarborgd en waarmee beveiligde communicatie over de hele wereld mogelijk wordt gemaakt. Bewaar dit afschrift als je een inwoner bent van de Verenigde Staten van Amerika, zodat je je donatie kunt opgeven bij je belastingaangifte. Signal Technology Foundation is een van belasting uitgezonderde organisatie zonder winstoogmerk volgens sectie 501c3 van het Internal Revenue Code (het Amerikaanse belastingreglement). Ons federale-belasting-ID is 82–4506840.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--region "Stories Tab"-->

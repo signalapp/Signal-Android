@@ -166,6 +166,7 @@
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Mé příběhy</string>
   <!--Action for creating a new story-->
+  <string name="ContactsCursorLoader_new_story">Nový příběh</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Zpráva %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal volání %s</string>
@@ -330,8 +331,11 @@
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s zapnuto</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">Zablokovat žádost?</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s se nebude moci připojit ani požádat o připojení k této skupině prostřednictvím odkazu na skupinu. Přesto jej/jí lze do skupiny přidat ručně.</string>
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">Zablokovat žádost</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">Zrušit</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -462,8 +466,11 @@
   <string name="RestoreBackupFragment__choose_folder">Vybrat složku</string>
   <string name="RestoreBackupFragment__not_now">Teď ne</string>
   <!--Couldn\'t find the selected backup-->
+  <string name="RestoreBackupFragment__backup_not_found">Záloha nenalezena</string>
   <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">Zálohu se nepodařilo přečíst.</string>
   <!--Backup has an unsupported file extension-->
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">Záloha má špatnou koncovku.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Zálohy konverzace</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Zálohy jsou zašifrované heslem a uložené ve vašem zařízení.</string>
@@ -843,10 +850,13 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Došlo k chybě v síti.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Tento odkaz skupiny není aktivní</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Nepodařilo se připojit ke skupině</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">K této skupině se nemůžete připojit prostřednictvím odkazu na skupinu, protože vás odstranil správce.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Tento odkaz skupiny již není platný.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">Chyba odkazu</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
   <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Přidání pomocí tohoto odkazu selhalo. Zkuste se přidat později znovu.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Připojit se k této skupině a sdílet vaše jméno a fotografii s jejími členy?</string>
@@ -876,6 +886,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">Přidat \"%1$s\" do skupiny?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Odmítnout požadavek od \"%1$s\"?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Zamítnout žádost od \"%1$s\"? Nebudou moci znovu požádat o připojení prostřednictvím odkazu na skupinu.</string>
   <string name="RequestConfirmationDialog_add">Přidat</string>
   <string name="RequestConfirmationDialog_deny">Odmítnout</string>
   <!--ImageEditorHud-->
@@ -1193,6 +1204,12 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Odeslali jste požadavek na vstup do skupiny.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s požádal(a) o připojení pomocí odkazu skupiny.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="one">%1$s požádal(a) a zrušila svůj požadavek na připojení ke skupině pomocí odkazu.</item>
+    <item quantity="few">%1$s požádal(a) a zrušil(a) %2$d požadavky na připojení ke skupině pomocí odkazu.</item>
+    <item quantity="many">%1$s požádal(a) a zrušil(a) %2$d požadavků na připojení ke skupině pomocí odkazu.</item>
+    <item quantity="other">%1$s požádal(a) a zrušil(a) %2$d požadavků na připojení ke skupině pomocí odkazu.</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s schválil váš požadavek na připojení ke skupině.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s schválil požadavek na připojení ke skupině od %2$s.</string>
@@ -1370,6 +1387,7 @@
   <!--Recipient-->
   <string name="Recipient_you">Vy</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">Můj příběh</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Zablokovat</string>
   <string name="RecipientPreferenceActivity_unblock">Odblokovat</string>
@@ -1863,6 +1881,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
     <item quantity="other">%1$d členů</item>
   </plurals>
   <!--Displays number of viewers for a story-->
+  <plurals name="contact_selection_list_item__number_of_viewers">
+    <item quantity="one">%1$d zobrazení</item>
+    <item quantity="few">%1$d zobrazení</item>
+    <item quantity="many">%1$d zobrazení</item>
+    <item quantity="other">%1$d zobrazení</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Zpráva Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">Nezabezpečená SMS</string>
@@ -1901,6 +1925,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ConversationUpdateItem_enable_call_notifications">Povolit oznámení hovorů</string>
   <string name="ConversationUpdateItem_update_contact">Aktualizovat kontakt</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">Zablokovat žádost</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Žádné společné skupiny. Požadavky pečlivě prověřte.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Žádné kontakty v této skupině. Požadavky pečlivě prověřte.</string>
   <string name="ConversationUpdateItem_view">Zobrazit</string>
@@ -1922,7 +1947,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="QuoteView_you">Vy</string>
   <string name="QuoteView_original_missing">Původní zpráva nebyla nalezena</string>
   <!--Author formatting for group stories-->
+  <string name="QuoteView_s_story">%1$s příběh</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Váš příběh</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Posun na konec</string>
   <!--BubbleOptOutTooltip-->
@@ -3006,6 +3033,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" bude moci upravovat tuto skupinu a její členy.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">Odebrat %1$s ze skupiny?</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Odstranit %1$s ze skupiny? Nebudou se moct znovu připojit pomocí odkazu.</string>
   <string name="RecipientBottomSheet_remove">Odebrat</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Zkopírováno do schránky</string>
   <string name="GroupRecipientListItem_admin">Správce</string>
@@ -3100,6 +3128,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">Mažu účet…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
+  <string name="DeleteAccountFragment__canceling_your_subscription">Rušení vašeho předplatného…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <string name="DeleteAccountFragment__depending_on_the_number_of_groups">V závislosti na počtu skupin, ve kterých jste, to může trvat několik minut</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
@@ -3654,6 +3683,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ManageDonationsFragment__my_support">Má podpora</string>
   <string name="ManageDonationsFragment__manage_subscription">Spravovat předplatné</string>
   <!--Label for Tax Receipts button-->
+  <string name="ManageDonationsFragment__tax_receipts">Daňové doklady</string>
   <string name="ManageDonationsFragment__badges">Odznaky</string>
   <string name="ManageDonationsFragment__subscription_faq">Často kladené dotazy k předplatnému</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Chyba při získávání předplatného.</string>
@@ -3882,55 +3912,95 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">Všichni</string>
   <!--Donation receipts recurring tab label-->
+  <string name="DonationReceiptListFragment__recurring">Opakující se</string>
   <!--Donation receipts one time tab label-->
   <string name="DonationReceiptListFragment__one_time">Jednou</string>
   <!--Donation receipts boost row label-->
+  <string name="DonationReceiptListFragment__boost">Boost</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Podrobnosti</string>
   <!--Donation receipts donation type heading-->
+  <string name="DonationReceiptDetailsFragment__donation_type">Typ příspěvku</string>
   <!--Donation receipts date paid heading-->
+  <string name="DonationReceiptDetailsFragment__date_paid">Datum platby</string>
   <!--Donation receipts share PNG-->
+  <string name="DonationReceiptDetailsFragment__share_receipt">Sdílet doklad</string>
   <!--Donation receipts list end note-->
+  <string name="DonationReceiptListFragment__if_you_have">Pokud jste znovu nainstalovali aplikaci Signal, účtenky za předchozí dary nebudou k dispozici.</string>
   <!--Donation receipts document title-->
+  <string name="DonationReceiptDetailsFragment__donation_receipt">Doklad o příspěvku</string>
   <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">Částka</string>
   <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Děkujeme vám za podporu společnosti Signal. Váš příspěvek pomáhá podporovat poslání vývoje open source technologie ochrany soukromí, která chrání svobodu projevu a umožňuje bezpečnou globální komunikaci milionům lidí na celém světě. Pokud jste obyvatelem Spojených států, uschovejte si prosím tuto stvrzenku pro své daňové záznamy. Nadace Signal Technology Foundation je ve Spojených státech amerických neziskovou organizací osvobozenou od daní podle § 501c3 daňového zákoníku. Naše federální daňové identifikační číslo je 82-4506840.</string>
   <!--Donation receipt type-->
+  <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Konverzace</string>
   <!--Label for Stories tab in home app screen-->
   <string name="ConversationListTabs__stories">Příběhy</string>
   <!--String for counts above 99 in conversation list tabs-->
+  <string name="ConversationListTabs__99p">99+</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Mé příběhy</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Přidat příběh</string>
   <!--Displayed when there are no stories to display-->
+  <string name="StoriesLandingFragment__no_recent_updates">Žádné nové aktualizace k zobrazení.</string>
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Schovat příběh</string>
   <!--Context menu option to unhide a story-->
+  <string name="StoriesLandingItem__unhide_story">Zobrazit příběh</string>
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">Přeposlat</string>
   <!--Context menu option to share a story-->
+  <string name="StoriesLandingItem__share">Sdílet…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Jít do konverzace</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Odesílání…</string>
   <!--Label when a story fails to send-->
+  <string name="StoriesLandingItem__couldnt_send">Nepodařilo se odeslat</string>
   <!--Title of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__hide_story">Skrýt příběh?</string>
   <!--Message of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__new_story_updates">Nové aktualizace od %1$s se již neobjeví v horní části seznamu příběhů.</string>
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">Skrýt</string>
   <!--Displayed in Snackbar after story is hidden-->
+  <string name="StoriesLandingFragment__story_hidden">Příběh skryt</string>
   <!--Section header for hidden stories-->
+  <string name="StoriesLandingFragment__hidden_stories">Skryté příběhy</string>
   <!--Displayed on each sent story under My Stories-->
+  <plurals name="MyStories__d_views">
+    <item quantity="one">%1$d zobrazení</item>
+    <item quantity="few">%1$d zobrazení</item>
+    <item quantity="many">%1$d zobrazení</item>
+    <item quantity="other">%1$d zobrazení</item>
+  </plurals>
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">Přeposlat</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
+  <string name="MyStories__ss_story">Příběh od %1$s</string>
   <!--Title of dialog to confirm deletion of story-->
+  <string name="MyStories__delete_story">Smazat příběh?</string>
   <!--Message of dialog to confirm deletion of story-->
+  <string name="MyStories__this_story_will_be_deleted">Příběh bude odstraněn pro vás a každého, kdo ho obdržel.</string>
   <!--Displayed at bottom of story viewer when current item has views-->
+  <plurals name="StoryViewerFragment__d_views">
+    <item quantity="one">%1$d zobrazení</item>
+    <item quantity="few">%1$d zobrazení</item>
+    <item quantity="many">%1$d zobrazení</item>
+    <item quantity="other">%1$d zobrazení</item>
+  </plurals>
   <!--Displayed at bottom of story viewer when current item has replies-->
+  <plurals name="StoryViewerFragment__d_replies">
+    <item quantity="one">%1$d odpověď</item>
+    <item quantity="few">%1$d odpovědi</item>
+    <item quantity="many">%1$d odpovědí</item>
+    <item quantity="other">%1$d odpovědí</item>
+  </plurals>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3940,7 +4010,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Odpověď</string>
   <!--Displayed when a story has no views-->
+  <string name="StoryViewsFragment__no_views_yet">Zatím žádná zobrazení</string>
   <!--Displayed when a story has no replies yet-->
+  <string name="StoryGroupReplyFragment__no_replies_yet">Zatím žádné odpovědi</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
   <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Reagoval(a) na příběh</string>
   <!--Label for story views tab-->
@@ -3948,92 +4020,159 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Label for story replies tab-->
   <string name="StoryViewsAndRepliesDialogFragment__replies">Odpovědi</string>
   <!--Description of action for reaction button-->
+  <string name="StoryReplyComposer__react_to_this_story">Reagovat na příběh</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
+  <string name="StoryReplyComposer__replying_privately_to_s">Soukromá odpověď %1$s</string>
   <!--Context menu item to privately reply to a story response-->
+  <string name="StoryGroupReplyItem__private_reply">Odpovědět soukromě</string>
   <!--Context menu item to copy a story response-->
   <string name="StoryGroupReplyItem__copy">Kopírovat</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Smazat</string>
   <!--Story settings page title-->
+  <string name="StorySettingsFragment__story_settings">Nastavení příběhu</string>
   <!--Story settings private stories heading-->
+  <string name="StorySettingsFragment__private_stories">Soukromé příběhy</string>
   <!--Option label for creating a new private story-->
+  <string name="StorySettingsFragment__new_private_story">Nový soukromý příběh</string>
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">Můj příběh</string>
   <!--Section heading for story visibility-->
+  <string name="MyStorySettingsFragment__who_can_see_this_story">Kdo může zobrazit tento příběh</string>
   <!--Clickable option for selecting people to hide your story from-->
+  <string name="MyStorySettingsFragment__hide_story_from">Skrýt příběhy od</string>
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <plurals name="MyStorySettingsFragment__d_people">
+    <item quantity="one">%1$d člověk</item>
+    <item quantity="few">%1$d lidé</item>
+    <item quantity="many">%1$d lidí</item>
+    <item quantity="other">%1$d lidí</item>
+  </plurals>
   <!--Section header for options related to replies and reactions-->
+  <string name="MyStorySettingsFragment__replies_amp_reactions">Odpovědi &amp; reakce</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
+  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Povolit odpovědi &amp; reakce</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
+  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Nechte lidi, kteří si mohou váš příběh prohlédnout, reagovat a odpovídat</string>
   <!--Note about default sharing-->
+  <string name="MyStorySettingsFragment__hide_your_story_from">Skryjte svůj příběh před konkrétními lidmi. Ve výchozím nastavení je váš příběh sdílen s vašimi %1$s</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
+  <string name="MyStorySettingsFragment__signal_connections">Spojení Signal.</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Spojení Signal</strong> jsou lidé, kterým věříte pomocí:</string>
   <!--Signal connections sheet bullet point 1-->
+  <string name="SignalConnectionsBottomSheet__starting_a_conversation">Zahájením konverzace</string>
   <!--Signal connections sheet bullet point 2-->
+  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Přijetím žádosti o zprávu</string>
   <!--Signal connections sheet bullet point 3-->
+  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Uložením do vašeho seznamu kontaktů</string>
   <!--Note at the bottom of the Signal connections sheet-->
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Vaše připojení vidí vaše jméno a fotografii a mohou vidět příspěvky v \"Mém příběhu\", pokud je před nimi neskryjete.</string>
   <!--Clickable option to add a viewer to a private story-->
+  <string name="PrivateStorySettingsFragment__add_viewer">Přidat sledovače</string>
   <!--Clickable option to delete a custom story-->
+  <string name="PrivateStorySettingsFragment__delete_private_story">Smazat soukromý příběh</string>
   <!--Dialog title when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__remove_s">Odstranit %1$s?</string>
   <!--Dialog message when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Tato osoba nadále neuvidí váš příběh.</string>
   <!--Positive action label when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__remove">Odebrat</string>
   <!--Dialog title when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__are_you_sure">Jste si jisti?</string>
   <!--Dialog message when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__this_action_cannot">Tuto operaci nelze vzít zpět.</string>
   <!--Page title for editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__edit_story_name">Upravit jméno příběhu</string>
   <!--Input field hint when editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__story_name">Jméno příběhu</string>
   <!--Save button label when editing a private story name-->
   <string name="EditPrivateStoryNameFragment__save">Uložit</string>
   <!--Displayed in text post creator before user enters text-->
+  <string name="TextStoryPostCreationFragment__tap_to_add_text">Klepněte pro přidání textu</string>
   <!--Button label for changing font when creating a text post-->
+  <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
   <!--Displayed in text post creator when prompting user to enter text-->
   <string name="TextStoryPostTextEntryFragment__add_text">Přidat text</string>
   <!--Content description for \'done\' button when adding text to a story post-->
+  <string name="TextStoryPostTextEntryFragment__done_adding_text">Přidávání textu dokončeno</string>
   <!--Text label for media selection toggle-->
   <string name="MediaSelectionActivity__text">Text</string>
   <!--Camera label for media selection toggle-->
   <string name="MediaSelectionActivity__camera">Kamera</string>
   <!--Hint for entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Napište nebo vložte URL</string>
   <!--Displayed prior to the user entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Sdílejte odkaz s těmi, kdo si zobrazili váš příběh</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Vyhledat</string>
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
+  <string name="HideStoryFromFragment__hide_story_from">Skrýt příběh…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Hotovo</string>
   <!--Dialog title for first time adding something to a story-->
+  <string name="StoryDialogs__add_to_story_q">Přidat příběh?</string>
   <!--Dialog message for first time adding something to a story-->
+  <string name="StoryDialogs__adding_content">Přidání obsahu do příběhu umožní vašim připojení k síti Signál jeho zobrazení po dobu 24 hodin. Kdo si může váš příběh prohlížet, můžete změnit v Nastaveních.</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
+  <string name="StoryDialogs__add_to_story">Přidat příběh</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <string name="StoryDialogs__edit_viewers">Upravit, kdo si může příběh zobrazit</string>
   <!--Privacy Settings toggle title for stories-->
+  <string name="PrivacySettingsFragment__share_and_view_stories">Sdílení &amp; zobrazení příběhů</string>
   <!--Privacy Settings toggle summary for stories-->
+  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Po vypnutí této možnosti již nebudete moci sdílet ani zobrazovat příběhy.</string>
   <!--New story viewer selection screen title-->
+  <string name="CreateStoryViewerSelectionFragment__choose_viewers">Zvolit, kdo si může zobrazit příběh</string>
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">Další</string>
   <!--New story viewer selection screen title as recipients are selected-->
+  <plurals name="SelectViewersFragment__d_viewers">
+    <item quantity="one">%1$d si může zobrazit váš příběh</item>
+    <item quantity="few">%1$d si může zobrazit váš příběh</item>
+    <item quantity="many">%1$d si může zobrazit váš příběh</item>
+    <item quantity="other">%1$d si může zobrazit váš příběh</item>
+  </plurals>
   <!--Name story screen title-->
+  <string name="CreateStoryWithViewersFragment__name_story">Pojmenovat příběh</string>
   <!--Name story screen label hint-->
+  <string name="CreateStoryWithViewersFragment__story_name_required">Jméno příběhu (požadováno)</string>
   <!--Name story screen viewers subheading-->
+  <string name="CreateStoryWithViewersFragment__viewers">Zobrazení</string>
   <!--Name story screen create button label-->
   <string name="CreateStoryWithViewersFragment__create">Vytvořit</string>
   <!--Name story screen error when save attempted with no label-->
   <string name="CreateStoryWithViewersFragment__this_field_is_required">Toto pole je povinné.</string>
   <!--Name story screen error when save attempted but label is duplicate-->
+  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">Příběh se stejným jménem již existuje.</string>
   <!--Text for select all action when editing recipients for a story-->
   <string name="BaseStoryRecipientSelectionFragment__select_all">Vybrat vše</string>
   <!--Choose story type bottom sheet title-->
+  <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Vybrat typ příběhu</string>
   <!--Choose story type bottom sheet new story row title-->
+  <string name="ChooseStoryTypeBottomSheet__new_private_story">Nový soukromý příběh</string>
   <!--Choose story type bottom sheet new story row summary-->
+  <string name="ChooseStoryTypeBottomSheet__visible_only_to">Viditelný pouze vybraným lidem</string>
   <!--Choose story type bottom sheet group story title-->
+  <string name="ChooseStoryTypeBottomSheet__group_story">Skupinový příběh</string>
   <!--Choose story type bottom sheet group story summary-->
+  <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Sdílet existující skupině</string>
   <!--Choose groups bottom sheet title-->
+  <string name="ChooseGroupStoryBottomSheet__choose_groups">Vybrat skupiny</string>
   <!--Displayed when copying group story reply text to clipboard-->
   <string name="StoryGroupReplyFragment__copied_to_clipboard">Zkopírováno do schránky</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
+  <string name="StoryViewerPageFragment__see_more">… Zobrazit více</string>
   <!--Displayed in toast after sending a direct reply-->
+  <string name="StoryDirectReplyDialogFragment__reply_sent">Odpověď odeslána</string>
   <!--Displayed in toast after sending a direct reaction-->
+  <string name="StoryDirectReplyDialogFragment__reaction_sent">Reakce odeslána</string>
   <!--Displayed in the viewer when a story is no longer available-->
+  <string name="StorySlateView__this_story_is_no_longer_available">Tento příběh již není dostupný.</string>
   <!--Displayed in the viewer when the network is not available-->
   <string name="StorySlateView__no_internet_connection">Žádné připojení k internetu</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <string name="StorySlateView__couldnt_load_content">Obsah se nepodařilo načíst</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Zapnout obcházení cenzury?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -4043,8 +4182,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Vypnout</string>
   <!--Conversation Item label for reactions to a story-->
+  <string name="ConversationItem__s_dot_story">%1$s · Příběh</string>
   <!--Conversation Item label for reactions to an unavailable story-->
+  <string name="ConversationItem__reacted_to_a_story">Reakce na příběh</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="ExpandModel__view_more">Zobrazit více</string>
+  <string name="StoriesLinkPopup__visit_link">Navštívit odkaz</string>
   <!--EOF-->
 </resources>

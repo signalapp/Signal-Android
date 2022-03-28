@@ -1256,7 +1256,7 @@
   <!--Recipient-->
   <string name="Recipient_you">Du</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
-  <string name="Recipient_my_story">Mein Story</string>
+  <string name="Recipient_my_story">Meine Story</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blockieren</string>
   <string name="RecipientPreferenceActivity_unblock">Freigeben</string>
@@ -2219,7 +2219,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
   <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Die Zensurumgehung ist nicht notwendig, da bereits eine Verbindung mit dem Signal-Dienst besteht.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
-  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Die Zensurumgehung kann nur bei bestehender Internetverbindung aktiviert werden.</string>
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Die Zensurumgehung kann nur aktiviert werden, wenn eine Verbindung zum Internet besteht.</string>
   <string name="preferences_communication__category_sealed_sender">Vertraulicher Absender</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Indikatoren anzeigen</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Bei Nachrichten von vertraulichen Absendern ein Statussymbol unter »Nachrichtendetails« anzeigen</string>
@@ -3469,7 +3469,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ManageDonationsFragment__my_support">Meine Unterstützung</string>
   <string name="ManageDonationsFragment__manage_subscription">Regelmäßige Spende verwalten</string>
   <!--Label for Tax Receipts button-->
-  <string name="ManageDonationsFragment__tax_receipts">Steuerbeleg</string>
+  <string name="ManageDonationsFragment__tax_receipts">Steuerbescheinigungen</string>
   <string name="ManageDonationsFragment__badges">Abzeichen</string>
   <string name="ManageDonationsFragment__subscription_faq">FAQ für regelmäßige Spenden</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Die regelmäßige Spende konnte nicht abgerufen werden.</string>
@@ -3536,11 +3536,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Stripe decline code your card has expired-->
   <string name="DeclineCode__your_card_has_expired">Deine Karte ist abgelaufen. Aktualisiere deine Zahlungsmethode in Google Pay und versuche es erneut.</string>
   <!--Stripe decline code go to google pay action label-->
-  <string name="DeclineCode__go_to_google_pay">Gehe zu Google Pay</string>
+  <string name="DeclineCode__go_to_google_pay">Zu Google Pay gehen</string>
   <!--Stripe decline code incorrect card number-->
   <string name="DeclineCode__your_card_number_is_incorrect">Deine Kartennummer ist falsch. Aktualisiere diese in Google Pay und versuche es erneut.</string>
   <!--Stripe decline code incorrect cvc-->
-  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">Die Kartenprüfnummer ist falsch. Aktualisiere diese in Google Pay und versuche es erneut.</string>
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">Die CVC-Nummer deiner Karte ist falsch. Aktualisiere diese in Google Pay und versuche es erneut.</string>
   <!--Stripe decline code insufficient funds-->
   <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Deine Karte verfügt über kein ausreichendes Guthaben, um diesen Kauf abzuschließen. Versuche eine andere Zahlungsmethode.</string>
   <!--Stripe decline code incorrect expiration month-->
@@ -3550,7 +3550,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Stripe decline code issuer not available-->
   <string name="DeclineCode__try_completing_the_payment_again">Versuche erneut, diesen Kauf abzuschließen, oder kontaktiere für mehr Informationen deine Bank.</string>
   <!--Stripe decline code processing error-->
-  <string name="DeclineCode__try_again">Versuche es erneut oder kontaktiere deine Bank für mehr Informationen</string>
+  <string name="DeclineCode__try_again">Versuche es erneut oder kontaktiere für mehr Informationen deine Bank.</string>
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Profil benennen</string>
   <!--Hint text for create/edit notification profile name-->
@@ -3731,9 +3731,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Meine Stories</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Eine Story hinzufügen</string>
+  <string name="StoriesLandingFragment__add_a_story">Story hinzufügen</string>
   <!--Displayed when there are no stories to display-->
-  <string name="StoriesLandingFragment__no_recent_updates">Im Moment sind keine aktuellen Stories zu sehen</string>
+  <string name="StoriesLandingFragment__no_recent_updates">Keine kürzlichen Aktualisierungen vorhanden.</string>
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Story ausblenden</string>
   <!--Context menu option to unhide a story-->
@@ -3743,7 +3743,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Context menu option to share a story-->
   <string name="StoriesLandingItem__share">Teilen …</string>
   <!--Context menu option to go to story chat-->
-  <string name="StoriesLandingItem__go_to_chat">Zu den Unterhaltungen gehen</string>
+  <string name="StoriesLandingItem__go_to_chat">Zu Unterhaltungen gehen</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Wird versendet …</string>
   <!--Label when a story fails to send-->
@@ -3751,7 +3751,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Story ausblenden?</string>
   <!--Message of dialog confirming decision to hide a story-->
-  <string name="StoriesLandingFragment__new_story_updates">Aktualisierungen der Story von %1$s erscheinen nicht mehr oben auf der Storyliste.</string>
+  <string name="StoriesLandingFragment__new_story_updates">Neue Story-Aktualisierungen von %1$s werden in der Storyliste nicht mehr oben angezeigt.</string>
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">Ausblenden</string>
   <!--Displayed in Snackbar after story is hidden-->
@@ -3766,7 +3766,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">Weiter­leiten</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
-  <string name="MyStories__ss_story">%1$s\'s Story</string>
+  <string name="MyStories__ss_story">Story von %1$s</string>
   <!--Title of dialog to confirm deletion of story-->
   <string name="MyStories__delete_story">Story löschen?</string>
   <!--Message of dialog to confirm deletion of story-->
@@ -3800,7 +3800,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Label for story replies tab-->
   <string name="StoryViewsAndRepliesDialogFragment__replies">Antworten</string>
   <!--Description of action for reaction button-->
-  <string name="StoryReplyComposer__react_to_this_story">Reagiere auf diese Story</string>
+  <string name="StoryReplyComposer__react_to_this_story">Auf diese Story reagieren</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
   <string name="StoryReplyComposer__replying_privately_to_s">Persönlich antworten an %1$s</string>
   <!--Context menu item to privately reply to a story response-->
@@ -3810,7 +3810,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Löschen</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Story Einstellungen</string>
+  <string name="StorySettingsFragment__story_settings">Story-Einstellungen</string>
   <!--Story settings private stories heading-->
   <string name="StorySettingsFragment__private_stories">Private Stories</string>
   <!--Option label for creating a new private story-->
@@ -3820,7 +3820,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Section heading for story visibility-->
   <string name="MyStorySettingsFragment__who_can_see_this_story">Diese Story kann sehen</string>
   <!--Clickable option for selecting people to hide your story from-->
-  <string name="MyStorySettingsFragment__hide_story_from">Story verbergen für</string>
+  <string name="MyStorySettingsFragment__hide_story_from">Story verbergen vor</string>
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d Person</item>
@@ -3833,7 +3833,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Summary for switchable option allowing replies and reactions on your story-->
   <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Erlaube Personen, die deine Story sehen können, darauf zu antworten und zu reagieren</string>
   <!--Note about default sharing-->
-  <string name="MyStorySettingsFragment__hide_your_story_from">Verberge deine Story für bestimmte Personen. Standardmäßig wird deine Story geteilt mit deinen %1$s</string>
+  <string name="MyStorySettingsFragment__hide_your_story_from">Verberge deine Story vor bestimmten Personen. Standardmäßig wird deine Story geteilt mit deinen %1$s</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
   <string name="MyStorySettingsFragment__signal_connections">Signal-Beziehungen.</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
@@ -3841,13 +3841,13 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">eine begonnene Unterhaltung</string>
   <!--Signal connections sheet bullet point 2-->
-  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">eine akzeptierte Unterhaltungsanfrage</string>
+  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">eine angenommene Unterhaltungsanfrage</string>
   <!--Signal connections sheet bullet point 3-->
-  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">in den Systemkontakten gespeichert zu haben</string>
+  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Speicherung in den Systemkontakten</string>
   <!--Note at the bottom of the Signal connections sheet-->
-  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Deine Beziehungen können deinen Namen und dein Foto sehen, sowie Beiträge unter »Meine Story« sehen, es sei denn, du verbirgst sie vor ihnen.</string>
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Deine Beziehungen können deinen Namen und dein Foto sowie Beiträge unter »Meine Story« sehen, es sei denn, du verbirgst sie vor ihnen.</string>
   <!--Clickable option to add a viewer to a private story-->
-  <string name="PrivateStorySettingsFragment__add_viewer">Zuschauer hinzufügen</string>
+  <string name="PrivateStorySettingsFragment__add_viewer">Betrachter hinzufügen</string>
   <!--Clickable option to delete a custom story-->
   <string name="PrivateStorySettingsFragment__delete_private_story">Private Story löschen</string>
   <!--Dialog title when attempting to remove someone from a private story-->
@@ -3881,48 +3881,48 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Hint for entering a URL for a text post-->
   <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">URL eingeben oder einfügen</string>
   <!--Displayed prior to the user entering a URL for a text post-->
-  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Teile einen Link mit den Zuschauern deiner Story</string>
+  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Teile einen Link mit Betrachtern deiner Story</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Suchen</string>
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <string name="HideStoryFromFragment__hide_story_from">Story verbergen für …</string>
+  <string name="HideStoryFromFragment__hide_story_from">Story verbergen vor …</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Fertig</string>
   <!--Dialog title for first time adding something to a story-->
-  <string name="StoryDialogs__add_to_story_q">Zu einer Story hinzufügen?</string>
+  <string name="StoryDialogs__add_to_story_q">Zu Story hinzufügen?</string>
   <!--Dialog message for first time adding something to a story-->
   <string name="StoryDialogs__adding_content">Das Hinzufügen von Inhalten zu deiner Story erlaubt deinen Signal-Beziehungen diesen für 24 Stunden anzusehen. Du kannst in den Einstellungen ändern, wer deine Story sehen kann.</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
-  <string name="StoryDialogs__add_to_story">Zu einer Story hinzufügen</string>
+  <string name="StoryDialogs__add_to_story">Zu Story hinzufügen</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
-  <string name="StoryDialogs__edit_viewers">Zuschauer bearbeiten</string>
+  <string name="StoryDialogs__edit_viewers">Betrachter bearbeiten</string>
   <!--Privacy Settings toggle title for stories-->
-  <string name="PrivacySettingsFragment__share_and_view_stories">Teile &amp; Betrachte Stories</string>
+  <string name="PrivacySettingsFragment__share_and_view_stories">Stories teilen &amp; betrachten</string>
   <!--Privacy Settings toggle summary for stories-->
   <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Wenn diese Option deaktiviert ist, können keine Stories geteilt und angesehen werden.</string>
   <!--New story viewer selection screen title-->
-  <string name="CreateStoryViewerSelectionFragment__choose_viewers">Zuschauer auswählen</string>
+  <string name="CreateStoryViewerSelectionFragment__choose_viewers">Betrachter auswählen</string>
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">Weiter</string>
   <!--New story viewer selection screen title as recipients are selected-->
   <plurals name="SelectViewersFragment__d_viewers">
-    <item quantity="one">%1$d Zuschauer</item>
-    <item quantity="other">%1$d Zuschauer</item>
+    <item quantity="one">%1$d Betrachter</item>
+    <item quantity="other">%1$d Betrachter</item>
   </plurals>
   <!--Name story screen title-->
-  <string name="CreateStoryWithViewersFragment__name_story">Name der Story</string>
+  <string name="CreateStoryWithViewersFragment__name_story">Story benennen</string>
   <!--Name story screen label hint-->
   <string name="CreateStoryWithViewersFragment__story_name_required">Storyname (erforderlich)</string>
   <!--Name story screen viewers subheading-->
-  <string name="CreateStoryWithViewersFragment__viewers">Zuschauer</string>
+  <string name="CreateStoryWithViewersFragment__viewers">Betrachter</string>
   <!--Name story screen create button label-->
   <string name="CreateStoryWithViewersFragment__create">Erstellen</string>
   <!--Name story screen error when save attempted with no label-->
   <string name="CreateStoryWithViewersFragment__this_field_is_required">Dieses Feld ist erforderlich.</string>
   <!--Name story screen error when save attempted but label is duplicate-->
-  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">Es gibt schon eine Story mit diesem Namen.</string>
+  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">Es existiert bereits eine Story dieses Namens</string>
   <!--Text for select all action when editing recipients for a story-->
-  <string name="BaseStoryRecipientSelectionFragment__select_all">Alle wählen</string>
+  <string name="BaseStoryRecipientSelectionFragment__select_all">Alle auswählen</string>
   <!--Choose story type bottom sheet title-->
   <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Wähle den Typ deiner Story</string>
   <!--Choose story type bottom sheet new story row title-->
@@ -3934,7 +3934,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Choose story type bottom sheet group story summary-->
   <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Mit einer bestehenden Gruppe teilen</string>
   <!--Choose groups bottom sheet title-->
-  <string name="ChooseGroupStoryBottomSheet__choose_groups">Wähle Gruppen</string>
+  <string name="ChooseGroupStoryBottomSheet__choose_groups">Gruppen wählen</string>
   <!--Displayed when copying group story reply text to clipboard-->
   <string name="StoryGroupReplyFragment__copied_to_clipboard">In Zwischenablage kopiert</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
@@ -3950,9 +3950,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <string name="StorySlateView__couldnt_load_content">Inhalt konnte nicht geladen werden</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
-  <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Zensurumgehung deaktivieren?</string>
+  <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Zensurumgehung ausschalten?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
-  <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">Du kannst dich jetzt mit dem Signal-Dienst, für eine bessere Erfahrung, direkt verbinden.</string>
+  <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">Für eine besseres Erlebnis kannst du dich nun direkt mit dem Signal-Dienst verbinden.</string>
   <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_no_thanks">Nein danke</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
@@ -3964,6 +3964,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Mehr anzeigen</string>
-  <string name="StoriesLinkPopup__visit_link">Besuche den Link</string>
+  <string name="StoriesLinkPopup__visit_link">Link aufrufen</string>
   <!--EOF-->
 </resources>

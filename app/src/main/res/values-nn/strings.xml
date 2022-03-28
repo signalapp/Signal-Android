@@ -320,6 +320,7 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <!--Dialog title for block group link join requests-->
   <string name="ConversationFragment__block_request">Blokker førespurnad?</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s vil ikkje kunna bli med i eller spørja om å bli med i denne gruppa via gruppelenka. Dei kan framleis leggast til manuelt.</string>
   <!--Dialog confirm block request button-->
   <string name="ConversationFragment__block_request_button">Blokker førespurnad</string>
   <!--Dialog cancel block request button-->
@@ -804,6 +805,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="RequestConfirmationDialog_add_s_to_the_group">Legg til «%1$s» i gruppa?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Avslå førespurnad frå «%1$s»?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Svar nei på førespurnad frå «%1$s»? Dei vil ikkje kunna be om å bli med via gruppelenka igjen.</string>
   <string name="RequestConfirmationDialog_add">Legg til</string>
   <string name="RequestConfirmationDialog_deny">Avslå</string>
   <!--ImageEditorHud-->
@@ -1093,6 +1095,10 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Du spurde om å bli med i gruppa.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s spurde om å bli med via gruppelenka.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="one">%1$s spurde etter og avslo førespurnaden om å bli med via gruppelenka.</item>
+    <item quantity="other">%1$s spurde etter og avslo %2$d førespurnader om å bli med via gruppelenka.</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s godkjende førespurnaden din om å bli med i gruppa.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s godkjende førespurnaden frå %2$s om å bli med i gruppa.</string>
@@ -2850,6 +2856,7 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">«%1$s» vil kunna endra gruppa og medlemmane.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">Fjern %1$s frå gruppa?</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Fjern %1$s frå gruppa? Dei vil ikkje lenger kunna bli med igjen via gruppelenka.</string>
   <string name="RecipientBottomSheet_remove">Fjern</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopiert til utklippstavla</string>
   <string name="GroupRecipientListItem_admin">Administrator</string>
@@ -3738,6 +3745,7 @@ Sjekkar igjen no …</string>
   <!--Donation receipts amount title-->
   <string name="DonationReceiptDetailsFragment__amount">Beløp</string>
   <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Takk for at du støttar Signal. Bidraget ditt hjelper i kampen for utvikling av personvernteknologi med open kjeldekode, teknologi som vernar om ytringsfridom og tillater trygg global kommunikasjon for millionar av menneske rundt om i verda. Viss du bur i USA kan du ta vare på denne kvitteringa for å få skattefrådrag. Signal Technology Foundation er ein ideell organisasjon som gir skattefrådrag i USA under Internal Revenue Code del 501c3. Den føderale skatteidentifikasjonen er 82–4506840.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s – %2$s</string>
   <!--region "Stories Tab"-->
