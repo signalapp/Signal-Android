@@ -107,7 +107,7 @@ class ConversationListSearchAdapter extends    RecyclerView.Adapter<Conversation
 
   void updateResults(@NonNull SearchResult result) {
     this.searchResult = result;
-    notifyItemRangeChanged(0, getItemCount());
+    notifyDataSetChanged();
   }
 
   @Nullable
