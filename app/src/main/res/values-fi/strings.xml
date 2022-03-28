@@ -316,8 +316,10 @@
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s käytössä</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">Estetäänkö pyyntö?</string>
   <!--Dialog message for block group link join requests-->
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">Estä pyyntö</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">Peruuta</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -422,6 +424,7 @@
   <!--Couldn\'t find the selected backup-->
   <string name="RestoreBackupFragment__backup_not_found">Varmuuskopiota ei löydy.</string>
   <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">Varmuuskopiota ei saatu luettua.</string>
   <!--Backup has an unsupported file extension-->
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Keskustelujen varmuuskopiot</string>
@@ -765,6 +768,7 @@
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Tämä ryhmälinkki ei ole enää kelvollinen.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">Linkkivirhe</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
   <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Liittyminen tämän linkin kautta epäonnistui. Yritä littyä myöhemmin uudelleen.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Haluatko liittyä tähän ryhmään ja jakaa nimesi ja profiilikuvasi sen jäsenille?</string>
@@ -1748,6 +1752,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ConversationUpdateItem_enable_call_notifications">Näytä ilmoitukset puheluista</string>
   <string name="ConversationUpdateItem_update_contact">Päivitä yhteystieto</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">Estä pyyntö</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ei yhteisiä ryhmiä. Tarkista pyynnöt huolellisesti.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Ei kontakteja tässä ryhmässä. Tarkista pyynnöt huolellisesti.</string>
   <string name="ConversationUpdateItem_view">Näytä</string>
@@ -3457,7 +3462,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ManageDonationsFragment__error_getting_subscription">Virhe tilausta hakiessa.</string>
   <string name="BoostFragment__give_signal_a_boost">Boostaa Signalia</string>
   <string name="BoostFragment__say_thanks_and_earn">Sano \"Kiitos!\" ja ansaitse Boost-merkki %1$d päivän ajaksi.</string>
-  <string name="Boost__enter_custom_amount">Syöltä muu summa</string>
+  <string name="Boost__enter_custom_amount">Syötä uusi summa</string>
   <string name="Boost__one_time_contribution">Kertalahjoitus</string>
   <string name="MySupportPreference__add_a_signal_boost">Lisää Signal Boost</string>
   <string name="MySupportPreference__s_per_month">%1$s/kk</string>
@@ -3693,10 +3698,12 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Donation receipts share PNG-->
   <!--Donation receipts list end note-->
   <!--Donation receipts document title-->
+  <string name="DonationReceiptDetailsFragment__donation_receipt">Lahjoituskuitti</string>
   <!--Donation receipts amount title-->
   <string name="DonationReceiptDetailsFragment__amount">Summa</string>
   <!--Donation receipts thanks-->
   <!--Donation receipt type-->
+  <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Keskustelut</string>
@@ -3720,6 +3727,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Lähetetään…</string>
   <!--Label when a story fails to send-->
+  <string name="StoriesLandingItem__couldnt_send">Lähettäminen ei onnistunut</string>
   <!--Title of dialog confirming decision to hide a story-->
   <!--Message of dialog confirming decision to hide a story-->
   <!--Positive action of dialog confirming decision to hide a story-->

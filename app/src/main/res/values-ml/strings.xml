@@ -162,7 +162,9 @@
   <string name="ContactsCursorLoader_phone_number_search">ഫോൺ നമ്പർ തിരയൽ</string>
   <string name="ContactsCursorLoader_username_search">ഉപയോക്തൃനാമ തിരയൽ</string>
   <!--Label for my stories when selecting who to send media to-->
+  <string name="ContactsCursorLoader_my_stories">എന്റെ കഥകള്‍</string>
   <!--Action for creating a new story-->
+  <string name="ContactsCursorLoader_new_story">പുതിയ കഥ</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">സന്ദേശ൦ %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal കോള്‍ %s</string>
@@ -315,8 +317,11 @@
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$sസജീവം</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">അഭ്യര്‍ത്ഥന തടയണോ?</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s ന് ഈ ഗ്രൂപ്പിൽ ചേരാനോ ഗ്രൂപ്പ് ലിങ്ക് വഴി ചേരാൻ അഭ്യർത്ഥിക്കാനോ കഴിയില്ല. അവരെ ഇപ്പോഴും ഗ്രൂപ്പിൽ നേരിട്ട് ചേർക്കാവുന്നതാണ്.</string>
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">അഭ്യര്‍ത്ഥന തടയുക</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">റദ്ദാക്കൂ</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -1742,6 +1747,7 @@
   <string name="ConversationUpdateItem_enable_call_notifications">കോൾ അറിയിപ്പുകൾ പ്രാപ്തമാക്കുക</string>
   <string name="ConversationUpdateItem_update_contact">കോൺ‌ടാക്റ്റ് പുതുക്കുക</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">അഭ്യര്‍ത്ഥന തടയുക</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">പൊതുവായി ഗ്രൂപ്പുകളൊന്നുമില്ല. അഭ്യർത്ഥനകൾ ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">ഈ ഗ്രൂപ്പിൽ കോൺടാക്റ്റുകളൊന്നുമില്ല. അഭ്യർത്ഥനകൾ ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക.</string>
   <string name="ConversationUpdateItem_view">കാണുക</string>
@@ -3693,6 +3699,7 @@
   <!--Label for Stories tab in home app screen-->
   <!--String for counts above 99 in conversation list tabs-->
   <!--Title for "My Stories" row item in Stories landing page-->
+  <string name="StoriesLandingFragment__my_stories">എന്റെ കഥകള്‍</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <!--Displayed when there are no stories to display-->
   <!--Context menu option to hide a story-->

@@ -3962,12 +3962,15 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Clickable option to delete a custom story-->
   <string name="PrivateStorySettingsFragment__delete_private_story">Șterge povestea privată</string>
   <!--Dialog title when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__remove_s">Elimin pe %1$s?</string>
   <!--Dialog message when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Această persoană nu va mai vedea povestea ta.</string>
   <!--Positive action label when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__remove">Elimină</string>
   <!--Dialog title when deleting a private story-->
   <string name="PrivateStorySettingsFragment__are_you_sure">Ești sigur?</string>
   <!--Dialog message when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__this_action_cannot">Această acțiune este ireversibilă.</string>
   <!--Page title for editing a private story name-->
   <string name="EditPrivateStoryNameFragment__edit_story_name">Modifică numele poveștii</string>
   <!--Input field hint when editing a private story name-->
@@ -3981,12 +3984,15 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Displayed in text post creator when prompting user to enter text-->
   <string name="TextStoryPostTextEntryFragment__add_text">Adăugare text</string>
   <!--Content description for \'done\' button when adding text to a story post-->
+  <string name="TextStoryPostTextEntryFragment__done_adding_text">Am terminat de adăugat text</string>
   <!--Text label for media selection toggle-->
   <string name="MediaSelectionActivity__text">Text</string>
   <!--Camera label for media selection toggle-->
   <string name="MediaSelectionActivity__camera">Cameră foto</string>
   <!--Hint for entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Tastează sau lipește un URL</string>
   <!--Displayed prior to the user entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Distribuie un link cu spectatorii poveștii tale</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Caută</string>
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
@@ -3994,6 +4000,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Gata</string>
   <!--Dialog title for first time adding something to a story-->
+  <string name="StoryDialogs__add_to_story_q">Adaugi la poveste?</string>
   <!--Dialog message for first time adding something to a story-->
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <string name="StoryDialogs__add_to_story">Adaugă la poveste</string>
@@ -4007,6 +4014,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">Următorul</string>
   <!--New story viewer selection screen title as recipients are selected-->
+  <plurals name="SelectViewersFragment__d_viewers">
+    <item quantity="one">%1$d spectator</item>
+    <item quantity="few">%1$d spectatori</item>
+    <item quantity="other">%1$d spectatori</item>
+  </plurals>
   <!--Name story screen title-->
   <string name="CreateStoryWithViewersFragment__name_story">Numește povestea</string>
   <!--Name story screen label hint-->
@@ -4026,9 +4038,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Choose story type bottom sheet new story row title-->
   <string name="ChooseStoryTypeBottomSheet__new_private_story">Poveste privată nouă</string>
   <!--Choose story type bottom sheet new story row summary-->
+  <string name="ChooseStoryTypeBottomSheet__visible_only_to">Vizibil doar la persoane specifice</string>
   <!--Choose story type bottom sheet group story title-->
   <string name="ChooseStoryTypeBottomSheet__group_story">Poveste de grup</string>
   <!--Choose story type bottom sheet group story summary-->
+  <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Distribuie la un grup existent</string>
   <!--Choose groups bottom sheet title-->
   <string name="ChooseGroupStoryBottomSheet__choose_groups">Alege grupurile</string>
   <!--Displayed when copying group story reply text to clipboard-->
@@ -4040,6 +4054,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Displayed in toast after sending a direct reaction-->
   <string name="StoryDirectReplyDialogFragment__reaction_sent">Reacția a fost trimisă</string>
   <!--Displayed in the viewer when a story is no longer available-->
+  <string name="StorySlateView__this_story_is_no_longer_available">Acestă poveste nu mai este disponibilă.</string>
   <!--Displayed in the viewer when the network is not available-->
   <string name="StorySlateView__no_internet_connection">Lipsește Conexiunea cu Internetul</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->

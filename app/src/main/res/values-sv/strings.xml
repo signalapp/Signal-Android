@@ -3,7 +3,7 @@
   <string name="yes">Ja</string>
   <string name="no">Nej</string>
   <string name="delete">Ta bort</string>
-  <string name="please_wait">Vänligen vänta…</string>
+  <string name="please_wait">Vänta…</string>
   <string name="save">Spara</string>
   <string name="note_to_self">Egen anteckning</string>
   <!--AbstractNotificationBuilder-->
@@ -33,7 +33,7 @@
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Skärmlås %1$s, Registreringslås %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Språk %2$s</string>
-  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-koder krävs för registreringslås. För att inaktivera PIN-koder, vänligen inaktivera först registreringslåset.</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-koder krävs för registreringslås. För att inaktivera PIN-koder, inaktivera först registreringslåset.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN-kod skapad.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN-kod inaktiverad.</string>
   <string name="ApplicationPreferencesActivity_hide">Dölj</string>
@@ -63,9 +63,9 @@
   <string name="AttachmentKeyboard_payment">Betalning</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Kan inte hitta app för att välja media.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal behöver behörigheten Lagring för att bifoga bilder, video och ljud men den har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Lagring\".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal behöver behörigheten Kontakter för att bifoga kontaktinformation men den har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Kontakter\".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal behöver behörigheten Plats för att bifoga platser men den har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Plats\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal behöver behörigheten Lagring för att bifoga bilder, video och ljud men den har avfärdats permanent. Fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Lagring\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal behöver behörigheten Kontakter för att bifoga kontaktinformation men den har avfärdats permanent. Fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Kontakter\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal behöver behörigheten Plats för att bifoga platser men den har avfärdats permanent. Fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Plats\".</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Laddar upp media…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Komprimerar video…</string>
@@ -212,12 +212,12 @@
   <string name="ConversationActivity_invalid_recipient">Ogiltig mottagare!</string>
   <string name="ConversationActivity_added_to_home_screen">Lagt till på hemskärmen</string>
   <string name="ConversationActivity_calls_not_supported">Samtal stöds inte</string>
-  <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Denna enhet verkar inte stödja ringa upp-handlingar.</string>
+  <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Denna enhet verkar inte stöda uppringningsåtgärder.</string>
   <string name="ConversationActivity_transport_insecure_sms">Osäkert SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Osäkert MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Låt oss använda Signal %1$s</string>
-  <string name="ConversationActivity_specify_recipient">Vänligen välj en kontakt</string>
+  <string name="ConversationActivity_specify_recipient">Välj en kontakt</string>
   <string name="ConversationActivity_unblock">Avblockera</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Bilagan överskrider storleksgränserna för den typ av meddelande du skickar.</string>
   <string name="ConversationActivity_unable_to_record_audio">Det går inte att spela in ljud!</string>
@@ -231,13 +231,13 @@
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Din förfrågan om att gå med har skickats till gruppadministratören. Du får ett meddelande när administratören vidtar åtgärder.</string>
   <string name="ConversationActivity_cancel_request">Avbryt förfrågan</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">För att skicka ljudmeddelanden, vänligen ge Signal åtkomst till din mikrofon.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal behöver behörigheten Mikrofon för att skicka ljudmeddelanden men den avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Mikrofon\".</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal behöver behörigheterna Mikrofon och Kamera för att ringa%s men de har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Mikrofon\" och Kamera\".</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal behöver behörigheten Mikrofon för att skicka ljudmeddelanden men den avfärdats permanent. Fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Mikrofon\".</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal behöver behörigheterna Mikrofon och Kamera för att ringa%s men de har avfärdats permanent. Fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Mikrofon\" och Kamera\".</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">För att fånga fotografier och video, tillåt Signal att tillgå kameran.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal behöver behörigheten Kamera för att ta bilder och filma men den har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Kamera\".</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal behöver behörigheten Kamera för att ta bilder och filma men den har avfärdats permanent. Fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Kamera\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal behöver behörigheten Kamera för att ta bilder och filma</string>
   <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Aktivera behörigheten Mikrofon för att spela in videor med ljud.</string>
-  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal behöver mikrofonbehörigheter för att spela in videor men de har avfärdats. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Mikrofon\" och \"Kamera\".</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal behöver mikrofonbehörigheter för att spela in videor men de har avfärdats. Fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Mikrofon\" och \"Kamera\".</string>
   <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal behöver behörigheten Mikrofon för att filma.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kan inte skicka SMS/MMS-meddelanden eftersom det inte är din standardapp för SMS. Vill du ändra detta i dina Android-inställningar?</string>
@@ -420,7 +420,7 @@
   <string name="ChooseBackupFragment__no_file_browser_available">Ingen filhanterare tillgänglig</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Återställningen är klar</string>
-  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Vänligen välj en mapp för att fortsätta använda säkerhetskopior. Nya säkerhetskopior sparas på denna plats.</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Välj en mapp för att fortsätta använda säkerhetskopior. Nya säkerhetskopior sparas på denna plats.</string>
   <string name="RestoreBackupFragment__choose_folder">Välj mapp</string>
   <string name="RestoreBackupFragment__not_now">Inte nu</string>
   <!--Couldn\'t find the selected backup-->
@@ -445,7 +445,7 @@
   <string name="BackupsPreferenceFragment__d_so_far">%1$d hittills…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% hittills…</string>
-  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal behöver behörigheten Lagring för att skapa säkerhetskopior men den har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Lagring\".</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal behöver behörigheten Lagring för att skapa säkerhetskopior men den har avfärdats permanent. Fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Lagring\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Använder anpassade: %s</string>
   <string name="CustomDefaultPreference_using_default">Använder standard: %s</string>
@@ -498,7 +498,7 @@
   <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Du har inte behörighet att skicka till denna grupp</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent kommunikationsfel med Signal!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal kunde inte registrera sig på Google Play-tjänster. Signal-meddelanden och -samtal har inaktiverats, vänligen försök att återregistrera i Inställningar &gt; Avancerat.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal kunde inte registrera sig på Google Play-tjänster. Signal-meddelanden och -samtal har inaktiverats, försök att återregistrera i Inställningar &gt; Avancerat.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Fel vid hämtning av helupplöst GIF</string>
   <!--GiphyFragmentPageAdapter-->
@@ -689,8 +689,8 @@
   <string name="ManageGroupActivity_not_announcement_capable">Någon du har lagt till stöder inte tillkännagivande grupper och behöver uppdatera Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Det gick inte att uppdatera gruppen</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Du är inte medlem i gruppen</string>
-  <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Det gick inte att uppdatera gruppen. Vänligen försök igen senare</string>
-  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Det gick inte att uppdatera gruppen på grund av ett nätverksfel, vänligen försök igen senare</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Det gick inte att uppdatera gruppen. Försök igen senare</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Det gick inte att uppdatera gruppen på grund av ett nätverksfel, försök igen senare</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Ändra namn och bild</string>
   <string name="ManageGroupActivity_legacy_group">Äldre grupp</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Detta är en Äldre grupp. Funktioner som gruppadministratörer är endast tillgängliga för Nya grupper.</string>
@@ -762,7 +762,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Du är redan medlem</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Gå med</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Begär att gå med</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Det gick inte att gå med i gruppen. Vänligen försök igen senare</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Det gick inte att gå med i gruppen. Försök igen senare</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Stött på ett nätverksfel.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Denna grupplänk är inte aktiv</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
@@ -792,9 +792,9 @@
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Dela en länk med vänner så att de snabbt kan gå med i denna grupp.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Aktivera och dela länk</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Dela länk</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Det gick inte att aktivera grupplänken. Vänligen försök igen senare</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Det gick inte att aktivera grupplänken. Försök igen senare</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Stött på ett nätverksfel.</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Du har inte rätt att aktivera grupplänken. Vänligen fråga en administratör.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Du har inte rätt att aktivera grupplänken. Fråga en administratör.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Du är för närvarande inte medlem i gruppen.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Lägg till \"%1$s\" till gruppen?</string>
@@ -928,7 +928,7 @@
   <string name="MediaSendActivity_message">Meddelande</string>
   <string name="MediaSendActivity_select_recipients">Välj mottagare</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal behöver åtkomst till dina kontakter för att visa dem.</string>
-  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal behöver behörigheten Kontakter för att visa dina kontakter men den har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Kontakter\".</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal behöver behörigheten Kontakter för att visa dina kontakter men den har avfärdats permanent. Fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Kontakter\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Du kan inte dela mer än %d objekt.</item>
     <item quantity="other">Du kan inte dela mer än %d objekt.</item>
@@ -943,7 +943,7 @@
   <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Tryck för att skicka en felsökningslogg</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Okänd</string>
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Tog emot ett meddelande som krypterats med en gammal version av Signal som inte längre stöds. Vänligen be avsändaren om att uppdatera till den senaste versionen och skicka om meddelandet.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Tog emot ett meddelande som krypterats med en gammal version av Signal som inte längre stöds. Be avsändaren om att uppdatera till den senaste versionen och skicka om meddelandet.</string>
   <string name="MessageRecord_left_group">Du har lämnat gruppen.</string>
   <string name="MessageRecord_you_updated_group">Du uppdaterade gruppen.</string>
   <string name="MessageRecord_the_group_was_updated">Gruppen uppdaterades.</string>
@@ -1190,8 +1190,8 @@
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Tyvärr har du för många enheter redan länkade, prova att ta bort en del</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Tyvärr, detta är ingen giltig QR-kod för enhetslänkning.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Länka en Signal-enhet?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det verkar som att du försöker länka en Signal-enhet med hjälp av en tredjepartsskanner. För din säkerhet, vänligen skanna koden igen inifrån Signal.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal behöver behörigheten Kamera för att skanna QR-koder men det har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Kamera\".</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det verkar som att du försöker länka en Signal-enhet med hjälp av en tredjepartsskanner. För din säkerhet, skanna koden igen inifrån Signal.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal behöver behörigheten Kamera för att skanna QR-koder men det har avfärdats permanent. Fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Det går inte att skanna en QR-kod utan behörigheten Kamera</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Uppdatera nu</string>
@@ -1212,7 +1212,7 @@
   <string name="PlacePickerActivity_drop_pin">Släpp stift</string>
   <string name="PlacePickerActivity_accept_address">Acceptera adress</string>
   <!--PlayServicesProblemFragment-->
-  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Versionen av Google Play-tjänster som du har installerad fungerar inte korrekt. Vänligen installera om Google Play-tjänster och försök igen.</string>
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Versionen av Google Play-tjänster som du har installerad fungerar inte korrekt. Installera om Google Play-tjänster och försök igen.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Felaktig PIN-kod</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Hoppa över PIN-kodsposten?</string>
@@ -1240,7 +1240,7 @@
   <string name="PinOptOutDialog_disable_pin">Inaktivera PIN-koden</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Betygsätt denna app</string>
-  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Om du gillar att använda denna app, vänligen ta en stund för att hjälpa oss genom att betygsätta den.</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Om du gillar att använda denna app, ta en stund för att hjälpa oss genom att betygsätta den.</string>
   <string name="RatingManager_rate_now">Betygsätt nu!</string>
   <string name="RatingManager_no_thanks">Nej tack</string>
   <string name="RatingManager_later">Senare</string>
@@ -1252,7 +1252,7 @@
   <string name="ReactionsRecipientAdapter_you">Du</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verifiera för att fortsätta skicka meddelanden</string>
-  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">För att förhindra skräppost på Signal, vänligen slutför verifieringen.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">För att förhindra skräppost på Signal, slutför verifieringen.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Efter verifiering kan du fortsätta skicka meddelanden. Alla pausade meddelanden skickas automatiskt.</string>
   <!--Recipient-->
   <string name="Recipient_you">Du</string>
@@ -1374,15 +1374,15 @@ angav (%s) är ogiltigt.</string>
   <string name="RegistrationActivity_is_your_phone_number_above_correct">Är ditt telefonnummer ovan korrekt?</string>
   <string name="RegistrationActivity_edit_number">Ändra nummer</string>
   <string name="RegistrationActivity_missing_google_play_services">Saknar Google Play-tjänster</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Denna enhet saknar Google Play-tjänster. Du kan fortfarande använda Signal men denna konfiguration kan leda till minskad tillförlitlighet eller prestanda.\n\nOm du inte är en avancerad användare, inte använder en egenhändigt modifierad Android ROM eller tror att du ser detta på grund av ett fel, vänligen kontakta support@signal.org för hjälp med felsökning.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Denna enhet saknar Google Play-tjänster. Du kan fortfarande använda Signal men denna konfiguration kan leda till minskad tillförlitlighet eller prestanda.\n\nOm du inte är en avancerad användare, inte använder en egenhändigt modifierad Android ROM eller tror att du ser detta på grund av ett fel, kontakta support@signal.org för hjälp med felsökning.</string>
   <string name="RegistrationActivity_i_understand">Jag förstår</string>
   <string name="RegistrationActivity_play_services_error">Fel på Google Play-tjänster</string>
-  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-tjänster uppdateras eller är tillfälligt otillgängliga. Vänligen försök igen senare.</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-tjänster uppdateras eller är tillfälligt otillgängliga. Försök igen.</string>
   <string name="RegistrationActivity_terms_and_privacy">Villkor &amp; integritetspolicy</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal behöver kontakter och mediabehörigheter för att hjälpa dig att ansluta till vänner och skicka meddelanden. Dina kontakter laddas upp med Signals privata kontaktupptäckt, vilket innebär att de är ände-till-ände-krypterade och aldrig synliga för Signal-tjänsten.</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal behöver kontaktbehörighet för att hjälpa dig att få kontakt med vänner. Dina kontakter laddas upp med Signals privata kontaktupptäckt, vilket innebär att de är ände-till-ände-krypterade och aldrig synliga för Signal-tjänsten.</string>
-  <string name="RegistrationActivity_rate_limited_to_service">Du har gjort för många försök att registrera detta nummer. Vänligen försök igen senare.</string>
-  <string name="RegistrationActivity_unable_to_connect_to_service">Det går inte att ansluta till tjänsten. Vänligen kontrollera nätverksanslutning och försök igen.</string>
+  <string name="RegistrationActivity_rate_limited_to_service">Du har gjort för många försök att registrera detta nummer. Försök igen senare.</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">Det går inte att ansluta till tjänsten. Kontrollera nätverksanslutning och försök igen.</string>
   <string name="RegistrationActivity_non_standard_number_format">Icke-standardiserat sifferformat</string>
   <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Siffran du angav (%1$s) verkar vara ett icke-standardformat.\n\nMenade du %2$s?</string>
   <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Telefonnummerformat</string>
@@ -1548,14 +1548,14 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
     <item quantity="other">%d kontakter finns på Signal!</item>
   </plurals>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt använder en gammal version av Signal. Vänligen be kontakten att uppdatera innan de verifierar ditt säkerhetsnummer.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt använder en nyare version av Signal med ett inkompatibelt QR-kodformat. Vänligen uppdatera för att jämföra dem.</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Den skannade QR-koden är inte en korrekt formaterad verifieringskod för säkerhetsnummer. Vänligen försök att skanna den igen.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt använder en gammal version av Signal. Be kontakten att uppdatera innan de verifierar ditt säkerhetsnummer.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt använder en nyare version av Signal med ett inkompatibelt QR-kodformat. Uppdatera för att jämföra dem.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Den skannade QR-koden är inte en korrekt formaterad verifieringskod för säkerhetsnummer. Försök att skanna den igen.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Dela säkerhetsnummer via…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Vårt säkerhetsnummer för Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Verkar som att du inte har några appar att dela till.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Inga säkerhetsnummer att jämföra med hittades i urklipp</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal behöver behörigheten Kamera för att skanna QR-koder men den har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Kamera\".</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal behöver behörigheten Kamera för att skanna QR-koder men den har avfärdats permanent. Fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Det går inte att skanna en QR-kod utan behörigheten Kamera</string>
   <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Du måste först utbyta meddelanden för att kunna se %1$ss säkerhetsnummer.</string>
   <!--ViewOnceMessageActivity-->
@@ -1580,7 +1580,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MediaPreviewActivity_you">Du</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Mediatypen stöds inte</string>
   <string name="MediaPreviewActivity_draft">Utkast</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal behöver behörigheten Lagring för att spara i extern lagring men det har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Lagring\".</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal behöver behörigheten Lagring för att spara i extern lagring men det har avfärdats permanent. Fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Lagring\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan inte spara i extern lagring utan behörighet</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Ta bort meddelande?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Detta tar bort detta meddelande permanent.</string>
@@ -1666,7 +1666,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">För att svara på samtalet, ge Signal åtkomst till din mikrofon.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">För att svara på samtalet från %s, ge Signal åtkomst till din mikrofon.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal behöver behörigheterna Mikrofon och Kamera för att ringa och ta emot samtal, men de har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Mikrofon\" och \"Kamera\".</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal behöver behörigheterna Mikrofon och Kamera för att ringa och ta emot samtal, men de har avfärdats permanent. Fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Mikrofon\" och \"Kamera\".</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Besvarades på en länkad enhet.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Avböjde på en länkad enhet.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Upptagen på en länkad enhet.</string>
@@ -1702,10 +1702,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Kontaktfoto</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal behöver behörigheten Kontakter för att bifoga kontaktinformation men det har avfärdats permanent. Vänligen fortsätt till menyn för appinställningar, välj \"Behörigheter\" och aktivera \"Kontakter\".</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal behöver behörigheten Kontakter för att bifoga kontaktinformation men det har avfärdats permanent. Fortsätt till menyn för appinställningar, välj \"Behörigheter\" och aktivera \"Kontakter\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Ett fel inträffade med att hämta kontakter, kontrollera din nätverksanslutning</string>
   <string name="ContactSelectionListFragment_username_not_found">Användarnamn hittades inte</string>
-  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" är inte en Signal-användare. Vänligen kontrollera användarnamnet och försök igen.</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" är inte en Signal-användare. Kontrollera användarnamnet och försök igen.</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Du behöver inte lägga till dig själv i gruppen</string>
   <string name="ContactSelectionListFragment_maximum_group_size_reached">Störst gruppstorlek uppnådd</string>
   <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal-grupper kan ha högst %1$d medlemmar.</string>
@@ -1885,7 +1885,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Standard systemdatabasen kommer inte att modifieras eller ändras på något sätt.</string>
   <string name="database_migration_activity__skip">Hoppa över</string>
   <string name="database_migration_activity__import">Importera</string>
-  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Detta kan ta ett ögonblick. Vänligen ha tålamod, vi meddelar dig när importen är slutförd.</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Detta kan ta ett ögonblick. Ha tålamod, vi meddelar dig när importen är slutförd.</string>
   <string name="database_migration_activity__importing">IMPORTERAR</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Se hela konversationen</string>
@@ -2005,9 +2005,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="HelpFragment__signal_android_support_request">Signal Android-supportförfrågan</string>
   <string name="HelpFragment__debug_log">Felsökningslogg:</string>
   <string name="HelpFragment__could_not_upload_logs">Det gick inte att ladda upp loggar</string>
-  <string name="HelpFragment__please_be_as_descriptive_as_possible">Vänligen var så beskrivande som möjligt för att hjälpa oss att förstå problemet.</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Var så beskrivande som möjligt för att hjälpa oss att förstå problemet.</string>
   <string-array name="HelpFragment__categories_3">
-    <item>\-\- Vänligen välj ett alternativ \-\-</item>
+    <item>\-\- Välj ett alternativ \-\-</item>
     <item>Något fungerar inte</item>
     <item>Funktionsbegäran</item>
     <item>Fråga</item>
@@ -2609,7 +2609,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ConversationListFragment_loading">Hämtar in…</string>
   <string name="CallNotificationBuilder_connecting">Ansluter…</string>
   <string name="Permissions_permission_required">Behörighet krävs</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal behöver behörigheten SMS för att skicka SMS men det har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"SMS\".</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal behöver behörigheten SMS för att skicka SMS men det har avfärdats permanent. Fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"SMS\".</string>
   <string name="Permissions_continue">Fortsätt</string>
   <string name="Permissions_not_now">Inte nu</string>
   <string name="conversation_activity__enable_signal_messages">AKTIVERA SIGNAL-MEDDELANDEN</string>
@@ -2641,7 +2641,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="RegistrationActivity_backup_timestamp_s">Tidspunkt för säkerhetskopia: %s</string>
   <string name="BackupDialog_enable_local_backups">Aktivera lokala säkerhetskopior?</string>
   <string name="BackupDialog_enable_backups">Aktivera säkerhetskopior</string>
-  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Vänligen bekräfta att du förstår genom att kryssa i rutan.</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Bekräfta att du förstår genom att kryssa i rutan.</string>
   <string name="BackupDialog_delete_backups">Ta bort säkerhetskopior?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Inaktivera och ta bort alla lokala säkerhetskopior?</string>
   <string name="BackupDialog_delete_backups_statement">Ta bort säkerhetskopior</string>
@@ -2696,8 +2696,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Du måste ange din PIN-kod för registreringslåset</string>
   <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Din PIN-kod måste vara minst %d siffror eller tecken</string>
   <string name="RegistrationActivity_too_many_attempts">För många försök</string>
-  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Du har gjort för många PIN-kodsförsök. Vänligen försök igen efter ett dygn.</string>
-  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Du har gjort för många försök. Vänligen försök igen senare.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Du har gjort för många PIN-kodsförsök. Försök igen efter ett dygn.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Du har gjort för många försök. Försök igen senare.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Fel vid anslutning till tjänst</string>
   <string name="preferences_chats__backups">Säkerhetskopior</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal är låst</string>
@@ -2739,7 +2739,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="OldDeviceTransferSetup__create_a_backup">Skapa en säkerhetskopia</string>
   <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Ett oväntat fel uppstod när du försökte ansluta till din nya Android-enhet.</string>
   <!--DeviceTransferSetupFragment-->
-  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Det gick inte att öppna Wi-Fi-inställningar. Vänligen aktivera Wi-Fi manuellt.</string>
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Det gick inte att öppna Wi-Fi-inställningar. Aktivera Wi-Fi manuellt.</string>
   <string name="DeviceTransferSetup__grant_location_permission">Bevilja platsbehörighet</string>
   <string name="DeviceTransferSetup__turn_on_location_services">Aktivera platstjänster</string>
   <string name="DeviceTransferSetup__unable_to_open_location_settings">Det går inte att öppna platsinställningar.</string>
@@ -3140,7 +3140,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_confirmed">Ändra status bekräftad</string>
   <!--Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
-  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Ditt nummer har bekräftats som %1$s. Om detta inte är ditt nya nummer, vänligen starta om processen för att ändra numret.</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Ditt nummer har bekräftats som %1$s. Om detta inte är ditt nya nummer, starta om processen för att ändra numret.</string>
   <!--Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_unconfirmed">Ändra status obekräftad</string>
   <!--Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow-->
@@ -3488,7 +3488,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MySupportPreference__processing_transaction">Bearbetar transaktion…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Det gick inte att lägga till märket. %1$s</string>
-  <string name="MySupportPreference__please_contact_support">Vänligen kontakta supporten.</string>
+  <string name="MySupportPreference__please_contact_support">Kontakta supporten.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Ditt märke har upphört att gälla</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Märket har upphört att gälla</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonnemang uppsagt</string>
@@ -3507,7 +3507,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Det går inte att behandla abonnemangsbetalningen</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Vi har problem med att samla in din Signal-upprätthållare betalning. Se till att din betalningsmetod är uppdaterad. Om den inte är det kan du uppdatera den i Google Pay. Signal kommer försöka bearbeta betalningen igen om ett par dagar.</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Visa inte detta igen</string>
-  <string name="Subscription__please_contact_support_for_more_information">Vänligen kontakta supporten för mer information.</string>
+  <string name="Subscription__please_contact_support_for_more_information">Kontakta supporten för mer information.</string>
   <string name="Subscription__contact_support">Kontakta support</string>
   <string name="Subscription__earn_a_s_badge">Tjäna ett %1$s-märke</string>
   <string name="SubscribeFragment__processing_payment">Bearbetar betalningen…</string>
@@ -3515,11 +3515,11 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="DonationsErrors__error_processing_payment">Fel vid bearbetning av betalningen</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="DonationsErrors__error_processing_payment_s">Fel vid bearbetning av betalningen. %1$s</string>
-  <string name="DonationsErrors__your_badge_could_not_be_added">Ditt märke kunde inte läggas till ditt konto, men du kan ha blivit debiterad. Vänligen kontakta supporten.</string>
-  <string name="DonationsErrors__your_payment">Din betalning kunde inte behandlas och du har inte debiterats. Vänligen försök igen.</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Ditt märke kunde inte läggas till ditt konto, men du kan ha blivit debiterad. Kontakta supporten.</string>
+  <string name="DonationsErrors__your_payment">Din betalning kunde inte behandlas och du har inte debiterats. Försök igen.</string>
   <string name="DonationsErrors__still_processing">Bearbetar fortfarande</string>
   <string name="DonationsErrors__couldnt_add_badge">Det gick inte att lägga till märket</string>
-  <string name="DonationsErrors__your_badge_could_not">Ditt märke kunde inte läggas till ditt konto, men du kan ha blivit debiterad. Vänligen kontakta supporten.</string>
+  <string name="DonationsErrors__your_badge_could_not">Ditt märke kunde inte läggas till ditt konto, men du kan ha blivit debiterad. Kontakta supporten.</string>
   <string name="DonationsErrors__your_payment_is_still">Din betalning behandlas fortfarande. Detta kan ta några minuter beroende på din anslutning.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay är inte tillgängligt</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Du måste konfigurera Google Pay för att donera i appen.</string>
@@ -3723,7 +3723,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Donation receipts amount title-->
   <string name="DonationReceiptDetailsFragment__amount">Belopp</string>
   <!--Donation receipts thanks-->
-  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Tack för att du stödjer Signal. Ditt bidrag hjälper till att driva på uppdraget att utveckla öppen källkods integritetsteknik som skyddar yttrandefrihet och möjliggör säker global kommunikation för miljoner runt om i världen. Om du är bosatt i USA, vänligen spara detta kvitto för dina skatteuppgifter. Signal Technology Foundation är en skattebefriad ideell organisation i USA enligt avsnitt 501c3 i Internal Revenue Code. Vårt federala skatte-ID är 82–4506840.</string>
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Tack för att du stöder Signal. Ditt bidrag hjälper till att driva på uppdraget att utveckla öppen källkods integritetsteknik som skyddar yttrandefrihet och möjliggör säker global kommunikation för miljoner runt om i världen. Om du är bosatt i USA, spara detta kvitto för dina skatteuppgifter. Signal Technology Foundation är en skattebefriad ideell organisation i USA enligt avsnitt 501c3 i Internal Revenue Code. Vårt federala skatte-ID är 82–4506840.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--region "Stories Tab"-->

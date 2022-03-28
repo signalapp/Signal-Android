@@ -1571,7 +1571,7 @@
   <string name="KeyCachingService_lock">Заклучи го Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Вие</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Неподдржан тип на датотека</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Неподдржан тип на медија</string>
   <string name="MediaPreviewActivity_draft">Нацрт</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal има потреба од дозвола до складот за да може да зачувува на надворешен склад. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувањата, изберете „Дозволи“ и вклучете „Склад“.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Не успеав да зачувам на надворешен склад без дозвола</string>
@@ -1778,6 +1778,7 @@
   <string name="QuoteView_original_missing">Оригиналната порака не е пронајдена</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Вашата приказна</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Оди до дното</string>
   <!--BubbleOptOutTooltip-->
@@ -3554,7 +3555,7 @@
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Зачувај</string>
   <!--Title of edit notification profile screen-->
-  <string name="EditNotificationProfileFragment__edit_this_profile">Уредете го овој профил</string>
+  <string name="EditNotificationProfileFragment__edit_this_profile">Уреди го овој профил</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
   <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Профил со ова име веќе постои</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
@@ -3574,7 +3575,7 @@
   <!--Description of what the user should be doing with this screen-->
   <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Додајте луѓе и групи од кои сакате да добивате известувања и повици кога е вклучен овој профил</string>
   <!--Button text that launches the contact picker to select from-->
-  <string name="AddAllowedMembers__add_people_or_groups">Додајте луѓе или групи</string>
+  <string name="AddAllowedMembers__add_people_or_groups">Додај луѓе или групи</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">Додај…</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
@@ -3695,6 +3696,7 @@
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Детали</string>
   <!--Donation receipts donation type heading-->
+  <string name="DonationReceiptDetailsFragment__donation_type">Вид на донација</string>
   <!--Donation receipts date paid heading-->
   <string name="DonationReceiptDetailsFragment__date_paid">Датум на плаќање</string>
   <!--Donation receipts share PNG-->
@@ -3736,16 +3738,19 @@
   <!--Label when a story fails to send-->
   <string name="StoriesLandingItem__couldnt_send">Не може да се испрати</string>
   <!--Title of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__hide_story">Да се сокрие приказната?</string>
   <!--Message of dialog confirming decision to hide a story-->
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">Сокриј</string>
   <!--Displayed in Snackbar after story is hidden-->
+  <string name="StoriesLandingFragment__story_hidden">Приказната е скриена</string>
   <!--Section header for hidden stories-->
   <!--Displayed on each sent story under My Stories-->
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">Препрати</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
   <!--Title of dialog to confirm deletion of story-->
+  <string name="MyStories__delete_story">Да се избрише приказната?</string>
   <!--Message of dialog to confirm deletion of story-->
   <string name="MyStories__this_story_will_be_deleted">Оваа приказна ќе биде избришана за Вас и сите кои ја примиле.</string>
   <!--Displayed at bottom of story viewer when current item has views-->
@@ -3766,9 +3771,11 @@
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Сè уште нема одговори</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
+  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Реагираше на приказната</string>
   <!--Label for story views tab-->
   <!--Label for story replies tab-->
   <!--Description of action for reaction button-->
+  <string name="StoryReplyComposer__react_to_this_story">Реагирај на оваа приказна</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
   <string name="StoryReplyComposer__replying_privately_to_s">Одговори приватно на %1$s</string>
   <!--Context menu item to privately reply to a story response-->
@@ -3778,6 +3785,7 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Избриши</string>
   <!--Story settings page title-->
+  <string name="StorySettingsFragment__story_settings">Поставувања за приказна</string>
   <!--Story settings private stories heading-->
   <!--Option label for creating a new private story-->
   <string name="StorySettingsFragment__new_private_story">Нова приватна приказна</string>
@@ -3786,6 +3794,7 @@
   <!--Section heading for story visibility-->
   <string name="MyStorySettingsFragment__who_can_see_this_story">Кој може да ја види оваа приказна</string>
   <!--Clickable option for selecting people to hide your story from-->
+  <string name="MyStorySettingsFragment__hide_story_from">Сокриј приказна од</string>
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d личност</item>
@@ -3796,7 +3805,9 @@
   <!--Switchable option for allowing replies and reactions on your stories-->
   <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Дозволи одговори и реакции</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
+  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Дозволете им на луѓето кои можат да ја видат Вашата приказна да реагираат и одговорат</string>
   <!--Note about default sharing-->
+  <string name="MyStorySettingsFragment__hide_your_story_from">Сокриј ја приказната од одредени луѓе. Стандардно, Вашата приказна се споделува со Вашите %1$s</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
   <string name="MyStorySettingsFragment__signal_connections">Signal врски.</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
@@ -3804,16 +3815,20 @@
   <!--Signal connections sheet bullet point 2-->
   <!--Signal connections sheet bullet point 3-->
   <!--Note at the bottom of the Signal connections sheet-->
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Вашите врски можат да го видат Вашето име и слика и да ги гледаат објавите во „Моја приказна”, освен ако не го сокриете тоа од нив.</string>
   <!--Clickable option to add a viewer to a private story-->
   <!--Clickable option to delete a custom story-->
+  <string name="PrivateStorySettingsFragment__delete_private_story">Избриши приватна приказна</string>
   <!--Dialog title when attempting to remove someone from a private story-->
   <!--Dialog message when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Оваа личност повеќе нема да ја види Вашата приказна.</string>
   <!--Positive action label when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__remove">Отстрани</string>
   <!--Dialog title when deleting a private story-->
   <string name="PrivateStorySettingsFragment__are_you_sure">Дали сте сигурни?</string>
   <!--Dialog message when deleting a private story-->
   <!--Page title for editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__edit_story_name">Измени име на приказна</string>
   <!--Input field hint when editing a private story name-->
   <string name="EditPrivateStoryNameFragment__story_name">Име на приказна</string>
   <!--Save button label when editing a private story name-->
@@ -3835,11 +3850,14 @@
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Барај</string>
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
+  <string name="HideStoryFromFragment__hide_story_from">Сокриј приказна од…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Готово</string>
   <!--Dialog title for first time adding something to a story-->
+  <string name="StoryDialogs__add_to_story_q">Да се додаде во приказната?</string>
   <!--Dialog message for first time adding something to a story-->
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
+  <string name="StoryDialogs__add_to_story">Додај во приказна</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <!--Privacy Settings toggle title for stories-->
   <!--Privacy Settings toggle summary for stories-->
@@ -3849,6 +3867,7 @@
   <!--New story viewer selection screen title as recipients are selected-->
   <!--Name story screen title-->
   <!--Name story screen label hint-->
+  <string name="CreateStoryWithViewersFragment__story_name_required">Име на приказна (задолжително)</string>
   <!--Name story screen viewers subheading-->
   <string name="CreateStoryWithViewersFragment__viewers">Гледачи</string>
   <!--Name story screen create button label-->
@@ -3856,9 +3875,11 @@
   <!--Name story screen error when save attempted with no label-->
   <string name="CreateStoryWithViewersFragment__this_field_is_required">Ова поле е задолжително.</string>
   <!--Name story screen error when save attempted but label is duplicate-->
+  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">Веќе постои приказна со ова име.</string>
   <!--Text for select all action when editing recipients for a story-->
   <string name="BaseStoryRecipientSelectionFragment__select_all">Избери сѐ</string>
   <!--Choose story type bottom sheet title-->
+  <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Изберете го Вашиот тип на приказна</string>
   <!--Choose story type bottom sheet new story row title-->
   <string name="ChooseStoryTypeBottomSheet__new_private_story">Нова приватна приказна</string>
   <!--Choose story type bottom sheet new story row summary-->

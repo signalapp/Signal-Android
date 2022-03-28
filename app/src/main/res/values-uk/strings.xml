@@ -39,7 +39,7 @@
   <string name="ApplicationPreferencesActivity_hide">Сховати</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Сховати нагадування?</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Записати кодову фразу для платежів</string>
-  <string name="ApplicationPreferencesActivity_record_phrase">Кодова фраза</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">Записати кодову фразу</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Перед вимкненням PIN-коду ви маєте створити кодову фразу, щоб упевнитись, що ви зможете відновити ваш платіжний обліковий запис.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -82,13 +82,13 @@
   <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" більше не зможе Вам дзвонити та відправляти повідомлення.</string>
   <string name="BlockedUsersActivity__block">Заблокувати</string>
   <string name="BlockedUsersActivity__unblock_user">Розблокувати користувача?</string>
-  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Ви хочете розблокувати \"%1$s\"?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Ви хочете розблокувати «%1$s»?</string>
   <string name="BlockedUsersActivity__unblock">Розблокувати</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Заблокувати і покинути %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Заблокувати %1$s?</string>
-  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Ви більше не отримуватимете повідомлень чи оновлень з цієї групи, та її учасники не зможуть додати Вас до цієї групи знов.</string>
-  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Учасники групи більше не зможуть додавати Вас до цієї групи.</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Ви більше не отримуватимете повідомлень чи оновлень з цієї групи, та її учасники не зможуть додати вас до цієї групи знов.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Учасники групи більше не зможуть додавати вас до цієї групи.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Учасники групи зможуть знову додати вас в неї.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Ви зможете обмінюватись повідомленнями та дзвінками, а також вони зможуть бачити ваше ім\'я та фото.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Заблоковані люди не зможуть подзвонити чи відправити Вам повідомлення.</string>
@@ -117,10 +117,10 @@
   <string name="CameraContacts_recent_contacts">Нещодавні контакти</string>
   <string name="CameraContacts_signal_contacts">Контакти Signal</string>
   <string name="CameraContacts_signal_groups">Групи Signal</string>
-  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Ви можете поділитись із щонайбільше %dрозмовами . </string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Ви можете поділитись із, щонайбільше, %d розмовами. </string>
   <string name="CameraContacts_select_signal_recipients">Оберіть одержувача Signal</string>
   <string name="CameraContacts_no_signal_contacts">Немає контактів Signal</string>
-  <string name="CameraContacts_you_can_only_use_the_camera_button">Ви можете використовувати кнопку Камера лише щоб відправити фото до контактів Signal.</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Ви можете використовувати кнопку Камера лише для відправлення фото контактам Signal.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Не можете знайти, кого шукали?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Запросити контакт приєднатися до Signal</string>
   <string name="CameraContacts__menu_search">Пошук</string>
@@ -130,7 +130,7 @@
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Тепер ви можете приєднатись до Signal напряму для отримання кращого досвіду. </string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
-  <string name="CensorshipCircumventionMegaphone_turn_off">Відключити</string>
+  <string name="CensorshipCircumventionMegaphone_turn_off">Вимкнути</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
   <string name="CensorshipCircumventionMegaphone_no_thanks">Ні, дякую</string>
   <!--ClearProfileActivity-->
@@ -143,7 +143,7 @@
   <string name="ClientDeprecatedActivity_update">Оновити</string>
   <string name="ClientDeprecatedActivity_dont_update">Не оновлювати</string>
   <string name="ClientDeprecatedActivity_warning">Попередження</string>
-  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Ваша версія Signal застаріла. Ви можете переглядати історію Ваших повідомлень, але Ви не зможете надсилати чи отримувати повідомлення допоки Ви не оновите застосунок.</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Ваша версія Signal застаріла. Ви можете переглядати історію повідомлень, але не зможете відправляти чи отримувати повідомлення допоки не оновите застосунок.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Браузера не знайдено.</string>
   <string name="CommunicationActions_send_email">Відправити електронний лист</string>
@@ -162,7 +162,7 @@
   <string name="ContactsCursorLoader_contacts">Контакти</string>
   <string name="ContactsCursorLoader_groups">Групи</string>
   <string name="ContactsCursorLoader_phone_number_search">Пошук за номером</string>
-  <string name="ContactsCursorLoader_username_search">Пошук на ім\'я</string>
+  <string name="ContactsCursorLoader_username_search">Пошук за іменем користувача</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Мої історії</string>
   <!--Action for creating a new story-->
@@ -184,12 +184,12 @@
   <string name="ContactShareEditActivity_invalid_contact">Обраний контакт недійсний</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Не відправлено, торкніться для деталей</string>
-  <string name="ConversationItem_error_partially_not_delivered">Частково надіслано, торкніться для деталей</string>
-  <string name="ConversationItem_error_network_not_delivered">Не вдалося надіслати</string>
+  <string name="ConversationItem_error_partially_not_delivered">Частково відправлено, торкніться для деталей</string>
+  <string name="ConversationItem_error_network_not_delivered">Не вдалося відправити</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Отримано повідомлення обміну ключами, торкніться, щоб продовжити.</string>
   <string name="ConversationItem_group_action_left">%1$s покидає групу.</string>
-  <string name="ConversationItem_send_paused">Надіслання призупинене</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">Не надіслано, натисніть щоб надіслати незахищеним</string>
+  <string name="ConversationItem_send_paused">Відправлення призупинене</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Не відправлено, натисніть для незахищеного відправлення</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Скористатися незашифрованим SMS як запасним варіантом?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Скористатися незашифрованим MMS як запасним варіантом?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Це повідомлення <b>не</b> буде зашифровано, оскільки одержувач більше не користується Signal.\n\nНадіслати незахищене повідомлення?</string>
@@ -223,7 +223,7 @@
   <string name="ConversationActivity_unblock">Розблокувати</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Вкладення перевищує обмеження за розміром для типу повідомлення, яке ви надсилаєте.</string>
   <string name="ConversationActivity_unable_to_record_audio">Не вдалося записати аудіо!</string>
-  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Ви не зможете надсилати повідомлення в цю групу, оскільки Ви більше не є її членом.</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Ви не зможете відправляти повідомлення в цю групу, оскільки більше не є її членом.</string>
   <string name="ConversationActivity_only_s_can_send_messages">Тільки %1$s можуть відправляти повідомлення.</string>
   <string name="ConversationActivity_admins">адміністратори</string>
   <string name="ConversationActivity_message_an_admin">Написати повідомлення адміністратору</string>
@@ -233,11 +233,11 @@
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Ваш запит на приєднання надіслано до адміністраторів групи. Ви отримаєте повідомлення, коли вони відреагують.</string>
   <string name="ConversationActivity_cancel_request">Відмінити запит</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Щоб надсилати аудіо повідомлення, дозвольте Signal доступ до мікрофона.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal потребує дозволу \"Мікрофон\", щоб надсилати аудіоповідомлення але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Мікрофон\".</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal потребує дозволів \"Мікрофон\" та \"Камера\", щоб подзвонити до %s, але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Мікрофон\" та \"Камера\".</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal потребує дозволу «Мікрофон», щоб відправляти аудіоповідомлення, але наразі доступу немає. Будь ласка, перейдіть до налаштувань застосунку, оберіть «Дозволи» та увімкніть «Мікрофон».</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal потребує дозволів «Мікрофон» та «Камера», щоб подзвонити до %s, але наразі доступу немає. Будь ласка, перейдіть до налаштувань застосунку, оберіть «Дозволи» та увімкніть «Мікрофон» та «Камера».</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Щоб фотографувати або знімати відео дозвольте Signal доступ до камери.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal потребує дозволу \"Камера\", щоб фотографувати або знімати відео,  але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Камера\".</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal потребує дозволу \"Камера\", щоб фотографувати або фільмувати.</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal потребує дозволу «Камера», щоб фотографувати або фільмувати.</string>
   <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Надайте доступ до мікрофону, щоб записувати відео зі звуком.</string>
   <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal потрібен дозвіл на доступ до мікрофона, щоб знімати відео, але воно було вами відхилено. Будь ласка, натисніть «Продовжити», щоб перейти в налаштування програми, відкрийте \"Дозволи\" і включіть \"Мікрофон\" та \"Камера\". </string>
   <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal потребує доступу до мікрофона для запису відео.</string>
@@ -476,8 +476,8 @@
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Резервні копії шифруються парольною фразою і зберігаються на вашому пристрої. </string>
   <string name="BackupsPreferenceFragment__create_backup">Створити резервну копію</string>
   <string name="BackupsPreferenceFragment__last_backup">Остання резервна копія: %1$s</string>
-  <string name="BackupsPreferenceFragment__backup_folder">Резервна папка</string>
-  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Перевірити фразу-пароль резервної копії</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Папка для резервних копій</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Перевірити парольну фразу резервної копії</string>
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Випробуйте парольну фразу своєї резервної копії і переконайтеся, що вона збігається</string>
   <string name="BackupsPreferenceFragment__turn_on">Відключити Блокування Реєстрації?</string>
   <string name="BackupsPreferenceFragment__turn_off">Відключити</string>
@@ -495,7 +495,7 @@
   <!--AvatarSelectionBottomSheetDialogFragment-->
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Вибрати фото</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Зробити фото</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Вибрати з Галереї</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Вибрати з галереї</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Видалати світлину</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Щоб зробити фото, потрібен дозвіл на доступ до камери. </string>
   <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Для перегляду галереї потрібен дозвіл на доступ до сховища.</string>
@@ -526,7 +526,7 @@
   <string name="DozeReminder_optimize_for_missing_play_services">Оптимізувати для випадку відсутності служб Google Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Цей пристрій не підтримує служби Google Play. Торкніться, щоб вимкнути режим ощадливого споживання енергії Signal і отримувати повідомлення коли Signal працює у фоні.</string>
   <!--ExpiredBuildReminder-->
-  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Ваша версія Signal застаріла. Оновіть зараз, щоб приймати і надсилати повідомлення.</string>
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Ваша версія Signal застаріла. Оновіть зараз, щоб відправляти та отримувати повідомлення.</string>
   <string name="ExpiredBuildReminder_update_now">Оновити зараз</string>
   <!--PendingGroupJoinRequestsReminder-->
   <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -560,7 +560,7 @@
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Виберіть нового адміністратора</string>
   <string name="ChooseNewAdminActivity_done">Готово</string>
-  <string name="ChooseNewAdminActivity_you_left">Ви залишили \"%1$s.\"</string>
+  <string name="ChooseNewAdminActivity_you_left">Ви вийшли з «%1$s».</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Ви</string>
   <!--GV2 access levels-->
@@ -823,11 +823,11 @@
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Посилання групи, яким можна поділитись</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Керувати &amp; ділитись</string>
-  <string name="ShareableGroupLinkDialogFragment__group_link">Групове посилання</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">Посилання групи</string>
   <string name="ShareableGroupLinkDialogFragment__share">Поділитися</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">Скинути посилання</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">Запити учасників</string>
-  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Схвалити запити нових користувачів</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Схвалити нові запити</string>
   <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Потрібно, щоб адміністратор затвердив нових членів, які приєднуються за посиланням групи.</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Ви впевнені, що бажаєте скинути посилання на групу? Люди більше не зможуть приєднуватись до групи за цим посиланням.</string>
   <!--GroupLinkShareQrDialogFragment-->
@@ -859,7 +859,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_link_error">Помилка посилання</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
   <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Не вдалось приєднатись за цим посиланням. Спробуйте пізніше.</string>
-  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Ви бажаєте приєднатися до цієї групи і поширити ваше ім\'я і фото серед її учасників?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Ви бажаєте приєднатися до цієї групи, та поділитись іменем та фото з її учасниками?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Адміністратор цієї групи повинен прийняти ваш запит, перш ніж ви зможете приєднатися до неї. Коли ви відправите запит, ваші ім\'я та фото стануть доступні учасникам цієї групи. </string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Група · %1$d учасник</item>
@@ -891,9 +891,9 @@
   <string name="RequestConfirmationDialog_deny">Відхилити</string>
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">Розмити обличчя</string>
-  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Нове: Розмити обличчя або розмити будь-що.</string>
-  <string name="ImageEditorHud_draw_anywhere_to_blur">Малюй щоб розмити</string>
-  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Малюй щоб розмити обличчя або області</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Нове: Розмити обличчя або розмити будь-що</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">Малюй, щоб розмити</string>
+  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Малюй, щоб розмити обличчя або зони</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Торкніться і утримуйте для запису голосового повідомлення, відпустіть, щоб надіслати</string>
   <!--InviteActivity-->
