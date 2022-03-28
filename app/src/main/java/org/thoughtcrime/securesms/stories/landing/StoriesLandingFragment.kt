@@ -169,7 +169,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
         }
       },
       onShareStory = {
-        StoryContextMenu.share(this@StoriesLandingFragment, it.data.primaryStory as MediaMmsMessageRecord)
+        StoryContextMenu.share(this@StoriesLandingFragment, it.data.primaryStory.messageRecord as MediaMmsMessageRecord)
       },
       onSave = {
         StoryContextMenu.save(requireContext(), it.data.primaryStory.messageRecord)
