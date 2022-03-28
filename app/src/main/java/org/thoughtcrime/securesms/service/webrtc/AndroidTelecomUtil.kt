@@ -188,7 +188,7 @@ object AndroidTelecomUtil {
   }
 
   private fun isRestrictedDevice(): Boolean {
-    return "${Build.MODEL} ${Build.PRODUCT} ${Build.MANUFACTURER}".contains(other = "oneplus", ignoreCase = true)
+    return true // "${Build.MODEL} ${Build.PRODUCT} ${Build.MANUFACTURER}".contains(other = "oneplus", ignoreCase = true)
   }
 }
 
