@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:minHeight="@dimen/contact_selection_item_height"
     android:paddingStart="@dimen/dsl_settings_gutter"
-    android:paddingEnd="@dimen/dsl_settings_gutter">
+    android:paddingEnd="@dimen/dsl_settings_gutter"
+    android:background="@drawable/rounded_inset_ripple_background">
 
     <ImageView
         android:id="@+id/invite_image"
