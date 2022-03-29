@@ -31,11 +31,6 @@ android {
                     'proguard/proguard.cfg'
         }
     }
-
-    packagingOptions {
-        exclude '/org/spongycastle/x509/CertPathReviewerMessages.properties'
-        exclude '/org/spongycastle/x509/CertPathReviewerMessages_de.properties'
-    }
 }
 
 dependencies {
