@@ -391,15 +391,15 @@ class ConversationSettingsFragment : DSLSettingsFragment(
       dividerPref()
 
       val summary = DSLSettingsText.from(formatDisappearingMessagesLifespan(state.disappearingMessagesLifespan))
-      val icon = if (state.disappearingMessagesLifespan <= 0) {
+      val icon = if (state.disappearingMessagesLifespan <= 0 || state.recipient.isBlocked) {
         R.drawable.ic_update_timer_disabled_16
       } else {
         R.drawable.ic_update_timer_16
       }
 
-      var enabled = true
+      var enabled = !state.recipient.isBlocked
       state.withGroupSettingsState {
-        enabled = it.canEditGroupAttributes
+        enabled = it.canEditGroupAttributes && !state.recipient.isBlocked
       }
 
       if (!state.recipient.isReleaseNotes) {
