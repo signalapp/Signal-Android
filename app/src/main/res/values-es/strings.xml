@@ -800,7 +800,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">¿Añadir a %1$s al grupo?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">¿Denegar la solicitud de %1$s?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
-  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">¿Ignorar solicitudes de %1$s? Esta persona ya no podrá solicitar ser añadida de nuevo al grupo vía enlace.</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">¿Vetar solicitudes de %1$s? Esta persona ya no podrá solicitar ser añadida de nuevo al grupo vía enlace.</string>
   <string name="RequestConfirmationDialog_add">Añadir</string>
   <string name="RequestConfirmationDialog_deny">Denegar</string>
   <!--ImageEditorHud-->

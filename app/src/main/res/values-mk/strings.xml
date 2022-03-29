@@ -425,7 +425,9 @@
   <!--Couldn\'t find the selected backup-->
   <string name="RestoreBackupFragment__backup_not_found">Резервната копија не е пронајдена.</string>
   <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">Резервната копија не може да се прочита.</string>
   <!--Backup has an unsupported file extension-->
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">Резервната копија има погрешна екстензија.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Резервни копии на разговори</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Резервните копии се шифрираат со лозинка и се складираат на Вашиот уред.</string>
@@ -1960,6 +1962,7 @@
   <string name="message_details_recipient_header__read_by">Прочитано од</string>
   <string name="message_details_recipient_header__not_sent">Не е испратено на</string>
   <string name="message_details_recipient_header__viewed">Видено од</string>
+  <string name="message_details_recipient_header__skipped">Прескокнато</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Неуспешно испраќање</string>
   <string name="message_details_recipient__new_safety_number">Нов сигурносен број</string>
@@ -3689,6 +3692,7 @@
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">Сите</string>
   <!--Donation receipts recurring tab label-->
+  <string name="DonationReceiptListFragment__recurring">Повторливи</string>
   <!--Donation receipts one time tab label-->
   <string name="DonationReceiptListFragment__one_time">Еднаш</string>
   <!--Donation receipts boost row label-->
@@ -3745,10 +3749,12 @@
   <!--Displayed in Snackbar after story is hidden-->
   <string name="StoriesLandingFragment__story_hidden">Приказната е скриена</string>
   <!--Section header for hidden stories-->
+  <string name="StoriesLandingFragment__hidden_stories">Скриени приказни</string>
   <!--Displayed on each sent story under My Stories-->
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">Препрати</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
+  <string name="MyStories__ss_story">Приказна на %1$s</string>
   <!--Title of dialog to confirm deletion of story-->
   <string name="MyStories__delete_story">Да се избрише приказната?</string>
   <!--Message of dialog to confirm deletion of story-->
@@ -3787,6 +3793,7 @@
   <!--Story settings page title-->
   <string name="StorySettingsFragment__story_settings">Поставувања за приказна</string>
   <!--Story settings private stories heading-->
+  <string name="StorySettingsFragment__private_stories">Приватни приказни</string>
   <!--Option label for creating a new private story-->
   <string name="StorySettingsFragment__new_private_story">Нова приватна приказна</string>
   <!--Page title for My Story options-->
@@ -3811,7 +3818,9 @@
   <!--Signal connections linked text that opens the Signal Connections sheet-->
   <string name="MyStorySettingsFragment__signal_connections">Signal врски.</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Signal врски</strong> се луѓе на кои сте избрале да им верувате, затоа што:</string>
   <!--Signal connections sheet bullet point 1-->
+  <string name="SignalConnectionsBottomSheet__starting_a_conversation">Започнувам разговор</string>
   <!--Signal connections sheet bullet point 2-->
   <!--Signal connections sheet bullet point 3-->
   <!--Note at the bottom of the Signal connections sheet-->
@@ -3840,6 +3849,7 @@
   <!--Displayed in text post creator when prompting user to enter text-->
   <string name="TextStoryPostTextEntryFragment__add_text">Додај текст</string>
   <!--Content description for \'done\' button when adding text to a story post-->
+  <string name="TextStoryPostTextEntryFragment__done_adding_text">Заврши додавањето на текст</string>
   <!--Text label for media selection toggle-->
   <string name="MediaSelectionActivity__text">Текст</string>
   <!--Camera label for media selection toggle-->
@@ -3866,6 +3876,7 @@
   <string name="CreateStoryViewerSelectionFragment__next">Следно</string>
   <!--New story viewer selection screen title as recipients are selected-->
   <!--Name story screen title-->
+  <string name="CreateStoryWithViewersFragment__name_story">Именувај ја приказната</string>
   <!--Name story screen label hint-->
   <string name="CreateStoryWithViewersFragment__story_name_required">Име на приказна (задолжително)</string>
   <!--Name story screen viewers subheading-->
@@ -3914,6 +3925,7 @@
   <string name="TurnOffCircumventionMegaphone_turn_off">Исклучи</string>
   <!--Conversation Item label for reactions to a story-->
   <!--Conversation Item label for reactions to an unavailable story-->
+  <string name="ConversationItem__reacted_to_a_story">Реагираше на приказна</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Види повеќе</string>

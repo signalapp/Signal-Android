@@ -3857,9 +3857,9 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
   <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Signal-kennissen</strong> zijn personen van wie je in het verleden aangaf ze te vertrouwen. Dat deed je door:</string>
   <!--Signal connections sheet bullet point 1-->
-  <string name="SignalConnectionsBottomSheet__starting_a_conversation">Zelf een gesprek met hem of haar te beginnen</string>
+  <string name="SignalConnectionsBottomSheet__starting_a_conversation">Zelf een één-op-één gesprek met hem of haar te beginnen</string>
   <!--Signal connections sheet bullet point 2-->
-  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Een gesprekverzoek van hem of haar te accepteren</string>
+  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Een één-op-één-gespreksverzoek van hem of haar te accepteren</string>
   <!--Signal connections sheet bullet point 3-->
   <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Hem of haar in je systeemcontactenlijst te hebben staan</string>
   <!--Note at the bottom of the Signal connections sheet-->

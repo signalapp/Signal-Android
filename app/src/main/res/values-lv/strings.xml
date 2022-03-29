@@ -326,7 +326,7 @@
   <!--Dialog title for block group link join requests-->
   <string name="ConversationFragment__block_request">Bloķēt pieprasījumu?</string>
   <!--Dialog message for block group link join requests-->
-  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s vairs nevarēs pievienoties vai pieprasīt pievienoties šai grupai caur grupas saiti. Manuāla pievienošana grupai vēl arvien būs iespējama.</string>
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s vairs nevarēs pievienoties vai lūgt pievienoties šai grupai caur grupas saiti. Manuāla pievienošana grupai vēl arvien būs iespējama.</string>
   <!--Dialog confirm block request button-->
   <string name="ConversationFragment__block_request_button">Bloķēt pieprasījumu</string>
   <!--Dialog cancel block request button-->
@@ -843,6 +843,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">Vai pievienot “%1$s” šai grupai?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Vai noraidīt %1$s pieprasījumu?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Noraidīt pieprasījumu no \"%1$s\"? Viņi vairs nevarēs lūgt pievienoties caur grupas saiti.</string>
   <string name="RequestConfirmationDialog_add">Pievienot</string>
   <string name="RequestConfirmationDialog_deny">Atteikt pievienot</string>
   <!--ImageEditorHud-->
@@ -2929,6 +2930,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s varēs rediģēt šo grupu un tās dalībniekus</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">Vai dzēst %1$s no šīs grupas?</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Noņemt %1$s no šīs grupas? Viņi vairs nevarēs pievienoties grupai caur grupas saiti.</string>
   <string name="RecipientBottomSheet_remove">Noņemt/Izņemt</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Iekopēts starpenē</string>
   <string name="GroupRecipientListItem_admin">Administrators</string>
@@ -3021,6 +3023,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">Dzēš kontu…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
+  <string name="DeleteAccountFragment__canceling_your_subscription">Atceļu jūsu abonementu…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Atkarībā no grupu skaita, kurās jūs esat, tas var aizņemt dažas minūtes</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
@@ -3568,6 +3571,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ManageDonationsFragment__my_support">Mans atbalsts</string>
   <string name="ManageDonationsFragment__manage_subscription">Pārvaldīt abonementu</string>
   <!--Label for Tax Receipts button-->
+  <string name="ManageDonationsFragment__tax_receipts">Nodokļu kvītis</string>
   <string name="ManageDonationsFragment__badges">Nozīmītes</string>
   <string name="ManageDonationsFragment__subscription_faq">Abonementu BUJ</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Kļūda saņemot abonementu.</string>
@@ -3796,19 +3800,27 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">Visi</string>
   <!--Donation receipts recurring tab label-->
+  <string name="DonationReceiptListFragment__recurring">Regulārs</string>
   <!--Donation receipts one time tab label-->
   <string name="DonationReceiptListFragment__one_time">Vienreiz</string>
   <!--Donation receipts boost row label-->
+  <string name="DonationReceiptListFragment__boost">Atbalsts</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Sīkāki dati / Rekvizīti</string>
   <!--Donation receipts donation type heading-->
+  <string name="DonationReceiptDetailsFragment__donation_type">Ziedojuma tips</string>
   <!--Donation receipts date paid heading-->
+  <string name="DonationReceiptDetailsFragment__date_paid">Samaksas datums</string>
   <!--Donation receipts share PNG-->
+  <string name="DonationReceiptDetailsFragment__share_receipt">Kopīgot kvīti</string>
   <!--Donation receipts list end note-->
+  <string name="DonationReceiptListFragment__if_you_have">Ja jūs esat pārinstalējis Signal, kvītis no iepriekš veiktajiem ziedojumiem nebūs pieejamas.</string>
   <!--Donation receipts document title-->
+  <string name="DonationReceiptDetailsFragment__donation_receipt">Ziedojuma kvīts</string>
   <!--Donation receipts amount title-->
   <string name="DonationReceiptDetailsFragment__amount">Apjoms</string>
   <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Pateicamies, ka atbalstāt Signal. Jūsu devums palīdz īstenot misiju, kas paredz atvērtā pirmkoda privātuma tehnoloģiju izstrādi, kas aizsargā brīvo izteiksmi un padara iespējamu drošu globālo komunikāciju starp miljoniem visā pasaulē. Ja jūs esat Amerikas Savienoto valstu iedzīvotājs, lūdzu, saglabājiet šo kvīti nodokļu ierakstiem. Signal Technology Foundation ir no nodokļiem atbrīvota bezpeļnas organizācija Amerikas Savienotajās valstīs pēc 501c3 sadaļas Iekšējo ieņēmumu likumā. Mūsu federālais nodokļu ID ir 82-4506840.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--region "Stories Tab"-->
@@ -3823,6 +3835,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Pievienot stāstu</string>
   <!--Displayed when there are no stories to display-->
+  <string name="StoriesLandingFragment__no_recent_updates">Nav jaunumu, kurus šobrīd parādīt.</string>
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Paslēpt stāstu</string>
   <!--Context menu option to unhide a story-->
@@ -3832,6 +3845,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Context menu option to share a story-->
   <string name="StoriesLandingItem__share">Kopīgot…</string>
   <!--Context menu option to go to story chat-->
+  <string name="StoriesLandingItem__go_to_chat">Doties uz sarunu</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Sūta…</string>
   <!--Label when a story fails to send-->
