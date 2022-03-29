@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util;
+package org.signal.core.util;
 
 import android.app.Application;
 import android.os.Build;
@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import org.signal.core.util.StringUtil;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assume.assumeTrue;

@@ -42,7 +42,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.thoughtcrime.securesms.groups.v2.ChangeBuilder.changeBy;
 import static org.thoughtcrime.securesms.groups.v2.ChangeBuilder.changeByUnknown;
-import static org.thoughtcrime.securesms.util.StringUtil.isolateBidi;
+import static org.signal.core.util.StringUtil.isolateBidi;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 
