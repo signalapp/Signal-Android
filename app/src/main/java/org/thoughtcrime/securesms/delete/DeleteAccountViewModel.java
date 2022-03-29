@@ -41,7 +41,7 @@ public class DeleteAccountViewModel extends ViewModel {
   public DeleteAccountViewModel(@NonNull DeleteAccountRepository repository) {
     this.repository         = repository;
     this.allCountries       = repository.getAllCountries();
-    this.regionCode         = new DefaultValueLiveData<>(PhoneNumberUtil.REGION_CODE_FOR_NON_GEO_ENTITY);
+    this.regionCode         = new DefaultValueLiveData<>("ZZ"); // PhoneNumberUtil private static final String UNKNOWN_REGION = "ZZ";
     this.nationalNumber     = new MutableLiveData<>();
     this.query              = new DefaultValueLiveData<>("");
     this.countryDisplayName = Transformations.map(regionCode, repository::getRegionDisplayName);
