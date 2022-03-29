@@ -117,16 +117,18 @@ public class SmsReceiveJob extends BaseJob {
       }
     }
 
-    if (message.isPresent() && !isBlocked(message.get())) {
+    if (message.isPresent() && SignalStore.account().getE164() != null && message.get().getSender().equals(Recipient.self().getId())) {
+      Log.w(TAG, "Received an SMS from ourselves! Ignoring.");
+    } else if (message.isPresent() && !isBlocked(message.get())) {
       Optional<InsertResult> insertResult = storeMessage(message.get());
 
       if (insertResult.isPresent()) {
         ApplicationDependencies.getMessageNotifier().updateNotification(context, insertResult.get().getThreadId());
       }
     } else if (message.isPresent()) {
-      Log.w(TAG, "*** Received blocked SMS, ignoring...");
+      Log.w(TAG, "Received an SMS from a blocked user. Ignoring.");
     } else {
-      Log.w(TAG, "*** Failed to assemble message fragments!");
+      Log.w(TAG, "Failed to assemble message fragments!");
     }
   }
 
