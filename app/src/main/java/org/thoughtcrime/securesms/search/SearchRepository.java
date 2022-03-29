@@ -168,7 +168,7 @@ public class SearchRepository {
     }
 
     GroupDatabase.GroupRecord record;
-    try (GroupDatabase.Reader reader = SignalDatabase.groups().getGroupsFilteredByTitle(query, true, false, false)) {
+    try (GroupDatabase.Reader reader = SignalDatabase.groups().queryGroupsByTitle(query, true, false, false)) {
       while ((record = reader.getNext()) != null) {
         recipientIds.add(record.getRecipientId());
       }
