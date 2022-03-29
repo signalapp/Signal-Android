@@ -37,7 +37,7 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.proxy.ProxyBottomSheetFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.signal.core.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.io.IOException;

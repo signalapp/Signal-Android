@@ -61,7 +61,7 @@ import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThrottledDebouncer;
 import org.thoughtcrime.securesms.util.ViewUtil;
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.signal.core.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.io.ByteArrayOutputStream;

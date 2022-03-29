@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.groups.ui.GroupChangeErrorCallback;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.signal.core.util.concurrent.SimpleTask;
 
 import java.io.IOException;
 import java.util.ArrayList;

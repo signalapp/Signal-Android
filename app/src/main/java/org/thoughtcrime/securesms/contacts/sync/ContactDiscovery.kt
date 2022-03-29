@@ -17,6 +17,7 @@ object ContactDiscovery {
 
   private const val MESSAGE_MIMETYPE = "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.contact"
   private const val CALL_MIMETYPE = "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.call"
+  private const val CONTACT_TAG = "__TS"
 
   @JvmStatic
   @Throws(IOException::class)
@@ -54,7 +55,8 @@ object ContactDiscovery {
       callPrompt = { e164 -> context.getString(R.string.ContactsDatabase_signal_call_s, e164) },
       e164Formatter = { number -> PhoneNumberFormatter.get(context).format(number) },
       messageMimetype = MESSAGE_MIMETYPE,
-      callMimetype = CALL_MIMETYPE
+      callMimetype = CALL_MIMETYPE,
+      syncTag = CONTACT_TAG
     )
   }
 }

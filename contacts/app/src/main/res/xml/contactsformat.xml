@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContactsSource
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ContactsDataKind
+        android:detailColumn="data3"
+        android:detailSocialSummary="true"
+        android:icon="@mipmap/ic_launcher"
+        android:mimeType="vnd.android.cursor.item/vnd.org.signal.contacts.test.message"
+        android:summaryColumn="data2" />
+    <ContactsDataKind
+        android:detailColumn="data3"
+        android:icon="@mipmap/ic_launcher"
+        android:mimeType="vnd.android.cursor.item/vnd.org.signal.contacts.test.call"
+        android:summaryColumn="data2" />
+</ContactsSource>

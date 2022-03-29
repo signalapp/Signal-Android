@@ -121,7 +121,6 @@ import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupDescription
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInfoBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.v2.GroupBlockJoinRequestResult;
 import org.thoughtcrime.securesms.groups.v2.GroupDescriptionUtil;
-import org.thoughtcrime.securesms.groups.v2.GroupManagementRepository;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -170,7 +169,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.signal.core.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;

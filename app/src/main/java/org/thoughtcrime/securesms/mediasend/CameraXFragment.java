@@ -52,7 +52,7 @@ import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.signal.core.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.video.VideoUtil;
 
 import java.io.FileDescriptor;

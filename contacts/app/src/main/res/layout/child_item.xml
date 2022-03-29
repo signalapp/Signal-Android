@@ -29,7 +29,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginBottom="2dp"
-            android:fontFamily="monospace"
             tools:text="Spider-Man"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/contact_photo"

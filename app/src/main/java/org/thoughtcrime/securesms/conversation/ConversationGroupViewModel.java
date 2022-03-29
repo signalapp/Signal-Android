@@ -33,7 +33,7 @@ import org.thoughtcrime.securesms.profiles.spoofing.ReviewUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.signal.core.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 import java.io.IOException;

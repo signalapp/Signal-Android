@@ -13,6 +13,7 @@ import androidx.core.app.ShareCompat
 import androidx.core.view.drawToBitmap
 import androidx.fragment.app.viewModels
 import com.google.android.material.button.MaterialButton
+import org.signal.core.util.concurrent.SimpleTask
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
@@ -25,7 +26,6 @@ import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.util.DateUtils
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask
 import java.io.ByteArrayOutputStream
 import java.util.Locale
 

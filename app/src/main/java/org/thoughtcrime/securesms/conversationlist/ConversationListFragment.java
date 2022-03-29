@@ -151,7 +151,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.signal.core.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.SnackbarAsyncTask;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.thoughtcrime.securesms.util.views.Stub;

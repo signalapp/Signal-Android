@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.signal.core.util.concurrent.SimpleTask;
 
 import java.util.Objects;
 

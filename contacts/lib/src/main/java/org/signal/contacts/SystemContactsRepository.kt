@@ -26,7 +26,6 @@ import java.util.Objects
 object SystemContactsRepository {
 
   private val TAG = Log.tag(SystemContactsRepository::class.java)
-  private const val SYNC_TAG = "__TS"
 
   private const val FIELD_FORMATTED_PHONE = ContactsContract.RawContacts.SYNC1
   private const val FIELD_TAG = ContactsContract.Data.SYNC2
@@ -146,7 +145,7 @@ object SystemContactsRepository {
     removeIfMissing: Boolean
   ) {
     val operations: ArrayList<ContentProviderOperation> = ArrayList()
-    val currentLinkedContacts: Map<String, RawContactDetails> = getRawContactsByE164(context, config.account, config.e164Formatter)
+    val currentLinkedContacts: Map<String, LinkedContactDetails> = getLinkedContactsByE164(context, config.account, config.e164Formatter)
 
     val targetChunks: List<List<String>> = targetE164s.chunked(50).toList()
     for (targetChunk in targetChunks) {
@@ -157,15 +156,8 @@ object SystemContactsRepository {
             Log.i(TAG, "Adding number: $target")
             operations += buildAddRawContactOperations(
               operationIndex = operations.size,
-              account = config.account,
-              appName = config.appName,
-              messagePrompt = config.messagePrompt,
-              callPrompt = config.callPrompt,
-              formattedPhone = systemContactInfo.formattedPhone,
-              displayName = systemContactInfo.displayName,
-              aggregateId = systemContactInfo.rawContactId,
-              messageMimetype = config.messageMimetype,
-              callMimetype = config.callMimetype
+              linkConfig = config,
+              systemContactInfo = systemContactInfo
             )
           }
         }
@@ -181,7 +173,7 @@ object SystemContactsRepository {
       if (!targetE164s.contains(e164)) {
         if (removeIfMissing) {
           Log.i(TAG, "Removing number: $e164")
-          removeTextSecureRawContact(operations, config.account, details.id)
+          removeLinkedContact(operations, config.account, details.id)
         }
       } else if (!Objects.equals(details.rawDisplayName, details.aggregateDisplayName)) {
         Log.i(TAG, "Updating display name: $e164")
@@ -372,15 +364,8 @@ object SystemContactsRepository {
 
   private fun buildAddRawContactOperations(
     operationIndex: Int,
-    account: Account,
-    appName: String,
-    messagePrompt: (String) -> String,
-    callPrompt: (String) -> String,
-    formattedPhone: String,
-    displayName: String?,
-    aggregateId: Long,
-    messageMimetype: String,
-    callMimetype: String
+    linkConfig: ContactLinkConfiguration,
+    systemContactInfo: SystemContactInfo
   ): List<ContentProviderOperation> {
     val dataUri = ContactsContract.Data.CONTENT_URI.buildUpon()
       .appendQueryParameter(ContactsContract.CALLER_IS_SYNCADAPTER, "true")
@@ -388,59 +373,60 @@ object SystemContactsRepository {
 
     return listOf(
       ContentProviderOperation.newInsert(ContactsContract.RawContacts.CONTENT_URI)
-        .withValue(ContactsContract.RawContacts.ACCOUNT_NAME, account.name)
-        .withValue(ContactsContract.RawContacts.ACCOUNT_TYPE, account.type)
-        .withValue(FIELD_FORMATTED_PHONE, formattedPhone)
+        .withValue(ContactsContract.RawContacts.ACCOUNT_NAME, linkConfig.account.name)
+        .withValue(ContactsContract.RawContacts.ACCOUNT_TYPE, linkConfig.account.type)
+        .withValue(FIELD_FORMATTED_PHONE, systemContactInfo.formattedPhone)
         .withValue(FIELD_SUPPORTS_VOICE, true.toString())
         .build(),
 
       ContentProviderOperation.newInsert(dataUri)
         .withValueBackReference(ContactsContract.CommonDataKinds.StructuredName.RAW_CONTACT_ID, operationIndex)
-        .withValue(ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME, displayName)
+        .withValue(ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME, systemContactInfo.displayName)
         .withValue(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
         .build(),
 
       ContentProviderOperation.newInsert(dataUri)
         .withValueBackReference(ContactsContract.CommonDataKinds.Phone.RAW_CONTACT_ID, operationIndex)
         .withValue(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
-        .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER, formattedPhone)
-        .withValue(ContactsContract.CommonDataKinds.Phone.TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_OTHER)
-        .withValue(FIELD_TAG, SYNC_TAG)
+        .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER, systemContactInfo.formattedPhone)
+        .withValue(ContactsContract.CommonDataKinds.Phone.TYPE, systemContactInfo.type)
+        .withValue(FIELD_TAG, linkConfig.syncTag)
         .build(),
 
       ContentProviderOperation.newInsert(dataUri)
         .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, operationIndex)
-        .withValue(ContactsContract.Data.MIMETYPE, messageMimetype)
-        .withValue(ContactsContract.Data.DATA1, formattedPhone)
-        .withValue(ContactsContract.Data.DATA2, appName)
-        .withValue(ContactsContract.Data.DATA3, messagePrompt(formattedPhone))
+        .withValue(ContactsContract.Data.MIMETYPE, linkConfig.messageMimetype)
+        .withValue(ContactsContract.Data.DATA1, systemContactInfo.formattedPhone)
+        .withValue(ContactsContract.Data.DATA2, linkConfig.appName)
+        .withValue(ContactsContract.Data.DATA3, linkConfig.messagePrompt(systemContactInfo.formattedPhone))
         .withYieldAllowed(true)
         .build(),
 
       ContentProviderOperation.newInsert(dataUri)
         .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, operationIndex)
-        .withValue(ContactsContract.Data.MIMETYPE, callMimetype)
-        .withValue(ContactsContract.Data.DATA1, formattedPhone)
-        .withValue(ContactsContract.Data.DATA2, appName)
-        .withValue(ContactsContract.Data.DATA3, callPrompt(formattedPhone))
+        .withValue(ContactsContract.Data.MIMETYPE, linkConfig.callMimetype)
+        .withValue(ContactsContract.Data.DATA1, systemContactInfo.formattedPhone)
+        .withValue(ContactsContract.Data.DATA2, linkConfig.appName)
+        .withValue(ContactsContract.Data.DATA3, linkConfig.callPrompt(systemContactInfo.formattedPhone))
         .withYieldAllowed(true)
         .build(),
 
       ContentProviderOperation.newUpdate(ContactsContract.AggregationExceptions.CONTENT_URI)
-        .withValue(ContactsContract.AggregationExceptions.RAW_CONTACT_ID1, aggregateId)
+        .withValue(ContactsContract.AggregationExceptions.RAW_CONTACT_ID1, systemContactInfo.rawContactId)
         .withValueBackReference(ContactsContract.AggregationExceptions.RAW_CONTACT_ID2, operationIndex)
         .withValue(ContactsContract.AggregationExceptions.TYPE, ContactsContract.AggregationExceptions.TYPE_KEEP_TOGETHER)
         .build()
     )
   }
 
-  private fun removeTextSecureRawContact(operations: MutableList<ContentProviderOperation>, account: Account, rowId: Long) {
+  private fun removeLinkedContact(operations: MutableList<ContentProviderOperation>, account: Account, rowId: Long) {
     operations.add(
       ContentProviderOperation.newDelete(
         ContactsContract.RawContacts.CONTENT_URI.buildUpon()
           .appendQueryParameter(ContactsContract.RawContacts.ACCOUNT_NAME, account.name)
           .appendQueryParameter(ContactsContract.RawContacts.ACCOUNT_TYPE, account.type)
-          .appendQueryParameter(ContactsContract.CALLER_IS_SYNCADAPTER, "true").build()
+          .appendQueryParameter(ContactsContract.CALLER_IS_SYNCADAPTER, "true")
+          .build()
       )
         .withYieldAllowed(true)
         .withSelection("${BaseColumns._ID} = ?", SqlUtil.buildArgs(rowId))
@@ -448,7 +434,7 @@ object SystemContactsRepository {
     )
   }
 
-  private fun getRawContactsByE164(context: Context, account: Account, e164Formatter: (String) -> String): Map<String, RawContactDetails> {
+  private fun getLinkedContactsByE164(context: Context, account: Account, e164Formatter: (String) -> String): Map<String, LinkedContactDetails> {
     val currentContactsUri = ContactsContract.RawContacts.CONTENT_URI.buildUpon()
       .appendQueryParameter(ContactsContract.RawContacts.ACCOUNT_NAME, account.name)
       .appendQueryParameter(ContactsContract.RawContacts.ACCOUNT_TYPE, account.type).build()
@@ -461,7 +447,7 @@ object SystemContactsRepository {
       ContactsContract.RawContacts.DISPLAY_NAME_SOURCE
     )
 
-    val contactsDetails: MutableMap<String, RawContactDetails> = HashMap()
+    val contactsDetails: MutableMap<String, LinkedContactDetails> = HashMap()
 
     context.contentResolver.query(currentContactsUri, projection, null, null, null)?.use { cursor ->
       while (cursor.moveToNext()) {
@@ -470,7 +456,7 @@ object SystemContactsRepository {
         if (formattedPhone != null) {
           val e164 = e164Formatter(formattedPhone)
 
-          contactsDetails[e164] = RawContactDetails(
+          contactsDetails[e164] = LinkedContactDetails(
             id = cursor.requireLong(BaseColumns._ID),
             supportsVoice = cursor.requireString(FIELD_SUPPORTS_VOICE),
             rawDisplayName = cursor.requireString(ContactsContract.RawContacts.DISPLAY_NAME_PRIMARY),
@@ -489,7 +475,8 @@ object SystemContactsRepository {
     val projection = arrayOf(
       ContactsContract.PhoneLookup.NUMBER,
       ContactsContract.PhoneLookup._ID,
-      ContactsContract.PhoneLookup.DISPLAY_NAME
+      ContactsContract.PhoneLookup.DISPLAY_NAME,
+      ContactsContract.PhoneLookup.TYPE
     )
 
     context.contentResolver.query(uri, projection, null, null, null)?.use { contactCursor ->
@@ -503,7 +490,8 @@ object SystemContactsRepository {
               return SystemContactInfo(
                 displayName = contactCursor.requireString(ContactsContract.PhoneLookup.DISPLAY_NAME),
                 formattedPhone = systemNumber,
-                rawContactId = idCursor.requireLong(ContactsContract.RawContacts._ID)
+                rawContactId = idCursor.requireLong(ContactsContract.RawContacts._ID),
+                type = contactCursor.requireInt(ContactsContract.PhoneLookup.TYPE)
               )
             }
           }
@@ -530,7 +518,8 @@ object SystemContactsRepository {
 
   interface ContactIterator : Iterator<ContactDetails>, Closeable {
     @Throws
-    override fun close() {}
+    override fun close() {
+    }
   }
 
   private class EmptyContactIterator : ContactIterator {
@@ -718,7 +707,7 @@ object SystemContactsRepository {
     val country: String?
   )
 
-  private data class RawContactDetails(
+  private data class LinkedContactDetails(
     val id: Long,
     val supportsVoice: String?,
     val rawDisplayName: String?,
@@ -729,7 +718,8 @@ object SystemContactsRepository {
   private data class SystemContactInfo(
     val displayName: String?,
     val formattedPhone: String,
-    val rawContactId: Long
+    val rawContactId: Long,
+    val type: Int
   )
 
   private data class StructuredName(val givenName: String?, val familyName: String?)

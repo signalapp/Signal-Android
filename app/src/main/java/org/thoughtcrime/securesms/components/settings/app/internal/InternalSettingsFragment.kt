@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.AppUtil
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.concurrent.SimpleTask
 import org.signal.ringrtc.CallManager
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.R
@@ -34,7 +35,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.payments.DataExportUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask
 import java.util.Optional
 import java.util.concurrent.TimeUnit
 import kotlin.math.max

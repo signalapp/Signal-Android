@@ -42,7 +42,7 @@ import org.thoughtcrime.securesms.profiles.manage.EditProfileNameFragment;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.signal.core.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;

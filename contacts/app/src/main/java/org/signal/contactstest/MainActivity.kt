@@ -1,13 +1,19 @@
 package org.signal.contactstest
 
 import android.Manifest
+import android.accounts.Account
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.telephony.PhoneNumberUtils
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import org.signal.contacts.ContactLinkConfiguration
+import org.signal.contacts.SystemContactsRepository
+import org.signal.core.util.concurrent.SimpleTask
 import org.signal.core.util.logging.Log
 
 class MainActivity : AppCompatActivity() {
@@ -22,15 +28,64 @@ class MainActivity : AppCompatActivity() {
 
     setContentView(R.layout.activity_main)
 
-    if (hasPermission(Manifest.permission.READ_CONTACTS) && hasPermission(Manifest.permission.WRITE_CONTACTS)) {
-      Log.i(TAG, "Already have permission.")
-      startActivity(Intent(this, ContactsActivity::class.java))
-      finish()
-      return
+    findViewById<Button>(R.id.contact_list_button).setOnClickListener { v ->
+      if (hasPermission(Manifest.permission.READ_CONTACTS) && hasPermission(Manifest.permission.WRITE_CONTACTS)) {
+        startActivity(Intent(this, ContactsActivity::class.java))
+        finish()
+      } else {
+        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS), PERMISSION_CODE)
+      }
     }
 
-    findViewById<Button>(R.id.permission_button).setOnClickListener { v ->
-      requestPermissions(arrayOf(Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS), PERMISSION_CODE)
+    findViewById<Button>(R.id.link_contacts_button).setOnClickListener { v ->
+      if (hasPermission(Manifest.permission.READ_CONTACTS) && hasPermission(Manifest.permission.WRITE_CONTACTS)) {
+        SimpleTask.run({
+          val allE164s: Set<String> = SystemContactsRepository.getAllDisplayNumbers(this).map { PhoneNumberUtils.formatNumberToE164(it, "US") }.toSet()
+          val account: Account = SystemContactsRepository.getOrCreateSystemAccount(this, BuildConfig.APPLICATION_ID, "Contact Test") ?: return@run false
+
+          SystemContactsRepository.addMessageAndCallLinksToContacts(
+            context = this,
+            config = buildLinkConfig(account),
+            targetE164s = allE164s,
+            removeIfMissing = true
+          )
+
+          return@run true
+        }, { success ->
+          if (success) {
+            Toast.makeText(this, "Success!", Toast.LENGTH_SHORT).show()
+          } else {
+            Toast.makeText(this, "Failed to create account!", Toast.LENGTH_SHORT).show()
+          }
+        })
+      } else {
+        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS), PERMISSION_CODE)
+      }
+    }
+
+    findViewById<Button>(R.id.unlink_contact_button).setOnClickListener { v ->
+      if (hasPermission(Manifest.permission.READ_CONTACTS) && hasPermission(Manifest.permission.WRITE_CONTACTS)) {
+        SimpleTask.run({
+          val account: Account = SystemContactsRepository.getOrCreateSystemAccount(this, BuildConfig.APPLICATION_ID, "Contact Test") ?: return@run false
+
+          SystemContactsRepository.addMessageAndCallLinksToContacts(
+            context = this,
+            config = buildLinkConfig(account),
+            targetE164s = emptySet(),
+            removeIfMissing = true
+          )
+
+          return@run true
+        }, { success ->
+          if (success) {
+            Toast.makeText(this, "Success!", Toast.LENGTH_SHORT).show()
+          } else {
+            Toast.makeText(this, "Failed to create account!", Toast.LENGTH_SHORT).show()
+          }
+        })
+      } else {
+        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS), PERMISSION_CODE)
+      }
     }
   }
 
@@ -47,5 +102,18 @@ class MainActivity : AppCompatActivity() {
 
   private fun hasPermission(permission: String): Boolean {
     return ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
+  }
+
+  private fun buildLinkConfig(account: Account): ContactLinkConfiguration {
+    return ContactLinkConfiguration(
+      account = account,
+      appName = "Contact Test",
+      messagePrompt = { "(Test) Message $it" },
+      callPrompt = { "(Test) Call $it" },
+      e164Formatter = { PhoneNumberUtils.formatNumberToE164(it, "US") },
+      messageMimetype = "vnd.android.cursor.item/vnd.org.signal.contacts.test.message",
+      callMimetype = "vnd.android.cursor.item/vnd.org.signal.contacts.test.call",
+      syncTag = "__TEST"
+    )
   }
 }

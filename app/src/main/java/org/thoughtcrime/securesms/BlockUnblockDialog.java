@@ -13,7 +13,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.signal.core.util.concurrent.SimpleTask;
 
 /**
  * This should be used whenever we want to prompt the user to block/unblock a recipient.

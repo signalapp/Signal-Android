@@ -15,6 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
+import org.signal.core.util.concurrent.SimpleTask
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
@@ -36,7 +37,6 @@ import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.TopToastPopup
 import org.thoughtcrime.securesms.util.TopToastPopup.Companion.show
 import org.thoughtcrime.securesms.util.Util
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask
 import org.thoughtcrime.securesms.util.views.Stub
 import org.thoughtcrime.securesms.util.visible
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
