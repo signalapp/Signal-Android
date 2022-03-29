@@ -20,6 +20,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.TaskStackBuilder;
 import androidx.fragment.app.FragmentActivity;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -62,7 +64,7 @@ public class CommunicationActions {
           if (resultCode == 1) {
             startCallInternal(activity, recipient, false);
           } else {
-            new AlertDialog.Builder(activity)
+            new MaterialAlertDialogBuilder(activity)
                 .setMessage(R.string.CommunicationActions_start_voice_call)
                 .setPositiveButton(R.string.CommunicationActions_call, (d, w) -> startCallInternal(activity, recipient, false))
                 .setNegativeButton(R.string.CommunicationActions_cancel, (d, w) -> d.dismiss())
