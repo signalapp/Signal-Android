@@ -835,6 +835,11 @@
         <item quantity="other">%d groups in common</item>
     </plurals>
 
+    <plurals name="ManageRecipientActivity_in_d_groups">
+        <item quantity="one">You are in %d group</item>
+        <item quantity="other">You are in %d groups</item>
+    </plurals>
+
     <plurals name="GroupMemberList_invited">
         <item quantity="one">%1$s invited 1 person</item>
         <item quantity="other">%1$s invited %2$d people</item>

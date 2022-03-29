@@ -467,7 +467,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
           }
         }
 
-        if (recipientState.identityRecord != null) {
+        if (recipientState.identityRecord != null && !state.recipient.isSelf) {
           clickPref(
             title = DSLSettingsText.from(R.string.ConversationSettingsFragment__view_safety_number),
             icon = DSLSettingsIcon.from(R.drawable.ic_safety_number_24),
@@ -520,34 +520,49 @@ class ConversationSettingsFragment : DSLSettingsFragment(
           )
         }
 
-        if (recipientSettingsState.selfHasGroups && !state.recipient.isReleaseNotes) {
+        if (recipientSettingsState.selfHasGroups && !state.recipient.isReleaseNotes || state.recipient.isSelf) {
 
           dividerPref()
 
           val groupsInCommonCount = recipientSettingsState.allGroupsInCommon.size
-          sectionHeaderPref(
-            DSLSettingsText.from(
-              if (groupsInCommonCount == 0) {
-                getString(R.string.ManageRecipientActivity_no_groups_in_common)
-              } else {
+
+          if (!state.recipient.isSelf) {
+            sectionHeaderPref(
+              DSLSettingsText.from(
+                if (groupsInCommonCount == 0) {
+                  getString(R.string.ManageRecipientActivity_no_groups_in_common)
+                } else {
+                  resources.getQuantityString(
+                    R.plurals.ManageRecipientActivity_d_groups_in_common,
+                    groupsInCommonCount,
+                    groupsInCommonCount
+                  )
+                }
+              )
+            )
+
+            customPref(
+              LargeIconClickPreference.Model(
+                title = DSLSettingsText.from(R.string.ConversationSettingsFragment__add_to_a_group),
+                icon = DSLSettingsIcon.from(R.drawable.add_to_a_group, NO_TINT),
+                onClick = {
+                  viewModel.onAddToGroup()
+                }
+              )
+            )
+          }
+
+          if (state.recipient.isSelf) {
+            sectionHeaderPref(
+              DSLSettingsText.from(
                 resources.getQuantityString(
-                  R.plurals.ManageRecipientActivity_d_groups_in_common,
+                  R.plurals.ManageRecipientActivity_in_d_groups,
                   groupsInCommonCount,
                   groupsInCommonCount
                 )
-              }
+              )
             )
-          )
-
-          customPref(
-            LargeIconClickPreference.Model(
-              title = DSLSettingsText.from(R.string.ConversationSettingsFragment__add_to_a_group),
-              icon = DSLSettingsIcon.from(R.drawable.add_to_a_group, NO_TINT),
-              onClick = {
-                viewModel.onAddToGroup()
-              }
-            )
-          )
+          }
 
           for (group in recipientSettingsState.groupsInCommon) {
             customPref(

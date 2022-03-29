@@ -166,31 +166,29 @@ sealed class ConversationSettingsViewModel(
         }
       }
 
-      if (recipientId != Recipient.self().id) {
-        repository.getGroupsInCommon(recipientId) { groupsInCommon ->
-          store.update { state ->
-            val recipientSettings = state.requireRecipientSettingsState()
-            val canShowMore = !recipientSettings.groupsInCommonExpanded && groupsInCommon.size > 6
+      repository.getGroupsInCommon(recipientId) { groupsInCommon ->
+        store.update { state ->
+          val recipientSettings = state.requireRecipientSettingsState()
+          val canShowMore = !recipientSettings.groupsInCommonExpanded && groupsInCommon.size > 6
 
-            state.copy(
-              specificSettingsState = recipientSettings.copy(
-                allGroupsInCommon = groupsInCommon,
-                groupsInCommon = if (!canShowMore) groupsInCommon else groupsInCommon.take(5),
-                canShowMoreGroupsInCommon = canShowMore
-              )
+          state.copy(
+            specificSettingsState = recipientSettings.copy(
+              allGroupsInCommon = groupsInCommon,
+              groupsInCommon = if (!canShowMore) groupsInCommon else groupsInCommon.take(5),
+              canShowMoreGroupsInCommon = canShowMore
             )
-          }
+          )
         }
+      }
 
-        repository.hasGroups { hasGroups ->
-          store.update { state ->
-            val recipientSettings = state.requireRecipientSettingsState()
-            state.copy(
-              specificSettingsState = recipientSettings.copy(
-                selfHasGroups = hasGroups
-              )
+      repository.hasGroups { hasGroups ->
+        store.update { state ->
+          val recipientSettings = state.requireRecipientSettingsState()
+          state.copy(
+            specificSettingsState = recipientSettings.copy(
+              selfHasGroups = hasGroups
             )
-          }
+          )
         }
 
         repository.getIdentity(recipientId) { identityRecord ->
