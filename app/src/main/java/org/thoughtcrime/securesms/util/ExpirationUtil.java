@@ -26,19 +26,28 @@ public final class ExpirationUtil {
     int secondsRemaining = expirationTime;
 
     int weeks = secondsRemaining / SECONDS_IN_WEEK;
-    displayValue = getDisplayValue(context, displayValue, R.plurals.expiration_weeks, weeks);
+    displayValue     = getDisplayValue(context, displayValue, R.plurals.expiration_weeks, weeks);
     secondsRemaining = secondsRemaining - weeks * SECONDS_IN_WEEK;
 
     int days = secondsRemaining / SECONDS_IN_DAY;
     displayValue = getDisplayValue(context, displayValue, R.plurals.expiration_days, days);
+    if (weeks > 0) {
+      return displayValue;
+    }
     secondsRemaining = secondsRemaining - days * SECONDS_IN_DAY;
 
     int hours = secondsRemaining / SECONDS_IN_HOUR;
     displayValue = getDisplayValue(context, displayValue, R.plurals.expiration_hours, hours);
+    if (days > 0) {
+      return displayValue;
+    }
     secondsRemaining = secondsRemaining - hours * SECONDS_IN_HOUR;
 
     int minutes = secondsRemaining / SECONDS_IN_MINUTE;
-    displayValue = getDisplayValue(context, displayValue, R.plurals.expiration_minutes, minutes);
+    displayValue     = getDisplayValue(context, displayValue, R.plurals.expiration_minutes, minutes);
+    if (hours > 0) {
+      return displayValue;
+    }
     secondsRemaining = secondsRemaining - minutes * SECONDS_IN_MINUTE;
 
     displayValue = getDisplayValue(context, displayValue, R.plurals.expiration_seconds, secondsRemaining);
@@ -68,19 +77,19 @@ public final class ExpirationUtil {
     int secondsRemaining = expirationTime;
 
     int weeks = secondsRemaining / SECONDS_IN_WEEK;
-    displayValue = getAbbreviatedDisplayValue(context, displayValue, R.string.expiration_weeks_abbreviated, weeks);
+    displayValue     = getAbbreviatedDisplayValue(context, displayValue, R.string.expiration_weeks_abbreviated, weeks);
     secondsRemaining = secondsRemaining - weeks * SECONDS_IN_WEEK;
 
     int days = secondsRemaining / SECONDS_IN_DAY;
-    displayValue = getAbbreviatedDisplayValue(context, displayValue, R.string.expiration_days_abbreviated, days);
+    displayValue     = getAbbreviatedDisplayValue(context, displayValue, R.string.expiration_days_abbreviated, days);
     secondsRemaining = secondsRemaining - days * SECONDS_IN_DAY;
 
     int hours = secondsRemaining / SECONDS_IN_HOUR;
-    displayValue = getAbbreviatedDisplayValue(context, displayValue, R.string.expiration_hours_abbreviated, hours);
+    displayValue     = getAbbreviatedDisplayValue(context, displayValue, R.string.expiration_hours_abbreviated, hours);
     secondsRemaining = secondsRemaining - hours * SECONDS_IN_HOUR;
 
     int minutes = secondsRemaining / SECONDS_IN_MINUTE;
-    displayValue = getAbbreviatedDisplayValue(context, displayValue, R.string.expiration_minutes_abbreviated, minutes);
+    displayValue     = getAbbreviatedDisplayValue(context, displayValue, R.string.expiration_minutes_abbreviated, minutes);
     secondsRemaining = secondsRemaining - minutes * SECONDS_IN_MINUTE;
 
     displayValue = getAbbreviatedDisplayValue(context, displayValue, R.string.expiration_seconds_abbreviated, secondsRemaining);
