@@ -1002,6 +1002,10 @@ public class ConversationParentFragment extends Fragment
 
     inflater.inflate(R.menu.conversation, menu);
 
+    if (isInMessageRequest() && !recipient.get().isBlocked()) {
+      hideMenuItem(menu, R.id.menu_conversation_settings);
+    }
+
     if (isSingleConversation() && !isSecureText && !recipient.get().isReleaseNotes()) {
       inflater.inflate(R.menu.conversation_insecure, menu);
     }
@@ -1309,7 +1313,7 @@ public class ConversationParentFragment extends Fragment
       return;
     }
 
-    if (isInMessageRequest()) return;
+    if (isInMessageRequest() && !recipient.get().isBlocked()) return;
 
     Intent intent = ConversationSettingsActivity.forRecipient(requireContext(), recipient.getId());
     Bundle bundle = ConversationSettingsActivity.createTransitionBundle(requireActivity(), titleView.findViewById(R.id.contact_photo_image), toolbar);
