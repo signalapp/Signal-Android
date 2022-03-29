@@ -20,6 +20,7 @@ import androidx.core.os.bundleOf
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
 
 /**
@@ -188,7 +189,7 @@ object AndroidTelecomUtil {
   }
 
   private fun isRestrictedDevice(): Boolean {
-    return true // "${Build.MODEL} ${Build.PRODUCT} ${Build.MANUFACTURER}".contains(other = "oneplus", ignoreCase = true)
+    return !FeatureFlags.internalUser()
   }
 }
 
