@@ -25,6 +25,7 @@ import com.airbnb.lottie.SimpleColorFilter;
 import com.bumptech.glide.Glide;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.AvatarPreviewActivity;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.avatar.Avatars;
@@ -135,6 +136,11 @@ public class ManageProfileFragment extends LoggingFragment {
     } else {
       badgesContainer.setVisibility(View.GONE);
     }
+
+    avatarView.setOnClickListener(v -> {
+      startActivity(AvatarPreviewActivity.intentFromRecipientId(requireContext(), Recipient.self().getId()),
+                    AvatarPreviewActivity.createTransitionBundle(requireActivity(), avatarView));
+    });
   }
 
   private void initializeViewModel() {
