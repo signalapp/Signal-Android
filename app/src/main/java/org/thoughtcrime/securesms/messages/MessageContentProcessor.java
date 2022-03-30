@@ -887,7 +887,7 @@ public final class MessageContentProcessor {
   private @Nullable MessageId handleReaction(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message, @NonNull Recipient senderRecipient) throws StorageFailedException {
     log(content.getTimestamp(), "Handle reaction for message " + message.getReaction().get().getTargetSentTimestamp());
 
-    if (content.getStoryMessage().isPresent()) {
+    if (message.getStoryContext().isPresent()) {
       log(content.getTimestamp(), "Reaction has a story context. Treating as a story reaction.");
       handleStoryReaction(content, message, senderRecipient);
       return null;
