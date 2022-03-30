@@ -51,6 +51,10 @@ class AvatarView @JvmOverloads constructor(
     avatar.scaleY = 1f
   }
 
+  fun hasStory(): Boolean {
+    return storyRing.visible
+  }
+
   fun setStoryRingFromState(storyViewState: StoryViewState) {
     when (storyViewState) {
       StoryViewState.NONE -> hideStoryRing()

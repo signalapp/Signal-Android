@@ -59,7 +59,6 @@ import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
-import org.thoughtcrime.securesms.util.hasThumbnail
 import org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout
 import org.thoughtcrime.securesms.util.visible
 import java.util.Locale

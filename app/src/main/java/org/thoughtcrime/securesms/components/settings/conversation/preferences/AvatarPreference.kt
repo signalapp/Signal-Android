@@ -28,7 +28,7 @@ object AvatarPreference {
   class Model(
     val recipient: Recipient,
     val storyViewState: StoryViewState,
-    val onAvatarClick: (View) -> Unit,
+    val onAvatarClick: (AvatarView) -> Unit,
     val onBadgeClick: (Badge) -> Unit
   ) : PreferenceModel<Model>() {
     override fun areItemsTheSame(newItem: Model): Boolean {

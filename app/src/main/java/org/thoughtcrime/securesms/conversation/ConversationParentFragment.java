@@ -112,6 +112,7 @@ import org.thoughtcrime.securesms.ShortcutLauncherActivity;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
+import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
@@ -1246,6 +1247,10 @@ public class ConversationParentFragment extends Fragment
     });
   }
 
+  private void handleStoryRingClick() {
+    startActivity(StoryViewerActivity.createIntent(requireContext(), recipient.getId(), -1L));
+  }
+
   private void handleConversationSettings() {
     if (isGroupConversation()) {
       handleManageGroup();
@@ -2121,6 +2126,7 @@ public class ConversationParentFragment extends Fragment
       if (manuallySelected) recordTransportPreference(newTransport);
     });
 
+    titleView.setOnStoryRingClickListener(v -> handleStoryRingClick());
     titleView.setOnClickListener(v -> handleConversationSettings());
     titleView.setOnLongClickListener(v -> handleDisplayQuickContact());
     unblockButton.setOnClickListener(v -> handleUnblock());

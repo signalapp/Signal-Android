@@ -38,6 +38,7 @@ class StoryViewerActivity : PassphraseRequiredActivity() {
     private const val ARG_START_RECIPIENT_ID = "start.recipient.id"
     private const val ARG_START_STORY_ID = "start.story.id"
 
+    @JvmStatic
     fun createIntent(context: Context, recipientId: RecipientId, storyId: Long = -1L): Intent {
       return Intent(context, StoryViewerActivity::class.java)
         .putExtra(ARG_START_RECIPIENT_ID, recipientId)
