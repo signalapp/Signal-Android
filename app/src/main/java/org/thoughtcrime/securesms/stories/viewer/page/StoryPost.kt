@@ -28,7 +28,7 @@ class StoryPost(
 
       override fun isVideo(): Boolean = MediaUtil.isVideo(attachment)
     }
-    class TextContent(uri: Uri, val recordId: Long, hasBody: Boolean) : Content(uri) {
+    class TextContent(uri: Uri, val recordId: Long, hasBody: Boolean, val length: Int) : Content(uri) {
       override val transferState: Int = if (hasBody) AttachmentDatabase.TRANSFER_PROGRESS_DONE else AttachmentDatabase.TRANSFER_PROGRESS_FAILED
 
       override fun isVideo(): Boolean = false

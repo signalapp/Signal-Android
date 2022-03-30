@@ -5,6 +5,7 @@ import android.net.Uri
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.conversation.ConversationMessage
@@ -178,12 +179,23 @@ class StoryViewerPageRepository(context: Context) {
       StoryPost.Content.TextContent(
         uri = Uri.parse("story_text_post://${record.id}"),
         recordId = record.id,
-        hasBody = canParseToTextStory(record.body)
+        hasBody = canParseToTextStory(record.body),
+        length = getTextStoryLength(record.body)
       )
     } else {
       StoryPost.Content.AttachmentContent(
         attachment = record.slideDeck.asAttachments().first()
       )
+    }
+  }
+
+  private fun getTextStoryLength(body: String): Int {
+    return if (canParseToTextStory(body)) {
+      val breakIteratorCompat = BreakIteratorCompat.getInstance()
+      breakIteratorCompat.setText(StoryTextPost.parseFrom(Base64.decode(body)).body)
+      breakIteratorCompat.countBreaks()
+    } else {
+      0
     }
   }
 

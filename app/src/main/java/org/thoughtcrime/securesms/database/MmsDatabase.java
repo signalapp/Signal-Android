@@ -579,7 +579,7 @@ public class MmsDatabase extends MessageDatabase {
 
   @Override
   public @NonNull MessageDatabase.Reader getAllStories() {
-    return new Reader(rawQuery(IS_STORY_CLAUSE, null, true, -1L));
+    return new Reader(rawQuery(IS_STORY_CLAUSE, null, false, -1L));
   }
 
   @Override
@@ -660,7 +660,7 @@ public class MmsDatabase extends MessageDatabase {
                               "FROM " + TABLE_NAME + " JOIN " + ThreadDatabase.TABLE_NAME + " " +
                                   "ON " + TABLE_NAME + "." + THREAD_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.ID + " " +
                               "WHERE " + IS_STORY_CLAUSE + " " +
-                              "ORDER BY " + TABLE_NAME + "." + DATE_SENT + " DESC";
+                              "ORDER BY " + TABLE_NAME + "." + DATE_SENT + " DESC, " + TABLE_NAME + "." + VIEWED_RECEIPT_COUNT + " ASC";
     List<RecipientId> recipientIds;
 
     try (Cursor cursor = db.rawQuery(query, null)) {

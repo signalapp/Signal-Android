@@ -49,6 +49,9 @@ class StoryViewerPageViewModel(
         val startIndex = if (state.posts.isEmpty() && initialStoryId > 0) {
           val initialIndex = posts.indexOfFirst { it.id == initialStoryId }
           initialIndex.takeIf { it > -1 } ?: state.selectedPostIndex
+        } else if (state.posts.isEmpty()) {
+          val initialIndex = posts.indexOfFirst { !it.conversationMessage.messageRecord.isOutgoing && it.conversationMessage.messageRecord.viewedReceiptCount == 0 }
+          initialIndex.takeIf { it > -1 } ?: state.selectedPostIndex
         } else {
           state.selectedPostIndex
         }

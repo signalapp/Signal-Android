@@ -65,6 +65,7 @@ import java.util.Locale
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
 import kotlin.math.max
+import kotlin.math.min
 
 class StoryViewerPageFragment :
   Fragment(R.layout.stories_viewer_fragment_page),
@@ -216,7 +217,7 @@ class StoryViewerPageFragment :
         return if (attachmentUri != null) {
           val playerState = videoControlsDelegate.getPlayerState(attachmentUri)
           if (playerState != null) {
-            playerState.position.toFloat() / playerState.duration
+            getVideoPlaybackPosition(playerState) / getVideoPlaybackDuration(playerState)
           } else {
             null
           }
@@ -266,7 +267,11 @@ class StoryViewerPageFragment :
 
         val durations: Map<Int, Long> = state.posts
           .mapIndexed { index, storyPost ->
-            index to if (storyPost.content.isVideo()) -1L else TimeUnit.SECONDS.toMillis(5)
+            index to when {
+              storyPost.content.isVideo() -> -1L
+              storyPost.content is StoryPost.Content.TextContent -> calculateDurationForText(storyPost.content)
+              else -> DEFAULT_DURATION
+            }
           }
           .toMap()
 
@@ -329,6 +334,28 @@ class StoryViewerPageFragment :
 
   override fun onDismissForwardSheet() {
     viewModel.setIsDisplayingForwardDialog(false)
+  }
+
+  private fun calculateDurationForText(textContent: StoryPost.Content.TextContent): Long {
+    val divisionsOf15 = textContent.length / CHARACTERS_PER_SECOND
+    return TimeUnit.SECONDS.toMillis(divisionsOf15) + MIN_TEXT_STORY_PLAYBACK
+  }
+
+  private fun getVideoPlaybackPosition(playerState: VideoControlsDelegate.PlayerState): Float {
+    return if (playerState.isGif) {
+      playerState.position.toFloat() + (playerState.duration * playerState.loopCount)
+    } else {
+      playerState.position.toFloat()
+    }
+  }
+
+  private fun getVideoPlaybackDuration(playerState: VideoControlsDelegate.PlayerState): Long {
+    return if (playerState.isGif) {
+      val timeToPlayMinLoops = playerState.duration * MIN_GIF_LOOPS
+      max(MIN_GIF_PLAYBACK_DURATION, timeToPlayMinLoops)
+    } else {
+      min(playerState.duration, MAX_VIDEO_PLAYBACK_DURATION)
+    }
   }
 
   private fun hideChrome() {
@@ -678,6 +705,13 @@ class StoryViewerPageFragment :
   }
 
   companion object {
+    private val MAX_VIDEO_PLAYBACK_DURATION: Long = TimeUnit.SECONDS.toMillis(30)
+    private val MIN_GIF_LOOPS: Long = 3L
+    private val MIN_GIF_PLAYBACK_DURATION = TimeUnit.SECONDS.toMillis(5)
+    private val MIN_TEXT_STORY_PLAYBACK = TimeUnit.SECONDS.toMillis(3)
+    private val CHARACTERS_PER_SECOND = 15L
+    private val DEFAULT_DURATION = TimeUnit.SECONDS.toMillis(5)
+
     private const val ARG_STORY_RECIPIENT_ID = "arg.story.recipient.id"
     private const val ARG_STORY_ID = "arg.story.id"
 

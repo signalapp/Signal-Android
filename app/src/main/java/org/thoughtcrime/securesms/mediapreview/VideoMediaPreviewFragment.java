@@ -48,6 +48,11 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
 
     videoView.setWindow(requireActivity().getWindow());
     videoView.setVideoSource(new VideoSlide(getContext(), uri, size, false), autoPlay);
+    videoView.setPlayerPositionDiscontinuityCallback((v, r) -> {
+      if (events.getVideoControlsDelegate() != null) {
+        events.getVideoControlsDelegate().onPlayerPositionDiscontinuity(r);
+      }
+    });
 
     if (isVideoGif) {
       videoView.hideControls();
@@ -74,7 +79,7 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
     }
 
     if (events.getVideoControlsDelegate() != null) {
-      events.getVideoControlsDelegate().attachPlayer(getUri(), videoView);
+      events.getVideoControlsDelegate().attachPlayer(getUri(), videoView, isVideoGif);
     }
   }
 
