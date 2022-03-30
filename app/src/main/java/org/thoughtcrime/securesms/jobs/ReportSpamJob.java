@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
@@ -71,12 +72,13 @@ public class ReportSpamJob extends BaseJob {
     List<ReportSpamData>        reportSpamData              = SignalDatabase.mmsSms().getReportSpamMessageServerData(threadId, timestamp, MAX_MESSAGE_COUNT);
     SignalServiceAccountManager signalServiceAccountManager = ApplicationDependencies.getSignalServiceAccountManager();
     for (ReportSpamData data : reportSpamData) {
-      Optional<String> e164 = Recipient.resolved(data.getRecipientId()).getE164();
-      if (e164.isPresent()) {
-        signalServiceAccountManager.reportSpam(e164.get(), data.getServerGuid());
+      Optional<ServiceId> serviceId = Recipient.resolved(data.getRecipientId()).getServiceId();
+
+      if (serviceId.isPresent() && !serviceId.get().isUnknown()) {
+        signalServiceAccountManager.reportSpam(serviceId.get(), data.getServerGuid());
         count++;
       } else {
-        Log.w(TAG, "Unable to report spam without an e164 for " + data.getRecipientId());
+        Log.w(TAG, "Unable to report spam without an ACI for " + data.getRecipientId());
       }
     }
     Log.i(TAG, "Reported " + count + " out of " + reportSpamData.size() + " messages in thread " + threadId + " as spam");

@@ -804,8 +804,8 @@ public class SignalServiceAccountManager {
     return this.pushServiceSocket.getCurrencyConversions();
   }
 
-  public void reportSpam(String e164, String serverGuid) throws IOException {
-    this.pushServiceSocket.reportSpam(e164, serverGuid);
+  public void reportSpam(ServiceId serviceId, String serverGuid) throws IOException {
+    this.pushServiceSocket.reportSpam(serviceId, serverGuid);
   }
 
   /**
