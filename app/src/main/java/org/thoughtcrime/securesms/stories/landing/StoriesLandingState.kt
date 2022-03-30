@@ -4,6 +4,7 @@ data class StoriesLandingState(
   val storiesLandingItems: List<StoriesLandingItemData> = emptyList(),
   val displayMyStoryItem: Boolean = false,
   val isHiddenContentVisible: Boolean = false,
+  val hasOutgoingGroupStories: Boolean = false,
   val loadingState: LoadingState = LoadingState.INIT
 ) {
   enum class LoadingState {

@@ -110,7 +110,15 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
       if (state.displayMyStoryItem) {
         customPref(
           MyStoriesItem.Model(
+            state.hasOutgoingGroupStories,
             onClick = {
+              if (it) {
+                startActivity(Intent(requireContext(), MyStoriesActivity::class.java))
+              } else {
+                cameraFab.performClick()
+              }
+            },
+            onClickThumbnail = {
               cameraFab.performClick()
             }
           )

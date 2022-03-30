@@ -26,19 +26,21 @@ class StoriesLandingRepository(context: Context) {
     }.subscribeOn(Schedulers.io())
   }
 
-  fun getStories(): Observable<List<StoriesLandingItemData>> {
-    return Observable.create<Observable<List<StoriesLandingItemData>>> { emitter ->
+  fun getStories(): Observable<StoriesResult> {
+    return Observable.create<Observable<StoriesResult>> { emitter ->
       val myStoriesId = SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.MY_STORY)
       val myStories = Recipient.resolved(myStoriesId)
 
       fun refresh() {
         val storyMap = mutableMapOf<Recipient, List<MessageRecord>>()
+        var hasOutgoingGroupStories = false
         SignalDatabase.mms.allStories.use {
           while (it.next != null) {
             val messageRecord = it.current
             val recipient = if (messageRecord.isOutgoing && !messageRecord.recipient.isGroup) {
               myStories
             } else if (messageRecord.isOutgoing && messageRecord.recipient.isGroup) {
+              hasOutgoingGroupStories = true
               messageRecord.recipient
             } else {
               SignalDatabase.threads.getRecipientForThreadId(messageRecord.threadId)!!
@@ -50,9 +52,9 @@ class StoriesLandingRepository(context: Context) {
 
         val data: List<Observable<StoriesLandingItemData>> = storyMap.map { (sender, records) -> createStoriesLandingItemData(sender, records) }
         if (data.isEmpty()) {
-          emitter.onNext(Observable.just(emptyList()))
+          emitter.onNext(Observable.just(StoriesResult(emptyList(), false)))
         } else {
-          emitter.onNext(Observable.combineLatest(data) { it.toList() as List<StoriesLandingItemData> })
+          emitter.onNext(Observable.combineLatest(data) { StoriesResult(it.toList() as List<StoriesLandingItemData>, hasOutgoingGroupStories) })
         }
       }
 
@@ -120,4 +122,9 @@ class StoriesLandingRepository(context: Context) {
       SignalDatabase.recipients.setHideStory(recipientId, hideStory)
     }.subscribeOn(Schedulers.io())
   }
+
+  data class StoriesResult(
+    val data: List<StoriesLandingItemData>,
+    val hasOutgoingGroupStories: Boolean
+  )
 }
