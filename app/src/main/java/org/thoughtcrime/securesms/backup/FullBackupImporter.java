@@ -77,7 +77,8 @@ public class FullBackupImporter extends FullBackupBase {
       "msl_message",
       "reaction",
       "notification_profile_schedule",
-      "notification_profile_allowed_members"
+      "notification_profile_allowed_members",
+      "story_sends"
   };
 
   public static void importFile(@NonNull Context context, @NonNull AttachmentSecret attachmentSecret,
@@ -293,6 +294,7 @@ public class FullBackupImporter extends FullBackupBase {
         String type = cursor.getString(1);
 
         if ("table".equals(type) && !name.startsWith("sqlite_")) {
+          Log.i(TAG, "Dropping table: " + name);
           db.execSQL("DROP TABLE IF EXISTS " + name);
         }
       }
