@@ -13,13 +13,13 @@ public final class ActiveSubscription {
 
   private enum Status {
     /**
-     * The subscription is currently in a trial period and it’s safe to provision your product for your customer.
+     * The subscription is currently in a trial period and it's safe to provision your product for your customer.
      * The subscription transitions automatically to active when the first payment is made.
      */
     TRIALING("trialing"),
 
     /**
-     * The subscription is in good standing and the most recent payment was successful. It’s safe to provision your product for your customer.
+     * The subscription is in good standing and the most recent payment was successful. It's safe to provision your product for your customer.
      */
     ACTIVE("active"),
 
@@ -30,12 +30,12 @@ public final class ActiveSubscription {
 
     /**
      * The initial payment on the subscription failed and no successful payment was made within 23 hours of creating the subscription.
-     * These subscriptions don’t bill customers. This status exists so you can track customers that failed to activate their subscriptions.
+     * These subscriptions don't bill customers. This status exists so you can track customers that failed to activate their subscriptions.
      */
     INCOMPLETE_EXPIRED("incomplete_expired"),
 
     /**
-     * 	Payment on the latest invoice either failed or wasn’t attempted.
+     * 	Payment on the latest invoice either failed or wasn't attempted.
      */
     PAST_DUE("past_due"),
 
@@ -45,8 +45,8 @@ public final class ActiveSubscription {
     CANCELED("canceled"),
 
     /**
-     * The latest invoice hasn’t been paid but the subscription remains in place.
-     * The latest invoice remains open and invoices continue to be generated but payments aren’t attempted.
+     * The latest invoice hasn't been paid but the subscription remains in place.
+     * The latest invoice remains open and invoices continue to be generated but payments aren't attempted.
      */
     UNPAID("unpaid");
 
