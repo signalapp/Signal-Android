@@ -77,7 +77,7 @@ class MediaSelectionActivity :
     val message: CharSequence? = intent.getCharSequenceExtra(MESSAGE)
     val isReply: Boolean = intent.getBooleanExtra(IS_REPLY, false)
 
-    val factory = MediaSelectionViewModel.Factory(destination, transportOption, initialMedia, message, isReply, MediaSelectionRepository(this))
+    val factory = MediaSelectionViewModel.Factory(destination, transportOption, initialMedia, message, isReply, isStory, MediaSelectionRepository(this))
     viewModel = ViewModelProvider(this, factory)[MediaSelectionViewModel::class.java]
 
     val textStoryToggle: ConstraintLayout = findViewById(R.id.switch_widget)

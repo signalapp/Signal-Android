@@ -34,13 +34,15 @@ class MediaSelectionViewModel(
   initialMedia: List<Media>,
   initialMessage: CharSequence?,
   val isReply: Boolean,
+  isStory: Boolean,
   private val repository: MediaSelectionRepository
 ) : ViewModel() {
 
   private val store: Store<MediaSelectionState> = Store(
     MediaSelectionState(
       transportOption = transportOption,
-      message = initialMessage
+      message = initialMessage,
+      isStory = isStory
     )
   )
 
@@ -420,10 +422,11 @@ class MediaSelectionViewModel(
     private val initialMedia: List<Media>,
     private val initialMessage: CharSequence?,
     private val isReply: Boolean,
+    private val isStory: Boolean,
     private val repository: MediaSelectionRepository
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-      return requireNotNull(modelClass.cast(MediaSelectionViewModel(destination, transportOption, initialMedia, initialMessage, isReply, repository)))
+      return requireNotNull(modelClass.cast(MediaSelectionViewModel(destination, transportOption, initialMedia, initialMessage, isReply, isStory, repository)))
     }
   }
 }

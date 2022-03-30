@@ -367,7 +367,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
   }
 
   private fun computeViewOnceButtonAnimators(state: MediaSelectionState): List<Animator> {
-    return if (state.isTouchEnabled && state.selectedMedia.size == 1) {
+    return if (state.isTouchEnabled && state.selectedMedia.size == 1 && !state.isStory) {
       listOf(MediaReviewAnimatorController.getFadeInAnimator(viewOnceButton))
     } else {
       listOf(MediaReviewAnimatorController.getFadeOutAnimator(viewOnceButton))

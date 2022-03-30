@@ -21,7 +21,8 @@ data class MediaSelectionState(
   val isPreUploadEnabled: Boolean = false,
   val isMeteredConnection: Boolean = false,
   val editorStateMap: Map<Uri, Any> = mapOf(),
-  val cameraFirstCapture: Media? = null
+  val cameraFirstCapture: Media? = null,
+  val isStory: Boolean
 ) {
 
   val maxSelection = if (transportOption.isSms) {
