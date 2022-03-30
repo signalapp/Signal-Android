@@ -579,11 +579,11 @@ object SystemContactsRepository {
     }
 
     override fun hasNext(): Boolean {
-      return !cursor.isAfterLast
+      return !cursor.isAfterLast && cursor.position >= 0
     }
 
     override fun next(): ContactDetails {
-      if (cursor.isAfterLast) {
+      if (cursor.isAfterLast || cursor.position < 0) {
         throw NoSuchElementException()
       }
 
@@ -591,7 +591,7 @@ object SystemContactsRepository {
       val phoneDetails: List<ContactPhoneDetails> = readAllPhones(cursor, lookupKey)
       val structuredName: StructuredName? = readStructuredName(cursor, lookupKey)
 
-      while (!cursor.isAfterLast && cursor.getLookupKey() == lookupKey) {
+      while (!cursor.isAfterLast && cursor.position >= 0 && cursor.getLookupKey() == lookupKey) {
         cursor.moveToNext()
       }
 
