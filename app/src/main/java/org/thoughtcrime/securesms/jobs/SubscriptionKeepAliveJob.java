@@ -109,7 +109,10 @@ public class SubscriptionKeepAliveJob extends BaseJob {
             true);
 
       SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain(true).enqueue();
+      return;
     }
+
+    Log.i(TAG, "Subscription is active, and end of current period (remote) is after the latest checked end of period (local). Nothing to do.");
   }
 
   private <T> void verifyResponse(@NonNull ServiceResponse<T> response) throws Exception {
