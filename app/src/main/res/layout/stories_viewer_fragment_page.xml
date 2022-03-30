@@ -25,6 +25,13 @@
             app:cardCornerRadius="18dp"
             app:cardElevation="0dp">
 
+            <ImageView
+                android:id="@+id/story_blur_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:importantForAccessibility="no"
+                android:scaleType="centerCrop" />
+
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/story_content_container"
                 android:layout_width="match_parent"

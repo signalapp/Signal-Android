@@ -11,6 +11,7 @@ import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import android.view.animation.Interpolator
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -40,6 +41,7 @@ import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewFragment
 import org.thoughtcrime.securesms.mediapreview.VideoControlsDelegate
+import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.StorySlateView
@@ -57,6 +59,7 @@ import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
+import org.thoughtcrime.securesms.util.hasThumbnail
 import org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout
 import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
@@ -118,6 +121,7 @@ class StoryViewerPageFragment :
     val largeCaption: TextView = view.findViewById(R.id.story_large_caption)
     val largeCaptionOverlay: View = view.findViewById(R.id.story_large_caption_overlay)
     val reactionAnimationView: OnReactionSentView = view.findViewById(R.id.on_reaction_sent_view)
+    val blurContainer: ImageView = view.findViewById(R.id.story_blur_container)
 
     storySlate = view.findViewById(R.id.story_slate)
     progressBar = view.findViewById(R.id.progress)
@@ -259,6 +263,7 @@ class StoryViewerPageFragment :
         presentDate(date, post)
         presentDistributionList(distributionList, post)
         presentCaption(caption, largeCaption, largeCaptionOverlay, post)
+        presentBlur(blurContainer, post)
 
         val durations: Map<Int, Long> = state.posts
           .mapIndexed { index, storyPost ->
@@ -489,6 +494,17 @@ class StoryViewerPageFragment :
   private fun presentDistributionList(distributionList: TextView, storyPost: StoryPost) {
     distributionList.text = storyPost.distributionList?.getDisplayName(requireContext())
     distributionList.visible = storyPost.distributionList != null && !storyPost.distributionList.isMyStory
+  }
+
+  private fun presentBlur(blur: ImageView, storyPost: StoryPost) {
+    val record = storyPost.conversationMessage.messageRecord as? MediaMmsMessageRecord
+    val blurHash = record?.slideDeck?.thumbnailSlide?.placeholderBlur
+
+    if (blurHash == null) {
+      GlideApp.with(blur).clear(blur)
+    } else {
+      GlideApp.with(blur).load(blurHash).into(blur)
+    }
   }
 
   @SuppressLint("SetTextI18n")
