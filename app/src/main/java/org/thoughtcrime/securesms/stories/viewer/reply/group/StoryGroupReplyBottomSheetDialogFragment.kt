@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -15,6 +16,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageViewModel
 import org.thoughtcrime.securesms.stories.viewer.reply.BottomSheetBehaviorDelegate
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import kotlin.math.roundToInt
 
 /**
  * Wraps a StoryGroupReplyFragment in a BottomSheetDialog
@@ -43,6 +45,10 @@ class StoryGroupReplyBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDi
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    view.updateLayoutParams {
+      height = (resources.displayMetrics.heightPixels * 0.6f).roundToInt()
+    }
+
     lifecycleDisposable.bindTo(viewLifecycleOwner)
     if (savedInstanceState == null) {
       childFragmentManager.beginTransaction()

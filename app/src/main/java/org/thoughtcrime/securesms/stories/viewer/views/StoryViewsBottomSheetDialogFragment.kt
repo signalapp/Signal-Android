@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageViewModel
+import kotlin.math.roundToInt
 
 /**
  * Wraps StoryViewsFragment in a BottomSheetDialog
@@ -31,6 +33,10 @@ class StoryViewsBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogF
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    view.updateLayoutParams {
+      height = (resources.displayMetrics.heightPixels * 0.6f).roundToInt()
+    }
+
     if (savedInstanceState == null) {
       childFragmentManager.beginTransaction()
         .replace(R.id.fragment_container, StoryViewsFragment.create(storyId))

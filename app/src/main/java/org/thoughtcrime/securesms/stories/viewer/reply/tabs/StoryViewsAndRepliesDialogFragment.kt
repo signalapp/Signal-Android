@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.ViewCompat
+import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
@@ -22,6 +23,7 @@ import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPager
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerParent
 import org.thoughtcrime.securesms.stories.viewer.reply.group.StoryGroupReplyFragment
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import kotlin.math.roundToInt
 
 /**
  * Tab based host for Views and Replies
@@ -59,6 +61,10 @@ class StoryViewsAndRepliesDialogFragment : FixedRoundedCornerBottomSheetDialogFr
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    view.updateLayoutParams {
+      height = (resources.displayMetrics.heightPixels * 0.6f).roundToInt()
+    }
+
     pager = view.findViewById(R.id.pager)
 
     val bottomSheetBehavior = (requireDialog() as BottomSheetDialog).behavior
