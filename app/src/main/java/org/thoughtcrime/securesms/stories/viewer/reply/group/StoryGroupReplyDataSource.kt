@@ -46,7 +46,7 @@ class StoryGroupReplyDataSource(private val parentStoryId: Long) : PagedDataSour
   private fun readReactionFromRecord(record: MmsMessageRecord): StoryGroupReplyItemData {
     return StoryGroupReplyItemData(
       key = StoryGroupReplyItemData.Key.Reaction(record.id),
-      sender = if (record.isOutgoing) Recipient.self() else record.individualRecipient,
+      sender = if (record.isOutgoing) Recipient.self() else record.individualRecipient.resolve(),
       sentAtMillis = record.dateSent,
       replyBody = StoryGroupReplyItemData.ReplyBody.Reaction(record.body)
     )
@@ -55,7 +55,7 @@ class StoryGroupReplyDataSource(private val parentStoryId: Long) : PagedDataSour
   private fun readTextFromRecord(record: MmsMessageRecord): StoryGroupReplyItemData {
     return StoryGroupReplyItemData(
       key = StoryGroupReplyItemData.Key.Text(record.id),
-      sender = if (record.isOutgoing) Recipient.self() else record.individualRecipient,
+      sender = if (record.isOutgoing) Recipient.self() else record.individualRecipient.resolve(),
       sentAtMillis = record.dateSent,
       replyBody = StoryGroupReplyItemData.ReplyBody.Text(
         ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(ApplicationDependencies.getApplication(), record)
