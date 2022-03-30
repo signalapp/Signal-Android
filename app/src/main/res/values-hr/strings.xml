@@ -1245,6 +1245,8 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Da biste uputili poziv za %1$s, omogućite Signalu pristup vašoj kameri</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Uspostava poziva</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Ponovno povezivanje…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal poziv</string>
   <string name="WebRtcCallView__signal_video_call">Signal videopoziv</string>
@@ -1363,12 +1365,6 @@ broj telefona</string>
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Više</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Podsjetiti ćemo vas kasnije.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Podsjetiti ćemo vas ponovo sutra.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Podsjetiti ćemo vas ponovo za par dana.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Podsjetiti ćemo vas ponovo za tjedan dana.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Podsjetiti ćemo vas ponovo za par tjedana.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Podsjetiti ćemo vas ponovo za mjesec dana.</string>
   <!--Slide-->
   <string name="Slide_image">Slika</string>
   <string name="Slide_sticker">Naljepnica</string>
@@ -1519,6 +1515,8 @@ broj telefona</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Izbriši poruku?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Ovo će trajno izbrisati ovu poruka.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s za %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">Medijski zapis više nije dostupan.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nije moguće pronaći aplikaciju za dijeljenje ovog medijskog zapisa.</string>
   <!--MessageNotifier-->
@@ -1717,6 +1715,7 @@ broj telefona</string>
   <string name="QuoteView_original_missing">Originalna poruka nije pronađena</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Pomaknite se na dno</string>
   <!--BubbleOptOutTooltip-->

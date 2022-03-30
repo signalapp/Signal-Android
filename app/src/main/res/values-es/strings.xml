@@ -1285,6 +1285,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Llamando …</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">El grupo es demasiado grande para notificar a tod@s l@s participantes.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Reconectando …</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Llamada de Signal</string>
   <string name="WebRtcCallView__signal_video_call">Videollamada de Signal</string>
@@ -1436,12 +1438,12 @@ número de teléfono
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Más</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Te lo recordaremos de nuevo más tarde.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Te lo recordaremos de nuevo mañana.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Te lo recordaremos de nuevo en unos pocos días.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Te lo recordaremos de nuevo en una semana.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Te lo recordaremos de nuevo en un par de semanas.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Te lo recordaremos de nuevo en un mes.</string>
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN verificado con éxito. Te lo recordaremos más tarde.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN verificado con éxito. Te lo recordaremos de nuevo mañana.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN verificado con éxito. Te lo recordaremos de nuevo en unos días.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN verificado con éxito. Te lo recordaremos de nuevo en una semana.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN verificado con éxito. Te lo recordaremos de nuevo en unas semanas.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN verificado con éxito. Te lo recordaremos de nuevo en un mes.</string>
   <!--Slide-->
   <string name="Slide_image">Imagen</string>
   <string name="Slide_sticker">Sticker</string>
@@ -1591,6 +1593,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MediaPreviewActivity_media_delete_confirmation_title">¿Eliminar mensaje?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Este mensaje se eliminará permanentemente.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s de %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">De ti para %1$s</string>
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">De %1$s para ti</string>
   <string name="MediaPreviewActivity_media_no_longer_available">El adjunto original ya no está disponible.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Fallo al encontrar la aplicación para mostrar este adjunto.</string>
   <!--MessageNotifier-->
@@ -1772,7 +1778,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ConversationUpdateItem_enable_call_notifications">Habilitar notificaciones de llamada</string>
   <string name="ConversationUpdateItem_update_contact">Actualizar contacto</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
-  <string name="ConversationUpdateItem_block_request">Vetar solicitudes</string>
+  <string name="ConversationUpdateItem_block_request">Vetar solicitud</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Sin grupos en común. Revisar solicitud.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Sin participantes conocid@s. Revisar solicitud.</string>
   <string name="ConversationUpdateItem_view">Ver</string>
@@ -1794,9 +1800,11 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="QuoteView_you">Tú</string>
   <string name="QuoteView_original_missing">No se encuentra el mensaje original </string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">Historia de %1$s</string>
+  <string name="QuoteView_s_story">%1$s · Historia </string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Tu historia</string>
+  <string name="QuoteView_your_story">Tú · Historia  </string>
+  <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Historia caducada</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Desliza hasta el final</string>
   <!--BubbleOptOutTooltip-->
@@ -3890,7 +3898,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Camera label for media selection toggle-->
   <string name="MediaSelectionActivity__camera">Cámara</string>
   <!--Hint for entering a URL for a text post-->
-  <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Escribe o pega una URL</string>
+  <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Escribe o añade una URL</string>
   <!--Displayed prior to the user entering a URL for a text post-->
   <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Comparte tu historia via enlace con quien tú quieras</string>
   <!--Hint text for searching for a story text post recipient.-->
@@ -3921,9 +3929,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
     <item quantity="other">%1$d vistas</item>
   </plurals>
   <!--Name story screen title-->
-  <string name="CreateStoryWithViewersFragment__name_story">Nombre de la historia</string>
+  <string name="CreateStoryWithViewersFragment__name_story">Título de la historia</string>
   <!--Name story screen label hint-->
-  <string name="CreateStoryWithViewersFragment__story_name_required">Nombre de la historia (necesario)</string>
+  <string name="CreateStoryWithViewersFragment__story_name_required">Título de la historia (necesario)</string>
   <!--Name story screen viewers subheading-->
   <string name="CreateStoryWithViewersFragment__viewers">Quién puede verla</string>
   <!--Name story screen create button label-->
@@ -3931,7 +3939,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Name story screen error when save attempted with no label-->
   <string name="CreateStoryWithViewersFragment__this_field_is_required">Este campo es necesario.</string>
   <!--Name story screen error when save attempted but label is duplicate-->
-  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">Ya existe una historia con ese mismo nombre.</string>
+  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">Ya existe una historia con ese título.</string>
   <!--Text for select all action when editing recipients for a story-->
   <string name="BaseStoryRecipientSelectionFragment__select_all">Seleccionar todo</string>
   <!--Choose story type bottom sheet title-->

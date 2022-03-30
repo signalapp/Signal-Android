@@ -1268,6 +1268,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal-oprop %1$s</string>
   <string name="WebRtcCallActivity__calling">Oprop oan it starten…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">De groep is te grut om de leden te bellen.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Opnij oan it ferbinen…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-oprop</string>
   <string name="WebRtcCallView__signal_video_call">Signal fideo-oprop</string>
@@ -1422,12 +1424,6 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Mear opsjes</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Korrekt! Signal sil dy letter opnij freegje oftsto dyn pinkoade noch witst.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Korrekt! Signal sil dy moarn opnij freegje oftsto dyn pinkoade noch witst.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Korrekt! Signal sil dy binnen in pear dagen opnij freegje oftsto dyn pinkoade noch witst.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Korrekt! Signal sil dy nei in wike opnij freegje oftsto dyn pinkoade noch witst.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Korrekt! Signal sil dy binnen in oantal wiken opnij freegje oftsto dyn pinkoade noch witst.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Korrekt! Signal sil dy binnen in moanne opnij freegje oftsto dyn pinkoade noch witst.</string>
   <!--Slide-->
   <string name="Slide_image">Ofbylding</string>
   <string name="Slide_sticker">Stikker</string>
@@ -1577,6 +1573,8 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Berjocht wiskje?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Dit berjocht sil allinnich foar dy ûnûntkomber wiske wurde, mar dus net foar dyn petearpartner(s).</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s nei %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">Media net langer beskikber.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Gjin app fûn wêrmei’t dit bestân mei oaren dield wurde kin.</string>
   <!--MessageNotifier-->
@@ -1776,6 +1774,7 @@
   <string name="QuoteView_original_missing">Oarspronklik berjocht net fûn</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Skow nei ûnderen ta</string>
   <!--BubbleOptOutTooltip-->

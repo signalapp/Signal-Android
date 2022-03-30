@@ -1285,6 +1285,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Zəng edilir…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Qrup, iştirakçılara zəng etmək üçün çox böyükdür.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Yenidən bağlantı qurulur…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal zəngi</string>
   <string name="WebRtcCallView__signal_video_call">Signal görüntülü zəngi</string>
@@ -1436,12 +1438,6 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Daha çox</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Daha sonra yenidən xatırladacağıq.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Sabah yenidən xatırladacağıq.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Bir neçə gün ərzində yenidən xatırladacağıq.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Bir həftə ərzində yenidən xatırladacağıq.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Bir neçə həftə ərzində yenidən xatırladacağıq.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Bir ay ərzində yenidən xatırladacağıq.</string>
   <!--Slide-->
   <string name="Slide_image">Təsvir</string>
   <string name="Slide_sticker">Stiker</string>
@@ -1591,6 +1587,8 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Mesaj silinsin?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Bu, mesajı birdəfəlik siləcək.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s -  %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">Media artıq mövcud deyil.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Bu medianı paylaşmaq üçün bir tətbiq tapıla bilmir.</string>
   <!--MessageNotifier-->
@@ -1794,9 +1792,9 @@
   <string name="QuoteView_you">Siz</string>
   <string name="QuoteView_original_missing">Orijinal mesaj tapılmadı</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">%1$s paylaşan hekayə</string>
+  <string name="QuoteView_s_story">%1$s · Hekayə</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Hekayəniz</string>
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Aşağı sürüşdür</string>
   <!--BubbleOptOutTooltip-->

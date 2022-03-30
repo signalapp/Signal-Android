@@ -1291,6 +1291,8 @@ Viss du ikkje klarer å hugsa PIN-en, kan du oppretta ein ny ein. Du kan registr
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Ringer …</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Gruppa er for stor til å ringa alle deltakarane.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Koplar til på nytt …</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-anrop</string>
   <string name="WebRtcCallView__signal_video_call">Signal-videosamtale</string>
@@ -1444,12 +1446,12 @@ Ver deg sjølv i kvar einaste melding.</string>
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Meir</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Me minner deg på dette igjen seinare.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Me minner deg på dette igjen i morgon.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Me minner deg på dette igjen om nokre dagar.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Me minner deg på dette igjen om ei veke.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Me minner deg på dette igjen om nokre veker.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Me minner deg på det igjen om ein månad.</string>
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN stadfesta. Me minner deg på det igjen seinare.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN stadfesta. Me minner deg på det igjen i morgon.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN stadfesta. Me minner deg på det igjen om nokre dagar.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN stadfesta. Me minner deg på det igjen om ei veke.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN stadfesta. Me minner deg på det igjen om nokre veker.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN stadfesta. Me minner deg på det igjen om ein månad.</string>
   <!--Slide-->
   <string name="Slide_image">Bilde</string>
   <string name="Slide_sticker">Klistremerke</string>
@@ -1597,6 +1599,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Slett melding?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Dette vil sletta denne meldinga for godt.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s til %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Deg til %1$s</string>
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s til deg</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Media ikkje tilgjengeleg lenger</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Klarte ikkje å finna ein app for å dela dette mediet.</string>
   <!--MessageNotifier-->
@@ -1800,9 +1806,11 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="QuoteView_you">Deg</string>
   <string name="QuoteView_original_missing">Fann ikkje den opphavlege meldinga</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">%1$s historie</string>
+  <string name="QuoteView_s_story">%1$s · Historie</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Di historie</string>
+  <string name="QuoteView_your_story">Deg · Historie</string>
+  <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Ikkje lenger tilgjengeleg</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rull til botnen</string>
   <!--BubbleOptOutTooltip-->

@@ -116,7 +116,7 @@
   <string name="CameraContacts_recent_contacts">Pēdējie kontakti</string>
   <string name="CameraContacts_signal_contacts">Signal kontakti</string>
   <string name="CameraContacts_signal_groups">Signal grupas</string>
-  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Jūs variet dalīties ar maksimums %dsarunām. </string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Jūs varat kopīgot ar maksimums %dsarunām. </string>
   <string name="CameraContacts_select_signal_recipients">Izvēlēties Signal adresātus</string>
   <string name="CameraContacts_no_signal_contacts">Nav Signal kontaktu</string>
   <string name="CameraContacts_you_can_only_use_the_camera_button">Jūs variet izmantot kameru tikai, lai sūtītu attēlus Signal kontaktiem.</string>
@@ -436,12 +436,12 @@
   <string name="ChooseBackupFragment__restore_from_backup">Vai atjaunot no rezerves kopijas?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Ielasiet ziņas un multimedijus no lokāli atrodošās rezerves kopijas. Ja datus neatjaunosiet tagad, vēlāk tas nebūs izdarāms.</string>
   <string name="ChooseBackupFragment__icon_content_description">Atjaunot no rezerves kopijas ikonas</string>
-  <string name="ChooseBackupFragment__choose_backup">Izvēlieties dublikātu/rezerves kopiju</string>
+  <string name="ChooseBackupFragment__choose_backup">Izvēlieties rezerves kopiju</string>
   <string name="ChooseBackupFragment__learn_more">Lasīt vairāk</string>
   <string name="ChooseBackupFragment__no_file_browser_available">Nav pieejams neviens failu pārlūks</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Atjaunošana pabeigta</string>
-  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Lai turpinātu izmantot dublikātu/dublējumkopiju iespēju, lūdzu izvēlieties mapi. Jaunie dublikāti/dublējumkopijas tiks saglabātas šajā mapē.</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Lai turpinātu izmantot rezerves kopēšanas iespēju, lūdzu izvēlieties mapi. Jaunās rezerves kopijas tiks saglabātas šajā mapē.</string>
   <string name="RestoreBackupFragment__choose_folder">Izvēlēties mapi</string>
   <string name="RestoreBackupFragment__not_now">Ne tagad</string>
   <!--Couldn\'t find the selected backup-->
@@ -452,10 +452,10 @@
   <string name="RestoreBackupFragment__backup_has_a_bad_extension">Rezerves kopijai ir nepareizs paplašinājums.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Sarunu rezerves kopēšana</string>
-  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Dublikāti/dublējumi tiek šifrēti ar paroles frāzi un saglabāti jūsu ierīcē.</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Rezrerves kopijas tiek šifrētas ar paroles frāzi un saglabātas jūsu ierīcē.</string>
   <string name="BackupsPreferenceFragment__create_backup">Izveidot rezerves kopiju</string>
-  <string name="BackupsPreferenceFragment__last_backup">Pēdējais dublikāts: %1$s</string>
-  <string name="BackupsPreferenceFragment__backup_folder">Dublikātu mape</string>
+  <string name="BackupsPreferenceFragment__last_backup">Pēdējā rezerves kopija: %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Rezerves kopiju mape</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">Pārbaudiet rezerves kopijas paroles frāzi</string>
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Pārbaudiet rezerves kopijas paroles frāzi, un pārliecinieties, ka tā sakrīt</string>
   <string name="BackupsPreferenceFragment__turn_on">Ieslēgt</string>
@@ -868,7 +868,7 @@
     <item quantity="other">Sūtīt %d SMS uzaicinājumus?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Pārejam uz Signal: %1$s</string>
-  <string name="InviteActivity_no_app_to_share_to">Izskatās, ka Tev nav nevienas aplikācijas, caur kuru dalīties.</string>
+  <string name="InviteActivity_no_app_to_share_to">Izskatās, ka jums nav nevienas aplikācijas, caur kuru kopīgot.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Lasīt vairāk</string>
   <string name="SpanUtil__read_more">Lasīt vairāk</string>
@@ -981,7 +981,7 @@
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="zero">Jūs Nevariet dalīties ar vairāk kā %d elementus.</item>
     <item quantity="one">Jūs Nevariet dalīties ar vairāk %d elementu.</item>
-    <item quantity="other">Jūs nevariet dalīties ar vairāk nekā %d elementiem.</item>
+    <item quantity="other">Jūs nevarat kopīgot vairāk kā %d vienumus.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Izvēlēties adresātus</string>
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Pieskarieties šeit, lai šis ziņojums pēc tā izlasīšanas izgaistu.</string>
@@ -1345,6 +1345,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Zvana…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grupa ir pārāk liela, lai zvanītu dalībniekiem</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Savienojas vēlreiz…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal zvans</string>
   <string name="WebRtcCallView__signal_video_call">Signal videozvans</string>
@@ -1497,12 +1499,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Vēl</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Vēlāk atgādināsim vēlreiz.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Atkārtoti atgādināsim rīt.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Atkārtoti atgādināsim pēc dažām dienām.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Atkārtoti atgādināsim pēc nedēļas</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Atkārtoti atgādināsim pēc pāris nedēļām.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Atkārtoti atgādināsim pēc mēneša.</string>
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN pārbaudīts veiksmīgi. Mēs atgādināsim jums vēlreiz vēlāk.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN pārbaudīts veiksmīgi. Mēs atgādināsim jums vēlreiz rīt.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN pārbaudīts veiksmīgi. Mēs atgādināsim jums vēlreiz pēc dažām dienām.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN pārbaudīts veiksmīgi. Mēs atgādināsim jums vēlreiz pēc nedēļas.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN pārbaudīts veiksmīgi. Mēs atgādināsim jums vēlreiz pēc pāris nedēļām.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN pārbaudīts veiksmīgi. Mēs atgādināsim jums vēlreiz pēc mēneša.</string>
   <!--Slide-->
   <string name="Slide_image">Attēls</string>
   <string name="Slide_sticker">Uzlīme</string>
@@ -1619,9 +1621,9 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Jūsu kontaktpersona izmanto novecojušu Signal versiju. Pirms apstipriniet drošības kodu,  palūdziet, lai to aktualizē.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Jūsu kontaktpersona izmanto jaunāku Signal versiju, ar nesaderīgu kvadrātkoda formātu. Lūdzu atjaunojiet Signal lietotni savā ierīcē, lai turpinātu.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Noskanētais kvadrātkods nav pareizi formatēts drošības numura apstiprināšanas kods. Lūdzu, mēģiniet vēlreiz.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">Dalīties ar drošības numuru izmantojot…</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Kopīgot drošības numuru ar…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Mūsu Signal drošības numurs:</string>
-  <string name="VerifyIdentityActivity_no_app_to_share_to">Izskatās, ka Tev nav nevienas aplikācijas, caur kurām dalīties.</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Izskatās, ka jums nav nevienas aplikācijas, caur kurām kopīgot.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Starpenē netika atrasts drošības kods</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal ir nepieciešama piekļuve kamerai, lai skenētu kvadrātkodu, bet tā nav dota. Dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Kamera\". </string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Nebija iespējams noskenēt kvadrātkodu bez kameras lietošanas atļaujas</string>
@@ -1653,6 +1655,10 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Izdzēst ziņu?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Šis neatgriezeniski izdzēsīs ziņu.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Jūs %1$s</string>
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s jums</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Mediju fails vairs nav pieejams</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nevar atrast lietotni, kas varētu kopīgot šo multivides saturu.</string>
   <!--MessageNotifier-->
@@ -1860,9 +1866,11 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="QuoteView_you">Jūs</string>
   <string name="QuoteView_original_missing">Oriģinālā ziņa netika atrasta</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">%1$s stāsts</string>
+  <string name="QuoteView_s_story">%1$s · Stāsts</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Jūsu stāsts</string>
+  <string name="QuoteView_your_story">Jūs · Stāsts</string>
+  <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Vairs nav pieejams</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Ritināt līdz apakšai </string>
   <!--BubbleOptOutTooltip-->
@@ -2031,7 +2039,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="verify_display_fragment__mark_as_verified">Atzīmēt kā apstiprinātu</string>
   <string name="verify_display_fragment__clear_verification">Dzēst verifikāciju</string>
   <!--verify_identity-->
-  <string name="verify_identity__share_safety_number">Dalīties ar drošības numuru</string>
+  <string name="verify_identity__share_safety_number">Kopīgot drošības numuru</string>
   <!--verity_scan_fragment-->
   <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Skenējiet kvadrātkodu savas kontaktpersonas ierīcē.</string>
   <!--webrtc_answer_decline_button-->
@@ -2713,7 +2721,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="registration_activity__transfer_or_restore_account">Nodot vai atgūt kontu</string>
   <string name="registration_activity__transfer_account">Nodot kontu</string>
   <string name="registration_activity__skip">Izlaist</string>
-  <string name="preferences_chats__chat_backups">Sarunu dublēšana</string>
+  <string name="preferences_chats__chat_backups">Sarunu rezerves kopijas</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Veidot sarunu rezerves kopiju ārējā glabātuvē</string>
   <string name="preferences_chats__transfer_account">Nodot/pārnest kontu</string>
   <string name="preferences_chats__transfer_account_to_a_new_android_device">Pārnest kontu uz citu Android ierīci</string>
@@ -2731,9 +2739,9 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="BackupDialog_enable_backups">Iespējot rezerves kopēšanu</string>
   <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Lūdzu, apstipriniet, ka saprotat, atzīmējot apstiprinājuma izvēles rūtiņu.</string>
   <string name="BackupDialog_delete_backups">Dzēst rezerves kopijas?</string>
-  <string name="BackupDialog_disable_and_delete_all_local_backups">Atspējot un dzēst visus dublikātus?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Atspējot un dzēst visas rezerves kopijas?</string>
   <string name="BackupDialog_delete_backups_statement">Dzēst rezerves kopijas</string>
-  <string name="BackupDialog_to_enable_backups_choose_a_folder">Lai iespējotu dublējumus, izvēlieties mapi. Dublējumi tiks saglabāti šajā atrašanās vietā.</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">Lai iespējotu rezerves kopēšanu, izvēlieties mapi. Rezerves kopijas tiks saglabātas šajā atrašanās vietā.</string>
   <string name="BackupDialog_choose_folder">Izvēlēties mapi</string>
   <string name="BackupDialog_copied_to_clipboard">Iekopēts starpenē</string>
   <string name="BackupDialog_no_file_picker_available">Nav pieejams neviens failu atlasītājs.</string>
@@ -2742,11 +2750,11 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Jūs sekmīgi ievadījāt rezerves ieejas paroli</string>
   <string name="BackupDialog_passphrase_was_not_correct">Parole nav pareiza</string>
   <string name="LocalBackupJob_creating_signal_backup">Veido Signal rezerves kopiju…</string>
-  <string name="LocalBackupJobApi29_backup_failed">Dublēšana neizdevās</string>
-  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Jūsu dublējumu direktorijs ir dzēsts vai pārvietots.</string>
-  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Jūsu dublējuma fails ir pārāk liels saglabāšanai šajā apjomā.</string>
-  <string name="LocalBackupJobApi29_there_is_not_enough_space">Šiet nepietiek vietas dublikāta notietošanai</string>
-  <string name="LocalBackupJobApi29_tap_to_manage_backups">Pieskarties, lai pārvaldību dublikātus</string>
+  <string name="LocalBackupJobApi29_backup_failed">Rezerves kopēšana neizdevās</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Jūsu rezerves kopiju direktorijs ir dzēsts vai pārvietots.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Jūsu rezerves kopijas fails ir pārāk liels saglabāšanai šajā vietā.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">Nepietiek vietas rezerves kopijas izveidošanai</string>
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">Pieskarties, lai pārvaldību rezerves kopijas</string>
   <string name="ProgressPreference_d_messages_so_far">pagaidām %d ziņas</string>
   <string name="RegistrationActivity_wrong_number">Nepareizs numurs</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Tā vietā piezvaniet man \n (Pieejams pēc %1$02d:%2$02d)</string>
@@ -2815,7 +2823,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Lietotnei Signal ir nepieciešama atrašanās vietas atļauja, lai atrastu veco Android ierīci un izveidotu ar to savienojumu.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Lietotnē Signal ir jābūt iespējotiem atrašanās vietas pakalpojumiem, lai atrastu veco Android ierīci un izveidotu ar to savienojumu.</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Lietotnē Signal ir jāieslēdz Wi-Fi, lai varētu noteikt veco Android ierīci un izveidot ar to savienojumu. Wi-Fi ir jābūt ieslēgtam, bet ierīcei nav jābūt pievienotai Wi-Fi tīklam.</string>
-  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Diemžēl šķiet, ka šī ierīce neatbalsta Wi-Fi Direct. Lietotne Signal izmanto Wi-Fi Direct, lai noteiktu veco Android ierīci un izveidotu ar to savienojumu. Joprojām varat atjaunot dublējumu konta atjaunošanai no vecās Android ierīces.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Diemžēl šķiet, ka šī ierīce neatbalsta Wi-Fi Direct. Lietotne Signal izmanto Wi-Fi Direct, lai noteiktu veco Android ierīci un izveidotu ar to savienojumu. Joprojām varat atjaunot rezerves kopiju konta atjaunošanai no vecās Android ierīces.</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">Atjaunot rezerves kopiju</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Mēģinot izveidot savienojumu ar veco Android ierīci, radās neparedzēta kļūda.</string>
   <!--OldDeviceTransferSetupFragment-->
@@ -2824,7 +2832,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Lietotnē Signal ir jābūt iespējotiem atrašanās vietas pakalpojumiem, lai atrastu jauno Android ierīci un izveidotu ar to savienojumu.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Lietotnē Signal ir jāieslēdz Wi-Fi, lai varētu noteikt jauno Android ierīci un izveidot ar to savienojumu. Wi-Fi ir jābūt ieslēgtam, bet ierīcei nav jābūt pievienotai Wi-Fi tīklam.</string>
   <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Diemžēl šķiet, ka šī ierīce neatbalsta Wi-Fi Direct. Lietotne Signal izmanto Wi-Fi Direct, lai noteiktu jauno Android ierīci un izveidotu ar to savienojumu. Joprojām varat izveidot rezerves kopiju konta atjaunošanai jaunajā Android ierīcē.</string>
-  <string name="OldDeviceTransferSetup__create_a_backup">Izveidot dublējumu</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Izveidot rezerves kopiju</string>
   <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Mēģinot izveidot savienojumu ar jauno Android ierīci, radās neparedzēta kļūda.</string>
   <!--DeviceTransferSetupFragment-->
   <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Nevar atvērt Wi-Fi iestatījumus. Ieslēdziet Wi-Fi manuāli.</string>
@@ -2946,7 +2954,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Ikviens ar šo saiti var skatīt grupas nosaukumu un fotoattēlu un nosūtīt pieprasījumu tai pievienoties. Nosūtiet šo saiti tikai cilvēkiem, kuriem uzticaties.</string>
   <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Ikviens ar šo saiti var skatīt grupas nosaukumu un fotoattēlu un pievienoties šai grupai. Nosūtiet šo saiti tikai cilvēkiem, kuriem uzticaties.</string>
-  <string name="GroupLinkBottomSheet_share_via_signal">Koplietot, izmantojot Signal</string>
+  <string name="GroupLinkBottomSheet_share_via_signal">Kopīgot, izmantojot Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopēt</string>
   <string name="GroupLinkBottomSheet_qr_code">Kvadrātkods</string>
   <string name="GroupLinkBottomSheet_share">Kopīgot</string>
@@ -3987,7 +3995,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Hint for entering a URL for a text post-->
   <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Uzrakstiet vai ielīmējiet URL</string>
   <!--Displayed prior to the user entering a URL for a text post-->
-  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Dalieties ar saiti ar jūsu stāsta skatītājiem</string>
+  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Kopīgojiet saiti ar jūsu stāsta skatītājiem</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Meklēt</string>
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
@@ -4003,9 +4011,9 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <string name="StoryDialogs__edit_viewers">Rediģēt skatītājus</string>
   <!--Privacy Settings toggle title for stories-->
-  <string name="PrivacySettingsFragment__share_and_view_stories">Dalīties un apskatīt stāstus</string>
+  <string name="PrivacySettingsFragment__share_and_view_stories">Kopīgot &amp; skatīt stāstus</string>
   <!--Privacy Settings toggle summary for stories-->
-  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Jūs vairs nevarēsiet dalīties un apskatīt stāstus, kad šī opcija ir izslēgta.</string>
+  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Jūs vairs nevarēsiet kopīgot un skatīt stāstus, kad šī opcija ir izslēgta.</string>
   <!--New story viewer selection screen title-->
   <string name="CreateStoryViewerSelectionFragment__choose_viewers">Izvēlēties skatītājus</string>
   <!--New story viewer selection action button label-->
@@ -4039,7 +4047,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Choose story type bottom sheet group story title-->
   <string name="ChooseStoryTypeBottomSheet__group_story">Grupas stāsts</string>
   <!--Choose story type bottom sheet group story summary-->
-  <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Dalīties jau eksistējošā grupā</string>
+  <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Kopīgot ar jau eksistējošu grupu</string>
   <!--Choose groups bottom sheet title-->
   <string name="ChooseGroupStoryBottomSheet__choose_groups">Izvēlieties grupas</string>
   <!--Displayed when copying group story reply text to clipboard-->

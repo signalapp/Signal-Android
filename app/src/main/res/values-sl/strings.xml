@@ -1408,6 +1408,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Klicanje …</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Skupina je prevelika za zvonjenje vsem udeležencem.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Ponovno povezovanje …</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal klic</string>
   <string name="WebRtcCallView__signal_video_call">Video klic Signal</string>
@@ -1567,12 +1569,10 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Več</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Čez nekaj časa vas bomo znova opozorili.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Jutri vas bomo znova opozorili.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Čez nekaj dni vas bomo znova opozorili.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Čez en teden vas bomo znova opozorili.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Čez nekaj tednov vas bomo znova opozorili.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Čez en mesec vas bomo znova opozorili.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN je bil potrjen. Čez nekaj dni vas bomo znova opomnili.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN je bil potrjen. Čez teden vas bomo znova opomnili.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN je bil potrjen. Čez nekaj tednov vas bomo znova opomnili.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN je bil potrjen. Čez mesec vas bomo znova opomnili.</string>
   <!--Slide-->
   <string name="Slide_image">Slika</string>
   <string name="Slide_sticker">Nalepka</string>
@@ -1722,6 +1722,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Izbrišem sporočilo?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Sporočilo bo nepovratno izbrisano.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s do %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Vi za uporabnika_co %1$s</string>
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s za vas</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Medijsko sporočilo ni več na voljo.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Ne najdem ustrezne aplikacije za delitev tega medija.</string>
   <!--MessageNotifier-->
@@ -1933,9 +1937,11 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="QuoteView_you">Vi</string>
   <string name="QuoteView_original_missing">Izvorno sporočilo ni bilo najdeno</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">%1$s zgodba</string>
+  <string name="QuoteView_s_story">%1$s · Zgodba</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Tvoja zgodba</string>
+  <string name="QuoteView_your_story">Vi - zgodba</string>
+  <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Ni več na voljo</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Na dno</string>
   <!--BubbleOptOutTooltip-->

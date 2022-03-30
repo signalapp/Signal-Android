@@ -1283,6 +1283,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Anrufen …</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Gruppe ist zu groß, um bei den Teilnehmern zu klingeln.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Verbindung wird neu hergestellt …</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-Anruf</string>
   <string name="WebRtcCallView__signal_video_call">Signal-Videoanruf</string>
@@ -1428,12 +1430,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Mehr</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Wir erinnern dich später.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Wir erinnern dich morgen.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Wir erinnern dich in einigen Tagen.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Wir erinnern dich in einer Woche.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Wir erinnern dich in einigen Wochen.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Wir erinnern dich in einem Monat erneut.</string>
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN erfolgreich verifiziert. Wir erinnern dich später wieder.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN erfolgreich verifiziert. Wir erinnern dich morgen wieder.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN erfolgreich verifiziert. Wir erinnern dich in einigen Tagen wieder.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN erfolgreich verifiziert. Wir erinnern dich in einer Woche wieder.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN erfolgreich verifiziert. Wir erinnern dich in einigen Wochen wieder.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN erfolgreich verifiziert. Wir erinnern dich in einem Monat wieder.</string>
   <!--Slide-->
   <string name="Slide_image">Bild</string>
   <string name="Slide_sticker">Sticker</string>
@@ -1580,6 +1582,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Nachricht löschen?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Dies wird diese Nachricht unwiderruflich löschen.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s an %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Du an %1$s</string>
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s an dich</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Medieninhalte nicht mehr verfügbar.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Keine App zum Teilen dieser Medieninhalte gefunden.</string>
   <!--MessageNotifier-->
@@ -1783,9 +1789,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="QuoteView_you">Du</string>
   <string name="QuoteView_original_missing">Originalnachricht nicht gefunden</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">%1$s Story</string>
+  <string name="QuoteView_s_story">%1$s · Story</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Deine Story</string>
+  <string name="QuoteView_your_story">Du · Story</string>
+  <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Nicht mehr verfügbar</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Zum Ende scrollen</string>
   <!--BubbleOptOutTooltip-->

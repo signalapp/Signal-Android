@@ -1198,6 +1198,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">د اړیکې نیولو په حالت کې…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">دا چې ګروپ ډېر ستر دی نو ټولو ګډون والو ته زنګ نشي وهل کېدای</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">بیرته وصل کېږي…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">د Signal اړیکه</string>
   <string name="WebRtcCallView__signal_video_call">د Signal ویډیو کال</string>
@@ -1344,12 +1346,6 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">زیات</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">موږ به تاسې ته وروسته بیرته در په یاد کړو.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">موږ به تاسې ته سبا بیرته در په یاد کړو.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">موږ به تاسې ته بیرته په څو ورځو کې در په یاد کړو.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">موږ به تاسې ته بیرته په داخل د یوې اوونۍ کې در په یاد کړو.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">موږ به تاسې ته په څو اوونیو کې بیا دا در په یاد کړو.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">موږ به په یوه میاشت کې دننه دا در په یاد کړو.</string>
   <!--Slide-->
   <string name="Slide_image">انځور</string>
   <string name="Slide_sticker">سټیکر</string>
@@ -1499,6 +1495,8 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">غواړئ پیغام پاک کړئ؟</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">دا کار به پیغام د تل لپاره پاک کړي.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s څخه %2$s ته</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">میډیا نوره نشته.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">دا اپلیکیشن پیدا نشو چې دغه میډیا شریکه کړي.</string>
   <!--MessageNotifier-->
@@ -1694,6 +1692,7 @@
   <string name="QuoteView_original_missing">اصلي پیغام و نه موندل شو</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">ښکته ولاړ شئ</string>
   <!--BubbleOptOutTooltip-->

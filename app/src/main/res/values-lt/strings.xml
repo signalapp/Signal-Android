@@ -1405,6 +1405,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Skambinama…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grupė yra per didelė, kad būtų skambinama dalyviams.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Jungiamasi iš naujo…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">„Signal“ skambutis</string>
   <string name="WebRtcCallView__signal_video_call">Signal vaizdo skambutis</string>
@@ -1570,12 +1572,6 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Daugiau</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Vėliau priminsime jums dar kartą.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Rytoj priminsime jums dar kartą.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Po kelių dienų priminsime jums dar kartą.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Po savaitės priminsime jums dar kartą.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Po kelių savaičių priminsime jums dar kartą.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Po mėnesio priminsime jums dar kartą.</string>
   <!--Slide-->
   <string name="Slide_image">Paveikslas</string>
   <string name="Slide_sticker">Lipdukas</string>
@@ -1727,6 +1723,8 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Ištrinti žinutę?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Tai visiems laikams ištrins šią žinutę.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s naudotojui %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">Medija daugiau nebeprieinama.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nepavyksta rasti programėlės, galinčios bendrinti šią mediją.</string>
   <!--MessageNotifier-->
@@ -1931,8 +1929,9 @@
   <string name="QuoteView_you">Jūs</string>
   <string name="QuoteView_original_missing">Pradinė žinutė nerasta</string>
   <!--Author formatting for group stories-->
+  <string name="QuoteView_s_story">%1$s · Istorija</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Jūsų istorija</string>
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Slinkti į apačią</string>
   <!--BubbleOptOutTooltip-->

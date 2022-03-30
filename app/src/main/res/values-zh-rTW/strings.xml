@@ -1219,6 +1219,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">撥號中…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">群組太大，無法給參與者打電話。</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">重新連接中…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal 語音通話</string>
   <string name="WebRtcCallView__signal_video_call">Signal 視訊電話</string>
@@ -1361,12 +1363,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">更多</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">我們稍後會再次提醒你。</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">我們明天再提醒你。</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">我們將在幾天後再次提醒你。</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">我們會在一周後再次提醒你。</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">我們會在幾週後再次提醒你。</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">我們將在一個月內再次提醒你。</string>
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN碼已成功驗證。我們稍後會再次提醒你。</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN 碼驗證成功。明天我們會再次提醒你。</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN 碼驗證成功。我們會在幾天後再次提醒你。</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN 碼驗證成功。我們會在一周內再次提醒你。</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN 碼驗證成功。我們會在幾週後再次提醒你。</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN 碼驗證成功。我們會在一個月後再次提醒你。</string>
   <!--Slide-->
   <string name="Slide_image">圖片</string>
   <string name="Slide_sticker">貼圖</string>
@@ -1514,6 +1516,10 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">刪除訊息？</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">這將永久刪除此訊息。</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s到%2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">你給 %1$s</string>
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s 給你</string>
   <string name="MediaPreviewActivity_media_no_longer_available">媒體已不存在。</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">找不到能夠分享此媒體檔案的應用程式。</string>
   <!--MessageNotifier-->
@@ -1713,9 +1719,11 @@
   <string name="QuoteView_you">你</string>
   <string name="QuoteView_original_missing">無法找到原始訊息</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">%1$s 個限時動態</string>
+  <string name="QuoteView_s_story">%1$s · 限時動態</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">你的限時動態</string>
+  <string name="QuoteView_your_story">你 · 限時動態</string>
+  <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">不再提供</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">向下滑動至底部</string>
   <!--BubbleOptOutTooltip-->

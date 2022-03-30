@@ -1284,6 +1284,8 @@
   <string name="WebRtcCallActivity__signal_s">Chamada Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">A chamar…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grupo demasiado grande para ligar a todos os participantes.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">A ligar novamente…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Chamada do Signal</string>
   <string name="WebRtcCallView__signal_video_call">Videochamada do Signal</string>
@@ -1435,12 +1437,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Mais</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Iremos recordar-lhe mais tarde.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Iremos recordar-lhe de novo amanhã.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Iremos recordar-lhe de novo dentro de alguns dias.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Iremos recordar-lhe dentro de uma semana.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Iremos recordar-lhe dentro de algumas semanas.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Iremos recordar-lhe dentro de um mês</string>
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN verificado com sucesso. Iremos recordar-lhe mais tarde.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN verificado com sucesso. Iremos recordar-lhe amanhã.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN verificado com sucesso. Iremos recordar-lhe dentro de alguns dias.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN verificado com sucesso. Iremos recordar-lhe dentro de uma semana.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN verificado com sucesso. Iremos recordar-lhe dentro de algumas semanas.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN verificado com sucesso. Iremos recordar-lhe dentro de um mês.</string>
   <!--Slide-->
   <string name="Slide_image">Imagem</string>
   <string name="Slide_sticker">Autocolante</string>
@@ -1590,6 +1592,10 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Eliminar mensagem?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Isto irá eliminar permanentemente esta mensagem.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s para %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">De si para %1$s</string>
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">De %1$s para si</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Multimédia atualmente indisponível.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Não foi possível encontrar uma aplicação capaz de partilhar este média.</string>
   <!--MessageNotifier-->
@@ -1793,9 +1799,11 @@
   <string name="QuoteView_you">Você</string>
   <string name="QuoteView_original_missing">Não foi encontrada a mensagem original</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">%1$s História</string>
+  <string name="QuoteView_s_story">%1$s · História</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
   <string name="QuoteView_your_story">A sua história</string>
+  <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Já não se encontra disponível</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Deslize até ao fundo</string>
   <!--BubbleOptOutTooltip-->

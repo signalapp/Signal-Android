@@ -1414,6 +1414,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Uskutočňovanie hovoru…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Skupina je príliš veľká na to, aby vyzváňala účastníkom.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Pripájanie…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal hovor</string>
   <string name="WebRtcCallView__signal_video_call">Videohovor Signal</string>
@@ -1579,12 +1581,12 @@ telefónne číslo
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Viac</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Pripomenieme vám to opäť neskôr.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Pripomenieme vám to opäť zajtra.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Pripomenieme vám to opät o niekoľko dní.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Pripomenieme vám to opäť o týždeň.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Pripomenieme vám to opäť o pár týždňov.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Pripomenieme vám to opäť o mesiac.</string>
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN bol úspešne overený. Pripomenieme vám ho neskôr.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN bol úspešne overený. Zajtra vám ho opäť pripomenieme.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN bol úspešne overený. O pár dní vám ho opäť pripomenieme.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN bol úspešne overený. Pripomenieme vám ho opäť o týždeň.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN bol úspešne overený. O pár týždňov vám ho znova pripomenieme.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN bol úspešne overený. Pripomenieme vám ho opäť o mesiac.</string>
   <!--Slide-->
   <string name="Slide_image">Obrázok</string>
   <string name="Slide_sticker">Nálepka</string>
@@ -1736,6 +1738,10 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Vymazať správu?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Týmto natrvalo odstánite túto správu.</string>
   <string name="MediaPreviewActivity_s_to_s">od %1$s do %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Vy pre %1$s</string>
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s vám</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Médiá už nie sú dostupné.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nepodarilo sa nájsť aplikáciu schopnú zdieľať tento typ súboru.</string>
   <!--MessageNotifier-->
@@ -1947,9 +1953,11 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="QuoteView_you">Vy</string>
   <string name="QuoteView_original_missing">Pôvodná správa sa nenašla</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">%1$s Príbeh</string>
+  <string name="QuoteView_s_story">%1$s · Príbeh</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Tvoj príbeh</string>
+  <string name="QuoteView_your_story">Vy · Príbeh</string>
+  <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Už nie je k dispozícii</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Na koniec</string>
   <!--BubbleOptOutTooltip-->

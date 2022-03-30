@@ -1414,6 +1414,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Łączenie…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grupa jest zbyt duża, aby powiadomić uczestników dzwonkiem.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Ponowne łączenie…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Połączenie audio Signal</string>
   <string name="WebRtcCallView__signal_video_call">Połączenie wideo Signal</string>
@@ -1575,12 +1577,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Więcej</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Przypomnimy Ci o tym ponownie później.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Przypomnimy Ci o tym ponownie jutro.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Przypomnimy Ci o tym ponownie za kilka dni.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Przypomnimy Ci o tym ponownie za tydzień.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Przypomnimy Ci o tym ponownie za dwa tygodnie.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Przypomnimy Ci o tym ponownie za miesiąc.</string>
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN został zweryfikowany. Przypomnimy Ci o nim później.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN został zweryfikowany. Przypomnimy Ci o nim jutro.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN został zweryfikowany. Przypomnimy Ci o nim za kilka dni.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN został zweryfikowany. Przypomnimy Ci o nim za tydzień.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN został zweryfikowany. Przypomnimy Ci o nim za kilka tygodni.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN został zweryfikowany. Przypomnimy Ci o nim za miesiąc.</string>
   <!--Slide-->
   <string name="Slide_image">Obraz</string>
   <string name="Slide_sticker">Naklejka</string>
@@ -1729,6 +1731,10 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Usunąć wiadomość?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Spowoduje to trwałe usunięcie tej wiadomości.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s do %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Ty do %1$s</string>
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s do Ciebie</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Multimedia nie są już dostępne.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nie można znaleźć aplikacji, aby udostępnić te multimedia.</string>
   <!--MessageNotifier-->
@@ -1940,9 +1946,11 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="QuoteView_you">Ty</string>
   <string name="QuoteView_original_missing">Nie znaleziono oryginalnej wiadomości</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">Historia %1$s</string>
+  <string name="QuoteView_s_story">%1$s · Historia</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Twoja historia</string>
+  <string name="QuoteView_your_story">Ty · Historia</string>
+  <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Historia nie jest już dostępna</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Przewiń do dołu</string>
   <!--BubbleOptOutTooltip-->

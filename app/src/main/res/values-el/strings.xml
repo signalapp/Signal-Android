@@ -1258,6 +1258,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Καλεί…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Η ομάδα είναι πολύ μεγάλη ώστε να χρησιμοποιηθεί κουδούνισμα κλήσης για τους συμμετέχοντες.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Επανασύνδεση…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Κλήση Signal</string>
   <string name="WebRtcCallView__signal_video_call">Βιντεοκλήση Signal</string>
@@ -1406,12 +1408,6 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Περισσότερα</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Θα σ\' το ξαναθυμήσουμε αργότερα.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Θα σ\' το ξαναθυμήσουμε αύριο.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Θα σ\' το ξαναθυμήσουμε σε μερικές μέρες.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Θα σ\' το ξαναθυμήσουμε σε μια εβδομάδα.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Θα σ\' το υπενθυμίσουμε ξανα σε μερικές εβδομάδες.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Θα σ\' το ξαναθυμήσουμε σε ένα μήνα.</string>
   <!--Slide-->
   <string name="Slide_image">Εικόνα</string>
   <string name="Slide_sticker">Αυτοκόλλητο</string>
@@ -1560,6 +1556,8 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Διαγραφή μηνύματος;</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Αυτή η επιλογή θα διαγράψει οριστικά αυτό το μήνυμα.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s προς %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">Το πολυμέσο δεν είναι πια διαθέσιμο.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Δεν βρέθηκε εφαρμογή που να μπορεί να διαμοιραστεί αυτό το πολυμέσο.</string>
   <!--MessageNotifier-->
@@ -1757,6 +1755,7 @@
   <string name="QuoteView_original_missing">Το αρχικό μήνυμα δε βρέθηκε</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Πήγαινε στο τέρμα</string>
   <!--BubbleOptOutTooltip-->

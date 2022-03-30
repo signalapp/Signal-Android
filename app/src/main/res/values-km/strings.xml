@@ -1202,6 +1202,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">កំពុងហៅ…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">ក្រុមធំពេក ក្នុងការហៅអ្នកចូលរួម។</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">កំពុងតភ្ជាប់ម្តងទៀត…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">ការហៅ Signal </string>
   <string name="WebRtcCallView__signal_video_call">ការហៅវីដេអូ Signal</string>
@@ -1343,12 +1345,6 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">បន្ថែម</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">យើងនឹងរំលឹកអ្នកម្តងទៀតពេលក្រោយ។</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">យើងនឹងរំលឹកអ្នកម្តងទៀតថ្ងៃស្អែក។</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">យើងនឹងរំលឹកអ្នកម្តងទៀតប៉ុន្មានថ្ងៃទៀត។</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">យើងនឹងរំលឹកអ្នកម្តងទៀតសប្តាហ៍ក្រោយ។</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">យើងនឹងរំលឹកអ្នកម្តងទៀត២សប្តាហ៍ក្រោយ។</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">យើងនឹងរំលឹងអ្នកម្តងទៀត១ខែក្រោយ។</string>
   <!--Slide-->
   <string name="Slide_image">រូបភាព</string>
   <string name="Slide_sticker">ស្ទីកគ័រ</string>
@@ -1495,6 +1491,8 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">លុបសារ?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">សារនេះនឹងលុប ជារៀងរហូត។</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s ទៅ%2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">ឯកសារមេឌៀលែងមានទៀតហើយ។</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">មិនអាចស្វែងរកកម្មវិធីដែលអាចចែករំលែកឯកសារមេឌៀនេះ។</string>
   <!--MessageNotifier-->
@@ -1691,6 +1689,7 @@
   <string name="QuoteView_original_missing">រកមិនឃើញសារដើម</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">អូសចុះក្រោម</string>
   <!--BubbleOptOutTooltip-->

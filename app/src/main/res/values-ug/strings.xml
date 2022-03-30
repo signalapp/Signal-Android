@@ -1199,6 +1199,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">چاقىرىۋاتىدۇ…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">قېتىلغۇچىلارنى چاقىرىشقا گۇرۇپپا بەك چوڭ كېلىپ قالدى</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">قايتا ئۇلىنىۋاتىدۇ…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">‫Signal چاقىرىقى</string>
   <string name="WebRtcCallView__signal_video_call">‏Signal سىنلىق چاقىرىقى</string>
@@ -1345,12 +1347,6 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">تېخىمۇ كۆپ</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">سەل تۇرۇپ سىزنى قايتا ئەسكەرتىمىز.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">ئەتە سىزنى قايتا ئەسكەرتىمىز.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">بىر قانچە كۈندىن كېيىن سىزنى قايتا ئەسكەرتىمىز.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">بىر ھەپتىدىن كېيىن سىزنى قايتا ئەسكەرتىمىز.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">بىر قانچە ھەپتىدىن كېيىن سىزنى قايتا ئەسكەرتىمىز.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">بىر ئايدىن كېيىن سىزنى قايتا ئەسكەرتىمىز.</string>
   <!--Slide-->
   <string name="Slide_image">رەسىم</string>
   <string name="Slide_sticker">چىراي ئىپادە</string>
@@ -1499,6 +1495,8 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">ئۇچۇرنى ئۆچۈرەمسىز؟</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">بۇ ئۇچۇر مەڭگۈلۈك ئۆچۈرۈلىدۇ.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s دىن%2$s غىچە</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">ۋاسىتەنى ئىشلەتكىلى بولمايدۇ.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">بۇ ۋاسىتەنى ھەمبەھىرلەيدىغان ئەپ تېپىلمىدى.</string>
   <!--MessageNotifier-->
@@ -1693,6 +1691,7 @@
   <string name="QuoteView_original_missing">ئەسلى ئۇچۇر تېپىلمىدى</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">ئەڭ ئاستىغا سىيرى</string>
   <!--BubbleOptOutTooltip-->

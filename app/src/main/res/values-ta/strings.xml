@@ -1214,6 +1214,8 @@
   <string name="WebRtcCallActivity__signal_s">சிக்னல் Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">அழைக்கிறது…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">எண்ணிக்கை கூடியதால் குழுவில் உள்ள அனைவரையும் அழைக்க இயலாது</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">மீண்டும் இணைக்கிறது …</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal  அழைப்பு</string>
   <string name="WebRtcCallView__signal_video_call">Signal காணொளி அழைப்பு</string>
@@ -1342,12 +1344,6 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">மேலும்</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">பின்னர் உங்களுக்கு நினைவூட்டுவோம்.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">நாளை மீண்டும் உங்களுக்கு நினைவூட்டுவோம்.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">சில நாட்களில் மீண்டும் உங்களுக்கு நினைவூட்டுவோம்.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">ஒரு வாரத்தில் மீண்டும் உங்களுக்கு நினைவூட்டுவோம்.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">ஓரிரு வாரங்களில் மீண்டும் உங்களுக்கு நினைவூட்டுவோம்.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">ஒரு மாதத்தில் மீண்டும் உங்களுக்கு நினைவூட்டுவோம்.</string>
   <!--Slide-->
   <string name="Slide_image">உருவம்</string>
   <string name="Slide_sticker">ஒட்டிப்படம்</string>
@@ -1495,6 +1491,8 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">செய்தியை நீக்கவா?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">இது இந்த செய்தியை நிரந்தரமாக நீக்கும்.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s to %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">இந்த ஊடகம் சேமிப்பகத்தில் இல்லை.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">இந்த மீடியாவைப் பகிரக்கூடிய பயன்பாட்டைக் கண்டுபிடிக்க முடியவில்லை.</string>
   <!--MessageNotifier-->
@@ -1689,6 +1687,7 @@
   <string name="QuoteView_original_missing">அசல் செய்தி கிடைக்கவில்லை</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">கீழே உருட்டவும்</string>
   <!--BubbleOptOutTooltip-->

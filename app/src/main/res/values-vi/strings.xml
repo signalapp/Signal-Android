@@ -1194,6 +1194,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Đang gọi…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Nhóm quá lớn để rung chuông các thành viên</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Đang kết nối lại…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Cuộc gọi Signal</string>
   <string name="WebRtcCallView__signal_video_call">Cuộc gọi hình ảnh qua Signal</string>
@@ -1334,12 +1336,6 @@ mã quốc gia bạn</string>
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Thêm</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Chúng tôi sẽ lại nhắc bạn sau.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Chúng tôi sẽ lại nhắc bạn vào ngày mai.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Chúng tôi sẽ lại nhắc bạn sau vài ngày.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Chúng tôi sẽ lại nhắc bạn sau một tuần.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Chúng tôi sẽ lại nhắc bạn sau vài tuần.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Chúng tôi sẽ lại nhắc bạn sau một tháng.</string>
   <!--Slide-->
   <string name="Slide_image">Ảnh</string>
   <string name="Slide_sticker">Nhãn dán</string>
@@ -1486,6 +1482,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Xoá tin nhắn?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Thao tác này sẽ xóa vĩnh viễn tin nhắn này.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s đến %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">Tệp đa phương tiện không còn khả dụng.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Không thể tìm được ứng dụng có thể chia sẻ tệp đa phương tiện này.</string>
   <!--MessageNotifier-->
@@ -1680,6 +1678,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="QuoteView_original_missing">Không tìm thấy tin nhắn ban đầu</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Kéo xuống dưới cùng</string>
   <!--BubbleOptOutTooltip-->

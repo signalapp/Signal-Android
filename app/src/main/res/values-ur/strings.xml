@@ -1195,6 +1195,8 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s کو فون کرنے کے لئے ، Signal کو آپ کے کیمرے تک رسائی کی ضرورت ہے</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">کالنگ…</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">دوبارہ رابطہ ہو رہا ہے۔۔۔</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal  کال</string>
   <string name="WebRtcCallView__start_call">کال شروع کریں</string>
@@ -1308,12 +1310,6 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">مزید</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">ہم آپ کو بعد میں ایک بار پھر یاد دلائیں گے۔</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">ہم کل آپ کو دوبارہ یاد دلائیں گے۔</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">ہم آپ کو کچھ ہی دنوں میں ایک بار پھر یاد دلائیں گے۔</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">ایک ہفتے میں ہم آپ کو ایک بار پھر یاد دلائیں گے۔</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">ہم آپ کو ایک دو ہفتوں میں ایک بار پھر یاد دلائیں گے۔</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">ایک ماہ میں ہم آپ کو ایک بار پھر یاد دلائیں گے۔</string>
   <!--Slide-->
   <string name="Slide_image">تصویر</string>
   <string name="Slide_sticker">اسٹیکر</string>
@@ -1460,6 +1456,8 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">پیغام حذف کریں؟</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">یہ مستقل طور پر یہ پیغام حذف کر دے گا۔</string>
   <string name="MediaPreviewActivity_s_to_s">%1$sسے%2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">میڈیا اب دستیاب نہیں ہے۔</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">کوئی ایپ اس میڈیا کو شیئر کرنے کے قابل نہیں پاسکتی ہے۔</string>
   <!--MessageNotifier-->
@@ -1653,6 +1651,7 @@
   <string name="QuoteView_original_missing">اصل میسج نہیں ملا</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">نیچے سکرول کریں</string>
   <!--BubbleOptOutTooltip-->

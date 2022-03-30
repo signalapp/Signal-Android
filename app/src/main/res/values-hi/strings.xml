@@ -1252,6 +1252,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">कॉल की जा रही है…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">प्रतिभागियों को रिंग करने के लिए ग्रूप बहुत बड़ा है.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">फिर से जोङ रहे हैं…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal ऑडियो</string>
   <string name="WebRtcCallView__signal_video_call">Signal वीडियो कॉल</string>
@@ -1398,12 +1400,6 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">अधिक</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">हम आपको बाद में फिर याद दिलाऐंगे।</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">हम आपको कल फिर याद दिलाऐंगे।</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">हम आपको कुछ दिनों में फिर याद दिलाएंगे।</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">हम आपको एक हफ़्ते बाद फिर याद दिलाऐंगे।</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">हम आपको कुछ हफ़्ते बाद फिर याद दिलाऐंगे।</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">हम आपको कुछ माह बाद फिर याद दिलाऐंगे।</string>
   <!--Slide-->
   <string name="Slide_image">तस्वीर </string>
   <string name="Slide_sticker">स्टिकर</string>
@@ -1551,6 +1547,8 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">चयनित मेसेज हटाएं?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">यह इस मेसेज को स्थायी रूप से हटा देगा।</string>
   <string name="MediaPreviewActivity_s_to_s">%1$sसे%2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">मीडिया अब उपलब्ध नहीं है।</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">इस मीडिया को शेयर करने के लिए कोई ऐप नहीं मिल रही।</string>
   <!--MessageNotifier-->
@@ -1747,6 +1745,7 @@
   <string name="QuoteView_original_missing">मूल मेसेज नहीं मिला</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">नीचे स्क्रॉल करें</string>
   <!--BubbleOptOutTooltip-->

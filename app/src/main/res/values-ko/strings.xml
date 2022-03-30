@@ -1184,6 +1184,8 @@
   <string name="WebRtcCallActivity__signal_s">시그널 %1$s</string>
   <string name="WebRtcCallActivity__calling">전화 진행 중…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">단체 참여자가 너무 많아 통화를 진행할 수 없습니다.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">재연결 중…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal 전화</string>
   <string name="WebRtcCallView__signal_video_call">Signal 영상 통화</string>
@@ -1299,12 +1301,6 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">더 보기</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">나중에 다시 알려드리겠습니다.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">내일 다시 알려드리겠습니다.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">며칠 후 다시 알려드리겠습니다.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">일주일 후 다시 알려드리겠습니다.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">몇 주 후 다시 알려드리겠습니다.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">한 달 뒤에 다시 알려드리겠습니다.</string>
   <!--Slide-->
   <string name="Slide_image">이미지</string>
   <string name="Slide_sticker">스티커</string>
@@ -1453,6 +1449,8 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">메시지를 삭제하시겠습니까?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">메시지를 영구적으로 삭제합니다.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s~%2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">미디어를 더 이상 이용할 수 없습니다.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">미디어를 공유할 수 있는 앱을 찾을 수 없습니다.</string>
   <!--MessageNotifier-->
@@ -1643,6 +1641,7 @@
   <string name="QuoteView_original_missing">원본 메시지를 찾을 수 없음</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">하단으로 스크롤</string>
   <!--BubbleOptOutTooltip-->

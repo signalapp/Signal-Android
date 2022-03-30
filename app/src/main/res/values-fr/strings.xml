@@ -1285,6 +1285,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Appel…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Le groupe est trop grand pour appeler tous les participants.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Reconnexion…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Appel Signal</string>
   <string name="WebRtcCallView__signal_video_call">Appel vidéo Signal</string>
@@ -1430,12 +1432,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Plus</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Nous vous le rappellerons plus tard.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Nous vous le rappellerons demain.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Nous vous le rappellerons dans quelques jours.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Nous vous le rappellerons dans une semaine.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Nous vous le rappellerons dans quelques semaines.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Nous vous le rappellerons dans un mois.</string>
+  <string name="SignalPinReminders_well_remind_you_again_later">Le NIP a été confirmé avec succès. Nous vous le rappellerons plus tard.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Le NIP a été confirmé avec succès. Nous vous le rappellerons demain.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Le NIP a été confirmé avec succès. Nous vous le rappellerons dans quelques jours.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Le NIP a été confirmé avec succès. Nous vous le rappellerons dans une semaine.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Le NIP a été confirmé avec succès. Nous vous le rappellerons dans quelques semaines.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Le NIP a été confirmé avec succès. Nous vous le rappellerons dans un mois.</string>
   <!--Slide-->
   <string name="Slide_image">Image</string>
   <string name="Slide_sticker">Autocollant</string>
@@ -1582,6 +1584,10 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Supprimer le message ?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Ce message sera irrémédiablement supprimé.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s à %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Vous à %1$s</string>
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s à vous</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Le média n’est plus disponible.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Impossible de trouver une appli qui peut partager ce média.</string>
   <!--MessageNotifier-->
@@ -1785,9 +1791,11 @@
   <string name="QuoteView_you">Vous</string>
   <string name="QuoteView_original_missing">Le message original est introuvable</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">Histoire de %1$s</string>
+  <string name="QuoteView_s_story">%1$s · Histoire</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Votre histoire</string>
+  <string name="QuoteView_your_story">Vous · Histoire</string>
+  <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">N’est plus proposée</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Faire défiler vers le bas</string>
   <!--BubbleOptOutTooltip-->

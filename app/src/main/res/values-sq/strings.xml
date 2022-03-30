@@ -1286,6 +1286,8 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Po thirret…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grupi është shumë i madh për t\’u rënë ziles së pjesëmarrësve.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Po rilidhet…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Thirrje Signal</string>
   <string name="WebRtcCallView__signal_video_call">Thirrje Signal Me Video</string>
@@ -1437,12 +1439,12 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Më tepër</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Do t\’jua kujtojmë më vonë.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Do t\’jua kujtojmë prapë nesër.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Do t\’jua kujtojmë prapë pas pak ditësh.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Do t\’jua kujtojmë prapë pas një jave.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Do t\’jua kujtojmë prapë pas dy javësh.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Do t\’jua kujtojmë sërish pas një muaji.</string>
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN-i u verifikua me sukses. Do t’jua kujtojmë sërish më vonë.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN-i u verifikua me sukses. Do t’jua kujtojmë sërish nesër.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN-i u verifikua me sukses. Do t’jua kujtojmë sërish pas pak ditësh.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN-i u verifikua me sukses. Do t’jua kujtojmë sërish pas një jave.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN-i u verifikua me sukses. Do t’jua kujtojmë sërish pas nja dy javësh.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN-i u verifikua me sukses. Do t’jua kujtojmë sërish pas një muaji.</string>
   <!--Slide-->
   <string name="Slide_image">Figurë</string>
   <string name="Slide_sticker">Ngjitës</string>
@@ -1592,6 +1594,10 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Të fshihet mesazhi?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Kjo do ta fshijë përgjithmonë këtë mesazh.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s për %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Ju për %1$s</string>
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s për ju</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Media s\’është më e passhme.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">S\’gjendet dot një aplikacion për të ndarë me të tjerët këtë media.</string>
   <!--MessageNotifier-->
@@ -1795,9 +1801,10 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="QuoteView_you">Ju</string>
   <string name="QuoteView_original_missing">S\’u gjet mesazhi origjinal</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">Histori %1$s</string>
+  <string name="QuoteView_s_story">%1$s · Histori</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Historia Tuaj</string>
+  <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">S’mund të kihet më</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rrëshqit drejt fundit</string>
   <!--BubbleOptOutTooltip-->

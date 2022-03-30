@@ -1277,6 +1277,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Chamando…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">O grupo é muito grande para ligar para todos os participantes.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Reconectando…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Chamada Signal</string>
   <string name="WebRtcCallView__signal_video_call">Chamada de vídeo do Signal</string>
@@ -1428,12 +1430,6 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Mais</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Nós te lembraremos outra vez mais tarde.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Nós te lembraremos outra vez amanhã.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Nós te lembraremos novamente em alguns dias.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Nós te lembraremos novamente em uma semana.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Nós te lembraremos novamente em algumas semanas.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Nós te lembraremos novamente em um mês.</string>
   <!--Slide-->
   <string name="Slide_image">Imagem</string>
   <string name="Slide_sticker">Figurinha</string>
@@ -1583,6 +1579,8 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Excluir mensagem?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Esta mensagem será excluída permanentemente.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s para %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">A mídia não está mais disponível.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Não foi possível encontrar um aplicativo capaz de compartilhar esta mídia.</string>
   <!--MessageNotifier-->
@@ -1785,9 +1783,9 @@
   <string name="QuoteView_you">Você</string>
   <string name="QuoteView_original_missing">Mensagem original não encontrada</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">Story em %1$s</string>
+  <string name="QuoteView_s_story">%1$s · Story</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Seu Story</string>
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rolar para o final</string>
   <!--BubbleOptOutTooltip-->

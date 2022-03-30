@@ -1285,6 +1285,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Hringi…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Hópurinn er of stór til að hægt sé að hringja í þátttakendurna.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Endurtengist….</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-símtal</string>
   <string name="WebRtcCallView__signal_video_call">Signal-myndsímtal</string>
@@ -1436,12 +1438,6 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Meira</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Við munum minna þig á aftur síðar.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Við munum minna þig á aftur á morgun.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Við munum minna þig á aftur eftir nokkra daga.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Við munum minna þig á aftur eftir viku.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Við munum minna þig á aftur eftir tvær vikur.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Við munum minna þig á aftur eftir mánuð.</string>
   <!--Slide-->
   <string name="Slide_image">Mynd</string>
   <string name="Slide_sticker">Límmerki</string>
@@ -1590,6 +1586,8 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Eyða skilaboðum?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Þetta mun endanlega eyða þessum skilaboðum.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s til %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">Margmiðlunarefni er ekki lengur til staðar.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Finn ekki smáforrit til að deila þessu efni.</string>
   <!--MessageNotifier-->
@@ -1793,9 +1791,9 @@
   <string name="QuoteView_you">Þú</string>
   <string name="QuoteView_original_missing">Upprunaleg skilaboð finnast ekki</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">Saga frá %1$s</string>
+  <string name="QuoteView_s_story">%1$s · Saga</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Sagan þín</string>
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Skruna neðst</string>
   <!--BubbleOptOutTooltip-->

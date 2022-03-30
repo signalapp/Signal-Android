@@ -1262,6 +1262,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Aranıyor…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grup, katılımcıların aranması için çok büyük.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Yeniden bağlanıyor…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal Araması</string>
   <string name="WebRtcCallView__signal_video_call">Görüntülü Signal Araması</string>
@@ -1413,12 +1415,6 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Daha fazla</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Size daha sonra hatırlatacağız</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Size yarın hatırlatacağız.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Size birkaç gün içinde hatırlatacağız.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Size bir hafta içinde hatırlatacağız</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Size birkaç hafta içinde hatırlatacağız.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Bir ay sonra size yine hatırlatacağız.</string>
   <!--Slide-->
   <string name="Slide_image">Görüntü</string>
   <string name="Slide_sticker">Çıkartma</string>
@@ -1566,6 +1562,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">İletiyi sil?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Bu eylem bu iletiyi kalıcı olarak silecektir.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s --&gt; %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">İçerik artık mevcut değil.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Bu içeriği paylaşabilen bir uygulama bulunamadı.</string>
   <!--MessageNotifier-->
@@ -1765,6 +1763,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="QuoteView_original_missing">İletinin aslı bulunamadı</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">En alta kaydır</string>
   <!--BubbleOptOutTooltip-->

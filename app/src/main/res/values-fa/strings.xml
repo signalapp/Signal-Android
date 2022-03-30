@@ -162,7 +162,9 @@
   <string name="ContactsCursorLoader_phone_number_search">جستجوی شماره‌تلفن</string>
   <string name="ContactsCursorLoader_username_search">جستجوی نام کاربری</string>
   <!--Label for my stories when selecting who to send media to-->
+  <string name="ContactsCursorLoader_my_stories">داستان‌های من</string>
   <!--Action for creating a new story-->
+  <string name="ContactsCursorLoader_new_story">داستان جدید</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">ارسال پیام به  %s</string>
   <string name="ContactsDatabase_signal_call_s">تماس سیگنال با %s</string>
@@ -315,6 +317,7 @@
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s روشن</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">مسدود کردن درخواست؟</string>
   <!--Dialog message for block group link join requests-->
   <!--Dialog confirm block request button-->
   <!--Dialog cancel block request button-->
@@ -1267,6 +1270,8 @@
   <string name="WebRtcCallActivity__signal_s">%1$s سیگنال</string>
   <string name="WebRtcCallActivity__calling">در حال برقراری تماس…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">گروه برای زنگ خوردن همهٔ مشارکت‌کنندگان خیلی بزرگ است.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">در حال اتصال دوباره…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">تماس سیگنال</string>
   <string name="WebRtcCallView__signal_video_call">تماس ویدئویی سیگنال</string>
@@ -1417,12 +1422,6 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">بیشتر</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">بعداً دوباره به شما یادآوری خواهیم کرد.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">فردا دوباره به شما یادآوری خواهیم کرد.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">طی چند روز، دوباره به شما یادآوری خواهیم کرد.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">طی یک هفته، دوباره به شما یادآوری خواهیم کرد.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">طی چند هفته، دوباره به شما یادآوری خواهیم کرد.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">طی یک ماه دوباره به شما یادآوری خواهیم کرد.</string>
   <!--Slide-->
   <string name="Slide_image">تصویر</string>
   <string name="Slide_sticker">استیکر</string>
@@ -1571,6 +1570,8 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">حذف پیام؟</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">این گزینه این پیام را به طور دائم حذف خواهد کرد.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s به %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">رسانه دیگر در دسترس نیست.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">برنامه‌ای برای اشتراک‌گذاری این رسانه پیدا نشد.</string>
   <!--MessageNotifier-->
@@ -1770,6 +1771,7 @@
   <string name="QuoteView_original_missing">پیام اصلی یافت نشد</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">رفتن به پایین</string>
   <!--BubbleOptOutTooltip-->
@@ -3698,6 +3700,7 @@
   <!--Label for Stories tab in home app screen-->
   <!--String for counts above 99 in conversation list tabs-->
   <!--Title for "My Stories" row item in Stories landing page-->
+  <string name="StoriesLandingFragment__my_stories">داستان‌های من</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <!--Displayed when there are no stories to display-->
   <!--Context menu option to hide a story-->

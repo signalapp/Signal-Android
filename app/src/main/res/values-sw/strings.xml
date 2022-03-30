@@ -1193,6 +1193,8 @@ Signal inahitaji ruhusa ya Kamera ili kuskani msimbo wa QR, lakini imekataliwa k
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Ili kumpigia simu %1$s, Signal inahitaji idhini ya kufikia kamera yako</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Unapiga simu…</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Inaunganisha upya…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Simu ya Signal</string>
   <string name="WebRtcCallView__signal_video_call">Simu ya Video ya Signal</string>
@@ -1305,12 +1307,6 @@ nambari yako ya simu</string>
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Zaidi</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Tutakukumbusha tena baadaye.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Tutakukumbusha tena kesho.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Tutakukumbusha tena baada ya siku chache.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Tutakukumbusha tena baada ya wiki moja.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Tutakukumbusha tena baada ya wiki kadhaa.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Tutakukumbusha tena baada ya mwezi mmoja.</string>
   <!--Slide-->
   <string name="Slide_image">Picha</string>
   <string name="Slide_sticker">Kibandiko</string>
@@ -1457,6 +1453,8 @@ nambari yako ya simu</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Futa ujumbe?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Hii itafuta ujumbe kabisa</string>
   <string name="MediaPreviewActivity_s_to_s">%1$shadi %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">Media haipatikani tena.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Hatujapata programu inayoweza kushiriki media hii.</string>
   <!--MessageNotifier-->
@@ -1651,6 +1649,7 @@ nambari yako ya simu</string>
   <string name="QuoteView_original_missing">Ujumbe asili haupatikani</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Biringiza hadi chini</string>
   <!--BubbleOptOutTooltip-->

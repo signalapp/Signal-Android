@@ -1530,6 +1530,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal‏ %1$s</string>
   <string name="WebRtcCallActivity__calling">يتصل…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">إن المجموعة كبيرة جدا لكي يرن التطبيق على المشاركين.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">يَجري إعادة الاِتصال..</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">مكالمة Signal</string>
   <string name="WebRtcCallView__signal_video_call">مكالمة Signal بالفيديو</string>
@@ -1708,12 +1710,6 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">المزيد</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">سنعيد تذكيرك لاحقاً.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">سنعيد تذكيرك غداً.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">سنعيد تذكيرك في بضعة أيام.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">سنعيد تذكيرك بعد أسبوع.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">سنعيد تذكيرك بعد عدة أسابيع.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">سنذّكرك مرة أخرى خلال شهر</string>
   <!--Slide-->
   <string name="Slide_image">صورة</string>
   <string name="Slide_sticker">ملصق</string>
@@ -1864,6 +1860,8 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">أَتريد حذف الرسالة ؟</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">سوف يقوم هذا بحذف الرسالة بشكل دائم.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s إلى %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">هذه الوسيط لم يعد متاحا.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">لم يعثر على تطبيق قادر على فتح هذا الملف.</string>
   <!--MessageNotifier-->
@@ -2082,9 +2080,8 @@
   <string name="QuoteView_you">أنت</string>
   <string name="QuoteView_original_missing">لم يتم العثور على الرسالة الأصلية</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">%1$s قصص</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">قصتي</string>
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">النزول إلى الأسفل</string>
   <!--BubbleOptOutTooltip-->

@@ -1220,6 +1220,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Обаждане</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Групата е твърде голяма, за да звъннем на присъстващите.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Повторно свързване…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Повикване в Signal</string>
   <string name="WebRtcCallView__signal_video_call">Видео разговор чрез Signal</string>
@@ -1363,12 +1365,6 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Още</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Ще ви напомним отново по-късно.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Ще ви припомним отново утре.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Ще ви припомним отново след няколко дни.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Ще ви припомним отново след една седмица.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Ще ви припомним отново след няколко седмици.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Ще ви припомним отново след месец.</string>
   <!--Slide-->
   <string name="Slide_image">Изображение</string>
   <string name="Slide_sticker">Стикер</string>
@@ -1517,6 +1513,8 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Изтриване на съобщението?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Това ще изтрие невъзвращаемо текущото съобщение.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s до %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">Тази мултимедия вече не е налична.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Не може да бъде намерено приложение, което да може да споделя тази мултимедия.</string>
   <!--MessageNotifier-->
@@ -1708,6 +1706,7 @@
   <string name="QuoteView_original_missing">Оригиналното съобщение не е открито</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Превъртане надолу</string>
   <!--BubbleOptOutTooltip-->

@@ -1417,6 +1417,8 @@ Anfon neges heb ei diogelu?</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Yn galw…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Mae\'r grŵp yn rhy fawr i ffonio\'r cyfranogwyr.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Yn Ailgysylltu…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Galwad Signal</string>
   <string name="WebRtcCallView__signal_video_call">Galwad Fideo Signal</string>
@@ -1582,12 +1584,6 @@ Anfon neges heb ei diogelu?</string>
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Rhagor</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Byddwn yn eich atgoffa\'n hwyrach.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Byddwn yn eich atgoffa yfory.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Byddwn yn eich atgoffa eto ymhen ychydig ddyddiau.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Byddwn yn eich atgoffa ymhen wythnos.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Byddwn yn eich atgoffa ymhen ychydig wythnosau.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Byddwn yn eich atgoffa eto ymhen mis.</string>
   <!--Slide-->
   <string name="Slide_image">Llun</string>
   <string name="Slide_sticker">Sticer</string>
@@ -1739,6 +1735,8 @@ Anfon neges heb ei diogelu?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Dileu neges?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Bydd hyn yn dileu\'n barhaol y neges hon.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s i %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">Nid yw\'r cyfryngau ar gael bellach.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Methu dod o hyd i ap sy\'n gallu rhannu\'r cyfryngau hyn.</string>
   <!--MessageNotifier-->
@@ -1950,9 +1948,9 @@ Anfon neges heb ei diogelu?</string>
   <string name="QuoteView_you">Chi</string>
   <string name="QuoteView_original_missing">Heb ganfod y neges wreiddiol</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">Stori %1$s</string>
+  <string name="QuoteView_s_story">%1$s · Stori</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Eich Stori</string>
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Sgrolio i\'r gwaelod</string>
   <!--BubbleOptOutTooltip-->

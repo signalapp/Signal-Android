@@ -1278,6 +1278,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">कॉलिंग…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">सहभागींना रिंग करण्यासाठी हा गट खूप मोठा आहे.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">पुनःकनेक्ट करत आहे…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal कॉल</string>
   <string name="WebRtcCallView__signal_video_call">Signal व्हिडिओ कॉल</string>
@@ -1427,12 +1429,6 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">अधिक</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">आम्ही आपल्याला नंतर पुन्हा आठवण करून देऊ.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">आम्ही आपल्याला उद्या पुन्हा आठवण करून देऊ.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">आम्ही आपल्याला काही दिवसात पुन्हा आठवण करून देऊ.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">आम्ही आपल्याला एका आठवड्यानी पुन्हा आठवण करून देऊ.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">आम्ही आपल्याला काही आठवड्यांनी पुन्हा आठवण करून देऊ.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">आम्ही आपल्याला एका महिन्यानी पुन्हा आठवण करून देऊ.</string>
   <!--Slide-->
   <string name="Slide_image">चित्र</string>
   <string name="Slide_sticker">स्टिकर</string>
@@ -1581,6 +1577,8 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">संदेश हटवायचा?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">हे कायमचे ह्या संदेशाला हटवेल.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s ते %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">मिडिया आता उपलब्ध नाही.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">हे मिडिया शेअर करण्यासाठी सक्षम असे अॅप सापडू शकले नाही.</string>
   <!--MessageNotifier-->
@@ -1780,7 +1778,9 @@
   <string name="QuoteView_you">आपण</string>
   <string name="QuoteView_original_missing">मूळ संदेश आढळला नाही</string>
   <!--Author formatting for group stories-->
+  <string name="QuoteView_s_story">%1$s . स्टोरी</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">खालपर्यंत स्क्रोल करा</string>
   <!--BubbleOptOutTooltip-->

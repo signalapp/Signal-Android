@@ -1185,6 +1185,8 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">For å ringe %1$s, trenger Signal tilgang til kameraet</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Ringer…</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Kobler til på nytt…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal Anrop</string>
   <string name="WebRtcCallView__start_call">Start samtale</string>
@@ -1301,12 +1303,6 @@ skrev inn (%s) er ugyldig.</string>
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Mer</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Vi minner deg om det senere.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Vi minner deg på igjen i morgen.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Vi minner deg på nytt om noen dager.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Vi minner deg på nytt om en uke.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Vi minner deg på nytt om et par uker.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Vi minner deg på nytt om en måned.</string>
   <!--Slide-->
   <string name="Slide_image">Bilde</string>
   <string name="Slide_sticker">Klistremerke</string>
@@ -1452,6 +1448,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Vil du slette denne meldinga?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Meldinga blir slettet for godt.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s til %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">Media er ikke lenger tilgjengelig.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Kan ikke finne app som er i stand til å dele dette mediet.</string>
   <!--MessageNotifier-->
@@ -1645,6 +1643,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="QuoteView_original_missing">Opprinnelig melding ikke funnet</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rull til bunnen</string>
   <!--BubbleOptOutTooltip-->

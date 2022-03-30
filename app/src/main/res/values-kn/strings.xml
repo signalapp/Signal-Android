@@ -1195,6 +1195,8 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s ಗೆ ಕರೆ ಮಾಡಲು, Signal ಗೆ ನಿಮ್ಮ ಕ್ಯಾಮರಾ ಪ್ರವೇಶ ಬೇಕಾಗುತ್ತದೆ</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">ಕರೆ ಮಾಡಲಾಗುತ್ತಿದೆ..</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">ಮರುಸಂಪರ್ಕಿಸಲಾಗುತ್ತಿದೆ…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal ಕರೆ</string>
   <string name="WebRtcCallView__start_call">ಕರೆ ಆರಂಭಿಸಿ</string>
@@ -1308,12 +1310,6 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">ಇನ್ನಷ್ಟು</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">ನಾವು ನಂತರ ಮತ್ತೊಮ್ಮೆ ನಿಮಗೆ ಇದನ್ನು ನೆನಪಿಸುತ್ತೇವೆ.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">ನಾಳೆ ಮತ್ತೊಮ್ಮೆ ಇದನ್ನು ನಾವು ನಿಮಗೆ ನೆನಪಿಸುತ್ತೇವೆ.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">ನಾವು ಕೆಲವೇ ದಿನಗಳಲ್ಲಿ ಮತ್ತೊಮ್ಮೆ ಇದನ್ನು ನಿಮಗೆ ನೆನಪಿಸುತ್ತೇವೆ.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">ಒಂದು ವಾರದಲ್ಲಿ ನಾವು ಮತ್ತೊಮ್ಮೆ ಇದನ್ನು ನಿಮಗೆ ನೆನಪಿಸುತ್ತೇವೆ.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">ಎರಡು ವಾರಗಳಲ್ಲಿ ನಾವು ಮತ್ತೊಮ್ಮೆ ಇದನ್ನು ನಿಮಗೆ ನೆನಪಿಸುತ್ತೇವೆ.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">ಒಂದು ತಿಂಗಳಲ್ಲಿ ನಾವು ಪುನಃ ನೆನಪಿಸುತ್ತೇವೆ.</string>
   <!--Slide-->
   <string name="Slide_image">ಚಿತ್ರ</string>
   <string name="Slide_sticker">ಸ್ಟಿಕ್ಕರ್</string>
@@ -1461,6 +1457,8 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">ಸಂದೇಶವನ್ನು ಅಳಿಸುವುದೇ?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">ಇದು ಶಾಶ್ವತವಾಗಿ ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸುವುದು.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s  ಗೆ %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">ಮೀಡಿಯಾ ಇನ್ನು ಲಭ್ಯವಿಲ್ಲ.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">ಈ ಮೀಡಿಯಾ ಹಂಚಿಕೊಳ್ಳಲು ಒಂದು ಆಪ್ ಕಂಡುಕೊಳ್ಳಲಾಗುತ್ತಿಲ್ಲ.</string>
   <!--MessageNotifier-->
@@ -1654,6 +1652,7 @@
   <string name="QuoteView_original_missing">ಮೂಲ ಸಂದೇಶ ಕಂಡುಬಂದಿಲ್ಲ</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">ಕೆಳಗಡೆಗೆ ಸ್ಕ್ರಾಲ್ ಮಾಡಿ</string>
   <!--BubbleOptOutTooltip-->

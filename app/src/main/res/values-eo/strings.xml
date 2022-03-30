@@ -1270,6 +1270,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Konektado…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">La grupo tro grandas por sonorigi la partoprenantojn.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Rekonektado…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-alvoko</string>
   <string name="WebRtcCallView__signal_video_call">Signal-vidalvoko</string>
@@ -1421,12 +1423,6 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Pli</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Ni memorigos vin poste.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Ni memorigos vin morgaŭ.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Ni memorigos vin post kelkaj tagoj.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Ni memorigos vin venontsemajne.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Ni memorigos vin post du semajnoj.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Ni memorigos vin venontmonate.</string>
   <!--Slide-->
   <string name="Slide_image">Bildo</string>
   <string name="Slide_sticker">Glumarko</string>
@@ -1575,6 +1571,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Ĉu forviŝi la mesaĝon?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Tio daŭre forviŝos ĉi tiun mesaĝon.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s al %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">Aŭdvidaĵo ne plu disponeblas.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Ne troveblas aplikaĵo, kiu kapablas kunhavigi ĉi tiun aŭdvidaĵon.</string>
   <!--MessageNotifier-->
@@ -1774,6 +1772,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="QuoteView_original_missing">Origina mesaĝo ne troveblas</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rulumi malsupren</string>
   <!--BubbleOptOutTooltip-->

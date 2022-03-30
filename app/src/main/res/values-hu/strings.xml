@@ -316,8 +316,10 @@
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s bekapcsolva</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">Elutasítod az kérést?</string>
   <!--Dialog message for block group link join requests-->
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">Csatlakozási igény</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">Mégsem</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -1271,6 +1273,8 @@ Kérlek telepítsd újra a Google Play Szolgáltatásokat, majd próbáld újra!
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Hívás…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">A csoport túl nagy minden tag megcsörgetéséhez.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Újracsatlakozás…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal hívás</string>
   <string name="WebRtcCallView__signal_video_call">Signal videóhívás</string>
@@ -1422,12 +1426,6 @@ szám (%s) érvénytelen.
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Továbbiak</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Később újra emlékeztetünk.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Holnap újra emlékeztetni fogunk.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Pár napon belül újra emlékeztetni fogunk.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Egy héten belül újra emlékeztetni fogunk.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Pár héten belül újra emlékeztetni fogunk.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Egy hónap múlva újra emlékeztetni fogunk.</string>
   <!--Slide-->
   <string name="Slide_image">Kép</string>
   <string name="Slide_sticker">Matrica</string>
@@ -1577,6 +1575,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Törlöd az üzenetet?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Ez véglegesen törölni fogja ezt az üzenetet.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s (címzett: %2$s)</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">A médiafájl már nem érhető el</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nem található alkalmazás ezen médiafájl megnyitásához.</string>
   <!--MessageNotifier-->
@@ -1754,6 +1754,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ConversationUpdateItem_enable_call_notifications">Hívás-értesítések engedélyezése</string>
   <string name="ConversationUpdateItem_update_contact">Profil frissítése</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">Csatlakozási igény</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Nincs közös csoportotok. A kérelmek áttekintése során légy óvatos.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Nincs ismerősöd ebben a csoportban. A kérelmek áttekintése során légy óvatos.</string>
   <string name="ConversationUpdateItem_view">Megtekintés</string>
@@ -1776,6 +1777,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="QuoteView_original_missing">Az eredeti üzenet nem található</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Görgetés az aljára</string>
   <!--BubbleOptOutTooltip-->

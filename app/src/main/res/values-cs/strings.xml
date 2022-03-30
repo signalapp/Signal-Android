@@ -1414,6 +1414,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Volání…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Skupina je pro volání příliš velká</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Opětovné připojování…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal hovor</string>
   <string name="WebRtcCallView__signal_video_call">Signal video hovor</string>
@@ -1579,12 +1581,6 @@ telefonní číslo
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Víc</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Připomeneme se vám později.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Připomeneme se vám zase zítra.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Připomeneme se vám zase za několik dní.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Připomeneme se vám zase za týden.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Připomeneme se vám zase za pár týdnů.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Připomeneme se vám znovu za měsíc.</string>
   <!--Slide-->
   <string name="Slide_image">Obrázek</string>
   <string name="Slide_sticker">Nálepka</string>
@@ -1736,6 +1732,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Smazat zprávu?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Tímto trvale smažete tuto zprávu.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s pro %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">Média již nejsou k dispozici.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nebyla nalezena žádná aplikace pro sdílení tohoto média.</string>
   <!--MessageNotifier-->
@@ -1947,9 +1945,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="QuoteView_you">Vy</string>
   <string name="QuoteView_original_missing">Původní zpráva nebyla nalezena</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">%1$s příběh</string>
+  <string name="QuoteView_s_story">%1$s · Příběh</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Váš příběh</string>
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Posun na konec</string>
   <!--BubbleOptOutTooltip-->

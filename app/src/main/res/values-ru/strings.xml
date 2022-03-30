@@ -1414,6 +1414,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Подключаемся…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Невозможно звонить участникам: группа слишком большая.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Переподключаемся…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Звонок Signal</string>
   <string name="WebRtcCallView__signal_video_call">Видеозвонок Signal</string>
@@ -1573,12 +1575,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Больше</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Мы напомним вам позже.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Мы напомним вам завтра.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Мы напомним вам через несколько дней.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Мы напомним вам через неделю.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Мы напомним вам через пару недель.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Мы напомним вам через месяц.</string>
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN-код успешно проверен. Мы напомним вам снова позже.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN-код успешно проверен. Мы напомним вам снова завтра.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN-код успешно проверен. Мы напомним вам снова через несколько дней.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN-код успешно проверен. Мы напомним вам снова через неделю.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN-код успешно проверен. Мы напомним вам снова через пару недель.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN-код успешно проверен. Мы напомним вам снова через месяц.</string>
   <!--Slide-->
   <string name="Slide_image">Изображение</string>
   <string name="Slide_sticker">Стикер</string>
@@ -1730,6 +1732,10 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Удалить сообщение?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Это сообщение будет навсегда удалено.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s для %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Вы отправили %1$s</string>
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s отправил(-а) вам</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Медиафайл больше не доступен.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Не найдено приложение, в котором можно поделиться этим медиафайлом.</string>
   <!--MessageNotifier-->
@@ -1941,9 +1947,11 @@
   <string name="QuoteView_you">Вы</string>
   <string name="QuoteView_original_missing">Исходное сообщение не найдено</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">История %1$s</string>
+  <string name="QuoteView_s_story">%1$s · История</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Ваша история</string>
+  <string name="QuoteView_your_story">Вы · История</string>
+  <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Больше не доступна</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Прокрутить вниз</string>
   <!--BubbleOptOutTooltip-->

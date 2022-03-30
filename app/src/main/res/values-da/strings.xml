@@ -1285,6 +1285,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Ringer op …</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Gruppe er for stor til at ringe til alle deltagerne.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Genopretter forbindelse …</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-opkald</string>
   <string name="WebRtcCallView__signal_video_call">Signal-videoopkald</string>
@@ -1435,12 +1437,12 @@ nummer (%s) er ugyldigt</string>
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Mere</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Vi vil minde dig om det igen senere.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Vi vil minde dig om det igen i morgen.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Vi vil minde dig om det igen om et par dage.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Vi vil minde dig om det igen om en uge.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Vi vil minde dig om det igen om et par uger.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Vi vil minde dig om det igen om en måned.</string>
+  <string name="SignalPinReminders_well_remind_you_again_later">Pinkode korrekt verificeret. Vi vil minde dig om det igen senere.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Pinkode korrekt verificeret. Vi vil minde dig om det igen i morgen.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Pinkode korrekt verificeret. Vi vil minde dig om det igen om nogle få dage.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Pinkode korrekt verificeret. Vi vil minde dig om det igen om en uge.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Pinkode korrekt verificeret. Vi vil minde dig om det igen om et par uge.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Pinkode korrekt verificeret. Vi vil minde dig om det igen om en måned.</string>
   <!--Slide-->
   <string name="Slide_image">Billede</string>
   <string name="Slide_sticker">Klistermærke</string>
@@ -1590,6 +1592,10 @@ nummer (%s) er ugyldigt</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Slet besked?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Dette sletter beskeden permanent.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s til %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Dig til %1$s</string>
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s til dig</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Mediefil er ikke længere tilgængelig.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Kan ikke finde en app, som kan dele denne mediefil.</string>
   <!--MessageNotifier-->
@@ -1793,9 +1799,11 @@ nummer (%s) er ugyldigt</string>
   <string name="QuoteView_you">Dig</string>
   <string name="QuoteView_original_missing">Original besked ikke fundet</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">%1$s historie</string>
+  <string name="QuoteView_s_story">%1$s · Historie</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Din historie</string>
+  <string name="QuoteView_your_story">Dig · Historie</string>
+  <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Ikke længere tilgængelig</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Scroll til bunden</string>
   <!--BubbleOptOutTooltip-->

@@ -1249,6 +1249,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Helistamine…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grupp on liikmetele helistamiseks liiga suur.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Ühenduse taastamine…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signali kõne</string>
   <string name="WebRtcCallView__signal_video_call">Signali videokõne</string>
@@ -1384,12 +1386,6 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Rohkem</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Me tuletame sulle hiljem uuesti meelde.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Me tuletame sulle homme uuesti meelde.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Me tuletame sulle paari päeva pärast uuesti meelde.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Me tuletame sulle nädala pärast uuesti meelde.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Me tuletame sulle paari nädala pärast uuesti meelde.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Me tuletame sulle kuu aja pärast uuesti meelde.</string>
   <!--Slide-->
   <string name="Slide_image">Pilt</string>
   <string name="Slide_sticker">Kleeps</string>
@@ -1538,6 +1534,8 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Kustutad sõnumi?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">See kustutab püsivalt valitud sõnumi.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s saajale %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">Meedia ei ole enam saadaval.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Ei leia rakendust, mis oleks võimeline seda meediafaili jagama.</string>
   <!--MessageNotifier-->
@@ -1733,6 +1731,7 @@
   <string name="QuoteView_original_missing">Originaalsõnumit ei leitud</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Keri alla</string>
   <!--BubbleOptOutTooltip-->

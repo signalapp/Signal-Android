@@ -885,7 +885,7 @@
   <!--Megaphones-->
   <string name="Megaphones_remind_me_later">Потсети ме подоцна</string>
   <string name="Megaphones_verify_your_signal_pin">Проверете го Вашиот Signal PIN</string>
-  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Повремено ќе Ве прашаме да го проверите Вашиот PIN со цел да го запомните.</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Повремено ќе бараме да го проверите Вашиот PIN со цел да го запомните.</string>
   <string name="Megaphones_verify_pin">Провери PIN</string>
   <string name="Megaphones_get_started">Започнете</string>
   <string name="Megaphones_new_group">Нова група</string>
@@ -1279,6 +1279,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Повикувам…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Групата е преголема за да се јавите на учесниците.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Повторно поврзување…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal повик</string>
   <string name="WebRtcCallView__signal_video_call">Signal видео повик</string>
@@ -1427,12 +1429,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Повеќе</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Повторно ќе Ве потсетиме подоцна.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Повторно ќе Ве потсетиме утре.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Повторно ќе Ве потсетиме за неколку дена.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Повторно ќе Ве потсетиме за една недела.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Повторно ќе Ве потсетиме за неколку недели.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Повторно ќе Ве потсетиме за еден месец.</string>
+  <string name="SignalPinReminders_well_remind_you_again_later">Успешно проверен PIN. Повторно ќе Ве потсетиме подоцна.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Успешно проверен PIN. Повторно ќе Ве потсетиме утре.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Успешно проверен PIN. Повторно ќе Ве потсетиме за неколку дена.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Успешно проверен PIN. Повторно ќе Ве потсетиме за една недела.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Успешно проверен PIN. Повторно ќе Ве потсетиме за неколку недели.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Успешно проверен PIN. Повторно ќе Ве потсетиме за еден месец.</string>
   <!--Slide-->
   <string name="Slide_image">Слика</string>
   <string name="Slide_sticker">Стикер</string>
@@ -1580,6 +1582,8 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Избриши порака?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Ова трајно ќе ја избрише оваа порака.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s до %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">Медијата не е повеќе достапна.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Не е пронајдена апликација која може да го сподели овој тип на медија.</string>
   <!--MessageNotifier-->
@@ -1719,6 +1723,10 @@
     <item quantity="other">%1$d членови</item>
   </plurals>
   <!--Displays number of viewers for a story-->
+  <plurals name="contact_selection_list_item__number_of_viewers">
+    <item quantity="one">%1$d гледач</item>
+    <item quantity="other">%1$d гледачи</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal порака </string>
   <string name="conversation_activity__type_message_sms_insecure">Незаштитена SMS порака </string>
@@ -1780,7 +1788,8 @@
   <string name="QuoteView_original_missing">Оригиналната порака не е пронајдена</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Вашата приказна</string>
+  <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Повеќе не е достапна</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Оди до дното</string>
   <!--BubbleOptOutTooltip-->
@@ -2546,7 +2555,7 @@
   <string name="KbsSplashFragment__disable_pin">Исклучи PIN</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Внесете го Вашиот Signal PIN</string>
-  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">За да Ви помогнеме да го запомните PIN-от ќе Ве прашаме да го внесете од време на време. Како што поминува времето ќе Ве прашуваме се помалку.</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">За да Ви помогнеме да го запомните PIN-от, периодично ќе бараме да го внесете. Со тек на време ќе Ве потсетуваме се поретко.</string>
   <string name="KbsReminderDialog__skip">Прескокни</string>
   <string name="KbsReminderDialog__submit">Испрати</string>
   <string name="KbsReminderDialog__forgot_pin">Го заборавивте PIN кодот?</string>
@@ -2673,7 +2682,7 @@
   <string name="preferences_app_protection__pin_reminders">Потсетувања за PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN кодовите ги чуваат информациите складирани на Signal шифрирани, така што само Вие можете да им пристапите. Вашиот профил, поставувања и конакти ќе бидат вратени кога ќе го реинсталирате Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Зголемете ја безбедноста преку повторно барање на Signal PIN код за регистрација на Вашиот телефон со Signal.</string>
-  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Потсетниците помагаат да го запомните Вашиот PIN бидејќи истиот не може да биде повратен ако го изгубите. Со тек на време ќе бидете прашувани поретко.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Потсетниците помагаат да го запомните Вашиот PIN бидејќи истиот не може да биде вратен ако го изгубите. Со тек на време ќе Ве потсетуваме се поретко.</string>
   <string name="preferences_app_protection__turn_off">Исклучи</string>
   <string name="preferences_app_protection__confirm_pin">Потврди PIN</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">Потврдете го Вашиот Signal PIN</string>
@@ -3086,7 +3095,7 @@
   <string name="AppSettingsFragment__invite_your_friends">Покани ги пријателите</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Сметка</string>
-  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Ќе бидете прашувани се поретко</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Со тек на време ќе Ве потсетуваме се поретко.</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Барај го Signal PIN-от за повторна регистрација на Вашиот телефонски број на Signal</string>
   <string name="AccountSettingsFragment__change_phone_number">Промени телефонски број</string>
   <!--ChangeNumberFragment-->
@@ -3857,6 +3866,7 @@
   <!--Hint for entering a URL for a text post-->
   <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Внеси или залепи URL</string>
   <!--Displayed prior to the user entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Споделете линк со гледачите на Вашата приказна</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Барај</string>
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
@@ -3872,9 +3882,14 @@
   <!--Privacy Settings toggle title for stories-->
   <!--Privacy Settings toggle summary for stories-->
   <!--New story viewer selection screen title-->
+  <string name="CreateStoryViewerSelectionFragment__choose_viewers">Избери гледачи</string>
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">Следно</string>
   <!--New story viewer selection screen title as recipients are selected-->
+  <plurals name="SelectViewersFragment__d_viewers">
+    <item quantity="one">%1$d гледач</item>
+    <item quantity="other">%1$d гледачи</item>
+  </plurals>
   <!--Name story screen title-->
   <string name="CreateStoryWithViewersFragment__name_story">Именувај ја приказната</string>
   <!--Name story screen label hint-->

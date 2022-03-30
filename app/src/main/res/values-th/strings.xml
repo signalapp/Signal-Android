@@ -1141,6 +1141,8 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">เพื่อจะโทรหา %1$s Signal จำเป็นต้องเข้าถึงกล้องของคุณ</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">กำลังโทร…</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">กำลังเชื่อมต่อใหม่…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">โทร Signal</string>
   <string name="WebRtcCallView__start_call">เริ่มโทร</string>
@@ -1254,12 +1256,6 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">ดูเพิ่ม</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">เราจะเตือนคุณอีกครั้งในภายหลัง</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">เราจะเตือนคุณอีกครั้งพรุ่งนี้</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">เราจะเตือนคุณอีกครั้งในอีกไม่กี่วัน</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">เราจะเตือนคุณอีกครั้งภายในหนึ่งสัปดาห์</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">เราจะเตือนคุณอีกครั้งภายในอีกไม่กี่สัปดาห์</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">เราจะเตือนคุณอีกครั้งภายในหนึ่งเดือน</string>
   <!--Slide-->
   <string name="Slide_image">รูปภาพ</string>
   <string name="Slide_sticker">สติกเกอร์</string>
@@ -1408,6 +1404,8 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">ลบข้อความหรือไม่?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">นี่จะเป็นการลบข้อความนี้โดยถาวร</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s ถึง %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">สื่อตัวนี้ไม่มีอยู่แล้ว</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">ไม่พบแอปที่แบ่งปันสื่อนี้ได้</string>
   <!--MessageNotifier-->
@@ -1598,6 +1596,7 @@
   <string name="QuoteView_original_missing">ไม่พบข้อความเดิม</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">เลื่อนลงล่างสุด</string>
   <!--BubbleOptOutTooltip-->

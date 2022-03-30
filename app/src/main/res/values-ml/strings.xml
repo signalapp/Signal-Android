@@ -1271,6 +1271,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">വിളിക്കുന്നു…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">പങ്കെടുക്കുന്നവരെ വിളിക്കാൻ കഴിയാത്തത്ര വലുതാണ് ഗ്രൂപ്പ്.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">റീകണക്ടിംഗ്…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal കോൾ</string>
   <string name="WebRtcCallView__signal_video_call">Signal വീഡിയോ കോൾ</string>
@@ -1417,12 +1419,6 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">കൂടുതൽ</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">ഞങ്ങൾ നിങ്ങളെ പിന്നീട് ഓർമ്മപ്പെടുത്തും.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">നാളെ ഞങ്ങൾ നിങ്ങളെ വീണ്ടും ഓർമ്മപ്പെടുത്തും.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">കുറച്ച് ദിവസത്തിനുള്ളിൽ ഞങ്ങൾ നിങ്ങളെ വീണ്ടും ഓർമ്മപ്പെടുത്തും.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">ഒരാഴ്‌ചയ്‌ക്കുള്ളിൽ ഞങ്ങൾ നിങ്ങളെ വീണ്ടും ഓർമ്മപ്പെടുത്തും.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">രണ്ടാഴ്ചയ്ക്കുള്ളിൽ ഞങ്ങൾ നിങ്ങളെ വീണ്ടും ഓർമ്മപ്പെടുത്തും.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">ഒരു മാസത്തിനുള്ളിൽ ഞങ്ങൾ നിങ്ങളെ വീണ്ടും ഓർമ്മപ്പെടുത്തും.</string>
   <!--Slide-->
   <string name="Slide_image">ചിത്രം</string>
   <string name="Slide_sticker">സ്റ്റിക്കർ</string>
@@ -1570,6 +1566,8 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">സന്ദേശം ഇല്ലാതാക്കണോ?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">ഇത് ഈ സന്ദേശം ശാശ്വതമായി ഇല്ലാതാക്കും.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s %2$s-നോട്</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">മീഡിയ ഇനി ലഭ്യമല്ല.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">ഈ മീഡിയ പങ്കിടാൻ കഴിയുന്ന ഒരു അപ്ലിക്കേഷൻ കണ്ടെത്താനായില്ല.</string>
   <!--MessageNotifier-->
@@ -1770,6 +1768,7 @@
   <string name="QuoteView_original_missing">യഥാർത്ഥ സന്ദേശം കണ്ടെത്തിയില്ല</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">താഴേക്ക് സ്ക്രോൾ ചെയ്യുക</string>
   <!--BubbleOptOutTooltip-->
