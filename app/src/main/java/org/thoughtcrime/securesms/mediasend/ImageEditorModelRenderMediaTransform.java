@@ -41,7 +41,7 @@ public final class ImageEditorModelRenderMediaTransform implements MediaTransfor
   public @NonNull Media transform(@NonNull Context context, @NonNull Media media) {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
-    Bitmap bitmap = modelToRender.render(context, size, FontTypefaceProvider.INSTANCE);
+    Bitmap bitmap = modelToRender.render(context, size, new FontTypefaceProvider());
     try {
       bitmap.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
 

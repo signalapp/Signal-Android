@@ -20,6 +20,7 @@ import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.updateLayoutParams
+import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.transition.TransitionManager
@@ -111,6 +112,9 @@ class TextStoryPostTextEntryFragment : KeyboardEntryDialogFragment(
     input.filters = input.filters + bufferFilter
     input.doOnTextChanged { _, _, _, _ ->
       presentHint()
+    }
+    input.doAfterTextChanged { text ->
+      viewModel.setTemporaryBody(text?.toString() ?: "")
     }
     input.setText(viewModel.getBody())
   }

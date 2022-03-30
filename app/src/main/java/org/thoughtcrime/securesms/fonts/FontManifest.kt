@@ -28,25 +28,25 @@ data class FontManifest(
    * @param chineseSimplified Hans Script Fonts
    */
   data class FontScripts(
-    @JsonProperty("latin-extended") val latinExtended: FontScript,
-    @JsonProperty("cyrillic-extended") val cyrillicExtended: FontScript,
-    val devanagari: FontScript,
-    @JsonProperty("chinese-traditional-hk") val chineseTraditionalHk: FontScript,
-    @JsonProperty("chinese-traditional") val chineseTraditional: FontScript,
-    @JsonProperty("chinese-simplified") val chineseSimplified: FontScript,
-    val arabic: FontScript,
-    val japanese: FontScript,
+    @JsonProperty("latin-extended") val latinExtended: FontScript?,
+    @JsonProperty("cyrillic-extended") val cyrillicExtended: FontScript?,
+    val devanagari: FontScript?,
+    @JsonProperty("chinese-traditional-hk") val chineseTraditionalHk: FontScript?,
+    @JsonProperty("chinese-traditional") val chineseTraditional: FontScript?,
+    @JsonProperty("chinese-simplified") val chineseSimplified: FontScript?,
+    val arabic: FontScript?,
+    val japanese: FontScript?,
   )
 
   /**
    * A collection of fonts for a specific script
    */
   data class FontScript(
-    val regular: String,
-    val bold: String,
-    val serif: String,
-    val script: String,
-    val condensed: String
+    val regular: String?,
+    val bold: String?,
+    val serif: String?,
+    val script: String?,
+    val condensed: String?
   )
 
   companion object {
@@ -76,7 +76,7 @@ data class FontManifest(
           objectMapper.readValue(it, FontManifest::class.java)
         }
       } catch (e: Exception) {
-        Log.w(TAG, "Failed to load manifest from disk")
+        Log.w(TAG, "Failed to load manifest from disk", e)
         return null
       }
     }

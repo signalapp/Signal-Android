@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.fonts.Fonts
 import org.thoughtcrime.securesms.fonts.TextFont
+import org.thoughtcrime.securesms.fonts.TextToScript
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.mediasend.v2.text.TextAlignment
@@ -25,7 +26,6 @@ import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryScale
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryTextWatcher
 import org.thoughtcrime.securesms.stories.viewer.page.StoryDisplay
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask
 import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
 
@@ -153,15 +153,10 @@ class StoryTextPostView @JvmOverloads constructor(
     setTextBackgroundColor(storyTextPost.textBackgroundColor)
     setTextGravity(TextAlignment.CENTER)
 
-    SimpleTask.run(
-      {
-        when (val fontResult = Fonts.resolveFont(context, Locale.getDefault(), font)) {
-          is Fonts.FontResult.Immediate -> fontResult.typeface
-          is Fonts.FontResult.Async -> fontResult.future.get()
-        }
-      },
-      { typeface -> setTypeface(typeface) }
-    )
+    when (val fontResult = Fonts.resolveFont(context, font, TextToScript.guessScript(storyTextPost.body))) {
+      is Fonts.FontResult.Immediate -> setTypeface(fontResult.typeface)
+      is Fonts.FontResult.Async -> setTypeface(fontResult.future.get())
+    }
 
     hideCloseButton()
 

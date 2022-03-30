@@ -219,7 +219,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     imageEditorHud  = view.findViewById(R.id.scribble_hud);
     imageEditorView = view.findViewById(R.id.image_editor_view);
 
-    imageEditorView.setTypefaceProvider(FontTypefaceProvider.INSTANCE);
+    imageEditorView.setTypefaceProvider(new FontTypefaceProvider());
 
     int width = getResources().getDisplayMetrics().widthPixels;
     int height = (int) ((16 / 9f) * width);
@@ -555,7 +555,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
           FaceDetector detector = new AndroidFaceDetector();
 
           Point  size   = model.getOutputSizeMaxWidth(1000);
-          Bitmap render = model.render(ApplicationDependencies.getApplication(), size, FontTypefaceProvider.INSTANCE);
+          Bitmap render = model.render(ApplicationDependencies.getApplication(), size, new FontTypefaceProvider());
           try {
             return new FaceDetectionResult(detector.detect(render), new Point(render.getWidth(), render.getHeight()), inverseCropPosition);
           } finally {
@@ -769,7 +769,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   @WorkerThread
   public @NonNull Uri renderToSingleUseBlob() {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    Bitmap                image        = imageEditorView.getModel().render(requireContext(), FontTypefaceProvider.INSTANCE);
+    Bitmap                image        = imageEditorView.getModel().render(requireContext(), new FontTypefaceProvider());
 
     image.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
     image.recycle();

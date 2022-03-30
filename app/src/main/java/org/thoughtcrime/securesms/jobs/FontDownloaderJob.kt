@@ -8,7 +8,6 @@ import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.util.FutureTaskListener
-import java.util.Locale
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.ExecutionException
 import java.util.concurrent.TimeUnit
@@ -41,10 +40,8 @@ class FontDownloaderJob private constructor(parameters: Parameters) : BaseJob(pa
   override fun onFailure() = Unit
 
   override fun onRun() {
-    val locale = Locale.getDefault()
-
     val asyncResults = TextFont.values()
-      .map { Fonts.resolveFont(context, locale, it) }
+      .map { Fonts.resolveFont(context, it) }
       .filterIsInstance(Fonts.FontResult.Async::class.java)
 
     if (asyncResults.isEmpty()) {

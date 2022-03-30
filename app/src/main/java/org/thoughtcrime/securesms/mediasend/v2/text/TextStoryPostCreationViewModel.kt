@@ -16,15 +16,16 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.fonts.Fonts
 import org.thoughtcrime.securesms.fonts.TextFont
+import org.thoughtcrime.securesms.fonts.TextToScript
 import org.thoughtcrime.securesms.util.FutureTaskListener
 import org.thoughtcrime.securesms.util.livedata.Store
-import java.util.Locale
 import java.util.concurrent.ExecutionException
 
 class TextStoryPostCreationViewModel : ViewModel() {
 
   private val store = Store(TextStoryPostCreationState())
   private val textFontSubject: Subject<TextFont> = BehaviorSubject.create()
+  private val temporaryBodySubject: Subject<String> = BehaviorSubject.createDefault("")
   private val disposables = CompositeDisposable()
 
   private val internalThumbnail = MutableLiveData<Bitmap>()
@@ -38,14 +39,16 @@ class TextStoryPostCreationViewModel : ViewModel() {
   init {
     textFontSubject.onNext(store.state.textFont)
 
-    textFontSubject
+    val scriptGuess = temporaryBodySubject.observeOn(Schedulers.io()).map { TextToScript.guessScript(it) }
+
+    Observable.combineLatest(textFontSubject, scriptGuess, ::Pair)
       .observeOn(Schedulers.io())
       .distinctUntilChanged()
-      .map { Fonts.resolveFont(ApplicationDependencies.getApplication(), Locale.getDefault(), it) }
-      .switchMap {
-        when (it) {
-          is Fonts.FontResult.Async -> asyncFontEmitter(it)
-          is Fonts.FontResult.Immediate -> Observable.just(it.typeface)
+      .map { (textFont, script) -> Fonts.resolveFont(ApplicationDependencies.getApplication(), textFont, script) }
+      .switchMap { result ->
+        when (result) {
+          is Fonts.FontResult.Async -> asyncFontEmitter(result)
+          is Fonts.FontResult.Immediate -> Observable.just(result.typeface)
         }
       }
       .subscribeOn(Schedulers.io())
@@ -140,6 +143,10 @@ class TextStoryPostCreationViewModel : ViewModel() {
 
   fun setLinkPreview(url: String) {
     store.update { it.copy(linkPreviewUri = url) }
+  }
+
+  fun setTemporaryBody(temporaryBody: String) {
+    temporaryBodySubject.onNext(temporaryBody)
   }
 
   companion object {
