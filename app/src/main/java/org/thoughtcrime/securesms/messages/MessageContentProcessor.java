@@ -1610,7 +1610,7 @@ public final class MessageContentProcessor {
                                                                    Optional.ofNullable(quoteModel),
                                                                    Optional.empty(),
                                                                    Optional.empty(),
-                                                                   Optional.empty(),
+                                                                   getMentions(message.getMentions()),
                                                                    Optional.empty(),
                                                                    content.getServerUuid());
 
