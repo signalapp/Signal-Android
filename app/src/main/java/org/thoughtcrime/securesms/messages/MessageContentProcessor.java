@@ -367,7 +367,7 @@ public final class MessageContentProcessor {
       } else if (content.getTypingMessage().isPresent()) {
         handleTypingMessage(content, content.getTypingMessage().get(), senderRecipient);
       } else if (content.getStoryMessage().isPresent()) {
-        handleStoryMessage(content, content.getStoryMessage().get(), senderRecipient);
+        handleStoryMessage(content, content.getStoryMessage().get(), senderRecipient, threadRecipient);
       } else if (content.getDecryptionErrorMessage().isPresent()) {
         handleRetryReceipt(content, content.getDecryptionErrorMessage().get(), senderRecipient);
       } else if (content.getSenderKeyDistributionMessage().isPresent()) {
@@ -1346,7 +1346,7 @@ public final class MessageContentProcessor {
     messageNotifier.updateNotification(context);
   }
 
-  private void handleStoryMessage(@NonNull SignalServiceContent content, @NonNull SignalServiceStoryMessage message, @NonNull Recipient senderRecipient) throws StorageFailedException {
+  private void handleStoryMessage(@NonNull SignalServiceContent content, @NonNull SignalServiceStoryMessage message, @NonNull Recipient senderRecipient, @NonNull Recipient threadRecipient) throws StorageFailedException {
     log(content.getTimestamp(), "Story message.");
 
     if (!Stories.isFeatureAvailable()) {
@@ -1354,8 +1354,8 @@ public final class MessageContentProcessor {
       return;
     }
 
-    if (!(senderRecipient.isProfileSharing() || senderRecipient.isSystemContact())) {
-      warn(content.getTimestamp(), "Dropping story from an untrusted user.");
+    if (!threadRecipient.isGroup() && !(senderRecipient.isProfileSharing() || senderRecipient.isSystemContact())) {
+      warn(content.getTimestamp(), "Dropping non-group story from an untrusted user.");
       return;
     }
 
