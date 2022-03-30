@@ -88,6 +88,7 @@ class StoryGroupReplyFragment :
 
   private lateinit var recyclerView: RecyclerView
   private lateinit var composer: StoryReplyComposer
+  private var currentChild: StoryViewsAndRepliesPagerParent.Child? = null
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     SignalExecutors.BOUNDED.execute {
@@ -204,7 +205,12 @@ class StoryGroupReplyFragment :
   }
 
   override fun onPageSelected(child: StoryViewsAndRepliesPagerParent.Child) {
-    recyclerView.isNestedScrollingEnabled = child == StoryViewsAndRepliesPagerParent.Child.REPLIES
+    currentChild = child
+    updateNestedScrolling()
+  }
+
+  private fun updateNestedScrolling() {
+    recyclerView.isNestedScrollingEnabled = currentChild == StoryViewsAndRepliesPagerParent.Child.REPLIES && !(mentionsViewModel.isShowing.value ?: false)
   }
 
   private var resendBody: CharSequence? = null
@@ -302,6 +308,8 @@ class StoryGroupReplyFragment :
     mentionsViewModel.selectedRecipient.observe(viewLifecycleOwner) { recipient ->
       composer.input.replaceTextWithMention(recipient.getDisplayName(requireContext()), recipient.id)
     }
+
+    mentionsViewModel.isShowing.observe(viewLifecycleOwner) { updateNestedScrolling() }
   }
 
   private fun ensureMentionsContainerFilled() {
