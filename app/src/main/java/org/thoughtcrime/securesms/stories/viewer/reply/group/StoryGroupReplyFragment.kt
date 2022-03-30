@@ -11,17 +11,25 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.kotlin.subscribeBy
+import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
+import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerFragment
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerViewModel
+import org.thoughtcrime.securesms.database.model.Mention
+import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyboard.KeyboardPage
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardCallback
+import org.thoughtcrime.securesms.mediasend.v2.UntrustedRecords
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -51,7 +59,8 @@ class StoryGroupReplyFragment :
   BottomSheetBehaviorDelegate,
   StoryReplyComposer.Callback,
   EmojiKeyboardCallback,
-  ReactWithAnyEmojiBottomSheetDialogFragment.Callback {
+  ReactWithAnyEmojiBottomSheetDialogFragment.Callback,
+  SafetyNumberChangeDialog.Callback {
 
   private val viewModel: StoryGroupReplyViewModel by viewModels(
     factoryProducer = {
@@ -81,6 +90,10 @@ class StoryGroupReplyFragment :
   private lateinit var composer: StoryReplyComposer
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    SignalExecutors.BOUNDED.execute {
+      RetrieveProfileJob.enqueue(groupRecipientId)
+    }
+
     recyclerView = view.findViewById(R.id.recycler)
     composer = view.findViewById(R.id.composer)
 
@@ -194,9 +207,12 @@ class StoryGroupReplyFragment :
     recyclerView.isNestedScrollingEnabled = child == StoryViewsAndRepliesPagerParent.Child.REPLIES
   }
 
+  private var resendBody: CharSequence? = null
+  private var resendMentions: List<Mention> = emptyList()
+
   override fun onSendActionClicked() {
     val (body, mentions) = composer.consumeInput()
-    lifecycleDisposable += StoryGroupReplySender.sendReply(requireContext(), storyId, body, mentions).subscribe()
+    performSend(body, mentions)
   }
 
   override fun onPickReactionClicked() {
@@ -299,6 +315,8 @@ class StoryGroupReplyFragment :
   }
 
   companion object {
+    private val TAG = Log.tag(StoryGroupReplyFragment::class.java)
+
     private const val ARG_STORY_ID = "arg.story.id"
     private const val ARG_GROUP_RECIPIENT_ID = "arg.group.recipient.id"
 
@@ -310,6 +328,43 @@ class StoryGroupReplyFragment :
         }
       }
     }
+  }
+
+  private fun performSend(body: CharSequence, mentions: List<Mention>) {
+    lifecycleDisposable += StoryGroupReplySender.sendReply(requireContext(), storyId, body, mentions)
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy(
+        onError = {
+          if (it is UntrustedRecords.UntrustedRecordsException) {
+            resendBody = body
+            resendMentions = mentions
+
+            SafetyNumberChangeDialog.show(childFragmentManager, it.untrustedRecords)
+          } else {
+            Log.w(TAG, "Failed to send reply", it)
+            val context = context
+            if (context != null) {
+              Toast.makeText(context, R.string.message_details_recipient__failed_to_send, Toast.LENGTH_SHORT).show()
+            }
+          }
+        }
+      )
+  }
+
+  override fun onSendAnywayAfterSafetyNumberChange(changedRecipients: MutableList<RecipientId>) {
+    val resendBody = resendBody
+    if (resendBody != null) {
+      performSend(resendBody, resendMentions)
+    }
+  }
+
+  override fun onMessageResentAfterSafetyNumberChange() {
+    error("Should never get here.")
+  }
+
+  override fun onCanceled() {
+    resendBody = null
+    resendMentions = emptyList()
   }
 
   interface Callback {
