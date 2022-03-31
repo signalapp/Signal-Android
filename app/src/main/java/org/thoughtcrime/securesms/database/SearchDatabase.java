@@ -69,7 +69,7 @@ public class SearchDatabase extends Database {
       "FROM " + SmsDatabase.TABLE_NAME + " " +
       "INNER JOIN " + SMS_FTS_TABLE_NAME + " ON " + SMS_FTS_TABLE_NAME + "." + ID + " = " + SmsDatabase.TABLE_NAME + "." + SmsDatabase.ID + " " +
       "INNER JOIN " + ThreadDatabase.TABLE_NAME + " ON " + SMS_FTS_TABLE_NAME + "." + THREAD_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.ID + " " +
-      "WHERE " + SMS_FTS_TABLE_NAME + " MATCH ? " +
+      "WHERE " + SMS_FTS_TABLE_NAME + " MATCH ? AND " + SmsDatabase.TABLE_NAME + "." + SmsDatabase.TYPE + " & " + MmsSmsColumns.Types.GROUP_V2_BIT + " = 0 " +
       "UNION ALL " +
       "SELECT " +
         ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID + " AS " + CONVERSATION_RECIPIENT + ", " +
