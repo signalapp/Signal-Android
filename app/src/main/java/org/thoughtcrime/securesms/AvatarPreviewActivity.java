@@ -14,6 +14,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
@@ -56,6 +57,12 @@ public final class AvatarPreviewActivity extends PassphraseRequiredActivity {
 
   public static Bundle createTransitionBundle(@NonNull Activity activity, @NonNull View from) {
     return ActivityOptionsCompat.makeSceneTransitionAnimation(activity, from, "avatar").toBundle();
+  }
+
+  @Override
+  protected void attachBaseContext(@NonNull Context newBase) {
+    getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+    super.attachBaseContext(newBase);
   }
 
   @Override
