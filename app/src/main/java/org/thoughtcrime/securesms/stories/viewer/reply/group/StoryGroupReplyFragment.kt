@@ -2,11 +2,10 @@ package org.thoughtcrime.securesms.stories.viewer.reply.group
 
 import android.content.ClipData
 import android.os.Bundle
+import android.provider.Settings.System.getConfiguration
 import android.view.KeyEvent
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.doOnNextLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,7 +33,6 @@ import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDial
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
-import org.thoughtcrime.securesms.stories.viewer.reply.BottomSheetBehaviorDelegate
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerChild
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerParent
 import org.thoughtcrime.securesms.stories.viewer.reply.composer.StoryReactionBar
@@ -42,9 +40,7 @@ import org.thoughtcrime.securesms.stories.viewer.reply.composer.StoryReplyCompos
 import org.thoughtcrime.securesms.util.DeleteDialog
 import org.thoughtcrime.securesms.util.FragmentDialogs.displayInDialogAboveAnchor
 import org.thoughtcrime.securesms.util.LifecycleDisposable
-import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.ServiceUtil
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter
 import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -56,7 +52,6 @@ import org.thoughtcrime.securesms.util.visible
 class StoryGroupReplyFragment :
   Fragment(R.layout.stories_group_replies_fragment),
   StoryViewsAndRepliesPagerChild,
-  BottomSheetBehaviorDelegate,
   StoryReplyComposer.Callback,
   EmojiKeyboardCallback,
   ReactWithAnyEmojiBottomSheetDialogFragment.Callback,
@@ -123,10 +118,9 @@ class StoryGroupReplyFragment :
     }
 
     viewModel.pageData.observe(viewLifecycleOwner) { pageData ->
-      val isScrolledToBottom = recyclerView.canScrollVertically(-1)
       adapter.submitList(getConfiguration(pageData).toMappingModelList()) {
-        if (isScrolledToBottom) {
-          recyclerView.doOnNextLayout {
+        recyclerView.post {
+          if (recyclerView.canScrollVertically(1)) {
             recyclerView.smoothScrollToPosition(0)
           }
         }
@@ -194,14 +188,6 @@ class StoryGroupReplyFragment :
         }
       }
     }
-  }
-
-  override fun onSlide(bottomSheet: View) {
-    val inputProjection = Projection.relativeToViewRoot(composer, null)
-    val parentProjection = Projection.relativeToViewRoot(bottomSheet.parent as ViewGroup, null)
-    composer.translationY = (parentProjection.height + parentProjection.y - (inputProjection.y + inputProjection.height))
-    inputProjection.release()
-    parentProjection.release()
   }
 
   override fun onPageSelected(child: StoryViewsAndRepliesPagerParent.Child) {
@@ -272,10 +258,6 @@ class StoryGroupReplyFragment :
 
   override fun onReactWithAnyEmojiSelected(emoji: String) {
     sendReaction(emoji)
-  }
-
-  override fun onHeightChanged(height: Int) {
-    ViewUtil.setPaddingBottom(recyclerView, height)
   }
 
   private fun initializeMentions() {

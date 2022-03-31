@@ -115,10 +115,6 @@ class StoryReplyComposer @JvmOverloads constructor(
     return trimmedText to mentions
   }
 
-  override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-    callback?.onHeightChanged(h)
-  }
-
   fun openEmojiSearch() {
     emojiDrawer.onOpenEmojiSearch()
   }
@@ -154,7 +150,6 @@ class StoryReplyComposer @JvmOverloads constructor(
     fun onSendActionClicked()
     fun onPickReactionClicked()
     fun onInitializeEmojiDrawer(mediaKeyboard: MediaKeyboard)
-    fun onHeightChanged(height: Int)
   }
 
   companion object {

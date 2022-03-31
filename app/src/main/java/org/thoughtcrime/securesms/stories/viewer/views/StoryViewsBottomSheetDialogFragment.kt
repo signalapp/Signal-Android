@@ -21,6 +21,8 @@ class StoryViewsBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogF
   override val themeResId: Int
     get() = R.style.Widget_Signal_FixedRoundedCorners_Stories
 
+  override val peekHeightPercentage: Float = 1f
+
   private val storyId: Long
     get() = requireArguments().getLong(ARG_STORY_ID)
 

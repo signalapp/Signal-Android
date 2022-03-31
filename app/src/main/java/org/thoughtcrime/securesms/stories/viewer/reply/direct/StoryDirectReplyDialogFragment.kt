@@ -104,8 +104,6 @@ class StoryDirectReplyDialogFragment :
         keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI)
         mediaKeyboard.setFragmentManager(childFragmentManager)
       }
-
-      override fun onHeightChanged(height: Int) = Unit
     }
 
     viewModel.state.observe(viewLifecycleOwner) { state ->

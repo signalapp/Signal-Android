@@ -15,7 +15,9 @@ import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialog
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageViewModel
 import org.thoughtcrime.securesms.stories.viewer.reply.BottomSheetBehaviorDelegate
+import org.thoughtcrime.securesms.util.BottomSheetUtil.requireCoordinatorLayout
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import kotlin.math.min
 import kotlin.math.roundToInt
 
 /**
@@ -45,10 +47,6 @@ class StoryGroupReplyBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDi
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    view.updateLayoutParams {
-      height = (resources.displayMetrics.heightPixels * 0.6f).roundToInt()
-    }
-
     lifecycleDisposable.bindTo(viewLifecycleOwner)
     if (savedInstanceState == null) {
       childFragmentManager.beginTransaction()
@@ -68,6 +66,18 @@ class StoryGroupReplyBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDi
         }
       }
     })
+
+    view.viewTreeObserver.addOnGlobalLayoutListener {
+      val parentHeight = requireCoordinatorLayout().height
+      val desiredHeight = (resources.displayMetrics.heightPixels * 0.6f).roundToInt()
+      val targetHeight = if (parentHeight != 0) min(parentHeight, desiredHeight) else desiredHeight
+
+      if (view.height != targetHeight) {
+        view.updateLayoutParams {
+          height = targetHeight
+        }
+      }
+    }
   }
 
   override fun onDismiss(dialog: DialogInterface) {
