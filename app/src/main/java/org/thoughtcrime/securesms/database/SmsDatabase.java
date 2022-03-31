@@ -1153,6 +1153,7 @@ public class SmsDatabase extends MessageDatabase {
                      message.isIdentityVerified() ||
                      message.isIdentityDefault()  ||
                      message.isJustAGroupLeave();
+
     boolean unread = !silent && (Util.isDefaultSmsProvider(context) ||
                                  message.isSecureMessage()          ||
                                  message.isGroup()                  ||
