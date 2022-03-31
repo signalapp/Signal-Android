@@ -1583,6 +1583,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Більше</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN-код успішно підтверджено. Ми нагадаємо знов згодом.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN-код успішно підтверджено. Ми нагадаємо знов завтра.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN-код успішно підтверджено. Ми нагадаємо знов за декілька днів.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN-код успішно підтверджено. Ми нагадаємо знов за тиждень.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN-код успішно підтверджено. Ми нагадаємо знов за пару тижнів.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN-код успішно підтверджено. Ми нагадаємо знов за місяць.</string>
   <!--Slide-->
   <string name="Slide_image">Зображення</string>
   <string name="Slide_sticker">Наліпка</string>
@@ -1734,7 +1740,9 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Це назавжди видалить це повідомлення.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s до %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Ви надіслали %1$s</string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s надіслав вам</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Мультимедійний більше не доступний.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Неможливо знайти програму для того щоб поділитись цим медіафайлом.</string>
   <!--MessageNotifier-->
@@ -1948,7 +1956,9 @@
   <!--Author formatting for group stories-->
   <string name="QuoteView_s_story">%1$s · Історія</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Ви · Історія</string>
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Більше недоступна</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Прокрутить до самого низу</string>
   <!--BubbleOptOutTooltip-->

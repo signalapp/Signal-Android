@@ -32,7 +32,7 @@
   <string name="ApplicationPreferencesActivity_Off">Uit</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">Sms %1$s, mms %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Appvergrendeling %1$s, Registratievergrendeling %2$s</string>
-  <string name="ApplicationPreferencesActivity_appearance_summary">Thema %1$s, Taal %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Thema %1$s, taal %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Je pincode wordt gebruikt voor registratievergrendeling. Om je pincode uit te schakelen moet je eerst de registratievergrendeling uitzetten.</string>
   <string name="ApplicationPreferencesActivity_pin_created">Pincode aangemaakt.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">Pincode uitgeschakeld.</string>
@@ -40,7 +40,7 @@
   <string name="ApplicationPreferencesActivity_hide_reminder">Herinnering verbergen?</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Herstel-zin voor overschrijvingen vastleggen</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Zin vastleggen</string>
-  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Je moet een herstel-zin opnemen voordat je overschrijvingen kan uitschakelen, zodat het mogelijk wordt om je overschrijvingen-account te herstellen.</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Je moet een herstel-zin vastleggen voordat je overschrijvingen kan uitschakelen, zodat het mogelijk wordt om je overschrijvingen-account te herstellen.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuut</item>
@@ -1126,7 +1126,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="MessageRecord_s_started_a_group_call_s">%1$s heeft een groepsoproep gestart · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s is in deze groepsoproep aanwezig · %2$s</string>
   <string name="MessageRecord_you_are_in_the_group_call_s1">Je neemt deel aan een groepsoproep · %1$s</string>
-  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s, %2$s zijn in deze groepsoproep aanwezig · %3$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s en %2$s zijn in deze groepsoproep aanwezig · %3$s</string>
   <string name="MessageRecord_group_call_s">Groepsoproep · %1$s</string>
   <string name="MessageRecord_s_started_a_group_call">%1$s heeft een groepsoproep gestart</string>
   <string name="MessageRecord_s_is_in_the_group_call">%1$s is in deze groepsoproep aanwezig</string>
@@ -1177,7 +1177,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Wachtwoorden komen niet overeen!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Incorrect oud wachtwoord!</string>
-  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Voer nieuw wachtwoord in!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Voer een nieuw wachtwoord in!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Dit apparaat koppelen?</string>
   <string name="DeviceProvisioningActivity_continue">DOORGAAN</string>
@@ -1411,7 +1411,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Voer je telefoonnummer in om te beginnen</string>
   <string name="RegistrationActivity_enter_your_phone_number">Voer je telefoonnummer in</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Je zult een verificatiecode ontvangen.</string>
-  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Voer de code in die we naar %s hebben verzonden</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Vul de code in die we per sms naar %s hebben verzonden</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Verzeker je ervan dat je telefoon netwerkbereik heeft zodat je een sms of oproep kunt ontvangen</string>
   <string name="RegistrationActivity_phone_number_description">Telefoonnummer</string>
   <string name="RegistrationActivity_country_code_description">Landcode</string>
@@ -1601,7 +1601,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Dit bericht zal alleen voor jou onherroepelijk worden gewist, maar dus niet voor je gesprekspartner(s).</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s naar %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
-  <string name="MediaPreviewActivity_you_to_s">Van jou naar %1$s</string>
+  <string name="MediaPreviewActivity_you_to_s">Jij naar %1$s</string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_s_to_you">%1$s naar jou</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Media niet langer beschikbaar.</string>
@@ -1807,11 +1807,11 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="QuoteView_you">Jij</string>
   <string name="QuoteView_original_missing">Oorspronkelijk bericht niet gevonden</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story"> Verhaal van %1$s</string>
+  <string name="QuoteView_s_story">Verhaal van %1$s</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
   <string name="QuoteView_your_story">Jouw verhaal</string>
   <!--Label indicating that the story being replied to no longer exists-->
-  <string name="QuoteView_no_longer_available">Verhaal niet langer beschikbaar</string>
+  <string name="QuoteView_no_longer_available">Niet langer beschikbaar</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Scroll naar bodem</string>
   <!--BubbleOptOutTooltip-->
@@ -2346,7 +2346,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__transfer">Overschrijven</string>
   <string name="PaymentsTransferFragment__scan_qr_code">QR-code scannen</string>
-  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Naar: Scan de QR-code of vul het portomonnee-adres in</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Naar: Scan de QR-code of voer het portomonnee-adres in</string>
   <string name="PaymentsTransferFragment__you_can_transfer">Je kunt MobileCoin overschrijven door een deel van je krediet te sturen naar het adres van de portemonnee die je via de beurs hebt gekregen. Dat adres bestaat uit nummers en letters en je vindt het meestal onder de QR-code.</string>
   <string name="PaymentsTransferFragment__next">Volgende</string>
   <string name="PaymentsTransferFragment__invalid_address">Adres ongeldig</string>
@@ -3984,7 +3984,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Uitschakelen</string>
   <!--Conversation Item label for reactions to a story-->
-  <string name="ConversationItem__s_dot_story">%1$s · Verhaal</string>
+  <string name="ConversationItem__s_dot_story">Verhaal van %1$s</string>
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Reageerde op een verhaal</string>
   <!--endregion-->

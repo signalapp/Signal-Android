@@ -1438,6 +1438,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Daha çox</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN uğurla təsdiqləndi. Daha sonra yenidən xatırladacağıq.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN uğurla təsdiqləndi. Sabah yenidən xatırladacağıq.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN uğurla təsdiqləndi. Bir neçə gün ərzində yenidən xatırladacağıq.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN uğurla təsdiqləndi. Bir həftə sonra yenidən xatırladacağıq.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN uğurla təsdiqləndi. Bir neçə həftə sonra yenidən xatırladacağıq.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN uğurla təsdiqləndi. Bir ay sonra yenidən xatırladacağıq.</string>
   <!--Slide-->
   <string name="Slide_image">Təsvir</string>
   <string name="Slide_sticker">Stiker</string>
@@ -1588,7 +1594,9 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Bu, mesajı birdəfəlik siləcək.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s -  %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Göndərdiniz: %1$s</string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s sizə göndərildi</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Media artıq mövcud deyil.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Bu medianı paylaşmaq üçün bir tətbiq tapıla bilmir.</string>
   <!--MessageNotifier-->
@@ -1794,7 +1802,9 @@
   <!--Author formatting for group stories-->
   <string name="QuoteView_s_story">%1$s · Hekayə</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Siz· Hekayə</string>
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Artıq mövcud deyil</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Aşağı sürüşdür</string>
   <!--BubbleOptOutTooltip-->

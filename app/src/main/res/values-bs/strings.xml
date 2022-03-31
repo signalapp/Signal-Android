@@ -1510,6 +1510,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Više</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN je uspješno potvđen. Podsjetit ćemo Vas ponovo kasnije.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN je uspješno potvrđen. Podsjetit ćemo Vas ponovo sutra.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN je uspješno potvđen. Podsjetit ćemo Vas ponovo za nekoliko dana.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN je uspješno potvđen. Podsjetit ćemo Vas ponovo za sedmicu dana.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN je uspješno potvđen. Podsjetit ćemo Vas ponovo za nekoliko sedmica.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN je uspješno potvrđen. Podsjetit ćemo Vas ponovo za mjesec dana.</string>
   <!--Slide-->
   <string name="Slide_image">Slika</string>
   <string name="Slide_sticker">Naljepnica</string>
@@ -1661,7 +1667,9 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Ovo će bespovratno izbrisati poruku.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s do %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Vi za %1$s</string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s za Vas</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Datoteka više nije dostupna.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nije pronađena aplikacija koja može podijeliti ovu datoteku.</string>
   <!--MessageNotifier-->
@@ -1871,7 +1879,9 @@
   <!--Author formatting for group stories-->
   <string name="QuoteView_s_story">%1$s · Priča</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Vi · Priča</string>
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Više nije dostupno</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Spusti do dna</string>
   <!--BubbleOptOutTooltip-->

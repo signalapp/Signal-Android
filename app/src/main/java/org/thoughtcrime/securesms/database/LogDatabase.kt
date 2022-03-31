@@ -48,7 +48,7 @@ class LogDatabase private constructor(
 
     private val MAX_FILE_SIZE = ByteUnit.MEGABYTES.toBytes(20)
     private val DEFAULT_LIFESPAN = TimeUnit.DAYS.toMillis(3)
-    private val LONGER_LIFESPAN = TimeUnit.DAYS.toMillis(14)
+    private val LONGER_LIFESPAN = TimeUnit.DAYS.toMillis(21)
 
     private const val DATABASE_VERSION = 2
     private const val DATABASE_NAME = "signal-logs.db"

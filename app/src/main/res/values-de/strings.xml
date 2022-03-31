@@ -1332,7 +1332,7 @@
     <item quantity="other">%1$s, %2$s und %3$d weitere Personen nehmen an diesem Anruf teil</item>
   </plurals>
   <string name="WebRtcCallView__flip">Drehen</string>
-  <string name="WebRtcCallView__speaker">Ltspr.</string>
+  <string name="WebRtcCallView__speaker">Laut­sprecher</string>
   <string name="WebRtcCallView__camera">Kamera</string>
   <string name="WebRtcCallView__unmute">Stummschaltung aufheben</string>
   <string name="WebRtcCallView__mute">Stumm</string>
@@ -1726,8 +1726,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   </plurals>
   <!--Displays number of viewers for a story-->
   <plurals name="contact_selection_list_item__number_of_viewers">
-    <item quantity="one">%1$d Zuschauer</item>
-    <item quantity="other">%1$d Zuschauer</item>
+    <item quantity="one">%1$d Betrachter</item>
+    <item quantity="other">%1$d Betrachter</item>
   </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal-Nachricht</string>

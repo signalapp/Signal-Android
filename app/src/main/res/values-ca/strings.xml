@@ -1434,6 +1434,12 @@ especificat (%s) no és vàlid.</string>
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Més</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN verificat correctament. Us ho tornarem a recordar més tard.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN verificat correctament. Demà us ho tornarem a recordar.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN verificat correctament. Us ho tornarem a recordar d\'aquí a uns dies.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN verificat correctament. Us ho tornarem a recordar d\'aquí a una setmana.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN verificat correctament. Us ho tornarem a recordar d\'aquí a un parell de setmanes.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN verificat correctament. Us ho tornarem a recordar d\'aquí a un mes.</string>
   <!--Slide-->
   <string name="Slide_image">Imatge</string>
   <string name="Slide_sticker">Adhesiu</string>
@@ -1582,7 +1588,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Aquest missatge se suprimirà permanentment.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s a %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Vós a %1$s</string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s a vós</string>
   <string name="MediaPreviewActivity_media_no_longer_available">El contingut ja no està disponible.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">No es pot trobar cap aplicació que pugui compartir aquest contingut.</string>
   <!--MessageNotifier-->
@@ -1788,7 +1796,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--Author formatting for group stories-->
   <string name="QuoteView_s_story">Història · %1$s</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Vós · Història</string>
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Ja no està disponible</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Desplaça al final</string>
   <!--BubbleOptOutTooltip-->

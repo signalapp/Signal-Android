@@ -1584,6 +1584,12 @@ Anfon neges heb ei diogelu?</string>
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Rhagor</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN wedi\'i ddilysu\'n llwyddiannus. Byddwn yn eich atgoffa eto yn nes ymlaen.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN wedi\'i ddilysu\'n llwyddiannus. Byddwn yn eich atgoffa eto yfory.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN wedi\'i ddilysu\'n llwyddiannus. Byddwn yn eich atgoffa eto ymhen ychydig ddyddiau.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN wedi\'i ddilysu\'n llwyddiannus. Byddwn yn eich atgoffa eto ymhen wythnos.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN wedi\'i ddilysu\'n llwyddiannus. Byddwn yn eich atgoffa eto ymhen ychydig wythnosau.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN wedi\'i ddilysu\'n llwyddiannus. Byddwn yn eich atgoffa eto ymhen mis.</string>
   <!--Slide-->
   <string name="Slide_image">Llun</string>
   <string name="Slide_sticker">Sticer</string>
@@ -1736,7 +1742,9 @@ Anfon neges heb ei diogelu?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Bydd hyn yn dileu\'n barhaol y neges hon.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s i %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Chi i %1$s</string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s i chi</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Nid yw\'r cyfryngau ar gael bellach.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Methu dod o hyd i ap sy\'n gallu rhannu\'r cyfryngau hyn.</string>
   <!--MessageNotifier-->
@@ -1950,7 +1958,9 @@ Anfon neges heb ei diogelu?</string>
   <!--Author formatting for group stories-->
   <string name="QuoteView_s_story">%1$s · Stori</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Chi · Stori</string>
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Ddim ar gael bellach</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Sgrolio i\'r gwaelod</string>
   <!--BubbleOptOutTooltip-->

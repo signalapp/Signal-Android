@@ -1581,6 +1581,12 @@ telefonní číslo
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Víc</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN byl úspěšně ověřen. Připomeneme se znovu později.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN byl úspěšně ověřen. Připomeneme se znovu zítra.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN byl úspěšně ověřen. Připomeneme se znovu za pár dnů.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN byl úspěšně ověřen. Připomeneme se znovu za týden.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN byl úspěšně ověřen. Připomeneme se znovu za několik týdnů.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN byl úspěšně ověřen. Připomeneme se znovu za měsíc.</string>
   <!--Slide-->
   <string name="Slide_image">Obrázek</string>
   <string name="Slide_sticker">Nálepka</string>
@@ -1733,7 +1739,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Tímto trvale smažete tuto zprávu.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s pro %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Odesláno uživateli %1$s</string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s pro vás</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Média již nejsou k dispozici.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nebyla nalezena žádná aplikace pro sdílení tohoto média.</string>
   <!--MessageNotifier-->
@@ -1947,7 +1955,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Author formatting for group stories-->
   <string name="QuoteView_s_story">%1$s · Příběh</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Vy · Příběh</string>
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Není již dostupný</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Posun na konec</string>
   <!--BubbleOptOutTooltip-->
