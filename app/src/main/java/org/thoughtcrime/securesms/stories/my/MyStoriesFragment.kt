@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.Util
 
 class MyStoriesFragment : DSLSettingsFragment(
   titleId = R.string.StoriesLandingFragment__my_stories
@@ -82,6 +83,11 @@ class MyStoriesFragment : DSLSettingsFragment(
                     val options = ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity(), preview, ViewCompat.getTransitionName(preview) ?: "")
                     startActivity(StoryViewerActivity.createIntent(requireContext(), recipientId, conversationMessage.messageRecord.id), options.toBundle())
                   }
+                },
+                onLongClick = {
+                  Util.copyToClipboard(requireContext(), it.distributionStory.messageRecord.timestamp.toString())
+                  Toast.makeText(requireContext(), R.string.MyStoriesFragment__copied_sent_timestamp_to_clipboard, Toast.LENGTH_SHORT).show()
+                  true
                 },
                 onSaveClick = {
                   StoryContextMenu.save(requireContext(), it.distributionStory.messageRecord)

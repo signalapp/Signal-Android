@@ -2228,6 +2228,9 @@
     <string name="message_recipients_list_item__view">VIEW</string>
     <string name="message_recipients_list_item__resend">RESEND</string>
 
+    <!-- Displayed in a toast when user long presses an item in MyStories -->
+    <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Copied sent timestamp to clipboard.</string>
+
     <!-- GroupUtil -->
     <plurals name="GroupUtil_joined_the_group">
         <item quantity="one">%1$s joined the group.</item>
