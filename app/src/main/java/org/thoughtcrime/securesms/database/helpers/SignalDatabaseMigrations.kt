@@ -196,8 +196,9 @@ object SignalDatabaseMigrations {
   private const val MMS_COUNT_INDEX = 135
   private const val STORY_SENDS = 136
   private const val STORY_TYPE_AND_DISTRIBUTION = 137
+  private const val CLEAN_DELETED_DISTRIBUTION_LISTS = 138
 
-  const val DATABASE_VERSION = 137
+  const val DATABASE_VERSION = 138
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -2521,6 +2522,16 @@ object SignalDatabaseMigrations {
         SET name = '00000000-0000-0000-0000-000000000000',
             distribution_id = '00000000-0000-0000-0000-000000000000'
         WHERE _id = 1
+        """.trimIndent()
+      )
+    }
+
+    if (oldVersion < CLEAN_DELETED_DISTRIBUTION_LISTS) {
+      db.execSQL(
+        """
+          UPDATE recipient
+          SET storage_service_key = NULL
+          WHERE distribution_list_id IS NOT NULL AND NOT EXISTS(SELECT _id from distribution_list WHERE _id = distribution_list_id)
         """.trimIndent()
       )
     }
