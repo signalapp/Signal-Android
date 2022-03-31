@@ -932,7 +932,17 @@ public class MmsDatabase extends MessageDatabase {
       }
     }
 
-    String columnName = receiptType.getColumnName();
+    messageUpdates.addAll(incrementStoryReceiptCount(messageId, timestamp, receiptType));
+
+    return messageUpdates;
+  }
+
+  @Override
+  public Set<MessageUpdate> incrementStoryReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType) {
+    SQLiteDatabase     database       = databaseHelper.getSignalWritableDatabase();
+    Set<MessageUpdate> messageUpdates = new HashSet<>();
+    String             columnName     = receiptType.getColumnName();
+
     for (MessageId storyMessageId : SignalDatabase.storySends().getStoryMessagesFor(messageId)) {
       database.execSQL("UPDATE " + TABLE_NAME + " SET " +
                        columnName + " = " + columnName + " + 1, " +
@@ -2461,7 +2471,7 @@ public class MmsDatabase extends MessageDatabase {
       if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
         readReceiptCount = 0;
 
-        if (MmsSmsColumns.Types.isOutgoingMessageType(box)) {
+        if (MmsSmsColumns.Types.isOutgoingMessageType(box) && !storyType.isStory()) {
           viewedReceiptCount = 0;
         }
       }

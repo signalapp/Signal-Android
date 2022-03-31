@@ -530,6 +530,11 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public Set<MessageUpdate> incrementStoryReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   @NonNull MmsSmsDatabase.TimestampReadResult setTimestampRead(SyncMessageId messageId, long proposedExpireStarted, @NonNull Map<Long, Long> threadToLatestRead) {
     SQLiteDatabase         database   = databaseHelper.getSignalWritableDatabase();
     List<Pair<Long, Long>> expiring   = new LinkedList<>();

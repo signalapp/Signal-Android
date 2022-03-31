@@ -401,6 +401,40 @@ public class MmsSmsDatabase extends Database {
     return incrementReceiptCount(syncMessageId, timestamp, MessageDatabase.ReceiptType.VIEWED);
   }
 
+  public @NonNull Collection<SyncMessageId> incrementViewedStoryReceiptCounts(@NonNull List<SyncMessageId> syncMessageIds, long timestamp) {
+    SQLiteDatabase            db             = databaseHelper.getSignalWritableDatabase();
+    Set<MessageUpdate>        messageUpdates = new HashSet<>();
+    Collection<SyncMessageId> unhandled      = new HashSet<>();
+
+    db.beginTransaction();
+    try {
+      for (SyncMessageId id : syncMessageIds) {
+        Set<MessageUpdate> updates = incrementStoryReceiptCountInternal(id, timestamp, MessageDatabase.ReceiptType.VIEWED);
+
+        if (updates.size() > 0) {
+          messageUpdates.addAll(updates);
+        } else {
+          unhandled.add(id);
+        }
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+
+      for (MessageUpdate update : messageUpdates) {
+        ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(update.getMessageId());
+        ApplicationDependencies.getDatabaseObserver().notifyVerboseConversationListeners(Collections.singleton(update.getThreadId()));
+      }
+
+      if (messageUpdates.size() > 0) {
+        notifyConversationListListeners();
+      }
+    }
+
+    return unhandled;
+  }
+
   /**
    * Wraps a single receipt update in a transaction and triggers the proper updates.
    *
@@ -486,6 +520,13 @@ public class MmsSmsDatabase extends Database {
     messageUpdates.addAll(SignalDatabase.mms().incrementReceiptCount(syncMessageId, timestamp, receiptType));
 
     return messageUpdates;
+  }
+
+  /**
+   * Doesn't do any transactions or updates, so we can re-use the method safely.
+   */
+  private @NonNull Set<MessageUpdate> incrementStoryReceiptCountInternal(@NonNull SyncMessageId syncMessageId, long timestamp, @NonNull MessageDatabase.ReceiptType receiptType) {
+    return SignalDatabase.mms().incrementStoryReceiptCount(syncMessageId, timestamp, receiptType);
   }
 
 
