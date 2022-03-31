@@ -2,19 +2,22 @@ package org.thoughtcrime.securesms.stories.viewer.reply.group
 
 import android.content.ClipData
 import android.os.Bundle
-import android.provider.Settings.System.getConfiguration
 import android.view.KeyEvent
+import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetBehaviorHack
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
@@ -71,6 +74,18 @@ class StoryGroupReplyFragment :
   private val keyboardPagerViewModel: KeyboardPagerViewModel by viewModels(
     ownerProducer = { requireActivity() }
   )
+
+  private val recyclerListener: RecyclerView.OnItemTouchListener = object : RecyclerView.SimpleOnItemTouchListener() {
+    override fun onInterceptTouchEvent(view: RecyclerView, e: MotionEvent): Boolean {
+      recyclerView.isNestedScrollingEnabled = view == recyclerView
+      composer.emojiPageView?.isNestedScrollingEnabled = view == composer.emojiPageView
+
+      val dialog = (parentFragment as FixedRoundedCornerBottomSheetDialogFragment).dialog as BottomSheetDialog
+      BottomSheetBehaviorHack.setNestedScrollingChild(dialog.behavior, view)
+      dialog.findViewById<View>(R.id.design_bottom_sheet)?.invalidate()
+      return false
+    }
+  }
 
   private val colorizer = Colorizer()
   private val lifecycleDisposable = LifecycleDisposable()
@@ -245,6 +260,18 @@ class StoryGroupReplyFragment :
     mediaKeyboard.setFragmentManager(childFragmentManager)
   }
 
+  override fun onShowEmojiKeyboard() {
+    requireListener<Callback>().requestFullScreen(true)
+    recyclerView.addOnItemTouchListener(recyclerListener)
+    composer.emojiPageView?.addOnItemTouchListener(recyclerListener)
+  }
+
+  override fun onHideEmojiKeyboard() {
+    recyclerView.removeOnItemTouchListener(recyclerListener)
+    composer.emojiPageView?.removeOnItemTouchListener(recyclerListener)
+    requireListener<Callback>().requestFullScreen(false)
+  }
+
   override fun openEmojiSearch() {
     composer.openEmojiSearch()
   }
@@ -359,5 +386,6 @@ class StoryGroupReplyFragment :
 
   interface Callback {
     fun onStartDirectReply(recipientId: RecipientId)
+    fun requestFullScreen(fullscreen: Boolean)
   }
 }

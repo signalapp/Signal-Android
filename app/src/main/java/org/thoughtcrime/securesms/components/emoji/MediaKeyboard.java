@@ -146,6 +146,10 @@ public class MediaKeyboard extends FrameLayout implements InputView {
                    .commitAllowingStateLoss();
   }
 
+  public boolean isEmojiSearchMode() {
+    return keyboardState == State.EMOJI_SEARCH;
+  }
+
   private void initView() {
     if (!isInitialised) {
 

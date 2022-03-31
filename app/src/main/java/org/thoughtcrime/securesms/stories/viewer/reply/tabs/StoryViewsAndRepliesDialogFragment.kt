@@ -48,6 +48,9 @@ class StoryViewsAndRepliesDialogFragment : FixedRoundedCornerBottomSheetDialogFr
 
   private lateinit var pager: ViewPager2
 
+  private var shouldShowFullScreen = false
+  private var initialParentHeight = 0
+
   private val storyViewerPageViewModel: StoryViewerPageViewModel by viewModels(
     ownerProducer = { requireParentFragment() }
   )
@@ -96,7 +99,16 @@ class StoryViewsAndRepliesDialogFragment : FixedRoundedCornerBottomSheetDialogFr
     view.viewTreeObserver.addOnGlobalLayoutListener {
       val parentHeight = requireCoordinatorLayout().height
       val desiredHeight = (resources.displayMetrics.heightPixels * 0.6f).roundToInt()
-      val targetHeight = if (parentHeight != 0) min(parentHeight, desiredHeight) else desiredHeight
+
+      if (initialParentHeight == 0) {
+        initialParentHeight = parentHeight
+      }
+
+      val targetHeight = when {
+        parentHeight == 0 -> desiredHeight
+        shouldShowFullScreen || parentHeight != initialParentHeight -> parentHeight
+        else -> min(parentHeight, desiredHeight)
+      }
 
       if (view.height != targetHeight) {
         view.updateLayoutParams {
@@ -124,6 +136,11 @@ class StoryViewsAndRepliesDialogFragment : FixedRoundedCornerBottomSheetDialogFr
   override fun onStartDirectReply(recipientId: RecipientId) {
     dismiss()
     storyViewerPageViewModel.startDirectReply(storyId, recipientId)
+  }
+
+  override fun requestFullScreen(fullscreen: Boolean) {
+    shouldShowFullScreen = fullscreen
+    requireView().invalidate()
   }
 
   private inner class PageChangeCallback : ViewPager2.OnPageChangeCallback() {
