@@ -424,6 +424,7 @@
   <string name="RestoreBackupFragment__choose_folder">ഫോൾഡർ തിരഞ്ഞെടുക്കുക </string>
   <string name="RestoreBackupFragment__not_now">ഇപ്പോൾ വേണ്ട</string>
   <!--Couldn\'t find the selected backup-->
+  <string name="RestoreBackupFragment__backup_not_found">ബാക്കപ്പ് കണ്ടെത്താനാവുന്നില്ല.</string>
   <!--Couldn\'t read the selected backup-->
   <!--Backup has an unsupported file extension-->
   <!--BackupsPreferenceFragment-->

@@ -1947,9 +1947,9 @@
   <string name="QuoteView_you">Вы</string>
   <string name="QuoteView_original_missing">Исходное сообщение не найдено</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">%1$s · История</string>
+  <string name="QuoteView_s_story">%1$s · история</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Вы · История</string>
+  <string name="QuoteView_your_story">Вы · история</string>
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">Больше не доступна</string>
   <!--conversation_fragment-->

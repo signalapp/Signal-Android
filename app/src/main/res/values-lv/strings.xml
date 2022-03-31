@@ -23,7 +23,7 @@
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Atspējot Signal ziņas un zvanus, atreģistrējoties no servera. Lai šīs opcijas atsāktu lietot, jums nākotnē būs atkārtoti jāreģistrē savs tālruņa numurs.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Kļūda savienojoties ar serveri!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS iespējots</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Pieskarieties lai izvēlētos savu noklusējuma SMS aplikāciju</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Pieskarieties, lai izvēlētos jūsu noklusējuma SMS aplikāciju</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS atspējots</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Pieskarieties, lai iestatītu Signal kā savu noklusējuma SMS aplikāciju</string>
   <string name="ApplicationPreferencesActivity_on">ieslēgts</string>
@@ -32,7 +32,7 @@
   <string name="ApplicationPreferencesActivity_Off">Izslēgts</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Ekrāna bloķēšana %1$s, Reģistrācijas bloķēšana %2$s</string>
-  <string name="ApplicationPreferencesActivity_appearance_summary">Ādiņa %1$s, valoda %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Dizains %1$s, valoda %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN kodi ir nepieciešami reģistrācijas bloķēšanai. Lai atspējotu PIN, vispirms atspējojiet reģistrācijas bloķēšanu.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN izveidots.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN atspējots.</string>
@@ -108,7 +108,7 @@
   <string name="BucketedThreadMedia_Medium">Vidējs</string>
   <string name="BucketedThreadMedia_Small">Mazs</string>
   <!--CameraXFragment-->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">Pieskarieties, lai skatītu fotoattēlu, turiet, lai skatītu videoklipu</string>
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Pieskarieties, lai uzņemtu bildi, turiet, lai ierakstītu video</string>
   <string name="CameraXFragment_capture_description">Uzņemt</string>
   <string name="CameraXFragment_change_camera_description">Nomainīt kameru</string>
   <string name="CameraXFragment_open_gallery_description">Atvērt galeriju</string>
@@ -475,7 +475,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Izvēlieties fotogrāfiju</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Uzņemt fotogrāfiju</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Izvēlēties no galerijas</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Noņemt attēlu</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Noņemt fotogrāfiju</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Lai fotografētu, nepieciešama kameras lietošanas atļauja.</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Lai skatītu galeriju, nepieciešama failu noliktavas lietošanas atļauja.</string>
   <!--DateUtils-->
@@ -754,7 +754,7 @@
   <string name="ManageProfileFragment_your_username">Jūsu uzvārds</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Neizdevās iestatīt avatāru</string>
   <string name="ManageProfileFragment_badges">Nozīmītes</string>
-  <string name="ManageProfileFragment__edit_photo">Rediģēt attēlu</string>
+  <string name="ManageProfileFragment__edit_photo">Rediģēt fotogrāfiju</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Nav kopēju grupu</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -2224,7 +2224,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="preferences__light_theme">Gaišs</string>
   <string name="preferences__dark_theme">Tumšs</string>
   <string name="preferences__appearance">Izskats</string>
-  <string name="preferences__theme">Motīvs</string>
+  <string name="preferences__theme">Dizains</string>
   <string name="preferences__chat_wallpaper">Sarunu fona tapete</string>
   <string name="preferences__chat_color_and_wallpaper">Sarunas krāsa un fona tapete</string>
   <string name="preferences__disable_pin">Atspējot PIN</string>

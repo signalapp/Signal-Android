@@ -307,7 +307,7 @@
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Можете да додадате белешки во овој разговор.\nАко Вашата сметка има поврзани уреди, новите белешки ќе бидат синхронизирани.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d членови на групата го имаат истото име.</string>
   <string name="ConversationFragment__tap_to_review">Допрете за преглед</string>
-  <string name="ConversationFragment__review_requests_carefully">Прегледајте ги барањата внимателно</string>
+  <string name="ConversationFragment__review_requests_carefully">Внимателно прегледајте ги барањата</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal пронајде друг контакт со истото име.</string>
   <string name="ConversationFragment_contact_us">Контактирајте нѐ</string>
   <string name="ConversationFragment_verify">Провери</string>
@@ -505,7 +505,7 @@
   <string name="GiphyFragmentPagerAdapter_stickers">Стикери</string>
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">Да додадам член?</string>
-  <string name="AddToGroupActivity_add_s_to_s">Да го/ја додадам \"%1$s\" во \"%2$s\"?</string>
+  <string name="AddToGroupActivity_add_s_to_s">Да го/ја додадам „%1$s“ во група „%2$s“?</string>
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" е додаден/а во \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Додај во група</string>
   <string name="AddToGroupActivity_add_to_groups">Додај во групи</string>
@@ -635,8 +635,8 @@
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Оваа личност не може да биде додадена во застарени групи.</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Оваа личност не може да биде додадена во групата за известувања.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
-    <item quantity="one">Да го/ја додадам %1$s во %2$s?</item>
-    <item quantity="other">Да ги додадам %3$d членови во \"%2$s\"?</item>
+    <item quantity="one">Да го/ја додадам „%1$s“ во група „%2$s“?</item>
+    <item quantity="other">Да додадам %3$d членови во група „%2$s“?</item>
   </plurals>
   <string name="AddMembersActivity__add">Додај</string>
   <string name="AddMembersActivity__add_members">Додај членови</string>
@@ -1766,8 +1766,8 @@
   <string name="ConversationUpdateItem_update_contact">Ажурирај контакт</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
   <string name="ConversationUpdateItem_block_request">Блокирај барање</string>
-  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Немате заеднички групи. Прегледувајте ги барањата внимателно.</string>
-  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Нема контакти во оваа група. Внимателно разгледајте ги барањата.</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Немате заеднички групи. Внимателно прегледајте ги барањата.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Нема контакти во оваа група. Внимателно прегледајте ги барањата.</string>
   <string name="ConversationUpdateItem_view">Поглед</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Времето на исчезнувачките пораки ќе биде поставено на %1$s кога ќе им испратите порака.</string>
   <!--Update item button text to show to boost a feature-->
@@ -3077,7 +3077,7 @@
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">За да испратите плаќање на овој корисник, прво тие мора да го прифатат барањето за порака од Вас. Испратете им порака за да креирате барање за порака.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Испрати порака</string>
   <!--GroupsInCommonMessageRequest-->
-  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Немате заеднички групи со оваа личност. Прегледувајте ги барањата внимателно за да избегнете несакани пораки.</string>
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Немате заеднички групи со оваа личност. Внимателно прегледајте ги барањата пред да прифатите за да избегнете несакани пораки.</string>
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Ниту еден од Вашите контакти или луѓе со кои разговарате не се во оваа група. Внимателно прегледајте ги барањата пред да прифатите за да избегнете несакани пораки.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">За барањата за пораки</string>
   <string name="GroupsInCommonMessageRequest__okay">Во ред</string>
@@ -3589,7 +3589,7 @@
   <!--Button text that launches the contact picker to select from-->
   <string name="AddAllowedMembers__add_people_or_groups">Додај луѓе или групи</string>
   <!--Call to action button on contact picker for adding to profile-->
-  <string name="SelectRecipientsFragment__add">Додај…</string>
+  <string name="SelectRecipientsFragment__add">Додај</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
   <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Создајте профил за да примате пораки и повици само од луѓето и групите што ќе ги изберете.</string>
   <!--Header shown above list of all notification profiles-->
@@ -3753,6 +3753,7 @@
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Да се сокрие приказната?</string>
   <!--Message of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__new_story_updates">Новите ажурирања на приказната од %1$s повеќе нема да се појавуваат на врвот на листата со приказни. </string>
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">Сокриј</string>
   <!--Displayed in Snackbar after story is hidden-->
@@ -3760,6 +3761,10 @@
   <!--Section header for hidden stories-->
   <string name="StoriesLandingFragment__hidden_stories">Скриени приказни</string>
   <!--Displayed on each sent story under My Stories-->
+  <plurals name="MyStories__d_views">
+    <item quantity="one">%1$d преглед</item>
+    <item quantity="other">%1$d прегледи</item>
+  </plurals>
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">Препрати</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
@@ -3769,6 +3774,10 @@
   <!--Message of dialog to confirm deletion of story-->
   <string name="MyStories__this_story_will_be_deleted">Оваа приказна ќе биде избришана за Вас и сите кои ја примиле.</string>
   <!--Displayed at bottom of story viewer when current item has views-->
+  <plurals name="StoryViewerFragment__d_views">
+    <item quantity="one">%1$d преглед</item>
+    <item quantity="other">%1$d прегледи</item>
+  </plurals>
   <!--Displayed at bottom of story viewer when current item has replies-->
   <plurals name="StoryViewerFragment__d_replies">
     <item quantity="one">%1$d одговор</item>
@@ -3783,11 +3792,13 @@
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Одговори</string>
   <!--Displayed when a story has no views-->
+  <string name="StoryViewsFragment__no_views_yet">Сè уште нема прегледи</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Сè уште нема одговори</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
   <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Реагираше на приказната</string>
   <!--Label for story views tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__views">Прегледи</string>
   <!--Label for story replies tab-->
   <!--Description of action for reaction button-->
   <string name="StoryReplyComposer__react_to_this_story">Реагирај на оваа приказна</string>
@@ -3831,13 +3842,16 @@
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">Започнувам разговор</string>
   <!--Signal connections sheet bullet point 2-->
+  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Прифаќање на барање за разговор</string>
   <!--Signal connections sheet bullet point 3-->
   <!--Note at the bottom of the Signal connections sheet-->
   <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Вашите врски можат да го видат Вашето име и слика и да ги гледаат објавите во „Моја приказна”, освен ако не го сокриете тоа од нив.</string>
   <!--Clickable option to add a viewer to a private story-->
+  <string name="PrivateStorySettingsFragment__add_viewer">Додај гледач</string>
   <!--Clickable option to delete a custom story-->
   <string name="PrivateStorySettingsFragment__delete_private_story">Избриши приватна приказна</string>
   <!--Dialog title when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__remove_s">Да се отстрани %1$s?</string>
   <!--Dialog message when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Оваа личност повеќе нема да ја види Вашата приказна.</string>
   <!--Positive action label when attempting to remove someone from a private story-->
@@ -3879,8 +3893,10 @@
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <string name="StoryDialogs__add_to_story">Додај во приказна</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <string name="StoryDialogs__edit_viewers">Уреди гледачи</string>
   <!--Privacy Settings toggle title for stories-->
   <!--Privacy Settings toggle summary for stories-->
+  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Кога оваа опција е исклучена нема да можете да споделувате и гледате приказни.</string>
   <!--New story viewer selection screen title-->
   <string name="CreateStoryViewerSelectionFragment__choose_viewers">Избери гледачи</string>
   <!--New story viewer selection action button label-->

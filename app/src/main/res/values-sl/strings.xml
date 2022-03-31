@@ -1204,6 +1204,12 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Poslali ste prošnjo za pridružitev skupini.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s je preko deljene povezave zaprosil_a za pridružitev skupini.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="one">%1$s je zaprosil_a in nato prekinil_a svojo prošnjo za pridružitev skupini preko povezave.</item>
+    <item quantity="two">%1$s je zaprosil_a in nato prekinil_a %2$d prošnji za pridružitev skupini preko povezave.</item>
+    <item quantity="few">%1$s je zaprosil_a in nato prekinil_a %2$d prošnje za pridružitev skupini preko povezave.</item>
+    <item quantity="other">%1$s je zaprosil_a in nato prekinil_a  %2$d prošenj za pridružitev skupini preko povezave.</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s je odobril_a vašo prošnjo za pridružitev skupini.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s je odobril_a prošnjo uporabnika_ce %2$s za pridružitev skupini.</string>
@@ -1569,6 +1575,8 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Več</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN je bil potrjen. Kasneje vas bomo znova opomnili.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN je bil potrjen. Jutri vas bomo znova opomnili.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN je bil potrjen. Čez nekaj dni vas bomo znova opomnili.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN je bil potrjen. Čez teden vas bomo znova opomnili.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN je bil potrjen. Čez nekaj tednov vas bomo znova opomnili.</string>
