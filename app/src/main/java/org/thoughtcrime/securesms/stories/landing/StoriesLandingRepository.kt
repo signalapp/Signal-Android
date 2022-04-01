@@ -27,7 +27,7 @@ class StoriesLandingRepository(context: Context) {
     }.subscribeOn(Schedulers.io())
   }
 
-  fun getStories(): Observable<StoriesResult> {
+  fun getStories(): Observable<List<StoriesLandingItemData>> {
     val storyRecipients: Observable<Map<Recipient, List<StoryResult>>> = Observable.create { emitter ->
       fun refresh() {
         val myStoriesId = SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.MY_STORY)
@@ -57,7 +57,7 @@ class StoriesLandingRepository(context: Context) {
       refresh()
     }
 
-    val storiesLandingItemData = storyRecipients.switchMap { map ->
+    return storyRecipients.switchMap { map ->
       val observables = map.map { (recipient, results) ->
         val messages = results
           .sortedBy { it.messageSentTimestamp }
@@ -74,21 +74,6 @@ class StoriesLandingRepository(context: Context) {
         it.toList() as List<StoriesLandingItemData>
       }
     }
-
-    val hasOutgoingStories: Observable<Boolean> = storyRecipients.concatMap {
-      Observable.fromCallable {
-        SignalDatabase.mms.getAllOutgoingStories(false).use {
-          it.next != null
-        }
-      }
-    }
-
-    return Observable.combineLatest(
-      storiesLandingItemData,
-      hasOutgoingStories
-    ) { data, outgoingStories ->
-      StoriesResult(data, outgoingStories)
-    }.observeOn(Schedulers.io())
   }
 
   private fun createStoriesLandingItemData(sender: Recipient, messageRecords: List<MessageRecord>): Observable<StoriesLandingItemData> {
@@ -142,9 +127,4 @@ class StoriesLandingRepository(context: Context) {
       SignalDatabase.recipients.setHideStory(recipientId, hideStory)
     }.subscribeOn(Schedulers.io())
   }
-
-  data class StoriesResult(
-    val data: List<StoriesLandingItemData>,
-    val hasOutgoingStories: Boolean
-  )
 }

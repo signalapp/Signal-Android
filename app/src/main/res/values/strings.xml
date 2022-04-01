@@ -2230,6 +2230,8 @@
 
     <!-- Displayed in a toast when user long presses an item in MyStories -->
     <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Copied sent timestamp to clipboard.</string>
+    <!-- Displayed when there are no outgoing stories -->
+    <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Updates to your story will show up here.</string>
 
     <!-- GroupUtil -->
     <plurals name="GroupUtil_joined_the_group">

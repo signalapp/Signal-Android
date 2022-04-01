@@ -17,13 +17,12 @@ class StoriesLandingViewModel(private val storiesLandingRepository: StoriesLandi
   val state: LiveData<StoriesLandingState> = store.stateLiveData
 
   init {
-    disposables += storiesLandingRepository.getStories().subscribe { (stories, hasOutgoingGroupStories) ->
+    disposables += storiesLandingRepository.getStories().subscribe { stories ->
       store.update { state ->
         state.copy(
           loadingState = StoriesLandingState.LoadingState.LOADED,
           storiesLandingItems = stories.sorted(),
-          displayMyStoryItem = stories.isEmpty() || stories.none { it.storyRecipient.isMyStory },
-          hasOutgoingStories = hasOutgoingGroupStories
+          displayMyStoryItem = stories.isEmpty() || stories.none { it.storyRecipient.isMyStory }
         )
       }
     }

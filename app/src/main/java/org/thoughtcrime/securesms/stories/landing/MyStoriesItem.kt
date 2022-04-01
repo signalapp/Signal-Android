@@ -20,8 +20,7 @@ object MyStoriesItem {
   }
 
   class Model(
-    val hasOutgoingStories: Boolean,
-    val onClick: (Boolean) -> Unit,
+    val onClick: () -> Unit,
     val onClickThumbnail: () -> Unit
   ) : PreferenceModel<Model>() {
     override fun areItemsTheSame(newItem: Model): Boolean = true
@@ -34,7 +33,7 @@ object MyStoriesItem {
     private val badgeView: BadgeImageView = itemView.findViewById(R.id.badge)
 
     override fun bind(model: Model) {
-      itemView.setOnClickListener { model.onClick(model.hasOutgoingStories) }
+      itemView.setOnClickListener { model.onClick() }
       thumbnail.setOnClickListener { model.onClickThumbnail() }
 
       avatarView.displayProfileAvatar(Recipient.self())

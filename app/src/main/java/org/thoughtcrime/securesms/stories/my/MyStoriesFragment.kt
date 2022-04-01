@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.stories.my
 
+import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.app.ActivityOptionsCompat
@@ -19,8 +20,10 @@ import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.Util
+import org.thoughtcrime.securesms.util.visible
 
 class MyStoriesFragment : DSLSettingsFragment(
+  layoutId = R.layout.stories_my_stories_fragment,
   titleId = R.string.StoriesLandingFragment__my_stories
 ) {
 
@@ -44,12 +47,11 @@ class MyStoriesFragment : DSLSettingsFragment(
       }
     )
 
+    val emptyNotice = requireView().findViewById<View>(R.id.empty_notice)
     lifecycleDisposable.bindTo(viewLifecycleOwner)
     viewModel.state.observe(viewLifecycleOwner) {
       adapter.submitList(getConfiguration(it).toMappingModelList())
-      if (it.distributionSets.isEmpty()) {
-        requireActivity().finish()
-      }
+      emptyNotice.visible = it.distributionSets.isEmpty()
     }
   }
 
