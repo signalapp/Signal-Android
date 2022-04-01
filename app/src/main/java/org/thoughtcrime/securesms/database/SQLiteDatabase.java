@@ -3,8 +3,12 @@ package org.thoughtcrime.securesms.database;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.os.CancellationSignal;
+import android.util.Pair;
 
 import androidx.annotation.NonNull;
+import androidx.sqlite.db.SupportSQLiteDatabase;
+import androidx.sqlite.db.SupportSQLiteQuery;
 
 import net.zetetic.database.SQLException;
 import net.zetetic.database.sqlcipher.SQLiteStatement;
@@ -12,9 +16,11 @@ import net.zetetic.database.sqlcipher.SQLiteTransactionListener;
 
 import org.signal.core.util.tracing.Tracer;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
@@ -25,7 +31,7 @@ import java.util.Set;
  * making a subclass, so instead we just match the interface. Callers should just need to change
  * their import statements.
  */
-public class SQLiteDatabase {
+public class SQLiteDatabase implements SupportSQLiteDatabase {
 
   public static final int CONFLICT_ROLLBACK = 1;
   public static final int CONFLICT_ABORT    = 2;
@@ -183,6 +189,77 @@ public class SQLiteDatabase {
     }
   }
 
+  // =======================================================
+  // Overrides
+  // =======================================================
+
+  @Override
+  public void beginTransactionWithListener(android.database.sqlite.SQLiteTransactionListener transactionListener) {
+    beginTransactionWithListener(new ConvertedTransactionListener(transactionListener));
+  }
+
+  @Override
+  public void beginTransactionWithListenerNonExclusive(android.database.sqlite.SQLiteTransactionListener transactionListener) {
+    beginTransactionWithListenerNonExclusive(new ConvertedTransactionListener(transactionListener));
+  }
+
+  @Override
+  public Cursor query(String query) {
+    return rawQuery(query, null);
+  }
+
+  @Override
+  public Cursor query(String query, Object[] bindArgs) {
+    return rawQuery(query, bindArgs);
+  }
+
+  @Override
+  public Cursor query(SupportSQLiteQuery query) {
+    DatabaseMonitor.onSql(query.getSql(), null);
+    return wrapped.query(query);
+  }
+
+  @Override
+  public Cursor query(SupportSQLiteQuery query, CancellationSignal cancellationSignal) {
+    DatabaseMonitor.onSql(query.getSql(), null);
+    return wrapped.query(query, cancellationSignal);
+  }
+
+  @Override
+  public long insert(String table, int conflictAlgorithm, ContentValues values) throws android.database.SQLException {
+    return insertWithOnConflict(table, null, values, conflictAlgorithm);
+  }
+
+  @Override
+  public int delete(String table, String whereClause, Object[] whereArgs) {
+    return delete(table, whereClause, (String[]) whereArgs);
+  }
+
+  @Override
+  public int update(String table, int conflictAlgorithm, ContentValues values, String whereClause, Object[] whereArgs) {
+    return updateWithOnConflict(table, values, whereClause, (String[]) whereArgs, conflictAlgorithm);
+  }
+
+  @Override
+  public void setMaxSqlCacheSize(int cacheSize) {
+    wrapped.setMaxSqlCacheSize(cacheSize);
+  }
+
+  @Override
+  public List<Pair<String, String>> getAttachedDbs() {
+    return wrapped.getAttachedDbs();
+  }
+
+  @Override
+  public boolean isDatabaseIntegrityOk() {
+    return wrapped.isDatabaseIntegrityOk();
+  }
+
+  @Override
+  public void close() throws IOException {
+    wrapped.close();
+  }
+
 
   // =======================================================
   // Traced
@@ -297,6 +374,7 @@ public class SQLiteDatabase {
   }
 
   public int updateWithOnConflict(String table, ContentValues values, String whereClause, String[] whereArgs, int conflictAlgorithm) {
+    DatabaseMonitor.onUpdate(table, values, whereClause, whereArgs);
     return traceSql("updateWithOnConflict()", table, whereClause, true, () -> wrapped.updateWithOnConflict(table, values, whereClause, whereArgs, conflictAlgorithm));
   }
 
@@ -414,5 +492,29 @@ public class SQLiteDatabase {
 
   public void setLocale(Locale locale) {
     wrapped.setLocale(locale);
+  }
+
+  private static class ConvertedTransactionListener implements SQLiteTransactionListener {
+
+    private final android.database.sqlite.SQLiteTransactionListener listener;
+
+    ConvertedTransactionListener(android.database.sqlite.SQLiteTransactionListener listener) {
+      this.listener = listener;
+    }
+
+    @Override
+    public void onBegin() {
+      listener.onBegin();
+    }
+
+    @Override
+    public void onCommit() {
+      listener.onCommit();
+    }
+
+    @Override
+    public void onRollback() {
+      listener.onRollback();
+    }
   }
 }
