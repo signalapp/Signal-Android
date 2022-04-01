@@ -5,12 +5,12 @@
     {{> partials/prefix isQuery=true}}
 
     <!-- Query Input -->
-    <form action="query" method="post">
+    <form action="query" method="post" id="query-form">
       <textarea name="query" class="query-input" placeholder="Enter your query...">{{query}}</textarea>
       <input type="hidden" name="db" value="{{database}}" />
-      <input type="submit" name="action" value="run" onclick="onQuerySubmitted()" />
+      <input type="submit" name="action" value="run" />
       or
-      <input type="submit" name="action" value="analyze" onclick="onQuerySubmitted()" />
+      <input type="submit" name="action" value="analyze" />
       or
       <button onclick="onFormatClicked(event)">format</button>
     </form>
@@ -57,6 +57,7 @@
       function submitOnEnter(event){
         if (event.which === 13 && event.shiftKey) {
           event.target.form.submit();
+          onQuerySubmitted();
           event.preventDefault();
         }
       }
@@ -99,7 +100,8 @@
         return JSON.parse(historyRaw);
       }
 
-      document.querySelector('.query-input').addEventListener("keypress", submitOnEnter);
+      document.querySelector('.query-input').addEventListener('keypress', submitOnEnter);
+      document.getElementById('query-form').addEventListener('submit', onQuerySubmitted, false);
       renderQueryHistory();
 
     </script>
