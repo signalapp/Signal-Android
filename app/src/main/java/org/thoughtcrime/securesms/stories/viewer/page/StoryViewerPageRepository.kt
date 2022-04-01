@@ -24,7 +24,10 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.Base64
 
-class StoryViewerPageRepository(context: Context) {
+/**
+ * Open for testing.
+ */
+open class StoryViewerPageRepository(context: Context) {
 
   private val context = context.applicationContext
 
@@ -77,7 +80,8 @@ class StoryViewerPageRepository(context: Context) {
           dateInMilliseconds = record.dateSent,
           content = getContent(record as MmsMessageRecord),
           conversationMessage = ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, record),
-          allowsReplies = record.storyType.isStoryWithReplies
+          allowsReplies = record.storyType.isStoryWithReplies,
+          hasSelfViewed = if (record.isOutgoing) true else record.viewedReceiptCount > 0
         )
 
         emitter.onNext(story)

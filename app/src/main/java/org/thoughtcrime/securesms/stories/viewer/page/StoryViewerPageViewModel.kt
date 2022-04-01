@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
@@ -11,6 +12,7 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.livedata.Store
+import org.thoughtcrime.securesms.util.rx.RxStore
 import java.util.Optional
 import kotlin.math.max
 import kotlin.math.min
@@ -24,7 +26,7 @@ class StoryViewerPageViewModel(
   private val repository: StoryViewerPageRepository
 ) : ViewModel() {
 
-  private val store = Store(StoryViewerPageState())
+  private val store = RxStore(StoryViewerPageState())
   private val disposables = CompositeDisposable()
   private val storyViewerDialogSubject: Subject<Optional<StoryViewerDialog>> = PublishSubject.create()
 
@@ -34,7 +36,7 @@ class StoryViewerPageViewModel(
 
   val groupDirectReplyObservable: Observable<Optional<StoryViewerDialog>> = storyViewerDialogSubject
 
-  val state: LiveData<StoryViewerPageState> = store.stateLiveData
+  val state: Flowable<StoryViewerPageState> = store.stateFlowable
 
   fun getStateSnapshot(): StoryViewerPageState = store.state
 
@@ -50,7 +52,8 @@ class StoryViewerPageViewModel(
           val initialIndex = posts.indexOfFirst { it.id == initialStoryId }
           initialIndex.takeIf { it > -1 } ?: state.selectedPostIndex
         } else if (state.posts.isEmpty()) {
-          val initialIndex = posts.indexOfFirst { !it.conversationMessage.messageRecord.isOutgoing && it.conversationMessage.messageRecord.viewedReceiptCount == 0 }
+          val initialPost = getNextUnreadPost(posts)
+          val initialIndex = initialPost?.let { posts.indexOf(it) } ?: -1
           initialIndex.takeIf { it > -1 } ?: state.selectedPostIndex
         } else {
           state.selectedPostIndex
@@ -89,11 +92,24 @@ class StoryViewerPageViewModel(
   }
 
   fun goToNextPost() {
+    if (store.state.posts.isEmpty()) {
+      return
+    }
+
     val postIndex = store.state.selectedPostIndex
-    setSelectedPostIndex(postIndex + 1)
+    val nextUnreadPost: StoryPost? = getNextUnreadPost(store.state.posts.drop(postIndex + 1))
+    if (nextUnreadPost == null) {
+      setSelectedPostIndex(postIndex + 1)
+    } else {
+      setSelectedPostIndex(store.state.posts.indexOf(nextUnreadPost))
+    }
   }
 
   fun goToPreviousPost() {
+    if (store.state.posts.isEmpty()) {
+      return
+    }
+
     val postIndex = store.state.selectedPostIndex
     setSelectedPostIndex(max(0, postIndex - 1))
   }
@@ -192,6 +208,10 @@ class StoryViewerPageViewModel(
       isFromSelf -> StoryViewerPageState.ReplyState.SELF
       else -> StoryViewerPageState.ReplyState.NONE
     }
+  }
+
+  private fun getNextUnreadPost(list: List<StoryPost>): StoryPost? {
+    return list.firstOrNull { !it.hasSelfViewed }
   }
 
   fun getPostAt(index: Int): StoryPost? {

@@ -22,6 +22,7 @@ import androidx.core.view.doOnNextLayout
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveDataReactiveStreams
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import org.signal.core.util.DimensionUnit
@@ -252,42 +253,44 @@ class StoryViewerPageFragment :
       }
     }
 
-    viewModel.state.observe(viewLifecycleOwner) { state ->
-      if (state.posts.isNotEmpty() && state.selectedPostIndex < state.posts.size) {
-        val post = state.posts[state.selectedPostIndex]
+    LiveDataReactiveStreams
+      .fromPublisher(viewModel.state.observeOn(AndroidSchedulers.mainThread()))
+      .observe(viewLifecycleOwner) { state ->
+        if (state.posts.isNotEmpty() && state.selectedPostIndex < state.posts.size) {
+          val post = state.posts[state.selectedPostIndex]
 
-        presentViewsAndReplies(post)
-        presentSenderAvatar(senderAvatar, post)
-        presentGroupAvatar(groupAvatar, post)
-        presentFrom(from, post)
-        presentDate(date, post)
-        presentDistributionList(distributionList, post)
-        presentCaption(caption, largeCaption, largeCaptionOverlay, post)
-        presentBlur(blurContainer, post)
+          presentViewsAndReplies(post)
+          presentSenderAvatar(senderAvatar, post)
+          presentGroupAvatar(groupAvatar, post)
+          presentFrom(from, post)
+          presentDate(date, post)
+          presentDistributionList(distributionList, post)
+          presentCaption(caption, largeCaption, largeCaptionOverlay, post)
+          presentBlur(blurContainer, post)
 
-        val durations: Map<Int, Long> = state.posts
-          .mapIndexed { index, storyPost ->
-            index to when {
-              storyPost.content.isVideo() -> -1L
-              storyPost.content is StoryPost.Content.TextContent -> calculateDurationForText(storyPost.content)
-              else -> DEFAULT_DURATION
+          val durations: Map<Int, Long> = state.posts
+            .mapIndexed { index, storyPost ->
+              index to when {
+                storyPost.content.isVideo() -> -1L
+                storyPost.content is StoryPost.Content.TextContent -> calculateDurationForText(storyPost.content)
+                else -> DEFAULT_DURATION
+              }
             }
+            .toMap()
+
+          if (progressBar.segmentCount != state.posts.size || progressBar.segmentDurations != durations) {
+            progressBar.segmentCount = state.posts.size
+            progressBar.segmentDurations = durations
           }
-          .toMap()
 
-        if (progressBar.segmentCount != state.posts.size || progressBar.segmentDurations != durations) {
-          progressBar.segmentCount = state.posts.size
-          progressBar.segmentDurations = durations
+          presentStory(post, state.selectedPostIndex)
+          presentSlate(post)
+
+          viewModel.setAreSegmentsInitialized(true)
+        } else if (state.selectedPostIndex >= state.posts.size) {
+          callback.onFinishedPosts(storyRecipientId)
         }
-
-        presentStory(post, state.selectedPostIndex)
-        presentSlate(post)
-
-        viewModel.setAreSegmentsInitialized(true)
-      } else if (state.selectedPostIndex >= state.posts.size) {
-        callback.onFinishedPosts(storyRecipientId)
       }
-    }
 
     viewModel.storyViewerPlaybackState.observe(viewLifecycleOwner) { state ->
       if (state.isPaused) {

@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.util.MediaUtil
 /**
  * Each story is made up of a collection of posts
  */
-class StoryPost(
+data class StoryPost(
   val id: Long,
   val sender: Recipient,
   val group: Recipient?,
@@ -20,7 +20,8 @@ class StoryPost(
   val dateInMilliseconds: Long,
   val content: Content,
   val conversationMessage: ConversationMessage,
-  val allowsReplies: Boolean
+  val allowsReplies: Boolean,
+  val hasSelfViewed: Boolean
 ) {
   sealed class Content(val uri: Uri?) {
     class AttachmentContent(val attachment: Attachment) : Content(attachment.uri) {
