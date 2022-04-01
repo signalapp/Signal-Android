@@ -433,8 +433,12 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     return false;
   }
 
+  private boolean isSearchOpen() {
+    return (requireCallback().getSearchToolbar().resolved() && requireCallback().getSearchToolbar().get().isVisible()) || activeAdapter == searchAdapter;
+  }
+
   private boolean closeSearchIfOpen() {
-    if ((requireCallback().getSearchToolbar().resolved() && requireCallback().getSearchToolbar().get().isVisible()) || activeAdapter == searchAdapter) {
+    if (isSearchOpen()) {
       list.removeItemDecoration(searchAdapterDecoration);
       setAdapter(defaultAdapter);
       requireCallback().getSearchToolbar().get().collapse();
@@ -559,6 +563,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   private void initializeSearchListener() {
     requireCallback().getSearchAction().setOnClickListener(v -> {
+      fadeOutButtonsAndMegaphone(250);
       requireCallback().onSearchOpened();
       requireCallback().getSearchToolbar().get().display(requireCallback().getSearchAction().getX() + (requireCallback().getSearchAction().getWidth() / 2.0f),
                                                          requireCallback().getSearchAction().getY() + (requireCallback().getSearchAction().getHeight() / 2.0f));
@@ -589,6 +594,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
           list.removeItemDecoration(searchAdapterDecoration);
           setAdapter(defaultAdapter);
           requireCallback().onSearchClosed();
+          fadeInButtonsAndMegaphone(250);
         }
       });
     });
@@ -767,7 +773,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     if (view != null) {
       megaphoneContainer.get().addView(view);
-      megaphoneContainer.get().setVisibility(View.VISIBLE);
+      if (isSearchOpen() || actionMode != null) {
+        megaphoneContainer.get().setVisibility(View.GONE);
+      } else {
+        megaphoneContainer.get().setVisibility(View.VISIBLE);
+      }
     } else {
       megaphoneContainer.get().setVisibility(View.GONE);
 
@@ -1033,6 +1043,22 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     }, (nothing) -> {
       getNavigator().goToConversation(recipient.getId(), threadId, distributionType, -1);
     });
+  }
+
+  private void fadeOutButtonsAndMegaphone(int fadeDuration) {
+    ViewUtil.fadeOut(fab, fadeDuration);
+    ViewUtil.fadeOut(cameraFab, fadeDuration);
+    if (megaphoneContainer.resolved()) {
+      ViewUtil.fadeOut(megaphoneContainer.get(), fadeDuration);
+    }
+  }
+
+  private void fadeInButtonsAndMegaphone(int fadeDuration) {
+    ViewUtil.fadeIn(fab, fadeDuration);
+    ViewUtil.fadeIn(cameraFab, fadeDuration);
+    if (megaphoneContainer.resolved()) {
+      ViewUtil.fadeIn(megaphoneContainer.get(), fadeDuration);
+    }
   }
 
   private void startActionMode() {
