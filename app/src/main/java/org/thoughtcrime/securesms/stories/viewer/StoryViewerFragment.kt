@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.viewpager2.widget.ViewPager2
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -40,7 +41,7 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
       storyPager.isUserInputEnabled = !it
     }
 
-    viewModel.state.observe(viewLifecycleOwner) { state ->
+    LiveDataReactiveStreams.fromPublisher(viewModel.state).observe(viewLifecycleOwner) { state ->
       adapter.setPages(state.pages)
       if (state.pages.isNotEmpty() && storyPager.currentItem != state.page) {
         storyPager.setCurrentItem(state.page, state.previousPage > -1)
@@ -65,11 +66,11 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
   }
 
   override fun onGoToPreviousStory(recipientId: RecipientId) {
-    viewModel.onGoToPreviousStory(recipientId)
+    viewModel.onGoToPrevious(recipientId)
   }
 
   override fun onFinishedPosts(recipientId: RecipientId) {
-    viewModel.onFinishedPosts(recipientId)
+    viewModel.onGoToNext(recipientId)
   }
 
   override fun onStoryHidden(recipientId: RecipientId) {

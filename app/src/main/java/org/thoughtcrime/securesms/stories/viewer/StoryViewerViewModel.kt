@@ -4,21 +4,23 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.livedata.Store
-import kotlin.math.min
+import org.thoughtcrime.securesms.util.rx.RxStore
+import kotlin.math.max
 
 class StoryViewerViewModel(
   private val startRecipientId: RecipientId,
   private val repository: StoryViewerRepository
 ) : ViewModel() {
 
-  private val store = Store(StoryViewerState())
+  private val store = RxStore(StoryViewerState())
   private val disposables = CompositeDisposable()
 
-  val state: LiveData<StoryViewerState> = store.stateLiveData
+  val stateSnapshot: StoryViewerState get() = store.state
+  val state: Flowable<StoryViewerState> = store.stateFlowable
 
   private val scrollStatePublisher: MutableLiveData<Boolean> = MutableLiveData(false)
   val isScrolling: LiveData<Boolean> = scrollStatePublisher
@@ -66,7 +68,7 @@ class StoryViewerViewModel(
     }
   }
 
-  fun onFinishedPosts(recipientId: RecipientId) {
+  fun onGoToNext(recipientId: RecipientId) {
     store.update {
       if (it.pages[it.page] == recipientId) {
         updatePages(it, it.page + 1)
@@ -76,10 +78,10 @@ class StoryViewerViewModel(
     }
   }
 
-  fun onGoToPreviousStory(recipientId: RecipientId) {
+  fun onGoToPrevious(recipientId: RecipientId) {
     store.update {
       if (it.pages[it.page] == recipientId) {
-        updatePages(it, min(0, it.page - 1))
+        updatePages(it, max(0, it.page - 1))
       } else {
         it
       }

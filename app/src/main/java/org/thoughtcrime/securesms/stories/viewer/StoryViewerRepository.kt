@@ -8,7 +8,10 @@ import org.thoughtcrime.securesms.database.model.StoryResult
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 
-class StoryViewerRepository {
+/**
+ * Open for testing
+ */
+open class StoryViewerRepository {
   fun getStories(): Single<List<RecipientId>> {
     return Single.fromCallable {
       val storyResults: List<StoryResult> = SignalDatabase.mms.orderedStoryRecipientsAndIds.distinctBy { it.recipientId }

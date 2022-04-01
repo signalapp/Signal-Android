@@ -238,7 +238,7 @@ class StoryViewerPageFragment :
       viewModel.setIsUserScrollingParent(isScrolling)
     }
 
-    sharedViewModel.state.observe(viewLifecycleOwner) { parentState ->
+    LiveDataReactiveStreams.fromPublisher(sharedViewModel.state).observe(viewLifecycleOwner) { parentState ->
       if (parentState.pages.size <= parentState.page) {
         viewModel.setIsSelectedPage(false)
       } else if (storyRecipientId == parentState.pages[parentState.page]) {
@@ -753,7 +753,7 @@ class StoryViewerPageFragment :
     }
 
     override fun onScroll(e1: MotionEvent, e2: MotionEvent, distanceX: Float, distanceY: Float): Boolean {
-      val isFirstStory = sharedViewModel.state.value?.page == 0
+      val isFirstStory = sharedViewModel.stateSnapshot.page == 0
       val isXMagnitudeGreaterThanYMagnitude = abs(distanceX) > abs(distanceY) || viewToTranslate.translationX > 0f
       val isFirstAndHasYTranslationOrNegativeY = isFirstStory && (viewToTranslate.translationY > 0f || distanceY < 0f)
 
