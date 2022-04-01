@@ -8,12 +8,16 @@
     <form action="query" method="post">
       <textarea name="query" class="query-input" placeholder="Enter your query...">{{query}}</textarea>
       <input type="hidden" name="db" value="{{database}}" />
-      <input type="submit" name="action" value="run" />
+      <input type="submit" name="action" value="run" onclick="onQuerySubmitted()" />
       or
-      <input type="submit" name="action" value="analyze" />
+      <input type="submit" name="action" value="analyze" onclick="onQuerySubmitted()" />
       or
       <button onclick="onFormatClicked(event)">format</button>
     </form>
+
+    <!-- Container for previous queries -->
+    <h1>Query History</h1>
+    <table id="history-container"></table>
 
     <!-- Query Result -->
     <h1>Data</h1>
@@ -57,7 +61,47 @@
         }
       }
 
+      function onQuerySubmitted() {
+        const query = document.querySelector('.query-input').value;
+
+        let history = getQueryHistory();
+        history.unshift(query);
+        history = history.slice(0, 10);
+
+        localStorage.setItem('query-history', JSON.stringify(history));
+      }
+
+      function renderQueryHistory() {
+        const container = document.getElementById('history-container');
+
+        let history = getQueryHistory();
+
+        if (history.length > 0) {
+          for (let item of history) {
+            container.innerHTML += `
+              <tr>
+                <td><button onclick="onHistoryItemClicked('${item}')">^</button></td>
+                <td>${item}</td>
+              </tr>
+            `
+          }
+        } else {
+          container.innerHTML = '<em>None</em>'
+        }
+      }
+
+      function onHistoryItemClicked(item) {
+        document.querySelector('.query-input').value = item;
+      }
+
+      function getQueryHistory() {
+        const historyRaw = localStorage.getItem('query-history') || "[]";
+        return JSON.parse(historyRaw);
+      }
+
       document.querySelector('.query-input').addEventListener("keypress", submitOnEnter);
+      renderQueryHistory();
+
     </script>
   </body>
 </html>
