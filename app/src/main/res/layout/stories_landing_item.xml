@@ -85,7 +85,7 @@
         android:id="@+id/story_multi"
         android:layout_width="48dp"
         android:layout_height="72dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="14dp"
         android:layout_marginBottom="8dp"
         android:rotation="-10.89"
         android:visibility="gone"
@@ -95,20 +95,43 @@
         tools:background="@color/green"
         tools:visibility="visible" />
 
-    <org.thoughtcrime.securesms.components.OutlinedThumbnailView
-        android:id="@+id/story"
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/story_outline"
         android:layout_width="60dp"
         android:layout_height="88dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:padding="2dp"
+        android:src="@color/signal_background_primary"
         android:transitionName="story"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:otv_cornerRadius="12dp"
-        app:otv_strokeColor="@color/signal_background_primary"
-        app:otv_strokeWidth="2dp"
-        tools:background="@color/red" />
+        app:shapeAppearance="@style/ShapeAppearanceOverlay.Signal.Story.Preview" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/story"
+        android:layout_width="56dp"
+        android:layout_height="84dp"
+        android:background="@color/signal_background_primary"
+        android:transitionName="story"
+        app:layout_constraintBottom_toBottomOf="@+id/story_outline"
+        app:layout_constraintEnd_toEndOf="@+id/story_outline"
+        app:layout_constraintTop_toTopOf="@+id/story_outline"
+        app:layout_constraintStart_toStartOf="@+id/story_outline"
+        app:shapeAppearance="@style/ShapeAppearanceOverlay.Signal.Story.Preview"
+        tools:src="@drawable/test_gradient" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/story_blur"
+        android:layout_width="56dp"
+        android:layout_height="84dp"
+        android:background="@color/signal_background_primary"
+        android:transitionName="story"
+        app:layout_constraintBottom_toBottomOf="@+id/story_outline"
+        app:layout_constraintEnd_toEndOf="@+id/story_outline"
+        app:layout_constraintTop_toTopOf="@+id/story_outline"
+        app:layout_constraintStart_toStartOf="@+id/story_outline"
+        app:shapeAppearance="@style/ShapeAppearanceOverlay.Signal.Story.Preview"
+        tools:src="@drawable/test_gradient" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
