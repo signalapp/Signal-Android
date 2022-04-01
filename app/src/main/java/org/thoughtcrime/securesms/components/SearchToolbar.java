@@ -66,7 +66,9 @@ public class SearchToolbar extends LinearLayout {
     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String query) {
-        if (listener != null) listener.onSearchTextChange(query);
+        if (listener != null) {
+          listener.onSearchTextChange(query);
+        }
         return true;
       }
 
