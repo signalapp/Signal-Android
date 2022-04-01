@@ -111,7 +111,7 @@ class StoryViewerPageViewModel(
     }
 
     val postIndex = store.state.selectedPostIndex
-    setSelectedPostIndex(max(0, postIndex - 1))
+    setSelectedPostIndex(max(-1, postIndex - 1))
   }
 
   fun getRestartIndex(): Int {

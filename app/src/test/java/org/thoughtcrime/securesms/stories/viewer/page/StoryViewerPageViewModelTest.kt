@@ -101,6 +101,24 @@ class StoryViewerPageViewModelTest {
     testSubscriber.assertValueAt(0) { it.selectedPostIndex == 2 }
   }
 
+  @Test
+  fun `Given a single story, when I goToPrevious, then I expect storyIndex to be -1`() {
+    // GIVEN
+    val storyPosts = createStoryPosts(1)
+    whenever(repository.getStoryPostsFor(any())).thenReturn(Observable.just(storyPosts))
+
+    // WHEN
+    val testSubject = createTestSubject()
+    testScheduler.triggerActions()
+    testSubject.goToPreviousPost()
+    testScheduler.triggerActions()
+
+    // THEN
+    val testSubscriber = testSubject.state.test()
+
+    testSubscriber.assertValueAt(0) { it.selectedPostIndex == -1 }
+  }
+
   private fun createTestSubject(): StoryViewerPageViewModel {
     return StoryViewerPageViewModel(
       RecipientId.from(1),

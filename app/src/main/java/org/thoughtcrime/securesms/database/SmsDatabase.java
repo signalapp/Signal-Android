@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.database.model.GroupCallUpdateDetailsUtil;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.StoryResult;
 import org.thoughtcrime.securesms.database.model.StoryViewState;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateDetails;
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails;
@@ -1405,12 +1406,7 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public @NonNull MessageDatabase.Reader getAllStories() {
-    throw new UnsupportedOperationException();
-  }
-
-  @Override
-  public @NonNull List<RecipientId> getAllStoriesRecipientsList() {
+  public @NonNull List<StoryResult> getOrderedStoryRecipientsAndIds() {
     throw new UnsupportedOperationException();
   }
 

@@ -110,7 +110,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
       if (state.displayMyStoryItem) {
         customPref(
           MyStoriesItem.Model(
-            state.hasOutgoingGroupStories,
+            state.hasOutgoingStories,
             onClick = {
               if (it) {
                 startActivity(Intent(requireContext(), MyStoriesActivity::class.java))

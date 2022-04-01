@@ -64,6 +64,10 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
     storyPager.unregisterOnPageChangeCallback(onPageChanged)
   }
 
+  override fun onGoToPreviousStory(recipientId: RecipientId) {
+    viewModel.onGoToPreviousStory(recipientId)
+  }
+
   override fun onFinishedPosts(recipientId: RecipientId) {
     viewModel.onFinishedPosts(recipientId)
   }

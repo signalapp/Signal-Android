@@ -657,6 +657,15 @@ public abstract class MessageRecord extends DisplayRecord {
     return notifiedTimestamp;
   }
 
+  @VisibleForTesting
+  public long getIncomingStoryViewedAtTimestamp() {
+    if (isOutgoing()) {
+      return -1L;
+    } else {
+      return receiptTimestamp;
+    }
+  }
+
   public long getReceiptTimestamp() {
     if (!isOutgoing()) {
       return getDateSent();

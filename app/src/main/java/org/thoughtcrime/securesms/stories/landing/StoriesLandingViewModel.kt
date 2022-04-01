@@ -23,7 +23,7 @@ class StoriesLandingViewModel(private val storiesLandingRepository: StoriesLandi
           loadingState = StoriesLandingState.LoadingState.LOADED,
           storiesLandingItems = stories.sorted(),
           displayMyStoryItem = stories.isEmpty() || stories.none { it.storyRecipient.isMyStory },
-          hasOutgoingGroupStories = hasOutgoingGroupStories
+          hasOutgoingStories = hasOutgoingGroupStories
         )
       }
     }

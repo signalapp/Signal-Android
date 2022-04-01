@@ -256,7 +256,7 @@ class StoryViewerPageFragment :
     LiveDataReactiveStreams
       .fromPublisher(viewModel.state.observeOn(AndroidSchedulers.mainThread()))
       .observe(viewLifecycleOwner) { state ->
-        if (state.posts.isNotEmpty() && state.selectedPostIndex < state.posts.size) {
+        if (state.posts.isNotEmpty() && state.selectedPostIndex in state.posts.indices) {
           val post = state.posts[state.selectedPostIndex]
 
           presentViewsAndReplies(post)
@@ -289,6 +289,8 @@ class StoryViewerPageFragment :
           viewModel.setAreSegmentsInitialized(true)
         } else if (state.selectedPostIndex >= state.posts.size) {
           callback.onFinishedPosts(storyRecipientId)
+        } else if (state.selectedPostIndex < 0) {
+          callback.onGoToPreviousStory(storyRecipientId)
         }
       }
 
@@ -873,6 +875,7 @@ class StoryViewerPageFragment :
   }
 
   interface Callback {
+    fun onGoToPreviousStory(recipientId: RecipientId)
     fun onFinishedPosts(recipientId: RecipientId)
     fun onStoryHidden(recipientId: RecipientId)
   }

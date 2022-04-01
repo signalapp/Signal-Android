@@ -8,6 +8,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.livedata.Store
+import kotlin.math.min
 
 class StoryViewerViewModel(
   private val startRecipientId: RecipientId,
@@ -69,6 +70,16 @@ class StoryViewerViewModel(
     store.update {
       if (it.pages[it.page] == recipientId) {
         updatePages(it, it.page + 1)
+      } else {
+        it
+      }
+    }
+  }
+
+  fun onGoToPreviousStory(recipientId: RecipientId) {
+    store.update {
+      if (it.pages[it.page] == recipientId) {
+        updatePages(it, min(0, it.page - 1))
       } else {
         it
       }

@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.StoryResult
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -27,35 +28,21 @@ class StoriesLandingRepository(context: Context) {
   }
 
   fun getStories(): Observable<StoriesResult> {
-    return Observable.create<Observable<StoriesResult>> { emitter ->
-      val myStoriesId = SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.MY_STORY)
-      val myStories = Recipient.resolved(myStoriesId)
-
+    val storyRecipients: Observable<Map<Recipient, List<StoryResult>>> = Observable.create { emitter ->
       fun refresh() {
-        val storyMap = mutableMapOf<Recipient, List<MessageRecord>>()
-        var hasOutgoingGroupStories = false
-        SignalDatabase.mms.allStories.use {
-          while (it.next != null) {
-            val messageRecord = it.current
-            val recipient = if (messageRecord.isOutgoing && !messageRecord.recipient.isGroup) {
+        val myStoriesId = SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.MY_STORY)
+        val myStories = Recipient.resolved(myStoriesId)
+
+        emitter.onNext(
+          SignalDatabase.mms.orderedStoryRecipientsAndIds.groupBy {
+            val recipient = Recipient.resolved(it.recipientId)
+            if (recipient.isDistributionList) {
               myStories
-            } else if (messageRecord.isOutgoing && messageRecord.recipient.isGroup) {
-              hasOutgoingGroupStories = true
-              messageRecord.recipient
             } else {
-              SignalDatabase.threads.getRecipientForThreadId(messageRecord.threadId)!!
+              recipient
             }
-
-            storyMap[recipient] = (storyMap[recipient] ?: emptyList()) + messageRecord
           }
-        }
-
-        val data: List<Observable<StoriesLandingItemData>> = storyMap.map { (sender, records) -> createStoriesLandingItemData(sender, records) }
-        if (data.isEmpty()) {
-          emitter.onNext(Observable.just(StoriesResult(emptyList(), false)))
-        } else {
-          emitter.onNext(Observable.combineLatest(data) { StoriesResult(it.toList() as List<StoriesLandingItemData>, hasOutgoingGroupStories) })
-        }
+        )
       }
 
       val observer = DatabaseObserver.Observer {
@@ -68,7 +55,40 @@ class StoriesLandingRepository(context: Context) {
       }
 
       refresh()
-    }.switchMap { it }.subscribeOn(Schedulers.io())
+    }
+
+    val storiesLandingItemData = storyRecipients.switchMap { map ->
+      val observables = map.map { (recipient, results) ->
+        val messages = results
+          .sortedBy { it.messageSentTimestamp }
+          .reversed()
+          .take(if (recipient.isMyStory) 2 else 1)
+          .map {
+            SignalDatabase.mms.getMessageRecord(it.messageId)
+          }
+
+        createStoriesLandingItemData(recipient, messages)
+      }
+
+      Observable.combineLatest(observables) {
+        it.toList() as List<StoriesLandingItemData>
+      }
+    }
+
+    val hasOutgoingStories: Observable<Boolean> = storyRecipients.concatMap {
+      Observable.fromCallable {
+        SignalDatabase.mms.getAllOutgoingStories(false).use {
+          it.next != null
+        }
+      }
+    }
+
+    return Observable.combineLatest(
+      storiesLandingItemData,
+      hasOutgoingStories
+    ) { data, outgoingStories ->
+      StoriesResult(data, outgoingStories)
+    }.observeOn(Schedulers.io())
   }
 
   private fun createStoriesLandingItemData(sender: Recipient, messageRecords: List<MessageRecord>): Observable<StoriesLandingItemData> {
@@ -125,6 +145,6 @@ class StoriesLandingRepository(context: Context) {
 
   data class StoriesResult(
     val data: List<StoriesLandingItemData>,
-    val hasOutgoingGroupStories: Boolean
+    val hasOutgoingStories: Boolean
   )
 }

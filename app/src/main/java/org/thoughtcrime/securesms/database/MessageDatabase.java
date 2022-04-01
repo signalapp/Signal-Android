@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.StoryResult;
 import org.thoughtcrime.securesms.database.model.StoryViewState;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
 import org.thoughtcrime.securesms.insights.InsightsConstants;
@@ -185,8 +186,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   public abstract boolean isStory(long messageId);
   public abstract @NonNull Reader getOutgoingStoriesTo(@NonNull RecipientId recipientId);
   public abstract @NonNull Reader getAllOutgoingStories(boolean reverse);
-  public abstract @NonNull Reader getAllStories();
-  public abstract @NonNull List<RecipientId> getAllStoriesRecipientsList();
+  public abstract @NonNull List<StoryResult> getOrderedStoryRecipientsAndIds();
   public abstract @NonNull Reader getAllStoriesFor(@NonNull RecipientId recipientId);
   public abstract @NonNull MessageId getStoryId(@NonNull RecipientId authorId, long sentTimestamp) throws NoSuchMessageException;
   public abstract int getNumberOfStoryReplies(long parentStoryId);

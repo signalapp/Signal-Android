@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ParentStoryId;
 import org.thoughtcrime.securesms.database.model.Quote;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.StoryResult;
 import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.database.model.StoryViewState;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
@@ -424,6 +425,7 @@ public class MmsDatabase extends MessageDatabase {
 
           ContentValues contentValues = new ContentValues();
           contentValues.put(VIEWED_RECEIPT_COUNT, 1);
+          contentValues.put(RECEIPT_TIMESTAMP, System.currentTimeMillis());
 
           database.update(TABLE_NAME, contentValues, ID_WHERE, SqlUtil.buildArgs(CursorUtil.requireLong(cursor, ID)));
         }
@@ -578,11 +580,6 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public @NonNull MessageDatabase.Reader getAllStories() {
-    return new Reader(rawQuery(IS_STORY_CLAUSE, null, false, -1L));
-  }
-
-  @Override
   public @NonNull MessageDatabase.Reader getAllStoriesFor(@NonNull RecipientId recipientId) {
     long     threadId  = SignalDatabase.threads().getThreadIdIfExistsFor(recipientId);
     String   where     = IS_STORY_CLAUSE + " AND " + THREAD_ID_WHERE;
@@ -653,25 +650,39 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public @NonNull List<RecipientId> getAllStoriesRecipientsList() {
-    SQLiteDatabase    db    = databaseHelper.getSignalReadableDatabase();
-    String            query = "SELECT " +
-                                  "DISTINCT " + ThreadDatabase.RECIPIENT_ID + " " +
-                              "FROM " + TABLE_NAME + " JOIN " + ThreadDatabase.TABLE_NAME + " " +
-                                  "ON " + TABLE_NAME + "." + THREAD_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.ID + " " +
-                              "WHERE " + IS_STORY_CLAUSE + " " +
-                              "ORDER BY " + TABLE_NAME + "." + DATE_SENT + " DESC, " + TABLE_NAME + "." + VIEWED_RECEIPT_COUNT + " ASC";
-    List<RecipientId> recipientIds;
+  public @NonNull List<StoryResult> getOrderedStoryRecipientsAndIds() {
+    SQLiteDatabase db    = getReadableDatabase();
+    String         query = "SELECT\n"
+                           + " mms.date AS sent_timestamp,\n"
+                           + " mms._id AS mms_id,\n"
+                           + " thread_recipient_id,\n"
+                           + " (" + getOutgoingTypeClause() + ") AS is_outgoing,\n"
+                           + " viewed_receipt_count,\n"
+                           + " mms.date,\n"
+                           + " receipt_timestamp,\n"
+                           + " (" + getOutgoingTypeClause() + ") = 0 AND viewed_receipt_count = 0 AS is_unread\n"
+                           + "FROM mms\n"
+                           + "JOIN thread\n"
+                           + "ON mms.thread_id = thread._id\n"
+                           + "WHERE is_story > 0 AND remote_deleted = 0\n"
+                           + "ORDER BY\n"
+                           + "is_unread DESC,\n"
+                           + "CASE WHEN is_outgoing = 0 AND viewed_receipt_count = 0 THEN mms.date END DESC,\n"
+                           + "CASE WHEN is_outgoing = 0 AND viewed_receipt_count > 0 THEN receipt_timestamp END DESC,\n"
+                           + "CASE WHEN is_outgoing = 1 THEN mms.date END DESC";
 
+    List<StoryResult> results;
     try (Cursor cursor = db.rawQuery(query, null)) {
       if (cursor != null) {
-        recipientIds = new ArrayList<>(cursor.getCount());
+        results = new ArrayList<>(cursor.getCount());
 
         while (cursor.moveToNext()) {
-          recipientIds.add(RecipientId.from(CursorUtil.requireLong(cursor, ThreadDatabase.RECIPIENT_ID)));
+          results.add(new StoryResult(RecipientId.from(CursorUtil.requireLong(cursor, ThreadDatabase.RECIPIENT_ID)),
+                                           CursorUtil.requireLong(cursor, "mms_id"),
+                                           CursorUtil.requireLong(cursor, "sent_timestamp")));
         }
 
-        return recipientIds;
+        return results;
       }
     }
 
