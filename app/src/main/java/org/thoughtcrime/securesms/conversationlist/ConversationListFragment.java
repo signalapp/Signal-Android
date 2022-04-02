@@ -1017,14 +1017,26 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     });
   }
 
+  private void fadeOutButtonsAndMegaphone(int fadeDuration) {
+    ViewUtil.fadeOut(fab, fadeDuration);
+    ViewUtil.fadeOut(cameraFab, fadeDuration);
+    if (megaphoneContainer.resolved()) {
+      ViewUtil.fadeOut(megaphoneContainer.get(), fadeDuration);
+    }
+  }
+
+  private void fadeInButtonsAndMegaphone(int fadeDuration) {
+    ViewUtil.fadeIn(fab, fadeDuration);
+    ViewUtil.fadeIn(cameraFab, fadeDuration);
+    if (megaphoneContainer.resolved()) {
+      ViewUtil.fadeIn(megaphoneContainer.get(), fadeDuration);
+    }
+  }
+
   private void startActionMode() {
     actionMode = ((AppCompatActivity) getActivity()).startSupportActionMode(ConversationListFragment.this);
     ViewUtil.animateIn(bottomActionBar, bottomActionBar.getEnterAnimation());
-    ViewUtil.fadeOut(fab, 250);
-    ViewUtil.fadeOut(cameraFab, 250);
-    if (megaphoneContainer.resolved()) {
-      ViewUtil.fadeOut(megaphoneContainer.get(), 250);
-    }
+    fadeOutButtonsAndMegaphone(250);
   }
 
   private void endActionModeIfActive() {
@@ -1037,11 +1049,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     actionMode.finish();
     actionMode = null;
     ViewUtil.animateOut(bottomActionBar, bottomActionBar.getExitAnimation());
-    ViewUtil.fadeIn(fab, 250);
-    ViewUtil.fadeIn(cameraFab, 250);
-    if (megaphoneContainer.resolved()) {
-      ViewUtil.fadeIn(megaphoneContainer.get(), 250);
-    }
+    fadeInButtonsAndMegaphone(250);
   }
 
   void updateEmptyState(boolean isConversationEmpty) {
