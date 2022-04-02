@@ -537,9 +537,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   private void initializeSearchListener() {
     requireCallback().getSearchAction().setOnClickListener(v -> {
-      if (megaphoneContainer.resolved()) {
-        ViewUtil.fadeOut(megaphoneContainer.get(), 250);
-      }
+      fadeOutButtonsAndMegaphone(250);
       requireCallback().onSearchOpened();
       requireCallback().getSearchToolbar().get().display(requireCallback().getSearchAction().getX() + (requireCallback().getSearchAction().getWidth() / 2.0f),
                                                          requireCallback().getSearchAction().getY() + (requireCallback().getSearchAction().getHeight() / 2.0f));
@@ -569,10 +567,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         public void onSearchClosed() {
           list.removeItemDecoration(searchAdapterDecoration);
           setAdapter(defaultAdapter);
-          if (megaphoneContainer.resolved()) {
-            ViewUtil.fadeIn(megaphoneContainer.get(), 250);
-          }
           requireCallback().onSearchClosed();
+          fadeInButtonsAndMegaphone(250);
         }
       });
     });
