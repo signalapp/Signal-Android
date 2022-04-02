@@ -541,11 +541,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   private void initializeSearchListener() {
     requireCallback().getSearchAction().setOnClickListener(v -> {
+      fadeOutButtonsAndMegaphone(250);
       requireCallback().onSearchOpened();
       requireCallback().getSearchToolbar().get().display(requireCallback().getSearchAction().getX() + (requireCallback().getSearchAction().getWidth() / 2.0f),
                                                          requireCallback().getSearchAction().getY() + (requireCallback().getSearchAction().getHeight() / 2.0f));
 
-      fadeOutButtonsAndMegaphone(250);
       requireCallback().getSearchToolbar().get().setListener(new SearchToolbar.SearchListener() {
         @Override
         public void onSearchTextChange(String text) {
