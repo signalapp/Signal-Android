@@ -751,7 +751,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     if (view != null) {
       megaphoneContainer.get().addView(view);
-      megaphoneContainer.get().setVisibility(View.VISIBLE);
+      megaphoneContainer.get().setVisibility(isSearchOpen() || actionMode != null ? View.GONE : View.VISIBLE);
     } else {
       megaphoneContainer.get().setVisibility(View.GONE);
 
