@@ -411,8 +411,12 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     return false;
   }
 
+  private boolean isSearchOpen() {
+    return (requireCallback().getSearchToolbar().resolved() && requireCallback().getSearchToolbar().get().isVisible()) || activeAdapter == searchAdapter;
+  }
+
   private boolean closeSearchIfOpen() {
-    if ((requireCallback().getSearchToolbar().resolved() && requireCallback().getSearchToolbar().get().isVisible()) || activeAdapter == searchAdapter) {
+    if (isSearchOpen()) {
       list.removeItemDecoration(searchAdapterDecoration);
       setAdapter(defaultAdapter);
       requireCallback().getSearchToolbar().get().collapse();
