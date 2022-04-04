@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.conversation.mutiselect
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
+import android.net.Uri
 import androidx.core.content.ContextCompat
 import org.thoughtcrime.securesms.TransportOption
 import org.thoughtcrime.securesms.TransportOptions
@@ -72,6 +73,22 @@ object Multiselect {
       is MultiselectPart.Text -> true
       is MultiselectPart.Update -> throw AssertionError("Should never get to here.")
     }
+  }
+
+  /**
+   * Helper function to determine whether a given attachment can be sent via MMS.
+   */
+  fun isMmsSupported(context: Context, mediaUri: Uri, mediaType: String, mediaSize: Long): Boolean {
+    val canReadPhoneState = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED
+    if (!Util.isDefaultSmsProvider(context) || !canReadPhoneState || !Util.isMmsCapable(context)) {
+      return false
+    }
+
+    val options = TransportOptions(context, true)
+    options.setDefaultTransport(TransportOption.Type.SMS)
+
+    val mmsConstraints = MediaConstraints.getMmsMediaConstraints(options.selectedTransport.simSubscriptionId.orElse(-1))
+    return mmsConstraints.isSatisfied(context, mediaUri, mediaType, mediaSize) || mmsConstraints.canResize(mediaType)
   }
 
   private fun canSendAllAttachmentsToNonPush(context: Context, messageRecord: MessageRecord): Boolean {

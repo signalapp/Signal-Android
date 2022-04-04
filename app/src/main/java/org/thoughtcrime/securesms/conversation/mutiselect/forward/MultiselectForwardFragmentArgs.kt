@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.conversation.mutiselect.forward
 
 import android.content.Context
+import android.net.Uri
 import androidx.annotation.StringRes
 import androidx.annotation.WorkerThread
 import org.signal.core.util.StreamUtil
@@ -15,6 +16,7 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
+import org.thoughtcrime.securesms.util.MediaUtil
 import java.util.Optional
 import java.util.function.Consumer
 
@@ -32,6 +34,27 @@ class MultiselectForwardFragmentArgs(
 ) {
 
   companion object {
+    @JvmStatic
+    fun create(context: Context, mediaUri: Uri, mediaType: String, consumer: Consumer<MultiselectForwardFragmentArgs>) {
+      SignalExecutors.BOUNDED.execute {
+        val mediaSize = MediaUtil.getMediaSize(context, mediaUri)
+        val isMmsSupported = Multiselect.isMmsSupported(context, mediaUri, mediaType, mediaSize)
+        val multiShareArgs = MultiShareArgs.Builder(setOf())
+          .withDataUri(mediaUri)
+          .withDataType(mediaType)
+          .build()
+
+        ThreadUtil.runOnMain {
+          consumer.accept(
+            MultiselectForwardFragmentArgs(
+              isMmsSupported,
+              listOf(multiShareArgs)
+            )
+          )
+        }
+      }
+    }
+
     @JvmStatic
     fun create(context: Context, selectedParts: Set<MultiselectPart>, consumer: Consumer<MultiselectForwardFragmentArgs>) {
       SignalExecutors.BOUNDED.execute {
