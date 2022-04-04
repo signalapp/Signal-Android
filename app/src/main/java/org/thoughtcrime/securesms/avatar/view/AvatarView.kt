@@ -40,8 +40,8 @@ class AvatarView @JvmOverloads constructor(
     storyRing.visible = true
     storyRing.isActivated = hasUnreadStory
 
-    avatar.scaleX = 0.82f
-    avatar.scaleY = 0.82f
+    avatar.scaleX = 0.8f
+    avatar.scaleY = 0.8f
   }
 
   private fun hideStoryRing() {
