@@ -4,6 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ThumbnailView
 import org.thoughtcrime.securesms.components.menu.ActionItem
@@ -127,6 +128,7 @@ object MyStoriesItem {
     private fun showContextMenu(model: Model) {
       SignalContextMenu.Builder(itemView, itemView.rootView as ViewGroup)
         .preferredHorizontalPosition(SignalContextMenu.HorizontalPosition.END)
+        .offsetX(DimensionUnit.DP.toPixels(16f).toInt())
         .show(
           listOf(
             ActionItem(R.drawable.ic_delete_24_tinted, context.getString(R.string.delete)) { model.onDeleteClick(model) },
