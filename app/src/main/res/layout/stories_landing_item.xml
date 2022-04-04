@@ -79,7 +79,7 @@
         app:layout_constraintStart_toEndOf="@id/avatar"
         app:layout_constraintTop_toBottomOf="@id/date"
         app:srcCompat="@drawable/ic_messages_solid_20"
-        app:tint="@color/signal_text_secondary" />
+        app:tint="@color/signal_text_primary_disabled" />
 
     <org.thoughtcrime.securesms.components.ThumbnailView
         android:id="@+id/story_multi"
