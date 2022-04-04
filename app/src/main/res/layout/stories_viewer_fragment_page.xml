@@ -215,7 +215,7 @@
         android:maxLines="1"
         android:textAppearance="@style/TextAppearance.Signal.Subtitle"
         android:visibility="gone"
-        app:drawableStartCompat="@drawable/ic_update_group_16"
+        app:drawableStartCompat="@drawable/ic_lock_16"
         app:drawableTint="@color/transparent_white_80"
         app:layout_constraintBottom_toTopOf="@id/progress"
         app:layout_constraintEnd_toStartOf="@id/more"
