@@ -690,7 +690,7 @@ public class SignalServiceAccountManager {
     for (StorageId id : manifest.getStorageIds()) {
       ManifestRecord.Identifier idProto = ManifestRecord.Identifier.newBuilder()
                                                         .setRaw(ByteString.copyFrom(id.getRaw()))
-                                                        .setType(ManifestRecord.Identifier.Type.forNumber(id.getType())).build();
+                                                        .setTypeValue(id.getType()).build();
       manifestRecordBuilder.addIdentifiers(idProto);
     }
 

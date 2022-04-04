@@ -197,8 +197,9 @@ object SignalDatabaseMigrations {
   private const val STORY_SENDS = 136
   private const val STORY_TYPE_AND_DISTRIBUTION = 137
   private const val CLEAN_DELETED_DISTRIBUTION_LISTS = 138
+  private const val REMOVE_KNOWN_UNKNOWNS = 139
 
-  const val DATABASE_VERSION = 138
+  const val DATABASE_VERSION = 139
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -2534,6 +2535,11 @@ object SignalDatabaseMigrations {
           WHERE distribution_list_id IS NOT NULL AND NOT EXISTS(SELECT _id from distribution_list WHERE _id = distribution_list_id)
         """.trimIndent()
       )
+    }
+
+    if (oldVersion < REMOVE_KNOWN_UNKNOWNS) {
+      val count: Int = db.delete("storage_key", "type <= ?", SqlUtil.buildArgs(4))
+      Log.i(TAG, "Cleaned up $count invalid unknown records.")
     }
   }
 

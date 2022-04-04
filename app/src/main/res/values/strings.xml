@@ -2665,6 +2665,8 @@
     <string name="preferences__internal_disable_storage_service" translatable="false">Disable syncing</string>
     <string name="preferences__internal_disable_storage_service_description" translatable="false">Prevent syncing any data to/from storage service.</string>
     <string name="preferences__internal_force_storage_service_sync" translatable="false">Overwrite remote data</string>
+    <string name="preferences__internal_sync_now" translatable="false">Sync now</string>
+    <string name="preferences__internal_sync_now_description" translatable="false">Enqueue a normal storage service sync.</string>
     <string name="preferences__internal_force_storage_service_sync_description" translatable="false">Forces remote storage to match the local device state.</string>
     <string name="preferences__internal_network" translatable="false">Network</string>
     <string name="preferences__internal_allow_censorship_toggle" translatable="false">Allow censorship circumvention toggle</string>
