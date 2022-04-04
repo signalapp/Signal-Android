@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.util.Base64
 import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.storage.SignalStoryDistributionListRecord
 import org.whispersystems.signalservice.api.util.UuidUtil
+import java.lang.AssertionError
 import java.util.UUID
 
 /**
@@ -411,10 +412,15 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
   }
 
   fun applyStorageSyncStoryDistributionListInsert(insert: SignalStoryDistributionListRecord) {
+    val distributionId = DistributionId.from(UuidUtil.parseOrThrow(insert.identifier))
+    if (distributionId == DistributionId.MY_STORY) {
+      throw AssertionError("Should never try to insert My Story")
+    }
+
     createList(
       name = insert.name,
       members = insert.recipients.map(RecipientId::from),
-      distributionId = DistributionId.from(UuidUtil.parseOrThrow(insert.identifier)),
+      distributionId = distributionId,
       allowsReplies = insert.allowsReplies(),
       deletionTimestamp = insert.deletedAtTimestamp
     )
