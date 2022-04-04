@@ -47,7 +47,10 @@ import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
 import org.thoughtcrime.securesms.util.visible
 
-class MultiselectForwardFragment : Fragment(R.layout.multiselect_forward_fragment), SafetyNumberChangeDialog.Callback, ChooseStoryTypeBottomSheet.Callback {
+class MultiselectForwardFragment :
+  Fragment(R.layout.multiselect_forward_fragment),
+  SafetyNumberChangeDialog.Callback,
+  ChooseStoryTypeBottomSheet.Callback {
 
   private val viewModel: MultiselectForwardViewModel by viewModels(factoryProducer = this::createViewModelFactory)
   private val disposables = LifecycleDisposable()
@@ -101,6 +104,9 @@ class MultiselectForwardFragment : Fragment(R.layout.multiselect_forward_fragmen
     val shareSelectionRecycler: RecyclerView = bottomBar.findViewById(R.id.selected_list)
     val shareSelectionAdapter = ShareSelectionAdapter()
     val sendButton: View = bottomBar.findViewById(R.id.share_confirm)
+    val backgroundHelper: View = bottomBar.findViewById(R.id.background_helper)
+
+    backgroundHelper.setBackgroundColor(callback.getDialogBackgroundColor())
 
     title?.setText(requireArguments().getInt(ARG_TITLE))
 
@@ -354,6 +360,7 @@ class MultiselectForwardFragment : Fragment(R.layout.multiselect_forward_fragmen
     fun onSearchInputFocused()
     fun setResult(bundle: Bundle)
     fun getContainer(): ViewGroup
+    fun getDialogBackgroundColor(): Int
   }
 
   companion object {
