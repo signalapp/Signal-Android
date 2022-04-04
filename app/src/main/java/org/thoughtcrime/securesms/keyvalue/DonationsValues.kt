@@ -231,6 +231,7 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
 
   var unexpectedSubscriptionCancelationReason: String? by stringValue(SUBSCRIPTION_CANCELATION_REASON, null)
 
+  @get:JvmName("showCantProcessDialog")
   var showCantProcessDialog: Boolean by booleanValue(SHOW_CANT_PROCESS_DIALOG, true)
 
   /**

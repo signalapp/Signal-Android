@@ -349,12 +349,12 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         Log.w(TAG, "Displaying bottom sheet for an expired badge", true);
         ExpiredBadgeBottomSheetDialogFragment.show(expiredBadge, unexpectedSubscriptionCancellation, getParentFragmentManager());
       }
-    } else if (unexpectedSubscriptionCancellation != null && !SignalStore.donationsValues().isUserManuallyCancelled() && SignalStore.donationsValues().getShowCantProcessDialog()) {
+    } else if (unexpectedSubscriptionCancellation != null && !SignalStore.donationsValues().isUserManuallyCancelled() && SignalStore.donationsValues().showCantProcessDialog()) {
       Log.w(TAG, "Displaying bottom sheet for unexpected cancellation: " + unexpectedSubscriptionCancellation, true);
       new CantProcessSubscriptionPaymentBottomSheetDialogFragment().show(getChildFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
     } else if (unexpectedSubscriptionCancellation != null && SignalStore.donationsValues().isUserManuallyCancelled()) {
       Log.w(TAG, "Unexpected cancellation detected but not displaying dialog because user manually cancelled their subscription: " + unexpectedSubscriptionCancellation, true);
-    } else if (unexpectedSubscriptionCancellation != null && !SignalStore.donationsValues().getShowCantProcessDialog()) {
+    } else if (unexpectedSubscriptionCancellation != null && !SignalStore.donationsValues().showCantProcessDialog()) {
       Log.w(TAG, "Unexpected cancellation detected but not displaying dialog because user has silenced it.", true);
     }
   }
