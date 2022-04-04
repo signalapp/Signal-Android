@@ -10,6 +10,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -100,6 +101,10 @@ public class EmojiProvider {
   }
 
   static @Nullable Drawable getEmojiDrawable(@NonNull Context context, @Nullable CharSequence emoji, boolean jumboEmoji) {
+    if (TextUtils.isEmpty(emoji)) {
+      return null;
+    }
+
     EmojiDrawInfo drawInfo = EmojiSource.getLatest().getEmojiTree().getEmoji(emoji, 0, emoji.length());
     return getEmojiDrawable(context, drawInfo, null, jumboEmoji);
   }
