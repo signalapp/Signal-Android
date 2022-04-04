@@ -1110,6 +1110,32 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     return out
   }
 
+  /**
+   * Given a collection of [RecipientId]s, this will do an efficient bulk query to find all matching E164s.
+   * If one cannot be found, no error thrown, it will just be omitted.
+   */
+  fun getE164sForIds(ids: Collection<RecipientId>): Set<String> {
+    val queries: List<SqlUtil.Query> = SqlUtil.buildCustomCollectionQuery(
+      "$ID = ?",
+      ids.map { arrayOf(it.serialize()) }.toList()
+    )
+
+    val out: MutableSet<String> = mutableSetOf()
+
+    for (query in queries) {
+      readableDatabase.query(TABLE_NAME, arrayOf(PHONE), query.where, query.whereArgs, null, null, null).use { cursor ->
+        while (cursor.moveToNext()) {
+          val e164: String? = cursor.requireString(PHONE)
+          if (e164 != null) {
+            out.add(e164)
+          }
+        }
+      }
+    }
+
+    return out
+  }
+
   fun beginBulkSystemContactUpdate(): BulkOperationsHandle {
     val db = writableDatabase
     val contentValues = ContentValues(1).apply {
