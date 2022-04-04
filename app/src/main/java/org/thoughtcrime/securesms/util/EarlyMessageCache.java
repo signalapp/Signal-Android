@@ -51,7 +51,7 @@ public final class EarlyMessageCache {
   }
 
   /**
-   * Returns a collection of all of the {@link ServiceMessageId}s referenced in the cache at the  moment of inquiry.
+   * Returns a collection of all of the {@link ServiceMessageId}s referenced in the cache at the moment of inquiry.
    * Caution: There is no guarantee that this list will be relevant for any amount of time afterwards.
    */
   public synchronized @NonNull Collection<ServiceMessageId> getAllReferencedIds() {

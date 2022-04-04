@@ -189,7 +189,7 @@ public final class PushProcessMessageJob extends BaseJob {
 
   @Override
   public void onRun() throws Exception {
-    MessageContentProcessor processor = new MessageContentProcessor(context);
+    MessageContentProcessor processor = MessageContentProcessor.forNormalContent(context);
     processor.process(messageState, content, exceptionMetadata, timestamp, smsMessageId);
   }
 

@@ -142,7 +142,7 @@ public class IncomingMessageProcessor {
         stopwatch.split("group-check");
 
         try {
-          MessageContentProcessor processor = new MessageContentProcessor(context);
+          MessageContentProcessor processor = MessageContentProcessor.forNormalContent(context);
           processor.process(result.getState(), result.getContent(), result.getException(), envelope.getTimestamp(), -1);
           return null;
         } catch (IOException | GroupChangeBusyException e) {
