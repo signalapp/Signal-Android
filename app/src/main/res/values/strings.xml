@@ -4128,8 +4128,8 @@
 
     <string name="ManageDonationsFragment__my_support">My support</string>
     <string name="ManageDonationsFragment__manage_subscription">Manage subscription</string>
-    <!-- Label for Tax Receipts button -->
-    <string name="ManageDonationsFragment__tax_receipts">Tax Receipts</string>
+    <!-- Label for Donation Receipts button -->
+    <string name="ManageDonationsFragment__donation_receipts">Donation Receipts</string>
     <string name="ManageDonationsFragment__badges">Badges</string>
     <string name="ManageDonationsFragment__subscription_faq">Subscription FAQ</string>
     <string name="ManageDonationsFragment__error_getting_subscription">Error getting subscription.</string>
