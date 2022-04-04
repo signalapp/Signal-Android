@@ -33,6 +33,9 @@ class TextEntryDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_im
     controller = requireListener()
 
     hiddenTextEntry = HiddenEditText(requireContext())
+    if (!ImageEditorFragment.CAN_RENDER_EMOJI) {
+      hiddenTextEntry.addTextFilter(RemoveEmojiTextFilter())
+    }
     (view as ViewGroup).addView(hiddenTextEntry)
 
     view.setOnClickListener {

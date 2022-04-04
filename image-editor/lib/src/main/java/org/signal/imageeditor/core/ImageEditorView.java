@@ -24,6 +24,9 @@ import org.signal.imageeditor.core.renderers.BezierDrawingRenderer;
 import org.signal.imageeditor.core.renderers.MultiLineTextRenderer;
 import org.signal.imageeditor.core.renderers.TrashRenderer;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * ImageEditorView
  * <p>
@@ -71,6 +74,8 @@ public final class ImageEditorView extends FrameLayout {
   @Nullable
   private DragListener dragListener;
 
+  private final List<HiddenEditText.TextFilter> textFilters = new LinkedList<>();
+
   private final Matrix viewMatrix      = new Matrix();
   private final RectF  viewPort        = Bounds.newFullBounds();
   private final RectF  visibleViewPort = Bounds.newFullBounds();
@@ -116,6 +121,8 @@ public final class ImageEditorView extends FrameLayout {
     editText.clearFocus();
     editText.setOnEndEdit(this::doneTextEditing);
     editText.setOnEditOrSelectionChange(this::zoomToFitText);
+    editText.addTextFilters(textFilters);
+
     return editText;
   }
 
@@ -148,6 +155,16 @@ public final class ImageEditorView extends FrameLayout {
 
   public void setTypefaceProvider(@NonNull RendererContext.TypefaceProvider typefaceProvider) {
     this.typefaceProvider = typefaceProvider;
+  }
+
+  public void addTextInputFilter(@NonNull HiddenEditText.TextFilter inputFilter) {
+    textFilters.add(inputFilter);
+    editText = createAHiddenTextEntryField();
+  }
+
+  public void removeTextInputFilter(@NonNull HiddenEditText.TextFilter inputFilter) {
+    textFilters.remove(inputFilter);
+    editText = createAHiddenTextEntryField();
   }
 
   @Override

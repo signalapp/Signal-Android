@@ -29,10 +29,12 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import org.signal.core.util.FontUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.imageeditor.core.Bounds;
 import org.signal.imageeditor.core.ColorableRenderer;
+import org.signal.imageeditor.core.HiddenEditText;
 import org.signal.imageeditor.core.ImageEditorView;
 import org.signal.imageeditor.core.Renderer;
 import org.signal.imageeditor.core.SelectableRenderer;
@@ -44,6 +46,7 @@ import org.signal.imageeditor.core.renderers.MultiLineTextRenderer;
 import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.ResizeAnimation;
+import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.fonts.FontTypefaceProvider;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -77,6 +80,8 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
 {
 
   private static final String TAG = Log.tag(ImageEditorFragment.class);
+
+  public static final boolean CAN_RENDER_EMOJI = FontUtil.canRenderEmojiAtFontSize(1024);
 
   private static final float PORTRAIT_ASPECT_RATIO  = 9 / 16f;
 
@@ -220,6 +225,9 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     imageEditorView = view.findViewById(R.id.image_editor_view);
 
     imageEditorView.setTypefaceProvider(new FontTypefaceProvider());
+    if (!CAN_RENDER_EMOJI) {
+      imageEditorView.addTextInputFilter(new RemoveEmojiTextFilter());
+    }
 
     int width = getResources().getDisplayMetrics().widthPixels;
     int height = (int) ((16 / 9f) * width);

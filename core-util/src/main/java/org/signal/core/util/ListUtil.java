@@ -3,7 +3,9 @@ package org.signal.core.util;
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Stream;
 
 public final class ListUtil {
   private ListUtil() {}
@@ -17,5 +19,16 @@ public final class ListUtil {
     }
 
     return chunks;
+  }
+
+  @SafeVarargs
+  public static <T> List<T> concat(Collection<T>... items) {
+    final List<T> concat = new ArrayList<>(Stream.of(items).map(Collection::size).reduce(0, Integer::sum));
+
+    for (Collection<T> list : items) {
+      concat.addAll(list);
+    }
+
+    return concat;
   }
 }
