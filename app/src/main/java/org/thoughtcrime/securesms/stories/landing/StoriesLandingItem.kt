@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.stories.landing
 
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
@@ -92,6 +93,7 @@ object StoriesLandingItem {
     private val storyBlur: ImageView = itemView.findViewById<ImageView>(R.id.story_blur).apply {
       isClickable = false
     }
+    private val storyOutline: ImageView = itemView.findViewById(R.id.story_outline)
     private val storyMulti: ThumbnailView = itemView.findViewById<ThumbnailView>(R.id.story_multi).apply {
       isClickable = false
     }
@@ -151,6 +153,7 @@ object StoriesLandingItem {
 
       if (model.data.secondaryStory != null) {
         val secondaryRecord = model.data.secondaryStory.messageRecord as MediaMmsMessageRecord
+        storyOutline.setBackgroundColor(ContextCompat.getColor(context, R.color.signal_background_primary))
 
         @Suppress("CascadeIf")
         if (secondaryRecord.storyType.isTextStory) {
@@ -160,10 +163,12 @@ object StoriesLandingItem {
           storyMulti.setImageResource(GlideApp.with(storyPreview), secondaryRecord.slideDeck.thumbnailSlide!!, false, true)
           storyMulti.visible = true
         } else {
+          storyOutline.setBackgroundColor(Color.TRANSPARENT)
           storyMulti.clear(GlideApp.with(storyPreview))
           storyMulti.visible = false
         }
       } else {
+        storyOutline.setBackgroundColor(Color.TRANSPARENT)
         storyMulti.clear(GlideApp.with(storyPreview))
         storyMulti.visible = false
       }
