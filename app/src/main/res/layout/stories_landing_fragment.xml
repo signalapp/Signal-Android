@@ -34,6 +34,7 @@
         android:contentDescription="@string/conversation_list_fragment__open_camera_description"
         android:focusable="true"
         android:theme="@style/Widget.Material3.FloatingActionButton.Secondary"
+        android:transitionName="camera_fab"
         app:backgroundTint="@color/signal_colorPrimaryContainer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

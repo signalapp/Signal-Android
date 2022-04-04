@@ -15,6 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import org.signal.core.util.concurrent.SimpleTask
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.MainActivity
@@ -105,7 +106,12 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
     if (state.tab == ConversationListTab.CHATS) {
       return
     } else {
-      navController.navigate(R.id.action_conversationListFragment_to_storiesLandingFragment)
+      navController.navigate(
+        R.id.action_conversationListFragment_to_storiesLandingFragment,
+        null,
+        null,
+        FragmentNavigatorExtras(requireView().findViewById<View>(R.id.camera_fab) to "camera_fab")
+      )
     }
   }
 

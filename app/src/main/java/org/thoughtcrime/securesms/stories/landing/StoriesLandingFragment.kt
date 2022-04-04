@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -72,6 +73,8 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
     lifecycleDisposable.bindTo(viewLifecycleOwner)
     emptyNotice = requireView().findViewById(R.id.empty_notice)
     cameraFab = requireView().findViewById(R.id.camera_fab)
+
+    sharedElementEnterTransition = TransitionInflater.from(requireContext()).inflateTransition(R.transition.change_transform)
 
     cameraFab.setOnClickListener {
       Permissions.with(this)
