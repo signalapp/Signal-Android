@@ -3019,7 +3019,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
    * Ex:
    * cat -> [cC][aA][tT]
    */
-  private fun buildCaseInsensitiveGlobPattern(query: String): String {
+  fun buildCaseInsensitiveGlobPattern(query: String): String {
     if (TextUtils.isEmpty(query)) {
       return "*"
     }
