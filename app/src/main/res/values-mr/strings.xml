@@ -124,8 +124,9 @@
   <string name="CameraContacts__menu_search">शोध</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">सेंसॉरशिप सर्कंवेंशन बंद करायचे ?</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
-  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">चांगल्या अनुभवासाठी आपन आता Signal सेवेशी थेट कनेक्ट होऊ शकता.</string>
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">चांगल्या अनुभवासाठी आपण आता Signal सेवेशी थेट कनेक्ट होऊ शकता.</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">बंद करा</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
@@ -798,6 +799,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">”%1$s” ला गटात जोडायचे?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">\"%1$s\" ची विनंती नाकारायची?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">“%1$s” ची विनंती नाकारायची? ते पुन्हा ग्रुप लिंकद्वारे सामील होण्याची विनंती करू शकणार नाहीत.</string>
   <string name="RequestConfirmationDialog_add">जोडा</string>
   <string name="RequestConfirmationDialog_deny">नकार द्या</string>
   <!--ImageEditorHud-->
@@ -878,9 +880,9 @@
   <string name="MediaOverviewActivity_image">चित्र</string>
   <string name="MediaOverviewActivity_voice_message">व्हॉईस संदेश</string>
   <string name="MediaOverviewActivity_sent_by_s">%1$s ने पाठवले</string>
-  <string name="MediaOverviewActivity_sent_by_you">आपन पाठवले</string>
+  <string name="MediaOverviewActivity_sent_by_you">आपण पाठवले</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s ने %2$s ला पाठवले</string>
-  <string name="MediaOverviewActivity_sent_by_you_to_s"> आपन %1$s ला पाठवले</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s"> आपण %1$s ला पाठवले</string>
   <!--Megaphones-->
   <string name="Megaphones_remind_me_later">मला नंतर आठवण करून द्या</string>
   <string name="Megaphones_verify_your_signal_pin">आपला Signal PIN सत्यापित करा.</string>
@@ -1087,6 +1089,10 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">आपण गटात सामील होण्यासाठी विनंती पाठविली.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s ने गट लिंक द्वारे सामिल होण्यासाठी विनंती केली.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="one">%1$s ने विनंती केली आणि पुन्हा ग्रुप लिंक द्वारे सामील होण्याची विनंती रद्द केली.</item>
+    <item quantity="other">%1$s ने गट लिंकद्वारे सामील होण्यासाठी विनंती केली आणि त्यांनी %2$d विनंत्या रद्द केल्या.</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s ने गटामध्ये सामील होण्याची आपली विनंती मान्य केली.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s"> %2$s कडून गटात सामील होण्याच्या विनंतीला %1$s ने मान्यता दिली.</string>
@@ -1429,6 +1435,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">अधिक</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN यशस्वीरित्या सत्यापित झाला. आम्ही तुम्हाला नंतर पुन्हा आठवण करून देऊ.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN यशस्वीरित्या सत्यापित झाला. आम्ही तुम्हाला उद्या पुन्हा आठवण करून देऊ.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN यशस्वीरित्या सत्यापित झाला. आम्ही तुम्हाला काही दिवसांनी पुन्हा आठवण करून देऊ.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN यशस्वीरित्या सत्यापित झाला. आम्ही तुम्हाला एका आठवड्यात पुन्हा आठवण करून देऊ</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN यशस्वीरित्या सत्यापित झाला. आम्ही तुम्हाला काही आठवड्यानंतर पुन्हा आठवण करून देऊ.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN यशस्वीरित्या सत्यापित झाला. आम्ही तुम्हाला एका महिन्यात पुन्हा आठवण करून देऊ.</string>
   <!--Slide-->
   <string name="Slide_image">चित्र</string>
   <string name="Slide_sticker">स्टिकर</string>
@@ -1780,12 +1792,14 @@
   <!--Author formatting for group stories-->
   <string name="QuoteView_s_story">%1$s . स्टोरी</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">आपण . स्टोरी</string>
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">आता उपलब्ध नाही</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">खालपर्यंत स्क्रोल करा</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
-  <string name="BubbleOptOutTooltip__description">बबल्स हे एक Android वैशिष्ट्य आहे जे आपन Signal चॅटसाठी बंद करू शकता.</string>
+  <string name="BubbleOptOutTooltip__description">बबल्स हे एक Android वैशिष्ट्य आहे जे आपण Signal चॅटसाठी बंद करू शकता.</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">आता नाही</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -2203,7 +2217,9 @@
   <string name="preferences_events__contact_joined_signal">संपर्क Signal मध्ये सामील झाला</string>
   <string name="preferences_notifications__priority">प्राधान्यता</string>
   <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">सेंसॉरशिप सर्कंवेंशन</string>
   <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">सेंसॉरशिप सर्कंवेंशन</string>
   <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">जर सक्षम केले, तर Signal सेंसॉरशिप सर्कंमवेंट करण्याचा प्रयत्न करेल. आपण Signal सेंसॉर केलेल्या स्थानावर असल्याखेरीज हे वैशिष्ट्य सक्षम करू नये.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
   <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">आपल्या खात्याच्या फोन नंबरच्या आधारावर सेंसॉरशिप सर्कंवेंशन सक्रिय केले गेले आहे.</string>
@@ -2922,7 +2938,7 @@
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
   <string name="DeleteAccountFragment__canceling_your_subscription">आपले सब्स्क्रिप्शन रद्द करत आहे…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
-  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">आपन किती गटांमध्ये आहात यावर अवलंबून, यास काही मिनिटे लागू शकतात</string>
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">आपण किती गटांमध्ये आहात यावर अवलंबून, यास काही मिनिटे लागू शकतात</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">वापरकर्ता डेटा हटवत आहे आणि अॅप रीसेट करत आहे</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
@@ -3152,7 +3168,7 @@
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">प्रोफाइल्स</string>
   <!--Notification preference summary text-->
-  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">केवळ आपन निवडलेल्या लोकांकडून आणि गटांकडून सूचना प्राप्त करण्यासाठी प्रोफाइल तयार करा.</string>
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">केवळ आपण निवडलेल्या लोकांकडून आणि गटांकडून सूचना प्राप्त करण्यासाठी प्रोफाइल तयार करा.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">सूचना प्रोफाइल</string>
@@ -3419,7 +3435,7 @@
   <string name="BadgeSelectionFragment__select_badges">बॅजेस् निवडा</string>
   <string name="SelectFeaturedBadgeFragment__preview">पुनरावलोकन</string>
   <string name="SelectFeaturedBadgeFragment__select_a_badge">बॅज निवडा</string>
-  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">आपन बॅज निवडणे आवश्यक आहे</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">आपण बॅज निवडणे आवश्यक आहे</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">प्रोफाइल अद्यतनित करण्यात अयशस्वी</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">सस्टेनर बना</string>
   <string name="ImageView__badge">बॅज</string>
@@ -3448,9 +3464,9 @@
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">आपले योगदान या कारणाला चालना देते आणि खाजगी संचारासाठी लाखो लोक वापरत असलेल्या अॅपच्या विकासासाठी आणि कार्यासाठी पैसे देतात. जाहिराती नाहीत. ट्रॅकर्स नाहीत. चेष्टा नाही.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">आपल्या समर्थनासाठी धन्यवाद !</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">बूस्ट साठी धन्यवाद !</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">आपन %s बॅज मिळवला आहे! आपल्या प्रोफाइलवर हा बॅज प्रदर्शित करून जागरूकता निर्माण करण्यासाठी Signal ला मदत करा.</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">आपन बूस्ट बॅज मिळवला आहे! आपल्या प्रोफाइलवर हा बॅज प्रदर्शित करून जागरूकता निर्माण करण्यासाठी Signal ला मदत करा.</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">आपन सुद्धा</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">आपण %s बॅज मिळवला आहे! आपल्या प्रोफाइलवर हा बॅज प्रदर्शित करून जागरूकता निर्माण करण्यासाठी Signal ला मदत करा.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">आपण बूस्ट बॅज मिळवला आहे! आपल्या प्रोफाइलवर हा बॅज प्रदर्शित करून जागरूकता निर्माण करण्यासाठी Signal ला मदत करा.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">आपण सुद्धा</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">मासिक सस्टेनर व्हा</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">प्रोफाइलवर दाखवा</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">वैशिष्ट्यीकृत बॅज बनवा</string>
@@ -3480,16 +3496,16 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">बॅज कालबाह्य झाला</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">सब्स्क्रिप्शन रद्द केले</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">आपला बूस्ट बॅज कालबाह्य झाला आहे आणि तो यापुढे आपल्या प्रोफाइलवर इतरांना दिसणार नाही.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">आपन आपला बूस्ट बॅज आणखी ३० दिवसांसाठी एक-वेळच्या योगदानासह पुन्हा सक्रिय करू शकता.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">आपण आपला बूस्ट बॅज आणखी ३० दिवसांसाठी एक-वेळच्या योगदानासह पुन्हा सक्रिय करू शकता.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">तुमच्यासाठी तयार केलेल्या तंत्रज्ञानाचे समर्थन करणे सुरू ठेवण्यासाठी, कृपया मासिक सस्टेनर बनण्याचा विचार करा.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">सस्टेनर बना</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">बूस्ट जोडा</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">आता नाही</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">आपले सस्टेनर सब्स्क्रिप्शन आपोआप रद्द झाले कारण आपन खूप काळ निष्क्रिय होता. आपला %1$s बॅज यापुढे आपल्या प्रोफाईलवर दिसणार नाही.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">आपले सस्टेनर सब्स्क्रिप्शन आपोआप रद्द झाले कारण आपण खूप काळ निष्क्रिय होता. आपला %1$s बॅज यापुढे आपल्या प्रोफाईलवर दिसणार नाही.</string>
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">आपले सस्टेनर सबस्क्रिप्शन रद्द करण्यात आले कारण आम्ही आपली पेमेंट प्रक्रिया पुर्ण करू शकलो नाही. तुमचा बॅज यापुढे तुमच्या प्रोफाईलवर दिसणार नाही.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">आपन Signal वापरणे सुरू ठेवू शकता परंतु अॅपला समर्थन देण्यासाठी आणि तुमचा बॅज पुन्हा सक्रिय करण्यासाठी, आता नूतनीकरण करा.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">आपण Signal वापरणे सुरू ठेवू शकता परंतु अॅपला समर्थन देण्यासाठी आणि तुमचा बॅज पुन्हा सक्रिय करण्यासाठी, आता नूतनीकरण करा.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription"> सब्स्क्रिप्शन नूतनीकरण करा</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">सब्स्क्रिप्शन पेमेंटवर प्रक्रिया करू शकत नाही</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">आपले Signal सस्टेनर पेमेंट गोळा करण्यात आम्हाला समस्या येत आहे. आपली पेमेंट पद्धत अद्ययावत असल्याची खात्री करा. तसे नसल्यास, ते Google Pay मध्ये अपडेट करा. Signal काही दिवसात पुन्हा पेमेंटवर प्रक्रिया करण्याचा प्रयत्न करेल.</string>
@@ -3512,7 +3528,7 @@
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">अॅपमधील देणगी देण्यासाठी तुम्हाला Google Pay सेटअप करावे लागेल.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">सब्स्क्रिप्शन रद्द करण्यात अयशस्वी</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection"> सब्स्क्रिप्शन रद्द करण्यासाठी इंटरनेट कनेक्शन आवश्यक आहे.</string>
-  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">आपले डिव्हाइस Google Pay ला सपोर्ट करत नाही, त्यामुळे आपन बॅज मिळवण्यासाठी सब्स्क्राइब शकत नाही. आपन अजूनही आमच्या वेबसाइटवर देणगी देऊन Signal ला समर्थन देऊ शकता.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">आपले डिव्हाइस Google Pay ला सपोर्ट करत नाही, त्यामुळे आपण बॅज मिळवण्यासाठी सब्स्क्राइब शकत नाही. आपण अजूनही आमच्या वेबसाइटवर देणगी देऊन Signal ला समर्थन देऊ शकता.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">नेटवर्क त्रुटी. आपले कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
   <string name="NetworkFailure__retry">पुन्हा प्रयत्न करा</string>
   <!--Stripe decline code generic_failure-->
@@ -3658,7 +3674,7 @@
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">ठीक</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
-  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">चॅट सूचीवरील मेनूद्वारे आपन आपले प्रोफाइल स्वहस्ते चालू किंवा बंद करू शकता</string>
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">चॅट सूचीवरील मेनूद्वारे आपण आपले प्रोफाइल स्वहस्ते चालू किंवा बंद करू शकता</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
   <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">आपले प्रोफाइल स्वयंचलित करण्यासाठी सेटिंग्जमध्ये शेड्यूल जोडा.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
@@ -3676,7 +3692,7 @@
   <!--Title for notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__notification_profiles">सूचना प्रोफाइल</string>
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">फक्त आपन निवडलेल्या लोकांकडून आणि गटांकडून सूचना मिळवा.</string>
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">फक्त आपण निवडलेल्या लोकांकडून आणि गटांकडून सूचना मिळवा.</string>
   <!--Call to action button to create a profile from megaphone-->
   <string name="NotificationProfilesMegaphone__create_a_profile">प्रोफाइल तयार करा</string>
   <!--Button to dismiss notification profile megaphone-->
@@ -3767,10 +3783,12 @@
   <string name="StoryGroupReactionReplyItem__reacted_to_the_story">स्टोरीला प्रतिक्रिया दिली</string>
   <!--Label for story views tab-->
   <!--Label for story replies tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__replies">प्रत्युत्तरे</string>
   <!--Description of action for reaction button-->
   <string name="StoryReplyComposer__react_to_this_story">या स्टोरीवर प्रतिक्रिया द्या</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
   <!--Context menu item to privately reply to a story response-->
+  <string name="StoryGroupReplyItem__private_reply">खाजगी प्रत्युत्तर</string>
   <!--Context menu item to copy a story response-->
   <string name="StoryGroupReplyItem__copy">कॉपी करा</string>
   <!--Context menu item to delete a story response-->
@@ -3793,12 +3811,15 @@
   <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">जे लोक तुमची कथा पाहू शकतात त्यांना प्रतिक्रिया द्या आणि उत्तर द्या</string>
   <!--Note about default sharing-->
   <!--Signal connections linked text that opens the Signal Connections sheet-->
+  <string name="MyStorySettingsFragment__signal_connections">Signal कनेक्शन्स.</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Signal कनेक्शन्स</strong> हे लोक आहेत ज्यांच्यावर आपन विश्वास ठेवला आहे, एकतर:</string>
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Signal कनेक्शन्स</strong> हे लोक आहेत ज्यांच्यावर आपण विश्वास ठेवला आहे, एकतर:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">संभाषण सुरू करत आहे</string>
   <!--Signal connections sheet bullet point 2-->
+  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">संदेश विनंती स्वीकारत आहे</string>
   <!--Signal connections sheet bullet point 3-->
+  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">ते आपल्या सिस्टम संपर्कांमध्ये असणे</string>
   <!--Note at the bottom of the Signal connections sheet-->
   <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">आपले कनेक्शन आपले नाव आणि फोटो पाहू शकतात आणि \"माझी स्टोरी\" वरील पोस्ट पाहू शकतात जोपर्यंत आपण ते त्यांच्यापासून लपवत नाही.</string>
   <!--Clickable option to add a viewer to a private story-->
@@ -3810,6 +3831,7 @@
   <!--Positive action label when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__remove">काढा</string>
   <!--Dialog title when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__are_you_sure">तुम्हाला खात्री आहे ?</string>
   <!--Dialog message when deleting a private story-->
   <!--Page title for editing a private story name-->
   <string name="EditPrivateStoryNameFragment__edit_story_name">स्टोरीचे नाव संपादित करा</string>
@@ -3840,6 +3862,7 @@
   <string name="HideStoryFromFragment__done">ठीक</string>
   <!--Dialog title for first time adding something to a story-->
   <!--Dialog message for first time adding something to a story-->
+  <string name="StoryDialogs__adding_content">आपल्या स्टोरी मध्‍ये काही जोडल्‍याने आपल्या Signal कनेक्‍शन्सला २४ तास ते पाहण्‍याची अनुमती मिळते. आपली स्टोरी कोण पाहू शकते हे आपण सेटिंग्जमध्ये बदलू शकता.</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <!--Privacy Settings toggle title for stories-->
@@ -3858,6 +3881,7 @@
   <!--Name story screen error when save attempted with no label-->
   <string name="CreateStoryWithViewersFragment__this_field_is_required">हा रकाना भरणे आवश्यक आहे.</string>
   <!--Name story screen error when save attempted but label is duplicate-->
+  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">या नावाची एक स्टोरी आधीच आहे.</string>
   <!--Text for select all action when editing recipients for a story-->
   <string name="BaseStoryRecipientSelectionFragment__select_all">सर्व निवडा</string>
   <!--Choose story type bottom sheet title-->
@@ -3865,10 +3889,12 @@
   <!--Choose story type bottom sheet new story row title-->
   <string name="ChooseStoryTypeBottomSheet__new_private_story">नविन खाजगी स्टोरी</string>
   <!--Choose story type bottom sheet new story row summary-->
+  <string name="ChooseStoryTypeBottomSheet__visible_only_to">केवळ विशिष्ट लोकांसाठी दृश्यमान</string>
   <!--Choose story type bottom sheet group story title-->
   <!--Choose story type bottom sheet group story summary-->
   <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">विद्यमान गटामध्ये शेअर करा</string>
   <!--Choose groups bottom sheet title-->
+  <string name="ChooseGroupStoryBottomSheet__choose_groups">गट निवडा</string>
   <!--Displayed when copying group story reply text to clipboard-->
   <string name="StoryGroupReplyFragment__copied_to_clipboard">क्लिपबोर्ड वर कॉपी केले</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
@@ -3883,8 +3909,9 @@
   <string name="StorySlateView__no_internet_connection">इंटरनेट कनेक्शन नाही</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">सेंसॉरशिप सर्कंवेंशन बंद करायचे ?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
-  <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">चांगल्या अनुभवासाठी आपन आता Signal सेवेशी थेट कनेक्ट होऊ शकता.</string>
+  <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">चांगल्या अनुभवासाठी आपण आता Signal सेवेशी थेट कनेक्ट होऊ शकता.</string>
   <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_no_thanks">नाही धन्यवाद</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
@@ -3892,8 +3919,10 @@
   <!--Conversation Item label for reactions to a story-->
   <string name="ConversationItem__s_dot_story">%1$s . स्टोरी</string>
   <!--Conversation Item label for reactions to an unavailable story-->
+  <string name="ConversationItem__reacted_to_a_story">स्टोरीला प्रतिक्रिया दिली</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="ExpandModel__view_more">अधिक पहा</string>
   <string name="StoriesLinkPopup__visit_link">लिंकला भेट द्या</string>
   <!--EOF-->
 </resources>

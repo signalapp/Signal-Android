@@ -3929,7 +3929,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
     <item quantity="other">%1$d vistas</item>
   </plurals>
   <!--Name story screen title-->
-  <string name="CreateStoryWithViewersFragment__name_story">Título de la historia</string>
+  <string name="CreateStoryWithViewersFragment__name_story">Ponle un título</string>
   <!--Name story screen label hint-->
   <string name="CreateStoryWithViewersFragment__story_name_required">Título de la historia (necesario)</string>
   <!--Name story screen viewers subheading-->

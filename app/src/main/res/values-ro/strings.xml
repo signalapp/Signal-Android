@@ -1507,6 +1507,12 @@ furnizat (%s) este invalid.</string>
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Mai multe</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN-ul a fost verificat cu succes. Îți vom reaminti din nou mai târziu.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN-ul a fost verificat cu succes. Îți vom reaminti din nou mâine.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN-ul a fost verificat cu succes. Îți vom reaminti din nou în câteva zile.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN-ul a fost verificat cu succes. Îți vom reaminti din nou peste o săptămână.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN-ul a fost verificat cu succes. Îți vom reaminti din nou peste câteva săptămâni.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN-ul a fost verificat cu succes. Îți vom reaminti din nou peste o lună.</string>
   <!--Slide-->
   <string name="Slide_image">Imagine</string>
   <string name="Slide_sticker">Autocolant</string>
@@ -1657,7 +1663,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Această acțiune va șterge permanent mesajul.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s la %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Tu către %1$s</string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s către tine</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Media nu mai este disponibilă.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nu pot găsi o aplicație pentru a distribui acest tip media.</string>
   <!--MessageNotifier-->
@@ -1867,7 +1875,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Author formatting for group stories-->
   <string name="QuoteView_s_story">%1$s · Poveste</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Tu · Poveste</string>
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Nu mai este disponibilă</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Derulează până jos</string>
   <!--BubbleOptOutTooltip-->
@@ -3954,7 +3964,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Signal connections sheet bullet point 2-->
   <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Acceptă o solicitare de mesaj</string>
   <!--Signal connections sheet bullet point 3-->
+  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Să îi ai în contactele tale de sistem</string>
   <!--Note at the bottom of the Signal connections sheet-->
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Conexiunile tale îți pot vedea numele, fotografia și pot vedea postările în \"Povestea mea\" dacă nu le ascundeți.</string>
   <!--Clickable option to add a viewer to a private story-->
   <string name="PrivateStorySettingsFragment__add_viewer">Adaugă spectator</string>
   <!--Clickable option to delete a custom story-->
@@ -4000,6 +4012,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Dialog title for first time adding something to a story-->
   <string name="StoryDialogs__add_to_story_q">Adaugi la poveste?</string>
   <!--Dialog message for first time adding something to a story-->
+  <string name="StoryDialogs__adding_content">Dacă adaugi conținut la povestea ta, conexiunile tale Signal vor putea să-l vizualizeze timp de 24 de ore. Poți modifica cine poate vedea povestea ta din meniul Setări.</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <string name="StoryDialogs__add_to_story">Adaugă la poveste</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
@@ -4007,6 +4020,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Privacy Settings toggle title for stories-->
   <string name="PrivacySettingsFragment__share_and_view_stories">Distribuie &amp; vezi povești</string>
   <!--Privacy Settings toggle summary for stories-->
+  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Nu vei mai putea să distribui sau să vezi Povești atunci când această opțiune este dezactivată.</string>
   <!--New story viewer selection screen title-->
   <string name="CreateStoryViewerSelectionFragment__choose_viewers">Alege spectatorii</string>
   <!--New story viewer selection action button label-->

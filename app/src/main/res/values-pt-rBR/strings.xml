@@ -317,8 +317,11 @@
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s está ligado</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">Bloquear pedido?</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s não poderá participar ou solicitar a participação neste grupo via o link do grupo. Eles ainda podem ser manualmente adicionados ao grupo.</string>
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">Bloquear pedido</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">Cancelar</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -797,6 +800,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">Adicionar “%1$s” ao grupo?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Recusar solicitação de “%1$s”?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Recusar o pedido de \"%1$s\"? Essa pessoa não poderá voltar a pedir para entrar novamente via o link do grupo.</string>
   <string name="RequestConfirmationDialog_add">Adicionar</string>
   <string name="RequestConfirmationDialog_deny">Recusar</string>
   <!--ImageEditorHud-->
@@ -1086,6 +1090,10 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Você enviou um pedido para entrar no grupo.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s solicitou entrar via link do grupo.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="one">%1$s solicitou e cancelou pedido para entrar via o link do grupo.</item>
+    <item quantity="other">%1$s solicitou e cancelou %2$d pedidos para entrar via o link do grupo.</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s aprovou o seu pedido para entrar no grupo.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s aprovou o pedido de %2$s para entrar no grupo.</string>
@@ -1430,6 +1438,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Mais</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN verificado com sucesso. Lembraremos novamente outra hora.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN verificado com sucesso. Lembraremos novamente amanhã.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN verificado com sucesso. Lembraremos novamente dentro de alguns dias.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN verificado com sucesso. Lembraremos novamente dentro de uma semana.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN verificado com sucesso. Lembraremos novamente dentro de algumas semanas.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN verificado com sucesso. Lembraremos novamente dentro de um mês.</string>
   <!--Slide-->
   <string name="Slide_image">Imagem</string>
   <string name="Slide_sticker">Figurinha</string>
@@ -1580,7 +1594,9 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Esta mensagem será excluída permanentemente.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s para %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Enviado para %1$s</string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s para você</string>
   <string name="MediaPreviewActivity_media_no_longer_available">A mídia não está mais disponível.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Não foi possível encontrar um aplicativo capaz de compartilhar esta mídia.</string>
   <!--MessageNotifier-->
@@ -1762,6 +1778,7 @@
   <string name="ConversationUpdateItem_enable_call_notifications">Exibir notificações de chamadas</string>
   <string name="ConversationUpdateItem_update_contact">Atualizar contato</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">Bloquear pedido</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Nenhum grupo em comum. Analise o pedido com atenção.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Nenhum contato neste grupo. Analise solicitações com atenção.</string>
   <string name="ConversationUpdateItem_view">Exibir</string>
@@ -1785,7 +1802,9 @@
   <!--Author formatting for group stories-->
   <string name="QuoteView_s_story">%1$s · Story</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Você · Story</string>
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Não está mais disponível</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rolar para o final</string>
   <!--BubbleOptOutTooltip-->
@@ -2928,6 +2947,7 @@
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">Excluindo a conta…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
+  <string name="DeleteAccountFragment__canceling_your_subscription">Cancelando sua assinatura…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Dependendo do número de grupos em que você participa, a exclusão pode demorar alguns minutos</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
@@ -3697,14 +3717,17 @@
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">Todos</string>
   <!--Donation receipts recurring tab label-->
+  <string name="DonationReceiptListFragment__recurring">Recorrente</string>
   <!--Donation receipts one time tab label-->
   <string name="DonationReceiptListFragment__one_time">Uma vez</string>
   <!--Donation receipts boost row label-->
+  <string name="DonationReceiptListFragment__boost">Boost</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Detalhes</string>
   <!--Donation receipts donation type heading-->
   <string name="DonationReceiptDetailsFragment__donation_type">Tipo de doação</string>
   <!--Donation receipts date paid heading-->
+  <string name="DonationReceiptDetailsFragment__date_paid">Data de pagamento</string>
   <!--Donation receipts share PNG-->
   <string name="DonationReceiptDetailsFragment__share_receipt">Compartilhar nota fiscal</string>
   <!--Donation receipts list end note-->
@@ -3712,7 +3735,9 @@
   <!--Donation receipts document title-->
   <string name="DonationReceiptDetailsFragment__donation_receipt">Nota fiscal da doação</string>
   <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">Valor</string>
   <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Obrigado por apoiar o Signal. Sua contribuição ajuda a incentivar a missão de desenvolver uma tecnologia de privacidade de software livre que protege a liberdade de expressão e permite a comunicação global segura para milhões de pessoas em todo o mundo. Se você for residente nos Estados Unidos, por favor, fique com este recibo para seus registros fiscais. A Signal Technology Foundation é uma organização sem fins lucrativos isenta de impostos nos Estados Unidos, sob a seção 501c3 do Código da Receita Federal. Nossa CNPJ é 82-4506840.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--region "Stories Tab"-->
@@ -3867,6 +3892,7 @@
   <!--Displayed in text post creator when prompting user to enter text-->
   <string name="TextStoryPostTextEntryFragment__add_text">Adicionar texto</string>
   <!--Content description for \'done\' button when adding text to a story post-->
+  <string name="TextStoryPostTextEntryFragment__done_adding_text">Concluída a adição de texto</string>
   <!--Text label for media selection toggle-->
   <string name="MediaSelectionActivity__text">Texto</string>
   <!--Camera label for media selection toggle-->
