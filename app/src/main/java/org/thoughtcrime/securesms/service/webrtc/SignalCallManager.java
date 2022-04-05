@@ -524,7 +524,7 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
 
   @Override 
   public void onAudioLevels(Remote remote, int capturedLevel, int receivedLevel) {
-    // TODO: Implement audio level handling for direct calls.
+    processStateless(s -> serviceState.getActionProcessor().handleAudioLevelsChanged(serviceState, s, capturedLevel, receivedLevel));
   }
 
   @Override

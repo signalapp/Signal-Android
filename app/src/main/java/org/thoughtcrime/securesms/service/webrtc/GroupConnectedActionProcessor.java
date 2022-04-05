@@ -120,15 +120,12 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
     for (CallParticipant participant : currentState.getCallInfoState().getRemoteCallParticipants()) {
       CallParticipantId callParticipantId = participant.getCallParticipantId();
 
-      Integer audioLevel = null;
       if (remoteDeviceStates != null) {
         GroupCall.RemoteDeviceState state = remoteDeviceStates.get(callParticipantId.getDemuxId());
         if (state != null) {
-          audioLevel = state.getAudioLevel();
+          remoteAudioLevels.put(callParticipantId, CallParticipant.AudioLevel.fromRawAudioLevel(state.getAudioLevel()));
         }
       }
-
-      remoteAudioLevels.put(callParticipantId, CallParticipant.AudioLevel.fromRawAudioLevel(audioLevel));
     }
 
     return ephemeralState.copy(localAudioLevel, remoteAudioLevels);

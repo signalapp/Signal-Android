@@ -462,6 +462,10 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
+  protected @NonNull WebRtcEphemeralState handleAudioLevelsChanged(@NonNull WebRtcServiceState currentState, @NonNull WebRtcEphemeralState ephemeralState, int localLevel, int remoteLevel) {
+    return ephemeralState;
+  }
+
   public @NonNull WebRtcServiceState handleCallReconnect(@NonNull WebRtcServiceState currentState, @NonNull CallManager.CallEvent event) {
     Log.i(tag, "handleCallReconnect not processed");
     return currentState;

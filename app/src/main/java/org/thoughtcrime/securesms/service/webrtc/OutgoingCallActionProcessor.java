@@ -150,7 +150,7 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
                                                 callSetupState.getIceServers(),
                                                 callSetupState.isAlwaysTurnServers(),
                                                 NetworkUtil.getCallingBandwidthMode(context),
-                                                null,
+                                                AUDIO_LEVELS_INTERVAL,
                                                 currentState.getCallSetupState(activePeer).isEnableVideoOnCreate());
     } catch (CallException e) {
       return callFailure(currentState, "Unable to proceed with call: ", e);

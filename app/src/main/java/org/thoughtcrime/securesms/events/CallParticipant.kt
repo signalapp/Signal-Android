@@ -88,9 +88,8 @@ data class CallParticipant constructor(
        * display in the UI.
        */
       @JvmStatic
-      fun fromRawAudioLevel(raw: Int?): AudioLevel? {
+      fun fromRawAudioLevel(raw: Int): AudioLevel {
         return when {
-          raw == null -> null
           raw < 500 -> LOWEST
           raw < 2000 -> LOW
           raw < 8000 -> MEDIUM
