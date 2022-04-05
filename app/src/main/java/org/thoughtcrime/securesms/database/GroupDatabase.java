@@ -284,13 +284,14 @@ private static final String[] GROUP_PROJECTION = {
   public Reader getGroupsFilteredByTitle(String constraint, boolean includeInactive, boolean excludeV1, boolean excludeMms) {
     String   query;
     String[] queryArgs;
+    String caseSensitiveConstraint = SignalDatabase.recipients().buildCaseInsensitiveGlobPattern(constraint);
 
     if (includeInactive) {
-      query     = TITLE + " LIKE ? AND (" + ACTIVE + " = ? OR " + RECIPIENT_ID + " IN (SELECT " + ThreadDatabase.RECIPIENT_ID + " FROM " + ThreadDatabase.TABLE_NAME + "))";
-      queryArgs = new String[]{"%" + constraint + "%", "1"};
+      query     = TITLE + " GLOB ? AND (" + ACTIVE + " = ? OR " + RECIPIENT_ID + " IN (SELECT " + ThreadDatabase.RECIPIENT_ID + " FROM " + ThreadDatabase.TABLE_NAME + "))";
+      queryArgs = new String[]{caseSensitiveConstraint, "1"};
     } else {
-      query     = TITLE + " LIKE ? AND " + ACTIVE + " = ?";
-      queryArgs = new String[]{"%" + constraint + "%", "1"};
+      query     = TITLE + " GLOB ? AND " + ACTIVE + " = ?";
+      queryArgs = new String[]{caseSensitiveConstraint, "1"};
     }
 
     if (excludeV1) {
