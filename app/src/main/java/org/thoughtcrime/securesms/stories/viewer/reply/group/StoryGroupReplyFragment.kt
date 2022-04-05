@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.util.DeleteDialog
 import org.thoughtcrime.securesms.util.FragmentDialogs.displayInDialogAboveAnchor
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.ServiceUtil
+import org.thoughtcrime.securesms.util.SnapToTopDataObserver
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter
 import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -97,6 +98,8 @@ class StoryGroupReplyFragment :
     get() = requireArguments().getParcelable(ARG_GROUP_RECIPIENT_ID)!!
 
   private lateinit var recyclerView: RecyclerView
+  private lateinit var adapter: PagingMappingAdapter<StoryGroupReplyItemData.Key>
+  private lateinit var snapToTopDataObserver: SnapToTopDataObserver
   private lateinit var composer: StoryReplyComposer
   private var currentChild: StoryViewsAndRepliesPagerParent.Child? = null
 
@@ -112,7 +115,7 @@ class StoryGroupReplyFragment :
 
     val emptyNotice: View = requireView().findViewById(R.id.empty_notice)
 
-    val adapter = PagingMappingAdapter<StoryGroupReplyItemData.Key>()
+    adapter = PagingMappingAdapter<StoryGroupReplyItemData.Key>()
     val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, true)
     recyclerView.layoutManager = layoutManager
     recyclerView.adapter = adapter
@@ -133,14 +136,23 @@ class StoryGroupReplyFragment :
     }
 
     viewModel.pageData.observe(viewLifecycleOwner) { pageData ->
-      adapter.submitList(getConfiguration(pageData).toMappingModelList()) {
-        recyclerView.post {
-          if (recyclerView.canScrollVertically(1)) {
-            recyclerView.smoothScrollToPosition(0)
-          }
-        }
-      }
+      adapter.submitList(getConfiguration(pageData).toMappingModelList())
     }
+
+    snapToTopDataObserver = SnapToTopDataObserver(
+      recyclerView,
+      object : SnapToTopDataObserver.ScrollRequestValidator {
+        override fun isPositionStillValid(position: Int): Boolean {
+          return position >= 0 && position < adapter.itemCount
+        }
+
+        override fun isItemAtPositionLoaded(position: Int): Boolean {
+          return adapter.hasItem(position)
+        }
+      },
+      null
+    )
+    adapter.registerAdapterDataObserver(snapToTopDataObserver)
 
     initializeMentions()
   }
@@ -364,6 +376,9 @@ class StoryGroupReplyFragment :
               Toast.makeText(context, R.string.message_details_recipient__failed_to_send, Toast.LENGTH_SHORT).show()
             }
           }
+        },
+        onComplete = {
+          snapToTopDataObserver.requestScrollPosition(0)
         }
       )
   }

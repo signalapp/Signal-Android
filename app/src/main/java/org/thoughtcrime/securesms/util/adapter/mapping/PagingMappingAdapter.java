@@ -55,6 +55,10 @@ public class PagingMappingAdapter<Key> extends MappingAdapter {
     throw new AssertionError("No view holder factory for type: " + item.getClass());
   }
 
+  public boolean hasItem(int position) {
+    return getItem(position) != null;
+  }
+
   private static class Placeholder implements MappingModel<Placeholder> {
     @Override
     public boolean areItemsTheSame(@NonNull Placeholder newItem) {
