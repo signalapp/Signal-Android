@@ -5,10 +5,7 @@ import android.graphics.Typeface
 import android.os.Build
 import org.signal.imageeditor.core.Renderer
 import org.signal.imageeditor.core.RendererContext
-import org.thoughtcrime.securesms.util.FutureTaskListener
-import org.thoughtcrime.securesms.util.LocaleUtil
 import java.util.Locale
-import java.util.concurrent.ExecutionException
 
 /**
  * RenderContext TypefaceProvider that provides typefaces using TextFont.
@@ -20,7 +17,7 @@ class FontTypefaceProvider : RendererContext.TypefaceProvider {
 
   override fun getSelectedTypeface(context: Context, renderer: Renderer, invalidate: RendererContext.Invalidate): Typeface {
     return getTypeface()
-    //TODO [cody] Need to rework Fonts.kt to not hit network on main, reverting to old typeface for now
+    // TODO [cody] Need to rework Fonts.kt to not hit network on main, reverting to old typeface for now
 //    val typeface = cachedTypeface
 //    if (typeface != null && cachedLocale == LocaleUtil.getFirstLocale()) {
 //      return typeface

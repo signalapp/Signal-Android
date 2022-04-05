@@ -195,6 +195,14 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
     conversationListTabsViewModel.onSearchClosed()
   }
 
+  override fun onMultiSelectStarted() {
+    conversationListTabsViewModel.onMultiSelectStarted()
+  }
+
+  override fun onMultiSelectFinished() {
+    conversationListTabsViewModel.onMultiSelectFinished()
+  }
+
   private fun initializeProfileIcon(recipient: Recipient) {
     Log.d(TAG, "Initializing profile icon")
     val icon = requireView().findViewById<ImageView>(R.id.toolbar_icon)

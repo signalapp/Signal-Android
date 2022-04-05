@@ -86,7 +86,7 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
     storiesUnreadIndicator.visible = state.unreadStoriesCount > 0
     storiesUnreadIndicator.text = formatCount(state.unreadStoriesCount)
 
-    requireView().visible = !state.isSearchOpen
+    requireView().visible = state.visibilityState.isVisible()
   }
 
   private fun runLottieAnimations(vararg toAnimate: LottieAnimationView) {

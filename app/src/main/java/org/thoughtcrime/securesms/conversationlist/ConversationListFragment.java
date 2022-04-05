@@ -1019,6 +1019,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     if (megaphoneContainer.resolved()) {
       ViewUtil.fadeOut(megaphoneContainer.get(), 250);
     }
+    requireCallback().onMultiSelectStarted();
   }
 
   private void endActionModeIfActive() {
@@ -1036,6 +1037,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     if (megaphoneContainer.resolved()) {
       ViewUtil.fadeIn(megaphoneContainer.get(), 250);
     }
+    requireCallback().onMultiSelectFinished();
   }
 
   void updateEmptyState(boolean isConversationEmpty) {
@@ -1565,6 +1567,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     void updateProxyStatus(@NonNull WebSocketConnectionState state);
     void onSearchOpened();
     void onSearchClosed();
+    void onMultiSelectStarted();
+    void onMultiSelectFinished();
   }
 }
 
