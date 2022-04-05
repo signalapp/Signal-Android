@@ -63,6 +63,7 @@ import com.annimon.stream.Stream;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.common.collect.Sets;
 
+import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
@@ -128,7 +129,6 @@ import org.thoughtcrime.securesms.util.PlaceholderURLSpan;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.ProjectionList;
 import org.thoughtcrime.securesms.util.SearchUtil;
-import org.signal.core.util.StringUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.UrlClickHandler;
 import org.thoughtcrime.securesms.util.Util;
@@ -525,13 +525,14 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       int                    availableWidth = getAvailableMessageBubbleWidth(footer);
 
       if (activeFooter.getVisibility() != GONE && activeFooter.getMeasuredWidth() != availableWidth) {
-        activeFooter.getLayoutParams().width = availableWidth;
+        activeFooter.getLayoutParams().width = availableWidth - ViewUtil.getLeftMargin(activeFooter) - ViewUtil.getRightMargin(activeFooter);
         needsMeasure = true;
+        updatingFooter = true;
       }
 
-      int desiredWidth = audioViewStub.get().getMeasuredWidth() + ViewUtil.getLeftMargin(audioViewStub.get()) + ViewUtil.getRightMargin(audioViewStub.get());
-      if (bodyBubble.getMeasuredWidth() != desiredWidth) {
-        bodyBubble.getLayoutParams().width = desiredWidth;
+      if (bodyBubble.getMeasuredWidth() != availableWidth) {
+        bodyBubble.getLayoutParams().width = availableWidth;
+        audioViewStub.get().getLayoutParams().width = availableWidth - ViewUtil.getLeftMargin(audioViewStub.get()) - ViewUtil.getRightMargin(audioViewStub.get());
         needsMeasure = true;
       }
     }
@@ -576,7 +577,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private int getAvailableMessageBubbleWidth(@NonNull View forView) {
     int availableWidth;
     if (hasAudio(messageRecord)) {
-      availableWidth = audioViewStub.get().getMeasuredWidth() + ViewUtil.getLeftMargin(audioViewStub.get()) + ViewUtil.getRightMargin(audioViewStub.get());
+      availableWidth = Math.min(getMaxBubbleWidth(), readDimen(R.dimen.message_audio_width));
     } else if (!isViewOnceMessage(messageRecord) && (hasThumbnail(messageRecord) || hasBigImageLinkPreview(messageRecord))) {
       availableWidth = mediaThumbnailStub.require().getMeasuredWidth();
     } else {
@@ -1513,7 +1514,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private void setFooter(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> next, @NonNull Locale locale, boolean isGroupThread, boolean hasWallpaper) {
-    ViewUtil.updateLayoutParams(footer, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+    ViewUtil.updateLayoutParams(footer, hasAudio(current) ? LayoutParams.MATCH_PARENT : LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     ViewUtil.setTopMargin(footer, readDimen(R.dimen.message_bubble_default_footer_bottom_margin));
 
     footer.setVisibility(GONE);
