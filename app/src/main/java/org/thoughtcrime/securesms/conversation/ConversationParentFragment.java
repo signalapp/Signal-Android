@@ -788,14 +788,10 @@ public class ConversationParentFragment extends Fragment
       SignalPlace place = new SignalPlace(PlacePickerActivity.addressFromData(data));
       attachmentManager.setLocation(place, getCurrentMediaConstraints());
       break;
-    case PICK_GIF:
-      onGifSelectSuccess(data.getData(),
-                         data.getIntExtra(GiphyActivity.EXTRA_WIDTH, 0),
-                         data.getIntExtra(GiphyActivity.EXTRA_HEIGHT, 0));
-      break;
     case SMS_DEFAULT:
       initializeSecurity(isSecureText, isDefaultSms);
       break;
+    case PICK_GIF:
     case MEDIA_SENDER:
       MediaSendActivityResult result = MediaSendActivityResult.fromData(data);
 
@@ -3452,7 +3448,7 @@ public class ConversationParentFragment extends Fragment
 
   @Override
   public void openGifSearch() {
-    AttachmentManager.selectGif(this, ConversationParentFragment.PICK_GIF, isMms());
+    AttachmentManager.selectGif(this, ConversationParentFragment.PICK_GIF, recipient.getId(), sendButton.getSelectedTransport(), isMms(), composeText.getTextTrimmed());
   }
 
   @Override
