@@ -10,7 +10,9 @@ import com.annimon.stream.Stream;
 
 import org.signal.contacts.SystemContactsRepository;
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.util.Pair;
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery.RefreshResult;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -19,6 +21,7 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
+import org.thoughtcrime.securesms.push.IasTrustStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.FeatureFlags;
@@ -26,13 +29,24 @@ import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.signal.core.util.SetUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.TrustStore;
 import org.whispersystems.signalservice.api.services.ProfileService;
 import org.whispersystems.signalservice.internal.ServiceResponse;
+import org.whispersystems.signalservice.internal.contacts.crypto.Quote;
+import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedQuoteException;
+import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedResponseException;
 
 import java.io.IOException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SignatureException;
+import java.security.cert.CertificateException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -46,9 +60,11 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 /**
  * Manages all the stuff around determining if a user is registered or not.
  */
-class DirectoryHelper {
+class ContactDiscoveryRefreshV1 {
 
-  private static final String TAG = Log.tag(DirectoryHelper.class);
+  private static final String TAG = Log.tag(ContactDiscoveryRefreshV1.class);
+
+  private static final int MAX_NUMBERS = 20_500;
 
   @WorkerThread
   static @NonNull RefreshResult refreshAll(@NonNull Context context) throws IOException {
@@ -95,11 +111,11 @@ class DirectoryHelper {
 
     Stopwatch stopwatch = new Stopwatch("refresh");
 
-    DirectoryResult result;
+    ContactIntersection result;
     if (FeatureFlags.cdsh()) {
-      result = ContactDiscoveryHsmV1.getDirectoryResult(databaseNumbers, systemNumbers);
+      result = getIntersectionWithHsm(databaseNumbers, systemNumbers);
     } else {
-      result = ContactDiscoveryV2.getDirectoryResult(context, databaseNumbers, systemNumbers);
+      result = getIntersection(context, databaseNumbers, systemNumbers);
     }
 
     stopwatch.split("network");
@@ -165,7 +181,7 @@ class DirectoryHelper {
                                              .map(Recipient::resolved)
                                              .filter(Recipient::isRegistered)
                                              .filter(Recipient::hasServiceId)
-                                             .filter(DirectoryHelper::hasCommunicatedWith)
+                                             .filter(ContactDiscoveryRefreshV1::hasCommunicatedWith)
                                              .toList();
 
     ProfileService profileService = new ProfileService(ApplicationDependencies.getGroupsV2Operations().getProfileOperations(),
@@ -204,14 +220,100 @@ class DirectoryHelper {
     return SignalDatabase.threads().hasThread(recipient.getId()) || (recipient.hasServiceId() && SignalDatabase.sessions().hasSessionFor(localAci, recipient.requireServiceId().toString()));
   }
 
-  static class DirectoryResult {
+  /**
+   * Retrieves the contact intersection using the current production CDS.
+   */
+  private static ContactIntersection getIntersection(@NonNull Context context,
+                                                     @NonNull Set<String> databaseNumbers,
+                                                     @NonNull Set<String> systemNumbers)
+      throws IOException
+  {
+    Set<String>                        allNumbers        = SetUtil.union(databaseNumbers, systemNumbers);
+    FuzzyPhoneNumberHelper.InputResult inputResult       = FuzzyPhoneNumberHelper.generateInput(allNumbers, databaseNumbers);
+    Set<String>                        sanitizedNumbers  = sanitizeNumbers(inputResult.getNumbers());
+    Set<String>                        ignoredNumbers    = new HashSet<>();
+
+    if (sanitizedNumbers.size() > MAX_NUMBERS) {
+      Set<String> randomlySelected = randomlySelect(sanitizedNumbers, MAX_NUMBERS);
+
+      ignoredNumbers   = SetUtil.difference(sanitizedNumbers, randomlySelected);
+      sanitizedNumbers = randomlySelected;
+    }
+
+    SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
+    KeyStore                    iasKeyStore    = getIasKeyStore(context);
+
+    try {
+      Map<String, ACI>                    results      = accountManager.getRegisteredUsers(iasKeyStore, sanitizedNumbers, BuildConfig.CDS_MRENCLAVE);
+      FuzzyPhoneNumberHelper.OutputResult outputResult = FuzzyPhoneNumberHelper.generateOutput(results, inputResult);
+
+      return new ContactIntersection(outputResult.getNumbers(), outputResult.getRewrites(), ignoredNumbers);
+    } catch (SignatureException | UnauthenticatedQuoteException | UnauthenticatedResponseException | Quote.InvalidQuoteFormatException | InvalidKeyException e) {
+      Log.w(TAG, "Attestation error.", e);
+      throw new IOException(e);
+    }
+  }
+
+  /**
+   * Retrieves the contact intersection using an HSM-backed implementation of CDS that is being tested.
+   */
+  private static ContactIntersection getIntersectionWithHsm(@NonNull Set<String> databaseNumbers,
+                                                            @NonNull Set<String> systemNumbers)
+      throws IOException
+  {
+    Set<String>                        allNumbers       = SetUtil.union(databaseNumbers, systemNumbers);
+    FuzzyPhoneNumberHelper.InputResult inputResult      = FuzzyPhoneNumberHelper.generateInput(allNumbers, databaseNumbers);
+    Set<String>                        sanitizedNumbers = sanitizeNumbers(inputResult.getNumbers());
+    Set<String>                        ignoredNumbers   = new HashSet<>();
+
+    if (sanitizedNumbers.size() > MAX_NUMBERS) {
+      Set<String> randomlySelected = randomlySelect(sanitizedNumbers, MAX_NUMBERS);
+
+      ignoredNumbers   = SetUtil.difference(sanitizedNumbers, randomlySelected);
+      sanitizedNumbers = randomlySelected;
+    }
+
+    SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
+
+    try {
+      Map<String, ACI>                    results      = accountManager.getRegisteredUsersWithCdshV1(sanitizedNumbers, BuildConfig.CDSH_PUBLIC_KEY, BuildConfig.CDSH_CODE_HASH);
+      FuzzyPhoneNumberHelper.OutputResult outputResult = FuzzyPhoneNumberHelper.generateOutput(results, inputResult);
+
+      return new ContactIntersection(outputResult.getNumbers(), outputResult.getRewrites(), ignoredNumbers);
+    } catch (IOException e) {
+      Log.w(TAG, "Attestation error.", e);
+      throw new IOException(e);
+    }
+  }
+
+  private static @NonNull Set<String> randomlySelect(@NonNull Set<String> numbers, int max) {
+    List<String> list = new ArrayList<>(numbers);
+    Collections.shuffle(list);
+
+    return new HashSet<>(list.subList(0, max));
+  }
+
+  private static KeyStore getIasKeyStore(@NonNull Context context) {
+    try {
+      TrustStore contactTrustStore = new IasTrustStore(context);
+
+      KeyStore keyStore = KeyStore.getInstance("BKS");
+      keyStore.load(contactTrustStore.getKeyStoreInputStream(), contactTrustStore.getKeyStorePassword().toCharArray());
+
+      return keyStore;
+    } catch (KeyStoreException | CertificateException | IOException | NoSuchAlgorithmException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  static class ContactIntersection {
     private final Map<String, ACI>    registeredNumbers;
     private final Map<String, String> numberRewrites;
     private final Set<String>         ignoredNumbers;
 
-    DirectoryResult(@NonNull Map<String, ACI> registeredNumbers,
-                    @NonNull Map<String, String> numberRewrites,
-                    @NonNull Set<String> ignoredNumbers)
+    ContactIntersection(@NonNull Map<String, ACI> registeredNumbers,
+                        @NonNull Map<String, String> numberRewrites,
+                        @NonNull Set<String> ignoredNumbers)
     {
       this.registeredNumbers = registeredNumbers;
       this.numberRewrites    = numberRewrites;

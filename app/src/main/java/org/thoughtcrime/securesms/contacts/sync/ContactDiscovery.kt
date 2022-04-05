@@ -69,7 +69,7 @@ object ContactDiscovery {
       context = context,
       descriptor = "refresh-all",
       refresh = {
-        DirectoryHelper.refreshAll(context)
+        ContactDiscoveryRefreshV1.refreshAll(context)
       },
       removeSystemContactLinksIfMissing = true,
       notifyOfNewUsers = notifyOfNewUsers
@@ -86,7 +86,7 @@ object ContactDiscovery {
       context = context,
       descriptor = "refresh-multiple",
       refresh = {
-        DirectoryHelper.refresh(context, recipients)
+        ContactDiscoveryRefreshV1.refresh(context, recipients)
       },
       removeSystemContactLinksIfMissing = false,
       notifyOfNewUsers = notifyOfNewUsers
@@ -101,7 +101,7 @@ object ContactDiscovery {
       context = context,
       descriptor = "refresh-single",
       refresh = {
-        DirectoryHelper.refresh(context, listOf(recipient))
+        ContactDiscoveryRefreshV1.refresh(context, listOf(recipient))
       },
       removeSystemContactLinksIfMissing = false,
       notifyOfNewUsers = notifyOfNewUsers
