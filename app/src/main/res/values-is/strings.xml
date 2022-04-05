@@ -1438,6 +1438,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Meira</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">Tókst að sannreyna PIN-númer. Við munum áminna þig aftur síðar.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Tókst að sannreyna PIN-númer. Við munum áminna þig aftur á morgun.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Tókst að sannreyna PIN-númer. Við munum áminna þig aftur eftir nokkra daga.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Tókst að sannreyna PIN-númer. Við munum áminna þig aftur eftir viku.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Tókst að sannreyna PIN-númer. Við munum áminna þig aftur eftir nokkrar vikur.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Tókst að sannreyna PIN-númer. Við munum áminna þig aftur eftir mánuð.</string>
   <!--Slide-->
   <string name="Slide_image">Mynd</string>
   <string name="Slide_sticker">Límmerki</string>
@@ -1587,7 +1593,9 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Þetta mun endanlega eyða þessum skilaboðum.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s til %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Þú til %1$s</string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s til þín</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Margmiðlunarefni er ekki lengur til staðar.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Finn ekki smáforrit til að deila þessu efni.</string>
   <!--MessageNotifier-->
@@ -1793,7 +1801,9 @@
   <!--Author formatting for group stories-->
   <string name="QuoteView_s_story">%1$s · Saga</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Þú · Saga</string>
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Ekki lengur tiltækt</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Skruna neðst</string>
   <!--BubbleOptOutTooltip-->
@@ -3729,6 +3739,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <!--Donation receipts amount title-->
   <string name="DonationReceiptDetailsFragment__amount">Upphæð</string>
   <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Takk fyrir stuðninginn við Signal. Framlag þitt hjálpar okkur að standa við markmið okkar við að þróa opna og frjálsa tækni til verndunar einkaupplýsinga sem styður við tjáningarfrelsi og tryggir örygg samskipti fyrir milljónir manna víðsvegar um heiminn. Ef þú býrð í Bandaríkjum Norður-Ameríku, geturðu haldið upp á þessa kvittun fyrir skattframtalið þitt. Signal Technology Foundation eru skattfrjáls bandarísk samtök án hagnaðarmarkmiða sem falla undir grein 501c3 í Internal Revenue Code reglugerðinni. Federal Tax ID auðkennið okkar er 82–4506840.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--region "Stories Tab"-->

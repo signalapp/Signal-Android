@@ -1582,6 +1582,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">עוד</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN וודא בהצלחה. נזכיר לך שוב מאוחר יותר.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN וודא בהצלחה. נזכיר לך שוב מחר.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN וודא בהצלחה. נזכיר לך שוב עוד מספר ימים.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN וודא בהצלחה. נזכיר לך שוב עוד שבוע.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN וודא בהצלחה. נזכיר לך שוב עוד שבועיים.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN וודא בהצלחה. נזכיר לך שוב עוד חודש.</string>
   <!--Slide-->
   <string name="Slide_image">תמונה</string>
   <string name="Slide_sticker">מדבקה</string>
@@ -1734,7 +1740,9 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">זה ימחק לצמיתות הודעה זו.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s אל %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">את/ה אל %1$s</string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s אליך</string>
   <string name="MediaPreviewActivity_media_no_longer_available">מדיה אינה זמינה יותר.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">לא ניתן למצוא יישום שמסוגל לשתף מדיה זו.</string>
   <!--MessageNotifier-->
@@ -1948,7 +1956,9 @@
   <!--Author formatting for group stories-->
   <string name="QuoteView_s_story">%1$s · סיפור</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">את/ה · סיפור</string>
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">לא זמין יותר</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">גלול לתחתית</string>
   <!--BubbleOptOutTooltip-->

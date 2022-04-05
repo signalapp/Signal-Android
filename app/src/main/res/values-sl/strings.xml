@@ -472,7 +472,7 @@
   <!--Backup has an unsupported file extension-->
   <string name="RestoreBackupFragment__backup_has_a_bad_extension">Varnostna kopija ima napačno končnico.</string>
   <!--BackupsPreferenceFragment-->
-  <string name="BackupsPreferenceFragment__chat_backups">Varnostno kopiranje klepetov</string>
+  <string name="BackupsPreferenceFragment__chat_backups">Varnostno kopiranje pogovorov</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Varnostne kopije so zaklenjene z geslom in shranjene na vaši napravi.</string>
   <string name="BackupsPreferenceFragment__create_backup">Ustvari varnostno kopijo</string>
   <string name="BackupsPreferenceFragment__last_backup">Zadnja varnostna kopija: %1$s</string>
@@ -505,7 +505,7 @@
   <string name="DateUtils_today">Danes</string>
   <string name="DateUtils_yesterday">Včeraj</string>
   <!--DecryptionFailedDialog-->
-  <string name="DecryptionFailedDialog_chat_session_refreshed">Seja klepeta je bila osvežena</string>
+  <string name="DecryptionFailedDialog_chat_session_refreshed">Seja pogovora je bila osvežena</string>
   <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal uporablja šifriranje od-pošiljetalja-do-naslovnika, zato je včasih potrebna osvežitev seje klepeta. To ne bo vplivalo na varnost, lahko pa se bo izgubilo kakšno sporočilo s tem stikom in ga_jo boste morali prositi, da ga pošlje znova.</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Odstranim \'%s\'?</string>
@@ -1060,7 +1060,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Čas poteka sporočila je nastavljen na %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Skupina je bila nadgrajena v Novo skupino.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Niste mogli biti dodani Novi skupini, zato ste bili povabljeni, da se ponovno pridružite.</string>
-  <string name="MessageRecord_chat_session_refreshed">Seja klepeta je bila osvežena</string>
+  <string name="MessageRecord_chat_session_refreshed">Seja pogovora je bila osvežena</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">Član/ica ni mogel_la biti dodan_a v Novo skupino, zato je bil_a povabljen_a, da se pridruži.</item>
     <item quantity="two">%1$s člana_ici nista mogla_i biti dodana_i v Novo skupino, zato sta bila_i povabljena_i, da se pridružita.</item>
@@ -1663,7 +1663,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ThreadRecord_voice_message">Glasovno sporočilo</string>
   <string name="ThreadRecord_file">Datoteka</string>
   <string name="ThreadRecord_video">Video</string>
-  <string name="ThreadRecord_chat_session_refreshed">Seja klepeta je bila osvežena</string>
+  <string name="ThreadRecord_chat_session_refreshed">Seja pogovora je bila osvežena</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Nadgradnja aplikacije Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Na voljo je nova različica aplikacije Signal. Tapnite za nadgradnjo.</string>
@@ -2816,7 +2816,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="registration_activity__transfer_or_restore_account">Prenesi ali obnovi račun</string>
   <string name="registration_activity__transfer_account">Prenos računa</string>
   <string name="registration_activity__skip">Preskoči</string>
-  <string name="preferences_chats__chat_backups">Varnostno kopiranje klepetov</string>
+  <string name="preferences_chats__chat_backups">Varnostno kopiranje pogovorov</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Varnostna kopija klepetov bo ustvarjena na zunanjem pomnilniku</string>
   <string name="preferences_chats__transfer_account">Prenos računa</string>
   <string name="preferences_chats__transfer_account_to_a_new_android_device">Prenos računa na novo androidno napravo</string>

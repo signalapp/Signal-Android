@@ -74,7 +74,7 @@
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Блокирани корисници</string>
   <string name="BlockedUsersActivity__add_blocked_user">Додај блокиран корисник</string>
-  <string name="BlockedUsersActivity__blocked_users_will">Блокираните корисници нема да можат да Ви се јават или да Ви испраќаат пораки.</string>
+  <string name="BlockedUsersActivity__blocked_users_will">Блокираните корисници нема да можат да Ви се јават и да Ви испраќаат пораки.</string>
   <string name="BlockedUsersActivity__no_blocked_users">Нема блокирани корисници</string>
   <string name="BlockedUsersActivity__block_user">Да го блокирам корисникот?</string>
   <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" нема да може да Ви се јави или да Ви испраќа пораки.</string>
@@ -319,12 +319,13 @@
   <!--Dialog title for block group link join requests-->
   <string name="ConversationFragment__block_request">Да го блокирам барањето?</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s нема да може да се приклучи или да побара да се приклучи на оваа група преку групниот линк. Сè уште може рачно да се додаде во групата.</string>
   <!--Dialog confirm block request button-->
   <string name="ConversationFragment__block_request_button">Блокирај барање</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">Откажи</string>
   <!--Message shown after successfully blocking join requests for a user-->
-  <string name="ConversationFragment__blocked">Блокирани</string>
+  <string name="ConversationFragment__blocked">Блокиран/а</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Да го избришам избраниот разговор?</item>
     <item quantity="other">Да ги избришам избраните разговори?</item>
@@ -755,7 +756,7 @@
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Дали сакате да ја повлечете поканата испратена на %1$s?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
     <item quantity="one">Дали сакате да ја повлечете поканата испратена од %1$s?</item>
-    <item quantity="other">Дали сакате да ги повлечете %2$d покани испратени од %1$s?</item>
+    <item quantity="other">Дали сакате да повлечете %2$d покани испратени од %1$s?</item>
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Веќе сте член</string>
@@ -771,6 +772,7 @@
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Групниот линк повеќе не е валиден.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">Грешка со линкот</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
   <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Приклучување преку овој линк не успеа. Обидете се повторно подоцна.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Дали сакате да се приклучите на оваа група и да го споделите Вашето име и слика со нејзините членови?</string>
@@ -938,10 +940,10 @@
   <string name="MediaRepository__camera">Камера</string>
   <!--MessageDecryptionUtil-->
   <string name="MessageDecryptionUtil_failed_to_decrypt_message">Не успеа да се дешифрира пораката</string>
-  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Допрете да испратите запис за дебагирање</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Допрете за да испратите запис за отстранување грешки</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Непознато</string>
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Добивте порака која е шифрирана користејќи стара верзија на Signal која веќе не е поддржана. Ве молиме замолете го испраќачот да ја ажурира апликацијата на најновата верзија и повторно да ја испрати пораката.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Примивте порака која е шифрирана користејќи стара верзија на Signal која веќе не е поддржана. Ве молиме замолете го испраќачот да ја ажурира апликацијата на најновата верзија и повторно да ја испрати пораката.</string>
   <string name="MessageRecord_left_group">Ја напуштивте групата.</string>
   <string name="MessageRecord_you_updated_group">Ја ажуриравте групата.</string>
   <string name="MessageRecord_the_group_was_updated">Групата беше ажурирана.</string>
@@ -1376,8 +1378,8 @@
   <string name="RegistrationActivity_play_services_error">Грешка со Play услуги</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play услугите се ажурираат или привремено се недостапни. Ве молиме обидете се повторно.</string>
   <string name="RegistrationActivity_terms_and_privacy">Услови и политика за приватност</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal има потреба од дозвола до контакти и склад за да Ви помогне да се поврзете со пријателите и да испраќате пораки. Вашите контакти се прикачуваат преку приватното откривање на контакти во Signal, ова значи дека се шифрирани од крај до крај и никогаш не се видливи за Signal услугата.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal има потреба од дозвола до контакти за да Ви помогне да се поврзете со пријателите. Вашите контакти се качуваат преку приватното откривање на контакти во Signal, ова значи дека се шифрирани од крај до крај и никогаш не се видливи за Signal услугата.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal има потреба од дозвола до контакти и склад за да Ви помогне да се поврзете со пријателите и да испраќате пораки. Вашите контакти се прикачуваат преку приватното откривање на контакти на Signal, ова значи дека се шифрирани од крај до крај и никогаш не се видливи за Signal услугата.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal има потреба од дозвола до контакти за да Ви помогне да се поврзете со пријателите. Вашите контакти се прикачуваат преку приватното откривање на контакти на Signal, ова значи дека се шифрирани од крај до крај и никогаш не се видливи за Signal услугата.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Направивте премногу обиди за регистрација на овој број. Ве молиме обидете се повторно подоцна.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Не може да се поврзе со услугата. Ве молиме проверете ја Вашата интернет конекција и обидете се повторно.</string>
   <string name="RegistrationActivity_non_standard_number_format">Нестандарден формат на број</string>
@@ -1385,8 +1387,8 @@
   <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Формат на телефонски број</string>
   <string name="RegistrationActivity_call_requested">Повикот е побаран</string>
   <plurals name="RegistrationActivity_debug_log_hint">
-    <item quantity="one">Сега сте %d чекор оддалечени од испраќање на лог за грешки.</item>
-    <item quantity="other">Сега сте %d чекори оддалечени од испраќање на записот за грешки.</item>
+    <item quantity="one">Сега сте %d чекор оддалечени од испраќање на записот за отстранување грешки.</item>
+    <item quantity="other">Сега сте %d чекори оддалечени од испраќање на записот за отстранување грешки.</item>
   </plurals>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Треба да провериме дали сте човек.</string>
   <string name="RegistrationActivity_next">Следно</string>
@@ -1441,11 +1443,13 @@
   <string name="Slide_audio">Звук</string>
   <string name="Slide_video">Видео</string>
   <!--SmsMessageRecord-->
-  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Примена е погрешна порака
-за размена на клучеви!</string>
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Примена е оштетена порака
+        за размена на клучеви!
+    </string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
-Примена е порака за размена на клучеви за неважечка верзија на протоколот.</string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Примена е порака со нов сигурносен број. Допрете за процесирање и приказ.</string>
+        Примена е порака за размена на клучеви за неважечка верзија на протокол.
+    </string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Примена е порака со нов сигурносен број. Допрете за обработка и приказ.</string>
   <string name="SmsMessageRecord_secure_session_reset">Ја ресетиравте безбедната сесија.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s ја ресетираше безбедната сесија.</string>
   <string name="SmsMessageRecord_duplicate_message">Дупликат порака.</string>
@@ -1459,20 +1463,20 @@
   <string name="StickerManagementAdapter_signal_artist_series">Серија уметници на Signal</string>
   <string name="StickerManagementAdapter_no_stickers_installed">Нема стикери инсталирано</string>
   <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Стикерите од дојдовните пораки ќе се појават овде</string>
-  <string name="StickerManagementAdapter_untitled">Неименувано</string>
+  <string name="StickerManagementAdapter_untitled">Без наслов</string>
   <string name="StickerManagementAdapter_unknown">Непознато</string>
   <!--StickerPackPreviewActivity-->
-  <string name="StickerPackPreviewActivity_untitled">Неименувано</string>
+  <string name="StickerPackPreviewActivity_untitled">Без наслов</string>
   <string name="StickerPackPreviewActivity_unknown">Непознато</string>
   <string name="StickerPackPreviewActivity_install">Инсталирај</string>
   <string name="StickerPackPreviewActivity_remove">Отстрани</string>
   <string name="StickerPackPreviewActivity_stickers">Стикери</string>
-  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Не успеав да го вчитам пакетот со стикери</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Не успеа да се вчита пакетот со стикери</string>
   <!--SubmitDebugLogActivity-->
-  <string name="SubmitDebugLogActivity_edit">Измени</string>
+  <string name="SubmitDebugLogActivity_edit">Уреди</string>
   <string name="SubmitDebugLogActivity_done">Готово</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Допрете линија да ја избришете</string>
-  <string name="SubmitDebugLogActivity_submit">Достави</string>
+  <string name="SubmitDebugLogActivity_submit">Испрати</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Не успеав да ги испратам записите</string>
   <string name="SubmitDebugLogActivity_success">Успешно! </string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kопирајте го ова URL и додајте го на Вашиот извештај или е-пошта до тимот за поддршка :\n\n<b>%1$s</b></string>
@@ -1485,12 +1489,12 @@
   <string name="SupportEmailUtil_signal_version">Верзија на Signal:</string>
   <string name="SupportEmailUtil_signal_package">Signal пакет:</string>
   <string name="SupportEmailUtil_registration_lock">Заклучување на регистрација:</string>
-  <string name="SupportEmailUtil_locale">Локале:</string>
+  <string name="SupportEmailUtil_locale">Регион:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Групата е ажурирана</string>
   <string name="ThreadRecord_left_the_group">Ја напушти групата</string>
   <string name="ThreadRecord_secure_session_reset">Безбедната сесија е ресетирана.</string>
-  <string name="ThreadRecord_draft">Скица:</string>
+  <string name="ThreadRecord_draft">Нацрт:</string>
   <string name="ThreadRecord_called">Вие повикавте</string>
   <string name="ThreadRecord_called_you">Ве повика</string>
   <string name="ThreadRecord_missed_audio_call">Испуштен аудио повик</string>
@@ -1504,12 +1508,12 @@
   <string name="ThreadRecord_you_deleted_this_message">Ја избришавте оваа порака.</string>
   <string name="ThreadRecord_s_is_on_signal">%s е на Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Исчезнувачките пораки се исклучени</string>
-  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Времето за исчезнувачки пораки е поставено на %s.</string>
-  <string name="ThreadRecord_safety_number_changed">Сигурносниот број е променет. </string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Времето за исчезнувачки пораки е поставено на %s</string>
+  <string name="ThreadRecord_safety_number_changed">Сигурносниот број е променет</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Вашиот сигурносен број со %s е променет.</string>
-  <string name="ThreadRecord_you_marked_verified">Одбележавте проверено</string>
-  <string name="ThreadRecord_you_marked_unverified">Одбележавте непроверено</string>
-  <string name="ThreadRecord_message_could_not_be_processed">Пораката не можеше да биде процесирана</string>
+  <string name="ThreadRecord_you_marked_verified">Обележавте проверено</string>
+  <string name="ThreadRecord_you_marked_unverified">Обележавте непроверено</string>
+  <string name="ThreadRecord_message_could_not_be_processed">Пораката не можеше да биде обработена</string>
   <string name="ThreadRecord_delivery_issue">Проблем со испорака</string>
   <string name="ThreadRecord_message_request">Барање за порака</string>
   <string name="ThreadRecord_photo">Слика</string>
@@ -1583,14 +1587,16 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Ова трајно ќе ја избрише оваа порака.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s до %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Вие до %1$s</string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s до Вас</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Медијата не е повеќе достапна.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Не е пронајдена апликација која може да го сподели овој тип на медија.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d нови пораки во %2$d теми</string>
   <string name="MessageNotifier_most_recent_from_s">Најнови од: %1$s</string>
   <string name="MessageNotifier_locked_message">Заклучена порака</string>
-  <string name="MessageNotifier_message_delivery_failed">Доставувањето на пораката е неуспешно.</string>
+  <string name="MessageNotifier_message_delivery_failed">Испораката на пораката не успеа.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Неуспешно доставување на пораката.</string>
   <string name="MessageNotifier_error_delivering_message">Грешка при доставувањето на пораката.</string>
   <string name="MessageNotifier_message_delivery_paused">Испораката на пораката е паузирана.</string>
@@ -1787,7 +1793,9 @@
   <string name="QuoteView_you">Вие</string>
   <string name="QuoteView_original_missing">Оригиналната порака не е пронајдена</string>
   <!--Author formatting for group stories-->
+  <string name="QuoteView_s_story">%1$s · Приказна</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Вие · Приказна</string>
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">Повеќе не е достапна</string>
   <!--conversation_fragment-->
@@ -1980,7 +1988,7 @@
   <string name="AndroidManifest__select_contacts">Изберете контакти</string>
   <string name="AndroidManifest__change_passphrase">Променете лозинка</string>
   <string name="AndroidManifest__verify_safety_number">Проверка на сигурносен број</string>
-  <string name="AndroidManifest__log_submit">Испрати запис за дебагирање</string>
+  <string name="AndroidManifest__log_submit">Испрати запис за отстранување грешки</string>
   <string name="AndroidManifest__media_preview">Преглед на медија</string>
   <string name="AndroidManifest__message_details">Детали за пораката </string>
   <string name="AndroidManifest__linked_devices">Поврзани уреди</string>
@@ -1996,14 +2004,14 @@
   <string name="HelpFragment__next">Следно</string>
   <string name="HelpFragment__contact_us">Контактирајте нѐ</string>
   <string name="HelpFragment__tell_us_whats_going_on">Кажете ни што се случува</string>
-  <string name="HelpFragment__include_debug_log">Вклучи запис за дебагирање.</string>
+  <string name="HelpFragment__include_debug_log">Вклучи запис за отстранување грешки.</string>
   <string name="HelpFragment__whats_this">Што е ова?</string>
   <string name="HelpFragment__how_do_you_feel">Како се чувствувате? (Опционално)</string>
   <string name="HelpFragment__tell_us_why_youre_reaching_out">Кажете ни зошто нѐ контактирате.</string>
   <string name="HelpFragment__support_info">Информации за поддршка</string>
   <string name="HelpFragment__signal_android_support_request">Барање за поддршка за Signal Android</string>
-  <string name="HelpFragment__debug_log">Запис за дебагирање:</string>
-  <string name="HelpFragment__could_not_upload_logs">Не успеав да ги качам записите</string>
+  <string name="HelpFragment__debug_log">Запис за отстранување грешки:</string>
+  <string name="HelpFragment__could_not_upload_logs">Не успеав да ги прикачам записите</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Ве молиме бидете што е можно поописни за да ни помогнете да го разбереме проблемот.</string>
   <string-array name="HelpFragment__categories_3">
     <item>\-\- Изберете опција \-\-</item>
@@ -2147,10 +2155,10 @@
   <string name="preferences__signal_messages_and_calls">Signal пораки и повици</string>
   <string name="preferences__advanced_pin_settings">Напредни поставувања за PIN</string>
   <string name="preferences__free_private_messages_and_calls">Бесплатни приватни пораки и повици кон Signal корисниците</string>
-  <string name="preferences__submit_debug_log">Испратете запис за дебагирање</string>
+  <string name="preferences__submit_debug_log">Испрати запис за отстранување грешки</string>
   <string name="preferences__delete_account">Избриши сметка</string>
   <string name="preferences__support_wifi_calling">„Повикување преку WiFi“ режим на компатибилност</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Овозможи доколку уредот користи SMS/MMS достава преку WiFi (овозможи само доколку „Повикување преку WiFi“ е вклучено на уредот)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Овозможи доколку уредот користи SMS/MMS испорака преку WiFi (овозможи само кога „Повикување преку WiFi“ е вклучено на уредот)</string>
   <string name="preferences__incognito_keyboard">Инкогнито тастатура</string>
   <string name="preferences__read_receipts">Потврди за прочитани пораки</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ако се исклучени потврдите за прочитани пораки, нема да видите кога некој ќе ги прочита Вашите пораки.</string>
@@ -2228,7 +2236,7 @@
   <string name="preferences_communication__sealed_sender_display_indicators">Индикатори за приказ</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Прикажи икона за статус кога ќе изберете \"Детали за порака\" на пораки доставени со користење на запечатен испраќач.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Дозволи од секого</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Овозможете го запечатениот испраќач за дојдовни пораки од нерегистрирани контакти и луѓе со кои не сте го споделиле Вашиот профил.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Овозможете запечатен испраќач за дојдовни пораки од луѓе кои не се во Вашите контакти и луѓе со кои не сте го споделиле Вашиот профил.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Дознајте повеќе</string>
   <string name="preferences_setup_a_username">Поставете корисничко име</string>
   <string name="preferences_proxy">Proxy</string>
@@ -2464,7 +2472,7 @@
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Додај во контакти</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Листа на примачи</string>
-  <string name="conversation_group_options__delivery">Достава</string>
+  <string name="conversation_group_options__delivery">Испорака</string>
   <string name="conversation_group_options__conversation">Разговор</string>
   <string name="conversation_group_options__broadcast">Емитување</string>
   <!--text_secure_normal-->
@@ -2745,7 +2753,7 @@
   <string name="DeviceTransferSetup__turn_on_wifi">Вклучи Wi-Fi</string>
   <string name="DeviceTransferSetup__error_connecting">Грешка при поврзувањето</string>
   <string name="DeviceTransferSetup__retry">Обидете се повторно</string>
-  <string name="DeviceTransferSetup__submit_debug_logs">Испрати запис за дебагирање</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Испрати запис за отстранување грешки</string>
   <string name="DeviceTransferSetup__verify_code">Провери код</string>
   <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Проверете дали кодот подолу се совпаѓа на двата уреда. Потоа допрете „Продолжи“.</string>
   <string name="DeviceTransferSetup__the_numbers_do_not_match">Бројките не се совпаѓаат</string>
@@ -2932,6 +2940,7 @@
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">Ја бришам сметката…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
+  <string name="DeleteAccountFragment__canceling_your_subscription">Откажување на Вашата претплата…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Во зависност од бројот на групи во кои сте член, ова може да потрае неколку минути</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
@@ -3147,7 +3156,7 @@
   <string name="ChangeNumberLockActivity__retry">Пробај пак</string>
   <!--Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow-->
   <string name="ChangeNumberLockActivity__leave">Напушти</string>
-  <string name="ChangeNumberLockActivity__submit_debug_log">Испрати запис за дебагирање</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Испрати запис за отстранување грешки</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Тастатура</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter испраќа пораки</string>
@@ -3205,7 +3214,7 @@
   <string name="HelpSettingsFragment__support_center">Центар за поддршка</string>
   <string name="HelpSettingsFragment__contact_us">Контактирајте нѐ</string>
   <string name="HelpSettingsFragment__version">Верзија</string>
-  <string name="HelpSettingsFragment__debug_log">Запис за дебагирање</string>
+  <string name="HelpSettingsFragment__debug_log">Запис за отстранување грешки</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Услови и Политика на приватност</string>
   <string name="HelpFragment__copyright_signal_messenger">Авторски права Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Лиценцирано под GPLv3</string>
@@ -3736,6 +3745,7 @@
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Додај приказна</string>
   <!--Displayed when there are no stories to display-->
+  <string name="StoriesLandingFragment__no_recent_updates">Нема скорешни ажурирања за прикажување во моментов.</string>
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Сокриј приказна</string>
   <!--Context menu option to unhide a story-->
@@ -3800,6 +3810,7 @@
   <!--Label for story views tab-->
   <string name="StoryViewsAndRepliesDialogFragment__views">Прегледи</string>
   <!--Label for story replies tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__replies">Одговори</string>
   <!--Description of action for reaction button-->
   <string name="StoryReplyComposer__react_to_this_story">Реагирај на оваа приказна</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
@@ -3844,6 +3855,7 @@
   <!--Signal connections sheet bullet point 2-->
   <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Прифаќање на барање за разговор</string>
   <!--Signal connections sheet bullet point 3-->
+  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Ги имате во контактите на телефонот</string>
   <!--Note at the bottom of the Signal connections sheet-->
   <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Вашите врски можат да го видат Вашето име и слика и да ги гледаат објавите во „Моја приказна”, освен ако не го сокриете тоа од нив.</string>
   <!--Clickable option to add a viewer to a private story-->
@@ -3859,6 +3871,7 @@
   <!--Dialog title when deleting a private story-->
   <string name="PrivateStorySettingsFragment__are_you_sure">Дали сте сигурни?</string>
   <!--Dialog message when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__this_action_cannot">Ова дејство е неповратно.</string>
   <!--Page title for editing a private story name-->
   <string name="EditPrivateStoryNameFragment__edit_story_name">Измени име на приказна</string>
   <!--Input field hint when editing a private story name-->
@@ -3890,11 +3903,13 @@
   <!--Dialog title for first time adding something to a story-->
   <string name="StoryDialogs__add_to_story_q">Да се додаде во приказната?</string>
   <!--Dialog message for first time adding something to a story-->
+  <string name="StoryDialogs__adding_content">Со додавање содржина во Вашата приказна им овозможувате на Вашите Signal врски да ја гледаат следните 24 часа. Можете да промените кој може да ја гледа Вашата приказна во поставките.</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <string name="StoryDialogs__add_to_story">Додај во приказна</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <string name="StoryDialogs__edit_viewers">Уреди гледачи</string>
   <!--Privacy Settings toggle title for stories-->
+  <string name="PrivacySettingsFragment__share_and_view_stories">Сподели и гледај приказни</string>
   <!--Privacy Settings toggle summary for stories-->
   <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Кога оваа опција е исклучена нема да можете да споделувате и гледате приказни.</string>
   <!--New story viewer selection screen title-->
@@ -3955,6 +3970,7 @@
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Исклучи</string>
   <!--Conversation Item label for reactions to a story-->
+  <string name="ConversationItem__s_dot_story">%1$s · Приказна</string>
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Реагираше на приказна</string>
   <!--endregion-->

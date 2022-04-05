@@ -320,7 +320,7 @@
   <string name="ConversationFragment_you_already_viewed_this_message">Jūs jau žiūrėjote šią žinutę</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Šiame pokalbyje galite rašyti sau pastabas.\nJeigu yra su paskyra susietų įrenginių, naujos pastabos bus sinchronizuotos.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d grupės nariai(-ių) turi tokį patį vardą.</string>
-  <string name="ConversationFragment__tap_to_review">Bakstelėkite, norėdami peržiūrėti</string>
+  <string name="ConversationFragment__tap_to_review">Bakstelėkite norėdami peržiūrėti</string>
   <string name="ConversationFragment__review_requests_carefully">Atidžiai peržiūrėkite prašymus</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal rado kitą adresatą tokiu pačiu vardu.</string>
   <string name="ConversationFragment_contact_us">Susisiekite su mumis</string>
@@ -331,8 +331,11 @@
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s įjungtas</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">Blokuoti prašymą?</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s negalės prisijungti prie šios grupės ar prašyti prisijungti prie jos per grupės nuorodą. Šis žmogus vis tiek galės būti pridėtas į grupę rankiniu būdu.</string>
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">Blokuoti prašymą</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">Atsisakyti</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -883,6 +886,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">Pridėti „%1$s“ į grupę?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Atmesti prašymą, kurį atsiuntė „%1$s“?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Atmesti prašymą, kurį atsiuntė „%1$s“? Šis žmogus daugiau nebegalės prašyti prisijungti per grupės nuorodą.</string>
   <string name="RequestConfirmationDialog_add">Pridėti</string>
   <string name="RequestConfirmationDialog_deny">Atmesti</string>
   <!--ImageEditorHud-->
@@ -1372,7 +1376,7 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Jūs</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
-  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Patvirtinkite, norėdami tęsti susirašinėjimą</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Patvirtinkite norėdami tęsti susirašinėjimą</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Siekdami neleisti brukalo Signal programėlėje, prašome jūsų užbaigti patvirtinimą.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Po patvirtinimo galėsite tęsti susirašinėjimą. Visos pristabdytos žinutės bus automatiškai išsiųstos.</string>
   <!--Recipient-->
@@ -1400,7 +1404,7 @@
   <!--Body text for the Valentine\'s Day donation megaphone.-->
   <string name="ValentinesDayMegaphone_show_your_affection">Išreikškite savo prisirišimą tapdami Signal rėmėju.</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Bakstelėkite čia, norėdami įjungti savo vaizdą</string>
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Bakstelėkite čia norėdami įjungti savo vaizdą</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Norint skambinti %1$s, Signal reikia prieigos prie jūsų kameros</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Skambinama…</string>
@@ -1485,7 +1489,7 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Negalima gauti garso ir vaizdo iš %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Taip gali būti dėl to, kad šis naudotojas nepatvirtino jūsų saugumo numerio pasikeitimo, atsirado problemų su naudotojo įrenginiu arba jis jus užblokavo.</string>
   <!--CallToastPopupWindow-->
-  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Perbraukite, norėdami matyti ekrano bendrinimą</string>
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Perbraukite norėdami matyti ekrano bendrinimą</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Įgaliotasis serveris</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Įgaliotojo serverio adresas</string>
@@ -1572,6 +1576,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Daugiau</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN kodas sėkmingai patvirtintas. Vėliau priminsime jums dar kartą.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN kodas sėkmingai patvirtintas. Rytoj priminsime jums dar kartą.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN kodas sėkmingai patvirtintas. Po kelių dienų priminsime jums dar kartą.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN kodas sėkmingai patvirtintas. Po savaitės priminsime jums dar kartą.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN kodas sėkmingai patvirtintas. Po kelių savaičių priminsime jums dar kartą.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN kodas sėkmingai patvirtintas. Po mėnesio priminsime jums dar kartą.</string>
   <!--Slide-->
   <string name="Slide_image">Paveikslas</string>
   <string name="Slide_sticker">Lipdukas</string>
@@ -1584,7 +1594,7 @@
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
         Gauta, neteisingai protokolo versijai skirta, šifro apsiketimo žinutė.
     </string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Gauta žinutė su nauju saugumo numeriu. Bakstelėkite, norėdami apdoroti ir rodyti.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Gauta žinutė su nauju saugumo numeriu. Bakstelėkite norėdami apdoroti ir rodyti.</string>
   <string name="SmsMessageRecord_secure_session_reset">Jūs atstatėte saugųjį seansą.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s atstatė saugųjį seansą.</string>
   <string name="SmsMessageRecord_duplicate_message">Dviguba žinutė.</string>
@@ -1610,7 +1620,7 @@
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">Taisyti</string>
   <string name="SubmitDebugLogActivity_done">Atlikta</string>
-  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Bakstelėkite ant eilutės, norėdami ją ištrinti</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Bakstelėkite ant eilutės norėdami ją ištrinti</string>
   <string name="SubmitDebugLogActivity_submit">Pateikti</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Nepavyko pateikti žurnalų</string>
   <string name="SubmitDebugLogActivity_success">Įvykdyta!</string>
@@ -1659,7 +1669,7 @@
   <string name="ThreadRecord_chat_session_refreshed">Pokalbio seansas atnaujintas</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal atnaujinimas</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Yra prieinama nauja Signal versija, bakstelėkite, norėdami atnaujinti</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Yra prieinama nauja Signal versija, bakstelėkite norėdami atnaujinti</string>
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Siųsti žinutę?</string>
   <string name="UntrustedSendDialog_send">Siųsti</string>
@@ -1908,6 +1918,7 @@
   <string name="ConversationUpdateItem_enable_call_notifications">Įjungti pranešimus apie skambučius</string>
   <string name="ConversationUpdateItem_update_contact">Atnaujinti adresatą</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">Blokuoti prašymą</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Nėra jokių bendrų grupių. Atidžiai peržiūrėkite prašymus.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Šioje grupėje nėra jokių adresatų. Atidžiai peržiūrėkite prašymus.</string>
   <string name="ConversationUpdateItem_view">Rodyti</string>
@@ -1932,6 +1943,7 @@
   <string name="QuoteView_s_story">%1$s · Istorija</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Daugiau nebeprieinama</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Slinkti į apačią</string>
   <!--BubbleOptOutTooltip-->
@@ -3907,7 +3919,9 @@
   <!--Donation receipts share PNG-->
   <string name="DonationReceiptDetailsFragment__share_receipt">Bendrinti kvitą</string>
   <!--Donation receipts list end note-->
+  <string name="DonationReceiptListFragment__if_you_have">Jei esate įdiegę Signal iš naujo, ankstesnių paaukojimų kvitai nebebus prieinami.</string>
   <!--Donation receipts document title-->
+  <string name="DonationReceiptDetailsFragment__donation_receipt">Paaukojimo kvitas</string>
   <!--Donation receipts amount title-->
   <string name="DonationReceiptDetailsFragment__amount">Suma</string>
   <!--Donation receipts thanks-->
@@ -3973,6 +3987,7 @@
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Atsakyti</string>
   <!--Displayed when a story has no views-->
+  <string name="StoryViewsFragment__no_views_yet">Peržiūrų kol kas nėra</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Atsakymų kol kas nėra</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4033,6 +4048,7 @@
   <!--Dialog title when deleting a private story-->
   <string name="PrivateStorySettingsFragment__are_you_sure">Ar tikrai?</string>
   <!--Dialog message when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__this_action_cannot">Šio veiksmo nebeįmanoma bus atšaukti.</string>
   <!--Page title for editing a private story name-->
   <string name="EditPrivateStoryNameFragment__edit_story_name">Taisyti istorijos pavadinimą</string>
   <!--Input field hint when editing a private story name-->
@@ -4040,6 +4056,7 @@
   <!--Save button label when editing a private story name-->
   <string name="EditPrivateStoryNameFragment__save">Įrašyti</string>
   <!--Displayed in text post creator before user enters text-->
+  <string name="TextStoryPostCreationFragment__tap_to_add_text">Bakstelėkite norėdami pridėti tekstą</string>
   <!--Button label for changing font when creating a text post-->
   <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
   <!--Displayed in text post creator when prompting user to enter text-->
