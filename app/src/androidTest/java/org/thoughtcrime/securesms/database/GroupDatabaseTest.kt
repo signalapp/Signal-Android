@@ -34,10 +34,23 @@ class GroupDatabaseTest {
     createGroup("Title")
 
     // WHEN
-    val groupContacts = groupCursor("T")
+    val groupContacts = groupCursor("t")
 
     // THEN
-    assertTrue(groupContacts.count > 0)
+    assertEquals(1, groupContacts.count)
+  }
+
+  @Test
+  fun queryInsertedUnicodeGroupTest() {
+    // GIVEN
+    clearDB()
+    createGroup("Ángeles")
+
+    // WHEN
+    val groupContacts = groupCursor("á")
+
+    // THEN
+    assertEquals(1, groupContacts.count)
   }
 
   private fun groupCursor(constraint: String): MatrixCursor {
