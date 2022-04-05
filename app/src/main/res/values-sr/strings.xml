@@ -1505,6 +1505,7 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Више</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">Успешна провера PIN-а. Касније ћемо вас поново подсетити.</string>
   <!--Slide-->
   <string name="Slide_image">Слика</string>
   <string name="Slide_sticker">Налепница</string>

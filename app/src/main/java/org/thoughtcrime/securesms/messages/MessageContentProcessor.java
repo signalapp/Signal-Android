@@ -195,9 +195,19 @@ public final class MessageContentProcessor {
   private static final String TAG = Log.tag(MessageContentProcessor.class);
 
   private final Context context;
+  private final boolean processingEarlyContent;
 
-  public MessageContentProcessor(@NonNull Context context) {
-    this.context = context;
+  public static MessageContentProcessor forNormalContent(@NonNull Context context) {
+    return new MessageContentProcessor(context, false);
+  }
+
+  public static MessageContentProcessor forEarlyContent(@NonNull Context context) {
+    return new MessageContentProcessor(context, true);
+  }
+
+  private MessageContentProcessor(@NonNull Context context, boolean processingEarlyContent) {
+    this.context                = context;
+    this.processingEarlyContent = processingEarlyContent;
   }
 
   /**
@@ -895,8 +905,10 @@ public final class MessageContentProcessor {
 
     if (targetMessage == null) {
       warn(String.valueOf(content.getTimestamp()), "[handleReaction] Could not find matching message! Putting it in the early message cache. timestamp: " + reaction.getTargetSentTimestamp() + "  author: " + targetAuthor.getId());
-      ApplicationDependencies.getEarlyMessageCache().store(targetAuthor.getId(), reaction.getTargetSentTimestamp(), content);
-      PushProcessEarlyMessagesJob.enqueue();
+      if (!processingEarlyContent) {
+        ApplicationDependencies.getEarlyMessageCache().store(targetAuthor.getId(), reaction.getTargetSentTimestamp(), content);
+        PushProcessEarlyMessagesJob.enqueue();
+      }
       return null;
     }
 
@@ -952,8 +964,10 @@ public final class MessageContentProcessor {
       return new MessageId(targetMessage.getId(), targetMessage.isMms());
     } else if (targetMessage == null) {
       warn(String.valueOf(content.getTimestamp()), "[handleRemoteDelete] Could not find matching message! timestamp: " + delete.getTargetSentTimestamp() + "  author: " + senderRecipient.getId());
-      ApplicationDependencies.getEarlyMessageCache().store(senderRecipient.getId(), delete.getTargetSentTimestamp(), content);
-      PushProcessEarlyMessagesJob.enqueue();
+      if (!processingEarlyContent) {
+        ApplicationDependencies.getEarlyMessageCache().store(senderRecipient.getId(), delete.getTargetSentTimestamp(), content);
+        PushProcessEarlyMessagesJob.enqueue();
+      }
       return null;
     } else {
       warn(String.valueOf(content.getTimestamp()), String.format(Locale.ENGLISH, "[handleRemoteDelete] Invalid remote delete! deleteTime: %d, targetTime: %d, deleteAuthor: %s, targetAuthor: %s",
@@ -2131,10 +2145,12 @@ public final class MessageContentProcessor {
 
     for (SyncMessageId id : unhandled) {
       warn(String.valueOf(content.getTimestamp()), "[handleViewedReceipt] Could not find matching message! timestamp: " + id.getTimetamp() + "  author: " + senderRecipient.getId());
-      ApplicationDependencies.getEarlyMessageCache().store(senderRecipient.getId(), id.getTimetamp(), content);
+      if (!processingEarlyContent) {
+        ApplicationDependencies.getEarlyMessageCache().store(senderRecipient.getId(), id.getTimetamp(), content);
+      }
     }
 
-    if (unhandled.size() > 0) {
+    if (unhandled.size() > 0 && !processingEarlyContent) {
       PushProcessEarlyMessagesJob.enqueue();
     }
   }
@@ -2184,10 +2200,12 @@ public final class MessageContentProcessor {
 
     for (SyncMessageId id : unhandled) {
       warn(String.valueOf(content.getTimestamp()), "[handleReadReceipt] Could not find matching message! timestamp: " + id.getTimetamp() + "  author: " + senderRecipient.getId());
-      ApplicationDependencies.getEarlyMessageCache().store(senderRecipient.getId(), id.getTimetamp(), content);
+      if (!processingEarlyContent) {
+        ApplicationDependencies.getEarlyMessageCache().store(senderRecipient.getId(), id.getTimetamp(), content);
+      }
     }
 
-    if (unhandled.size() > 0) {
+    if (unhandled.size() > 0 && !processingEarlyContent) {
       PushProcessEarlyMessagesJob.enqueue();
     }
   }

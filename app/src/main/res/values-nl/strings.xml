@@ -392,7 +392,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
     <item quantity="other">%d geselecteerd</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
-  <string name="ConversationListFragment__notification_profile">Meldingsprofiel</string>
+  <string name="ConversationListFragment__notification_profile">Meldingsprofielen</string>
   <!--Tooltip shown after you have created your first notification profile-->
   <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Schakel hier je meldingsprofiel in of uit.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
@@ -467,8 +467,8 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="DateUtils_today">Vandaag</string>
   <string name="DateUtils_yesterday">Gisteren</string>
   <!--DecryptionFailedDialog-->
-  <string name="DecryptionFailedDialog_chat_session_refreshed">Gespreksessie vernieuwd</string>
-  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Omdat Signal geavanceerde eind-tot-eind-versluteling gebruikt, kan het soms nodig zijn om je gespreksessie te vernieuwen. Dit heeft geen invloed op de beveiliging van je gesprek, maar het is mogelijk dat je een bericht van je contactpersoon hebt gemist. Vraag je contactpersoon eventueel om zijn of haar meest recente berichten opnieuw te zenden.</string>
+  <string name="DecryptionFailedDialog_chat_session_refreshed">Gesprekssessie vernieuwd</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Het kan soms nodig zijn om je gesprekssessie te vernieuwen. Dit heeft geen invloed op de beveiliging van je gesprek, maar het is mogelijk dat je een bericht van je contactpersoon hebt gemist. Vraag je contactpersoon eventueel om zijn of haar meest recente berichten opnieuw te zenden.</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">‘%s’ ontkoppelen?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Door dit apparaat te ontkoppelen kan het niet langer berichten verzenden en ontvangen.</string>
@@ -964,7 +964,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="MessageRecord_disappearing_message_time_set_to_s">De tijdsspanne voor verlopende berichten is op %1$s ingesteld.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Deze groep is omgezet in een nieuwe-stijl groep.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Je kon niet toegevoegd worden aan de nieuwe groep en je hebt daarom een uitnodiging gekregen om opnieuw lid te worden.</string>
-  <string name="MessageRecord_chat_session_refreshed">Gespreksessie vernieuwd</string>
+  <string name="MessageRecord_chat_session_refreshed">Gesprekssessie vernieuwd</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">Een groepslid kon niet direct toegevoegd worden tot de nieuwe groep en heeft daarom een uitnodiging gekregen om toe te treden.</item>
     <item quantity="other">%1$s groepsleden konden niet direct toegevoegd worden tot de nieuwe groep en hebben daarom een uitnodiging gekregen om toe te treden.</item>
@@ -1515,27 +1515,27 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="ThreadRecord_missed_video_call">Video-oproep gemist</string>
   <string name="ThreadRecord_media_message">Mediabericht</string>
   <string name="ThreadRecord_sticker">Sticker</string>
-  <string name="ThreadRecord_view_once_photo">Eenmaligeweergave-afbeelding</string>
-  <string name="ThreadRecord_view_once_video">Eenmaligeweergave-video</string>
-  <string name="ThreadRecord_view_once_media">Eenmaligeweergave-media</string>
+  <string name="ThreadRecord_view_once_photo">Eenmalige­weergave-afbeelding</string>
+  <string name="ThreadRecord_view_once_video">Eenmalige­weergave-video</string>
+  <string name="ThreadRecord_view_once_media">Eenmalige­weergave-media</string>
   <string name="ThreadRecord_this_message_was_deleted">Dit bericht is gewist.</string>
   <string name="ThreadRecord_you_deleted_this_message">Je hebt dit bericht gewist.</string>
   <string name="ThreadRecord_s_is_on_signal">%s is bereikbaar via Signal.</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Verlopende berichten uitgeschakeld</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Verlopende berichten op %s ingesteld</string>
-  <string name="ThreadRecord_safety_number_changed">Veiligheidsnummer is veranderd</string>
-  <string name="ThreadRecord_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %s is veranderd.</string>
+  <string name="ThreadRecord_safety_number_changed">Veiligheids­nummer is veranderd</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">Je veiligheids­nummer met %s is veranderd.</string>
   <string name="ThreadRecord_you_marked_verified">Door jou als geverifieerd gemarkeerd</string>
   <string name="ThreadRecord_you_marked_unverified">Door jou als niet geverifieerd gemarkeerd</string>
   <string name="ThreadRecord_message_could_not_be_processed">Bericht kon niet worden verwerkt</string>
-  <string name="ThreadRecord_delivery_issue">Afleveringsprobleem</string>
-  <string name="ThreadRecord_message_request">Gespreksverzoek</string>
+  <string name="ThreadRecord_delivery_issue">Afleverings­probleem</string>
+  <string name="ThreadRecord_message_request">Gespreks­verzoek</string>
   <string name="ThreadRecord_photo">Afbeelding</string>
   <string name="ThreadRecord_gif">GIF</string>
   <string name="ThreadRecord_voice_message">Audiobericht</string>
   <string name="ThreadRecord_file">Bestand</string>
   <string name="ThreadRecord_video">Video</string>
-  <string name="ThreadRecord_chat_session_refreshed">Gespreksessie vernieuwd</string>
+  <string name="ThreadRecord_chat_session_refreshed">Gespreks­sessie vernieuwd</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Nieuwe versie van Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Er is een nieuwe versie van Signal beschikbaar. Tik hier om bij te werken</string>
@@ -2939,7 +2939,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="DeleteAccountFragment__enter_your_phone_number">Voer je telefoonnummer in</string>
   <string name="DeleteAccountFragment__delete_account">Al je gegevens wissen</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">zullen al je instellingen, lijst van (geblokkeerde) contactpersonen, profielnaam, -foto en -omschrijving worden gewist</string>
-  <string name="DeleteAccountFragment__delete_all_your_messages">zullen alle berichten worden gewist</string>
+  <string name="DeleteAccountFragment__delete_all_your_messages">zullen alle berichten op je eigen apparaat worden gewist</string>
   <string name="DeleteAccountFragment__delete_s_in_your_payments_account">%1$s wissen van je overschrijvingsaccount</string>
   <string name="DeleteAccountFragment__no_country_code">Er is geen landcode gespecificeerd</string>
   <string name="DeleteAccountFragment__no_number">Er is geen telefoonnummer ingevuld</string>
@@ -3656,7 +3656,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--Descriptor text indicating what the user can do with this screen-->
   <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Stel eventueel een tijdsplanning in zodat dit meldingsprofiel automatisch op bepaalde momenten wordt geactiveerd en gedeactiveerd.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
-  <string name="EditNotificationProfileSchedule__schedule">Tijdsplanning</string>
+  <string name="EditNotificationProfileSchedule__schedule">Tijdsplanning gebruiken</string>
   <!--Label for showing the start time for the schedule-->
   <string name="EditNotificationProfileSchedule__start">Beginnen</string>
   <!--Label for showing the end time for the schedule-->

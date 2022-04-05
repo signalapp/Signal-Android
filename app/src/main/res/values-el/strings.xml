@@ -91,7 +91,9 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Θα μπορείτε να στέλνετε μηνύματα και να καλείτε ο ένας τον άλλον, και το όνομα και η φωτογραφία σου θα μοιραστεί μαζί του/της.`</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Τα αποκλεισμένα άτομα δεν θα μπορούν να σε καλέσουν ή να σου στείλουν μηνύματα.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Φραγή της λήψης ενημερώσεων και νέων του Signal.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Επαναφορά της λήψης ενημερώσεων και νέων του Signal.</string>
   <string name="BlockUnblockDialog_unblock_s">Κατάργηση αποκλεισμού του/της %1$s;</string>
   <string name="BlockUnblockDialog_block">Αποκλεισμός</string>
   <string name="BlockUnblockDialog_block_and_leave">Αποκλεισμός και αποχώρηση</string>
@@ -122,7 +124,9 @@
   <string name="CameraContacts__menu_search">Αναζήτηση</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Απενεργοποίηση της παράκαμψης λογοκρισίας;</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Μπορείς πλέον να συνδεθείς απευθείας στην υπηρεσία του Signal, για καλύτερη εμπειρία χρήσης.</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">Απενεργοποίηση</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
@@ -158,7 +162,9 @@
   <string name="ContactsCursorLoader_phone_number_search">Εύρεση τηλεφωνικού αριθμού</string>
   <string name="ContactsCursorLoader_username_search">Εύρεση ονόματος χρήστη</string>
   <!--Label for my stories when selecting who to send media to-->
+  <string name="ContactsCursorLoader_my_stories">Οι ιστορίες μου</string>
   <!--Action for creating a new story-->
+  <string name="ContactsCursorLoader_new_story">Νέα ιστορία</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Μήνυμα %s</string>
   <string name="ContactsDatabase_signal_call_s">Κλήση Signal %s</string>
@@ -311,8 +317,11 @@
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s ενεργό</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">Μπλοκάρισμα αιτήματος;</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">Ο/Η %1$s δεν θα μπορέσει να γίνει μέλος ή να ζητήσει να γίνει μέλος αυτής της ομάδας μέσω του συνδέσμου ομάδας. Θα μπορεί να προστεθεί παρόλα αυτά στην ομάδα χειροκίνητα.</string>
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">Μπλοκάρισμα αιτήματος</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">Ακύρωση</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -415,8 +424,11 @@
   <string name="RestoreBackupFragment__choose_folder">Επιλογή φακέλου</string>
   <string name="RestoreBackupFragment__not_now">Όχι τώρα</string>
   <!--Couldn\'t find the selected backup-->
+  <string name="RestoreBackupFragment__backup_not_found">Το αντίγραφο ασφαλείας δε βρέθηκε.</string>
   <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">Το αντίγραφο ασφαλείας δεν μπόρεσε να αναγνωστεί.</string>
   <!--Backup has an unsupported file extension-->
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">Το αντίγραφο ασφαλείας έχει κακή επέκταση.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Αντίγραφα ασφαλείας συνομιλιών</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Τα αντίγραφα ασφαλείας κρυπτογραφούνται με ένα συνθηματικό και αποθηκεύονται στη συσκευή σου.</string>
@@ -754,10 +766,13 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Υπήρξε σφάλμα δικτύου.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Ο σύνδεσμος της ομάδας δεν είναι ενεργός</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Αδυναμία εισόδου στην ομάδα</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Δεν μπορείς να μπεις στην ομάδα μέσω του συνδέσμου της ομάδας, επειδή ένας/μια διαχειριστής σε αφαίρεσε.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Ο σύνδεσμος ομάδας δεν είναι πια έγκυρος</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">Σφάλμα συνδέσμου</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
   <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Η σύνδεση μέσω του συνδέσμου απέτυχε. Προσπάθησε να ξαναμπείς αργότερα.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Θέλεις να μπεις σε αυτή την ομάδα και να μοιραστείς το όνομα και τη φωτογραφία σου με τα μέλη της;</string>
@@ -785,6 +800,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">Προσθήκη του/της \"%1$s\" στην ομάδα;</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Απόρριψη του αιτήματος του/της \"%1$s\";</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Απόρριψη αιτήματος του/της \"%1$s\"; Δεν θα μπορεί να ξαναζητήσει να μπει στην ομάδα μέσω του συνδέσμου ομάδας.</string>
   <string name="RequestConfirmationDialog_add">Προσθήκη</string>
   <string name="RequestConfirmationDialog_deny">Απόρριψη</string>
   <!--ImageEditorHud-->
@@ -1074,6 +1090,10 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Έστειλες αίτημα για να μπείς στην ομάδα.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">Ο/Η %1$s ζήτησε να μπει στην ομάδα μέσω του συνδέσμου της ομάδας.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="one">Ο/Η %1$s έκανε και ακύρωσε το αίτημά του/της να μπει μέσω του συνδέσμου της ομάδας.</item>
+    <item quantity="other">Ο/Η %1$s έκανε και ακύρωσε %2$d αιτήματα να μπει μέσω του συνδέσμου της ομάδας.</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">Ο/Η %1$s ενέκρινε το αίτημά σου να μπεις στην ομάδα.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">Ο/Η %1$s ενέκρινε το αίτημα του/της %2$s να μπει στην ομάδα.</string>
@@ -1095,7 +1115,9 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Ένα μήνυμα από τον/την %s δεν μπόρεσε να παραδοθεί</string>
   <string name="MessageRecord_s_changed_their_phone_number">Ο/Η %1$s άλλαξε τον αριθμό τηλεφώνου του/της.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Σου αρέσει το νέο χαρακτηριστικό; Πες ευχαριστώ με μια Ενίσχυση.</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Το Signal στηρίζεται σε άτομα σαν κι εσένα. Γίνε υποστηρικτής/τρια σήμερα.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">Ο/Η %1$s ξεκίνησε μια ομαδική κλήση · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">Ο/Η %1$s είναι στην ομαδική κλήση · %2$s</string>
@@ -1124,6 +1146,7 @@
   <string name="MessageRequestBottomView_unblock">Κατάργηση φραγής</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Να επιτραπεί στον/στην %1$s να σου στείλει μηνύματα, και να μοιραστεί το όνομα και η φωτογραφία σου μαζί του/της; Δεν θα γνωρίζει ότι έχεις δει τα μηνύματα που έστειλε μέχρι να δεχτείς.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Να επιτραπεί στον/στην %1$s να σου στείλει μηνύματα, και να μοιραστεί το όνομα και η φωτογραφία σου μαζί του/της; Δεν θα λάβεις κανένα μήνυμα μέχρι να καταργήσεις τη φραγή του/της.</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Λήψη ενημερώσεων και νέων από τον/την %1$s; Δεν θα λαμβάνεις καμία ενημέρωση μέχρι να τον/την ξεμπλοκάρεις.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Να συνεχίσεις τη συνομιλία με αυτή την ομάδα, και να μοιραστείς το όνομα και τη φωτογραφία σου με τα μέλη της;</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Αναβάθμισε την ομάδα για να αποκτήσεις νέες δυνατότητες όπως οι @αναφορές και οι διαχειριστές. Τα μέλη που δεν έχουν μοιραστεί τη φωτογραφία ή το όνομά τους με την ομάδα θα προσκληθούν να μπουν.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Αυτή η ομάδα παλαιού τύπου δεν μπορεί πλέον να χρησιμοποιηθεί επειδή είναι πολύ μεγάλη. Το μέγιστο μέγεθος της ομάδας είναι %1$d.</string>
@@ -1234,6 +1257,7 @@
   <!--Recipient-->
   <string name="Recipient_you">Εσύ</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">Η ιστορία μου</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Φραγή</string>
   <string name="RecipientPreferenceActivity_unblock">Κατάργηση φραγής</string>
@@ -1251,7 +1275,9 @@
   <string name="RedPhone_got_it">Εντάξει</string>
   <!--Valentine\'s Day Megaphone-->
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <string name="ValentinesDayMegaphone_happy_heart_day">Καλημέρα 💜!</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
+  <string name="ValentinesDayMegaphone_show_your_affection">Δείξε την αγάπη σου με το να γίνεις υποστηρικτής/τρια του Signal.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Πάτα εδώ για να ενεργοποιήσεις το βίντεό σου</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Για να καλέσεις τον/την %1$s, το Signal χρειάζεται πρόσβαση στην κάμερά σου</string>
@@ -1408,6 +1434,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Περισσότερα</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">Το PIN επιβεβαιώθηκε επιτυχώς. Θα στο ξαναθυμίσουμε αργότερα.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Το PIN επιβεβαιώθηκε επιτυχώς. Θα στο ξαναθυμίσουμε αύριο.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Το PIN επιβεβαιώθηκε επιτυχώς. Θα στο ξαναθυμίσουμε σε μερικές ημέρες.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Το PIN επιβεβαιώθηκε επιτυχώς. Θα στο ξαναθυμίσουμε σε μια εβδομάδα.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Το PIN επιβεβαιώθηκε επιτυχώς. Θα στο ξαναθυμίσουμε σε μερικές εβδομάδες.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Το PIN επιβεβαιώθηκε επιτυχώς. Θα στο ξαναθυμίσουμε σε ένα μήνα.</string>
   <!--Slide-->
   <string name="Slide_image">Εικόνα</string>
   <string name="Slide_sticker">Αυτοκόλλητο</string>
@@ -1557,7 +1589,9 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Αυτή η επιλογή θα διαγράψει οριστικά αυτό το μήνυμα.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s προς %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Εσύ προς %1$s</string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s προς εσένα</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Το πολυμέσο δεν είναι πια διαθέσιμο.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Δεν βρέθηκε εφαρμογή που να μπορεί να διαμοιραστεί αυτό το πολυμέσο.</string>
   <!--MessageNotifier-->
@@ -1605,7 +1639,9 @@
   <string name="NotificationChannel_contact_joined_signal">Επαφή που εγκατέστησε το Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Δεν υπάρχει διαθέσιμη δραστηριότητα για το άνοιγμα ρυθμίσεων του καναλιού ειδοποίησης.</string>
   <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">Σύνδεση στο υπόβαθρο</string>
   <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">Κατάσταση κλήσης</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Η γρήγορη απάντηση δεν είναι διαθέσιμη όταν το Signal είναι κλειδωμένο!</string>
@@ -1695,6 +1731,10 @@
     <item quantity="other">%1$d μέλη</item>
   </plurals>
   <!--Displays number of viewers for a story-->
+  <plurals name="contact_selection_list_item__number_of_viewers">
+    <item quantity="one">%1$d θεατής</item>
+    <item quantity="other">%1$d θεατές</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Μήνυμα Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">Μη ασφαλές SMS</string>
@@ -1733,6 +1773,7 @@
   <string name="ConversationUpdateItem_enable_call_notifications">Ενεργοποίηση ειδοποιήσεων κλήσεων</string>
   <string name="ConversationUpdateItem_update_contact">Ανανέωση επαφής</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">Μπλοκάρισμα αιτήματος</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Χωρίς κοινές ομάδες. Εξέτασε τα αιτήματα προσεκτικά.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Ομάδα με καμία γνωστή επαφή. Εξέτασε τα αιτήματα προσεκτικά.</string>
   <string name="ConversationUpdateItem_view">Εμφάνιση</string>
@@ -1754,8 +1795,11 @@
   <string name="QuoteView_you">Εσύ</string>
   <string name="QuoteView_original_missing">Το αρχικό μήνυμα δε βρέθηκε</string>
   <!--Author formatting for group stories-->
+  <string name="QuoteView_s_story">%1$s · Ιστορία</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Εσύ · Ιστορία</string>
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Δεν είναι πλέον διαθέσιμη</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Πήγαινε στο τέρμα</string>
   <!--BubbleOptOutTooltip-->
@@ -2178,7 +2222,9 @@
   <string name="preferences_events__contact_joined_signal">Επαφή που εγκατέστησε το Signal</string>
   <string name="preferences_notifications__priority">Προτεραιότητα</string>
   <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">Παράκαμψη λογοκρισίας</string>
   <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">Παράκαμψη λογοκρισίας</string>
   <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Αν είναι ενεργοποιημένο, το Signal θα προσπαθήσει να παρακάμψει την λογοκρισία. Μην ενεργοποιήσεις αυτή την επιλογή εκτός και αν βρίσκεσαι σε περιοχή όπου το Signal έχει λογοκριθεί/μπλοκαριστεί.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
   <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Η παράκαμψη λογοκρισίας ενεργοποιήθηκε βάσει του αριθμού τηλεφώνου του λογαριασμού σου.</string>
@@ -2805,6 +2851,7 @@
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">Ο/Η \"%1$s\" θα μπορεί να επεξεργάζεται αυτή την ομάδα και τα μέλη της.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">Αφαίρεση του/της %1$s από την ομάδα;</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Αφαίρεση του/της %1$s από την ομάδα; Δεν θα μπορεί να ξαναζητήσει να μπει στην ομάδα μέσω του συνδέσμου ομάδας.</string>
   <string name="RecipientBottomSheet_remove">Αφαίρεση</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
   <string name="GroupRecipientListItem_admin">Διαχειριστής/τρια</string>
@@ -2895,6 +2942,7 @@
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">Διαγραφή λογαριασμού…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
+  <string name="DeleteAccountFragment__canceling_your_subscription">Η συνδρομή σου ακυρώνεται…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Ανάλογα με τον αριθμό ομάδων που είσαι μέλος, αυτό μπορεί να πάρει μέχρι μερικά λεπτά</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
@@ -3435,6 +3483,7 @@
   <string name="ManageDonationsFragment__my_support">Η υποστήριξή μου</string>
   <string name="ManageDonationsFragment__manage_subscription">Διαχείριση συνδρομής</string>
   <!--Label for Tax Receipts button-->
+  <string name="ManageDonationsFragment__tax_receipts">Φορολογικές αποδείξεις</string>
   <string name="ManageDonationsFragment__badges">Εμβλήματα</string>
   <string name="ManageDonationsFragment__subscription_faq">Συχνές ερωτήσεις συνδρομών</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Σφάλμα λήψης συνδρομής</string>
@@ -3461,8 +3510,12 @@
   <!--Copy displayed when badge expires after user inactivity-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Η συνδρομή υποστηρικτή/τριας σου ακυρώθηκε αυτόματα επειδή ήσουν ανενεργός/ή για πολύ καιρό. Το έμβλημα %1$s σου δεν είναι πλέον ορατό στο προφίλ σου.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Η συνδρομή υποστηρικτή/τριας σου ακυρώθηκε επειδή δεν μπορέσαμε να εκτελέσουμε τη πληρωμή σου. Το έμβλημα δεν είναι πλέον ορατό στο προφίλ σου.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Μπορείς να συνεχίσεις να χρησιμοποιείς το Signal αλλά για να υποστηρίξεις την εφαρμογή και να επανενεργοποιήσεις το έμβλημά σου, ανανέωσε τώρα.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Ανανέωση συνδρομής</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Αδυναμία εκτέλεσης πληρωμής συνδρομής</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Έχουμε δυσκολίες με το να λάβουμε την πληρωμή για την Υποστήριξη του Signal. Επιβεβαίωσε πως η μέθοδος πληρωμής είναι επικαιροποιημένη. Αν δεν είναι, επικαιροποίησέ την στο Google Pay. Το Signal θα προσπαθήσει να πραγματοποιήσει αυτή τη πληρωμή ξανά σε μερικές ημέρες.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Να μην εμφανιστεί ξανά</string>
   <string name="Subscription__please_contact_support_for_more_information">Παρακαλούμε επικοινώνησε με την υποστήριξη για περισσότερες πληροφορίες.</string>
   <string name="Subscription__contact_support">Επικοινωνία με την υποστήριξη</string>
   <string name="Subscription__earn_a_s_badge">Κέρδισε ένα έμβλημα %1$s</string>
@@ -3485,20 +3538,33 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Σφάλμα δικτύου. Έλεγξε τη σύνδεσή σου και ξαναπροσπάθησε.</string>
   <string name="NetworkFailure__retry">Επανάληψη</string>
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Δοκίμασε άλλο τρόπο πληρωμής ή επικοινώνησε με την τράπεζά σου για περισσότερες πληροφορίες.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Επιβεβαίωσε πως ο τρόπος πληρωμής σου στο Google Pay είναι επικαιροποιημένος, και προσπάθησε ξανά.</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">Μάθε περισσότερα</string>
   <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Επιβεβαίωσε πως ο τρόπος πληρωμής σου στο Google Pay είναι επικαιροποιημένος, και προσπάθησε ξανά. Αν δεν λυθεί το πρόβλημα, επικοινώνησε με τη τράπεζά σου.</string>
   <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Η κάρτα σου δεν υποστηρίζει αυτού του είδους τη πληρωμή. Δοκίμασε άλλο τρόπο πληρωμής.</string>
   <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">Η κάρτα σου έχει λήξει. Ανανέωσε τον τρόπο πληρωμής στο Google Pay και προσπάθησε ξανά.</string>
   <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">Μετάβαση στο Google Pay</string>
   <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">Ο αριθμός της κάρτας σου είναι λάθος. Ανανέωσέ τον στο Google Pay και προσπάθησε ξανά.</string>
   <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">Ο κωδικός CVC της κάρτας σου είναι λάθος. Ανανέωσέ τον στο Google Pay και προσπάθησε ξανά.</string>
   <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Η κάρτα σου δεν έχει αρκετό υπόλοιπο για την ολοκλήρωση της πληρωμής. Δοκίμασε άλλο τρόπο πληρωμής.</string>
   <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">Ο μήνας λήξης της κάρτας σου είναι λάθος. Ανανέωσέ τον στο Google Pay και προσπάθησε ξανά.</string>
   <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">Το έτος λήξης της κάρτας σου είναι λάθος. Ανανέωσέ το στο Google Pay και προσπάθησε ξανά.</string>
   <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">Δοκίμασε να ολοκληρώσεις τη πληρωμή ξανά, ή επικοινώνησε με την τράπεζά σου για περισσότερες πληροφορίες.</string>
   <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">Δοκίμασε ξανά ή επικοινώνησε με την τράπεζά σου για περισσότερες πληροφορίες.</string>
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Ονομασία προφίλ</string>
   <!--Hint text for create/edit notification profile name-->
@@ -3640,55 +3706,95 @@
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Αποτυχία ανοίγματος επιλογέα.</string>
   <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Σημειώσεις έκδοσης &amp; Νέα του Signal</string>
   <!--Donation receipts activity title-->
   <string name="DonationReceiptListFragment__all_activity">Όλη η δραστηριότητα</string>
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">Όλοι/ες</string>
   <!--Donation receipts recurring tab label-->
+  <string name="DonationReceiptListFragment__recurring">Επαναλαμβανόμενη</string>
   <!--Donation receipts one time tab label-->
   <string name="DonationReceiptListFragment__one_time">Μια φορά</string>
   <!--Donation receipts boost row label-->
+  <string name="DonationReceiptListFragment__boost">Ενίσχυση</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Λεπτομέρειες</string>
   <!--Donation receipts donation type heading-->
+  <string name="DonationReceiptDetailsFragment__donation_type">Τύπος δωρεάς</string>
   <!--Donation receipts date paid heading-->
+  <string name="DonationReceiptDetailsFragment__date_paid">Ημερομηνία πληρωμής</string>
   <!--Donation receipts share PNG-->
+  <string name="DonationReceiptDetailsFragment__share_receipt">Διαμοιρασμός απόδειξης</string>
   <!--Donation receipts list end note-->
+  <string name="DonationReceiptListFragment__if_you_have">Αν έχεις επανεγκαταστήσει το Signal, οι αποδείξεις από προηγούμενες δωρεές δεν θα είναι διαθέσιμες.</string>
   <!--Donation receipts document title-->
+  <string name="DonationReceiptDetailsFragment__donation_receipt">Απόδειξη δωρεάς</string>
   <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">Ποσό</string>
   <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Ευχαριστούμε που υποστηρίζεις το Signal. Η συνεισφορά σου βοηθά στην αποστολή της ανάπτυξης τεχνολογίας ιδιωτικότητας ανοιχτού κώδικα, που προστατεύει την ελευθερία της έκφρασης και δίνει τη δυνατότητα ασφαλών διεθνών επικοινωνιών για εκατομμύρια ανθρώπους σε όλο τον κόσμο. Αν είσαι κάτοικος των Ηνωμένων Πολιτειών, παρακαλούμε κράτα αυτή την απόδειξη για τα φορολογικά σου αρχεία. Το Signal Technology Foundation ένας μη κερδοσκοπικός οργανισμός στις Ηνωμένες Πολιτείες, με tax–exemption σύμφωνα με την ενότητα 501c3 του Internal Revenue Code. Το Federal Tax ID μας είναι 82–4506840.</string>
   <!--Donation receipt type-->
+  <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Συνομιλίες</string>
   <!--Label for Stories tab in home app screen-->
+  <string name="ConversationListTabs__stories">Ιστορίες</string>
   <!--String for counts above 99 in conversation list tabs-->
+  <string name="ConversationListTabs__99p">99+</string>
   <!--Title for "My Stories" row item in Stories landing page-->
+  <string name="StoriesLandingFragment__my_stories">Οι ιστορίες μου</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
+  <string name="StoriesLandingFragment__add_a_story">Προσθήκη ιστορίας</string>
   <!--Displayed when there are no stories to display-->
+  <string name="StoriesLandingFragment__no_recent_updates">Δεν υπάρχουν πρόσφατες ιστορίες αυτή τη στιγμή.</string>
   <!--Context menu option to hide a story-->
+  <string name="StoriesLandingItem__hide_story">Απόκρυψη ιστορίας</string>
   <!--Context menu option to unhide a story-->
+  <string name="StoriesLandingItem__unhide_story">Επανεμφάνιση ιστορίας</string>
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">Προώθηση</string>
   <!--Context menu option to share a story-->
+  <string name="StoriesLandingItem__share">Διαμοιρασμός…</string>
   <!--Context menu option to go to story chat-->
+  <string name="StoriesLandingItem__go_to_chat">Μετάβαση στη συνομιλία</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Στέλνεται…</string>
   <!--Label when a story fails to send-->
+  <string name="StoriesLandingItem__couldnt_send">Αδυναμία αποστολής</string>
   <!--Title of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__hide_story">Απόκρυψη ιστορίας;</string>
   <!--Message of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__new_story_updates">Νέες ιστορίες από τον/την %1$s δεν θα εμφανίζονται πλέον στη κορυφή της λίστας ιστοριών.</string>
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">Απόκρυψη</string>
   <!--Displayed in Snackbar after story is hidden-->
+  <string name="StoriesLandingFragment__story_hidden">Ιστορία σε απόκρυψη</string>
   <!--Section header for hidden stories-->
+  <string name="StoriesLandingFragment__hidden_stories">Κρυμμένες ιστορίες</string>
   <!--Displayed on each sent story under My Stories-->
+  <plurals name="MyStories__d_views">
+    <item quantity="one">%1$d προβολή</item>
+    <item quantity="other">%1$d προβολές</item>
+  </plurals>
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">Προώθηση</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
+  <string name="MyStories__ss_story">Η ιστορία του/της %1$s</string>
   <!--Title of dialog to confirm deletion of story-->
+  <string name="MyStories__delete_story">Διαγραφή ιστορίας;</string>
   <!--Message of dialog to confirm deletion of story-->
+  <string name="MyStories__this_story_will_be_deleted">Η ιστορία θα διαγραφτεί για εσένα και όλα τα άτομα που την έχουν λάβει.</string>
   <!--Displayed at bottom of story viewer when current item has views-->
+  <plurals name="StoryViewerFragment__d_views">
+    <item quantity="one">%1$d προβολή</item>
+    <item quantity="other">%1$d προβολές</item>
+  </plurals>
   <!--Displayed at bottom of story viewer when current item has replies-->
+  <plurals name="StoryViewerFragment__d_replies">
+    <item quantity="one">%1$d απάντηση</item>
+    <item quantity="other">%1$d απαντήσεις</item>
+  </plurals>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3698,105 +3804,180 @@
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Απάντηση</string>
   <!--Displayed when a story has no views-->
+  <string name="StoryViewsFragment__no_views_yet">Καμία προβολή ακόμα</string>
   <!--Displayed when a story has no replies yet-->
+  <string name="StoryGroupReplyFragment__no_replies_yet">Καμία απάντηση ακόμα</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
+  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Αντέδρασε στην ιστορία</string>
   <!--Label for story views tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__views">Προβολές</string>
   <!--Label for story replies tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__replies">Απαντήσεις</string>
   <!--Description of action for reaction button-->
+  <string name="StoryReplyComposer__react_to_this_story">Απαντήσεις σε αυτή την ιστορία</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
+  <string name="StoryReplyComposer__replying_privately_to_s">Ιδιωτική απάντηση στον/στην %1$s</string>
   <!--Context menu item to privately reply to a story response-->
+  <string name="StoryGroupReplyItem__private_reply">Ιδιωτική απάντηση</string>
   <!--Context menu item to copy a story response-->
   <string name="StoryGroupReplyItem__copy">Αντιγραφή</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Διαγραφή</string>
   <!--Story settings page title-->
+  <string name="StorySettingsFragment__story_settings">Ρυθμίσεις ιστορίας</string>
   <!--Story settings private stories heading-->
+  <string name="StorySettingsFragment__private_stories">Ιδιωτικές ιστορίες</string>
   <!--Option label for creating a new private story-->
+  <string name="StorySettingsFragment__new_private_story">Νέα ιδιωτική ιστορία</string>
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">Η ιστορία μου</string>
   <!--Section heading for story visibility-->
+  <string name="MyStorySettingsFragment__who_can_see_this_story">Ποιοι μπορούν να δουν αυτή την ιστορία</string>
   <!--Clickable option for selecting people to hide your story from-->
+  <string name="MyStorySettingsFragment__hide_story_from">Απόκρυψη ιστορίας από</string>
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <plurals name="MyStorySettingsFragment__d_people">
+    <item quantity="one">%1$d άτομο</item>
+    <item quantity="other">%1$d άτομα</item>
+  </plurals>
   <!--Section header for options related to replies and reactions-->
+  <string name="MyStorySettingsFragment__replies_amp_reactions">Απαντήσεις &amp; αντιδράσεις</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
+  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Να επιτρέπονται απαντήσεις &amp; αντιδράσεις</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
+  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Να επιτρέπεται στα άτομα που μπορούν να δουν τις ιστορίες σου, να αντιδράσουν και να απαντήσουν</string>
   <!--Note about default sharing-->
+  <string name="MyStorySettingsFragment__hide_your_story_from">Απόκρυψη της ιστορίας σου από συγκεκριμένα άτομα. Η προεπιλογή είναι η ιστορία σου να μοιράζεται με τις %1$s</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
+  <string name="MyStorySettingsFragment__signal_connections">Επαφές Signal σου.</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Οι <strong>Επαφές Signal</strong> είναι άτομα που έχεις επιλέξει να εμπιστεύεσαι, με τους εξής τρόπους:</string>
   <!--Signal connections sheet bullet point 1-->
+  <string name="SignalConnectionsBottomSheet__starting_a_conversation">Έχετε ξεκινήσει μια συνομιλία</string>
   <!--Signal connections sheet bullet point 2-->
+  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Έχεις αποδεχτεί ένα αίτημα μηνύματος</string>
   <!--Signal connections sheet bullet point 3-->
+  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Τα έχεις στις επαφές της συσκευής σου</string>
   <!--Note at the bottom of the Signal connections sheet-->
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Οι επαφές σου μπορούν να δουν το όνομα και τη φωτογραφία σου, και μπορούν να δουν δημοσιεύσεις στην \"Ιστορία μου\", εκτός αν την κρύψεις από αυτούς.</string>
   <!--Clickable option to add a viewer to a private story-->
+  <string name="PrivateStorySettingsFragment__add_viewer">Προσθήκη θεατή</string>
   <!--Clickable option to delete a custom story-->
+  <string name="PrivateStorySettingsFragment__delete_private_story">Διαγραφή ιδιωτικής ιστορίας</string>
   <!--Dialog title when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__remove_s">Αφαίρεση του/της %1$s;</string>
   <!--Dialog message when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Αυτό το άτομο δεν θα βλέπει πλέον την ιστορία σου.</string>
   <!--Positive action label when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__remove">Αφαίρεση</string>
   <!--Dialog title when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__are_you_sure">Είσαι σίγουρος/η;</string>
   <!--Dialog message when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__this_action_cannot">Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.</string>
   <!--Page title for editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__edit_story_name">Επεξεργασία ονόματος ιστορίας.</string>
   <!--Input field hint when editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__story_name">Όνομα ιστορίας</string>
   <!--Save button label when editing a private story name-->
   <string name="EditPrivateStoryNameFragment__save">Αποθήκευση</string>
   <!--Displayed in text post creator before user enters text-->
+  <string name="TextStoryPostCreationFragment__tap_to_add_text">Πάτα για προσθήκη κειμένου</string>
   <!--Button label for changing font when creating a text post-->
+  <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
   <!--Displayed in text post creator when prompting user to enter text-->
   <string name="TextStoryPostTextEntryFragment__add_text">Προσθήκη κειμένου</string>
   <!--Content description for \'done\' button when adding text to a story post-->
+  <string name="TextStoryPostTextEntryFragment__done_adding_text">Ολοκλήρωση προσθήκης κειμένου</string>
   <!--Text label for media selection toggle-->
   <string name="MediaSelectionActivity__text">Κείμενο</string>
   <!--Camera label for media selection toggle-->
   <string name="MediaSelectionActivity__camera">Κάμερα</string>
   <!--Hint for entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Πληκτρολόγησε ή επικόλλησε ένα URL</string>
   <!--Displayed prior to the user entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Μοιράσου έναν σύνδεσμο με τους θεατές της ιστορίας σου</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Αναζήτηση</string>
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
+  <string name="HideStoryFromFragment__hide_story_from">Απόκρυψη ιστορίας από…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Τέλος</string>
   <!--Dialog title for first time adding something to a story-->
+  <string name="StoryDialogs__add_to_story_q">Προσθήκη στην ιστορία;</string>
   <!--Dialog message for first time adding something to a story-->
+  <string name="StoryDialogs__adding_content">Προσθέτοντας περιεχόμενο στην ιστορία σου, επιτρέπεις στις επαφές Signal σου να το δουν για 24 ώρες. Μπορείς επίσης να αλλάξεις το ποιοι μπορούν να δουν την ιστορία σου στις Ρυθμίσεις.</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
+  <string name="StoryDialogs__add_to_story">Προσθήκη στην ιστορία</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <string name="StoryDialogs__edit_viewers">Επεξεργασία θεατών</string>
   <!--Privacy Settings toggle title for stories-->
+  <string name="PrivacySettingsFragment__share_and_view_stories">Διαμοιρασμός &amp; Προβολή Ιστοριών</string>
   <!--Privacy Settings toggle summary for stories-->
+  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Δεν θα μπορείς πια να μοιραστείς ή να δεις Ιστορίες όταν αυτή η επιλογή είναι απενεργοποιημένη.</string>
   <!--New story viewer selection screen title-->
+  <string name="CreateStoryViewerSelectionFragment__choose_viewers">Επιλογή θεατών</string>
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">Επόμενο</string>
   <!--New story viewer selection screen title as recipients are selected-->
+  <plurals name="SelectViewersFragment__d_viewers">
+    <item quantity="one">%1$d θεατής</item>
+    <item quantity="other">%1$d θεατές</item>
+  </plurals>
   <!--Name story screen title-->
+  <string name="CreateStoryWithViewersFragment__name_story">Όνομα ιστορίας</string>
   <!--Name story screen label hint-->
+  <string name="CreateStoryWithViewersFragment__story_name_required">Όνομα ιστορίας (υποχρεωτικό)</string>
   <!--Name story screen viewers subheading-->
+  <string name="CreateStoryWithViewersFragment__viewers">Θεατές</string>
   <!--Name story screen create button label-->
   <string name="CreateStoryWithViewersFragment__create">Δημιουργία</string>
   <!--Name story screen error when save attempted with no label-->
   <string name="CreateStoryWithViewersFragment__this_field_is_required">Αυτό το πεδίο απαιτείται.</string>
   <!--Name story screen error when save attempted but label is duplicate-->
+  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">Υπάρχει ήδη ιστορία με αυτό το όνομα.</string>
   <!--Text for select all action when editing recipients for a story-->
   <string name="BaseStoryRecipientSelectionFragment__select_all">Επιλογή όλων</string>
   <!--Choose story type bottom sheet title-->
+  <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Επέλεξε τον τύπο της ιστορίας σου</string>
   <!--Choose story type bottom sheet new story row title-->
+  <string name="ChooseStoryTypeBottomSheet__new_private_story">Νέα ιδιωτική ιστορία</string>
   <!--Choose story type bottom sheet new story row summary-->
+  <string name="ChooseStoryTypeBottomSheet__visible_only_to">Ορατή μόνο σε συγκεκριμένα άτομα</string>
   <!--Choose story type bottom sheet group story title-->
+  <string name="ChooseStoryTypeBottomSheet__group_story">Ιστορία ομάδας</string>
   <!--Choose story type bottom sheet group story summary-->
+  <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Διαμοιρασμός με υφιστάμενη ομάδα</string>
   <!--Choose groups bottom sheet title-->
+  <string name="ChooseGroupStoryBottomSheet__choose_groups">Επιλογή ομάδας</string>
   <!--Displayed when copying group story reply text to clipboard-->
   <string name="StoryGroupReplyFragment__copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
+  <string name="StoryViewerPageFragment__see_more">… Δες περισσότερα</string>
   <!--Displayed in toast after sending a direct reply-->
+  <string name="StoryDirectReplyDialogFragment__reply_sent">Η απάντηση στάλθηκε</string>
   <!--Displayed in toast after sending a direct reaction-->
+  <string name="StoryDirectReplyDialogFragment__reaction_sent">Η αντίδραση στάλθηκε</string>
   <!--Displayed in the viewer when a story is no longer available-->
+  <string name="StorySlateView__this_story_is_no_longer_available">Η ιστορία δεν είναι πια διαθέσιμη.</string>
   <!--Displayed in the viewer when the network is not available-->
+  <string name="StorySlateView__no_internet_connection">Δεν υπάρχει σύνδεση στο διαδίκτυο</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <string name="StorySlateView__couldnt_load_content">Αποτυχία φόρτωσης περιεχομένου</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Απενεργοποίηση της παράκαμψης λογοκρισίας;</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">Μπορείς πλέον να συνδεθείς απευθείας στην υπηρεσία του Signal, για καλύτερη εμπειρία χρήσης.</string>
   <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_no_thanks">Όχι, ευχαριστώ</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Απενεργοποίηση</string>
   <!--Conversation Item label for reactions to a story-->
+  <string name="ConversationItem__s_dot_story">%1$s · Ιστορία</string>
   <!--Conversation Item label for reactions to an unavailable story-->
+  <string name="ConversationItem__reacted_to_a_story">Αντέδρασε σε μια ιστορία</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="ExpandModel__view_more">Προβολή περισσότερων</string>
+  <string name="StoriesLinkPopup__visit_link">Επίσκεψη συνδέσμου</string>
   <!--EOF-->
 </resources>

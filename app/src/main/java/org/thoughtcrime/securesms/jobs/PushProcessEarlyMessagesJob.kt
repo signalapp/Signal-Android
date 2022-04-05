@@ -48,7 +48,7 @@ class PushProcessEarlyMessagesJob private constructor(parameters: Parameters) : 
         if (contents.isPresent) {
           for (content: SignalServiceContent in contents.get()) {
             Log.i(TAG, "[${id.sentTimestamp}] Processing early content for $id")
-            MessageContentProcessor(context).process(MessageContentProcessor.MessageState.DECRYPTED_OK, content, null, id.sentTimestamp, -1)
+            MessageContentProcessor.forEarlyContent(context).process(MessageContentProcessor.MessageState.DECRYPTED_OK, content, null, id.sentTimestamp, -1)
           }
         } else {
           Log.w(TAG, "[${id.sentTimestamp}] Saw $id in the cache, but when we went to retrieve it, it was already gone.")

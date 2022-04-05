@@ -164,6 +164,7 @@
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Miaj rakontoj</string>
   <!--Action for creating a new story-->
+  <string name="ContactsCursorLoader_new_story">Nova rakonto</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mesaĝi al %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-alvoko %s</string>
@@ -316,8 +317,11 @@
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s elektita</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">Ĉu bloki peton?</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s ne povos anigi la grupon aŭ peti anigi la grupon per grupligilo. Ŝi aŭ li povas esti aldonita al la grupo permane.</string>
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">Bloki peton</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">Nuligi</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -420,8 +424,11 @@
   <string name="RestoreBackupFragment__choose_folder">Elekti dosierujon</string>
   <string name="RestoreBackupFragment__not_now">Ne nun</string>
   <!--Couldn\'t find the selected backup-->
+  <string name="RestoreBackupFragment__backup_not_found">Savkopio ne trovita.</string>
   <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">Savkopio ne legeblis.</string>
   <!--Backup has an unsupported file extension-->
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">Savkopio havas maltaŭgan dosiersufikson.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Mesaĝaj savkopioj</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Savkopioj estas ĉifritaj per pasfrazo, kaj konserviĝas en via aparato.</string>
@@ -759,10 +766,13 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Okazis reta eraro.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">La grupligilo ne estas aktiva</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Ne eblas anigi la grupon</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Vi ne povas anigi tiun grupon per la grupligilo, ĉar administranto forigis vin.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Tiu grupligilo ne plu validas</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">Eraro de ligilo</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
   <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Aniĝo per la ligilo malsukcesis. Reprovu poste.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Ĉu vi volas aniĝi al tiu grupo kaj kunhavigi vian nomon kaj foton kun la anoj?</string>
@@ -790,6 +800,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">Ĉu aldoni „%1$s“ al la grupo?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Ĉu malaprobi la peton el „%1$s“?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Ĉu rifuzi peton el „%1$s“? Ŝi aŭ li ne plu povos peti anigi la grupon per la grupligilo.</string>
   <string name="RequestConfirmationDialog_add">Aldoni</string>
   <string name="RequestConfirmationDialog_deny">Malaprobi</string>
   <!--ImageEditorHud-->
@@ -1080,6 +1091,10 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Vi sendis peton por anigi la grupon.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s sendis peton por anigi per grupligilo.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="one">%1$s sendis kaj nuligis sian peton por anigi per la grupligilo.</item>
+    <item quantity="other">%1$s sendis kaj nuligis %2$d petojn por anigi per la grupligilo.</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s aprobis vian peton por anigi la grupon.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s aprobis peton por anigi la grupon el %2$s.</string>
@@ -1244,6 +1259,7 @@
   <!--Recipient-->
   <string name="Recipient_you">Vi</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">Mia rakonto</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Bloki</string>
   <string name="RecipientPreferenceActivity_unblock">Malbloki</string>
@@ -1423,6 +1439,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Pli</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN sukcese kontrolita. Ni memorigos vin pri ĝi poste.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN sukcese kontrolita. Ni memorigos vin pri ĝi morgaŭ.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN sukcese kontrolita. Ni memorigos vin pri ĝi post kelkaj tagoj.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN sukcese kontrolita. Ni memorigos vin pri ĝi post unu semajno.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN sukcese kontrolita. Ni memorigos vin pri ĝi post du semajnoj.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN sukcese kontrolita. Ni memorigos vin pri ĝi post unu monato.</string>
   <!--Slide-->
   <string name="Slide_image">Bildo</string>
   <string name="Slide_sticker">Glumarko</string>
@@ -1572,7 +1594,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Tio daŭre forviŝos ĉi tiun mesaĝon.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s al %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Vi al %1$s</string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s al vi</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Aŭdvidaĵo ne plu disponeblas.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Ne troveblas aplikaĵo, kiu kapablas kunhavigi ĉi tiun aŭdvidaĵon.</string>
   <!--MessageNotifier-->
@@ -1712,6 +1736,10 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
     <item quantity="other">%1$d anoj</item>
   </plurals>
   <!--Displays number of viewers for a story-->
+  <plurals name="contact_selection_list_item__number_of_viewers">
+    <item quantity="one">%1$d spektanto</item>
+    <item quantity="other">%1$d spektantoj</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal-mesaĝo</string>
   <string name="conversation_activity__type_message_sms_insecure">Nesekura SMS</string>
@@ -1750,6 +1778,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ConversationUpdateItem_enable_call_notifications">Ŝalti la sciigojn pri alvoko</string>
   <string name="ConversationUpdateItem_update_contact">Ĝisdatigi kontakton</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">Bloki peton</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Neniu komuna grupo. Kontroli la petojn zorgeme.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Neniu kontakto en tiu grupo. Kontroli la petojn zorgeme.</string>
   <string name="ConversationUpdateItem_view">Montri pli</string>
@@ -1771,8 +1800,11 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="QuoteView_you">Vi</string>
   <string name="QuoteView_original_missing">Origina mesaĝo ne troveblas</string>
   <!--Author formatting for group stories-->
+  <string name="QuoteView_s_story">%1$s · Rakonto</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Vi · Rakonto</string>
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Ne plu disponebla</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rulumi malsupren</string>
   <!--BubbleOptOutTooltip-->
@@ -1954,6 +1986,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="message_details_recipient_header__read_by">Legita de</string>
   <string name="message_details_recipient_header__not_sent">Ne sendita</string>
   <string name="message_details_recipient_header__viewed">Vidita de</string>
+  <string name="message_details_recipient_header__skipped">Preterlasita</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Malsukcesa sendo</string>
   <string name="message_details_recipient__new_safety_number">Nova sekuriga numero</string>
@@ -2823,6 +2856,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">„%1$s“ povos modifi tiun grupon kaj ties anojn.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">Ĉu forigi %1$s el tiu grupo?</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Ĉu forigi „%1$s“ el la grupo? Ŝi aŭ li ne plu povos peti anigi la grupon per la grupligilo.</string>
   <string name="RecipientBottomSheet_remove">Forviŝi</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopiita al tondujo</string>
   <string name="GroupRecipientListItem_admin">Administranto</string>
@@ -2913,6 +2947,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">Forigi de la konto…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
+  <string name="DeleteAccountFragment__canceling_your_subscription">Nuligado de la abono…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Laŭ la nombro de viaj grupoj, tio povas daŭri kelkajn minutojn</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
@@ -3453,6 +3488,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ManageDonationsFragment__my_support">Mia subteno</string>
   <string name="ManageDonationsFragment__manage_subscription">Administri la abonon</string>
   <!--Label for Tax Receipts button-->
+  <string name="ManageDonationsFragment__tax_receipts">Imposta kvitanco</string>
   <string name="ManageDonationsFragment__badges">Insignoj</string>
   <string name="ManageDonationsFragment__subscription_faq">Respondaro pri abono</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Eraro dum ricevo de abono.</string>
@@ -3681,55 +3717,89 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">Ĉiuj</string>
   <!--Donation receipts recurring tab label-->
+  <string name="DonationReceiptListFragment__recurring">Ripetanta</string>
   <!--Donation receipts one time tab label-->
   <string name="DonationReceiptListFragment__one_time">Unufoje</string>
   <!--Donation receipts boost row label-->
+  <string name="DonationReceiptListFragment__boost">Plikonatigo</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Detaloj</string>
   <!--Donation receipts donation type heading-->
+  <string name="DonationReceiptDetailsFragment__donation_type">Donacotipo</string>
   <!--Donation receipts date paid heading-->
+  <string name="DonationReceiptDetailsFragment__date_paid">Pagodato</string>
   <!--Donation receipts share PNG-->
+  <string name="DonationReceiptDetailsFragment__share_receipt">Kunhavigi kvitancon</string>
   <!--Donation receipts list end note-->
+  <string name="DonationReceiptListFragment__if_you_have">Se vi reinstalas Signal-on, antaŭaj kvitancoj ne plu disponeblos.</string>
   <!--Donation receipts document title-->
+  <string name="DonationReceiptDetailsFragment__donation_receipt">Donaca kvitanco</string>
   <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">Monsumo</string>
   <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Dankon pro via subteno al Signal. Via donaco vivtenas la mision disvolvi priprivatecan malfermitkodan teĥnologion, kiu protektas liberan esprimon, kaj ebligas mondan sekuran komunikadon por milionoj ĉirkaŭ la mondo. Se vi loĝas en Usono, konservu tiun impostan kvitanco por via impostdeklaro. „Signal Technology Foundation“ estas usona neprofitcela organizaĵo laŭ paragrafo 501(c)(3) de la Impostkodo. Nia federacia impost-identigilo estas 82-4506840.</string>
   <!--Donation receipt type-->
+  <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s — %2$s</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Interparoloj</string>
   <!--Label for Stories tab in home app screen-->
   <string name="ConversationListTabs__stories">Rakontoj</string>
   <!--String for counts above 99 in conversation list tabs-->
+  <string name="ConversationListTabs__99p">99+</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Miaj rakontoj</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Aldoni rakonton</string>
   <!--Displayed when there are no stories to display-->
+  <string name="StoriesLandingFragment__no_recent_updates">Neniu freŝa ĝisdatigo montrebla nun</string>
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Kaŝi la rakonton</string>
   <!--Context menu option to unhide a story-->
+  <string name="StoriesLandingItem__unhide_story">Malkaŝi la rakonton</string>
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">Plusendi</string>
   <!--Context menu option to share a story-->
+  <string name="StoriesLandingItem__share">Kunhavigi…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Iri al la interparolo</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Sendo…</string>
   <!--Label when a story fails to send-->
+  <string name="StoriesLandingItem__couldnt_send">Sendo malsukcesis</string>
   <!--Title of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__hide_story">Ĉu kaŝi la rakonton?</string>
   <!--Message of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__new_story_updates">Ĝisdatigoj pri nova rakonto el %1$s ne plu aperos supre de la rakontlisto.</string>
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">Kaŝi</string>
   <!--Displayed in Snackbar after story is hidden-->
+  <string name="StoriesLandingFragment__story_hidden">Rakonto kaŝita</string>
   <!--Section header for hidden stories-->
+  <string name="StoriesLandingFragment__hidden_stories">Kaŝitaj rakontoj</string>
   <!--Displayed on each sent story under My Stories-->
+  <plurals name="MyStories__d_views">
+    <item quantity="one">%1$d vido</item>
+    <item quantity="other">%1$d vidoj</item>
+  </plurals>
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">Plusendi</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
+  <string name="MyStories__ss_story">Rakonto de %1$s</string>
   <!--Title of dialog to confirm deletion of story-->
+  <string name="MyStories__delete_story">Ĉu forigi la rakonton?</string>
   <!--Message of dialog to confirm deletion of story-->
+  <string name="MyStories__this_story_will_be_deleted">Ĝi foriĝos por vi kaj por ĉiuj ricevintoj. </string>
   <!--Displayed at bottom of story viewer when current item has views-->
+  <plurals name="StoryViewerFragment__d_views">
+    <item quantity="one">%1$d vido</item>
+    <item quantity="other">%1$d vidoj</item>
+  </plurals>
   <!--Displayed at bottom of story viewer when current item has replies-->
+  <plurals name="StoryViewerFragment__d_replies">
+    <item quantity="one">%1$d respondo</item>
+    <item quantity="other">%1$d respondoj</item>
+  </plurals>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3739,7 +3809,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Respondi</string>
   <!--Displayed when a story has no views-->
+  <string name="StoryViewsFragment__no_views_yet">Neniu vido</string>
   <!--Displayed when a story has no replies yet-->
+  <string name="StoryGroupReplyFragment__no_replies_yet">Neniu respondo</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
   <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Reagis al la rakonto</string>
   <!--Label for story views tab-->
@@ -3747,91 +3819,155 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Label for story replies tab-->
   <string name="StoryViewsAndRepliesDialogFragment__replies">Respondoj</string>
   <!--Description of action for reaction button-->
+  <string name="StoryReplyComposer__react_to_this_story">Reagi al tiu rakonto</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
+  <string name="StoryReplyComposer__replying_privately_to_s">Privata respondo al %1$s</string>
   <!--Context menu item to privately reply to a story response-->
+  <string name="StoryGroupReplyItem__private_reply">Respondi private</string>
   <!--Context menu item to copy a story response-->
   <string name="StoryGroupReplyItem__copy">Kopii</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Forigi</string>
   <!--Story settings page title-->
+  <string name="StorySettingsFragment__story_settings">Rakontaj agordoj</string>
   <!--Story settings private stories heading-->
+  <string name="StorySettingsFragment__private_stories">Privataj rakontoj</string>
   <!--Option label for creating a new private story-->
+  <string name="StorySettingsFragment__new_private_story">Nova privata rakonto</string>
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">Mia rakonto</string>
   <!--Section heading for story visibility-->
+  <string name="MyStorySettingsFragment__who_can_see_this_story">Kiu povas vidi tiun rakonton</string>
   <!--Clickable option for selecting people to hide your story from-->
+  <string name="MyStorySettingsFragment__hide_story_from">Kaŝi la rakonton al</string>
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <plurals name="MyStorySettingsFragment__d_people">
+    <item quantity="one">%1$d homo</item>
+    <item quantity="other">%1$d homoj</item>
+  </plurals>
   <!--Section header for options related to replies and reactions-->
+  <string name="MyStorySettingsFragment__replies_amp_reactions">Respondoj kaj reagoj</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
+  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Ebligi respondojn kaj reagojn</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
+  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Permesi al homoj, kiuj povas vidi vian rakonton, reagi kaj respondi</string>
   <!--Note about default sharing-->
+  <string name="MyStorySettingsFragment__hide_your_story_from">Kaŝi vian rakonton al specifaj homoj. Norme, via rakonto kunhaviĝas kun via %1$s</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
+  <string name="MyStorySettingsFragment__signal_connections">Signal-konataro.</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Signal-Konataro</strong> estas homoj, kiuj vi elektis fidi, ĉar:</string>
   <!--Signal connections sheet bullet point 1-->
+  <string name="SignalConnectionsBottomSheet__starting_a_conversation">vi ekinterparolis kun ŝi aŭ li</string>
   <!--Signal connections sheet bullet point 2-->
+  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">vi akceptis mesaĝopeton</string>
   <!--Signal connections sheet bullet point 3-->
+  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">ŝi aŭ li estas en via sistem-kontaktaro</string>
   <!--Note at the bottom of the Signal connections sheet-->
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Via konataro povas vidi vian nomon kaj foton, kaj ĝi povas vidi viajn tekstojn en „Miaj rakontoj“, krom se vi kaŝas ilin al ĝi.</string>
   <!--Clickable option to add a viewer to a private story-->
+  <string name="PrivateStorySettingsFragment__add_viewer">Aldoni spektanton</string>
   <!--Clickable option to delete a custom story-->
+  <string name="PrivateStorySettingsFragment__delete_private_story">Forigi privatan rakonton</string>
   <!--Dialog title when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__remove_s">Ĉu forigi „%1$s“?</string>
   <!--Dialog message when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Tiu ne plu vidos vian rakonton.</string>
   <!--Positive action label when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__remove">Forviŝi</string>
   <!--Dialog title when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__are_you_sure">Ĉu vi certas?</string>
   <!--Dialog message when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__this_action_cannot">Tiu demando ne malfareblas.</string>
   <!--Page title for editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__edit_story_name">Modifi rakont-nomon</string>
   <!--Input field hint when editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__story_name">Rakont-nomo</string>
   <!--Save button label when editing a private story name-->
   <string name="EditPrivateStoryNameFragment__save">Konservi</string>
   <!--Displayed in text post creator before user enters text-->
+  <string name="TextStoryPostCreationFragment__tap_to_add_text">Tuŝeti por aldoni tekston</string>
   <!--Button label for changing font when creating a text post-->
+  <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
   <!--Displayed in text post creator when prompting user to enter text-->
   <string name="TextStoryPostTextEntryFragment__add_text">Aldoni tekston</string>
   <!--Content description for \'done\' button when adding text to a story post-->
+  <string name="TextStoryPostTextEntryFragment__done_adding_text">Aldono de teksto farita</string>
   <!--Text label for media selection toggle-->
   <string name="MediaSelectionActivity__text">Teksto</string>
   <!--Camera label for media selection toggle-->
   <string name="MediaSelectionActivity__camera">Fotilo</string>
   <!--Hint for entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Entajpi aŭ alglui retadreson</string>
   <!--Displayed prior to the user entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Kunhavigi ligilon kun spektantoj de via rakonto</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Serĉi</string>
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
+  <string name="HideStoryFromFragment__hide_story_from">Kaŝi la rakonton al…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Farita</string>
   <!--Dialog title for first time adding something to a story-->
+  <string name="StoryDialogs__add_to_story_q">Ĉu aldoni al rakonto?</string>
   <!--Dialog message for first time adding something to a story-->
+  <string name="StoryDialogs__adding_content">Aldono de enhavo al via rakonto ebligos al via Signal-konataro vidi ĝin dum 24 horoj. Vi povas ŝanĝi tiun, kiu povas vidi vian rakonton en la agordoj.</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
+  <string name="StoryDialogs__add_to_story">Aldoni al rakonto</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <string name="StoryDialogs__edit_viewers">Modifi spektantojn</string>
   <!--Privacy Settings toggle title for stories-->
+  <string name="PrivacySettingsFragment__share_and_view_stories">Kunhavigo kaj vido de rakontoj</string>
   <!--Privacy Settings toggle summary for stories-->
+  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Vi ne plu povos kunhavigi aŭ vidi rakontojn, se tiu opcio estas malŝaltita.</string>
   <!--New story viewer selection screen title-->
+  <string name="CreateStoryViewerSelectionFragment__choose_viewers">Elekti spektantojn</string>
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">Sekva</string>
   <!--New story viewer selection screen title as recipients are selected-->
+  <plurals name="SelectViewersFragment__d_viewers">
+    <item quantity="one">%1$d spektanto</item>
+    <item quantity="other">%1$d spektantoj</item>
+  </plurals>
   <!--Name story screen title-->
+  <string name="CreateStoryWithViewersFragment__name_story">Nomi rakonton</string>
   <!--Name story screen label hint-->
+  <string name="CreateStoryWithViewersFragment__story_name_required">Rakont-nomo (nepra)</string>
   <!--Name story screen viewers subheading-->
+  <string name="CreateStoryWithViewersFragment__viewers">Spektantoj</string>
   <!--Name story screen create button label-->
   <string name="CreateStoryWithViewersFragment__create">Krei</string>
   <!--Name story screen error when save attempted with no label-->
   <string name="CreateStoryWithViewersFragment__this_field_is_required">Tiu kampo nepras.</string>
   <!--Name story screen error when save attempted but label is duplicate-->
+  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">Jam ekzistas samnoma rakonto</string>
   <!--Text for select all action when editing recipients for a story-->
   <string name="BaseStoryRecipientSelectionFragment__select_all">Elekti ĉiujn</string>
   <!--Choose story type bottom sheet title-->
+  <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Elekti vian rakontotipon</string>
   <!--Choose story type bottom sheet new story row title-->
+  <string name="ChooseStoryTypeBottomSheet__new_private_story">Nova privata rakonto</string>
   <!--Choose story type bottom sheet new story row summary-->
+  <string name="ChooseStoryTypeBottomSheet__visible_only_to">Videbla nur de specifaj homoj</string>
   <!--Choose story type bottom sheet group story title-->
+  <string name="ChooseStoryTypeBottomSheet__group_story">Grup-rakonto</string>
   <!--Choose story type bottom sheet group story summary-->
+  <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Kunhavigi kun ekzistanta grupo</string>
   <!--Choose groups bottom sheet title-->
+  <string name="ChooseGroupStoryBottomSheet__choose_groups">Elekti grupojn</string>
   <!--Displayed when copying group story reply text to clipboard-->
   <string name="StoryGroupReplyFragment__copied_to_clipboard">Kopiita al tondujo</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
+  <string name="StoryViewerPageFragment__see_more">… Vidi pli</string>
   <!--Displayed in toast after sending a direct reply-->
+  <string name="StoryDirectReplyDialogFragment__reply_sent">Respondo sendita</string>
   <!--Displayed in toast after sending a direct reaction-->
+  <string name="StoryDirectReplyDialogFragment__reaction_sent">Reago sendita</string>
   <!--Displayed in the viewer when a story is no longer available-->
+  <string name="StorySlateView__this_story_is_no_longer_available">Tiu rakonto ne plu disponeblas.</string>
   <!--Displayed in the viewer when the network is not available-->
+  <string name="StorySlateView__no_internet_connection">Neniu retkonekto</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <string name="StorySlateView__couldnt_load_content">Ne eblas montri la enhavon</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Ĉu malŝati Cenzur-preterpason?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -3841,8 +3977,12 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Malaktivigi</string>
   <!--Conversation Item label for reactions to a story-->
+  <string name="ConversationItem__s_dot_story">%1$s · Rakonto</string>
   <!--Conversation Item label for reactions to an unavailable story-->
+  <string name="ConversationItem__reacted_to_a_story">Reagis al rakonto</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="ExpandModel__view_more">Vidi pli</string>
+  <string name="StoriesLinkPopup__visit_link">Aliri la ligilon</string>
   <!--EOF-->
 </resources>
