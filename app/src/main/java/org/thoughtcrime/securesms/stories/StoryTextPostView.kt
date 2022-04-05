@@ -12,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.doOnNextLayout
 import androidx.core.view.isVisible
 import com.google.android.material.imageview.ShapeableImageView
+import org.signal.core.util.concurrent.SimpleTask
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
@@ -153,10 +154,15 @@ class StoryTextPostView @JvmOverloads constructor(
     setTextBackgroundColor(storyTextPost.textBackgroundColor)
     setTextGravity(TextAlignment.CENTER)
 
-    when (val fontResult = Fonts.resolveFont(context, font, TextToScript.guessScript(storyTextPost.body))) {
-      is Fonts.FontResult.Immediate -> setTypeface(fontResult.typeface)
-      is Fonts.FontResult.Async -> setTypeface(fontResult.future.get())
-    }
+    SimpleTask.run(
+      {
+        when (val fontResult = Fonts.resolveFont(context, font, TextToScript.guessScript(storyTextPost.body))) {
+          is Fonts.FontResult.Immediate -> fontResult.typeface
+          is Fonts.FontResult.Async -> fontResult.future.get()
+        }
+      },
+      { typeface -> setTypeface(typeface) }
+    )
 
     hideCloseButton()
 

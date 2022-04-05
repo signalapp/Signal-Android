@@ -1367,7 +1367,7 @@ public class ThreadDatabase extends Database {
     try {
       type = SignalDatabase.mmsSms().getConversationSnippetType(threadId);
     } catch (NoSuchMessageException e) {
-      Log.w(TAG, "Unable to find snippet message for thread: " + threadId, e);
+      Log.w(TAG, "Unable to find snippet message for thread: " + threadId);
       return;
     }
 
