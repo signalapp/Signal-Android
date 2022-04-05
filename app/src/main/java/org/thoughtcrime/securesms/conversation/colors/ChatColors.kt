@@ -29,7 +29,7 @@ import kotlin.math.min
  * @param singleColor    The single color to render. Null if this is for a linear gradient.
  */
 @Parcelize
-class ChatColors private constructor(
+class ChatColors(
   val id: Id,
   private val linearGradient: LinearGradient?,
   private val singleColor: Int?
