@@ -27,9 +27,10 @@ class GroupDatabaseTest {
   }
 
   private fun ensureDbEmpty() {
-    SignalDatabase.rawDatabase.rawQuery("SELECT COUNT(*) FROM ${GroupDatabase.TABLE_NAME}", null).use { cursor ->
-      assertTrue(cursor.moveToFirst())
-      assertEquals(0, cursor.getLong(0))
-    }
+    SignalDatabase.rawDatabase.rawQuery("SELECT COUNT(*) FROM ${GroupDatabase.TABLE_NAME}", null)
+      .use { cursor ->
+        assertTrue(cursor.moveToFirst())
+        assertEquals(0, cursor.getLong(0))
+      }
   }
 }
