@@ -44,8 +44,10 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -86,6 +88,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class MessageSender {
@@ -327,9 +330,9 @@ public class MessageSender {
       if (isLocalSelfSend(context, recipient, false)) {
         sendLocalMediaSelf(context, messageId);
       } else if (recipient.isPushGroup()) {
-        jobManager.add(new PushGroupSendJob(messageId, recipient.getId(), null, true), messageDependsOnIds, recipient.getId().toQueueKey());
+        jobManager.add(new PushGroupSendJob(messageId, recipient.getId(), Collections.emptySet(), true), messageDependsOnIds, recipient.getId().toQueueKey());
       } else if (recipient.isDistributionList()) {
-        jobManager.add(new PushDistributionListSendJob(messageId, recipient.getId(), true), messageDependsOnIds, recipient.getId().toQueueKey());
+        jobManager.add(new PushDistributionListSendJob(messageId, recipient.getId(), true, Collections.emptySet()), messageDependsOnIds, recipient.getId().toQueueKey());
       } else {
         jobManager.add(new PushMediaSendJob(messageId, recipient, true), messageDependsOnIds, recipient.getId().toQueueKey());
       }
@@ -403,9 +406,17 @@ public class MessageSender {
     }
   }
 
-  public static void resendGroupMessage(Context context, MessageRecord messageRecord, RecipientId filterRecipientId) {
+  public static void resendGroupMessage(@NonNull Context context, @NonNull MessageRecord messageRecord, @NonNull Set<RecipientId> filterRecipientIds) {
     if (!messageRecord.isMms()) throw new AssertionError("Not Group");
-    sendGroupPush(context, messageRecord.getRecipient(), messageRecord.getId(), filterRecipientId, Collections.emptyList());
+    sendGroupPush(context, messageRecord.getRecipient(), messageRecord.getId(), filterRecipientIds, Collections.emptyList());
+    onMessageSent();
+  }
+
+  public static void resendDistributionList(@NonNull Context context, @NonNull MessageRecord messageRecord, @NonNull Set<RecipientId> filterRecipientIds) {
+    if (!messageRecord.isMms() && !((MmsMessageRecord) messageRecord).getStoryType().isStory()) {
+      throw new AssertionError("Not a story");
+    }
+    sendDistributionList(context, messageRecord.getRecipient(), messageRecord.getId(), filterRecipientIds, Collections.emptyList());
     onMessageSent();
   }
 
@@ -447,9 +458,9 @@ public class MessageSender {
     if (isLocalSelfSend(context, recipient, forceSms)) {
       sendLocalMediaSelf(context, messageId);
     } else if (recipient.isPushGroup()) {
-      sendGroupPush(context, recipient, messageId, null, uploadJobIds);
+      sendGroupPush(context, recipient, messageId, Collections.emptySet(), uploadJobIds);
     } else if (recipient.isDistributionList()) {
-      sendDistributionList(context, recipient, messageId, uploadJobIds);
+      sendDistributionList(context, recipient, messageId, Collections.emptySet(), uploadJobIds);
     } else if (!forceSms && isPushMediaSend(context, recipient)) {
       sendMediaPush(context, recipient, messageId, uploadJobIds);
     } else {
@@ -485,25 +496,25 @@ public class MessageSender {
     }
   }
 
-  private static void sendGroupPush(Context context, Recipient recipient, long messageId, RecipientId filterRecipientId, @NonNull Collection<String> uploadJobIds) {
+  private static void sendGroupPush(@NonNull Context context, @NonNull Recipient recipient, long messageId, @NonNull Set<RecipientId> filterRecipientIds, @NonNull Collection<String> uploadJobIds) {
     JobManager jobManager = ApplicationDependencies.getJobManager();
 
     if (uploadJobIds.size() > 0) {
-      Job groupSend = new PushGroupSendJob(messageId, recipient.getId(), filterRecipientId, !uploadJobIds.isEmpty());
+      Job groupSend = new PushGroupSendJob(messageId, recipient.getId(), filterRecipientIds, !uploadJobIds.isEmpty());
       jobManager.add(groupSend, uploadJobIds, uploadJobIds.isEmpty() ? null : recipient.getId().toQueueKey());
     } else {
-      PushGroupSendJob.enqueue(context, jobManager, messageId, recipient.getId(), filterRecipientId);
+      PushGroupSendJob.enqueue(context, jobManager, messageId, recipient.getId(), filterRecipientIds);
     }
   }
 
-  private static void sendDistributionList(Context context, Recipient recipient, long messageId, @NonNull Collection<String> uploadJobIds) {
+  private static void sendDistributionList(@NonNull Context context, @NonNull Recipient recipient, long messageId, @NonNull Set<RecipientId> filterRecipientIds, @NonNull Collection<String> uploadJobIds) {
     JobManager jobManager = ApplicationDependencies.getJobManager();
 
     if (uploadJobIds.size() > 0) {
-      Job groupSend = new PushDistributionListSendJob(messageId, recipient.getId(), !uploadJobIds.isEmpty());
+      Job groupSend = new PushDistributionListSendJob(messageId, recipient.getId(), !uploadJobIds.isEmpty(), filterRecipientIds);
       jobManager.add(groupSend, uploadJobIds, uploadJobIds.isEmpty() ? null : recipient.getId().toQueueKey());
     } else {
-      PushDistributionListSendJob.enqueue(context, jobManager, messageId, recipient.getId());
+      PushDistributionListSendJob.enqueue(context, jobManager, messageId, recipient.getId(), filterRecipientIds);
     }
   }
 

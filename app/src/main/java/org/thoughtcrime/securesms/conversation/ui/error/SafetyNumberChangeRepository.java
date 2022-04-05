@@ -32,7 +32,9 @@ import org.whispersystems.signalservice.api.SignalSessionLock;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 final class SafetyNumberChangeRepository {
 
@@ -151,8 +153,9 @@ final class SafetyNumberChangeRepository {
   @WorkerThread
   private void processOutgoingMessageRecord(@NonNull List<ChangedRecipient> changedRecipients, @NonNull MessageRecord messageRecord) {
     Log.d(TAG, "processOutgoingMessageRecord");
-    MessageDatabase smsDatabase = SignalDatabase.sms();
-    MessageDatabase mmsDatabase = SignalDatabase.mms();
+    MessageDatabase  smsDatabase = SignalDatabase.sms();
+    MessageDatabase  mmsDatabase = SignalDatabase.mms();
+    Set<RecipientId> resendIds   = new HashSet<>();
 
     for (ChangedRecipient changedRecipient : changedRecipients) {
       RecipientId id          = changedRecipient.getRecipient().getId();
@@ -161,8 +164,8 @@ final class SafetyNumberChangeRepository {
       if (messageRecord.isMms()) {
         mmsDatabase.removeMismatchedIdentity(messageRecord.getId(), id, identityKey);
 
-        if (messageRecord.getRecipient().isPushGroup()) {
-          MessageSender.resendGroupMessage(context, messageRecord, id);
+        if (messageRecord.getRecipient().isDistributionList() || messageRecord.getRecipient().isPushGroup()) {
+          resendIds.add(id);
         } else {
           MessageSender.resend(context, messageRecord);
         }
@@ -170,6 +173,14 @@ final class SafetyNumberChangeRepository {
         smsDatabase.removeMismatchedIdentity(messageRecord.getId(), id, identityKey);
 
         MessageSender.resend(context, messageRecord);
+      }
+    }
+
+    if (Util.hasItems(resendIds)) {
+      if (messageRecord.getRecipient().isPushGroup()) {
+        MessageSender.resendGroupMessage(context, messageRecord, resendIds);
+      } else {
+        MessageSender.resendDistributionList(context, messageRecord, resendIds);
       }
     }
   }

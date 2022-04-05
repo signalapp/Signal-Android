@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
+import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
@@ -73,8 +74,12 @@ class MyStoriesFragment : DSLSettingsFragment(
                 distributionStory = conversationMessage,
                 onClick = { it, preview ->
                   if (it.distributionStory.messageRecord.isOutgoing && it.distributionStory.messageRecord.isFailed) {
-                    lifecycleDisposable += viewModel.resend(it.distributionStory.messageRecord).subscribe()
-                    Toast.makeText(requireContext(), R.string.message_recipients_list_item__resend, Toast.LENGTH_SHORT).show()
+                    if (it.distributionStory.messageRecord.isIdentityMismatchFailure) {
+                      SafetyNumberChangeDialog.show(requireContext(), childFragmentManager, it.distributionStory.messageRecord)
+                    } else {
+                      lifecycleDisposable += viewModel.resend(it.distributionStory.messageRecord).subscribe()
+                      Toast.makeText(requireContext(), R.string.message_recipients_list_item__resend, Toast.LENGTH_SHORT).show()
+                    }
                   } else {
                     val recipientId = if (it.distributionStory.messageRecord.recipient.isGroup) {
                       it.distributionStory.messageRecord.recipient.id
