@@ -20,8 +20,8 @@
         android:id="@+id/badge"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
         app:badge_size="medium"
         app:layout_constraintStart_toStartOf="@id/avatar"
         app:layout_constraintTop_toTopOf="@id/avatar" />
