@@ -140,14 +140,14 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
     val where = when {
       query.isNullOrEmpty() && includeMyStory -> ListTable.IS_NOT_DELETED
       query.isNullOrEmpty() -> "${ListTable.ID} != ? AND ${ListTable.IS_NOT_DELETED}"
-      includeMyStory -> "(${ListTable.NAME} LIKE ? OR ${ListTable.ID} == ?) AND ${ListTable.IS_NOT_DELETED}"
-      else -> "${ListTable.NAME} LIKE ? AND ${ListTable.ID} != ? AND ${ListTable.IS_NOT_DELETED}"
+      includeMyStory -> "(${ListTable.NAME} GLOB ? OR ${ListTable.ID} == ?) AND ${ListTable.IS_NOT_DELETED}"
+      else -> "${ListTable.NAME} GLOB ? AND ${ListTable.ID} != ? AND ${ListTable.IS_NOT_DELETED}"
     }
 
     val whereArgs = when {
       query.isNullOrEmpty() && includeMyStory -> null
       query.isNullOrEmpty() -> SqlUtil.buildArgs(DistributionListId.MY_STORY_ID)
-      else -> SqlUtil.buildArgs("%$query%", DistributionListId.MY_STORY_ID)
+      else -> SqlUtil.buildArgs(SqlUtil.buildCaseInsensitiveGlobPattern(query), DistributionListId.MY_STORY_ID)
     }
 
     return db.query(ListTable.TABLE_NAME, projection, where, whereArgs, null, null, null)
