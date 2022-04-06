@@ -581,6 +581,7 @@ class StoryViewerPageFragment :
         }
       } else {
         caption.setOnClickListener(null)
+        caption.isClickable = false
       }
     }
   }
