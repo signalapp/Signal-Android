@@ -1506,16 +1506,14 @@ public final class MessageContentProcessor {
 
         if (message.getGroupContext().isPresent()) {
           parentStoryId = new ParentStoryId.GroupReply(storyMessageId.getId());
-        } else {
+        } else if (SignalDatabase.storySends().canReply(senderRecipient.getId(), storyContext.getSentTimestamp())) {
           MmsMessageRecord story = (MmsMessageRecord) database.getMessageRecord(storyMessageId.getId());
-
-          if (!story.getStoryType().isStoryWithReplies()) {
-            warn(content.getTimestamp(), "Story has reactions disabled. Dropping reaction.");
-            return;
-          }
 
           parentStoryId = new ParentStoryId.DirectReply(storyMessageId.getId());
           quoteModel    = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, "", false, story.getSlideDeck().asAttachments(), Collections.emptyList());
+        } else {
+          warn(content.getTimestamp(), "Story has reactions disabled. Dropping reaction.");
+          return;
         }
       } catch (NoSuchMessageException e) {
         warn(content.getTimestamp(), "Couldn't find story for reaction.", e);
@@ -1574,15 +1572,16 @@ public final class MessageContentProcessor {
       ParentStoryId parentStoryId;
       QuoteModel    quoteModel = null;
       try {
-        MessageId storyMessageId = database.getStoryId(storyAuthorRecipient, storyContext.getSentTimestamp());
+        MessageId        storyMessageId  = database.getStoryId(storyAuthorRecipient, storyContext.getSentTimestamp());
+        MmsMessageRecord story           = (MmsMessageRecord) database.getMessageRecord(storyMessageId.getId());
+        Recipient        threadRecipient = SignalDatabase.threads().getRecipientForThreadId(story.getThreadId());
+        boolean          groupStory      = threadRecipient != null && threadRecipient.isActiveGroup();
 
-        if (message.getGroupContext().isPresent()) {
+        if (message.getGroupContext().isPresent() ) {
           parentStoryId = new ParentStoryId.GroupReply(storyMessageId.getId());
-        } else if (SignalDatabase.storySends().canReply(senderRecipient.getId(), storyContext.getSentTimestamp())) {
-          MmsMessageRecord story = (MmsMessageRecord) database.getMessageRecord(storyMessageId.getId());
-
+        } else if (groupStory || SignalDatabase.storySends().canReply(senderRecipient.getId(), storyContext.getSentTimestamp())) {
           parentStoryId = new ParentStoryId.DirectReply(storyMessageId.getId());
-          quoteModel    = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, message.getBody().orElse(""), false, story.getSlideDeck().asAttachments(), Collections.emptyList());
+          quoteModel    = new QuoteModel(storyContext.getSentTimestamp(), groupStory ? threadRecipient.getId() : storyAuthorRecipient, "", false, story.getSlideDeck().asAttachments(), Collections.emptyList());
         } else {
           warn(content.getTimestamp(), "Story has replies disabled. Dropping reply.");
           return;

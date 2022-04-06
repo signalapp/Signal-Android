@@ -1567,9 +1567,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       RecipientId      author           = mmsMessageRecord.getQuote().getAuthor();
 
       if (author.equals(Recipient.self().getId())) {
-        return context.getString(R.string.ConversationItem__s_dot_story, context.getString(R.string.QuoteView_you));
+        return context.getString(R.string.ConversationItem__reacted_to_your_story);
       } else {
-        return context.getString(R.string.ConversationItem__s_dot_story, Recipient.resolved(author).getDisplayName(context));
+        return context.getString(R.string.ConversationItem__you_reacted_to_s_story, Recipient.resolved(author).getShortDisplayName(context));
       }
     } else {
       return context.getString(R.string.ConversationItem__reacted_to_a_story);

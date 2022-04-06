@@ -4643,8 +4643,10 @@
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
     <string name="TurnOffCircumventionMegaphone_turn_off">Turn off</string>
 
-    <!-- Conversation Item label for reactions to a story -->
-    <string name="ConversationItem__s_dot_story">%1$s · Story</string>
+    <!-- Conversation Item label for when you react to someone else's story -->
+    <string name="ConversationItem__you_reacted_to_s_story">You reacted to %1$s\'s story</string>
+    <!-- Conversation Item label for reactions to your story -->
+    <string name="ConversationItem__reacted_to_your_story">Reacted to your story</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
     <string name="ConversationItem__reacted_to_a_story">Reacted to a story</string>
 
