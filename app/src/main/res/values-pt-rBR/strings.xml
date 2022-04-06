@@ -319,7 +319,7 @@
   <!--Dialog title for block group link join requests-->
   <string name="ConversationFragment__block_request">Bloquear pedido?</string>
   <!--Dialog message for block group link join requests-->
-  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s não poderá participar ou solicitar a participação neste grupo via o link do grupo. Eles ainda podem ser manualmente adicionados ao grupo.</string>
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s não poderá participar ou solicitar a participação neste grupo via o link do grupo. Essa pessoa ainda poderá ser convidada ao grupo.</string>
   <!--Dialog confirm block request button-->
   <string name="ConversationFragment__block_request_button">Bloquear pedido</string>
   <!--Dialog cancel block request button-->
@@ -1091,7 +1091,7 @@
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s solicitou entrar via link do grupo.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
   <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-    <item quantity="one">%1$s solicitou e cancelou pedido para entrar via o link do grupo.</item>
+    <item quantity="one">%1$s solicitou e cancelou o pedido para entrar via o link do grupo.</item>
     <item quantity="other">%1$s solicitou e cancelou %2$d pedidos para entrar via o link do grupo.</item>
   </plurals>
   <!--GV2 group link approvals-->

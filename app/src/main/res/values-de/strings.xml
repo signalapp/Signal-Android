@@ -930,8 +930,8 @@
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal benötigt Zugriff auf deine Kontakte, um sie anzeigen zu können.</string>
   <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal benötigt die Berechtigung »Kontakte« für das Anzeigen deiner Kontakte, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kontakte«.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
-    <item quantity="one">Du kannst nicht mehr als %d Element teilen.</item>
-    <item quantity="other">Du kannst nicht mehr als %d Elemente teilen.</item>
+    <item quantity="one">Du kannst maximal %d Element teilen.</item>
+    <item quantity="other">Du kannst maximal %d Elemente teilen.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Empfänger auswählen</string>
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Hier antippen, um diese Nachricht nach dem Ansehen verschwinden zu lassen.</string>
@@ -2594,8 +2594,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
     <item quantity="other">Falls du alle Versuche aufbrauchst, wird dein Konto für %1$d Tage gesperrt. Nach %1$d Tagen ohne Aktivität kannst du dich ohne deine PIN erneut registrieren. Dein Konto wird dabei zurückgesetzt und alle Inhalte werden gelöscht.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
-    <item quantity="one">Du hast noch %1$d Versuch.</item>
-    <item quantity="other">Du hast noch %1$d Versuche.</item>
+    <item quantity="one">Du hast noch %1$d verbleibenden Versuch.</item>
+    <item quantity="other">Du hast noch %1$d verbleibende Versuche.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__d_attempts_remaining">
     <item quantity="one">%1$d verbleibender Versuch.</item>

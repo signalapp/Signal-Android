@@ -68,6 +68,7 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
       while ((record = reader.getNext()) != null && !cancellationSignal.isCanceled()) {
         conversations.add(new Conversation(record));
         recipients.add(record.getRecipient());
+        needsResolve.add(record.getGroupMessageSender());
 
         if (!record.getRecipient().isPushV2Group()) {
           needsResolve.add(record.getRecipient().getId());
