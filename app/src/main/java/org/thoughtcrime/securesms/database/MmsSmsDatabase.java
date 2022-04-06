@@ -516,8 +516,8 @@ public class MmsSmsDatabase extends Database {
   private @NonNull Set<MessageUpdate> incrementReceiptCountInternal(SyncMessageId syncMessageId, long timestamp, MessageDatabase.ReceiptType receiptType) {
     Set<MessageUpdate> messageUpdates = new HashSet<>();
 
-    messageUpdates.addAll(SignalDatabase.sms().incrementReceiptCount(syncMessageId, timestamp, receiptType));
-    messageUpdates.addAll(SignalDatabase.mms().incrementReceiptCount(syncMessageId, timestamp, receiptType));
+    messageUpdates.addAll(SignalDatabase.sms().incrementReceiptCount(syncMessageId, timestamp, receiptType, false));
+    messageUpdates.addAll(SignalDatabase.mms().incrementReceiptCount(syncMessageId, timestamp, receiptType, false));
 
     return messageUpdates;
   }
@@ -526,7 +526,7 @@ public class MmsSmsDatabase extends Database {
    * Doesn't do any transactions or updates, so we can re-use the method safely.
    */
   private @NonNull Set<MessageUpdate> incrementStoryReceiptCountInternal(@NonNull SyncMessageId syncMessageId, long timestamp, @NonNull MessageDatabase.ReceiptType receiptType) {
-    return SignalDatabase.mms().incrementStoryReceiptCount(syncMessageId, timestamp, receiptType);
+    return SignalDatabase.mms().incrementReceiptCount(syncMessageId, timestamp, receiptType, true);
   }
 
 

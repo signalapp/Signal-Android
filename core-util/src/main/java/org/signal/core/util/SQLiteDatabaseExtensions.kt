@@ -53,7 +53,7 @@ class SelectBuilderPart2(
   private val tableName: String
 ) {
   fun where(where: String, vararg whereArgs: Any): SelectBuilderPart3 {
-    return SelectBuilderPart3(db, columns, tableName, where, SqlUtil.buildArgs(whereArgs))
+    return SelectBuilderPart3(db, columns, tableName, where, SqlUtil.buildArgs(*whereArgs))
   }
 
   fun run(): Cursor {
@@ -181,7 +181,7 @@ class UpdateBuilderPart2(
   private val values: ContentValues
 ) {
   fun where(where: String, vararg whereArgs: Any): UpdateBuilderPart3 {
-    return UpdateBuilderPart3(db, tableName, values, where, SqlUtil.buildArgs(whereArgs))
+    return UpdateBuilderPart3(db, tableName, values, where, SqlUtil.buildArgs(*whereArgs))
   }
 
   fun run(conflictStrategy: Int = SQLiteDatabase.CONFLICT_NONE): Int {
@@ -206,7 +206,7 @@ class DeleteBuilderPart1(
   private val tableName: String
 ) {
   fun where(where: String, vararg whereArgs: Any): DeleteBuilderPart2 {
-    return DeleteBuilderPart2(db, tableName, where, SqlUtil.buildArgs(whereArgs))
+    return DeleteBuilderPart2(db, tableName, where, SqlUtil.buildArgs(*whereArgs))
   }
 
   fun run(): Int {

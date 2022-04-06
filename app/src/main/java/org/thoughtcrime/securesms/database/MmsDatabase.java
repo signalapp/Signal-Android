@@ -37,6 +37,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.signal.core.util.CursorUtil;
+import org.signal.core.util.SQLiteDatabaseExtensionsKt;
 import org.signal.core.util.SqlUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.util.Pair;
@@ -916,13 +917,14 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public Set<MessageUpdate> incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType) {
+  public Set<MessageUpdate> incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType, boolean storiesOnly) {
     SQLiteDatabase     database       = databaseHelper.getSignalWritableDatabase();
     Set<MessageUpdate> messageUpdates = new HashSet<>();
 
-    try (Cursor cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, MESSAGE_BOX, RECIPIENT_ID, receiptType.getColumnName(), RECEIPT_TIMESTAMP},
-                                        DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())},
-                                        null, null, null, null))
+    try (Cursor cursor = SQLiteDatabaseExtensionsKt.select(database, ID, THREAD_ID, MESSAGE_BOX, RECIPIENT_ID, receiptType.getColumnName(), RECEIPT_TIMESTAMP)
+                                                   .from(TABLE_NAME)
+                                                   .where(DATE_SENT + " = ?" + (storiesOnly ? " AND " + IS_STORY_CLAUSE : ""), messageId.getTimetamp())
+                                                   .run())
     {
       while (cursor.moveToNext()) {
         if (Types.isOutgoingMessageType(CursorUtil.requireLong(cursor, MESSAGE_BOX))) {
@@ -961,8 +963,7 @@ public class MmsDatabase extends MessageDatabase {
     return messageUpdates;
   }
 
-  @Override
-  public Set<MessageUpdate> incrementStoryReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType) {
+  private Set<MessageUpdate> incrementStoryReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType) {
     SQLiteDatabase     database       = databaseHelper.getSignalWritableDatabase();
     Set<MessageUpdate> messageUpdates = new HashSet<>();
     String             columnName     = receiptType.getColumnName();
