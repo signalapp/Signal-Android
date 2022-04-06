@@ -55,6 +55,8 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
 
   private val tabsViewModel: ConversationListTabsViewModel by viewModels(ownerProducer = { requireActivity() })
 
+  private lateinit var adapter: DSLSettingsAdapter
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setHasOptionsMenu(true)
@@ -65,7 +67,14 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
     inflater.inflate(R.menu.story_landing_menu, menu)
   }
 
+  override fun onResume() {
+    super.onResume()
+    adapter.notifyItemRangeChanged(0, adapter.itemCount)
+  }
+
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
+    this.adapter = adapter
+
     StoriesLandingItem.register(adapter)
     MyStoriesItem.register(adapter)
     ExpandHeader.register(adapter)

@@ -214,7 +214,14 @@ object StoriesLandingItem {
     }
 
     private fun setUpClickListeners(model: Model) {
-      itemView.setOnClickListener { model.onRowClick(model, storyPreview) }
+      itemView.setOnClickListener {
+        if (!itemView.isClickable) {
+          return@setOnClickListener
+        }
+
+        itemView.isClickable = false
+        model.onRowClick(model, storyPreview)
+      }
 
       if (model.data.storyRecipient.isMyStory) {
         itemView.setOnLongClickListener(null)
