@@ -34,6 +34,7 @@ class StoryLinkPreviewView @JvmOverloads constructor(
   private val image: OutlinedThumbnailView = findViewById(R.id.link_preview_image)
   private val title: TextView = findViewById(R.id.link_preview_title)
   private val url: TextView = findViewById(R.id.link_preview_url)
+  private val description: TextView = findViewById(R.id.link_preview_description)
 
   fun bind(linkPreview: LinkPreview?, hiddenVisibility: Int = View.INVISIBLE): ListenableFuture<Boolean> {
     var listenableFuture: ListenableFuture<Boolean>? = null
@@ -54,6 +55,8 @@ class StoryLinkPreviewView @JvmOverloads constructor(
       }
 
       title.text = linkPreview.title
+      description.text = linkPreview.description
+      description.visible = linkPreview.description.isNotEmpty()
 
       formatUrl(linkPreview)
     } else {
