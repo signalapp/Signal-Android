@@ -1427,6 +1427,11 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public long getUnreadStoryThreadCount() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   public boolean containsStories(long threadId) {
     throw new UnsupportedOperationException();
   }
@@ -1438,11 +1443,6 @@ public class SmsDatabase extends MessageDatabase {
 
   @Override
   public @NonNull Cursor getStoryReplies(long parentStoryId) {
-    throw new UnsupportedOperationException();
-  }
-
-  @Override
-  public long getUnreadStoryCount() {
     throw new UnsupportedOperationException();
   }
 

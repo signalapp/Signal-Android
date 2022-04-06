@@ -11,24 +11,24 @@ class ConversationListTabRepository {
   fun getNumberOfUnreadConversations(): Observable<Long> {
     return Observable.create<Long> {
       val listener = DatabaseObserver.Observer {
-        it.onNext(SignalDatabase.threads.tabBarUnreadCount)
+        it.onNext(SignalDatabase.threads.unreadThreadCount)
       }
 
       ApplicationDependencies.getDatabaseObserver().registerConversationListObserver(listener)
       it.setCancellable { ApplicationDependencies.getDatabaseObserver().unregisterObserver(listener) }
-      it.onNext(SignalDatabase.threads.tabBarUnreadCount)
+      it.onNext(SignalDatabase.threads.unreadThreadCount)
     }.subscribeOn(Schedulers.io())
   }
 
   fun getNumberOfUnseenStories(): Observable<Long> {
     return Observable.create<Long> {
       val listener = DatabaseObserver.Observer {
-        it.onNext(SignalDatabase.mms.unreadStoryCount)
+        it.onNext(SignalDatabase.mms.unreadStoryThreadCount)
       }
 
       ApplicationDependencies.getDatabaseObserver().registerConversationListObserver(listener)
       it.setCancellable { ApplicationDependencies.getDatabaseObserver().unregisterObserver(listener) }
-      it.onNext(SignalDatabase.mms.unreadStoryCount)
+      it.onNext(SignalDatabase.mms.unreadStoryThreadCount)
     }.subscribeOn(Schedulers.io())
   }
 }

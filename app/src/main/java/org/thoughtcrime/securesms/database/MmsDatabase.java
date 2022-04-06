@@ -650,6 +650,24 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public long getUnreadStoryThreadCount() {
+    SQLiteDatabase db    = getReadableDatabase();
+    String         query = "SELECT DISTINCT " + ThreadDatabase.RECIPIENT_ID + "\n"
+                           + "FROM " + TABLE_NAME + "\n"
+                           + "JOIN " + ThreadDatabase.TABLE_NAME + "\n"
+                           + "ON " + TABLE_NAME + "." +  THREAD_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.ID + "\n"
+                           + "WHERE " + IS_STORY_CLAUSE + " AND (" + getOutgoingTypeClause() + ") = 0 AND " + VIEWED_RECEIPT_COUNT + " = 0";
+
+    try (Cursor cursor = db.rawQuery(query, null)) {
+      if (cursor != null) {
+        return cursor.getCount();
+      }
+    }
+
+    return 0;
+  }
+
+  @Override
   public @NonNull List<StoryResult> getOrderedStoryRecipientsAndIds() {
     SQLiteDatabase db    = getReadableDatabase();
     String         query = "SELECT\n"
@@ -695,16 +713,6 @@ public class MmsDatabase extends MessageDatabase {
     String[] whereArgs = SqlUtil.buildArgs(parentStoryId);
 
     return rawQuery(where, whereArgs, true, 0);
-  }
-
-  @Override
-  public long getUnreadStoryCount() {
-    String[] columns   = new String[]{"COUNT(*)"};
-    String   where     = IS_STORY_CLAUSE + " AND NOT (" + getOutgoingTypeClause() + ") AND " + VIEWED_RECEIPT_COUNT + " = 0";
-
-    try (Cursor cursor = getReadableDatabase().query(TABLE_NAME, columns, where, null, null, null, null, null)) {
-      return cursor != null && cursor.moveToFirst() ? cursor.getInt(0) : 0;
-    }
   }
 
   @Override
