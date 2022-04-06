@@ -166,7 +166,8 @@
 
     <color name="quote_view_background">@color/transparent_white_60</color>
     <color name="conversation_item_outgoing_footer_fg">@color/transparent_white_80</color>
-    <color name="quote_preview_background">#f2f2f2</color>
+    <color name="quote_preview_background">@color/core_grey_15</color>
+    <color name="quote_incoming_story_background">#f2f2f2</color>
 
     <color name="react_with_any_background">@color/core_white</color>
     <color name="react_with_any_search_background">@color/core_grey_05</color>

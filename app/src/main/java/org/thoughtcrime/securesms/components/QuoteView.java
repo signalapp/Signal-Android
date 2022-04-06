@@ -261,7 +261,17 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     }
 
     quoteBarView.setBackgroundColor(ContextCompat.getColor(getContext(), outgoing || isStoryReply() ? R.color.core_white : android.R.color.transparent));
-    mainView.setBackgroundColor(ContextCompat.getColor(getContext(), preview || (!outgoing && isStoryReply()) ? R.color.quote_preview_background : R.color.quote_view_background));
+
+    int mainViewColor;
+    if (preview) {
+      mainViewColor = R.color.quote_preview_background;
+    } else if (!outgoing && isStoryReply()) {
+      mainViewColor = R.color.quote_incoming_story_background;
+    } else {
+      mainViewColor = R.color.quote_view_background;
+    }
+
+    mainView.setBackgroundColor(ContextCompat.getColor(getContext(), mainViewColor));
   }
 
   private boolean isStoryReply() {
