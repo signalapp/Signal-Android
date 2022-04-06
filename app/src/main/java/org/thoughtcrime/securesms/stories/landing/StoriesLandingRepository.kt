@@ -70,8 +70,12 @@ class StoriesLandingRepository(context: Context) {
         createStoriesLandingItemData(recipient, messages)
       }
 
-      Observable.combineLatest(observables) {
-        it.toList() as List<StoriesLandingItemData>
+      if (observables.isEmpty()) {
+        Observable.just(emptyList())
+      } else {
+        Observable.combineLatest(observables) {
+          it.toList() as List<StoriesLandingItemData>
+        }
       }
     }
   }
