@@ -8,7 +8,6 @@ import androidx.constraintlayout.motion.widget.TransitionAdapter
 import androidx.core.view.doOnNextLayout
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiImageView
-import org.thoughtcrime.securesms.util.visible
 
 class OnReactionSentView @JvmOverloads constructor(
   context: Context,
@@ -26,7 +25,7 @@ class OnReactionSentView @JvmOverloads constructor(
   init {
     motionLayout.addTransitionListener(object : TransitionAdapter() {
       override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {
-        visible = false
+        motionLayout.progress = 0f
         callback?.onFinished()
       }
     })
@@ -34,7 +33,6 @@ class OnReactionSentView @JvmOverloads constructor(
 
   fun playForEmoji(emoji: CharSequence) {
     motionLayout.progress = 0f
-    motionLayout.visible = true
 
     listOf(
       R.id.emoji_1,
