@@ -1219,7 +1219,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">De versie van Google Play Services die je in gebruik hebt werkt niet zoals het hoort. Installeer Google Play Services opnieuw en probeer het nog eens.</string>
   <!--PinRestoreEntryFragment-->
-  <string name="PinRestoreEntryFragment_incorrect_pin">Incorrecte pincode</string>
+  <string name="PinRestoreEntryFragment_incorrect_pin">Foutieve pincode</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Pincode invoeren overslaan?</string>
   <string name="PinRestoreEntryFragment_need_help">Hulp nodig?</string>
   <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Je pincode is een code welke je zelf hebt aangemaakt en welke bestaat uit %1$d of meer cijfers of een combinatie van cijfers en letters. Als je je je pincode niet kunt herinneren, dan kun je een nieuwe pincode aanmaken. Je kunt Signal dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam, -foto en -omschrijving zullen dan verloren gaan.</string>
@@ -1229,8 +1229,8 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="PinRestoreEntryFragment_cancel">Annuleren</string>
   <string name="PinRestoreEntryFragment_skip">Overslaan</string>
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
-    <item quantity="one">Je hebt nog %1$d poging resterend. Als je geen pogingen meer over hebt, dan kun je nog wel een nieuwe pincode aanmaken. Je kunt Signal dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam, -foto en -omschrijving zullen dan verloren gaan.</item>
-    <item quantity="other">Je hebt nog %1$d pogingen resterend. Als je geen pogingen meer over hebt, dan kun je nog wel een nieuwe pincode aanmaken. Je kunt Signal dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam, -foto en -omschrijving zullen dan verloren gaan.</item>
+    <item quantity="one">Je hebt nog %1$d poging resterend. Wanneer je geen pogingen meer over hebt, dan kun je nog wel een nieuwe pincode aanmaken. Je kunt Signal dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam, -foto en -omschrijving zullen dan verloren gaan.</item>
+    <item quantity="other">Je hebt nog %1$d pogingen resterend. Wanneer je geen pogingen meer over hebt, dan kun je nog wel een nieuwe pincode aanmaken. Je kunt Signal dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam, -foto en -omschrijving zullen dan verloren gaan.</item>
   </plurals>
   <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal-registratratie - Ik heb hulp nodig bij de Signal-pincode op een Android apparaat</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Alfanumerieke pincode invoeren</string>
@@ -1256,9 +1256,9 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Jij</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
-  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Je moet je telefoonnummer verifiëren om door te kunnen gaan met het verzenden van berichten</string>
-  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Om Signal te helpen spam te voorkomen is het nodig dat je je telefoonnummer verifieert.</string>
-  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Je kunt doorgaan met het verzenden van berichten nadat je je telefoonnummer hebt geverifieerd. Enig bericht waarvan verzending is gepauzeerd zal dan automatisch verzonden worden.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Je moet verifiëren dat je geen robot bent om door te kunnen gaan met het verzenden van berichten</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Om Signal te helpen spam te voorkomen is het nodig dat je verifieert dat je geen robot bent.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Je kunt doorgaan met het verzenden van berichten nadat je hebt geverifieerd dat je geen robot bent. Enig bericht waarvan verzending is gepauzeerd zal dan automatisch verzonden worden.</string>
   <!--Recipient-->
   <string name="Recipient_you">Jij</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
@@ -2594,7 +2594,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="RegistrationLockFragment__enter_numeric_pin">Voer numerieke pincode in.</string>
   <string name="RegistrationLockFragment__incorrect_pin_try_again">Foutieve pincode, probeer het opnieuw.</string>
   <string name="RegistrationLockFragment__forgot_pin">Pincode vergeten?</string>
-  <string name="RegistrationLockFragment__incorrect_pin">Incorrecte pincode</string>
+  <string name="RegistrationLockFragment__incorrect_pin">Foutieve pincode</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Pincode vergeten?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Weinig pogingen resterend.</string>
   <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal-registratie - Hulp nodig met de pincode voor Signal-Android (pincode versie 1)</string>
@@ -2604,12 +2604,12 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
     <item quantity="other">Om je privacy en beveiliging te beschermen is er geen mogelijkheid om je pincode terug te zien. Als je je je pincode niet kunt herinneren dan kun je je, na %1$d dagen waarin Signal voor dit telefoonnummer niet wordt gebruikt, opnieuw verifiëren via sms. In dat geval zal alle inhoud worden gewist.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
-    <item quantity="one">Pincode foutief. %1$d poging resterend.</item>
-    <item quantity="other">Pincode foutief. %1$d pogingen resterend.</item>
+    <item quantity="one">Foutieve pincode. %1$d poging resterend.</item>
+    <item quantity="other">Foutieve pincode. %1$d pogingen resterend.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-    <item quantity="one">Als je geen pogingen meer over hebt dan zal Signal voor dit telefoonnummer worden vergrendeld voor %1$d dag. Na %1$d dag waarin Signal voor dit telefoonnummer niet wordt gebruikt, kun je je telefoonnummer zonder je pincode opnieuw registreren, maar als je opnieuw registreert zonder je pincode te gebruiken dan zal alle inhoud worden gewist.</item>
-    <item quantity="other">Als je geen pogingen meer over hebt dan zal Signal voor dit telefoonnummer worden vergrendeld voor %1$d dagen. Na %1$d dagen waarin Signal voor dit telefoonnummer niet wordt gebruikt, kun je je telefoonnummer zonder je pincode opnieuw registreren, maar als je opnieuw registreert zonder je pincode te gebruiken dan zal alle inhoud worden gewist.</item>
+    <item quantity="one">Als je geen pogingen meer over hebt dan zal Signal voor dit telefoonnummer voor %1$d dag worden vergrendeld. Na %1$d dag waarin Signal voor dit telefoonnummer niet wordt gebruikt, kun je je telefoonnummer zonder je pincode opnieuw registreren. Als je er dan voor kiest om zonder pincode opnieuw te registreren, dan wordt de Signal-app gereset en alle inhoud wordt gewist.</item>
+    <item quantity="other">Als je geen pogingen meer over hebt dan zal Signal voor dit telefoonnummer voor %1$d dagen worden vergrendeld. Na %1$d dagen waarin Signal voor dit telefoonnummer niet wordt gebruikt, kun je je telefoonnummer zonder je pincode opnieuw registreren. Als je er dan voor kiest om zonder pincode opnieuw te registreren, dan wordt de Signal-app gereset en alle inhoud wordt gewist.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
     <item quantity="one">Je hebt %1$d poging resterend.</item>
