@@ -335,6 +335,15 @@ class StoryViewerPageFragment :
     viewModel.setIsFragmentResumed(false)
   }
 
+  override fun onDestroyView() {
+    super.onDestroyView()
+    childFragmentManager.fragments.forEach {
+      if (it is MediaPreviewFragment) {
+        it.cleanUp()
+      }
+    }
+  }
+
   override fun onFinishForwardAction() = Unit
 
   override fun onDismissForwardSheet() {
@@ -471,6 +480,10 @@ class StoryViewerPageFragment :
       return
     }
 
+    if (fragment is MediaPreviewFragment) {
+      fragment.cleanUp()
+    }
+
     if (post.content.uri == null) {
       progressBar.setPosition(index)
       progressBar.invalidate()
@@ -553,7 +566,7 @@ class StoryViewerPageFragment :
 
     caption.doOnNextLayout {
       val maxLines = 5
-      if (caption.lineCount > maxLines) {
+      if (displayBody.isNotEmpty() && caption.lineCount > maxLines) {
         val lastCharShown = caption.layout.getLineVisibleEnd(maxLines - 1)
         caption.maxLines = maxLines
 
@@ -576,12 +589,15 @@ class StoryViewerPageFragment :
         }
 
         caption.text = displayBody.substring(0, lastCharShown - offset) + seeMore
+      }
+
+      if (caption.text.length == displayBody.length) {
+        caption.setOnClickListener(null)
+        caption.isClickable = false
+      } else {
         caption.setOnClickListener {
           onShowCaptionOverlay(caption, largeCaption, largeCaptionOverlay)
         }
-      } else {
-        caption.setOnClickListener(null)
-        caption.isClickable = false
       }
     }
   }
