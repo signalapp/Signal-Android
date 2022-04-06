@@ -75,6 +75,7 @@
         android:layout_height="20dp"
         android:layout_marginStart="@dimen/stories_landing_item_text_horizontal_margin"
         android:importantForAccessibility="no"
+        android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/avatar"
         app:layout_constraintTop_toBottomOf="@id/date"

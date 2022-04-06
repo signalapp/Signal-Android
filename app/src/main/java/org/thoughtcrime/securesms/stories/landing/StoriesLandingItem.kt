@@ -188,6 +188,12 @@ object StoriesLandingItem {
       }
 
       icon.visible = model.data.hasReplies || model.data.hasRepliesFromSelf
+      icon.setImageResource(
+        when {
+          model.data.hasReplies -> R.drawable.ic_messages_solid_20
+          else -> R.drawable.ic_reply_24_solid_tinted
+        }
+      )
 
       listOf(avatarView, storyPreview, storyMulti, sender, date, icon).forEach {
         it.alpha = if (model.data.isHidden) 0.5f else 1f

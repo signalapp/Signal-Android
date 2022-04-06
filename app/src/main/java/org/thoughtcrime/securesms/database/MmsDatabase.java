@@ -743,8 +743,8 @@ public class MmsDatabase extends MessageDatabase {
   public boolean hasSelfReplyInStory(long parentStoryId) {
     SQLiteDatabase db        = databaseHelper.getSignalReadableDatabase();
     String[]       columns   = new String[]{"COUNT(*)"};
-    String         where     = PARENT_STORY_ID + " = ? AND " + RECIPIENT_ID + " = ?";
-    String[]       whereArgs = SqlUtil.buildArgs(parentStoryId, Recipient.self().getId());
+    String         where     = PARENT_STORY_ID + " = ? AND (" + getOutgoingTypeClause() + ")";
+    String[]       whereArgs = SqlUtil.buildArgs(-parentStoryId);
 
     try (Cursor cursor = db.query(TABLE_NAME, columns, where, whereArgs, null, null, null, null)) {
       return cursor != null && cursor.moveToNext() && cursor.getInt(0) > 0;
