@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryScale
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryTextWatcher
 import org.thoughtcrime.securesms.stories.viewer.page.StoryDisplay
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture
+import org.thoughtcrime.securesms.util.concurrent.SimpleTask
 import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
 
@@ -152,10 +153,15 @@ class StoryTextPostView @JvmOverloads constructor(
     setTextBackgroundColor(storyTextPost.textBackgroundColor)
     setTextGravity(TextAlignment.CENTER)
 
-    when (val fontResult = Fonts.resolveFont(context, Locale.getDefault(), font)) {
-      is Fonts.FontResult.Immediate -> setTypeface(fontResult.typeface)
-      is Fonts.FontResult.Async -> setTypeface(fontResult.future.get())
-    }
+    SimpleTask.run(
+      {
+        when (val fontResult = Fonts.resolveFont(context, Locale.getDefault(), font)) {
+          is Fonts.FontResult.Immediate -> fontResult.typeface
+          is Fonts.FontResult.Async -> fontResult.future.get()
+        }
+      },
+      { typeface -> setTypeface(typeface) }
+    )
 
     hideCloseButton()
 

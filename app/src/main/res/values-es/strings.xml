@@ -3969,9 +3969,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <string name="StorySlateView__couldnt_load_content">Imposible cargar contenido</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
-  <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">¿Desactivar la opción de evitar la censura?</string>
+  <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">¿Desactivar la opción para evitar la censura?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
-  <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">Desde ahora, Signal se conecta directamente sin necesidad de evitar la censura.</string>
+  <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">Ahora puedes conectarte directamente al servicio de Signal para una mejor experiencia.</string>
   <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_no_thanks">No gracias</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
