@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.mediasend.v2.text
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.TypedValue
+import android.view.Gravity
 import android.widget.EditText
 import android.widget.TextView
 import org.signal.core.util.BreakIteratorCompat
@@ -28,6 +29,12 @@ class TextStoryTextWatcher private constructor(private val textView: TextView) :
         length < 50 -> 34f
         length < 200 -> 24f
         else -> 18f
+      }
+
+      if (expectedTextSize < 24f) {
+        textView.gravity = Gravity.START
+      } else {
+        textView.gravity = Gravity.CENTER
       }
 
       textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, DimensionUnit.DP.toPixels(expectedTextSize))
