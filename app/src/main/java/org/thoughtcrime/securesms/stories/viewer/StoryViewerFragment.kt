@@ -21,7 +21,7 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
 
   private val viewModel: StoryViewerViewModel by viewModels(
     factoryProducer = {
-      StoryViewerViewModel.Factory(storyRecipientId, StoryViewerRepository())
+      StoryViewerViewModel.Factory(storyRecipientId, onlyIncludeHiddenStories, StoryViewerRepository())
     }
   )
 
@@ -30,6 +30,9 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
 
   private val storyId: Long
     get() = requireArguments().getLong(ARG_START_STORY_ID, -1L)
+
+  private val onlyIncludeHiddenStories: Boolean
+    get() = requireArguments().getBoolean(ARG_HIDDEN_STORIES)
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     storyPager = view.findViewById(R.id.story_item_pager)
@@ -90,12 +93,14 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
   companion object {
     private const val ARG_START_RECIPIENT_ID = "start.recipient.id"
     private const val ARG_START_STORY_ID = "start.story.id"
+    private const val ARG_HIDDEN_STORIES = "hidden_stories"
 
-    fun create(storyRecipientId: RecipientId, storyId: Long): Fragment {
+    fun create(storyRecipientId: RecipientId, storyId: Long, onlyIncludeHiddenStories: Boolean): Fragment {
       return StoryViewerFragment().apply {
         arguments = Bundle().apply {
           putParcelable(ARG_START_RECIPIENT_ID, storyRecipientId)
           putLong(ARG_START_STORY_ID, storyId)
+          putBoolean(ARG_HIDDEN_STORIES, onlyIncludeHiddenStories)
         }
       }
     }

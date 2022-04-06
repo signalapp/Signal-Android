@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
  * Open for testing
  */
 open class StoryViewerRepository {
-  fun getStories(): Single<List<RecipientId>> {
+  fun getStories(hiddenStories: Boolean): Single<List<RecipientId>> {
     return Single.create { emitter ->
       val myStoriesId = SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.MY_STORY)
       val myStories = Recipient.resolved(myStoriesId)
@@ -21,7 +21,13 @@ open class StoryViewerRepository {
         } else {
           recipient
         }
-      }.keys.filterNot { it.shouldHideStory() }.map { it.id }
+      }.keys.filter {
+        if (hiddenStories) {
+          it.shouldHideStory()
+        } else {
+          !it.shouldHideStory()
+        }
+      }.map { it.id }
 
       emitter.onSuccess(
         if (recipientIds.contains(myStoriesId)) {

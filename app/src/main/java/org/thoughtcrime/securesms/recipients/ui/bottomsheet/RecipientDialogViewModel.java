@@ -140,7 +140,7 @@ final class RecipientDialogViewModel extends ViewModel {
     if (storyViewState.getValue() == null || storyViewState.getValue() == StoryViewState.NONE) {
       onMessageClicked(activity);
     } else {
-      activity.startActivity(StoryViewerActivity.createIntent(activity, recipientDialogRepository.getRecipientId(), -1L));
+      activity.startActivity(StoryViewerActivity.createIntent(activity, recipientDialogRepository.getRecipientId(), -1L, recipient.getValue().shouldHideStory()));
     }
   }
 
@@ -176,7 +176,7 @@ final class RecipientDialogViewModel extends ViewModel {
     if (storyViewState.getValue() == null || storyViewState.getValue() == StoryViewState.NONE) {
       activity.startActivity(ConversationSettingsActivity.forRecipient(activity, recipientDialogRepository.getRecipientId()));
     } else {
-      activity.startActivity(StoryViewerActivity.createIntent(activity, recipientDialogRepository.getRecipientId(), -1L));
+      activity.startActivity(StoryViewerActivity.createIntent(activity, recipientDialogRepository.getRecipientId(), -1L, recipient.getValue().shouldHideStory()));
     }
   }
 

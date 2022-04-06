@@ -27,7 +27,8 @@ class StoryViewerActivity : PassphraseRequiredActivity() {
           R.id.fragment_container,
           StoryViewerFragment.create(
             intent.getParcelableExtra(ARG_START_RECIPIENT_ID)!!,
-            intent.getLongExtra(ARG_START_STORY_ID, -1L)
+            intent.getLongExtra(ARG_START_STORY_ID, -1L),
+            intent.getBooleanExtra(ARG_HIDDEN_STORIES, false)
           )
         )
         .commit()
@@ -37,12 +38,14 @@ class StoryViewerActivity : PassphraseRequiredActivity() {
   companion object {
     private const val ARG_START_RECIPIENT_ID = "start.recipient.id"
     private const val ARG_START_STORY_ID = "start.story.id"
+    private const val ARG_HIDDEN_STORIES = "hidden_stories"
 
     @JvmStatic
-    fun createIntent(context: Context, recipientId: RecipientId, storyId: Long = -1L): Intent {
+    fun createIntent(context: Context, recipientId: RecipientId, storyId: Long = -1L, onlyIncludeHiddenStories: Boolean = false): Intent {
       return Intent(context, StoryViewerActivity::class.java)
         .putExtra(ARG_START_RECIPIENT_ID, recipientId)
         .putExtra(ARG_START_STORY_ID, storyId)
+        .putExtra(ARG_HIDDEN_STORIES, onlyIncludeHiddenStories)
     }
   }
 }

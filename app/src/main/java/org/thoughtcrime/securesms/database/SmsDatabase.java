@@ -1427,7 +1427,7 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public long getUnreadStoryThreadCount() {
+  public @NonNull List<RecipientId>  getUnreadStoryThreadRecipientIds() {
     throw new UnsupportedOperationException();
   }
 

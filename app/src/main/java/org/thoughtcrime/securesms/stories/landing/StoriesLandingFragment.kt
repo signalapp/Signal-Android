@@ -165,7 +165,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
           Toast.makeText(requireContext(), R.string.message_recipients_list_item__resend, Toast.LENGTH_SHORT).show()
         } else {
           val options = ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity(), preview, ViewCompat.getTransitionName(preview) ?: "")
-          startActivity(StoryViewerActivity.createIntent(requireContext(), model.data.storyRecipient.id), options.toBundle())
+          startActivity(StoryViewerActivity.createIntent(requireContext(), model.data.storyRecipient.id, -1L, model.data.isHidden), options.toBundle())
         }
       },
       onForwardStory = {

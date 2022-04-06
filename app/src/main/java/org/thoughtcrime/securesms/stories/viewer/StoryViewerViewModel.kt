@@ -13,6 +13,7 @@ import kotlin.math.max
 
 class StoryViewerViewModel(
   private val startRecipientId: RecipientId,
+  private val onlyIncludeHiddenStories: Boolean,
   private val repository: StoryViewerRepository
 ) : ViewModel() {
 
@@ -38,7 +39,7 @@ class StoryViewerViewModel(
 
   private fun refresh() {
     disposables.clear()
-    disposables += repository.getStories().subscribe { recipientIds ->
+    disposables += repository.getStories(onlyIncludeHiddenStories).subscribe { recipientIds ->
       store.update {
         val page: Int = if (it.pages.isNotEmpty()) {
           val oldPage = it.page
@@ -125,10 +126,11 @@ class StoryViewerViewModel(
 
   class Factory(
     private val startRecipientId: RecipientId,
+    private val onlyIncludeHiddenStories: Boolean,
     private val repository: StoryViewerRepository
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-      return modelClass.cast(StoryViewerViewModel(startRecipientId, repository)) as T
+      return modelClass.cast(StoryViewerViewModel(startRecipientId, onlyIncludeHiddenStories, repository)) as T
     }
   }
 }

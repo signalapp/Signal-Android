@@ -7,6 +7,7 @@ import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
+import org.mockito.kotlin.any
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
@@ -32,10 +33,10 @@ class StoryViewerViewModelTest {
     // GIVEN
     val stories: List<RecipientId> = (1L..5L).map(RecipientId::from)
     val startStory = RecipientId.from(2L)
-    whenever(repository.getStories()).doReturn(Single.just(stories))
+    whenever(repository.getStories(any())).doReturn(Single.just(stories))
 
     // WHEN
-    val testSubject = StoryViewerViewModel(startStory, repository)
+    val testSubject = StoryViewerViewModel(startStory, false, repository)
     testScheduler.triggerActions()
 
     // THEN
@@ -50,8 +51,8 @@ class StoryViewerViewModelTest {
     // GIVEN
     val stories: List<RecipientId> = (1L..5L).map(RecipientId::from)
     val startStory = RecipientId.from(1L)
-    whenever(repository.getStories()).doReturn(Single.just(stories))
-    val testSubject = StoryViewerViewModel(startStory, repository)
+    whenever(repository.getStories(any())).doReturn(Single.just(stories))
+    val testSubject = StoryViewerViewModel(startStory, false, repository)
     testScheduler.triggerActions()
 
     // WHEN
@@ -70,8 +71,8 @@ class StoryViewerViewModelTest {
     // GIVEN
     val stories: List<RecipientId> = (1L..5L).map(RecipientId::from)
     val startStory = stories.last()
-    whenever(repository.getStories()).doReturn(Single.just(stories))
-    val testSubject = StoryViewerViewModel(startStory, repository)
+    whenever(repository.getStories(any())).doReturn(Single.just(stories))
+    val testSubject = StoryViewerViewModel(startStory, false, repository)
     testScheduler.triggerActions()
 
     // WHEN
@@ -90,8 +91,8 @@ class StoryViewerViewModelTest {
     // GIVEN
     val stories: List<RecipientId> = (1L..5L).map(RecipientId::from)
     val startStory = stories.last()
-    whenever(repository.getStories()).doReturn(Single.just(stories))
-    val testSubject = StoryViewerViewModel(startStory, repository)
+    whenever(repository.getStories(any())).doReturn(Single.just(stories))
+    val testSubject = StoryViewerViewModel(startStory, false, repository)
     testScheduler.triggerActions()
 
     // WHEN
@@ -110,8 +111,8 @@ class StoryViewerViewModelTest {
     // GIVEN
     val stories: List<RecipientId> = (1L..5L).map(RecipientId::from)
     val startStory = stories.first()
-    whenever(repository.getStories()).doReturn(Single.just(stories))
-    val testSubject = StoryViewerViewModel(startStory, repository)
+    whenever(repository.getStories(any())).doReturn(Single.just(stories))
+    val testSubject = StoryViewerViewModel(startStory, false, repository)
     testScheduler.triggerActions()
 
     // WHEN
@@ -130,8 +131,8 @@ class StoryViewerViewModelTest {
     // GIVEN
     val stories: List<RecipientId> = (1L..5L).map(RecipientId::from)
     val startStory = stories.first()
-    whenever(repository.getStories()).doReturn(Single.just(stories))
-    val testSubject = StoryViewerViewModel(startStory, repository)
+    whenever(repository.getStories(any())).doReturn(Single.just(stories))
+    val testSubject = StoryViewerViewModel(startStory, false, repository)
     testScheduler.triggerActions()
 
     // WHEN

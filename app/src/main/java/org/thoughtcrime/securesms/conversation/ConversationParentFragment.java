@@ -1244,7 +1244,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void handleStoryRingClick() {
-    startActivity(StoryViewerActivity.createIntent(requireContext(), recipient.getId(), -1L));
+    startActivity(StoryViewerActivity.createIntent(requireContext(), recipient.getId(), -1L, recipient.get().shouldHideStory()));
   }
 
   private void handleConversationSettings() {

@@ -650,7 +650,7 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public long getUnreadStoryThreadCount() {
+  public @NonNull List<RecipientId> getUnreadStoryThreadRecipientIds() {
     SQLiteDatabase db    = getReadableDatabase();
     String         query = "SELECT DISTINCT " + ThreadDatabase.RECIPIENT_ID + "\n"
                            + "FROM " + TABLE_NAME + "\n"
@@ -660,11 +660,16 @@ public class MmsDatabase extends MessageDatabase {
 
     try (Cursor cursor = db.rawQuery(query, null)) {
       if (cursor != null) {
-        return cursor.getCount();
+        List<RecipientId> recipientIds = new ArrayList<>(cursor.getCount());
+        while (cursor.moveToNext()) {
+          recipientIds.add(RecipientId.from(cursor.getLong(0)));
+        }
+
+        return recipientIds;
       }
     }
 
-    return 0;
+    return Collections.emptyList();
   }
 
   @Override
