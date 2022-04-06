@@ -18,6 +18,9 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.fonts.TextFont
+import org.thoughtcrime.securesms.fonts.TextToScript
+import org.thoughtcrime.securesms.fonts.TypefaceCache
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.Base64
@@ -80,7 +83,13 @@ data class StoryTextPostModel(
     override fun decode(source: StoryTextPostModel, width: Int, height: Int, options: Options): Resource<Bitmap> {
       val message = SignalDatabase.mmsSms.getMessageFor(source.storySentAtMillis, source.storyAuthor)
       val view = StoryTextPostView(ApplicationDependencies.getApplication())
+      val typeface = TypefaceCache.get(
+        ApplicationDependencies.getApplication(),
+        TextFont.fromStyle(source.storyTextPost.style),
+        TextToScript.guessScript(source.storyTextPost.body)
+      ).blockingGet()
 
+      view.setTypeface(typeface)
       view.bindFromStoryTextPost(source.storyTextPost)
       view.bindLinkPreview((message as? MmsMessageRecord)?.linkPreviews?.firstOrNull())
 

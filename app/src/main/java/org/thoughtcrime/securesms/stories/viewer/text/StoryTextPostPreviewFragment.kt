@@ -66,12 +66,19 @@ class StoryTextPostPreviewFragment : Fragment(R.layout.stories_text_post_preview
           } else {
             storyTextPostView.setLinkPreviewClickListener(null)
           }
-          loadPreview(storyTextThumb, storyTextPostView)
         }
         StoryTextPostState.LoadState.FAILED -> {
           requireActivity().supportStartPostponedEnterTransition()
           requireListener<MediaPreviewFragment.Events>().mediaNotAvailable()
         }
+      }
+
+      if (state.typeface != null) {
+        storyTextPostView.setTypeface(state.typeface)
+      }
+
+      if (state.typeface != null && state.loadState == StoryTextPostState.LoadState.LOADED) {
+        loadPreview(storyTextThumb, storyTextPostView)
       }
     }
   }

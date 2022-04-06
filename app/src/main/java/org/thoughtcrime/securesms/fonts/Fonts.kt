@@ -8,7 +8,6 @@ import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.s3.S3
 import org.thoughtcrime.securesms.util.ListenableFutureTask
-import org.thoughtcrime.securesms.util.LocaleUtil
 import java.io.File
 import java.util.Collections
 import java.util.Locale
@@ -52,12 +51,12 @@ object Fonts {
    *
    * @param context An application context
    * @param font The desired font
-   * @param guessedScript The script likely being used based on text content
+   * @param supportedScript The script likely being used based on text content
    *
    * @return a FontResult that represents either a Typeface or a task retrieving a Typeface.
    */
   @WorkerThread
-  fun resolveFont(context: Context, font: TextFont, guessedScript: SupportedScript = SupportedScript.UNKNOWN): FontResult {
+  fun resolveFont(context: Context, font: TextFont, supportedScript: SupportedScript): FontResult {
     ThreadUtil.assertNotMainThread()
     synchronized(this) {
       val errorFallback = FontResult.Immediate(Typeface.create(font.fallbackFamily, font.fallbackStyle))
@@ -70,8 +69,6 @@ object Fonts {
 
       Log.d(TAG, "Loaded manifest.")
 
-      val localeDefaults: List<Locale> = LocaleUtil.getLocaleDefaults()
-      val supportedScript: SupportedScript = getSupportedScript(localeDefaults, guessedScript)
       val fontScript = resolveFontScriptFromScriptName(supportedScript, manifest)
       if (fontScript == null) {
         Log.d(TAG, "Manifest does not have an entry for $supportedScript. Using default.")
@@ -253,7 +250,7 @@ object Fonts {
     }
   }
 
-  private fun getSupportedScript(locales: List<Locale>, guessedScript: SupportedScript): SupportedScript {
+  fun getSupportedScript(locales: List<Locale>, guessedScript: SupportedScript): SupportedScript {
     if (guessedScript != SupportedScript.UNKNOWN && guessedScript != SupportedScript.UNKNOWN_CJK) {
       return guessedScript
     } else if (guessedScript == SupportedScript.UNKNOWN_CJK) {

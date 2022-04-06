@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.fonts.Fonts
 import org.thoughtcrime.securesms.fonts.TextFont
 import org.thoughtcrime.securesms.fonts.TextToScript
+import org.thoughtcrime.securesms.fonts.TypefaceCache
 import org.thoughtcrime.securesms.util.FutureTaskListener
 import org.thoughtcrime.securesms.util.livedata.Store
 import java.util.concurrent.ExecutionException
@@ -44,13 +45,7 @@ class TextStoryPostCreationViewModel : ViewModel() {
     Observable.combineLatest(textFontSubject, scriptGuess, ::Pair)
       .observeOn(Schedulers.io())
       .distinctUntilChanged()
-      .map { (textFont, script) -> Fonts.resolveFont(ApplicationDependencies.getApplication(), textFont, script) }
-      .switchMap { result ->
-        when (result) {
-          is Fonts.FontResult.Async -> asyncFontEmitter(result)
-          is Fonts.FontResult.Immediate -> Observable.just(result.typeface)
-        }
-      }
+      .switchMapSingle { (textFont, script) -> TypefaceCache.get(ApplicationDependencies.getApplication(), textFont, script) }
       .subscribeOn(Schedulers.io())
       .subscribe {
         internalTypeface.postValue(it)
