@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.mediasend;
 import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -154,6 +155,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     camera.bindToLifecycle(getViewLifecycleOwner(),  this::handleCameraInitializationError);
     requireActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+    requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
   }
 
   @Override

@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.mediasend;
 
 import android.animation.Animator;
 import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
@@ -161,6 +162,7 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
     });
 
     orderEnforcer.run(Stage.CAMERA_PROPERTIES_AVAILABLE, this::updatePreviewScale);
+    requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
   }
 
   @Override

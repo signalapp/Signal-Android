@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.mediasend.v2.text
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
@@ -120,6 +121,7 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
   override fun onResume() {
     super.onResume()
     storyTextPostView.showCloseButton()
+    requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
   }
 
   override fun onTextStoryPostTextEntryDismissed() {
