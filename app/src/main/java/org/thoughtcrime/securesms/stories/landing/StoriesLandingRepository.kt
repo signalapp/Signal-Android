@@ -77,7 +77,7 @@ class StoriesLandingRepository(context: Context) {
           it.toList() as List<StoriesLandingItemData>
         }
       }
-    }
+    }.subscribeOn(Schedulers.io())
   }
 
   private fun createStoriesLandingItemData(sender: Recipient, messageRecords: List<MessageRecord>): Observable<StoriesLandingItemData> {

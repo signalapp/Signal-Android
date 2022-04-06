@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.stories.viewer
 
 import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -11,7 +12,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
  */
 open class StoryViewerRepository {
   fun getStories(hiddenStories: Boolean): Single<List<RecipientId>> {
-    return Single.create { emitter ->
+    return Single.create<List<RecipientId>> { emitter ->
       val myStoriesId = SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.MY_STORY)
       val myStories = Recipient.resolved(myStoriesId)
       val recipientIds = SignalDatabase.mms.orderedStoryRecipientsAndIds.groupBy {
@@ -36,6 +37,6 @@ open class StoryViewerRepository {
           recipientIds
         }
       )
-    }
+    }.subscribeOn(Schedulers.io())
   }
 }
