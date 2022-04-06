@@ -13,7 +13,6 @@ import com.bumptech.glide.request.target.Target
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.view.AvatarView
 import org.thoughtcrime.securesms.badges.BadgeImageView
-import org.thoughtcrime.securesms.components.ThumbnailView
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
@@ -94,7 +93,7 @@ object StoriesLandingItem {
       isClickable = false
     }
     private val storyOutline: ImageView = itemView.findViewById(R.id.story_outline)
-    private val storyMulti: ThumbnailView = itemView.findViewById<ThumbnailView>(R.id.story_multi).apply {
+    private val storyMulti: ImageView = itemView.findViewById<ImageView>(R.id.story_multi).apply {
       isClickable = false
     }
     private val sender: TextView = itemView.findViewById(R.id.sender)
@@ -153,23 +152,32 @@ object StoriesLandingItem {
 
       if (model.data.secondaryStory != null) {
         val secondaryRecord = model.data.secondaryStory.messageRecord as MediaMmsMessageRecord
+        val secondaryThumb = secondaryRecord.slideDeck.thumbnailSlide?.uri
         storyOutline.setBackgroundColor(ContextCompat.getColor(context, R.color.signal_background_primary))
 
         @Suppress("CascadeIf")
         if (secondaryRecord.storyType.isTextStory) {
-          storyMulti.setImageResource(GlideApp.with(storyPreview), StoryTextPostModel.parseFrom(secondaryRecord), 0, 0)
+          val storyTextPostModel = StoryTextPostModel.parseFrom(secondaryRecord)
+          GlideApp.with(storyMulti)
+            .load(storyTextPostModel)
+            .placeholder(storyTextPostModel.getPlaceholder())
+            .centerCrop()
+            .into(storyMulti)
           storyMulti.visible = true
-        } else if (secondaryRecord.slideDeck.thumbnailSlide != null) {
-          storyMulti.setImageResource(GlideApp.with(storyPreview), secondaryRecord.slideDeck.thumbnailSlide!!, false, true)
+        } else if (secondaryThumb != null) {
+          GlideApp.with(storyMulti)
+            .load(DecryptableStreamUriLoader.DecryptableUri(secondaryThumb))
+            .centerCrop()
+            .into(storyMulti)
           storyMulti.visible = true
         } else {
           storyOutline.setBackgroundColor(Color.TRANSPARENT)
-          storyMulti.clear(GlideApp.with(storyPreview))
+          GlideApp.with(storyMulti).clear(storyMulti)
           storyMulti.visible = false
         }
       } else {
         storyOutline.setBackgroundColor(Color.TRANSPARENT)
-        storyMulti.clear(GlideApp.with(storyPreview))
+        GlideApp.with(storyMulti).clear(storyMulti)
         storyMulti.visible = false
       }
 
