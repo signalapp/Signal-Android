@@ -800,6 +800,10 @@ class StoryViewerPageFragment :
         return false
       }
 
+      if (viewToTranslate.translationX != 0f || viewToTranslate.translationY != 0f) {
+        return false
+      }
+
       if (ViewUtil.isLtr(container)) {
         if (velocityX < 0) {
           onReplyToPost()
