@@ -192,18 +192,6 @@
 
     </org.thoughtcrime.securesms.conversation.ConversationItemBodyBubble>
 
-    <org.thoughtcrime.securesms.components.emoji.EmojiImageView
-        android:id="@+id/story_reaction_emoji"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_alignEnd="@id/body_bubble"
-        android:layout_alignBottom="@id/body_bubble"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="24dp"
-        android:visibility="gone"
-        tools:src="@drawable/ic_emoji"
-        tools:visibility="visible" />
-
     <org.thoughtcrime.securesms.components.AlertView
         android:id="@+id/indicators_parent"
         android:layout_width="wrap_content"

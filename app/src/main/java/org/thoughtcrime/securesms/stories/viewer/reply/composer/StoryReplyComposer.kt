@@ -105,7 +105,8 @@ class StoryReplyComposer @JvmOverloads constructor(
       messageRecord.body,
       false,
       messageRecord.slideDeck,
-      null
+      null,
+      false
     )
 
     quoteView.visible = true

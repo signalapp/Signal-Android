@@ -89,6 +89,7 @@
     <dimen name="quote_corner_radius_preview">18dp</dimen>
     <dimen name="quote_thumb_size">60dp</dimen>
     <dimen name="quote_story_thumb_width">40dp</dimen>
+    <dimen name="quote_story_emoji_margin">24dp</dimen>
     <dimen name="quote_story_thumb_height">64dp</dimen>
 
     <dimen name="mention_corner_radius">4dp</dimen>

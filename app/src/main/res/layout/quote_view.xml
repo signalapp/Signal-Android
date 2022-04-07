@@ -7,6 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="3dp"
     android:visibility="gone"
+    tools:parentTag="android.widget.FrameLayout"
     tools:visibility="visible">
 
     <LinearLayout
@@ -106,6 +107,17 @@
 
                 </LinearLayout>
 
+                <org.thoughtcrime.securesms.components.emoji.EmojiImageView
+                    android:id="@+id/quote_missing_story_reaction_emoji"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:visibility="gone"
+                    android:layout_gravity="center_vertical"
+                    tools:src="@drawable/ic_emoji"
+                    tools:visibility="visible" />
+
                 <FrameLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent">
@@ -116,7 +128,7 @@
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
                         android:visibility="gone"
-                        tools:visibility="gone" />
+                        tools:visibility="visible" />
 
                     <FrameLayout
                         android:id="@+id/quote_video_overlay"
@@ -173,6 +185,15 @@
         </LinearLayout>
     </LinearLayout>
 
+    <org.thoughtcrime.securesms.components.emoji.EmojiImageView
+        android:id="@+id/quote_story_reaction_emoji"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:visibility="gone"
+        android:layout_marginEnd="@dimen/quote_story_emoji_margin"
+        android:layout_gravity="bottom|end"
+        tools:src="@drawable/ic_emoji"
+        tools:visibility="visible" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/quote_dismiss"
