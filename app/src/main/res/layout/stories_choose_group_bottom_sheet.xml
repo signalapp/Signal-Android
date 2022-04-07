@@ -36,13 +36,15 @@
         android:minHeight="44dp"
         android:paddingHorizontal="16dp"
         android:textAppearance="@style/Signal.Text.Body"
-        app:backgroundTint="@color/core_grey_65" />
+        app:backgroundTint="@color/signal_background_dialog_secondary" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/contact_recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         android:paddingBottom="44dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 </LinearLayout>

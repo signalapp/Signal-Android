@@ -138,7 +138,6 @@ object StoriesLandingItem {
         val storyTextPostModel = StoryTextPostModel.parseFrom(record)
         GlideApp.with(storyPreview)
           .load(storyTextPostModel)
-          .addListener(HideBlurAfterLoadListener())
           .placeholder(storyTextPostModel.getPlaceholder())
           .centerCrop()
           .dontAnimate()

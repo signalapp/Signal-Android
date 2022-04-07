@@ -33,7 +33,7 @@ private final MultiShareArgs                      args;
     this.recipients  = new MutableLiveData<>();
     this.draftText   = new DefaultValueLiveData<>(Util.firstNonNull(args.getDraftText(), ""));
 
-    repository.loadRecipients(args.getShareContactAndThreads(),
+    repository.loadRecipients(args.getRecipientSearchKeys(),
                               list -> recipients.postValue(Stream.of(list)
                                                                  .mapIndexed((i, r) -> new ShareInterstitialMappingModel(r, i == 0))
                                                                  .collect(MappingModelList.toMappingModelList())));

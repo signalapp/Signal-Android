@@ -83,7 +83,7 @@ public final class GroupLinkBottomSheetDialogFragment extends BottomSheetDialogF
             getParentFragmentManager(),
             new MultiselectForwardFragmentArgs(
                 true,
-                Collections.singletonList(new MultiShareArgs.Builder(Collections.emptySet())
+                Collections.singletonList(new MultiShareArgs.Builder()
                                               .withDraftText(groupLink.getUrl())
                                               .build()),
                 R.string.MultiselectForwardFragment__share_with

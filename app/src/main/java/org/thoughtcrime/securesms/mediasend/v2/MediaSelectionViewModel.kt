@@ -12,7 +12,7 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.subjects.PublishSubject
 import org.thoughtcrime.securesms.TransportOption
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
-import org.thoughtcrime.securesms.contacts.paged.RecipientSearchKey
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.VideoEditorFragment
@@ -280,7 +280,7 @@ class MediaSelectionViewModel(
   }
 
   fun send(
-    selectedContacts: List<RecipientSearchKey> = emptyList()
+    selectedContacts: List<ContactSearchKey.RecipientSearchKey> = emptyList()
   ): Maybe<MediaSendActivityResult> {
     return UntrustedRecords.checkForBadIdentityRecords(selectedContacts.toSet()).andThen(
       repository.send(

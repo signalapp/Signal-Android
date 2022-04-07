@@ -71,4 +71,8 @@
         android:id="@+id/action_directly_to_mediaReviewFragment"
         app:destination="@id/mediaReviewFragment" />
 
+    <action
+        android:id="@+id/action_directly_to_textPostCreationFragment"
+        app:destination="@id/textStoryPostCreationFragment" />
+
 </navigation>

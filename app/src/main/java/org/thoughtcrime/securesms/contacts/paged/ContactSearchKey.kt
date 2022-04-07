@@ -19,34 +19,37 @@ sealed class ContactSearchKey {
 
   open fun requireParcelable(): Parcelable = error("This key cannot be parcelized")
 
-  /**
-   * Key to a Story
-   */
-  data class Story(override val recipientId: RecipientId) : ContactSearchKey(), RecipientSearchKey {
-    override fun requireShareContact(): ShareContact {
-      return ShareContact(recipientId)
+  sealed class RecipientSearchKey : ContactSearchKey() {
+
+    abstract val recipientId: RecipientId
+    abstract val isStory: Boolean
+
+    data class Story(override val recipientId: RecipientId) : RecipientSearchKey() {
+      override fun requireShareContact(): ShareContact {
+        return ShareContact(recipientId)
+      }
+
+      override fun requireParcelable(): Parcelable {
+        return ParcelableRecipientSearchKey(ParcelableType.STORY, recipientId)
+      }
+
+      override val isStory: Boolean = true
     }
 
-    override fun requireParcelable(): Parcelable {
-      return ParcelableContactSearchKey(ParcelableType.STORY, recipientId)
+    /**
+     * Key to a recipient which already exists in our database
+     */
+    data class KnownRecipient(override val recipientId: RecipientId) : RecipientSearchKey() {
+      override fun requireShareContact(): ShareContact {
+        return ShareContact(recipientId)
+      }
+
+      override fun requireParcelable(): Parcelable {
+        return ParcelableRecipientSearchKey(ParcelableType.KNOWN_RECIPIENT, recipientId)
+      }
+
+      override val isStory: Boolean = false
     }
-
-    override val isStory: Boolean = true
-  }
-
-  /**
-   * Key to a recipient which already exists in our database
-   */
-  data class KnownRecipient(override val recipientId: RecipientId) : ContactSearchKey(), RecipientSearchKey {
-    override fun requireShareContact(): ShareContact {
-      return ShareContact(recipientId)
-    }
-
-    override fun requireParcelable(): Parcelable {
-      return ParcelableContactSearchKey(ParcelableType.KNOWN_RECIPIENT, recipientId)
-    }
-
-    override val isStory: Boolean = false
   }
 
   /**
@@ -60,11 +63,11 @@ sealed class ContactSearchKey {
   data class Expand(val sectionKey: ContactSearchConfiguration.SectionKey) : ContactSearchKey()
 
   @Parcelize
-  data class ParcelableContactSearchKey(val type: ParcelableType, val recipientId: RecipientId) : Parcelable {
+  data class ParcelableRecipientSearchKey(val type: ParcelableType, val recipientId: RecipientId) : Parcelable {
     fun asContactSearchKey(): ContactSearchKey {
       return when (type) {
-        ParcelableType.STORY -> Story(recipientId)
-        ParcelableType.KNOWN_RECIPIENT -> KnownRecipient(recipientId)
+        ParcelableType.STORY -> RecipientSearchKey.Story(recipientId)
+        ParcelableType.KNOWN_RECIPIENT -> RecipientSearchKey.KnownRecipient(recipientId)
       }
     }
   }

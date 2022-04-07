@@ -38,9 +38,9 @@ class ChooseStoryTypeBottomSheet : DSLSettingsBottomSheetFragment(
           ),
           icon = DSLSettingsIcon.from(
             R.drawable.ic_plus_24,
-            R.color.core_grey_15,
+            R.color.signal_icon_tint_primary,
             R.drawable.circle_tintable,
-            R.color.core_grey_80,
+            R.color.signal_button_secondary_ripple,
             DimensionUnit.DP.toPixels(8f).toInt()
           ),
           onClick = {
@@ -60,9 +60,9 @@ class ChooseStoryTypeBottomSheet : DSLSettingsBottomSheetFragment(
           ),
           icon = DSLSettingsIcon.from(
             R.drawable.ic_group_outline_24,
-            R.color.core_grey_15,
+            R.color.signal_icon_tint_primary,
             R.drawable.circle_tintable,
-            R.color.core_grey_80,
+            R.color.signal_button_secondary_ripple,
             DimensionUnit.DP.toPixels(8f).toInt()
           ),
           onClick = {

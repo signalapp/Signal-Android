@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.PluralsRes
 import androidx.core.view.isVisible
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.setFragmentResultListener
@@ -79,10 +80,16 @@ class MultiselectForwardFragment :
   private var handler: Handler? = null
 
   private fun createViewModelFactory(): MultiselectForwardViewModel.Factory {
-    return MultiselectForwardViewModel.Factory(getMultiShareArgs(), MultiselectForwardRepository(requireContext()))
+    return MultiselectForwardViewModel.Factory(getMultiShareArgs(), isSelectionOnly, MultiselectForwardRepository(requireContext()))
   }
 
   private fun getMultiShareArgs(): ArrayList<MultiShareArgs> = requireNotNull(requireArguments().getParcelableArrayList(ARG_MULTISHARE_ARGS))
+
+  private val forceDisableAddMessage: Boolean
+    get() = requireArguments().getBoolean(ARG_FORCE_DISABLE_ADD_MESSAGE, false)
+
+  private val isSelectionOnly: Boolean
+    get() = requireArguments().getBoolean(ARG_FORCE_SELECTION_ONLY, false)
 
   override fun onGetLayoutInflater(savedInstanceState: Bundle?): LayoutInflater {
     return if (parentFragment != null) {
@@ -155,7 +162,7 @@ class MultiselectForwardFragment :
     contactSearchMediator.getSelectionState().observe(viewLifecycleOwner) { contactSelection ->
       shareSelectionAdapter.submitList(contactSelection.mapIndexed { index, key -> ShareSelectionMappingModel(key.requireShareContact(), index == 0) })
 
-      addMessage.visible = contactSelection.any { key -> key !is ContactSearchKey.Story } && getMultiShareArgs().isNotEmpty()
+      addMessage.visible = !forceDisableAddMessage && contactSelection.any { key -> key !is ContactSearchKey.RecipientSearchKey.Story } && getMultiShareArgs().isNotEmpty()
 
       if (contactSelection.isNotEmpty() && !bottomBar.isVisible) {
         bottomBar.animation = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_fade_from_bottom)
@@ -188,13 +195,13 @@ class MultiselectForwardFragment :
 
     setFragmentResultListener(CreateStoryWithViewersFragment.REQUEST_KEY) { _, bundle ->
       val recipientId: RecipientId = bundle.getParcelable(CreateStoryWithViewersFragment.STORY_RECIPIENT)!!
-      contactSearchMediator.setKeysSelected(setOf(ContactSearchKey.Story(recipientId)))
+      contactSearchMediator.setKeysSelected(setOf(ContactSearchKey.RecipientSearchKey.Story(recipientId)))
       contactFilterView.clear()
     }
 
     setFragmentResultListener(ChooseGroupStoryBottomSheet.GROUP_STORY) { _, bundle ->
       val groups: Set<RecipientId> = bundle.getParcelableArrayList<RecipientId>(ChooseGroupStoryBottomSheet.RESULT_SET)?.toSet() ?: emptySet()
-      val keys: Set<ContactSearchKey.Story> = groups.map { ContactSearchKey.Story(it) }.toSet()
+      val keys: Set<ContactSearchKey.RecipientSearchKey.Story> = groups.map { ContactSearchKey.RecipientSearchKey.Story(it) }.toSet()
       contactSearchMediator.addToVisibleGroupStories(keys)
       contactSearchMediator.setKeysSelected(keys)
       contactFilterView.clear()
@@ -392,6 +399,8 @@ class MultiselectForwardFragment :
     const val ARG_MULTISHARE_ARGS = "multiselect.forward.fragment.arg.multishare.args"
     const val ARG_CAN_SEND_TO_NON_PUSH = "multiselect.forward.fragment.arg.can.send.to.non.push"
     const val ARG_TITLE = "multiselect.forward.fragment.title"
+    const val ARG_FORCE_DISABLE_ADD_MESSAGE = "multiselect.forward.fragment.force.disable.add.message"
+    const val ARG_FORCE_SELECTION_ONLY = "multiselect.forward.fragment.force.disable.add.message"
     const val RESULT_KEY = "result_key"
     const val RESULT_SELECTION = "result_selection_recipients"
     const val RESULT_SENT = "result_sent"
@@ -400,26 +409,37 @@ class MultiselectForwardFragment :
     fun showBottomSheet(supportFragmentManager: FragmentManager, multiselectForwardFragmentArgs: MultiselectForwardFragmentArgs) {
       val fragment = MultiselectForwardBottomSheet()
 
-      fragment.arguments = Bundle().apply {
-        putParcelableArrayList(ARG_MULTISHARE_ARGS, ArrayList(multiselectForwardFragmentArgs.multiShareArgs))
-        putBoolean(ARG_CAN_SEND_TO_NON_PUSH, multiselectForwardFragmentArgs.canSendToNonPush)
-        putInt(ARG_TITLE, multiselectForwardFragmentArgs.title)
-      }
-
-      fragment.show(supportFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+      showDialogFragment(supportFragmentManager, fragment, multiselectForwardFragmentArgs)
     }
 
     @JvmStatic
     fun showFullScreen(supportFragmentManager: FragmentManager, multiselectForwardFragmentArgs: MultiselectForwardFragmentArgs) {
       val fragment = MultiselectForwardFullScreenDialogFragment()
 
-      fragment.arguments = Bundle().apply {
+      showDialogFragment(supportFragmentManager, fragment, multiselectForwardFragmentArgs)
+    }
+
+    @JvmStatic
+    fun create(multiselectForwardFragmentArgs: MultiselectForwardFragmentArgs): Fragment {
+      return MultiselectForwardFragment().apply {
+        arguments = createArgumentsBundle(multiselectForwardFragmentArgs)
+      }
+    }
+
+    private fun showDialogFragment(supportFragmentManager: FragmentManager, fragment: DialogFragment, multiselectForwardFragmentArgs: MultiselectForwardFragmentArgs) {
+      fragment.arguments = createArgumentsBundle(multiselectForwardFragmentArgs)
+
+      fragment.show(supportFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+    }
+
+    private fun createArgumentsBundle(multiselectForwardFragmentArgs: MultiselectForwardFragmentArgs): Bundle {
+      return Bundle().apply {
         putParcelableArrayList(ARG_MULTISHARE_ARGS, ArrayList(multiselectForwardFragmentArgs.multiShareArgs))
         putBoolean(ARG_CAN_SEND_TO_NON_PUSH, multiselectForwardFragmentArgs.canSendToNonPush)
         putInt(ARG_TITLE, multiselectForwardFragmentArgs.title)
+        putBoolean(ARG_FORCE_DISABLE_ADD_MESSAGE, multiselectForwardFragmentArgs.forceDisableAddMessage)
+        putBoolean(ARG_FORCE_SELECTION_ONLY, multiselectForwardFragmentArgs.forceSelectionOnly)
       }
-
-      fragment.show(supportFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
     }
   }
 }

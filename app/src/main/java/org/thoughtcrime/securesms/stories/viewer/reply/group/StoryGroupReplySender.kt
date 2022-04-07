@@ -35,10 +35,9 @@ object StoryGroupReplySender {
     }
 
     return messageAndRecipient.flatMapCompletable { (message, recipient) ->
-      UntrustedRecords.checkForBadIdentityRecords(setOf(ContactSearchKey.KnownRecipient(recipient.id)))
+      UntrustedRecords.checkForBadIdentityRecords(setOf(ContactSearchKey.RecipientSearchKey.KnownRecipient(recipient.id)))
         .andThen(
           Completable.create {
-
             MessageSender.send(
               context,
               OutgoingMediaMessage(

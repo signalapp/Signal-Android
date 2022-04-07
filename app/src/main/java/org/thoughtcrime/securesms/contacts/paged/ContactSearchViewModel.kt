@@ -86,7 +86,7 @@ class ContactSearchViewModel(
     return selectionStore.state
   }
 
-  fun addToVisibleGroupStories(groupStories: Set<ContactSearchKey.Story>) {
+  fun addToVisibleGroupStories(groupStories: Set<ContactSearchKey.RecipientSearchKey.Story>) {
     configurationStore.update { state ->
       state.copy(
         groupStories = state.groupStories + groupStories.map {

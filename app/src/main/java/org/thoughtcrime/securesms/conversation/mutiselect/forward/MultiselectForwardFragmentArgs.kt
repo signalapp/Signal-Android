@@ -23,14 +23,18 @@ import java.util.function.Consumer
 /**
  * Arguments for the MultiselectForwardFragment.
  *
- * @param canSendToNonPush Whether non-push recipients will be displayed
- * @param multiShareArgs   The items to forward. If this is an empty list, the fragment owner will be sent back a selected list of contacts.
- * @param title            The title to display at the top of the sheet
+ * @param canSendToNonPush       Whether non-push recipients will be displayed
+ * @param multiShareArgs         The items to forward. If this is an empty list, the fragment owner will be sent back a selected list of contacts.
+ * @param title                  The title to display at the top of the sheet
+ * @param forceDisableAddMessage Hide the add message field even if it would normally be available.
+ * @param forceSelectionOnly     Force the fragment to only select recipients, never actually performing the send.
  */
-class MultiselectForwardFragmentArgs(
+class MultiselectForwardFragmentArgs @JvmOverloads constructor(
   val canSendToNonPush: Boolean,
   val multiShareArgs: List<MultiShareArgs> = listOf(),
-  @StringRes val title: Int = R.string.MultiselectForwardFragment__forward_to
+  @StringRes val title: Int = R.string.MultiselectForwardFragment__forward_to,
+  val forceDisableAddMessage: Boolean = false,
+  val forceSelectionOnly: Boolean = false
 ) {
 
   companion object {

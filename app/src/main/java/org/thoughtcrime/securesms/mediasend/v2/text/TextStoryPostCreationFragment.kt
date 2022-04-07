@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.mediasend.v2.text
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.drawToBitmap
@@ -10,12 +11,19 @@ import androidx.core.view.postDelayed
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
+import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.mediasend.v2.HudCommand
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
+import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendRepository
+import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendResult
 import org.thoughtcrime.securesms.stories.StoryTextPostView
+import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
+import org.thoughtcrime.securesms.stories.settings.hide.HideStoryFromDialogFragment
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -35,6 +43,9 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
   private val viewModel: TextStoryPostCreationViewModel by viewModels(
     ownerProducer = {
       requireActivity()
+    },
+    factoryProducer = {
+      TextStoryPostCreationViewModel.Factory(TextStoryPostSendRepository())
     }
   )
 
@@ -113,8 +124,33 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
 
     send.setOnClickListener {
       storyTextPostView.hideCloseButton()
-      viewModel.setBitmap(storyTextPostView.drawToBitmap())
-      findNavController().safeNavigate(R.id.action_textStoryPostCreationFragment_to_textStoryPostSendFragment)
+
+      val contacts = (sharedViewModel.destination.getRecipientSearchKeyList() + sharedViewModel.destination.getRecipientSearchKey())
+        .filterIsInstance(ContactSearchKey::class.java)
+        .toSet()
+
+      if (contacts.isEmpty()) {
+        viewModel.setBitmap(storyTextPostView.drawToBitmap())
+        findNavController().safeNavigate(R.id.action_textStoryPostCreationFragment_to_textStoryPostSendFragment)
+      } else {
+        send.isClickable = false
+        StoryDialogs.guardWithAddToYourStoryDialog(
+          contacts = contacts,
+          context = requireContext(),
+          onAddToStory = {
+            performSend(contacts)
+          },
+          onEditViewers = {
+            send.isClickable = true
+            storyTextPostView.hideCloseButton()
+            HideStoryFromDialogFragment().show(childFragmentManager, null)
+          },
+          onCancel = {
+            send.isClickable = true
+            storyTextPostView.hideCloseButton()
+          }
+        )
+      }
     }
   }
 
@@ -128,6 +164,28 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
     storyTextPostView.postDelayed(resources.getInteger(R.integer.text_entry_exit_duration).toLong()) {
       storyTextPostView.showPostContent()
       storyTextPostView.isEnabled = true
+    }
+  }
+
+  private fun performSend(contacts: Set<ContactSearchKey>) {
+    lifecycleDisposable += viewModel.send(
+      contacts = contacts,
+      linkPreviewViewModel.linkPreviewState.value?.linkPreview?.orElse(null)
+    ).observeOn(AndroidSchedulers.mainThread()).subscribe { result ->
+      when (result) {
+        TextStoryPostSendResult.Success -> {
+          Toast.makeText(requireContext(), R.string.TextStoryPostCreationFragment__sent_story, Toast.LENGTH_SHORT).show()
+          requireActivity().finish()
+        }
+        TextStoryPostSendResult.Failure -> {
+          Toast.makeText(requireContext(), R.string.TextStoryPostCreationFragment__failed_to_send_story, Toast.LENGTH_SHORT).show()
+          requireActivity().finish()
+        }
+        is TextStoryPostSendResult.UntrustedRecordsError -> {
+          send.isClickable = true
+          SafetyNumberChangeDialog.show(childFragmentManager, result.untrustedRecords)
+        }
+      }
     }
   }
 }

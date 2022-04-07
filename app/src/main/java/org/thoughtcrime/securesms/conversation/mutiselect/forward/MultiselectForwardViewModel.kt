@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
-import org.thoughtcrime.securesms.contacts.paged.RecipientSearchKey
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.v2.UntrustedRecords
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
@@ -12,6 +11,7 @@ import org.thoughtcrime.securesms.util.livedata.Store
 
 class MultiselectForwardViewModel(
   private val records: List<MultiShareArgs>,
+  private val isSelectionOnly: Boolean,
   private val repository: MultiselectForwardRepository
 ) : ViewModel() {
 
@@ -25,7 +25,7 @@ class MultiselectForwardViewModel(
       store.update { it.copy(stage = MultiselectForwardState.Stage.FirstConfirmation) }
     } else {
       store.update { it.copy(stage = MultiselectForwardState.Stage.LoadingIdentities) }
-      UntrustedRecords.checkForBadIdentityRecords(selectedContacts.filterIsInstance(RecipientSearchKey::class.java).toSet()) { identityRecords ->
+      UntrustedRecords.checkForBadIdentityRecords(selectedContacts.filterIsInstance(ContactSearchKey.RecipientSearchKey::class.java).toSet()) { identityRecords ->
         if (identityRecords.isEmpty()) {
           performSend(additionalMessage, selectedContacts)
         } else {
@@ -49,7 +49,7 @@ class MultiselectForwardViewModel(
 
   private fun performSend(additionalMessage: String, selectedContacts: Set<ContactSearchKey>) {
     store.update { it.copy(stage = MultiselectForwardState.Stage.SendPending) }
-    if (records.isEmpty()) {
+    if (records.isEmpty() || isSelectionOnly) {
       store.update { it.copy(stage = MultiselectForwardState.Stage.SelectionConfirmed(selectedContacts)) }
     } else {
       repository.send(
@@ -67,10 +67,11 @@ class MultiselectForwardViewModel(
 
   class Factory(
     private val records: List<MultiShareArgs>,
-    private val repository: MultiselectForwardRepository
+    private val isSelectionOnly: Boolean,
+    private val repository: MultiselectForwardRepository,
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-      return requireNotNull(modelClass.cast(MultiselectForwardViewModel(records, repository)))
+      return requireNotNull(modelClass.cast(MultiselectForwardViewModel(records, isSelectionOnly, repository)))
     }
   }
 }

@@ -12,7 +12,6 @@ import org.signal.core.util.logging.Log
 import org.signal.imageeditor.core.model.EditorModel
 import org.thoughtcrime.securesms.TransportOption
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
-import org.thoughtcrime.securesms.contacts.paged.RecipientSearchKey
 import org.thoughtcrime.securesms.database.AttachmentDatabase.TransformProperties
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadDatabase
@@ -72,8 +71,8 @@ class MediaSelectionRepository(context: Context) {
     message: CharSequence?,
     isSms: Boolean,
     isViewOnce: Boolean,
-    singleContact: RecipientSearchKey?,
-    contacts: List<RecipientSearchKey>,
+    singleContact: ContactSearchKey.RecipientSearchKey?,
+    contacts: List<ContactSearchKey.RecipientSearchKey>,
     mentions: List<Mention>,
     transport: TransportOption
   ): Maybe<MediaSendActivityResult> {
@@ -198,14 +197,14 @@ class MediaSelectionRepository(context: Context) {
   }
 
   @WorkerThread
-  private fun sendMessages(contacts: List<RecipientSearchKey>, body: String, preUploadResults: Collection<PreUploadResult>, mentions: List<Mention>, isViewOnce: Boolean) {
+  private fun sendMessages(contacts: List<ContactSearchKey.RecipientSearchKey>, body: String, preUploadResults: Collection<PreUploadResult>, mentions: List<Mention>, isViewOnce: Boolean) {
     val broadcastMessages: MutableList<OutgoingSecureMediaMessage> = ArrayList(contacts.size)
     val storyMessages: MutableMap<PreUploadResult, MutableList<OutgoingSecureMediaMessage>> = mutableMapOf()
     val distributionListSentTimestamps: MutableMap<PreUploadResult, Long> = mutableMapOf()
 
     for (contact in contacts) {
       val recipient = Recipient.resolved(contact.recipientId)
-      val isStory = contact is ContactSearchKey.Story || recipient.isDistributionList
+      val isStory = contact.isStory || recipient.isDistributionList
 
       if (isStory && recipient.isActiveGroup) {
         SignalDatabase.groups.markDisplayAsStory(recipient.requireGroupId())

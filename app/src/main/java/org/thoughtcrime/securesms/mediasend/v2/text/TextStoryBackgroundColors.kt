@@ -98,4 +98,7 @@ object TextStoryBackgroundColors {
 
     return backgroundColors[indexOfNextColor]
   }
+
+  @JvmStatic
+  fun getRandomBackgroundColor() = backgroundColors.random()
 }

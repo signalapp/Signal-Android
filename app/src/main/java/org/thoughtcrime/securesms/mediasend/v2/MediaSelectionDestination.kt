@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.mediasend.v2
 
 import android.os.Bundle
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
-import org.thoughtcrime.securesms.contacts.paged.RecipientSearchKey
 import org.thoughtcrime.securesms.recipients.RecipientId
 
 sealed class MediaSelectionDestination {
@@ -30,7 +29,7 @@ sealed class MediaSelectionDestination {
   }
 
   class SingleRecipient(private val id: RecipientId) : MediaSelectionDestination() {
-    override fun getRecipientSearchKey(): RecipientSearchKey = ContactSearchKey.KnownRecipient(id)
+    override fun getRecipientSearchKey(): ContactSearchKey.RecipientSearchKey = ContactSearchKey.RecipientSearchKey.KnownRecipient(id)
 
     override fun toBundle(): Bundle {
       return Bundle().apply {
@@ -39,18 +38,25 @@ sealed class MediaSelectionDestination {
     }
   }
 
-  class MultipleRecipients(val recipientIds: List<RecipientId>) : MediaSelectionDestination() {
-    override fun getRecipientSearchKeyList(): List<RecipientSearchKey> = recipientIds.map { ContactSearchKey.KnownRecipient(it) }
+  class MultipleRecipients(val recipientSearchKeys: List<ContactSearchKey.RecipientSearchKey>) : MediaSelectionDestination() {
+
+    companion object {
+      fun fromParcel(parcelables: List<ContactSearchKey.ParcelableRecipientSearchKey>): MultipleRecipients {
+        return MultipleRecipients(parcelables.map { it.asContactSearchKey() }.filterIsInstance(ContactSearchKey.RecipientSearchKey::class.java))
+      }
+    }
+
+    override fun getRecipientSearchKeyList(): List<ContactSearchKey.RecipientSearchKey> = recipientSearchKeys
 
     override fun toBundle(): Bundle {
       return Bundle().apply {
-        putParcelableArrayList(RECIPIENT_LIST, ArrayList(recipientIds))
+        putParcelableArrayList(RECIPIENT_LIST, ArrayList(recipientSearchKeys.map { it.requireParcelable() }))
       }
     }
   }
 
-  open fun getRecipientSearchKey(): RecipientSearchKey? = null
-  open fun getRecipientSearchKeyList(): List<RecipientSearchKey> = emptyList()
+  open fun getRecipientSearchKey(): ContactSearchKey.RecipientSearchKey? = null
+  open fun getRecipientSearchKeyList(): List<ContactSearchKey.RecipientSearchKey> = emptyList()
 
   abstract fun toBundle(): Bundle
 
@@ -65,7 +71,7 @@ sealed class MediaSelectionDestination {
         bundle.containsKey(WALLPAPER) -> Wallpaper
         bundle.containsKey(AVATAR) -> Avatar
         bundle.containsKey(RECIPIENT) -> SingleRecipient(requireNotNull(bundle.getParcelable(RECIPIENT)))
-        bundle.containsKey(RECIPIENT_LIST) -> MultipleRecipients(requireNotNull(bundle.getParcelableArrayList(RECIPIENT_LIST)))
+        bundle.containsKey(RECIPIENT_LIST) -> MultipleRecipients.fromParcel(requireNotNull(bundle.getParcelableArrayList(RECIPIENT_LIST)))
         else -> ChooseAfterMediaSelection
       }
     }

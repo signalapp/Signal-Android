@@ -242,7 +242,7 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActivity
             getSupportFragmentManager(),
             new MultiselectForwardFragmentArgs(
                 true,
-                Collections.singletonList(new MultiShareArgs.Builder(Collections.emptySet())
+                Collections.singletonList(new MultiShareArgs.Builder()
                                               .withDraftText(StickerUrl.createShareLink(packId, packKey))
                                               .build()),
                 R.string.MultiselectForwardFragment__share_with

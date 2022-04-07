@@ -28,7 +28,6 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.TransportOption
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
-import org.thoughtcrime.securesms.contacts.paged.RecipientSearchKey
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
@@ -140,7 +139,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
     }
 
     setFragmentResultListener(MultiselectForwardFragment.RESULT_KEY) { _, bundle ->
-      val parcelizedKeys: List<ContactSearchKey.ParcelableContactSearchKey> = bundle.getParcelableArrayList(MultiselectForwardFragment.RESULT_SELECTION)!!
+      val parcelizedKeys: List<ContactSearchKey.ParcelableRecipientSearchKey> = bundle.getParcelableArrayList(MultiselectForwardFragment.RESULT_SELECTION)!!
       val contactSearchKeys = parcelizedKeys.map { it.asContactSearchKey() }
       performSend(contactSearchKeys)
     }
@@ -269,7 +268,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
       .alpha(1f)
 
     sharedViewModel
-      .send(selection.filterIsInstance(RecipientSearchKey::class.java))
+      .send(selection.filterIsInstance(ContactSearchKey.RecipientSearchKey::class.java))
       .subscribe(
         { result -> callback.onSentWithResult(result) },
         { error -> callback.onSendError(error) },

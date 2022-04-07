@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.ImageSlide
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture
+import org.thoughtcrime.securesms.util.views.Stub
 import org.thoughtcrime.securesms.util.visible
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -36,6 +37,7 @@ class StoryLinkPreviewView @JvmOverloads constructor(
   private val url: TextView = findViewById(R.id.link_preview_url)
   private val description: TextView = findViewById(R.id.link_preview_description)
   private val fallbackIcon: ImageView = findViewById(R.id.link_preview_fallback_icon)
+  private val loadingSpinner: Stub<View> = Stub(findViewById(R.id.loading_spinner))
 
   fun bind(linkPreview: LinkPreview?, hiddenVisibility: Int = View.INVISIBLE): ListenableFuture<Boolean> {
     var listenableFuture: ListenableFuture<Boolean>? = null
@@ -78,6 +80,11 @@ class StoryLinkPreviewView @JvmOverloads constructor(
     }
 
     bind(linkPreview, hiddenVisibility)
+
+    loadingSpinner.get().visible = linkPreviewState.isLoading
+    if (linkPreviewState.isLoading) {
+      visible = true
+    }
   }
 
   private fun formatUrl(linkPreview: LinkPreview) {

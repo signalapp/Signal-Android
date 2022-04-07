@@ -67,7 +67,7 @@ class ContactSearchMediator(
     return viewModel.selectionState
   }
 
-  fun addToVisibleGroupStories(groupStories: Set<ContactSearchKey.Story>) {
+  fun addToVisibleGroupStories(groupStories: Set<ContactSearchKey.RecipientSearchKey.Story>) {
     viewModel.addToVisibleGroupStories(groupStories)
   }
 

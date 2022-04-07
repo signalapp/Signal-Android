@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.mediasend.v2.text.send
 import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.ThreadUtil
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
-import org.thoughtcrime.securesms.contacts.paged.RecipientSearchKey
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.StoryType
@@ -22,7 +21,7 @@ class TextStoryPostSendRepository {
 
   fun send(contactSearchKey: Set<ContactSearchKey>, textStoryPostCreationState: TextStoryPostCreationState, linkPreview: LinkPreview?): Single<TextStoryPostSendResult> {
     return UntrustedRecords
-      .checkForBadIdentityRecords(contactSearchKey.filterIsInstance(RecipientSearchKey::class.java).toSet())
+      .checkForBadIdentityRecords(contactSearchKey.filterIsInstance(ContactSearchKey.RecipientSearchKey::class.java).toSet())
       .toSingleDefault<TextStoryPostSendResult>(TextStoryPostSendResult.Success)
       .onErrorReturn {
         if (it is UntrustedRecords.UntrustedRecordsException) {
@@ -47,7 +46,7 @@ class TextStoryPostSendRepository {
 
       for (contact in contactSearchKey) {
         val recipient = Recipient.resolved(contact.requireShareContact().recipientId.get())
-        val isStory = contact is ContactSearchKey.Story || recipient.isDistributionList
+        val isStory = contact is ContactSearchKey.RecipientSearchKey.Story || recipient.isDistributionList
 
         if (isStory && recipient.isActiveGroup) {
           SignalDatabase.groups.markDisplayAsStory(recipient.requireGroupId())

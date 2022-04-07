@@ -12,12 +12,12 @@ sealed class ContactSearchData(val contactSearchKey: ContactSearchKey) {
    *
    * Note that if the recipient is a group, it's participant list size is used instead of viewerCount.
    */
-  data class Story(val recipient: Recipient, val viewerCount: Int) : ContactSearchData(ContactSearchKey.Story(recipient.id))
+  data class Story(val recipient: Recipient, val viewerCount: Int) : ContactSearchData(ContactSearchKey.RecipientSearchKey.Story(recipient.id))
 
   /**
    * A row displaying a known recipient.
    */
-  data class KnownRecipient(val recipient: Recipient) : ContactSearchData(ContactSearchKey.KnownRecipient(recipient.id))
+  data class KnownRecipient(val recipient: Recipient) : ContactSearchData(ContactSearchKey.RecipientSearchKey.KnownRecipient(recipient.id))
 
   /**
    * A row containing a title for a given section

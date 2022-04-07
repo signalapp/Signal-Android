@@ -7,7 +7,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.annimon.stream.Stream;
@@ -79,21 +79,25 @@ public class ShareInterstitialActivity extends PassphraseRequiredActivity {
     ShareInterstitialRepository        repository = new ShareInterstitialRepository();
     ShareInterstitialViewModel.Factory factory    = new ShareInterstitialViewModel.Factory(args, repository);
 
-    viewModel = ViewModelProviders.of(this, factory).get(ShareInterstitialViewModel.class);
+    viewModel = new ViewModelProvider(this, factory).get(ShareInterstitialViewModel.class);
 
     LinkPreviewRepository        linkPreviewRepository       = new LinkPreviewRepository();
     LinkPreviewViewModel.Factory linkPreviewViewModelFactory = new LinkPreviewViewModel.Factory(linkPreviewRepository);
 
-    linkPreviewViewModel = ViewModelProviders.of(this, linkPreviewViewModelFactory).get(LinkPreviewViewModel.class);
+    linkPreviewViewModel = new ViewModelProvider(this, linkPreviewViewModelFactory).get(LinkPreviewViewModel.class);
 
-    boolean hasSms = Stream.of(args.getShareContactAndThreads())
+    boolean hasSms = Stream.of(args.getRecipientSearchKeys())
                            .anyMatch(c -> {
                              Recipient recipient = Recipient.resolved(c.getRecipientId());
+                             if (recipient.isDistributionList()) {
+                               return false;
+                             }
+
                              return !recipient.isRegistered() || recipient.isForceSmsSelection();
                            });
 
     if (hasSms) {
-      linkPreviewViewModel.onTransportChanged(hasSms);
+      linkPreviewViewModel.onTransportChanged(true);
     }
   }
 

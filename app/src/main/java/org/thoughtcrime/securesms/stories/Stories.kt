@@ -20,6 +20,9 @@ import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
 
 object Stories {
+
+  const val MAX_BODY_SIZE = 700
+
   @JvmStatic
   fun isFeatureAvailable(): Boolean {
     return FeatureFlags.stories() && Recipient.self().storiesCapability == Recipient.Capability.SUPPORTED

@@ -7,10 +7,10 @@
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
     <ImageView
+        android:importantForAccessibility="no"
         android:id="@+id/text_story_post_background"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Story.Text" />
+        android:layout_height="match_parent" />
 
     <org.thoughtcrime.securesms.stories.StoryTextView
         android:id="@+id/text_story_post_text"

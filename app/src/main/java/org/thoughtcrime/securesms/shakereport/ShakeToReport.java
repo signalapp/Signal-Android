@@ -130,7 +130,7 @@ public final class ShakeToReport implements ShakeDetector.Listener {
               activity.getSupportFragmentManager(),
               new MultiselectForwardFragmentArgs(
                   true,
-                  Collections.singletonList(new MultiShareArgs.Builder(Collections.emptySet())
+                  Collections.singletonList(new MultiShareArgs.Builder()
                                                 .withDraftText(url)
                                                 .build()),
                   R.string.MultiselectForwardFragment__share_with

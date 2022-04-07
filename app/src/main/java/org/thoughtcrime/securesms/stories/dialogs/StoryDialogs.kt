@@ -41,7 +41,7 @@ object StoryDialogs {
       return false
     }
 
-    return shareContacts.any { it is ContactSearchKey.Story && Recipient.resolved(it.recipientId).isMyStory }
+    return shareContacts.any { it is ContactSearchKey.RecipientSearchKey.Story && Recipient.resolved(it.recipientId).isMyStory }
   }
 
   fun resendStory(context: Context, resend: () -> Unit) {
