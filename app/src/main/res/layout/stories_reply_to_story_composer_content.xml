@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/signal_background_tertiary"
-    android:orientation="horizontal"
     android:paddingTop="12dp">
 
     <org.thoughtcrime.securesms.components.FromTextView
@@ -17,6 +16,8 @@
         android:textAppearance="@style/Signal.Text.Caption"
         android:textColor="@color/signal_inverse_transparent_60"
         android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/bubble"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Replying privately to Miles Morales"
@@ -28,16 +29,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="18dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="6dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:layout_weight="1"
         android:background="@drawable/rounded_rectangle_secondary_18"
-        android:orientation="vertical"
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/reply_reaction_switch"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/private_reply_recipient"
+        app:layout_constraintTop_toBottomOf="@+id/private_reply_recipient"
         app:layout_goneMarginTop="0dp">
 
         <org.thoughtcrime.securesms.components.QuoteView
@@ -52,13 +51,13 @@
             app:message_type="story_reply_preview"
             app:quote_colorPrimary="@color/signal_text_primary"
             app:quote_colorSecondary="@color/signal_text_primary"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <org.thoughtcrime.securesms.components.ComposeText
             android:id="@+id/compose_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:background="@null"
             android:hint="@string/StoryViewerPageFragment__reply"
@@ -68,10 +67,12 @@
             android:maxLines="3"
             android:paddingBottom="2dp"
             android:textAppearance="@style/Signal.Text.Body"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/emoji_toggle"
             app:layout_constraintTop_toBottomOf="@id/quote_view"
-            app:layout_goneMarginTop="0dp" />
+            app:layout_goneMarginTop="0dp"
+            tools:text="hello\nasdf" />
 
         <org.thoughtcrime.securesms.components.emoji.EmojiToggle
             android:id="@+id/emoji_toggle"
@@ -79,56 +80,40 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="?selectableItemBackgroundBorderless"
+            app:force_outline="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/quote_view"
             app:layout_goneMarginTop="0dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <org.thoughtcrime.securesms.components.ComposeText
-        android:id="@+id/fake_compose_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:background="@null"
-        android:clickable="false"
-        android:enabled="false"
-        android:focusable="false"
-        android:paddingBottom="2dp"
-        android:textAppearance="@style/Signal.Text.Body"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@id/bubble"
-        app:layout_goneMarginTop="0dp" />
-
     <ViewSwitcher
         android:id="@+id/reply_reaction_switch"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:layout_marginEnd="6dp"
-        app:layout_constraintBottom_toBottomOf="@id/fake_compose_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/fake_compose_text">
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bubble"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <ImageView
             android:id="@+id/reaction"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="bottom"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/StoryReplyComposer__react_to_this_story"
-            android:scaleType="centerInside"
+            android:padding="6dp"
             app:srcCompat="@drawable/ic_add_reaction_outline_24"
             app:tint="@color/signal_icon_tint_primary" />
 
         <ImageView
             android:id="@+id/reply"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:layout_gravity="bottom"
-            android:background="@drawable/story_text_circle_button_background_inset_6"
+            android:background="@drawable/circle_tintable"
             android:contentDescription="@string/StoryReplyComposer__react_to_this_story"
-            android:scaleType="centerInside"
+            android:padding="6dp"
             app:backgroundTint="@color/core_ultramarine"
             app:srcCompat="@drawable/ic_send_24" />
     </ViewSwitcher>
