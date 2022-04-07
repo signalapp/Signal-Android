@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <ImageView
         android:id="@+id/text_story_post_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

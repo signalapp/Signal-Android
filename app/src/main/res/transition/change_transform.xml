@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <transitionSet android:duration="200"
     xmlns:android="http://schemas.android.com/apk/res/android">
+    <transition class="org.thoughtcrime.securesms.animation.transitions.CrossfaderTransition" />
     <changeBounds/>
     <changeTransform/>
     <changeImageTransform/>

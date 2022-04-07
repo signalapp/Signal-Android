@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.stories.landing
 import android.Manifest
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.transition.TransitionInflater
 import android.view.Menu
@@ -27,8 +28,10 @@ import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.permissions.Permissions
+import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
 import org.thoughtcrime.securesms.stories.my.MyStoriesActivity
 import org.thoughtcrime.securesms.stories.settings.StorySettingsActivity
@@ -165,7 +168,15 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
           Toast.makeText(requireContext(), R.string.message_recipients_list_item__resend, Toast.LENGTH_SHORT).show()
         } else {
           val options = ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity(), preview, ViewCompat.getTransitionName(preview) ?: "")
-          startActivity(StoryViewerActivity.createIntent(requireContext(), model.data.storyRecipient.id, -1L, model.data.isHidden), options.toBundle())
+
+          val record = model.data.primaryStory.messageRecord as MmsMessageRecord
+          val (text: StoryTextPostModel?, image: Uri?) = if (record.storyType.isTextStory) {
+            StoryTextPostModel.parseFrom(record) to null
+          } else {
+            null to record.slideDeck.thumbnailSlide?.uri
+          }
+
+          startActivity(StoryViewerActivity.createIntent(requireContext(), model.data.storyRecipient.id, -1L, model.data.isHidden, text, image), options.toBundle())
         }
       },
       onForwardStory = {

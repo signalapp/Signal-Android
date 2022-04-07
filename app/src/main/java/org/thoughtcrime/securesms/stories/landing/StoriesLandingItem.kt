@@ -140,6 +140,7 @@ object StoriesLandingItem {
           .addListener(HideBlurAfterLoadListener())
           .placeholder(storyTextPostModel.getPlaceholder())
           .centerCrop()
+          .dontAnimate()
           .into(storyPreview)
       } else if (thumbnail != null) {
         storyBlur.visible = blur != null
@@ -147,6 +148,7 @@ object StoriesLandingItem {
           .load(DecryptableStreamUriLoader.DecryptableUri(thumbnail))
           .addListener(HideBlurAfterLoadListener())
           .centerCrop()
+          .dontAnimate()
           .into(storyPreview)
       }
 
@@ -162,12 +164,14 @@ object StoriesLandingItem {
             .load(storyTextPostModel)
             .placeholder(storyTextPostModel.getPlaceholder())
             .centerCrop()
+            .dontAnimate()
             .into(storyMulti)
           storyMulti.visible = true
         } else if (secondaryThumb != null) {
           GlideApp.with(storyMulti)
             .load(DecryptableStreamUriLoader.DecryptableUri(secondaryThumb))
             .centerCrop()
+            .dontAnimate()
             .into(storyMulti)
           storyMulti.visible = true
         } else {

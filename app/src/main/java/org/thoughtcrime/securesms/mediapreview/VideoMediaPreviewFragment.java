@@ -53,6 +53,25 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
         events.getVideoControlsDelegate().onPlayerPositionDiscontinuity(r);
       }
     });
+    videoView.setPlayerCallback(new VideoPlayer.PlayerCallback() {
+      @Override
+      public void onReady() {
+        events.onMediaReady();
+      }
+
+      @Override
+      public void onPlaying() {
+      }
+
+      @Override
+      public void onStopped() {
+      }
+
+      @Override
+      public void onError() {
+        events.mediaNotAvailable();
+      }
+    });
 
     if (isVideoGif) {
       videoView.hideControls();

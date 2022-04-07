@@ -28,8 +28,6 @@ class VideoControlsDelegate {
     } else {
       playWhenReady[uri] = true
     }
-
-    this.player?.videoPlayer?.play()
   }
 
   fun restart() {

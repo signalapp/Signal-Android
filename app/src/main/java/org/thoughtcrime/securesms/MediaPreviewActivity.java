@@ -605,6 +605,10 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
     finish();
   }
 
+  @Override
+  public void onMediaReady() {
+  }
+
   private class ViewPagerListener extends ExtendedOnPageChangedListener {
 
     @Override

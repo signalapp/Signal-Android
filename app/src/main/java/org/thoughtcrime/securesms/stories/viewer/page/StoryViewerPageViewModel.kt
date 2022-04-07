@@ -194,6 +194,10 @@ class StoryViewerPageViewModel(
     storyViewerPlaybackStore.update { it.copy(isDisplayingLinkPreviewTooltip = isDisplayingLinkPreviewTooltip) }
   }
 
+  fun setIsRunningSharedElementAnimation(isRunningSharedElementAnimation: Boolean) {
+    storyViewerPlaybackStore.update { it.copy(isRunningSharedElementAnimation = isRunningSharedElementAnimation) }
+  }
+
   private fun resolveSwipeToReplyState(state: StoryViewerPageState, index: Int): StoryViewerPageState.ReplyState {
     if (index !in state.posts.indices) {
       return StoryViewerPageState.ReplyState.NONE

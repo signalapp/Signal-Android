@@ -77,7 +77,6 @@ public abstract class MediaPreviewFragment extends Fragment {
   public void onResume() {
     super.onResume();
     checkMediaStillAvailable();
-    requireActivity().supportStartPostponedEnterTransition();
   }
 
   public void cleanUp() {
@@ -103,6 +102,7 @@ public abstract class MediaPreviewFragment extends Fragment {
   public interface Events {
     boolean singleTapOnMedia();
     void mediaNotAvailable();
+    void onMediaReady();
     default @Nullable VideoControlsDelegate getVideoControlsDelegate() {
       return null;
     }

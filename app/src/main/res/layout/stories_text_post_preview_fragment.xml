@@ -7,11 +7,4 @@
         android:id="@+id/story_text_post"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-    <ImageView
-        android:id="@+id/story_text_post_shared_element_target"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:importantForAccessibility="no"
-        android:src="@color/core_grey_80" />
 </FrameLayout>

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.stories.viewer
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -8,6 +9,7 @@ import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.viewpager2.widget.ViewPager2
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageFragment
 
 /**
@@ -21,7 +23,7 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
 
   private val viewModel: StoryViewerViewModel by viewModels(
     factoryProducer = {
-      StoryViewerViewModel.Factory(storyRecipientId, onlyIncludeHiddenStories, StoryViewerRepository())
+      StoryViewerViewModel.Factory(storyRecipientId, onlyIncludeHiddenStories, storyThumbTextModel, storyThumbUri, StoryViewerRepository())
     }
   )
 
@@ -33,6 +35,12 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
 
   private val onlyIncludeHiddenStories: Boolean
     get() = requireArguments().getBoolean(ARG_HIDDEN_STORIES)
+
+  private val storyThumbTextModel: StoryTextPostModel?
+    get() = requireArguments().getParcelable(ARG_CROSSFADE_TEXT_MODEL)
+
+  private val storyThumbUri: Uri?
+    get() = requireArguments().getParcelable(ARG_CROSSFADE_IMAGE_URI)
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     storyPager = view.findViewById(R.id.story_item_pager)
@@ -52,6 +60,10 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
         if (state.page >= state.pages.size) {
           requireActivity().onBackPressed()
         }
+      }
+
+      if (state.loadState.isReady()) {
+        requireActivity().supportStartPostponedEnterTransition()
       }
     }
   }
@@ -94,13 +106,23 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
     private const val ARG_START_RECIPIENT_ID = "start.recipient.id"
     private const val ARG_START_STORY_ID = "start.story.id"
     private const val ARG_HIDDEN_STORIES = "hidden_stories"
+    private const val ARG_CROSSFADE_TEXT_MODEL = "crossfade.text.model"
+    private const val ARG_CROSSFADE_IMAGE_URI = "crossfade.image.uri"
 
-    fun create(storyRecipientId: RecipientId, storyId: Long, onlyIncludeHiddenStories: Boolean): Fragment {
+    fun create(
+      storyRecipientId: RecipientId,
+      storyId: Long,
+      onlyIncludeHiddenStories: Boolean,
+      storyThumbTextModel: StoryTextPostModel? = null,
+      storyThumbUri: Uri? = null
+    ): Fragment {
       return StoryViewerFragment().apply {
         arguments = Bundle().apply {
           putParcelable(ARG_START_RECIPIENT_ID, storyRecipientId)
           putLong(ARG_START_STORY_ID, storyId)
           putBoolean(ARG_HIDDEN_STORIES, onlyIncludeHiddenStories)
+          putParcelable(ARG_CROSSFADE_TEXT_MODEL, storyThumbTextModel)
+          putParcelable(ARG_CROSSFADE_IMAGE_URI, storyThumbUri)
         }
       }
     }

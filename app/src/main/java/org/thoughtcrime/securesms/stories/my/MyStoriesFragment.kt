@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.stories.my
 
+import android.net.Uri
 import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
@@ -16,7 +17,9 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.LifecycleDisposable
@@ -81,14 +84,21 @@ class MyStoriesFragment : DSLSettingsFragment(
                       Toast.makeText(requireContext(), R.string.message_recipients_list_item__resend, Toast.LENGTH_SHORT).show()
                     }
                   } else {
-                    val recipientId = if (it.distributionStory.messageRecord.recipient.isGroup) {
-                      it.distributionStory.messageRecord.recipient.id
+                    val recipient = if (it.distributionStory.messageRecord.recipient.isGroup) {
+                      it.distributionStory.messageRecord.recipient
                     } else {
-                      Recipient.self().id
+                      Recipient.self()
+                    }
+
+                    val record = it.distributionStory.messageRecord as MmsMessageRecord
+                    val (text: StoryTextPostModel?, image: Uri?) = if (record.storyType.isTextStory) {
+                      StoryTextPostModel.parseFrom(record) to null
+                    } else {
+                      null to record.slideDeck.thumbnailSlide?.uri
                     }
 
                     val options = ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity(), preview, ViewCompat.getTransitionName(preview) ?: "")
-                    startActivity(StoryViewerActivity.createIntent(requireContext(), recipientId, conversationMessage.messageRecord.id), options.toBundle())
+                    startActivity(StoryViewerActivity.createIntent(requireContext(), recipient.id, conversationMessage.messageRecord.id, recipient.shouldHideStory(), text, image), options.toBundle())
                   }
                 },
                 onLongClick = {
