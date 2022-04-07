@@ -138,4 +138,57 @@ class MmsDatabaseTest_stories {
     // THEN
     assertEquals(randomizedOrderedIds.reversed(), resultOrderedIds)
   }
+
+  @Test
+  fun given15Stories_whenIGetOrderedStoryRecipientsAndIds_thenIExpectUnviewedThenInterspersedViewedAndSelfSendsAllDescending() {
+    val myStoryThread = SignalDatabase.threads.getOrCreateThreadIdFor(myStory)
+
+    val unviewedIds: List<Long> = (0 until 5).map {
+      Thread.sleep(5)
+      MmsHelper.insert(
+        IncomingMediaMessage(
+          from = recipients[it],
+          sentTimeMillis = System.currentTimeMillis(),
+          serverTimeMillis = 2,
+          receivedTimeMillis = 2,
+          storyType = StoryType.STORY_WITH_REPLIES,
+        ),
+        -1L
+      ).get().messageId
+    }
+
+    val viewedIds: List<Long> = (0 until 5).map {
+      Thread.sleep(5)
+      MmsHelper.insert(
+        IncomingMediaMessage(
+          from = recipients[it],
+          sentTimeMillis = System.currentTimeMillis(),
+          serverTimeMillis = 2,
+          receivedTimeMillis = 2,
+          storyType = StoryType.STORY_WITH_REPLIES,
+        ),
+        -1L
+      ).get().messageId
+    }
+
+    val interspersedIds: List<Long> = (0 until 10).map {
+      Thread.sleep(5)
+      if (it % 2 == 0) {
+        SignalDatabase.mms.setIncomingMessageViewed(viewedIds[it / 2])
+        viewedIds[it / 2]
+      } else {
+        MmsHelper.insert(
+          recipient = myStory,
+          sentTimeMillis = System.currentTimeMillis(),
+          storyType = StoryType.STORY_WITH_REPLIES,
+          threadId = myStoryThread
+        )
+      }
+    }
+
+    val result = SignalDatabase.mms.orderedStoryRecipientsAndIds
+    val resultOrderedIds = result.map { it.messageId }
+
+    assertEquals(unviewedIds.reversed() + interspersedIds.reversed(), resultOrderedIds)
+  }
 }

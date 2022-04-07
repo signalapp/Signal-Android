@@ -691,9 +691,11 @@ public class MmsDatabase extends MessageDatabase {
                            + "WHERE is_story > 0 AND remote_deleted = 0\n"
                            + "ORDER BY\n"
                            + "is_unread DESC,\n"
-                           + "CASE WHEN is_outgoing = 0 AND viewed_receipt_count = 0 THEN mms.date END DESC,\n"
-                           + "CASE WHEN is_outgoing = 0 AND viewed_receipt_count > 0 THEN receipt_timestamp END DESC,\n"
-                           + "CASE WHEN is_outgoing = 1 THEN mms.date END DESC";
+                           + "CASE\n"
+                           + "WHEN is_outgoing = 0 AND viewed_receipt_count = 0 THEN mms.date\n"
+                           + "WHEN is_outgoing = 0 AND viewed_receipt_count > 0 THEN receipt_timestamp\n"
+                           + "WHEN is_outgoing = 1 THEN mms.date\n"
+                           + "END DESC";
 
     List<StoryResult> results;
     try (Cursor cursor = db.rawQuery(query, null)) {
