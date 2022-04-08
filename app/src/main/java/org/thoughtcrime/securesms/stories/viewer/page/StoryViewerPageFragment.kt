@@ -274,7 +274,7 @@ class StoryViewerPageFragment :
         if (state.posts.isNotEmpty() && state.selectedPostIndex in state.posts.indices) {
           val post = state.posts[state.selectedPostIndex]
 
-          presentViewsAndReplies(post)
+          presentViewsAndReplies(post, state.replyState)
           presentSenderAvatar(senderAvatar, post)
           presentGroupAvatar(groupAvatar, post)
           presentFrom(from, post)
@@ -692,7 +692,14 @@ class StoryViewerPageFragment :
     }
   }
 
-  private fun presentViewsAndReplies(post: StoryPost) {
+  private fun presentViewsAndReplies(post: StoryPost, replyState: StoryViewerPageState.ReplyState) {
+    if (replyState == StoryViewerPageState.ReplyState.NONE) {
+      viewsAndReplies.visible = false
+      return
+    } else {
+      viewsAndReplies.visible = true
+    }
+
     val views = resources.getQuantityString(R.plurals.StoryViewerFragment__d_views, post.viewCount, post.viewCount)
     val replies = resources.getQuantityString(R.plurals.StoryViewerFragment__d_replies, post.replyCount, post.replyCount)
 
