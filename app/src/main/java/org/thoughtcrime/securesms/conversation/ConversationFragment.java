@@ -69,8 +69,11 @@ import com.annimon.stream.Stream;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.DimensionUnit;
+import org.signal.core.util.StreamUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
@@ -133,6 +136,7 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.mms.TextSlide;
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
@@ -169,7 +173,6 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
-import org.signal.core.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
@@ -931,22 +934,44 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   }
 
   private void handleCopyMessage(final Set<MultiselectPart> multiselectParts) {
-    CharSequence bodies = Stream.of(multiselectParts)
-                                .sortBy(m -> m.getMessageRecord().getDateReceived())
-                                .map(MultiselectPart::getConversationMessage)
-                                .distinct()
-                                .map(m -> m.getDisplayBody(requireContext()))
-                                .filterNot(TextUtils::isEmpty)
-                                .collect(SpannableStringBuilder::new, (bodyBuilder, body) -> {
-                                  if (bodyBuilder.length() > 0) {
-                                    bodyBuilder.append('\n');
-                                  }
-                                  bodyBuilder.append(body);
-                                });
+    SimpleTask.run(() -> extractBodies(multiselectParts),
+                   bodies -> {
+                     if (!Util.isEmpty(bodies)) {
+                       Util.copyToClipboard(requireContext(), bodies);
+                     }
+                   });
+  }
 
-    if (!TextUtils.isEmpty(bodies)) {
-      Util.copyToClipboard(requireContext(), bodies);
-    }
+  private @NotNull CharSequence extractBodies(final Set<MultiselectPart> multiselectParts) {
+    return Stream.of(multiselectParts)
+                 .sortBy(m -> m.getMessageRecord().getDateReceived())
+                 .map(MultiselectPart::getConversationMessage)
+                 .distinct()
+                 .map(message -> {
+                   if (MessageRecordUtil.hasTextSlide(message.getMessageRecord())) {
+                     TextSlide textSlide = MessageRecordUtil.requireTextSlide(message.getMessageRecord());
+                     if (textSlide.getUri() == null) {
+                       return message.getDisplayBody(requireContext());
+                     }
+
+                     try (InputStream stream = PartAuthority.getAttachmentStream(requireContext(), textSlide.getUri())) {
+                       String body = StreamUtil.readFullyAsString(stream);
+                       return ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(requireContext(), message.getMessageRecord(), body)
+                                                                            .getDisplayBody(requireContext());
+                     } catch (IOException e) {
+                       Log.w(TAG, "Failed to read text slide data.");
+                     }
+                   }
+
+                   return message.getDisplayBody(requireContext());
+                 })
+                 .filterNot(Util::isEmpty)
+                 .collect(SpannableStringBuilder::new, (bodyBuilder, body) -> {
+                   if (bodyBuilder.length() > 0) {
+                     bodyBuilder.append('\n');
+                   }
+                   bodyBuilder.append(body);
+                 });
   }
 
   private void handleDeleteMessages(final Set<MultiselectPart> multiselectParts) {
