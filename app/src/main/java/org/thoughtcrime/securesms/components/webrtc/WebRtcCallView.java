@@ -782,15 +782,23 @@ public class WebRtcCallView extends ConstraintLayout {
       dimens = new Point(ViewUtil.dpToPx(90), ViewUtil.dpToPx(160));
     }
 
-    ResizeAnimation animation = new ResizeAnimation(smallLocalRenderFrame, dimens.x, dimens.y);
-    animation.setDuration(PIP_RESIZE_DURATION);
-    animation.setAnimationListener(new SimpleAnimationListener() {
+    SimpleAnimationListener animationListener = new SimpleAnimationListener() {
       @Override
       public void onAnimationEnd(Animation animation) {
         pictureInPictureGestureHelper.enableCorners();
         pictureInPictureGestureHelper.adjustPip();
       }
-    });
+    };
+
+    ViewGroup.LayoutParams layoutParams = smallLocalRenderFrame.getLayoutParams();
+    if (layoutParams.width == dimens.x && layoutParams.height == dimens.y) {
+      animationListener.onAnimationEnd(null);
+      return;
+    }
+
+    ResizeAnimation animation = new ResizeAnimation(smallLocalRenderFrame, dimens.x, dimens.y);
+    animation.setDuration(PIP_RESIZE_DURATION);
+    animation.setAnimationListener(animationListener);
 
     smallLocalRenderFrame.startAnimation(animation);
   }
