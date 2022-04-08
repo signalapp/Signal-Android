@@ -136,7 +136,7 @@ class TextStoryPostCreationViewModel : ViewModel() {
     store.update { it.copy(backgroundColor = TextStoryBackgroundColors.cycleBackgroundColor(it.backgroundColor)) }
   }
 
-  fun setLinkPreview(url: String) {
+  fun setLinkPreview(url: String?) {
     store.update { it.copy(linkPreviewUri = url) }
   }
 

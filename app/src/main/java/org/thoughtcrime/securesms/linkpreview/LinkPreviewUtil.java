@@ -49,6 +49,17 @@ public final class LinkPreviewUtil {
 
   private static final Set<String> INVALID_TOP_LEVEL_DOMAINS = SetUtil.newHashSet("onion", "i2p");
 
+  public static @Nullable String getTopLevelDomain(@Nullable String urlString) {
+    if (!Util.isEmpty(urlString)) {
+      HttpUrl url = HttpUrl.parse(urlString);
+      if (url != null) {
+        return url.topPrivateDomain();
+      }
+    }
+
+    return null;
+  }
+
   /**
    * @return All whitelisted URLs in the source text.
    */

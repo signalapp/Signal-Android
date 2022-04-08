@@ -457,6 +457,14 @@
         <item name="cornerSizeBottomRight">0dp</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.Signal.Story.LinkPreview.Icon" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">8dp</item>
+        <item name="cornerSizeTopLeft">8dp</item>
+        <item name="cornerSizeBottomLeft">8dp</item>
+        <item name="cornerSizeBottomRight">8dp</item>
+    </style>
+
     <style name="ShapeAppearanceOverlay.Signal.Story.Preview" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">12dp</item>

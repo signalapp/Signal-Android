@@ -160,7 +160,11 @@ class TextStoryPostSendFragment : Fragment(R.layout.stories_send_text_post_fragm
 
     val textStoryPostCreationState = creationViewModel.state.value
 
-    viewModel.onSend(contactSearchMediator.getSelectedContacts(), textStoryPostCreationState!!, linkPreviewViewModel.onSend().firstOrNull())
+    viewModel.onSend(
+      contactSearchMediator.getSelectedContacts(),
+      textStoryPostCreationState!!,
+      linkPreviewViewModel.onSendWithErrorUrl().firstOrNull()
+    )
   }
 
   private fun animateInSelection() {
