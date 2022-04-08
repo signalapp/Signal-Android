@@ -221,6 +221,13 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
   }
 
   /**
+   * Pauses playback regardless of which audio slide is playing.
+   */
+  public void pausePlayback() {
+    getMediaController().getTransportControls().pause();
+  }
+
+  /**
    * Seeks to a given position if th given audio slide is playing. This call
    * is ignored if the given audio slide is not currently playing.
    *

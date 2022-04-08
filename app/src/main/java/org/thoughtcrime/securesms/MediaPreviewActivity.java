@@ -55,6 +55,8 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.animation.DepthPageTransformer;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.viewpager.ExtendedOnPageChangedListener;
+import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController;
+import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardBottomSheet;
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment;
@@ -91,7 +93,8 @@ import java.util.Objects;
 public final class MediaPreviewActivity extends PassphraseRequiredActivity
   implements LoaderManager.LoaderCallbacks<Pair<Cursor, Integer>>,
              MediaRailAdapter.RailItemListener,
-             MediaPreviewFragment.Events
+             MediaPreviewFragment.Events,
+             VoiceNoteMediaControllerOwner
 {
 
   private final static String TAG = Log.tag(MediaPreviewActivity.class);
@@ -131,6 +134,8 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
   private MediaDatabase.Sorting sorting;
   private FullscreenHelper      fullscreenHelper;
 
+  private VoiceNoteMediaController voiceNoteMediaController;
+
   private @Nullable Cursor cursor = null;
 
   public static @NonNull Intent intentFromMediaRecord(@NonNull Context context,
@@ -163,6 +168,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
 
     setSupportActionBar(findViewById(R.id.toolbar));
 
+    voiceNoteMediaController = new VoiceNoteMediaController(this);
     viewModel = ViewModelProviders.of(this).get(MediaPreviewViewModel.class);
 
     fullscreenHelper = new FullscreenHelper(this);
@@ -607,6 +613,11 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
 
   @Override
   public void onMediaReady() {
+  }
+
+  @Override
+  public @NonNull VoiceNoteMediaController getVoiceNoteMediaController() {
+    return voiceNoteMediaController;
   }
 
   private class ViewPagerListener extends ExtendedOnPageChangedListener {

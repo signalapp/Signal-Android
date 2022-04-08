@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController;
+import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.video.VideoPlayer;
@@ -61,6 +63,9 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
 
       @Override
       public void onPlaying() {
+        if (!isVideoGif && requireActivity() instanceof VoiceNoteMediaControllerOwner) {
+          ((VoiceNoteMediaControllerOwner) requireActivity()).getVoiceNoteMediaController().pausePlayback();
+        }
       }
 
       @Override
@@ -93,6 +98,7 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
   @Override
   public void onResume() {
     super.onResume();
+
     if (videoView != null && isVideoGif) {
       videoView.play();
     }

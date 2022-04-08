@@ -7,10 +7,14 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
+import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
 
-class StoryViewerActivity : PassphraseRequiredActivity() {
+class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner {
+
+  override lateinit var voiceNoteMediaController: VoiceNoteMediaController
 
   override fun attachBaseContext(newBase: Context) {
     delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
@@ -22,6 +26,8 @@ class StoryViewerActivity : PassphraseRequiredActivity() {
 
     super.onCreate(savedInstanceState, ready)
     setContentView(R.layout.fragment_container)
+
+    voiceNoteMediaController = VoiceNoteMediaController(this)
 
     if (savedInstanceState == null) {
       supportFragmentManager.beginTransaction()
