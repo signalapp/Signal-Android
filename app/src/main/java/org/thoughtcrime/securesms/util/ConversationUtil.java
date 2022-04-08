@@ -30,6 +30,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * ConversationUtil encapsulates support for Android 11+'s new Conversations system
@@ -138,6 +139,14 @@ public final class ConversationUtil {
 
   public static int getMaxShortcuts(@NonNull Context context) {
     return Math.min(ShortcutManagerCompat.getMaxShortcutCountPerActivity(context), 150);
+  }
+
+  /**
+   * Removes the long-lived shortcuts for the given set of recipients.
+   */
+  @WorkerThread
+  public static void removeLongLivedShortcuts(@NonNull Context context, @NonNull Collection<RecipientId> recipients) {
+    ShortcutManagerCompat.removeLongLivedShortcuts(context, recipients.stream().map(ConversationUtil::getShortcutId).collect(Collectors.toList()));
   }
 
   /**

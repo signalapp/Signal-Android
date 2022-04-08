@@ -140,6 +140,7 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
+import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
@@ -953,6 +954,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       ThreadDatabase db = SignalDatabase.threads();
 
       db.pinConversations(toPin);
+      ConversationUtil.refreshRecipientShortcuts();
 
       return null;
     }, unused -> {
@@ -965,6 +967,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       ThreadDatabase db = SignalDatabase.threads();
 
       db.unpinConversations(ids);
+      ConversationUtil.refreshRecipientShortcuts();
 
       return null;
     }, unused -> {
@@ -1299,6 +1302,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
           ApplicationDependencies.getMessageNotifier().updateNotification(context);
           MarkReadReceiver.process(context, messageIds);
         }
+
+        ConversationUtil.refreshRecipientShortcuts();
       }
 
       @Override
@@ -1312,6 +1317,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
           threadDatabase.incrementUnread(threadId, unreadCount);
           ApplicationDependencies.getMessageNotifier().updateNotification(context);
         }
+
+        ConversationUtil.refreshRecipientShortcuts();
       }
     }.executeOnExecutor(SignalExecutors.BOUNDED, threadId);
   }

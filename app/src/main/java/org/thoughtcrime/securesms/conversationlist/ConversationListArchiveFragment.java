@@ -36,6 +36,7 @@ import com.google.android.material.snackbar.Snackbar;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.task.SnackbarAsyncTask;
 import org.thoughtcrime.securesms.util.views.Stub;
 
@@ -138,11 +139,13 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
       @Override
       protected void executeAction(@Nullable Long parameter) {
         SignalDatabase.threads().unarchiveConversation(threadId);
+        ConversationUtil.refreshRecipientShortcuts();
       }
 
       @Override
       protected void reverseAction(@Nullable Long parameter) {
         SignalDatabase.threads().archiveConversation(threadId);
+        ConversationUtil.refreshRecipientShortcuts();
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, threadId);
   }
