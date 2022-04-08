@@ -3586,7 +3586,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ManageDonationsFragment__my_support">Sprijinul meu</string>
   <string name="ManageDonationsFragment__manage_subscription">Gestionare abonament</string>
   <!--Label for Tax Receipts button-->
-  <string name="ManageDonationsFragment__tax_receipts">Bonuri fiscale</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Bonuri fiscale</string> -->
   <string name="ManageDonationsFragment__badges">Insigne</string>
   <string name="ManageDonationsFragment__subscription_faq">FAQ Abonament</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Eroare la obținerea abonamentului.</string>
@@ -3850,7 +3850,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Adaugă o poveste</string>
   <!--Displayed when there are no stories to display-->
-  <string name="StoriesLandingFragment__no_recent_updates">Nu există actualizări recente de afișat în acest moment.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">Nu există actualizări recente de afișat în acest moment.</string> -->
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Ascunde povestea</string>
   <!--Context menu option to unhide a story-->
@@ -4080,7 +4080,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Dezactivare</string>
   <!--Conversation Item label for reactions to a story-->
-  <string name="ConversationItem__s_dot_story">%1$s · Poveste</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · Poveste</string> -->
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Ai reacționat la poveste</string>
   <!--endregion-->

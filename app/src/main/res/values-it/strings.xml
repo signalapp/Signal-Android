@@ -3488,7 +3488,7 @@
   <string name="ManageDonationsFragment__my_support">Il mio supporto</string>
   <string name="ManageDonationsFragment__manage_subscription">Gestisci contributo</string>
   <!--Label for Tax Receipts button-->
-  <string name="ManageDonationsFragment__tax_receipts">Ricevute fiscali</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Ricevute fiscali</string> -->
   <string name="ManageDonationsFragment__badges">Badge</string>
   <string name="ManageDonationsFragment__subscription_faq">Domande frequenti sul contributo</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Errore durante il recupero del contributo.</string>
@@ -3752,7 +3752,7 @@
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Aggiungi una storia</string>
   <!--Displayed when there are no stories to display-->
-  <string name="StoriesLandingFragment__no_recent_updates">Nessun aggiornamento recente da mostrare al momento.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">Nessun aggiornamento recente da mostrare al momento.</string> -->
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Nascondi storia</string>
   <!--Context menu option to unhide a story-->
@@ -3977,7 +3977,7 @@
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Disattiva</string>
   <!--Conversation Item label for reactions to a story-->
-  <string name="ConversationItem__s_dot_story">%1$s · Storia</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · Storia</string> -->
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Ha reagito alla storia</string>
   <!--endregion-->

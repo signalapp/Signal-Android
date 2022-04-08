@@ -3488,7 +3488,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ManageDonationsFragment__my_support">Mi apoyo</string>
   <string name="ManageDonationsFragment__manage_subscription">Gestionar suscripción</string>
   <!--Label for Tax Receipts button-->
-  <string name="ManageDonationsFragment__tax_receipts">Justificante de impuestos</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Justificante de impuestos</string> -->
   <string name="ManageDonationsFragment__badges">Distintivos</string>
   <string name="ManageDonationsFragment__subscription_faq">Preguntas y respuestas sobre la suscripción</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Fallo al comprobar la suscripción.</string>
@@ -3752,7 +3752,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Añade una historia</string>
   <!--Displayed when there are no stories to display-->
-  <string name="StoriesLandingFragment__no_recent_updates">No hay actualizaciones recientes que mostrar.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">No hay actualizaciones recientes que mostrar.</string> -->
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Ocultar historia</string>
   <!--Context menu option to unhide a story-->
@@ -3977,7 +3977,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Desactivar</string>
   <!--Conversation Item label for reactions to a story-->
-  <string name="ConversationItem__s_dot_story">Historia · %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">Historia · %1$s</string> -->
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Reaccionó a una historia</string>
   <!--endregion-->

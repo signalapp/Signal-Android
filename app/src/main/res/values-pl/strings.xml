@@ -3684,7 +3684,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ManageDonationsFragment__my_support">Moje wsparcie</string>
   <string name="ManageDonationsFragment__manage_subscription">Zarządzaj subskrypcją</string>
   <!--Label for Tax Receipts button-->
-  <string name="ManageDonationsFragment__tax_receipts">Faktury podatkowe</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Faktury podatkowe</string> -->
   <string name="ManageDonationsFragment__badges">Odznaki</string>
   <string name="ManageDonationsFragment__subscription_faq">FAQ subskrypcji</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Błąd subskrypcji.</string>
@@ -3912,7 +3912,7 @@ danych, rozważ miesięczną subskrypcję.</string>
   <!--Donation receipts activity title-->
   <string name="DonationReceiptListFragment__all_activity">Wszystkie aktywności</string>
   <!--Donation receipts all tab label-->
-  <string name="DonationReceiptListFragment__all">Wszyscy</string>
+  <string name="DonationReceiptListFragment__all">Wszystkie</string>
   <!--Donation receipts recurring tab label-->
   <string name="DonationReceiptListFragment__recurring">Odnawiana</string>
   <!--Donation receipts one time tab label-->
@@ -3949,7 +3949,7 @@ danych, rozważ miesięczną subskrypcję.</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Dodaj historię</string>
   <!--Displayed when there are no stories to display-->
-  <string name="StoriesLandingFragment__no_recent_updates">W tej chwili nie ma nowych aktualizacji do pokazania</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">W tej chwili nie ma nowych aktualizacji do pokazania</string> -->
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Ukryj historię</string>
   <!--Context menu option to unhide a story-->
@@ -4184,7 +4184,7 @@ danych, rozważ miesięczną subskrypcję.</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Wyłącz</string>
   <!--Conversation Item label for reactions to a story-->
-  <string name="ConversationItem__s_dot_story">%1$s · Historia</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · Historia</string> -->
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Zareagowano na historię</string>
   <!--endregion-->

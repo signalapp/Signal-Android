@@ -498,7 +498,7 @@
   <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Du har ikke tilladelse til at sende til denne gruppe</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent fejl ved Signal-kommunikationen!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal var ude af stand til at registrere med Google Play Services. Signal-beskeder og opkald blev deaktiveret. Prøv venligst at registrere igen i Indstillinger -&gt; Advanceret</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal var ude af stand til at registrere med Google Play-tjenester. Signal-beskeder og opkald blev deaktiveret. Prøv venligst at registrere igen i Indstillinger -&gt; Avanceret</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Fejl opstod ved hentning af GIF i fuld opløsning</string>
   <!--GiphyFragmentPageAdapter-->
@@ -949,7 +949,7 @@
   <string name="MessageRecord_the_group_was_updated">Gruppen blev opdateret.</string>
   <string name="MessageRecord_you_called_date">Du ringede op · %1$s</string>
   <string name="MessageRecord_missed_audio_call_date">Ubesvaret lydopkald · %1$s</string>
-  <string name="MessageRecord_missed_video_call_date">Mistet videoopkald · %1$s</string>
+  <string name="MessageRecord_missed_video_call_date">Ubesvaret videoopkald · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s opdaterede gruppen.</string>
   <string name="MessageRecord_s_called_you_date">%1$s ringede til dig · %2$s</string>
   <string name="MessageRecord_s_joined_signal">%s bruger Signal!</string>
@@ -1213,7 +1213,7 @@
   <string name="PlacePickerActivity_drop_pin">Placér markør</string>
   <string name="PlacePickerActivity_accept_address">Godkend adresse</string>
   <!--PlayServicesProblemFragment-->
-  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Din installerede version af Google Play tjenester virker ikke korrekt. Geninstallér venligst Google Play tjenester og prøv igen</string>
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Din installerede version af Google Play-tjenester virker ikke korrekt. Geninstallér venligst Google Play-tjenester og prøv igen</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Forkert pinkode</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Spring pinkode-indtastning over?</string>
@@ -1240,8 +1240,8 @@
   <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Hvis du deaktiverer pinkode mister du alle data, når du omregistrerer Signal. Medmindre du sikkerhedskopierer og gendanner manuelt. Du kan ikke aktivere registreringslås, mens pinkoden er deaktiveret.</string>
   <string name="PinOptOutDialog_disable_pin">Deaktiver pinkode</string>
   <!--RatingManager-->
-  <string name="RatingManager_rate_this_app">Bedøm appen</string>
-  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Hvis du kan lide at bruge appen, så hjælp os venligst ved at give den en bedømmelse.</string>
+  <string name="RatingManager_rate_this_app">Bedøm denne app</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Hvis du kan lide at bruge denne app, så hjælp os venligst ved at give den en bedømmelse.</string>
   <string name="RatingManager_rate_now">Bedøm nu!</string>
   <string name="RatingManager_no_thanks">Nej tak</string>
   <string name="RatingManager_later">Senere</string>
@@ -1281,7 +1281,7 @@
   <string name="ValentinesDayMegaphone_show_your_affection">Vis din hengivenhed ved at blive Signal-bidragsyder.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Tryk her for at starte video</string>
-  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">For at ringe til %1$s kræver Signal tilladelse til at tilgå din kamera</string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">For at ringe til %1$s har Signal brug for tilladelse til at tilgå dit kamera</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Ringer op …</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Gruppe er for stor til at ringe til alle deltagerne.</string>
@@ -1351,7 +1351,7 @@
   <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Du vil ikke modtage deres lyd eller billede og de vil ikke modtage dine.</string>
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Kan ikke modtage lyd &amp; video fra %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Kan ikke modtage lyd og video fra %1$s</string>
-  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dette kan skyldes, at de ikke har bekræftet din sikkerhedsnummerændring, at der er et problem med deres enhed, eller at de har blokeret dig.</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dette kan skyldes, at personen ikke har bekræftet ændringen i jeres sikkerhedsnummer, at der er et problem med deres enhed, eller at de har blokeret dig.</string>
   <!--CallToastPopupWindow-->
   <string name="CallToastPopupWindow__swipe_to_view_screen_share">Stryg for at få vist skærmdeling</string>
   <!--ProxyBottomSheetFragment-->
@@ -1378,11 +1378,11 @@ nummer (%s) er ugyldigt</string>
   <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Du vil modtage et opkald for at bekræfte dette nummer.</string>
   <string name="RegistrationActivity_is_your_phone_number_above_correct">Er dit telefonnummer ovenfor korrekt?</string>
   <string name="RegistrationActivity_edit_number">Redigér nummer</string>
-  <string name="RegistrationActivity_missing_google_play_services">Mangler Google Play Services</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Enheden mangler at have Google Play Service installeret. Du kan stadig bruge Signal, men denne konfiguration kan resultere i begrænset stabilitet og ydeevne.\n\nHvis du ikke er en superbruger, ikke kører en alternativ Android ROM eller mener du ser denne besked ved en fejl, bedes du kontakte support@signal.org på engelsk for hjælp</string>
+  <string name="RegistrationActivity_missing_google_play_services">Mangler Google Play-tjenester</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Enheden mangler Google Play-tjenester. Du kan stadig bruge Signal, men denne konfiguration kan resultere i begrænset stabilitet og ydeevne.\n\nHvis du ikke er en superbruger, ikke kører en alternativ Android ROM eller mener, at du ser denne besked ved en fejl, bedes du kontakte support@signal.org på engelsk for hjælp.</string>
   <string name="RegistrationActivity_i_understand">Forstået</string>
   <string name="RegistrationActivity_play_services_error">Play Services fejl</string>
-  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services bliver opdateret eller er midlertidigt utilgængelig. Prøv venligst igen</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-tjenester opdateres eller er midlertidigt utilgængelig. Prøv venligst igen.</string>
   <string name="RegistrationActivity_terms_and_privacy">Vilkår og privatlivspolitik</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal har brug for tilladelse til at tilgå kontakter og lagerplads for at du kan oprette forbindelse til venner og sende beskeder. Dine kontakter uploades ved hjælp af Signals private kontaktopdagelse, hvilket betyder, at de er end-to-end-krypteret og aldrig synlige for Signal-tjenesten.</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal har brug for tilladelse til at tilgå kontakter for at du kan oprette forbindelse til venner. Dine kontakter uploades ved hjælp af Signals private kontaktopdagelse, hvilket betyder, at de er end-to-end-krypteret og aldrig synlige for Signal-tjenesten.</string>
@@ -1503,8 +1503,8 @@ nummer (%s) er ugyldigt</string>
   <string name="ThreadRecord_draft">Kladde:</string>
   <string name="ThreadRecord_called">Du ringede op</string>
   <string name="ThreadRecord_called_you">Ringede til dig</string>
-  <string name="ThreadRecord_missed_audio_call">Mistet lydopkald</string>
-  <string name="ThreadRecord_missed_video_call">Mistet videoopkald</string>
+  <string name="ThreadRecord_missed_audio_call">Ubesvaret lydopkald</string>
+  <string name="ThreadRecord_missed_video_call">Ubesvaret videoopkald</string>
   <string name="ThreadRecord_media_message">Mediebesked</string>
   <string name="ThreadRecord_sticker">Klistermærke</string>
   <string name="ThreadRecord_view_once_photo">Vis billede én gang</string>
@@ -1561,7 +1561,7 @@ nummer (%s) er ugyldigt</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Del sikkerhedsnummer via …</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Vores Signal-sikkerhedsnummer:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Det lader til at du ikke har nogen apps at dele til.</string>
-  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Sikkerhedsnummer til sammenligning findes ikke i udklipsholderen</string>
+  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Sikkerhedsnummer til sammenligning kunne ikke findes i udklipsholderen</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal kræver tilladelse til at tilgå dit kamera, for at kunne skanne en QR-kode, hvilket er blevet nægtet. Gå venligst til appindstillinger, vælg \"Tilladelser\" og tilvælg \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Ikke muligt at skanne QR-koden. Tilladelse til at tilgå kameraet mangler</string>
   <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Du skal først udveksle beskeder, før du kan se %1$s\'s sikkerhedsnummer.</string>
@@ -1814,7 +1814,7 @@ nummer (%s) er ugyldigt</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
   <string name="BubbleOptOutTooltip__turn_off">Deaktiver</string>
   <!--safety_number_change_dialog-->
-  <string name="safety_number_change_dialog__safety_number_changes">Sikkerhedsnummer ændringer</string>
+  <string name="safety_number_change_dialog__safety_number_changes">Sikkerhedsnummer-ændringer</string>
   <string name="safety_number_change_dialog__accept">Godkend</string>
   <string name="safety_number_change_dialog__send_anyway">Send alligevel</string>
   <string name="safety_number_change_dialog__call_anyway">Ring alligevel</string>
@@ -1972,7 +1972,7 @@ nummer (%s) er ugyldigt</string>
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Stryg op for at besvare</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Swipe ned for at afvise</string>
   <!--message_details_header-->
-  <string name="message_details_header__issues_need_your_attention">Nogle ting kræver din opmærksomhed</string>
+  <string name="message_details_header__issues_need_your_attention">Nogle ting kræver din opmærksomhed.</string>
   <string name="message_details_header__sent">Sendt:</string>
   <string name="message_details_header__received">Modtaget:</string>
   <string name="message_details_header__disappears">Forsvinder om:</string>
@@ -2786,7 +2786,7 @@ nummer (%s) er ugyldigt</string>
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Der kan ikke overføres fra en nyere version af Signal</string>
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">Overfører data</string>
-  <string name="DeviceTransfer__keep_both_devices_near_each_other">Hold begge enheder tæt ved hinanden. Sluk ikke for enhederne, og hold Signal åbent. Overførsler er end-to-end krypteret</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Hold begge enheder tæt ved hinanden. Sluk ikke for enhederne, og hold Signal åbent. Overførsler er end-to-end krypteret.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d beskeder indtil videre …</string>
   <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% af beskeder indtil videre…</string>
@@ -2799,7 +2799,7 @@ nummer (%s) er ugyldigt</string>
   <string name="DeviceTransfer__unable_to_transfer">Der kan ikke overføres</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Overfør konto</string>
-  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Du kan overføre din Signal konto ved opsætning af Signal på en ny Android-enhed. Før du fortsætter:</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Du kan overføre din Signal-konto ved opsætning af Signal på en ny Android-enhed. Før du fortsætter:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
   <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Hent Signal på din nye Android-enhed</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
@@ -3487,7 +3487,7 @@ nummer (%s) er ugyldigt</string>
   <string name="ManageDonationsFragment__my_support">Min støtte</string>
   <string name="ManageDonationsFragment__manage_subscription">Administrer abonnement</string>
   <!--Label for Tax Receipts button-->
-  <string name="ManageDonationsFragment__tax_receipts">Skattekvitteringer</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Skattekvitteringer</string> -->
   <string name="ManageDonationsFragment__badges">Emblemer</string>
   <string name="ManageDonationsFragment__subscription_faq">Abonnement OSS</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Fejl ved oprettelse af abonnement.</string>
@@ -3751,7 +3751,7 @@ nummer (%s) er ugyldigt</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Tilføj en historie</string>
   <!--Displayed when there are no stories to display-->
-  <string name="StoriesLandingFragment__no_recent_updates">Der er ingen nye opdateringer at vise lige nu.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">Der er ingen nye opdateringer at vise lige nu.</string> -->
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Skjul historie</string>
   <!--Context menu option to unhide a story-->
@@ -3976,7 +3976,7 @@ nummer (%s) er ugyldigt</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Deaktiver</string>
   <!--Conversation Item label for reactions to a story-->
-  <string name="ConversationItem__s_dot_story">%1$s · Historie</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · Historie</string> -->
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Reagerede på en historie</string>
   <!--endregion-->

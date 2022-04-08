@@ -3504,7 +3504,7 @@ Sjekkar igjen no …</string>
   <string name="ManageDonationsFragment__my_support">Mi støtte</string>
   <string name="ManageDonationsFragment__manage_subscription">Handter abonnement</string>
   <!--Label for Tax Receipts button-->
-  <string name="ManageDonationsFragment__tax_receipts">Skattekvitteringar</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Skattekvitteringar</string> -->
   <string name="ManageDonationsFragment__badges">Merke</string>
   <string name="ManageDonationsFragment__subscription_faq">Ofte spurde spørsmål om abonnement</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Klarte ikkje henta abonnement</string>
@@ -3768,7 +3768,7 @@ Sjekkar igjen no …</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Lag historie</string>
   <!--Displayed when there are no stories to display-->
-  <string name="StoriesLandingFragment__no_recent_updates">Ingen nylege oppdateringa å visa nett no.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">Ingen nylege oppdateringa å visa nett no.</string> -->
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Skjul historie</string>
   <!--Context menu option to unhide a story-->
@@ -3993,7 +3993,7 @@ Sjekkar igjen no …</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Skru av</string>
   <!--Conversation Item label for reactions to a story-->
-  <string name="ConversationItem__s_dot_story">%1$s · Historie</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · Historie</string> -->
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Reagerte på ei historie</string>
   <!--endregion-->

@@ -3676,7 +3676,7 @@
   <string name="ManageDonationsFragment__my_support">Mano palaikymas</string>
   <string name="ManageDonationsFragment__manage_subscription">Tvarkyti prenumeratą</string>
   <!--Label for Tax Receipts button-->
-  <string name="ManageDonationsFragment__tax_receipts">Mokesčio kvitai</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Mokesčio kvitai</string> -->
   <string name="ManageDonationsFragment__badges">Ženkliukai</string>
   <string name="ManageDonationsFragment__subscription_faq">DUK apie prenumeratą</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Klaida gaunant prenumeratą.</string>
@@ -4135,7 +4135,7 @@
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Išjungti</string>
   <!--Conversation Item label for reactions to a story-->
-  <string name="ConversationItem__s_dot_story">%1$s · Istorija</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · Istorija</string> -->
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->

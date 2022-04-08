@@ -143,7 +143,7 @@
   <string name="ClientDeprecatedActivity_warning">Предупредување</string>
   <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Вашата верзија на Signal е истечена. Можете да ја видите историјата на пораки, но нема да можете да испраќате и примате пораки додека не ажурирате.</string>
   <!--CommunicationActions-->
-  <string name="CommunicationActions_no_browser_found">Не беше најден веб прелистувач</string>
+  <string name="CommunicationActions_no_browser_found">Не е пронајден веб прелистувач.</string>
   <string name="CommunicationActions_send_email">Испрати е-пошта</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Веќе е во тек мобилен повик.</string>
   <string name="CommunicationActions_start_voice_call">Да започнам гласовен повик?</string>
@@ -1523,8 +1523,8 @@
   <string name="ThreadRecord_video">Видео</string>
   <string name="ThreadRecord_chat_session_refreshed">Сесијата со разговорот е освежена</string>
   <!--UpdateApkReadyListener-->
-  <string name="UpdateApkReadyListener_Signal_update">Signal надградба</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Нова верзија од Signal е достапна, допрете за надградба</string>
+  <string name="UpdateApkReadyListener_Signal_update">Signal ажурирање</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Достапна е нова верзија на Signal, допрете за ажурирање</string>
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Да ја испратам пораката?</string>
   <string name="UntrustedSendDialog_send">Испрати</string>
@@ -2531,7 +2531,7 @@
   <string name="BaseKbsPinFragment__create_numeric_pin">Создај нумерички PIN</string>
   <!--CreateKbsPinFragment-->
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
-    <item quantity="one">PIN-от мора да е најмалку %1$d знак</item>
+    <item quantity="one">PIN-от мора да се состои од најмалку %1$d знак</item>
     <item quantity="other">PIN-от мора да се состои од најмалку %1$d знаци</item>
   </plurals>
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
@@ -3020,7 +3020,7 @@
   <string name="payment_info_card_your_recovery_phrase_gives_you">Вашата резервна фраза Ви овозможува друг начин за да ја повратите Вашата сметка за плаќање.</string>
   <string name="payment_info_card_record_your_phrase">Снимете ја Вашата фраза</string>
   <string name="payment_info_card_update_your_pin">Ажурирајте го Вашиот PIN</string>
-  <string name="payment_info_card_with_a_high_balance">Со висок баланс, можеби ќе сакате да надградите на алфанумерички PIN за да додадете повеќе заштита на Вашата сметка.</string>
+  <string name="payment_info_card_with_a_high_balance">Со висок баланс, можеби ќе сакате да ажурирате на алфанумерички PIN за да додадете поголема заштита на Вашата сметка.</string>
   <string name="payment_info_card_update_pin">Ажурирај PIN</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">Деактивирај го паричникот</string>
@@ -3137,7 +3137,7 @@
   <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal промена на број - Потребна Ви е помош со PIN кодот за Android (v2 PIN)</string>
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN-кодовите не се совпаѓаат</string>
-  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">PIN-от поврзан со Вашиот нов број е различен од PIN-от поврзан со Вашиот стар. Дали сакате да го задржите стариот PIN или да го ажурирате? </string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">PIN-от поврзан со Вашиот нов број се разликува од PIN-от поврзан со Вашиот стар број. Дали сакате да го задржите стариот PIN или да го ажурирате? </string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Задржи го стариот PIN</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Ажурирај PIN</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Да го задржам стариот PIN?</string>
@@ -3481,7 +3481,7 @@
   <string name="ManageDonationsFragment__my_support">Моја поддршка</string>
   <string name="ManageDonationsFragment__manage_subscription">Управување со претплатата</string>
   <!--Label for Tax Receipts button-->
-  <string name="ManageDonationsFragment__tax_receipts">Даночни потврди</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Даночни потврди</string> -->
   <string name="ManageDonationsFragment__badges">Беџови</string>
   <string name="ManageDonationsFragment__subscription_faq">ЧПП за претплата</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Грешка при добивање на претплата.</string>
@@ -3745,7 +3745,7 @@
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Додај приказна</string>
   <!--Displayed when there are no stories to display-->
-  <string name="StoriesLandingFragment__no_recent_updates">Нема скорешни ажурирања за прикажување во моментов.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">Нема скорешни ажурирања за прикажување во моментов.</string> -->
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Сокриј приказна</string>
   <!--Context menu option to unhide a story-->
@@ -3970,7 +3970,7 @@
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Исклучи</string>
   <!--Conversation Item label for reactions to a story-->
-  <string name="ConversationItem__s_dot_story">%1$s · Приказна</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · Приказна</string> -->
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Реагираше на приказна</string>
   <!--endregion-->

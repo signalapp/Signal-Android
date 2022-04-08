@@ -3678,6 +3678,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Konuşmalar</string>
   <!--Label for Stories tab in home app screen-->
+  <string name="ConversationListTabs__stories">Hikayeler</string>
   <!--String for counts above 99 in conversation list tabs-->
   <!--Title for "My Stories" row item in Stories landing page-->
   <!--Subtitle for "My Stories" row item when user has not added stories-->
@@ -3815,5 +3816,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="StoriesLinkPopup__visit_link">Bağlantıyı ziyaret et</string>
   <!--EOF-->
 </resources>

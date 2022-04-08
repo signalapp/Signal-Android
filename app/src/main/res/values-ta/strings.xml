@@ -2822,20 +2822,20 @@
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">உரையாடல் பின்னணிப்படம்</string>
   <!--ChatWallpaperFragment-->
-  <string name="ChatWallpaperFragment__chat_color">உரையாடல் நிறம்</string>
-  <string name="ChatWallpaperFragment__reset_chat_colors">மீட்டமை அரட்டை வண்ணங்கள்</string>
-  <string name="ChatWallpaperFragment__reset_chat_color">மீட்டமை அரட்டை நிறம்</string>
-  <string name="ChatWallpaperFragment__reset_chat_color_question">மீட்டமை அரட்டை நிறம்?</string>
+  <string name="ChatWallpaperFragment__chat_color">அரட்டை நிறம்</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">அரட்டை நிறங்களை மீட்டமை</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">அரட்டை நிறத்தை மீட்டமை</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">அரட்டை நிறத்தை மீட்டமை?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">பின்னணிப்படம் அமைக்கவும்</string>
   <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">இருண்ட பயன்முறை மங்குகிறது பின்னணிப்படம்</string>
   <string name="ChatWallpaperFragment__contact_name">தொடர்பு பெயர்</string>
   <string name="ChatWallpaperFragment__reset">மீட்டமைக்க</string>
   <string name="ChatWallpaperFragment__clear">அழி</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">பின்னணிப்பட மாதிரிக்காட்சி</string>
-  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">அனைத்தையும் மேலெழுத விரும்புகிறீர்களா? அரட்டை வண்ணங்கள்?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">அனைத்து அரட்டை நிறங்களையும் மேலெழுத விரும்புகிறீர்களா?</string>
   <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">எல்லா வால்பேப்பர்களையும் மேலெழுத விரும்புகிறீர்களா?</string>
-  <string name="ChatWallpaperFragment__reset_default_colors">இயல்புநிலை வண்ணங்களை மீட்டமைக்கவும்</string>
-  <string name="ChatWallpaperFragment__reset_all_colors">எல்லா வண்ணங்களையும் மீட்டமைக்கவும்</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">இயல்புநிலை நிறங்களை மீட்டமை</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">எல்லா நிறங்களையும் மீட்டமை</string>
   <string name="ChatWallpaperFragment__reset_default_wallpaper">இயல்புநிலையை மீட்டமை பின்னணிப்படம்</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">அனைத்து பின்னணிப்படங்களையும் மீட்டமைக்கவும்</string>
   <string name="ChatWallpaperFragment__reset_wallpapers">வால்பேப்பர்களை மீட்டமைக்கவும்</string>
@@ -2943,8 +2943,8 @@
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">உங்கள் தொடர்புகள் எதுவும் இல்லை மக்கள் நீங்கள் அரட்டை உடன் உள்ளன குழு. தேவையற்ற செய்திகளைத் தவிர்ப்பதற்கு ஏற்றுக்கொள்வதற்கு முன் கோரிக்கைகளை கவனமாக மதிப்பாய்வு செய்யவும்.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">பற்றி செய்தி கோரிக்கைகள்</string>
   <string name="GroupsInCommonMessageRequest__okay">சரி</string>
-  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">இங்கே ஒரு முன்னோட்டம் அரட்டை நிறம்.</string>
-  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">நிறம் உங்களுக்கு மட்டுமே தெரியும்.</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">அரட்டை நிறத்தின் ஒரு முன்னோட்டம்.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">நிறம் உங்களுக்கு மட்டுமே தென்படும்.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">குழு விளக்கம்</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -3048,17 +3048,17 @@
   <string name="DataAndStorageSettingsFragment__calls">அழைப்புகள்</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">ஆட்டோ</string>
-  <string name="ChatColorSelectionFragment__use_custom_colors">தனிப்பயன் வண்ணங்களைப் பயன்படுத்தவும்</string>
-  <string name="ChatColorSelectionFragment__chat_color">உரையாடல் நிறம்</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">தனிப்பயன் நிறங்களை பயன்படுத்தவும்</string>
+  <string name="ChatColorSelectionFragment__chat_color">அரட்டை நிறம்</string>
   <string name="ChatColorSelectionFragment__edit">தொகு</string>
   <string name="ChatColorSelectionFragment__duplicate">நகல்</string>
   <string name="ChatColorSelectionFragment__delete">நீக்கு</string>
-  <string name="ChatColorSelectionFragment__delete_color">வண்ணத்தை நீக்கு</string>
+  <string name="ChatColorSelectionFragment__delete_color">நிறத்தை நீக்கு</string>
   <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
     <item quantity="one">இந்த தனிப்பயன் வண்ணம் பயன்படுத்தப்படுகிறது %1$d அரட்டை. எல்லா அரட்டைகளுக்கும் இதை நீக்க விரும்புகிறீர்களா?</item>
-    <item quantity="other">இந்த தனிப்பயன் வண்ணம் பயன்படுத்தப்படுகிறது %1$d அரட்டைகள். எல்லா அரட்டைகளுக்கும் இதை நீக்க விரும்புகிறீர்களா?</item>
+    <item quantity="other">இந்த தனிப்பயன் நிறம் %1$d அரட்டைகளில் பயன்படுத்தப்படுகிறது. எல்லா அரட்டைகளுக்கும் இதை நீக்க விரும்புகிறீர்களா?</item>
   </plurals>
-  <string name="ChatColorSelectionFragment__delete_chat_color">அழி அரட்டை நிறம்?</string>
+  <string name="ChatColorSelectionFragment__delete_chat_color">அரட்டை நிறத்தை நீக்கு?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">திட</string>
   <string name="CustomChatColorCreatorFragment__gradient">சாய்வு</string>
@@ -3066,10 +3066,10 @@
   <string name="CustomChatColorCreatorFragment__saturation">செறிவூட்டல்</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">சேமி</string>
-  <string name="CustomChatColorCreatorFragmentPage__edit_color">தொகு நிறம்</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">நிறத்தை தொகு</string>
   <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
     <item quantity="one">இந்த வண்ணம் பயன்படுத்தப்படுகிறது %1$d அரட்டை. எல்லா அரட்டைகளுக்கும் மாற்றங்களைச் சேமிக்க விரும்புகிறீர்களா?</item>
-    <item quantity="other">இந்த வண்ணம் பயன்படுத்தப்படுகிறது %1$d அரட்டைகள். எல்லா அரட்டைகளுக்கும் மாற்றங்களைச் சேமிக்க விரும்புகிறீர்களா?</item>
+    <item quantity="other">இந்த நிறம் %1$d அரட்டைகளில் பயன்படுத்தப்படுகிறது. எல்லா அரட்டைகளுக்கும் மாற்றங்களைச் சேமிக்க விரும்புகிறீர்களா?</item>
   </plurals>
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">மேல் விளிம்பு தேர்வாளர்</string>
@@ -3079,16 +3079,16 @@
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">தட்டவும் ஒரு மாற்ற ஈமோஜி</string>
   <string name="EditReactionsFragment__reset">மீட்டமைக்க</string>
   <string name="EditReactionsFragment_save">சேமி</string>
-  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">ஆட்டோ வண்ணத்துடன் பொருந்துகிறது வால்பேப்பர்</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">பின்னணிப்படத்துடன் அரட்டை நிறத்தை தானே பொருந்துகிறது</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">இழுக்கவும் மாற்றம் சாய்வு திசை</string>
   <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">புதியது அரட்டை வண்ணங்கள்</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">நாங்கள் மாறினோம் அரட்டை உங்களுக்கு மேலும் கொடுக்க வண்ணங்கள் விருப்பங்கள் மேலும் அரட்டைகளைப் படிக்க எளிதாக்குகிறது.</string>
+  <string name="ChatColorsMegaphone__new_chat_colors">புதிய அரட்டை நிறங்கள்</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">உங்களுக்கு கூடுதல் விருப்பங்களை வழங்கவும் அரட்டைகளை எளிதாக படிக்கவும் அரட்டை நிறங்களை மாற்றியுள்ளோம்.</string>
   <string name="ChatColorsMegaphone__appearance">தோற்றம்</string>
   <string name="ChatColorsMegaphone__not_now">இப்போது இல்லை</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">கூட்டு ஒரு சுயவிவரம் புகைப்படம்</string>
-  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">தோற்றத்தையும் வண்ணத்தையும் தேர்வு செய்யவும் அல்லது உங்கள் முதலெழுத்துக்களைத் தனிப்பயனாக்கவும்.</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">தோற்றத்தையும் நிறத்தையும் தேர்வு செய்யவும் அல்லது உங்கள் முதலெழுத்துக்களைத் தனிப்பயனாக்கவும்.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">இப்போது இல்லை</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">கூட்டு புகைப்படம்</string>
   <!--BecomeASustainerMegaphone-->
@@ -3195,7 +3195,7 @@
   <string name="TextAvatarCreationFragment__text">உரை</string>
   <string name="TextAvatarCreationFragment__color">நிறம்</string>
   <!--VectorAvatarCreationFragment-->
-  <string name="VectorAvatarCreationFragment__select_a_color">தேர்ந்தெடு ஒரு நிறம்</string>
+  <string name="VectorAvatarCreationFragment__select_a_color">ஒரு நிறத்தை தேர்ந்தெடுங்கள்</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
