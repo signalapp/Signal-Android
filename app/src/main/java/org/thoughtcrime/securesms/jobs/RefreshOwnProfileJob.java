@@ -11,7 +11,6 @@ import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.badges.BadgeRepository;
 import org.thoughtcrime.securesms.badges.Badges;
 import org.thoughtcrime.securesms.badges.models.Badge;
-import org.thoughtcrime.securesms.components.settings.app.subscription.errors.UnexpectedSubscriptionCancellation;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -269,7 +268,6 @@ public class RefreshOwnProfileJob extends BaseJob {
             ActiveSubscription activeSubscription = response.getResult().get();
             if (activeSubscription.isFailedPayment()) {
               Log.d(TAG, "Unexpected expiry due to payment failure.", true);
-              SignalStore.donationsValues().setUnexpectedSubscriptionCancelationReason(activeSubscription.getActiveSubscription().getStatus());
               isDueToPaymentFailure = true;
             }
           }
@@ -277,7 +275,6 @@ public class RefreshOwnProfileJob extends BaseJob {
 
         if (!isDueToPaymentFailure) {
           Log.d(TAG, "Unexpected expiry due to inactivity.", true);
-          SignalStore.donationsValues().setUnexpectedSubscriptionCancelationReason(UnexpectedSubscriptionCancellation.INACTIVE.getStatus());
         }
 
         MultiDeviceSubscriptionSyncRequestJob.enqueue();

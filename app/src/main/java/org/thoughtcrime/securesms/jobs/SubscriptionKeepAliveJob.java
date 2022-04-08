@@ -91,7 +91,14 @@ public class SubscriptionKeepAliveJob extends BaseJob {
 
     ActiveSubscription activeSubscription = activeSubscriptionResponse.getResult().get();
     if (activeSubscription.getActiveSubscription() == null) {
-      Log.i(TAG, "User does not have an active subscription. Exiting.", true);
+      Log.i(TAG, "User does not have a subscription. Exiting.", true);
+      return;
+    }
+
+    if (activeSubscription.isFailedPayment()) {
+      Log.i(TAG, "User has a subscription with a failed payment. Marking the payment failure. Status message: " + activeSubscription.getActiveSubscription().getStatus(), true);
+      SignalStore.donationsValues().setUnexpectedSubscriptionCancelationReason(activeSubscription.getActiveSubscription().getStatus());
+      SignalStore.donationsValues().setUnexpectedSubscriptionCancelationTimestamp(activeSubscription.getActiveSubscription().getEndOfCurrentPeriod());
       return;
     }
 
