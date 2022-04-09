@@ -76,6 +76,5 @@
     </style>
 
     <style name="Signal.ConversationSettings.WindowAnimation" parent="android:style/Animation" >
-        <item name="android:windowExitAnimation">@anim/slide_fade_to_bottom</item>
     </style>
 </resources>
