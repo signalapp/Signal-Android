@@ -35,7 +35,7 @@ public final class ImageMediaPreviewFragment extends MediaPreviewFragment {
     }
 
     //noinspection ConstantConditions
-    zoomingImageView.setImageUri(glideRequests, uri, contentType);
+    zoomingImageView.setImageUri(glideRequests, uri, contentType, () -> events.onMediaReady());
 
     zoomingImageView.setOnClickListener(v -> events.singleTapOnMedia());
 

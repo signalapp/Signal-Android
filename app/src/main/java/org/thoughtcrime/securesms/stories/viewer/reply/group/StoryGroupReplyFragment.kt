@@ -3,30 +3,39 @@ package org.thoughtcrime.securesms.stories.viewer.reply.group
 import android.content.ClipData
 import android.os.Bundle
 import android.view.KeyEvent
+import android.view.MotionEvent
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.doOnNextLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetBehaviorHack
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.kotlin.subscribeBy
+import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
+import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerFragment
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerViewModel
+import org.thoughtcrime.securesms.database.model.Mention
+import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyboard.KeyboardPage
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardCallback
+import org.thoughtcrime.securesms.mediasend.v2.UntrustedRecords
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
-import org.thoughtcrime.securesms.stories.viewer.reply.BottomSheetBehaviorDelegate
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerChild
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerParent
 import org.thoughtcrime.securesms.stories.viewer.reply.composer.StoryReactionBar
@@ -34,9 +43,8 @@ import org.thoughtcrime.securesms.stories.viewer.reply.composer.StoryReplyCompos
 import org.thoughtcrime.securesms.util.DeleteDialog
 import org.thoughtcrime.securesms.util.FragmentDialogs.displayInDialogAboveAnchor
 import org.thoughtcrime.securesms.util.LifecycleDisposable
-import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.ServiceUtil
-import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.SnapToTopDataObserver
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter
 import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -48,10 +56,10 @@ import org.thoughtcrime.securesms.util.visible
 class StoryGroupReplyFragment :
   Fragment(R.layout.stories_group_replies_fragment),
   StoryViewsAndRepliesPagerChild,
-  BottomSheetBehaviorDelegate,
   StoryReplyComposer.Callback,
   EmojiKeyboardCallback,
-  ReactWithAnyEmojiBottomSheetDialogFragment.Callback {
+  ReactWithAnyEmojiBottomSheetDialogFragment.Callback,
+  SafetyNumberChangeDialog.Callback {
 
   private val viewModel: StoryGroupReplyViewModel by viewModels(
     factoryProducer = {
@@ -68,6 +76,18 @@ class StoryGroupReplyFragment :
     ownerProducer = { requireActivity() }
   )
 
+  private val recyclerListener: RecyclerView.OnItemTouchListener = object : RecyclerView.SimpleOnItemTouchListener() {
+    override fun onInterceptTouchEvent(view: RecyclerView, e: MotionEvent): Boolean {
+      recyclerView.isNestedScrollingEnabled = view == recyclerView
+      composer.emojiPageView?.isNestedScrollingEnabled = view == composer.emojiPageView
+
+      val dialog = (parentFragment as FixedRoundedCornerBottomSheetDialogFragment).dialog as BottomSheetDialog
+      BottomSheetBehaviorHack.setNestedScrollingChild(dialog.behavior, view)
+      dialog.findViewById<View>(R.id.design_bottom_sheet)?.invalidate()
+      return false
+    }
+  }
+
   private val colorizer = Colorizer()
   private val lifecycleDisposable = LifecycleDisposable()
 
@@ -78,9 +98,16 @@ class StoryGroupReplyFragment :
     get() = requireArguments().getParcelable(ARG_GROUP_RECIPIENT_ID)!!
 
   private lateinit var recyclerView: RecyclerView
+  private lateinit var adapter: PagingMappingAdapter<StoryGroupReplyItemData.Key>
+  private lateinit var snapToTopDataObserver: SnapToTopDataObserver
   private lateinit var composer: StoryReplyComposer
+  private var currentChild: StoryViewsAndRepliesPagerParent.Child? = null
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    SignalExecutors.BOUNDED.execute {
+      RetrieveProfileJob.enqueue(groupRecipientId)
+    }
+
     recyclerView = view.findViewById(R.id.recycler)
     composer = view.findViewById(R.id.composer)
 
@@ -88,7 +115,7 @@ class StoryGroupReplyFragment :
 
     val emptyNotice: View = requireView().findViewById(R.id.empty_notice)
 
-    val adapter = PagingMappingAdapter<StoryGroupReplyItemData.Key>()
+    adapter = PagingMappingAdapter<StoryGroupReplyItemData.Key>()
     val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, true)
     recyclerView.layoutManager = layoutManager
     recyclerView.adapter = adapter
@@ -109,15 +136,23 @@ class StoryGroupReplyFragment :
     }
 
     viewModel.pageData.observe(viewLifecycleOwner) { pageData ->
-      val isScrolledToBottom = recyclerView.canScrollVertically(-1)
-      adapter.submitList(getConfiguration(pageData).toMappingModelList()) {
-        if (isScrolledToBottom) {
-          recyclerView.doOnNextLayout {
-            recyclerView.smoothScrollToPosition(0)
-          }
-        }
-      }
+      adapter.submitList(getConfiguration(pageData).toMappingModelList())
     }
+
+    snapToTopDataObserver = SnapToTopDataObserver(
+      recyclerView,
+      object : SnapToTopDataObserver.ScrollRequestValidator {
+        override fun isPositionStillValid(position: Int): Boolean {
+          return position >= 0 && position < adapter.itemCount
+        }
+
+        override fun isItemAtPositionLoaded(position: Int): Boolean {
+          return adapter.hasItem(position)
+        }
+      },
+      null
+    )
+    adapter.registerAdapterDataObserver(snapToTopDataObserver)
 
     initializeMentions()
   }
@@ -182,21 +217,21 @@ class StoryGroupReplyFragment :
     }
   }
 
-  override fun onSlide(bottomSheet: View) {
-    val inputProjection = Projection.relativeToViewRoot(composer, null)
-    val parentProjection = Projection.relativeToViewRoot(bottomSheet.parent as ViewGroup, null)
-    composer.translationY = (parentProjection.height + parentProjection.y - (inputProjection.y + inputProjection.height))
-    inputProjection.release()
-    parentProjection.release()
+  override fun onPageSelected(child: StoryViewsAndRepliesPagerParent.Child) {
+    currentChild = child
+    updateNestedScrolling()
   }
 
-  override fun onPageSelected(child: StoryViewsAndRepliesPagerParent.Child) {
-    recyclerView.isNestedScrollingEnabled = child == StoryViewsAndRepliesPagerParent.Child.REPLIES
+  private fun updateNestedScrolling() {
+    recyclerView.isNestedScrollingEnabled = currentChild == StoryViewsAndRepliesPagerParent.Child.REPLIES && !(mentionsViewModel.isShowing.value ?: false)
   }
+
+  private var resendBody: CharSequence? = null
+  private var resendMentions: List<Mention> = emptyList()
 
   override fun onSendActionClicked() {
     val (body, mentions) = composer.consumeInput()
-    lifecycleDisposable += StoryGroupReplySender.sendReply(requireContext(), storyId, body, mentions).subscribe()
+    performSend(body, mentions)
   }
 
   override fun onPickReactionClicked() {
@@ -237,6 +272,18 @@ class StoryGroupReplyFragment :
     mediaKeyboard.setFragmentManager(childFragmentManager)
   }
 
+  override fun onShowEmojiKeyboard() {
+    requireListener<Callback>().requestFullScreen(true)
+    recyclerView.addOnItemTouchListener(recyclerListener)
+    composer.emojiPageView?.addOnItemTouchListener(recyclerListener)
+  }
+
+  override fun onHideEmojiKeyboard() {
+    recyclerView.removeOnItemTouchListener(recyclerListener)
+    composer.emojiPageView?.removeOnItemTouchListener(recyclerListener)
+    requireListener<Callback>().requestFullScreen(false)
+  }
+
   override fun openEmojiSearch() {
     composer.openEmojiSearch()
   }
@@ -250,10 +297,6 @@ class StoryGroupReplyFragment :
 
   override fun onReactWithAnyEmojiSelected(emoji: String) {
     sendReaction(emoji)
-  }
-
-  override fun onHeightChanged(height: Int) {
-    ViewUtil.setPaddingBottom(recyclerView, height)
   }
 
   private fun initializeMentions() {
@@ -286,6 +329,8 @@ class StoryGroupReplyFragment :
     mentionsViewModel.selectedRecipient.observe(viewLifecycleOwner) { recipient ->
       composer.input.replaceTextWithMention(recipient.getDisplayName(requireContext()), recipient.id)
     }
+
+    mentionsViewModel.isShowing.observe(viewLifecycleOwner) { updateNestedScrolling() }
   }
 
   private fun ensureMentionsContainerFilled() {
@@ -299,6 +344,8 @@ class StoryGroupReplyFragment :
   }
 
   companion object {
+    private val TAG = Log.tag(StoryGroupReplyFragment::class.java)
+
     private const val ARG_STORY_ID = "arg.story.id"
     private const val ARG_GROUP_RECIPIENT_ID = "arg.group.recipient.id"
 
@@ -312,7 +359,48 @@ class StoryGroupReplyFragment :
     }
   }
 
+  private fun performSend(body: CharSequence, mentions: List<Mention>) {
+    lifecycleDisposable += StoryGroupReplySender.sendReply(requireContext(), storyId, body, mentions)
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy(
+        onError = {
+          if (it is UntrustedRecords.UntrustedRecordsException) {
+            resendBody = body
+            resendMentions = mentions
+
+            SafetyNumberChangeDialog.show(childFragmentManager, it.untrustedRecords)
+          } else {
+            Log.w(TAG, "Failed to send reply", it)
+            val context = context
+            if (context != null) {
+              Toast.makeText(context, R.string.message_details_recipient__failed_to_send, Toast.LENGTH_SHORT).show()
+            }
+          }
+        },
+        onComplete = {
+          snapToTopDataObserver.requestScrollPosition(0)
+        }
+      )
+  }
+
+  override fun onSendAnywayAfterSafetyNumberChange(changedRecipients: MutableList<RecipientId>) {
+    val resendBody = resendBody
+    if (resendBody != null) {
+      performSend(resendBody, resendMentions)
+    }
+  }
+
+  override fun onMessageResentAfterSafetyNumberChange() {
+    error("Should never get here.")
+  }
+
+  override fun onCanceled() {
+    resendBody = null
+    resendMentions = emptyList()
+  }
+
   interface Callback {
     fun onStartDirectReply(recipientId: RecipientId)
+    fun requestFullScreen(fullscreen: Boolean)
   }
 }

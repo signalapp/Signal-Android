@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.AppUtil
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.concurrent.SimpleTask
 import org.signal.ringrtc.CallManager
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.R
@@ -32,9 +33,9 @@ import org.thoughtcrime.securesms.jobs.StorageForcePushJob
 import org.thoughtcrime.securesms.jobs.SubscriptionReceiptRequestResponseJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.payments.DataExportUtil
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask
 import java.util.Optional
 import java.util.concurrent.TimeUnit
 import kotlin.math.max
@@ -137,10 +138,18 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       clickPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_sync_now),
+        summary = DSLSettingsText.from(R.string.preferences__internal_sync_now_description),
+        onClick = {
+          enqueueStorageServiceSync()
+        }
+      )
+
+      clickPref(
         title = DSLSettingsText.from(R.string.preferences__internal_force_storage_service_sync),
         summary = DSLSettingsText.from(R.string.preferences__internal_force_storage_service_sync_description),
         onClick = {
-          forceStorageServiceSync()
+          enqueueStorageServiceForcePush()
         }
       )
 
@@ -475,7 +484,12 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
     }
   }
 
-  private fun forceStorageServiceSync() {
+  private fun enqueueStorageServiceSync() {
+    StorageSyncHelper.scheduleSyncForDataChange()
+    Toast.makeText(context, "Scheduled routine storage sync", Toast.LENGTH_SHORT).show()
+  }
+
+  private fun enqueueStorageServiceForcePush() {
     ApplicationDependencies.getJobManager().add(StorageForcePushJob())
     Toast.makeText(context, "Scheduled storage force push", Toast.LENGTH_SHORT).show()
   }

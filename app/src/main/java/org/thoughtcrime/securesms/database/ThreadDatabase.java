@@ -724,29 +724,6 @@ public class ThreadDatabase extends Database {
     return positions;
   }
 
-  public long getTabBarUnreadCount() {
-    String[] countProjection = SqlUtil.buildArgs("COUNT(*)");
-    String[] sumProjection   = SqlUtil.buildArgs("SUM(" + UNREAD_COUNT + ")");
-    String   where           = ARCHIVED + " = 0 AND " + MEANINGFUL_MESSAGES + " != 0 AND " + READ + " = ?";
-    String[] countArgs       = SqlUtil.buildArgs(ReadStatus.FORCED_UNREAD.serialize());
-    String[] sumArgs         = SqlUtil.buildArgs(ReadStatus.UNREAD.serialize());
-    long     total           = 0;
-
-    try (Cursor cursor = getReadableDatabase().query(TABLE_NAME, countProjection, where, countArgs, null, null, null)) {
-      if (cursor != null && cursor.moveToFirst()) {
-        total += cursor.getLong(0);
-      }
-    }
-
-    try (Cursor cursor = getReadableDatabase().query(TABLE_NAME, sumProjection, where, sumArgs, null, null, null)) {
-      if (cursor != null && cursor.moveToFirst()) {
-        total += cursor.getLong(0);
-      }
-    }
-
-    return total;
-  }
-
   public Cursor getArchivedConversationList(long offset, long limit) {
     return getConversationList("1", offset, limit);
   }
@@ -1367,7 +1344,7 @@ public class ThreadDatabase extends Database {
     try {
       type = SignalDatabase.mmsSms().getConversationSnippetType(threadId);
     } catch (NoSuchMessageException e) {
-      Log.w(TAG, "Unable to find snippet message for thread: " + threadId, e);
+      Log.w(TAG, "Unable to find snippet message for thread: " + threadId);
       return;
     }
 

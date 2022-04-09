@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.database.MmsSmsColumns
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import org.thoughtcrime.securesms.mms.TextSlide
 import org.thoughtcrime.securesms.stickers.StickerUrl
 
 const val MAX_BODY_DISPLAY_LENGTH = 1000
@@ -77,6 +78,12 @@ fun MessageRecord.hasQuote(): Boolean =
 
 fun MessageRecord.hasLinkPreview(): Boolean =
   isMms && (this as MmsMessageRecord).linkPreviews.isNotEmpty()
+
+fun MessageRecord.hasTextSlide(): Boolean =
+  isMms && (this as MmsMessageRecord).slideDeck.textSlide != null && this.slideDeck.textSlide?.uri != null
+
+fun MessageRecord.requireTextSlide(): TextSlide =
+  requireNotNull((this as MmsMessageRecord).slideDeck.textSlide)
 
 fun MessageRecord.hasBigImageLinkPreview(context: Context): Boolean {
   if (!hasLinkPreview()) {

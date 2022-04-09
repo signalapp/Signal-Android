@@ -318,7 +318,7 @@ class SegmentedProgressBar : View, ViewPager.OnPageChangeListener, View.OnTouchL
       if (nextSegmentIndex >= segmentCount) {
         this.listener?.onFinished()
       } else {
-        restartSegment()
+        loadSegment(offset = 0, userAction = false)
       }
       return
     }

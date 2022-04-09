@@ -1,23 +1,40 @@
 package org.thoughtcrime.securesms.stories.viewer
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.livedata.Store
+import org.thoughtcrime.securesms.stories.StoryTextPostModel
+import org.thoughtcrime.securesms.util.rx.RxStore
+import kotlin.math.max
 
 class StoryViewerViewModel(
   private val startRecipientId: RecipientId,
-  private val repository: StoryViewerRepository
+  private val onlyIncludeHiddenStories: Boolean,
+  storyThumbTextModel: StoryTextPostModel?,
+  storyThumbUri: Uri?,
+  private val repository: StoryViewerRepository,
 ) : ViewModel() {
 
-  private val store = Store(StoryViewerState())
+  private val store = RxStore(
+    StoryViewerState(
+      crossfadeSource = when {
+        storyThumbTextModel != null -> StoryViewerState.CrossfadeSource.TextModel(storyThumbTextModel)
+        storyThumbUri != null -> StoryViewerState.CrossfadeSource.ImageUri(storyThumbUri)
+        else -> StoryViewerState.CrossfadeSource.None
+      }
+    )
+  )
+
   private val disposables = CompositeDisposable()
 
-  val state: LiveData<StoryViewerState> = store.stateLiveData
+  val stateSnapshot: StoryViewerState get() = store.state
+  val state: Flowable<StoryViewerState> = store.stateFlowable
 
   private val scrollStatePublisher: MutableLiveData<Boolean> = MutableLiveData(false)
   val isScrolling: LiveData<Boolean> = scrollStatePublisher
@@ -29,13 +46,25 @@ class StoryViewerViewModel(
     refresh()
   }
 
+  fun setContentIsReady() {
+    store.update {
+      it.copy(loadState = it.loadState.copy(isContentReady = true))
+    }
+  }
+
+  fun setCrossfaderIsReady() {
+    store.update {
+      it.copy(loadState = it.loadState.copy(isCrossfaderReady = true))
+    }
+  }
+
   fun setIsScrolling(isScrolling: Boolean) {
     scrollStatePublisher.value = isScrolling
   }
 
   private fun refresh() {
     disposables.clear()
-    disposables += repository.getStories().subscribe { recipientIds ->
+    disposables += repository.getStories(onlyIncludeHiddenStories).subscribe { recipientIds ->
       store.update {
         val page: Int = if (it.pages.isNotEmpty()) {
           val oldPage = it.page
@@ -65,10 +94,20 @@ class StoryViewerViewModel(
     }
   }
 
-  fun onFinishedPosts(recipientId: RecipientId) {
+  fun onGoToNext(recipientId: RecipientId) {
     store.update {
       if (it.pages[it.page] == recipientId) {
         updatePages(it, it.page + 1)
+      } else {
+        it
+      }
+    }
+  }
+
+  fun onGoToPrevious(recipientId: RecipientId) {
+    store.update {
+      if (it.pages[it.page] == recipientId) {
+        updatePages(it, max(0, it.page - 1))
       } else {
         it
       }
@@ -112,10 +151,13 @@ class StoryViewerViewModel(
 
   class Factory(
     private val startRecipientId: RecipientId,
+    private val onlyIncludeHiddenStories: Boolean,
+    private val storyThumbTextModel: StoryTextPostModel?,
+    private val storyThumbUri: Uri?,
     private val repository: StoryViewerRepository
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-      return modelClass.cast(StoryViewerViewModel(startRecipientId, repository)) as T
+      return modelClass.cast(StoryViewerViewModel(startRecipientId, onlyIncludeHiddenStories, storyThumbTextModel, storyThumbUri, repository)) as T
     }
   }
 }

@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcData.CallMetadata;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcData.OfferMetadata;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcData.ReceivedOfferMetadata;
+import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
 import org.thoughtcrime.securesms.util.NetworkUtil;
@@ -76,6 +77,8 @@ import static org.thoughtcrime.securesms.service.webrtc.WebRtcData.ReceivedAnswe
  * the replacement of the current action processor.
  */
 public abstract class WebRtcActionProcessor {
+
+  public static final int AUDIO_LEVELS_INTERVAL = 200;
 
   protected final Context          context;
   protected final WebRtcInteractor webRtcInteractor;
@@ -459,6 +462,10 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
+  protected @NonNull WebRtcEphemeralState handleAudioLevelsChanged(@NonNull WebRtcServiceState currentState, @NonNull WebRtcEphemeralState ephemeralState, int localLevel, int remoteLevel) {
+    return ephemeralState;
+  }
+
   public @NonNull WebRtcServiceState handleCallReconnect(@NonNull WebRtcServiceState currentState, @NonNull CallManager.CallEvent event) {
     Log.i(tag, "handleCallReconnect not processed");
     return currentState;
@@ -678,6 +685,10 @@ public abstract class WebRtcActionProcessor {
   protected @NonNull WebRtcServiceState handleGroupRemoteDeviceStateChanged(@NonNull WebRtcServiceState currentState) {
     Log.i(tag, "handleGroupRemoteDeviceStateChanged not processed");
     return currentState;
+  }
+
+  protected @NonNull WebRtcEphemeralState handleGroupAudioLevelsChanged(@NonNull WebRtcServiceState currentState, @NonNull WebRtcEphemeralState ephemeralState) {
+    return ephemeralState;
   }
 
   protected @NonNull WebRtcServiceState handleGroupJoinedMembershipChanged(@NonNull WebRtcServiceState currentState) {

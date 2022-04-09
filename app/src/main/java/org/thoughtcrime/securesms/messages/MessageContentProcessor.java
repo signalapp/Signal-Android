@@ -367,7 +367,7 @@ public final class MessageContentProcessor {
       } else if (content.getTypingMessage().isPresent()) {
         handleTypingMessage(content, content.getTypingMessage().get(), senderRecipient);
       } else if (content.getStoryMessage().isPresent()) {
-        handleStoryMessage(content, content.getStoryMessage().get(), senderRecipient);
+        handleStoryMessage(content, content.getStoryMessage().get(), senderRecipient, threadRecipient);
       } else if (content.getDecryptionErrorMessage().isPresent()) {
         handleRetryReceipt(content, content.getDecryptionErrorMessage().get(), senderRecipient);
       } else if (content.getSenderKeyDistributionMessage().isPresent()) {
@@ -887,7 +887,7 @@ public final class MessageContentProcessor {
   private @Nullable MessageId handleReaction(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message, @NonNull Recipient senderRecipient) throws StorageFailedException {
     log(content.getTimestamp(), "Handle reaction for message " + message.getReaction().get().getTargetSentTimestamp());
 
-    if (content.getStoryMessage().isPresent()) {
+    if (message.getStoryContext().isPresent()) {
       log(content.getTimestamp(), "Reaction has a story context. Treating as a story reaction.");
       handleStoryReaction(content, message, senderRecipient);
       return null;
@@ -1346,7 +1346,7 @@ public final class MessageContentProcessor {
     messageNotifier.updateNotification(context);
   }
 
-  private void handleStoryMessage(@NonNull SignalServiceContent content, @NonNull SignalServiceStoryMessage message, @NonNull Recipient senderRecipient) throws StorageFailedException {
+  private void handleStoryMessage(@NonNull SignalServiceContent content, @NonNull SignalServiceStoryMessage message, @NonNull Recipient senderRecipient, @NonNull Recipient threadRecipient) throws StorageFailedException {
     log(content.getTimestamp(), "Story message.");
 
     if (!Stories.isFeatureAvailable()) {
@@ -1354,8 +1354,8 @@ public final class MessageContentProcessor {
       return;
     }
 
-    if (!(senderRecipient.isProfileSharing() || senderRecipient.isSystemContact())) {
-      warn(content.getTimestamp(), "Dropping story from an untrusted user.");
+    if (!threadRecipient.isGroup() && !(senderRecipient.isProfileSharing() || senderRecipient.isSystemContact())) {
+      warn(content.getTimestamp(), "Dropping non-group story from an untrusted user.");
       return;
     }
 
@@ -1506,16 +1506,14 @@ public final class MessageContentProcessor {
 
         if (message.getGroupContext().isPresent()) {
           parentStoryId = new ParentStoryId.GroupReply(storyMessageId.getId());
-        } else {
+        } else if (SignalDatabase.storySends().canReply(senderRecipient.getId(), storyContext.getSentTimestamp())) {
           MmsMessageRecord story = (MmsMessageRecord) database.getMessageRecord(storyMessageId.getId());
-
-          if (!story.getStoryType().isStoryWithReplies()) {
-            warn(content.getTimestamp(), "Story has reactions disabled. Dropping reaction.");
-            return;
-          }
 
           parentStoryId = new ParentStoryId.DirectReply(storyMessageId.getId());
           quoteModel    = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, "", false, story.getSlideDeck().asAttachments(), Collections.emptyList());
+        } else {
+          warn(content.getTimestamp(), "Story has reactions disabled. Dropping reaction.");
+          return;
         }
       } catch (NoSuchMessageException e) {
         warn(content.getTimestamp(), "Couldn't find story for reaction.", e);
@@ -1574,15 +1572,16 @@ public final class MessageContentProcessor {
       ParentStoryId parentStoryId;
       QuoteModel    quoteModel = null;
       try {
-        MessageId storyMessageId = database.getStoryId(storyAuthorRecipient, storyContext.getSentTimestamp());
+        MessageId        storyMessageId  = database.getStoryId(storyAuthorRecipient, storyContext.getSentTimestamp());
+        MmsMessageRecord story           = (MmsMessageRecord) database.getMessageRecord(storyMessageId.getId());
+        Recipient        threadRecipient = SignalDatabase.threads().getRecipientForThreadId(story.getThreadId());
+        boolean          groupStory      = threadRecipient != null && threadRecipient.isActiveGroup();
 
-        if (message.getGroupContext().isPresent()) {
+        if (message.getGroupContext().isPresent() ) {
           parentStoryId = new ParentStoryId.GroupReply(storyMessageId.getId());
-        } else if (SignalDatabase.storySends().canReply(senderRecipient.getId(), storyContext.getSentTimestamp())) {
-          MmsMessageRecord story = (MmsMessageRecord) database.getMessageRecord(storyMessageId.getId());
-
+        } else if (groupStory || SignalDatabase.storySends().canReply(senderRecipient.getId(), storyContext.getSentTimestamp())) {
           parentStoryId = new ParentStoryId.DirectReply(storyMessageId.getId());
-          quoteModel    = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, message.getBody().orElse(""), false, story.getSlideDeck().asAttachments(), Collections.emptyList());
+          quoteModel    = new QuoteModel(storyContext.getSentTimestamp(), groupStory ? threadRecipient.getId() : storyAuthorRecipient, "", false, story.getSlideDeck().asAttachments(), Collections.emptyList());
         } else {
           warn(content.getTimestamp(), "Story has replies disabled. Dropping reply.");
           return;
@@ -1610,7 +1609,7 @@ public final class MessageContentProcessor {
                                                                    Optional.ofNullable(quoteModel),
                                                                    Optional.empty(),
                                                                    Optional.empty(),
-                                                                   Optional.empty(),
+                                                                   getMentions(message.getMentions()),
                                                                    Optional.empty(),
                                                                    content.getServerUuid());
 
@@ -2129,19 +2128,21 @@ public final class MessageContentProcessor {
                                    @NonNull SignalServiceReceiptMessage message,
                                    @NonNull Recipient senderRecipient)
   {
-    if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
+    boolean shouldOnlyProcessStories = FeatureFlags.stories() && !SignalStore.storyValues().isFeatureDisabled() && !TextSecurePreferences.isReadReceiptsEnabled(context);
+
+    if (!TextSecurePreferences.isReadReceiptsEnabled(context) && !shouldOnlyProcessStories) {
       log("Ignoring viewed receipts for IDs: " + Util.join(message.getTimestamps(), ", "));
       return;
     }
 
-    log(TAG, "Processing viewed receipts. Sender: " +  senderRecipient.getId() + ", Device: " + content.getSenderDevice() + ", Timestamps: " + Util.join(message.getTimestamps(), ", "));
+    log(TAG, "Processing viewed receipts. Sender: " +  senderRecipient.getId() + ", Device: " + content.getSenderDevice() + ", Only Stories: " + shouldOnlyProcessStories + ", Timestamps: " + Util.join(message.getTimestamps(), ", "));
 
     List<SyncMessageId> ids = Stream.of(message.getTimestamps())
                                     .map(t -> new SyncMessageId(senderRecipient.getId(), t))
                                     .toList();
 
-    Collection<SyncMessageId> unhandled = SignalDatabase.mmsSms()
-                                                         .incrementViewedReceiptCounts(ids, content.getTimestamp());
+    Collection<SyncMessageId> unhandled = shouldOnlyProcessStories ? SignalDatabase.mmsSms().incrementViewedStoryReceiptCounts(ids, content.getTimestamp())
+                                                                   : SignalDatabase.mmsSms().incrementViewedReceiptCounts(ids, content.getTimestamp());
 
     for (SyncMessageId id : unhandled) {
       warn(String.valueOf(content.getTimestamp()), "[handleViewedReceipt] Could not find matching message! timestamp: " + id.getTimetamp() + "  author: " + senderRecipient.getId());

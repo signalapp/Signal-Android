@@ -1,8 +1,10 @@
 package org.thoughtcrime.securesms.database
 
 import org.thoughtcrime.securesms.database.model.StoryType
+import org.thoughtcrime.securesms.mms.IncomingMediaMessage
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
 import org.thoughtcrime.securesms.recipients.Recipient
+import java.util.Optional
 
 /**
  * Helper methods for inserting an MMS message into the MMS table.
@@ -51,5 +53,12 @@ object MmsHelper {
     threadId: Long
   ): Long {
     return SignalDatabase.mms.insertMessageOutbox(message, threadId, false, GroupReceiptDatabase.STATUS_UNKNOWN, null)
+  }
+
+  fun insert(
+    message: IncomingMediaMessage,
+    threadId: Long
+  ): Optional<MessageDatabase.InsertResult> {
+    return SignalDatabase.mms.insertSecureDecryptedMessageInbox(message, threadId)
   }
 }

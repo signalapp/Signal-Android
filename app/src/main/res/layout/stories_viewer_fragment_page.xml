@@ -21,9 +21,16 @@
             android:id="@+id/story_content_card"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:transitionName="story"
+            app:cardBackgroundColor="@color/transparent"
             app:cardCornerRadius="18dp"
             app:cardElevation="0dp">
+
+            <ImageView
+                android:id="@+id/story_blur_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:importantForAccessibility="no"
+                android:scaleType="centerCrop" />
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/story_content_container"
@@ -31,12 +38,23 @@
                 android:layout_height="match_parent"
                 tools:background="@drawable/test_gradient" />
 
+            <org.thoughtcrime.securesms.stories.viewer.reply.StoriesSharedElementCrossFaderView
+                android:id="@+id/story_content_crossfader"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:transitionName="story"
+                android:alpha="0" />
+
             <View
+                android:id="@+id/story_gradient_top"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
                 android:background="@drawable/story_gradient_top" />
 
             <View
+                android:id="@+id/story_gradient_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
                 android:layout_gravity="bottom"
@@ -78,27 +96,33 @@
         app:barrierDirection="top"
         app:constraint_referenced_ids="from,sender_avatar,group_avatar,more" />
 
-    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-        android:id="@+id/story_caption"
+    <FrameLayout
+        android:id="@+id/story_caption_container"
         android:layout_width="0dp"
         android:layout_height="95sp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="24dp"
-        android:gravity="bottom"
-        android:textAppearance="@style/Signal.Text.Body"
-        android:textStyle="bold"
-        app:autoSizeMaxTextSize="20sp"
-        app:autoSizeMinTextSize="16sp"
-        app:autoSizeStepGranularity="4sp"
-        app:autoSizeTextType="uniform"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toTopOf="@id/story_from_barrier"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1"
-        tools:text="Ugh." />
+        app:layout_constraintVertical_bias="1">
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            android:id="@+id/story_caption"
+            android:layout_width="match_parent"
+            android:layout_height="95sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="24dp"
+            android:gravity="bottom"
+            android:textAppearance="@style/Signal.Text.Body"
+            android:textStyle="bold"
+            app:autoSizeMaxTextSize="20sp"
+            app:autoSizeMinTextSize="16sp"
+            app:autoSizeStepGranularity="4sp"
+            app:autoSizeTextType="uniform"
+            tools:text="Ugh." />
+    </FrameLayout>
 
     <View
         android:id="@+id/story_large_caption_overlay"
@@ -208,7 +232,7 @@
         android:maxLines="1"
         android:textAppearance="@style/TextAppearance.Signal.Subtitle"
         android:visibility="gone"
-        app:drawableStartCompat="@drawable/ic_update_group_16"
+        app:drawableStartCompat="@drawable/ic_lock_16"
         app:drawableTint="@color/transparent_white_80"
         app:layout_constraintBottom_toTopOf="@id/progress"
         app:layout_constraintEnd_toStartOf="@id/more"

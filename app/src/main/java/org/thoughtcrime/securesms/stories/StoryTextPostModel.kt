@@ -4,6 +4,8 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
+import android.os.Parcel
+import android.os.Parcelable
 import android.view.View
 import androidx.core.graphics.scale
 import androidx.core.view.drawToBitmap
@@ -18,9 +20,13 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.fonts.TextFont
+import org.thoughtcrime.securesms.fonts.TextToScript
+import org.thoughtcrime.securesms.fonts.TypefaceCache
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.Base64
+import org.thoughtcrime.securesms.util.ParcelUtil
 import java.security.MessageDigest
 
 /**
@@ -30,7 +36,7 @@ data class StoryTextPostModel(
   private val storyTextPost: StoryTextPost,
   private val storySentAtMillis: Long,
   private val storyAuthor: RecipientId
-) : Key {
+) : Key, Parcelable {
 
   override fun updateDiskCacheKey(messageDigest: MessageDigest) {
     messageDigest.update(storyTextPost.toByteArray())
@@ -48,7 +54,30 @@ data class StoryTextPostModel(
     }
   }
 
-  companion object {
+  override fun writeToParcel(parcel: Parcel, flags: Int) {
+    ParcelUtil.writeByteArray(parcel, storyTextPost.toByteArray())
+    parcel.writeLong(storySentAtMillis)
+    parcel.writeParcelable(storyAuthor, flags)
+  }
+
+  override fun describeContents(): Int {
+    return 0
+  }
+
+  companion object CREATOR : Parcelable.Creator<StoryTextPostModel> {
+    override fun createFromParcel(parcel: Parcel): StoryTextPostModel {
+      val storyTextPostArray = ParcelUtil.readByteArray(parcel)
+
+      return StoryTextPostModel(
+        StoryTextPost.parseFrom(storyTextPostArray),
+        parcel.readLong(),
+        parcel.readParcelable(RecipientId::class.java.classLoader)!!
+      )
+    }
+
+    override fun newArray(size: Int): Array<StoryTextPostModel?> {
+      return arrayOfNulls(size)
+    }
 
     fun parseFrom(messageRecord: MessageRecord): StoryTextPostModel {
       return parseFrom(
@@ -71,8 +100,7 @@ data class StoryTextPostModel(
   class Decoder : ResourceDecoder<StoryTextPostModel, Bitmap> {
 
     companion object {
-      private const val RENDER_WIDTH = 1080
-      private const val RENDER_HEIGHT = 1920
+      private const val RENDER_HW_AR = 16f / 9f
     }
 
     override fun handles(source: StoryTextPostModel, options: Options): Boolean = true
@@ -80,12 +108,21 @@ data class StoryTextPostModel(
     override fun decode(source: StoryTextPostModel, width: Int, height: Int, options: Options): Resource<Bitmap> {
       val message = SignalDatabase.mmsSms.getMessageFor(source.storySentAtMillis, source.storyAuthor)
       val view = StoryTextPostView(ApplicationDependencies.getApplication())
+      val typeface = TypefaceCache.get(
+        ApplicationDependencies.getApplication(),
+        TextFont.fromStyle(source.storyTextPost.style),
+        TextToScript.guessScript(source.storyTextPost.body)
+      ).blockingGet()
 
+      val displayWidth: Int = ApplicationDependencies.getApplication().resources.displayMetrics.widthPixels
+      val arHeight: Int = (RENDER_HW_AR * displayWidth).toInt()
+
+      view.setTypeface(typeface)
       view.bindFromStoryTextPost(source.storyTextPost)
       view.bindLinkPreview((message as? MmsMessageRecord)?.linkPreviews?.firstOrNull())
 
       view.invalidate()
-      view.measure(View.MeasureSpec.makeMeasureSpec(RENDER_WIDTH, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(RENDER_HEIGHT, View.MeasureSpec.EXACTLY))
+      view.measure(View.MeasureSpec.makeMeasureSpec(displayWidth, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(arHeight, View.MeasureSpec.EXACTLY))
       view.layout(0, 0, view.measuredWidth, view.measuredHeight)
 
       val bitmap = view.drawToBitmap().scale(width, height)

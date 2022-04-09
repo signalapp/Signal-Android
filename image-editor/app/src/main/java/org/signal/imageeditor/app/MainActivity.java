@@ -70,6 +70,8 @@ public final class MainActivity extends AppCompatActivity {
 
     imageEditorView = findViewById(R.id.image_editor);
 
+    imageEditorView.setTypefaceProvider(typefaceProvider);
+
     imageEditorView.setUndoRedoStackListener((undoAvailable, redoAvailable) -> {
       Log.d("ALAN", String.format("Undo/Redo available: %s, %s", undoAvailable ? "Y" : "N", redoAvailable ? "Y" : "N"));
       if (menu == null) return;

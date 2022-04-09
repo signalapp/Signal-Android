@@ -6,16 +6,15 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
+import android.widget.ImageView
 import androidx.annotation.ColorInt
 import androidx.annotation.Px
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.doOnNextLayout
 import androidx.core.view.isVisible
-import com.google.android.material.imageview.ShapeableImageView
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
-import org.thoughtcrime.securesms.fonts.Fonts
 import org.thoughtcrime.securesms.fonts.TextFont
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
@@ -23,9 +22,7 @@ import org.thoughtcrime.securesms.mediasend.v2.text.TextAlignment
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationState
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryScale
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryTextWatcher
-import org.thoughtcrime.securesms.stories.viewer.page.StoryDisplay
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask
 import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
 
@@ -40,7 +37,7 @@ class StoryTextPostView @JvmOverloads constructor(
   }
 
   private var textAlignment: TextAlignment? = null
-  private val backgroundView: ShapeableImageView = findViewById(R.id.text_story_post_background)
+  private val backgroundView: ImageView = findViewById(R.id.text_story_post_background)
   private val textView: StoryTextView = findViewById(R.id.text_story_post_text)
   private val linkPreviewView: StoryLinkPreviewView = findViewById(R.id.text_story_post_link_preview)
 
@@ -48,19 +45,6 @@ class StoryTextPostView @JvmOverloads constructor(
 
   init {
     TextStoryTextWatcher.install(textView)
-
-    val displaySize = StoryDisplay.getStoryDisplay(
-      resources.displayMetrics.widthPixels.toFloat(),
-      resources.displayMetrics.heightPixels.toFloat()
-    )
-
-    when (displaySize) {
-      StoryDisplay.SMALL ->
-        backgroundView.shapeAppearanceModel = backgroundView.shapeAppearanceModel
-          .toBuilder()
-          .setAllCornerSizes(0f)
-          .build()
-    }
   }
 
   fun showCloseButton() {
@@ -152,16 +136,6 @@ class StoryTextPostView @JvmOverloads constructor(
     setTextColor(storyTextPost.textForegroundColor)
     setTextBackgroundColor(storyTextPost.textBackgroundColor)
     setTextGravity(TextAlignment.CENTER)
-
-    SimpleTask.run(
-      {
-        when (val fontResult = Fonts.resolveFont(context, Locale.getDefault(), font)) {
-          is Fonts.FontResult.Immediate -> fontResult.typeface
-          is Fonts.FontResult.Async -> fontResult.future.get()
-        }
-      },
-      { typeface -> setTypeface(typeface) }
-    )
 
     hideCloseButton()
 

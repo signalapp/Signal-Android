@@ -10,8 +10,8 @@
 
     <org.thoughtcrime.securesms.avatar.view.AvatarView
         android:id="@+id/avatar"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,8 +20,8 @@
         android:id="@+id/badge"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
         app:badge_size="medium"
         app:layout_constraintStart_toStartOf="@id/avatar"
         app:layout_constraintTop_toTopOf="@id/avatar" />
@@ -30,8 +30,8 @@
         android:id="@+id/sender"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="@dimen/stories_landing_item_text_horizontal_margin"
+        android:layout_marginEnd="@dimen/stories_landing_item_text_horizontal_margin"
         android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
         app:layout_constraintBottom_toTopOf="@id/date"
         app:layout_constraintEnd_toStartOf="@id/story"
@@ -44,7 +44,7 @@
         android:id="@+id/error_indicator"
         android:layout_width="14dp"
         android:layout_height="14dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="@dimen/stories_landing_item_text_horizontal_margin"
         android:importantForAccessibility="no"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/date"
@@ -59,33 +59,34 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="@dimen/stories_landing_item_text_horizontal_margin"
         android:textAppearance="@style/TextAppearance.Signal.Body2"
         android:textColor="@color/signal_text_secondary"
         app:layout_constraintBottom_toTopOf="@id/icon"
         app:layout_constraintEnd_toStartOf="@id/story"
         app:layout_constraintStart_toEndOf="@id/error_indicator"
         app:layout_constraintTop_toBottomOf="@id/sender"
-        app:layout_goneMarginStart="16dp"
+        app:layout_goneMarginStart="@dimen/stories_landing_item_text_horizontal_margin"
         tools:text="10m" />
 
     <ImageView
         android:id="@+id/icon"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="@dimen/stories_landing_item_text_horizontal_margin"
         android:importantForAccessibility="no"
+        android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/avatar"
         app:layout_constraintTop_toBottomOf="@id/date"
         app:srcCompat="@drawable/ic_messages_solid_20"
-        app:tint="@color/signal_text_secondary" />
+        app:tint="@color/signal_text_primary_disabled" />
 
-    <org.thoughtcrime.securesms.components.ThumbnailView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/story_multi"
-        android:layout_width="48dp"
-        android:layout_height="72dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="@dimen/stories_landing_item_thumb_secondary_width"
+        android:layout_height="@dimen/stories_landing_item_thumb_secondary_height"
+        android:layout_marginEnd="14dp"
         android:layout_marginBottom="8dp"
         android:rotation="-10.89"
         android:visibility="gone"
@@ -95,20 +96,42 @@
         tools:background="@color/green"
         tools:visibility="visible" />
 
-    <org.thoughtcrime.securesms.components.OutlinedThumbnailView
-        android:id="@+id/story"
-        android:layout_width="60dp"
-        android:layout_height="88dp"
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/story_outline"
+        android:layout_width="@dimen/stories_landing_item_thumb_outline_width"
+        android:layout_height="@dimen/stories_landing_item_thumb_outline_height"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:padding="2dp"
-        android:transitionName="story"
+        android:src="@color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:otv_cornerRadius="12dp"
-        app:otv_strokeColor="@color/signal_background_primary"
-        app:otv_strokeWidth="2dp"
-        tools:background="@color/red" />
+        app:shapeAppearance="@style/ShapeAppearanceOverlay.Signal.Story.Preview" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/story"
+        android:layout_width="@dimen/stories_landing_item_thumb_width"
+        android:layout_height="@dimen/stories_landing_item_thumb_height"
+        android:background="@color/signal_background_primary"
+        android:transitionName="story"
+        app:layout_constraintBottom_toBottomOf="@+id/story_outline"
+        app:layout_constraintEnd_toEndOf="@+id/story_outline"
+        app:layout_constraintStart_toStartOf="@+id/story_outline"
+        app:layout_constraintTop_toTopOf="@+id/story_outline"
+        app:shapeAppearance="@style/ShapeAppearanceOverlay.Signal.Story.Preview"
+        tools:src="@drawable/test_gradient" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/story_blur"
+        android:layout_width="@dimen/stories_landing_item_thumb_width"
+        android:layout_height="@dimen/stories_landing_item_thumb_height"
+        android:background="@color/signal_background_primary"
+        android:transitionName="story"
+        app:layout_constraintBottom_toBottomOf="@+id/story_outline"
+        app:layout_constraintEnd_toEndOf="@+id/story_outline"
+        app:layout_constraintStart_toStartOf="@+id/story_outline"
+        app:layout_constraintTop_toTopOf="@+id/story_outline"
+        app:shapeAppearance="@style/ShapeAppearanceOverlay.Signal.Story.Preview"
+        tools:src="@drawable/test_gradient" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

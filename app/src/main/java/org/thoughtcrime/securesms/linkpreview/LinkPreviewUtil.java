@@ -17,7 +17,7 @@ import com.annimon.stream.Stream;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.SetUtil;
+import org.signal.core.util.SetUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
 
@@ -48,6 +48,17 @@ public final class LinkPreviewUtil {
   private static final Pattern FAVICON_HREF_PATTERN       = Pattern.compile("href\\s*=\\s*\"([^\"]*)\"");
 
   private static final Set<String> INVALID_TOP_LEVEL_DOMAINS = SetUtil.newHashSet("onion", "i2p");
+
+  public static @Nullable String getTopLevelDomain(@Nullable String urlString) {
+    if (!Util.isEmpty(urlString)) {
+      HttpUrl url = HttpUrl.parse(urlString);
+      if (url != null) {
+        return url.topPrivateDomain();
+      }
+    }
+
+    return null;
+  }
 
   /**
    * @return All whitelisted URLs in the source text.

@@ -7,34 +7,36 @@ import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 
-class StoryViewerRepository {
-  fun getStories(): Single<List<RecipientId>> {
-    return Single.fromCallable {
-      val recipients = SignalDatabase.mms.allStoriesRecipientsList
-      val resolved = recipients.map { Recipient.resolved(it) }
-
-      val doNotCollapse: List<RecipientId> = resolved
-        .filterNot { it.isDistributionList || it.shouldHideStory() }
-        .map { it.id }
-
-      val myStory: RecipientId = SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.MY_STORY)
-
-      val myStoriesCount = SignalDatabase.mms.getAllOutgoingStories(true).use {
-        var count = 0
-        while (it.next != null) {
-          if (!it.current.recipient.isGroup) {
-            count++
-          }
+/**
+ * Open for testing
+ */
+open class StoryViewerRepository {
+  fun getStories(hiddenStories: Boolean): Single<List<RecipientId>> {
+    return Single.create<List<RecipientId>> { emitter ->
+      val myStoriesId = SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.MY_STORY)
+      val myStories = Recipient.resolved(myStoriesId)
+      val recipientIds = SignalDatabase.mms.orderedStoryRecipientsAndIds.groupBy {
+        val recipient = Recipient.resolved(it.recipientId)
+        if (recipient.isDistributionList) {
+          myStories
+        } else {
+          recipient
         }
+      }.keys.filter {
+        if (hiddenStories) {
+          it.shouldHideStory()
+        } else {
+          !it.shouldHideStory()
+        }
+      }.map { it.id }
 
-        count
-      }
-
-      if (myStoriesCount > 0) {
-        listOf(myStory) + doNotCollapse
-      } else {
-        doNotCollapse
-      }
+      emitter.onSuccess(
+        if (recipientIds.contains(myStoriesId)) {
+          listOf(myStoriesId) + (recipientIds - myStoriesId)
+        } else {
+          recipientIds
+        }
+      )
     }.subscribeOn(Schedulers.io())
   }
 }

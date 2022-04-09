@@ -404,9 +404,12 @@ public class AttachmentManager {
                .execute();
   }
 
-  public static void selectGif(Fragment fragment, int requestCode, boolean isForMms) {
+  public static void selectGif(Fragment fragment, int requestCode, RecipientId id, TransportOption selectedTransport, boolean isForMms, CharSequence textTrimmed) {
     Intent intent = new Intent(fragment.requireContext(), GiphyActivity.class);
     intent.putExtra(GiphyActivity.EXTRA_IS_MMS, isForMms);
+    intent.putExtra(GiphyActivity.EXTRA_RECIPIENT_ID, id);
+    intent.putExtra(GiphyActivity.EXTRA_TRANSPORT, selectedTransport);
+    intent.putExtra(GiphyActivity.EXTRA_TEXT, textTrimmed);
     fragment.startActivityForResult(intent, requestCode);
   }
 

@@ -11,5 +11,6 @@ data class DistributionListRecord(
   val name: String,
   val distributionId: DistributionId,
   val allowsReplies: Boolean,
-  val members: List<RecipientId>
+  val members: List<RecipientId>,
+  val deletedAtTimestamp: Long
 )

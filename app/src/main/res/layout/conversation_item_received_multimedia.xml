@@ -104,6 +104,31 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/story_reacted_label_holder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="-3dp"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/message_bubble_horizontal_padding"
+            android:paddingEnd="@dimen/message_bubble_horizontal_padding"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                android:id="@+id/story_reacted_label"
+                style="@style/TextAppearance.Signal.Subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4sp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/signal_text_secondary"
+                tools:text="Reacted to your story" />
+
+        </LinearLayout>
+
         <org.thoughtcrime.securesms.components.QuoteView
             android:id="@+id/quote_view"
             android:layout_width="wrap_content"
@@ -234,18 +259,6 @@
             app:footer_text_color="@color/signal_text_secondary" />
 
     </org.thoughtcrime.securesms.conversation.ConversationItemBodyBubble>
-
-    <org.thoughtcrime.securesms.components.emoji.EmojiImageView
-        android:id="@+id/story_reaction_emoji"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_alignEnd="@id/body_bubble"
-        android:layout_alignBottom="@id/body_bubble"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="24dp"
-        android:visibility="gone"
-        tools:src="@drawable/ic_emoji"
-        tools:visibility="visible" />
 
     <org.thoughtcrime.securesms.components.AlertView
         android:id="@+id/indicators_parent"

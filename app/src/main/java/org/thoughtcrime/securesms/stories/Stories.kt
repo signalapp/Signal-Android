@@ -6,6 +6,7 @@ import io.reactivex.rxjava3.core.Completable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.HeaderAction
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.v2.stories.ChooseStoryTypeBottomSheet
@@ -14,6 +15,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.sms.MessageSender
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
 
@@ -50,5 +52,17 @@ object Stories {
     val recipientIds: List<RecipientId> = SignalDatabase.storySends.getRecipientsToSendTo(messageId, sentTimestamp, allowsReplies)
 
     return RecipientUtil.getEligibleForSending(recipientIds.map(Recipient::resolved))
+  }
+
+  @WorkerThread
+  fun onStorySettingsChanged(distributionListId: DistributionListId) {
+    val recipientId = SignalDatabase.distributionLists.getRecipientId(distributionListId) ?: error("Cannot find recipient id for distribution list.")
+    onStorySettingsChanged(recipientId)
+  }
+
+  @WorkerThread
+  fun onStorySettingsChanged(storyRecipientId: RecipientId) {
+    SignalDatabase.recipients.markNeedsSync(storyRecipientId)
+    StorageSyncHelper.scheduleSyncForDataChange()
   }
 }

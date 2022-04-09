@@ -38,6 +38,8 @@ class StoryDirectReplyDialogFragment :
   ReactWithAnyEmojiBottomSheetDialogFragment.Callback {
 
   private val lifecycleDisposable = LifecycleDisposable()
+  private var isRequestingReactWithAny = false
+  private var isReactClosingAfterSend = false
 
   private val viewModel: StoryDirectReplyViewModel by viewModels(
     factoryProducer = {
@@ -92,6 +94,7 @@ class StoryDirectReplyDialogFragment :
 
               override fun onOpenReactionPicker() {
                 dialog.dismiss()
+                isRequestingReactWithAny = true
                 ReactWithAnyEmojiBottomSheetDialogFragment.createForStory().show(childFragmentManager, null)
               }
             }
@@ -104,8 +107,6 @@ class StoryDirectReplyDialogFragment :
         keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI)
         mediaKeyboard.setFragmentManager(childFragmentManager)
       }
-
-      override fun onHeightChanged(height: Int) = Unit
     }
 
     viewModel.state.observe(viewLifecycleOwner) { state ->
@@ -122,13 +123,13 @@ class StoryDirectReplyDialogFragment :
   override fun onResume() {
     super.onResume()
 
-    ViewUtil.focusAndShowKeyboard(composer)
+    ViewUtil.focusAndShowKeyboard(composer.input)
   }
 
   override fun onPause() {
     super.onPause()
 
-    ViewUtil.hideKeyboard(requireContext(), composer)
+    ViewUtil.hideKeyboard(requireContext(), composer.input)
   }
 
   override fun openEmojiSearch() {
@@ -136,7 +137,7 @@ class StoryDirectReplyDialogFragment :
   }
 
   override fun onKeyboardHidden() {
-    if (!composer.isRequestingEmojiDrawer) {
+    if (!composer.isRequestingEmojiDrawer && !isRequestingReactWithAny) {
       super.onKeyboardHidden()
     }
   }
@@ -172,10 +173,16 @@ class StoryDirectReplyDialogFragment :
 
   override fun onKeyEvent(keyEvent: KeyEvent?) = Unit
 
-  override fun onReactWithAnyEmojiDialogDismissed() = Unit
+  override fun onReactWithAnyEmojiDialogDismissed() {
+    isRequestingReactWithAny = false
+    if (!isReactClosingAfterSend) {
+      ViewUtil.focusAndShowKeyboard(composer.input)
+    }
+  }
 
   override fun onReactWithAnyEmojiSelected(emoji: String) {
     sendReaction(emoji)
+    isReactClosingAfterSend = true
   }
 
   private fun sendReaction(emoji: String) {

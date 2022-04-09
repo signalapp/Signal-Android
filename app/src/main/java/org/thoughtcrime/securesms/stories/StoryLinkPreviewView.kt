@@ -3,17 +3,17 @@ package org.thoughtcrime.securesms.stories
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import okhttp3.HttpUrl
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.OutlinedThumbnailView
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.ImageSlide
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture
 import org.thoughtcrime.securesms.util.visible
@@ -34,6 +34,8 @@ class StoryLinkPreviewView @JvmOverloads constructor(
   private val image: OutlinedThumbnailView = findViewById(R.id.link_preview_image)
   private val title: TextView = findViewById(R.id.link_preview_title)
   private val url: TextView = findViewById(R.id.link_preview_url)
+  private val description: TextView = findViewById(R.id.link_preview_description)
+  private val fallbackIcon: ImageView = findViewById(R.id.link_preview_fallback_icon)
 
   fun bind(linkPreview: LinkPreview?, hiddenVisibility: Int = View.INVISIBLE): ListenableFuture<Boolean> {
     var listenableFuture: ListenableFuture<Boolean>? = null
@@ -49,11 +51,15 @@ class StoryLinkPreviewView @JvmOverloads constructor(
       if (imageSlide != null) {
         listenableFuture = image.setImageResource(GlideApp.with(image), imageSlide, false, false)
         image.visible = true
+        fallbackIcon.visible = false
       } else {
         image.visible = false
+        fallbackIcon.visible = true
       }
 
       title.text = linkPreview.title
+      description.text = linkPreview.description
+      description.visible = linkPreview.description.isNotEmpty()
 
       formatUrl(linkPreview)
     } else {
@@ -65,17 +71,21 @@ class StoryLinkPreviewView @JvmOverloads constructor(
   }
 
   fun bind(linkPreviewState: LinkPreviewViewModel.LinkPreviewState, hiddenVisibility: Int = View.INVISIBLE) {
-    bind(linkPreviewState.linkPreview.orElse(null), hiddenVisibility)
+    val linkPreview: LinkPreview? = linkPreviewState.linkPreview.orElseGet {
+      linkPreviewState.activeUrlForError?.let {
+        LinkPreview(it, LinkPreviewUtil.getTopLevelDomain(it) ?: it, null, -1L, null)
+      }
+    }
+
+    bind(linkPreview, hiddenVisibility)
   }
 
   private fun formatUrl(linkPreview: LinkPreview) {
-    var domain: String? = null
+    val domain: String? = LinkPreviewUtil.getTopLevelDomain(linkPreview.url)
 
-    if (!Util.isEmpty(linkPreview.url)) {
-      val url = HttpUrl.parse(linkPreview.url)
-      if (url != null) {
-        domain = url.topPrivateDomain()
-      }
+    if (linkPreview.title == domain) {
+      url.visibility = View.GONE
+      return
     }
 
     if (domain != null && linkPreview.date > 0) {

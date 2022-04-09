@@ -1,12 +1,10 @@
-package org.thoughtcrime.securesms.util;
+package org.signal.core.util;
 
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.text.BidiFormatter;
-
-import org.signal.core.util.BreakIteratorCompat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -199,6 +197,13 @@ public final class StringUtil {
   }
 
   /**
+   * @return True if the text is null or has a length of 0, otherwise false.
+   */
+  public static boolean isEmpty(@Nullable String text) {
+    return text == null || text.length() == 0;
+  }
+
+  /**
    * Isolates bi-directional text from influencing surrounding text. You should use this whenever
    * you're injecting user-generated text into a larger string.
    *
@@ -216,7 +221,7 @@ public final class StringUtil {
       return "";
     }
 
-    if (Util.isEmpty(text)) {
+    if (isEmpty(text)) {
       return text;
     }
 

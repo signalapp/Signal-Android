@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.ringrtc.CameraState
 import org.thoughtcrime.securesms.service.webrtc.collections.ParticipantCollection
+import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState
 import java.util.concurrent.TimeUnit
 
 /**
@@ -258,6 +259,15 @@ data class CallParticipantsState(
     @JvmStatic
     fun update(oldState: CallParticipantsState, groupMembers: List<GroupMemberEntry.FullMember>): CallParticipantsState {
       return oldState.copy(groupMembers = groupMembers)
+    }
+
+    @JvmStatic
+    fun update(oldState: CallParticipantsState, ephemeralState: WebRtcEphemeralState): CallParticipantsState {
+      return oldState.copy(
+        remoteParticipants = oldState.remoteParticipants.map { p -> p.copy(audioLevel = ephemeralState.remoteAudioLevels[p.callParticipantId]) },
+        localParticipant = oldState.localParticipant.copy(audioLevel = ephemeralState.localAudioLevel),
+        focusedParticipant = oldState.focusedParticipant.copy(audioLevel = ephemeralState.remoteAudioLevels[oldState.focusedParticipant.callParticipantId])
+      )
     }
 
     private fun determineLocalRenderMode(

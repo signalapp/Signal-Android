@@ -3490,7 +3490,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ManageDonationsFragment__my_support">Stuðningur minn</string>
   <string name="ManageDonationsFragment__manage_subscription">Sýsla með áskrift</string>
   <!--Label for Tax Receipts button-->
-  <string name="ManageDonationsFragment__tax_receipts">Skattaframtalskvittanir</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Skattaframtalskvittanir</string> -->
   <string name="ManageDonationsFragment__badges">Merki</string>
   <string name="ManageDonationsFragment__subscription_faq">Spurningar varðandi áskrift</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Villa við að ná í áskrift</string>
@@ -3754,7 +3754,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Bæta við sögu</string>
   <!--Displayed when there are no stories to display-->
-  <string name="StoriesLandingFragment__no_recent_updates">Í augnablikinu eru engar nýlegar uppfærslur til að birta.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">Í augnablikinu eru engar nýlegar uppfærslur til að birta.</string> -->
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Fela sögu</string>
   <!--Context menu option to unhide a story-->
@@ -3979,7 +3979,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Slökkva</string>
   <!--Conversation Item label for reactions to a story-->
-  <string name="ConversationItem__s_dot_story">%1$s · Saga</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · Saga</string> -->
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Brást við sögu</string>
   <!--endregion-->

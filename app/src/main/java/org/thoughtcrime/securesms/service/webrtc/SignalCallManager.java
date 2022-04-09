@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.ResultReceiver;
 
+import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -45,6 +46,7 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.ringrtc.CameraEventListener;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
+import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.BubbleUtil;
@@ -52,6 +54,7 @@ import org.thoughtcrime.securesms.util.NetworkUtil;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.rx.RxStore;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.webrtc.PeerConnection;
@@ -80,6 +83,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import kotlin.jvm.functions.Function1;
+
 import static org.thoughtcrime.securesms.events.WebRtcViewModel.GroupCallState.IDLE;
 import static org.thoughtcrime.securesms.events.WebRtcViewModel.State.CALL_INCOMING;
 import static org.thoughtcrime.securesms.events.WebRtcViewModel.State.NETWORK_FAILURE;
@@ -106,16 +113,18 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   private final Executor                    networkExecutor;
   private final LockManager                 lockManager;
 
-  private WebRtcServiceState serviceState;
-  private boolean            needsToSetSelfUuid = true;
+  private WebRtcServiceState            serviceState;
+  private RxStore<WebRtcEphemeralState> ephemeralStateStore;
+  private boolean                       needsToSetSelfUuid  = true;
 
   public SignalCallManager(@NonNull Application application) {
-    this.context         = application.getApplicationContext();
-    this.messageSender   = ApplicationDependencies.getSignalServiceMessageSender();
-    this.accountManager  = ApplicationDependencies.getSignalServiceAccountManager();
-    this.lockManager     = new LockManager(this.context);
-    this.serviceExecutor = Executors.newSingleThreadExecutor();
-    this.networkExecutor = Executors.newSingleThreadExecutor();
+    this.context             = application.getApplicationContext();
+    this.messageSender       = ApplicationDependencies.getSignalServiceMessageSender();
+    this.accountManager      = ApplicationDependencies.getSignalServiceAccountManager();
+    this.lockManager         = new LockManager(this.context);
+    this.serviceExecutor     = Executors.newSingleThreadExecutor();
+    this.networkExecutor     = Executors.newSingleThreadExecutor();
+    this.ephemeralStateStore = new RxStore<>(new WebRtcEphemeralState(), Schedulers.from(serviceExecutor));
 
     CallManager callManager = null;
     try {
@@ -131,6 +140,10 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                                                                                             this,
                                                                                             this,
                                                                                             this)));
+  }
+
+  public @NonNull Flowable<WebRtcEphemeralState> ephemeralStates() {
+    return ephemeralStateStore.getStateFlowable();
   }
 
   @NonNull CallManager getRingRtcCallManager() {
@@ -171,6 +184,16 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         }
       }
     });
+  }
+
+  /**
+   * Processes the given update to {@link WebRtcEphemeralState}.
+   *
+   * @param transformer The transformation to apply to the state. Runs on the {@link #serviceExecutor}.
+   */
+  @AnyThread
+private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEphemeralState> transformer) {
+    ephemeralStateStore.update(transformer);
   }
 
   public void startPreJoinCall(@NonNull Recipient recipient) {
@@ -501,7 +524,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   @Override 
   public void onAudioLevels(Remote remote, int capturedLevel, int receivedLevel) {
-    // TODO: Implement audio level handling for direct calls.
+    processStateless(s -> serviceState.getActionProcessor().handleAudioLevelsChanged(serviceState, s, capturedLevel, receivedLevel));
   }
 
   @Override
@@ -766,7 +789,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   @Override
   public void onAudioLevels(@NonNull GroupCall groupCall) {
-    // TODO: Implement audio level handling for group calls.
+    processStateless(s -> serviceState.getActionProcessor().handleGroupAudioLevelsChanged(serviceState, s));
   }
 
   @Override

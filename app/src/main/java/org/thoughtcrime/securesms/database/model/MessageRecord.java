@@ -58,7 +58,7 @@ import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.StringUtil;
+import org.signal.core.util.StringUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.push.ServiceId;
@@ -655,6 +655,15 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public long getNotifiedTimestamp() {
     return notifiedTimestamp;
+  }
+
+  @VisibleForTesting
+  public long getIncomingStoryViewedAtTimestamp() {
+    if (isOutgoing()) {
+      return -1L;
+    } else {
+      return receiptTimestamp;
+    }
   }
 
   public long getReceiptTimestamp() {

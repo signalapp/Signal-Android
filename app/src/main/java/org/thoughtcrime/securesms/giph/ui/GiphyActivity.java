@@ -6,31 +6,49 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Fragment;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4SaveResult;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ViewModel;
 import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView;
+import org.thoughtcrime.securesms.mediasend.Media;
+import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity;
+import org.thoughtcrime.securesms.mms.SlideFactory;
+import org.thoughtcrime.securesms.providers.BlobProvider;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
+import java.util.Collections;
+import java.util.Objects;
+import java.util.Optional;
+
 public class GiphyActivity extends PassphraseRequiredActivity implements KeyboardPageSearchView.Callbacks {
 
-  public static final String EXTRA_IS_MMS = "extra_is_mms";
-  public static final String EXTRA_WIDTH  = "extra_width";
-  public static final String EXTRA_HEIGHT = "extra_height";
+  public static final String EXTRA_IS_MMS       = "extra_is_mms";
+  public static final String EXTRA_RECIPIENT_ID = "extra_recipient_id";
+  public static final String EXTRA_TRANSPORT    = "extra_transport";
+  public static final String EXTRA_TEXT         = "extra_text";
+
+  private static final int MEDIA_SENDER = 12;
 
   private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
 
   private GiphyMp4ViewModel giphyMp4ViewModel;
   private AlertDialog       progressDialog;
+  private RecipientId       recipientId;
+  private TransportOption   transport;
+  private CharSequence      text;
 
   @Override
   public void onPreCreate() {
@@ -43,6 +61,10 @@ public class GiphyActivity extends PassphraseRequiredActivity implements Keyboar
 
     final boolean forMms = getIntent().getBooleanExtra(EXTRA_IS_MMS, false);
 
+    recipientId = getIntent().getParcelableExtra(EXTRA_RECIPIENT_ID);
+    transport   = getIntent().getParcelableExtra(EXTRA_TRANSPORT);
+    text        = getIntent().getCharSequenceExtra(EXTRA_TEXT);
+
     giphyMp4ViewModel = ViewModelProviders.of(this, new GiphyMp4ViewModel.Factory(forMms)).get(GiphyMp4ViewModel.class);
     giphyMp4ViewModel.getSaveResultEvents().observe(this, this::handleGiphyMp4SaveResult);
 
@@ -54,6 +76,16 @@ public class GiphyActivity extends PassphraseRequiredActivity implements Keyboar
                                .commit();
 
     ViewUtil.focusAndShowKeyboard(findViewById(R.id.emoji_search_entry));
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    if (requestCode == MEDIA_SENDER && resultCode == RESULT_OK) {
+      setResult(RESULT_OK, data);
+      finish();
+    } else {
+      super.onActivityResult(requestCode, resultCode, data);
+    }
   }
 
   private void initializeToolbar() {
@@ -82,13 +114,14 @@ public class GiphyActivity extends PassphraseRequiredActivity implements Keyboar
   }
 
   private void handleGiphyMp4SuccessfulResult(@NonNull GiphyMp4SaveResult.Success success) {
-    Intent intent = new Intent();
-    intent.setData(success.getBlobUri());
-    intent.putExtra(EXTRA_WIDTH, success.getWidth());
-    intent.putExtra(EXTRA_HEIGHT, success.getHeight());
+    SlideFactory.MediaType mediaType = Objects.requireNonNull(SlideFactory.MediaType.from(BlobProvider.getMimeType(success.getBlobUri())));
+    String                 mimeType  = MediaUtil.getMimeType(this, success.getBlobUri());
+    if (mimeType == null) {
+      mimeType = mediaType.toFallbackMimeType();
+    }
 
-    setResult(RESULT_OK, intent);
-    finish();
+    Media media = new Media(success.getBlobUri(), mimeType, 0, success.getWidth(), success.getHeight(), 0, 0, false, true, Optional.empty(), Optional.empty(), Optional.empty());
+    startActivityForResult(MediaSelectionActivity.editor(this, transport, Collections.singletonList(media), recipientId, text), MEDIA_SENDER);
   }
 
   private void handleGiphyMp4ErrorResult(@NonNull GiphyMp4SaveResult.Error error) {

@@ -9,7 +9,6 @@
     android:orientation="horizontal"
     android:paddingHorizontal="@dimen/dsl_settings_gutter">
 
-    <!-- TODO - Final art asset -->
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/icon"
         android:layout_width="40dp"
@@ -19,7 +18,8 @@
         android:importantForAccessibility="no"
         android:scaleType="centerInside"
         app:backgroundTint="@color/signal_background_secondary"
-        app:srcCompat="@drawable/ic_emoji_people_20" />
+        app:srcCompat="@drawable/ic_lock_24"
+        app:tint="@color/signal_icon_tint_primary" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/label"

@@ -3,10 +3,8 @@ package org.thoughtcrime.securesms.database.model;
 import android.content.Context;
 
 import androidx.annotation.DrawableRes;
-import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.WorkerThread;
 
 import com.google.protobuf.ByteString;
 
@@ -24,7 +22,7 @@ import org.signal.storageservice.protos.groups.local.EnabledState;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.GV2AccessLevelUtil;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
-import org.thoughtcrime.securesms.util.StringUtil;
+import org.signal.core.util.StringUtil;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.util.UuidUtil;

@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.util.livedata.Store
 class ConversationListTabsViewModel(repository: ConversationListTabRepository) : ViewModel() {
   private val store = Store(ConversationListTabsState())
 
+  val stateSnapshot: ConversationListTabsState = store.state
   val state: LiveData<ConversationListTabsState> = store.stateLiveData
   val disposables = CompositeDisposable()
 
@@ -36,11 +37,19 @@ class ConversationListTabsViewModel(repository: ConversationListTabRepository) :
   }
 
   fun onSearchOpened() {
-    store.update { it.copy(isSearchOpen = true) }
+    store.update { it.copy(visibilityState = it.visibilityState.copy(isSearchOpen = true)) }
   }
 
   fun onSearchClosed() {
-    store.update { it.copy(isSearchOpen = false) }
+    store.update { it.copy(visibilityState = it.visibilityState.copy(isSearchOpen = false)) }
+  }
+
+  fun onMultiSelectStarted() {
+    store.update { it.copy(visibilityState = it.visibilityState.copy(isMultiSelectOpen = true)) }
+  }
+
+  fun onMultiSelectFinished() {
+    store.update { it.copy(visibilityState = it.visibilityState.copy(isMultiSelectOpen = false)) }
   }
 
   class Factory(private val repository: ConversationListTabRepository) : ViewModelProvider.Factory {

@@ -117,6 +117,18 @@ public class PushMediaConstraints extends MediaConstraints {
       this.qualitySetting   = qualitySetting;
     }
 
+    public int getMaxImageFileSize() {
+      return maxImageFileSize;
+    }
+
+    public int[] getImageSizeTargets() {
+      return imageSizeTargets;
+    }
+
+    public int getQualitySetting() {
+      return qualitySetting;
+    }
+
     public static @Nullable MediaConfig forLevel(int level) {
       boolean isLowMemory = Util.isLowMemory(ApplicationDependencies.getApplication());
 

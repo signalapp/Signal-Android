@@ -11,6 +11,7 @@ import androidx.core.util.Consumer;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.ThreadUtil;
+import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.TransportOptions;
@@ -33,7 +34,6 @@ import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.MessageUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -252,13 +252,14 @@ public final class MultiShareSender {
       outgoingMessages.add(outgoingMediaMessage);
     }
 
-    if (recipient.isRegistered() && !forceSms) {
+    if (shouldSendAsPush(recipient, forceSms))
+    {
       for (final OutgoingMediaMessage outgoingMessage : outgoingMessages) {
         MessageSender.send(context, new OutgoingSecureMediaMessage(outgoingMessage), threadId, false, null, null);
       }
     } else {
       for (final OutgoingMediaMessage outgoingMessage : outgoingMessages) {
-        MessageSender.send(context, new OutgoingSecureMediaMessage(outgoingMessage), threadId, forceSms, null, null);
+        MessageSender.send(context, outgoingMessage, threadId, forceSms, null, null);
       }
     }
   }
@@ -273,13 +274,19 @@ public final class MultiShareSender {
   {
 
     final OutgoingTextMessage outgoingTextMessage;
-    if (recipient.isRegistered() && !forceSms) {
+    if (shouldSendAsPush(recipient, forceSms)) {
       outgoingTextMessage = new OutgoingEncryptedMessage(recipient, multiShareArgs.getDraftText(), expiresIn);
     } else {
       outgoingTextMessage = new OutgoingTextMessage(recipient, multiShareArgs.getDraftText(), expiresIn, subscriptionId);
     }
 
     MessageSender.send(context, outgoingTextMessage, threadId, forceSms, null, null);
+  }
+
+  private static boolean shouldSendAsPush(@NonNull Recipient recipient, boolean forceSms) {
+    return recipient.isDistributionList() ||
+           recipient.isServiceIdOnly()    ||
+           (recipient.isRegistered() && !forceSms);
   }
 
   private static @NonNull SlideDeck buildSlideDeck(@NonNull Context context, @NonNull MultiShareArgs multiShareArgs) throws SlideNotFoundException {

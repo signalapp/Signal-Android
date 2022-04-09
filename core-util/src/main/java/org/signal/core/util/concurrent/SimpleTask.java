@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util.concurrent;
+package org.signal.core.util.concurrent;
 
 import android.os.AsyncTask;
 

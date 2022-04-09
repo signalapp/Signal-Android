@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
 import io.reactivex.rxjava3.core.Single
+import org.signal.core.util.DimensionUnit
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.Attachment
@@ -221,6 +222,7 @@ object StoryContextMenu {
       .onDismiss {
         callbacks.onDismissed()
       }
+      .offsetX(DimensionUnit.DP.toPixels(16f).toInt())
       .show(actions)
   }
 

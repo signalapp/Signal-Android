@@ -91,7 +91,9 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">ئۇچۇر يوللىيالايسىز ۋە بىر-بىرىڭلارغا تېلېفون قىلالايسىز، ئىسمىڭىز ۋە سۈرىتىڭىز ئۇلار بىلەن ھەمبەھىرلىنىدۇ.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">چەكلەنگەن كىشىلەر سىزگە تېلېفون قىلالمايدۇ ياكى ئۇچۇر ئەۋەتەلمەيدۇ.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal يېڭىلاش ۋە خەۋەرلىرىنى توسىدۇ.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signal يېڭىلاش ۋە خەۋەرلىرىنى قوبۇل قىلىدۇ.</string>
   <string name="BlockUnblockDialog_unblock_s">%1$sچەكلىمەمدۇ؟</string>
   <string name="BlockUnblockDialog_block">چەكلە</string>
   <string name="BlockUnblockDialog_block_and_leave">چەكلە ۋە ئايرىل</string>
@@ -122,6 +124,7 @@
   <string name="CameraContacts__menu_search">ئىزدە</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">تەكشۈرۈشتىن دالدىلىنىشنى تاقامدۇ؟</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">تاقا</string>
@@ -267,7 +270,7 @@
   <string name="ConversationFragment_save_to_sd_card">ساقلىغۇچقا ساقلامدۇ؟</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">بۇ  مېدىيانى ساقلاش مەشغۇلاتى ئۈسكۈنىڭىزدىكى باشقا ئەپلەرنىڭ ئۇنى زىيارەت قىلىشىغا يول قويىدۇ. \n\n شۇنداقتىمۇ داۋاملاشتۇرامسىز؟</item>
-    <item quantity="other">%1$d مېدىيالىرىنى ساقلاش مەشغۇلاتى ئۈسكۈنىڭىزدىكى باشقا ئەپلەرنىڭ ئۇلارنى زىيارەت قىلىشىغا يول قويىدۇ. \n\n شۇنداقتىمۇ داۋاملاشتۇرامسىز؟</item>
+    <item quantity="other">%1$d ۋاسىتىلەرنى ساقلاش مەشغۇلاتى ئۈسكۈنىڭىزدىكى باشقا ئەپلەرنىڭ ئۇلارنى زىيارەت قىلىشىغا يول قويىدۇ. \n\n شۇنداقتىمۇ داۋاملاشتۇرامسىز؟</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">قوشۇمچىنى ساقلىغۇچقا ساقلاۋاتقاندا خاتالىق! </item>
@@ -284,7 +287,7 @@
   </plurals>
   <string name="ConversationFragment_pending">كۈتۈۋاتىدۇ…</string>
   <string name="ConversationFragment_push">مەلۇمات(Signal)</string>
-  <string name="ConversationFragment_mms">كۆپ مېدىيا ئۇچۇرى</string>
+  <string name="ConversationFragment_mms">كۆپ ۋاسىتە ئۇچۇرى</string>
   <string name="ConversationFragment_sms">قىسقا ئۇچۇر</string>
   <string name="ConversationFragment_deleting">ئۆچۈرۈلۈۋاتىدۇ</string>
   <string name="ConversationFragment_deleting_messages">ئۇچۇرلار ئۆچۈرۈلۈۋاتىدۇ…</string>
@@ -296,7 +299,7 @@
   <string name="ConversationFragment_failed_to_open_message">ئۇچۇرنى ئاچالمىدى</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">تېز جاۋاب قايتۇرۇش ئۈچۈن ھەر قانداق ئۇچۇردا ئوڭ تەرەپكە سىيرىسىڭىز بولىدۇ</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">تېز جاۋاب قايتۇرۇش ئۈچۈن ھەر قانداق ئۇچۇردا سول تەرەپكە سىيرىسىڭىز بولىدۇ</string>
-  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">بىر قېتىملا كۆرۈنىدىغان مېدىيا ھۆججەتلىرى ئەۋەتىلگەندىن كېيىن ئاپتوماتىك ئۆچۈرۈلىدۇ</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">بىر قېتىملا كۆرۈنىدىغان ۋاسىتە ھۆججەتلىرى ئەۋەتىلگەندىن كېيىن ئاپتوماتىك ئۆچۈرۈلىدۇ</string>
   <string name="ConversationFragment_you_already_viewed_this_message">سىز بۇ ئۇچۇرنى كۆرۈپ بولغان</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">بۇ سۆھبەتتە ئۆزىڭىزگە خاتىرە قوشالايسىز.\n ئەگەر ھېساباتىڭىزدا ئۇلانغان ئۈسكۈنىلەر بولسا، يېڭى خاتىرىلەر ماسقەدەملىنىدۇ.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d گۇرۇپپا ئەزالىرىنىڭمۇ ئوخشاش نامى بار.</string>
@@ -477,7 +480,7 @@
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">«يېڭى گۇرۇپپىلار» دېگەن نېمە؟</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">يېڭى گۇرۇپپىلارنىڭ @ئەتىكەتلەش ۋە گۇرۇپپا باشقۇرغۇچىلىرىغا ئوخشاش ئىقتىدارلىرى بار، كەلگۈسىدە تېخىمۇ كۆپ ئىقتىدارلارنى قوللايدۇ.</string>
-  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">بارلىق ئۇچۇر تارىخى ۋە مېدىيالار يېڭىلاشتىن بۇرۇن ساقلىنىدۇ.</string>
+  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">بارلىق ئۇچۇر تارىخى ۋە ۋاسىتىلەر يېڭىلاشتىن بۇرۇن ساقلىنىپ قالىدۇ.</string>
   <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">بۇ گۇرۇپپىغا قوشۇلۇش تەكلىپنامىسىنى قوبۇل قىلىشىڭىز كېرەك ۋە سىز ئۇنى قوبۇل قىلغۇچە گۇرۇپپا ئۇچۇرلىرىنى كۆرەلمەيسىز.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">بۇ ئەزا بۇ گۇرۇپپىغا قايتا قاتنىشىش تەكلىپنامىسىنى قوبۇل قىلىشى كېرەك، ئۇ تەكلىپنامىنى قوبۇل قىلغۇچە گۇرۇپپا ئۇچۇرلىرىنى تاپشۇرۇۋالمايدۇ:</item>
@@ -492,7 +495,7 @@
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">«يېڭى گۇرۇپپا»غا يېڭىلاڭ</string>
   <string name="GroupsV1MigrationInitiation_upgrade_this_group">بۇ گۇرۇپپىنى يېڭىلاڭ</string>
   <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">يېڭى گۇرۇپپىلارنىڭ @ئەتىكەتلەش ۋە گۇرۇپپا باشقۇرغۇچىلىرىغا ئوخشاش ئىقتىدارلىرى بار، كەلگۈسىدە تېخىمۇ كۆپ ئىقتىدارلارنى قوللايدۇ.</string>
-  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">بارلىق ئۇچۇر تارىخى ۋە مېدىيا يېڭىلاشتىن بۇرۇن ساقلىنىدۇ.</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">بارلىق ئۇچۇر تارىخى ۋە ۋاسىتە يېڭىلاشتىن بۇرۇن ساقلىنىدۇ.</string>
   <string name="GroupsV1MigrationInitiation_encountered_a_network_error">تور خاتالىقىغا يولۇقتى. سەل تۇرۇپ قايتا سىناڭ.</string>
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">يېڭىلاش مەغلۇپ بولدى.</string>
   <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
@@ -862,7 +865,7 @@
   <string name="MediaSendActivity_select_recipients_description">تاپشۇرۇۋالغۇچىلارنى تاللاڭ</string>
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">بۇ جاي چېكىلسە ئوقۇلغاندىن كېيىن غايىب بولىدىغان ئۇچۇر قۇرۇلىدۇ.</string>
   <!--MediaRepository-->
-  <string name="MediaRepository_all_media">بارلىق مېدىيا</string>
+  <string name="MediaRepository_all_media">بارلىق ۋاسىتە</string>
   <string name="MediaRepository__camera">كامېرا</string>
   <!--MessageDecryptionUtil-->
   <string name="MessageDecryptionUtil_failed_to_decrypt_message">ئۇچۇرنى يېشەلمىدى</string>
@@ -1553,7 +1556,7 @@
   <string name="SaveAttachmentTask_saved_to">%s غا ساقلاندى</string>
   <string name="SaveAttachmentTask_saved">ساقلاندى</string>
   <!--SearchToolbar-->
-  <string name="SearchToolbar_search">ئاقتۇرۇش</string>
+  <string name="SearchToolbar_search">ئىزدە</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">سۆھبەت، ئالاقەداش ۋە ئۇچۇرلارنى ئىزدەيدۇ</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">ئىناۋەتسىز قىسقا يول</string>
@@ -1641,7 +1644,7 @@
   <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">ئەۋەت</string>
   <string name="conversation_activity__compose_description">ئۇچۇر يېزىش</string>
-  <string name="conversation_activity__emoji_toggle_description">ئىپادە كۇنۇپكا تاختىسىنى ئالماشتۇر</string>
+  <string name="conversation_activity__emoji_toggle_description">ئىپادە ھەرپتاختىسىنى ئالماشتۇر</string>
   <string name="conversation_activity__attachment_thumbnail">قوشۇمچىنىڭ كىچىك سۈرىتى</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">تېز كامېرا قوشۇمچە تارتمىسىغا ئالماشتۇر</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">ئۈن قوشۇمچىسىنى ئۇنگە ئال ۋە ئەۋەت</string>
@@ -1725,7 +1728,7 @@
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">چاقىرىش ئۇقتۇرۇشىنى تاپشۇرۇۋېلىش ئۈچۈن، تەڭشەكلەرنى چېكىپ، «توكدان» تەڭشەكلىرىدىن ئارقا سۇپا پائالىيىتىنى ئېچىڭ.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">دۆلەتلەرنى يۈكلەۋاتىدۇ…</string>
-  <string name="country_selection_fragment__search">ئاقتۇرۇش</string>
+  <string name="country_selection_fragment__search">ئىزدە</string>
   <string name="country_selection_fragment__no_matching_countries">مۇناسىپ دۆلەت يوق</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">باغلىنىش ئۈچۈن ئۈسكىنىدە كۆرۈنگەن QR كودىنى سايىلەڭ</string>
@@ -2039,7 +2042,7 @@
   <string name="preferences__delete_account">ھېساباتنى ئۆچۈر</string>
   <string name="preferences__support_wifi_calling">«WiFi چاقىرىقى» ماسلىشىشچان ھالىتى</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">ئۈسكۈنىڭىز WiFi دا  قىسقا ئۇچۇر ياكى كۆپ ۋاسىتە ئۇچۇر ئەۋەتكەندە قوزغىتىڭ (پەقەت ئۈسكىنىڭىزدە «WiFi چاقىرىقى» ئاكتىپ بولسا قوزغىتىڭ)</string>
-  <string name="preferences__incognito_keyboard">يوشۇرۇن كۇنۇپكا تاختىسى</string>
+  <string name="preferences__incognito_keyboard">يوشۇرۇن ھەرپتاختىسى</string>
   <string name="preferences__read_receipts">ئوقۇلدى ئىشارىتى</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ئەگەر ئوقۇلدى ئىشارىتى ئېتىك بولسا، باشقىلارنىڭ ئوقۇلدى ئىشارەتلىرىنىمۇ كۆرەلمەيسىز.</string>
   <string name="preferences__typing_indicators">بېسىۋاتىدۇ كۆرسەتكۈچى</string>
@@ -2050,7 +2053,7 @@
   <string name="preferences_chats__when_using_mobile_data">كۆچمە مەلۇمات ئىشلەتكەندە</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi ئىشلەتكەندە</string>
   <string name="preferences_chats__when_roaming">كەزمە ۋاقتىدە</string>
-  <string name="preferences_chats__media_auto_download">مېدىيالارنى ئاپتۇماتىك چۈشۈر</string>
+  <string name="preferences_chats__media_auto_download">ۋاسىتەلەرنى ئاپتۇماتىك چۈشۈر</string>
   <string name="preferences_chats__message_history">ئۇچۇر تارىخى</string>
   <string name="preferences_storage__storage_usage">ساقلىغۇچ ئىشلىتىلىشى</string>
   <string name="preferences_storage__photos">سۈرەتلەر</string>
@@ -2060,9 +2063,9 @@
   <string name="preferences_storage__review_storage">ساقلىغۇچ تەكشۈرۈش</string>
   <string name="preferences_storage__delete_older_messages">كونا ئۇچۇرلارنى ئۆچۈرەمسىز؟</string>
   <string name="preferences_storage__clear_message_history">ئۇچۇر تارىخىنى تازىلامسىز؟</string>
-  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">بۇ ئۈسكىنىڭىزدىكى %1$s دىن بۇرۇنقى بارلىق ئۇچۇر ۋە مېدىيالارنى مەڭگۈلۈك ئۆچۈرىۋېتىدۇ.</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">بۇ ئۈسكۈىڭىزدىكى %1$s دىن بۇرۇنقى بارلىق ئۇچۇر ۋە ۋاسىتەلەرنى مەڭگۈلۈك ئۆچۈرۈۋېتىدۇ.</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">بۇ بارلىق سۆھبەتلەرنىڭ ئەڭ يېقىنقى %1$s ئۇچۇرغىچە بولغانلىرىنى قىرقىۋېتىدۇ.</string>
-  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">بۇ ئۈسكىنىڭىزدىكى بارلىق ئۇچۇر تارىخى ۋە مېدىيالارنى مەڭگۈلۈك ئۆچۈرىۋېتىدۇ.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">بۇ ئۈسكۈنىڭىزدىكى بارلىق ئۇچۇر تارىخى ۋە ۋاسىتەلەرنى مەڭگۈلۈك ئۆچۈرۈۋېتىدۇ.</string>
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">راستلا بارلىق ئۇچۇر تارىخنى ئۆچۈرىۋېتەمسىز؟</string>
   <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">بارلىق ئۇچۇر تارىخى مەڭگۈلۈك ئۆچۈرىۋېتىلىدۇ. بۇ ھەرىكەتتىن كەينىگە يېنىۋالالمايسىز.</string>
   <string name="preferences_storage__delete_all_now">ھازىرلا ھەممىنى ئۆچۈر</string>
@@ -2315,7 +2318,7 @@
   <string name="conversation_list_batch__menu_mark_as_unread">ئوقۇلمىدى</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">تەڭشەكلەر قىسقا يولى</string>
-  <string name="conversation_list_search_description">ئاقتۇرۇش</string>
+  <string name="conversation_list_search_description">ئىزدە</string>
   <string name="conversation_list__pinned">قوندۇرۇلدى</string>
   <string name="conversation_list__chats">سۆھبەتلەر</string>
   <string name="conversation_list__you_can_only_pin_up_to_d_chats">سىز %1$d سۆھبەتنىلا قوندۇرالايسىز</string>
@@ -2335,7 +2338,7 @@
   <!--conversation-->
   <string name="conversation__menu_group_settings">گۇرۇپپا تەڭشەكلەر</string>
   <string name="conversation__menu_leave_group">گۇرۇپپىدىن ئايرىلىڭ</string>
-  <string name="conversation__menu_view_all_media">بارلىق مېدىيا</string>
+  <string name="conversation__menu_view_all_media">بارلىق ۋاسىتە</string>
   <string name="conversation__menu_conversation_settings">سۆھبەت تەڭشەكلەر</string>
   <string name="conversation__menu_add_shortcut">باش ئېكرانغا قوش</string>
   <string name="conversation__menu_create_bubble">كۆپۈك قۇر</string>
@@ -2368,7 +2371,7 @@
   <string name="media_preview__save_title">ساقلاش</string>
   <string name="media_preview__forward_title">ئۇلاپ يوللا</string>
   <string name="media_preview__share_title">ھەمبەھىر</string>
-  <string name="media_preview__all_media_title">بارلىق مېدىيا</string>
+  <string name="media_preview__all_media_title">بارلىق ۋاسىتە</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">ۋاسىتە ئالدىن كۆرسەت</string>
   <!--new_conversation_activity-->
@@ -2515,7 +2518,7 @@
   <string name="RegistrationActivity_checking">تەكشۈرۈۋاتىدۇ…</string>
   <string name="RegistrationActivity_d_messages_so_far">ھازىرچە %d ئۇچۇر بار…</string>
   <string name="RegistrationActivity_restore_from_backup">زاپاستىن ئەسلىگە كەلتۈرەمسىز؟</string>
-  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">ئۇچۇر ۋە مېدىيالىرىڭىزنى يەرلىك زاپاسلاشتىن ئەسلىگە كەلتۈرۈڭ. ئەگەر ھازىر ئەسلىگە كەلتۈرمىسىڭىز، كېيىن ئەسلىگە كەلتۈرەلمەيسىز.</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">ئۇچۇر ۋە ۋاسىتەلىرىڭىزنى يەرلىك زاپاسلاشتىن ئەسلىگە كەلتۈرۈڭ. ئەگەر ھازىر ئەسلىگە كەلتۈرمىسىڭىز، كېيىن ئەسلىگە كەلتۈرەلمەيسىز.</string>
   <string name="RegistrationActivity_backup_size_s">زاپاسنىڭ سىغىمى: %s</string>
   <string name="RegistrationActivity_backup_timestamp_s">زاپاسلاش ۋاقتى: %s</string>
   <string name="BackupDialog_enable_local_backups">يەرلىكتە زاپاسلاشنى قوزغىتامسىز؟</string>
@@ -3561,6 +3564,7 @@
   <!--Displayed in the viewer when the network is not available-->
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">تەكشۈرۈشتىن دالدىلىنىشنى تاقامدۇ؟</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_no_thanks">ياق، رەھمەت</string>

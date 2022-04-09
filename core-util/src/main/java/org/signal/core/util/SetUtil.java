@@ -1,9 +1,6 @@
-package org.thoughtcrime.securesms.util;
+package org.signal.core.util;
 
-import android.annotation.SuppressLint;
-
-import com.google.android.collect.Sets;
-
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -30,8 +27,8 @@ public final class SetUtil {
     return result;
   }
 
-  @SuppressLint("NewApi")
+  @SafeVarargs
   public static <E> HashSet<E> newHashSet(E... elements) {
-    return Sets.newHashSet(elements);
+    return new HashSet<>(Arrays.asList(elements));
   }
 }

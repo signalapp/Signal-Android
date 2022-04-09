@@ -37,7 +37,7 @@ import org.thoughtcrime.securesms.components.mention.MentionValidatorWatcher;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.StringUtil;
+import org.signal.core.util.StringUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.List;

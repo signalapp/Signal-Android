@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.ViewCompat
+import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
@@ -21,7 +22,10 @@ import org.thoughtcrime.securesms.stories.viewer.reply.BottomSheetBehaviorDelega
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerChild
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerParent
 import org.thoughtcrime.securesms.stories.viewer.reply.group.StoryGroupReplyFragment
+import org.thoughtcrime.securesms.util.BottomSheetUtil.requireCoordinatorLayout
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import kotlin.math.min
+import kotlin.math.roundToInt
 
 /**
  * Tab based host for Views and Replies
@@ -43,6 +47,9 @@ class StoryViewsAndRepliesDialogFragment : FixedRoundedCornerBottomSheetDialogFr
   override val peekHeightPercentage: Float = 1f
 
   private lateinit var pager: ViewPager2
+
+  private var shouldShowFullScreen = false
+  private var initialParentHeight = 0
 
   private val storyViewerPageViewModel: StoryViewerPageViewModel by viewModels(
     ownerProducer = { requireParentFragment() }
@@ -88,6 +95,27 @@ class StoryViewsAndRepliesDialogFragment : FixedRoundedCornerBottomSheetDialogFr
     }.attach()
 
     lifecycleDisposable.bindTo(viewLifecycleOwner)
+
+    view.viewTreeObserver.addOnGlobalLayoutListener {
+      val parentHeight = requireCoordinatorLayout().height
+      val desiredHeight = (resources.displayMetrics.heightPixels * 0.6f).roundToInt()
+
+      if (initialParentHeight == 0) {
+        initialParentHeight = parentHeight
+      }
+
+      val targetHeight = when {
+        parentHeight == 0 -> desiredHeight
+        shouldShowFullScreen || parentHeight != initialParentHeight -> parentHeight
+        else -> min(parentHeight, desiredHeight)
+      }
+
+      if (view.height != targetHeight) {
+        view.updateLayoutParams {
+          height = targetHeight
+        }
+      }
+    }
   }
 
   override fun onResume() {
@@ -108,6 +136,11 @@ class StoryViewsAndRepliesDialogFragment : FixedRoundedCornerBottomSheetDialogFr
   override fun onStartDirectReply(recipientId: RecipientId) {
     dismiss()
     storyViewerPageViewModel.startDirectReply(storyId, recipientId)
+  }
+
+  override fun requestFullScreen(fullscreen: Boolean) {
+    shouldShowFullScreen = fullscreen
+    requireView().invalidate()
   }
 
   private inner class PageChangeCallback : ViewPager2.OnPageChangeCallback() {

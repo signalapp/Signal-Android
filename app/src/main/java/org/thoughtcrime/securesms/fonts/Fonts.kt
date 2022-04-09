@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.fonts
 import android.content.Context
 import android.graphics.Typeface
 import androidx.annotation.WorkerThread
+import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.s3.S3
@@ -46,15 +47,17 @@ object Fonts {
   }
 
   /**
-   * Attempts to retrieve a Typeface for the given font / locale combination
+   * Attempts to retrieve a Typeface for the given font / guessed script and default locales combination
    *
    * @param context An application context
-   * @param locale The locale the content will be displayed in
    * @param font The desired font
+   * @param supportedScript The script likely being used based on text content
+   *
    * @return a FontResult that represents either a Typeface or a task retrieving a Typeface.
    */
   @WorkerThread
-  fun resolveFont(context: Context, locale: Locale, font: TextFont): FontResult {
+  fun resolveFont(context: Context, font: TextFont, supportedScript: SupportedScript): FontResult {
+    ThreadUtil.assertNotMainThread()
     synchronized(this) {
       val errorFallback = FontResult.Immediate(Typeface.create(font.fallbackFamily, font.fallbackStyle))
       val version = FontVersion.get(context)
@@ -66,11 +69,19 @@ object Fonts {
 
       Log.d(TAG, "Loaded manifest.")
 
-      val fontScript = resolveScriptNameFromLocale(locale, manifest) ?: return errorFallback
+      val fontScript = resolveFontScriptFromScriptName(supportedScript, manifest)
+      if (fontScript == null) {
+        Log.d(TAG, "Manifest does not have an entry for $supportedScript. Using default.")
+        return FontResult.Immediate(getDefaultFontForScriptAndStyle(supportedScript, font))
+      }
 
       Log.d(TAG, "Loaded script for locale.")
 
       val fontNetworkPath = getScriptPath(font, fontScript)
+      if (fontNetworkPath == null) {
+        Log.d(TAG, "Manifest does not contain a network path for $supportedScript. Using default.")
+        return FontResult.Immediate(getDefaultFontForScriptAndStyle(supportedScript, font))
+      }
 
       val fontLocalPath = FontFileMap.getNameOnDisk(context, version, fontNetworkPath)
 
@@ -80,7 +91,7 @@ object Fonts {
       }
 
       val fontDownloadKey = FontDownloadKey(
-        version, locale, font
+        version, supportedScript, font
       )
 
       val taskInProgress = taskCache[fontDownloadKey]
@@ -93,7 +104,7 @@ object Fonts {
       } else {
         Log.d(TAG, "Could not find a task in progress. Returning new async.")
         val newTask = ListenableFutureTask {
-          val newLocalPath = downloadFont(context, locale, font, version, manifest)
+          val newLocalPath = downloadFont(context, supportedScript, font, version, manifest)
           Log.d(TAG, "Finished download, $newLocalPath")
 
           val typeface = newLocalPath?.let { loadFontIntoTypeface(context, version, it) } ?: errorFallback.typeface
@@ -108,6 +119,69 @@ object Fonts {
           future = newTask,
           placeholder = errorFallback.typeface
         )
+      }
+    }
+  }
+
+  private fun getDefaultFontForScriptAndStyle(supportedScript: SupportedScript, font: TextFont): Typeface {
+    return when (supportedScript) {
+      SupportedScript.CYRILLIC -> {
+        when (font) {
+          TextFont.REGULAR -> Typeface.SANS_SERIF
+          TextFont.BOLD -> Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD)
+          TextFont.SERIF -> Typeface.SERIF
+          TextFont.SCRIPT -> TypefaceHelper.typefaceFor(TypefaceHelper.Family.SERIF, "semibold", TypefaceHelper.Weight.SEMI_BOLD)
+          TextFont.CONDENSED -> TypefaceHelper.typefaceFor(TypefaceHelper.Family.SANS_SERIF, "light", TypefaceHelper.Weight.LIGHT)
+        }
+      }
+      SupportedScript.DEVANAGARI -> {
+        when (font) {
+          TextFont.REGULAR -> Typeface.SANS_SERIF
+          TextFont.BOLD -> Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD)
+          TextFont.SERIF -> Typeface.SANS_SERIF
+          TextFont.SCRIPT -> Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD)
+          TextFont.CONDENSED -> TypefaceHelper.typefaceFor(TypefaceHelper.Family.SANS_SERIF, "light", TypefaceHelper.Weight.LIGHT)
+        }
+      }
+      SupportedScript.CHINESE_TRADITIONAL_HK,
+      SupportedScript.CHINESE_TRADITIONAL,
+      SupportedScript.CHINESE_SIMPLIFIED,
+      SupportedScript.UNKNOWN_CJK -> {
+        when (font) {
+          TextFont.REGULAR -> Typeface.SANS_SERIF
+          TextFont.BOLD -> TypefaceHelper.typefaceFor(TypefaceHelper.Family.SANS_SERIF, "semibold", TypefaceHelper.Weight.SEMI_BOLD)
+          TextFont.SERIF -> TypefaceHelper.typefaceFor(TypefaceHelper.Family.SANS_SERIF, "thin", TypefaceHelper.Weight.THIN)
+          TextFont.SCRIPT -> TypefaceHelper.typefaceFor(TypefaceHelper.Family.SANS_SERIF, "light", TypefaceHelper.Weight.LIGHT)
+          TextFont.CONDENSED -> TypefaceHelper.typefaceFor(TypefaceHelper.Family.SANS_SERIF, "demilight", TypefaceHelper.Weight.DEMI_LIGHT)
+        }
+      }
+      SupportedScript.ARABIC -> {
+        when (font) {
+          TextFont.REGULAR -> Typeface.SANS_SERIF
+          TextFont.BOLD -> Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD)
+          TextFont.SERIF -> Typeface.SERIF
+          TextFont.SCRIPT -> Typeface.create(Typeface.SERIF, Typeface.BOLD)
+          TextFont.CONDENSED -> TypefaceHelper.typefaceFor(TypefaceHelper.Family.SANS_SERIF, "black", TypefaceHelper.Weight.BLACK)
+        }
+      }
+      SupportedScript.JAPANESE -> {
+        when (font) {
+          TextFont.REGULAR -> Typeface.SANS_SERIF
+          TextFont.BOLD -> Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD)
+          TextFont.SERIF -> Typeface.SERIF
+          TextFont.SCRIPT -> Typeface.create(Typeface.SERIF, Typeface.BOLD)
+          TextFont.CONDENSED -> TypefaceHelper.typefaceFor(TypefaceHelper.Family.SANS_SERIF, "medium", TypefaceHelper.Weight.MEDIUM)
+        }
+      }
+      SupportedScript.LATIN,
+      SupportedScript.UNKNOWN -> {
+        when (font) {
+          TextFont.REGULAR -> Typeface.SANS_SERIF
+          TextFont.BOLD -> Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD)
+          TextFont.SERIF -> Typeface.SERIF
+          TextFont.SCRIPT -> Typeface.create(Typeface.SERIF, Typeface.BOLD)
+          TextFont.CONDENSED -> TypefaceHelper.typefaceFor(TypefaceHelper.Family.SANS_SERIF, "black", TypefaceHelper.Weight.BLACK)
+        }
       }
     }
   }
@@ -146,9 +220,13 @@ object Fonts {
    * Downloads the given font file from S3
    */
   @WorkerThread
-  private fun downloadFont(context: Context, locale: Locale, font: TextFont, fontVersion: FontVersion, fontManifest: FontManifest): String? {
-    val script: FontManifest.FontScript = resolveScriptNameFromLocale(locale, fontManifest) ?: return null
-    val path = getScriptPath(font, script)
+  private fun downloadFont(context: Context, supportedScript: SupportedScript?, font: TextFont, fontVersion: FontVersion, fontManifest: FontManifest): String? {
+    if (supportedScript == null) {
+      return null
+    }
+
+    val script: FontManifest.FontScript = resolveFontScriptFromScriptName(supportedScript, fontManifest) ?: return null
+    val path = getScriptPath(font, script) ?: return null
     val networkPath = "$BASE_STATIC_BUCKET_URL/${fontVersion.id}/$path"
     val localUUID = UUID.randomUUID().toString()
     val localPath = "${fontVersion.path}/" + localUUID
@@ -162,7 +240,7 @@ object Fonts {
     }
   }
 
-  private fun getScriptPath(font: TextFont, script: FontManifest.FontScript): String {
+  private fun getScriptPath(font: TextFont, script: FontManifest.FontScript): String? {
     return when (font) {
       TextFont.REGULAR -> script.regular
       TextFont.BOLD -> script.bold
@@ -172,22 +250,62 @@ object Fonts {
     }
   }
 
-  private fun resolveScriptNameFromLocale(locale: Locale, fontManifest: FontManifest): FontManifest.FontScript? {
-    val fontScript: FontManifest.FontScript = when (ScriptUtil.getScript(locale).apply { Log.d(TAG, "Getting Script for $this") }) {
-      ScriptUtil.LATIN -> fontManifest.scripts.latinExtended
-      ScriptUtil.ARABIC -> fontManifest.scripts.arabic
-      ScriptUtil.CHINESE_SIMPLIFIED -> fontManifest.scripts.chineseSimplified
-      ScriptUtil.CHINESE_TRADITIONAL -> fontManifest.scripts.chineseTraditional
-      ScriptUtil.CYRILLIC -> fontManifest.scripts.cyrillicExtended
-      ScriptUtil.DEVANAGARI -> fontManifest.scripts.devanagari
-      ScriptUtil.JAPANESE -> fontManifest.scripts.japanese
-      else -> return null
+  fun getSupportedScript(locales: List<Locale>, guessedScript: SupportedScript): SupportedScript {
+    if (guessedScript != SupportedScript.UNKNOWN && guessedScript != SupportedScript.UNKNOWN_CJK) {
+      return guessedScript
+    } else if (guessedScript == SupportedScript.UNKNOWN_CJK) {
+      val likelyScript: SupportedScript? = locales.mapNotNull {
+        try {
+          when (it.isO3Country) {
+            "HKG" -> SupportedScript.CHINESE_TRADITIONAL_HK
+            "CHN" -> SupportedScript.CHINESE_SIMPLIFIED
+            "TWN" -> SupportedScript.CHINESE_TRADITIONAL
+            "JPN" -> SupportedScript.JAPANESE
+            else -> null
+          }
+        } catch (e: java.util.MissingResourceException) {
+          Log.w(TAG, "Unable to get ISO-3 country code for: $it")
+          null
+        }
+      }.firstOrNull()
+
+      if (likelyScript != null) {
+        return likelyScript
+      }
     }
 
-    return if (fontScript == fontManifest.scripts.chineseSimplified && locale.isO3Country == "HKG") {
-      fontManifest.scripts.chineseTraditionalHk
+    val locale = locales.first()
+    val supportedScript: SupportedScript = when (ScriptUtil.getScript(locale).also { Log.d(TAG, "Getting Script for $it") }) {
+      ScriptUtil.LATIN -> SupportedScript.LATIN
+      ScriptUtil.ARABIC -> SupportedScript.ARABIC
+      ScriptUtil.CHINESE_SIMPLIFIED -> SupportedScript.CHINESE_SIMPLIFIED
+      ScriptUtil.CHINESE_TRADITIONAL -> SupportedScript.CHINESE_TRADITIONAL
+      ScriptUtil.CYRILLIC -> SupportedScript.CYRILLIC
+      ScriptUtil.DEVANAGARI -> SupportedScript.DEVANAGARI
+      ScriptUtil.JAPANESE -> SupportedScript.JAPANESE
+      else -> SupportedScript.UNKNOWN
+    }
+
+    return if (supportedScript == SupportedScript.CHINESE_SIMPLIFIED && locale.isO3Country == "HKG") {
+      SupportedScript.CHINESE_TRADITIONAL_HK
     } else {
-      fontScript
+      supportedScript
+    }
+  }
+
+  private fun resolveFontScriptFromScriptName(supportedScript: SupportedScript?, fontManifest: FontManifest): FontManifest.FontScript? {
+    return when (supportedScript.also { Log.d(TAG, "Getting Script for $it") }) {
+      SupportedScript.LATIN -> fontManifest.scripts.latinExtended
+      SupportedScript.ARABIC -> fontManifest.scripts.arabic
+      SupportedScript.CHINESE_SIMPLIFIED -> fontManifest.scripts.chineseSimplified
+      SupportedScript.CHINESE_TRADITIONAL -> fontManifest.scripts.chineseTraditional
+      SupportedScript.CYRILLIC -> fontManifest.scripts.cyrillicExtended
+      SupportedScript.DEVANAGARI -> fontManifest.scripts.devanagari
+      SupportedScript.JAPANESE -> fontManifest.scripts.japanese
+      SupportedScript.CHINESE_TRADITIONAL_HK -> fontManifest.scripts.chineseTraditionalHk
+      SupportedScript.UNKNOWN_CJK -> null
+      SupportedScript.UNKNOWN -> null
+      null -> null
     }
   }
 
@@ -201,7 +319,7 @@ object Fonts {
 
   private data class FontDownloadKey(
     val version: FontVersion,
-    val locale: Locale,
+    val script: SupportedScript,
     val font: TextFont
   )
 }

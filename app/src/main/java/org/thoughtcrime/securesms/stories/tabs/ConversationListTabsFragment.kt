@@ -63,10 +63,12 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
       viewModel.onStoriesSelected()
     }
 
-    viewModel.state.observe(viewLifecycleOwner, this::update)
+    update(viewModel.stateSnapshot, true)
+
+    viewModel.state.observe(viewLifecycleOwner) { update(it, false) }
   }
 
-  private fun update(state: ConversationListTabsState) {
+  private fun update(state: ConversationListTabsState, immediate: Boolean) {
     val wasChatSelected = chatsIcon.isSelected
 
     chatsIcon.isSelected = state.tab == ConversationListTab.CHATS
@@ -75,9 +77,18 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
     chatsPill.isSelected = chatsIcon.isSelected
     storiesPill.isSelected = storiesIcon.isSelected
 
-    if (chatsIcon.isSelected xor wasChatSelected) {
+    val hasStateChange = chatsIcon.isSelected xor wasChatSelected
+    if (immediate) {
+      chatsIcon.pauseAnimation()
+      storiesIcon.pauseAnimation()
+
+      chatsIcon.progress = if (chatsIcon.isSelected) 1f else 0f
+      storiesIcon.progress = if (storiesIcon.isSelected) 1f else 0f
+
+      runPillAnimation(0, chatsPill, storiesPill)
+    } else if (hasStateChange) {
       runLottieAnimations(chatsIcon, storiesIcon)
-      runPillAnimation(chatsPill, storiesPill)
+      runPillAnimation(150, chatsPill, storiesPill)
     }
 
     chatsUnreadIndicator.visible = state.unreadChatsCount > 0
@@ -86,7 +97,7 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
     storiesUnreadIndicator.visible = state.unreadStoriesCount > 0
     storiesUnreadIndicator.text = formatCount(state.unreadStoriesCount)
 
-    requireView().visible = !state.isSearchOpen
+    requireView().visible = state.visibilityState.isVisible()
   }
 
   private fun runLottieAnimations(vararg toAnimate: LottieAnimationView) {
@@ -103,12 +114,12 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
     }
   }
 
-  private fun runPillAnimation(vararg toAnimate: ImageView) {
+  private fun runPillAnimation(duration: Long, vararg toAnimate: ImageView) {
     val (selected, unselected) = toAnimate.partition { it.isSelected }
 
     pillAnimator?.cancel()
     pillAnimator = AnimatorSet().apply {
-      duration = 150
+      this.duration = duration
       interpolator = PathInterpolatorCompat.create(0.17f, 0.17f, 0f, 1f)
       playTogether(
         selected.map { view ->

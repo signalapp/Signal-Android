@@ -50,7 +50,7 @@ final class WallpaperCropViewModel extends ViewModel {
   {
     SignalExecutors.BOUNDED.execute(
             () -> {
-              Bitmap bitmap = model.render(context, size, FontTypefaceProvider.INSTANCE);
+              Bitmap bitmap = model.render(context, size, new FontTypefaceProvider());
               try {
                 ChatWallpaper chatWallpaper = repository.setWallPaper(BitmapUtil.toWebPByteArray(bitmap));
                 callback.onComplete(chatWallpaper);

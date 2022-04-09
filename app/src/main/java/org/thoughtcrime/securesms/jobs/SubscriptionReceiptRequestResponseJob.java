@@ -144,7 +144,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       throw new RetryableException();
     } else if (subscription.isFailedPayment()) {
       Log.w(TAG, "Subscription payment failure in active subscription response (status = " + subscription.getStatus() + ").", true);
-      onPaymentFailure(subscription.getStatus());
+      onPaymentFailure(subscription.getStatus(), subscription.getEndOfCurrentPeriod());
       throw new Exception("Subscription has a payment failure: " + subscription.getStatus());
     } else if (!subscription.isActive()) {
       Log.w(TAG, "Subscription is not yet active. Status: " + subscription.getStatus(), true);
@@ -234,7 +234,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
         throw new Exception(response.getApplicationError().get());
       case 402:
         Log.w(TAG, "Subscription payment failure in credential response.", response.getApplicationError().get(), true);
-        onPaymentFailure(null);
+        onPaymentFailure(null, 0L);
         throw new Exception(response.getApplicationError().get());
       case 403:
         Log.w(TAG, "SubscriberId password mismatch or account auth was present.", response.getApplicationError().get(), true);
@@ -253,13 +253,13 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
     }
   }
 
-  private void onPaymentFailure(@Nullable String status) {
+  private void onPaymentFailure(@Nullable String status, long timestamp) {
     SignalStore.donationsValues().setShouldCancelSubscriptionBeforeNextSubscribeAttempt(true);
     if (status == null) {
       DonationError.routeDonationError(context, DonationError.genericPaymentFailure(getErrorSource()));
     } else {
-      SignalStore.donationsValues().setShouldCancelSubscriptionBeforeNextSubscribeAttempt(true);
       SignalStore.donationsValues().setUnexpectedSubscriptionCancelationReason(status);
+      SignalStore.donationsValues().setUnexpectedSubscriptionCancelationTimestamp(timestamp);
       MultiDeviceSubscriptionSyncRequestJob.enqueue();
     }
   }

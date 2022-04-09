@@ -129,6 +129,7 @@
         android:id="@+id/toolbar_basic"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:inflatedId="@id/toolbar_basic"
         android:layout="@layout/conversation_list_archive_toolbar"
         android:minHeight="?attr/actionBarSize"
         app:layout_constraintTop_toTopOf="parent" />

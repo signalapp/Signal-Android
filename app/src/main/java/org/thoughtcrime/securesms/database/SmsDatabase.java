@@ -32,6 +32,8 @@ import com.google.protobuf.ByteString;
 
 import net.zetetic.database.sqlcipher.SQLiteStatement;
 
+import org.signal.core.util.CursorUtil;
+import org.signal.core.util.SqlUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
@@ -41,6 +43,7 @@ import org.thoughtcrime.securesms.database.model.GroupCallUpdateDetailsUtil;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.StoryResult;
 import org.thoughtcrime.securesms.database.model.StoryViewState;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateDetails;
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails;
@@ -58,9 +61,7 @@ import org.thoughtcrime.securesms.sms.IncomingGroupUpdateMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.Base64;
-import org.signal.core.util.CursorUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
-import org.signal.core.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -485,7 +486,7 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public @NonNull Set<MessageUpdate> incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType) {
+  public @NonNull Set<MessageUpdate> incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType, boolean storiesOnly) {
     if (receiptType == ReceiptType.VIEWED) {
       return Collections.emptySet();
     }
@@ -1147,6 +1148,7 @@ public class SmsDatabase extends MessageDatabase {
                      message.isIdentityVerified() ||
                      message.isIdentityDefault()  ||
                      message.isJustAGroupLeave();
+
     boolean unread = !silent && (Util.isDefaultSmsProvider(context) ||
                                  message.isSecureMessage()          ||
                                  message.isGroup()                  ||
@@ -1400,12 +1402,7 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public @NonNull MessageDatabase.Reader getAllStories() {
-    throw new UnsupportedOperationException();
-  }
-
-  @Override
-  public @NonNull List<RecipientId> getAllStoriesRecipientsList() {
+  public @NonNull List<StoryResult> getOrderedStoryRecipientsAndIds() {
     throw new UnsupportedOperationException();
   }
 
@@ -1425,6 +1422,11 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public @NonNull List<RecipientId>  getUnreadStoryThreadRecipientIds() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   public boolean containsStories(long threadId) {
     throw new UnsupportedOperationException();
   }
@@ -1436,11 +1438,6 @@ public class SmsDatabase extends MessageDatabase {
 
   @Override
   public @NonNull Cursor getStoryReplies(long parentStoryId) {
-    throw new UnsupportedOperationException();
-  }
-
-  @Override
-  public long getUnreadStoryCount() {
     throw new UnsupportedOperationException();
   }
 

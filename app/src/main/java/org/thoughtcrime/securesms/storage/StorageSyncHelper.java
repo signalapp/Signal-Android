@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.payments.Entropy;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.subscription.Subscriber;
 import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.SetUtil;
+import org.signal.core.util.SetUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
@@ -162,6 +162,7 @@ public final class StorageSyncHelper {
     if (update.getNew().isSubscriptionManuallyCancelled()) {
       SignalStore.donationsValues().markUserManuallyCancelled();
       SignalStore.donationsValues().setUnexpectedSubscriptionCancelationReason(null);
+      SignalStore.donationsValues().setUnexpectedSubscriptionCancelationTimestamp(0L);
     } else {
       SignalStore.donationsValues().clearUserManuallyCancelled();
     }

@@ -86,7 +86,6 @@ import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.IdentityUtil
 import org.thoughtcrime.securesms.util.ProfileUtil
-import org.thoughtcrime.securesms.util.StringUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperFactory
@@ -594,6 +593,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       DISTRIBUTION_LIST_ID,
       distributionListId.serialize(),
       ContentValues().apply {
+        put(GROUP_TYPE, GroupType.DISTRIBUTION_LIST.id)
         put(DISTRIBUTION_LIST_ID, distributionListId.serialize())
         put(STORAGE_SERVICE_ID, Base64.encodeBytes(StorageSyncHelper.generateKey()))
         put(PROFILE_SHARING, 1)
@@ -1068,14 +1068,19 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
    * @return All storage IDs for synced records, excluding the ones that need to be deleted.
    */
   fun getContactStorageSyncIdsMap(): Map<RecipientId, StorageId> {
+    val (inPart, args) = if (Recipient.self().storiesCapability == Recipient.Capability.SUPPORTED) {
+      "(?, ?)" to SqlUtil.buildArgs(GroupType.NONE.id, Recipient.self().id, GroupType.SIGNAL_V1.id, GroupType.DISTRIBUTION_LIST.id)
+    } else {
+      "(?)" to SqlUtil.buildArgs(GroupType.NONE.id, Recipient.self().id, GroupType.SIGNAL_V1.id)
+    }
+
     val query = """
       $STORAGE_SERVICE_ID NOT NULL AND (
         ($GROUP_TYPE = ? AND $SERVICE_ID NOT NULL AND $ID != ?)
         OR
-        $GROUP_TYPE IN (?)
+        $GROUP_TYPE IN $inPart
       )
     """.trimIndent()
-    val args = SqlUtil.buildArgs(GroupType.NONE.id, Recipient.self().id, GroupType.SIGNAL_V1.id)
     val out: MutableMap<RecipientId, StorageId> = HashMap()
 
     readableDatabase.query(TABLE_NAME, arrayOf(ID, STORAGE_SERVICE_ID, GROUP_TYPE), query, args, null, null, null).use { cursor ->
@@ -1088,6 +1093,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         when (groupType) {
           GroupType.NONE -> out[id] = StorageId.forContact(key)
           GroupType.SIGNAL_V1 -> out[id] = StorageId.forGroupV1(key)
+          GroupType.DISTRIBUTION_LIST -> out[id] = StorageId.forStoryDistributionList(key)
           else -> throw AssertionError()
         }
       }
@@ -1099,6 +1105,32 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       val existing: RecipientRecord = getRecordForSync(recipientId) ?: throw AssertionError()
       val key = existing.storageId ?: throw AssertionError()
       out[recipientId] = StorageId.forGroupV2(key)
+    }
+
+    return out
+  }
+
+  /**
+   * Given a collection of [RecipientId]s, this will do an efficient bulk query to find all matching E164s.
+   * If one cannot be found, no error thrown, it will just be omitted.
+   */
+  fun getE164sForIds(ids: Collection<RecipientId>): Set<String> {
+    val queries: List<SqlUtil.Query> = SqlUtil.buildCustomCollectionQuery(
+      "$ID = ?",
+      ids.map { arrayOf(it.serialize()) }.toList()
+    )
+
+    val out: MutableSet<String> = mutableSetOf()
+
+    for (query in queries) {
+      readableDatabase.query(TABLE_NAME, arrayOf(PHONE), query.where, query.whereArgs, null, null, null).use { cursor ->
+        while (cursor.moveToNext()) {
+          val e164: String? = cursor.requireString(PHONE)
+          if (e164 != null) {
+            out.add(e164)
+          }
+        }
+      }
     }
 
     return out
@@ -2160,7 +2192,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   }
 
   fun querySignalContacts(inputQuery: String, includeSelf: Boolean): Cursor? {
-    val query = buildCaseInsensitiveGlobPattern(inputQuery)
+    val query = SqlUtil.buildCaseInsensitiveGlobPattern(inputQuery)
 
     val searchSelection = ContactSearchSelection.Builder()
       .withRegistered(true)
@@ -2186,7 +2218,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   }
 
   fun queryNonSignalContacts(inputQuery: String): Cursor? {
-    val query = buildCaseInsensitiveGlobPattern(inputQuery)
+    val query = SqlUtil.buildCaseInsensitiveGlobPattern(inputQuery)
     val searchSelection = ContactSearchSelection.Builder()
       .withNonRegistered(true)
       .withGroups(false)
@@ -2210,7 +2242,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   }
 
   fun queryNonGroupContacts(inputQuery: String, includeSelf: Boolean): Cursor? {
-    val query = buildCaseInsensitiveGlobPattern(inputQuery)
+    val query = SqlUtil.buildCaseInsensitiveGlobPattern(inputQuery)
 
     val searchSelection = ContactSearchSelection.Builder()
       .withRegistered(true)
@@ -2227,7 +2259,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   }
 
   fun queryAllContacts(inputQuery: String): Cursor? {
-    val query = buildCaseInsensitiveGlobPattern(inputQuery)
+    val query = SqlUtil.buildCaseInsensitiveGlobPattern(inputQuery)
     val selection =
       """
         $BLOCKED = ? AND 
@@ -2244,7 +2276,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
   @JvmOverloads
   fun queryRecipientsForMentions(inputQuery: String, recipientIds: List<RecipientId>? = null): List<Recipient> {
-    val query = buildCaseInsensitiveGlobPattern(inputQuery)
+    val query = SqlUtil.buildCaseInsensitiveGlobPattern(inputQuery)
     var ids: String? = null
 
     if (Util.hasItems(recipientIds)) {
@@ -2505,7 +2537,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
 
     val query = "$ID = ? AND ($GROUP_TYPE IN (?, ?, ?) OR $REGISTERED = ?)"
-    val args = SqlUtil.buildArgs(recipientId, GroupType.SIGNAL_V1.id, GroupType.SIGNAL_V2.id, GroupType.DISTRIBUTION_LIST, RegisteredState.REGISTERED.id)
+    val args = SqlUtil.buildArgs(recipientId, GroupType.SIGNAL_V1.id, GroupType.SIGNAL_V2.id, GroupType.DISTRIBUTION_LIST.id, RegisteredState.REGISTERED.id)
     writableDatabase.update(TABLE_NAME, values, query, args)
   }
 
@@ -3010,75 +3042,6 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         throw AssertionError(e)
       }
     }.orElse(null)
-  }
-
-  /**
-   * Builds a case-insensitive GLOB pattern for fuzzy text queries. Works with all unicode
-   * characters.
-   *
-   * Ex:
-   * cat -> [cC][aA][tT]
-   */
-  private fun buildCaseInsensitiveGlobPattern(query: String): String {
-    if (TextUtils.isEmpty(query)) {
-      return "*"
-    }
-
-    val pattern = StringBuilder()
-    var i = 0
-    val len = query.codePointCount(0, query.length)
-    while (i < len) {
-      val point = StringUtil.codePointToString(query.codePointAt(i))
-      pattern.append("[")
-      pattern.append(point.toLowerCase())
-      pattern.append(point.toUpperCase())
-      pattern.append(getAccentuatedCharRegex(point.toLowerCase()))
-      pattern.append("]")
-      i++
-    }
-
-    return "*$pattern*"
-  }
-
-  private fun getAccentuatedCharRegex(query: String): String {
-    return when (query) {
-      "a" -> "À-Åà-åĀ-ąǍǎǞ-ǡǺ-ǻȀ-ȃȦȧȺɐ-ɒḀḁẚẠ-ặ"
-      "b" -> "ßƀ-ƅɃɓḂ-ḇ"
-      "c" -> "çÇĆ-čƆ-ƈȻȼɔḈḉ"
-      "d" -> "ÐðĎ-đƉ-ƍȡɖɗḊ-ḓ"
-      "e" -> "È-Ëè-ëĒ-ěƎ-ƐǝȄ-ȇȨȩɆɇɘ-ɞḔ-ḝẸ-ệ"
-      "f" -> "ƑƒḞḟ"
-      "g" -> "Ĝ-ģƓǤ-ǧǴǵḠḡ"
-      "h" -> "Ĥ-ħƕǶȞȟḢ-ḫẖ"
-      "i" -> "Ì-Ïì-ïĨ-ıƖƗǏǐȈ-ȋɨɪḬ-ḯỈ-ị"
-      "j" -> "ĴĵǰȷɈɉɟ"
-      "k" -> "Ķ-ĸƘƙǨǩḰ-ḵ"
-      "l" -> "Ĺ-łƚȴȽɫ-ɭḶ-ḽ"
-      "m" -> "Ɯɯ-ɱḾ-ṃ"
-      "n" -> "ÑñŃ-ŋƝƞǸǹȠȵɲ-ɴṄ-ṋ"
-      "o" -> "Ò-ÖØò-öøŌ-őƟ-ơǑǒǪ-ǭǾǿȌ-ȏȪ-ȱṌ-ṓỌ-ợ"
-      "p" -> "ƤƥṔ-ṗ"
-      "q" -> ""
-      "r" -> "Ŕ-řƦȐ-ȓɌɍṘ-ṟ"
-      "s" -> "Ś-šƧƨȘșȿṠ-ṩ"
-      "t" -> "Ţ-ŧƫ-ƮȚțȾṪ-ṱẗ"
-      "u" -> "Ù-Üù-üŨ-ųƯ-ƱǓ-ǜȔ-ȗɄṲ-ṻỤ-ự"
-      "v" -> "ƲɅṼ-ṿ"
-      "w" -> "ŴŵẀ-ẉẘ"
-      "x" -> "Ẋ-ẍ"
-      "y" -> "ÝýÿŶ-ŸƔƳƴȲȳɎɏẎẏỲ-ỹỾỿẙ"
-      "z" -> "Ź-žƵƶɀẐ-ẕ"
-      "α" -> "\u0386\u0391\u03AC\u03B1\u1F00-\u1F0F\u1F70\u1F71\u1F80-\u1F8F\u1FB0-\u1FB4\u1FB6-\u1FBC"
-      "ε" -> "\u0388\u0395\u03AD\u03B5\u1F10-\u1F15\u1F18-\u1F1D\u1F72\u1F73\u1FC8\u1FC9"
-      "η" -> "\u0389\u0397\u03AE\u03B7\u1F20-\u1F2F\u1F74\u1F75\u1F90-\u1F9F\u1F20-\u1F2F\u1F74\u1F75\u1F90-\u1F9F\u1fc2\u1fc3\u1fc4\u1fc6\u1FC7\u1FCA\u1FCB\u1FCC"
-      "ι" -> "\u038A\u0390\u0399\u03AA\u03AF\u03B9\u03CA\u1F30-\u1F3F\u1F76\u1F77\u1FD0-\u1FD3\u1FD6-\u1FDB"
-      "ο" -> "\u038C\u039F\u03BF\u03CC\u1F40-\u1F45\u1F48-\u1F4D\u1F78\u1F79\u1FF8\u1FF9"
-      "σ" -> "\u03A3\u03C2\u03C3"
-      "ς" -> "\u03A3\u03C2\u03C3"
-      "υ" -> "\u038E\u03A5\u03AB\u03C5\u03CB\u03CD\u1F50-\u1F57\u1F59\u1F5B\u1F5D\u1F5F\u1F7A\u1F7B\u1FE0-\u1FE3\u1FE6-\u1FEB"
-      "ω" -> "\u038F\u03A9\u03C9\u03CE\u1F60-\u1F6F\u1F7C\u1F7D\u1FA0-\u1FAF\u1FF2-\u1FF4\u1FF6\u1FF7\u1FFA-\u1FFC"
-      else -> ""
-    }
   }
 
   private fun updateProfileValuesForMerge(values: ContentValues, record: RecipientRecord) {

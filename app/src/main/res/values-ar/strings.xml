@@ -3861,7 +3861,7 @@
   <string name="ManageDonationsFragment__my_support">دعمي</string>
   <string name="ManageDonationsFragment__manage_subscription">إدارة الاشتراك</string>
   <!--Label for Tax Receipts button-->
-  <string name="ManageDonationsFragment__tax_receipts">وصولات الضرائب</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">وصولات الضرائب</string> -->
   <string name="ManageDonationsFragment__badges">شارات</string>
   <string name="ManageDonationsFragment__subscription_faq">الأسئلة الشائعة حول الاشتراك</string>
   <string name="ManageDonationsFragment__error_getting_subscription">خطأ في الحصول على الاشتراك.</string>

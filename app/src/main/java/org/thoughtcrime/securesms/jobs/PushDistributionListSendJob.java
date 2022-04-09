@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
@@ -37,10 +38,13 @@ import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessage;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * A job that lets us send a message to a distribution list. Currently the only supported message type is a story.
@@ -51,31 +55,36 @@ public final class PushDistributionListSendJob extends PushSendJob {
 
   private static final String TAG = Log.tag(PushDistributionListSendJob.class);
 
-  private static final String KEY_MESSAGE_ID = "message_id";
+  private static final String KEY_MESSAGE_ID             = "message_id";
+  private static final String KEY_FILTERED_RECIPIENT_IDS = "filtered_recipient_ids";
 
-  private final long messageId;
+  private final long             messageId;
+  private final Set<RecipientId> filterRecipientIds;
 
-  public PushDistributionListSendJob(long messageId, @NonNull RecipientId destination, boolean hasMedia) {
+  public PushDistributionListSendJob(long messageId, @NonNull RecipientId destination, boolean hasMedia, @NonNull Set<RecipientId> filterRecipientIds) {
     this(new Parameters.Builder()
              .setQueue(destination.toQueueKey(hasMedia))
              .addConstraint(NetworkConstraint.KEY)
              .setLifespan(TimeUnit.DAYS.toMillis(1))
              .setMaxAttempts(Parameters.UNLIMITED)
              .build(),
-         messageId);
-
+         messageId,
+         filterRecipientIds
+    );
   }
 
-  private PushDistributionListSendJob(@NonNull Parameters parameters, long messageId) {
+  private PushDistributionListSendJob(@NonNull Parameters parameters, long messageId, @NonNull Set<RecipientId> filterRecipientIds) {
     super(parameters);
-    this.messageId = messageId;
+    this.messageId          = messageId;
+    this.filterRecipientIds = filterRecipientIds;
   }
 
   @WorkerThread
   public static void enqueue(@NonNull Context context,
                              @NonNull JobManager jobManager,
                              long messageId,
-                             @NonNull RecipientId destination)
+                             @NonNull RecipientId destination,
+                             @NonNull Set<RecipientId> filterRecipientIds)
   {
     try {
       Recipient listRecipient = Recipient.resolved(destination);
@@ -92,7 +101,7 @@ public final class PushDistributionListSendJob extends PushSendJob {
 
       Set<String> attachmentUploadIds = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
 
-      jobManager.add(new PushDistributionListSendJob(messageId, destination, !attachmentUploadIds.isEmpty()), attachmentUploadIds, attachmentUploadIds.isEmpty() ? null : destination.toQueueKey());
+      jobManager.add(new PushDistributionListSendJob(messageId, destination, !attachmentUploadIds.isEmpty(), filterRecipientIds), attachmentUploadIds, attachmentUploadIds.isEmpty() ? null : destination.toQueueKey());
     } catch (NoSuchMessageException | MmsException e) {
       Log.w(TAG, "Failed to enqueue message.", e);
       SignalDatabase.mms().markAsSentFailed(messageId);
@@ -102,7 +111,9 @@ public final class PushDistributionListSendJob extends PushSendJob {
 
   @Override
   public @NonNull Data serialize() {
-    return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId).build();
+    return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId)
+                             .putString(KEY_FILTERED_RECIPIENT_IDS, RecipientId.toSerializedList(filterRecipientIds))
+                             .build();
   }
 
   @Override
@@ -142,15 +153,22 @@ public final class PushDistributionListSendJob extends PushSendJob {
     try {
       log(TAG, String.valueOf(message.getSentTimeMillis()), "Sending message: " + messageId + ", Recipient: " + message.getRecipient().getId() + ", Attachments: " + buildAttachmentString(message.getAttachments()));
 
-      List<Recipient> target;
+      List<Recipient> targets;
 
-      if (!existingNetworkFailures.isEmpty()) target = Stream.of(existingNetworkFailures).map(nf -> nf.getRecipientId(context)).distinct().map(Recipient::resolved).toList();
-      else target = Stream.of(Stories.getRecipientsToSendTo(messageId, message.getSentTimeMillis(), message.getStoryType().isStoryWithReplies())).distinctBy(Recipient::getId).toList();
+      if (Util.hasItems(filterRecipientIds)) {
+        targets = new ArrayList<>(filterRecipientIds.size() + existingNetworkFailures.size());
+        targets.addAll(filterRecipientIds.stream().map(Recipient::resolved).collect(Collectors.toList()));
+        targets.addAll(existingNetworkFailures.stream().map(nf -> nf.getRecipientId(context)).distinct().map(Recipient::resolved).collect(Collectors.toList()));
+      } else if (!existingNetworkFailures.isEmpty()) {
+        targets = Stream.of(existingNetworkFailures).map(nf -> nf.getRecipientId(context)).distinct().map(Recipient::resolved).toList();
+      } else {
+        targets = Stream.of(Stories.getRecipientsToSendTo(messageId, message.getSentTimeMillis(), message.getStoryType().isStoryWithReplies())).distinctBy(Recipient::getId).toList();
+      }
 
-      List<SendMessageResult> results = deliver(message, target);
+      List<SendMessageResult> results = deliver(message, targets);
       Log.i(TAG, JobLogger.format(this, "Finished send."));
 
-      PushGroupSendJob.processGroupMessageResults(context, messageId, -1, null, message, results, target, Collections.emptyList(), existingNetworkFailures, existingIdentityMismatches);
+      PushGroupSendJob.processGroupMessageResults(context, messageId, -1, null, message, results, targets, Collections.emptyList(), existingNetworkFailures, existingIdentityMismatches);
     } catch (UntrustedIdentityException | UndeliverableMessageException e) {
       warn(TAG, String.valueOf(message.getSentTimeMillis()), e);
       database.markAsSentFailed(messageId);
@@ -191,7 +209,8 @@ public final class PushDistributionListSendJob extends PushSendJob {
   public static class Factory implements Job.Factory<PushDistributionListSendJob> {
     @Override
     public @NonNull PushDistributionListSendJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      return new PushDistributionListSendJob(parameters, data.getLong(KEY_MESSAGE_ID));
+      Set<RecipientId> recipientIds = new HashSet<>(RecipientId.fromSerializedList(data.getStringOrDefault(KEY_FILTERED_RECIPIENT_IDS, "")));
+      return new PushDistributionListSendJob(parameters, data.getLong(KEY_MESSAGE_ID), recipientIds);
     }
   }
 }

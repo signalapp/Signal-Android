@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.mediapreview
 
 import android.net.Uri
-import io.reactivex.rxjava3.subjects.BehaviorSubject
 import org.thoughtcrime.securesms.video.VideoPlayer
 
 /**
@@ -10,36 +9,40 @@ import org.thoughtcrime.securesms.video.VideoPlayer
 class VideoControlsDelegate {
 
   private val playWhenReady: MutableMap<Uri, Boolean> = mutableMapOf()
-  private val playerSubject = BehaviorSubject.create<Player>()
+  private var player: Player? = null
 
   fun getPlayerState(uri: Uri): PlayerState? {
-    val player = playerSubject.value
+    val player: Player? = this.player
     return if (player?.uri == uri && player.videoPlayer != null) {
-      PlayerState(uri, player.videoPlayer.playbackPosition, player.videoPlayer.duration)
+      PlayerState(uri, player.videoPlayer.playbackPosition, player.videoPlayer.duration, player.isGif, player.loopCount)
     } else {
       null
     }
   }
 
-  fun pause() = playerSubject.value?.videoPlayer?.pause()
+  fun pause() = player?.videoPlayer?.pause()
 
   fun resume(uri: Uri) {
-    val player = playerSubject.value
     if (player?.uri == uri) {
-      player.videoPlayer?.play()
+      player?.videoPlayer?.play()
     } else {
       playWhenReady[uri] = true
     }
-
-    playerSubject.value?.videoPlayer?.play()
   }
 
   fun restart() {
-    playerSubject.value?.videoPlayer?.playbackPosition = 0L
+    player?.videoPlayer?.playbackPosition = 0L
   }
 
-  fun attachPlayer(uri: Uri, videoPlayer: VideoPlayer?) {
-    playerSubject.onNext(Player(uri, videoPlayer))
+  fun onPlayerPositionDiscontinuity(reason: Int) {
+    val player = this.player
+    if (player != null && player.isGif) {
+      this.player = player.copy(loopCount = if (reason == 0) player.loopCount + 1 else 0)
+    }
+  }
+
+  fun attachPlayer(uri: Uri, videoPlayer: VideoPlayer?, isGif: Boolean) {
+    player = Player(uri, videoPlayer, isGif)
 
     if (playWhenReady[uri] == true) {
       playWhenReady[uri] = false
@@ -48,17 +51,21 @@ class VideoControlsDelegate {
   }
 
   fun detachPlayer() {
-    playerSubject.onNext(Player())
+    player = Player()
   }
 
   private data class Player(
     val uri: Uri = Uri.EMPTY,
-    val videoPlayer: VideoPlayer? = null
+    val videoPlayer: VideoPlayer? = null,
+    val isGif: Boolean = false,
+    val loopCount: Int = 0
   )
 
   data class PlayerState(
     val mediaUri: Uri,
     val position: Long,
-    val duration: Long
+    val duration: Long,
+    val isGif: Boolean,
+    val loopCount: Int
   )
 }

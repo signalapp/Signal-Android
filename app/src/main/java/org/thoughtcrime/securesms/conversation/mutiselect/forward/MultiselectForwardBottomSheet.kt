@@ -39,6 +39,10 @@ class MultiselectForwardBottomSheet : FixedRoundedCornerBottomSheetDialogFragmen
     return requireView().parent.parent.parent as ViewGroup
   }
 
+  override fun getDialogBackgroundColor(): Int {
+    return backgroundColor
+  }
+
   override fun setResult(bundle: Bundle) {
     setFragmentResult(MultiselectForwardFragment.RESULT_SELECTION, bundle)
   }

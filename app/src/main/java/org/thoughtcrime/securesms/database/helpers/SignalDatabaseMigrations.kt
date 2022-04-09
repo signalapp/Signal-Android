@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsMapper.entrySet
 import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.database.RecipientDatabase
-import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.databaseprotos.ReactionList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupId
@@ -196,8 +195,11 @@ object SignalDatabaseMigrations {
   private const val GROUP_STORIES = 134
   private const val MMS_COUNT_INDEX = 135
   private const val STORY_SENDS = 136
+  private const val STORY_TYPE_AND_DISTRIBUTION = 137
+  private const val CLEAN_DELETED_DISTRIBUTION_LISTS = 138
+  private const val REMOVE_KNOWN_UNKNOWNS = 139
 
-  const val DATABASE_VERSION = 136
+  const val DATABASE_VERSION = 139
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -2458,7 +2460,7 @@ object SignalDatabaseMigrations {
       val recipientId = db.insert(
         "recipient", null,
         contentValuesOf(
-          "distribution_list_id" to DistributionListId.MY_STORY_ID,
+          "distribution_list_id" to 1L,
           "storage_service_key" to Base64.encodeBytes(StorageSyncHelper.generateKey()),
           "profile_sharing" to 1
         )
@@ -2468,7 +2470,7 @@ object SignalDatabaseMigrations {
       db.insert(
         "distribution_list", null,
         contentValuesOf(
-          "_id" to DistributionListId.MY_STORY_ID,
+          "_id" to 1L,
           "name" to listUUID,
           "distribution_id" to listUUID,
           "recipient_id" to recipientId
@@ -2502,6 +2504,42 @@ object SignalDatabaseMigrations {
       )
 
       db.execSQL("CREATE INDEX story_sends_recipient_id_sent_timestamp_allows_replies_index ON story_sends (recipient_id, sent_timestamp, allows_replies)")
+    }
+
+    if (oldVersion < STORY_TYPE_AND_DISTRIBUTION) {
+      db.execSQL("ALTER TABLE distribution_list ADD COLUMN deletion_timestamp INTEGER DEFAULT 0")
+
+      db.execSQL(
+        """
+        UPDATE recipient
+        SET group_type = 4
+        WHERE distribution_list_id IS NOT NULL
+        """.trimIndent()
+      )
+
+      db.execSQL(
+        """
+        UPDATE distribution_list
+        SET name = '00000000-0000-0000-0000-000000000000',
+            distribution_id = '00000000-0000-0000-0000-000000000000'
+        WHERE _id = 1
+        """.trimIndent()
+      )
+    }
+
+    if (oldVersion < CLEAN_DELETED_DISTRIBUTION_LISTS) {
+      db.execSQL(
+        """
+          UPDATE recipient
+          SET storage_service_key = NULL
+          WHERE distribution_list_id IS NOT NULL AND NOT EXISTS(SELECT _id from distribution_list WHERE _id = distribution_list_id)
+        """.trimIndent()
+      )
+    }
+
+    if (oldVersion < REMOVE_KNOWN_UNKNOWNS) {
+      val count: Int = db.delete("storage_key", "type <= ?", SqlUtil.buildArgs(4))
+      Log.i(TAG, "Cleaned up $count invalid unknown records.")
     }
   }
 

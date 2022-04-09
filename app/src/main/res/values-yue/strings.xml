@@ -3386,7 +3386,7 @@
   <string name="ManageDonationsFragment__my_support">我擔當後援</string>
   <string name="ManageDonationsFragment__manage_subscription">管理課金計劃</string>
   <!--Label for Tax Receipts button-->
-  <string name="ManageDonationsFragment__tax_receipts">稅務收據</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">稅務收據</string> -->
   <string name="ManageDonationsFragment__badges">襟章</string>
   <string name="ManageDonationsFragment__subscription_faq">課金計劃問答</string>
   <string name="ManageDonationsFragment__error_getting_subscription">攞返課金計劃嘅時候發生錯誤。</string>
@@ -3650,7 +3650,7 @@
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">發辦一味是日花生</string>
   <!--Displayed when there are no stories to display-->
-  <string name="StoriesLandingFragment__no_recent_updates">最新動靜目前未有得睇。</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">最新動靜目前未有得睇。</string> -->
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">隱藏是日花生</string>
   <!--Context menu option to unhide a story-->
@@ -3870,7 +3870,7 @@
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">閂咗佢</string>
   <!--Conversation Item label for reactions to a story-->
-  <string name="ConversationItem__s_dot_story">%1$s · 是日花生</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · 是日花生</string> -->
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">對一味是日花生畀咗心情</string>
   <!--endregion-->

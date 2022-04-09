@@ -360,4 +360,8 @@
             <enum name="badge_112" value="5" />
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="EmojiToggle">
+        <attr name="force_outline" format="boolean" />
+    </declare-styleable>
 </resources>

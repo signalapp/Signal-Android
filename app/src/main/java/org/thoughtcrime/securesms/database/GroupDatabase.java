@@ -13,6 +13,7 @@ import androidx.annotation.WorkerThread;
 import com.annimon.stream.Stream;
 import com.google.protobuf.InvalidProtocolBufferException;
 
+import org.signal.core.util.SetUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
@@ -33,7 +34,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.signal.core.util.CursorUtil;
-import org.thoughtcrime.securesms.util.SetUtil;
 import org.signal.core.util.SqlUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
@@ -281,16 +281,18 @@ private static final String[] GROUP_PROJECTION = {
     return noMetadata && noMembers;
   }
 
-  public Reader getGroupsFilteredByTitle(String constraint, boolean includeInactive, boolean excludeV1, boolean excludeMms) {
+  public Reader queryGroupsByTitle(String inputQuery, boolean includeInactive, boolean excludeV1, boolean excludeMms) {
     String   query;
     String[] queryArgs;
 
+    String caseInsensitiveQuery = SqlUtil.buildCaseInsensitiveGlobPattern(inputQuery);
+
     if (includeInactive) {
-      query     = TITLE + " LIKE ? AND (" + ACTIVE + " = ? OR " + RECIPIENT_ID + " IN (SELECT " + ThreadDatabase.RECIPIENT_ID + " FROM " + ThreadDatabase.TABLE_NAME + "))";
-      queryArgs = new String[]{"%" + constraint + "%", "1"};
+      query     = TITLE + " GLOB ? AND (" + ACTIVE + " = ? OR " + RECIPIENT_ID + " IN (SELECT " + ThreadDatabase.RECIPIENT_ID + " FROM " + ThreadDatabase.TABLE_NAME + "))";
+      queryArgs = SqlUtil.buildArgs(caseInsensitiveQuery, 1);
     } else {
-      query     = TITLE + " LIKE ? AND " + ACTIVE + " = ?";
-      queryArgs = new String[]{"%" + constraint + "%", "1"};
+      query     = TITLE + " GLOB ? AND " + ACTIVE + " = ?";
+      queryArgs = SqlUtil.buildArgs(caseInsensitiveQuery, 1);
     }
 
     if (excludeV1) {

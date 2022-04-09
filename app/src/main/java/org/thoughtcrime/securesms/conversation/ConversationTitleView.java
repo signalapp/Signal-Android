@@ -128,6 +128,16 @@ public class ConversationTitleView extends RelativeLayout {
     avatar.setStoryRingFromState(storyViewState);
   }
 
+  public void setOnStoryRingClickListener(@NonNull OnClickListener onStoryRingClickListener) {
+    avatar.setOnClickListener(v -> {
+      if (avatar.hasStory()) {
+        onStoryRingClickListener.onClick(v);
+      } else {
+        performClick();
+      }
+    });
+  }
+
   public void setVerified(boolean verified) {
     this.verified.setVisibility(verified ? View.VISIBLE : View.GONE);
 

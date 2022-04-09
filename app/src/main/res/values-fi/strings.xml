@@ -1950,7 +1950,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Käsiteltävänä</string>
   <string name="message_details_recipient_header__sent_to">Lähetetty käyttäjälle</string>
-  <string name="message_details_recipient_header__sent_from">Lähetetty käyttäjältä</string>
+  <string name="message_details_recipient_header__sent_from">Lähettäjä</string>
   <string name="message_details_recipient_header__delivered_to">Toimitettu käyttäjälle</string>
   <string name="message_details_recipient_header__read_by">Lukenut</string>
   <string name="message_details_recipient_header__not_sent">Ei lähetetty</string>
@@ -2395,7 +2395,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Button to delete a message-->
   <string name="conversation_selection__menu_delete">Poista</string>
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_selection__menu_forward">Välittäminen</string>
+  <string name="conversation_selection__menu_forward">Välitä</string>
   <!--Button to reply to a message-->
   <string name="conversation_selection__menu_reply">Vastaa</string>
   <!--Button to save a message attachment (image, file etc.)-->
@@ -3455,7 +3455,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ManageDonationsFragment__my_support">Antamani tuki</string>
   <string name="ManageDonationsFragment__manage_subscription">Hallinnoi tilausta</string>
   <!--Label for Tax Receipts button-->
-  <string name="ManageDonationsFragment__tax_receipts">Kuitit verotusta varten</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Kuitit verotusta varten</string> -->
   <string name="ManageDonationsFragment__badges">Merkit</string>
   <string name="ManageDonationsFragment__subscription_faq">Tilausten UKK</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Virhe tilausta hakiessa.</string>
@@ -3719,7 +3719,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="StoriesLandingItem__hide_story">Piilota tarina</string>
   <!--Context menu option to unhide a story-->
   <!--Context menu option to forward a story-->
-  <string name="StoriesLandingItem__forward">Välittäminen</string>
+  <string name="StoriesLandingItem__forward">Välitä</string>
   <!--Context menu option to share a story-->
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Siirry keskusteluun</string>
@@ -3735,7 +3735,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Section header for hidden stories-->
   <!--Displayed on each sent story under My Stories-->
   <!--Forward story label, displayed in My Stories context menu-->
-  <string name="MyStories_forward">Välittäminen</string>
+  <string name="MyStories_forward">Välitä</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
   <!--Title of dialog to confirm deletion of story-->
   <!--Message of dialog to confirm deletion of story-->

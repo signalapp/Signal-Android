@@ -1,11 +1,17 @@
 package org.thoughtcrime.securesms.recipients;
 
+import org.hamcrest.Matcher;
+import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
@@ -41,6 +47,13 @@ public final class RecipientIdSerializationTest {
   @Test
   public void fromSerializedList_two_items() {
     assertThat(RecipientId.fromSerializedList("123,456"), is(asList(RecipientId.from(123), RecipientId.from(456))));
+  }
+
+  @Test
+  public void fromSerializedList_recipient_serialize() {
+    List<RecipientId> recipientIds = RecipientId.fromSerializedList(RecipientId.from(123).serialize());
+    assertThat(recipientIds, hasSize(1));
+    assertThat(recipientIds, contains(RecipientId.from(123)));
   }
 
   @Test

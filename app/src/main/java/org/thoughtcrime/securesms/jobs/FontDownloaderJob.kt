@@ -3,12 +3,13 @@ package org.thoughtcrime.securesms.jobs
 import android.graphics.Typeface
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.fonts.Fonts
+import org.thoughtcrime.securesms.fonts.SupportedScript
 import org.thoughtcrime.securesms.fonts.TextFont
 import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.util.FutureTaskListener
-import java.util.Locale
+import org.thoughtcrime.securesms.util.LocaleUtil
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.ExecutionException
 import java.util.concurrent.TimeUnit
@@ -41,10 +42,9 @@ class FontDownloaderJob private constructor(parameters: Parameters) : BaseJob(pa
   override fun onFailure() = Unit
 
   override fun onRun() {
-    val locale = Locale.getDefault()
-
+    val script = Fonts.getSupportedScript(LocaleUtil.getLocaleDefaults(), SupportedScript.UNKNOWN)
     val asyncResults = TextFont.values()
-      .map { Fonts.resolveFont(context, locale, it) }
+      .map { Fonts.resolveFont(context, it, script) }
       .filterIsInstance(Fonts.FontResult.Async::class.java)
 
     if (asyncResults.isEmpty()) {

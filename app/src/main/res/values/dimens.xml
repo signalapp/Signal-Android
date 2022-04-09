@@ -89,6 +89,7 @@
     <dimen name="quote_corner_radius_preview">18dp</dimen>
     <dimen name="quote_thumb_size">60dp</dimen>
     <dimen name="quote_story_thumb_width">40dp</dimen>
+    <dimen name="quote_story_emoji_margin">24dp</dimen>
     <dimen name="quote_story_thumb_height">64dp</dimen>
 
     <dimen name="mention_corner_radius">4dp</dimen>
@@ -217,4 +218,12 @@
     <dimen name="segmentedprogressbar_default_segment_margin">8dp</dimen>
     <dimen name="segmentedprogressbar_default_corner_radius">0dp</dimen>
     <dimen name="segmentedprogressbar_default_segment_stroke_width">0dp</dimen>
+
+    <dimen name="stories_landing_item_thumb_width">48dp</dimen>
+    <dimen name="stories_landing_item_thumb_height">72dp</dimen>
+    <dimen name="stories_landing_item_thumb_secondary_width">36dp</dimen>
+    <dimen name="stories_landing_item_thumb_secondary_height">64dp</dimen>
+    <dimen name="stories_landing_item_thumb_outline_width">52dp</dimen>
+    <dimen name="stories_landing_item_thumb_outline_height">76dp</dimen>
+    <dimen name="stories_landing_item_text_horizontal_margin">20dp</dimen>
 </resources>

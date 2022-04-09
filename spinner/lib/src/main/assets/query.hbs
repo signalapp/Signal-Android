@@ -5,7 +5,7 @@
     {{> partials/prefix isQuery=true}}
 
     <!-- Query Input -->
-    <form action="query" method="post">
+    <form action="query" method="post" id="query-form">
       <textarea name="query" class="query-input" placeholder="Enter your query...">{{query}}</textarea>
       <input type="hidden" name="db" value="{{database}}" />
       <input type="submit" name="action" value="run" />
@@ -14,6 +14,10 @@
       or
       <button onclick="onFormatClicked(event)">format</button>
     </form>
+
+    <!-- Container for previous queries -->
+    <h1>Query History</h1>
+    <table id="history-container"></table>
 
     <!-- Query Result -->
     <h1>Data</h1>
@@ -53,11 +57,53 @@
       function submitOnEnter(event){
         if (event.which === 13 && event.shiftKey) {
           event.target.form.submit();
+          onQuerySubmitted();
           event.preventDefault();
         }
       }
 
-      document.querySelector('.query-input').addEventListener("keypress", submitOnEnter);
+      function onQuerySubmitted() {
+        const query = document.querySelector('.query-input').value;
+
+        let history = getQueryHistory();
+        history.unshift(query);
+        history = history.slice(0, 10);
+
+        localStorage.setItem('query-history', JSON.stringify(history));
+      }
+
+      function renderQueryHistory() {
+        const container = document.getElementById('history-container');
+
+        let history = getQueryHistory();
+
+        if (history.length > 0) {
+          for (let item of history) {
+            container.innerHTML += `
+              <tr>
+                <td><button onclick="onHistoryItemClicked('${item}')">^</button></td>
+                <td>${item}</td>
+              </tr>
+            `
+          }
+        } else {
+          container.innerHTML = '<em>None</em>'
+        }
+      }
+
+      function onHistoryItemClicked(item) {
+        document.querySelector('.query-input').value = item;
+      }
+
+      function getQueryHistory() {
+        const historyRaw = localStorage.getItem('query-history') || "[]";
+        return JSON.parse(historyRaw);
+      }
+
+      document.querySelector('.query-input').addEventListener('keypress', submitOnEnter);
+      document.getElementById('query-form').addEventListener('submit', onQuerySubmitted, false);
+      renderQueryHistory();
+
     </script>
   </body>
 </html>

@@ -7,11 +7,6 @@
     android:layout_gravity="bottom"
     android:orientation="vertical">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/mentions_picker_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <include layout="@layout/stories_reply_to_story_composer_content" />
 
     <org.thoughtcrime.securesms.components.emoji.MediaKeyboard

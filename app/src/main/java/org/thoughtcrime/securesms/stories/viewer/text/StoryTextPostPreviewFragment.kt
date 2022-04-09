@@ -4,11 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.activity.addCallback
-import androidx.core.view.doOnNextLayout
-import androidx.core.view.drawToBitmap
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import org.signal.core.util.DimensionUnit
@@ -20,7 +16,6 @@ import org.thoughtcrime.securesms.stories.viewer.page.StoryPost
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.FragmentDialogs.displayInDialogAboveAnchor
 import org.thoughtcrime.securesms.util.fragments.requireListener
-import org.thoughtcrime.securesms.util.visible
 
 class StoryTextPostPreviewFragment : Fragment(R.layout.stories_text_post_preview_fragment) {
 
@@ -45,12 +40,6 @@ class StoryTextPostPreviewFragment : Fragment(R.layout.stories_text_post_preview
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     val storyTextPostView: StoryTextPostView = view.findViewById(R.id.story_text_post)
-    val storyTextThumb: ImageView = view.findViewById(R.id.story_text_post_shared_element_target)
-
-    requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-      storyTextThumb.visible = true
-      requireActivity().supportFinishAfterTransition()
-    }
 
     viewModel.state.observe(viewLifecycleOwner) { state ->
       when (state.loadState) {
@@ -66,34 +55,20 @@ class StoryTextPostPreviewFragment : Fragment(R.layout.stories_text_post_preview
           } else {
             storyTextPostView.setLinkPreviewClickListener(null)
           }
-          loadPreview(storyTextThumb, storyTextPostView)
         }
         StoryTextPostState.LoadState.FAILED -> {
-          requireActivity().supportStartPostponedEnterTransition()
           requireListener<MediaPreviewFragment.Events>().mediaNotAvailable()
         }
       }
-    }
-  }
 
-  private fun loadPreview(storyTextThumb: ImageView, storyTextPreview: StoryTextPostView) {
-    storyTextPreview.doOnNextLayout {
-      if (it.isLaidOut) {
-        actualLoadPreview(storyTextThumb, storyTextPreview)
-      } else {
-        it.post {
-          actualLoadPreview(storyTextThumb, storyTextPreview)
-        }
+      if (state.typeface != null) {
+        storyTextPostView.setTypeface(state.typeface)
+      }
+
+      if (state.typeface != null && state.loadState == StoryTextPostState.LoadState.LOADED) {
+        requireListener<MediaPreviewFragment.Events>().onMediaReady()
       }
     }
-  }
-
-  private fun actualLoadPreview(storyTextThumb: ImageView, storyTextPreview: StoryTextPostView) {
-    storyTextThumb.setImageBitmap(storyTextPreview.drawToBitmap())
-    requireActivity().supportStartPostponedEnterTransition()
-    storyTextThumb.postDelayed({
-      storyTextThumb.visible = false
-    }, 200)
   }
 
   @SuppressLint("AlertDialogBuilderUsage")

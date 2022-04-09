@@ -23,6 +23,10 @@ data class StoriesLandingItemData(
       -1
     } else if (!storyRecipient.isMyStory && other.storyRecipient.isMyStory) {
       1
+    } else if (storyViewState == StoryViewState.UNVIEWED && other.storyViewState != StoryViewState.UNVIEWED) {
+      -1
+    } else if (storyViewState != StoryViewState.UNVIEWED && other.storyViewState == StoryViewState.UNVIEWED) {
+      1
     } else {
       -dateInMilliseconds.compareTo(other.dateInMilliseconds)
     }

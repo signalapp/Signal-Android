@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController;
+import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.video.VideoPlayer;
@@ -48,6 +50,33 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
 
     videoView.setWindow(requireActivity().getWindow());
     videoView.setVideoSource(new VideoSlide(getContext(), uri, size, false), autoPlay);
+    videoView.setPlayerPositionDiscontinuityCallback((v, r) -> {
+      if (events.getVideoControlsDelegate() != null) {
+        events.getVideoControlsDelegate().onPlayerPositionDiscontinuity(r);
+      }
+    });
+    videoView.setPlayerCallback(new VideoPlayer.PlayerCallback() {
+      @Override
+      public void onReady() {
+        events.onMediaReady();
+      }
+
+      @Override
+      public void onPlaying() {
+        if (!isVideoGif && requireActivity() instanceof VoiceNoteMediaControllerOwner) {
+          ((VoiceNoteMediaControllerOwner) requireActivity()).getVoiceNoteMediaController().pausePlayback();
+        }
+      }
+
+      @Override
+      public void onStopped() {
+      }
+
+      @Override
+      public void onError() {
+        events.mediaNotAvailable();
+      }
+    });
 
     if (isVideoGif) {
       videoView.hideControls();
@@ -69,12 +98,13 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
   @Override
   public void onResume() {
     super.onResume();
+
     if (videoView != null && isVideoGif) {
       videoView.play();
     }
 
     if (events.getVideoControlsDelegate() != null) {
-      events.getVideoControlsDelegate().attachPlayer(getUri(), videoView);
+      events.getVideoControlsDelegate().attachPlayer(getUri(), videoView, isVideoGif);
     }
   }
 

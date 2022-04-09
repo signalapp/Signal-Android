@@ -62,7 +62,7 @@ public class CallParticipantView extends ConstraintLayout {
   private ImageView           pipAvatar;
   private BadgeImageView      pipBadge;
   private ContactPhoto        contactPhoto;
-  private View                audioMuted;
+  private AudioIndicatorView  audioIndicator;
   private View                infoOverlay;
   private EmojiTextView       infoMessage;
   private Button              infoMoreInfo;
@@ -90,7 +90,7 @@ public class CallParticipantView extends ConstraintLayout {
     pipAvatar        = findViewById(R.id.call_participant_item_pip_avatar);
     rendererFrame    = findViewById(R.id.call_participant_renderer_frame);
     renderer         = findViewById(R.id.call_participant_renderer);
-    audioMuted       = findViewById(R.id.call_participant_mic_muted);
+    audioIndicator   = findViewById(R.id.call_participant_audio_indicator);
     infoOverlay      = findViewById(R.id.call_participant_info_overlay);
     infoIcon         = findViewById(R.id.call_participant_info_icon);
     infoMessage      = findViewById(R.id.call_participant_info_message);
@@ -123,7 +123,7 @@ public class CallParticipantView extends ConstraintLayout {
       rendererFrame.setVisibility(View.GONE);
       renderer.setVisibility(View.GONE);
       renderer.attachBroadcastVideoSink(null);
-      audioMuted.setVisibility(View.GONE);
+      audioIndicator.setVisibility(View.GONE);
       avatar.setVisibility(View.GONE);
       badge.setVisibility(View.GONE);
       pipAvatar.setVisibility(View.GONE);
@@ -159,7 +159,8 @@ public class CallParticipantView extends ConstraintLayout {
         renderer.attachBroadcastVideoSink(null);
       }
 
-      audioMuted.setVisibility(participant.isMicrophoneEnabled() ? View.GONE : View.VISIBLE);
+      audioIndicator.setVisibility(View.VISIBLE);
+      audioIndicator.bind(participant.isMicrophoneEnabled(), participant.getAudioLevel());
     }
 
     if (participantChanged || !Objects.equals(contactPhoto, participant.getRecipient().getContactPhoto())) {

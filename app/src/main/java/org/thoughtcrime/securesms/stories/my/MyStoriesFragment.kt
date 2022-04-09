@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.stories.my
 
+import android.net.Uri
+import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.app.ActivityOptionsCompat
@@ -13,13 +15,19 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
+import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.Util
+import org.thoughtcrime.securesms.util.visible
 
 class MyStoriesFragment : DSLSettingsFragment(
+  layoutId = R.layout.stories_my_stories_fragment,
   titleId = R.string.StoriesLandingFragment__my_stories
 ) {
 
@@ -43,12 +51,11 @@ class MyStoriesFragment : DSLSettingsFragment(
       }
     )
 
+    val emptyNotice = requireView().findViewById<View>(R.id.empty_notice)
     lifecycleDisposable.bindTo(viewLifecycleOwner)
     viewModel.state.observe(viewLifecycleOwner) {
       adapter.submitList(getConfiguration(it).toMappingModelList())
-      if (it.distributionSets.isEmpty()) {
-        requireActivity().finish()
-      }
+      emptyNotice.visible = it.distributionSets.isEmpty()
     }
   }
 
@@ -70,18 +77,34 @@ class MyStoriesFragment : DSLSettingsFragment(
                 distributionStory = conversationMessage,
                 onClick = { it, preview ->
                   if (it.distributionStory.messageRecord.isOutgoing && it.distributionStory.messageRecord.isFailed) {
-                    lifecycleDisposable += viewModel.resend(it.distributionStory.messageRecord).subscribe()
-                    Toast.makeText(requireContext(), R.string.message_recipients_list_item__resend, Toast.LENGTH_SHORT).show()
-                  } else {
-                    val recipientId = if (it.distributionStory.messageRecord.recipient.isGroup) {
-                      it.distributionStory.messageRecord.recipient.id
+                    if (it.distributionStory.messageRecord.isIdentityMismatchFailure) {
+                      SafetyNumberChangeDialog.show(requireContext(), childFragmentManager, it.distributionStory.messageRecord)
                     } else {
-                      Recipient.self().id
+                      lifecycleDisposable += viewModel.resend(it.distributionStory.messageRecord).subscribe()
+                      Toast.makeText(requireContext(), R.string.message_recipients_list_item__resend, Toast.LENGTH_SHORT).show()
+                    }
+                  } else {
+                    val recipient = if (it.distributionStory.messageRecord.recipient.isGroup) {
+                      it.distributionStory.messageRecord.recipient
+                    } else {
+                      Recipient.self()
+                    }
+
+                    val record = it.distributionStory.messageRecord as MmsMessageRecord
+                    val (text: StoryTextPostModel?, image: Uri?) = if (record.storyType.isTextStory) {
+                      StoryTextPostModel.parseFrom(record) to null
+                    } else {
+                      null to record.slideDeck.thumbnailSlide?.uri
                     }
 
                     val options = ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity(), preview, ViewCompat.getTransitionName(preview) ?: "")
-                    startActivity(StoryViewerActivity.createIntent(requireContext(), recipientId, conversationMessage.messageRecord.id), options.toBundle())
+                    startActivity(StoryViewerActivity.createIntent(requireContext(), recipient.id, conversationMessage.messageRecord.id, recipient.shouldHideStory(), text, image), options.toBundle())
                   }
+                },
+                onLongClick = {
+                  Util.copyToClipboard(requireContext(), it.distributionStory.messageRecord.timestamp.toString())
+                  Toast.makeText(requireContext(), R.string.MyStoriesFragment__copied_sent_timestamp_to_clipboard, Toast.LENGTH_SHORT).show()
+                  true
                 },
                 onSaveClick = {
                   StoryContextMenu.save(requireContext(), it.distributionStory.messageRecord)

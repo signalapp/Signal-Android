@@ -231,7 +231,7 @@ public class ContactsCursorLoader extends AbstractContactsCursorLoader {
 
   private Cursor getGroupsCursor() {
     MatrixCursor groupContacts = ContactsCursorRows.createMatrixCursor();
-    try (GroupDatabase.Reader reader = SignalDatabase.groups().getGroupsFilteredByTitle(getFilter(), flagSet(mode, DisplayMode.FLAG_INACTIVE_GROUPS), hideGroupsV1(mode), !smsEnabled(mode))) {
+    try (GroupDatabase.Reader reader = SignalDatabase.groups().queryGroupsByTitle(getFilter(), flagSet(mode, DisplayMode.FLAG_INACTIVE_GROUPS), hideGroupsV1(mode), !smsEnabled(mode))) {
       GroupDatabase.GroupRecord groupRecord;
       while ((groupRecord = reader.getNext()) != null) {
         groupContacts.addRow(ContactsCursorRows.forGroup(groupRecord));

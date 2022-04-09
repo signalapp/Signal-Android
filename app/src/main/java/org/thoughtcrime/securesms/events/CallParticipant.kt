@@ -16,6 +16,7 @@ data class CallParticipant constructor(
   val isVideoEnabled: Boolean = false,
   val isMicrophoneEnabled: Boolean = false,
   val lastSpoke: Long = 0,
+  val audioLevel: AudioLevel? = null,
   val isMediaKeysReceived: Boolean = true,
   val addedToCallTime: Long = 0,
   val isScreenSharing: Boolean = false,
@@ -71,6 +72,32 @@ data class CallParticipant constructor(
 
   enum class DeviceOrdinal {
     PRIMARY, SECONDARY
+  }
+
+  enum class AudioLevel {
+    LOWEST,
+    LOW,
+    MEDIUM,
+    HIGH,
+    HIGHEST;
+
+    companion object {
+
+      /**
+       * Converts a raw audio level from RingRTC (value in [0, 32767]) to a level suitable for
+       * display in the UI.
+       */
+      @JvmStatic
+      fun fromRawAudioLevel(raw: Int): AudioLevel {
+        return when {
+          raw < 500 -> LOWEST
+          raw < 2000 -> LOW
+          raw < 8000 -> MEDIUM
+          raw < 20000 -> HIGH
+          else -> HIGHEST
+        }
+      }
+    }
   }
 
   companion object {

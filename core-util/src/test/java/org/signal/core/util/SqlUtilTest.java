@@ -187,24 +187,6 @@ public final class SqlUtilTest {
   }
 
   @Test
-  public void splitStatements_singleStatement() {
-    List<String> result = SqlUtil.splitStatements("SELECT * FROM foo;\n");
-    assertEquals(Arrays.asList("SELECT * FROM foo"), result);
-  }
-
-  @Test
-  public void splitStatements_twoStatements() {
-    List<String> result = SqlUtil.splitStatements("SELECT * FROM foo;\nSELECT * FROM bar;\n");
-    assertEquals(Arrays.asList("SELECT * FROM foo", "SELECT * FROM bar"), result);
-  }
-
-  @Test
-  public void splitStatements_twoStatementsSeparatedByNewLines() {
-    List<String> result = SqlUtil.splitStatements("SELECT * FROM foo;\n\nSELECT * FROM bar;\n");
-    assertEquals(Arrays.asList("SELECT * FROM foo", "SELECT * FROM bar"), result);
-  }
-
-  @Test
   public void buildBulkInsert_single_singleBatch() {
     List<ContentValues> contentValues = new ArrayList<>();
 

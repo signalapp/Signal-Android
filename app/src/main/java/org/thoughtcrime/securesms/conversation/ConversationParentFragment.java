@@ -112,6 +112,7 @@ import org.thoughtcrime.securesms.ShortcutLauncherActivity;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
+import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
@@ -294,7 +295,7 @@ import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.signal.core.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil;
@@ -787,14 +788,10 @@ public class ConversationParentFragment extends Fragment
       SignalPlace place = new SignalPlace(PlacePickerActivity.addressFromData(data));
       attachmentManager.setLocation(place, getCurrentMediaConstraints());
       break;
-    case PICK_GIF:
-      onGifSelectSuccess(data.getData(),
-                         data.getIntExtra(GiphyActivity.EXTRA_WIDTH, 0),
-                         data.getIntExtra(GiphyActivity.EXTRA_HEIGHT, 0));
-      break;
     case SMS_DEFAULT:
       initializeSecurity(isSecureText, isDefaultSms);
       break;
+    case PICK_GIF:
     case MEDIA_SENDER:
       MediaSendActivityResult result = MediaSendActivityResult.fromData(data);
 
@@ -1244,6 +1241,10 @@ public class ConversationParentFragment extends Fragment
         }
       }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     });
+  }
+
+  private void handleStoryRingClick() {
+    startActivity(StoryViewerActivity.createIntent(requireContext(), recipient.getId(), -1L, recipient.get().shouldHideStory(), null, null));
   }
 
   private void handleConversationSettings() {
@@ -2121,6 +2122,7 @@ public class ConversationParentFragment extends Fragment
       if (manuallySelected) recordTransportPreference(newTransport);
     });
 
+    titleView.setOnStoryRingClickListener(v -> handleStoryRingClick());
     titleView.setOnClickListener(v -> handleConversationSettings());
     titleView.setOnLongClickListener(v -> handleDisplayQuickContact());
     unblockButton.setOnClickListener(v -> handleUnblock());
@@ -3446,7 +3448,7 @@ public class ConversationParentFragment extends Fragment
 
   @Override
   public void openGifSearch() {
-    AttachmentManager.selectGif(this, ConversationParentFragment.PICK_GIF, isMms());
+    AttachmentManager.selectGif(this, ConversationParentFragment.PICK_GIF, recipient.getId(), sendButton.getSelectedTransport(), isMms(), composeText.getTextTrimmed());
   }
 
   @Override

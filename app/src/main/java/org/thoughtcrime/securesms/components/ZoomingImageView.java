@@ -2,15 +2,20 @@ package org.thoughtcrime.securesms.components;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.exifinterface.media.ExifInterface;
 
+import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
@@ -24,11 +29,12 @@ import org.thoughtcrime.securesms.components.subsampling.AttachmentRegionDecoder
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.util.ActionRequestListener;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.signal.core.util.concurrent.SimpleTask;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -79,7 +85,7 @@ public class ZoomingImageView extends FrameLayout {
   }
 
   @SuppressLint("StaticFieldLeak")
-  public void setImageUri(@NonNull GlideRequests glideRequests, @NonNull Uri uri, @NonNull String contentType)
+  public void setImageUri(@NonNull GlideRequests glideRequests, @NonNull Uri uri, @NonNull String contentType, @NonNull Runnable onMediaReady)
   {
     final Context context        = getContext();
     final int     maxTextureSize = BitmapUtil.getMaxTextureSize();
@@ -101,15 +107,16 @@ public class ZoomingImageView extends FrameLayout {
 
       if (dimensions == null || (dimensions.first <= maxTextureSize && dimensions.second <= maxTextureSize)) {
         Log.i(TAG, "Loading in standard image view...");
-        setImageViewUri(glideRequests, uri);
+        setImageViewUri(glideRequests, uri, onMediaReady);
       } else {
         Log.i(TAG, "Loading in subsampling image view...");
         setSubsamplingImageViewUri(uri);
+        onMediaReady.run();
       }
     });
   }
 
-  private void setImageViewUri(@NonNull GlideRequests glideRequests, @NonNull Uri uri) {
+  private void setImageViewUri(@NonNull GlideRequests glideRequests, @NonNull Uri uri, @NonNull Runnable onMediaReady) {
     photoView.setVisibility(View.VISIBLE);
     subsamplingImageView.setVisibility(View.GONE);
 
@@ -117,6 +124,7 @@ public class ZoomingImageView extends FrameLayout {
                  .diskCacheStrategy(DiskCacheStrategy.NONE)
                  .dontTransform()
                  .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+                 .addListener(ActionRequestListener.onEither(onMediaReady))
                  .into(photoView);
   }
 

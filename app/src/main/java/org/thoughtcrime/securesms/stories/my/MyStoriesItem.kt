@@ -4,6 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ThumbnailView
 import org.thoughtcrime.securesms.components.menu.ActionItem
@@ -33,6 +34,7 @@ object MyStoriesItem {
   class Model(
     val distributionStory: ConversationMessage,
     val onClick: (Model, View) -> Unit,
+    val onLongClick: (Model) -> Boolean,
     val onSaveClick: (Model) -> Unit,
     val onDeleteClick: (Model) -> Unit,
     val onForwardClick: (Model) -> Unit,
@@ -45,6 +47,7 @@ object MyStoriesItem {
     override fun areContentsTheSame(newItem: Model): Boolean {
       return distributionStory == newItem.distributionStory &&
         !hasStatusChange(newItem) &&
+        distributionStory.messageRecord.viewedReceiptCount == newItem.distributionStory.messageRecord.viewedReceiptCount &&
         super.areContentsTheSame(newItem)
     }
 
@@ -82,6 +85,7 @@ object MyStoriesItem {
     override fun bind(model: Model) {
       storyPreview.isClickable = false
       itemView.setOnClickListener { model.onClick(model, storyPreview) }
+      itemView.setOnLongClickListener { model.onLongClick(model) }
       downloadTarget.setOnClickListener { model.onSaveClick(model) }
       moreTarget.setOnClickListener { showContextMenu(model) }
       presentDateOrStatus(model)
@@ -125,6 +129,7 @@ object MyStoriesItem {
     private fun showContextMenu(model: Model) {
       SignalContextMenu.Builder(itemView, itemView.rootView as ViewGroup)
         .preferredHorizontalPosition(SignalContextMenu.HorizontalPosition.END)
+        .offsetX(DimensionUnit.DP.toPixels(16f).toInt())
         .show(
           listOf(
             ActionItem(R.drawable.ic_delete_24_tinted, context.getString(R.string.delete)) { model.onDeleteClick(model) },

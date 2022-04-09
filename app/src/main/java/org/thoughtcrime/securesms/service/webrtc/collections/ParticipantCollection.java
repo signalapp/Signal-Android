@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Represents the participants to be displayed in the grid at any given time.
@@ -88,6 +90,10 @@ public class ParticipantCollection {
 
   public List<CallParticipant> getAllParticipants() {
     return participants;
+  }
+
+  public @NonNull ParticipantCollection map(@NonNull Function<CallParticipant, CallParticipant> mapper) {
+    return new ParticipantCollection(maxGridCellCount, participants.stream().map(mapper).collect(Collectors.toList()));
   }
 
   public int size() {

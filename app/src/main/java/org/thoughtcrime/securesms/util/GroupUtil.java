@@ -8,6 +8,7 @@ import androidx.annotation.WorkerThread;
 
 import com.google.protobuf.ByteString;
 
+import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.zkgroup.InvalidInputException;

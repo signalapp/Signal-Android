@@ -2228,6 +2228,11 @@
     <string name="message_recipients_list_item__view">VIEW</string>
     <string name="message_recipients_list_item__resend">RESEND</string>
 
+    <!-- Displayed in a toast when user long presses an item in MyStories -->
+    <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Copied sent timestamp to clipboard.</string>
+    <!-- Displayed when there are no outgoing stories -->
+    <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Updates to your story will show up here.</string>
+
     <!-- GroupUtil -->
     <plurals name="GroupUtil_joined_the_group">
         <item quantity="one">%1$s joined the group.</item>
@@ -2660,6 +2665,8 @@
     <string name="preferences__internal_disable_storage_service" translatable="false">Disable syncing</string>
     <string name="preferences__internal_disable_storage_service_description" translatable="false">Prevent syncing any data to/from storage service.</string>
     <string name="preferences__internal_force_storage_service_sync" translatable="false">Overwrite remote data</string>
+    <string name="preferences__internal_sync_now" translatable="false">Sync now</string>
+    <string name="preferences__internal_sync_now_description" translatable="false">Enqueue a normal storage service sync.</string>
     <string name="preferences__internal_force_storage_service_sync_description" translatable="false">Forces remote storage to match the local device state.</string>
     <string name="preferences__internal_network" translatable="false">Network</string>
     <string name="preferences__internal_allow_censorship_toggle" translatable="false">Allow censorship circumvention toggle</string>
@@ -4121,8 +4128,8 @@
 
     <string name="ManageDonationsFragment__my_support">My support</string>
     <string name="ManageDonationsFragment__manage_subscription">Manage subscription</string>
-    <!-- Label for Tax Receipts button -->
-    <string name="ManageDonationsFragment__tax_receipts">Tax Receipts</string>
+    <!-- Label for Donation Receipts button -->
+    <string name="ManageDonationsFragment__donation_receipts">Donation Receipts</string>
     <string name="ManageDonationsFragment__badges">Badges</string>
     <string name="ManageDonationsFragment__subscription_faq">Subscription FAQ</string>
     <string name="ManageDonationsFragment__error_getting_subscription">Error getting subscription.</string>
@@ -4410,7 +4417,7 @@
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__add_a_story">Add a story</string>
     <!-- Displayed when there are no stories to display -->
-    <string name="StoriesLandingFragment__no_recent_updates">No recent updates to show right now.</string>
+    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">No recent updates to show right now. Tap + to add to your story.</string>
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">Hide story</string>
     <!-- Context menu option to unhide a story -->
@@ -4636,8 +4643,10 @@
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
     <string name="TurnOffCircumventionMegaphone_turn_off">Turn off</string>
 
-    <!-- Conversation Item label for reactions to a story -->
-    <string name="ConversationItem__s_dot_story">%1$s · Story</string>
+    <!-- Conversation Item label for when you react to someone else\'s story -->
+    <string name="ConversationItem__you_reacted_to_s_story">You reacted to %1$s\'s story</string>
+    <!-- Conversation Item label for reactions to your story -->
+    <string name="ConversationItem__reacted_to_your_story">Reacted to your story</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
     <string name="ConversationItem__reacted_to_a_story">Reacted to a story</string>
 

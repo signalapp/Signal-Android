@@ -181,7 +181,7 @@ public class InputPanel extends LinearLayout
                        @NonNull CharSequence body,
                        @NonNull SlideDeck attachments)
   {
-    this.quoteView.setQuote(glideRequests, id, author, body, false, attachments, null);
+    this.quoteView.setQuote(glideRequests, id, author, body, false, attachments, null, false);
 
     int originalHeight = this.quoteView.getVisibility() == VISIBLE ? this.quoteView.getMeasuredHeight()
                                                                    : 0;

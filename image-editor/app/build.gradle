@@ -35,6 +35,7 @@ dependencies {
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
     implementation libs.material.material
+    implementation project(':core-util')
     implementation project(':image-editor')
 
     implementation libs.glide.glide

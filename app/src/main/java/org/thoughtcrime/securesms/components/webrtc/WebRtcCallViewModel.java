@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.Util;
@@ -66,6 +67,7 @@ public class WebRtcCallViewModel extends ViewModel {
   private final MutableLiveData<Boolean>                      isLandscapeEnabled        = new MutableLiveData<>();
   private final LiveData<Integer>                             controlsRotation;
   private final Observer<List<GroupMemberEntry.FullMember>>   groupMemberStateUpdater   = m -> participantsState.setValue(CallParticipantsState.update(participantsState.getValue(), m));
+  private final MutableLiveData<WebRtcEphemeralState>         ephemeralState            = new MutableLiveData<>();
 
   private final Handler  elapsedTimeHandler      = new Handler(Looper.getMainLooper());
   private final Runnable elapsedTimeRunnable     = this::handleTick;
@@ -157,6 +159,10 @@ public class WebRtcCallViewModel extends ViewModel {
 
   public LiveData<Boolean> shouldShowSpeakerHint() {
     return shouldShowSpeakerHint;
+  }
+
+  public LiveData<WebRtcEphemeralState> getEphemeralState() {
+    return ephemeralState;
   }
 
   public boolean canEnterPipMode() {
@@ -286,6 +292,11 @@ public class WebRtcCallViewModel extends ViewModel {
       canDisplayTooltipIfNeeded = false;
       events.setValue(new Event.ShowVideoTooltip());
     }
+  }
+
+  @MainThread
+  public void updateFromEphemeralState(@NonNull WebRtcEphemeralState state) {
+    ephemeralState.setValue(state);
   }
 
   private int resolveRotation(boolean isLandscapeEnabled, @NonNull Orientation orientation) {

@@ -168,6 +168,7 @@ class SubscribeViewModel(
           SignalStore.donationsValues().clearLevelOperations()
           SignalStore.donationsValues().shouldCancelSubscriptionBeforeNextSubscribeAttempt = false
           SignalStore.donationsValues().unexpectedSubscriptionCancelationReason = null
+          SignalStore.donationsValues().unexpectedSubscriptionCancelationTimestamp = 0L
           MultiDeviceSubscriptionSyncRequestJob.enqueue()
         }
       } else {
@@ -185,6 +186,7 @@ class SubscribeViewModel(
         SignalStore.donationsValues().clearLevelOperations()
         SignalStore.donationsValues().markUserManuallyCancelled()
         SignalStore.donationsValues().unexpectedSubscriptionCancelationReason = null
+        SignalStore.donationsValues().unexpectedSubscriptionCancelationTimestamp = 0L
         refreshActiveSubscription()
         MultiDeviceSubscriptionSyncRequestJob.enqueue()
         donationPaymentRepository.scheduleSyncForAccountRecordChange()

@@ -149,7 +149,7 @@ class ManageDonationsFragment : DSLSettingsFragment() {
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.ManageDonationsFragment__tax_receipts),
+        title = DSLSettingsText.from(R.string.ManageDonationsFragment__donation_receipts),
         icon = DSLSettingsIcon.from(R.drawable.ic_receipt_24),
         onClick = {
           findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonationReceiptListFragment())

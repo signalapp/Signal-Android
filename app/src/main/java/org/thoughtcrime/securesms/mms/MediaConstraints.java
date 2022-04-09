@@ -77,6 +77,19 @@ public abstract class MediaConstraints {
     }
   }
 
+  public boolean isSatisfied(@NonNull Context context, @NonNull Uri uri, @NonNull String contentType, long size) {
+    try {
+      return (MediaUtil.isGif(contentType)       && size <= getGifMaxSize(context) && isWithinBounds(context, uri))   ||
+             (MediaUtil.isImageType(contentType) && size <= getImageMaxSize(context) && isWithinBounds(context, uri)) ||
+             (MediaUtil.isAudioType(contentType) && size <= getAudioMaxSize(context))                                 ||
+             (MediaUtil.isVideoType(contentType) && size <= getVideoMaxSize(context))                                 ||
+             size <= getDocumentMaxSize(context);
+    } catch (IOException ioe) {
+      Log.w(TAG, "Failed to determine if media's constraints are satisfied.", ioe);
+      return false;
+    }
+  }
+
   private boolean isWithinBounds(Context context, Uri uri) throws IOException {
     try {
       InputStream is = PartAuthority.getAttachmentStream(context, uri);
@@ -91,6 +104,11 @@ public abstract class MediaConstraints {
   public boolean canResize(@NonNull Attachment attachment) {
     return MediaUtil.isImage(attachment) && !MediaUtil.isGif(attachment) ||
            MediaUtil.isVideo(attachment) && isVideoTranscodeAvailable();
+  }
+
+  public boolean canResize(@NonNull String mediaType) {
+    return MediaUtil.isImageType(mediaType) && !MediaUtil.isGif(mediaType) ||
+           MediaUtil.isVideoType(mediaType) && isVideoTranscodeAvailable();
   }
 
   public static boolean isVideoTranscodeAvailable() {

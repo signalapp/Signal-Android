@@ -15,6 +15,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import org.signal.core.util.concurrent.SimpleTask
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
@@ -36,7 +38,6 @@ import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.TopToastPopup
 import org.thoughtcrime.securesms.util.TopToastPopup.Companion.show
 import org.thoughtcrime.securesms.util.Util
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask
 import org.thoughtcrime.securesms.util.views.Stub
 import org.thoughtcrime.securesms.util.visible
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
@@ -105,7 +106,12 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
     if (state.tab == ConversationListTab.CHATS) {
       return
     } else {
-      navController.navigate(R.id.action_conversationListFragment_to_storiesLandingFragment)
+      navController.navigate(
+        R.id.action_conversationListFragment_to_storiesLandingFragment,
+        null,
+        null,
+        FragmentNavigatorExtras(requireView().findViewById<View>(R.id.camera_fab) to "camera_fab")
+      )
     }
   }
 
@@ -187,6 +193,14 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
 
   override fun onSearchClosed() {
     conversationListTabsViewModel.onSearchClosed()
+  }
+
+  override fun onMultiSelectStarted() {
+    conversationListTabsViewModel.onMultiSelectStarted()
+  }
+
+  override fun onMultiSelectFinished() {
+    conversationListTabsViewModel.onMultiSelectFinished()
   }
 
   private fun initializeProfileIcon(recipient: Recipient) {

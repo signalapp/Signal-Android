@@ -3488,7 +3488,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ManageDonationsFragment__my_support">Mia subteno</string>
   <string name="ManageDonationsFragment__manage_subscription">Administri la abonon</string>
   <!--Label for Tax Receipts button-->
-  <string name="ManageDonationsFragment__tax_receipts">Imposta kvitanco</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Imposta kvitanco</string> -->
   <string name="ManageDonationsFragment__badges">Insignoj</string>
   <string name="ManageDonationsFragment__subscription_faq">Respondaro pri abono</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Eraro dum ricevo de abono.</string>
@@ -3752,7 +3752,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Aldoni rakonton</string>
   <!--Displayed when there are no stories to display-->
-  <string name="StoriesLandingFragment__no_recent_updates">Neniu freŝa ĝisdatigo montrebla nun</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">Neniu freŝa ĝisdatigo montrebla nun</string> -->
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Kaŝi la rakonton</string>
   <!--Context menu option to unhide a story-->
@@ -3977,7 +3977,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Malaktivigi</string>
   <!--Conversation Item label for reactions to a story-->
-  <string name="ConversationItem__s_dot_story">%1$s · Rakonto</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · Rakonto</string> -->
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Reagis al rakonto</string>
   <!--endregion-->

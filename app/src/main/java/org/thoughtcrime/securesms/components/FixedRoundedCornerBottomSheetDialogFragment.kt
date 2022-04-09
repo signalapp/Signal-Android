@@ -1,9 +1,11 @@
 package org.thoughtcrime.securesms.components
 
 import android.app.Dialog
+import android.graphics.Color
 import android.os.Bundle
 import android.view.ContextThemeWrapper
 import android.view.View
+import androidx.annotation.ColorInt
 import androidx.annotation.StyleRes
 import androidx.core.view.ViewCompat
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -26,6 +28,9 @@ abstract class FixedRoundedCornerBottomSheetDialogFragment : BottomSheetDialogFr
   @StyleRes
   protected open val themeResId: Int = R.style.Widget_Signal_FixedRoundedCorners
 
+  @ColorInt
+  protected var backgroundColor: Int = Color.TRANSPARENT
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setStyle(STYLE_NORMAL, themeResId)
@@ -44,7 +49,8 @@ abstract class FixedRoundedCornerBottomSheetDialogFragment : BottomSheetDialogFr
     val dialogBackground = MaterialShapeDrawable(shapeAppearanceModel)
 
     val bottomSheetStyle = ThemeUtil.getThemedResourceId(ContextThemeWrapper(requireContext(), themeResId), R.attr.bottomSheetStyle)
-    dialogBackground.setTint(ThemeUtil.getThemedColor(ContextThemeWrapper(requireContext(), bottomSheetStyle), R.attr.backgroundTint))
+    backgroundColor = ThemeUtil.getThemedColor(ContextThemeWrapper(requireContext(), bottomSheetStyle), R.attr.backgroundTint)
+    dialogBackground.setTint(backgroundColor)
 
     dialog.behavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
       override fun onStateChanged(bottomSheet: View, newState: Int) {

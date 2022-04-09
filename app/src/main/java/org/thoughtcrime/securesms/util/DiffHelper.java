@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.util;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.SetUtil;
+
 import java.util.Collection;
 import java.util.Set;
 

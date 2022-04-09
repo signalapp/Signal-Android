@@ -45,6 +45,7 @@ class CantProcessSubscriptionPaymentBottomSheetDialogFragment : DSLSettingsBotto
         text = DSLSettingsText.from(R.string.CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again)
       ) {
         SignalStore.donationsValues().showCantProcessDialog = false
+        dismissAllowingStateLoss()
       }
     }
   }

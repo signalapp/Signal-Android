@@ -12,6 +12,8 @@ import java.util.UUID;
  */
 public final class DistributionId {
 
+  public static final DistributionId MY_STORY = DistributionId.from("00000000-0000-0000-0000-000000000000");
+
   private final UUID uuid;
 
   public static DistributionId from(String id) {

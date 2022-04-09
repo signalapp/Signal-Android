@@ -106,7 +106,7 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
                                                 callSetupState.getIceServers(),
                                                 hideIp,
                                                 NetworkUtil.getCallingBandwidthMode(context),
-                                                null,
+                                                AUDIO_LEVELS_INTERVAL,
                                                 false);
     } catch (CallException e) {
       return callFailure(currentState, "Unable to proceed with call: ", e);

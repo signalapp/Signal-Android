@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.StoryResult
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -27,33 +28,21 @@ class StoriesLandingRepository(context: Context) {
   }
 
   fun getStories(): Observable<List<StoriesLandingItemData>> {
-    return Observable.create<Observable<List<StoriesLandingItemData>>> { emitter ->
-      val myStoriesId = SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.MY_STORY)
-      val myStories = Recipient.resolved(myStoriesId)
-
+    val storyRecipients: Observable<Map<Recipient, List<StoryResult>>> = Observable.create { emitter ->
       fun refresh() {
-        val storyMap = mutableMapOf<Recipient, List<MessageRecord>>()
-        SignalDatabase.mms.allStories.use {
-          while (it.next != null) {
-            val messageRecord = it.current
-            val recipient = if (messageRecord.isOutgoing && !messageRecord.recipient.isGroup) {
+        val myStoriesId = SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.MY_STORY)
+        val myStories = Recipient.resolved(myStoriesId)
+
+        emitter.onNext(
+          SignalDatabase.mms.orderedStoryRecipientsAndIds.groupBy {
+            val recipient = Recipient.resolved(it.recipientId)
+            if (recipient.isDistributionList) {
               myStories
-            } else if (messageRecord.isOutgoing && messageRecord.recipient.isGroup) {
-              messageRecord.recipient
             } else {
-              SignalDatabase.threads.getRecipientForThreadId(messageRecord.threadId)!!
+              recipient
             }
-
-            storyMap[recipient] = (storyMap[recipient] ?: emptyList()) + messageRecord
           }
-        }
-
-        val data: List<Observable<StoriesLandingItemData>> = storyMap.map { (sender, records) -> createStoriesLandingItemData(sender, records) }
-        if (data.isEmpty()) {
-          emitter.onNext(Observable.just(emptyList()))
-        } else {
-          emitter.onNext(Observable.combineLatest(data) { it.toList() as List<StoriesLandingItemData> })
-        }
+        )
       }
 
       val observer = DatabaseObserver.Observer {
@@ -66,19 +55,42 @@ class StoriesLandingRepository(context: Context) {
       }
 
       refresh()
-    }.switchMap { it }.subscribeOn(Schedulers.io())
+    }
+
+    return storyRecipients.switchMap { map ->
+      val observables = map.map { (recipient, results) ->
+        val messages = results
+          .sortedBy { it.messageSentTimestamp }
+          .reversed()
+          .take(if (recipient.isMyStory) 2 else 1)
+          .map {
+            SignalDatabase.mms.getMessageRecord(it.messageId)
+          }
+
+        createStoriesLandingItemData(recipient, messages)
+      }
+
+      if (observables.isEmpty()) {
+        Observable.just(emptyList())
+      } else {
+        Observable.combineLatest(observables) {
+          it.toList() as List<StoriesLandingItemData>
+        }
+      }
+    }.subscribeOn(Schedulers.io())
   }
 
   private fun createStoriesLandingItemData(sender: Recipient, messageRecords: List<MessageRecord>): Observable<StoriesLandingItemData> {
     val itemDataObservable = Observable.create<StoriesLandingItemData> { emitter ->
       fun refresh(sender: Recipient) {
+        val primaryIndex = messageRecords.indexOfFirst { !it.isOutgoing && it.viewedReceiptCount == 0 }.takeIf { it > -1 } ?: 0
         val itemData = StoriesLandingItemData(
           storyRecipient = sender,
           storyViewState = StoryViewState.NONE,
           hasReplies = messageRecords.any { SignalDatabase.mms.getNumberOfStoryReplies(it.id) > 0 },
           hasRepliesFromSelf = messageRecords.any { SignalDatabase.mms.hasSelfReplyInStory(it.id) },
           isHidden = sender.shouldHideStory(),
-          primaryStory = ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, messageRecords.first()),
+          primaryStory = ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, messageRecords[primaryIndex]),
           secondaryStory = if (sender.isMyStory) messageRecords.drop(1).firstOrNull()?.let {
             ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, it)
           } else null

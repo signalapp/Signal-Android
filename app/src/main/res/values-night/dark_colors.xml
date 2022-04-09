@@ -61,6 +61,7 @@
     <color name="signal_inverse_transparent_10">@color/transparent_white_10</color>
     <color name="signal_inverse_transparent_15">@color/transparent_white_15</color>
     <color name="signal_inverse_transparent_20">@color/transparent_white_20</color>
+    <color name="signal_inverse_transparent_25">@color/transparent_white_25</color>
     <color name="signal_inverse_transparent_40">@color/transparent_white_40</color>
     <color name="signal_inverse_transparent_60">@color/transparent_white_60</color>
     <color name="signal_inverse_transparent_80">@color/transparent_white_80</color>
@@ -165,7 +166,8 @@
 
     <color name="quote_view_background">@color/transparent_black_40</color>
     <color name="conversation_item_outgoing_footer_fg">@color/transparent_white_60</color>
-    <color name="quote_preview_background">@color/core_grey_80</color>
+    <color name="quote_preview_background">@color/core_grey_60</color>
+    <color name="quote_incoming_story_background">@color/core_grey_80</color>
 
     <color name="react_with_any_background">@color/core_grey_75</color>
     <color name="react_with_any_search_background">@color/core_grey_65</color>

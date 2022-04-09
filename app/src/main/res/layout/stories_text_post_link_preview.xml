@@ -28,6 +28,20 @@
             android:paddingTop="12dp"
             android:paddingBottom="12dp">
 
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/link_preview_fallback_icon"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:background="@color/core_grey_02"
+                android:importantForAccessibility="no"
+                android:scaleType="centerInside"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearance="@style/ShapeAppearanceOverlay.Signal.Story.LinkPreview.Icon"
+                app:srcCompat="@drawable/ic_link_24"
+                app:tint="@color/core_grey_75" />
+
             <org.thoughtcrime.securesms.components.OutlinedThumbnailView
                 android:id="@+id/link_preview_image"
                 android:layout_width="76dp"
@@ -36,34 +50,58 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/test_gradient"
-                tools:visibility="visible" />
+                tools:src="@drawable/test_gradient" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/image_barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="end"
+                app:barrierMargin="12dp"
+                app:constraint_referenced_ids="link_preview_fallback_icon,link_preview_image" />
 
             <org.thoughtcrime.securesms.components.emoji.EmojiTextView
                 android:id="@+id/link_preview_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
                 android:ellipsize="end"
                 android:maxLines="3"
                 android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
                 android:textColor="@color/core_white"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/link_preview_description"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/link_preview_image"
+                app:layout_constraintStart_toEndOf="@id/image_barrier"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_goneMarginStart="0dp"
                 tools:text="ASDF dot com, the resource of your asdf dreams and whatnot. This needs to be 3 lines for testing." />
 
             <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-                android:id="@+id/link_preview_url"
+                android:id="@+id/link_preview_description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:textAppearance="@style/TextAppearance.Signal.Body2"
-                android:textColor="@color/transparent_white_60"
+                android:textColor="@color/core_white"
+                app:layout_constraintBottom_toTopOf="@id/link_preview_url"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/link_preview_title"
                 app:layout_constraintTop_toBottomOf="@id/link_preview_title"
+                tools:text="Blah blah blah" />
+
+            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                android:id="@+id/link_preview_url"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textAppearance="@style/TextAppearance.Signal.Body2"
+                android:textColor="@color/transparent_white_60"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/link_preview_title"
+                app:layout_constraintTop_toBottomOf="@id/link_preview_description"
                 tools:text="www.asdf.com" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

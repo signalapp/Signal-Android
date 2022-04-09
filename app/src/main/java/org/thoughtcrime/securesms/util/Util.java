@@ -153,8 +153,8 @@ public class Util {
     return collection == null || collection.isEmpty();
   }
 
-  public static boolean isEmpty(@Nullable String value) {
-    return value == null || value.length() == 0;
+  public static boolean isEmpty(@Nullable CharSequence charSequence) {
+    return charSequence == null || charSequence.length() == 0;
   }
 
   public static boolean hasItems(@Nullable Collection<?> collection) {

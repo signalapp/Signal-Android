@@ -20,4 +20,5 @@ class ContactLinkConfiguration(
   val e164Formatter: (String) -> String,
   val messageMimetype: String,
   val callMimetype: String,
+  val syncTag: String
 )

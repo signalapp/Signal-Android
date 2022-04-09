@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModel;
 
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
-import org.thoughtcrime.securesms.util.StringUtil;
+import org.signal.core.util.StringUtil;
 
 public final class EditProfileNameViewModel extends ViewModel {
 

@@ -79,6 +79,8 @@ public class ConversationShortcutUpdateJob extends BaseJob {
     if (!success) {
       throw new RetryLaterException();
     }
+
+    ConversationUtil.removeLongLivedShortcuts(context, threadDatabase.getArchivedRecipients());
   }
 
   @Override

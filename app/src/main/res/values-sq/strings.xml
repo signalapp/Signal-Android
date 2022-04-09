@@ -3492,7 +3492,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ManageDonationsFragment__my_support">Përkrahja ime</string>
   <string name="ManageDonationsFragment__manage_subscription">Administroni pajtim</string>
   <!--Label for Tax Receipts button-->
-  <string name="ManageDonationsFragment__tax_receipts">Dëftesa Tatimore</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Dëftesa Tatimore</string> -->
   <string name="ManageDonationsFragment__badges">Stema</string>
   <string name="ManageDonationsFragment__subscription_faq">PBR pajtimesh</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Gabim në marrje pajtimi.</string>
@@ -3755,7 +3755,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Shtoni një histori</string>
   <!--Displayed when there are no stories to display-->
-  <string name="StoriesLandingFragment__no_recent_updates">S’ka përditësime së fundi për shfaqje tani.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">S’ka përditësime së fundi për shfaqje tani.</string> -->
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Fshihe historinë</string>
   <!--Context menu option to unhide a story-->
@@ -3980,7 +3980,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Çaktivizoje</string>
   <!--Conversation Item label for reactions to a story-->
-  <string name="ConversationItem__s_dot_story">%1$s · Histori</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · Histori</string> -->
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Reagoi te një histori</string>
   <!--endregion-->

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.conversation.mutiselect.forward
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.setFragmentResult
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.FullScreenDialogFragment
@@ -26,6 +27,10 @@ class MultiselectForwardFullScreenDialogFragment : FullScreenDialogFragment(), M
         .replace(R.id.fragment_container, fragment)
         .commitAllowingStateLoss()
     }
+  }
+
+  override fun getDialogBackgroundColor(): Int {
+    return ContextCompat.getColor(requireContext(), R.color.signal_background_primary)
   }
 
   override fun getContainer(): ViewGroup {

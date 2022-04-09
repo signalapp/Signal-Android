@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil.OpenGraph;
 import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.mms.PushMediaConstraints;
 import org.thoughtcrime.securesms.net.CallRequestController;
 import org.thoughtcrime.securesms.net.CompositeRequestController;
 import org.thoughtcrime.securesms.net.RequestController;
@@ -42,8 +43,10 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.stickers.StickerRemoteUri;
 import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.util.AvatarUtil;
+import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.ByteUnit;
 import org.signal.core.util.Hex;
+import org.thoughtcrime.securesms.util.ImageCompressionUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.OkHttpUtil;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
@@ -187,14 +190,33 @@ public class LinkPreviewRepository {
         InputStream bodyStream = response.body().byteStream();
         controller.setStream(bodyStream);
 
-        byte[]               data      = OkHttpUtil.readAsBytes(bodyStream, FAILSAFE_MAX_IMAGE_SIZE);
-        Bitmap               bitmap    = BitmapFactory.decodeByteArray(data, 0, data.length);
-        Optional<Attachment> thumbnail = bitmapToAttachment(bitmap, Bitmap.CompressFormat.JPEG, MediaUtil.IMAGE_JPEG);
+        byte[]                           data        = OkHttpUtil.readAsBytes(bodyStream, FAILSAFE_MAX_IMAGE_SIZE);
+        Bitmap                           bitmap      = BitmapFactory.decodeByteArray(data, 0, data.length);
+        Optional<Attachment>             thumbnail   = Optional.empty();
+        PushMediaConstraints.MediaConfig mediaConfig = PushMediaConstraints.MediaConfig.getDefault(ApplicationDependencies.getApplication());
+
+        if (bitmap != null) {
+          for (final int maxDimension : mediaConfig.getImageSizeTargets()) {
+            ImageCompressionUtil.Result result = ImageCompressionUtil.compressWithinConstraints(
+                ApplicationDependencies.getApplication(),
+                MediaUtil.IMAGE_JPEG,
+                bitmap,
+                maxDimension,
+                mediaConfig.getMaxImageFileSize(),
+                mediaConfig.getQualitySetting()
+            );
+
+            if (result != null) {
+              thumbnail = Optional.of(bytesToAttachment(result.getData(), result.getWidth(), result.getHeight(), result.getMimeType()));
+              break;
+            }
+          }
+        }
 
         if (bitmap != null) bitmap.recycle();
 
         callback.accept(thumbnail);
-      } catch (IOException | IllegalArgumentException e) {
+      } catch (IOException | IllegalArgumentException | BitmapDecodingException e) {
         Log.w(TAG, "Exception during link preview image retrieval.", e);
         controller.cancel();
         callback.accept(Optional.empty());
@@ -332,25 +354,33 @@ public class LinkPreviewRepository {
     bitmap.compress(format, 80, baos);
 
     byte[] bytes = baos.toByteArray();
-    Uri    uri   = BlobProvider.getInstance().forData(bytes).createForSingleSessionInMemory();
+    return Optional.of(bytesToAttachment(bytes, bitmap.getWidth(), bitmap.getHeight(), contentType));
+  }
 
-    return Optional.of(new UriAttachment(uri,
-                                         contentType,
-                                         AttachmentDatabase.TRANSFER_PROGRESS_STARTED,
-                                         bytes.length,
-                                         bitmap.getWidth(),
-                                         bitmap.getHeight(),
-                                         null,
-                                         null,
-                                         false,
-                                         false,
-                                         false,
-                                         false,
-                                         null,
-                                         null,
-                                         null,
-                                         null,
-                                         null));
+  private static Attachment bytesToAttachment(byte[] bytes,
+                                              int width,
+                                              int height,
+                                              @NonNull String contentType) {
+
+    Uri uri = BlobProvider.getInstance().forData(bytes).createForSingleSessionInMemory();
+
+    return new UriAttachment(uri,
+                             contentType,
+                             AttachmentDatabase.TRANSFER_PROGRESS_STARTED,
+                             bytes.length,
+                             width,
+                             height,
+                             null,
+                             null,
+                             false,
+                             false,
+                             false,
+                             false,
+                             null,
+                             null,
+                             null,
+                             null,
+                             null);
   }
 
   private static class Metadata {

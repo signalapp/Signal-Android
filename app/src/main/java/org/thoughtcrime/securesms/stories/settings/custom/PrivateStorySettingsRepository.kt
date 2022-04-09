@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.DistributionListRecord
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.stories.Stories
 
 class PrivateStorySettingsRepository {
   fun getRecord(distributionListId: DistributionListId): Single<DistributionListRecord> {
@@ -18,12 +19,14 @@ class PrivateStorySettingsRepository {
   fun removeMember(distributionListId: DistributionListId, member: RecipientId): Completable {
     return Completable.fromAction {
       SignalDatabase.distributionLists.removeMemberFromList(distributionListId, member)
+      Stories.onStorySettingsChanged(distributionListId)
     }.subscribeOn(Schedulers.io())
   }
 
   fun delete(distributionListId: DistributionListId): Completable {
     return Completable.fromAction {
       SignalDatabase.distributionLists.deleteList(distributionListId)
+      Stories.onStorySettingsChanged(distributionListId)
     }.subscribeOn(Schedulers.io())
   }
 
@@ -36,6 +39,7 @@ class PrivateStorySettingsRepository {
   fun setRepliesAndReactionsEnabled(distributionListId: DistributionListId, repliesAndReactionsEnabled: Boolean): Completable {
     return Completable.fromAction {
       SignalDatabase.distributionLists.setAllowsReplies(distributionListId, repliesAndReactionsEnabled)
+      Stories.onStorySettingsChanged(distributionListId)
     }.subscribeOn(Schedulers.io())
   }
 }

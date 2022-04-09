@@ -20,6 +20,7 @@ import android.content.Context;
 import android.text.SpannableString;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
@@ -78,6 +79,11 @@ public abstract class DisplayRecord {
     return MmsSmsColumns.Types.isPendingMessageType(type) &&
            !MmsSmsColumns.Types.isIdentityVerified(type)  &&
            !MmsSmsColumns.Types.isIdentityDefault(type);
+  }
+
+  @VisibleForTesting
+  public long getType() {
+    return type;
   }
 
   public boolean isSent() {

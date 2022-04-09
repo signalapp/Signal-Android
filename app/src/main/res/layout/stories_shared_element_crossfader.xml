@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/source_image"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:importantForAccessibility="no"
+        app:layout_constraintDimensionRatio="48:72"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:shapeAppearance="@style/ShapeAppearanceOverlay.Signal.Story.Preview" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/target_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"
+        android:importantForAccessibility="no"
+        app:shapeAppearance="@style/ShapeAppearanceOverlay.Signal.Story.Text" />
+
+</merge>
