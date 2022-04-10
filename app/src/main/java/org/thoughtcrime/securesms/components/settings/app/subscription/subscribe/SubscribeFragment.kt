@@ -216,9 +216,7 @@ class SubscribeFragment : DSLSettingsFragment(
           isEnabled = areFieldsEnabled && (!activeAndSameLevel || state.isSubscriptionExpiring()),
           onClick = {
             val price = viewModel.getPriceOfSelectedSubscription() ?: return@primaryButton
-            val calendar = Calendar.getInstance()
 
-            calendar.add(Calendar.MONTH, 1)
             MaterialAlertDialogBuilder(requireContext())
               .setTitle(R.string.SubscribeFragment__update_subscription_question)
               .setMessage(
