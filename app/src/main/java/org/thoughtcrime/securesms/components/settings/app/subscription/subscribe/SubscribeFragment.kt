@@ -39,7 +39,6 @@ import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
-import java.util.Calendar
 import java.util.Currency
 import java.util.concurrent.TimeUnit
 
