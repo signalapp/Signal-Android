@@ -4105,7 +4105,6 @@
     <string name="SubscribeFragment__your_subscription_has_been_cancelled">Your subscription has been cancelled.</string>
     <string name="SubscribeFragment__update_subscription_question">Update subscription?</string>
     <string name="SubscribeFragment__update">Update</string>
-    <string name="SubscribeFragment__you_will_be_charged_the_full_amount">You will be charged the full amount of the new subscription price today. Your subscription will renew %1$s.</string>
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">You will be charged the full amount (%1$s) of the new subscription price today. Your subscription will renew monthly.</string>
 
     <string name="Subscription__s_per_month">%s/month</string>
