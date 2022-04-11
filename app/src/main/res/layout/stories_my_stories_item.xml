@@ -27,13 +27,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
         app:layout_constraintBottom_toTopOf="@id/date"
-        app:layout_constraintStart_toEndOf="@id/story"
+        app:layout_constraintStart_toEndOf="@+id/error_indicator"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
+        app:layout_goneMarginStart="20dp"
         tools:text="12 views" />
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -45,7 +45,7 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/date"
         app:layout_constraintStart_toEndOf="@id/story"
-        app:layout_constraintTop_toTopOf="@id/date"
+        app:layout_constraintTop_toTopOf="@+id/view_count"
         app:srcCompat="@drawable/ic_error_outline_24"
         app:tint="@color/signal_alert_primary"
         tools:visibility="visible" />
@@ -54,11 +54,10 @@
         android:id="@+id/date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginEnd="16dp"
         android:textAppearance="@style/TextAppearance.Signal.Body2"
         android:textColor="@color/signal_text_secondary"
-        app:layout_constraintStart_toEndOf="@id/error_indicator"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/view_count"
         app:layout_constraintTop_toBottomOf="@id/view_count"
         app:layout_goneMarginStart="16dp"
         tools:text="10m" />

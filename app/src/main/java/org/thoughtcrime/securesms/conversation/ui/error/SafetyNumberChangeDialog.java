@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.annimon.stream.Stream;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -165,7 +166,7 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
 
     dialogView = LayoutInflater.from(requireActivity()).inflate(R.layout.safety_number_change_dialog, null);
 
-    AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity(), getTheme());
+    AlertDialog.Builder builder = new MaterialAlertDialogBuilder(requireActivity());
 
     configureView(dialogView);
 

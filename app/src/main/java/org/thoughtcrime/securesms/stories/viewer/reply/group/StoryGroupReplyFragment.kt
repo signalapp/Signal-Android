@@ -103,6 +103,10 @@ class StoryGroupReplyFragment :
   private lateinit var composer: StoryReplyComposer
   private var currentChild: StoryViewsAndRepliesPagerParent.Child? = null
 
+  private var resendBody: CharSequence? = null
+  private var resendMentions: List<Mention> = emptyList()
+  private var resendReaction: String? = null
+
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     SignalExecutors.BOUNDED.execute {
       RetrieveProfileJob.enqueue(groupRecipientId)
@@ -226,9 +230,6 @@ class StoryGroupReplyFragment :
     recyclerView.isNestedScrollingEnabled = currentChild == StoryViewsAndRepliesPagerParent.Child.REPLIES && !(mentionsViewModel.isShowing.value ?: false)
   }
 
-  private var resendBody: CharSequence? = null
-  private var resendMentions: List<Mention> = emptyList()
-
   override fun onSendActionClicked() {
     val (body, mentions) = composer.consumeInput()
     performSend(body, mentions)
@@ -262,7 +263,26 @@ class StoryGroupReplyFragment :
   }
 
   private fun sendReaction(emoji: String) {
-    lifecycleDisposable += StoryGroupReplySender.sendReaction(requireContext(), storyId, emoji).subscribe()
+    lifecycleDisposable += StoryGroupReplySender.sendReaction(requireContext(), storyId, emoji)
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy(
+        onError = { error ->
+          if (error is UntrustedRecords.UntrustedRecordsException) {
+            resendReaction = emoji
+
+            SafetyNumberChangeDialog.show(childFragmentManager, error.untrustedRecords)
+          } else {
+            Log.w(TAG, "Failed to send reply", error)
+            val context = context
+            if (context != null) {
+              Toast.makeText(context, R.string.message_details_recipient__failed_to_send, Toast.LENGTH_SHORT).show()
+            }
+          }
+        },
+        onComplete = {
+          snapToTopDataObserver.requestScrollPosition(0)
+        }
+      )
   }
 
   override fun onKeyEvent(keyEvent: KeyEvent?) = Unit
@@ -385,8 +405,11 @@ class StoryGroupReplyFragment :
 
   override fun onSendAnywayAfterSafetyNumberChange(changedRecipients: MutableList<RecipientId>) {
     val resendBody = resendBody
+    val resendReaction = resendReaction
     if (resendBody != null) {
       performSend(resendBody, resendMentions)
+    } else if (resendReaction != null) {
+      sendReaction(resendReaction)
     }
   }
 
@@ -397,6 +420,7 @@ class StoryGroupReplyFragment :
   override fun onCanceled() {
     resendBody = null
     resendMentions = emptyList()
+    resendReaction = null
   }
 
   interface Callback {

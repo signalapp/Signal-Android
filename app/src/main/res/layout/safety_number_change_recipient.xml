@@ -51,7 +51,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/safety_number_change_recipient_view"
-        style="@style/Signal.Widget.Button.Large.Secondary"
+        style="@style/Signal.Widget.Button.Dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minWidth="0dp"

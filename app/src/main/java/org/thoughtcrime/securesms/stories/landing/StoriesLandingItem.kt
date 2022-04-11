@@ -57,6 +57,7 @@ object StoriesLandingItem {
       return data.storyRecipient.hasSameContent(newItem.data.storyRecipient) &&
         data == newItem.data &&
         !hasStatusChange(newItem) &&
+        (data.sendingCount == newItem.data.sendingCount && data.failureCount == newItem.data.failureCount) &&
         super.areContentsTheSame(newItem)
     }
 
@@ -205,12 +206,16 @@ object StoriesLandingItem {
     }
 
     private fun presentDateOrStatus(model: Model) {
-      if (model.data.primaryStory.messageRecord.isOutgoing && (model.data.primaryStory.messageRecord.isPending || model.data.primaryStory.messageRecord.isMediaPending)) {
-        errorIndicator.visible = false
-        date.setText(R.string.StoriesLandingItem__sending)
-      } else if (model.data.primaryStory.messageRecord.isOutgoing && model.data.primaryStory.messageRecord.isFailed) {
+      if (model.data.sendingCount > 0 || (model.data.primaryStory.messageRecord.isOutgoing && (model.data.primaryStory.messageRecord.isPending || model.data.primaryStory.messageRecord.isMediaPending))) {
+        errorIndicator.visible = model.data.failureCount > 0L
+        if (model.data.sendingCount > 1) {
+          date.text = context.getString(R.string.StoriesLandingItem__sending_d, model.data.sendingCount)
+        } else {
+          date.setText(R.string.StoriesLandingItem__sending)
+        }
+      } else if (model.data.failureCount > 0 || (model.data.primaryStory.messageRecord.isOutgoing && model.data.primaryStory.messageRecord.isFailed)) {
         errorIndicator.visible = true
-        date.text = SpanUtil.color(ContextCompat.getColor(context, R.color.signal_alert_primary), context.getString(R.string.StoriesLandingItem__couldnt_send))
+        date.text = SpanUtil.color(ContextCompat.getColor(context, R.color.signal_alert_primary), context.getString(R.string.StoriesLandingItem__send_failed))
       } else {
         errorIndicator.visible = false
         date.text = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), model.data.dateInMilliseconds)

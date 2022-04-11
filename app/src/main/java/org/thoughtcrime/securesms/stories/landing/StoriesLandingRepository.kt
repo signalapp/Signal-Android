@@ -27,6 +27,7 @@ class StoriesLandingRepository(context: Context) {
     }.subscribeOn(Schedulers.io())
   }
 
+  @Suppress("UsePropertyAccessSyntax")
   fun getStories(): Observable<List<StoriesLandingItemData>> {
     val storyRecipients: Observable<Map<Recipient, List<StoryResult>>> = Observable.create { emitter ->
       fun refresh() {
@@ -67,7 +68,25 @@ class StoriesLandingRepository(context: Context) {
             SignalDatabase.mms.getMessageRecord(it.messageId)
           }
 
-        createStoriesLandingItemData(recipient, messages)
+        var sendingCount: Long = 0
+        var failureCount: Long = 0
+
+        if (recipient.isMyStory) {
+          SignalDatabase.mms.getMessages(results.map { it.messageId }).use { reader ->
+            var messageRecord: MessageRecord? = reader.getNext()
+            while (messageRecord != null) {
+              if (messageRecord.isOutgoing && (messageRecord.isPending || messageRecord.isMediaPending)) {
+                sendingCount++
+              } else if (messageRecord.isFailed) {
+                failureCount++
+              }
+
+              messageRecord = reader.getNext()
+            }
+          }
+        }
+
+        createStoriesLandingItemData(recipient, messages, sendingCount, failureCount)
       }
 
       if (observables.isEmpty()) {
@@ -80,7 +99,7 @@ class StoriesLandingRepository(context: Context) {
     }.subscribeOn(Schedulers.io())
   }
 
-  private fun createStoriesLandingItemData(sender: Recipient, messageRecords: List<MessageRecord>): Observable<StoriesLandingItemData> {
+  private fun createStoriesLandingItemData(sender: Recipient, messageRecords: List<MessageRecord>, sendingCount: Long, failureCount: Long): Observable<StoriesLandingItemData> {
     val itemDataObservable = Observable.create<StoriesLandingItemData> { emitter ->
       fun refresh(sender: Recipient) {
         val primaryIndex = messageRecords.indexOfFirst { !it.isOutgoing && it.viewedReceiptCount == 0 }.takeIf { it > -1 } ?: 0
@@ -93,7 +112,9 @@ class StoriesLandingRepository(context: Context) {
           primaryStory = ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, messageRecords[primaryIndex]),
           secondaryStory = if (sender.isMyStory) messageRecords.drop(1).firstOrNull()?.let {
             ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, it)
-          } else null
+          } else null,
+          sendingCount = sendingCount,
+          failureCount = failureCount
         )
 
         emitter.onNext(itemData)

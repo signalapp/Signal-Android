@@ -43,4 +43,12 @@ object StoryDialogs {
 
     return shareContacts.any { it is ContactSearchKey.Story && Recipient.resolved(it.recipientId).isMyStory }
   }
+
+  fun resendStory(context: Context, resend: () -> Unit) {
+    MaterialAlertDialogBuilder(context)
+      .setMessage(R.string.StoryDialogs__story_could_not_be_sent)
+      .setNegativeButton(android.R.string.cancel, null)
+      .setPositiveButton(R.string.StoryDialogs__send) { _, _ -> resend() }
+      .show()
+  }
 }

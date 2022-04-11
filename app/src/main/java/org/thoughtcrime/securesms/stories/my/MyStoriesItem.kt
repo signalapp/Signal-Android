@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.stories.my
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ThumbnailView
@@ -16,7 +15,6 @@ import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import org.thoughtcrime.securesms.util.DateUtils
-import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
@@ -90,11 +88,13 @@ object MyStoriesItem {
       moreTarget.setOnClickListener { showContextMenu(model) }
       presentDateOrStatus(model)
 
-      viewCount.text = context.resources.getQuantityString(
-        R.plurals.MyStories__d_views,
-        model.distributionStory.messageRecord.viewedReceiptCount,
-        model.distributionStory.messageRecord.viewedReceiptCount
-      )
+      if (model.distributionStory.messageRecord.isSent) {
+        viewCount.text = context.resources.getQuantityString(
+          R.plurals.MyStories__d_views,
+          model.distributionStory.messageRecord.viewedReceiptCount,
+          model.distributionStory.messageRecord.viewedReceiptCount
+        )
+      }
 
       if (STATUS_CHANGE in payload) {
         return
@@ -116,12 +116,16 @@ object MyStoriesItem {
     private fun presentDateOrStatus(model: Model) {
       if (model.distributionStory.messageRecord.isPending || model.distributionStory.messageRecord.isMediaPending) {
         errorIndicator.visible = false
-        date.setText(R.string.StoriesLandingItem__sending)
+        date.visible = false
+        viewCount.setText(R.string.StoriesLandingItem__sending)
       } else if (model.distributionStory.messageRecord.isFailed) {
         errorIndicator.visible = true
-        date.text = SpanUtil.color(ContextCompat.getColor(context, R.color.signal_alert_primary), context.getString(R.string.StoriesLandingItem__couldnt_send))
+        date.visible = true
+        viewCount.setText(R.string.StoriesLandingItem__send_failed)
+        date.setText(R.string.StoriesLandingItem__tap_to_retry)
       } else {
         errorIndicator.visible = false
+        date.visible = true
         date.text = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), model.distributionStory.messageRecord.dateSent)
       }
     }
