@@ -120,6 +120,7 @@ class StoryTextPostView @JvmOverloads constructor(
   }
 
   fun bindFromStoryTextPost(storyTextPost: StoryTextPost) {
+    visible = true
     linkPreviewView.visible = false
 
     textAlignment = TextAlignment.CENTER
