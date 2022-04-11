@@ -2709,6 +2709,11 @@
     <string name="preferences__internal_release_channel_set_last_version" translatable="false">Set last version seen back 10 versions</string>
     <string name="preferences__internal_add_sample_note" translatable="false">Add sample note</string>
     <string name="preferences__internal_disable_stories" translatable="false">Disable stories</string>
+    <string name="preferences__internal_cds" translatable="false">CDS</string>
+    <string name="preferences__internal_clear_history" translatable="false">Clear history</string>
+    <string name="preferences__internal_clear_history_description" translatable="false">Clears all CDS history, meaning the next sync will consider all numbers to be new.</string>
+    <string name="preferences__internal_clear_all_service_ids" translatable="false">Clear all service IDs</string>
+    <string name="preferences__internal_clear_all_service_ids_description" translatable="false">Clears all known service IDs. Do not use on your personal device!</string>
 
 
     <!-- Payments -->

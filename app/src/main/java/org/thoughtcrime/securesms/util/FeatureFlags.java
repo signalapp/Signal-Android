@@ -95,6 +95,7 @@ public final class FeatureFlags {
   private static final String USE_HARDWARE_AEC_IF_OLD           = "android.calling.useHardwareAecIfOlderThanApi29";
   private static final String USE_AEC3                          = "android.calling.useAec3";
   private static final String PAYMENTS_COUNTRY_BLOCKLIST        = "android.payments.blocklist";
+  private static final String PNP_CDS                           = "android.pnp.cds";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -147,7 +148,8 @@ public final class FeatureFlags {
 
   @VisibleForTesting
   static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet(
-      PHONE_NUMBER_PRIVACY_VERSION
+      PHONE_NUMBER_PRIVACY_VERSION,
+      PNP_CDS
   );
 
   /**
@@ -492,6 +494,15 @@ public final class FeatureFlags {
   /** Whether or not {@link org.signal.ringrtc.CallManager.AudioProcessingMethod#ForceSoftwareAec3} can be used */
   public static boolean useAec3() {
     return getBoolean(USE_AEC3, true);
+  }
+
+  /**
+   * Whether or not to use the phone number privacy CDS flow. Only currently works in staging.
+   *
+   * Note: This feature is in very early stages of development and *will* break your contacts.
+   */
+  public static boolean usePnpCds() {
+    return Environment.IS_STAGING && getBoolean(PNP_CDS, false);
   }
 
   /** Only for rendering debug info. */

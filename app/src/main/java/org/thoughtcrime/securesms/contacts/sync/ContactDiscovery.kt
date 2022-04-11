@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.RegistrationUtil
 import org.thoughtcrime.securesms.sms.IncomingJoinedMessage
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.Stopwatch
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
@@ -69,7 +70,11 @@ object ContactDiscovery {
       context = context,
       descriptor = "refresh-all",
       refresh = {
-        ContactDiscoveryRefreshV1.refreshAll(context)
+        if (FeatureFlags.usePnpCds()) {
+          ContactDiscoveryRefreshV2.refreshAll(context)
+        } else {
+          ContactDiscoveryRefreshV1.refreshAll(context)
+        }
       },
       removeSystemContactLinksIfMissing = true,
       notifyOfNewUsers = notifyOfNewUsers
@@ -86,7 +91,11 @@ object ContactDiscovery {
       context = context,
       descriptor = "refresh-multiple",
       refresh = {
-        ContactDiscoveryRefreshV1.refresh(context, recipients)
+        if (FeatureFlags.usePnpCds()) {
+          ContactDiscoveryRefreshV2.refresh(context, recipients)
+        } else {
+          ContactDiscoveryRefreshV1.refresh(context, recipients)
+        }
       },
       removeSystemContactLinksIfMissing = false,
       notifyOfNewUsers = notifyOfNewUsers
@@ -101,7 +110,11 @@ object ContactDiscovery {
       context = context,
       descriptor = "refresh-single",
       refresh = {
-        ContactDiscoveryRefreshV1.refresh(context, listOf(recipient))
+        if (FeatureFlags.usePnpCds()) {
+          ContactDiscoveryRefreshV2.refresh(context, listOf(recipient))
+        } else {
+          ContactDiscoveryRefreshV1.refresh(context, listOf(recipient))
+        }
       },
       removeSystemContactLinksIfMissing = false,
       notifyOfNewUsers = notifyOfNewUsers

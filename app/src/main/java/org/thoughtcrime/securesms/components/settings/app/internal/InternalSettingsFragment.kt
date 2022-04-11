@@ -406,7 +406,28 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       dividerPref()
 
+      sectionHeaderPref(R.string.preferences__internal_cds)
+
+      clickPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_clear_history),
+        summary = DSLSettingsText.from(R.string.preferences__internal_clear_history_description),
+        onClick = {
+          clearCdsHistory()
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_clear_all_service_ids),
+        summary = DSLSettingsText.from(R.string.preferences__internal_clear_all_service_ids_description),
+        onClick = {
+          clearAllServiceIds()
+        }
+      )
+
+      dividerPref()
+
       sectionHeaderPref(R.string.ConversationListTabs__stories)
+
       switchPref(
         title = DSLSettingsText.from(R.string.preferences__internal_disable_stories),
         isChecked = state.disableStories,
@@ -517,5 +538,24 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
   private fun enqueueSubscriptionRedemption() {
     SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain().enqueue()
+  }
+
+  private fun clearCdsHistory() {
+    SignalDatabase.cds.clearAll()
+    SignalStore.misc().cdsToken = null
+    Toast.makeText(context, "Cleared all CDS history.", Toast.LENGTH_SHORT).show()
+  }
+
+  private fun clearAllServiceIds() {
+    MaterialAlertDialogBuilder(requireContext())
+      .setMessage("Are you sure? Never do this on a non-test device.")
+      .setPositiveButton(android.R.string.ok) { _, _ ->
+        SignalDatabase.recipients.debugClearServiceIds()
+        Toast.makeText(context, "Cleared all service IDs.", Toast.LENGTH_SHORT).show()
+      }
+      .setNegativeButton(android.R.string.cancel) { d, _ ->
+        d.dismiss()
+      }
+      .show()
   }
 }

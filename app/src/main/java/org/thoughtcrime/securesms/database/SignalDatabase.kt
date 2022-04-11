@@ -71,6 +71,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
   val donationReceiptDatabase: DonationReceiptDatabase = DonationReceiptDatabase(context, this)
   val distributionListDatabase: DistributionListDatabase = DistributionListDatabase(context, this)
   val storySendsDatabase: StorySendsDatabase = StorySendsDatabase(context, this)
+  val cdsDatabase: CdsDatabase = CdsDatabase(context, this)
 
   override fun onOpen(db: net.zetetic.database.sqlcipher.SQLiteDatabase) {
     db.enableWriteAheadLogging()
@@ -105,6 +106,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     db.execSQL(ReactionDatabase.CREATE_TABLE)
     db.execSQL(DonationReceiptDatabase.CREATE_TABLE)
     db.execSQL(StorySendsDatabase.CREATE_TABLE)
+    db.execSQL(CdsDatabase.CREATE_TABLE)
     executeStatements(db, SearchDatabase.CREATE_TABLE)
     executeStatements(db, RemappedRecordsDatabase.CREATE_TABLE)
     executeStatements(db, MessageSendLogDatabase.CREATE_TABLE)
@@ -329,6 +331,11 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
       get() = instance!!.avatarPickerDatabase
 
     @get:JvmStatic
+    @get:JvmName("cds")
+    val cds: CdsDatabase
+      get() = instance!!.cdsDatabase
+
+    @get:JvmStatic
     @get:JvmName("chatColors")
     val chatColors: ChatColorsDatabase
       get() = instance!!.chatColorsDatabase
@@ -337,6 +344,11 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     @get:JvmName("distributionLists")
     val distributionLists: DistributionListDatabase
       get() = instance!!.distributionListDatabase
+
+    @get:JvmStatic
+    @get:JvmName("donationReceipts")
+    val donationReceipts: DonationReceiptDatabase
+      get() = instance!!.donationReceiptDatabase
 
     @get:JvmStatic
     @get:JvmName("drafts")
@@ -475,18 +487,13 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
       get() = instance!!.stickerDatabase
 
     @get:JvmStatic
-    @get:JvmName("unknownStorageIds")
-    val unknownStorageIds: UnknownStorageIdDatabase
-      get() = instance!!.storageIdDatabase
-
-    @get:JvmStatic
-    @get:JvmName("donationReceipts")
-    val donationReceipts: DonationReceiptDatabase
-      get() = instance!!.donationReceiptDatabase
-
-    @get:JvmStatic
     @get:JvmName("storySends")
     val storySends: StorySendsDatabase
       get() = instance!!.storySendsDatabase
+
+    @get:JvmStatic
+    @get:JvmName("unknownStorageIds")
+    val unknownStorageIds: UnknownStorageIdDatabase
+      get() = instance!!.storageIdDatabase
   }
 }

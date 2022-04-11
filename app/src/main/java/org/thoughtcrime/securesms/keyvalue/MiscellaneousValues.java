@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.keyvalue;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,6 +20,7 @@ public final class MiscellaneousValues extends SignalStoreValues {
   private static final String CENSORSHIP_LAST_CHECK_TIME      = "misc.censorship.last_check_time";
   private static final String CENSORSHIP_SERVICE_REACHABLE    = "misc.censorship.service_reachable";
   private static final String LAST_GV2_PROFILE_CHECK_TIME     = "misc.last_gv2_profile_check_time";
+  private static final String CDS_TOKEN                       = "misc.cds_token";
 
   MiscellaneousValues(@NonNull KeyValueStore store) {
     super(store);
@@ -136,5 +138,15 @@ public final class MiscellaneousValues extends SignalStoreValues {
 
   public void setLastGv2ProfileCheckTime(long value) {
     putLong(LAST_GV2_PROFILE_CHECK_TIME, value);
+  }
+
+  public @Nullable byte[] getCdsToken() {
+    return getBlob(CDS_TOKEN, null);
+  }
+
+  public void setCdsToken(@Nullable byte[] token) {
+    getStore().beginWrite()
+              .putBlob(CDS_TOKEN, token)
+              .commit();
   }
 }

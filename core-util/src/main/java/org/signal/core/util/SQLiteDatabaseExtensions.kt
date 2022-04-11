@@ -224,3 +224,4 @@ class DeleteBuilderPart2(
     return db.delete(tableName, where, whereArgs)
   }
 }
+

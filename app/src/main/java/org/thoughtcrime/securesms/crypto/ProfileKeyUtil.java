@@ -8,8 +8,10 @@ import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Util;
 
+import java.io.IOException;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -38,6 +40,27 @@ public final class ProfileKeyUtil {
     }
 
     return null;
+  }
+
+  public static @Nullable ProfileKey profileKeyOrNull(@Nullable String base64) {
+    if (base64 == null) {
+      return null;
+    }
+
+    byte[] decoded;
+    try {
+      decoded = Base64.decode(base64);
+    } catch (IOException e) {
+      Log.w(TAG, "Failed to decode profile key.");
+      return null;
+    }
+
+    try {
+      return new ProfileKey(decoded);
+    } catch (InvalidInputException e) {
+      Log.w(TAG, String.format(Locale.US, "Seen non-null profile key of wrong length %d", decoded.length), e);
+      return null;
+    }
   }
 
   public static @Nullable ProfileKeyCredential profileKeyCredentialOrNull(@Nullable byte[] profileKeyCredential) {

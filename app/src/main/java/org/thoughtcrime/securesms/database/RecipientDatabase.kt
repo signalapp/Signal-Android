@@ -25,6 +25,8 @@ import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
+import org.signal.core.util.select
+import org.signal.core.util.update
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.InvalidKeyException
 import org.signal.libsignal.zkgroup.InvalidInputException
@@ -237,7 +239,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
     val CREATE_INDEXS = arrayOf(
       "CREATE INDEX IF NOT EXISTS recipient_group_type_index ON $TABLE_NAME ($GROUP_TYPE);",
-      "CREATE UNIQUE INDEX IF NOT EXISTS recipient_pni_index ON $TABLE_NAME ($PNI_COLUMN)"
+      "CREATE UNIQUE INDEX IF NOT EXISTS recipient_pni_index ON $TABLE_NAME ($PNI_COLUMN)",
+      "CREATE INDEX IF NOT EXISTS recipient_service_id_profile_key ON $TABLE_NAME ($SERVICE_ID, $PROFILE_KEY) WHERE $SERVICE_ID NOT NULL AND $PROFILE_KEY NOT NULL"
     )
 
     private val RECIPIENT_PROJECTION: Array<String> = arrayOf(
@@ -497,6 +500,28 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         }
       }
     }
+  }
+
+  fun getAllServiceIdProfileKeyPairs(): Map<ServiceId, ProfileKey> {
+    val serviceIdToProfileKey: MutableMap<ServiceId, ProfileKey> = mutableMapOf()
+
+    readableDatabase
+      .select(SERVICE_ID, PROFILE_KEY)
+      .from(TABLE_NAME)
+      .where("$SERVICE_ID NOT NULL AND $PROFILE_KEY NOT NULL")
+      .run()
+      .use { cursor ->
+        while (cursor.moveToNext()) {
+          val serviceId: ServiceId? = ServiceId.parseOrNull(cursor.requireString(SERVICE_ID))
+          val profileKey: ProfileKey? = ProfileKeyUtil.profileKeyOrNull(cursor.requireString(PROFILE_KEY))
+
+          if (serviceId != null && profileKey != null) {
+            serviceIdToProfileKey[serviceId] = profileKey
+          }
+        }
+      }
+
+    return serviceIdToProfileKey
   }
 
   private fun fetchRecipient(serviceId: ServiceId?, e164: String?, highTrust: Boolean, changeSelf: Boolean): RecipientFetch {
@@ -2087,6 +2112,27 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     return aciMap
   }
 
+  /**
+   * A dumb implementation of processing CDSv2 results. Suitable only for testing and not for actual use.
+   */
+  fun bulkProcessCdsV2Result(mapping: Map<String, CdsV2Result>): Set<RecipientId> {
+    val ids: MutableSet<RecipientId> = mutableSetOf()
+    val db = writableDatabase
+
+    db.beginTransaction()
+    try {
+      for ((e164, result) in mapping) {
+        ids += getAndPossiblyMerge(result.bestServiceId(), e164, true)
+      }
+
+      db.setTransactionSuccessful()
+    } finally {
+      db.endTransaction()
+    }
+
+    return ids
+  }
+
   fun getUninvitedRecipientsForInsights(): List<RecipientId> {
     val results: MutableList<RecipientId> = LinkedList()
     val args = arrayOf((System.currentTimeMillis() - TimeUnit.DAYS.toMillis(31)).toString())
@@ -2876,6 +2922,19 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
   }
 
+  /**
+   * Should only be used for debugging! A very destructive action that clears all known serviceIds.
+   */
+  fun debugClearServiceIds() {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        SERVICE_ID to null,
+        PNI_COLUMN to null
+      )
+      .run()
+  }
+
   fun getRecord(context: Context, cursor: Cursor): RecipientRecord {
     return getRecord(context, cursor, ID)
   }
@@ -3431,4 +3490,17 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     val serviceId: ServiceId? = null,
     val e164: String? = null
   )
+
+  data class CdsV2Result(
+    val pni: PNI,
+    val aci: ACI?
+  ) {
+    fun bestServiceId(): ServiceId {
+      return if (aci != null) {
+        aci
+      } else {
+        pni
+      }
+    }
+  }
 }

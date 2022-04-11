@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.signal.core.util.SetUtil;
@@ -306,7 +307,8 @@ public class RetrieveProfileJob extends BaseJob {
     });
 
     recipientDatabase.markProfilesFetched(success, System.currentTimeMillis());
-    if (operationState.unregistered.size() > 0 || newlyRegistered.size() > 0) {
+    // XXX The service hasn't implemented profiles for PNIs yet, so if using PNP CDS we don't want to mark users without profiles as unregistered.
+    if ((operationState.unregistered.size() > 0 || newlyRegistered.size() > 0) && !FeatureFlags.usePnpCds()) {
       Log.i(TAG, "Marking " + newlyRegistered.size() + " users as registered and " + operationState.unregistered.size() + " users as unregistered.");
       recipientDatabase.bulkUpdatedRegisteredStatus(newlyRegistered, operationState.unregistered);
     }
