@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.util.ConversationUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.task.SnackbarAsyncTask;
 import org.thoughtcrime.securesms.util.views.Stub;
 
@@ -70,9 +71,15 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
 
     coordinator = view.findViewById(R.id.coordinator);
     list        = view.findViewById(R.id.list);
-    fab         = view.findViewById(R.id.fab);
-    cameraFab   = view.findViewById(R.id.camera_fab);
     emptyState  = new Stub<>(view.findViewById(R.id.empty_state));
+
+    if (FeatureFlags.internalUser()) {
+      fab       = view.findViewById(R.id.fab_new);
+      cameraFab = view.findViewById(R.id.camera_fab_new);
+    } else {
+      fab       = view.findViewById(R.id.fab_old);
+      cameraFab = view.findViewById(R.id.camera_fab_old);
+    }
 
     toolbar.get().setNavigationOnClickListener(v -> NavHostFragment.findNavController(this).popBackStack());
     toolbar.get().setTitle(R.string.AndroidManifest_archived_conversations);

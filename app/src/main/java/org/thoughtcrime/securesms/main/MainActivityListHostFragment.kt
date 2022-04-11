@@ -110,7 +110,10 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
         R.id.action_conversationListFragment_to_storiesLandingFragment,
         null,
         null,
-        FragmentNavigatorExtras(requireView().findViewById<View>(R.id.camera_fab) to "camera_fab")
+        FragmentNavigatorExtras(
+          requireView().findViewById<View>(R.id.camera_fab_new) to "camera_fab",
+          requireView().findViewById<View>(R.id.fab_new) to "new_convo_fab"
+        )
       )
     }
   }

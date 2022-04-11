@@ -141,6 +141,7 @@ import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.ConversationUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
@@ -247,8 +248,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     coordinator               = view.findViewById(R.id.coordinator);
     list                      = view.findViewById(R.id.list);
-    fab                       = view.findViewById(R.id.fab);
-    cameraFab                 = view.findViewById(R.id.camera_fab);
     searchEmptyState          = view.findViewById(R.id.search_no_results);
     toolbarShadow             = view.findViewById(R.id.conversation_list_toolbar_shadow);
     bottomActionBar           = view.findViewById(R.id.conversation_list_bottom_action_bar);
@@ -257,6 +256,17 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     megaphoneContainer        = new Stub<>(view.findViewById(R.id.megaphone_container));
     paymentNotificationView   = new Stub<>(view.findViewById(R.id.payments_notification));
     voiceNotePlayerViewStub   = new Stub<>(view.findViewById(R.id.voice_note_player));
+
+    if (FeatureFlags.internalUser()) {
+      fab       = view.findViewById(R.id.fab_new);
+      cameraFab = view.findViewById(R.id.camera_fab_new);
+
+      fab.setVisibility(View.VISIBLE);
+      cameraFab.setVisibility(View.VISIBLE);
+    } else {
+      fab       = view.findViewById(R.id.fab_old);
+      cameraFab = view.findViewById(R.id.camera_fab_old);
+    }
 
     Toolbar toolbar = getToolbar(view);
     toolbar.setVisibility(View.VISIBLE);

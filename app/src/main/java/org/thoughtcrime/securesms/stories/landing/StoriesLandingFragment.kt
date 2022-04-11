@@ -13,11 +13,15 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.app.ActivityOptionsCompat
+import androidx.core.app.SharedElementCallback
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.viewModels
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
@@ -39,6 +43,7 @@ import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.visible
+import java.util.concurrent.TimeUnit
 
 /**
  * The "landing page" for Stories.
@@ -46,7 +51,7 @@ import org.thoughtcrime.securesms.util.visible
 class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_landing_fragment) {
 
   private lateinit var emptyNotice: View
-  private lateinit var cameraFab: View
+  private lateinit var cameraFab: FloatingActionButton
 
   private val lifecycleDisposable = LifecycleDisposable()
 
@@ -86,7 +91,16 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
     emptyNotice = requireView().findViewById(R.id.empty_notice)
     cameraFab = requireView().findViewById(R.id.camera_fab)
 
-    sharedElementEnterTransition = TransitionInflater.from(requireContext()).inflateTransition(R.transition.change_transform)
+    sharedElementEnterTransition = TransitionInflater.from(requireContext()).inflateTransition(R.transition.change_transform_fabs)
+    setEnterSharedElementCallback(object : SharedElementCallback() {
+      override fun onSharedElementStart(sharedElementNames: MutableList<String>?, sharedElements: MutableList<View>?, sharedElementSnapshots: MutableList<View>?) {
+        if (sharedElementNames?.contains("camera_fab") == true) {
+          lifecycleDisposable += Single.timer(200, TimeUnit.MILLISECONDS).subscribeBy {
+            cameraFab.setImageResource(R.drawable.ic_camera_outline_24)
+          }
+        }
+      }
+    })
 
     cameraFab.setOnClickListener {
       Permissions.with(this)
