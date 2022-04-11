@@ -5,6 +5,8 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
+
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
@@ -256,61 +258,102 @@ public class SignalBaseIdentityKeyStore {
       this.cache            = new LRUCache<>(200);
     }
 
-    public synchronized @Nullable IdentityStoreRecord get(@NonNull String addressName) {
-      if (cache.containsKey(addressName)) {
-        return cache.get(addressName);
-      } else {
-        IdentityStoreRecord record = identityDatabase.getIdentityStoreRecord(addressName);
-        cache.put(addressName, record);
-        return record;
+    public @Nullable IdentityStoreRecord get(@NonNull String addressName) {
+      synchronized (this) {
+        if (cache.containsKey(addressName)) {
+          return cache.get(addressName);
+        } else {
+          IdentityStoreRecord record = identityDatabase.getIdentityStoreRecord(addressName);
+          cache.put(addressName, record);
+          return record;
+        }
       }
     }
 
-    public synchronized void save(@NonNull String addressName, @NonNull RecipientId recipientId, @NonNull IdentityKey identityKey, @NonNull VerifiedStatus verifiedStatus, boolean firstUse, long timestamp, boolean nonBlockingApproval) {
-      identityDatabase.saveIdentity(addressName, recipientId, identityKey, verifiedStatus, firstUse, timestamp, nonBlockingApproval);
-      cache.put(addressName, new IdentityStoreRecord(addressName, identityKey, verifiedStatus, firstUse, timestamp, nonBlockingApproval));
+    public void save(@NonNull String addressName, @NonNull RecipientId recipientId, @NonNull IdentityKey identityKey, @NonNull VerifiedStatus verifiedStatus, boolean firstUse, long timestamp, boolean nonBlockingApproval) {
+      withWriteLock(() -> {
+        identityDatabase.saveIdentity(addressName, recipientId, identityKey, verifiedStatus, firstUse, timestamp, nonBlockingApproval);
+        cache.put(addressName, new IdentityStoreRecord(addressName, identityKey, verifiedStatus, firstUse, timestamp, nonBlockingApproval));
+      });
     }
 
-    public synchronized void setApproval(@NonNull String addressName, @NonNull RecipientId recipientId, boolean nonblockingApproval) {
+    public void setApproval(@NonNull String addressName, @NonNull RecipientId recipientId, boolean nonblockingApproval) {
       setApproval(addressName, recipientId, cache.get(addressName), nonblockingApproval);
     }
 
-    public synchronized void setApproval(@NonNull String addressName, @NonNull RecipientId recipientId, @Nullable IdentityStoreRecord record, boolean nonblockingApproval) {
-      identityDatabase.setApproval(addressName, recipientId, nonblockingApproval);
+    public void setApproval(@NonNull String addressName, @NonNull RecipientId recipientId, @Nullable IdentityStoreRecord record, boolean nonblockingApproval) {
+      withWriteLock(() -> {
+        identityDatabase.setApproval(addressName, recipientId, nonblockingApproval);
 
-      if (record != null) {
-        cache.put(record.getAddressName(),
-                  new IdentityStoreRecord(record.getAddressName(),
-                                          record.getIdentityKey(),
-                                          record.getVerifiedStatus(),
-                                          record.getFirstUse(),
-                                          record.getTimestamp(),
-                                          nonblockingApproval));
-      }
+        if (record != null) {
+          cache.put(record.getAddressName(),
+                    new IdentityStoreRecord(record.getAddressName(),
+                                            record.getIdentityKey(),
+                                            record.getVerifiedStatus(),
+                                            record.getFirstUse(),
+                                            record.getTimestamp(),
+                                            nonblockingApproval));
+        }
+      });
     }
 
-    public synchronized void setVerified(@NonNull String addressName, @NonNull RecipientId recipientId, @NonNull IdentityKey identityKey, @NonNull VerifiedStatus verifiedStatus) {
-      identityDatabase.setVerified(addressName, recipientId, identityKey, verifiedStatus);
+    public void setVerified(@NonNull String addressName, @NonNull RecipientId recipientId, @NonNull IdentityKey identityKey, @NonNull VerifiedStatus verifiedStatus) {
+      withWriteLock(() -> {
+        identityDatabase.setVerified(addressName, recipientId, identityKey, verifiedStatus);
 
-      IdentityStoreRecord record = cache.get(addressName);
-      if (record != null) {
-        cache.put(addressName,
-                  new IdentityStoreRecord(record.getAddressName(),
-                                          record.getIdentityKey(),
-                                          verifiedStatus,
-                                          record.getFirstUse(),
-                                          record.getTimestamp(),
-                                          record.getNonblockingApproval()));
-      }
+        IdentityStoreRecord record = cache.get(addressName);
+        if (record != null) {
+          cache.put(addressName,
+                    new IdentityStoreRecord(record.getAddressName(),
+                                            record.getIdentityKey(),
+                                            verifiedStatus,
+                                            record.getFirstUse(),
+                                            record.getTimestamp(),
+                                            record.getNonblockingApproval()));
+        }
+      });
     }
 
-    public synchronized void delete(@NonNull String addressName) {
-      identityDatabase.delete(addressName);
-      cache.remove(addressName);
+    public void delete(@NonNull String addressName) {
+      withWriteLock(() -> {
+        identityDatabase.delete(addressName);
+        cache.remove(addressName);
+      });
     }
 
     public synchronized void invalidate(@NonNull String addressName) {
-      cache.remove(addressName);
+      synchronized (this) {
+        cache.remove(addressName);
+      }
+    }
+
+    /**
+     * There are situations when this class is accessed in a transaction, meaning that if we *just* synchronize the method, we can end up with:
+     *
+     * Thread A:
+     *  1. Start transaction
+     *  2. Acquire cache lock
+     *  3. Do DB write
+     *
+     * Thread B:
+     *  1. Acquire cache lock
+     *  2. Do DB write
+     *
+     * If the order is B.1 -> A.1 -> B.2 -> A.2, you have yourself a deadlock.
+     *
+     * To prevent this, writes should first acquire the DB lock before getting the cache lock to ensure we always acquire locks in the same order.
+     */
+    private void withWriteLock(Runnable runnable) {
+      SQLiteDatabase db = SignalDatabase.getRawDatabase();
+      db.beginTransaction();
+      try {
+        synchronized (this) {
+          runnable.run();
+        }
+        db.setTransactionSuccessful();
+      } finally {
+        db.endTransaction();
+      }
     }
   }
 }
