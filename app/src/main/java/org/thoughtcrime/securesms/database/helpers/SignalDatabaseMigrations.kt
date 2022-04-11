@@ -33,9 +33,7 @@ import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
-import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.profiles.ProfileName
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.FileUtils
@@ -45,10 +43,7 @@ import org.thoughtcrime.securesms.util.Triple
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.push.DistributionId
-import java.io.ByteArrayInputStream
 import java.io.File
-import java.io.FileInputStream
-import java.io.IOException
 import java.util.LinkedList
 import java.util.Locale
 import java.util.UUID
@@ -880,38 +875,11 @@ object SignalDatabaseMigrations {
     }
 
     if (oldVersion < AVATAR_LOCATION_MIGRATION) {
-      val oldAvatarDirectory: File = File(context.getFilesDir(), "avatars")
-      val results = oldAvatarDirectory.listFiles()
-      if (results != null) {
-        Log.i(TAG, "Preparing to migrate " + results.size + " avatars.")
-        for (file: File in results) {
-          if (Util.isLong(file.name)) {
-            try {
-              AvatarHelper.setAvatar(context, RecipientId.from(file.name), FileInputStream(file))
-            } catch (e: IOException) {
-              Log.w(TAG, "Failed to copy file " + file.name + "! Skipping.")
-            }
-          } else {
-            Log.w(TAG, "Invalid avatar name '" + file.name + "'! Skipping.")
-          }
-        }
-      } else {
-        Log.w(TAG, "No avatar directory files found.")
-      }
+      val oldAvatarDirectory = File(context.getFilesDir(), "avatars")
       if (!FileUtils.deleteDirectory(oldAvatarDirectory)) {
         Log.w(TAG, "Failed to delete avatar directory.")
       }
-      db.rawQuery("SELECT recipient_id, avatar FROM groups", null).use { cursor ->
-        while (cursor != null && cursor.moveToNext()) {
-          val recipientId: RecipientId = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow("recipient_id")))
-          val avatar: ByteArray? = cursor.getBlob(cursor.getColumnIndexOrThrow("avatar"))
-          try {
-            AvatarHelper.setAvatar(context, recipientId, if (avatar != null) ByteArrayInputStream(avatar) else null)
-          } catch (e: IOException) {
-            Log.w(TAG, "Failed to copy avatar for " + recipientId + "! Skipping.", e)
-          }
-        }
-      }
+      db.execSQL("UPDATE recipient SET signal_profile_avatar = NULL")
       db.execSQL("UPDATE groups SET avatar_id = 0 WHERE avatar IS NULL")
       db.execSQL("UPDATE groups SET avatar = NULL")
     }
