@@ -8,6 +8,7 @@ import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
+import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
@@ -89,6 +90,7 @@ class AudioIndicatorView(context: Context, attrs: AttributeSet) : FrameLayout(co
 
     return ValueAnimator.ofFloat(currentHeight, finalHeight).apply {
       duration = WebRtcActionProcessor.AUDIO_LEVELS_INTERVAL.toLong()
+      interpolator = DecelerateInterpolator()
     }
   }
 
