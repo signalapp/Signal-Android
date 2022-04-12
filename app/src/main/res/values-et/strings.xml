@@ -1836,6 +1836,8 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">KUVA</string>
   <string name="message_recipients_list_item__resend">SAADA UUESTI</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <!--Displayed when there are no outgoing stories-->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s liitus grupiga.</item>
@@ -3246,7 +3248,7 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Tehtud</string>
   <string name="ManageDonationsFragment__my_support">Minu toetus</string>
   <string name="ManageDonationsFragment__manage_subscription">Tellimuse haldamine</string>
-  <!--Label for Tax Receipts button-->
+  <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">Märgid</string>
   <string name="ManageDonationsFragment__subscription_faq">Tellimuse KKK</string>
   <string name="BoostFragment__give_signal_a_boost">Anna Signalile hoogu</string>
@@ -3547,7 +3549,8 @@
   <string name="TurnOffCircumventionMegaphone_no_thanks">Tänan, ei</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Lülita välja</string>
-  <!--Conversation Item label for reactions to a story-->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <!--Conversation Item label for reactions to your story-->
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->

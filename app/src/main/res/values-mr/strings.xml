@@ -1899,6 +1899,8 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">बघा</string>
   <string name="message_recipients_list_item__resend">पुन्हा पाठवा</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <!--Displayed when there are no outgoing stories-->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s गटात सामील झाले</item>
@@ -3476,8 +3478,7 @@
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal ही जाहिरातदार किंवा गुंतवणूकदार नसलेली विना-नफा संस्था आहे, केवळ आपल्यासारख्या लोकांकडून समर्थित आहे.</string>
   <string name="ManageDonationsFragment__my_support">आपले समर्थन</string>
   <string name="ManageDonationsFragment__manage_subscription">सब्स्क्रिप्शन व्यवस्थापित करा</string>
-  <!--Label for Tax Receipts button-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">कर पावत्या</string> -->
+  <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">बॅजेस्</string>
   <string name="ManageDonationsFragment__subscription_faq">सब्स्क्रिप्शन बद्दल वारंवार विचारले जाणारे प्रश्न</string>
   <string name="ManageDonationsFragment__error_getting_subscription">सब्स्क्रिप्शन मिळविण्यात त्रुटी.</string>
@@ -3741,7 +3742,6 @@
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">स्टोरी जोडा</string>
   <!--Displayed when there are no stories to display-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">आत्ता दर्शविण्यासाठी कोणतीही अलीकडील अपडेट्स नाहीत.</string> -->
   <!--Context menu option to hide a story-->
   <!--Context menu option to unhide a story-->
   <!--Context menu option to forward a story-->
@@ -3916,8 +3916,8 @@
   <string name="TurnOffCircumventionMegaphone_no_thanks">नाही धन्यवाद</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">बंद करा</string>
-  <!--Conversation Item label for reactions to a story-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s . स्टोरी</string> -->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <!--Conversation Item label for reactions to your story-->
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">स्टोरीला प्रतिक्रिया दिली</string>
   <!--endregion-->

@@ -1909,6 +1909,10 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">VER</string>
   <string name="message_recipients_list_item__resend">REENVIAR</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">A data de envio do story foi copiada.</string>
+  <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Atualizações no seu story aparecerão aqui.</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s entrou no  grupo.</item>
@@ -3487,8 +3491,8 @@
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal é uma organização sem fins lucrativos, sem anunciantes ou investidores, sustentada apenas por pessoas como você.</string>
   <string name="ManageDonationsFragment__my_support">Meu apoio</string>
   <string name="ManageDonationsFragment__manage_subscription">Ajustar doação</string>
-  <!--Label for Tax Receipts button-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Notas fiscais</string> -->
+  <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__donation_receipts">Notas fiscais de doações</string>
   <string name="ManageDonationsFragment__badges">Selos</string>
   <string name="ManageDonationsFragment__subscription_faq">Perguntas frequentes sobre doação</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Ocorreu um erro ao carregar informações sobre a doação mensal.</string>
@@ -3752,7 +3756,7 @@
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Adicionar um story</string>
   <!--Displayed when there are no stories to display-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">Nenhum story em exibição no momento.</string> -->
+  <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Não há atualizações recentes para mostrar. Toque em + para adicionar algo ao seu Story.</string>
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Ocultar story</string>
   <!--Context menu option to unhide a story-->
@@ -3976,8 +3980,10 @@
   <string name="TurnOffCircumventionMegaphone_no_thanks">Não, agradeço</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Desativar</string>
-  <!--Conversation Item label for reactions to a story-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · Story</string> -->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <string name="ConversationItem__you_reacted_to_s_story">Você reagiu ao story de %1$s</string>
+  <!--Conversation Item label for reactions to your story-->
+  <string name="ConversationItem__reacted_to_your_story">Reagiu ao seu story</string>
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Reagiu a um story</string>
   <!--endregion-->

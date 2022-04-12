@@ -2210,6 +2210,8 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">مشاهدة</string>
   <string name="message_recipients_list_item__resend">إعادة الإرسال</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <!--Displayed when there are no outgoing stories-->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="zero">%1$s انضموا إلى المجموعة.</item>
@@ -3860,8 +3862,7 @@
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">إن Signal غير ربحي بلا إعلانات أو مستثمرين، ويدعمه فقط أشخاص مثلك.</string>
   <string name="ManageDonationsFragment__my_support">دعمي</string>
   <string name="ManageDonationsFragment__manage_subscription">إدارة الاشتراك</string>
-  <!--Label for Tax Receipts button-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">وصولات الضرائب</string> -->
+  <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">شارات</string>
   <string name="ManageDonationsFragment__subscription_faq">الأسئلة الشائعة حول الاشتراك</string>
   <string name="ManageDonationsFragment__error_getting_subscription">خطأ في الحصول على الاشتراك.</string>
@@ -4301,7 +4302,8 @@
   <string name="TurnOffCircumventionMegaphone_no_thanks">لا شكراً</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">أطفىء</string>
-  <!--Conversation Item label for reactions to a story-->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <!--Conversation Item label for reactions to your story-->
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->

@@ -1904,6 +1904,8 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">ΠΡΟΒΟΛΗ</string>
   <string name="message_recipients_list_item__resend">ΕΠΑΝΑΠΟΣΤΟΛΗ</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <!--Displayed when there are no outgoing stories-->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">Ο/Η %1$s μπήκε στην ομάδα.</item>
@@ -3482,8 +3484,7 @@
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Το Signal είναι μια μη κερδοσκοπική οργάνωση, χωρίς διαφημιστές και επενδυτές, που υποστηρίζεται από άτομα σαν κι εσένα.</string>
   <string name="ManageDonationsFragment__my_support">Η υποστήριξή μου</string>
   <string name="ManageDonationsFragment__manage_subscription">Διαχείριση συνδρομής</string>
-  <!--Label for Tax Receipts button-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Φορολογικές αποδείξεις</string> -->
+  <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">Εμβλήματα</string>
   <string name="ManageDonationsFragment__subscription_faq">Συχνές ερωτήσεις συνδρομών</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Σφάλμα λήψης συνδρομής</string>
@@ -3747,7 +3748,6 @@
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Προσθήκη ιστορίας</string>
   <!--Displayed when there are no stories to display-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">Δεν υπάρχουν πρόσφατες ιστορίες αυτή τη στιγμή.</string> -->
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Απόκρυψη ιστορίας</string>
   <!--Context menu option to unhide a story-->
@@ -3971,8 +3971,8 @@
   <string name="TurnOffCircumventionMegaphone_no_thanks">Όχι, ευχαριστώ</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Απενεργοποίηση</string>
-  <!--Conversation Item label for reactions to a story-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · Ιστορία</string> -->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <!--Conversation Item label for reactions to your story-->
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Αντέδρασε σε μια ιστορία</string>
   <!--endregion-->

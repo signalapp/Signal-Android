@@ -1739,6 +1739,8 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">보기</string>
   <string name="message_recipients_list_item__resend">다시 보내기</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <!--Displayed when there are no outgoing stories-->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s 님이 그룹에 참여했습니다.</item>
@@ -3135,7 +3137,7 @@
   <string name="SubscribeFragment__confirm">확인</string>
   <string name="SubscribeFragment__update">업데이트</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">확인</string>
-  <!--Label for Tax Receipts button-->
+  <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">배지</string>
   <string name="Boost__enter_custom_amount">사용자 정의 금액 입력</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
@@ -3407,7 +3409,8 @@
   <string name="TurnOffCircumventionMegaphone_no_thanks">괜찮습니다</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">끄기</string>
-  <!--Conversation Item label for reactions to a story-->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <!--Conversation Item label for reactions to your story-->
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->

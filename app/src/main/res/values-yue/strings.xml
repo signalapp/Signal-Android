@@ -1826,6 +1826,10 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">睇下</string>
   <string name="message_recipients_list_item__resend">重新傳送</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">複製咗個送出時間去剪貼簿。</string>
+  <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">您放送嘅是日花生有咩新動靜，就會喺呢處出現。</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s 已加入呢個谷。</item>
@@ -3385,8 +3389,8 @@
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal 係非牟利組織，背後冇廣告商或投資者大條水喉照住，卻有位位「您」做團伙照耀，「燃亮最光的星斗」，至能夠廢鉄到足金。</string>
   <string name="ManageDonationsFragment__my_support">我擔當後援</string>
   <string name="ManageDonationsFragment__manage_subscription">管理課金計劃</string>
-  <!--Label for Tax Receipts button-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">稅務收據</string> -->
+  <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__donation_receipts">捐款收據</string>
   <string name="ManageDonationsFragment__badges">襟章</string>
   <string name="ManageDonationsFragment__subscription_faq">課金計劃問答</string>
   <string name="ManageDonationsFragment__error_getting_subscription">攞返課金計劃嘅時候發生錯誤。</string>
@@ -3650,7 +3654,7 @@
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">發辦一味是日花生</string>
   <!--Displayed when there are no stories to display-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">最新動靜目前未有得睇。</string> -->
+  <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">目前未有新動靜有得睇。撳一下 + 加料落您放送嘅是日花生。</string>
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">隱藏是日花生</string>
   <!--Context menu option to unhide a story-->
@@ -3856,7 +3860,7 @@
   <!--Displayed in toast after sending a direct reaction-->
   <string name="StoryDirectReplyDialogFragment__reaction_sent">心情已經送出</string>
   <!--Displayed in the viewer when a story is no longer available-->
-  <string name="StorySlateView__this_story_is_no_longer_available">呢味是日花生已經收檔。</string>
+  <string name="StorySlateView__this_story_is_no_longer_available">呢味是日花生已經收爐。</string>
   <!--Displayed in the viewer when the network is not available-->
   <string name="StorySlateView__no_internet_connection">連唔到上網</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
@@ -3869,8 +3873,10 @@
   <string name="TurnOffCircumventionMegaphone_no_thanks">唔使喇，唔該晒</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">閂咗佢</string>
-  <!--Conversation Item label for reactions to a story-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · 是日花生</string> -->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <string name="ConversationItem__you_reacted_to_s_story">您對 %1$s 嘅是日花生畀咗心情</string>
+  <!--Conversation Item label for reactions to your story-->
+  <string name="ConversationItem__reacted_to_your_story">對您嘅是日花生畀咗心情</string>
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">對一味是日花生畀咗心情</string>
   <!--endregion-->

@@ -1777,6 +1777,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">XEM</string>
   <string name="message_recipients_list_item__resend">GỬI LẠI</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <!--Displayed when there are no outgoing stories-->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s đã tham gia nhóm.</item>
@@ -3328,7 +3330,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal là một ứng dụng phi lợi nhuận, không có quảng cao cũng như nhà đầu tư nào. Nó chỉ được duy trì và phát triển bỡi hàng triệu người dùng như bạn mà thôi.</string>
   <string name="ManageDonationsFragment__my_support">Hổ trợ của tôi</string>
   <string name="ManageDonationsFragment__manage_subscription">Quản lý Quyên góp</string>
-  <!--Label for Tax Receipts button-->
+  <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">Huy hiệu</string>
   <string name="ManageDonationsFragment__subscription_faq">FAQ Quyên góp</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Lỗi nhận quyên góp.</string>
@@ -3688,7 +3690,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="TurnOffCircumventionMegaphone_no_thanks">Không, cảm ơn</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Tắt</string>
-  <!--Conversation Item label for reactions to a story-->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <!--Conversation Item label for reactions to your story-->
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
