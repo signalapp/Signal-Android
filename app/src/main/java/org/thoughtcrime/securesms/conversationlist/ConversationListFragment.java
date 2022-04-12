@@ -212,6 +212,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private Stub<FrameLayout>              voiceNotePlayerViewStub;
   private VoiceNotePlayerView            voiceNotePlayerView;
   private SignalBottomActionBar          bottomActionBar;
+  private SignalContextMenu              activeContextMenu;
 
   protected ConversationListArchiveItemDecoration archiveDecoration;
   protected ConversationListItemAnimator          itemAnimator;
@@ -1140,6 +1141,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       return true;
     }
 
+    if (activeContextMenu != null) {
+      Log.w(TAG, "Already showing a context menu.");
+      return true;
+    }
+
     view.setSelected(true);
 
     Collection<Long> id = Collections.singleton(conversation.getThreadRecord().getThreadId());
@@ -1179,10 +1185,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     items.add(new ActionItem(R.drawable.ic_delete_24, getResources().getQuantityString(R.plurals.ConversationListFragment_delete_plural, 1), () -> handleDelete(id)));
 
-    new SignalContextMenu.Builder(view, list)
+    activeContextMenu = new SignalContextMenu.Builder(view, list)
         .offsetX(ViewUtil.dpToPx(12))
         .offsetY(ViewUtil.dpToPx(12))
         .onDismiss(() -> {
+          activeContextMenu = null;
           view.setSelected(false);
           list.suppressLayout(false);
         })

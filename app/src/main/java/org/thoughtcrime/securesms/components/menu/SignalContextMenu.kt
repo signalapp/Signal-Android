@@ -55,10 +55,10 @@ class SignalContextMenu private constructor(
     contextMenuList.setItems(items)
   }
 
-  private fun show() {
+  private fun show(): SignalContextMenu {
     if (anchor.width == 0 || anchor.height == 0) {
       anchor.post(this::show)
-      return
+      return this
     }
 
     contentView.measure(
@@ -107,6 +107,8 @@ class SignalContextMenu private constructor(
     }
 
     showAsDropDown(anchor, offsetX, offsetY)
+
+    return this
   }
 
   enum class HorizontalPosition {
@@ -147,8 +149,8 @@ class SignalContextMenu private constructor(
       return this
     }
 
-    fun show(items: List<ActionItem>) {
-      SignalContextMenu(
+    fun show(items: List<ActionItem>): SignalContextMenu {
+      return SignalContextMenu(
         anchor = anchor,
         container = container,
         items = items,
