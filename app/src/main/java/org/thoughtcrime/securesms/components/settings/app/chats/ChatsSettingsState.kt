@@ -6,5 +6,5 @@ data class ChatsSettingsState(
   val useSystemEmoji: Boolean,
   val enterKeySends: Boolean,
   val chatBackupsEnabled: Boolean,
-  val blockedContactsCantAddYouToGroups: Boolean
+  val whoCanAddYouToGroups: String
 )

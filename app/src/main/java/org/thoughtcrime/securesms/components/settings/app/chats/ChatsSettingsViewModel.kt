@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.components.settings.app.chats
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -11,9 +13,10 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ThrottledDebouncer
 import org.thoughtcrime.securesms.util.livedata.Store
 
-class ChatsSettingsViewModel(private val repository: ChatsSettingsRepository) : ViewModel() {
+class ChatsSettingsViewModel(private val sharedPreferences: SharedPreferences, private val repository: ChatsSettingsRepository) : ViewModel() {
 
   private val refreshDebouncer = ThrottledDebouncer(500L)
+  private val context: Context = ApplicationDependencies.getApplication()
 
   private val store: Store<ChatsSettingsState> = Store(
     ChatsSettingsState(
@@ -22,7 +25,7 @@ class ChatsSettingsViewModel(private val repository: ChatsSettingsRepository) : 
       useSystemEmoji = SignalStore.settings().isPreferSystemEmoji,
       enterKeySends = SignalStore.settings().isEnterKeySends,
       chatBackupsEnabled = SignalStore.settings().isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(ApplicationDependencies.getApplication()),
-      blockedContactsCantAddYouToGroups = TextSecurePreferences.blockedContactsCantAddYouToGroups(ApplicationDependencies.getApplication())
+      whoCanAddYouToGroups = TextSecurePreferences.whoCanAddYouToGroups(ApplicationDependencies.getApplication())
     )
   )
 
@@ -56,16 +59,27 @@ class ChatsSettingsViewModel(private val repository: ChatsSettingsRepository) : 
     if (store.state.chatBackupsEnabled != backupsEnabled) {
       store.update { it.copy(chatBackupsEnabled = backupsEnabled) }
     }
+    store.update { getState().copy() }
   }
 
-  fun setBlockedCanAddYouToGroups(enabled: Boolean) {
-    TextSecurePreferences.setBlockedContactsCantAddYouToGroups(ApplicationDependencies.getApplication(), enabled)
+  class Factory(private val sharedPreferences: SharedPreferences, private val repository: ChatsSettingsRepository) : ViewModelProvider.Factory {
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+      return requireNotNull(modelClass.cast(ChatsSettingsViewModel(sharedPreferences, repository)))
+    }
+  }
+
+  fun setWhoCanAddYouToGroups(adder: String) {
+    TextSecurePreferences.setWhoCanAddYouToGroups(context, adder)
     refresh()
   }
 
-  class Factory(private val repository: ChatsSettingsRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-      return requireNotNull(modelClass.cast(ChatsSettingsViewModel(repository)))
-    }
-  }
+  private fun getState() = ChatsSettingsState(
+    generateLinkPreviews = SignalStore.settings().isLinkPreviewsEnabled,
+    useAddressBook = SignalStore.settings().isPreferSystemContactPhotos,
+    useSystemEmoji = SignalStore.settings().isPreferSystemEmoji,
+    enterKeySends = SignalStore.settings().isEnterKeySends,
+    chatBackupsEnabled = SignalStore.settings().isBackupEnabled,
+    whoCanAddYouToGroups = TextSecurePreferences.whoCanAddYouToGroups(ApplicationDependencies.getApplication())
+  )
+
 }

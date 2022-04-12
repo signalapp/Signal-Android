@@ -2541,9 +2541,6 @@
     <string name="preferences_chats__when_roaming">When roaming</string>
     <string name="preferences_chats__media_auto_download">Media auto-download</string>
     <string name="preferences_chats__message_history">Message history</string>
-    <string name="preferences_chats__group_control">Group control</string>
-    <string name="preferences_chats__can_blocked_contacts_add_you_to_groups">Adding by blocked contacts</string>
-    <string name="preferences_chats__can_blocked_contacts_add_you_to_groups_summary">If checked, blocked contacts can not add you to groups. If they try the request is denied automatically and you are auto-unsubscribed.</string>
     <string name="preferences_storage__storage_usage">Storage usage</string>
     <string name="preferences_storage__photos">Photos</string>
     <string name="preferences_storage__videos">Videos</string>
@@ -2627,7 +2624,13 @@
     <string name="preferences_success">Success</string>
     <string name="preferences_failed_to_connect">Failed to connect</string>
     <string name="preferences_enter_proxy_address">Enter proxy address</string>
-
+    <string name="preferences__group_anyone">Anyone</string>
+    <string name="preferences__group_non_blocked">All non-blocked persons</string>
+    <string name="preferences__group_only_contats">Only contacts</string>
+    <string name="preferences__group_only_systemcontats">Only non-blocked system contacts</string>
+    <string name="preferences__group_nobody">Nobody</string>
+    <string name="preferences_chats__group_control">Group control</string>
+    <string name="preferences_chats__who_can_add_you_to_groups">Who can add you to groups</string>
 
     <string name="configurable_single_select__customize_option">Customize option</string>
 

@@ -165,6 +165,22 @@
       <item>vi</item>
   </string-array>
 
+  <string-array name="pref_group_add_entries">
+    <item>@string/preferences__group_anyone</item>
+    <item>@string/preferences__group_non_blocked</item>
+    <item>@string/preferences__group_only_contats</item>
+    <item>@string/preferences__group_only_systemcontats</item>
+    <item>@string/preferences__group_nobody</item>
+  </string-array>
+
+  <string-array name="pref_group_add_values" translatable="false">
+    <item>anyone</item>
+    <item>nonblocked</item>
+    <item>onlycontacts</item>
+    <item>onlysystemcontacts</item>
+    <item>nobody</item>
+  </string-array>
+
   <string-array name="pref_theme_entries" tools:ignore="InconsistentArrays">
       <item>@string/preferences__light_theme</item>
       <item>@string/preferences__dark_theme</item>

@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.settings.app.chats
 
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.preference.PreferenceManager
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
@@ -10,9 +11,13 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
+
 class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__chats) {
 
   private lateinit var viewModel: ChatsSettingsViewModel
+
+  private val groupAddLabels by lazy { resources.getStringArray(R.array.pref_group_add_entries) }
+  private val groupAddValues by lazy { resources.getStringArray(R.array.pref_group_add_values) }
 
   override fun onResume() {
     super.onResume()
@@ -21,7 +26,8 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
     val repository = ChatsSettingsRepository()
-    val factory = ChatsSettingsViewModel.Factory(repository)
+    val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+    val factory = ChatsSettingsViewModel.Factory(preferences, repository)
     viewModel = ViewModelProvider(this, factory)[ChatsSettingsViewModel::class.java]
 
     viewModel.state.observe(viewLifecycleOwner) {
@@ -93,12 +99,12 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
 
       sectionHeaderPref(R.string.preferences_chats__group_control)
 
-      switchPref(
-        title = DSLSettingsText.from(R.string.preferences_chats__can_blocked_contacts_add_you_to_groups),
-        summary = DSLSettingsText.from(R.string.preferences_chats__can_blocked_contacts_add_you_to_groups_summary),
-        isChecked = state.blockedContactsCantAddYouToGroups,
-        onClick = {
-          viewModel.setBlockedCanAddYouToGroups(!state.blockedContactsCantAddYouToGroups)
+      radioListPref(
+        title = DSLSettingsText.from(R.string.preferences_chats__who_can_add_you_to_groups),
+        listItems = groupAddLabels,
+        selected = groupAddValues.indexOf(state.whoCanAddYouToGroups),
+        onSelected = {
+          viewModel.setWhoCanAddYouToGroups(groupAddValues[it])
         }
       )
     }

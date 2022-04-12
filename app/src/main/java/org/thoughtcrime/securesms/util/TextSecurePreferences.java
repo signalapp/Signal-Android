@@ -190,8 +190,8 @@ public class TextSecurePreferences {
   private static final String STORAGE_MANIFEST_VERSION = "pref_storage_manifest_version";
 
   private static final String ARGON2_TESTED = "argon2_tested";
-
-  public static final String BLOCKED_CANT_ADD_YOU_TO_GROUPS = "pref_blocked_cant_add_you_to_groups";
+  
+  public static final String WHO_CAN_ADD_YOU_TO_GROUPS = "pref_who_can_add_you_to_groups";
 
   private static final String[] booleanPreferencesToBackup = {SCREEN_SECURITY_PREF,
                                                               INCOGNITO_KEYBORAD_PREF,
@@ -1092,6 +1092,14 @@ public class TextSecurePreferences {
     setBooleanPreference(context, ARGON2_TESTED, tested);
   }
 
+  public static String whoCanAddYouToGroups(Context context) {
+    return getStringPreference(context, WHO_CAN_ADD_YOU_TO_GROUPS, "anyone");
+  }
+
+  public static void setWhoCanAddYouToGroups(Context context, String value) {
+    setStringPreference(context, WHO_CAN_ADD_YOU_TO_GROUPS, value);
+  }
+
   public static void setBooleanPreference(Context context, String key, boolean value) {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(key, value).apply();
   }
@@ -1155,11 +1163,4 @@ public class TextSecurePreferences {
     EMOJI, STICKER, GIF
   }
 
-  public static boolean blockedContactsCantAddYouToGroups(Context context) {
-    return getBooleanPreference(context, BLOCKED_CANT_ADD_YOU_TO_GROUPS, false);
-  }
-
-  public static void setBlockedContactsCantAddYouToGroups(Context context, boolean value) {
-    setBooleanPreference(context, BLOCKED_CANT_ADD_YOU_TO_GROUPS, value);
-  }
 }

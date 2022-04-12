@@ -46,11 +46,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.IncomingGroupUpdateMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
-<<<<<<< HEAD
-=======
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.util.guava.Optional;
->>>>>>> Ignore_group_adds_blocked_users
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupHistoryEntry;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.groupsv2.GroupHistoryPage;
@@ -569,6 +565,29 @@ public class GroupsV2StateProcessor {
       this.recipientDatabase = recipientDatabase;
     }
 
+    private boolean mayThisPersonAddYouToAGroup(Recipient addedBy) {
+      boolean mayAdd = true;
+
+      switch (TextSecurePreferences.whoCanAddYouToGroups(context)) {
+        case "anyone":
+          mayAdd = true;
+          break;
+        case "nonblocked":
+          mayAdd = !addedBy.isBlocked();
+          break;
+        case "onlycontacts":
+          mayAdd = addedBy.isProfileSharing();
+          break;
+        case "onlysystemcontacts":
+          mayAdd = addedBy.isSystemContact() && !addedBy.isBlocked();
+          break;
+        case "nobody":
+          mayAdd = false;
+          break;
+      }
+      return mayAdd;
+    }
+
     void determineProfileSharing(@NonNull GlobalGroupState inputGroupState, @NonNull DecryptedGroup newLocalState) {
       if (inputGroupState.getLocalState() != null) {
         boolean wasAMemberAlready = DecryptedGroupUtil.findMemberByUuid(inputGroupState.getLocalState().getMembersList(), selfAci.uuid()).isPresent();
@@ -595,30 +614,30 @@ public class GroupsV2StateProcessor {
         if (addedByOptional.isPresent()) {
           Recipient addedBy = addedByOptional.get();
 
-          if (TextSecurePreferences.blockedContactsCantAddYouToGroups(context)) {
-            try {
-              if (addedBy.isBlocked()) {
-                Log.i(TAG, "Group adder: " + addedBy.getDisplayName(context) +" is a blocked contact. Auto blocking and leaving");
-                // Block the group
-                // RecipientUtil.block(context, Recipient.externalGroupExact(context, groupId).getId());
-                try {
-                  GroupManager.leaveGroup(context, groupId);
-                  ThreadDatabase threadDatabase = SignalDatabase.threads();
-                  long threadId = threadDatabase.getThreadIdIfExistsFor(Recipient.externalGroupExact(context, groupId).getId());
-                  // Now remove the group from the conversation list
-                  if (threadId != -1) {
-                    Log.i(TAG, "Deleting conversation with threadId: " + threadId);
-                    threadDatabase.deleteConversation(threadId);
-                  }
-                  return;
-                } catch (GroupChangeException | IOException e) {
-                  Log.w(TAG, "Unable to automatically leave the group: " + e.getMessage());
-                  return;
+          // See if this recipient may add you to a group. If not, we auto-leave the group immediately.
+          // Unfortunately this is the ony way in groups V2.
+          try {
+            if (!mayThisPersonAddYouToAGroup(addedBy)) {
+              Log.i(TAG, "Group adder: " + addedBy.getDisplayName(context) +" is not allowed to add you to groups. Auto blocking and leaving");
+              // Block the group. Commented out to not clog the blocklist after a spam attack
+              // RecipientUtil.block(context, Recipient.externalGroupExact(context, groupId).getId());
+              try {
+                GroupManager.leaveGroup(context, groupId);
+                ThreadDatabase threadDatabase = SignalDatabase.threads();
+                long threadId = threadDatabase.getThreadIdIfExistsFor(Recipient.externalGroupExact(context, groupId).getId());
+                // Now remove the group from the conversation list
+                if (threadId != -1) {
+                  Log.i(TAG, "Deleting conversation with threadId: " + threadId);
+                  threadDatabase.deleteConversation(threadId);
                 }
+                return;
+              } catch (GroupChangeException | IOException e) {
+                Log.w(TAG, "Unable to automatically leave the group: " + e.getMessage());
+                return;
               }
-            } catch (Exception e) {
-              Log.i(TAG, "Exception trying to block recipient: " + e.getMessage());
             }
+          } catch (Exception e) {
+            Log.i(TAG, "Exception trying to block recipient: " + e.getMessage());
           }
 
           Log.i(TAG, String.format("Added as a full member of %s by %s", groupId, addedBy.getId()));
@@ -707,7 +726,7 @@ public class GroupsV2StateProcessor {
         } catch (MmsException e) {
           Log.w(TAG, e);
         }
-      } else if (!TextSecurePreferences.blockedContactsCantAddYouToGroups(context) || !Recipient.resolved(RecipientId.from(editor.get(), null)).isBlocked()) {
+      } else if (!TextSecurePreferences.whoCanAddYouToGroups(context).equals("nonblocked") || !Recipient.resolved(RecipientId.from(editor.get(), null)).isBlocked()) {
         MessageDatabase                        smsDatabase  = SignalDatabase.sms();
         RecipientId                            sender       = RecipientId.from(editor.get(), null);
         IncomingTextMessage                    incoming     = new IncomingTextMessage(sender, -1, timestamp, timestamp, timestamp, "", Optional.of(groupId), 0, false, null);
