@@ -135,8 +135,8 @@
                 android:contentDescription="@string/conversation_list_fragment__fab_content_description"
                 android:focusable="true"
                 android:theme="@style/Widget.Material3.FloatingActionButton.Secondary"
-                android:visibility="gone"
                 android:transitionName="new_convo_fab"
+                android:visibility="gone"
                 app:backgroundTint="@color/signal_colorPrimaryContainer"
                 app:srcCompat="@drawable/ic_compose_outline_24"
                 app:tint="@color/signal_colorOnPrimaryContainer"
@@ -151,10 +151,12 @@
                 android:layout_marginBottom="20dp"
                 android:contentDescription="@string/conversation_list_fragment__open_camera_description"
                 android:focusable="true"
+                android:theme="@style/Widget.MaterialComponents.FloatingActionButton"
                 android:visibility="gone"
                 app:backgroundTint="@color/conversation_list_camera_button_background"
                 app:srcCompat="@drawable/ic_camera_solid_white_24"
-                app:tint="@color/signal_icon_tint_secondary" />
+                app:tint="@color/signal_icon_tint_secondary"
+                tools:visibility="visible" />
 
             <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
                 android:id="@+id/fab_old"
@@ -164,10 +166,12 @@
                 android:layout_marginBottom="16dp"
                 android:contentDescription="@string/conversation_list_fragment__fab_content_description"
                 android:focusable="true"
+                android:theme="@style/Widget.MaterialComponents.FloatingActionButton"
                 android:visibility="gone"
                 app:backgroundTint="@color/core_ultramarine"
                 app:srcCompat="@drawable/ic_compose_solid_24"
-                app:tint="@color/core_white" />
+                app:tint="@color/core_white"
+                tools:visibility="visible" />
 
             <ViewStub
                 android:id="@+id/megaphone_container"
