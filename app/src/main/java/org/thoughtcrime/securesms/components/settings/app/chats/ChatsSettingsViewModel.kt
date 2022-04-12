@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ThrottledDebouncer
 import org.thoughtcrime.securesms.util.livedata.Store
 
@@ -20,7 +21,8 @@ class ChatsSettingsViewModel(private val repository: ChatsSettingsRepository) : 
       useAddressBook = SignalStore.settings().isPreferSystemContactPhotos,
       useSystemEmoji = SignalStore.settings().isPreferSystemEmoji,
       enterKeySends = SignalStore.settings().isEnterKeySends,
-      chatBackupsEnabled = SignalStore.settings().isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(ApplicationDependencies.getApplication())
+      chatBackupsEnabled = SignalStore.settings().isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(ApplicationDependencies.getApplication()),
+      blockedContactsCantAddYouToGroups = TextSecurePreferences.blockedContactsCantAddYouToGroups(ApplicationDependencies.getApplication())
     )
   )
 
@@ -54,6 +56,11 @@ class ChatsSettingsViewModel(private val repository: ChatsSettingsRepository) : 
     if (store.state.chatBackupsEnabled != backupsEnabled) {
       store.update { it.copy(chatBackupsEnabled = backupsEnabled) }
     }
+  }
+
+  fun setBlockedCanAddYouToGroups(enabled: Boolean) {
+    TextSecurePreferences.setBlockedContactsCantAddYouToGroups(ApplicationDependencies.getApplication(), enabled)
+    refresh()
   }
 
   class Factory(private val repository: ChatsSettingsRepository) : ViewModelProvider.Factory {
