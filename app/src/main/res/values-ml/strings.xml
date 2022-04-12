@@ -426,6 +426,7 @@
   <!--Couldn\'t find the selected backup-->
   <string name="RestoreBackupFragment__backup_not_found">ബാക്കപ്പ് കണ്ടെത്താനാവുന്നില്ല.</string>
   <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">ബാക്കപ്പ് വായിക്കാൻ കഴിയുന്നില്ല.</string>
   <!--Backup has an unsupported file extension-->
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">ചാറ്റ് ബാക്കപ്പുകൾ</string>
@@ -764,10 +765,12 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">ഒരു നെറ്റ്‌വർക്ക് പിശക് നേരിട്ടു.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">ഈ ഗ്രൂപ്പ് ലിങ്ക് സജീവമല്ല</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">ഗ്രൂപ്പിൽ ചേരാനാവില്ല</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">ഈ ഗ്രൂപ്പ് ലിങ്ക് സജീവമല്ല.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">ലിങ്ക് പിശക്</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">ഈ ഗ്രൂപ്പിൽ ചേരാനും നിങ്ങളുടെ പേരും ഫോട്ടോയും അതിന്റെ അംഗങ്ങളുമായി പങ്കിടാനും നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">നിങ്ങൾക്ക് ഈ ഗ്രൂപ്പിൽ ചേരുന്നതിന് മുമ്പ് നിങ്ങളുടെ അഭ്യർത്ഥന ഈ ഗ്രൂപ്പിന്റെ അഡ്മിൻ അംഗീകരിക്കണം. ഗ്രൂപ്പിൽ ചേരാൻ നിങ്ങൾ അഭ്യർത്ഥിക്കുമ്പോൾ, നിങ്ങളുടെ ഫോട്ടോയും നമ്പറും അതിലെ അംഗങ്ങളുമായി പങ്കിടും</string>
@@ -1874,6 +1877,8 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">കാണുക</string>
   <string name="message_recipients_list_item__resend">വീണ്ടും അയയ്‌ക്കുക</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <!--Displayed when there are no outgoing stories-->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s ഗ്രൂപ്പിൽ ചേർന്നു.</item>
@@ -3451,7 +3456,7 @@
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">നിങ്ങളെപ്പോലുള്ള ആളുകൾ മാത്രം പിന്തുണയ്ക്കുന്ന, പരസ്യദാതാക്കളോ നിക്ഷേപകരോ ഇല്ലാത്ത ലാഭേച്ഛയില്ലാതെ പ്രവർത്തിക്കുന്ന ഒന്നാണ്  Signal.</string>
   <string name="ManageDonationsFragment__my_support">എന്റെ പിന്തുണ</string>
   <string name="ManageDonationsFragment__manage_subscription">സബ്സ്ക്രിപ്ഷൻ നിയന്ത്രിക്കുക</string>
-  <!--Label for Tax Receipts button-->
+  <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">ബാഡ്ജുകള്‍</string>
   <string name="ManageDonationsFragment__subscription_faq">സബ്സ്ക്രിപ്ഷൻ FAQ</string>
   <string name="ManageDonationsFragment__error_getting_subscription">സബ്‌സ്ക്രിപ്‌ഷൻ ലഭിക്കുന്നതിൽ പിശക്.</string>
@@ -3831,7 +3836,8 @@
   <string name="TurnOffCircumventionMegaphone_no_thanks">വേണ്ട, നന്ദി</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">ഓഫ് ആക്കുക</string>
-  <!--Conversation Item label for reactions to a story-->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <!--Conversation Item label for reactions to your story-->
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->

@@ -2077,6 +2077,8 @@ Anfon neges heb ei diogelu?</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">GWELD</string>
   <string name="message_recipients_list_item__resend">AIL ANFON</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <!--Displayed when there are no outgoing stories-->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">Ymunodd %1$s â\'r grŵp.</item>
@@ -3693,8 +3695,7 @@ Anfon neges heb ei diogelu?</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Mae Signal yn gorff dim-er-elw heb unrhyw hysbysebwyr na buddsoddwyr, sy\'n cael ei gefnogi dim ond gan bobl fel chi.</string>
   <string name="ManageDonationsFragment__my_support">Fy nghefnogaeth</string>
   <string name="ManageDonationsFragment__manage_subscription">Rheoli tanysgrifiad</string>
-  <!--Label for Tax Receipts button-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Derbyniadau Treth</string> -->
+  <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">Bathodynnau</string>
   <string name="ManageDonationsFragment__subscription_faq">Cwestiynau Cyffredin Tanysgrifio</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Gwall wrth gael tanysgrifiad.</string>
@@ -3958,7 +3959,6 @@ Anfon neges heb ei diogelu?</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Ychwanegu stori</string>
   <!--Displayed when there are no stories to display-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">Dim diweddariadau diweddar i\'w dangos ar hyn o bryd.</string> -->
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Cuddio stori</string>
   <!--Context menu option to unhide a story-->
@@ -4192,8 +4192,8 @@ Anfon neges heb ei diogelu?</string>
   <string name="TurnOffCircumventionMegaphone_no_thanks">Dim diolch</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Diffodd</string>
-  <!--Conversation Item label for reactions to a story-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · Stori</string> -->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <!--Conversation Item label for reactions to your story-->
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Wedi ymateb i\'r stori</string>
   <!--endregion-->

@@ -1791,6 +1791,8 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">பார்</string>
   <string name="message_recipients_list_item__resend">மீண்டும் அனுப்பு</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <!--Displayed when there are no outgoing stories-->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s குழுவில் சேர்ந்தார்.</item>
@@ -3227,7 +3229,7 @@
   <string name="SubscribeFragment__confirm">உறுதிப்படுத்தவும்</string>
   <string name="SubscribeFragment__update">புதுப்பிக்கப்பட்டது</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">முடிந்தது</string>
-  <!--Label for Tax Receipts button-->
+  <!--Label for Donation Receipts button-->
   <string name="Boost__enter_custom_amount">உள்ளிடவும் தனிப்பயன் தொகை</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">இப்போது இல்லை</string>
@@ -3529,7 +3531,8 @@
   <string name="TurnOffCircumventionMegaphone_no_thanks">தேவையில்லை,நன்றி</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">அணைக்க</string>
-  <!--Conversation Item label for reactions to a story-->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <!--Conversation Item label for reactions to your story-->
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->

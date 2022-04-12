@@ -1834,6 +1834,8 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">ਝਲਕ</string>
   <string name="message_recipients_list_item__resend">ਦੋਬਾਰਾ ਭੇਜੋ</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <!--Displayed when there are no outgoing stories-->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s ਗਰੁੱਪ ਵਿਚ ਸ਼ਾਮਲ ਹੋ ਗਏ.</item>
@@ -3401,7 +3403,7 @@
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal ਬਿਨਾਂ ਇਸ਼ਤਿਹਾਰਾਂ ਜਾਂ ਨਿਵੇਸ਼ਕਾਂ ਦੇ ਗ਼ੈਰ-ਫਾਇਦਾ ਸੰਗਠਨ ਹੈ, ਜਿਸ ਨੂੰ ਤੁਹਾਡੇ ਵਰਗੇ ਲੋਕ ਹੀ ਸਹਿਯੋਗ ਦਿੰਦੇ ਹਨ।</string>
   <string name="ManageDonationsFragment__my_support">ਮੇਰਾ ਸਹਿਯੋਗ</string>
   <string name="ManageDonationsFragment__manage_subscription">ਮੈਂਬਰੀ ਦਾ ਇੰਤਜ਼ਾਮ ਕਰੋ</string>
-  <!--Label for Tax Receipts button-->
+  <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">ਬੈਜ</string>
   <string name="ManageDonationsFragment__subscription_faq">ਮੈਂਬਰੀ ਲਈ ਸਵਾਲ-ਜਵਾਬ</string>
   <string name="BoostFragment__give_signal_a_boost">Signal ਨੂੰ ਸਹਿਯੋਗ ਦਿਓ</string>
@@ -3758,7 +3760,8 @@
   <string name="TurnOffCircumventionMegaphone_no_thanks">ਨਹੀਂ ਧੰਨਵਾਦ</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">ਬੰਦ ਕਰੋ</string>
-  <!--Conversation Item label for reactions to a story-->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <!--Conversation Item label for reactions to your story-->
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->

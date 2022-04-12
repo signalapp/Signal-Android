@@ -1753,6 +1753,8 @@ nambari yako ya simu</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">Tazama</string>
   <string name="message_recipients_list_item__resend">TUMA TENA</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <!--Displayed when there are no outgoing stories-->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s  ameingia kikundi.</item>
@@ -3171,7 +3173,7 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="SubscribeFragment__confirm">Thibitisha</string>
   <string name="SubscribeFragment__update">Sasisha</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Imekamilika</string>
-  <!--Label for Tax Receipts button-->
+  <!--Label for Donation Receipts button-->
   <string name="Boost__enter_custom_amount">Weka Kiasi Maalum</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Sio sasa</string>
@@ -3442,7 +3444,8 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="TurnOffCircumventionMegaphone_no_thanks">Hapana nashukuru</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Zima</string>
-  <!--Conversation Item label for reactions to a story-->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <!--Conversation Item label for reactions to your story-->
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->

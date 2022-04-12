@@ -1751,6 +1751,8 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">જુઓ</string>
   <string name="message_recipients_list_item__resend">ફરીથી મોકલો</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <!--Displayed when there are no outgoing stories-->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$sગ્રુપ માં જોડાયા.</item>
@@ -3161,7 +3163,7 @@
   <string name="SubscribeFragment__confirm">ખાતરી કરો</string>
   <string name="SubscribeFragment__update">અપડેટ</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">થઈ ગયું</string>
-  <!--Label for Tax Receipts button-->
+  <!--Label for Donation Receipts button-->
   <string name="Boost__enter_custom_amount">કસ્ટમ રકમ દાખલ કરો</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">અત્યારે નહીં </string>
@@ -3432,7 +3434,8 @@
   <string name="TurnOffCircumventionMegaphone_no_thanks">ના આભાર</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">બંધ કરો</string>
-  <!--Conversation Item label for reactions to a story-->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <!--Conversation Item label for reactions to your story-->
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->

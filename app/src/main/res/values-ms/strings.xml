@@ -1766,6 +1766,8 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">LIHAT</string>
   <string name="message_recipients_list_item__resend">HANTAR SEMULA</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <!--Displayed when there are no outgoing stories-->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s menyertai kumpulan.</item>
@@ -3303,7 +3305,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal adalah organisasi bukan untung tanpa pengiklan atau pelabur, hanya disokong oleh orang ramai seperti anda.</string>
   <string name="ManageDonationsFragment__my_support">Sokongan saya</string>
   <string name="ManageDonationsFragment__manage_subscription">Urus langganan</string>
-  <!--Label for Tax Receipts button-->
+  <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">Lencana</string>
   <string name="ManageDonationsFragment__subscription_faq">Soalan Lazim Langganan</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Ralat mendapatkan langganan.</string>
@@ -3614,7 +3616,8 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="TurnOffCircumventionMegaphone_no_thanks">Tidak, terima kasih</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Matikan</string>
-  <!--Conversation Item label for reactions to a story-->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <!--Conversation Item label for reactions to your story-->
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->

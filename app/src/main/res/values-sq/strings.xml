@@ -1909,6 +1909,8 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">SHIHENI</string>
   <string name="message_recipients_list_item__resend">RIDËRGOJE</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <!--Displayed when there are no outgoing stories-->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s u bë pjesë e grupit.</item>
@@ -3491,8 +3493,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal-i është një ent jofitimprurës pa rrjete reklamash dhe investues, i përkrahur vetëm nga njerëz si ju.</string>
   <string name="ManageDonationsFragment__my_support">Përkrahja ime</string>
   <string name="ManageDonationsFragment__manage_subscription">Administroni pajtim</string>
-  <!--Label for Tax Receipts button-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Dëftesa Tatimore</string> -->
+  <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">Stema</string>
   <string name="ManageDonationsFragment__subscription_faq">PBR pajtimesh</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Gabim në marrje pajtimi.</string>
@@ -3755,7 +3756,6 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Shtoni një histori</string>
   <!--Displayed when there are no stories to display-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">S’ka përditësime së fundi për shfaqje tani.</string> -->
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Fshihe historinë</string>
   <!--Context menu option to unhide a story-->
@@ -3979,8 +3979,8 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="TurnOffCircumventionMegaphone_no_thanks">Jo, faleminderit</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Çaktivizoje</string>
-  <!--Conversation Item label for reactions to a story-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · Histori</string> -->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <!--Conversation Item label for reactions to your story-->
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Reagoi te një histori</string>
   <!--endregion-->

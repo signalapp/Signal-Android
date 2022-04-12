@@ -2074,6 +2074,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">ZOBRAZIT</string>
   <string name="message_recipients_list_item__resend">ZNOVU POSLAT</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Čas odeslání zprávy zkopírován do schránky.</string>
+  <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Aktualizace vašeho příběhu se zobrazí zde.</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s se připojil ke skupině.</item>
@@ -3690,8 +3694,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal je nezisková organizace fungující bez reklam a investorů, kterou podporují pouze lidé jako vy.</string>
   <string name="ManageDonationsFragment__my_support">Má podpora</string>
   <string name="ManageDonationsFragment__manage_subscription">Spravovat předplatné</string>
-  <!--Label for Tax Receipts button-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Daňové doklady</string> -->
+  <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__donation_receipts">Doklady o příspěvku</string>
   <string name="ManageDonationsFragment__badges">Odznaky</string>
   <string name="ManageDonationsFragment__subscription_faq">Často kladené dotazy k předplatnému</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Chyba při získávání předplatného.</string>
@@ -3955,7 +3959,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Přidat příběh</string>
   <!--Displayed when there are no stories to display-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">Žádné nové aktualizace k zobrazení.</string> -->
+  <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Žádné poslední aktualizace k zobrazení. Klepněte na + pro přidání příběhu.</string>
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Schovat příběh</string>
   <!--Context menu option to unhide a story-->
@@ -4189,8 +4193,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="TurnOffCircumventionMegaphone_no_thanks">Ne, díky</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Vypnout</string>
-  <!--Conversation Item label for reactions to a story-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · Příběh</string> -->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <string name="ConversationItem__you_reacted_to_s_story">Reagovali jste na příběh %1$s</string>
+  <!--Conversation Item label for reactions to your story-->
+  <string name="ConversationItem__reacted_to_your_story">Reagoval(a) na váš příběh</string>
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Reakce na příběh</string>
   <!--endregion-->

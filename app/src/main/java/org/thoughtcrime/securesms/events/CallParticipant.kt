@@ -91,9 +91,9 @@ data class CallParticipant constructor(
       fun fromRawAudioLevel(raw: Int): AudioLevel {
         return when {
           raw < 500 -> LOWEST
-          raw < 2000 -> LOW
-          raw < 8000 -> MEDIUM
-          raw < 20000 -> HIGH
+          raw < 1000 -> LOW
+          raw < 5000 -> MEDIUM
+          raw < 16000 -> HIGH
           else -> HIGHEST
         }
       }

@@ -1804,6 +1804,8 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">ПРЕГЛЕД</string>
   <string name="message_recipients_list_item__resend">ПОВТОРНО ИЗПРАЩАНЕ</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <!--Displayed when there are no outgoing stories-->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s се присъедини към групата.</item>
@@ -3088,7 +3090,7 @@
   <string name="SubscribeFragment__confirm">Потвърждение</string>
   <string name="SubscribeFragment__update">Обновяване</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Готово</string>
-  <!--Label for Tax Receipts button-->
+  <!--Label for Donation Receipts button-->
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сега</string>
   <!--Copy displayed when badge expires after user inactivity-->
@@ -3359,7 +3361,8 @@
   <string name="TurnOffCircumventionMegaphone_no_thanks">Не, благодаря</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Изключване</string>
-  <!--Conversation Item label for reactions to a story-->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <!--Conversation Item label for reactions to your story-->
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->

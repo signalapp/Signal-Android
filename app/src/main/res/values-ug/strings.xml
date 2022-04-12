@@ -1798,6 +1798,8 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">كۆرسەت</string>
   <string name="message_recipients_list_item__resend">قايتا يوللا</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <!--Displayed when there are no outgoing stories-->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">1</item>
@@ -3297,7 +3299,7 @@
   <string name="SubscribeFragment__confirm">جەزملە</string>
   <string name="SubscribeFragment__update">يېڭىلا</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">بولدى</string>
-  <!--Label for Tax Receipts button-->
+  <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">ئىزناكلار</string>
   <string name="Boost__enter_custom_amount">ئىختىيارىچە سومما كىرگۈزۈڭ</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
@@ -3570,7 +3572,8 @@
   <string name="TurnOffCircumventionMegaphone_no_thanks">ياق، رەھمەت</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">تاقا</string>
-  <!--Conversation Item label for reactions to a story-->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <!--Conversation Item label for reactions to your story-->
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->

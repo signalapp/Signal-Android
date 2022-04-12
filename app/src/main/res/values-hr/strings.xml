@@ -1825,6 +1825,8 @@ broj telefona</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">PRIKAZ</string>
   <string name="message_recipients_list_item__resend">PONOVNO POŠALJI</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <!--Displayed when there are no outgoing stories-->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s se pridružio/la grupi.</item>
@@ -3273,7 +3275,7 @@ broj telefona</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Prikaži bedž na svom profilu</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Gotovo</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kada imate više od jedne značke, možete odabrati koju želite istaknuti kako bi ju drugi mogli vidjeti na vašem profilu.</string>
-  <!--Label for Tax Receipts button-->
+  <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">Bedževi</string>
   <string name="ManageDonationsFragment__subscription_faq">Najčešća pitanja</string>
   <string name="BoostFragment__give_signal_a_boost">Donirajte jednokratnom uplatom</string>
@@ -3553,7 +3555,8 @@ broj telefona</string>
   <string name="TurnOffCircumventionMegaphone_no_thanks">Ne, hvala</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Isključi</string>
-  <!--Conversation Item label for reactions to a story-->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <!--Conversation Item label for reactions to your story-->
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->

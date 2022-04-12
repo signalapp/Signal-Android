@@ -1903,6 +1903,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">MOSTRA</string>
   <string name="message_recipients_list_item__resend">TORNA A ENVIAR</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <!--Displayed when there are no outgoing stories-->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s s\'ha afegit al grup.</item>
@@ -3481,8 +3483,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">El Signal és una organització sense ànim de lucre sense anunciants ni inversors, amb el suport només de persones com vós.</string>
   <string name="ManageDonationsFragment__my_support">Suport</string>
   <string name="ManageDonationsFragment__manage_subscription">Gestioneu la subscripció</string>
-  <!--Label for Tax Receipts button-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Rebuts fiscals</string> -->
+  <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">Insígnies</string>
   <string name="ManageDonationsFragment__subscription_faq">PMF de la subscripció</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Error en obtenir una subscripció</string>
@@ -3746,7 +3747,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Afegiu-hi una història</string>
   <!--Displayed when there are no stories to display-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">No hi ha actualitzacions recents per mostrar ara mateix.</string> -->
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Amaga la història</string>
   <!--Context menu option to unhide a story-->
@@ -3970,8 +3970,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="TurnOffCircumventionMegaphone_no_thanks">No, gràcies.</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Desactiva</string>
-  <!--Conversation Item label for reactions to a story-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">Història · %1$s</string> -->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <!--Conversation Item label for reactions to your story-->
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Ha reaccionat a una història.</string>
   <!--endregion-->

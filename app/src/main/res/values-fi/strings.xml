@@ -1878,6 +1878,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">NÄYTÄ</string>
   <string name="message_recipients_list_item__resend">LÄHETÄ UUDELLEEN</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <!--Displayed when there are no outgoing stories-->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s liittyi ryhmään</item>
@@ -3454,8 +3456,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal on voittoa tavoittelematon järjestö, joka toimii ilman mainostajia tai sijoittajia pelkästään kaltaistesi käyttäjien tuella.</string>
   <string name="ManageDonationsFragment__my_support">Antamani tuki</string>
   <string name="ManageDonationsFragment__manage_subscription">Hallinnoi tilausta</string>
-  <!--Label for Tax Receipts button-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Kuitit verotusta varten</string> -->
+  <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">Merkit</string>
   <string name="ManageDonationsFragment__subscription_faq">Tilausten UKK</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Virhe tilausta hakiessa.</string>
@@ -3760,6 +3761,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Description of action for reaction button-->
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
   <!--Context menu item to privately reply to a story response-->
+  <string name="StoryGroupReplyItem__private_reply">Yksityinen vastaus</string>
   <!--Context menu item to copy a story response-->
   <string name="StoryGroupReplyItem__copy">Kopioi</string>
   <!--Context menu item to delete a story response-->
@@ -3856,7 +3858,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="TurnOffCircumventionMegaphone_no_thanks">Ei kiitos</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Poista käytöstä</string>
-  <!--Conversation Item label for reactions to a story-->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <!--Conversation Item label for reactions to your story-->
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
