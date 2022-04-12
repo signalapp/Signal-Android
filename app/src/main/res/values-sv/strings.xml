@@ -1903,6 +1903,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">VISA</string>
   <string name="message_recipients_list_item__resend">SKICKA OM</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <!--Displayed when there are no outgoing stories-->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s gick med i gruppen.</item>
@@ -3481,8 +3483,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal är en ideell organisation utan annonsörer eller investerare, som endast stöds av personer som du.</string>
   <string name="ManageDonationsFragment__my_support">Mitt stöd</string>
   <string name="ManageDonationsFragment__manage_subscription">Hantera abonnemang</string>
-  <!--Label for Tax Receipts button-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Skattekvitton</string> -->
+  <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">Märken</string>
   <string name="ManageDonationsFragment__subscription_faq">Vanliga frågor om abonnemang</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Det gick inte att få abonnemang.</string>
@@ -3746,7 +3747,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Lägg till en berättelse</string>
   <!--Displayed when there are no stories to display-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">Inga nya uppdateringar att visa just nu.</string> -->
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Göm berättelse</string>
   <!--Context menu option to unhide a story-->
@@ -3970,8 +3970,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="TurnOffCircumventionMegaphone_no_thanks">Nej tack</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Inaktivera</string>
-  <!--Conversation Item label for reactions to a story-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · Berättelse</string> -->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <!--Conversation Item label for reactions to your story-->
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Reagerade på en berättelse</string>
   <!--endregion-->

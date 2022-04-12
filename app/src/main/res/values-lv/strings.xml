@@ -1624,7 +1624,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="VerifyIdentityActivity_share_safety_number_via">Kopīgot drošības numuru ar…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Mūsu Signal drošības numurs:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Izskatās, ka jums nav nevienas aplikācijas, caur kurām kopīgot.</string>
-  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Starpenē netika atrasts drošības kods</string>
+  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Starpliktuvē netika atrasts drošības kods</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal ir nepieciešama piekļuve kamerai, lai skenētu kvadrātkodu, bet tā nav dota. Dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Kamera\". </string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Nebija iespējams noskenēt kvadrātkodu bez kameras lietošanas atļaujas</string>
   <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Lai skatītu %1$s drošības numuru, vispirms jums savstarpēji ir jāapmainās ar ziņām.</string>
@@ -1981,6 +1981,10 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">SKATĪT</string>
   <string name="message_recipients_list_item__resend">PĀRSŪTĪT</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Nosūtīšanas laiks nokopēts starpliktuvē.</string>
+  <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Jūsu stāsta atjauninājumi parādīsies šeit.</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="zero">%1$s pievienojās grupai.</item>
@@ -2386,7 +2390,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="PaymentsAddMoneyFragment__add_funds">Papildināt līdzekļus</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">Jūsu maciņa adrese</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopēt</string>
-  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Iekopēts starpenē</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Iekopēts starpliktuvē</string>
   <string name="PaymentsAddMoneyFragment__to_add_funds">Lai pievienotu naudas kapitālu, nosūtiet MobileCoin uz sava naudas maka adresi. Sāciet transakciju no sava konta biržā, kas atbalsta MobileCoin, pēc tam skenējiet kvadrātkodu vai kopējiet naudas maka adresi.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Sīkāki dati / Rekvizīti</string>
@@ -2564,8 +2568,8 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="text_secure_normal__mark_all_as_read">Atzīmēt visus kā lasītus</string>
   <string name="text_secure_normal__invite_friends">Uzaicināt draugus</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopēt starpenē</string>
-  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Salīdzināt ar starpeni</string>
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopēt starpliktuvē</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Salīdzināt ar starpliktuvi</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_import_title">Importēt sistēmas SMS</string>
   <string name="reminder_header_sms_import_text">Pieskaries, lai kopētu tālruņa SMS ziņas Signal šifrētajā datubāzē. </string>
@@ -2743,7 +2747,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="BackupDialog_delete_backups_statement">Dzēst rezerves kopijas</string>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Lai iespējotu rezerves kopēšanu, izvēlieties mapi. Rezerves kopijas tiks saglabātas šajā atrašanās vietā.</string>
   <string name="BackupDialog_choose_folder">Izvēlēties mapi</string>
-  <string name="BackupDialog_copied_to_clipboard">Iekopēts starpenē</string>
+  <string name="BackupDialog_copied_to_clipboard">Iekopēts starpliktuvē</string>
   <string name="BackupDialog_no_file_picker_available">Nav pieejams neviens failu atlasītājs.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Lai pārbaudītu, ievadiet rezerves ieejas paroli</string>
   <string name="BackupDialog_verify">Pārbaudīt</string>
@@ -2940,7 +2944,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
   <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Noņemt %1$s no šīs grupas? Viņi vairs nevarēs pievienoties grupai caur grupas saiti.</string>
   <string name="RecipientBottomSheet_remove">Noņemt/Izņemt</string>
-  <string name="RecipientBottomSheet_copied_to_clipboard">Iekopēts starpenē</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">Iekopēts starpliktuvē</string>
   <string name="GroupRecipientListItem_admin">Administrators</string>
   <string name="GroupRecipientListItem_approve_description">Apstiprināt</string>
   <string name="GroupRecipientListItem_deny_description">Atteikt pievienot</string>
@@ -2958,7 +2962,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="GroupLinkBottomSheet_copy">Kopēt</string>
   <string name="GroupLinkBottomSheet_qr_code">Kvadrātkods</string>
   <string name="GroupLinkBottomSheet_share">Kopīgot</string>
-  <string name="GroupLinkBottomSheet_copied_to_clipboard">Iekopēts starpenē</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">Iekopēts starpliktuvē</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Saite pašlaik nav aktīva</string>
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Neizdevās atskaņot balss ziņu</string>
@@ -3417,7 +3421,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ConversationSettingsFragment__conversation_muted_forever">Saruna izslēgta uz visiem laikiem.</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Tālruņa numurs ir nokopēts starpliktuvē.</string>
   <string name="ConversationSettingsFragment__phone_number">Tālruņa numurs</string>
-  <string name="ConversationSettingsFragment__get_badges">Iegūstiet nozīmītes savam profilam, atbalstot Signal. Piesitiet nozīmītei, lai uzzinātu vairāk.</string>
+  <string name="ConversationSettingsFragment__get_badges">Iegūstiet nozīmītes savam profilam, atbalstot Signal. Pieskarieties nozīmītei, lai uzzinātu vairāk.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Pievienot dalībniekus</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Rediģēt grupas informāciju</string>
@@ -3578,8 +3582,8 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal irr bezpeļņas organizācija bez reklāmdevējiem vai investoriem, kuru uztur tikai cilvēki kā jūs.</string>
   <string name="ManageDonationsFragment__my_support">Mans atbalsts</string>
   <string name="ManageDonationsFragment__manage_subscription">Pārvaldīt abonementu</string>
-  <!--Label for Tax Receipts button-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Nodokļu kvītis</string> -->
+  <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__donation_receipts">Ziedojumu kvītis</string>
   <string name="ManageDonationsFragment__badges">Nozīmītes</string>
   <string name="ManageDonationsFragment__subscription_faq">Abonementu BUJ</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Kļūda saņemot abonementu.</string>
@@ -3843,7 +3847,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Pievienot stāstu</string>
   <!--Displayed when there are no stories to display-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">Nav jaunumu, kurus šobrīd parādīt.</string> -->
+  <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Nav nesenu atjauninājumu, kurus parādīt. Pieskarieties \"+\", lai pievienotu jūsu stāstu.</string>
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Paslēpt stāstu</string>
   <!--Context menu option to unhide a story-->
@@ -4051,7 +4055,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Choose groups bottom sheet title-->
   <string name="ChooseGroupStoryBottomSheet__choose_groups">Izvēlieties grupas</string>
   <!--Displayed when copying group story reply text to clipboard-->
-  <string name="StoryGroupReplyFragment__copied_to_clipboard">Iekopēts starpenē</string>
+  <string name="StoryGroupReplyFragment__copied_to_clipboard">Iekopēts starpliktuvē</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
   <string name="StoryViewerPageFragment__see_more">… skatīt vairāk</string>
   <!--Displayed in toast after sending a direct reply-->
@@ -4072,8 +4076,10 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="TurnOffCircumventionMegaphone_no_thanks">Nē, paldies</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Izslēgt</string>
-  <!--Conversation Item label for reactions to a story-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · Stāsts</string> -->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <string name="ConversationItem__you_reacted_to_s_story">Jūs reaģējāt uz %1$s stāstu</string>
+  <!--Conversation Item label for reactions to your story-->
+  <string name="ConversationItem__reacted_to_your_story">Reaģēja uz jūsu stāstu</string>
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Reaģēja uz stāstu</string>
   <!--endregion-->

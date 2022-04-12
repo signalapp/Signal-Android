@@ -1511,7 +1511,9 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">このメッセージを完全に削除します。</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s から %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">あなたから %1$s</string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s からあなた</string>
   <string name="MediaPreviewActivity_media_no_longer_available">メディアが存在しません。</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">このメディアを共有できるアプリが見つかりません。</string>
   <!--MessageNotifier-->
@@ -1713,7 +1715,9 @@
   <!--Author formatting for group stories-->
   <string name="QuoteView_s_story">%1$s · ストーリー</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">あなた · ストーリー</string>
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">削除済み</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">一番下までスクロール</string>
   <!--BubbleOptOutTooltip-->
@@ -1812,6 +1816,10 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">見る</string>
   <string name="message_recipients_list_item__resend">再送</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">送信日時をクリップボードにコピーしました。</string>
+  <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">あなたのストーリーの更新がここに表示されます。</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s がグループに加わりました。</item>
@@ -3371,8 +3379,7 @@
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signalは広告主や投資家を持たない非営利団体で、ユーザーの皆様によって支えられています。</string>
   <string name="ManageDonationsFragment__my_support">マイサポート</string>
   <string name="ManageDonationsFragment__manage_subscription">サブスクリプションの管理</string>
-  <!--Label for Tax Receipts button-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">税金受領書</string> -->
+  <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">バッジ</string>
   <string name="ManageDonationsFragment__subscription_faq">サブスクリプションのよくある質問</string>
   <string name="ManageDonationsFragment__error_getting_subscription">サブスクリプションを取得できませんでした。</string>
@@ -3840,8 +3847,8 @@
   <string name="TurnOffCircumventionMegaphone_no_thanks">今はしない</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">無効にする</string>
-  <!--Conversation Item label for reactions to a story-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · ストーリー</string> -->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <!--Conversation Item label for reactions to your story-->
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">ストーリーにリアクションがありました</string>
   <!--endregion-->

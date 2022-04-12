@@ -1915,6 +1915,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">VIS</string>
   <string name="message_recipients_list_item__resend">SEND PÅ NYTT</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Kopierte sendetidspunktet til utklippstavla.</string>
+  <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Oppdateringar til historien din vil visast her.</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s vart med i gruppa.</item>
@@ -3503,8 +3507,8 @@ Sjekkar igjen no …</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal er ein ideell organisasjon utan reklamefinansiering eller investorar, berre støtta av slike som deg.</string>
   <string name="ManageDonationsFragment__my_support">Mi støtte</string>
   <string name="ManageDonationsFragment__manage_subscription">Handter abonnement</string>
-  <!--Label for Tax Receipts button-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Skattekvitteringar</string> -->
+  <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__donation_receipts">Donasjonskvitteringar</string>
   <string name="ManageDonationsFragment__badges">Merke</string>
   <string name="ManageDonationsFragment__subscription_faq">Ofte spurde spørsmål om abonnement</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Klarte ikkje henta abonnement</string>
@@ -3768,7 +3772,7 @@ Sjekkar igjen no …</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Lag historie</string>
   <!--Displayed when there are no stories to display-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">Ingen nylege oppdateringa å visa nett no.</string> -->
+  <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Ingen nylege oppdateringar å visa nett no. Trykk + for å legga til din historie.</string>
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Skjul historie</string>
   <!--Context menu option to unhide a story-->
@@ -3992,8 +3996,10 @@ Sjekkar igjen no …</string>
   <string name="TurnOffCircumventionMegaphone_no_thanks">Nei takk</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Skru av</string>
-  <!--Conversation Item label for reactions to a story-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · Historie</string> -->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <string name="ConversationItem__you_reacted_to_s_story">Du reagerte på historia til %1$s</string>
+  <!--Conversation Item label for reactions to your story-->
+  <string name="ConversationItem__reacted_to_your_story">Reagerte på historia di</string>
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Reagerte på ei historie</string>
   <!--endregion-->

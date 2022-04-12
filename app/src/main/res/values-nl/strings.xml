@@ -74,9 +74,7 @@
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Geblokkeerde personen</string>
   <string name="BlockedUsersActivity__add_blocked_user">Contactpersoon aan blokkeerlijst toevoegen</string>
-  <string name="BlockedUsersActivity__blocked_users_will">Geblokkeerde personen kunnen niet zien dat ze geblokkeerd zijn: het lijkt voor hen alsof je telefoon over gaat, en alsof berichten worden afgeleverd.
-Je huidige profielnaam en -foto blijven voor geblokkeerde personen zichtbaar maar worden niet bijgewerkt als je een nieuwe foto of naam instelt.
-In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt geblokkeerd.</string>
+  <string name="BlockedUsersActivity__blocked_users_will">Tik hier om handmatig een persoon toe te voegen aan de lijst van geblokkeerde personen. Geblokkeerde personen kunnen niet zien dat ze geblokkeerd zijn: het lijkt voor hen alsof je telefoon over gaat, en alsof berichten worden afgeleverd. Je huidige profielnaam en -foto blijven voor geblokkeerde personen zichtbaar maar worden niet bijgewerkt als je een nieuwe foto of naam instelt. In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt geblokkeerd.</string>
   <string name="BlockedUsersActivity__no_blocked_users">Je hebt geen personen geblokkeerd</string>
   <string name="BlockedUsersActivity__block_user">Persoon blokkeren?</string>
   <string name="BlockedUserActivity__s_will_not_be_able_to">“%1$s” kan jou nog steeds bellen of berichten sturen en weet dus niet dat hij of zijn geblokkeerd is, maar je zult die oproepen en berichten niet zien.</string>
@@ -1916,6 +1914,10 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">WEERGEVEN</string>
   <string name="message_recipients_list_item__resend">OPNIEUW VERZENDEN</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Verzendtijd naar klembord gekopieerd.</string>
+  <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Nieuwe delen van je verhaal zullen hier worden weergegeven.</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s is toegevoegd aan de groep.</item>
@@ -2133,7 +2135,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="preferences__help">Hulp</string>
   <string name="preferences__advanced">Geavanceerd</string>
   <string name="preferences__donate_to_signal">Aan Signal doneren</string>
-  <string name="preferences__subscription">Maandelijkse donatie</string>
+  <string name="preferences__subscription">Maandelijkse donaties</string>
   <string name="preferences__become_a_signal_sustainer">Help Signal mogelijk maken</string>
   <string name="preferences__signal_boost">Eenmalige donatie</string>
   <string name="preferences__privacy">Privacy</string>
@@ -2170,7 +2172,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="preferences__advanced_pin_settings">Geavanceerde pincode-instellingen</string>
   <string name="preferences__free_private_messages_and_calls">Gratis privéberichten en bellen met Signal-gebruikers</string>
   <string name="preferences__submit_debug_log">Foutopsporingslog indienen</string>
-  <string name="preferences__delete_account">Al je gegevens wissen</string>
+  <string name="preferences__delete_account">Registratie opzeggen en al je gegevens wissen</string>
   <string name="preferences__support_wifi_calling">‘Bellen via wifi’-compatibiliteitsmodus</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Schakel dit in als je gebruik wilt maken van sms/mms over wifi (schakel dit alleen in als ook ‘Bellen via wifi’ is ingeschakeld op je apparaat)</string>
   <string name="preferences__incognito_keyboard">Incognito-toetsenbord</string>
@@ -2937,7 +2939,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Als je al je gegevens wist:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Voer je telefoonnummer in</string>
-  <string name="DeleteAccountFragment__delete_account">Al je gegevens wissen</string>
+  <string name="DeleteAccountFragment__delete_account">Registratie opzeggen &amp; gegevens wissen</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">zullen al je instellingen, lijst van (geblokkeerde) contactpersonen, profielnaam, -foto en -omschrijving worden gewist</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">zullen alle berichten op je eigen apparaat worden gewist</string>
   <string name="DeleteAccountFragment__delete_s_in_your_payments_account">%1$s wissen van je overschrijvingsaccount</string>
@@ -2952,7 +2954,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
   <string name="DeleteAccountFragment__leaving_groups">Groepen aan het verlaten …</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
-  <string name="DeleteAccountFragment__deleting_account">Gegevens aan het wissen …</string>
+  <string name="DeleteAccountFragment__deleting_account">Registratie aan het opzeggen en alle gegevens aan wissen …</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
   <string name="DeleteAccountFragment__canceling_your_subscription">Doorlopende donaties aan het afzeggen …</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
@@ -3119,7 +3121,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Jouw registratie</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Herinneringen helpen je om je Signal-pincode te onthouden. Dit is belangrijk, omdat je je pincode later niet kunt veranderen of teruglezen en omdat je de pincode nodig zult hebben om je gegevens te herstellen wanneer je je telefoonnummer opnieuw registreert. Naarmate je je pincode een aantal keer juist invoert, zul je minder vaak herinneringen te zien krijgen.</string>
-  <string name="AccountSettingsFragment__require_your_signal_pin">Gebruik je pincode voor twee-factor-authenticatie. Ieder die je telefoonnummer opnieuw probeert te registreren bij Signal moet verplicht je Signal-pincode invoeren. Hierdoor kan niemand behalve jij Signal-berichten verzenden of ontvangen met jouw telefoonnummer.</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Als je dit inschakelt zal Signal je verplichten om je Signal-pincode in te voeren wanneer je je opnieuw met dit telefoonnummer registreert. Zo voorkom je dat iemand anders zich met jouw telefoonnummer registreert om berichten te ontvangen die voor jou bedoeld zijn. Dit wordt ook wel twee-factor-authenticatie genoemd.</string>
   <string name="AccountSettingsFragment__change_phone_number">Telefoonnummer wijzigen</string>
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Gebruik dit als je Signal met een ander telefoonnummer wilt blijven gebruiken. Je kunt het overstappen naar een nieuw telefoonnummer niet ongedaan maken.\n\nGa voordat je verder gaat na dat je op het nieuwe telefoonnummer sms-berichten of oproepen kunt ontvangen.</string>
@@ -3461,22 +3463,22 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Ondersteun technologie die is gemaakt voor jou—niet voor het verzamelen van je gegevens—door mee te doen met de gemeenschap die het mogelijk maakt.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Ondersteun technologie die is gemaakt voor jou, niet voor het verzamelen van je gegevens, door één van de donateurs te worden die Signal mogelijk maken.</string>
   <string name="SubscribeFragment__currency">Valuta</string>
-  <string name="SubscribeFragment__more_payment_options">Meer overschrijvingsopties (Let op: je kunt de badge alleen krijgen als je via Google Pay doneert)</string>
-  <string name="SubscribeFragment__cancel_subscription">Maandelijkse donatie annuleren</string>
-  <string name="SubscribeFragment__confirm_cancellation">Maandelijkse donatie annuleren?</string>
+  <string name="SubscribeFragment__more_payment_options">Meer overschrijvingsopties (Let op: je kunt de badge alleen krijgen als je via Google-pay doneert)</string>
+  <string name="SubscribeFragment__cancel_subscription">Maandelijkse donaties annuleren</string>
+  <string name="SubscribeFragment__confirm_cancellation">Maandelijkse donaties annuleren?</string>
   <string name="SubscribeFragment__you_wont_be_charged_again">Er zal niet opnieuw geld worden afgeschreven. Je badge zal worden verwijderd van je profiel wanneer je laatste betalingsperiode is afgelopen.</string>
   <string name="SubscribeFragment__not_now">Niet nu</string>
   <string name="SubscribeFragment__confirm">Bevestigen</string>
-  <string name="SubscribeFragment__update_subscription">Maandelijkse donatie bijwerken</string>
-  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Je maandelijkse donatie is geannuleerd.</string>
-  <string name="SubscribeFragment__update_subscription_question">Maandelijkse donatie aanpassen?</string>
+  <string name="SubscribeFragment__update_subscription">Maandelijkse donaties bijwerken</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Je maandelijkse donaties zijn geannuleerd.</string>
+  <string name="SubscribeFragment__update_subscription_question">Maandelijkse donaties aanpassen?</string>
   <string name="SubscribeFragment__update">Bijwerken</string>
-  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Vandaag wordt het volledige bedrag voor de maandelijkse donatie afgeschreven. Je donatie wordt vernieuwd op %1$s.</string>
-  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Vandaag wordt het volledige bedrag (%1$s) voor de maandelijkse donatie afgeschreven.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Het nieuw ingestelde bedrag zal vandaag al worden afgeschreven. De volgende donatie staat dan op %1$s gepland.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Het nieuw ingestelde bedrag (%1$s) zal vandaag al worden afgeschreven. Datzelfde bedrag zal dan steeds precies een maand later opnieuw worden afgeschreven.</string>
   <string name="Subscription__s_per_month">%s/maand</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/maand · Wordt %2$s vernieuwd</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/maand · Verloopt %2$s</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal is een organisatie zonder winstoogmerk zonder adverteerders en zonder investeerders, uitsluitend mogelijk gemaakt door mensen die de app gebruiken en die er waarde aan hechten. Geef een maandelijkse donatie en ontvang een profiel-badge die je—als je dat wilt—kunt weergeven op je profiel om te laten zien dat je Signal ondersteunt.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal is een organisatie zonder winstoogmerk zonder adverteerders en zonder investeerders, uitsluitend mogelijk gemaakt door mensen die de app gebruiken en die er waarde aan hechten. Geef maandelijks donaties en ontvang een profiel-badge die je—als je dat wilt—kunt weergeven op je profiel om te laten zien dat je Signal ondersteunt.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Waarom bijdragen?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">We ontwikkelen open-broncode privacy-technologieën waarmee vrijheid van expressie wordt gewaarborgd en waarmee beveiligde communicatie over de hele wereld mogelijk wordt gemaakt.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Mede met jou bijdrage wordt deze missie mogelijk gemaakt en wordt betaald voor de ontwikkeling en het in werking houden van apps waardoor miljoenen mensen wereldwijd in vrijheid gesprekken kunnen voeren. Geen advertenties, geen volgers, geen grapje.</string>
@@ -3493,9 +3495,9 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="BecomeASustainerFragment__get_badges">Door Signal te ondersteunen verdien je badges om op je profiel weer te geven.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal is een organisatie zonder winstoogmerk, zonder advertenties en zonder investeerders. Signal wordt uitsluitend mogelijk gemaakt door donaties van mensen zoals jij.</string>
   <string name="ManageDonationsFragment__my_support">Mijn bijdrage</string>
-  <string name="ManageDonationsFragment__manage_subscription">Maandelijkse donatie beheren</string>
-  <!--Label for Tax Receipts button-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Belasting-afschriften</string> -->
+  <string name="ManageDonationsFragment__manage_subscription">Maandelijkse donaties beheren</string>
+  <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__donation_receipts">Donatie-afschriften</string>
   <string name="ManageDonationsFragment__badges">Badges</string>
   <string name="ManageDonationsFragment__subscription_faq">Informatie over maandelijkse donaties</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Fout bij het ophalen van informatie over maandelijkse donaties.</string>
@@ -3526,7 +3528,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Je kunt Signal gewoon blijven gebruiken, maar als je Signal wilt ondersteunen en je badge weer wilt weergeven dan kun je nu je donaties vernieuwen.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Maandelijkse donaties vernieuwen</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Signal kan je maandelijkse donatie niet verwerken</string>
-  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Het lukt Signal niet om je maandelijkse donatie af te schrijven. Ga na dat je betalingsmethode nog steeds juist is. Werk je betalingsinformatie bij in Google Pay als dat nodig is. Signal zal je donatie binnen een paar dagen opnieuw proberen af te schrijven.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Het lukt Signal niet om je maandelijkse donatie af te schrijven. Ga na dat je betalingsmethode nog steeds juist is. Werk je betalingsinformatie bij in Google-pay als dat nodig is. Signal zal je donatie binnen een paar dagen opnieuw proberen af te schrijven.</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Dit niet opnieuw weergeven</string>
   <string name="Subscription__please_contact_support_for_more_information">Neem contact op met de ondersteuning voor meer informatie.</string>
   <string name="Subscription__contact_support">Neem contact op</string>
@@ -3542,17 +3544,17 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="DonationsErrors__couldnt_add_badge">Kan badge niet toevoegen</string>
   <string name="DonationsErrors__your_badge_could_not">Het is niet gelukt om de badge toe te voegen aan je profiel, maar je hebt misschien al wel betaald. Neem contact op met ondersteuning.</string>
   <string name="DonationsErrors__your_payment_is_still">Je overschrijving wordt nog verwerkt. Dit kan een paar minuten duren afhankelijk van je internetverbinding.</string>
-  <string name="DonationsErrors__google_pay_unavailable">Google Pay is niet beschikbaar</string>
-  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Je moet ‘Google Pay’ instellen om vanuit de Signal-app donaties te kunnen doen.</string>
-  <string name="DonationsErrors__failed_to_cancel_subscription">Het annuleren van je maandelijkse donatie is mislukt</string>
-  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Om je maandelijkse donatie te annuleren moet je toegang hebben tot internet.</string>
-  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Je apparaat biedt geen ondersteuning voor Google Play, daarom kun je via de app geen maandelijkse donatie maken en kun je geen badge verdienen. Je kunt nog wel doneren via Signal\'s website.</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google-pay is niet beschikbaar</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Je moet ‘Google-pay’ instellen om vanuit de Signal-app donaties te kunnen doen.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Het annuleren van je maandelijkse donaties is mislukt</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Om je maandelijkse donaties te annuleren moet je toegang hebben tot internet.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Je apparaat biedt geen ondersteuning voor Google Play, daarom kun je via de app geen maandelijkse donaties maken en kun je geen badge verdienen. Je kunt nog wel doneren via Signals website.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Netwerkfout. Ga na dat je apparaat met het internet is verbonden en probeer het opnieuw.</string>
   <string name="NetworkFailure__retry">Opnieuw proberen</string>
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Probeer het via een andere betalingsmethode of neem contact op met je bank om hen om meer informatie te vragen.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
-  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Ga na dat je betalingsmethode nog steeds juist is. Werk je betalingsinformatie bij in Google Pay als dat nodig is. Probeer het daarna opnieuw.</string>
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Ga na dat je betalingsmethode nog steeds juist is. Werk je betalingsinformatie bij in Google-pay als dat nodig is. Probeer het daarna opnieuw.</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">Meer leren hierover</string>
   <!--Stripe decline code contact issuer-->
@@ -3759,7 +3761,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Een verhaal toevoegen</string>
   <!--Displayed when there are no stories to display-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">Er zijn op dit moment geen nieuwe verhaaldelen om weer te geven.</string> -->
+  <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Er zijn op dit moment geen nieuwe verhaaldelen om weer te geven. Tik op de +-knop om jouw verhaal toe te voegen.</string>
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Verhaal verbergen</string>
   <!--Context menu option to unhide a story-->
@@ -3983,8 +3985,10 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="TurnOffCircumventionMegaphone_no_thanks">Nee bedankt</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Uitschakelen</string>
-  <!--Conversation Item label for reactions to a story-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">Verhaal van %1$s</string> -->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <string name="ConversationItem__you_reacted_to_s_story">Je hebt op het verhaal van %1$s gereageerd</string>
+  <!--Conversation Item label for reactions to your story-->
+  <string name="ConversationItem__reacted_to_your_story">Reageerde op je verhaal</string>
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Reageerde op een verhaal</string>
   <!--endregion-->

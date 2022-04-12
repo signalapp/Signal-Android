@@ -1685,6 +1685,8 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">查看</string>
   <string name="message_recipients_list_item__resend">重新发送</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <!--Displayed when there are no outgoing stories-->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s 加入群组。</item>
@@ -3074,7 +3076,7 @@
   <string name="SubscribeFragment__confirm">确认</string>
   <string name="SubscribeFragment__update">更新</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">完成</string>
-  <!--Label for Tax Receipts button-->
+  <!--Label for Donation Receipts button-->
   <string name="Boost__enter_custom_amount">输入自定义金额</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">稍后再说</string>
@@ -3347,7 +3349,8 @@
   <string name="TurnOffCircumventionMegaphone_no_thanks">不，谢谢。</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">关闭</string>
-  <!--Conversation Item label for reactions to a story-->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <!--Conversation Item label for reactions to your story-->
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->

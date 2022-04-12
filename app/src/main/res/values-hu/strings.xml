@@ -1882,6 +1882,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">MEGTEKINTÉS</string>
   <string name="message_recipients_list_item__resend">ÚJRAKÜLDÉS</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <!--Displayed when there are no outgoing stories-->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s csatlakozott a csoporthoz.</item>
@@ -3458,7 +3460,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">A Signal egy nonprofit, hirdetők és befektetők nélküli, kizárólag felhasználók és rajongók által fenntartott alkalmazás. </string>
   <string name="ManageDonationsFragment__my_support">Támogatásaim</string>
   <string name="ManageDonationsFragment__manage_subscription">Előfizetés kezelése</string>
-  <!--Label for Tax Receipts button-->
+  <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">Jelvények</string>
   <string name="ManageDonationsFragment__subscription_faq">Előfizetés GYIK</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Előfizetés lekérdezése sikertelen</string>
@@ -3755,6 +3757,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Description of action for reaction button-->
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
   <!--Context menu item to privately reply to a story response-->
+  <string name="StoryGroupReplyItem__private_reply">Válasz privátban</string>
   <!--Context menu item to copy a story response-->
   <string name="StoryGroupReplyItem__copy">Másolás</string>
   <!--Context menu item to delete a story response-->
@@ -3847,7 +3850,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="TurnOffCircumventionMegaphone_no_thanks">Nem, köszönöm</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Kikapcsolás</string>
-  <!--Conversation Item label for reactions to a story-->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <!--Conversation Item label for reactions to your story-->
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->

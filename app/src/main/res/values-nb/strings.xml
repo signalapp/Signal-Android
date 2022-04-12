@@ -1747,6 +1747,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">VIS</string>
   <string name="message_recipients_list_item__resend">SEND PÅ NYTT</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <!--Displayed when there are no outgoing stories-->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s ble med i gruppa.</item>
@@ -3043,7 +3045,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="SubscribeFragment__update">Oppdater</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Ferdig</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Når du har mer enn ett merke, kan du velge ett som skal vises som andre kan se på profilen din.</string>
-  <!--Label for Tax Receipts button-->
+  <!--Label for Donation Receipts button-->
   <string name="Boost__enter_custom_amount">Angi tilpasset beløp</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikke nå</string>
@@ -3315,7 +3317,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="TurnOffCircumventionMegaphone_no_thanks">Nei takk</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Skru av</string>
-  <!--Conversation Item label for reactions to a story-->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <!--Conversation Item label for reactions to your story-->
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->

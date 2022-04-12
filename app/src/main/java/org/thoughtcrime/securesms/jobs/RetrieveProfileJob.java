@@ -501,7 +501,9 @@ public class RetrieveProfileJob extends BaseJob {
     if (recipient.getProfileKey() == null) return;
     if (!Util.equals(profileAvatar, recipient.getProfileAvatar())) {
       SignalDatabase.runPostSuccessfulTransaction(DEDUPE_KEY_RETRIEVE_AVATAR + recipient.getId(), () -> {
-        ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(recipient, profileAvatar));
+        SignalExecutors.BOUNDED.execute(() -> {
+          ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(recipient, profileAvatar));
+        });
       });
     }
   }
