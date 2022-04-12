@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.components.FullScreenDialogFragment
 import org.thoughtcrime.securesms.util.fragments.findListener
 
 class MultiselectForwardFullScreenDialogFragment : FullScreenDialogFragment(), MultiselectForwardFragment.Callback {
-  override fun getTitle(): Int = R.string.MediaReviewFragment__send_to
+  override fun getTitle(): Int = requireArguments().getInt(MultiselectForwardFragment.ARG_TITLE)
 
   override fun getDialogLayoutResource(): Int = R.layout.fragment_container
 
@@ -38,7 +38,7 @@ class MultiselectForwardFullScreenDialogFragment : FullScreenDialogFragment(), M
   }
 
   override fun setResult(bundle: Bundle) {
-    setFragmentResult(MultiselectForwardFragment.RESULT_SELECTION, bundle)
+    setFragmentResult(MultiselectForwardFragment.RESULT_KEY, bundle)
   }
 
   override fun exitFlow() {

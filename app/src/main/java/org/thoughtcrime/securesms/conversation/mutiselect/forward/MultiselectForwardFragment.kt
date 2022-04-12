@@ -44,9 +44,24 @@ import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.fragments.findListener
+import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
 import org.thoughtcrime.securesms.util.visible
 
+/**
+ * Allows selection and optional sending to one or more users.
+ *
+ * This fragment is designed to be displayed in a Dialog fragment, and thus has two available constructors to display as a bottom sheet or full screen dialog.
+ *
+ * To customize the available recipients, a parent must implement `SearchConfigurationProvider`
+ *
+ * This fragment will emit one of two possible result values at the same key, `RESULT_KEY`:
+ *
+ * - If the arguments contain a non-empty list of MultiShareArgs, then messages will be sent when the selection is confirmed. This will result in `RESULT_SENT` being true.
+ * - If the arguments contain an empty list of MultiShareArgs, then the selection will be returned on confirmation. This will result in `RESULT_SELECTION` being set.
+ *
+ * It is up to the user of this fragment to handle the result accordingly utilizing a fragment result listener.
+ */
 class MultiselectForwardFragment :
   Fragment(R.layout.multiselect_forward_fragment),
   SafetyNumberChangeDialog.Callback,
@@ -98,8 +113,8 @@ class MultiselectForwardFragment :
       contactSearchMediator.onFilterChanged(it)
     }
 
-    val title: TextView? = view.findViewById(R.id.title)
     val container = callback.getContainer()
+    val title: TextView? = container.findViewById(R.id.title)
     val bottomBar = LayoutInflater.from(requireContext()).inflate(R.layout.multiselect_forward_fragment_bottom_bar, container, false)
     val shareSelectionRecycler: RecyclerView = bottomBar.findViewById(R.id.selected_list)
     val shareSelectionAdapter = ShareSelectionAdapter()
@@ -162,9 +177,9 @@ class MultiselectForwardFragment :
           dismissibleDialog?.dismiss()
           dismissibleDialog = SimpleProgressDialog.showDelayed(requireContext())
         }
-        MultiselectForwardState.Stage.SomeFailed -> dismissAndShowToast(R.plurals.MultiselectForwardFragment_messages_sent)
+        MultiselectForwardState.Stage.SomeFailed -> dismissWithSuccess(R.plurals.MultiselectForwardFragment_messages_sent)
         MultiselectForwardState.Stage.AllFailed -> dismissAndShowToast(R.plurals.MultiselectForwardFragment_messages_failed_to_send)
-        MultiselectForwardState.Stage.Success -> dismissAndShowToast(R.plurals.MultiselectForwardFragment_messages_sent)
+        MultiselectForwardState.Stage.Success -> dismissWithSuccess(R.plurals.MultiselectForwardFragment_messages_sent)
         is MultiselectForwardState.Stage.SelectionConfirmed -> dismissWithSelection(it.stage.selectedContacts)
       }
 
@@ -242,6 +257,16 @@ class MultiselectForwardFragment :
     SafetyNumberChangeDialog.show(childFragmentManager, identityRecords)
   }
 
+  private fun dismissWithSuccess(@PluralsRes toastTextResId: Int) {
+    requireListener<Callback>().setResult(
+      Bundle().apply {
+        putBoolean(RESULT_SENT, true)
+      }
+    )
+
+    dismissAndShowToast(toastTextResId)
+  }
+
   private fun dismissAndShowToast(@PluralsRes toastTextResId: Int) {
     val argCount = getMessageCount()
 
@@ -265,7 +290,7 @@ class MultiselectForwardFragment :
     dismissibleDialog?.dismiss()
 
     val resultsBundle = Bundle().apply {
-      putParcelableArrayList(RESULT_SELECTION_RECIPIENTS, ArrayList(selectedContacts.map { it.requireParcelable() }))
+      putParcelableArrayList(RESULT_SELECTION, ArrayList(selectedContacts.map { it.requireParcelable() }))
     }
 
     callback.setResult(resultsBundle)
@@ -367,8 +392,9 @@ class MultiselectForwardFragment :
     const val ARG_MULTISHARE_ARGS = "multiselect.forward.fragment.arg.multishare.args"
     const val ARG_CAN_SEND_TO_NON_PUSH = "multiselect.forward.fragment.arg.can.send.to.non.push"
     const val ARG_TITLE = "multiselect.forward.fragment.title"
-    const val RESULT_SELECTION = "result_selection"
-    const val RESULT_SELECTION_RECIPIENTS = "result_selection_recipients"
+    const val RESULT_KEY = "result_key"
+    const val RESULT_SELECTION = "result_selection_recipients"
+    const val RESULT_SENT = "result_sent"
 
     @JvmStatic
     fun showBottomSheet(supportFragmentManager: FragmentManager, multiselectForwardFragmentArgs: MultiselectForwardFragmentArgs) {

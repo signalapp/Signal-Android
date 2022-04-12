@@ -44,7 +44,7 @@ class MultiselectForwardBottomSheet : FixedRoundedCornerBottomSheetDialogFragmen
   }
 
   override fun setResult(bundle: Bundle) {
-    setFragmentResult(MultiselectForwardFragment.RESULT_SELECTION, bundle)
+    setFragmentResult(MultiselectForwardFragment.RESULT_KEY, bundle)
   }
 
   override fun onDismiss(dialog: DialogInterface) {

@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.sharing;
 
-import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 
@@ -8,14 +7,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.mediasend.Media;
-import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
-public final class ShareIntents {
+final class ShareIntents {
 
   private static final String EXTRA_MEDIA      = "extra_media";
   private static final String EXTRA_BORDERLESS = "extra_borderless";
@@ -69,60 +65,6 @@ public final class ShareIntents {
       return extraSticker == null                         &&
              (extraMedia == null || extraMedia.isEmpty()) &&
              TextUtils.isEmpty(extraText);
-    }
-  }
-
-  public static final class Builder {
-
-    private final Context context;
-
-    private String      extraText;
-    private List<Media> extraMedia;
-    private Slide       slide;
-
-    public Builder(@NonNull Context context) {
-      this.context = context;
-    }
-
-    public @NonNull Builder setText(@NonNull CharSequence extraText) {
-      this.extraText = extraText.toString();
-      return this;
-    }
-
-    public @NonNull Builder setMedia(@NonNull Collection<Media> extraMedia) {
-      this.extraMedia = new ArrayList<>(extraMedia);
-      return this;
-    }
-
-    public @NonNull Builder setSlide(@NonNull Slide slide) {
-      this.slide = slide;
-      return this;
-    }
-
-    public @NonNull Intent build() {
-      if (slide != null && extraMedia != null) {
-        throw new IllegalStateException("Cannot create intent with both Slide and [Media]");
-      }
-
-      Intent intent = new Intent(context, ShareActivity.class);
-
-      intent.putExtra(Intent.EXTRA_TEXT, extraText);
-
-      if (extraMedia != null) {
-        intent.putParcelableArrayListExtra(EXTRA_MEDIA, new ArrayList<>(extraMedia));
-      } else if (slide != null) {
-        intent.putExtra(Intent.EXTRA_STREAM, slide.getUri());
-        intent.putExtra(EXTRA_BORDERLESS, slide.isBorderless());
-
-        if (slide.hasSticker()) {
-          intent.putExtra(EXTRA_STICKER, slide.asAttachment().getSticker());
-          intent.setType(slide.asAttachment().getContentType());
-        } else {
-          intent.setType(slide.getContentType());
-        }
-      }
-
-      return intent;
     }
   }
 }

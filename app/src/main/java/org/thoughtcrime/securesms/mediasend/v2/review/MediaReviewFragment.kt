@@ -139,8 +139,8 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
       sharedViewModel.sendCommand(HudCommand.SaveMedia)
     }
 
-    setFragmentResultListener(MultiselectForwardFragment.RESULT_SELECTION) { _, bundle ->
-      val parcelizedKeys: List<ContactSearchKey.ParcelableContactSearchKey> = bundle.getParcelableArrayList(MultiselectForwardFragment.RESULT_SELECTION_RECIPIENTS)!!
+    setFragmentResultListener(MultiselectForwardFragment.RESULT_KEY) { _, bundle ->
+      val parcelizedKeys: List<ContactSearchKey.ParcelableContactSearchKey> = bundle.getParcelableArrayList(MultiselectForwardFragment.RESULT_SELECTION)!!
       val contactSearchKeys = parcelizedKeys.map { it.asContactSearchKey() }
       performSend(contactSearchKeys)
     }

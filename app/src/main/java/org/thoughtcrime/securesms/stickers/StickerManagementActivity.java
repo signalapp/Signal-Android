@@ -13,10 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment;
+import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.sharing.ShareActivity;
+import org.thoughtcrime.securesms.sharing.MultiShareArgs;
 import org.thoughtcrime.securesms.util.DeviceProperties;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+
+import java.util.Collections;
 
 /**
  * Allows the user to view and manage (install, uninstall, etc) their stickers.
@@ -46,6 +50,12 @@ public final class StickerManagementActivity extends PassphraseRequiredActivity 
     initView();
     initToolbar();
     initViewModel();
+
+    getSupportFragmentManager().setFragmentResultListener(MultiselectForwardFragment.RESULT_KEY, this, (requestKey, result) -> {
+      if (result.getBoolean(MultiselectForwardFragment.RESULT_SENT, false)) {
+        finish();
+      }
+    });
   }
 
   @Override
@@ -86,10 +96,16 @@ public final class StickerManagementActivity extends PassphraseRequiredActivity 
 
   @Override
   public void onStickerPackShareClicked(@NonNull String packId, @NonNull String packKey) {
-    Intent composeIntent = new Intent(this, ShareActivity.class);
-    composeIntent.putExtra(Intent.EXTRA_TEXT, StickerUrl.createShareLink(packId, packKey));
-    startActivity(composeIntent);
-    finish();
+    MultiselectForwardFragment.showBottomSheet(
+        getSupportFragmentManager(),
+        new MultiselectForwardFragmentArgs(
+            true,
+            Collections.singletonList(new MultiShareArgs.Builder(Collections.emptySet())
+                                          .withDraftText(StickerUrl.createShareLink(packId, packKey))
+                                          .build()),
+            R.string.MultiselectForwardFragment__share_with
+        )
+    );
   }
 
   private void initView() {

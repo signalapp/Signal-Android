@@ -4021,6 +4021,8 @@
     <!-- DSLSettingsToolbar -->
     <string name="DSLSettingsToolbar__navigate_up">Navigate up</string>
     <string name="MultiselectForwardFragment__forward_to">Forward to</string>
+    <!-- Displayed when sharing content via the fragment -->
+    <string name="MultiselectForwardFragment__share_with">Share with</string>
     <string name="MultiselectForwardFragment__add_a_message">Add a message</string>
     <string name="MultiselectForwardFragment__faster_forwards">Faster forwards</string>
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">Forwarded messages are now sent immediately.</string>
