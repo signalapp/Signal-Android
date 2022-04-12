@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
+import androidx.navigation.Navigator
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import org.signal.core.util.concurrent.SimpleTask
@@ -106,14 +107,23 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
     if (state.tab == ConversationListTab.CHATS) {
       return
     } else {
+      val cameraFab = requireView().findViewById<View>(R.id.camera_fab_new)
+      val newConvoFab = requireView().findViewById<View>(R.id.fab_new)
+
+      val extras: Navigator.Extras? = if (cameraFab == null || newConvoFab == null) {
+        null
+      } else {
+        FragmentNavigatorExtras(
+          cameraFab to "camera_fab",
+          newConvoFab to "new_convo_fab"
+        )
+      }
+
       navController.navigate(
         R.id.action_conversationListFragment_to_storiesLandingFragment,
         null,
         null,
-        FragmentNavigatorExtras(
-          requireView().findViewById<View>(R.id.camera_fab_new) to "camera_fab",
-          requireView().findViewById<View>(R.id.fab_new) to "new_convo_fab"
-        )
+        extras
       )
     }
   }

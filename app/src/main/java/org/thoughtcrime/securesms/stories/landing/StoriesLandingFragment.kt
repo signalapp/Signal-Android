@@ -97,6 +97,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
     setEnterSharedElementCallback(object : SharedElementCallback() {
       override fun onSharedElementStart(sharedElementNames: MutableList<String>?, sharedElements: MutableList<View>?, sharedElementSnapshots: MutableList<View>?) {
         if (sharedElementNames?.contains("camera_fab") == true) {
+          cameraFab.setImageResource(R.drawable.ic_compose_24)
           lifecycleDisposable += Single.timer(200, TimeUnit.MILLISECONDS).subscribeBy {
             cameraFab.setImageResource(R.drawable.ic_camera_outline_24)
           }
