@@ -104,7 +104,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
     SignalServiceAddress address        = new SignalServiceAddress(serviceId, e164);
     byte[]               profileKey     = OptionalUtil.or(remote.getProfileKey(), local.getProfileKey()).orElse(null);
     String               username       = OptionalUtil.or(remote.getUsername(), local.getUsername()).orElse("");
-    IdentityState        identityState  = remote.getIdentityState();
+    IdentityState        identityState  = remote.getIdentityKey().isPresent() ? remote.getIdentityState() : local.getIdentityState();
     byte[]               identityKey    = OptionalUtil.or(remote.getIdentityKey(), local.getIdentityKey()).orElse(null);
     boolean              blocked        = remote.isBlocked();
     boolean              profileSharing = remote.isProfileSharingEnabled();
