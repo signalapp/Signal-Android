@@ -130,6 +130,7 @@
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention"> هل تريدإ بطال تجاوز الرقابة </string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">يمكنك الآن ربط الاتصال بخدمة Signal‬ مباشرة لتجربة استخدام أفضل.</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">أطفىء</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
@@ -347,7 +348,9 @@
   <!--Dialog title for block group link join requests-->
   <string name="ConversationFragment__block_request">حظر الطلب ؟</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">لن يتمكن المستخدم %1$s من الانضمام إلى هذه المجموعة أو حتى إرسال طلب للانضمام إليها بواسطة وصلة المجموعة. لكن يمكن إضافته يدويا للمجموعة.</string>
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">حظر الطلب</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">إلغاء</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -506,8 +509,11 @@
   <string name="RestoreBackupFragment__choose_folder">اختر مجلدا</string>
   <string name="RestoreBackupFragment__not_now">ليس الآن</string>
   <!--Couldn\'t find the selected backup-->
+  <string name="RestoreBackupFragment__backup_not_found">لم يعثر على نسخة احتياطية.</string>
   <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">لم يتمكن من قراءة النسخة الاحتياطية.</string>
   <!--Backup has an unsupported file extension-->
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">امتداد ملف النسخة الاحتياطية باطل.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">النسخ الاحتياطية للمحادثات</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">تُعمَّى النسخ الاحتياطية بعبارة السر ثم تُخزَّن في جهازك.</string>
@@ -929,6 +935,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">حدث خطأ فى الشبكة</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">وصلة هذه المجموعة غير مُفعَّلة</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">تعذر الانضمام للمجموعة.</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
   <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">لا يمكنك الانضمام لهذه المجموعة من خلال الرابط لأن أحد المشرفين أزالك.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
@@ -966,6 +973,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">إضافة \"%1$s\" إلى المجموعة ؟</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">رفض طلب \"%1$s\" ؟</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">رفض طلب انضمام المستخدم « %1$s » ؟ لن يتمكن المستخدم من إرسال طلب الانضمام مرة أخرى للمجموعة بواسطة وصلة للمجموعة.</string>
   <string name="RequestConfirmationDialog_add">إضافة</string>
   <string name="RequestConfirmationDialog_deny">رفض</string>
   <!--ImageEditorHud-->
@@ -1710,6 +1718,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">المزيد</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">لقد تم التحقق بنجاح من الرقم التعريفي الشخصي. سوف نذكرك بإدخاله مرة أخرى لاحقا.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">لقد تم التحقق بنجاح من الرقم التعريفي الشخصي. سوف نذكرك بإدخاله مرة أخرى غدا.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">لقد تم التحقق بنجاح من الرقم التعريفي الشخصي. سوف نذكرك بإدخاله مرة أخرى خلال بضع أيام.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">لقد تم التحقق بنجاح من الرقم التعريفي الشخصي. سوف نذكرك بإدخاله مرة أخرى خلال أسبوع.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">لقد تم التحقق بنجاح من الرقم التعريفي الشخصي. سوف نذكرك بإدخاله مرة أخرى بضع أسابيع.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">لقد تم التحقق بنجاح من الرقم التعريفي الشخصي. سوف نذكرك بإدخاله مرة أخرى خلال شهر.</string>
   <!--Slide-->
   <string name="Slide_image">صورة</string>
   <string name="Slide_sticker">ملصق</string>
@@ -1861,7 +1875,9 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">سوف يقوم هذا بحذف الرسالة بشكل دائم.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s إلى %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">أنت إلى %1$s</string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s إليك</string>
   <string name="MediaPreviewActivity_media_no_longer_available">هذه الوسيط لم يعد متاحا.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">لم يعثر على تطبيق قادر على فتح هذا الملف.</string>
   <!--MessageNotifier-->
@@ -2059,6 +2075,7 @@
   <string name="ConversationUpdateItem_enable_call_notifications">تفعيل إشعارات المكالمات</string>
   <string name="ConversationUpdateItem_update_contact">تحديث جهة الاتصال</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">حظر الطلب</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">لا وجود لمجموعات مشتركة. يُرجى مراجعة الطلبات بعناية.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">لا وجود لجهات الاتصال في هذه المجموعة. يُرجى مراجعة الطلبات بعناية.</string>
   <string name="ConversationUpdateItem_view">إظهار</string>
@@ -2080,8 +2097,11 @@
   <string name="QuoteView_you">أنت</string>
   <string name="QuoteView_original_missing">لم يتم العثور على الرسالة الأصلية</string>
   <!--Author formatting for group stories-->
+  <string name="QuoteView_s_story">%1$s  · قصة</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">أنت  · قصة</string>
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">لم تعد متاحة</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">النزول إلى الأسفل</string>
   <!--BubbleOptOutTooltip-->
@@ -2211,7 +2231,9 @@
   <string name="message_recipients_list_item__view">مشاهدة</string>
   <string name="message_recipients_list_item__resend">إعادة الإرسال</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
+  <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">لقد نُسخ ثم أُرسل مع التاريخ إلى الحافظة</string>
   <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">سوف يظهر تحديث قصتك هنا.</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="zero">%1$s انضموا إلى المجموعة.</item>
@@ -2538,7 +2560,9 @@
   <string name="preferences_events__contact_joined_signal">انضمّت جهة الاتصال إلى Signal</string>
   <string name="preferences_notifications__priority">الأولوية</string>
   <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">تجاوز الرقابة</string>
   <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">تجاوز الرقابة</string>
   <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">في حالة التفعيل، سيُحاول تطبيق Signal تجاوز الرقابة. لا تُفعِّل هذه الميزة إلا إذا كنتَ في مكان يخضع فيه Signal للرقابة.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
   <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">تمَّ تنشيط تجاوز الرقابة إستنادًا على رقم الهاتف الخاص بحسابك.</string>
@@ -3197,6 +3221,7 @@
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">سيتمكن العضو \"%1$s\" من تحرير بيانات هذه المجموعة وأيضا تعديل المنخرطين فيها.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">إزالة %1$s من المجموعة ؟</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">هل أزيل المستخدم %1$s من المجموعة ؟ لن يتمكن من إعادة الانضمام عبر وصلة المجموعة.</string>
   <string name="RecipientBottomSheet_remove">إزالة</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">تمّ النسخ إلى الحافظة</string>
   <string name="GroupRecipientListItem_admin">مشرف</string>
@@ -3295,6 +3320,7 @@
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">يَجري حَذفُ الحِساب…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
+  <string name="DeleteAccountFragment__canceling_your_subscription">يجري إلغاء اشتراكك…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <string name="DeleteAccountFragment__depending_on_the_number_of_groups">قد يتطلب هذا بضع دقائق، بناءا على عدد المجموعات التي لديك عضوية فيها.</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
@@ -3863,6 +3889,7 @@
   <string name="ManageDonationsFragment__my_support">دعمي</string>
   <string name="ManageDonationsFragment__manage_subscription">إدارة الاشتراك</string>
   <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__donation_receipts">وصولات التبرعات</string>
   <string name="ManageDonationsFragment__badges">شارات</string>
   <string name="ManageDonationsFragment__subscription_faq">الأسئلة الشائعة حول الاشتراك</string>
   <string name="ManageDonationsFragment__error_getting_subscription">خطأ في الحصول على الاشتراك.</string>
@@ -3889,8 +3916,11 @@
   <!--Copy displayed when badge expires after user inactivity-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">تمّ إلغاء اشتراك الداعم الخاص بك تلقائياً لعدم نشاطك لفترة طويلة. لم تعد شارة %1$s الخاصة بك ظاهرة في ملفك الشخصي.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">لقد أُلغي اشتراكك كداعم لأننا لم نتمكن من معالجة دفوعاتك. لذلك فشارتك لم تعد ظاهرة في حسابك.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">يُمكنك الاستمرار في استخدام Signal، ولكن لدعم التطبيق وإعادة تفعيل شارتك، جدد الآن.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">إعادة الاشتراك</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">لقد تعذرت معالجة دفوعات اشتراكك</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">‫إننا نواجه مشاكل في جمع دفوعات دعمك Signal. يُرجى التأكد من أن طريقة قيامك بالدفوعات حديثة. إن لم تكن كذلك، يُرجى تحديثها في Google Pay. سوف يحاول معالجة دفوعاتك لاحقا خلال بضع أيام.</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">لا تظهر هذا مجدداً</string>
   <string name="Subscription__please_contact_support_for_more_information">الرجاء الاتصال بالدعم لمزيد من المعلومات.</string>
   <string name="Subscription__contact_support">الاتصال بالدعم</string>
@@ -3914,21 +3944,33 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">لقد حدث خطأ في الشبكة. يُرجى التحقق من اتصالك بالانترنت ثم المحاولة مرة أخرى.</string>
   <string name="NetworkFailure__retry">إعادة المُحاولة</string>
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">يُرجى محاولة القيام بطريقة أخرى للدفع أو الاتصال بالمصرف الذي لديك عنده حساب للمزيد من المعلومات.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">يُرجى التحقق من أن طريقة دفعك في Google Pay حديثة ثم المحاولة مرة أخرى.</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">لمعرفة المزيد</string>
   <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">يُرجى التحقق من أن طريقة دفعك في Google Pay حديثة ثم المحاولة مرة أخرى. إذا استمر المشكل، يُرجى الاتصال بالمصرف الذي لديك عنده حساب.</string>
   <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">لا تدعم بطاقتك هذا الصنف من المشتريات. يُرجى محاولة استخدام طريقة دفع أخرى.</string>
   <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">لقد انتهت صلاحية بطاقتك. يُرجى تحديث طريقة دفعك في Google Pay ثم المحاولة مرة أخرى.</string>
   <!--Stripe decline code go to google pay action label-->
   <string name="DeclineCode__go_to_google_pay">انتقل الى Google Pay</string>
   <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">إن رقم بطاقتك غير صحيح. يُرجى تحديثها في Google Pay ثم المحاولة مرة أخرى.</string>
   <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">إن أرقام رمز التحقق لبطاقتك (CVC) غير صحيحة. يُرجى تحديثها في Google Pay ثم المحاولة مرة أخرى.</string>
   <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">لا تتوفر بطاقتك على الرصيد الكافي لإتمام عملية الشراء هذه. يُرجى محاولة استخدام طريقة أخرى للدفع.</string>
   <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">إن شهر انتهاء صلاحية طريقة دفعك غير صحيحة. يُرجى تحديثها في Google Pay ثم المحاولة مرة أخرى.</string>
   <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">إن سنة انتهاء صلاحية طريقة دفعك غير صحيحة. يُرجى تحديثها في Google Pay ثم المحاولة مرة أخرى.</string>
   <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">يُرجى محاولة إتمام الدفع مرة أخرى أو الاتصال بالمصرف الذي لديك حساب عنده للمزيد من المعلومات.</string>
   <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">يُرجى المحاولة مرة أخرى أو الاتصال بالمصرف الذي لديك حساب عنده للمزيد من المعلومات.</string>
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">تسمية هيئة إشعارك</string>
   <!--Hint text for create/edit notification profile name-->
@@ -4076,30 +4118,42 @@
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">الجميع</string>
   <!--Donation receipts recurring tab label-->
+  <string name="DonationReceiptListFragment__recurring">التكرار</string>
   <!--Donation receipts one time tab label-->
   <string name="DonationReceiptListFragment__one_time">مرة واحدة</string>
   <!--Donation receipts boost row label-->
+  <string name="DonationReceiptListFragment__boost">معزز</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">التفاصيل</string>
   <!--Donation receipts donation type heading-->
+  <string name="DonationReceiptDetailsFragment__donation_type">صنف التبرع</string>
   <!--Donation receipts date paid heading-->
+  <string name="DonationReceiptDetailsFragment__date_paid">تاريخ الدفع</string>
   <!--Donation receipts share PNG-->
+  <string name="DonationReceiptDetailsFragment__share_receipt">مشاركة الوصولات</string>
   <!--Donation receipts list end note-->
+  <string name="DonationReceiptListFragment__if_you_have">إذا أعدت تثبيت Signal، فلن تصبح وصولات التبرعات السابقة متاحة.</string>
   <!--Donation receipts document title-->
+  <string name="DonationReceiptDetailsFragment__donation_receipt">وصولات التبرعات</string>
   <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">المبلغ</string>
   <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">نشكرك على دعم Signal. تمكننا مساهمتك من الالتزام بمهمة تطوير تقنية خصوصية مفتوحة المصدر تحمي حرية التعبير وتتيح اتصالا عالميا آمنا للملايين عبر العالم. إذا كنت من المقيمين بالولايات المتحدة الأمريكية، يُرجى الاحتفاظ بهذا التوصيل للإدلاء به عند مصلحة الضرائب. إن ‫مؤسسة تكنولوجيا Signal‬ مؤسسة خيرية عمومية وغير ربحية، أُحدثَت بالولايات المتحدة اﻷمريكية، وهي معفية من الضرائب بموجب الفقرة 501c3 من قانون الإيرادات الداخلية. مُعرِّفنا الضريبي هو ‎.82-4506840‎</string>
   <!--Donation receipt type-->
+  <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">المُحادثات</string>
   <!--Label for Stories tab in home app screen-->
   <string name="ConversationListTabs__stories">القِصَص</string>
   <!--String for counts above 99 in conversation list tabs-->
+  <string name="ConversationListTabs__99p">99+</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">قصصي</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">إضافة قصة</string>
   <!--Displayed when there are no stories to display-->
+  <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">لا توجد أي تحديثات يمكن إظهارها حاليا. يُرجى لمس + للإضافة إلى قصتك.</string>
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">إخفاء قصة</string>
   <!--Context menu option to unhide a story-->
@@ -4107,10 +4161,13 @@
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">إعادة التوجيه</string>
   <!--Context menu option to share a story-->
+  <string name="StoriesLandingItem__share">المشاركة…</string>
   <!--Context menu option to go to story chat-->
+  <string name="StoriesLandingItem__go_to_chat">الذهاب للمحادثة</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">يَجري الإرسال…</string>
   <!--Label when a story fails to send-->
+  <string name="StoriesLandingItem__couldnt_send">لقد تعذر الإرسال</string>
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">أأخفي القصة ؟</string>
   <!--Message of dialog confirming decision to hide a story-->
@@ -4206,16 +4263,27 @@
     <item quantity="other">%1$d فرد</item>
   </plurals>
   <!--Section header for options related to replies and reactions-->
+  <string name="MyStorySettingsFragment__replies_amp_reactions">الإجابات وردود الفعل</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
+  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">السماح بالإجابات وردود الفعل</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
+  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">تمكين الأفراد الذين يمكنهم مشاهدة قصتك من التفاعل والرد عليها</string>
   <!--Note about default sharing-->
+  <string name="MyStorySettingsFragment__hide_your_story_from">إخفاء قصتك عن أفراد محددين. إن قصتك تتم مشاركتها افتراضيا مع %1$s.</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
+  <string name="MyStorySettingsFragment__signal_connections">معارف Signal.</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>‫معارف Signal‬</strong> هم الأفراد الذي اخترت الثقة بهم، إما عبر :</string>
   <!--Signal connections sheet bullet point 1-->
+  <string name="SignalConnectionsBottomSheet__starting_a_conversation">بدء المحادثة معهم</string>
   <!--Signal connections sheet bullet point 2-->
+  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">قبول طلب التراسل معهم</string>
   <!--Signal connections sheet bullet point 3-->
+  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">وجودهم في جهات اتصال نظامك</string>
   <!--Note at the bottom of the Signal connections sheet-->
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">يمكنك لمعارفك رؤية اسمك وصورتك، كما يمكنهم الاطلاع على منشوراتك في « قصتي » إلا إذا أخفيتها عنهم.</string>
   <!--Clickable option to add a viewer to a private story-->
+  <string name="PrivateStorySettingsFragment__add_viewer">إضافة مُشاهد</string>
   <!--Clickable option to delete a custom story-->
   <string name="PrivateStorySettingsFragment__delete_private_story">حذف قصة خاصة</string>
   <!--Dialog title when attempting to remove someone from a private story-->
@@ -4237,6 +4305,7 @@
   <!--Displayed in text post creator before user enters text-->
   <string name="TextStoryPostCreationFragment__tap_to_add_text">يُرجى اللمس لإضافة نص ما</string>
   <!--Button label for changing font when creating a text post-->
+  <string name="TextStoryPostTextEntryFragment__aa">أ.ب</string>
   <!--Displayed in text post creator when prompting user to enter text-->
   <string name="TextStoryPostTextEntryFragment__add_text">أضف نصاً</string>
   <!--Content description for \'done\' button when adding text to a story post-->
@@ -4258,6 +4327,7 @@
   <!--Dialog title for first time adding something to a story-->
   <string name="StoryDialogs__add_to_story_q">أأضيف للقصة ؟</string>
   <!--Dialog message for first time adding something to a story-->
+  <string name="StoryDialogs__adding_content">إن إضافة محتوى لقصتك سوف يمكِّن ‫معارف Signal‬ من مشاهدتها لمدة 24 ساعة. يمكنك تغيير من يمكنه مشاهدة قصصك في الإعدادات.</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <string name="StoryDialogs__add_to_story">الإضافة للقصة</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
@@ -4265,48 +4335,77 @@
   <!--Privacy Settings toggle title for stories-->
   <string name="PrivacySettingsFragment__share_and_view_stories">مشاركة أو إظهار القصص</string>
   <!--Privacy Settings toggle summary for stories-->
+  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">لن يصبح بإمكانك بعد الآن مشاركة القصص أو مشاهدتها حينما يكون هذا الخيار غير مُشغَّل.</string>
   <!--New story viewer selection screen title-->
+  <string name="CreateStoryViewerSelectionFragment__choose_viewers">اختيار المشاهدين</string>
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">التالي</string>
   <!--New story viewer selection screen title as recipients are selected-->
+  <plurals name="SelectViewersFragment__d_viewers">
+    <item quantity="zero">لا يوجد أي مشاهد (%1$d)</item>
+    <item quantity="one">مشاهد واحد (%1$d)</item>
+    <item quantity="two">مشاهدان (%1$d)</item>
+    <item quantity="few">%1$d مشاهدين</item>
+    <item quantity="many">%1$d مشاهدا</item>
+    <item quantity="other">%1$d مشاهد</item>
+  </plurals>
   <!--Name story screen title-->
+  <string name="CreateStoryWithViewersFragment__name_story">اسم القصة</string>
   <!--Name story screen label hint-->
+  <string name="CreateStoryWithViewersFragment__story_name_required">اسم القصة (مطلوب)</string>
   <!--Name story screen viewers subheading-->
+  <string name="CreateStoryWithViewersFragment__viewers">المشاهدون</string>
   <!--Name story screen create button label-->
   <string name="CreateStoryWithViewersFragment__create">إنشاء</string>
   <!--Name story screen error when save attempted with no label-->
   <string name="CreateStoryWithViewersFragment__this_field_is_required">هذا الحقل مطلوب.</string>
   <!--Name story screen error when save attempted but label is duplicate-->
+  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">توجد قصة بهذا الاسم مسبقا.</string>
   <!--Text for select all action when editing recipients for a story-->
   <string name="BaseStoryRecipientSelectionFragment__select_all">اختيار الجميع</string>
   <!--Choose story type bottom sheet title-->
+  <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">يُرجى اختيار صنف قصتك</string>
   <!--Choose story type bottom sheet new story row title-->
   <string name="ChooseStoryTypeBottomSheet__new_private_story">قصة خاصة جديدة</string>
   <!--Choose story type bottom sheet new story row summary-->
+  <string name="ChooseStoryTypeBottomSheet__visible_only_to">ظاهرة فقط لأفراد معينين</string>
   <!--Choose story type bottom sheet group story title-->
+  <string name="ChooseStoryTypeBottomSheet__group_story">قصة المجموعة</string>
   <!--Choose story type bottom sheet group story summary-->
+  <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">المشاركة مع مجموعة موجودة</string>
   <!--Choose groups bottom sheet title-->
+  <string name="ChooseGroupStoryBottomSheet__choose_groups">اختيار المجموعات</string>
   <!--Displayed when copying group story reply text to clipboard-->
   <string name="StoryGroupReplyFragment__copied_to_clipboard">تم النسخ إلى الحافظة</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
+  <string name="StoryViewerPageFragment__see_more">‫… الاطلاع على المزيد</string>
   <!--Displayed in toast after sending a direct reply-->
+  <string name="StoryDirectReplyDialogFragment__reply_sent">أُرسِل الرد</string>
   <!--Displayed in toast after sending a direct reaction-->
+  <string name="StoryDirectReplyDialogFragment__reaction_sent">أُرسِل رد الفعل</string>
   <!--Displayed in the viewer when a story is no longer available-->
+  <string name="StorySlateView__this_story_is_no_longer_available">لم تعد هذه القصة متاحة.</string>
   <!--Displayed in the viewer when the network is not available-->
   <string name="StorySlateView__no_internet_connection">لا يوجد اتصال بشبكة الإنترنت</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <string name="StorySlateView__couldnt_load_content">لقد تعذر تحميل المحتوى</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention"> هل تريدإ بطال تجاوز الرقابة </string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">يمكنك الآن ربط الاتصال بخدمة Signal‬ مباشرة لتجربة استخدام أفضل.</string>
   <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_no_thanks">لا شكراً</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">أطفىء</string>
   <!--Conversation Item label for when you react to someone else\'s story-->
+  <string name="ConversationItem__you_reacted_to_s_story">لقد تفاعلت مع قصة %1$s</string>
   <!--Conversation Item label for reactions to your story-->
+  <string name="ConversationItem__reacted_to_your_story">التفاعلات مع قصتك</string>
   <!--Conversation Item label for reactions to an unavailable story-->
+  <string name="ConversationItem__reacted_to_a_story">التفاعلات مع قصة</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="ExpandModel__view_more">رؤية المزيد</string>
   <string name="StoriesLinkPopup__visit_link">زيارة الرابط</string>
   <!--EOF-->
 </resources>
