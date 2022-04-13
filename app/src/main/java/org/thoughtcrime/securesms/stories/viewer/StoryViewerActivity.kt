@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.stories.viewer
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
@@ -42,6 +43,12 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
           )
         )
         .commit()
+    }
+  }
+
+  override fun onEnterAnimationComplete() {
+    if (Build.VERSION.SDK_INT >= 21) {
+      window.transitionBackgroundFadeDuration = 100
     }
   }
 
