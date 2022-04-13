@@ -8,7 +8,7 @@
     <form action="browse" method="post">
       <select name="table">
         {{#each tableNames}}
-          <option value="{{this}}">{{this}}</option>
+          <option value="{{this}}" {{eq table this yes="selected" no=""}}>{{this}}</option>
         {{/each}}
       </select>
       <input type="hidden" name="db" value="{{database}}" />
