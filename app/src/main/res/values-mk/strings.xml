@@ -1090,6 +1090,10 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Испративте барање за приклучување во група.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s побара да се приклучи преку групниот линк.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="one">%1$s побара и  го откажа своето барање за да се приклучи преку групниот линк.</item>
+    <item quantity="other">%1$s побара и откажа %2$d барања за да се приклучи преку групниот линк.</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s го одобри Вашето барање за да се приклучите на групата.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s го одобри барањето на %2$s за приклучување на групата.</string>
@@ -1903,6 +1907,7 @@
   <string name="message_recipients_list_item__view">ВИДИ</string>
   <string name="message_recipients_list_item__resend">ИСПРАТИ ПОВТОРНО</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
+  <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Го ископирав пратеното време во таблата со исечоци</string>
   <!--Displayed when there are no outgoing stories-->
   <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Новостите за Вашата приказна ќе бидат прикажани овде.</string>
   <!--GroupUtil-->

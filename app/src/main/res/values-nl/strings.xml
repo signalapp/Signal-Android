@@ -846,7 +846,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="MediaOverviewActivity_All">Alles</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
     <item quantity="one">Geselecteerd item wissen?</item>
-    <item quantity="other">Geselecteerd items wissen?</item>
+    <item quantity="other">Geselecteerde items wissen?</item>
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
     <item quantity="one">Dit zal het geselecteerde bestand alleen voor jou onherroepelijk wissen, maar dus niet voor je gesprekspartner(s). Enig berichttekst geassocieerd met dit bestand zal ook worden gewist.</item>
@@ -1784,8 +1784,8 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="ConversationUpdateItem_update_contact">Contactpersoon aanpassen</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
   <string name="ConversationUpdateItem_block_request">Verzoeken van deze persoon blokkeren</string>
-  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Je hebt met deze persoon geen gemeenschappelijke groep: overweeg dit gespreksverzoek zorgvuldig.</string>
-  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Er is in deze groep geen lid met wie je al een gesprek voert: overweeg deze uitnodiging zorgvuldig.</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Deze persoon is een onbekende, je zit zelfs niet in een groepsgesprek met deze persoon. Overweeg daarom zorgvuldig of je dit gespreksverzoek wilt aanvaarden.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">In deze groep zit niemand met wie je eerder een gesprek hebt gevoerd, overweeg daarom zorgvuldig of je wel lid wilt worden.</string>
   <string name="ConversationUpdateItem_view">Weergeven</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Zodra je een bericht verzend zal de tijdspanne voor verlopende berichten op %1$s worden ingesteld.</string>
   <!--Update item button text to show to boost a feature-->
@@ -2954,7 +2954,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
   <string name="DeleteAccountFragment__leaving_groups">Groepen aan het verlaten …</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
-  <string name="DeleteAccountFragment__deleting_account">Registratie aan het opzeggen en alle gegevens aan wissen …</string>
+  <string name="DeleteAccountFragment__deleting_account">Registratie aan het opzeggen en alle gegevens aan het wissen …</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
   <string name="DeleteAccountFragment__canceling_your_subscription">Doorlopende donaties aan het afzeggen …</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
@@ -3463,7 +3463,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Ondersteun technologie die is gemaakt voor jou—niet voor het verzamelen van je gegevens—door mee te doen met de gemeenschap die het mogelijk maakt.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Ondersteun technologie die is gemaakt voor jou, niet voor het verzamelen van je gegevens, door één van de donateurs te worden die Signal mogelijk maken.</string>
   <string name="SubscribeFragment__currency">Valuta</string>
-  <string name="SubscribeFragment__more_payment_options">Meer overschrijvingsopties (Let op: je kunt de badge alleen krijgen als je via Google-pay doneert)</string>
+  <string name="SubscribeFragment__more_payment_options">Meer overschrijvingsopties (maar via deze opties krijg je geen badge)</string>
   <string name="SubscribeFragment__cancel_subscription">Maandelijkse donaties annuleren</string>
   <string name="SubscribeFragment__confirm_cancellation">Maandelijkse donaties annuleren?</string>
   <string name="SubscribeFragment__you_wont_be_charged_again">Er zal niet opnieuw geld worden afgeschreven. Je badge zal worden verwijderd van je profiel wanneer je laatste betalingsperiode is afgelopen.</string>

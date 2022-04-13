@@ -71,8 +71,8 @@ public class SearchDatabase extends Database {
       "INNER JOIN " + ThreadDatabase.TABLE_NAME + " ON " + SMS_FTS_TABLE_NAME + "." + THREAD_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.ID + " " +
       "WHERE " + SMS_FTS_TABLE_NAME + " MATCH ? " +
         "AND " + SmsDatabase.TABLE_NAME + "." + SmsDatabase.TYPE + " & " + MmsSmsColumns.Types.GROUP_V2_BIT + " = 0 " +
-        "AND " + SmsDatabase.TABLE_NAME + "." + SmsDatabase.TYPE + " & " + MmsSmsColumns.Types.PROFILE_CHANGE_TYPE + " != " + MmsSmsColumns.Types.PROFILE_CHANGE_TYPE + " " +
-        "AND " + SmsDatabase.TABLE_NAME + "." + SmsDatabase.TYPE + " & " + MmsSmsColumns.Types.GROUP_CALL_TYPE + " != " + MmsSmsColumns.Types.GROUP_CALL_TYPE + " " +
+        "AND " + SmsDatabase.TABLE_NAME + "." + SmsDatabase.TYPE + " & " + MmsSmsColumns.Types.BASE_TYPE_MASK + " != " + MmsSmsColumns.Types.PROFILE_CHANGE_TYPE + " " +
+        "AND " + SmsDatabase.TABLE_NAME + "." + SmsDatabase.TYPE + " & " + MmsSmsColumns.Types.BASE_TYPE_MASK + " != " + MmsSmsColumns.Types.GROUP_CALL_TYPE + " " +
       "UNION ALL " +
       "SELECT " +
         ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID + " AS " + CONVERSATION_RECIPIENT + ", " +

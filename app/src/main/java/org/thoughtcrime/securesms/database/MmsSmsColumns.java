@@ -45,7 +45,7 @@ public interface MmsSmsColumns {
    * {@link #TOTAL_MASK}.
    *
    * <pre>
-   *   _____________________________________________ SPECIAL TYPES (Story reactions) ({@link #SPECIAL_TYPES_MASK}
+   *    ____________________________________________ SPECIAL TYPES (Story reactions) ({@link #SPECIAL_TYPES_MASK}
    *   |       _____________________________________ ENCRYPTION ({@link #ENCRYPTION_MASK})
    *   |      |        _____________________________ SECURE MESSAGE INFORMATION (no mask, but look at {@link #SECURE_MESSAGE_BIT})
    *   |      |       |     ________________________ GROUPS (no mask, but look at {@link #GROUP_UPDATE_BIT})
