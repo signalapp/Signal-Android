@@ -42,10 +42,12 @@
                 android:id="@+id/story_content_crossfader"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:alpha="0"
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:transitionName="story"
-                android:alpha="0" />
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp" />
 
             <View
                 android:id="@+id/story_gradient_top"

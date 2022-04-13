@@ -6,24 +6,27 @@
     android:layout_height="match_parent"
     android:clipChildren="false"
     android:clipToPadding="false"
-    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+    tools:parentTag="androidx.cardview.widget.CardView">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/source_image"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:importantForAccessibility="no"
-        app:layout_constraintDimensionRatio="48:72"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:shapeAppearance="@style/ShapeAppearanceOverlay.Signal.Story.Preview" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/target_image"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0"
-        android:importantForAccessibility="no"
-        app:shapeAppearance="@style/ShapeAppearanceOverlay.Signal.Story.Text" />
+        android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/source_image"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:importantForAccessibility="no"
+            app:layout_constraintDimensionRatio="48:72"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/target_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0"
+            android:importantForAccessibility="no" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </merge>

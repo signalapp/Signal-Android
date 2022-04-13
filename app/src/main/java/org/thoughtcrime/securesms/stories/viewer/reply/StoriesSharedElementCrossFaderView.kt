@@ -1,15 +1,17 @@
 package org.thoughtcrime.securesms.stories.viewer.reply
 
+import android.animation.FloatEvaluator
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.util.AttributeSet
 import android.widget.ImageView
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.cardview.widget.CardView
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.animation.transitions.CrossfaderTransition
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
@@ -20,7 +22,13 @@ import org.thoughtcrime.securesms.stories.StoryTextPostModel
 class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
   context: Context,
   attrs: AttributeSet? = null
-) : ConstraintLayout(context, attrs), CrossfaderTransition.Crossfadeable {
+) : CardView(context, attrs), CrossfaderTransition.Crossfadeable {
+
+  companion object {
+    val CORNER_RADIUS_START = DimensionUnit.DP.toPixels(12f)
+    val CORNER_RADIUS_END   = DimensionUnit.DP.toPixels(18f)
+    val CORNER_RADIUS_EVALUATOR = FloatEvaluator()
+  }
 
   init {
     inflate(context, R.layout.stories_shared_element_crossfader, this)
@@ -152,9 +160,11 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
     if (reverse) {
       sourceView.alpha = progress
       targetView.alpha = 1f - progress
+      radius = CORNER_RADIUS_EVALUATOR.evaluate(progress, CORNER_RADIUS_END, CORNER_RADIUS_START)
     } else {
       sourceView.alpha = 1f - progress
       targetView.alpha = progress
+      radius = CORNER_RADIUS_EVALUATOR.evaluate(progress, CORNER_RADIUS_START, CORNER_RADIUS_END)
     }
   }
 
@@ -163,6 +173,8 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
 
     sourceView.alpha = if (reverse) 0f else 1f
     targetView.alpha = if (reverse) 1f else 0f
+
+    radius = if (reverse) CORNER_RADIUS_END else CORNER_RADIUS_START
 
     callback?.onAnimationStarted()
   }
