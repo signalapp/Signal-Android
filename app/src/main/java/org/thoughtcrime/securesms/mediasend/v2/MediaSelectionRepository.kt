@@ -7,6 +7,7 @@ import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
 import org.signal.imageeditor.core.model.EditorModel
@@ -38,6 +39,7 @@ import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.sms.MessageSender.PreUploadResult
 import org.thoughtcrime.securesms.sms.OutgoingStoryMessage
+import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.MessageUtil
 import java.util.Collections
 import java.util.concurrent.TimeUnit
@@ -85,7 +87,7 @@ class MediaSelectionRepository(context: Context) {
     }
 
     return Maybe.create<MediaSendActivityResult> { emitter ->
-      val trimmedBody: String = if (isViewOnce) "" else message?.toString()?.trim() ?: ""
+      val trimmedBody: String = if (isViewOnce) "" else getTruncatedBody(message?.toString()?.trim()) ?: ""
       val trimmedMentions: List<Mention> = if (isViewOnce) emptyList() else mentions
       val modelsToTransform: Map<Media, MediaTransform> = buildModelsToTransform(selectedMedia, stateMap, quality)
       val oldToNewMediaMap: Map<Media, Media> = MediaRepository.transformMediaSync(context, selectedMedia, modelsToTransform)
@@ -93,7 +95,6 @@ class MediaSelectionRepository(context: Context) {
 
       for (media in updatedMedia) {
         Log.w(TAG, media.uri.toString() + " : " + media.transformProperties.map { t: TransformProperties -> "" + t.isVideoTrim }.orElse("null"))
-        media.setCaption(trimmedBody)
       }
 
       val singleRecipient: Recipient? = singleContact?.let { Recipient.resolved(it.recipientId) }
@@ -142,6 +143,16 @@ class MediaSelectionRepository(context: Context) {
         }
       }
     }.subscribeOn(Schedulers.io()).cast(MediaSendActivityResult::class.java)
+  }
+
+  private fun getTruncatedBody(body: String?): String? {
+    return if (body.isNullOrEmpty()) {
+      body
+    } else {
+      val iterator = BreakIteratorCompat.getInstance()
+      iterator.setText(body)
+      iterator.take(Stories.MAX_BODY_SIZE).toString()
+    }
   }
 
   fun deleteBlobs(media: List<Media>) {
