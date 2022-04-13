@@ -4,23 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?selectableItemBackground"
+    android:background="@drawable/conversation_list_item_background"
     android:paddingStart="@dimen/dsl_settings_gutter"
-    android:paddingEnd="@dimen/dsl_settings_gutter">
+    android:paddingTop="12dp"
+    android:paddingEnd="@dimen/dsl_settings_gutter"
+    android:paddingBottom="12dp">
 
-    <org.thoughtcrime.securesms.components.OutlinedThumbnailView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/story"
-        android:layout_width="56dp"
-        android:layout_height="84dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
+        android:layout_width="@dimen/stories_landing_item_thumb_width"
+        android:layout_height="@dimen/stories_landing_item_thumb_height"
+        android:background="@color/signal_background_primary"
         android:transitionName="story"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:otv_cornerRadius="12dp"
-        app:otv_strokeColor="@color/signal_background_primary"
-        tools:background="@color/red" />
+        app:shapeAppearance="@style/ShapeAppearanceOverlay.Signal.Story.Preview"
+        tools:src="@drawable/test_gradient" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/story_blur"
+        android:layout_width="@dimen/stories_landing_item_thumb_width"
+        android:layout_height="@dimen/stories_landing_item_thumb_height"
+        android:background="@color/signal_background_primary"
+        android:transitionName="story"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/ShapeAppearanceOverlay.Signal.Story.Preview"
+        tools:src="@drawable/test_gradient" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/view_count"

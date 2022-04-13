@@ -1,8 +1,14 @@
 package org.thoughtcrime.securesms.stories.my
 
+import android.graphics.drawable.Drawable
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ThumbnailView
@@ -11,6 +17,7 @@ import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
@@ -75,7 +82,12 @@ object MyStoriesItem {
 
     private val downloadTarget: View = itemView.findViewById(R.id.download_touch)
     private val moreTarget: View = itemView.findViewById(R.id.more_touch)
-    private val storyPreview: ThumbnailView = itemView.findViewById(R.id.story)
+    private val storyPreview: ImageView = itemView.findViewById<ImageView>(R.id.story).apply {
+      isClickable = false
+    }
+    private val storyBlur: ImageView = itemView.findViewById<ImageView>(R.id.story_blur).apply {
+      isClickable = false
+    }
     private val viewCount: TextView = itemView.findViewById(R.id.view_count)
     private val date: TextView = itemView.findViewById(R.id.date)
     private val errorIndicator: View = itemView.findViewById(R.id.error_indicator)
@@ -101,15 +113,33 @@ object MyStoriesItem {
       }
 
       val record: MmsMessageRecord = model.distributionStory.messageRecord as MmsMessageRecord
-      val thumbnail: Slide? = record.slideDeck.thumbnailSlide
+      val thumbnail = record.slideDeck.thumbnailSlide?.uri
+      val blur = record.slideDeck.thumbnailSlide?.placeholderBlur
+
+      clearGlide()
+      storyBlur.visible = blur != null
+      if (blur != null) {
+        GlideApp.with(storyBlur).load(blur).into(storyBlur)
+      }
 
       @Suppress("CascadeIf")
       if (record.storyType.isTextStory) {
-        storyPreview.setImageResource(GlideApp.with(storyPreview), StoryTextPostModel.parseFrom(record), 0, 0)
+        storyBlur.visible = false
+        val storyTextPostModel = StoryTextPostModel.parseFrom(record)
+        GlideApp.with(storyPreview)
+          .load(storyTextPostModel)
+          .placeholder(storyTextPostModel.getPlaceholder())
+          .centerCrop()
+          .dontAnimate()
+          .into(storyPreview)
       } else if (thumbnail != null) {
-        storyPreview.setImageResource(GlideApp.with(storyPreview), thumbnail, false, true)
-      } else {
-        storyPreview.clear(GlideApp.with(storyPreview))
+        storyBlur.visible = blur != null
+        GlideApp.with(storyPreview)
+          .load(DecryptableStreamUriLoader.DecryptableUri(thumbnail))
+          .addListener(HideBlurAfterLoadListener())
+          .centerCrop()
+          .dontAnimate()
+          .into(storyPreview)
       }
     }
 
@@ -134,6 +164,7 @@ object MyStoriesItem {
       SignalContextMenu.Builder(itemView, itemView.rootView as ViewGroup)
         .preferredHorizontalPosition(SignalContextMenu.HorizontalPosition.END)
         .offsetX(DimensionUnit.DP.toPixels(16f).toInt())
+        .offsetY(DimensionUnit.DP.toPixels(12f).toInt())
         .show(
           listOf(
             ActionItem(R.drawable.ic_delete_24_tinted, context.getString(R.string.delete)) { model.onDeleteClick(model) },
@@ -142,6 +173,20 @@ object MyStoriesItem {
             ActionItem(R.drawable.ic_share_24_tinted, context.getString(R.string.StoriesLandingItem__share)) { model.onShareClick(model) }
           )
         )
+    }
+
+    private inner class HideBlurAfterLoadListener : RequestListener<Drawable> {
+      override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean = false
+
+      override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+        storyBlur.visible = false
+        return false
+      }
+    }
+
+    private fun clearGlide() {
+      GlideApp.with(storyPreview).clear(storyPreview)
+      GlideApp.with(storyBlur).clear(storyBlur)
     }
   }
 }
