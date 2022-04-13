@@ -26,7 +26,7 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
 
   companion object {
     val CORNER_RADIUS_START = DimensionUnit.DP.toPixels(12f)
-    val CORNER_RADIUS_END   = DimensionUnit.DP.toPixels(18f)
+    val CORNER_RADIUS_END = DimensionUnit.DP.toPixels(18f)
     val CORNER_RADIUS_EVALUATOR = FloatEvaluator()
   }
 

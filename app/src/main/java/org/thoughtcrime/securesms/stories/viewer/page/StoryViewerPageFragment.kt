@@ -424,6 +424,8 @@ class StoryViewerPageFragment :
   private fun animateChrome(alphaTarget: Float) {
     animatorSet?.cancel()
     animatorSet = AnimatorSet().apply {
+      duration = 100
+      interpolator = StoryGestureListener.INTERPOLATOR
       playTogether(
         chrome.map {
           ObjectAnimator.ofFloat(it, View.ALPHA, alphaTarget)
