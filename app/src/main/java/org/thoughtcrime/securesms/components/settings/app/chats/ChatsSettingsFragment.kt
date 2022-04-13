@@ -11,7 +11,6 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
-
 class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__chats) {
 
   private lateinit var viewModel: ChatsSettingsViewModel

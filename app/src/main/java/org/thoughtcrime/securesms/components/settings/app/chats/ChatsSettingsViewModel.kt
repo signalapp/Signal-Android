@@ -81,5 +81,4 @@ class ChatsSettingsViewModel(private val sharedPreferences: SharedPreferences, p
     chatBackupsEnabled = SignalStore.settings().isBackupEnabled,
     whoCanAddYouToGroups = TextSecurePreferences.whoCanAddYouToGroups(ApplicationDependencies.getApplication())
   )
-
 }
