@@ -78,21 +78,23 @@
         let history = getQueryHistory();
 
         if (history.length > 0) {
+          let i = 0;
           for (let item of history) {
             container.innerHTML += `
               <tr>
-                <td><button onclick="onHistoryItemClicked('${item}')">^</button></td>
-                <td>${item}</td>
+                <td><button onclick="onHistoryItemClicked(${i})">^</button></td>
+                <td id="history-item-${i}">${item}</td>
               </tr>
-            `
+            `;
+            i++;
           }
         } else {
-          container.innerHTML = '<em>None</em>'
+          container.innerHTML = '<em>None</em>';
         }
       }
 
-      function onHistoryItemClicked(item) {
-        document.querySelector('.query-input').value = item;
+      function onHistoryItemClicked(i) {
+        document.querySelector('.query-input').value = document.getElementById(`history-item-${i}`).innerText;
       }
 
       function getQueryHistory() {
