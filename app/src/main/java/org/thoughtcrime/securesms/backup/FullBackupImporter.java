@@ -97,11 +97,11 @@ public class FullBackupImporter extends FullBackupBase {
     int count = 0;
 
     SQLiteDatabase keyValueDatabase = KeyValueDatabase.getInstance(ApplicationDependencies.getApplication()).getSqlCipherDatabase();
+
+    db.beginTransaction();
+    keyValueDatabase.beginTransaction();
     try {
       BackupRecordInputStream inputStream = new BackupRecordInputStream(is, passphrase);
-
-      db.beginTransaction();
-      keyValueDatabase.beginTransaction();
 
       dropAllTables(db);
 
