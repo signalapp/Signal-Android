@@ -222,6 +222,7 @@ object StoryContextMenu {
       .onDismiss {
         callbacks.onDismissed()
       }
+      .offsetY(DimensionUnit.DP.toPixels(12f).toInt())
       .offsetX(DimensionUnit.DP.toPixels(16f).toInt())
       .show(actions)
   }
