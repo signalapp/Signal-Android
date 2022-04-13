@@ -52,6 +52,10 @@ class ConversationListTabsViewModel(repository: ConversationListTabRepository) :
     store.update { it.copy(visibilityState = it.visibilityState.copy(isMultiSelectOpen = false)) }
   }
 
+  fun isShowingArchived(isShowingArchived: Boolean) {
+    store.update { it.copy(visibilityState = it.visibilityState.copy(isShowingArchived = isShowingArchived)) }
+  }
+
   class Factory(private val repository: ConversationListTabRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
       return modelClass.cast(ConversationListTabsViewModel(repository)) as T

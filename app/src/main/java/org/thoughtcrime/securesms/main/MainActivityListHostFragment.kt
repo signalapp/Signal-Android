@@ -89,17 +89,9 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
       val controller: NavController = requireView().findViewById<View>(R.id.fragment_container).findNavController()
       when (controller.currentDestination?.id) {
         R.id.conversationListFragment -> goToStateFromConversationList(state, controller)
-        R.id.conversationListArchiveFragment -> goToStateFromConversationArchiveList(state, controller)
+        R.id.conversationListArchiveFragment -> Unit
         R.id.storiesLandingFragment -> goToStateFromStories(state, controller)
       }
-    }
-  }
-
-  private fun goToStateFromConversationArchiveList(state: ConversationListTabsState, navController: NavController) {
-    if (state.tab == ConversationListTab.CHATS) {
-      return
-    } else {
-      navController.navigate(R.id.action_conversationListArchiveFragment_to_storiesLandingFragment)
     }
   }
 
@@ -300,12 +292,15 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
     override fun onDestinationChanged(controller: NavController, destination: NavDestination, arguments: Bundle?) {
       when (destination.id) {
         R.id.conversationListFragment -> {
+          conversationListTabsViewModel.isShowingArchived(false)
           presentToolbarForConversationListFragment()
         }
         R.id.conversationListArchiveFragment -> {
+          conversationListTabsViewModel.isShowingArchived(true)
           presentToolbarForConversationListArchiveFragment()
         }
         R.id.storiesLandingFragment -> {
+          conversationListTabsViewModel.isShowingArchived(false)
           presentToolbarForStoriesLandingFragment()
         }
       }

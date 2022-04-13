@@ -19,11 +19,7 @@
     <fragment
         android:id="@+id/conversationListArchiveFragment"
         android:name="org.thoughtcrime.securesms.conversationlist.ConversationListArchiveFragment"
-        android:label="conversation_list_archive_fragment" >
-        <action
-            android:id="@+id/action_conversationListArchiveFragment_to_storiesLandingFragment"
-            app:destination="@id/storiesLandingFragment" />
-    </fragment>
+        android:label="conversation_list_archive_fragment" />
 
     <fragment
         android:id="@+id/storiesLandingFragment"
