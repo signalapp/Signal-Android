@@ -424,6 +424,14 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         }
       )
 
+      clickPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_clear_all_profile_keys),
+        summary = DSLSettingsText.from(R.string.preferences__internal_clear_all_profile_keys_description),
+        onClick = {
+          clearAllProfileKeys()
+        }
+      )
+
       dividerPref()
 
       sectionHeaderPref(R.string.ConversationListTabs__stories)
@@ -548,10 +556,25 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
   private fun clearAllServiceIds() {
     MaterialAlertDialogBuilder(requireContext())
+      .setTitle("Clear all serviceIds?")
       .setMessage("Are you sure? Never do this on a non-test device.")
       .setPositiveButton(android.R.string.ok) { _, _ ->
         SignalDatabase.recipients.debugClearServiceIds()
         Toast.makeText(context, "Cleared all service IDs.", Toast.LENGTH_SHORT).show()
+      }
+      .setNegativeButton(android.R.string.cancel) { d, _ ->
+        d.dismiss()
+      }
+      .show()
+  }
+
+  private fun clearAllProfileKeys() {
+    MaterialAlertDialogBuilder(requireContext())
+      .setTitle("Clear all profile keys?")
+      .setMessage("Are you sure? Never do this on a non-test device.")
+      .setPositiveButton(android.R.string.ok) { _, _ ->
+        SignalDatabase.recipients.debugClearServiceIds()
+        Toast.makeText(context, "Cleared all profile keys.", Toast.LENGTH_SHORT).show()
       }
       .setNegativeButton(android.R.string.cancel) { d, _ ->
         d.dismiss()

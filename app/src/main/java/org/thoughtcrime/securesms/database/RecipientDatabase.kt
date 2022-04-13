@@ -2932,6 +2932,21 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         SERVICE_ID to null,
         PNI_COLUMN to null
       )
+      .where("$ID != ?", Recipient.self().id)
+      .run()
+  }
+
+  /**
+   * Should only be used for debugging! A very destructive action that clears all known profile keys and credentials.
+   */
+  fun debugClearProfileKeys() {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        PROFILE_KEY to null,
+        PROFILE_KEY_CREDENTIAL to null
+      )
+      .where("$ID != ?", Recipient.self().id)
       .run()
   }
 

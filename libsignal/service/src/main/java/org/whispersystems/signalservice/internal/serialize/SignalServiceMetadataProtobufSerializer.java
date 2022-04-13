@@ -20,7 +20,8 @@ public final class SignalServiceMetadataProtobufSerializer {
                                                  .setTimestamp(metadata.getTimestamp())
                                                  .setServerReceivedTimestamp(metadata.getServerReceivedTimestamp())
                                                  .setServerDeliveredTimestamp(metadata.getServerDeliveredTimestamp())
-                                                 .setServerGuid(metadata.getServerGuid());
+                                                 .setServerGuid(metadata.getServerGuid())
+                                                 .setDestinationUuid(metadata.getDestinationUuid());
 
     if (metadata.getGroupId().isPresent()) {
       builder.setGroupId(ByteString.copyFrom(metadata.getGroupId().get()));
@@ -37,6 +38,7 @@ public final class SignalServiceMetadataProtobufSerializer {
                                      metadata.getServerDeliveredTimestamp(),
                                      metadata.getNeedsReceipt(),
                                      metadata.getServerGuid(),
-                                     Optional.ofNullable(metadata.getGroupId()).map(ByteString::toByteArray));
+                                     Optional.ofNullable(metadata.getGroupId()).map(ByteString::toByteArray),
+                                     metadata.getDestinationUuid());
   }
 }

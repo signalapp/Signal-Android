@@ -32,6 +32,7 @@ message SignalServiceEnvelopeProto {
   optional int64  serverReceivedTimestamp  = 8;
   optional int64  serverDeliveredTimestamp = 9;
   optional string serverGuid               = 10;
+  optional string destinationUuid          = 11;
 }
 
 message MetadataProto {
@@ -43,6 +44,7 @@ message MetadataProto {
   optional bool         needsReceipt             = 4;
   optional string       serverGuid               = 7;
   optional bytes        groupId                  = 8;
+  optional string       destinationUuid          = 9;
 }
 
 message AddressProto {

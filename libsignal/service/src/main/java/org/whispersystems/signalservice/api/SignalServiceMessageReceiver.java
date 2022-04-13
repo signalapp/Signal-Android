@@ -212,7 +212,8 @@ public class SignalServiceMessageReceiver {
                                              entity.getContent(),
                                              entity.getServerTimestamp(),
                                              messageResult.getServerDeliveredTimestamp(),
-                                             entity.getServerUuid());
+                                             entity.getServerUuid(),
+                                             entity.getDestinationUuid());
       } else {
         envelope = new SignalServiceEnvelope(entity.getType(),
                                              entity.getTimestamp(),

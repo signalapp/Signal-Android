@@ -12,12 +12,14 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope;
 import org.whispersystems.signalservice.internal.serialize.protos.SignalServiceEnvelopeProto;
 import org.whispersystems.util.Base64;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * This class represents an encrypted Signal Service envelope.
@@ -62,13 +64,15 @@ public class SignalServiceEnvelope {
                                byte[] content,
                                long serverReceivedTimestamp,
                                long serverDeliveredTimestamp,
-                               String uuid)
+                               String uuid,
+                               String destinationUuid)
   {
     Envelope.Builder builder = Envelope.newBuilder()
                                        .setType(Envelope.Type.valueOf(type))
                                        .setSourceDevice(senderDevice)
                                        .setTimestamp(timestamp)
-                                       .setServerTimestamp(serverReceivedTimestamp);
+                                       .setServerTimestamp(serverReceivedTimestamp)
+                                       .setDestinationUuid(destinationUuid);
 
     if (sender.isPresent()) {
       builder.setSourceUuid(sender.get().getServiceId().toString());
@@ -249,6 +253,14 @@ public class SignalServiceEnvelope {
     return envelope.getType().getNumber() == Envelope.Type.PLAINTEXT_CONTENT_VALUE;
   }
 
+  public boolean hasDestinationUuid() {
+    return envelope.hasDestinationUuid() && UuidUtil.isUuid(envelope.getDestinationUuid());
+  }
+
+  public String getDestinationUuid() {
+    return envelope.getDestinationUuid();
+  }
+
   public byte[] serialize() {
     SignalServiceEnvelopeProto.Builder builder = SignalServiceEnvelopeProto.newBuilder()
                                                                            .setType(getType())
@@ -277,6 +289,11 @@ public class SignalServiceEnvelope {
       builder.setServerGuid(getServerGuid());
     }
 
+    if (hasDestinationUuid()) {
+      builder.setDestinationUuid(getDestinationUuid().toString());
+    }
+
+
     return builder.build().toByteArray();
   }
 
@@ -296,6 +313,7 @@ public class SignalServiceEnvelope {
                                      proto.hasContent() ? proto.getContent().toByteArray() : null,
                                      proto.getServerReceivedTimestamp(),
                                      proto.getServerDeliveredTimestamp(),
-                                     proto.getServerGuid());
+                                     proto.getServerGuid(),
+                                     proto.getDestinationUuid());
   }
 }

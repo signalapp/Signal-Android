@@ -2713,7 +2713,9 @@
     <string name="preferences__internal_clear_history" translatable="false">Clear history</string>
     <string name="preferences__internal_clear_history_description" translatable="false">Clears all CDS history, meaning the next sync will consider all numbers to be new.</string>
     <string name="preferences__internal_clear_all_service_ids" translatable="false">Clear all service IDs</string>
-    <string name="preferences__internal_clear_all_service_ids_description" translatable="false">Clears all known service IDs. Do not use on your personal device!</string>
+    <string name="preferences__internal_clear_all_service_ids_description" translatable="false">Clears all known service IDs (except your own). Do not use on your personal device!</string>
+    <string name="preferences__internal_clear_all_profile_keys" translatable="false">Clear all profile keys</string>
+    <string name="preferences__internal_clear_all_profile_keys_description" translatable="false">Clears all known profile keys (except your own). Do not use on your personal device!</string>
 
 
     <!-- Payments -->

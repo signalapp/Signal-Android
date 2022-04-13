@@ -60,12 +60,27 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
       )
 
       if (!recipient.isGroup) {
-        val serviceId = recipient.serviceId.map(ServiceId::toString).orElse("null")
-        longClickPref(
-          title = DSLSettingsText.from("ServiceId"),
-          summary = DSLSettingsText.from(serviceId),
-          onLongClick = { copyToClipboard(serviceId) }
-        )
+        if (recipient.isSelf) {
+          val aci: String = SignalStore.account().aci?.toString() ?: "null"
+          longClickPref(
+            title = DSLSettingsText.from("ACI"),
+            summary = DSLSettingsText.from(aci),
+            onLongClick = { copyToClipboard(aci) }
+          )
+          val pni: String = SignalStore.account().pni?.toString() ?: "null"
+          longClickPref(
+            title = DSLSettingsText.from("PNI"),
+            summary = DSLSettingsText.from(pni),
+            onLongClick = { copyToClipboard(pni) }
+          )
+        } else {
+          val serviceId: String = recipient.serviceId.map(ServiceId::toString).orElse("null")
+          longClickPref(
+            title = DSLSettingsText.from("ServiceId"),
+            summary = DSLSettingsText.from(serviceId),
+            onLongClick = { copyToClipboard(serviceId) }
+          )
+        }
       }
 
       if (state.groupId != null) {

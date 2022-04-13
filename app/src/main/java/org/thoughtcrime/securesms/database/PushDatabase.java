@@ -93,7 +93,8 @@ public class PushDatabase extends Database {
                                          Util.isEmpty(content) ? null : Base64.decode(content),
                                          cursor.getLong(cursor.getColumnIndexOrThrow(SERVER_RECEIVED_TIMESTAMP)),
                                          cursor.getLong(cursor.getColumnIndexOrThrow(SERVER_DELIVERED_TIMESTAMP)),
-                                         cursor.getString(cursor.getColumnIndexOrThrow(SERVER_GUID)));
+                                         cursor.getString(cursor.getColumnIndexOrThrow(SERVER_GUID)),
+                                         "");
       }
     } catch (IOException e) {
       Log.w(TAG, e);
@@ -178,7 +179,8 @@ public class PushDatabase extends Database {
                                          content != null ? Base64.decode(content) : null,
                                          serverReceivedTimestamp,
                                          serverDeliveredTimestamp,
-                                         serverGuid);
+                                         serverGuid,
+                                         "");
       } catch (IOException e) {
         throw new AssertionError(e);
       }

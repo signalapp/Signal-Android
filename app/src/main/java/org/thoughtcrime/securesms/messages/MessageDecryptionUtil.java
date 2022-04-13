@@ -50,6 +50,7 @@ import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.SignalServiceCipher;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.internal.push.UnsupportedDataMessageException;
@@ -76,8 +77,26 @@ public final class MessageDecryptionUtil {
    * caller.
    */
   public static @NonNull DecryptionResult decrypt(@NonNull Context context, @NonNull SignalServiceEnvelope envelope) {
-    SignalServiceAccountDataStore protocolStore = ApplicationDependencies.getProtocolStore().aci();
-    SignalServiceAddress          localAddress  = new SignalServiceAddress(SignalStore.account().requireAci(), Recipient.self().requireE164());
+    ServiceId aci = SignalStore.account().requireAci();
+    ServiceId pni = SignalStore.account().requirePni();
+
+    ServiceId destination;
+    if (!FeatureFlags.usePnpCds()) {
+      destination = aci;
+    } else if (envelope.hasDestinationUuid()) {
+      destination = ServiceId.parseOrThrow(envelope.getDestinationUuid());
+    } else {
+      Log.w(TAG, "No destinationUuid set! Defaulting to ACI.");
+      destination = aci;
+    }
+
+    if (!destination.equals(aci) && !destination.equals(pni)) {
+      Log.w(TAG, "Destination of " + destination + " does not match our ACI (" + aci + ") or PNI (" + pni + ")! Defaulting to ACI.");
+      destination = aci;
+    }
+
+    SignalServiceAccountDataStore protocolStore = ApplicationDependencies.getProtocolStore().get(destination);
+    SignalServiceAddress          localAddress  = new SignalServiceAddress(SignalStore.account().requireAci(), SignalStore.account().getE164());
     SignalServiceCipher           cipher        = new SignalServiceCipher(localAddress, SignalStore.account().getDeviceId(), protocolStore, ReentrantSessionLock.INSTANCE, UnidentifiedAccessUtil.getCertificateValidator());
     List<Job>                     jobs          = new LinkedList<>();
 

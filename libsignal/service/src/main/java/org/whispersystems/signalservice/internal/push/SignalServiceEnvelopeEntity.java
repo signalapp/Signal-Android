@@ -23,6 +23,9 @@ public class SignalServiceEnvelopeEntity {
   private int sourceDevice;
 
   @JsonProperty
+  private String destinationUuid;
+
+  @JsonProperty
   private byte[] message;
 
   @JsonProperty
@@ -78,5 +81,9 @@ public class SignalServiceEnvelopeEntity {
 
   public String getServerUuid() {
     return guid;
+  }
+
+  public String getDestinationUuid() {
+    return destinationUuid;
   }
 }

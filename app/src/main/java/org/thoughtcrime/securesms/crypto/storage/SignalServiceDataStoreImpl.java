@@ -29,7 +29,7 @@ public final class SignalServiceDataStoreImpl implements SignalServiceDataStore 
     if (accountIdentifier.equals(SignalStore.account().getAci())) {
       return aciStore;
     } else if (accountIdentifier.equals(SignalStore.account().getPni())) {
-      throw new AssertionError("Not to be used yet!");
+      return pniStore;
     } else {
       throw new IllegalArgumentException("No matching store found for " + accountIdentifier);
     }
