@@ -161,7 +161,7 @@ public class MmsSmsDatabase extends Database {
                           MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " >= " + timestamp + " AND " +
                           MmsDatabase.STORY_TYPE + " = 0 AND " + MmsDatabase.PARENT_STORY_ID + " <= 0";
 
-    try (Cursor cursor = queryTables(projection, selection, null, null)) {
+    try (Cursor cursor = queryTables(projection, selection, null, null, false)) {
       if (cursor != null && cursor.moveToNext()) {
         return cursor.getInt(0);
       }
@@ -172,7 +172,7 @@ public class MmsSmsDatabase extends Database {
   public @Nullable MessageRecord getMessageFor(long timestamp, RecipientId authorId) {
     Recipient author = Recipient.resolved(authorId);
 
-    try (Cursor cursor = queryTables(PROJECTION, MmsSmsColumns.NORMALIZED_DATE_SENT + " = " + timestamp, null, null)) {
+    try (Cursor cursor = queryTables(PROJECTION, MmsSmsColumns.NORMALIZED_DATE_SENT + " = " + timestamp, null, null, true)) {
       MmsSmsDatabase.Reader reader = readerFor(cursor);
 
       MessageRecord messageRecord;
@@ -268,13 +268,13 @@ public class MmsSmsDatabase extends Database {
     String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
     String selection = MmsSmsColumns.NOTIFIED + " = 0 AND " + MmsDatabase.STORY_TYPE + " = 0 AND " + MmsDatabase.PARENT_STORY_ID + " <= 0 AND (" + MmsSmsColumns.READ + " = 0 OR " + MmsSmsColumns.REACTIONS_UNREAD + " = 1" + (stickyQuery.length() > 0 ? " OR (" + stickyQuery.toString() + ")" : "") + ")";
 
-    return queryTables(PROJECTION, selection, order, null);
+    return queryTables(PROJECTION, selection, order, null, true);
   }
 
   public int getUnreadCount(long threadId) {
     String selection = MmsSmsColumns.READ + " = 0 AND " + MmsDatabase.STORY_TYPE + " = 0 AND " + MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsDatabase.PARENT_STORY_ID + " <= 0";
 
-    try (Cursor cursor = queryTables(PROJECTION, selection, null, null)) {
+    try (Cursor cursor = queryTables(PROJECTION, selection, null, null, false)) {
       return cursor != null ? cursor.getCount() : 0;
     }
   }
@@ -339,7 +339,7 @@ public class MmsSmsDatabase extends Database {
   public int getMessageCountBeforeDate(long date) {
     String selection = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " < " + date;
 
-    try (Cursor cursor = queryTables(new String[] { "COUNT(*)" }, selection, null, null)) {
+    try (Cursor cursor = queryTables(new String[] { "COUNT(*)" }, selection, null, null, false)) {
       if (cursor != null && cursor.moveToFirst()) {
         return cursor.getInt(0);
       }
@@ -583,12 +583,12 @@ public class MmsSmsDatabase extends Database {
     String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
     String selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsDatabase.STORY_TYPE + " = 0" + " AND " + MmsDatabase.PARENT_STORY_ID + " <= 0";
 
-    try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.NORMALIZED_DATE_SENT, MmsSmsColumns.RECIPIENT_ID, MmsSmsColumns.REMOTE_DELETED}, selection, order, null)) {
+    try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.NORMALIZED_DATE_SENT, MmsSmsColumns.RECIPIENT_ID, MmsSmsColumns.REMOTE_DELETED}, selection, order, null, false)) {
       boolean isOwnNumber = Recipient.resolved(recipientId).isSelf();
 
       while (cursor != null && cursor.moveToNext()) {
         boolean quoteIdMatches     = cursor.getLong(0) == quoteId;
-        boolean recipientIdMatches = recipientId.equals(RecipientId.from(cursor.getLong(1)));
+        boolean recipientIdMatches = recipientId.equals(RecipientId.from(CursorUtil.requireLong(cursor, MmsSmsColumns.RECIPIENT_ID)));
 
         if (quoteIdMatches && (recipientIdMatches || isOwnNumber)) {
           if (CursorUtil.requireBoolean(cursor, MmsSmsColumns.REMOTE_DELETED)) {
@@ -606,7 +606,7 @@ public class MmsSmsDatabase extends Database {
     String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
     String selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsDatabase.STORY_TYPE + " = 0" + " AND " + MmsDatabase.PARENT_STORY_ID + " <= 0";
 
-    try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.NORMALIZED_DATE_RECEIVED, MmsSmsColumns.RECIPIENT_ID, MmsSmsColumns.REMOTE_DELETED}, selection, order, null)) {
+    try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.NORMALIZED_DATE_RECEIVED, MmsSmsColumns.RECIPIENT_ID, MmsSmsColumns.REMOTE_DELETED}, selection, order, null, false)) {
       boolean isOwnNumber = Recipient.resolved(recipientId).isSelf();
 
       while (cursor != null && cursor.moveToNext()) {
@@ -644,7 +644,7 @@ public class MmsSmsDatabase extends Database {
                        MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " > " + receivedTimestamp + " AND " +
                        MmsDatabase.STORY_TYPE + " = 0 AND " + MmsDatabase.PARENT_STORY_ID + " <= 0";
 
-    try (Cursor cursor = queryTables(new String[]{ "COUNT(*)" }, selection, order, null)) {
+    try (Cursor cursor = queryTables(new String[]{ "COUNT(*)" }, selection, order, null, false)) {
       if (cursor != null && cursor.moveToFirst()) {
         return cursor.getInt(0);
       }
@@ -656,7 +656,7 @@ public class MmsSmsDatabase extends Database {
     String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
     String selection = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " > " + date;
 
-    try (Cursor cursor = queryTables(new String[] { MmsSmsColumns.NORMALIZED_DATE_RECEIVED }, selection, order, "1")) {
+    try (Cursor cursor = queryTables(new String[] { MmsSmsColumns.NORMALIZED_DATE_RECEIVED }, selection, order, "1", false)) {
       if (cursor != null && cursor.moveToFirst()) {
         return cursor.getLong(0);
       }
@@ -922,8 +922,8 @@ public class MmsSmsDatabase extends Database {
     return outerQueryBuilder.buildQuery(projection, null, null, null, null, null, null);
   }
 
-  private Cursor queryTables(String[] projection, String selection, String order, String limit) {
-    String query = buildQuery(projection, selection, order, limit, true);
+  private Cursor queryTables(String[] projection, String selection, String order, String limit, boolean includeAttachments) {
+    String query = buildQuery(projection, selection, order, limit, includeAttachments);
 
     return databaseHelper.getSignalReadableDatabase().rawQuery(query, null);
   }
