@@ -9,7 +9,7 @@
         android:id="@+id/toolbar"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_arrow_left_24"
-        app:title="@string/ShareInterstitialActivity__forward_message"
+        app:title="@string/ShareInterstitialActivity__share"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize" />
 

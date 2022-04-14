@@ -566,11 +566,6 @@
     </plurals>
     <string name="PendingGroupJoinRequestsReminder_view">View</string>
 
-    <!-- ShareActivity -->
-    <string name="ShareActivity_share_with">Share with</string>
-    <string name="ShareActivity_multiple_attachments_are_only_supported">Multiple attachments are only supported for images and videos</string>
-    <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">You do not have permission to send to this group</string>
-
     <!-- GcmRefreshJob -->
     <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Signal communication failure!</string>
     <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal was unable to register with Google Play Services. Signal messages and calls have been disabled, please try re-registering in Settings &gt; Advanced.</string>
@@ -3527,9 +3522,6 @@
     <string name="MultiShareDialogs__failed_to_send_to_some_users">Failed to send to some users</string>
     <string name="MultiShareDialogs__you_can_only_share_with_up_to">You can only share with up to %1$d chats</string>
 
-    <!-- ShareInterstitialActivity -->
-    <string name="ShareInterstitialActivity__forward_message">Forward message</string>
-
     <!-- ChatWallpaperActivity -->
     <string name="ChatWallpaperActivity__chat_wallpaper">Chat wallpaper</string>
 
@@ -4019,6 +4011,9 @@
     <!-- ContactSelectionListItem -->
     <string name="ContactSelectionListItem__sms">SMS</string>
     <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+
+    <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
+    <string name="ShareInterstitialActivity__share">Share</string>
 
     <!-- DSLSettingsToolbar -->
     <string name="DSLSettingsToolbar__navigate_up">Navigate up</string>
