@@ -1429,9 +1429,15 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       }
 
       //noinspection ConstantConditions
-      CharSequence body = isStoryReaction(current) ? current.getBody() : quote.getDisplayText();
-      //noinspection ConstantConditions
-      quoteView.setQuote(glideRequests, quote.getId(), Recipient.live(quote.getAuthor()).get(), body, quote.isOriginalMissing(), quote.getAttachment(), chatColors, isStoryReaction(current));
+      quoteView.setQuote(glideRequests,
+                         quote.getId(),
+                         Recipient.live(quote.getAuthor()).get(),
+                         quote.getDisplayText(),
+                         quote.isOriginalMissing(),
+                         quote.getAttachment(),
+                         chatColors,
+                         isStoryReaction(current) ? current.getBody() : null);
+
       quoteView.setVisibility(View.VISIBLE);
       quoteView.setTextSize(TypedValue.COMPLEX_UNIT_SP, SignalStore.settings().getMessageFontSize());
       quoteView.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;

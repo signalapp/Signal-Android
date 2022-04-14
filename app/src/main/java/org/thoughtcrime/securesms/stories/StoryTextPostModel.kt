@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.ParcelUtil
+import java.io.IOException
 import java.security.MessageDigest
 
 /**
@@ -88,6 +89,7 @@ data class StoryTextPostModel(
     }
 
     @JvmStatic
+    @Throws(IOException::class)
     fun parseFrom(body: String, storySentAtMillis: Long, storyAuthor: RecipientId): StoryTextPostModel {
       return StoryTextPostModel(
         storyTextPost = StoryTextPost.parseFrom(Base64.decode(body)),

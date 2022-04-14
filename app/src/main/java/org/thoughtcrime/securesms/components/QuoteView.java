@@ -39,7 +39,9 @@ import org.thoughtcrime.securesms.stories.StoryTextPostModel;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.thoughtcrime.securesms.util.Util;
 
+import java.io.IOException;
 import java.util.List;
 
 public class QuoteView extends FrameLayout implements RecipientForeverObserver {
@@ -204,7 +206,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
                        boolean originalMissing,
                        @NonNull SlideDeck attachments,
                        @Nullable ChatColors chatColors,
-                       boolean isStoryReaction)
+                       @Nullable String storyReaction)
   {
     if (this.author != null) this.author.removeForeverObserver(this);
 
@@ -215,7 +217,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
 
     this.author.observeForever(this);
     setQuoteAuthor(author);
-    setQuoteText(body, attachments, originalMissing, isStoryReaction);
+    setQuoteText(body, attachments, originalMissing, storyReaction);
     setQuoteAttachment(glideRequests, body, attachments, originalMissing);
     setQuoteMissingFooter(originalMissing);
 
@@ -286,14 +288,18 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
            messageType == MessageType.STORY_REPLY_PREVIEW;
   }
 
-  private void setQuoteText(@Nullable CharSequence body, @NonNull SlideDeck attachments, boolean originalMissing, boolean isStoryReaction) {
+  private void setQuoteText(@Nullable CharSequence body,
+                            @NonNull SlideDeck attachments,
+                            boolean originalMissing,
+                            @Nullable String storyReaction)
+  {
     if (originalMissing && isStoryReply()) {
       bodyView.setVisibility(GONE);
       storyReactionEmoji.setVisibility(View.GONE);
       mediaDescriptionText.setVisibility(VISIBLE);
 
       mediaDescriptionText.setText(R.string.QuoteView_no_longer_available);
-      if (isStoryReaction) {
+      if (storyReaction != null) {
         missingStoryReaction.setVisibility(View.VISIBLE);
         missingStoryReaction.setImageEmoji(body);
       } else {
@@ -302,11 +308,10 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
       return;
     }
 
-    if (isStoryReaction) {
-      storyReactionEmoji.setImageEmoji(body);
+    if (storyReaction != null) {
+      storyReactionEmoji.setImageEmoji(storyReaction);
       storyReactionEmoji.setVisibility(View.VISIBLE);
       missingStoryReaction.setVisibility(View.INVISIBLE);
-      return;
     } else {
       storyReactionEmoji.setVisibility(View.GONE);
       missingStoryReaction.setVisibility(View.GONE);
@@ -317,7 +322,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     if (!TextUtils.isEmpty(body) || !attachments.containsMediaSlide()) {
       if (isTextStory && body != null) {
         try {
-          bodyView.setText(StoryTextPostModel.parseFrom(body.toString(), id, author.getId()).getText());
+          bodyView.setText(getStoryTextPost(body).getText());
         } catch (Exception e) {
           Log.w(TAG, "Could not parse body of text post.", e);
           bodyView.setText("");
@@ -369,7 +374,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     mainView.setMinimumHeight(isStoryReply() && originalMissing ? 0 : thumbHeight);
 
     if (!attachments.containsMediaSlide() && isStoryReply()) {
-      StoryTextPostModel model = StoryTextPostModel.parseFrom(body.toString(), id, author.getId());
+      StoryTextPostModel model = getStoryTextPost(body);
       attachmentVideoOverlayView.setVisibility(GONE);
       attachmentContainerView.setVisibility(GONE);
       thumbnailView.setVisibility(VISIBLE);
@@ -420,6 +425,18 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
   private void setQuoteMissingFooter(boolean missing) {
     footerView.setVisibility(missing && !isStoryReply() ? VISIBLE : GONE);
     footerView.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.quote_view_background));
+  }
+
+  private @Nullable StoryTextPostModel getStoryTextPost(@Nullable CharSequence body) {
+    if (Util.isEmpty(body)) {
+      return null;
+    }
+
+    try {
+      return StoryTextPostModel.parseFrom(body.toString(), id, author.getId());
+    } catch (IOException ioException) {
+      return null;
+    }
   }
 
   public void setTextSize(int unit, float size) {
