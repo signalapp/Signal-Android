@@ -15,6 +15,7 @@ class StoriesLandingViewModel(private val storiesLandingRepository: StoriesLandi
   private val disposables = CompositeDisposable()
 
   val state: LiveData<StoriesLandingState> = store.stateLiveData
+  var isTransitioningToAnotherScreen: Boolean = false
 
   init {
     disposables += storiesLandingRepository.getStories().subscribe { stories ->

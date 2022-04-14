@@ -107,7 +107,7 @@ object StoriesLandingItem {
       presentDateOrStatus(model)
       setUpClickListeners(model)
 
-      if (payload.contains(STATUS_CHANGE) || payload.contains(LandingPayload.RESUMED)) {
+      if (payload.contains(STATUS_CHANGE)) {
         return
       }
 
@@ -223,11 +223,6 @@ object StoriesLandingItem {
 
     private fun setUpClickListeners(model: Model) {
       itemView.setOnClickListener {
-        if (!itemView.isClickable) {
-          return@setOnClickListener
-        }
-
-        itemView.isClickable = false
         model.onRowClick(model, storyPreview)
       }
 

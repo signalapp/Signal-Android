@@ -93,6 +93,7 @@ class MyStoriesFragment : DSLSettingsFragment(
                     }
 
                     val record = it.distributionStory.messageRecord as MmsMessageRecord
+                    val blur = record.slideDeck.thumbnailSlide?.placeholderBlur
                     val (text: StoryTextPostModel?, image: Uri?) = if (record.storyType.isTextStory) {
                       StoryTextPostModel.parseFrom(record) to null
                     } else {
@@ -100,7 +101,7 @@ class MyStoriesFragment : DSLSettingsFragment(
                     }
 
                     val options = ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity(), preview, ViewCompat.getTransitionName(preview) ?: "")
-                    startActivity(StoryViewerActivity.createIntent(requireContext(), recipient.id, conversationMessage.messageRecord.id, recipient.shouldHideStory(), text, image), options.toBundle())
+                    startActivity(StoryViewerActivity.createIntent(requireContext(), recipient.id, conversationMessage.messageRecord.id, recipient.shouldHideStory(), text, image, blur), options.toBundle())
                   }
                 },
                 onLongClick = {

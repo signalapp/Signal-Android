@@ -8,6 +8,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -39,7 +40,8 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
             intent.getLongExtra(ARG_START_STORY_ID, -1L),
             intent.getBooleanExtra(ARG_HIDDEN_STORIES, false),
             intent.getParcelableExtra(ARG_CROSSFADE_TEXT_MODEL),
-            intent.getParcelableExtra(ARG_CROSSFADE_IMAGE_URI)
+            intent.getParcelableExtra(ARG_CROSSFADE_IMAGE_URI),
+            intent.getStringExtra(ARG_CROSSFADE_IMAGE_BLUR)
           )
         )
         .commit()
@@ -58,6 +60,7 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
     private const val ARG_HIDDEN_STORIES = "hidden_stories"
     private const val ARG_CROSSFADE_TEXT_MODEL = "crossfade.text.model"
     private const val ARG_CROSSFADE_IMAGE_URI = "crossfade.image.uri"
+    private const val ARG_CROSSFADE_IMAGE_BLUR = "crossfade.image.blur"
 
     @JvmStatic
     fun createIntent(
@@ -66,7 +69,8 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
       storyId: Long = -1L,
       onlyIncludeHiddenStories: Boolean = false,
       storyThumbTextModel: StoryTextPostModel? = null,
-      storyThumbUri: Uri? = null
+      storyThumbUri: Uri? = null,
+      storyThumbBlur: BlurHash? = null
     ): Intent {
       return Intent(context, StoryViewerActivity::class.java)
         .putExtra(ARG_START_RECIPIENT_ID, recipientId)
@@ -74,6 +78,7 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
         .putExtra(ARG_HIDDEN_STORIES, onlyIncludeHiddenStories)
         .putExtra(ARG_CROSSFADE_TEXT_MODEL, storyThumbTextModel)
         .putExtra(ARG_CROSSFADE_IMAGE_URI, storyThumbUri)
+        .putExtra(ARG_CROSSFADE_IMAGE_BLUR, storyThumbBlur?.hash)
     }
   }
 }

@@ -14,6 +14,7 @@ import com.bumptech.glide.request.target.Target
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.animation.transitions.CrossfaderTransition
+import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
 import org.thoughtcrime.securesms.mms.GlideApp
@@ -35,10 +36,14 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
   }
 
   private val sourceView: ImageView = findViewById(R.id.source_image)
+  private val sourceBlurView: ImageView = findViewById(R.id.source_image_blur)
   private val targetView: ImageView = findViewById(R.id.target_image)
+  private val targetBlurView: ImageView = findViewById(R.id.target_image_blur)
 
   private var isSourceReady: Boolean = false
+  private var isSourceBlurReady: Boolean = false
   private var isTargetReady: Boolean = false
+  private var isTargetBlurReady: Boolean = false
 
   private var latestSource: Any? = null
   private var latestTarget: Any? = null
@@ -64,9 +69,12 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
       .dontAnimate()
       .centerCrop()
       .into(sourceView)
+
+    GlideApp.with(sourceBlurView).clear(sourceBlurView)
+    isSourceBlurReady = true
   }
 
-  fun setSourceView(uri: Uri) {
+  fun setSourceView(uri: Uri, blur: BlurHash?) {
     if (latestSource == uri) {
       return
     }
@@ -84,13 +92,31 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
       .dontAnimate()
       .centerCrop()
       .into(sourceView)
+
+    if (blur == null) {
+      GlideApp.with(sourceBlurView).clear(sourceBlurView)
+      isSourceBlurReady = true
+    } else {
+      GlideApp.with(sourceBlurView)
+        .load(blur)
+        .addListener(
+          OnReadyListener {
+            isSourceBlurReady = true
+            notifyIfReady()
+          }
+        )
+        .dontAnimate()
+        .centerCrop()
+        .into(sourceBlurView)
+    }
   }
 
   fun setTargetView(messageRecord: MmsMessageRecord): Boolean {
     val thumbUri = messageRecord.slideDeck.thumbnailSlide?.uri
+    val thumbBlur: BlurHash? = messageRecord.slideDeck.thumbnailSlide?.placeholderBlur
     when {
       messageRecord.storyType.isTextStory -> setTargetView(StoryTextPostModel.parseFrom(messageRecord))
-      thumbUri != null -> setTargetView(thumbUri)
+      thumbUri != null -> setTargetView(thumbUri, thumbBlur)
       else -> return false
     }
 
@@ -116,9 +142,12 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
       .placeholder(storyTextPostModel.getPlaceholder())
       .centerCrop()
       .into(targetView)
+
+    GlideApp.with(sourceBlurView).clear(sourceBlurView)
+    isTargetBlurReady = true
   }
 
-  private fun setTargetView(uri: Uri) {
+  private fun setTargetView(uri: Uri, blur: BlurHash?) {
     if (latestTarget == uri) {
       return
     }
@@ -134,12 +163,29 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
         }
       )
       .dontAnimate()
-      .centerCrop()
+      .fitCenter()
       .into(targetView)
+
+    if (blur == null) {
+      GlideApp.with(targetBlurView).clear(targetBlurView)
+      isTargetBlurReady = true
+    } else {
+      GlideApp.with(targetBlurView)
+        .load(blur)
+        .addListener(
+          OnReadyListener {
+            isTargetBlurReady = true
+            notifyIfReady()
+          }
+        )
+        .dontAnimate()
+        .centerCrop()
+        .into(targetBlurView)
+    }
   }
 
   private fun notifyIfReady() {
-    if (isSourceReady && isTargetReady) {
+    if (isSourceReady && isTargetReady && isSourceBlurReady && isTargetBlurReady) {
       callback?.onReadyToAnimate()
     }
   }
@@ -159,11 +205,15 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
   override fun onCrossfadeAnimationUpdated(progress: Float, reverse: Boolean) {
     if (reverse) {
       sourceView.alpha = progress
+      sourceBlurView.alpha = progress
       targetView.alpha = 1f - progress
+      targetBlurView.alpha = 1f - progress
       radius = CORNER_RADIUS_EVALUATOR.evaluate(progress, CORNER_RADIUS_END, CORNER_RADIUS_START)
     } else {
       sourceView.alpha = 1f - progress
+      sourceBlurView.alpha = 1f - progress
       targetView.alpha = progress
+      targetBlurView.alpha = progress
       radius = CORNER_RADIUS_EVALUATOR.evaluate(progress, CORNER_RADIUS_START, CORNER_RADIUS_END)
     }
   }
@@ -172,7 +222,9 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
     alpha = 1f
 
     sourceView.alpha = if (reverse) 0f else 1f
+    sourceBlurView.alpha = if (reverse) 0f else 1f
     targetView.alpha = if (reverse) 1f else 0f
+    targetBlurView.alpha = if (reverse) 1f else 0f
 
     radius = if (reverse) CORNER_RADIUS_END else CORNER_RADIUS_START
 

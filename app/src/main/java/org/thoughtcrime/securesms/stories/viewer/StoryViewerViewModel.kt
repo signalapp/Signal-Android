@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
+import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import org.thoughtcrime.securesms.util.rx.RxStore
@@ -18,6 +19,7 @@ class StoryViewerViewModel(
   private val onlyIncludeHiddenStories: Boolean,
   storyThumbTextModel: StoryTextPostModel?,
   storyThumbUri: Uri?,
+  storyThumbBlur: BlurHash?,
   private val repository: StoryViewerRepository,
 ) : ViewModel() {
 
@@ -25,7 +27,7 @@ class StoryViewerViewModel(
     StoryViewerState(
       crossfadeSource = when {
         storyThumbTextModel != null -> StoryViewerState.CrossfadeSource.TextModel(storyThumbTextModel)
-        storyThumbUri != null -> StoryViewerState.CrossfadeSource.ImageUri(storyThumbUri)
+        storyThumbUri != null -> StoryViewerState.CrossfadeSource.ImageUri(storyThumbUri, storyThumbBlur)
         else -> StoryViewerState.CrossfadeSource.None
       }
     )
@@ -154,10 +156,11 @@ class StoryViewerViewModel(
     private val onlyIncludeHiddenStories: Boolean,
     private val storyThumbTextModel: StoryTextPostModel?,
     private val storyThumbUri: Uri?,
+    private val storyThumbBlur: BlurHash?,
     private val repository: StoryViewerRepository
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-      return modelClass.cast(StoryViewerViewModel(startRecipientId, onlyIncludeHiddenStories, storyThumbTextModel, storyThumbUri, repository)) as T
+      return modelClass.cast(StoryViewerViewModel(startRecipientId, onlyIncludeHiddenStories, storyThumbTextModel, storyThumbUri, storyThumbBlur, repository)) as T
     }
   }
 }

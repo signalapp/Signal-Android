@@ -80,7 +80,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
 
   override fun onResume() {
     super.onResume()
-    adapter.notifyItemRangeChanged(0, adapter.itemCount, LandingPayload.RESUMED)
+    viewModel.isTransitioningToAnotherScreen = false
   }
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
@@ -114,7 +114,9 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
         .ifNecessary()
         .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.ic_camera_24)
         .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video))
-        .onAllGranted { startActivity(MediaSelectionActivity.camera(requireContext(), isStory = true)) }
+        .onAllGranted {
+          startActivityIfAble(MediaSelectionActivity.camera(requireContext(), isStory = true))
+        }
         .onAnyDenied { Toast.makeText(requireContext(), R.string.ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video, Toast.LENGTH_LONG).show() }
         .execute()
     }
@@ -148,7 +150,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
         customPref(
           MyStoriesItem.Model(
             onClick = {
-              startActivity(Intent(requireContext(), MyStoriesActivity::class.java))
+              startActivityIfAble(Intent(requireContext(), MyStoriesActivity::class.java))
             },
             onClickThumbnail = {
               cameraFab.performClick()
@@ -184,7 +186,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
       data = data,
       onRowClick = { model, preview ->
         if (model.data.storyRecipient.isMyStory) {
-          startActivity(Intent(requireContext(), MyStoriesActivity::class.java))
+          startActivityIfAble(Intent(requireContext(), MyStoriesActivity::class.java))
         } else if (model.data.primaryStory.messageRecord.isOutgoing && model.data.primaryStory.messageRecord.isFailed) {
           if (model.data.primaryStory.messageRecord.isIdentityMismatchFailure) {
             SafetyNumberChangeDialog.show(requireContext(), childFragmentManager, model.data.primaryStory.messageRecord)
@@ -197,13 +199,14 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
           val options = ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity(), preview, ViewCompat.getTransitionName(preview) ?: "")
 
           val record = model.data.primaryStory.messageRecord as MmsMessageRecord
+          val blur = record.slideDeck.thumbnailSlide?.placeholderBlur
           val (text: StoryTextPostModel?, image: Uri?) = if (record.storyType.isTextStory) {
             StoryTextPostModel.parseFrom(record) to null
           } else {
             null to record.slideDeck.thumbnailSlide?.uri
           }
 
-          startActivity(StoryViewerActivity.createIntent(requireContext(), model.data.storyRecipient.id, -1L, model.data.isHidden, text, image), options.toBundle())
+          startActivityIfAble(StoryViewerActivity.createIntent(requireContext(), model.data.storyRecipient.id, -1L, model.data.isHidden, text, image, blur), options.toBundle())
         }
       },
       onForwardStory = {
@@ -212,7 +215,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
         }
       },
       onGoToChat = {
-        startActivity(ConversationIntents.createBuilder(requireContext(), it.data.storyRecipient.id, -1L).build())
+        startActivityIfAble(ConversationIntents.createBuilder(requireContext(), it.data.storyRecipient.id, -1L).build())
       },
       onHideStory = {
         if (!it.data.isHidden) {
@@ -256,7 +259,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     return if (item.itemId == R.id.action_settings) {
-      startActivity(StorySettingsActivity.getIntent(requireContext()))
+      startActivityIfAble(StorySettingsActivity.getIntent(requireContext()))
       true
     } else {
       false
@@ -265,5 +268,14 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
 
   override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
+  }
+
+  private fun startActivityIfAble(intent: Intent, options: Bundle? = null) {
+    if (viewModel.isTransitioningToAnotherScreen) {
+      return
+    }
+
+    viewModel.isTransitioningToAnotherScreen = true
+    startActivity(intent, options)
   }
 }

@@ -260,7 +260,7 @@ class StoryViewerPageFragment :
         viewModel.setIsSelectedPage(true)
         when (parentState.crossfadeSource) {
           is StoryViewerState.CrossfadeSource.TextModel -> storyCrossfader.setSourceView(parentState.crossfadeSource.storyTextPostModel)
-          is StoryViewerState.CrossfadeSource.ImageUri -> storyCrossfader.setSourceView(parentState.crossfadeSource.imageUri)
+          is StoryViewerState.CrossfadeSource.ImageUri -> storyCrossfader.setSourceView(parentState.crossfadeSource.imageUri, parentState.crossfadeSource.imageBlur)
           else -> onReadyToAnimate()
         }
       } else {

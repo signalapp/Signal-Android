@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.stories.viewer
 
 import android.net.Uri
+import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
 
@@ -13,7 +14,7 @@ data class StoryViewerState(
 ) {
   sealed class CrossfadeSource {
     object None : CrossfadeSource()
-    class ImageUri(val imageUri: Uri) : CrossfadeSource()
+    class ImageUri(val imageUri: Uri, val imageBlur: BlurHash?) : CrossfadeSource()
     class TextModel(val storyTextPostModel: StoryTextPostModel) : CrossfadeSource()
   }
 

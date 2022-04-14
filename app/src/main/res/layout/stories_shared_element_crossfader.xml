@@ -13,6 +13,15 @@
         android:layout_height="match_parent">
 
         <ImageView
+            android:id="@+id/source_image_blur"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:importantForAccessibility="no"
+            app:layout_constraintDimensionRatio="48:72"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
             android:id="@+id/source_image"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -20,6 +29,13 @@
             app:layout_constraintDimensionRatio="48:72"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/target_image_blur"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0"
+            android:importantForAccessibility="no" />
 
         <ImageView
             android:id="@+id/target_image"
