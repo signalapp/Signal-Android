@@ -6,35 +6,46 @@
     android:layout_height="match_parent"
     tools:parentTag="android.widget.FrameLayout">
 
-    <View
+    <ImageView
         android:id="@+id/background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/core_grey_80"
+        android:importantForAccessibility="no"
         android:visibility="gone"
         tools:visibility="visible" />
 
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/stories_error_background"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        app:shapeAppearance="@style/ShapeAppearanceOverlay.Signal.Circle"
+        app:srcCompat="@color/transparent_black_50" />
+
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/loading_spinner"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:layout_gravity="center"
         android:indeterminate="true"
         android:visibility="gone"
         app:indicatorColor="@color/core_grey_05"
         app:indicatorInset="0dp"
-        app:indicatorSize="64dp"
+        app:indicatorSize="36dp"
         app:trackColor="@color/transparent"
-        app:trackThickness="3dp"
+        app:trackThickness="2dp"
         tools:visibility="visible" />
 
-    <View
+    <ImageView
         android:id="@+id/error_circle"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_gravity="center"
-        android:background="@drawable/stories_slate_indicator_ring"
+        android:scaleType="centerInside"
         android:visibility="gone"
+        app:srcCompat="@drawable/ic_arrow_down_24"
+        app:tint="@color/core_white"
         tools:visibility="visible" />
 
     <TextView

@@ -541,6 +541,8 @@ class StoryViewerPageFragment :
   }
 
   private fun presentSlate(post: StoryPost) {
+    storySlate.setBackground((post.conversationMessage.messageRecord as? MediaMmsMessageRecord)?.slideDeck?.thumbnailSlide?.placeholderBlur)
+
     when (post.content.transferState) {
       AttachmentDatabase.TRANSFER_PROGRESS_DONE -> {
         storySlate.moveToState(StorySlateView.State.HIDDEN, post.id)

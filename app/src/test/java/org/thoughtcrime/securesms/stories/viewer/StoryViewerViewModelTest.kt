@@ -36,7 +36,7 @@ class StoryViewerViewModelTest {
     whenever(repository.getStories(any())).doReturn(Single.just(stories))
 
     // WHEN
-    val testSubject = StoryViewerViewModel(startStory, false, null, null, repository)
+    val testSubject = StoryViewerViewModel(startStory, false, null, null, null, repository)
     testScheduler.triggerActions()
 
     // THEN
@@ -52,7 +52,7 @@ class StoryViewerViewModelTest {
     val stories: List<RecipientId> = (1L..5L).map(RecipientId::from)
     val startStory = RecipientId.from(1L)
     whenever(repository.getStories(any())).doReturn(Single.just(stories))
-    val testSubject = StoryViewerViewModel(startStory, false, null, null, repository)
+    val testSubject = StoryViewerViewModel(startStory, false, null, null, null, repository)
     testScheduler.triggerActions()
 
     // WHEN
@@ -72,7 +72,7 @@ class StoryViewerViewModelTest {
     val stories: List<RecipientId> = (1L..5L).map(RecipientId::from)
     val startStory = stories.last()
     whenever(repository.getStories(any())).doReturn(Single.just(stories))
-    val testSubject = StoryViewerViewModel(startStory, false, null, null, repository)
+    val testSubject = StoryViewerViewModel(startStory, false, null, null, null, repository)
     testScheduler.triggerActions()
 
     // WHEN
@@ -92,7 +92,7 @@ class StoryViewerViewModelTest {
     val stories: List<RecipientId> = (1L..5L).map(RecipientId::from)
     val startStory = stories.last()
     whenever(repository.getStories(any())).doReturn(Single.just(stories))
-    val testSubject = StoryViewerViewModel(startStory, false, null, null, repository)
+    val testSubject = StoryViewerViewModel(startStory, false, null, null, null, repository)
     testScheduler.triggerActions()
 
     // WHEN
@@ -112,7 +112,7 @@ class StoryViewerViewModelTest {
     val stories: List<RecipientId> = (1L..5L).map(RecipientId::from)
     val startStory = stories.first()
     whenever(repository.getStories(any())).doReturn(Single.just(stories))
-    val testSubject = StoryViewerViewModel(startStory, false, null, null, repository)
+    val testSubject = StoryViewerViewModel(startStory, false, null, null, null, repository)
     testScheduler.triggerActions()
 
     // WHEN
@@ -132,7 +132,7 @@ class StoryViewerViewModelTest {
     val stories: List<RecipientId> = (1L..5L).map(RecipientId::from)
     val startStory = stories.first()
     whenever(repository.getStories(any())).doReturn(Single.just(stories))
-    val testSubject = StoryViewerViewModel(startStory, false, null, null, repository)
+    val testSubject = StoryViewerViewModel(startStory, false, null, null, null, repository)
     testScheduler.triggerActions()
 
     // WHEN

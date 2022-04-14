@@ -6,11 +6,14 @@ import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.TextView
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.util.visible
 
 /**
@@ -36,7 +39,7 @@ class StorySlateView @JvmOverloads constructor(
     inflate(context, R.layout.stories_slate_view, this)
   }
 
-  private val background: View = findViewById(R.id.background)
+  private val background: ImageView = findViewById(R.id.background)
   private val loadingSpinner: View = findViewById(R.id.loading_spinner)
   private val errorCircle: View = findViewById(R.id.error_circle)
   private val unavailableText: View = findViewById(R.id.unavailable)
@@ -65,6 +68,16 @@ class StorySlateView @JvmOverloads constructor(
       callback?.onStateChanged(state, postId)
     } else {
       Log.d(TAG, "Invalid state transfer: ${this.state} -> $state")
+    }
+  }
+
+  fun setBackground(blur: BlurHash?) {
+    if (blur != null) {
+      GlideApp.with(background)
+        .load(blur)
+        .into(background)
+    } else {
+      GlideApp.with(background).clear(background)
     }
   }
 
