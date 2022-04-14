@@ -20,6 +20,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.thoughtcrime.securesms.R
@@ -98,9 +99,11 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
       override fun onSharedElementStart(sharedElementNames: MutableList<String>?, sharedElements: MutableList<View>?, sharedElementSnapshots: MutableList<View>?) {
         if (sharedElementNames?.contains("camera_fab") == true) {
           cameraFab.setImageResource(R.drawable.ic_compose_24)
-          lifecycleDisposable += Single.timer(200, TimeUnit.MILLISECONDS).subscribeBy {
-            cameraFab.setImageResource(R.drawable.ic_camera_outline_24)
-          }
+          lifecycleDisposable += Single.timer(200, TimeUnit.MILLISECONDS)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeBy {
+              cameraFab.setImageResource(R.drawable.ic_camera_outline_24)
+            }
         }
       }
     })
