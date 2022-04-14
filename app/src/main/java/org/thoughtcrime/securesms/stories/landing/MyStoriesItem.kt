@@ -33,6 +33,10 @@ object MyStoriesItem {
     private val badgeView: BadgeImageView = itemView.findViewById(R.id.badge)
 
     override fun bind(model: Model) {
+      if (payload.contains(LandingPayload.RESUMED)) {
+        return
+      }
+
       itemView.setOnClickListener { model.onClick() }
       thumbnail.setOnClickListener { model.onClickThumbnail() }
 

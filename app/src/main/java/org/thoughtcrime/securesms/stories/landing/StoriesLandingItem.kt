@@ -107,7 +107,7 @@ object StoriesLandingItem {
       presentDateOrStatus(model)
       setUpClickListeners(model)
 
-      if (payload.contains(STATUS_CHANGE)) {
+      if (payload.contains(STATUS_CHANGE) || payload.contains(LandingPayload.RESUMED)) {
         return
       }
 

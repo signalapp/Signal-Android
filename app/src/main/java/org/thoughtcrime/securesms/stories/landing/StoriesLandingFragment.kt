@@ -79,7 +79,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
 
   override fun onResume() {
     super.onResume()
-    adapter.notifyItemRangeChanged(0, adapter.itemCount)
+    adapter.notifyItemRangeChanged(0, adapter.itemCount, LandingPayload.RESUMED)
   }
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
@@ -117,8 +117,10 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
     }
 
     viewModel.state.observe(viewLifecycleOwner) {
-      adapter.submitList(getConfiguration(it).toMappingModelList())
-      emptyNotice.visible = it.hasNoStories
+      if (it.loadingState == StoriesLandingState.LoadingState.LOADED) {
+        adapter.submitList(getConfiguration(it).toMappingModelList())
+        emptyNotice.visible = it.hasNoStories
+      }
     }
 
     requireActivity().onBackPressedDispatcher.addCallback(
