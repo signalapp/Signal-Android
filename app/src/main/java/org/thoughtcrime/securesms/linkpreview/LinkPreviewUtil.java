@@ -61,7 +61,7 @@ public final class LinkPreviewUtil {
   }
 
   /**
-   * @return All whitelisted URLs in the source text.
+   * @return All URLs allowed as previews in the source text.
    */
   public static @NonNull Links findValidPreviewUrls(@NonNull String text) {
     SpannableString spannable = new SpannableString(text);
@@ -77,41 +77,29 @@ public final class LinkPreviewUtil {
                            .toList());
   }
 
-  /**
-   * @return True if the host is present in the link whitelist.
-   */
   public static boolean isValidPreviewUrl(@Nullable String linkUrl) {
     if (linkUrl == null)                      return false;
     if (StickerUrl.isValidShareLink(linkUrl)) return true;
 
     HttpUrl url = HttpUrl.parse(linkUrl);
-    return url != null                                   &&
-           !TextUtils.isEmpty(url.scheme())              &&
-           "https".equals(url.scheme())                  &&
-           isLegalUrl(linkUrl);
-  }
-
-  public static boolean isLegalUrl(@NonNull String url) {
-    if (ILLEGAL_CHARACTERS_PATTERN.matcher(url).find()) {
-      return false;
-    }
-
-    Matcher matcher = DOMAIN_PATTERN.matcher(url);
-
-    if (matcher.matches()) {
-      String domain         = matcher.group(2);
-      String cleanedDomain  = domain.replaceAll("\\.", "");
-      String topLevelDomain = parseTopLevelDomain(domain);
-
-      boolean validCharacters = ALL_ASCII_PATTERN.matcher(cleanedDomain).matches() ||
-                                ALL_NON_ASCII_PATTERN.matcher(cleanedDomain).matches();
-
-      boolean validTopLevelDomain = !INVALID_TOP_LEVEL_DOMAINS.contains(topLevelDomain);
-
-      return validCharacters &&  validTopLevelDomain;
+    if (url != null && !TextUtils.isEmpty(url.scheme()) && "https".equals(url.scheme())) {
+      ParsedDomain parsedDomain = ParsedDomain.fromUrl(linkUrl);
+      return isLegalUrl(parsedDomain) &&
+             !INVALID_TOP_LEVEL_DOMAINS.contains(parsedDomain.topLevelDomain);
     } else {
       return false;
     }
+  }
+
+  private static boolean isLegalUrl(@Nullable ParsedDomain parsedDomain) {
+    return parsedDomain != null &&
+           (ALL_ASCII_PATTERN.matcher(parsedDomain.cleanedDomain).matches() ||
+            ALL_NON_ASCII_PATTERN.matcher(parsedDomain.cleanedDomain).matches());
+  }
+
+  public static boolean isLegalUrl(@NonNull String url) {
+    ParsedDomain parsedDomain = ParsedDomain.fromUrl(url);
+    return isLegalUrl(parsedDomain);
   }
 
   public static @NonNull OpenGraph parseOpenGraphFields(@Nullable String html) {
@@ -176,6 +164,34 @@ public final class LinkPreviewUtil {
       return domain.substring(periodIndex + 1);
     } else {
       return null;
+    }
+  }
+
+  private static final class ParsedDomain {
+    public final String domain;
+    public final String cleanedDomain;
+    public final String topLevelDomain;
+
+    public ParsedDomain(@NonNull String domain, @NonNull String cleanedDomain, @Nullable String topLevelDomain) {
+      this.domain         = domain;
+      this.cleanedDomain  = cleanedDomain;
+      this.topLevelDomain = topLevelDomain;
+    }
+
+    public static @Nullable ParsedDomain fromUrl(@NonNull String url) {
+      if (ILLEGAL_CHARACTERS_PATTERN.matcher(url).find()) {
+        return null;
+      }
+
+      Matcher matcher = DOMAIN_PATTERN.matcher(url);
+      if (!matcher.matches()) {
+        return null;
+      }
+
+      String domain         = matcher.group(2);
+      String cleanedDomain  = domain.replaceAll("\\.", "");
+      String topLevelDomain = parseTopLevelDomain(domain);
+      return new ParsedDomain(domain, cleanedDomain, topLevelDomain);
     }
   }
 
