@@ -35,7 +35,7 @@ abstract class KeyboardEntryDialogFragment(@LayoutRes contentLayoutId: Int) :
       dialog.window?.setDimAmount(0f)
     }
 
-    dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+    dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE or WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
 
     return dialog
   }

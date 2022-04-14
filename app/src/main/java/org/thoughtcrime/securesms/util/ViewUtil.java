@@ -52,17 +52,10 @@ public final class ViewUtil {
   }
 
   public static void focusAndMoveCursorToEndAndOpenKeyboard(@NonNull EditText input) {
-    input.requestFocus();
-
     int numberLength = input.getText().length();
     input.setSelection(numberLength, numberLength);
 
-    InputMethodManager imm = (InputMethodManager) input.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-    imm.showSoftInput(input, InputMethodManager.SHOW_IMPLICIT);
-
-    if (!imm.isAcceptingText()) {
-      imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.HIDE_IMPLICIT_ONLY);
-    }
+    focusAndShowKeyboard(input);
   }
 
   public static void focusAndShowKeyboard(@NonNull View view) {
