@@ -128,6 +128,7 @@ import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
+import org.thoughtcrime.securesms.util.LinkUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -2702,7 +2703,7 @@ public final class MessageContentProcessor {
       Optional<String>     description   = Optional.ofNullable(preview.getDescription());
       boolean              hasTitle      = !TextUtils.isEmpty(title.orElse(""));
       boolean              presentInBody = url.isPresent() && urlsInMessage.containsUrl(url.get());
-      boolean              validDomain   = url.isPresent() && LinkPreviewUtil.isValidPreviewUrl(url.get());
+      boolean              validDomain   = url.isPresent() && LinkUtil.isValidPreviewUrl(url.get());
 
       if (hasTitle && (presentInBody || isStoryEmbed) && validDomain) {
         LinkPreview linkPreview = new LinkPreview(url.get(), title.orElse(""), description.orElse(""), preview.getDate(), thumbnail);

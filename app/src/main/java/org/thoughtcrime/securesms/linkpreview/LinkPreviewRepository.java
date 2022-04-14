@@ -11,6 +11,7 @@ import androidx.core.util.Consumer;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import org.signal.core.util.Hex;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidMessageException;
@@ -45,8 +46,8 @@ import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.ByteUnit;
-import org.signal.core.util.Hex;
 import org.thoughtcrime.securesms.util.ImageCompressionUtil;
+import org.thoughtcrime.securesms.util.LinkUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.OkHttpUtil;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
@@ -95,7 +96,7 @@ public class LinkPreviewRepository {
 
     CompositeRequestController compositeController = new CompositeRequestController();
 
-    if (!LinkPreviewUtil.isValidPreviewUrl(url)) {
+    if (!LinkUtil.isValidPreviewUrl(url)) {
       Log.w(TAG, "Tried to get a link preview for a non-whitelisted domain.");
       callback.onError(Error.PREVIEW_NOT_AVAILABLE);
       return compositeController;
@@ -164,7 +165,7 @@ public class LinkPreviewRepository {
         Optional<String> imageUrl    = openGraph.getImageUrl();
         long             date        = openGraph.getDate();
 
-        if (imageUrl.isPresent() && !LinkPreviewUtil.isValidPreviewUrl(imageUrl.get())) {
+        if (imageUrl.isPresent() && !LinkUtil.isValidPreviewUrl(imageUrl.get())) {
           Log.i(TAG, "Image URL was invalid or for a non-whitelisted domain. Skipping.");
           imageUrl = Optional.empty();
         }
