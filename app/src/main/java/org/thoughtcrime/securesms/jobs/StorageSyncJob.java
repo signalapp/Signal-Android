@@ -448,8 +448,10 @@ public class StorageSyncJob extends BaseJob {
             if (record.getDistributionListId() != null) {
               records.add(StorageSyncModels.localToRemoteRecord(record));
             } else {
-              throw new MissingRecipientModelError("Missing local recipient model! Type: " + id.getType());
+              throw new MissingRecipientModelError("Missing local recipient model (no DistributionListId)! Type: " + id.getType());
             }
+          } else {
+            throw new MissingRecipientModelError("Missing local recipient model! Type: " + id.getType());
           }
           break;
         default:
