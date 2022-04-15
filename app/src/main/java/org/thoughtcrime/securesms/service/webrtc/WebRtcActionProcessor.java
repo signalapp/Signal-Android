@@ -78,7 +78,7 @@ import static org.thoughtcrime.securesms.service.webrtc.WebRtcData.ReceivedAnswe
  */
 public abstract class WebRtcActionProcessor {
 
-  public static final int AUDIO_LEVELS_INTERVAL = 200;
+  @Nullable public static final Integer AUDIO_LEVELS_INTERVAL = null;
 
   protected final Context          context;
   protected final WebRtcInteractor webRtcInteractor;
