@@ -19,7 +19,7 @@
         app:layout_constraintBottom_toBottomOf="@id/card_subtext_line2"
         app:layout_constraintEnd_toEndOf="@id/card_name"
         app:layout_constraintStart_toStartOf="@id/card_avatar"
-        app:layout_constraintTop_toTopOf="@id/card_avatar" />
+        app:layout_constraintTop_toTopOf="@id/card_name" />
 
     <TextView
         android:id="@+id/card_title"
@@ -50,13 +50,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
         android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
         app:layout_constraintBottom_toTopOf="@id/card_subtext_line1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/card_avatar"
-        app:layout_constraintTop_toTopOf="@id/card_avatar"
+        app:layout_constraintTop_toBottomOf="@id/card_title"
         app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_chainStyle="packed"
         tools:text="Michelle Tyler" />
 
     <TextView
@@ -71,7 +73,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/card_avatar"
         app:layout_constraintTop_toBottomOf="@id/card_name"
-        tools:text="Line 1 sample text." />
+        tools:text="@tools:sample/lorem/random" />
 
     <TextView
         android:id="@+id/card_subtext_line2"
@@ -81,11 +83,18 @@
         android:layout_marginEnd="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@color/signal_text_secondary"
-        app:layout_constraintBottom_toBottomOf="@id/card_avatar"
+        app:layout_constraintBottom_toTopOf="@+id/card_action_button_barrier"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/card_avatar"
         app:layout_constraintTop_toBottomOf="@id/card_subtext_line1"
-        tools:text="Line 2 can be multiple lines and should gracefully handle being broken up." />
+        tools:text="@tools:sample/lorem/random" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/card_action_button_barrier"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="card_primary_action_button,card_secondary_action_button" />
 
     <Button
         android:id="@+id/card_primary_action_button"
