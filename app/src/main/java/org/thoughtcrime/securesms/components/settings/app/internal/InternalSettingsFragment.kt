@@ -331,10 +331,10 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       dividerPref()
 
-      sectionHeaderPref(R.string.preferences__internal_calling)
+      sectionHeaderPref(R.string.preferences__internal_calling_server)
 
       radioPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_calling_default),
+        title = DSLSettingsText.from(R.string.preferences__internal_calling_server_default),
         summary = DSLSettingsText.from(BuildConfig.SIGNAL_SFU_URL),
         isChecked = state.callingServer == BuildConfig.SIGNAL_SFU_URL,
         onClick = {
@@ -345,7 +345,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       BuildConfig.SIGNAL_SFU_INTERNAL_NAMES.zip(BuildConfig.SIGNAL_SFU_INTERNAL_URLS)
         .forEach { (name, server) ->
           radioPref(
-            title = DSLSettingsText.from(requireContext().getString(R.string.preferences__internal_calling_s_server, name)),
+            title = DSLSettingsText.from(requireContext().getString(R.string.preferences__internal_calling_server_s, name)),
             summary = DSLSettingsText.from(server),
             isChecked = state.callingServer == server,
             onClick = {
@@ -354,14 +354,23 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
           )
         }
 
-      sectionHeaderPref(R.string.preferences__internal_audio)
+      sectionHeaderPref(R.string.preferences__internal_calling)
 
       radioListPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_audio_processing_method),
+        title = DSLSettingsText.from(R.string.preferences__internal_calling_audio_processing_method),
         listItems = CallManager.AudioProcessingMethod.values().map { it.name }.toTypedArray(),
-        selected = CallManager.AudioProcessingMethod.values().indexOf(state.audioProcessingMethod),
+        selected = CallManager.AudioProcessingMethod.values().indexOf(state.callingAudioProcessingMethod),
         onSelected = {
-          viewModel.setInternalAudioProcessingMethod(CallManager.AudioProcessingMethod.values()[it])
+          viewModel.setInternalCallingAudioProcessingMethod(CallManager.AudioProcessingMethod.values()[it])
+        }
+      )
+
+      radioListPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_calling_bandwidth_mode),
+        listItems = CallManager.BandwidthMode.values().map { it.name }.toTypedArray(),
+        selected = CallManager.BandwidthMode.values().indexOf(state.callingBandwidthMode),
+        onSelected = {
+          viewModel.setInternalCallingBandwidthMode(CallManager.BandwidthMode.values()[it])
         }
       )
 

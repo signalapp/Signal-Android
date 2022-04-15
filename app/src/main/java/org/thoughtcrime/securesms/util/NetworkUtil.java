@@ -35,6 +35,10 @@ public final class NetworkUtil {
   }
 
   public static @NonNull CallManager.BandwidthMode getCallingBandwidthMode(@NonNull Context context, @NonNull PeerConnection.AdapterType networkAdapter) {
+    if (SignalStore.internalValues().callingBandwidthMode() != CallManager.BandwidthMode.NORMAL) {
+      return SignalStore.internalValues().callingBandwidthMode();
+    }
+    
     return useLowBandwidthCalling(context, networkAdapter) ? CallManager.BandwidthMode.LOW : CallManager.BandwidthMode.NORMAL;
   }
 

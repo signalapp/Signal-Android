@@ -13,8 +13,8 @@ object AudioProcessingMethodSelector {
 
   @JvmStatic
   fun get(): AudioProcessingMethod {
-    if (SignalStore.internalValues().audioProcessingMethod() != AudioProcessingMethod.Default) {
-      return SignalStore.internalValues().audioProcessingMethod()
+    if (SignalStore.internalValues().callingAudioProcessingMethod() != AudioProcessingMethod.Default) {
+      return SignalStore.internalValues().callingAudioProcessingMethod()
     }
 
     val useAec3: Boolean = FeatureFlags.useAec3()

@@ -91,8 +91,13 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
-  fun setInternalAudioProcessingMethod(method: CallManager.AudioProcessingMethod) {
-    preferenceDataStore.putInt(InternalValues.AUDIO_PROCESSING_METHOD, method.ordinal)
+  fun setInternalCallingAudioProcessingMethod(method: CallManager.AudioProcessingMethod) {
+    preferenceDataStore.putInt(InternalValues.CALLING_AUDIO_PROCESSING_METHOD, method.ordinal)
+    refresh()
+  }
+
+  fun setInternalCallingBandwidthMode(bandwidthMode: CallManager.BandwidthMode) {
+    preferenceDataStore.putInt(InternalValues.CALLING_BANDWIDTH_MODE, bandwidthMode.ordinal)
     refresh()
   }
 
@@ -121,7 +126,8 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     disableAutoMigrationNotification = SignalStore.internalValues().disableGv1AutoMigrateNotification(),
     allowCensorshipSetting = SignalStore.internalValues().allowChangingCensorshipSetting(),
     callingServer = SignalStore.internalValues().groupCallingServer(),
-    audioProcessingMethod = SignalStore.internalValues().audioProcessingMethod(),
+    callingAudioProcessingMethod = SignalStore.internalValues().callingAudioProcessingMethod(),
+    callingBandwidthMode = SignalStore.internalValues().callingBandwidthMode(),
     useBuiltInEmojiSet = SignalStore.internalValues().forceBuiltInEmoji(),
     emojiVersion = null,
     removeSenderKeyMinimium = SignalStore.internalValues().removeSenderKeyMinimum(),
