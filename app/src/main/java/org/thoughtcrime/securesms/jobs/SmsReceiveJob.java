@@ -117,7 +117,7 @@ public class SmsReceiveJob extends BaseJob {
       }
     }
 
-    if (message.isPresent() && SignalStore.account().getE164() != null && message.get().getSender().equals(Recipient.self().getId())) {
+    if (message.isPresent() && isMessageFromSelf(message.get()) && !SignalStore.settings().isSmsMmsFromSelfAllowed()) {
       Log.w(TAG, "Received an SMS from ourselves! Ignoring.");
     } else if (message.isPresent() && !isBlocked(message.get())) {
       Optional<InsertResult> insertResult = storeMessage(message.get());
@@ -141,6 +141,10 @@ public class SmsReceiveJob extends BaseJob {
   public boolean onShouldRetry(@NonNull Exception exception) {
     return exception instanceof MigrationPendingException ||
            exception instanceof RetryLaterException;
+  }
+
+  private boolean isMessageFromSelf(IncomingTextMessage message) {
+    return SignalStore.account().getE164() != null && message.getSender().equals(Recipient.self().getId());
   }
 
   private boolean isBlocked(IncomingTextMessage message) {

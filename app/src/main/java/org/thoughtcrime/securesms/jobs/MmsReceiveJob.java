@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Util;
@@ -73,7 +74,7 @@ public class MmsReceiveJob extends BaseJob {
 
     if (isNotification(pdu) && isBlocked(pdu)) {
       Log.w(TAG, "Received an MMS from a blocked user. Ignoring.");
-    } else if (isNotification(pdu) && isSelf(pdu)) {
+    } else if (isNotification(pdu) && isSelf(pdu) && !SignalStore.settings().isSmsMmsFromSelfAllowed()) {
       Log.w(TAG, "Received an MMS from ourselves! Ignoring.");
     } else if (isNotification(pdu)) {
       MessageDatabase  database           = SignalDatabase.mms();
