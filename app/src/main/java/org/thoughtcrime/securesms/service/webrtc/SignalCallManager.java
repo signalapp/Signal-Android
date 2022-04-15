@@ -143,7 +143,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   public @NonNull Flowable<WebRtcEphemeralState> ephemeralStates() {
-    return ephemeralStateStore.getStateFlowable();
+    return ephemeralStateStore.getStateFlowable().distinctUntilChanged();
   }
 
   @NonNull CallManager getRingRtcCallManager() {
