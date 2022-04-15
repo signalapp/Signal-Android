@@ -80,6 +80,8 @@ class ConversationListViewModel extends ViewModel {
   private SearchResult activeSearchResult;
   private int          pinnedCount;
 
+  private boolean contextMenuVisible = false;
+
   private ConversationListViewModel(@NonNull Application application, @NonNull SearchRepository searchRepository, boolean isArchived) {
     this.megaphone                      = new MutableLiveData<>();
     this.searchResult                   = new MutableLiveData<>();
@@ -170,6 +172,14 @@ class ConversationListViewModel extends ViewModel {
     }
 
     coldStart = false;
+  }
+
+  boolean isContextMenuVisible() {
+    return contextMenuVisible;
+  }
+
+  void setContextMenuVisible(boolean visible) {
+    contextMenuVisible = visible;
   }
 
   @NonNull Set<Conversation> currentSelectedConversations() {
