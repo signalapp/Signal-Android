@@ -4,8 +4,10 @@ import android.animation.ValueAnimator;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.os.Build;
 import android.os.Parcel;
 import android.view.animation.Interpolator;
 
@@ -181,6 +183,7 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
     private final RectF  textBounds              = new RectF();
     private final RectF  hitBounds               = new RectF();
     private final RectF  modeBounds              = new RectF();
+    private final Path   outlinerPath            = new Path();
 
     private String text;
     private int    selStart;
@@ -359,7 +362,15 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
       if (mode == Mode.OUTLINE) {
         int modeAlpha = modePaint.getAlpha();
         modePaint.setAlpha(rendererContext.getAlpha(alpha));
-        rendererContext.canvas.drawText(text, 0, 0, modePaint);
+
+        if (Build.VERSION.SDK_INT >= 31) {
+          outlinerPath.reset();
+          modePaint.getTextPath(text, 0, text.length(), 0, 0, outlinerPath);
+          outlinerPath.op(outlinerPath, Path.Op.INTERSECT);
+          rendererContext.canvas.drawPath(outlinerPath, modePaint);
+        } else {
+          rendererContext.canvas.drawText(text, 0, 0, modePaint);
+        }
         modePaint.setAlpha(modeAlpha);
       }
 
