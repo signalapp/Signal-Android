@@ -1104,6 +1104,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       return true;
     }
 
+    if (viewModel.isContextMenuVisible()) {
+      return true;
+    }
+
     view.setSelected(true);
 
     Collection<Long> id = Collections.singleton(conversation.getThreadRecord().getThreadId());
@@ -1149,10 +1153,12 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         .onDismiss(() -> {
           view.setSelected(false);
           list.suppressLayout(false);
+          viewModel.setContextMenuVisible(false);
         })
         .show(items);
 
     list.suppressLayout(true);
+    viewModel.setContextMenuVisible(true);
 
     return true;
   }
