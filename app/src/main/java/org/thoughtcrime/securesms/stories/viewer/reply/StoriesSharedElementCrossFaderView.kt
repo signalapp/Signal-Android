@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
+import kotlin.reflect.KProperty
 
 class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
   context: Context,
@@ -40,10 +41,10 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
   private val targetView: ImageView = findViewById(R.id.target_image)
   private val targetBlurView: ImageView = findViewById(R.id.target_image_blur)
 
-  private var isSourceReady: Boolean = false
-  private var isSourceBlurReady: Boolean = false
-  private var isTargetReady: Boolean = false
-  private var isTargetBlurReady: Boolean = false
+  private var isSourceReady: Boolean by NotifyIfReadyDelegate(false)
+  private var isSourceBlurReady: Boolean by NotifyIfReadyDelegate(false)
+  private var isTargetReady: Boolean by NotifyIfReadyDelegate(false)
+  private var isTargetBlurReady: Boolean by NotifyIfReadyDelegate(false)
 
   private var latestSource: Any? = null
   private var latestTarget: Any? = null
@@ -62,7 +63,6 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
       .addListener(
         OnReadyListener {
           isSourceReady = true
-          notifyIfReady()
         }
       )
       .placeholder(storyTextPostModel.getPlaceholder())
@@ -86,7 +86,6 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
       .addListener(
         OnReadyListener {
           isSourceReady = true
-          notifyIfReady()
         }
       )
       .dontAnimate()
@@ -102,7 +101,6 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
         .addListener(
           OnReadyListener {
             isSourceBlurReady = true
-            notifyIfReady()
           }
         )
         .dontAnimate()
@@ -135,7 +133,6 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
       .addListener(
         OnReadyListener {
           isTargetReady = true
-          notifyIfReady()
         }
       )
       .dontAnimate()
@@ -159,7 +156,6 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
       .addListener(
         OnReadyListener {
           isTargetReady = true
-          notifyIfReady()
         }
       )
       .dontAnimate()
@@ -175,7 +171,6 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
         .addListener(
           OnReadyListener {
             isTargetBlurReady = true
-            notifyIfReady()
           }
         )
         .dontAnimate()
@@ -239,6 +234,17 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
     animate().alpha(0f)
 
     callback?.onAnimationFinished()
+  }
+
+  private inner class NotifyIfReadyDelegate(var value: Boolean) {
+    operator fun getValue(storiesSharedElementCrossFaderView: StoriesSharedElementCrossFaderView, property: KProperty<*>): Boolean {
+      return value
+    }
+
+    operator fun setValue(storiesSharedElementCrossFaderView: StoriesSharedElementCrossFaderView, property: KProperty<*>, b: Boolean) {
+      value = b
+      notifyIfReady()
+    }
   }
 
   interface Callback {
