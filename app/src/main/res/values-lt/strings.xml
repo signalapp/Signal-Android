@@ -547,7 +547,7 @@
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Klaida, gaunant pilnos raiškos GIF</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
-  <string name="GiphyFragmentPagerAdapter_stickers">Paveiksliukai</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">Lipdukai</string>
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">Pridėti narį?</string>
   <string name="AddToGroupActivity_add_s_to_s">Pridėti naudotoją „%1$s“ į „%2$s“?</string>
@@ -1204,6 +1204,12 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Jūs išsiuntėte prašymą prisijungti prie grupės.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s paprašė prisijungti per grupės nuorodą.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="one">%1$s paprašė ir panaikino savo prašymą prisijungti per grupės nuorodą.</item>
+    <item quantity="few">%1$s paprašė ir panaikino %2$d savo prašymus prisijungti per grupės nuorodą.</item>
+    <item quantity="many">%1$s paprašė ir panaikino %2$d savo prašymų prisijungti per grupės nuorodą.</item>
+    <item quantity="other">%1$s paprašė ir panaikino %2$d savo prašymą prisijungti per grupės nuorodą.</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s patvirtino jūsų prašymą prisijungti prie grupės.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s patvirtino naudotojo %2$s prašymą prisijungti prie grupės.</string>
@@ -1734,7 +1740,9 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Tai visiems laikams ištrins šią žinutę.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s naudotojui %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Jūs siuntėte gavėjui %1$s</string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s siuntė jums</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Medija daugiau nebeprieinama.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nepavyksta rasti programėlės, galinčios bendrinti šią mediją.</string>
   <!--MessageNotifier-->
@@ -1880,6 +1888,12 @@
     <item quantity="other">%1$d narys</item>
   </plurals>
   <!--Displays number of viewers for a story-->
+  <plurals name="contact_selection_list_item__number_of_viewers">
+    <item quantity="one">%1$d žiūrovas</item>
+    <item quantity="few">%1$d žiūrovai</item>
+    <item quantity="many">%1$d žiūrovų</item>
+    <item quantity="other">%1$d žiūrovas</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal žinutė</string>
   <string name="conversation_activity__type_message_sms_insecure">Neapsaugota SMS</string>
@@ -1942,6 +1956,7 @@
   <!--Author formatting for group stories-->
   <string name="QuoteView_s_story">%1$s · Istorija</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Jūs · Istorija</string>
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">Daugiau nebeprieinama</string>
   <!--conversation_fragment-->
@@ -2061,7 +2076,9 @@
   <string name="message_recipients_list_item__view">RODYTI</string>
   <string name="message_recipients_list_item__resend">SIŲSTI IŠ NAUJO</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
+  <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Išsiuntimo laiko žyma nukopijuota į iškarpinę.</string>
   <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Čia bus rodomi jūsų istorijos atnaujinimai.</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s prisijungė prie grupės.</item>
@@ -3029,6 +3046,7 @@
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">„%1$s“ galės taisyti šią grupę ir jos narių sąrašą.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">Pašalinti %1$s iš grupės?</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Pašalinti %1$s iš grupės? Šis žmogus nebegalės iš naujo prisijungti per grupės nuorodą.</string>
   <string name="RecipientBottomSheet_remove">Šalinti</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Nukopijuota į iškarpinę</string>
   <string name="GroupRecipientListItem_admin">Administratorius</string>
@@ -3641,7 +3659,7 @@
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Tapti rėmėju</string>
   <string name="ImageView__badge">Ženkliukas</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal veikia dėka tokių žmonių kaip jūs.</string>
-  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Palaikykite technologiją, kuri yra sukurta jums — o ne jūsų duomenims — prisijungdami prie ją remiančių žmonių bendruomenės.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Palaikykite technologiją, kuri yra sukurta jums – o ne jūsų duomenims – prisijungdami prie ją remiančių žmonių bendruomenės.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Palaikykite technologiją, kuri yra sukurta jums, o ne jūsų duomenims, ir prisijunkite prie Signal remiančios bendruomenės.</string>
   <string name="SubscribeFragment__currency">Valiuta</string>
   <string name="SubscribeFragment__more_payment_options">Daugiau mokėjimo parinkčių</string>
@@ -3678,6 +3696,7 @@
   <string name="ManageDonationsFragment__my_support">Mano palaikymas</string>
   <string name="ManageDonationsFragment__manage_subscription">Tvarkyti prenumeratą</string>
   <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__donation_receipts">Paaukojimo kvitai</string>
   <string name="ManageDonationsFragment__badges">Ženkliukai</string>
   <string name="ManageDonationsFragment__subscription_faq">DUK apie prenumeratą</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Klaida gaunant prenumeratą.</string>
@@ -3926,6 +3945,7 @@
   <!--Donation receipts amount title-->
   <string name="DonationReceiptDetailsFragment__amount">Suma</string>
   <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Dėkojame, kad remiate Signal. Jūsų įnašas padės skatinti misiją kurti atvirojo kodo privatumo technologiją, kuri apsaugo žodžio laisvę ir įgalina saugų bendravimą milijonams žmonių visame pasaulyje. Jei gyvenate Jungtinėse Valstijose, išsaugokite šį kvitą, kad turėtumėte jį savo mokestinių duomenų reikmėms. Signal technologijų fondas yra Jungtinėse Valstijose įsteigta, pagal vidaus mokesčių kodekso 501c3 sekciją neapmokestinama, pelno nesiekianti organizacija. Mūsų federalinis mokesčių ID yra 82–4506840.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--region "Stories Tab"-->
@@ -3940,6 +3960,7 @@
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Pridėti istoriją</string>
   <!--Displayed when there are no stories to display-->
+  <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Nėra jokių paskiausių atnaujinimų, kuriuos rodyti. Bakstelėkite „+“ norėdami pridėti į savo istoriją.</string>
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Slėpti istoriją</string>
   <!--Context menu option to unhide a story-->
@@ -3957,6 +3978,7 @@
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Slėpti istoriją?</string>
   <!--Message of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__new_story_updates">Nauji istorijos atnaujinimai, kuriuos siųs %1$s, daugiau nebebus rodomi istorijų sąrašo viršuje.</string>
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">Slėpti</string>
   <!--Displayed in Snackbar after story is hidden-->
@@ -3964,14 +3986,27 @@
   <!--Section header for hidden stories-->
   <string name="StoriesLandingFragment__hidden_stories">Paslėptos istorijos</string>
   <!--Displayed on each sent story under My Stories-->
+  <plurals name="MyStories__d_views">
+    <item quantity="one">%1$d peržiūra</item>
+    <item quantity="few">%1$d peržiūros</item>
+    <item quantity="many">%1$d peržiūrų</item>
+    <item quantity="other">%1$d peržiūra</item>
+  </plurals>
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">Persiųsti</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
+  <string name="MyStories__ss_story">Istorija, kurią paskelbė %1$s</string>
   <!--Title of dialog to confirm deletion of story-->
   <string name="MyStories__delete_story">Ištrinti istoriją?</string>
   <!--Message of dialog to confirm deletion of story-->
   <string name="MyStories__this_story_will_be_deleted">Ši istorija bus ištrinta jums ir tiems, kurie ją gavo.</string>
   <!--Displayed at bottom of story viewer when current item has views-->
+  <plurals name="StoryViewerFragment__d_views">
+    <item quantity="one">%1$d peržiūra</item>
+    <item quantity="few">%1$d peržiūros</item>
+    <item quantity="many">%1$d peržiūrų</item>
+    <item quantity="other">%1$d peržiūra</item>
+  </plurals>
   <!--Displayed at bottom of story viewer when current item has replies-->
   <plurals name="StoryViewerFragment__d_replies">
     <item quantity="one">%1$d atsakymas</item>
@@ -4000,6 +4035,7 @@
   <!--Description of action for reaction button-->
   <string name="StoryReplyComposer__react_to_this_story">Reaguoti į šią istoriją</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
+  <string name="StoryReplyComposer__replying_privately_to_s">Atsakoma privačiai naudotojui %1$s</string>
   <!--Context menu item to privately reply to a story response-->
   <string name="StoryGroupReplyItem__private_reply">Privatus atsakymas</string>
   <!--Context menu item to copy a story response-->
@@ -4030,14 +4066,23 @@
   <!--Switchable option for allowing replies and reactions on your stories-->
   <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Leisti atsakymus ir reakcijas</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
+  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Leisti žmonėms, kurie gali peržiūrėti jūsų istoriją, reaguoti ir atsakyti</string>
   <!--Note about default sharing-->
+  <string name="MyStorySettingsFragment__hide_your_story_from">Slėpkite savo istoriją nuo konkrečių žmonių. Pagal numatymą, jūsų istorija yra bendrinama su jūsų %1$s</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
+  <string name="MyStorySettingsFragment__signal_connections">Signal ryšiais.</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Signal ryšiai</strong> yra žmonės, kuriais nusprendėte pasitikėti:</string>
   <!--Signal connections sheet bullet point 1-->
+  <string name="SignalConnectionsBottomSheet__starting_a_conversation">Pradėdami su jais pokalbį</string>
   <!--Signal connections sheet bullet point 2-->
+  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Priimdami iš jų žinutės užklausą</string>
   <!--Signal connections sheet bullet point 3-->
+  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Turėdami juos savo sistemos adresatų sąraše</string>
   <!--Note at the bottom of the Signal connections sheet-->
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Jūsų ryšiai gali matyti jūsų vardą ir nuotrauką bei matyti įrašus „Jūsų istorijoje“, nebent ją nuo jų paslėpsite.</string>
   <!--Clickable option to add a viewer to a private story-->
+  <string name="PrivateStorySettingsFragment__add_viewer">Pridėti žiūrovą</string>
   <!--Clickable option to delete a custom story-->
   <string name="PrivateStorySettingsFragment__delete_private_story">Ištrinti privačią istoriją</string>
   <!--Dialog title when attempting to remove someone from a private story-->
@@ -4063,6 +4108,7 @@
   <!--Displayed in text post creator when prompting user to enter text-->
   <string name="TextStoryPostTextEntryFragment__add_text">Pridėti tekstą</string>
   <!--Content description for \'done\' button when adding text to a story post-->
+  <string name="TextStoryPostTextEntryFragment__done_adding_text">Teksto pridėjimas atliktas</string>
   <!--Text label for media selection toggle-->
   <string name="MediaSelectionActivity__text">Tekstas</string>
   <!--Camera label for media selection toggle-->
@@ -4070,6 +4116,7 @@
   <!--Hint for entering a URL for a text post-->
   <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Įrašykite ar įdėkite URL adresą</string>
   <!--Displayed prior to the user entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Bendrinti nuorodą su jūsų istorijos žiūrovais</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Ieškoti</string>
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
@@ -4079,20 +4126,32 @@
   <!--Dialog title for first time adding something to a story-->
   <string name="StoryDialogs__add_to_story_q">Pridėti į istoriją?</string>
   <!--Dialog message for first time adding something to a story-->
+  <string name="StoryDialogs__adding_content">Pridėję turinio į savo istoriją, leisite Signal ryšiams 24 valandas jį peržiūrinėti. Asmenis, galinčius žiūrėti jūsų istoriją, galite keisti Nustatymuose.</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <string name="StoryDialogs__add_to_story">Pridėti į istoriją</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <string name="StoryDialogs__edit_viewers">Keisti žiūrovus</string>
   <!--Privacy Settings toggle title for stories-->
+  <string name="PrivacySettingsFragment__share_and_view_stories">Bendrinti ir žiūrėti istorijas</string>
   <!--Privacy Settings toggle summary for stories-->
+  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Išjungę šią parinktį daugiau nebegalėsite bendrinti ar žiūrėti istorijų.</string>
   <!--New story viewer selection screen title-->
+  <string name="CreateStoryViewerSelectionFragment__choose_viewers">Pasirinkite žiūrovus</string>
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">Kitas</string>
   <!--New story viewer selection screen title as recipients are selected-->
+  <plurals name="SelectViewersFragment__d_viewers">
+    <item quantity="one">%1$d žiūrovas</item>
+    <item quantity="few">%1$d žiūrovai</item>
+    <item quantity="many">%1$d žiūrovų</item>
+    <item quantity="other">%1$d žiūrovas</item>
+  </plurals>
   <!--Name story screen title-->
   <string name="CreateStoryWithViewersFragment__name_story">Suteikite istorijai pavadinimą</string>
   <!--Name story screen label hint-->
   <string name="CreateStoryWithViewersFragment__story_name_required">Istorijos pavadinimas (būtinas)</string>
   <!--Name story screen viewers subheading-->
+  <string name="CreateStoryWithViewersFragment__viewers">Žiūrovai</string>
   <!--Name story screen create button label-->
   <string name="CreateStoryWithViewersFragment__create">Sukurti</string>
   <!--Name story screen error when save attempted with no label-->
@@ -4136,8 +4195,11 @@
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Išjungti</string>
   <!--Conversation Item label for when you react to someone else\'s story-->
+  <string name="ConversationItem__you_reacted_to_s_story">Jūs sureagavote į istoriją, kurią paskelbė %1$s</string>
   <!--Conversation Item label for reactions to your story-->
+  <string name="ConversationItem__reacted_to_your_story">Sureagavo į jūsų istoriją</string>
   <!--Conversation Item label for reactions to an unavailable story-->
+  <string name="ConversationItem__reacted_to_a_story">Sureagavo į istoriją</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Rodyti daugiau</string>

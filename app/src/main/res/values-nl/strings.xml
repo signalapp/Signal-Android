@@ -3463,7 +3463,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Ondersteun technologie die is gemaakt voor jou—niet voor het verzamelen van je gegevens—door mee te doen met de gemeenschap die het mogelijk maakt.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Ondersteun technologie die is gemaakt voor jou, niet voor het verzamelen van je gegevens, door één van de donateurs te worden die Signal mogelijk maken.</string>
   <string name="SubscribeFragment__currency">Valuta</string>
-  <string name="SubscribeFragment__more_payment_options">Meer overschrijvingsopties (maar via deze opties krijg je geen badge)</string>
+  <string name="SubscribeFragment__more_payment_options">Meer overschrijvingsopties (maar via die opties krijg je geen badge)</string>
   <string name="SubscribeFragment__cancel_subscription">Maandelijkse donaties annuleren</string>
   <string name="SubscribeFragment__confirm_cancellation">Maandelijkse donaties annuleren?</string>
   <string name="SubscribeFragment__you_wont_be_charged_again">Er zal niet opnieuw geld worden afgeschreven. Je badge zal worden verwijderd van je profiel wanneer je laatste betalingsperiode is afgelopen.</string>
