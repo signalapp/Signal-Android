@@ -2,9 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="1916px"
+    android:layout_width="2180px"
     android:layout_height="wrap_content"
     android:background="@color/core_white"
+    android:paddingHorizontal="132px"
     tools:ignore="PxUsage">
 
     <ImageView
@@ -42,8 +43,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="148px"
         android:text="@string/DonationReceiptDetailsFragment__donation_receipt"
-        android:textSize="80px"
         android:textColor="@color/core_grey_90"
+        android:textSize="80px"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/divider_1" />
 
@@ -53,8 +54,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="96px"
         android:text="@string/DonationReceiptDetailsFragment__amount"
-        android:textSize="68px"
         android:textColor="@color/core_grey_90"
+        android:textSize="68px"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
@@ -63,8 +64,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="96px"
-        android:textSize="68px"
         android:textColor="@color/core_grey_90"
+        android:textSize="68px"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title"
         tools:text="$10.00" />
@@ -83,8 +84,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="88px"
         android:text="@string/DonationReceiptDetailsFragment__donation_type"
-        android:textSize="68px"
         android:textColor="@color/core_grey_90"
+        android:textSize="68px"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/divider_2" />
 
@@ -112,8 +113,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40px"
         android:text="@string/DonationReceiptDetailsFragment__date_paid"
-        android:textSize="68px"
         android:textColor="@color/core_grey_90"
+        android:textSize="68px"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/divider_3" />
 
