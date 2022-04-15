@@ -110,7 +110,8 @@ public final class SettingsValues extends SignalStoreValues {
                          CALL_VIBRATE_ENABLED,
                          NOTIFY_WHEN_CONTACT_JOINS_SIGNAL,
                          UNIVERSAL_EXPIRE_TIMER,
-                         SENT_MEDIA_QUALITY);
+                         SENT_MEDIA_QUALITY,
+                         SMS_MMS_FROM_SELF);
   }
 
   public @NonNull LiveData<String> getOnConfigurationSettingChanged() {
