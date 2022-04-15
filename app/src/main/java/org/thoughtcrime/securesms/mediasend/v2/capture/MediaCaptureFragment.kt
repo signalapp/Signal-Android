@@ -20,10 +20,12 @@ import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionNavigator.Companion
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.permissions.Permissions
+import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.io.FileDescriptor
 import java.util.Optional
+import java.util.concurrent.TimeUnit
 
 private val TAG = Log.tag(MediaCaptureFragment::class.java)
 
@@ -163,6 +165,10 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
 
   override fun getMediaConstraints(): MediaConstraints {
     return sharedViewModel.getMediaConstraints()
+  }
+
+  override fun getMaxVideoDuration(): Int {
+    return if (sharedViewModel.isStory()) TimeUnit.MILLISECONDS.toSeconds(Stories.MAX_VIDEO_DURATION_MILLIS).toInt() else -1
   }
 
   private fun isFirst(): Boolean {

@@ -1359,6 +1359,11 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   public void onDismissForwardSheet() {
   }
 
+  @Override
+  public boolean canSendMediaToStories() {
+    return true;
+  }
+
   public interface ConversationFragmentListener extends VoiceNoteMediaControllerOwner {
     boolean isKeyboardOpen();
     void    setThreadId(long threadId);

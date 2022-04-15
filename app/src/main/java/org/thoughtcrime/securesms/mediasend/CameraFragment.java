@@ -57,5 +57,6 @@ public interface CameraFragment {
     void onCameraCountButtonClicked();
     @NonNull LiveData<Optional<Media>> getMostRecentMediaItem();
     @NonNull MediaConstraints getMediaConstraints();
+    int getMaxVideoDuration();
   }
 }

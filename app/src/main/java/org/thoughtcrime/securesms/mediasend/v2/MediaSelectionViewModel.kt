@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
+import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.util.SingleLiveEvent
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.livedata.Store
@@ -105,6 +106,10 @@ class MediaSelectionViewModel(
     addMedia(listOf(media))
   }
 
+  fun isStory(): Boolean {
+    return store.state.isStory
+  }
+
   private fun addMedia(media: List<Media>) {
     val newSelectionList: List<Media> = linkedSetOf<Media>().apply {
       addAll(store.state.selectedMedia)
@@ -113,7 +118,7 @@ class MediaSelectionViewModel(
 
     disposables.add(
       repository
-        .populateAndFilterMedia(newSelectionList, getMediaConstraints(), store.state.maxSelection)
+        .populateAndFilterMedia(newSelectionList, getMediaConstraints(), store.state.maxSelection, store.state.isStory)
         .subscribe { filterResult ->
           if (filterResult.filteredMedia.isNotEmpty()) {
             store.update {
@@ -338,6 +343,10 @@ class MediaSelectionViewModel(
 
   fun hasSelectedMedia(): Boolean {
     return store.state.selectedMedia.isNotEmpty()
+  }
+
+  fun canShareSelectedMediaToStory(): Boolean {
+    return store.state.selectedMedia.all { MultiShareArgs.isValidStoryDuration(it) }
   }
 
   fun onRestoreState(savedInstanceState: Bundle) {

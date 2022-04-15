@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.video.VideoBitRateCalculator;
 import org.thoughtcrime.securesms.video.VideoPlayer;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class VideoEditorFragment extends Fragment implements VideoEditorHud.EventListener,
                                                              MediaSendPageFragment {
@@ -34,6 +35,7 @@ public class VideoEditorFragment extends Fragment implements VideoEditorHud.Even
   private static final String KEY_MAX_OUTPUT   = "max_output_size";
   private static final String KEY_MAX_SEND     = "max_send_size";
   private static final String KEY_IS_VIDEO_GIF = "is_video_gif";
+  private static final String KEY_MAX_DURATION = "max_duration";
 
   private final Throttler videoScanThrottle = new Throttler(150);
   private final Handler   handler           = new Handler(Looper.getMainLooper());
@@ -46,14 +48,16 @@ public class VideoEditorFragment extends Fragment implements VideoEditorHud.Even
   @Nullable private VideoEditorHud hud;
             private Runnable       updatePosition;
             private boolean        isInEdit;
-            private boolean        wasPlayingBeforeEdit;
+            private boolean wasPlayingBeforeEdit;
+            private long    maxVideoDurationUs;
 
-  public static VideoEditorFragment newInstance(@NonNull Uri uri, long maxCompressedVideoSize, long maxAttachmentSize, boolean isVideoGif) {
+  public static VideoEditorFragment newInstance(@NonNull Uri uri, long maxCompressedVideoSize, long maxAttachmentSize, boolean isVideoGif, long maxVideoDuration) {
     Bundle args = new Bundle();
     args.putParcelable(KEY_URI, uri);
     args.putLong(KEY_MAX_OUTPUT, maxCompressedVideoSize);
     args.putLong(KEY_MAX_SEND, maxAttachmentSize);
     args.putBoolean(KEY_IS_VIDEO_GIF, isVideoGif);
+    args.putLong(KEY_MAX_DURATION, maxVideoDuration);
 
     VideoEditorFragment fragment = new VideoEditorFragment();
     fragment.setArguments(args);
@@ -84,8 +88,9 @@ public class VideoEditorFragment extends Fragment implements VideoEditorHud.Even
 
     player = view.findViewById(R.id.video_player);
 
-    uri        = requireArguments().getParcelable(KEY_URI);
-    isVideoGif = requireArguments().getBoolean(KEY_IS_VIDEO_GIF);
+    uri                = requireArguments().getParcelable(KEY_URI);
+    isVideoGif         = requireArguments().getBoolean(KEY_IS_VIDEO_GIF);
+    maxVideoDurationUs = TimeUnit.MILLISECONDS.toMicros(requireArguments().getLong(KEY_MAX_DURATION));
 
     long       maxOutput  = requireArguments().getLong(KEY_MAX_OUTPUT);
     long       maxSend    = requireArguments().getLong(KEY_MAX_SEND);
@@ -117,6 +122,7 @@ public class VideoEditorFragment extends Fragment implements VideoEditorHud.Even
     } else if (MediaConstraints.isVideoTranscodeAvailable()) {
       hud = view.findViewById(R.id.video_editor_hud);
       hud.setEventListener(this);
+      clampToMaxVideoDuration(data, true);
       updateHud(data);
       if (data.durationEdited) {
         player.clip(data.startTimeUs, data.endTimeUs, autoplay);
@@ -279,11 +285,14 @@ public class VideoEditorFragment extends Fragment implements VideoEditorHud.Even
 
     boolean wasEdited      = data.durationEdited;
     boolean durationEdited = clampedStartTime > 0 || endTimeUs < totalDurationUs;
+    boolean endMoved       = data.endTimeUs != endTimeUs;
 
     data.durationEdited  = durationEdited;
     data.totalDurationUs = totalDurationUs;
     data.startTimeUs     = clampedStartTime;
     data.endTimeUs       = endTimeUs;
+
+    clampToMaxVideoDuration(data, !endMoved);
 
     if (editingComplete) {
       isInEdit = false;
@@ -336,6 +345,26 @@ public class VideoEditorFragment extends Fragment implements VideoEditorHud.Even
       player.pause();
       player.setPlaybackPosition(position);
     });
+  }
+
+  private void clampToMaxVideoDuration(@NonNull Data data, boolean clampEnd) {
+    if (!MediaConstraints.isVideoTranscodeAvailable()) {
+      return;
+    }
+
+    if ((data.endTimeUs - data.startTimeUs) <= maxVideoDurationUs) {
+      return;
+    }
+
+    data.durationEdited = true;
+
+    if (clampEnd) {
+      data.endTimeUs = data.startTimeUs + maxVideoDurationUs;
+    } else {
+      data.startTimeUs = data.endTimeUs - maxVideoDurationUs;
+    }
+
+    updateHud(data);
   }
 
   public static class Data {

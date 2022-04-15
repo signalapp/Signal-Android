@@ -371,7 +371,7 @@ class MultiselectForwardFragment :
   }
 
   private fun isSelectedMediaValidForStories(): Boolean {
-    return getMultiShareArgs().all { it.isValidForStories }
+    return requireListener<Callback>().canSendMediaToStories() && getMultiShareArgs().all { it.isValidForStories }
   }
 
   private fun isSelectedMediaValidForNonStories(): Boolean {
@@ -393,6 +393,7 @@ class MultiselectForwardFragment :
     fun setResult(bundle: Bundle)
     fun getContainer(): ViewGroup
     fun getDialogBackgroundColor(): Int
+    fun canSendMediaToStories(): Boolean = true
   }
 
   companion object {

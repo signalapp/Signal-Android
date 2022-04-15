@@ -146,6 +146,11 @@ public class AvatarSelectionActivity extends AppCompatActivity implements Camera
   }
 
   @Override
+  public int getMaxVideoDuration() {
+    return -1;
+  }
+
+  @Override
   public void onTouchEventsNeeded(boolean needed) {
   }
 

@@ -47,7 +47,12 @@ class MultiselectForwardFullScreenDialogFragment : FullScreenDialogFragment(), M
 
   override fun onSearchInputFocused() = Unit
 
+  override fun canSendMediaToStories(): Boolean {
+    return findListener<Callback>()?.canSendMediaToStories() ?: true
+  }
+
   interface Callback {
-    fun onFinishForwardAction()
+    fun onFinishForwardAction() = Unit
+    fun canSendMediaToStories(): Boolean = true
   }
 }

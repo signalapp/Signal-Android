@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchState
+import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFullScreenDialogFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.SearchConfigurationProvider
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
@@ -51,7 +52,8 @@ class MediaSelectionActivity :
   EmojiKeyboardPageFragment.Callback,
   EmojiEventListener,
   EmojiSearchFragment.Callback,
-  SearchConfigurationProvider {
+  SearchConfigurationProvider,
+  MultiselectForwardFullScreenDialogFragment.Callback {
 
   private var animateInShadowLayerValueAnimator: ValueAnimator? = null
   private var animateInTextColorValueAnimator: ValueAnimator? = null
@@ -463,5 +465,9 @@ class MediaSelectionActivity :
         putExtra(AS_TEXT_STORY, asTextStory)
       }
     }
+  }
+
+  override fun canSendMediaToStories(): Boolean {
+    return viewModel.canShareSelectedMediaToStory()
   }
 }

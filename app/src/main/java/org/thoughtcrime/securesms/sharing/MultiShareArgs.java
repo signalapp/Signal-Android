@@ -12,6 +12,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.BreakIteratorCompat;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mediasend.Media;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public final class MultiShareArgs implements Parcelable {
@@ -150,7 +152,10 @@ public final class MultiShareArgs implements Parcelable {
 
   public boolean isValidForStories() {
     return isTextStory ||
-           !media.isEmpty() && media.stream().allMatch(m -> MediaUtil.isImageOrVideoType(m.getMimeType()) && !MediaUtil.isGif(m.getMimeType())) ||
+           !media.isEmpty() && media.stream().allMatch(
+               m -> MediaUtil.isImageOrVideoType(m.getMimeType()) &&
+                    isValidStoryDuration(m)
+           )                               ||
            MediaUtil.isImageType(dataType) ||
            MediaUtil.isVideoType(dataType) ||
            isValidForTextStoryGeneration();
@@ -158,6 +163,25 @@ public final class MultiShareArgs implements Parcelable {
 
   public boolean isValidForNonStories() {
     return !isTextStory;
+  }
+
+  public static boolean isValidStoryDuration(@NonNull Media media) {
+    if (MediaUtil.isVideoType(media.getMimeType())) {
+      if (media.getDuration() > 0 && media.getDuration() <= Stories.MAX_VIDEO_DURATION_MILLIS) {
+        return true;
+      } else if (media.getTransformProperties().isPresent()) {
+        AttachmentDatabase.TransformProperties transformProperties = media.getTransformProperties().get();
+        if (transformProperties.isVideoTrim()) {
+          return transformProperties.getVideoTrimEndTimeUs() - transformProperties.getVideoTrimStartTimeUs() <= TimeUnit.MILLISECONDS.toMicros(Stories.MAX_VIDEO_DURATION_MILLIS);
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
   }
 
   public boolean isValidForTextStoryGeneration() {

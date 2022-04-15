@@ -18,10 +18,14 @@ import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
+import java.util.concurrent.TimeUnit
 
 object Stories {
 
   const val MAX_BODY_SIZE = 700
+
+  @JvmField
+  val MAX_VIDEO_DURATION_MILLIS = TimeUnit.SECONDS.toMillis(30)
 
   @JvmStatic
   fun isFeatureAvailable(): Boolean {

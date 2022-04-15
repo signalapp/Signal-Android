@@ -55,11 +55,11 @@ class MediaSelectionRepository(context: Context) {
   val uploadRepository = MediaUploadRepository(this.context)
   val isMetered: Observable<Boolean> = MeteredConnectivity.isMetered(this.context)
 
-  fun populateAndFilterMedia(media: List<Media>, mediaConstraints: MediaConstraints, maxSelection: Int): Single<MediaValidator.FilterResult> {
+  fun populateAndFilterMedia(media: List<Media>, mediaConstraints: MediaConstraints, maxSelection: Int, isStory: Boolean): Single<MediaValidator.FilterResult> {
     return Single.fromCallable {
       val populatedMedia = mediaRepository.getPopulatedMedia(context, media)
 
-      MediaValidator.filterMedia(context, populatedMedia, mediaConstraints, maxSelection)
+      MediaValidator.filterMedia(context, populatedMedia, mediaConstraints, maxSelection, isStory)
     }.subscribeOn(Schedulers.io())
   }
 

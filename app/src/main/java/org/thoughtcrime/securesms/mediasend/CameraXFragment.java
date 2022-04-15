@@ -305,6 +305,10 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
         camera.setCaptureMode(SignalCameraView.CaptureMode.MIXED);
 
         int maxDuration = VideoUtil.getMaxVideoRecordDurationInSeconds(requireContext(), controller.getMediaConstraints());
+        if (controller.getMaxVideoDuration() > 0) {
+          maxDuration = controller.getMaxVideoDuration();
+        }
+
         Log.d(TAG, "Max duration: " + maxDuration + " sec");
 
         captureButton.setVideoCaptureListener(new CameraXVideoCaptureHelper(
