@@ -49,6 +49,7 @@ public final class SettingsValues extends SignalStoreValues {
   public static final  String ENTER_KEY_SENDS                         = "settings.enter.key.sends";
   public static final  String BACKUPS_ENABLED                         = "settings.backups.enabled";
   public static final  String SMS_DELIVERY_REPORTS_ENABLED            = "settings.sms.delivery.reports.enabled";
+  public static final  String SMS_MMS_FROM_SELF                       = "settings.sms.mms.from.self";
   public static final  String WIFI_CALLING_COMPATIBILITY_MODE_ENABLED = "settings.wifi.calling.compatibility.mode.enabled";
   public static final  String MESSAGE_NOTIFICATIONS_ENABLED           = "settings.message.notifications.enabled";
   public static final  String MESSAGE_NOTIFICATION_SOUND              = "settings.message.notifications.sound";
@@ -245,6 +246,14 @@ public final class SettingsValues extends SignalStoreValues {
 
   public void setWifiCallingCompatibilityModeEnabled(boolean wifiCallingCompatibilityModeEnabled) {
     putBoolean(WIFI_CALLING_COMPATIBILITY_MODE_ENABLED, wifiCallingCompatibilityModeEnabled);
+  }
+
+  public boolean isSmsMmsFromSelfAllowed() {
+    return getBoolean(SMS_MMS_FROM_SELF, false);
+  }
+
+  public void setSmsMmsFromSelfAllowed(boolean acceptMessagesFromSelf) {
+    putBoolean(SMS_MMS_FROM_SELF, acceptMessagesFromSelf);
   }
 
   public void setMessageNotificationsEnabled(boolean messageNotificationsEnabled) {

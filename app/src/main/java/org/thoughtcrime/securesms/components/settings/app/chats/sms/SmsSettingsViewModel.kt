@@ -13,7 +13,8 @@ class SmsSettingsViewModel : ViewModel() {
     SmsSettingsState(
       useAsDefaultSmsApp = Util.isDefaultSmsProvider(ApplicationDependencies.getApplication()),
       smsDeliveryReportsEnabled = SignalStore.settings().isSmsDeliveryReportsEnabled,
-      wifiCallingCompatibilityEnabled = SignalStore.settings().isWifiCallingCompatibilityModeEnabled
+      wifiCallingCompatibilityEnabled = SignalStore.settings().isWifiCallingCompatibilityModeEnabled,
+      smsMmsFromSelfEnabled = SignalStore.settings().isSmsMmsFromSelfAllowed
     )
   )
 
@@ -27,6 +28,11 @@ class SmsSettingsViewModel : ViewModel() {
   fun setWifiCallingCompatibilityEnabled(enabled: Boolean) {
     store.update { it.copy(wifiCallingCompatibilityEnabled = enabled) }
     SignalStore.settings().isWifiCallingCompatibilityModeEnabled = enabled
+  }
+
+  fun setSmsMmsFromOwnNumberEnabled(enabled: Boolean) {
+    store.update { it.copy(smsMmsFromSelfEnabled = enabled) }
+    SignalStore.settings().isSmsMmsFromSelfAllowed = enabled
   }
 
   fun checkSmsEnabled() {

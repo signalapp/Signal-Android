@@ -73,6 +73,15 @@ class SmsSettingsFragment : DSLSettingsFragment(R.string.preferences__sms_mms) {
         }
       )
 
+      switchPref(
+        title = DSLSettingsText.from(R.string.preferences__allow_sms_mms_from_self),
+        summary = DSLSettingsText.from(R.string.preferences__allow_sms_mms_from_self_summary),
+        isChecked = state.smsMmsFromSelfEnabled,
+        onClick = {
+          viewModel.setSmsMmsFromOwnNumberEnabled(!state.smsMmsFromSelfEnabled)
+        }
+      )
+
       if (Build.VERSION.SDK_INT < 21) {
         clickPref(
           title = DSLSettingsText.from(R.string.preferences__advanced_mms_access_point_names),
