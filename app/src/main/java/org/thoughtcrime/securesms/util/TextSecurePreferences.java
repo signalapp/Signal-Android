@@ -649,7 +649,7 @@ public class TextSecurePreferences {
   }
 
   public static boolean isPasswordDisabled(Context context) {
-    return getBooleanPreference(context, DISABLE_PASSPHRASE_PREF, false);
+    return getBooleanPreference(context, DISABLE_PASSPHRASE_PREF, true);
   }
 
   public static void setPasswordDisabled(Context context, boolean disabled) {
