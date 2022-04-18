@@ -64,6 +64,6 @@ public class DonationsServiceTest {
   }
 
   private ActiveSubscription getActiveSubscription() {
-    return new ActiveSubscription(null);
+    return ActiveSubscription.EMPTY;
   }
 }

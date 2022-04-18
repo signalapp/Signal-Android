@@ -11,8 +11,10 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BadgeList
 import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
 import org.thoughtcrime.securesms.subscription.LevelUpdateOperation
 import org.thoughtcrime.securesms.subscription.Subscriber
+import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.IdempotencyKey
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
+import org.whispersystems.signalservice.internal.util.JsonUtil
 import java.util.Currency
 import java.util.Locale
 import java.util.concurrent.TimeUnit
@@ -34,6 +36,7 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     private const val DISPLAY_BADGES_ON_PROFILE = "donation.display.badges.on.profile"
     private const val SUBSCRIPTION_REDEMPTION_FAILED = "donation.subscription.redemption.failed"
     private const val SHOULD_CANCEL_SUBSCRIPTION_BEFORE_NEXT_SUBSCRIBE_ATTEMPT = "donation.should.cancel.subscription.before.next.subscribe.attempt"
+    private const val SUBSCRIPTION_CANCELATION_CHARGE_FAILURE = "donation.subscription.cancelation.charge.failure"
     private const val SUBSCRIPTION_CANCELATION_REASON = "donation.subscription.cancelation.reason"
     private const val SUBSCRIPTION_CANCELATION_TIMESTAMP = "donation.subscription.cancelation.timestamp"
     private const val SUBSCRIPTION_CANCELATION_WATERMARK = "donation.subscription.cancelation.watermark"
@@ -231,6 +234,23 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
 
   fun clearSubscriptionRedemptionFailed() {
     putBoolean(SUBSCRIPTION_REDEMPTION_FAILED, false)
+  }
+
+  fun setUnexpectedSubscriptionCancelationChargeFailure(chargeFailure: ActiveSubscription.ChargeFailure?) {
+    if (chargeFailure == null) {
+      remove(SUBSCRIPTION_CANCELATION_CHARGE_FAILURE)
+    } else {
+      putString(SUBSCRIPTION_CANCELATION_CHARGE_FAILURE, JsonUtil.toJson(chargeFailure))
+    }
+  }
+
+  fun getUnexpectedSubscriptionCancelationChargeFailure(): ActiveSubscription.ChargeFailure? {
+    val json = getString(SUBSCRIPTION_CANCELATION_CHARGE_FAILURE, null)
+    return if (json.isNullOrEmpty()) {
+      null
+    } else {
+      JsonUtil.fromJson(json, ActiveSubscription.ChargeFailure::class.java)
+    }
   }
 
   var unexpectedSubscriptionCancelationReason: String? by stringValue(SUBSCRIPTION_CANCELATION_REASON, null)

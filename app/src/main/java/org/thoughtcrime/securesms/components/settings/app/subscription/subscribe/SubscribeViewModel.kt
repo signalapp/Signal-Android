@@ -148,7 +148,7 @@ class SubscribeViewModel(
       .getActiveSubscription()
       .subscribeBy(
         onSuccess = { activeSubscriptionSubject.onNext(it) },
-        onError = { activeSubscriptionSubject.onNext(ActiveSubscription(null)) }
+        onError = { activeSubscriptionSubject.onNext(ActiveSubscription.EMPTY) }
       )
   }
 
@@ -167,6 +167,7 @@ class SubscribeViewModel(
           SignalStore.donationsValues().setLastEndOfPeriod(0L)
           SignalStore.donationsValues().clearLevelOperations()
           SignalStore.donationsValues().shouldCancelSubscriptionBeforeNextSubscribeAttempt = false
+          SignalStore.donationsValues().setUnexpectedSubscriptionCancelationChargeFailure(null)
           SignalStore.donationsValues().unexpectedSubscriptionCancelationReason = null
           SignalStore.donationsValues().unexpectedSubscriptionCancelationTimestamp = 0L
           MultiDeviceSubscriptionSyncRequestJob.enqueue()
@@ -185,6 +186,7 @@ class SubscribeViewModel(
         SignalStore.donationsValues().setLastEndOfPeriod(0L)
         SignalStore.donationsValues().clearLevelOperations()
         SignalStore.donationsValues().markUserManuallyCancelled()
+        SignalStore.donationsValues().setUnexpectedSubscriptionCancelationChargeFailure(null)
         SignalStore.donationsValues().unexpectedSubscriptionCancelationReason = null
         SignalStore.donationsValues().unexpectedSubscriptionCancelationTimestamp = 0L
         refreshActiveSubscription()

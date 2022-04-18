@@ -25,7 +25,7 @@ class SubscriptionsRepository(private val donationsService: DonationsService) {
       donationsService.getSubscription(localSubscription.subscriberId)
         .flatMap(ServiceResponse<ActiveSubscription>::flattenResult)
     } else {
-      Single.just(ActiveSubscription(null))
+      Single.just(ActiveSubscription.EMPTY)
     }
   }
 

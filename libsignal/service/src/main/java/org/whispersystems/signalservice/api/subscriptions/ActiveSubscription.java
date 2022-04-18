@@ -11,6 +11,8 @@ import java.util.Set;
 
 public final class ActiveSubscription {
 
+  public static final ActiveSubscription EMPTY = new ActiveSubscription(null, null);
+
   private enum Status {
     /**
      * The subscription is currently in a trial period and it's safe to provision your product for your customer.
@@ -35,7 +37,7 @@ public final class ActiveSubscription {
     INCOMPLETE_EXPIRED("incomplete_expired"),
 
     /**
-     * 	Payment on the latest invoice either failed or wasn't attempted.
+     * Payment on the latest invoice either failed or wasn't attempted.
      */
     PAST_DUE("past_due"),
 
@@ -78,15 +80,23 @@ public final class ActiveSubscription {
     }
   }
 
-  private final Subscription activeSubscription;
+  private final Subscription  activeSubscription;
+  private final ChargeFailure chargeFailure;
 
   @JsonCreator
-  public ActiveSubscription(@JsonProperty("subscription") Subscription activeSubscription) {
+  public ActiveSubscription(@JsonProperty("subscription") Subscription activeSubscription,
+                            @JsonProperty("chargeFailure") ChargeFailure chargeFailure)
+  {
     this.activeSubscription = activeSubscription;
+    this.chargeFailure      = chargeFailure;
   }
 
   public Subscription getActiveSubscription() {
     return activeSubscription;
+  }
+
+  public ChargeFailure getChargeFailure() {
+    return chargeFailure;
   }
 
   public boolean isActive() {
@@ -98,7 +108,7 @@ public final class ActiveSubscription {
   }
 
   public boolean isFailedPayment() {
-    return activeSubscription != null && !isActive() && activeSubscription.isFailedPayment();
+    return chargeFailure != null || (activeSubscription != null && !isActive() && activeSubscription.isFailedPayment());
   }
 
   public static final class Subscription {
@@ -197,6 +207,77 @@ public final class ActiveSubscription {
 
     @Override public int hashCode() {
       return Objects.hash(level, currency, amount, endOfCurrentPeriod, isActive, billingCycleAnchor, willCancelAtPeriodEnd, status);
+    }
+  }
+
+  public static final class ChargeFailure {
+    private final String code;
+    private final String message;
+    private final String outcomeNetworkStatus;
+    private final String outcomeNetworkReason;
+    private final String outcomeType;
+
+    @JsonCreator
+    public ChargeFailure(@JsonProperty("code") String code,
+                         @JsonProperty("message") String message,
+                         @JsonProperty("outcomeNetworkStatus") String outcomeNetworkStatus,
+                         @JsonProperty("outcomeNetworkReason") String outcomeNetworkReason,
+                         @JsonProperty("outcomeType") String outcomeType)
+    {
+      this.code                 = code;
+      this.message              = message;
+      this.outcomeNetworkStatus = outcomeNetworkStatus;
+      this.outcomeNetworkReason = outcomeNetworkReason;
+      this.outcomeType          = outcomeType;
+    }
+
+    /**
+     * Error code explaining reason for charge failure if available (see the errors section for a list of codes).
+     * <p>
+     * See: <a href="https://stripe.com/docs/api/charges/object#charge_object-failure_code">https://stripe.com/docs/api/charges/object#charge_object-failure_code</a>
+     */
+    public String getCode() {
+      return code;
+    }
+
+    /**
+     * Message to user further explaining reason for charge failure if available.
+     * <p>
+     * See: <a href="https://stripe.com/docs/api/charges/object#charge_object-failure_message">https://stripe.com/docs/api/charges/object#charge_object-failure_message</a>
+     */
+    public String getMessage() {
+      return message;
+    }
+
+    /**
+     * Possible values are approved_by_network, declined_by_network, not_sent_to_network, and reversed_after_approval.
+     * The value reversed_after_approval indicates the payment was blocked by Stripe after bank authorization,
+     * and may temporarily appear as “pending” on a cardholder’s statement.
+     * <p>
+     * See: <a href="https://stripe.com/docs/api/charges/object#charge_object-outcome-network_status">https://stripe.com/docs/api/charges/object#charge_object-outcome-network_status</a>
+     */
+    public String getOutcomeNetworkStatus() {
+      return outcomeNetworkStatus;
+    }
+
+    /**
+     * An enumerated value providing a more detailed explanation of the outcome’s type. Charges blocked by Radar’s default block rule have the value
+     * highest_risk_level. Charges placed in review by Radar’s default review rule have the value elevated_risk_level. Charges authorized, blocked, or placed
+     * in review by custom rules have the value rule. See understanding declines for more details.
+     * <p>
+     * See: <a href="https://stripe.com/docs/api/charges/object#charge_object-outcome-reason">https://stripe.com/docs/api/charges/object#charge_object-outcome-reason</a>
+     */
+    public String getOutcomeNetworkReason() {
+      return outcomeNetworkReason;
+    }
+
+    /**
+     * Possible values are authorized, manual_review, issuer_declined, blocked, and invalid. See understanding declines and Radar reviews for details.
+     * <p>
+     * See: <a href="https://stripe.com/docs/api/charges/object#charge_object-outcome-type">https://stripe.com/docs/api/charges/object#charge_object-outcome-type</a>
+     */
+    public String getOutcomeType() {
+      return outcomeType;
     }
   }
 }

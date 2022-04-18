@@ -97,6 +97,7 @@ public class SubscriptionKeepAliveJob extends BaseJob {
 
     if (activeSubscription.isFailedPayment()) {
       Log.i(TAG, "User has a subscription with a failed payment. Marking the payment failure. Status message: " + activeSubscription.getActiveSubscription().getStatus(), true);
+      SignalStore.donationsValues().setUnexpectedSubscriptionCancelationChargeFailure(activeSubscription.getChargeFailure());
       SignalStore.donationsValues().setUnexpectedSubscriptionCancelationReason(activeSubscription.getActiveSubscription().getStatus());
       SignalStore.donationsValues().setUnexpectedSubscriptionCancelationTimestamp(activeSubscription.getActiveSubscription().getEndOfCurrentPeriod());
       return;
