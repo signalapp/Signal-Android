@@ -1715,7 +1715,8 @@ public class MmsDatabase extends MessageDatabase {
 
     long messageId = insertMediaMessage(threadId, retrieved.getBody(), retrieved.getAttachments(), quoteAttachments, retrieved.getSharedContacts(), retrieved.getLinkPreviews(), retrieved.getMentions(), retrieved.getMessageRanges(), contentValues, null, true);
 
-    if (!Types.isExpirationTimerUpdate(mailbox) && !retrieved.getStoryType().isStory() && !retrieved.getParentStoryId().isGroupReply()) {
+    boolean isNotStoryGroupReply = retrieved.getParentStoryId() == null || !retrieved.getParentStoryId().isGroupReply();
+    if (!Types.isExpirationTimerUpdate(mailbox) && !retrieved.getStoryType().isStory() && isNotStoryGroupReply) {
       SignalDatabase.threads().incrementUnread(threadId, 1);
       SignalDatabase.threads().update(threadId, true);
     }
