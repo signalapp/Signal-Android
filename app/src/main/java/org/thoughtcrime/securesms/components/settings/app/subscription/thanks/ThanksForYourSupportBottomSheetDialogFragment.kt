@@ -67,9 +67,9 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
 
     if (args.badge.isBoost()) {
       if (Recipient.self().badges.any { !it.isBoost() }) {
-        subhead.setText(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal)
+        subhead.setText(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display)
       } else {
-        subhead.text = SpannableStringBuilder(getString(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal))
+        subhead.text = SpannableStringBuilder(getString(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display))
           .append(" ")
           .append(getString(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also))
           .append(" ")
@@ -84,7 +84,7 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
           )
       }
     } else {
-      subhead.text = getString(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal, args.badge.name)
+      subhead.text = getString(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display, args.badge.name)
     }
 
     val otherBadges = Recipient.self().badges.filterNot { it.id == args.badge.id }

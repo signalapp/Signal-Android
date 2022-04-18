@@ -70,7 +70,7 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
   private var errorDialog: DialogInterface? = null
 
   private val sayThanks: CharSequence by lazy {
-    SpannableStringBuilder(requireContext().getString(R.string.BoostFragment__say_thanks_and_earn, 30))
+    SpannableStringBuilder(requireContext().getString(R.string.BoostFragment__make_a_one_time, 30))
       .append(" ")
       .append(
         SpanUtil.learnMore(requireContext(), ContextCompat.getColor(requireContext(), R.color.signal_accent_primary)) {
@@ -239,7 +239,7 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
   }
 
   private fun onGooglePayButtonClicked() {
-    viewModel.requestTokenFromGooglePay(getString(R.string.preferences__signal_boost))
+    viewModel.requestTokenFromGooglePay(getString(R.string.preferences__one_time_donation))
   }
 
   private fun onPaymentConfirmed(boostBadge: Badge) {

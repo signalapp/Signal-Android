@@ -151,7 +151,7 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
               if (state.hasActiveSubscription) {
                 R.string.preferences__subscription
               } else {
-                R.string.preferences__become_a_signal_sustainer
+                R.string.preferences__monthly_donation
               }
             ),
             icon = DSLSettingsIcon.from(R.drawable.ic_heart_24),
@@ -166,7 +166,7 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
           )
         )
         clickPref(
-          title = DSLSettingsText.from(R.string.preferences__signal_boost),
+          title = DSLSettingsText.from(R.string.preferences__one_time_donation),
           icon = DSLSettingsIcon.from(R.drawable.ic_boost_24),
           onClick = {
             findNavController().safeNavigate(AppSettingsFragmentDirections.actionAppSettingsFragmentToBoostsFragment())

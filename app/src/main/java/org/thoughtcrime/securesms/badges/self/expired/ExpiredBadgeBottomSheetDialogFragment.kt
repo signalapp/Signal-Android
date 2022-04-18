@@ -41,9 +41,9 @@ class ExpiredBadgeBottomSheetDialogFragment : DSLSettingsBottomSheetFragment(
       sectionHeaderPref(
         DSLSettingsText.from(
           if (badge.isBoost()) {
-            R.string.ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired
+            R.string.ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired
           } else {
-            R.string.ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled
+            R.string.ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled
           },
           DSLSettingsText.CenterModifier
         )
@@ -54,11 +54,11 @@ class ExpiredBadgeBottomSheetDialogFragment : DSLSettingsBottomSheetFragment(
       noPadTextPref(
         DSLSettingsText.from(
           if (badge.isBoost()) {
-            getString(R.string.ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired)
+            getString(R.string.ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and)
           } else if (inactive) {
-            getString(R.string.ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically, badge.name)
+            getString(R.string.ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically, badge.name)
           } else {
-            getString(R.string.ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled)
+            getString(R.string.ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled)
           },
           DSLSettingsText.CenterModifier
         )
@@ -72,7 +72,7 @@ class ExpiredBadgeBottomSheetDialogFragment : DSLSettingsBottomSheetFragment(
             if (isLikelyASustainer) {
               R.string.ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate
             } else {
-              R.string.ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology
+              R.string.ExpiredBadgeBottomSheetDialogFragment__you_can_keep
             }
           } else {
             R.string.ExpiredBadgeBottomSheetDialogFragment__you_can

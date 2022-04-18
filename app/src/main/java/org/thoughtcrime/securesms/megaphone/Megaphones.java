@@ -270,12 +270,12 @@ public final class Megaphones {
     return new Megaphone.Builder(Event.BECOME_A_SUSTAINER, Megaphone.Style.BASIC)
         .setTitle(R.string.BecomeASustainerMegaphone__become_a_sustainer)
         .setImage(R.drawable.ic_become_a_sustainer_megaphone)
-        .setBody(R.string.BecomeASustainerMegaphone__signal_is_powered)
-        .setActionButton(R.string.BecomeASustainerMegaphone__contribute, (megaphone, listener) -> {
+        .setBody(R.string.BecomeASustainerMegaphone__signal_is_powered_by)
+        .setActionButton(R.string.BecomeASustainerMegaphone__donate, (megaphone, listener) -> {
           listener.onMegaphoneNavigationRequested(AppSettingsActivity.subscriptions(context));
           listener.onMegaphoneCompleted(Event.BECOME_A_SUSTAINER);
         })
-        .setSecondaryButton(R.string.BecomeASustainerMegaphone__no_thanks, (megaphone, listener) -> {
+        .setSecondaryButton(R.string.BecomeASustainerMegaphone__not_now, (megaphone, listener) -> {
           listener.onMegaphoneCompleted(Event.BECOME_A_SUSTAINER);
         })
         .build();
