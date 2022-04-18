@@ -248,7 +248,7 @@ class StoryViewerPageFragment :
       viewModel.setIsUserScrollingParent(isScrolling)
     }
 
-    LiveDataReactiveStreams.fromPublisher(sharedViewModel.state.distinct()).observe(viewLifecycleOwner) { parentState ->
+    LiveDataReactiveStreams.fromPublisher(sharedViewModel.state.distinctUntilChanged()).observe(viewLifecycleOwner) { parentState ->
       if (parentState.pages.size <= parentState.page) {
         viewModel.setIsSelectedPage(false)
       } else if (storyRecipientId == parentState.pages[parentState.page]) {
