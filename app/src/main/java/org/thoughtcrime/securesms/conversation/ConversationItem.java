@@ -548,7 +548,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private int getDefaultTopMarginForRecord(@NonNull MessageRecord messageRecord, int defaultTopMargin, int defaultBottomMargin) {
-    if (isStoryReaction(messageRecord)) {
+    if (isStoryReaction(messageRecord) && !messageRecord.isRemoteDelete()) {
       return defaultBottomMargin;
     } else {
       return defaultTopMargin;
@@ -1560,7 +1560,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private void setStoryReactionLabel(@NonNull MessageRecord record) {
-    if (isStoryReaction(record)) {
+    if (isStoryReaction(record) && !record.isRemoteDelete()) {
       storyReactionLabelWrapper.setVisibility(View.VISIBLE);
       storyReactionLabel.setTextColor(record.isOutgoing() ? colorizer.getOutgoingBodyTextColor(context) : ContextCompat.getColor(context, R.color.signal_text_primary));
       storyReactionLabel.setText(getStoryReactionLabelText(messageRecord));
