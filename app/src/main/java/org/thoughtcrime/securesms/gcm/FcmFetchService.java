@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.gcm;
 
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -8,15 +9,21 @@ import android.os.IBinder;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 
 import com.google.firebase.messaging.RemoteMessage;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.MainActivity;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.messages.BackgroundMessageRetriever;
 import org.thoughtcrime.securesms.messages.RestStrategy;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.notifications.NotificationIds;
 import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -43,9 +50,17 @@ public class FcmFetchService extends Service {
 
   private static final String TAG = Log.tag(FcmFetchService.class);
 
+  static final String KEY_FOREGROUND = "is_foreground";
+
   private static final SerialMonoLifoExecutor EXECUTOR = new SerialMonoLifoExecutor(SignalExecutors.UNBOUNDED);
 
   private final AtomicInteger activeCount = new AtomicInteger(0);
+
+  public static @NonNull Intent buildIntent(@NonNull Context context, boolean foreground) {
+    Intent intent = new Intent(context, FcmFetchService.class);
+    intent.putExtra(KEY_FOREGROUND, foreground);
+    return intent;
+  }
 
   @Override
   public int onStartCommand(Intent intent, int flags, int startId) {
@@ -56,6 +71,18 @@ public class FcmFetchService extends Service {
     } else {
       int count = activeCount.incrementAndGet();
       Log.i(TAG, "Incrementing active count to " + count);
+    }
+
+    if (intent.getBooleanExtra(KEY_FOREGROUND, false)) {
+      Log.i(TAG, "Launching in the foreground.");
+      startForeground(NotificationIds.FCM_FETCH, new NotificationCompat.Builder(this, NotificationChannels.OTHER)
+          .setSmallIcon(R.drawable.ic_notification)
+          .setContentTitle(getString(R.string.BackgroundMessageRetriever_checking_for_messages))
+          .setCategory(NotificationCompat.CATEGORY_SERVICE)
+          .setProgress(0, 0, true)
+          .setContentIntent(PendingIntent.getActivity(this, 0, MainActivity.clearTop(this), 0))
+          .setVibrate(new long[] { 0 })
+          .build());
     }
 
     return START_NOT_STICKY;

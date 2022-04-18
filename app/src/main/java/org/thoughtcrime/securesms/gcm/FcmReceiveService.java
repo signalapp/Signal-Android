@@ -2,8 +2,11 @@ package org.thoughtcrime.securesms.gcm;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -16,11 +19,13 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.registration.PushChallengeRequest;
 
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class FcmReceiveService extends FirebaseMessagingService {
 
   private static final String TAG = Log.tag(FcmReceiveService.class);
 
+  private static final long FCM_FOREGROUND_INTERVAL = TimeUnit.MINUTES.toMillis(3);
 
   @Override
   public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -38,15 +43,15 @@ public class FcmReceiveService extends FirebaseMessagingService {
       handleRegistrationPushChallenge(registrationChallenge);
     } else if (rateLimitChallenge != null) {
       handleRateLimitPushChallenge(rateLimitChallenge);
-    }else {
-      handleReceivedNotification(ApplicationDependencies.getApplication());
+    } else {
+      handleReceivedNotification(ApplicationDependencies.getApplication(), remoteMessage);
     }
   }
 
   @Override
   public void onDeletedMessages() {
     Log.w(TAG, "onDeleteMessages() -- Messages may have been dropped. Doing a normal message fetch.");
-    handleReceivedNotification(ApplicationDependencies.getApplication());
+    handleReceivedNotification(ApplicationDependencies.getApplication(), null);
   }
 
   @Override
@@ -71,11 +76,17 @@ public class FcmReceiveService extends FirebaseMessagingService {
     Log.w(TAG, "onSendError()", e);
   }
 
-  private static void handleReceivedNotification(Context context) {
+  private static void handleReceivedNotification(Context context, @Nullable RemoteMessage remoteMessage) {
     try {
-      context.startService(new Intent(context, FcmFetchService.class));
+      long timeSinceLastRefresh = System.currentTimeMillis() - SignalStore.misc().getLastFcmForegroundServiceTime();
+      if (Build.VERSION.SDK_INT >= 31 && remoteMessage != null && remoteMessage.getPriority() == RemoteMessage.PRIORITY_HIGH && timeSinceLastRefresh > FCM_FOREGROUND_INTERVAL) {
+        ContextCompat.startForegroundService(context, FcmFetchService.buildIntent(context, true));
+        SignalStore.misc().setLastFcmForegroundServiceTime(System.currentTimeMillis());
+      } else {
+        context.startService(FcmFetchService.buildIntent(context, false));
+      }
     } catch (Exception e) {
-      Log.w(TAG, "Failed to start service. Falling back to legacy approach.");
+      Log.w(TAG, "Failed to start service. Falling back to legacy approach.", e);
       FcmFetchService.retrieveMessages(context);
     }
   }
