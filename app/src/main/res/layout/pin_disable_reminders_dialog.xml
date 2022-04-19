@@ -46,6 +46,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/reminder_disable_description" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/reminder_change_keyboard"
+            style="@style/Signal.Widget.Button.Medium.Secondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/PinRestoreEntryFragment_enter_alphanumeric_pin"
+            app:layout_constraintTop_toBottomOf="@+id/reminder_disable_pin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
         <TextView
             android:id="@+id/reminder_disable_status"
             android:layout_width="0dp"
@@ -54,7 +64,7 @@
             android:textColor="@color/core_red"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/reminder_disable_pin"
+            app:layout_constraintTop_toBottomOf="@id/reminder_change_keyboard"
             tools:text="@string/preferences_app_protection__incorrect_pin_try_again" />
 
         <androidx.constraintlayout.helper.widget.Flow
@@ -62,14 +72,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             app:constraint_referenced_ids="reminder_disable_cancel,reminder_disable_turn_off"
+            app:flow_horizontalGap="8dp"
             app:flow_wrapMode="chain"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/reminder_disable_status" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/reminder_disable_cancel"
-            style="@style/Button.Borderless"
+            style="@style/Signal.Widget.Button.Dialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@android:string/cancel"
@@ -79,9 +90,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/reminder_disable_turn_off" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/reminder_disable_turn_off"
-            style="@style/Button.Primary"
+            style="@style/Signal.Widget.Button.Dialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:enabled="false"
