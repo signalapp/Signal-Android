@@ -6,6 +6,7 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.PointF
+import android.graphics.Typeface
 import android.os.Build
 import android.util.AttributeSet
 import android.util.TypedValue
@@ -75,7 +76,8 @@ class NewConversationButtonSetView : RelativeLayout {
     private val sessionButton by lazy { Button(context, false, R.drawable.ic_message) }
     private val sessionTooltip by lazy {
         TextView(context).apply {
-            setTextSize(TypedValue.COMPLEX_UNIT_SP, 10f)
+            setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
+            typeface = Typeface.DEFAULT_BOLD
             setText(R.string.NewConversationButton_SessionTooltip)
             isAllCaps = true
         }
@@ -83,7 +85,8 @@ class NewConversationButtonSetView : RelativeLayout {
     private val closedGroupButton by lazy { Button(context, false, R.drawable.ic_group) }
     private val closedGroupTooltip by lazy {
         TextView(context).apply {
-            setTextSize(TypedValue.COMPLEX_UNIT_SP, 10f)
+            setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
+            typeface = Typeface.DEFAULT_BOLD
             setText(R.string.NewConversationButton_ClosedGroupTooltip)
             isAllCaps = true
         }
@@ -91,7 +94,8 @@ class NewConversationButtonSetView : RelativeLayout {
     private val openGroupButton by lazy { Button(context, false, R.drawable.ic_globe) }
     private val openGroupTooltip by lazy {
         TextView(context).apply {
-            setTextSize(TypedValue.COMPLEX_UNIT_SP, 10f)
+            setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
+            typeface = Typeface.DEFAULT_BOLD
             setText(R.string.NewConversationButton_OpenGroupTooltip)
             isAllCaps = true
         }
