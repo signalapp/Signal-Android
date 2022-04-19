@@ -10,6 +10,7 @@ import android.widget.ImageView
 import androidx.annotation.ColorInt
 import androidx.annotation.Px
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.graphics.ColorUtils
 import androidx.core.view.doOnNextLayout
 import androidx.core.view.isVisible
 import org.thoughtcrime.securesms.R
@@ -63,8 +64,12 @@ class StoryTextPostView @JvmOverloads constructor(
     backgroundView.setImageDrawable(drawable)
   }
 
-  fun setTextColor(@ColorInt color: Int) {
-    textView.setTextColor(color)
+  private fun setTextColor(@ColorInt color: Int, isPlaceholder: Boolean) {
+    if (isPlaceholder) {
+      textView.setTextColor(ColorUtils.setAlphaComponent(color, 0x99))
+    } else {
+      textView.setTextColor(color)
+    }
   }
 
   fun setText(text: CharSequence, isPlaceholder: Boolean) {
@@ -111,7 +116,7 @@ class StoryTextPostView @JvmOverloads constructor(
       state.body.isEmpty()
     )
 
-    setTextColor(state.textForegroundColor)
+    setTextColor(state.textForegroundColor, state.body.isEmpty())
     setTextBackgroundColor(state.textBackgroundColor)
     setTextGravity(state.textAlignment)
     setTextScale(state.textScale)
@@ -134,7 +139,7 @@ class StoryTextPostView @JvmOverloads constructor(
       setText(storyTextPost.body, false)
     }
 
-    setTextColor(storyTextPost.textForegroundColor)
+    setTextColor(storyTextPost.textForegroundColor, false)
     setTextBackgroundColor(storyTextPost.textBackgroundColor)
     setTextGravity(TextAlignment.CENTER)
 
