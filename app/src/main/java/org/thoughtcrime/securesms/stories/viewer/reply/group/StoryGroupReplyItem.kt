@@ -154,7 +154,6 @@ object StoryGroupReplyItem {
         .onDismiss { itemView.isSelected = false }
         .show(
           listOf(
-            ActionItem(R.drawable.ic_reply_24_solid_tinted, context.getString(R.string.StoryGroupReplyItem__private_reply)) { model.onPrivateReplyClick(model) },
             ActionItem(R.drawable.ic_copy_24_solid_tinted, context.getString(R.string.StoryGroupReplyItem__copy)) { model.onCopyClick(model) },
             ActionItem(R.drawable.ic_trash_24_solid_tinted, context.getString(R.string.StoryGroupReplyItem__delete)) { model.onDeleteClick(model) }
           )
