@@ -9,9 +9,11 @@ import androidx.annotation.StringRes;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 
 import java.util.Collections;
+import java.util.function.Consumer;
 
 /**
  * In memory message record for use in temporary conversation messages.
@@ -90,7 +92,7 @@ public class InMemoryMessageRecord extends MessageRecord {
     }
 
     @Override
-    public @Nullable UpdateDescription getUpdateDisplayBody(@NonNull Context context) {
+    public @Nullable UpdateDescription getUpdateDisplayBody(@NonNull Context context, @Nullable Consumer<RecipientId> recipientClickHandler) {
       return UpdateDescription.staticDescription(context.getString(isGroup ? R.string.ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully
                                                                            : R.string.ConversationUpdateItem_no_groups_in_common_review_requests_carefully),
                                                  R.drawable.ic_update_info_16);
@@ -127,7 +129,7 @@ public class InMemoryMessageRecord extends MessageRecord {
     }
 
     @Override
-    public @Nullable UpdateDescription getUpdateDisplayBody(@NonNull Context context) {
+    public @Nullable UpdateDescription getUpdateDisplayBody(@NonNull Context context, @Nullable Consumer<RecipientId> recipientClickHandler) {
       String update = context.getString(R.string.ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them,
                                         ExpirationUtil.getExpirationDisplayValue(context, SignalStore.settings().getUniversalExpireTimer()));
 

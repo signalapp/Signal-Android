@@ -106,7 +106,7 @@ class ConversationDataSource implements PagedDataSource<MessageId, ConversationM
         reactionHelper.add(record);
         attachmentHelper.add(record);
 
-        UpdateDescription description = record.getUpdateDisplayBody(context);
+        UpdateDescription description = record.getUpdateDisplayBody(context, null);
         if (description != null) {
           referencedIds.addAll(description.getMentioned());
         }

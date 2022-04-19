@@ -10,7 +10,6 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 
-import androidx.annotation.AnyThread;
 import androidx.annotation.ColorInt;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -43,7 +42,7 @@ public final class LiveUpdateMessage {
                                                                  boolean adjustPosition)
   {
     if (updateDescription.isStringStatic()) {
-      return LiveDataUtil.just(toSpannable(context, updateDescription, updateDescription.getStaticString(), defaultTint, adjustPosition));
+      return LiveDataUtil.just(toSpannable(context, updateDescription, updateDescription.getStaticSpannable(), defaultTint, adjustPosition));
     }
 
     List<LiveData<Recipient>> allMentionedRecipients = Stream.of(updateDescription.getMentioned())
@@ -53,7 +52,7 @@ public final class LiveUpdateMessage {
     LiveData<?> mentionedRecipientChangeStream = allMentionedRecipients.isEmpty() ? LiveDataUtil.just(new Object())
                                                                                   : LiveDataUtil.merge(allMentionedRecipients);
 
-    return Transformations.map(mentionedRecipientChangeStream, event -> toSpannable(context, updateDescription, updateDescription.getString(), defaultTint, adjustPosition));
+    return Transformations.map(mentionedRecipientChangeStream, event -> toSpannable(context, updateDescription, updateDescription.getSpannable(), defaultTint, adjustPosition));
   }
 
   /**
@@ -66,7 +65,7 @@ public final class LiveUpdateMessage {
     return Transformations.map(Recipient.live(recipientId).getLiveDataResolved(), createStringInBackground::apply);
   }
 
-  private static @NonNull SpannableString toSpannable(@NonNull Context context, @NonNull UpdateDescription updateDescription, @NonNull String string, @ColorInt int defaultTint, boolean adjustPosition) {
+  private static @NonNull SpannableString toSpannable(@NonNull Context context, @NonNull UpdateDescription updateDescription, @NonNull Spannable string, @ColorInt int defaultTint, boolean adjustPosition) {
     boolean  isDarkTheme      = ThemeUtil.isDarkTheme(context);
     int      drawableResource = updateDescription.getIconResource();
     int      tint             = isDarkTheme ? updateDescription.getDarkTint() : updateDescription.getLightTint();

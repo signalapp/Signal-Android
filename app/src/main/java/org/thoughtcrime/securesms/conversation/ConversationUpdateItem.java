@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -107,6 +108,9 @@ public final class ConversationUpdateItem extends FrameLayout
     this.donateButtonStub = ViewUtil.findStubById(this, R.id.conversation_update_donate_action);
     this.background       = findViewById(R.id.conversation_update_background);
 
+    body.setOnClickListener(v -> performClick());
+    body.setOnLongClickListener(v -> performLongClick());
+
     this.setOnClickListener(new InternalClickListener(null));
   }
 
@@ -179,7 +183,7 @@ public final class ConversationUpdateItem extends FrameLayout
       }
     }
 
-    UpdateDescription         updateDescription = Objects.requireNonNull(messageRecord.getUpdateDisplayBody(getContext()));
+    UpdateDescription         updateDescription = Objects.requireNonNull(messageRecord.getUpdateDisplayBody(getContext(), eventListener::onRecipientNameClicked));
     LiveData<SpannableString> liveUpdateMessage = LiveUpdateMessage.fromMessageDescription(getContext(), updateDescription, textColor, true);
     LiveData<SpannableString> spannableMessage  = loading(liveUpdateMessage);
 
@@ -190,6 +194,17 @@ public final class ConversationUpdateItem extends FrameLayout
     presentBackground(shouldCollapse(messageRecord, previousMessageRecord),
                       shouldCollapse(messageRecord, nextMessageRecord),
                       hasWallpaper);
+
+    updateSelectedState();
+  }
+
+  @Override
+  public void updateSelectedState() {
+    if (batchSelected.size() > 0) {
+      body.setMovementMethod(null);
+    } else {
+      body.setMovementMethod(LinkMovementMethod.getInstance());
+    }
   }
 
   private static boolean shouldCollapse(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> candidate)

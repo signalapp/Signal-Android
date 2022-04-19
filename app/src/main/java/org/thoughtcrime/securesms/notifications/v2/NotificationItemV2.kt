@@ -185,7 +185,7 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : N
     } else if (record.isMms && !record.isMmsNotification && (record as MmsMessageRecord).slideDeck.slides.isNotEmpty()) {
       ThreadBodyUtil.getFormattedBodyFor(context, record)
     } else if (record.isGroupCall) {
-      MessageRecord.getGroupCallUpdateDescription(context, record.body, false).string
+      MessageRecord.getGroupCallUpdateDescription(context, record.body, false).spannable
     } else {
       MentionUtil.updateBodyWithDisplayNames(context, record)
     }

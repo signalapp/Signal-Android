@@ -1,13 +1,13 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.app.Application;
+import android.text.Spannable;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.test.core.app.ApplicationProvider;
 
 import com.annimon.stream.Stream;
-import com.google.common.collect.ImmutableMap;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -19,18 +19,18 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
-import org.signal.core.util.ThreadUtil;
 import org.signal.storageservice.protos.groups.AccessControl;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -38,8 +38,11 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 import static org.thoughtcrime.securesms.groups.v2.ChangeBuilder.changeBy;
 import static org.thoughtcrime.securesms.groups.v2.ChangeBuilder.changeByUnknown;
 import static org.signal.core.util.StringUtil.isolateBidi;
@@ -60,18 +63,38 @@ public final class GroupsV2UpdateMessageProducerTest {
   public MockitoRule rule = MockitoJUnit.rule();
 
   @Mock
-  public MockedStatic<ThreadUtil> threadUtilMockedStatic;
+  public MockedStatic<Recipient> recipientMockedStatic;
+
+  @Mock
+  public MockedStatic<RecipientId> recipientIdMockedStatic;
 
   @Before
   public void setup() {
     you   = UUID.randomUUID();
     alice = UUID.randomUUID();
     bob   = UUID.randomUUID();
-    GroupsV2UpdateMessageProducer.DescribeMemberStrategy describeMember = createDescriber(ImmutableMap.of(alice, "Alice", bob, "Bob"));
-    producer = new GroupsV2UpdateMessageProducer(ApplicationProvider.getApplicationContext(), describeMember, you);
 
-    threadUtilMockedStatic.when(ThreadUtil::assertMainThread).thenCallRealMethod();
-    threadUtilMockedStatic.when(ThreadUtil::assertNotMainThread).thenCallRealMethod();
+    recipientIdMockedStatic.when(() -> RecipientId.from(anyLong())).thenCallRealMethod();
+
+    RecipientId aliceId = RecipientId.from(1);
+    RecipientId bobId   = RecipientId.from(2);
+
+    Recipient aliceRecipient = recipientWithName(aliceId, "Alice");
+    Recipient bobRecipient   = recipientWithName(bobId, "Bob");
+
+    producer = new GroupsV2UpdateMessageProducer(ApplicationProvider.getApplicationContext(), you, null);
+
+    recipientIdMockedStatic.when(() -> RecipientId.from(ServiceId.from(alice), null)).thenReturn(aliceId);
+    recipientIdMockedStatic.when(() -> RecipientId.from(ServiceId.from(bob), null)).thenReturn(bobId);
+    recipientMockedStatic.when(() -> Recipient.resolved(aliceId)).thenReturn(aliceRecipient);
+    recipientMockedStatic.when(() -> Recipient.resolved(bobId)).thenReturn(bobRecipient);
+  }
+
+  private static Recipient recipientWithName(RecipientId id, String name) {
+    Recipient recipient = mock(Recipient.class);
+    when(recipient.getId()).thenReturn(id);
+    when(recipient.getDisplayName(any())).thenReturn(name);
+    return recipient;
   }
 
   @Test
@@ -1333,11 +1356,11 @@ public final class GroupsV2UpdateMessageProducerTest {
   }
 
   private @NonNull List<String> describeChange(@Nullable DecryptedGroup previousGroupState,
-                                               @NonNull DecryptedGroupChange change)
+                                                  @NonNull DecryptedGroupChange change)
   {
-    threadUtilMockedStatic.when(ThreadUtil::isMainThread).thenReturn(false);
     return Stream.of(producer.describeChanges(previousGroupState, change))
-                 .map(UpdateDescription::getString)
+                 .map(UpdateDescription::getSpannable)
+                 .map(Spannable::toString)
                  .toList();
   }
 
@@ -1346,8 +1369,7 @@ public final class GroupsV2UpdateMessageProducerTest {
   }
 
   private @NonNull String describeNewGroup(@NonNull DecryptedGroup group, @NonNull DecryptedGroupChange groupChange) {
-    threadUtilMockedStatic.when(ThreadUtil::isMainThread).thenReturn(false);
-    return producer.describeNewGroup(group, groupChange).getString();
+    return producer.describeNewGroup(group, groupChange).getSpannable().toString();
   }
 
   private static GroupStateBuilder newGroupBy(UUID foundingMember, int revision) {
@@ -1398,13 +1420,5 @@ public final class GroupsV2UpdateMessageProducerTest {
     public DecryptedGroup build() {
       return builder.build();
     }
-  }
-
-  private static @NonNull GroupsV2UpdateMessageProducer.DescribeMemberStrategy createDescriber(@NonNull Map<UUID, String> map) {
-    return serviceId -> {
-      String name = map.get(serviceId.uuid());
-      assertNotNull(name);
-      return name;
-    };
   }
 }

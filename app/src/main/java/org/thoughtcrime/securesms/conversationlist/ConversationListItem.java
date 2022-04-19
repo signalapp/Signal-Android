@@ -466,7 +466,7 @@ public final class ConversationListItem extends ConstraintLayout
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_message_request), defaultTint);
     } else if (SmsDatabase.Types.isGroupUpdate(thread.getType())) {
       if (thread.getRecipient().isPushV2Group()) {
-        return emphasisAdded(context, MessageRecord.getGv2ChangeDescription(context, thread.getBody()), defaultTint);
+        return emphasisAdded(context, MessageRecord.getGv2ChangeDescription(context, thread.getBody(), null), defaultTint);
       } else {
         return emphasisAdded(context, context.getString(R.string.ThreadRecord_group_updated), R.drawable.ic_update_group_16, defaultTint);
       }

@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
+import android.text.Spannable;
+import android.text.SpannableString;
 
 import androidx.annotation.NonNull;
 
@@ -21,7 +23,7 @@ import java.util.Objects;
 /**
  * Create a group call update message based on time and joined members.
  */
-public class GroupCallUpdateMessageFactory implements UpdateDescription.StringFactory {
+public class GroupCallUpdateMessageFactory implements UpdateDescription.SpannableFactory {
   private final Context                context;
   private final List<ServiceId>        joinedMembers;
   private final boolean                withTime;
@@ -46,7 +48,11 @@ public class GroupCallUpdateMessageFactory implements UpdateDescription.StringFa
   }
 
   @Override
-  public @NonNull String create() {
+  public @NonNull Spannable create() {
+    return new SpannableString(createString());
+  }
+
+  private @NonNull String createString() {
     String time = DateUtils.getTimeString(context, Locale.getDefault(), groupCallUpdateDetails.getStartedCallTimestamp());
 
     switch (joinedMembers.size()) {

@@ -1928,6 +1928,13 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
                                                       .setPositiveButton(R.string.ConversationFragment__block_request_button, (d, w) -> handleBlockJoinRequest(recipient))
                                                       .show();
     }
+
+    @Override
+    public void onRecipientNameClicked(@NonNull RecipientId target) {
+      if (getParentFragment() == null) return;
+
+      RecipientBottomSheetDialogFragment.create(target, recipient.get().getGroupId().orElse(null)).show(getParentFragmentManager(), "BOTTOM");
+    }
   }
 
   public void refreshList() {

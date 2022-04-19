@@ -92,6 +92,10 @@ public class RecipientId implements Parcelable, Comparable<RecipientId>, Databas
   @AnyThread
   @SuppressLint("WrongThread")
   private static @NonNull RecipientId from(@Nullable ServiceId serviceId, @Nullable String e164, boolean highTrust) {
+    if (serviceId != null && serviceId.isUnknown()) {
+      return RecipientId.UNKNOWN;
+    }
+
     RecipientId recipientId = RecipientIdCache.INSTANCE.get(serviceId, e164);
 
     if (recipientId == null) {

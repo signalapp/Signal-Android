@@ -73,7 +73,7 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
         if (!record.getRecipient().isPushV2Group()) {
           needsResolve.add(record.getRecipient().getId());
         } else if (SmsDatabase.Types.isGroupUpdate(record.getType())) {
-          UpdateDescription description = MessageRecord.getGv2ChangeDescription(ApplicationDependencies.getApplication(), record.getBody());
+          UpdateDescription description = MessageRecord.getGv2ChangeDescription(ApplicationDependencies.getApplication(), record.getBody(), null);
           needsResolve.addAll(description.getMentioned().stream().map(sid -> RecipientId.from(sid, null)).collect(Collectors.toList()));
         }
       }
