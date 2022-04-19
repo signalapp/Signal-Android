@@ -8,6 +8,7 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.delete
 import org.signal.core.util.getTableRowCount
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.crypto.DatabaseSecret
@@ -216,6 +217,12 @@ class LogDatabase private constructor(
         0
       }
     }
+  }
+
+  fun clearKeepLonger() {
+    writableDatabase.delete(TABLE_NAME)
+      .where("$KEEP_LONGER = ?", 1)
+      .run()
   }
 
   private fun buildValues(log: LogEntry): ContentValues {

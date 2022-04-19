@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.database.LocalMetricsDatabase
+import org.thoughtcrime.securesms.database.LogDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
@@ -109,6 +110,13 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         isChecked = state.shakeToReport,
         onClick = {
           viewModel.setShakeToReport(!state.shakeToReport)
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_clear_keep_longer_logs),
+        onClick = {
+          clearKeepLongerLogs()
         }
       )
 
@@ -589,5 +597,13 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         d.dismiss()
       }
       .show()
+  }
+
+  private fun clearKeepLongerLogs() {
+    SimpleTask.run({
+      LogDatabase.getInstance(requireActivity().application).clearKeepLonger()
+    }) {
+      Toast.makeText(requireContext(), "Cleared keep longer logs", Toast.LENGTH_SHORT).show()
+    }
   }
 }

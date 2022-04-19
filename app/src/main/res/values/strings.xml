@@ -2659,6 +2659,7 @@
     <string name="preferences__internal_user_details_description" translatable="false">Show a button in conversation settings that lets you see more information about a user.</string>
     <string name="preferences__internal_shake_to_report" translatable="false">Shake to Report</string>
     <string name="preferences__internal_shake_to_report_description" translatable="false">Shake your phone to easily submit and share a debug log.</string>
+    <string name="preferences__internal_clear_keep_longer_logs" translatable="false">Clear keep longer logs</string>
     <string name="preferences__internal_storage_service" translatable="false">Storage service</string>
     <string name="preferences__internal_disable_storage_service" translatable="false">Disable syncing</string>
     <string name="preferences__internal_disable_storage_service_description" translatable="false">Prevent syncing any data to/from storage service.</string>
