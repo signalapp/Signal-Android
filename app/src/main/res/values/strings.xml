@@ -2487,7 +2487,7 @@
     <!-- Preference label for making a monthly donation to Signal -->
     <string name="preferences__monthly_donation">Monthly Donation</string>
     <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__one_time_donation">One Time Donation</string>
+    <string name="preferences__one_time_donation">One-time Donation</string>
     <string name="preferences__privacy">Privacy</string>
     <string name="preferences__mms_user_agent">MMS User Agent</string>
     <string name="preferences__advanced_mms_access_point_names">Manual MMS settings</string>
@@ -4396,8 +4396,8 @@
     <string name="DonationReceiptListFragment__all">All</string>
     <!-- Donation receipts recurring tab label -->
     <string name="DonationReceiptListFragment__recurring">Recurring</string>
-    <!-- Donation receipts one time tab label -->
-    <string name="DonationReceiptListFragment__one_time">One time</string>
+    <!-- Donation receipts one-time tab label -->
+    <string name="DonationReceiptListFragment__one_time">One-time</string>
     <!-- Donation receipts boost row label -->
     <string name="DonationReceiptListFragment__boost">Boost</string>
     <!-- Donation receipts details title -->
