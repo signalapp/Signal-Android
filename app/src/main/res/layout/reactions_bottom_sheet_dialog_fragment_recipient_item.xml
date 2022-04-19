@@ -24,14 +24,17 @@
         app:layout_constraintStart_toStartOf="@id/reactions_bottom_view_recipient_avatar"
         app:layout_constraintTop_toTopOf="@id/reactions_bottom_view_recipient_avatar" />
 
-    <TextView
+    <org.thoughtcrime.securesms.components.FromTextView
         android:id="@+id/reactions_bottom_view_recipient_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:ellipsize="end"
         android:gravity="center_vertical"
+        android:maxLines="2"
         android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
         android:textColor="@color/signal_text_primary"
+        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/reactions_bottom_view_recipient_emoji"
         app:layout_constraintHorizontal_bias="0.0"
