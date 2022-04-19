@@ -40,6 +40,12 @@
     <color name="conversation_pinned_background">#404040</color>
     <color name="conversation_pinned_icon">#B3B3B3</color>
 
+    <color name="call_action_button">#DD353535</color>
+    <color name="call_action_button_highlighted">#FFFFFF</color>
+    <color name="call_action_foreground">#D8D8D8</color>
+    <color name="call_action_foreground_highlighted">#171717</color>
+    <color name="call_background">#171717</color>
+
     <array name="profile_picture_placeholder_colors">
         <item>#5ff8b0</item>
         <item>#26cdb9</item>

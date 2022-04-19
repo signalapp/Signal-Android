@@ -81,6 +81,7 @@ import org.thoughtcrime.securesms.sskenvironment.TypingStatusRepository;
 import org.thoughtcrime.securesms.util.Broadcaster;
 import org.thoughtcrime.securesms.util.UiModeUtilities;
 import org.thoughtcrime.securesms.util.dynamiclanguage.LocaleParseHelper;
+import org.thoughtcrime.securesms.webrtc.CallMessageProcessor;
 import org.webrtc.PeerConnectionFactory;
 import org.webrtc.PeerConnectionFactory.InitializationOptions;
 import org.webrtc.voiceengine.WebRtcAudioManager;
@@ -133,6 +134,8 @@ public class ApplicationContext extends Application implements DefaultLifecycleO
     @Inject Storage storage;
     @Inject MessageDataProvider messageDataProvider;
     @Inject JobDatabase jobDatabase;
+    @Inject TextSecurePreferences textSecurePreferences;
+    CallMessageProcessor callMessageProcessor;
 
     private volatile boolean isAppVisible;
 
@@ -159,6 +162,7 @@ public class ApplicationContext extends Application implements DefaultLifecycleO
     public void onCreate() {
         DatabaseModule.init(this);
         super.onCreate();
+        callMessageProcessor = new CallMessageProcessor(this, textSecurePreferences, ProcessLifecycleOwner.get().getLifecycle(), storage);
         Log.i(TAG, "onCreate()");
         startKovenant();
         initializeSecurityProvider();

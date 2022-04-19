@@ -12,6 +12,7 @@
     <!-- Element Sizes -->
     <dimen name="small_button_height">34dp</dimen>
     <dimen name="medium_button_height">38dp</dimen>
+    <dimen name="large_button_height">54dp</dimen>
     <dimen name="medium_button_corner_radius">22dp</dimen>
     <dimen name="accent_line_thickness">4dp</dimen>
     <dimen name="very_small_profile_picture_size">26dp</dimen>

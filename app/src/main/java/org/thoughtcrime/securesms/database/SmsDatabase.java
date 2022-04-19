@@ -28,6 +28,7 @@ import com.annimon.stream.Stream;
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteStatement;
 
+import org.session.libsession.messaging.calls.CallMessageType;
 import org.session.libsession.messaging.messages.signal.IncomingGroupMessage;
 import org.session.libsession.messaging.messages.signal.IncomingTextMessage;
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
@@ -373,6 +374,24 @@ public class SmsDatabase extends MessagingDatabase {
 
     if (message.isOpenGroupInvitation()) type |= Types.OPEN_GROUP_INVITATION_BIT;
 
+    CallMessageType callMessageType = message.getCallType();
+    if (callMessageType != null) {
+      switch (callMessageType) {
+        case CALL_OUTGOING:
+          type |= Types.OUTGOING_CALL_TYPE;
+          break;
+        case CALL_INCOMING:
+          type |= Types.INCOMING_CALL_TYPE;
+          break;
+        case CALL_MISSED:
+          type |= Types.MISSED_CALL_TYPE;
+          break;
+        case CALL_FIRST_MISSED:
+          type |= Types.FIRST_MISSED_CALL_TYPE;
+          break;
+      }
+    }
+
     Recipient recipient = Recipient.from(context, message.getSender(), true);
 
     Recipient groupRecipient;
@@ -384,7 +403,7 @@ public class SmsDatabase extends MessagingDatabase {
     }
 
     boolean    unread     = (Util.isDefaultSmsProvider(context) ||
-                            message.isSecureMessage() || message.isGroup());
+                            message.isSecureMessage() || message.isGroup() || message.isCallInfo());
 
     long       threadId;
 
@@ -439,6 +458,10 @@ public class SmsDatabase extends MessagingDatabase {
 
   public Optional<InsertResult> insertMessageInbox(IncomingTextMessage message) {
     return insertMessageInbox(message, Types.BASE_INBOX_TYPE, 0);
+  }
+
+  public Optional<InsertResult> insertCallMessage(IncomingTextMessage message) {
+    return insertMessageInbox(message, 0, 0);
   }
 
   public Optional<InsertResult> insertMessageInbox(IncomingTextMessage message, long serverTimestamp) {

@@ -73,6 +73,7 @@ import org.thoughtcrime.securesms.util.UiModeUtilities
 import org.thoughtcrime.securesms.util.disableClipping
 import org.thoughtcrime.securesms.util.push
 import org.thoughtcrime.securesms.util.show
+
 import java.io.IOException
 import java.util.Locale
 import javax.inject.Inject
@@ -195,6 +196,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
         }
         this.broadcastReceiver = broadcastReceiver
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, IntentFilter("blockedContactsChanged"))
+
         lifecycleScope.launchWhenStarted {
             launch(Dispatchers.IO) {
                 // Double check that the long poller is up

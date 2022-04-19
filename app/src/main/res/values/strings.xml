@@ -5,7 +5,7 @@
     <string name="no">No</string>
     <string name="delete">Delete</string>
     <string name="ban">Ban</string>
-    <string name="please_wait">Please wait...</string>
+    <string name="please_wait">Please wait…</string>
     <string name="save">Save</string>
     <string name="note_to_self">Note to Self</string>
     <string name="version_s">Version %s</string>
@@ -98,6 +98,9 @@
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session needs camera access to take photos or videos.</string>
 
     <string name="ConversationActivity_search_position">%1$d of %2$d</string>
+
+    <string name="ConversationActivity_call_title">Call Permissions Required</string>
+    <string name="ConversationActivity_call_prompt">You can enable the \'Voice and video calls\' permission in the Privacy Settings.</string>
 
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
@@ -560,6 +563,7 @@
     <string name="conversation_context__menu_ban_and_delete_all">Ban and delete all</string>
     <string name="conversation_context__menu_resend_message">Resend message</string>
     <string name="conversation_context__menu_reply_to_message">Reply to message</string>
+    <string name="conversation_context__menu_call">Call</string>
 
     <!-- conversation_context_image -->
     <string name="conversation_context_image__save_attachment">Save attachment</string>
@@ -899,5 +903,26 @@
     <string name="NewConversationButton_ClosedGroupTooltip">Closed Group</string>
     <string name="NewConversationButton_OpenGroupTooltip">Open Group</string>
     <string name="message_requests_notification">You have a new message request</string>
+    <string name="CallNotificationBuilder_connecting">Connecting…</string>
+    <string name="NotificationBarManager__incoming_signal_call">Incoming call</string>
+    <string name="NotificationBarManager__deny_call">Deny call</string>
+    <string name="NotificationBarManager__answer_call">Answer call</string>
+    <string name="NotificationBarManager_call_in_progress">Call in progress</string>
+    <string name="NotificationBarManager__cancel_call">Cancel call</string>
+    <string name="NotificationBarManager__establishing_signal_call">Establishing call</string>
+    <string name="NotificationBarManager__end_call">End call</string>
+    <string name="accept_call">Accept Call</string>
+    <string name="decline_call">Decline call</string>
+    <string name="preferences__voice_video_calls">Voice and video calls</string>
+    <string name="preferences__allow_access_voice_video">Allow access to accept voice and video calls from other users</string>
+    <string name="dialog_voice_video_title">Voice / video calls</string>
+    <string name="dialog_voice_video_message">The current implementation of voice / video calls will expose your IP address to the Oxen Foundation servers and the calling / called user</string>
+    <string name="CallNotificationBuilder_first_call_title">Call Missed</string>
+    <string name="CallNotificationBuilder_first_call_message">You missed a call because you need to enable the \'Voice and video calls\' permission in the Privacy Settings.</string>
+    <string name="WebRtcCallActivity_Session_Call">Session Call</string>
+    <string name="WebRtcCallActivity_Reconnecting">Reconnecting…</string>
+    <string name="CallNotificationBuilder_system_notification_title">Notifications</string>
+    <string name="CallNotificationBuilder_system_notification_message">Having notifications disabled will prevent you from receiving calls, go to Session notification settings?</string>
+    <string name="dismiss">Dismiss</string>
 
 </resources>

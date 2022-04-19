@@ -29,6 +29,7 @@ class ControlMessageView : LinearLayout {
     // region Updating
     fun bind(message: MessageRecord, previous: MessageRecord?) {
         binding.dateBreakTextView.showDateBreak(message, previous)
+        binding.iconImageView.visibility = View.GONE
         var messageBody: CharSequence = message.getDisplayBody(context)
         when {
             message.isExpirationTimerUpdate -> {
@@ -45,6 +46,16 @@ class ControlMessageView : LinearLayout {
             }
             message.isMessageRequestResponse -> {
                 messageBody = context.getString(R.string.message_requests_accepted)
+            }
+            message.isCallLog -> {
+                val drawable = when {
+                    message.isIncomingCall -> R.drawable.ic_incoming_call
+                    message.isOutgoingCall -> R.drawable.ic_outgoing_call
+                    message.isFirstMissedCall -> R.drawable.ic_info_outline_light
+                    else -> R.drawable.ic_missed_call
+                }
+                binding.iconImageView.setImageDrawable(ResourcesCompat.getDrawable(resources, drawable, context.theme))
+                binding.iconImageView.visibility = View.VISIBLE
             }
         }
 

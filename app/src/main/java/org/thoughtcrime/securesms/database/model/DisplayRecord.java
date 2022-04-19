@@ -117,11 +117,14 @@ public abstract class DisplayRecord {
   public boolean isMissedCall() {
     return SmsDatabase.Types.isMissedCall(type);
   }
+  public boolean isFirstMissedCall() {
+    return SmsDatabase.Types.isFirstMissedCall(type);
+  }
   public boolean isDeleted() { return  MmsSmsColumns.Types.isDeletedMessage(type); }
   public boolean isMessageRequestResponse() { return  MmsSmsColumns.Types.isMessageRequestResponse(type); }
 
   public boolean isControlMessage() {
     return isGroupUpdateMessage() || isExpirationTimerUpdate() || isDataExtractionNotification()
-            || isMessageRequestResponse();
+            || isMessageRequestResponse() || isCallLog();
   }
 }

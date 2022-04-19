@@ -20,6 +20,7 @@
     <dimen name="small_profile_picture_size">36dp</dimen>
     <dimen name="medium_profile_picture_size">46dp</dimen>
     <dimen name="large_profile_picture_size">76dp</dimen>
+    <dimen name="extra_large_profile_picture_size">128dp</dimen>
     <dimen name="conversation_view_status_indicator_size">14dp</dimen>
     <dimen name="border_thickness">1dp</dimen>
     <dimen name="new_conversation_button_collapsed_size">60dp</dimen>

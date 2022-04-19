@@ -17,6 +17,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'witness'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-parcelize'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlinx-serialization'
 apply plugin: 'dagger.hilt.android.plugin'
@@ -54,7 +55,7 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.9.1'
     implementation 'org.conscrypt:conscrypt-android:2.0.0'
     implementation 'org.signal:aesgcmprovider:0.0.3'
-    implementation 'org.whispersystems:webrtc-android:M74'
+    implementation 'org.webrtc:google-webrtc:1.0.32006'
     implementation "me.leolin:ShortcutBadger:1.1.16"
     implementation 'se.emilsjolander:stickylistheaders:2.7.0'
     implementation 'com.jpardogo.materialtabstrip:library:1.0.9'
@@ -157,8 +158,8 @@ dependencies {
     testImplementation 'org.robolectric:shadows-multidex:4.4'
 }
 
-def canonicalVersionCode = 261
-def canonicalVersionName = "1.11.20"
+def canonicalVersionCode = 272
+def canonicalVersionName = "1.12.15"
 
 def postFixSize = 10
 def abiPostFix = ['armeabi-v7a' : 1,

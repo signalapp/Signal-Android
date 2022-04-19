@@ -71,6 +71,7 @@ class ProfilePictureView : RelativeLayout {
     }
 
     fun update() {
+        if (!this::glide.isInitialized) return
         val publicKey = publicKey ?: return
         val additionalPublicKey = additionalPublicKey
         if (additionalPublicKey != null) {
@@ -104,12 +105,16 @@ class ProfilePictureView : RelativeLayout {
             if (profilePicturesCache.containsKey(publicKey) && profilePicturesCache[publicKey] == recipient.profileAvatar) return
             val signalProfilePicture = recipient.contactPhoto
             val avatar = (signalProfilePicture as? ProfileContactPhoto)?.avatarObject
+            val sizeInPX = resources.getDimensionPixelSize(sizeResId)
             if (signalProfilePicture != null && avatar != "0" && avatar != "") {
                 glide.clear(imageView)
-                glide.load(signalProfilePicture).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).circleCrop().into(imageView)
+                glide.load(signalProfilePicture)
+                        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                        .circleCrop()
+                        .error(AvatarPlaceholderGenerator.generate(context,sizeInPX, publicKey, displayName))
+                        .into(imageView)
                 profilePicturesCache[publicKey] = recipient.profileAvatar
             } else {
-                val sizeInPX = resources.getDimensionPixelSize(sizeResId)
                 glide.clear(imageView)
                 glide.load(AvatarPlaceholderGenerator.generate(context, sizeInPX, publicKey, displayName))
                     .diskCacheStrategy(DiskCacheStrategy.ALL).circleCrop().into(imageView)

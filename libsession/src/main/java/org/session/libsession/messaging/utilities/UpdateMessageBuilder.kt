@@ -3,6 +3,7 @@ package org.session.libsession.messaging.utilities
 import android.content.Context
 import org.session.libsession.R
 import org.session.libsession.messaging.MessagingModuleConfiguration
+import org.session.libsession.messaging.calls.CallMessageType
 import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.sending_receiving.data_extraction.DataExtractionNotificationInfoMessage
 import org.session.libsession.utilities.ExpirationUtil
@@ -100,6 +101,21 @@ object UpdateMessageBuilder {
                 context.getString(R.string.MessageRecord_s_took_a_screenshot, senderName)
             DataExtractionNotificationInfoMessage.Kind.MEDIA_SAVED ->
                 context.getString(R.string.MessageRecord_media_saved_by_s, senderName)
+        }
+    }
+
+    fun buildCallMessage(context: Context, type: CallMessageType, sender: String): String {
+        val storage = MessagingModuleConfiguration.shared.storage
+        val senderName = storage.getContactWithSessionID(sender)?.displayName(Contact.ContactContext.REGULAR) ?: sender
+        return when (type) {
+            CallMessageType.CALL_MISSED ->
+                context.getString(R.string.MessageRecord_missed_call_from, senderName)
+            CallMessageType.CALL_INCOMING ->
+                context.getString(R.string.MessageRecord_s_called_you, senderName)
+            CallMessageType.CALL_OUTGOING ->
+                context.getString(R.string.MessageRecord_called_s, senderName)
+            CallMessageType.CALL_FIRST_MISSED ->
+                context.getString(R.string.MessageRecord_missed_call_from, senderName)
         }
     }
 }

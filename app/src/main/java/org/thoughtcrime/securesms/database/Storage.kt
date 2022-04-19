@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.database
 import android.content.Context
 import android.net.Uri
 import org.session.libsession.database.StorageProtocol
+import org.session.libsession.messaging.calls.CallMessageType
 import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.jobs.AttachmentUploadJob
 import org.session.libsession.messaging.jobs.GroupAvatarDownloadJob
@@ -716,4 +717,20 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseComponent.get(context).recipientDatabase().setApprovedMe(recipient, approvedMe)
     }
 
+
+    override fun insertCallMessage(senderPublicKey: String, callMessageType: CallMessageType, sentTimestamp: Long) {
+        val database = DatabaseComponent.get(context).smsDatabase()
+        val address = fromSerialized(senderPublicKey)
+        val callMessage = IncomingTextMessage.fromCallInfo(callMessageType, address, Optional.absent(), sentTimestamp)
+        database.insertCallMessage(callMessage)
+    }
+
+    override fun conversationHasOutgoing(userPublicKey: String): Boolean {
+        val database = DatabaseComponent.get(context).threadDatabase()
+        val threadId = database.getThreadIdIfExistsFor(userPublicKey)
+
+        if (threadId == -1L) return false
+
+        return database.getLastSeenAndHasSent(threadId).second() ?: false
+    }
 }

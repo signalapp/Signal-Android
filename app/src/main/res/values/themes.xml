@@ -145,6 +145,13 @@
         <!-- leave empty to allow overriding -->
     </style>
 
+    <style name="Theme.Session.CallActivity" parent="Theme.Session.ForceDark">
+        <!-- in case we want to add customisation like no title -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@color/black</item>
+    </style>
+
     <style name="Theme.Session.BottomSheet" parent="@style/Theme.AppCompat.DayNight.Dialog">
         <item name="colorControlNormal">?android:textColorPrimary</item>
         <item name="android:textColorPrimary">@color/text</item>

@@ -2371,6 +2371,20 @@ public final class SignalServiceProtos {
      */
     org.session.libsignal.protos.SignalServiceProtos.DataMessageOrBuilder getDataMessageOrBuilder();
 
+    // optional .signalservice.CallMessage callMessage = 3;
+    /**
+     * <code>optional .signalservice.CallMessage callMessage = 3;</code>
+     */
+    boolean hasCallMessage();
+    /**
+     * <code>optional .signalservice.CallMessage callMessage = 3;</code>
+     */
+    org.session.libsignal.protos.SignalServiceProtos.CallMessage getCallMessage();
+    /**
+     * <code>optional .signalservice.CallMessage callMessage = 3;</code>
+     */
+    org.session.libsignal.protos.SignalServiceProtos.CallMessageOrBuilder getCallMessageOrBuilder();
+
     // optional .signalservice.ReceiptMessage receiptMessage = 5;
     /**
      * <code>optional .signalservice.ReceiptMessage receiptMessage = 5;</code>
@@ -2519,9 +2533,22 @@ public final class SignalServiceProtos {
               bitField0_ |= 0x00000001;
               break;
             }
+            case 26: {
+              org.session.libsignal.protos.SignalServiceProtos.CallMessage.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000002) == 0x00000002)) {
+                subBuilder = callMessage_.toBuilder();
+              }
+              callMessage_ = input.readMessage(org.session.libsignal.protos.SignalServiceProtos.CallMessage.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(callMessage_);
+                callMessage_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000002;
+              break;
+            }
             case 42: {
               org.session.libsignal.protos.SignalServiceProtos.ReceiptMessage.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000002) == 0x00000002)) {
+              if (((bitField0_ & 0x00000004) == 0x00000004)) {
                 subBuilder = receiptMessage_.toBuilder();
               }
               receiptMessage_ = input.readMessage(org.session.libsignal.protos.SignalServiceProtos.ReceiptMessage.PARSER, extensionRegistry);
@@ -2529,12 +2556,12 @@ public final class SignalServiceProtos {
                 subBuilder.mergeFrom(receiptMessage_);
                 receiptMessage_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000002;
+              bitField0_ |= 0x00000004;
               break;
             }
             case 50: {
               org.session.libsignal.protos.SignalServiceProtos.TypingMessage.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000004) == 0x00000004)) {
+              if (((bitField0_ & 0x00000008) == 0x00000008)) {
                 subBuilder = typingMessage_.toBuilder();
               }
               typingMessage_ = input.readMessage(org.session.libsignal.protos.SignalServiceProtos.TypingMessage.PARSER, extensionRegistry);
@@ -2542,12 +2569,12 @@ public final class SignalServiceProtos {
                 subBuilder.mergeFrom(typingMessage_);
                 typingMessage_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000004;
+              bitField0_ |= 0x00000008;
               break;
             }
             case 58: {
               org.session.libsignal.protos.SignalServiceProtos.ConfigurationMessage.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000008) == 0x00000008)) {
+              if (((bitField0_ & 0x00000010) == 0x00000010)) {
                 subBuilder = configurationMessage_.toBuilder();
               }
               configurationMessage_ = input.readMessage(org.session.libsignal.protos.SignalServiceProtos.ConfigurationMessage.PARSER, extensionRegistry);
@@ -2555,12 +2582,12 @@ public final class SignalServiceProtos {
                 subBuilder.mergeFrom(configurationMessage_);
                 configurationMessage_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000008;
+              bitField0_ |= 0x00000010;
               break;
             }
             case 66: {
               org.session.libsignal.protos.SignalServiceProtos.DataExtractionNotification.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000010) == 0x00000010)) {
+              if (((bitField0_ & 0x00000020) == 0x00000020)) {
                 subBuilder = dataExtractionNotification_.toBuilder();
               }
               dataExtractionNotification_ = input.readMessage(org.session.libsignal.protos.SignalServiceProtos.DataExtractionNotification.PARSER, extensionRegistry);
@@ -2568,12 +2595,12 @@ public final class SignalServiceProtos {
                 subBuilder.mergeFrom(dataExtractionNotification_);
                 dataExtractionNotification_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000010;
+              bitField0_ |= 0x00000020;
               break;
             }
             case 74: {
               org.session.libsignal.protos.SignalServiceProtos.UnsendRequest.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000020) == 0x00000020)) {
+              if (((bitField0_ & 0x00000040) == 0x00000040)) {
                 subBuilder = unsendRequest_.toBuilder();
               }
               unsendRequest_ = input.readMessage(org.session.libsignal.protos.SignalServiceProtos.UnsendRequest.PARSER, extensionRegistry);
@@ -2581,12 +2608,12 @@ public final class SignalServiceProtos {
                 subBuilder.mergeFrom(unsendRequest_);
                 unsendRequest_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000020;
+              bitField0_ |= 0x00000040;
               break;
             }
             case 82: {
               org.session.libsignal.protos.SignalServiceProtos.MessageRequestResponse.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000040) == 0x00000040)) {
+              if (((bitField0_ & 0x00000080) == 0x00000080)) {
                 subBuilder = messageRequestResponse_.toBuilder();
               }
               messageRequestResponse_ = input.readMessage(org.session.libsignal.protos.SignalServiceProtos.MessageRequestResponse.PARSER, extensionRegistry);
@@ -2594,7 +2621,7 @@ public final class SignalServiceProtos {
                 subBuilder.mergeFrom(messageRequestResponse_);
                 messageRequestResponse_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000040;
+              bitField0_ |= 0x00000080;
               break;
             }
           }
@@ -2659,6 +2686,28 @@ public final class SignalServiceProtos {
       return dataMessage_;
     }
 
+    // optional .signalservice.CallMessage callMessage = 3;
+    public static final int CALLMESSAGE_FIELD_NUMBER = 3;
+    private org.session.libsignal.protos.SignalServiceProtos.CallMessage callMessage_;
+    /**
+     * <code>optional .signalservice.CallMessage callMessage = 3;</code>
+     */
+    public boolean hasCallMessage() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional .signalservice.CallMessage callMessage = 3;</code>
+     */
+    public org.session.libsignal.protos.SignalServiceProtos.CallMessage getCallMessage() {
+      return callMessage_;
+    }
+    /**
+     * <code>optional .signalservice.CallMessage callMessage = 3;</code>
+     */
+    public org.session.libsignal.protos.SignalServiceProtos.CallMessageOrBuilder getCallMessageOrBuilder() {
+      return callMessage_;
+    }
+
     // optional .signalservice.ReceiptMessage receiptMessage = 5;
     public static final int RECEIPTMESSAGE_FIELD_NUMBER = 5;
     private org.session.libsignal.protos.SignalServiceProtos.ReceiptMessage receiptMessage_;
@@ -2666,7 +2715,7 @@ public final class SignalServiceProtos {
      * <code>optional .signalservice.ReceiptMessage receiptMessage = 5;</code>
      */
     public boolean hasReceiptMessage() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
      * <code>optional .signalservice.ReceiptMessage receiptMessage = 5;</code>
@@ -2688,7 +2737,7 @@ public final class SignalServiceProtos {
      * <code>optional .signalservice.TypingMessage typingMessage = 6;</code>
      */
     public boolean hasTypingMessage() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     /**
      * <code>optional .signalservice.TypingMessage typingMessage = 6;</code>
@@ -2710,7 +2759,7 @@ public final class SignalServiceProtos {
      * <code>optional .signalservice.ConfigurationMessage configurationMessage = 7;</code>
      */
     public boolean hasConfigurationMessage() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     /**
      * <code>optional .signalservice.ConfigurationMessage configurationMessage = 7;</code>
@@ -2732,7 +2781,7 @@ public final class SignalServiceProtos {
      * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 8;</code>
      */
     public boolean hasDataExtractionNotification() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return ((bitField0_ & 0x00000020) == 0x00000020);
     }
     /**
      * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 8;</code>
@@ -2754,7 +2803,7 @@ public final class SignalServiceProtos {
      * <code>optional .signalservice.UnsendRequest unsendRequest = 9;</code>
      */
     public boolean hasUnsendRequest() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
+      return ((bitField0_ & 0x00000040) == 0x00000040);
     }
     /**
      * <code>optional .signalservice.UnsendRequest unsendRequest = 9;</code>
@@ -2776,7 +2825,7 @@ public final class SignalServiceProtos {
      * <code>optional .signalservice.MessageRequestResponse messageRequestResponse = 10;</code>
      */
     public boolean hasMessageRequestResponse() {
-      return ((bitField0_ & 0x00000040) == 0x00000040);
+      return ((bitField0_ & 0x00000080) == 0x00000080);
     }
     /**
      * <code>optional .signalservice.MessageRequestResponse messageRequestResponse = 10;</code>
@@ -2793,6 +2842,7 @@ public final class SignalServiceProtos {
 
     private void initFields() {
       dataMessage_ = org.session.libsignal.protos.SignalServiceProtos.DataMessage.getDefaultInstance();
+      callMessage_ = org.session.libsignal.protos.SignalServiceProtos.CallMessage.getDefaultInstance();
       receiptMessage_ = org.session.libsignal.protos.SignalServiceProtos.ReceiptMessage.getDefaultInstance();
       typingMessage_ = org.session.libsignal.protos.SignalServiceProtos.TypingMessage.getDefaultInstance();
       configurationMessage_ = org.session.libsignal.protos.SignalServiceProtos.ConfigurationMessage.getDefaultInstance();
@@ -2807,6 +2857,12 @@ public final class SignalServiceProtos {
 
       if (hasDataMessage()) {
         if (!getDataMessage().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      if (hasCallMessage()) {
+        if (!getCallMessage().isInitialized()) {
           memoizedIsInitialized = 0;
           return false;
         }
@@ -2858,21 +2914,24 @@ public final class SignalServiceProtos {
         output.writeMessage(1, dataMessage_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeMessage(5, receiptMessage_);
+        output.writeMessage(3, callMessage_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeMessage(6, typingMessage_);
+        output.writeMessage(5, receiptMessage_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeMessage(7, configurationMessage_);
+        output.writeMessage(6, typingMessage_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeMessage(8, dataExtractionNotification_);
+        output.writeMessage(7, configurationMessage_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeMessage(9, unsendRequest_);
+        output.writeMessage(8, dataExtractionNotification_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeMessage(9, unsendRequest_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
         output.writeMessage(10, messageRequestResponse_);
       }
       getUnknownFields().writeTo(output);
@@ -2890,25 +2949,29 @@ public final class SignalServiceProtos {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, receiptMessage_);
+          .computeMessageSize(3, callMessage_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, typingMessage_);
+          .computeMessageSize(5, receiptMessage_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(7, configurationMessage_);
+          .computeMessageSize(6, typingMessage_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(8, dataExtractionNotification_);
+          .computeMessageSize(7, configurationMessage_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(9, unsendRequest_);
+          .computeMessageSize(8, dataExtractionNotification_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(9, unsendRequest_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(10, messageRequestResponse_);
       }
@@ -3021,6 +3084,7 @@ public final class SignalServiceProtos {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           getDataMessageFieldBuilder();
+          getCallMessageFieldBuilder();
           getReceiptMessageFieldBuilder();
           getTypingMessageFieldBuilder();
           getConfigurationMessageFieldBuilder();
@@ -3041,42 +3105,48 @@ public final class SignalServiceProtos {
           dataMessageBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
+        if (callMessageBuilder_ == null) {
+          callMessage_ = org.session.libsignal.protos.SignalServiceProtos.CallMessage.getDefaultInstance();
+        } else {
+          callMessageBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
         if (receiptMessageBuilder_ == null) {
           receiptMessage_ = org.session.libsignal.protos.SignalServiceProtos.ReceiptMessage.getDefaultInstance();
         } else {
           receiptMessageBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         if (typingMessageBuilder_ == null) {
           typingMessage_ = org.session.libsignal.protos.SignalServiceProtos.TypingMessage.getDefaultInstance();
         } else {
           typingMessageBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         if (configurationMessageBuilder_ == null) {
           configurationMessage_ = org.session.libsignal.protos.SignalServiceProtos.ConfigurationMessage.getDefaultInstance();
         } else {
           configurationMessageBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         if (dataExtractionNotificationBuilder_ == null) {
           dataExtractionNotification_ = org.session.libsignal.protos.SignalServiceProtos.DataExtractionNotification.getDefaultInstance();
         } else {
           dataExtractionNotificationBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         if (unsendRequestBuilder_ == null) {
           unsendRequest_ = org.session.libsignal.protos.SignalServiceProtos.UnsendRequest.getDefaultInstance();
         } else {
           unsendRequestBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000040);
         if (messageRequestResponseBuilder_ == null) {
           messageRequestResponse_ = org.session.libsignal.protos.SignalServiceProtos.MessageRequestResponse.getDefaultInstance();
         } else {
           messageRequestResponseBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000080);
         return this;
       }
 
@@ -3116,45 +3186,53 @@ public final class SignalServiceProtos {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
+        if (callMessageBuilder_ == null) {
+          result.callMessage_ = callMessage_;
+        } else {
+          result.callMessage_ = callMessageBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
         if (receiptMessageBuilder_ == null) {
           result.receiptMessage_ = receiptMessage_;
         } else {
           result.receiptMessage_ = receiptMessageBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
         }
         if (typingMessageBuilder_ == null) {
           result.typingMessage_ = typingMessage_;
         } else {
           result.typingMessage_ = typingMessageBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
         }
         if (configurationMessageBuilder_ == null) {
           result.configurationMessage_ = configurationMessage_;
         } else {
           result.configurationMessage_ = configurationMessageBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
         }
         if (dataExtractionNotificationBuilder_ == null) {
           result.dataExtractionNotification_ = dataExtractionNotification_;
         } else {
           result.dataExtractionNotification_ = dataExtractionNotificationBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
         }
         if (unsendRequestBuilder_ == null) {
           result.unsendRequest_ = unsendRequest_;
         } else {
           result.unsendRequest_ = unsendRequestBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
-          to_bitField0_ |= 0x00000040;
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
         }
         if (messageRequestResponseBuilder_ == null) {
           result.messageRequestResponse_ = messageRequestResponse_;
@@ -3179,6 +3257,9 @@ public final class SignalServiceProtos {
         if (other == org.session.libsignal.protos.SignalServiceProtos.Content.getDefaultInstance()) return this;
         if (other.hasDataMessage()) {
           mergeDataMessage(other.getDataMessage());
+        }
+        if (other.hasCallMessage()) {
+          mergeCallMessage(other.getCallMessage());
         }
         if (other.hasReceiptMessage()) {
           mergeReceiptMessage(other.getReceiptMessage());
@@ -3205,6 +3286,12 @@ public final class SignalServiceProtos {
       public final boolean isInitialized() {
         if (hasDataMessage()) {
           if (!getDataMessage().isInitialized()) {
+            
+            return false;
+          }
+        }
+        if (hasCallMessage()) {
+          if (!getCallMessage().isInitialized()) {
             
             return false;
           }
@@ -3384,6 +3471,123 @@ public final class SignalServiceProtos {
         return dataMessageBuilder_;
       }
 
+      // optional .signalservice.CallMessage callMessage = 3;
+      private org.session.libsignal.protos.SignalServiceProtos.CallMessage callMessage_ = org.session.libsignal.protos.SignalServiceProtos.CallMessage.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          org.session.libsignal.protos.SignalServiceProtos.CallMessage, org.session.libsignal.protos.SignalServiceProtos.CallMessage.Builder, org.session.libsignal.protos.SignalServiceProtos.CallMessageOrBuilder> callMessageBuilder_;
+      /**
+       * <code>optional .signalservice.CallMessage callMessage = 3;</code>
+       */
+      public boolean hasCallMessage() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional .signalservice.CallMessage callMessage = 3;</code>
+       */
+      public org.session.libsignal.protos.SignalServiceProtos.CallMessage getCallMessage() {
+        if (callMessageBuilder_ == null) {
+          return callMessage_;
+        } else {
+          return callMessageBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .signalservice.CallMessage callMessage = 3;</code>
+       */
+      public Builder setCallMessage(org.session.libsignal.protos.SignalServiceProtos.CallMessage value) {
+        if (callMessageBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          callMessage_ = value;
+          onChanged();
+        } else {
+          callMessageBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .signalservice.CallMessage callMessage = 3;</code>
+       */
+      public Builder setCallMessage(
+          org.session.libsignal.protos.SignalServiceProtos.CallMessage.Builder builderForValue) {
+        if (callMessageBuilder_ == null) {
+          callMessage_ = builderForValue.build();
+          onChanged();
+        } else {
+          callMessageBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .signalservice.CallMessage callMessage = 3;</code>
+       */
+      public Builder mergeCallMessage(org.session.libsignal.protos.SignalServiceProtos.CallMessage value) {
+        if (callMessageBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+              callMessage_ != org.session.libsignal.protos.SignalServiceProtos.CallMessage.getDefaultInstance()) {
+            callMessage_ =
+              org.session.libsignal.protos.SignalServiceProtos.CallMessage.newBuilder(callMessage_).mergeFrom(value).buildPartial();
+          } else {
+            callMessage_ = value;
+          }
+          onChanged();
+        } else {
+          callMessageBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .signalservice.CallMessage callMessage = 3;</code>
+       */
+      public Builder clearCallMessage() {
+        if (callMessageBuilder_ == null) {
+          callMessage_ = org.session.libsignal.protos.SignalServiceProtos.CallMessage.getDefaultInstance();
+          onChanged();
+        } else {
+          callMessageBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+      /**
+       * <code>optional .signalservice.CallMessage callMessage = 3;</code>
+       */
+      public org.session.libsignal.protos.SignalServiceProtos.CallMessage.Builder getCallMessageBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getCallMessageFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .signalservice.CallMessage callMessage = 3;</code>
+       */
+      public org.session.libsignal.protos.SignalServiceProtos.CallMessageOrBuilder getCallMessageOrBuilder() {
+        if (callMessageBuilder_ != null) {
+          return callMessageBuilder_.getMessageOrBuilder();
+        } else {
+          return callMessage_;
+        }
+      }
+      /**
+       * <code>optional .signalservice.CallMessage callMessage = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          org.session.libsignal.protos.SignalServiceProtos.CallMessage, org.session.libsignal.protos.SignalServiceProtos.CallMessage.Builder, org.session.libsignal.protos.SignalServiceProtos.CallMessageOrBuilder> 
+          getCallMessageFieldBuilder() {
+        if (callMessageBuilder_ == null) {
+          callMessageBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              org.session.libsignal.protos.SignalServiceProtos.CallMessage, org.session.libsignal.protos.SignalServiceProtos.CallMessage.Builder, org.session.libsignal.protos.SignalServiceProtos.CallMessageOrBuilder>(
+                  callMessage_,
+                  getParentForChildren(),
+                  isClean());
+          callMessage_ = null;
+        }
+        return callMessageBuilder_;
+      }
+
       // optional .signalservice.ReceiptMessage receiptMessage = 5;
       private org.session.libsignal.protos.SignalServiceProtos.ReceiptMessage receiptMessage_ = org.session.libsignal.protos.SignalServiceProtos.ReceiptMessage.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
@@ -3392,7 +3596,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.ReceiptMessage receiptMessage = 5;</code>
        */
       public boolean hasReceiptMessage() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
        * <code>optional .signalservice.ReceiptMessage receiptMessage = 5;</code>
@@ -3417,7 +3621,7 @@ public final class SignalServiceProtos {
         } else {
           receiptMessageBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
       /**
@@ -3431,7 +3635,7 @@ public final class SignalServiceProtos {
         } else {
           receiptMessageBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
       /**
@@ -3439,7 +3643,7 @@ public final class SignalServiceProtos {
        */
       public Builder mergeReceiptMessage(org.session.libsignal.protos.SignalServiceProtos.ReceiptMessage value) {
         if (receiptMessageBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+          if (((bitField0_ & 0x00000004) == 0x00000004) &&
               receiptMessage_ != org.session.libsignal.protos.SignalServiceProtos.ReceiptMessage.getDefaultInstance()) {
             receiptMessage_ =
               org.session.libsignal.protos.SignalServiceProtos.ReceiptMessage.newBuilder(receiptMessage_).mergeFrom(value).buildPartial();
@@ -3450,7 +3654,7 @@ public final class SignalServiceProtos {
         } else {
           receiptMessageBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
       /**
@@ -3463,14 +3667,14 @@ public final class SignalServiceProtos {
         } else {
           receiptMessageBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       /**
        * <code>optional .signalservice.ReceiptMessage receiptMessage = 5;</code>
        */
       public org.session.libsignal.protos.SignalServiceProtos.ReceiptMessage.Builder getReceiptMessageBuilder() {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return getReceiptMessageFieldBuilder().getBuilder();
       }
@@ -3509,7 +3713,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.TypingMessage typingMessage = 6;</code>
        */
       public boolean hasTypingMessage() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       /**
        * <code>optional .signalservice.TypingMessage typingMessage = 6;</code>
@@ -3534,7 +3738,7 @@ public final class SignalServiceProtos {
         } else {
           typingMessageBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         return this;
       }
       /**
@@ -3548,7 +3752,7 @@ public final class SignalServiceProtos {
         } else {
           typingMessageBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         return this;
       }
       /**
@@ -3556,7 +3760,7 @@ public final class SignalServiceProtos {
        */
       public Builder mergeTypingMessage(org.session.libsignal.protos.SignalServiceProtos.TypingMessage value) {
         if (typingMessageBuilder_ == null) {
-          if (((bitField0_ & 0x00000004) == 0x00000004) &&
+          if (((bitField0_ & 0x00000008) == 0x00000008) &&
               typingMessage_ != org.session.libsignal.protos.SignalServiceProtos.TypingMessage.getDefaultInstance()) {
             typingMessage_ =
               org.session.libsignal.protos.SignalServiceProtos.TypingMessage.newBuilder(typingMessage_).mergeFrom(value).buildPartial();
@@ -3567,7 +3771,7 @@ public final class SignalServiceProtos {
         } else {
           typingMessageBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         return this;
       }
       /**
@@ -3580,14 +3784,14 @@ public final class SignalServiceProtos {
         } else {
           typingMessageBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
       /**
        * <code>optional .signalservice.TypingMessage typingMessage = 6;</code>
        */
       public org.session.libsignal.protos.SignalServiceProtos.TypingMessage.Builder getTypingMessageBuilder() {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
         return getTypingMessageFieldBuilder().getBuilder();
       }
@@ -3626,7 +3830,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.ConfigurationMessage configurationMessage = 7;</code>
        */
       public boolean hasConfigurationMessage() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       /**
        * <code>optional .signalservice.ConfigurationMessage configurationMessage = 7;</code>
@@ -3651,7 +3855,7 @@ public final class SignalServiceProtos {
         } else {
           configurationMessageBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         return this;
       }
       /**
@@ -3665,7 +3869,7 @@ public final class SignalServiceProtos {
         } else {
           configurationMessageBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         return this;
       }
       /**
@@ -3673,7 +3877,7 @@ public final class SignalServiceProtos {
        */
       public Builder mergeConfigurationMessage(org.session.libsignal.protos.SignalServiceProtos.ConfigurationMessage value) {
         if (configurationMessageBuilder_ == null) {
-          if (((bitField0_ & 0x00000008) == 0x00000008) &&
+          if (((bitField0_ & 0x00000010) == 0x00000010) &&
               configurationMessage_ != org.session.libsignal.protos.SignalServiceProtos.ConfigurationMessage.getDefaultInstance()) {
             configurationMessage_ =
               org.session.libsignal.protos.SignalServiceProtos.ConfigurationMessage.newBuilder(configurationMessage_).mergeFrom(value).buildPartial();
@@ -3684,7 +3888,7 @@ public final class SignalServiceProtos {
         } else {
           configurationMessageBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         return this;
       }
       /**
@@ -3697,14 +3901,14 @@ public final class SignalServiceProtos {
         } else {
           configurationMessageBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
       /**
        * <code>optional .signalservice.ConfigurationMessage configurationMessage = 7;</code>
        */
       public org.session.libsignal.protos.SignalServiceProtos.ConfigurationMessage.Builder getConfigurationMessageBuilder() {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         onChanged();
         return getConfigurationMessageFieldBuilder().getBuilder();
       }
@@ -3743,7 +3947,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 8;</code>
        */
       public boolean hasDataExtractionNotification() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       /**
        * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 8;</code>
@@ -3768,7 +3972,7 @@ public final class SignalServiceProtos {
         } else {
           dataExtractionNotificationBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         return this;
       }
       /**
@@ -3782,7 +3986,7 @@ public final class SignalServiceProtos {
         } else {
           dataExtractionNotificationBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         return this;
       }
       /**
@@ -3790,7 +3994,7 @@ public final class SignalServiceProtos {
        */
       public Builder mergeDataExtractionNotification(org.session.libsignal.protos.SignalServiceProtos.DataExtractionNotification value) {
         if (dataExtractionNotificationBuilder_ == null) {
-          if (((bitField0_ & 0x00000010) == 0x00000010) &&
+          if (((bitField0_ & 0x00000020) == 0x00000020) &&
               dataExtractionNotification_ != org.session.libsignal.protos.SignalServiceProtos.DataExtractionNotification.getDefaultInstance()) {
             dataExtractionNotification_ =
               org.session.libsignal.protos.SignalServiceProtos.DataExtractionNotification.newBuilder(dataExtractionNotification_).mergeFrom(value).buildPartial();
@@ -3801,7 +4005,7 @@ public final class SignalServiceProtos {
         } else {
           dataExtractionNotificationBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         return this;
       }
       /**
@@ -3814,14 +4018,14 @@ public final class SignalServiceProtos {
         } else {
           dataExtractionNotificationBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
       /**
        * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 8;</code>
        */
       public org.session.libsignal.protos.SignalServiceProtos.DataExtractionNotification.Builder getDataExtractionNotificationBuilder() {
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         onChanged();
         return getDataExtractionNotificationFieldBuilder().getBuilder();
       }
@@ -3860,7 +4064,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.UnsendRequest unsendRequest = 9;</code>
        */
       public boolean hasUnsendRequest() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return ((bitField0_ & 0x00000040) == 0x00000040);
       }
       /**
        * <code>optional .signalservice.UnsendRequest unsendRequest = 9;</code>
@@ -3885,7 +4089,7 @@ public final class SignalServiceProtos {
         } else {
           unsendRequestBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         return this;
       }
       /**
@@ -3899,7 +4103,7 @@ public final class SignalServiceProtos {
         } else {
           unsendRequestBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         return this;
       }
       /**
@@ -3907,7 +4111,7 @@ public final class SignalServiceProtos {
        */
       public Builder mergeUnsendRequest(org.session.libsignal.protos.SignalServiceProtos.UnsendRequest value) {
         if (unsendRequestBuilder_ == null) {
-          if (((bitField0_ & 0x00000020) == 0x00000020) &&
+          if (((bitField0_ & 0x00000040) == 0x00000040) &&
               unsendRequest_ != org.session.libsignal.protos.SignalServiceProtos.UnsendRequest.getDefaultInstance()) {
             unsendRequest_ =
               org.session.libsignal.protos.SignalServiceProtos.UnsendRequest.newBuilder(unsendRequest_).mergeFrom(value).buildPartial();
@@ -3918,7 +4122,7 @@ public final class SignalServiceProtos {
         } else {
           unsendRequestBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         return this;
       }
       /**
@@ -3931,14 +4135,14 @@ public final class SignalServiceProtos {
         } else {
           unsendRequestBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000040);
         return this;
       }
       /**
        * <code>optional .signalservice.UnsendRequest unsendRequest = 9;</code>
        */
       public org.session.libsignal.protos.SignalServiceProtos.UnsendRequest.Builder getUnsendRequestBuilder() {
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         onChanged();
         return getUnsendRequestFieldBuilder().getBuilder();
       }
@@ -3977,7 +4181,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.MessageRequestResponse messageRequestResponse = 10;</code>
        */
       public boolean hasMessageRequestResponse() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
+        return ((bitField0_ & 0x00000080) == 0x00000080);
       }
       /**
        * <code>optional .signalservice.MessageRequestResponse messageRequestResponse = 10;</code>
@@ -4002,7 +4206,7 @@ public final class SignalServiceProtos {
         } else {
           messageRequestResponseBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000080;
         return this;
       }
       /**
@@ -4016,7 +4220,7 @@ public final class SignalServiceProtos {
         } else {
           messageRequestResponseBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000080;
         return this;
       }
       /**
@@ -4024,7 +4228,7 @@ public final class SignalServiceProtos {
        */
       public Builder mergeMessageRequestResponse(org.session.libsignal.protos.SignalServiceProtos.MessageRequestResponse value) {
         if (messageRequestResponseBuilder_ == null) {
-          if (((bitField0_ & 0x00000040) == 0x00000040) &&
+          if (((bitField0_ & 0x00000080) == 0x00000080) &&
               messageRequestResponse_ != org.session.libsignal.protos.SignalServiceProtos.MessageRequestResponse.getDefaultInstance()) {
             messageRequestResponse_ =
               org.session.libsignal.protos.SignalServiceProtos.MessageRequestResponse.newBuilder(messageRequestResponse_).mergeFrom(value).buildPartial();
@@ -4035,7 +4239,7 @@ public final class SignalServiceProtos {
         } else {
           messageRequestResponseBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000080;
         return this;
       }
       /**
@@ -4048,14 +4252,14 @@ public final class SignalServiceProtos {
         } else {
           messageRequestResponseBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000080);
         return this;
       }
       /**
        * <code>optional .signalservice.MessageRequestResponse messageRequestResponse = 10;</code>
        */
       public org.session.libsignal.protos.SignalServiceProtos.MessageRequestResponse.Builder getMessageRequestResponseBuilder() {
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000080;
         onChanged();
         return getMessageRequestResponseFieldBuilder().getBuilder();
       }
@@ -14840,6 +15044,1308 @@ public final class SignalServiceProtos {
     // @@protoc_insertion_point(class_scope:signalservice.DataMessage)
   }
 
+  public interface CallMessageOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // required .signalservice.CallMessage.Type type = 1;
+    /**
+     * <code>required .signalservice.CallMessage.Type type = 1;</code>
+     *
+     * <pre>
+     * @required
+     * </pre>
+     */
+    boolean hasType();
+    /**
+     * <code>required .signalservice.CallMessage.Type type = 1;</code>
+     *
+     * <pre>
+     * @required
+     * </pre>
+     */
+    org.session.libsignal.protos.SignalServiceProtos.CallMessage.Type getType();
+
+    // repeated string sdps = 2;
+    /**
+     * <code>repeated string sdps = 2;</code>
+     */
+    java.util.List<java.lang.String>
+    getSdpsList();
+    /**
+     * <code>repeated string sdps = 2;</code>
+     */
+    int getSdpsCount();
+    /**
+     * <code>repeated string sdps = 2;</code>
+     */
+    java.lang.String getSdps(int index);
+    /**
+     * <code>repeated string sdps = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getSdpsBytes(int index);
+
+    // repeated uint32 sdpMLineIndexes = 3;
+    /**
+     * <code>repeated uint32 sdpMLineIndexes = 3;</code>
+     */
+    java.util.List<java.lang.Integer> getSdpMLineIndexesList();
+    /**
+     * <code>repeated uint32 sdpMLineIndexes = 3;</code>
+     */
+    int getSdpMLineIndexesCount();
+    /**
+     * <code>repeated uint32 sdpMLineIndexes = 3;</code>
+     */
+    int getSdpMLineIndexes(int index);
+
+    // repeated string sdpMids = 4;
+    /**
+     * <code>repeated string sdpMids = 4;</code>
+     */
+    java.util.List<java.lang.String>
+    getSdpMidsList();
+    /**
+     * <code>repeated string sdpMids = 4;</code>
+     */
+    int getSdpMidsCount();
+    /**
+     * <code>repeated string sdpMids = 4;</code>
+     */
+    java.lang.String getSdpMids(int index);
+    /**
+     * <code>repeated string sdpMids = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getSdpMidsBytes(int index);
+
+    // required string uuid = 5;
+    /**
+     * <code>required string uuid = 5;</code>
+     *
+     * <pre>
+     * @required
+     * </pre>
+     */
+    boolean hasUuid();
+    /**
+     * <code>required string uuid = 5;</code>
+     *
+     * <pre>
+     * @required
+     * </pre>
+     */
+    java.lang.String getUuid();
+    /**
+     * <code>required string uuid = 5;</code>
+     *
+     * <pre>
+     * @required
+     * </pre>
+     */
+    com.google.protobuf.ByteString
+        getUuidBytes();
+  }
+  /**
+   * Protobuf type {@code signalservice.CallMessage}
+   */
+  public static final class CallMessage extends
+      com.google.protobuf.GeneratedMessage
+      implements CallMessageOrBuilder {
+    // Use CallMessage.newBuilder() to construct.
+    private CallMessage(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private CallMessage(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final CallMessage defaultInstance;
+    public static CallMessage getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public CallMessage getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private CallMessage(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              int rawValue = input.readEnum();
+              org.session.libsignal.protos.SignalServiceProtos.CallMessage.Type value = org.session.libsignal.protos.SignalServiceProtos.CallMessage.Type.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(1, rawValue);
+              } else {
+                bitField0_ |= 0x00000001;
+                type_ = value;
+              }
+              break;
+            }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                sdps_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              sdps_.add(input.readBytes());
+              break;
+            }
+            case 24: {
+              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+                sdpMLineIndexes_ = new java.util.ArrayList<java.lang.Integer>();
+                mutable_bitField0_ |= 0x00000004;
+              }
+              sdpMLineIndexes_.add(input.readUInt32());
+              break;
+            }
+            case 26: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004) && input.getBytesUntilLimit() > 0) {
+                sdpMLineIndexes_ = new java.util.ArrayList<java.lang.Integer>();
+                mutable_bitField0_ |= 0x00000004;
+              }
+              while (input.getBytesUntilLimit() > 0) {
+                sdpMLineIndexes_.add(input.readUInt32());
+              }
+              input.popLimit(limit);
+              break;
+            }
+            case 34: {
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+                sdpMids_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000008;
+              }
+              sdpMids_.add(input.readBytes());
+              break;
+            }
+            case 42: {
+              bitField0_ |= 0x00000002;
+              uuid_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          sdps_ = new com.google.protobuf.UnmodifiableLazyStringList(sdps_);
+        }
+        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+          sdpMLineIndexes_ = java.util.Collections.unmodifiableList(sdpMLineIndexes_);
+        }
+        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+          sdpMids_ = new com.google.protobuf.UnmodifiableLazyStringList(sdpMids_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.session.libsignal.protos.SignalServiceProtos.internal_static_signalservice_CallMessage_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.session.libsignal.protos.SignalServiceProtos.internal_static_signalservice_CallMessage_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.session.libsignal.protos.SignalServiceProtos.CallMessage.class, org.session.libsignal.protos.SignalServiceProtos.CallMessage.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<CallMessage> PARSER =
+        new com.google.protobuf.AbstractParser<CallMessage>() {
+      public CallMessage parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new CallMessage(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<CallMessage> getParserForType() {
+      return PARSER;
+    }
+
+    /**
+     * Protobuf enum {@code signalservice.CallMessage.Type}
+     */
+    public enum Type
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>PRE_OFFER = 6;</code>
+       */
+      PRE_OFFER(0, 6),
+      /**
+       * <code>OFFER = 1;</code>
+       */
+      OFFER(1, 1),
+      /**
+       * <code>ANSWER = 2;</code>
+       */
+      ANSWER(2, 2),
+      /**
+       * <code>PROVISIONAL_ANSWER = 3;</code>
+       */
+      PROVISIONAL_ANSWER(3, 3),
+      /**
+       * <code>ICE_CANDIDATES = 4;</code>
+       */
+      ICE_CANDIDATES(4, 4),
+      /**
+       * <code>END_CALL = 5;</code>
+       */
+      END_CALL(5, 5),
+      ;
+
+      /**
+       * <code>PRE_OFFER = 6;</code>
+       */
+      public static final int PRE_OFFER_VALUE = 6;
+      /**
+       * <code>OFFER = 1;</code>
+       */
+      public static final int OFFER_VALUE = 1;
+      /**
+       * <code>ANSWER = 2;</code>
+       */
+      public static final int ANSWER_VALUE = 2;
+      /**
+       * <code>PROVISIONAL_ANSWER = 3;</code>
+       */
+      public static final int PROVISIONAL_ANSWER_VALUE = 3;
+      /**
+       * <code>ICE_CANDIDATES = 4;</code>
+       */
+      public static final int ICE_CANDIDATES_VALUE = 4;
+      /**
+       * <code>END_CALL = 5;</code>
+       */
+      public static final int END_CALL_VALUE = 5;
+
+
+      public final int getNumber() { return value; }
+
+      public static Type valueOf(int value) {
+        switch (value) {
+          case 6: return PRE_OFFER;
+          case 1: return OFFER;
+          case 2: return ANSWER;
+          case 3: return PROVISIONAL_ANSWER;
+          case 4: return ICE_CANDIDATES;
+          case 5: return END_CALL;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<Type>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static com.google.protobuf.Internal.EnumLiteMap<Type>
+          internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<Type>() {
+              public Type findValueByNumber(int number) {
+                return Type.valueOf(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(index);
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return org.session.libsignal.protos.SignalServiceProtos.CallMessage.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final Type[] VALUES = values();
+
+      public static Type valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int index;
+      private final int value;
+
+      private Type(int index, int value) {
+        this.index = index;
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:signalservice.CallMessage.Type)
+    }
+
+    private int bitField0_;
+    // required .signalservice.CallMessage.Type type = 1;
+    public static final int TYPE_FIELD_NUMBER = 1;
+    private org.session.libsignal.protos.SignalServiceProtos.CallMessage.Type type_;
+    /**
+     * <code>required .signalservice.CallMessage.Type type = 1;</code>
+     *
+     * <pre>
+     * @required
+     * </pre>
+     */
+    public boolean hasType() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>required .signalservice.CallMessage.Type type = 1;</code>
+     *
+     * <pre>
+     * @required
+     * </pre>
+     */
+    public org.session.libsignal.protos.SignalServiceProtos.CallMessage.Type getType() {
+      return type_;
+    }
+
+    // repeated string sdps = 2;
+    public static final int SDPS_FIELD_NUMBER = 2;
+    private com.google.protobuf.LazyStringList sdps_;
+    /**
+     * <code>repeated string sdps = 2;</code>
+     */
+    public java.util.List<java.lang.String>
+        getSdpsList() {
+      return sdps_;
+    }
+    /**
+     * <code>repeated string sdps = 2;</code>
+     */
+    public int getSdpsCount() {
+      return sdps_.size();
+    }
+    /**
+     * <code>repeated string sdps = 2;</code>
+     */
+    public java.lang.String getSdps(int index) {
+      return sdps_.get(index);
+    }
+    /**
+     * <code>repeated string sdps = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSdpsBytes(int index) {
+      return sdps_.getByteString(index);
+    }
+
+    // repeated uint32 sdpMLineIndexes = 3;
+    public static final int SDPMLINEINDEXES_FIELD_NUMBER = 3;
+    private java.util.List<java.lang.Integer> sdpMLineIndexes_;
+    /**
+     * <code>repeated uint32 sdpMLineIndexes = 3;</code>
+     */
+    public java.util.List<java.lang.Integer>
+        getSdpMLineIndexesList() {
+      return sdpMLineIndexes_;
+    }
+    /**
+     * <code>repeated uint32 sdpMLineIndexes = 3;</code>
+     */
+    public int getSdpMLineIndexesCount() {
+      return sdpMLineIndexes_.size();
+    }
+    /**
+     * <code>repeated uint32 sdpMLineIndexes = 3;</code>
+     */
+    public int getSdpMLineIndexes(int index) {
+      return sdpMLineIndexes_.get(index);
+    }
+
+    // repeated string sdpMids = 4;
+    public static final int SDPMIDS_FIELD_NUMBER = 4;
+    private com.google.protobuf.LazyStringList sdpMids_;
+    /**
+     * <code>repeated string sdpMids = 4;</code>
+     */
+    public java.util.List<java.lang.String>
+        getSdpMidsList() {
+      return sdpMids_;
+    }
+    /**
+     * <code>repeated string sdpMids = 4;</code>
+     */
+    public int getSdpMidsCount() {
+      return sdpMids_.size();
+    }
+    /**
+     * <code>repeated string sdpMids = 4;</code>
+     */
+    public java.lang.String getSdpMids(int index) {
+      return sdpMids_.get(index);
+    }
+    /**
+     * <code>repeated string sdpMids = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSdpMidsBytes(int index) {
+      return sdpMids_.getByteString(index);
+    }
+
+    // required string uuid = 5;
+    public static final int UUID_FIELD_NUMBER = 5;
+    private java.lang.Object uuid_;
+    /**
+     * <code>required string uuid = 5;</code>
+     *
+     * <pre>
+     * @required
+     * </pre>
+     */
+    public boolean hasUuid() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>required string uuid = 5;</code>
+     *
+     * <pre>
+     * @required
+     * </pre>
+     */
+    public java.lang.String getUuid() {
+      java.lang.Object ref = uuid_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          uuid_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>required string uuid = 5;</code>
+     *
+     * <pre>
+     * @required
+     * </pre>
+     */
+    public com.google.protobuf.ByteString
+        getUuidBytes() {
+      java.lang.Object ref = uuid_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        uuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private void initFields() {
+      type_ = org.session.libsignal.protos.SignalServiceProtos.CallMessage.Type.PRE_OFFER;
+      sdps_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      sdpMLineIndexes_ = java.util.Collections.emptyList();
+      sdpMids_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      uuid_ = "";
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      if (!hasType()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasUuid()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeEnum(1, type_.getNumber());
+      }
+      for (int i = 0; i < sdps_.size(); i++) {
+        output.writeBytes(2, sdps_.getByteString(i));
+      }
+      for (int i = 0; i < sdpMLineIndexes_.size(); i++) {
+        output.writeUInt32(3, sdpMLineIndexes_.get(i));
+      }
+      for (int i = 0; i < sdpMids_.size(); i++) {
+        output.writeBytes(4, sdpMids_.getByteString(i));
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(5, getUuidBytes());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, type_.getNumber());
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < sdps_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeBytesSizeNoTag(sdps_.getByteString(i));
+        }
+        size += dataSize;
+        size += 1 * getSdpsList().size();
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < sdpMLineIndexes_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeUInt32SizeNoTag(sdpMLineIndexes_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getSdpMLineIndexesList().size();
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < sdpMids_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeBytesSizeNoTag(sdpMids_.getByteString(i));
+        }
+        size += dataSize;
+        size += 1 * getSdpMidsList().size();
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(5, getUuidBytes());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.session.libsignal.protos.SignalServiceProtos.CallMessage parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.session.libsignal.protos.SignalServiceProtos.CallMessage parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.session.libsignal.protos.SignalServiceProtos.CallMessage parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.session.libsignal.protos.SignalServiceProtos.CallMessage parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.session.libsignal.protos.SignalServiceProtos.CallMessage parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.session.libsignal.protos.SignalServiceProtos.CallMessage parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.session.libsignal.protos.SignalServiceProtos.CallMessage parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.session.libsignal.protos.SignalServiceProtos.CallMessage parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.session.libsignal.protos.SignalServiceProtos.CallMessage parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.session.libsignal.protos.SignalServiceProtos.CallMessage parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.session.libsignal.protos.SignalServiceProtos.CallMessage prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code signalservice.CallMessage}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.session.libsignal.protos.SignalServiceProtos.CallMessageOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.session.libsignal.protos.SignalServiceProtos.internal_static_signalservice_CallMessage_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.session.libsignal.protos.SignalServiceProtos.internal_static_signalservice_CallMessage_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.session.libsignal.protos.SignalServiceProtos.CallMessage.class, org.session.libsignal.protos.SignalServiceProtos.CallMessage.Builder.class);
+      }
+
+      // Construct using org.session.libsignal.protos.SignalServiceProtos.CallMessage.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        type_ = org.session.libsignal.protos.SignalServiceProtos.CallMessage.Type.PRE_OFFER;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        sdps_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        sdpMLineIndexes_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000004);
+        sdpMids_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        uuid_ = "";
+        bitField0_ = (bitField0_ & ~0x00000010);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.session.libsignal.protos.SignalServiceProtos.internal_static_signalservice_CallMessage_descriptor;
+      }
+
+      public org.session.libsignal.protos.SignalServiceProtos.CallMessage getDefaultInstanceForType() {
+        return org.session.libsignal.protos.SignalServiceProtos.CallMessage.getDefaultInstance();
+      }
+
+      public org.session.libsignal.protos.SignalServiceProtos.CallMessage build() {
+        org.session.libsignal.protos.SignalServiceProtos.CallMessage result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.session.libsignal.protos.SignalServiceProtos.CallMessage buildPartial() {
+        org.session.libsignal.protos.SignalServiceProtos.CallMessage result = new org.session.libsignal.protos.SignalServiceProtos.CallMessage(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.type_ = type_;
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          sdps_ = new com.google.protobuf.UnmodifiableLazyStringList(
+              sdps_);
+          bitField0_ = (bitField0_ & ~0x00000002);
+        }
+        result.sdps_ = sdps_;
+        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          sdpMLineIndexes_ = java.util.Collections.unmodifiableList(sdpMLineIndexes_);
+          bitField0_ = (bitField0_ & ~0x00000004);
+        }
+        result.sdpMLineIndexes_ = sdpMLineIndexes_;
+        if (((bitField0_ & 0x00000008) == 0x00000008)) {
+          sdpMids_ = new com.google.protobuf.UnmodifiableLazyStringList(
+              sdpMids_);
+          bitField0_ = (bitField0_ & ~0x00000008);
+        }
+        result.sdpMids_ = sdpMids_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.uuid_ = uuid_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.session.libsignal.protos.SignalServiceProtos.CallMessage) {
+          return mergeFrom((org.session.libsignal.protos.SignalServiceProtos.CallMessage)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.session.libsignal.protos.SignalServiceProtos.CallMessage other) {
+        if (other == org.session.libsignal.protos.SignalServiceProtos.CallMessage.getDefaultInstance()) return this;
+        if (other.hasType()) {
+          setType(other.getType());
+        }
+        if (!other.sdps_.isEmpty()) {
+          if (sdps_.isEmpty()) {
+            sdps_ = other.sdps_;
+            bitField0_ = (bitField0_ & ~0x00000002);
+          } else {
+            ensureSdpsIsMutable();
+            sdps_.addAll(other.sdps_);
+          }
+          onChanged();
+        }
+        if (!other.sdpMLineIndexes_.isEmpty()) {
+          if (sdpMLineIndexes_.isEmpty()) {
+            sdpMLineIndexes_ = other.sdpMLineIndexes_;
+            bitField0_ = (bitField0_ & ~0x00000004);
+          } else {
+            ensureSdpMLineIndexesIsMutable();
+            sdpMLineIndexes_.addAll(other.sdpMLineIndexes_);
+          }
+          onChanged();
+        }
+        if (!other.sdpMids_.isEmpty()) {
+          if (sdpMids_.isEmpty()) {
+            sdpMids_ = other.sdpMids_;
+            bitField0_ = (bitField0_ & ~0x00000008);
+          } else {
+            ensureSdpMidsIsMutable();
+            sdpMids_.addAll(other.sdpMids_);
+          }
+          onChanged();
+        }
+        if (other.hasUuid()) {
+          bitField0_ |= 0x00000010;
+          uuid_ = other.uuid_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        if (!hasType()) {
+          
+          return false;
+        }
+        if (!hasUuid()) {
+          
+          return false;
+        }
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.session.libsignal.protos.SignalServiceProtos.CallMessage parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.session.libsignal.protos.SignalServiceProtos.CallMessage) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // required .signalservice.CallMessage.Type type = 1;
+      private org.session.libsignal.protos.SignalServiceProtos.CallMessage.Type type_ = org.session.libsignal.protos.SignalServiceProtos.CallMessage.Type.PRE_OFFER;
+      /**
+       * <code>required .signalservice.CallMessage.Type type = 1;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      public boolean hasType() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required .signalservice.CallMessage.Type type = 1;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      public org.session.libsignal.protos.SignalServiceProtos.CallMessage.Type getType() {
+        return type_;
+      }
+      /**
+       * <code>required .signalservice.CallMessage.Type type = 1;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      public Builder setType(org.session.libsignal.protos.SignalServiceProtos.CallMessage.Type value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000001;
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required .signalservice.CallMessage.Type type = 1;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      public Builder clearType() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        type_ = org.session.libsignal.protos.SignalServiceProtos.CallMessage.Type.PRE_OFFER;
+        onChanged();
+        return this;
+      }
+
+      // repeated string sdps = 2;
+      private com.google.protobuf.LazyStringList sdps_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureSdpsIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          sdps_ = new com.google.protobuf.LazyStringArrayList(sdps_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+      /**
+       * <code>repeated string sdps = 2;</code>
+       */
+      public java.util.List<java.lang.String>
+          getSdpsList() {
+        return java.util.Collections.unmodifiableList(sdps_);
+      }
+      /**
+       * <code>repeated string sdps = 2;</code>
+       */
+      public int getSdpsCount() {
+        return sdps_.size();
+      }
+      /**
+       * <code>repeated string sdps = 2;</code>
+       */
+      public java.lang.String getSdps(int index) {
+        return sdps_.get(index);
+      }
+      /**
+       * <code>repeated string sdps = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSdpsBytes(int index) {
+        return sdps_.getByteString(index);
+      }
+      /**
+       * <code>repeated string sdps = 2;</code>
+       */
+      public Builder setSdps(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureSdpsIsMutable();
+        sdps_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string sdps = 2;</code>
+       */
+      public Builder addSdps(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureSdpsIsMutable();
+        sdps_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string sdps = 2;</code>
+       */
+      public Builder addAllSdps(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureSdpsIsMutable();
+        super.addAll(values, sdps_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string sdps = 2;</code>
+       */
+      public Builder clearSdps() {
+        sdps_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string sdps = 2;</code>
+       */
+      public Builder addSdpsBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureSdpsIsMutable();
+        sdps_.add(value);
+        onChanged();
+        return this;
+      }
+
+      // repeated uint32 sdpMLineIndexes = 3;
+      private java.util.List<java.lang.Integer> sdpMLineIndexes_ = java.util.Collections.emptyList();
+      private void ensureSdpMLineIndexesIsMutable() {
+        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+          sdpMLineIndexes_ = new java.util.ArrayList<java.lang.Integer>(sdpMLineIndexes_);
+          bitField0_ |= 0x00000004;
+         }
+      }
+      /**
+       * <code>repeated uint32 sdpMLineIndexes = 3;</code>
+       */
+      public java.util.List<java.lang.Integer>
+          getSdpMLineIndexesList() {
+        return java.util.Collections.unmodifiableList(sdpMLineIndexes_);
+      }
+      /**
+       * <code>repeated uint32 sdpMLineIndexes = 3;</code>
+       */
+      public int getSdpMLineIndexesCount() {
+        return sdpMLineIndexes_.size();
+      }
+      /**
+       * <code>repeated uint32 sdpMLineIndexes = 3;</code>
+       */
+      public int getSdpMLineIndexes(int index) {
+        return sdpMLineIndexes_.get(index);
+      }
+      /**
+       * <code>repeated uint32 sdpMLineIndexes = 3;</code>
+       */
+      public Builder setSdpMLineIndexes(
+          int index, int value) {
+        ensureSdpMLineIndexesIsMutable();
+        sdpMLineIndexes_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated uint32 sdpMLineIndexes = 3;</code>
+       */
+      public Builder addSdpMLineIndexes(int value) {
+        ensureSdpMLineIndexesIsMutable();
+        sdpMLineIndexes_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated uint32 sdpMLineIndexes = 3;</code>
+       */
+      public Builder addAllSdpMLineIndexes(
+          java.lang.Iterable<? extends java.lang.Integer> values) {
+        ensureSdpMLineIndexesIsMutable();
+        super.addAll(values, sdpMLineIndexes_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated uint32 sdpMLineIndexes = 3;</code>
+       */
+      public Builder clearSdpMLineIndexes() {
+        sdpMLineIndexes_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+        return this;
+      }
+
+      // repeated string sdpMids = 4;
+      private com.google.protobuf.LazyStringList sdpMids_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureSdpMidsIsMutable() {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+          sdpMids_ = new com.google.protobuf.LazyStringArrayList(sdpMids_);
+          bitField0_ |= 0x00000008;
+         }
+      }
+      /**
+       * <code>repeated string sdpMids = 4;</code>
+       */
+      public java.util.List<java.lang.String>
+          getSdpMidsList() {
+        return java.util.Collections.unmodifiableList(sdpMids_);
+      }
+      /**
+       * <code>repeated string sdpMids = 4;</code>
+       */
+      public int getSdpMidsCount() {
+        return sdpMids_.size();
+      }
+      /**
+       * <code>repeated string sdpMids = 4;</code>
+       */
+      public java.lang.String getSdpMids(int index) {
+        return sdpMids_.get(index);
+      }
+      /**
+       * <code>repeated string sdpMids = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSdpMidsBytes(int index) {
+        return sdpMids_.getByteString(index);
+      }
+      /**
+       * <code>repeated string sdpMids = 4;</code>
+       */
+      public Builder setSdpMids(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureSdpMidsIsMutable();
+        sdpMids_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string sdpMids = 4;</code>
+       */
+      public Builder addSdpMids(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureSdpMidsIsMutable();
+        sdpMids_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string sdpMids = 4;</code>
+       */
+      public Builder addAllSdpMids(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureSdpMidsIsMutable();
+        super.addAll(values, sdpMids_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string sdpMids = 4;</code>
+       */
+      public Builder clearSdpMids() {
+        sdpMids_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string sdpMids = 4;</code>
+       */
+      public Builder addSdpMidsBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureSdpMidsIsMutable();
+        sdpMids_.add(value);
+        onChanged();
+        return this;
+      }
+
+      // required string uuid = 5;
+      private java.lang.Object uuid_ = "";
+      /**
+       * <code>required string uuid = 5;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      public boolean hasUuid() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>required string uuid = 5;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      public java.lang.String getUuid() {
+        java.lang.Object ref = uuid_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          uuid_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>required string uuid = 5;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      public com.google.protobuf.ByteString
+          getUuidBytes() {
+        java.lang.Object ref = uuid_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          uuid_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>required string uuid = 5;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      public Builder setUuid(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+        uuid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string uuid = 5;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      public Builder clearUuid() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        uuid_ = getDefaultInstance().getUuid();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string uuid = 5;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      public Builder setUuidBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+        uuid_ = value;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:signalservice.CallMessage)
+    }
+
+    static {
+      defaultInstance = new CallMessage(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:signalservice.CallMessage)
+  }
+
   public interface ConfigurationMessageOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
@@ -23050,6 +24556,11 @@ public final class SignalServiceProtos {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_signalservice_DataMessage_ClosedGroupControlMessage_KeyPairWrapper_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_signalservice_CallMessage_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_signalservice_CallMessage_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_signalservice_ConfigurationMessage_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -23103,94 +24614,101 @@ public final class SignalServiceProtos {
       "\002(\004\0223\n\006action\030\002 \002(\0162#.signalservice.Typi" +
       "ngMessage.Action\"\"\n\006Action\022\013\n\007STARTED\020\000\022" +
       "\013\n\007STOPPED\020\001\"2\n\rUnsendRequest\022\021\n\ttimesta",
-      "mp\030\001 \002(\004\022\016\n\006author\030\002 \002(\t\"\264\003\n\007Content\022/\n\013" +
+      "mp\030\001 \002(\004\022\016\n\006author\030\002 \002(\t\"\345\003\n\007Content\022/\n\013" +
       "dataMessage\030\001 \001(\0132\032.signalservice.DataMe" +
-      "ssage\0225\n\016receiptMessage\030\005 \001(\0132\035.signalse" +
-      "rvice.ReceiptMessage\0223\n\rtypingMessage\030\006 " +
-      "\001(\0132\034.signalservice.TypingMessage\022A\n\024con" +
-      "figurationMessage\030\007 \001(\0132#.signalservice." +
-      "ConfigurationMessage\022M\n\032dataExtractionNo" +
-      "tification\030\010 \001(\0132).signalservice.DataExt" +
-      "ractionNotification\0223\n\runsendRequest\030\t \001" +
-      "(\0132\034.signalservice.UnsendRequest\022E\n\026mess",
-      "ageRequestResponse\030\n \001(\0132%.signalservice" +
-      ".MessageRequestResponse\"0\n\007KeyPair\022\021\n\tpu" +
-      "blicKey\030\001 \002(\014\022\022\n\nprivateKey\030\002 \002(\014\"\226\001\n\032Da" +
-      "taExtractionNotification\022<\n\004type\030\001 \002(\0162." +
-      ".signalservice.DataExtractionNotificatio" +
-      "n.Type\022\021\n\ttimestamp\030\002 \001(\004\"\'\n\004Type\022\016\n\nSCR" +
-      "EENSHOT\020\001\022\017\n\013MEDIA_SAVED\020\002\"\245\014\n\013DataMessa" +
-      "ge\022\014\n\004body\030\001 \001(\t\0225\n\013attachments\030\002 \003(\0132 ." +
-      "signalservice.AttachmentPointer\022*\n\005group" +
-      "\030\003 \001(\0132\033.signalservice.GroupContext\022\r\n\005f",
-      "lags\030\004 \001(\r\022\023\n\013expireTimer\030\005 \001(\r\022\022\n\nprofi" +
-      "leKey\030\006 \001(\014\022\021\n\ttimestamp\030\007 \001(\004\022/\n\005quote\030" +
-      "\010 \001(\0132 .signalservice.DataMessage.Quote\022" +
-      "3\n\007preview\030\n \003(\0132\".signalservice.DataMes" +
-      "sage.Preview\0227\n\007profile\030e \001(\0132&.signalse" +
-      "rvice.DataMessage.LokiProfile\022K\n\023openGro" +
-      "upInvitation\030f \001(\0132..signalservice.DataM" +
-      "essage.OpenGroupInvitation\022W\n\031closedGrou" +
-      "pControlMessage\030h \001(\01324.signalservice.Da" +
-      "taMessage.ClosedGroupControlMessage\022\022\n\ns",
-      "yncTarget\030i \001(\t\032\225\002\n\005Quote\022\n\n\002id\030\001 \002(\004\022\016\n" +
-      "\006author\030\002 \002(\t\022\014\n\004text\030\003 \001(\t\022F\n\013attachmen" +
-      "ts\030\004 \003(\01321.signalservice.DataMessage.Quo" +
-      "te.QuotedAttachment\032\231\001\n\020QuotedAttachment" +
-      "\022\023\n\013contentType\030\001 \001(\t\022\020\n\010fileName\030\002 \001(\t\022" +
-      "3\n\tthumbnail\030\003 \001(\0132 .signalservice.Attac" +
-      "hmentPointer\022\r\n\005flags\030\004 \001(\r\"\032\n\005Flags\022\021\n\r" +
-      "VOICE_MESSAGE\020\001\032V\n\007Preview\022\013\n\003url\030\001 \002(\t\022" +
-      "\r\n\005title\030\002 \001(\t\022/\n\005image\030\003 \001(\0132 .signalse" +
-      "rvice.AttachmentPointer\032:\n\013LokiProfile\022\023",
-      "\n\013displayName\030\001 \001(\t\022\026\n\016profilePicture\030\002 " +
-      "\001(\t\0320\n\023OpenGroupInvitation\022\013\n\003url\030\001 \002(\t\022" +
-      "\014\n\004name\030\003 \002(\t\032\374\003\n\031ClosedGroupControlMess" +
-      "age\022G\n\004type\030\001 \002(\01629.signalservice.DataMe" +
-      "ssage.ClosedGroupControlMessage.Type\022\021\n\t" +
-      "publicKey\030\002 \001(\014\022\014\n\004name\030\003 \001(\t\0221\n\021encrypt" +
-      "ionKeyPair\030\004 \001(\0132\026.signalservice.KeyPair" +
-      "\022\017\n\007members\030\005 \003(\014\022\016\n\006admins\030\006 \003(\014\022U\n\010wra" +
-      "ppers\030\007 \003(\0132C.signalservice.DataMessage." +
-      "ClosedGroupControlMessage.KeyPairWrapper",
-      "\022\027\n\017expirationTimer\030\010 \001(\r\032=\n\016KeyPairWrap" +
-      "per\022\021\n\tpublicKey\030\001 \002(\014\022\030\n\020encryptedKeyPa" +
-      "ir\030\002 \002(\014\"r\n\004Type\022\007\n\003NEW\020\001\022\027\n\023ENCRYPTION_" +
-      "KEY_PAIR\020\003\022\017\n\013NAME_CHANGE\020\004\022\021\n\rMEMBERS_A" +
-      "DDED\020\005\022\023\n\017MEMBERS_REMOVED\020\006\022\017\n\013MEMBER_LE" +
-      "FT\020\007\"$\n\005Flags\022\033\n\027EXPIRATION_TIMER_UPDATE" +
-      "\020\002\"\245\004\n\024ConfigurationMessage\022E\n\014closedGro" +
-      "ups\030\001 \003(\0132/.signalservice.ConfigurationM" +
-      "essage.ClosedGroup\022\022\n\nopenGroups\030\002 \003(\t\022\023" +
-      "\n\013displayName\030\003 \001(\t\022\026\n\016profilePicture\030\004 ",
-      "\001(\t\022\022\n\nprofileKey\030\005 \001(\014\022=\n\010contacts\030\006 \003(" +
-      "\0132+.signalservice.ConfigurationMessage.C" +
-      "ontact\032\233\001\n\013ClosedGroup\022\021\n\tpublicKey\030\001 \001(" +
-      "\014\022\014\n\004name\030\002 \001(\t\0221\n\021encryptionKeyPair\030\003 \001" +
-      "(\0132\026.signalservice.KeyPair\022\017\n\007members\030\004 " +
-      "\003(\014\022\016\n\006admins\030\005 \003(\014\022\027\n\017expirationTimer\030\006" +
-      " \001(\r\032\223\001\n\007Contact\022\021\n\tpublicKey\030\001 \002(\014\022\014\n\004n" +
-      "ame\030\002 \002(\t\022\026\n\016profilePicture\030\003 \001(\t\022\022\n\npro" +
-      "fileKey\030\004 \001(\014\022\022\n\nisApproved\030\005 \001(\010\022\021\n\tisB" +
-      "locked\030\006 \001(\010\022\024\n\014didApproveMe\030\007 \001(\010\",\n\026Me",
-      "ssageRequestResponse\022\022\n\nisApproved\030\001 \002(\010" +
-      "\"u\n\016ReceiptMessage\0220\n\004type\030\001 \002(\0162\".signa" +
-      "lservice.ReceiptMessage.Type\022\021\n\ttimestam" +
-      "p\030\002 \003(\004\"\036\n\004Type\022\014\n\010DELIVERY\020\000\022\010\n\004READ\020\001\"" +
-      "\354\001\n\021AttachmentPointer\022\n\n\002id\030\001 \002(\006\022\023\n\013con" +
-      "tentType\030\002 \001(\t\022\013\n\003key\030\003 \001(\014\022\014\n\004size\030\004 \001(" +
-      "\r\022\021\n\tthumbnail\030\005 \001(\014\022\016\n\006digest\030\006 \001(\014\022\020\n\010" +
-      "fileName\030\007 \001(\t\022\r\n\005flags\030\010 \001(\r\022\r\n\005width\030\t" +
-      " \001(\r\022\016\n\006height\030\n \001(\r\022\017\n\007caption\030\013 \001(\t\022\013\n" +
-      "\003url\030e \001(\t\"\032\n\005Flags\022\021\n\rVOICE_MESSAGE\020\001\"\365",
-      "\001\n\014GroupContext\022\n\n\002id\030\001 \001(\014\022.\n\004type\030\002 \001(" +
-      "\0162 .signalservice.GroupContext.Type\022\014\n\004n" +
-      "ame\030\003 \001(\t\022\017\n\007members\030\004 \003(\t\0220\n\006avatar\030\005 \001" +
-      "(\0132 .signalservice.AttachmentPointer\022\016\n\006" +
-      "admins\030\006 \003(\t\"H\n\004Type\022\013\n\007UNKNOWN\020\000\022\n\n\006UPD" +
-      "ATE\020\001\022\013\n\007DELIVER\020\002\022\010\n\004QUIT\020\003\022\020\n\014REQUEST_" +
-      "INFO\020\004B3\n\034org.session.libsignal.protosB\023" +
-      "SignalServiceProtos"
+      "ssage\022/\n\013callMessage\030\003 \001(\0132\032.signalservi" +
+      "ce.CallMessage\0225\n\016receiptMessage\030\005 \001(\0132\035" +
+      ".signalservice.ReceiptMessage\0223\n\rtypingM" +
+      "essage\030\006 \001(\0132\034.signalservice.TypingMessa" +
+      "ge\022A\n\024configurationMessage\030\007 \001(\0132#.signa" +
+      "lservice.ConfigurationMessage\022M\n\032dataExt" +
+      "ractionNotification\030\010 \001(\0132).signalservic" +
+      "e.DataExtractionNotification\0223\n\runsendRe",
+      "quest\030\t \001(\0132\034.signalservice.UnsendReques" +
+      "t\022E\n\026messageRequestResponse\030\n \001(\0132%.sign" +
+      "alservice.MessageRequestResponse\"0\n\007KeyP" +
+      "air\022\021\n\tpublicKey\030\001 \002(\014\022\022\n\nprivateKey\030\002 \002" +
+      "(\014\"\226\001\n\032DataExtractionNotification\022<\n\004typ" +
+      "e\030\001 \002(\0162..signalservice.DataExtractionNo" +
+      "tification.Type\022\021\n\ttimestamp\030\002 \001(\004\"\'\n\004Ty" +
+      "pe\022\016\n\nSCREENSHOT\020\001\022\017\n\013MEDIA_SAVED\020\002\"\245\014\n\013" +
+      "DataMessage\022\014\n\004body\030\001 \001(\t\0225\n\013attachments" +
+      "\030\002 \003(\0132 .signalservice.AttachmentPointer",
+      "\022*\n\005group\030\003 \001(\0132\033.signalservice.GroupCon" +
+      "text\022\r\n\005flags\030\004 \001(\r\022\023\n\013expireTimer\030\005 \001(\r" +
+      "\022\022\n\nprofileKey\030\006 \001(\014\022\021\n\ttimestamp\030\007 \001(\004\022" +
+      "/\n\005quote\030\010 \001(\0132 .signalservice.DataMessa" +
+      "ge.Quote\0223\n\007preview\030\n \003(\0132\".signalservic" +
+      "e.DataMessage.Preview\0227\n\007profile\030e \001(\0132&" +
+      ".signalservice.DataMessage.LokiProfile\022K" +
+      "\n\023openGroupInvitation\030f \001(\0132..signalserv" +
+      "ice.DataMessage.OpenGroupInvitation\022W\n\031c" +
+      "losedGroupControlMessage\030h \001(\01324.signals",
+      "ervice.DataMessage.ClosedGroupControlMes" +
+      "sage\022\022\n\nsyncTarget\030i \001(\t\032\225\002\n\005Quote\022\n\n\002id" +
+      "\030\001 \002(\004\022\016\n\006author\030\002 \002(\t\022\014\n\004text\030\003 \001(\t\022F\n\013" +
+      "attachments\030\004 \003(\01321.signalservice.DataMe" +
+      "ssage.Quote.QuotedAttachment\032\231\001\n\020QuotedA" +
+      "ttachment\022\023\n\013contentType\030\001 \001(\t\022\020\n\010fileNa" +
+      "me\030\002 \001(\t\0223\n\tthumbnail\030\003 \001(\0132 .signalserv" +
+      "ice.AttachmentPointer\022\r\n\005flags\030\004 \001(\r\"\032\n\005" +
+      "Flags\022\021\n\rVOICE_MESSAGE\020\001\032V\n\007Preview\022\013\n\003u" +
+      "rl\030\001 \002(\t\022\r\n\005title\030\002 \001(\t\022/\n\005image\030\003 \001(\0132 ",
+      ".signalservice.AttachmentPointer\032:\n\013Loki" +
+      "Profile\022\023\n\013displayName\030\001 \001(\t\022\026\n\016profileP" +
+      "icture\030\002 \001(\t\0320\n\023OpenGroupInvitation\022\013\n\003u" +
+      "rl\030\001 \002(\t\022\014\n\004name\030\003 \002(\t\032\374\003\n\031ClosedGroupCo" +
+      "ntrolMessage\022G\n\004type\030\001 \002(\01629.signalservi" +
+      "ce.DataMessage.ClosedGroupControlMessage" +
+      ".Type\022\021\n\tpublicKey\030\002 \001(\014\022\014\n\004name\030\003 \001(\t\0221" +
+      "\n\021encryptionKeyPair\030\004 \001(\0132\026.signalservic" +
+      "e.KeyPair\022\017\n\007members\030\005 \003(\014\022\016\n\006admins\030\006 \003" +
+      "(\014\022U\n\010wrappers\030\007 \003(\0132C.signalservice.Dat",
+      "aMessage.ClosedGroupControlMessage.KeyPa" +
+      "irWrapper\022\027\n\017expirationTimer\030\010 \001(\r\032=\n\016Ke" +
+      "yPairWrapper\022\021\n\tpublicKey\030\001 \002(\014\022\030\n\020encry" +
+      "ptedKeyPair\030\002 \002(\014\"r\n\004Type\022\007\n\003NEW\020\001\022\027\n\023EN" +
+      "CRYPTION_KEY_PAIR\020\003\022\017\n\013NAME_CHANGE\020\004\022\021\n\r" +
+      "MEMBERS_ADDED\020\005\022\023\n\017MEMBERS_REMOVED\020\006\022\017\n\013" +
+      "MEMBER_LEFT\020\007\"$\n\005Flags\022\033\n\027EXPIRATION_TIM" +
+      "ER_UPDATE\020\002\"\352\001\n\013CallMessage\022-\n\004type\030\001 \002(" +
+      "\0162\037.signalservice.CallMessage.Type\022\014\n\004sd" +
+      "ps\030\002 \003(\t\022\027\n\017sdpMLineIndexes\030\003 \003(\r\022\017\n\007sdp",
+      "Mids\030\004 \003(\t\022\014\n\004uuid\030\005 \002(\t\"f\n\004Type\022\r\n\tPRE_" +
+      "OFFER\020\006\022\t\n\005OFFER\020\001\022\n\n\006ANSWER\020\002\022\026\n\022PROVIS" +
+      "IONAL_ANSWER\020\003\022\022\n\016ICE_CANDIDATES\020\004\022\014\n\010EN" +
+      "D_CALL\020\005\"\245\004\n\024ConfigurationMessage\022E\n\014clo" +
+      "sedGroups\030\001 \003(\0132/.signalservice.Configur" +
+      "ationMessage.ClosedGroup\022\022\n\nopenGroups\030\002" +
+      " \003(\t\022\023\n\013displayName\030\003 \001(\t\022\026\n\016profilePict" +
+      "ure\030\004 \001(\t\022\022\n\nprofileKey\030\005 \001(\014\022=\n\010contact" +
+      "s\030\006 \003(\0132+.signalservice.ConfigurationMes" +
+      "sage.Contact\032\233\001\n\013ClosedGroup\022\021\n\tpublicKe",
+      "y\030\001 \001(\014\022\014\n\004name\030\002 \001(\t\0221\n\021encryptionKeyPa" +
+      "ir\030\003 \001(\0132\026.signalservice.KeyPair\022\017\n\007memb" +
+      "ers\030\004 \003(\014\022\016\n\006admins\030\005 \003(\014\022\027\n\017expirationT" +
+      "imer\030\006 \001(\r\032\223\001\n\007Contact\022\021\n\tpublicKey\030\001 \002(" +
+      "\014\022\014\n\004name\030\002 \002(\t\022\026\n\016profilePicture\030\003 \001(\t\022" +
+      "\022\n\nprofileKey\030\004 \001(\014\022\022\n\nisApproved\030\005 \001(\010\022" +
+      "\021\n\tisBlocked\030\006 \001(\010\022\024\n\014didApproveMe\030\007 \001(\010" +
+      "\",\n\026MessageRequestResponse\022\022\n\nisApproved" +
+      "\030\001 \002(\010\"u\n\016ReceiptMessage\0220\n\004type\030\001 \002(\0162\"" +
+      ".signalservice.ReceiptMessage.Type\022\021\n\tti",
+      "mestamp\030\002 \003(\004\"\036\n\004Type\022\014\n\010DELIVERY\020\000\022\010\n\004R" +
+      "EAD\020\001\"\354\001\n\021AttachmentPointer\022\n\n\002id\030\001 \002(\006\022" +
+      "\023\n\013contentType\030\002 \001(\t\022\013\n\003key\030\003 \001(\014\022\014\n\004siz" +
+      "e\030\004 \001(\r\022\021\n\tthumbnail\030\005 \001(\014\022\016\n\006digest\030\006 \001" +
+      "(\014\022\020\n\010fileName\030\007 \001(\t\022\r\n\005flags\030\010 \001(\r\022\r\n\005w" +
+      "idth\030\t \001(\r\022\016\n\006height\030\n \001(\r\022\017\n\007caption\030\013 " +
+      "\001(\t\022\013\n\003url\030e \001(\t\"\032\n\005Flags\022\021\n\rVOICE_MESSA" +
+      "GE\020\001\"\365\001\n\014GroupContext\022\n\n\002id\030\001 \001(\014\022.\n\004typ" +
+      "e\030\002 \001(\0162 .signalservice.GroupContext.Typ" +
+      "e\022\014\n\004name\030\003 \001(\t\022\017\n\007members\030\004 \003(\t\0220\n\006avat",
+      "ar\030\005 \001(\0132 .signalservice.AttachmentPoint" +
+      "er\022\016\n\006admins\030\006 \003(\t\"H\n\004Type\022\013\n\007UNKNOWN\020\000\022" +
+      "\n\n\006UPDATE\020\001\022\013\n\007DELIVER\020\002\022\010\n\004QUIT\020\003\022\020\n\014RE" +
+      "QUEST_INFO\020\004B3\n\034org.session.libsignal.pr" +
+      "otosB\023SignalServiceProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -23220,7 +24738,7 @@ public final class SignalServiceProtos {
           internal_static_signalservice_Content_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_Content_descriptor,
-              new java.lang.String[] { "DataMessage", "ReceiptMessage", "TypingMessage", "ConfigurationMessage", "DataExtractionNotification", "UnsendRequest", "MessageRequestResponse", });
+              new java.lang.String[] { "DataMessage", "CallMessage", "ReceiptMessage", "TypingMessage", "ConfigurationMessage", "DataExtractionNotification", "UnsendRequest", "MessageRequestResponse", });
           internal_static_signalservice_KeyPair_descriptor =
             getDescriptor().getMessageTypes().get(4);
           internal_static_signalservice_KeyPair_fieldAccessorTable = new
@@ -23281,8 +24799,14 @@ public final class SignalServiceProtos {
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_DataMessage_ClosedGroupControlMessage_KeyPairWrapper_descriptor,
               new java.lang.String[] { "PublicKey", "EncryptedKeyPair", });
-          internal_static_signalservice_ConfigurationMessage_descriptor =
+          internal_static_signalservice_CallMessage_descriptor =
             getDescriptor().getMessageTypes().get(7);
+          internal_static_signalservice_CallMessage_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_signalservice_CallMessage_descriptor,
+              new java.lang.String[] { "Type", "Sdps", "SdpMLineIndexes", "SdpMids", "Uuid", });
+          internal_static_signalservice_ConfigurationMessage_descriptor =
+            getDescriptor().getMessageTypes().get(8);
           internal_static_signalservice_ConfigurationMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_ConfigurationMessage_descriptor,
@@ -23300,25 +24824,25 @@ public final class SignalServiceProtos {
               internal_static_signalservice_ConfigurationMessage_Contact_descriptor,
               new java.lang.String[] { "PublicKey", "Name", "ProfilePicture", "ProfileKey", "IsApproved", "IsBlocked", "DidApproveMe", });
           internal_static_signalservice_MessageRequestResponse_descriptor =
-            getDescriptor().getMessageTypes().get(8);
+            getDescriptor().getMessageTypes().get(9);
           internal_static_signalservice_MessageRequestResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_MessageRequestResponse_descriptor,
               new java.lang.String[] { "IsApproved", });
           internal_static_signalservice_ReceiptMessage_descriptor =
-            getDescriptor().getMessageTypes().get(9);
+            getDescriptor().getMessageTypes().get(10);
           internal_static_signalservice_ReceiptMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_ReceiptMessage_descriptor,
               new java.lang.String[] { "Type", "Timestamp", });
           internal_static_signalservice_AttachmentPointer_descriptor =
-            getDescriptor().getMessageTypes().get(10);
+            getDescriptor().getMessageTypes().get(11);
           internal_static_signalservice_AttachmentPointer_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_AttachmentPointer_descriptor,
               new java.lang.String[] { "Id", "ContentType", "Key", "Size", "Thumbnail", "Digest", "FileName", "Flags", "Width", "Height", "Caption", "Url", });
           internal_static_signalservice_GroupContext_descriptor =
-            getDescriptor().getMessageTypes().get(11);
+            getDescriptor().getMessageTypes().get(12);
           internal_static_signalservice_GroupContext_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_GroupContext_descriptor,

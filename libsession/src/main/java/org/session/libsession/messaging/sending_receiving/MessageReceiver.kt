@@ -96,6 +96,7 @@ object MessageReceiver {
             ConfigurationMessage.fromProto(proto) ?:
             UnsendRequest.fromProto(proto) ?:
             MessageRequestResponse.fromProto(proto) ?:
+            CallMessage.fromProto(proto) ?:
             VisibleMessage.fromProto(proto) ?: throw Error.UnknownMessage
         // Ignore self send if needed
         if (!message.isSelfSendValid && sender == userPublicKey) throw Error.SelfSend
