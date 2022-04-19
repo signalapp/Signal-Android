@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageUtil;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -220,7 +221,12 @@ public final class MultiShareSender {
       } else if (canSendAsTextStory) {
         outgoingMessages.add(generateTextStory(recipient, multiShareArgs, sentTimestamp, storyType));
       } else {
-        for (final Slide slide : slideDeck.getSlides()) {
+        List<Slide> storySupportedSlides = slideDeck.getSlides()
+                                                    .stream()
+                                                    .filter(it -> MediaUtil.isStorySupportedType(it.getContentType()))
+                                                    .collect(Collectors.toList());
+
+        for (final Slide slide : storySupportedSlides) {
           SlideDeck singletonDeck = new SlideDeck();
           singletonDeck.addSlide(slide);
 

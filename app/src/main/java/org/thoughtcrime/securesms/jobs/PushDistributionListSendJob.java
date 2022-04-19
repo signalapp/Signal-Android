@@ -9,6 +9,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
@@ -97,6 +98,11 @@ public final class PushDistributionListSendJob extends PushSendJob {
 
       if (!message.getStoryType().isStory()) {
         throw new AssertionError("Only story messages are currently supported! MessageId: " + messageId);
+      }
+
+      if (!message.getStoryType().isTextStory()) {
+        DatabaseAttachment storyAttachment = (DatabaseAttachment) message.getAttachments().get(0);
+        SignalDatabase.attachments().updateAttachmentCaption(storyAttachment.getAttachmentId(), message.getBody());
       }
 
       Set<String> attachmentUploadIds = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
