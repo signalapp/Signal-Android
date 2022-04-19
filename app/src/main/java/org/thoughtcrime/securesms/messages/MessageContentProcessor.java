@@ -1500,7 +1500,8 @@ public final class MessageContentProcessor {
     try {
       RecipientId   storyAuthorRecipient = RecipientId.from(storyContext.getAuthorServiceId(), null);
       ParentStoryId parentStoryId;
-      QuoteModel    quoteModel = null;
+      QuoteModel    quoteModel           = null;
+      long          expiresInMillis      = 0;
       try {
         MessageId storyMessageId = database.getStoryId(storyAuthorRecipient, storyContext.getSentTimestamp());
 
@@ -1509,8 +1510,9 @@ public final class MessageContentProcessor {
         } else if (SignalDatabase.storySends().canReply(senderRecipient.getId(), storyContext.getSentTimestamp())) {
           MmsMessageRecord story = (MmsMessageRecord) database.getMessageRecord(storyMessageId.getId());
 
-          parentStoryId = new ParentStoryId.DirectReply(storyMessageId.getId());
-          quoteModel    = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, "", false, story.getSlideDeck().asAttachments(), Collections.emptyList());
+          parentStoryId   = new ParentStoryId.DirectReply(storyMessageId.getId());
+          quoteModel      = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, "", false, story.getSlideDeck().asAttachments(), Collections.emptyList());
+          expiresInMillis = TimeUnit.SECONDS.toMillis(message.getExpiresInSeconds());
         } else {
           warn(content.getTimestamp(), "Story has reactions disabled. Dropping reaction.");
           return;
@@ -1528,7 +1530,7 @@ public final class MessageContentProcessor {
                                                                    parentStoryId,
                                                                    true,
                                                                    -1,
-                                                                   0,
+                                                                   expiresInMillis,
                                                                    false,
                                                                    false,
                                                                    content.isNeedsReceipt(),
@@ -1570,7 +1572,9 @@ public final class MessageContentProcessor {
     try {
       RecipientId   storyAuthorRecipient = RecipientId.from(storyContext.getAuthorServiceId(), null);
       ParentStoryId parentStoryId;
-      QuoteModel    quoteModel = null;
+      QuoteModel    quoteModel           = null;
+      long          expiresInMillis      = 0L;
+
       try {
         MessageId        storyMessageId  = database.getStoryId(storyAuthorRecipient, storyContext.getSentTimestamp());
         MmsMessageRecord story           = (MmsMessageRecord) database.getMessageRecord(storyMessageId.getId());
@@ -1580,8 +1584,9 @@ public final class MessageContentProcessor {
         if (message.getGroupContext().isPresent() ) {
           parentStoryId = new ParentStoryId.GroupReply(storyMessageId.getId());
         } else if (groupStory || SignalDatabase.storySends().canReply(senderRecipient.getId(), storyContext.getSentTimestamp())) {
-          parentStoryId = new ParentStoryId.DirectReply(storyMessageId.getId());
-          quoteModel    = new QuoteModel(storyContext.getSentTimestamp(), groupStory ? threadRecipient.getId() : storyAuthorRecipient, "", false, story.getSlideDeck().asAttachments(), Collections.emptyList());
+          parentStoryId   = new ParentStoryId.DirectReply(storyMessageId.getId());
+          quoteModel      = new QuoteModel(storyContext.getSentTimestamp(), groupStory ? threadRecipient.getId() : storyAuthorRecipient, "", false, story.getSlideDeck().asAttachments(), Collections.emptyList());
+          expiresInMillis = TimeUnit.SECONDS.toMillis(message.getExpiresInSeconds());
         } else {
           warn(content.getTimestamp(), "Story has replies disabled. Dropping reply.");
           return;
@@ -1599,7 +1604,7 @@ public final class MessageContentProcessor {
                                                                    parentStoryId,
                                                                    false,
                                                                    -1,
-                                                                   0,
+                                                                   expiresInMillis,
                                                                    false,
                                                                    false,
                                                                    content.isNeedsReceipt(),
