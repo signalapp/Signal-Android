@@ -288,7 +288,7 @@ public final class MessageContentProcessor {
         else if (message.getReaction().isPresent())                                       messageId = handleReaction(content, message, senderRecipient);
         else if (message.getRemoteDelete().isPresent())                                   messageId = handleRemoteDelete(content, message, senderRecipient);
         else if (message.getPayment().isPresent())                                        handlePayment(content, message, senderRecipient);
-        else if (message.getStoryContext().isPresent())                                   handleStoryReply(content, message, senderRecipient);
+        else if (message.getStoryContext().isPresent())                                   messageId = handleStoryReply(content, message, senderRecipient);
         else if (isMediaMessage)                                                          messageId = handleMediaMessage(content, message, smsMessageId, senderRecipient, threadRecipient, receivedTime);
         else if (message.getBody().isPresent())                                           messageId = handleTextMessage(content, message, smsMessageId, groupId, senderRecipient, threadRecipient, receivedTime);
         else if (Build.VERSION.SDK_INT > 19 && message.getGroupCallUpdate().isPresent())  handleGroupCallUpdateMessage(content, message, groupId, senderRecipient);
@@ -889,8 +889,7 @@ public final class MessageContentProcessor {
 
     if (message.getStoryContext().isPresent()) {
       log(content.getTimestamp(), "Reaction has a story context. Treating as a story reaction.");
-      handleStoryReaction(content, message, senderRecipient);
-      return null;
+      return handleStoryReaction(content, message, senderRecipient);
     }
 
     SignalServiceDataMessage.Reaction reaction = message.getReaction().get();
@@ -1477,19 +1476,19 @@ public final class MessageContentProcessor {
     return Base64.encodeBytes(builder.build().toByteArray());
   }
 
-  private void handleStoryReaction(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message, @NonNull Recipient senderRecipient) throws StorageFailedException {
+  private @Nullable MessageId handleStoryReaction(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message, @NonNull Recipient senderRecipient) throws StorageFailedException {
     log(content.getTimestamp(), "Story reaction.");
 
     if (!Stories.isFeatureAvailable()) {
       warn(content.getTimestamp(), "Dropping unsupported story reaction.");
-      return;
+      return null;
     }
 
     SignalServiceDataMessage.Reaction reaction = message.getReaction().get();
 
     if (!EmojiUtil.isEmoji(reaction.getEmoji())) {
       warn(content.getTimestamp(), "Story reaction text is not a valid emoji! Ignoring the message.");
-      return;
+      return null;
     }
 
     SignalServiceDataMessage.StoryContext storyContext = message.getStoryContext().get();
@@ -1515,11 +1514,11 @@ public final class MessageContentProcessor {
           expiresInMillis = TimeUnit.SECONDS.toMillis(message.getExpiresInSeconds());
         } else {
           warn(content.getTimestamp(), "Story has reactions disabled. Dropping reaction.");
-          return;
+          return null;
         }
       } catch (NoSuchMessageException e) {
         warn(content.getTimestamp(), "Couldn't find story for reaction.", e);
-        return;
+        return null;
       }
 
       IncomingMediaMessage mediaMessage = new IncomingMediaMessage(senderRecipient.getId(),
@@ -1548,6 +1547,14 @@ public final class MessageContentProcessor {
 
       if (insertResult.isPresent()) {
         database.setTransactionSuccessful();
+        if (parentStoryId.isDirectReply()) {
+          return MessageId.fromNullable(insertResult.get().getMessageId(), true);
+        } else {
+          return null;
+        }
+      } else {
+        warn(content.getTimestamp(), "Failed to insert story reaction");
+        return null;
       }
     } catch (MmsException e) {
       throw new StorageFailedException(e, content.getSender().getIdentifier(), content.getSenderDevice());
@@ -1556,12 +1563,12 @@ public final class MessageContentProcessor {
     }
   }
 
-  private void handleStoryReply(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message, @NonNull Recipient senderRecipient) throws StorageFailedException {
+  private @Nullable MessageId handleStoryReply(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message, @NonNull Recipient senderRecipient) throws StorageFailedException {
     log(content.getTimestamp(), "Story reply.");
 
     if (!Stories.isFeatureAvailable()) {
       warn(content.getTimestamp(), "Dropping unsupported story reply.");
-      return;
+      return null;
     }
 
     SignalServiceDataMessage.StoryContext storyContext = message.getStoryContext().get();
@@ -1589,11 +1596,11 @@ public final class MessageContentProcessor {
           expiresInMillis = TimeUnit.SECONDS.toMillis(message.getExpiresInSeconds());
         } else {
           warn(content.getTimestamp(), "Story has replies disabled. Dropping reply.");
-          return;
+          return null;
         }
       } catch (NoSuchMessageException e) {
         warn(content.getTimestamp(), "Couldn't find story for reply.", e);
-        return;
+        return null;
       }
 
       IncomingMediaMessage mediaMessage = new IncomingMediaMessage(senderRecipient.getId(),
@@ -1622,6 +1629,14 @@ public final class MessageContentProcessor {
 
       if (insertResult.isPresent()) {
         database.setTransactionSuccessful();
+        if (parentStoryId.isDirectReply()) {
+          return MessageId.fromNullable(insertResult.get().getMessageId(), true);
+        } else {
+          return null;
+        }
+      } else {
+        warn(content.getTimestamp(), "Failed to insert story reply.");
+        return null;
       }
     } catch (MmsException e) {
       throw new StorageFailedException(e, content.getSender().getIdentifier(), content.getSenderDevice());
