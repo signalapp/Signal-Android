@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Parcelable
 import androidx.annotation.ColorInt
 import androidx.annotation.IntRange
+import androidx.core.graphics.ColorUtils
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
@@ -28,14 +29,27 @@ data class TextStoryPostCreationState(
   val textForegroundColor: Int = when (textColorStyle) {
     TextColorStyle.NO_BACKGROUND -> textColor
     TextColorStyle.NORMAL -> textColor
-    TextColorStyle.INVERT -> Color.WHITE
+    TextColorStyle.INVERT -> getDefaultColorForLightness(textColor)
   }
 
   @ColorInt
   @IgnoredOnParcel
   val textBackgroundColor: Int = when (textColorStyle) {
     TextColorStyle.NO_BACKGROUND -> Color.TRANSPARENT
-    TextColorStyle.NORMAL -> Color.WHITE
+    TextColorStyle.NORMAL -> getDefaultColorForLightness(textColor)
     TextColorStyle.INVERT -> textColor
+  }
+
+  private fun getDefaultColorForLightness(textColor: Int): Int {
+    val hsl = floatArrayOf(0f, 0f, 0f)
+    ColorUtils.colorToHSL(textColor, hsl)
+
+    val lightness = hsl[2]
+
+    return if (lightness >= 0.9f) {
+      Color.BLACK
+    } else {
+      Color.WHITE
+    }
   }
 }

@@ -60,7 +60,7 @@ class StoryTextPostView @JvmOverloads constructor(
     textView.typeface = typeface
   }
 
-  fun setPostBackground(drawable: Drawable) {
+  private fun setPostBackground(drawable: Drawable) {
     backgroundView.setImageDrawable(drawable)
   }
 
@@ -72,30 +72,30 @@ class StoryTextPostView @JvmOverloads constructor(
     }
   }
 
-  fun setText(text: CharSequence, isPlaceholder: Boolean) {
+  private fun setText(text: CharSequence, isPlaceholder: Boolean) {
     this.isPlaceholder = isPlaceholder
     textView.text = text
   }
 
-  fun setTextSize(@Px textSize: Float) {
+  private fun setTextSize(@Px textSize: Float) {
     textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize)
   }
 
-  fun setTextGravity(textAlignment: TextAlignment) {
+  private fun setTextGravity(textAlignment: TextAlignment) {
     textView.gravity = textAlignment.gravity
   }
 
-  fun setTextScale(scalePercent: Int) {
+  private fun setTextScale(scalePercent: Int) {
     val scale = TextStoryScale.convertToScale(scalePercent)
     textView.scaleX = scale
     textView.scaleY = scale
   }
 
-  fun setTextVisible(visible: Boolean) {
+  private fun setTextVisible(visible: Boolean) {
     textView.visible = visible
   }
 
-  fun setTextBackgroundColor(@ColorInt color: Int) {
+  private fun setTextBackgroundColor(@ColorInt color: Int) {
     textView.setWrappedBackgroundColor(color)
   }
 
