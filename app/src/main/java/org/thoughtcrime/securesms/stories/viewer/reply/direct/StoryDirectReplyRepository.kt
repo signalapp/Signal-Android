@@ -37,7 +37,6 @@ class StoryDirectReplyRepository(context: Context) {
       }
 
       val quoteAuthor: Recipient = when {
-        groupDirectReplyRecipientId != null -> message.recipient
         message.isOutgoing -> Recipient.self()
         else -> message.individualRecipient
       }

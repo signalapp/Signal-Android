@@ -1585,7 +1585,7 @@ public final class MessageContentProcessor {
           parentStoryId = new ParentStoryId.GroupReply(storyMessageId.getId());
         } else if (groupStory || SignalDatabase.storySends().canReply(senderRecipient.getId(), storyContext.getSentTimestamp())) {
           parentStoryId   = new ParentStoryId.DirectReply(storyMessageId.getId());
-          quoteModel      = new QuoteModel(storyContext.getSentTimestamp(), groupStory ? threadRecipient.getId() : storyAuthorRecipient, "", false, story.getSlideDeck().asAttachments(), Collections.emptyList());
+          quoteModel      = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, "", false, story.getSlideDeck().asAttachments(), Collections.emptyList());
           expiresInMillis = TimeUnit.SECONDS.toMillis(message.getExpiresInSeconds());
         } else {
           warn(content.getTimestamp(), "Story has replies disabled. Dropping reply.");
