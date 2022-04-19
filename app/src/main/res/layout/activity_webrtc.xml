@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:theme="@style/Theme.Session.CallActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:keepScreenOn="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:id="@+id/remote_parent"
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/remote_renderer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+    <ImageView
+        android:id="@+id/remote_recipient"
+        app:layout_constraintStart_toStartOf="@id/remote_parent"
+        app:layout_constraintEnd_toEndOf="@id/remote_parent"
+        app:layout_constraintTop_toTopOf="@id/remote_parent"
+        app:layout_constraintBottom_toBottomOf="@id/remote_parent"
+        app:layout_constraintVertical_bias="0.4"
+        android:layout_width="@dimen/extra_large_profile_picture_size"
+        android:layout_height="@dimen/extra_large_profile_picture_size"/>
+
+    <ImageView
+        android:id="@+id/back_arrow"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:background="@drawable/call_controls_background"
+        android:elevation="8dp"
+        android:layout_marginLeft="@dimen/small_spacing"
+        android:layout_marginTop="@dimen/small_spacing"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        android:scaleType="centerInside"
+        android:layout_width="@dimen/medium_profile_picture_size"
+        android:layout_height="@dimen/medium_profile_picture_size"
+        app:tint="@color/call_action_foreground" />
+
+    <TextView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="@dimen/massive_spacing"
+        android:layout_marginTop="@dimen/medium_spacing"
+        android:textAlignment="center"
+        android:id="@+id/remote_recipient_name"
+        android:textStyle="bold"
+        tools:text="@tools:sample/full_names"
+        android:ellipsize="end"
+        android:textSize="20sp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/remote_loading_view"
+        style="@style/SpinKitView.ThreeBounce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:foregroundGravity="center"
+        android:visibility="gone"
+        app:SpinKit_Color="@color/core_white"
+        app:layout_constraintEnd_toEndOf="@+id/remote_recipient"
+        app:layout_constraintStart_toStartOf="@+id/remote_recipient"
+        app:layout_constraintTop_toBottomOf="@id/remote_recipient"
+        tools:visibility="visible" />
+
+    <TextView
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/remote_loading_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/WebRtcCallActivity_Reconnecting"
+        android:id="@+id/reconnecting_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/sessionCallText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/WebRtcCallActivity_Session_Call"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toTopOf="@+id/controlGroupBarrier"
+        android:layout_marginBottom="@dimen/small_spacing"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/callTime"
+        android:textSize="@dimen/medium_font_size"
+        android:textColor="?android:textColorPrimary"
+        tools:text="@tools:sample/date/hhmmss"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/sessionCallText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <FrameLayout
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintDimensionRatio="h,9:16"
+        android:layout_marginHorizontal="@dimen/large_spacing"
+        android:layout_marginVertical="@dimen/massive_spacing"
+        app:layout_constraintWidth_percent="0.2"
+        android:layout_height="0dp"
+        android:layout_width="0dp">
+        <FrameLayout
+            android:elevation="8dp"
+            android:id="@+id/local_renderer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/local_loading_view"
+            style="@style/SpinKitView.Large.ThreeBounce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:SpinKit_Color="@color/text"
+            android:layout_gravity="center"
+            tools:visibility="visible"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/endCallButton"
+        android:background="@drawable/circle_tintable"
+        android:src="@drawable/ic_baseline_call_end_24"
+        android:padding="@dimen/medium_spacing"
+        android:foregroundTint="@color/call_action_foreground"
+        android:backgroundTint="@color/destructive"
+        android:layout_width="@dimen/large_button_height"
+        android:layout_height="@dimen/large_button_height"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="@dimen/large_spacing"
+        />
+
+    <ImageView
+        android:id="@+id/switchCameraButton"
+        android:background="@drawable/call_controls_background"
+        android:src="@drawable/ic_baseline_flip_camera_android_24"
+        android:padding="@dimen/medium_spacing"
+        app:tint="@color/call_action_foreground"
+        android:layout_width="@dimen/large_button_height"
+        android:layout_height="@dimen/large_button_height"
+        app:layout_constraintBottom_toTopOf="@+id/endCallButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="@dimen/large_spacing"
+        app:layout_constraintHorizontal_bias="0.1"
+        />
+
+    <ImageView
+        android:id="@+id/enableCameraButton"
+        android:background="@drawable/circle_tintable"
+        android:backgroundTint="@color/state_list_call_action_background"
+        app:tint="@color/state_list_call_action_foreground"
+        android:src="@drawable/ic_baseline_videocam_24"
+        android:padding="@dimen/medium_spacing"
+        android:layout_width="@dimen/large_button_height"
+        android:layout_height="@dimen/large_button_height"
+        app:layout_constraintBottom_toTopOf="@+id/endCallButton"
+        app:layout_constraintStart_toEndOf="@id/switchCameraButton"
+        app:layout_constraintEnd_toStartOf="@id/microphoneButton"
+        android:layout_marginBottom="@dimen/large_spacing"
+        />
+
+    <ImageView
+        android:id="@+id/microphoneButton"
+        android:layout_width="@dimen/large_button_height"
+        android:layout_height="@dimen/large_button_height"
+        android:padding="@dimen/medium_spacing"
+        android:src="@drawable/ic_baseline_mic_off_24"
+        android:layout_marginBottom="@dimen/large_spacing"
+        app:layout_constraintBottom_toTopOf="@+id/endCallButton"
+        android:background="@drawable/circle_tintable"
+        android:backgroundTint="@color/state_list_call_action_mic_background"
+        app:tint="@color/call_action_foreground"
+        app:layout_constraintEnd_toStartOf="@id/speakerPhoneButton"
+        app:layout_constraintStart_toEndOf="@id/enableCameraButton"/>
+
+    <ImageView
+        android:id="@+id/speakerPhoneButton"
+        android:background="@drawable/circle_tintable"
+        android:backgroundTint="@color/state_list_call_action_background"
+        app:tint="@color/state_list_call_action_foreground"
+        android:src="@drawable/ic_baseline_volume_up_24"
+        android:padding="@dimen/medium_spacing"
+        android:layout_width="@dimen/large_button_height"
+        android:layout_height="@dimen/large_button_height"
+        app:layout_constraintBottom_toTopOf="@+id/endCallButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="@dimen/large_spacing"
+        app:layout_constraintHorizontal_bias="0.9"
+        />
+
+    <ImageView
+        android:background="@drawable/circle_tintable"
+        android:src="@drawable/ic_baseline_call_24"
+        android:padding="@dimen/medium_spacing"
+        android:foregroundTint="@color/call_action_foreground"
+        android:backgroundTint="@color/accent"
+        android:layout_width="@dimen/large_button_height"
+        android:layout_height="@dimen/large_button_height"
+        android:layout_marginBottom="@dimen/very_large_spacing"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        android:gravity="center"
+        android:id="@+id/acceptCallButton"/>
+
+    <ImageView
+        android:background="@drawable/circle_tintable"
+        android:src="@drawable/ic_baseline_call_end_24"
+        android:padding="@dimen/medium_spacing"
+        android:foregroundTint="@color/call_action_foreground"
+        android:backgroundTint="@color/destructive"
+        android:layout_width="@dimen/large_button_height"
+        android:layout_height="@dimen/large_button_height"
+        android:layout_marginBottom="@dimen/very_large_spacing"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        android:id="@+id/declineCallButton"/>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/controlGroup"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:constraint_referenced_ids="enableCameraButton,endCallButton,switchCameraButton,speakerPhoneButton,microphoneButton"
+        />
+
+    <androidx.constraintlayout.widget.Group
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/incomingControlGroup"
+        app:constraint_referenced_ids="acceptCallButton,declineCallButton"/>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/controlGroupBarrier"
+        app:barrierDirection="top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:constraint_referenced_ids="switchCameraButton,enableCameraButton,microphoneButton,speakerPhoneButton,acceptCallButton,declineCallButton"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

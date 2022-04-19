@@ -6,6 +6,7 @@ import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.jobs.AttachmentDownloadJob
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.messages.Message
+import org.session.libsession.messaging.messages.control.CallMessage
 import org.session.libsession.messaging.messages.control.ClosedGroupControlMessage
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.control.DataExtractionNotification
@@ -22,6 +23,7 @@ import org.session.libsession.messaging.sending_receiving.link_preview.LinkPrevi
 import org.session.libsession.messaging.sending_receiving.notifications.PushNotificationAPI
 import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPollerV2
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
+import org.session.libsession.messaging.utilities.WebRtcUtils
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.GroupRecord
@@ -60,6 +62,7 @@ fun MessageReceiver.handle(message: Message, proto: SignalServiceProtos.Content,
         is UnsendRequest -> handleUnsendRequest(message)
         is MessageRequestResponse -> handleMessageRequestResponse(message)
         is VisibleMessage -> handleVisibleMessage(message, proto, openGroupID)
+        is CallMessage -> handleCallMessage(message)
     }
 }
 
@@ -67,6 +70,11 @@ fun MessageReceiver.handle(message: Message, proto: SignalServiceProtos.Content,
 private fun MessageReceiver.handleReadReceipt(message: ReadReceipt) {
     val context = MessagingModuleConfiguration.shared.context
     SSKEnvironment.shared.readReceiptManager.processReadReceipts(context, message.sender!!, message.timestamps!!, message.receivedTimestamp!!)
+}
+
+private fun MessageReceiver.handleCallMessage(message: CallMessage) {
+    // TODO: refactor this out to persistence, just to help debug the flow and send/receive in synchronous testing
+    WebRtcUtils.SIGNAL_QUEUE.trySend(message)
 }
 
 private fun MessageReceiver.handleTypingIndicator(message: TypingIndicator) {

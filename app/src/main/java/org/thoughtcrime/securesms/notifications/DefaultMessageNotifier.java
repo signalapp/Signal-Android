@@ -259,10 +259,8 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
     try {
       telcoCursor = DatabaseComponent.get(context).mmsSmsDatabase().getUnread();
-      pushCursor  = DatabaseComponent.get(context).pushDatabase().getPending();
 
-      if (((telcoCursor == null || telcoCursor.isAfterLast()) &&
-          (pushCursor == null || pushCursor.isAfterLast())) || !TextSecurePreferences.hasSeenWelcomeScreen(context))
+      if ((telcoCursor == null || telcoCursor.isAfterLast()) || !TextSecurePreferences.hasSeenWelcomeScreen(context))
       {
         cancelActiveNotifications(context);
         updateBadge(context, 0);
@@ -278,15 +276,19 @@ public class DefaultMessageNotifier implements MessageNotifier {
         lastAudibleNotification = System.currentTimeMillis();
       }
 
-      if (notificationState.hasMultipleThreads()) {
-        for (long threadId : notificationState.getThreads()) {
-          sendSingleThreadNotification(context, new NotificationState(notificationState.getNotificationsForThread(threadId)), false, true);
+      try {
+        if (notificationState.hasMultipleThreads()) {
+          for (long threadId : notificationState.getThreads()) {
+            sendSingleThreadNotification(context, new NotificationState(notificationState.getNotificationsForThread(threadId)), false, true);
+          }
+          sendMultipleThreadNotification(context, notificationState, signal);
+        } else if (notificationState.getMessageCount() > 0){
+          sendSingleThreadNotification(context, notificationState, signal, false);
+        } else {
+          cancelActiveNotifications(context);
         }
-        sendMultipleThreadNotification(context, notificationState, signal);
-      } else if (notificationState.getMessageCount() > 0){
-        sendSingleThreadNotification(context, notificationState, signal, false);
-      } else {
-        cancelActiveNotifications(context);
+      } catch (Exception e) {
+        Log.e(TAG, "Error creating notification",e);
       }
       cancelOrphanedNotifications(context, notificationState);
       updateBadge(context, notificationState.getMessageCount());
@@ -296,8 +298,16 @@ public class DefaultMessageNotifier implements MessageNotifier {
       }
     } finally {
       if (telcoCursor != null) telcoCursor.close();
-      if (pushCursor != null)  pushCursor.close();
     }
+  }
+
+  private String getTrimmedText(CharSequence text) {
+    String trimmedText = "";
+    if (text != null) {
+      int trimEnd = Math.min(text.length(), 50);
+      trimmedText = text.subSequence(0,trimEnd) + (text.length() > 50 ? "..." : "");
+    }
+    return trimmedText;
   }
 
   private void sendSingleThreadNotification(@NonNull  Context context,
@@ -331,11 +341,14 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
     builder.putStringExtra(LATEST_MESSAGE_ID_TAG, messageIdTag);
 
+    CharSequence text = notifications.get(0).getText();
+    String trimmedText = getTrimmedText(text);
+
     builder.setThread(notifications.get(0).getRecipient());
     builder.setMessageCount(notificationState.getMessageCount());
     MentionManagerUtilities.INSTANCE.populateUserPublicKeyCacheIfNeeded(notifications.get(0).getThreadId(),context);
     builder.setPrimaryMessageBody(recipient, notifications.get(0).getIndividualRecipient(),
-                                  MentionUtilities.highlightMentions(notifications.get(0).getText(),
+                                  MentionUtilities.highlightMentions(trimmedText,
                                           notifications.get(0).getThreadId(),
                                           context),
                                   notifications.get(0).getSlideDeck());
@@ -435,8 +448,8 @@ public class DefaultMessageNotifier implements MessageNotifier {
     builder.putStringExtra(LATEST_MESSAGE_ID_TAG, messageIdTag);
 
     Notification notification = builder.build();
-    NotificationManagerCompat.from(context).notify(SUMMARY_NOTIFICATION_ID, builder.build());
-    Log.i(TAG, "Posted notification. " + notification.toString());
+    NotificationManagerCompat.from(context).notify(SUMMARY_NOTIFICATION_ID, notification);
+    Log.i(TAG, "Posted notification. " + notification);
   }
 
   private void sendInThreadNotification(Context context, Recipient recipient) {

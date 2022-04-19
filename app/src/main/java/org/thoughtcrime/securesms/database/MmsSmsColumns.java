@@ -32,6 +32,7 @@ public interface MmsSmsColumns {
     protected static final long OUTGOING_CALL_TYPE                 = 2;
     protected static final long MISSED_CALL_TYPE                   = 3;
     protected static final long JOINED_TYPE                        = 4;
+    protected static final long FIRST_MISSED_CALL_TYPE             = 5;
 
     protected static final long BASE_INBOX_TYPE                    = 20;
     protected static final long BASE_OUTBOX_TYPE                   = 21;
@@ -207,7 +208,8 @@ public interface MmsSmsColumns {
     }
 
     public static boolean isCallLog(long type) {
-      return type == INCOMING_CALL_TYPE || type == OUTGOING_CALL_TYPE || type == MISSED_CALL_TYPE;
+      long baseType = type & BASE_TYPE_MASK;
+      return baseType == INCOMING_CALL_TYPE || baseType == OUTGOING_CALL_TYPE || baseType == MISSED_CALL_TYPE || baseType == FIRST_MISSED_CALL_TYPE;
     }
 
     public static boolean isExpirationTimerUpdate(long type) {
@@ -227,16 +229,21 @@ public interface MmsSmsColumns {
     }
 
     public static boolean isIncomingCall(long type) {
-      return type == INCOMING_CALL_TYPE;
+      return (type & BASE_TYPE_MASK) == INCOMING_CALL_TYPE;
     }
 
     public static boolean isOutgoingCall(long type) {
-      return type == OUTGOING_CALL_TYPE;
+      return (type & BASE_TYPE_MASK) == OUTGOING_CALL_TYPE;
     }
 
     public static boolean isMissedCall(long type) {
-      return type == MISSED_CALL_TYPE;
+      return (type & BASE_TYPE_MASK) == MISSED_CALL_TYPE;
     }
+
+    public static boolean isFirstMissedCall(long type) {
+      return (type & BASE_TYPE_MASK) == FIRST_MISSED_CALL_TYPE;
+    }
+
 
     public static boolean isGroupUpdate(long type) {
       return (type & GROUP_UPDATE_BIT) != 0;

@@ -547,22 +547,10 @@ public class ThreadDatabase extends Database {
     SessionMetaProtocol.clearReceivedMessages();
   }
 
-  public boolean hasThread(long threadId) {
-    SQLiteDatabase db = databaseHelper.getReadableDatabase();
-    Cursor cursor = db.query(TABLE_NAME, new String[]{ ID }, ID_WHERE, new String[]{ String.valueOf(threadId) }, null, null, null);
-
-    try {
-      if (cursor != null && cursor.moveToFirst()) { return true; }
-      return false;
-    } finally {
-      if (cursor != null) cursor.close();
-    }
-  }
-
-  public long getThreadIdIfExistsFor(Recipient recipient) {
+  public long getThreadIdIfExistsFor(String address) {
     SQLiteDatabase db      = databaseHelper.getReadableDatabase();
     String where           = ADDRESS + " = ?";
-    String[] recipientsArg = new String[] {recipient.getAddress().serialize()};
+    String[] recipientsArg = new String[] {address};
     Cursor cursor          = null;
 
     try {
@@ -576,6 +564,10 @@ public class ThreadDatabase extends Database {
       if (cursor != null)
         cursor.close();
     }
+  }
+
+  public long getThreadIdIfExistsFor(Recipient recipient) {
+    return getThreadIdIfExistsFor(recipient.getAddress().serialize());
   }
 
   public long getOrCreateThreadIdFor(Recipient recipient) {

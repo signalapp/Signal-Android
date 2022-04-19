@@ -43,7 +43,7 @@ public class LinkPreviewRepository {
 
   private final OkHttpClient client;
 
-  public LinkPreviewRepository(@NonNull Context context) {
+  public LinkPreviewRepository() {
     this.client = new OkHttpClient.Builder()
                                   .addNetworkInterceptor(new ContentProxySafetyInterceptor())
                                   .cache(null)

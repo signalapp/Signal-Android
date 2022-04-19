@@ -170,7 +170,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private val linkPreviewViewModel: LinkPreviewViewModel by lazy {
-        ViewModelProvider(this, LinkPreviewViewModel.Factory(LinkPreviewRepository(this)))
+        ViewModelProvider(this, LinkPreviewViewModel.Factory(LinkPreviewRepository()))
             .get(LinkPreviewViewModel::class.java)
     }
     private val viewModel: ConversationViewModel by viewModels {
@@ -558,7 +558,13 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
         if (!isMessageRequestThread()) {
-            ConversationMenuHelper.onPrepareOptionsMenu(menu, menuInflater, viewModel.recipient, viewModel.threadId, this) { onOptionsItemSelected(it) }
+            ConversationMenuHelper.onPrepareOptionsMenu(
+                menu,
+                menuInflater,
+                viewModel.recipient,
+                viewModel.threadId,
+                this
+            ) { onOptionsItemSelected(it) }
         }
         super.onPrepareOptionsMenu(menu)
         return true

@@ -4,7 +4,7 @@ import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
 import java.util.*
 
-fun <V, T : Promise<V, Exception>> retryIfNeeded(maxRetryCount: Int, retryInterval: Long = 1 * 1000, body: () -> T): Promise<V, Exception> {
+fun <V, T : Promise<V, Exception>> retryIfNeeded(maxRetryCount: Int, retryInterval: Long = 1000L, body: () -> T): Promise<V, Exception> {
     var retryCount = 0
     val deferred = deferred<V, Exception>()
     val thread = Thread.currentThread()

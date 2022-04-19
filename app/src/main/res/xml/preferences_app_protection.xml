@@ -84,6 +84,11 @@
         <!-- <Preference android:key="preference_category_blocked"
                     android:title="@string/preferences_app_protection__blocked_contacts" /> -->
 
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="pref_call_notifications_enabled"
+            android:title="@string/preferences__voice_video_calls"
+            android:summary="@string/preferences__allow_access_voice_video"/>
     </PreferenceCategory>
 
     <!-- <PreferenceCategory android:layout="@layout/preference_divider"/>

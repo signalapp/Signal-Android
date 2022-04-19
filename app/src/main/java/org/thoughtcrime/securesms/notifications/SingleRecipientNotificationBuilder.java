@@ -295,11 +295,11 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
                      .asBitmap()
                      .load(new DecryptableStreamUriLoader.DecryptableUri(uri))
                      .diskCacheStrategy(DiskCacheStrategy.NONE)
-                     .submit(500, 500)
+                     .submit(64, 64)
                      .get();
     } catch (InterruptedException | ExecutionException e) {
       Log.w(TAG, e);
-      return Bitmap.createBitmap(500, 500, Bitmap.Config.RGB_565);
+      return Bitmap.createBitmap(64, 64, Bitmap.Config.RGB_565);
     }
   }
 

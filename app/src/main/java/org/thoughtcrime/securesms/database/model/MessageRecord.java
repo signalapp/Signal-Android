@@ -24,6 +24,7 @@ import android.text.style.StyleSpan;
 
 import androidx.annotation.NonNull;
 
+import org.session.libsession.messaging.calls.CallMessageType;
 import org.session.libsession.messaging.sending_receiving.data_extraction.DataExtractionNotificationInfoMessage;
 import org.session.libsession.messaging.utilities.UpdateMessageBuilder;
 import org.session.libsession.messaging.utilities.UpdateMessageData;
@@ -112,6 +113,18 @@ public abstract class MessageRecord extends DisplayRecord {
     } else if (isDataExtractionNotification()) {
       if (isScreenshotNotification()) return new SpannableString((UpdateMessageBuilder.INSTANCE.buildDataExtractionMessage(context, DataExtractionNotificationInfoMessage.Kind.SCREENSHOT, getIndividualRecipient().getAddress().serialize())));
       else if (isMediaSavedNotification()) return new SpannableString((UpdateMessageBuilder.INSTANCE.buildDataExtractionMessage(context, DataExtractionNotificationInfoMessage.Kind.MEDIA_SAVED, getIndividualRecipient().getAddress().serialize())));
+    } else if (isCallLog()) {
+      CallMessageType callType;
+      if (isIncomingCall()) {
+        callType = CallMessageType.CALL_INCOMING;
+      } else if (isOutgoingCall()) {
+        callType = CallMessageType.CALL_OUTGOING;
+      } else if (isMissedCall()) {
+        callType = CallMessageType.CALL_MISSED;
+      } else {
+        callType = CallMessageType.CALL_FIRST_MISSED;
+      }
+      return new SpannableString(UpdateMessageBuilder.INSTANCE.buildCallMessage(context, callType, getIndividualRecipient().getAddress().serialize()));
     }
 
     return new SpannableString(getBody());

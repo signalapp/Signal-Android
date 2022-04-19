@@ -93,7 +93,7 @@ public class MultipleRecipientNotificationBuilder extends AbstractNotificationBu
     }
 
     if (privacy.isDisplayContact() && sender.getContactUri() != null) {
-      addPerson(sender.getContactUri().toString());
+//      addPerson(sender.getContactUri().toString());
     }
   }
 
