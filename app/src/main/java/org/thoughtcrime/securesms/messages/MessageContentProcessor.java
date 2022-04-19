@@ -1353,8 +1353,8 @@ public final class MessageContentProcessor {
       return;
     }
 
-    if (!threadRecipient.isGroup() && !(senderRecipient.isProfileSharing() || senderRecipient.isSystemContact())) {
-      warn(content.getTimestamp(), "Dropping non-group story from an untrusted user.");
+    if (!threadRecipient.isActiveGroup() && !(senderRecipient.isProfileSharing() || senderRecipient.isSystemContact())) {
+      warn(content.getTimestamp(), "Dropping story from an untrusted source.");
       return;
     }
 
