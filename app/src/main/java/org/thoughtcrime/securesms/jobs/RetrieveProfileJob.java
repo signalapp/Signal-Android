@@ -451,6 +451,11 @@ public class RetrieveProfileJob extends BaseJob {
 
       String plaintextProfileName = Util.emptyIfNull(ProfileUtil.decryptString(profileKey, profileName));
 
+      if (TextUtils.isEmpty(plaintextProfileName)) {
+        Log.w(TAG, "No name set on the profile for " + recipient.getId() + " -- Leaving it alone");
+        return;
+      }
+
       ProfileName remoteProfileName = ProfileName.fromSerialized(plaintextProfileName);
       ProfileName localProfileName  = recipient.getProfileName();
 
@@ -473,10 +478,6 @@ public class RetrieveProfileJob extends BaseJob {
           Log.i(TAG, String.format(Locale.US, "Name changed, but wasn't relevant to write an event. blocked: %s, group: %s, self: %s, firstSet: %s, displayChange: %s",
                                    recipient.isBlocked(), recipient.isGroup(), recipient.isSelf(), localDisplayName.isEmpty(), !remoteDisplayName.equals(localDisplayName)));
         }
-      }
-
-      if (TextUtils.isEmpty(plaintextProfileName)) {
-        Log.i(TAG, "No profile name set for " + recipient.getId());
       }
     } catch (InvalidCiphertextException e) {
       Log.w(TAG, "Bad profile key for " + recipient.getId());
