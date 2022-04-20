@@ -1616,7 +1616,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
             Recipient.resolved(messageRecord.getQuote().getAuthor()).shouldHideStory(),
             null,
             null,
-            null
+            null,
+            Collections.emptyList()
         ));
 
         return;

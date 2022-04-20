@@ -41,7 +41,8 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
             intent.getBooleanExtra(ARG_HIDDEN_STORIES, false),
             intent.getParcelableExtra(ARG_CROSSFADE_TEXT_MODEL),
             intent.getParcelableExtra(ARG_CROSSFADE_IMAGE_URI),
-            intent.getStringExtra(ARG_CROSSFADE_IMAGE_BLUR)
+            intent.getStringExtra(ARG_CROSSFADE_IMAGE_BLUR),
+            intent.getParcelableArrayListExtra(ARG_RECIPIENT_IDS)!!
           )
         )
         .commit()
@@ -61,6 +62,7 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
     private const val ARG_CROSSFADE_TEXT_MODEL = "crossfade.text.model"
     private const val ARG_CROSSFADE_IMAGE_URI = "crossfade.image.uri"
     private const val ARG_CROSSFADE_IMAGE_BLUR = "crossfade.image.blur"
+    private const val ARG_RECIPIENT_IDS = "recipient_ids"
 
     @JvmStatic
     fun createIntent(
@@ -70,7 +72,8 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
       onlyIncludeHiddenStories: Boolean = false,
       storyThumbTextModel: StoryTextPostModel? = null,
       storyThumbUri: Uri? = null,
-      storyThumbBlur: BlurHash? = null
+      storyThumbBlur: BlurHash? = null,
+      recipientIds: List<RecipientId> = emptyList()
     ): Intent {
       return Intent(context, StoryViewerActivity::class.java)
         .putExtra(ARG_START_RECIPIENT_ID, recipientId)
@@ -79,6 +82,7 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
         .putExtra(ARG_CROSSFADE_TEXT_MODEL, storyThumbTextModel)
         .putExtra(ARG_CROSSFADE_IMAGE_URI, storyThumbUri)
         .putExtra(ARG_CROSSFADE_IMAGE_BLUR, storyThumbBlur?.hash)
+        .putParcelableArrayListExtra(ARG_RECIPIENT_IDS, ArrayList(recipientIds))
     }
   }
 }

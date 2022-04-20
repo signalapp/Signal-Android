@@ -8,6 +8,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.livedata.Store
 
 class StoriesLandingViewModel(private val storiesLandingRepository: StoriesLandingRepository) : ViewModel() {
@@ -43,6 +44,10 @@ class StoriesLandingViewModel(private val storiesLandingRepository: StoriesLandi
 
   fun setHiddenContentVisible(isExpanded: Boolean) {
     store.update { it.copy(isHiddenContentVisible = isExpanded) }
+  }
+
+  fun getRecipientIds(hidden: Boolean): List<RecipientId> {
+    return store.state.storiesLandingItems.filter { it.isHidden == hidden }.map { it.storyRecipient.id }
   }
 
   class Factory(private val storiesLandingRepository: StoriesLandingRepository) : ViewModelProvider.Factory {

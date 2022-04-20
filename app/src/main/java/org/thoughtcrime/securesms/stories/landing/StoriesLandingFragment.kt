@@ -206,7 +206,19 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
             null to record.slideDeck.thumbnailSlide?.uri
           }
 
-          startActivityIfAble(StoryViewerActivity.createIntent(requireContext(), model.data.storyRecipient.id, -1L, model.data.isHidden, text, image, blur), options.toBundle())
+          startActivityIfAble(
+            StoryViewerActivity.createIntent(
+              context = requireContext(),
+              recipientId = model.data.storyRecipient.id,
+              storyId = -1L,
+              onlyIncludeHiddenStories = model.data.isHidden,
+              storyThumbTextModel = text,
+              storyThumbUri = image,
+              storyThumbBlur = blur,
+              recipientIds = viewModel.getRecipientIds(model.data.isHidden)
+            ),
+            options.toBundle()
+          )
         }
       },
       onForwardStory = {

@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import org.thoughtcrime.securesms.blurhash.BlurHash
@@ -20,6 +21,7 @@ class StoryViewerViewModel(
   storyThumbTextModel: StoryTextPostModel?,
   storyThumbUri: Uri?,
   storyThumbBlur: BlurHash?,
+  private val recipientIds: List<RecipientId>,
   private val repository: StoryViewerRepository,
 ) : ViewModel() {
 
@@ -64,9 +66,17 @@ class StoryViewerViewModel(
     scrollStatePublisher.value = isScrolling
   }
 
+  private fun getStories(): Single<List<RecipientId>> {
+    return if (recipientIds.isNotEmpty()) {
+      Single.just(recipientIds)
+    } else {
+      repository.getStories(onlyIncludeHiddenStories)
+    }
+  }
+
   private fun refresh() {
     disposables.clear()
-    disposables += repository.getStories(onlyIncludeHiddenStories).subscribe { recipientIds ->
+    disposables += getStories().subscribe { recipientIds ->
       store.update {
         val page: Int = if (it.pages.isNotEmpty()) {
           val oldPage = it.page
@@ -157,10 +167,21 @@ class StoryViewerViewModel(
     private val storyThumbTextModel: StoryTextPostModel?,
     private val storyThumbUri: Uri?,
     private val storyThumbBlur: BlurHash?,
+    private val recipientIds: List<RecipientId>,
     private val repository: StoryViewerRepository
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-      return modelClass.cast(StoryViewerViewModel(startRecipientId, onlyIncludeHiddenStories, storyThumbTextModel, storyThumbUri, storyThumbBlur, repository)) as T
+      return modelClass.cast(
+        StoryViewerViewModel(
+          startRecipientId,
+          onlyIncludeHiddenStories,
+          storyThumbTextModel,
+          storyThumbUri,
+          storyThumbBlur,
+          recipientIds,
+          repository
+        )
+      ) as T
     }
   }
 }

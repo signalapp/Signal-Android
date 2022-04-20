@@ -24,7 +24,7 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
 
   private val viewModel: StoryViewerViewModel by viewModels(
     factoryProducer = {
-      StoryViewerViewModel.Factory(storyRecipientId, onlyIncludeHiddenStories, storyThumbTextModel, storyThumbUri, storuThumbBlur, StoryViewerRepository())
+      StoryViewerViewModel.Factory(storyRecipientId, onlyIncludeHiddenStories, storyThumbTextModel, storyThumbUri, storuThumbBlur, recipientIds, StoryViewerRepository())
     }
   )
 
@@ -45,6 +45,9 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
 
   private val storuThumbBlur: BlurHash?
     get() = requireArguments().getString(ARG_CROSSFADE_IMAGE_BLUR)?.let { BlurHash.parseOrNull(it) }
+
+  private val recipientIds: List<RecipientId>
+    get() = requireArguments().getParcelableArrayList(ARG_RECIPIENT_IDS)!!
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     storyPager = view.findViewById(R.id.story_item_pager)
@@ -113,6 +116,7 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
     private const val ARG_CROSSFADE_TEXT_MODEL = "crossfade.text.model"
     private const val ARG_CROSSFADE_IMAGE_URI = "crossfade.image.uri"
     private const val ARG_CROSSFADE_IMAGE_BLUR = "crossfade.image.blur"
+    private const val ARG_RECIPIENT_IDS = "start.recipient.ids"
 
     fun create(
       storyRecipientId: RecipientId,
@@ -120,7 +124,8 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
       onlyIncludeHiddenStories: Boolean,
       storyThumbTextModel: StoryTextPostModel? = null,
       storyThumbUri: Uri? = null,
-      storyThumbBlur: String? = null
+      storyThumbBlur: String? = null,
+      recipientIds: List<RecipientId> = emptyList()
     ): Fragment {
       return StoryViewerFragment().apply {
         arguments = Bundle().apply {
@@ -130,6 +135,7 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
           putParcelable(ARG_CROSSFADE_TEXT_MODEL, storyThumbTextModel)
           putParcelable(ARG_CROSSFADE_IMAGE_URI, storyThumbUri)
           putString(ARG_CROSSFADE_IMAGE_BLUR, storyThumbBlur)
+          putParcelableArrayList(ARG_RECIPIENT_IDS, ArrayList(recipientIds))
         }
       }
     }
