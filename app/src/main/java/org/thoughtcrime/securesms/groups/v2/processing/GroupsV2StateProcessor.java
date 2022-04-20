@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.groups.GroupsV2Authorization;
 import org.thoughtcrime.securesms.groups.v2.ProfileKeySet;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob;
+import org.thoughtcrime.securesms.jobs.LeaveGroupV2Job;
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -111,11 +112,6 @@ public class GroupsV2StateProcessor {
   }
 
   public enum GroupState {
-    /**
-     * The message revision was inconsistent with server revision, should ignore
-     */
-    INCONSISTENT,
-
     /**
      * The local group was successfully updated to be consistent with the message revision
      */
@@ -590,7 +586,12 @@ public class GroupsV2StateProcessor {
 
           Log.i(TAG, String.format("Added as a full member of %s by %s", groupId, addedBy.getId()));
 
-          if (addedBy.isSystemContact() || addedBy.isProfileSharing()) {
+          if (addedBy.isBlocked()) {
+            Log.i(TAG, "Added by a blocked user. Leaving group.");
+            ApplicationDependencies.getJobManager().add(new LeaveGroupV2Job(groupId));
+            //noinspection UnnecessaryReturnStatement
+            return;
+          } else if (addedBy.isSystemContact() || addedBy.isProfileSharing()) {
             Log.i(TAG, "Group 'adder' is trusted. contact: " + addedBy.isSystemContact() + ", profileSharing: " + addedBy.isProfileSharing());
             Log.i(TAG, "Added to a group and auto-enabling profile sharing");
             recipientDatabase.setProfileSharing(Recipient.externalGroupExact(context, groupId).getId(), true);
