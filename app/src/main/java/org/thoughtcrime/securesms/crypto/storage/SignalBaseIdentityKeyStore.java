@@ -71,13 +71,13 @@ public class SignalBaseIdentityKeyStore {
       RecipientId         recipientId    = RecipientId.fromExternalPush(address.getName());
 
       if (identityRecord == null) {
-        Log.i(TAG, "Saving new identity...");
+        Log.i(TAG, "Saving new identity for " + address);
         cache.save(address.getName(), recipientId, identityKey, VerifiedStatus.DEFAULT, true, System.currentTimeMillis(), nonBlockingApproval);
         return SaveResult.NEW;
       }
 
       if (!identityRecord.getIdentityKey().equals(identityKey)) {
-        Log.i(TAG, "Replacing existing identity... Existing: " + identityRecord.getIdentityKey().hashCode() + " New: " + identityKey.hashCode());
+        Log.i(TAG, "Replacing existing identity for " + address + " | Existing: " + identityRecord.getIdentityKey().hashCode() + ", New: " + identityKey.hashCode());
         VerifiedStatus verifiedStatus;
 
         if (identityRecord.getVerifiedStatus() == VerifiedStatus.VERIFIED ||
@@ -96,7 +96,7 @@ public class SignalBaseIdentityKeyStore {
       }
 
       if (isNonBlockingApprovalRequired(identityRecord)) {
-        Log.i(TAG, "Setting approval status...");
+        Log.i(TAG, "Setting approval status for " + address);
         cache.setApproval(address.getName(), recipientId, identityRecord, nonBlockingApproval);
         return SaveResult.NON_BLOCKING_APPROVAL_REQUIRED;
       }

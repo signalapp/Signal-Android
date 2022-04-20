@@ -116,6 +116,8 @@ public final class IdentityUtil {
   }
 
   public static void markIdentityUpdate(@NonNull Context context, @NonNull RecipientId recipientId) {
+    Log.w(TAG, "Inserting safety number change event(s) for " + recipientId, new Throwable());
+
     long            time          = System.currentTimeMillis();
     MessageDatabase smsDatabase   = SignalDatabase.sms();
     GroupDatabase   groupDatabase = SignalDatabase.groups();

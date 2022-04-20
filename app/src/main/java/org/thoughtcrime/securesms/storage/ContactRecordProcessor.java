@@ -86,6 +86,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
                        .map(r -> r.getContact().get());
   }
 
+  @Override
   @NonNull SignalContactRecord merge(@NonNull SignalContactRecord remote, @NonNull SignalContactRecord local, @NonNull StorageKeyGenerator keyGenerator) {
     String givenName;
     String familyName;
@@ -98,14 +99,25 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
       familyName = local.getFamilyName().orElse("");
     }
 
+    IdentityState identityState;
+    byte[]        identityKey;
+
+    if ((remote.getIdentityState() != local.getIdentityState() && remote.getIdentityKey().isPresent()) ||
+        (remote.getIdentityKey().isPresent() && !local.getIdentityKey().isPresent()))
+    {
+      identityState = remote.getIdentityState();
+      identityKey   = remote.getIdentityKey().get();
+    } else {
+      identityState = local.getIdentityState();
+      identityKey   = local.getIdentityKey().orElse(null);
+    }
+
     byte[]               unknownFields  = remote.serializeUnknownFields();
     ServiceId            serviceId      = local.getAddress().getServiceId() == ServiceId.UNKNOWN ? remote.getAddress().getServiceId() : local.getAddress().getServiceId();
     String               e164           = OptionalUtil.or(remote.getAddress().getNumber(), local.getAddress().getNumber()).orElse(null);
     SignalServiceAddress address        = new SignalServiceAddress(serviceId, e164);
     byte[]               profileKey     = OptionalUtil.or(remote.getProfileKey(), local.getProfileKey()).orElse(null);
     String               username       = OptionalUtil.or(remote.getUsername(), local.getUsername()).orElse("");
-    IdentityState        identityState  = remote.getIdentityKey().isPresent() ? remote.getIdentityState() : local.getIdentityState();
-    byte[]               identityKey    = OptionalUtil.or(remote.getIdentityKey(), local.getIdentityKey()).orElse(null);
     boolean              blocked        = remote.isBlocked();
     boolean              profileSharing = remote.isProfileSharingEnabled();
     boolean              archived       = remote.isArchived();
