@@ -157,7 +157,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       Log.w(TAG, "Subscription is not yet active. Status: " + subscription.getStatus(), true);
       throw new RetryableException();
     } else {
-      Log.i(TAG, "Recording end of period from active subscription.", true);
+      Log.i(TAG, "Recording end of period from active subscription: " + subscription.getStatus(), true);
       SignalStore.donationsValues().setLastEndOfPeriod(subscription.getEndOfCurrentPeriod());
       MultiDeviceSubscriptionSyncRequestJob.enqueue();
     }
@@ -240,9 +240,8 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
         DonationError.routeDonationError(context, DonationError.genericBadgeRedemptionFailure(getErrorSource()));
         throw new Exception(response.getApplicationError().get());
       case 402:
-        Log.w(TAG, "Subscription payment failure in credential response.", response.getApplicationError().get(), true);
-        onPaymentFailure(null, null, 0L);
-        throw new Exception(response.getApplicationError().get());
+        Log.w(TAG, "Payment looks like a failure but may be retried.", response.getApplicationError().get(), true);
+        throw new RetryableException();
       case 403:
         Log.w(TAG, "SubscriberId password mismatch or account auth was present.", response.getApplicationError().get(), true);
         DonationError.routeDonationError(context, DonationError.genericBadgeRedemptionFailure(getErrorSource()));
