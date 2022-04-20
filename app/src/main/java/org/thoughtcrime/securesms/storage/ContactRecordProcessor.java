@@ -9,6 +9,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
+import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.push.ServiceId;
@@ -110,6 +111,11 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
     } else {
       identityState = local.getIdentityState();
       identityKey   = local.getIdentityKey().orElse(null);
+    }
+
+    if (identityKey != null && remote.getIdentityKey().isPresent() && !Arrays.equals(identityKey, remote.getIdentityKey().get())) {
+      Log.w(TAG, "The local and remote identity keys do not match for " + local.getAddress().getIdentifier() + ". Enqueueing a profile fetch.");
+      RetrieveProfileJob.enqueue(Recipient.externalPush(local.getAddress()).getId());
     }
 
     byte[]               unknownFields  = remote.serializeUnknownFields();
