@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.signal.core.util.DimensionUnit;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.events.CallParticipant;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.webrtc.RendererCommon;
 
 class WebRtcCallParticipantsRecyclerAdapter extends ListAdapter<CallParticipant, WebRtcCallParticipantsRecyclerAdapter.ViewHolder> {
@@ -56,6 +58,11 @@ class WebRtcCallParticipantsRecyclerAdapter extends ListAdapter<CallParticipant,
     ParticipantViewHolder(@NonNull View itemView) {
       super(itemView);
       callParticipantView = itemView.findViewById(R.id.call_participant);
+
+      View audioIndicator       = callParticipantView.findViewById(R.id.call_participant_audio_indicator);
+      int  audioIndicatorMargin = (int) DimensionUnit.DP.toPixels(8f);
+      ViewUtil.setLeftMargin(audioIndicator, audioIndicatorMargin);
+      ViewUtil.setBottomMargin(audioIndicator, audioIndicatorMargin);
     }
 
     @Override

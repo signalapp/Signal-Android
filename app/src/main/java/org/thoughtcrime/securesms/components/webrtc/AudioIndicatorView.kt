@@ -50,12 +50,6 @@ class AudioIndicatorView(context: Context, attrs: AttributeSet) : FrameLayout(co
   fun bind(microphoneEnabled: Boolean, level: CallParticipant.AudioLevel?) {
     micMuted.visible = !microphoneEnabled
 
-    if (WebRtcActionProcessor.AUDIO_LEVELS_INTERVAL != null) {
-      bindAudioLevel(microphoneEnabled, level)
-    }
-  }
-
-  private fun bindAudioLevel(microphoneEnabled: Boolean, level: CallParticipant.AudioLevel?) {
     val wasShowingAudioLevel = showAudioLevel
     showAudioLevel = microphoneEnabled && level != null
 
@@ -95,7 +89,7 @@ class AudioIndicatorView(context: Context, attrs: AttributeSet) : FrameLayout(co
     val currentHeight = current?.animatedValue as? Float ?: 0f
 
     return ValueAnimator.ofFloat(currentHeight, finalHeight).apply {
-      duration = WebRtcActionProcessor.AUDIO_LEVELS_INTERVAL?.toLong() ?: 0
+      duration = WebRtcActionProcessor.AUDIO_LEVELS_INTERVAL.toLong()
       interpolator = DecelerateInterpolator()
     }
   }

@@ -85,10 +85,10 @@
 
     <org.thoughtcrime.securesms.components.webrtc.AudioIndicatorView
         android:id="@+id/call_participant_audio_indicator"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="9dp"
-        android:layout_marginBottom="9dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="14dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

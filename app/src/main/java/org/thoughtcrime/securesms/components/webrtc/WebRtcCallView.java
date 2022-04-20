@@ -20,6 +20,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.constraintlayout.widget.Guideline;
 import androidx.core.util.Consumer;
+import androidx.core.view.ViewKt;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.AutoTransition;
 import androidx.transition.Transition;
@@ -33,6 +35,8 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.google.android.material.button.MaterialButton;
 import com.google.common.collect.Sets;
 
+import org.signal.core.util.DimensionUnit;
+import org.signal.core.util.SetUtil;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.ResizeAnimation;
 import org.thoughtcrime.securesms.components.AccessibleToggleButton;
@@ -46,7 +50,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.util.BlurTransformation;
-import org.signal.core.util.SetUtil;
 import org.thoughtcrime.securesms.util.ThrottledDebouncer;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.Stub;
@@ -211,6 +214,10 @@ public class WebRtcCallView extends ConstraintLayout {
     callParticipantsPager.setAdapter(pagerAdapter);
     callParticipantsRecycler.setAdapter(recyclerAdapter);
 
+    DefaultItemAnimator animator = new DefaultItemAnimator();
+    animator.setSupportsChangeAnimations(false);
+    callParticipantsRecycler.setItemAnimator(animator);
+
     callParticipantsPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
       @Override
       public void onPageSelected(int position) {
@@ -266,6 +273,11 @@ public class WebRtcCallView extends ConstraintLayout {
       }
     });
 
+    View smallLocalAudioIndicator = smallLocalRender.findViewById(R.id.call_participant_audio_indicator);
+    int  audioIndicatorMargin     = (int) DimensionUnit.DP.toPixels(8f);
+    ViewUtil.setLeftMargin(smallLocalAudioIndicator, audioIndicatorMargin);
+    ViewUtil.setBottomMargin(smallLocalAudioIndicator, audioIndicatorMargin);
+
     startCall.setOnClickListener(v -> {
       if (controlsListener != null) {
         startCall.setEnabled(false);
@@ -292,7 +304,7 @@ public class WebRtcCallView extends ConstraintLayout {
     rotatableControls.add(videoToggle);
     rotatableControls.add(cameraDirectionToggle);
     rotatableControls.add(decline);
-    rotatableControls.add(smallLocalRender.findViewById(R.id.call_participant_audio_indicator));
+    rotatableControls.add(smallLocalAudioIndicator);
     rotatableControls.add(ringToggle);
 
     largeHeaderConstraints = new ConstraintSet();
@@ -425,6 +437,7 @@ public class WebRtcCallView extends ConstraintLayout {
 
     if (state == WebRtcLocalRenderState.EXPANDED) {
       expandPip(localCallParticipant, focusedParticipant);
+      smallLocalRender.setCallParticipant(focusedParticipant);
       return;
     } else if ((state == WebRtcLocalRenderState.SMALL_RECTANGLE || state == WebRtcLocalRenderState.GONE) && pictureInPictureExpansionHelper.isExpandedOrExpanding()) {
       shrinkPip(localCallParticipant);
@@ -860,6 +873,11 @@ public class WebRtcCallView extends ConstraintLayout {
   }
 
   private void layoutParticipants() {
+    int desiredMargin = ViewUtil.dpToPx(withControlsHeight(pagerBottomMarginDp));
+    if (ViewKt.getMarginBottom(callParticipantsPager) == desiredMargin) {
+      return;
+    }
+
     Transition transition = new AutoTransition().setDuration(TRANSITION_DURATION_MILLIS);
 
     TransitionManager.beginDelayedTransition(participantsParent, transition);
@@ -867,7 +885,7 @@ public class WebRtcCallView extends ConstraintLayout {
     ConstraintSet constraintSet = new ConstraintSet();
     constraintSet.clone(participantsParent);
 
-    constraintSet.setMargin(R.id.call_screen_participants_pager, ConstraintSet.BOTTOM, ViewUtil.dpToPx(withControlsHeight(pagerBottomMarginDp)));
+    constraintSet.setMargin(R.id.call_screen_participants_pager, ConstraintSet.BOTTOM, desiredMargin);
     constraintSet.applyTo(participantsParent);
   }
 
