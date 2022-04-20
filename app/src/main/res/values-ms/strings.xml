@@ -455,9 +455,9 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Lihat</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Kongsi dengan</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">Berbilang lampiran hanya disokong untuk imej dan video</string>
-  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Anda tidak mempunyai kebenaran untuk menghantar mesej ke kumpulan ini</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Kongsi dengan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Berbilang lampiran hanya disokong untuk imej dan video</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Anda tidak mempunyai kebenaran untuk menghantar mesej ke kumpulan ini</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Kegagalan komunikasi Signal tetap! </string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal tidak dapat mendaftar dengan Perkhidmatan Google Play. Mesej dan panggilan Signal telah dinyahdayakan, sila daftar semula dalam Tetapan &gt; Lanjutan.</string>
@@ -1984,8 +1984,8 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="preferences__advanced">Lanjutan</string>
   <string name="preferences__donate_to_signal">Sumbang kepada Signal</string>
   <string name="preferences__subscription">Langganan</string>
-  <string name="preferences__become_a_signal_sustainer">Jadilah seorang Signal Sustainer</string>
-  <string name="preferences__signal_boost">Signal Boost</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">Jadilah seorang Signal Sustainer</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Signal Boost</string> -->
   <string name="preferences__privacy">Privasi</string>
   <string name="preferences__mms_user_agent">Agen Pengguna MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Tetapan MMS manual</string>
@@ -2803,7 +2803,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Gagal menghantar kepada beberapa pengguna</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Anda hanya boleh berkongsi dengan sebanyak %1$d sembang</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">Hantar mesej</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">Hantar mesej</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Kertas dinding sembang</string>
   <!--ChatWallpaperFragment-->
@@ -3101,9 +3101,9 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Tambah foto</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Jadilah seorang Sustainer</string>
-  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal dikuasakan oleh orang ramai seperti anda. Berikan sumbangan dan terima lencana profil.</string>
-  <string name="BecomeASustainerMegaphone__no_thanks">Tidak, terima kasih</string>
-  <string name="BecomeASustainerMegaphone__contribute">Beri sumbangan</string>
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">Signal dikuasakan oleh orang ramai seperti anda. Berikan sumbangan dan terima lencana profil.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">Tidak, terima kasih</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">Beri sumbangan</string> -->
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Buka carian emoji</string>
@@ -3282,19 +3282,19 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Langganan anda telah dibatalkan</string>
   <string name="SubscribeFragment__update_subscription_question">Kemas kini langganan</string>
   <string name="SubscribeFragment__update">Kemas Kini</string>
-  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Anda akan dicaj amaun penuh harga langganan baharu hari ini. Langganan anda akan memperbaharui %1$s.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Anda akan dicaj amaun penuh harga langganan baharu hari ini. Langganan anda akan memperbaharui %1$s.</string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Anda akan dikenakan jumlah penuh (%1$s) daripada harga langganan baharu hari ini. Langganan anda akan diperbaharui setiap bulan.</string>
   <string name="Subscription__s_per_month">%s/bulan</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/bulan · Perbaharui semula %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/bulan · Luput pada %2$s</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal ialah organisasi bukan untung tanpa pengiklan atau pelabur, hanya dikekalkan oleh orang yang menggunakannya dan menghargainya. Buat sumbangan bulanan berulang dan terima lencana profil untuk berkongsi sokongan anda.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Mengapa Menyumbang?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal ialah organisasi bukan untung tanpa pengiklan atau pelabur, hanya dikekalkan oleh orang yang menggunakannya dan menghargainya. Buat sumbangan bulanan berulang dan terima lencana profil untuk berkongsi sokongan anda.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Mengapa Menyumbang?</string> -->
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal komited untuk membangunkan teknologi privasi sumber terbuka yang melindungi ungkapan bebas dan membolehkan komunikasi global yang selamat.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Sumbangan anda memperkasakan isu ini dan membayar untuk pembangunan dan operasi aplikasi yang digunakan oleh jutaan orang bagi komunikasi peribadi. Tiada iklan. Tiada penjejak. Bukan bahan jenaka.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Sumbangan anda memperkasakan isu ini dan membayar untuk pembangunan dan operasi aplikasi yang digunakan oleh jutaan orang bagi komunikasi peribadi. Tiada iklan. Tiada penjejak. Bukan bahan jenaka.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Terima kasih atas Sokongan anda!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Terima kasih untuk Boost!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Anda memperolehi lencana %s! Bantu Signal membina kesedaran dengan memaparkan lencana ini di profil anda.</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Anda telah memperolehi lencana Boost! Bantu Signal membina kesedaran dengan memaparkan lencana ini di profil anda.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Anda memperolehi lencana %s! Bantu Signal membina kesedaran dengan memaparkan lencana ini di profil anda.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Anda telah memperolehi lencana Boost! Bantu Signal membina kesedaran dengan memaparkan lencana ini di profil anda.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Anda juga boleh</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">jadilah Sustainer bulanan.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Pamerkan di Profil</string>
@@ -3319,17 +3319,17 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Tidak dapat menambah lencana. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Sila hubungi pusat bantuan.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Lencana anda telah luput</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Lencana telah luput</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Langganan dibatalkan</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Lencana Boost anda telah luput dan tidak lagi ditunjukkan kepada orang lain di profil anda.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Lencana anda telah luput</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Lencana telah luput</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Langganan dibatalkan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Lencana Boost anda telah luput dan tidak lagi ditunjukkan kepada orang lain di profil anda.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Anda boleh mengaktifkan semula lencana Boost anda selama 30 hari lagi dengan satu sumbangan derma.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Untuk terus menyokong teknologi yang dibina untuk anda, sila pertimbangkan untuk menjadi Sustainer bulanan.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Untuk terus menyokong teknologi yang dibina untuk anda, sila pertimbangkan untuk menjadi Sustainer bulanan.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Menjadi Sustainer</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Tambah Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Bukan sekarang</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Langganan Sustainer anda telah dibatalkan secara automatik kerana anda terlalu lama tidak aktif. Lencana %1$s anda tidak lagi dipaparkan di profil anda. </string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Langganan Sustainer anda telah dibatalkan secara automatik kerana anda terlalu lama tidak aktif. Lencana %1$s anda tidak lagi dipaparkan di profil anda. </string> -->
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Anda boleh terus menggunakan Signal tetapi untuk menyokong aplikasi dan mengaktifkan semula lencana anda, sila perbaharui sekarang.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Perbaharui langganan</string>

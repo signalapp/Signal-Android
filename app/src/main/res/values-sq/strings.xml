@@ -493,9 +493,9 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Shihni</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Ndaje me</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">Disa bashkëngjitje njëherësh mbulohen vetëm për figura dhe video</string>
-  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">S\’keni leje të dërgoni në këtë grup</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Ndaje me</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Disa bashkëngjitje njëherësh mbulohen vetëm për figura dhe video</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">S\’keni leje të dërgoni në këtë grup</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Dështim i përhershëm komunikimi nga Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal-i s\’arriti të bëjë regjistrimin me Google Play Services. Mesashet dhe thirrjet Signal janë çaktivizuar, ju lutemi, provoni riregjistrimin që nga Rregullime &gt; Të mëtejshme.</string>
@@ -2129,8 +2129,8 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="preferences__advanced">Të mëtejshme</string>
   <string name="preferences__donate_to_signal">Dhuroni për Signal-in</string>
   <string name="preferences__subscription">Pajtim</string>
-  <string name="preferences__become_a_signal_sustainer">Bëhuni një Mbështetës Signal-i</string>
-  <string name="preferences__signal_boost">Fuqizim Signal-i</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">Bëhuni një Mbështetës Signal-i</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Fuqizim Signal-i</string> -->
   <string name="preferences__privacy">Privatësi</string>
   <string name="preferences__mms_user_agent">Agjent Përdoruesi MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Rregullime dorazi për MMS-në</string>
@@ -2979,7 +2979,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="MultiShareDialogs__failed_to_send_to_some_users">S\’u arrit të dërgoheshin ca përdorues</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Mund të shkëmbeni deri me %1$d fjalosje</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">Përcille mesazhin</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">Përcille mesazhin</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Sfond fjalosjesh</string>
   <!--ChatWallpaperFragment-->
@@ -3285,9 +3285,9 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="AddAProfilePhotoMegaphone__add_photo">Shtoni foto</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Bëhuni një Mbështetës</string>
-  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal-i bazohet nga njerëz si ju. Kontribuoni dhe merrni një stemë profili.</string>
-  <string name="BecomeASustainerMegaphone__no_thanks">Jo, faleminderit</string>
-  <string name="BecomeASustainerMegaphone__contribute">Kontribuoni</string>
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">Signal-i bazohet nga njerëz si ju. Kontribuoni dhe merrni një stemë profili.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">Jo, faleminderit</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">Kontribuoni</string> -->
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Hap kërkim emoji-sh</string>
@@ -3470,19 +3470,19 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Pajtimi juaj është anuluar.</string>
   <string name="SubscribeFragment__update_subscription_question">Të përditësohet pajtimi?</string>
   <string name="SubscribeFragment__update">Përditësoje</string>
-  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Do t\’ju faturohet sasia e plotë e çmimit të sotëm të pajtimit të ri. Pajtimi juaj do të rinovohet më %1$s.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Do t\’ju faturohet sasia e plotë e çmimit të sotëm të pajtimit të ri. Pajtimi juaj do të rinovohet më %1$s.</string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Do t\’ju faturohet sot vlera e plotë (%1$s) e çmimit të pajtimit të ri. Pajtimi juaj do të rinovohet çdo muaj.</string>
   <string name="Subscription__s_per_month">%s/muaj</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/muaj · Rinovohet më %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/muaj · Skadon më %2$s</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal-i është një ent jofitimprurës, pa reklamues për të apo investues, i bazuar vetëm te njerëzit që e përdorin dhe vlerësojnë. Bëni një dhurim mujor ripërsëritës dhe merrni një stemë profili për t\’u treguar të tjerëve përkrahjen tuaj.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Pse të Jepet Ndihmesë?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal-i është një ent jofitimprurës, pa reklamues për të apo investues, i bazuar vetëm te njerëzit që e përdorin dhe vlerësojnë. Bëni një dhurim mujor ripërsëritës dhe merrni një stemë profili për t\’u treguar të tjerëve përkrahjen tuaj.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Pse të Jepet Ndihmesë?</string> -->
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal-i është i përkushtuar zhvillimit të teknologjive të privatësisë me burim të hapët që mbrojnë shprehjen e lirë dhe bëjnë të mundur komunikim të sigurt global.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Kontributi juaj i shërben kësaj kauze dhe paguan për zhvillimin dhe operacioneve të lidhura me një aplikacion të përdorur nga miliona vetë për komunikim privat. Pa reklama. Pa gjurmues. Pa shaka.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Kontributi juaj i shërben kësaj kauze dhe paguan për zhvillimin dhe operacioneve të lidhura me një aplikacion të përdorur nga miliona vetë për komunikim privat. Pa reklama. Pa gjurmues. Pa shaka.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Faleminderit për Përkrahjen tuaj!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Faleminderit për Fuqizimin!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Fituat stemën %s badge! Ndihmojeni Signal-in të shtojë ndërgjegjësimin, duke shfaqur në profilin tuaj këtë stemë.</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Fituat një stemë Boos! Ndihmojeni Signal-in të shtojë ndërgjegjësimin, duke shfaqur në profilin tuaj këtë stemë.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Fituat stemën %s badge! Ndihmojeni Signal-in të shtojë ndërgjegjësimin, duke shfaqur në profilin tuaj këtë stemë.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Fituat një stemë Boos! Ndihmojeni Signal-in të shtojë ndërgjegjësimin, duke shfaqur në profilin tuaj këtë stemë.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Mundeni edhe të</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">bëheni një Mbështetës mujor.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Shfaqe në Profil</string>
@@ -3498,7 +3498,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ManageDonationsFragment__subscription_faq">PBR pajtimesh</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Gabim në marrje pajtimi.</string>
   <string name="BoostFragment__give_signal_a_boost">Jepini Sinjalit Pak Fuqizim</string>
-  <string name="BoostFragment__say_thanks_and_earn">Thoni “Faleminderit” dhe fitoni një stemë Fuqizimi për %1$d ditë.</string>
+  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">Thoni “Faleminderit” dhe fitoni një stemë Fuqizimi për %1$d ditë.</string> -->
   <string name="Boost__enter_custom_amount">Jepni Sasi Vetjake</string>
   <string name="Boost__one_time_contribution">Kontribut një herë</string>
   <string name="MySupportPreference__add_a_signal_boost">Shtoni një fuqizim Signal-i</string>
@@ -3508,19 +3508,19 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">S\’u shtua dot stemë. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Ju lutemi, lidhuni me ata të asistencës.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Stema juaj ka Skaduar</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Stema ka skaduar</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Pajtimi u anulua</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Stema juaj Përforcim ka skaduar dhe s\’është më e dukshme për të tjerët në profilin tuaj.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Stema juaj ka Skaduar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Stema ka skaduar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Pajtimi u anulua</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Stema juaj Përforcim ka skaduar dhe s\’është më e dukshme për të tjerët në profilin tuaj.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Stemën tua Përforcim mund ta riaktivizoni për 30 ditë të tjera përmes një kontributi një herësh.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Që të vazhdoni të përkrahni teknologji që është krijuar për ju, ju lutemi, shihni mundësinë e bërjes një Mbështetës mujor.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Që të vazhdoni të përkrahni teknologji që është krijuar për ju, ju lutemi, shihni mundësinë e bërjes një Mbështetës mujor.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bëhuni një Mbështetës</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Shtoni një Përforcim</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Jo tani</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Pajtimi juaj si Mbështetës u anulua automatikisht, ngaqë qetë jo aktiv për një kohë të gjatë. Stema juaj %1$s s\’është më e dukshme te profili juaj.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Pajtimi juaj si Mbështetës u anulua automatikisht, ngaqë qetë jo aktiv për një kohë të gjatë. Stema juaj %1$s s\’është më e dukshme te profili juaj.</string> -->
   <!--Copy displayed when badge expires after payment failure-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Pajtimi juaj si përkrahës u anulua, ngaqë s’përpunuam dot pagesën tuaj. Stema juaj s’është më e dukshme te profili juaj.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Pajtimi juaj si përkrahës u anulua, ngaqë s’përpunuam dot pagesën tuaj. Stema juaj s’është më e dukshme te profili juaj.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Mund të vazhdoni ta përdorni Signal-in, por që të përkrahni aplikacionin dhe të riaktivizoni stemën, rinovojeni tani.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Rinovoni pajtimin</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">S’bëhet dot kryerja e pagesës</string>
@@ -3769,7 +3769,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Po dërgohet…</string>
   <!--Label when a story fails to send-->
-  <string name="StoriesLandingItem__couldnt_send">S’u dërgua dot</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingItem__couldnt_send">S’u dërgua dot</string> -->
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Të fshihet historia?</string>
   <!--Message of dialog confirming decision to hide a story-->

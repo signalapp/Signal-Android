@@ -476,9 +476,9 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">দেখান</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">এর সাথে শেয়ার করুন</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">একাধিক সংযুক্তি সমূহ শুধু ছবি ও ভিডিওর ক্ষেত্রে সম্ভব</string>
-  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">এই গ্রুপে পাঠানোর জন্য আপনার অনুমতি নেই।</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">এর সাথে শেয়ার করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">একাধিক সংযুক্তি সমূহ শুধু ছবি ও ভিডিওর ক্ষেত্রে সম্ভব</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">এই গ্রুপে পাঠানোর জন্য আপনার অনুমতি নেই।</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal স্থায়ীভাবে যোগাযোগ স্থাপনে ব্যর্থ!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal গুগল প্লে পরিষেবাদিতে নিবন্ধন করতে অক্ষম ছিল। Signal বার্তা এবং কল সমূহ অক্ষম করা হয়েছে, দয়া করে পুনরায় নিবন্ধকরণ চেষ্টা করুন সেটিংস &gt;  উন্নত।</string>
@@ -2060,8 +2060,8 @@
   <string name="preferences__advanced">উন্নততর</string>
   <string name="preferences__donate_to_signal">Signal -এ দান করুন</string>
   <string name="preferences__subscription">সাবস্ক্রিপশন</string>
-  <string name="preferences__become_a_signal_sustainer">একজন সিগন্যাল সাসটেইনার হোন</string>
-  <string name="preferences__signal_boost">সিগন্যাল বুস্ট</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">একজন সিগন্যাল সাসটেইনার হোন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">সিগন্যাল বুস্ট</string> -->
   <string name="preferences__privacy">গোপনীয়তা</string>
   <string name="preferences__mms_user_agent">এমএমএস ব্যবহারকারী এজেন্ট</string>
   <string name="preferences__advanced_mms_access_point_names">ম্যানুয়াল এমএমএস সেটিংস</string>
@@ -2889,7 +2889,7 @@
   <string name="MultiShareDialogs__failed_to_send_to_some_users">কিছু ব্যবহারকারীর কাছে প্রেরণে ব্যর্থ হয়েছে</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">আপনি কেবল %1$d জন পর্যন্ত চ্যাট শেয়ার করতে পারেন</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">বার্তা ফরোয়ার্ড করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">বার্তা ফরোয়ার্ড করুন</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">চ্যাটের ওয়ালপেপার</string>
   <!--ChatWallpaperFragment-->
@@ -3189,9 +3189,9 @@
   <string name="AddAProfilePhotoMegaphone__add_photo">ছবি যুক্ত করুন</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">একজন সাসটেইনার হয়ে উঠুন</string>
-  <string name="BecomeASustainerMegaphone__signal_is_powered">সিগন্যাল আপনার মতো লোকদের দ্বারা চালিত হয়। অবদান রাখুন এবং একটি প্রোফাইল ব্যাজ গ্রহণ করুন।</string>
-  <string name="BecomeASustainerMegaphone__no_thanks">না ধন্যবাদ</string>
-  <string name="BecomeASustainerMegaphone__contribute">অবদান রাখুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">সিগন্যাল আপনার মতো লোকদের দ্বারা চালিত হয়। অবদান রাখুন এবং একটি প্রোফাইল ব্যাজ গ্রহণ করুন।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">না ধন্যবাদ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">অবদান রাখুন</string> -->
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">ইমোজি</string>
   <string name="KeyboardPagerFragment_open_emoji_search">ইমোজি সার্চ খুলুন</string>
@@ -3375,19 +3375,19 @@
   <string name="SubscribeFragment__update_subscription_question">সাবস্ক্রিশন আপডেট করবেন?
 </string>
   <string name="SubscribeFragment__update">আপডেট করুন</string>
-  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">আপনাকে আজ নতুন সদস্যতা মূল্যের পুরো পরিমাণ চার্জ করা হবে। আপনার সদস্যতা %1$s পুনর্নবীকরণ হবে।</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">আপনাকে আজ নতুন সদস্যতা মূল্যের পুরো পরিমাণ চার্জ করা হবে। আপনার সদস্যতা %1$s পুনর্নবীকরণ হবে।</string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">আপনাকে আজ নতুন সদস্যতার মূল্যের পুরো পরিমাণ (%1$s)  চার্জ করা হবে। আপনার সদস্যতা মাসিক পুনর্নবীকরণ করা হবে।</string>
   <string name="Subscription__s_per_month">%s/মাস</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/মাস · পুনর্নবীকরণ %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/মাস · মেয়াদ শেষ হবে %2$s</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">সিগন্যাল হল একটি অলাভজনক যার কোনো বিজ্ঞাপনদাতা বা বিনিয়োগকারী নেই, শুধুমাত্র যারা এটি ব্যবহার করে এবং কদর করে তাদের দ্বারা টিকে রয়েছে। একটি পুনরাবৃত্ত মাসিক অবদান করুন এবং আপনার সমর্থন ভাগ করার জন্য একটি প্রোফাইল ব্যাজ পান৷</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">কেন অবদান?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">সিগন্যাল হল একটি অলাভজনক যার কোনো বিজ্ঞাপনদাতা বা বিনিয়োগকারী নেই, শুধুমাত্র যারা এটি ব্যবহার করে এবং কদর করে তাদের দ্বারা টিকে রয়েছে। একটি পুনরাবৃত্ত মাসিক অবদান করুন এবং আপনার সমর্থন ভাগ করার জন্য একটি প্রোফাইল ব্যাজ পান৷</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">কেন অবদান?</string> -->
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">সিগন্যাল ওপেন সোর্স গোপনীয়তা প্রযুক্তি বিকাশে প্রতিশ্রুতিবদ্ধ যা মুক্ত অভিব্যক্তিকে রক্ষা করে এবং নিরাপদ বৈশ্বিক যোগাযোগকে সক্ষম করে।</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">আপনার অবদান এই কারণটিকে জ্বালানি দেয় এবং ব্যক্তিগত যোগাযোগের জন্য লক্ষ লক্ষ লোক দ্বারা ব্যবহৃত একটি অ্যাপের বিকাশ এবং ক্রিয়াকলাপের জন্য অর্থ প্রদান করে। কোন বিজ্ঞাপন নেই। কোনও ট্র্যাকার নেই। কোনো মজা নয়।</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">আপনার অবদান এই কারণটিকে জ্বালানি দেয় এবং ব্যক্তিগত যোগাযোগের জন্য লক্ষ লক্ষ লোক দ্বারা ব্যবহৃত একটি অ্যাপের বিকাশ এবং ক্রিয়াকলাপের জন্য অর্থ প্রদান করে। কোন বিজ্ঞাপন নেই। কোনও ট্র্যাকার নেই। কোনো মজা নয়।</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">আপনার সহযোগীতার জন্য ধন্যবাদ!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">বুস্টের জন্য ধন্যবাদ!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">আপনি %s ব্যাজ অর্জন করেছেন! আপনার প্রোফাইলে এই ব্যাজটি প্রদর্শন করে সচেতনতা তৈরিতে সিগন্যালকে সহায়তা করুন।</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">আপনি একটি বুস্ট ব্যাজ অর্জন করেছেন! আপনার প্রোফাইলে এই ব্যাজটি প্রদর্শন করে সচেতনতা তৈরিতে সিগন্যালকে সহায়তা করুন।</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">আপনি %s ব্যাজ অর্জন করেছেন! আপনার প্রোফাইলে এই ব্যাজটি প্রদর্শন করে সচেতনতা তৈরিতে সিগন্যালকে সহায়তা করুন।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">আপনি একটি বুস্ট ব্যাজ অর্জন করেছেন! আপনার প্রোফাইলে এই ব্যাজটি প্রদর্শন করে সচেতনতা তৈরিতে সিগন্যালকে সহায়তা করুন।</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">আপনিও পারেন</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">একজন মাসিক সাসটেইনার হয়ে উঠুন।</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">প্রোফাইলে প্রদর্শন করুন</string>
@@ -3403,7 +3403,7 @@
   <string name="ManageDonationsFragment__subscription_faq">সাবস্ক্রিপশন FAQ</string>
   <string name="ManageDonationsFragment__error_getting_subscription">সাবস্ক্রিপশন পেতে ত্রুটি।</string>
   <string name="BoostFragment__give_signal_a_boost">সংকেতে একটি বুস্ট দিন</string>
-  <string name="BoostFragment__say_thanks_and_earn">ধন্যবাদ বলুন এবং %1$d দিনের জন্য বুস্ট ব্যাজ অর্জন করুন।</string>
+  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">ধন্যবাদ বলুন এবং %1$d দিনের জন্য বুস্ট ব্যাজ অর্জন করুন।</string> -->
   <string name="Boost__enter_custom_amount">কাস্টম পরিমাণ লিখুন</string>
   <string name="Boost__one_time_contribution">এককালীন অবদান</string>
   <string name="MySupportPreference__add_a_signal_boost">একটি Signal বুস্ট যোগ করুন</string>
@@ -3413,17 +3413,17 @@
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">ব্যাজ যোগ করা যায় নি। %1$s</string>
   <string name="MySupportPreference__please_contact_support">অনুগ্রহ করে সহায়তা কেন্দ্রে যোগাযোগ করুন।</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">আপনার ব্যাজের মেয়াদ শেষ হয়ে গেছে</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">ব্যাজের মেয়াদ শেষ হয়েছে</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">সদস্যতা বাতিল করা হয়েছে</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">আপনার বুস্ট ব্যাজের মেয়াদ শেষ হয়ে গেছে এবং আপনার প্রোফাইলে অন্যদের কাছে আর দৃশ্যমান নয়।</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">আপনার ব্যাজের মেয়াদ শেষ হয়ে গেছে</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">ব্যাজের মেয়াদ শেষ হয়েছে</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">সদস্যতা বাতিল করা হয়েছে</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">আপনার বুস্ট ব্যাজের মেয়াদ শেষ হয়ে গেছে এবং আপনার প্রোফাইলে অন্যদের কাছে আর দৃশ্যমান নয়।</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">আপনি আপনার বুস্ট ব্যাজকে আরও 30 দিনের জন্য 1-কালীন অবদানের মাধ্যমে পুনরায় সক্রিয় করতে পারেন।</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">আপনার জন্য তৈরি করা প্রযুক্তিকে সমর্থন করা চালিয়ে যেতে, অনুগ্রহ করে মাসিক সাসটেইনার হওয়ার কথা বিবেচনা করুন।</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">আপনার জন্য তৈরি করা প্রযুক্তিকে সমর্থন করা চালিয়ে যেতে, অনুগ্রহ করে মাসিক সাসটেইনার হওয়ার কথা বিবেচনা করুন।</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">একজন সাসটেইনার হোন</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">একটি বুস্ট যোগ করুন</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">এখন না</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">আপনার সাসটেইনার সাবস্ক্রিপশন স্বয়ংক্রিয়ভাবে বাতিল হয়ে গেছে কারণ আপনি অনেক দিন ধরে নিষ্ক্রিয় ছিলেন। আপনার %1$s ব্যাজ আপনার প্রোফাইলে আর দৃশ্যমান নয়।</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">আপনার সাসটেইনার সাবস্ক্রিপশন স্বয়ংক্রিয়ভাবে বাতিল হয়ে গেছে কারণ আপনি অনেক দিন ধরে নিষ্ক্রিয় ছিলেন। আপনার %1$s ব্যাজ আপনার প্রোফাইলে আর দৃশ্যমান নয়।</string> -->
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">আপনি সিগন্যাল ব্যবহার চালিয়ে যেতে পারেন তবে অ্যাপটিকে সমর্থন করতে এবং আপনার ব্যাজ পুনরায় সক্রিয় করতে, এখনই নবায়ন করুন।</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">সদস্যতা নবায়ন করুন</string>

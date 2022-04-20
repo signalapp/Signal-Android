@@ -492,9 +492,9 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">കാണുക</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">പങ്കിടുക</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">ഒന്നിലധികം അറ്റാച്ചുമെന്റുകൾ ചിത്രങ്ങൾക്കും വീഡിയോകൾക്കും മാത്രമേ പിന്തുണയ്‌ക്കൂ</string>
-  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">ഈ ഗ്രൂപ്പിലേക്ക് അയയ്ക്കാൻ നിങ്ങൾക്ക് അനുമതിയില്ല</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">പങ്കിടുക</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">ഒന്നിലധികം അറ്റാച്ചുമെന്റുകൾ ചിത്രങ്ങൾക്കും വീഡിയോകൾക്കും മാത്രമേ പിന്തുണയ്‌ക്കൂ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">ഈ ഗ്രൂപ്പിലേക്ക് അയയ്ക്കാൻ നിങ്ങൾക്ക് അനുമതിയില്ല</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">സ്ഥിരമായ Signal ആശയവിനിമയ പരാജയം!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Google Play Services രജിസ്റ്റർ ചെയ്യാൻ Signal ന് കഴിഞ്ഞില്ല. Signal സന്ദേശങ്ങളും കോളുകളും പ്രവർത്തനരഹിതമാക്കി. ക്രമീകരണം &gt; വിപുലമായ ക്രമീകരണം ൽ വീണ്ടും രജിസ്റ്റർ ചെയ്യാൻ ശ്രമിക്കുക.</string>
@@ -767,11 +767,13 @@
   <!--Title shown when there was an known issue getting group information from a group link-->
   <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">ഗ്രൂപ്പിൽ ചേരാനാവില്ല</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">ഒരു അഡ്മിൻ നിങ്ങളെ നീക്കം ചെയ്തതിനാൽ ഗ്രൂപ്പ് ലിങ്ക് വഴി നിങ്ങൾക്ക് ഈ ഗ്രൂപ്പിൽ ചേരാൻ കഴിയില്ല.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">ഈ ഗ്രൂപ്പ് ലിങ്ക് സജീവമല്ല.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
   <string name="GroupJoinBottomSheetDialogFragment_link_error">ലിങ്ക് പിശക്</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
+  <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">ഈ ലിങ്ക് വഴി ചേരുന്നത് പരാജയപ്പെട്ടു. പിന്നീട് വീണ്ടും ചേരാൻ ശ്രമിക്കുക.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">ഈ ഗ്രൂപ്പിൽ ചേരാനും നിങ്ങളുടെ പേരും ഫോട്ടോയും അതിന്റെ അംഗങ്ങളുമായി പങ്കിടാനും നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">നിങ്ങൾക്ക് ഈ ഗ്രൂപ്പിൽ ചേരുന്നതിന് മുമ്പ് നിങ്ങളുടെ അഭ്യർത്ഥന ഈ ഗ്രൂപ്പിന്റെ അഡ്മിൻ അംഗീകരിക്കണം. ഗ്രൂപ്പിൽ ചേരാൻ നിങ്ങൾ അഭ്യർത്ഥിക്കുമ്പോൾ, നിങ്ങളുടെ ഫോട്ടോയും നമ്പറും അതിലെ അംഗങ്ങളുമായി പങ്കിടും</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
@@ -797,6 +799,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">ഗ്രൂപ്പിലേക്ക് \"%1$s\"-നെ ചേർക്കണോ?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">“%1$s” ൽ നിന്നുള്ള അഭ്യർത്ഥന നിരസിക്കണോ?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">\"%1$s\" നിന്നുള്ള അഭ്യർത്ഥന നിരസിക്കണോ? അവർക്ക് വീണ്ടും ഗ്രൂപ്പ് ലിങ്ക് വഴി ചേരാൻ അഭ്യർത്ഥിക്കാൻ കഴിയില്ല.</string>
   <string name="RequestConfirmationDialog_add">ചേർക്കുക</string>
   <string name="RequestConfirmationDialog_deny">നിരസിക്കുക</string>
   <!--ImageEditorHud-->
@@ -1249,6 +1252,7 @@
   <!--Recipient-->
   <string name="Recipient_you">നിങ്ങൾ</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">എന്റെ കഥ</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">തടയുക</string>
   <string name="RecipientPreferenceActivity_unblock">തടഞ്ഞത് മാറ്റുക</string>
@@ -2097,8 +2101,8 @@
   <string name="preferences__advanced">വിപുലമായ</string>
   <string name="preferences__donate_to_signal">Signal-ന് സംഭാവന ചെയ്യുക</string>
   <string name="preferences__subscription">സബ്സ്ക്രിപ്ഷൻ</string>
-  <string name="preferences__become_a_signal_sustainer">Signal പരിപാലകര്‍ ആകുക</string>
-  <string name="preferences__signal_boost">Signal ബൂസ്റ്റ്</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">Signal പരിപാലകര്‍ ആകുക</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Signal ബൂസ്റ്റ്</string> -->
   <string name="preferences__privacy">സ്വകാര്യത</string>
   <string name="preferences__mms_user_agent">MMS യൂസർ ഏജൻറ്</string>
   <string name="preferences__advanced_mms_access_point_names">സ്വമേധയാലുള്ള MMS ക്രമീകരണങ്ങൾ</string>
@@ -2942,7 +2946,7 @@
   <string name="MultiShareDialogs__failed_to_send_to_some_users">ചില ഉപയോക്താക്കള്‍ക്ക് അയയ്ക്കാന്‍ കഴിഞ്ഞില്ല</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">നിങ്ങൾക്ക് %1$d ചാറ്റുകൾക്ക് മാത്രമേ പങ്കിടാനാകൂ</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">സന്ദേശം ഫോർവേഡ് ചെയ്യുക</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">സന്ദേശം ഫോർവേഡ് ചെയ്യുക</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">ചാറ്റ് വാൾപേപ്പർ</string>
   <!--ChatWallpaperFragment-->
@@ -3248,9 +3252,9 @@
   <string name="AddAProfilePhotoMegaphone__add_photo">ഫോട്ടോ ചേർക്കുക</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">പരിപാലകര്‍ ആകുക</string>
-  <string name="BecomeASustainerMegaphone__signal_is_powered">നിങ്ങളെപ്പോലുള്ള ആളുകളാണ് Signal നിലനിർത്തുന്നത്. സംഭാവന ചെയ്യ്ത് ഒരു പ്രൊഫൈൽ ബാഡ്ജ് സ്വീകരിക്കൂ.</string>
-  <string name="BecomeASustainerMegaphone__no_thanks">വേണ്ട, നന്ദി</string>
-  <string name="BecomeASustainerMegaphone__contribute">സംഭാവന ചെയ്യുക</string>
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">നിങ്ങളെപ്പോലുള്ള ആളുകളാണ് Signal നിലനിർത്തുന്നത്. സംഭാവന ചെയ്യ്ത് ഒരു പ്രൊഫൈൽ ബാഡ്ജ് സ്വീകരിക്കൂ.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">വേണ്ട, നന്ദി</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">സംഭാവന ചെയ്യുക</string> -->
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">ഇമോജി</string>
   <string name="KeyboardPagerFragment_open_emoji_search">ഇമോജി തിരയൽ തുറക്കുക</string>
@@ -3433,19 +3437,19 @@
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">നിങ്ങളുടെ സബ്‌സ്‌ക്രിപ്‌ഷൻ റദ്ദാക്കി.</string>
   <string name="SubscribeFragment__update_subscription_question">സബ്സ്ക്രിപ്ഷൻ അപ്ഡേറ്റ് ചെയ്യണോ?</string>
   <string name="SubscribeFragment__update">അപ്‌ഡേറ്റ്</string>
-  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">പുതിയ വരിസംഖ്യ നിരക്കിന്റെ മുഴുവൻ തുകയും നിങ്ങളിൽ നിന്ന് ഇന്ന് ഈടാക്കും. നിങ്ങളുടെ സബ്സ്ക്രിപ്ഷൻ %1$s പുതുക്കും.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">പുതിയ വരിസംഖ്യ നിരക്കിന്റെ മുഴുവൻ തുകയും നിങ്ങളിൽ നിന്ന് ഇന്ന് ഈടാക്കും. നിങ്ങളുടെ സബ്സ്ക്രിപ്ഷൻ %1$s പുതുക്കും.</string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">പുതിയ വരിസംഖ്യ നിരക്കിന്റെ മുഴുവൻ തുകയും (%1$s) നിങ്ങളിൽ നിന്ന് ഇന്ന് ഈടാക്കും. നിങ്ങളുടെ സബ്‌സ്‌ക്രിപ്‌ഷൻ പ്രതിമാസം പുതുക്കും..</string>
   <string name="Subscription__s_per_month">%s/ മാസം</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/മാസം · പുതുക്കല്‍ %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/മാസം · കാലഹരണം %2$s</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">പരസ്യദാതാക്കളോ നിക്ഷേപകരോ ഇല്ലാത്ത ലാഭേച്ഛയില്ലാതെ പ്രവർത്തിക്കുന്ന ഒന്നാണ് Signal, അത് ഉപയോഗിക്കുകയും വിലമതിക്കുകയും ചെയ്യുന്ന ആളുകളാല്‍ മാത്രമാണ് അത് നിലനിൽക്കുന്നത്. ആവർത്തിച്ചുള്ള പ്രതിമാസ സംഭാവന നൽകുകയും നിങ്ങളുടെ പിന്തുണ പങ്കിടുന്നതിന് ഒരു പ്രൊഫൈൽ ബാഡ്ജ് സ്വീകരിക്കുകയും ചെയ്യുക.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">എന്തുകൊണ്ട് സംഭാവന ചെയ്യണം?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">പരസ്യദാതാക്കളോ നിക്ഷേപകരോ ഇല്ലാത്ത ലാഭേച്ഛയില്ലാതെ പ്രവർത്തിക്കുന്ന ഒന്നാണ് Signal, അത് ഉപയോഗിക്കുകയും വിലമതിക്കുകയും ചെയ്യുന്ന ആളുകളാല്‍ മാത്രമാണ് അത് നിലനിൽക്കുന്നത്. ആവർത്തിച്ചുള്ള പ്രതിമാസ സംഭാവന നൽകുകയും നിങ്ങളുടെ പിന്തുണ പങ്കിടുന്നതിന് ഒരു പ്രൊഫൈൽ ബാഡ്ജ് സ്വീകരിക്കുകയും ചെയ്യുക.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">എന്തുകൊണ്ട് സംഭാവന ചെയ്യണം?</string> -->
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">സ്വതന്ത്രമായ ആവിഷ്‌കാരത്തെ പരിരക്ഷിക്കുകയും സുരക്ഷിതമായ ആഗോള ആശയവിനിമയം സാധ്യമാക്കുകയും ചെയ്യുന്ന ഓപ്പൺ സോഴ്‌സ് സ്വകാര്യതാ സാങ്കേതികവിദ്യ വികസിപ്പിക്കുന്നതില്‍ Signal പ്രതിജ്ഞാബദ്ധമാണ്.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">നിങ്ങളുടെ സംഭാവന ഈ ലക്ഷ്യത്തിന് ഇന്ധനം നൽകുകയും സ്വകാര്യ ആശയവിനിമയത്തിനായി ദശലക്ഷക്കണക്കിന് ആളുകൾ ഉപയോഗിക്കുന്ന ഒരു ആപ്പിന്റെ വികസനത്തിനും പ്രവർത്തനങ്ങൾക്കും പണം നൽകുകയും ചെയ്യുന്നു. പരസ്യങ്ങളില്ല. ട്രാക്കറുകൾ ഇല്ല. തമാശയല്ല.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">നിങ്ങളുടെ സംഭാവന ഈ ലക്ഷ്യത്തിന് ഇന്ധനം നൽകുകയും സ്വകാര്യ ആശയവിനിമയത്തിനായി ദശലക്ഷക്കണക്കിന് ആളുകൾ ഉപയോഗിക്കുന്ന ഒരു ആപ്പിന്റെ വികസനത്തിനും പ്രവർത്തനങ്ങൾക്കും പണം നൽകുകയും ചെയ്യുന്നു. പരസ്യങ്ങളില്ല. ട്രാക്കറുകൾ ഇല്ല. തമാശയല്ല.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">നിങ്ങളുടെ പിന്തുണയ്ക്ക് നന്ദി!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">ബൂസ്റ്റിനു നന്ദി!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">നിങ്ങൾ %s ബാഡ്ജ് നേടി! നിങ്ങളുടെ പ്രൊഫൈലിൽ ഈ ബാഡ്‌ജ് പ്രദർശിപ്പിച്ചുകൊണ്ട് അവബോധം സൃഷ്‌ടിക്കാൻ Signal നെ സഹായിക്കുക.</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">നിങ്ങൾ ഒരു ബൂസ്റ്റ് ബാഡ്ജ് നേടി! നിങ്ങളുടെ പ്രൊഫൈലിൽ ഈ ബാഡ്‌ജ് പ്രദർശിപ്പിച്ച് അവബോധം സൃഷ്ടിക്കാൻ Signal-നെ സഹായിക്കുക.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">നിങ്ങൾ %s ബാഡ്ജ് നേടി! നിങ്ങളുടെ പ്രൊഫൈലിൽ ഈ ബാഡ്‌ജ് പ്രദർശിപ്പിച്ചുകൊണ്ട് അവബോധം സൃഷ്‌ടിക്കാൻ Signal നെ സഹായിക്കുക.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">നിങ്ങൾ ഒരു ബൂസ്റ്റ് ബാഡ്ജ് നേടി! നിങ്ങളുടെ പ്രൊഫൈലിൽ ഈ ബാഡ്‌ജ് പ്രദർശിപ്പിച്ച് അവബോധം സൃഷ്ടിക്കാൻ Signal-നെ സഹായിക്കുക.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">നിങ്ങൾക്ക്</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">പ്രതിമാസ സസ്റ്റൈനർ ആകാം.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">പ്രൊഫൈലിൽ പ്രദർശിപ്പിക്കുക</string>
@@ -3461,7 +3465,7 @@
   <string name="ManageDonationsFragment__subscription_faq">സബ്സ്ക്രിപ്ഷൻ FAQ</string>
   <string name="ManageDonationsFragment__error_getting_subscription">സബ്‌സ്ക്രിപ്‌ഷൻ ലഭിക്കുന്നതിൽ പിശക്.</string>
   <string name="BoostFragment__give_signal_a_boost">Signal ന് ഒരു ബൂസ്റ്റ് നല്‍കുക</string>
-  <string name="BoostFragment__say_thanks_and_earn">\"നന്ദി!\" പറയൂ %1$d ദിവസത്തേക്ക് ബൂസ്റ്റ് ബാഡ്ജ് നേടൂ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">\"നന്ദി!\" പറയൂ %1$d ദിവസത്തേക്ക് ബൂസ്റ്റ് ബാഡ്ജ് നേടൂ.</string> -->
   <string name="Boost__enter_custom_amount">ഇഷ്ടാനുസൃത തുക നൽകുക</string>
   <string name="Boost__one_time_contribution">ഒറ്റ-തവണ സംഭാവന</string>
   <string name="MySupportPreference__add_a_signal_boost">ഒരു Signal ബൂസ്റ്റ് ചേർക്കുക</string>
@@ -3471,19 +3475,19 @@
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">ബാഡ്ജ് ചേർക്കാനായില്ല. %1$s</string>
   <string name="MySupportPreference__please_contact_support">ദയവായി പിന്തുണയുമായി ബന്ധപ്പെടുക.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">നിങ്ങളുടെ ബാഡ്‌ജ് കാലഹരണപ്പെട്ടു</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">ബാഡ്ജ് കാലഹരണപ്പെട്ടു</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">സബ്‌സ്‌ക്രിപ്‌ഷൻ റദ്ദാക്കി</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">നിങ്ങളുടെ ബൂസ്റ്റ് ബാഡ്‌ജ് കാലഹരണപ്പെട്ടു ഇനി അത് നിങ്ങളുടെ പ്രൊഫൈലിൽ മറ്റുള്ളവർക്ക് ദൃശ്യമാകില്ല.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">നിങ്ങളുടെ ബാഡ്‌ജ് കാലഹരണപ്പെട്ടു</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">ബാഡ്ജ് കാലഹരണപ്പെട്ടു</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">സബ്‌സ്‌ക്രിപ്‌ഷൻ റദ്ദാക്കി</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">നിങ്ങളുടെ ബൂസ്റ്റ് ബാഡ്‌ജ് കാലഹരണപ്പെട്ടു ഇനി അത് നിങ്ങളുടെ പ്രൊഫൈലിൽ മറ്റുള്ളവർക്ക് ദൃശ്യമാകില്ല.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">നിങ്ങൾക്ക് ഒറ്റ-തവണ സംഭാവനയിലൂടെ 30 ദിവസത്തേക്ക് ബൂസ്റ്റ് ബാഡ്ജ് വീണ്ടും സജീവമാക്കാം.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">നിങ്ങൾക്കായി നിർമ്മിച്ച സാങ്കേതികവിദ്യയെ പിന്തുണയ്‌ക്കുന്നത് തുടരുന്നതിന്, പ്രതിമാസ പരിപാലകർ ആകുന്നത് പരിഗണിക്കുക.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">നിങ്ങൾക്കായി നിർമ്മിച്ച സാങ്കേതികവിദ്യയെ പിന്തുണയ്‌ക്കുന്നത് തുടരുന്നതിന്, പ്രതിമാസ പരിപാലകർ ആകുന്നത് പരിഗണിക്കുക.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">പരിപാലകര്‍ ആകുക</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">ഒരു ബൂസ്റ്റ് ചേർക്കുക</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ഇപ്പോൾ വേണ്ട</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">നിങ്ങൾ വളരെക്കാലം നിഷ്‌ക്രിയമായിരുന്നതിനാൽ നിങ്ങളുടെ പരിപാലക സബ്‌സ്ക്രിപ്‌ഷൻ സ്വയമേവ റദ്ദാക്കപ്പെട്ടു. നിങ്ങളുടെ %1$s ബാഡ്‌ജ് ഇനി നിങ്ങളുടെ പ്രൊഫൈലിൽ ദൃശ്യമാകില്ല.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">നിങ്ങൾ വളരെക്കാലം നിഷ്‌ക്രിയമായിരുന്നതിനാൽ നിങ്ങളുടെ പരിപാലക സബ്‌സ്ക്രിപ്‌ഷൻ സ്വയമേവ റദ്ദാക്കപ്പെട്ടു. നിങ്ങളുടെ %1$s ബാഡ്‌ജ് ഇനി നിങ്ങളുടെ പ്രൊഫൈലിൽ ദൃശ്യമാകില്ല.</string> -->
   <!--Copy displayed when badge expires after payment failure-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">ഞങ്ങൾക്ക് നിങ്ങളുടെ പേയ്‌മെന്റ് പ്രോസസ്സ് ചെയ്യാൻ കഴിയാത്തതിനാൽ നിങ്ങളുടെ പരിപാലക സബ്‌സ്‌ക്രിപ്‌ഷൻ റദ്ദാക്കപ്പെട്ടു. നിങ്ങളുടെ ബാഡ്‌ജ് ഇനി നിങ്ങളുടെ പ്രൊഫൈലിൽ ദൃശ്യമാകില്ല.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">ഞങ്ങൾക്ക് നിങ്ങളുടെ പേയ്‌മെന്റ് പ്രോസസ്സ് ചെയ്യാൻ കഴിയാത്തതിനാൽ നിങ്ങളുടെ പരിപാലക സബ്‌സ്‌ക്രിപ്‌ഷൻ റദ്ദാക്കപ്പെട്ടു. നിങ്ങളുടെ ബാഡ്‌ജ് ഇനി നിങ്ങളുടെ പ്രൊഫൈലിൽ ദൃശ്യമാകില്ല.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">നിങ്ങൾക്ക് Signal ഉപയോഗിക്കുന്നത് തുടരാം, എന്നാൽ ആപ്പിനെ പിന്തുണയ്‌ക്കാനും നിങ്ങളുടെ ബാഡ്‌ജ് വീണ്ടും സജീവമാക്കാനും, ഇപ്പോൾ പുതുക്കുക.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">സബ്സ്ക്രിപ്ഷൻ പുതുക്കുക</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">സബ്‌സ്ക്രിപ്‌ഷൻ പേയ്‌മെന്റ് പ്രോസസ്സ് ചെയ്യാനാകില്ല</string>
@@ -3696,6 +3700,7 @@
   <!--Donation receipts list end note-->
   <!--Donation receipts document title-->
   <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">തുക</string>
   <!--Donation receipts thanks-->
   <!--Donation receipt type-->
   <!--region "Stories Tab"-->
@@ -3703,6 +3708,7 @@
   <string name="ConversationListTabs__chats">ചാറ്റുകൾ</string>
   <!--Label for Stories tab in home app screen-->
   <!--String for counts above 99 in conversation list tabs-->
+  <string name="ConversationListTabs__99p">99+</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">എന്റെ കഥകള്‍</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
@@ -3754,6 +3760,7 @@
   <!--Story settings private stories heading-->
   <!--Option label for creating a new private story-->
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">എന്റെ കഥ</string>
   <!--Section heading for story visibility-->
   <!--Clickable option for selecting people to hide your story from-->
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
@@ -3781,7 +3788,9 @@
   <string name="EditPrivateStoryNameFragment__save">സംരക്ഷിക്കൂ</string>
   <!--Displayed in text post creator before user enters text-->
   <!--Button label for changing font when creating a text post-->
+  <string name="TextStoryPostTextEntryFragment__aa">അആ</string>
   <!--Displayed in text post creator when prompting user to enter text-->
+  <string name="TextStoryPostTextEntryFragment__add_text">എഴുത്ത് ചേർക്കുക</string>
   <!--Content description for \'done\' button when adding text to a story post-->
   <!--Text label for media selection toggle-->
   <string name="MediaSelectionActivity__text">വാചകം</string>
@@ -3827,7 +3836,9 @@
   <!--Displayed in toast after sending a direct reaction-->
   <!--Displayed in the viewer when a story is no longer available-->
   <!--Displayed in the viewer when the network is not available-->
+  <string name="StorySlateView__no_internet_connection">ഇന്റർനെറ്റ് കണക്ഷനില്ല</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <string name="StorySlateView__couldnt_load_content">ലോഡ് ചെയ്യാനായില്ല</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">സെൻസർഷിപ്പ് മറികടക്കൽ ഓഫാക്കണോ?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -3841,5 +3852,7 @@
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="ExpandModel__view_more">കൂടുതൽ കാണു</string>
+  <string name="StoriesLinkPopup__visit_link">ലിങ്ക് സന്ദർശിക്കുക</string>
   <!--EOF-->
 </resources>

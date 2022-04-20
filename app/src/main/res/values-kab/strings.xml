@@ -408,8 +408,8 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Sken</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Bḍu akked</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">Aṭas n tceqqufin yeddna ttusefrakent kan i tugniwin d tvidyutin</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Bḍu akked</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Aṭas n tceqqufin yeddna ttusefrakent kan i tugniwin d tvidyutin</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Taywalt n Signal mazal ur iteddu ara!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ur yermid ara i usekles akked yimeẓla n Google Play. Iznan d yisawalen n Signal nsan, ttxil-k·m ɛreḍ ad talseḍ ajerred deg Yiɣewwaren &gt; leqqyaen.</string>
@@ -2570,7 +2570,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Tuzna i kra n yiseqdacen ur teddi ara</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Tzemreḍ kan ad tebḍuḍ alamma %1$d n yidiwenniyen</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">Ḍfer izen</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">Ḍfer izen</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Agilal n ugdil n udiwenni</string>
   <!--ChatWallpaperFragment-->

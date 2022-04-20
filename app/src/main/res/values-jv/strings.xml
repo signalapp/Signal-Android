@@ -316,7 +316,7 @@
   <string name="DozeReminder_optimize_for_missing_play_services">Dipuntingkataken kangge pirantos mboten gadhah Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Pirantos niki mboten ndukung Play Services. Tutul kangge nonaktifaken paningkatan baterai sistem ingkang ngewatesi Signal saking nampi pesen kala mboten aktif.</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Diunjukaken kangge</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Diunjukaken kangge</string> -->
   <!--GcmBroadcastReceiver-->
   <!-- Removed by excludeNonTranslatables <string name="GcmBroadcastReceiver_retrieving_a_message">Taksih nampi pesen…</string> -->
   <!--GcmRefreshJob-->

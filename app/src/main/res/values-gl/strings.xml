@@ -410,8 +410,8 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Ver</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Compartir con</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">Os anexos múltiples só se permiten para imaxes e vídeos</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Compartir con</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Os anexos múltiples só se permiten para imaxes e vídeos</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Erro de comunicación permanente!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Non foi posible rexistrar Signal con Servizos de Google Play. As mensaxes e chamadas de Signal foron desactivadas; tenta volver facer o rexistro en Axustes&gt;Avanzado.</string>
@@ -2626,7 +2626,7 @@
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Fallou o envío a algúns usuarios</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Soamente pode compartila con %1$d chat</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">Reenviar mensaxe</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">Reenviar mensaxe</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Fondo de pantalla do chat</string>
   <!--ChatWallpaperFragment-->
@@ -2792,7 +2792,7 @@
   <string name="AddAProfilePhotoMegaphone__not_now">Agora non</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Engadir foto</string>
   <!--BecomeASustainerMegaphone-->
-  <string name="BecomeASustainerMegaphone__no_thanks">Non, grazas</string>
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">Non, grazas</string> -->
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Abrir busca de emojis</string>

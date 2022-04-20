@@ -488,9 +488,9 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Megtekintés</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Megosztás…</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">Több csatolmányt használata csak fényképek és videók esetén támogatott.</string>
-  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Nincs jogosultságod, hogy bármit ebbe a csoportba küldj</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Megosztás…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Több csatolmányt használata csak fényképek és videók esetén támogatott.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Nincs jogosultságod, hogy bármit ebbe a csoportba küldj</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Elhúzódó Signal kommunikációs hiba!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">A Signal nem tudott beregisztrálni a Google Play Szolgáltatásokra. A Signal üzenetek és hívások ezért le lettek tiltva. Kérlek próbálj meg újraregisztrálni a Beállítások &gt; Haladó-ban!</string>
@@ -2102,8 +2102,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__advanced">Haladó</string>
   <string name="preferences__donate_to_signal">Adomány a Signal számára</string>
   <string name="preferences__subscription">Előfizetés</string>
-  <string name="preferences__become_a_signal_sustainer">Válj Signal Fenntartóvá!</string>
-  <string name="preferences__signal_boost">Signal Löket</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">Válj Signal Fenntartóvá!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Signal Löket</string> -->
   <string name="preferences__privacy">Adatvédelem</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuális MMS beállítások</string>
@@ -2946,7 +2946,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Néhány felhasználónak nem sikerült a küldés</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">A megosztás maximum %1$d db beszélgetéssel lehetséges</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">Üzenet továbbítása</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">Üzenet továbbítása</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Beszélgetés háttérkép</string>
   <!--ChatWallpaperFragment-->
@@ -3252,9 +3252,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="AddAProfilePhotoMegaphone__add_photo">Fotó hozzáadása</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Válj Fenntartóvá!</string>
-  <string name="BecomeASustainerMegaphone__signal_is_powered">A Signalt hozzád hasonló emberek működtetik. Támogatásoddal kitűzőhöz juthatsz.</string>
-  <string name="BecomeASustainerMegaphone__no_thanks">Nem, köszönöm</string>
-  <string name="BecomeASustainerMegaphone__contribute">Támogatás</string>
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">A Signalt hozzád hasonló emberek működtetik. Támogatásoddal kitűzőhöz juthatsz.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">Nem, köszönöm</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">Támogatás</string> -->
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Emoji kereső megnyitása</string>
@@ -3437,19 +3437,19 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Előfizetésed megszüntettük.</string>
   <string name="SubscribeFragment__update_subscription_question">Frissíted előfizetésed?</string>
   <string name="SubscribeFragment__update">Frissítés</string>
-  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">A következő teljes árú előfizetői díj ma kerül levonásra. Az új előfizetésed következő megújításának dátuma: %1$s.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">A következő teljes árú előfizetői díj ma kerül levonásra. Az új előfizetésed következő megújításának dátuma: %1$s.</string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">A következő teljes árú előfizetői díj (%1$s) ma kerül levonásra. Az új előfizetésed havonta fog megújulni.</string>
   <string name="Subscription__s_per_month">%s/hó</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/hó · Megújul: %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/hó  · Lejár: %2$s</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">A Signal egy nonprofit, hirdetők és befektetők nélküli, kizárólag felhasználók és rajongók által fenntartott alkalmazás. Indíts havi, rendszeres támogatást, és cserébe kitűzőt kapsz profilképedre, amivel láthatóvá teheted támogatásodat.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Miért támogassam?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">A Signal egy nonprofit, hirdetők és befektetők nélküli, kizárólag felhasználók és rajongók által fenntartott alkalmazás. Indíts havi, rendszeres támogatást, és cserébe kitűzőt kapsz profilképedre, amivel láthatóvá teheted támogatásodat.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Miért támogassam?</string> -->
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">A Signal csapata elkötelezett, hogy nyílt forrású fejlesztéseivel előmozdítsa a privát technológiák térnyerését, amelyek a szólásszabadságot és a biztonságos globális kommunikáció elterjedését biztosítják.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Adományoddal hozzájárulhatsz a fejlesztés, a szerverek és a sávszélesség költségeinek fedezéséhez, amelyek a mára milliók által világszerte használt azonnali privát kommunikációt megteremtő alkalmazás működtetéséhez szükségesek. Nincs reklám. Nincs követés. Nincs trükk.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Adományoddal hozzájárulhatsz a fejlesztés, a szerverek és a sávszélesség költségeinek fedezéséhez, amelyek a mára milliók által világszerte használt azonnali privát kommunikációt megteremtő alkalmazás működtetéséhez szükségesek. Nincs reklám. Nincs követés. Nincs trükk.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Köszönjük a támogatásodat!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Köszönet a Löketért!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Elnyerted a %s kitűzőt! Segíts a tudatosság terjesztésében azzal, hogy kitűződ megjeleníted profilképeden.</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Elnyertél egy \"Löket\" kitűzőt! Segíts a tudatosság terjesztésében azzal, hogy kitűződ megjeleníted profilképeden.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Elnyerted a %s kitűzőt! Segíts a tudatosság terjesztésében azzal, hogy kitűződ megjeleníted profilképeden.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Elnyertél egy \"Löket\" kitűzőt! Segíts a tudatosság terjesztésében azzal, hogy kitűződ megjeleníted profilképeden.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">De ezen kívül</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">havi Fenntartóvá is válhatsz.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Megjelenítés profilképen</string>
@@ -3465,7 +3465,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ManageDonationsFragment__subscription_faq">Előfizetés GYIK</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Előfizetés lekérdezése sikertelen</string>
   <string name="BoostFragment__give_signal_a_boost">Adj egy Lökést a Signalnak!</string>
-  <string name="BoostFragment__say_thanks_and_earn">Mondj köszönetet, és kapsz cserébe egy Löket kitűzőt %1$d napra.</string>
+  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">Mondj köszönetet, és kapsz cserébe egy Löket kitűzőt %1$d napra.</string> -->
   <string name="Boost__enter_custom_amount">Egyedi összeg</string>
   <string name="Boost__one_time_contribution">Egyszeri hozzájárulás</string>
   <string name="MySupportPreference__add_a_signal_boost">Új Signal Löket</string>
@@ -3475,19 +3475,19 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Kitűző hozzáadása sikertelen. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Kérjük vedd fel a kapcsolatot a Támogatási Központtal!</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">A kitűződ lejárt</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">A kitűző lejárt</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Előfizetés törölve</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">\"Löket\" kitűződ lejárt, így már nem jelenik meg a profilképeden.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">A kitűződ lejárt</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">A kitűző lejárt</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Előfizetés törölve</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">\"Löket\" kitűződ lejárt, így már nem jelenik meg a profilképeden.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Egy egyszeri hozzájárulással újraaktiválhatod a \"Löket\" kitűzőt újabb 30 napra.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Ha továbbra is támogatnád ezt a technológiát, amelyet számodra fejlesztettünk, kérjük fontold meg a havi Fenntartóvá válást.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Ha továbbra is támogatnád ezt a technológiát, amelyet számodra fejlesztettünk, kérjük fontold meg a havi Fenntartóvá válást.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Válj Fenntartóvá</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Új Löket</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Később</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Fenntartói előfizetésedet automatikusan töröltük, mert túl sokáig voltál inaktív. A %1$s kitűző már nem látható profilodon.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Fenntartói előfizetésedet automatikusan töröltük, mert túl sokáig voltál inaktív. A %1$s kitűző már nem látható profilodon.</string> -->
   <!--Copy displayed when badge expires after payment failure-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">A Fenntartói előfizetésedet megszüntettük, mert nem sikerült feldolgozni a fizetési tranzakciót. A kitűzőt eltávolítottuk profilodról.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">A Fenntartói előfizetésedet megszüntettük, mert nem sikerült feldolgozni a fizetési tranzakciót. A kitűzőt eltávolítottuk profilodról.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Természetesen továbbra is használhatod a Signalt, de az alkalmazás támogatásához és jelvényed újraaktiválásához el kell végezned az előfizetés megújítását.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Előfizetés megújítása</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Nem sikerült feldolgozni a fizetési tranzakciót</string>

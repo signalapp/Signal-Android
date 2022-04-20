@@ -454,9 +454,9 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">보기</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">공유자</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">이미지와 동영상만 여러 개 첨부할 수 있습니다.</string>
-  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">이 그룹에 보낼 권한이 없음</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">공유자</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">이미지와 동영상만 여러 개 첨부할 수 있습니다.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">이 그룹에 보낼 권한이 없음</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">영구적으로 Signal 연결에 실패했습니다!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal은 Google Play Services에 등록될 수 없습니다. Signal 메시지와 전화는 비활성화되었습니다. Signal 설정 - 고급 메뉴에서 다시 등록해 주세요.</string>
@@ -2752,7 +2752,7 @@
   <string name="MultiShareDialogs__failed_to_send_to_some_users">일부 사용자에 대한 보내기가 실패했습니다</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">%1$d개의 채팅방과만 공유할 수 있습니다</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">메시지 전달</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">메시지 전달</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">채팅방 배경</string>
   <!--ChatWallpaperFragment-->
@@ -3020,7 +3020,7 @@
   <string name="AddAProfilePhotoMegaphone__not_now">나중에</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">사진 추가</string>
   <!--BecomeASustainerMegaphone-->
-  <string name="BecomeASustainerMegaphone__no_thanks">괜찮습니다</string>
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">괜찮습니다</string> -->
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">이모지</string>
   <string name="KeyboardPagerFragment_open_emoji_search">이모티콘 검색 열기</string>

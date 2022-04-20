@@ -400,8 +400,8 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Nîşan bide</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Parve bike bi:</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">Pêvekên pijimarî tenê ji bo wêne û vîdyoyan tên piştgirîkirin</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Parve bike bi:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Pêvekên pijimarî tenê ji bo wêne û vîdyoyan tên piştgirîkirin</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Çewtiya têkilîdanînê ya mayinde ya Signalê!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal, nikare xwe li Xizmetên Google Playê tomar bike. Peyam û gerînên Signalê hatin neçalakkirin. Ji kerema xwe, di \"Sazkarî\"yan de ji beşa \"Pêşketî\"yê tomarbûnê dîsa biceribîne.</string>
@@ -2340,7 +2340,7 @@
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Ji hinek bikarhêneran re nehate şandin</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Tu dikarî herî zêde bi %1$d gotûbêjan re parve bikî</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">Peyamê berhêl bike</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">Peyamê berhêl bike</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Paşrûya gotûbêjê</string>
   <!--ChatWallpaperFragment-->

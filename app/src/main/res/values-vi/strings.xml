@@ -459,9 +459,9 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Xem</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Chia sẻ với</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">Gửi nhiều tệp đính kèm chỉ áp dụng cho ảnh và video</string>
-  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Bạn không có quyền gửi cho nhóm này</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Chia sẻ với</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Gửi nhiều tệp đính kèm chỉ áp dụng cho ảnh và video</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Bạn không có quyền gửi cho nhóm này</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Lỗi thường trực khi giao tiếp qua Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal không thể kết nối với Dịch vụ Google Play. Cuộc gọi và tin nhắn Signal không khả dụng, hãy thử đăng ký lại từ Cài đặt &gt; Nâng cao.</string>
@@ -1995,8 +1995,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences__advanced">Nâng cao</string>
   <string name="preferences__donate_to_signal">Ủng hộ Signal</string>
   <string name="preferences__subscription">Đăng ký</string>
-  <string name="preferences__become_a_signal_sustainer">Trở thành người quyên góp cho Signal</string>
-  <string name="preferences__signal_boost">Tăng trưởng Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">Trở thành người quyên góp cho Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Tăng trưởng Signal</string> -->
   <string name="preferences__privacy">Riêng tư</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Thiết đặt MMS bằng tay</string>
@@ -2823,7 +2823,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Không thể gửi cho một số người dùng</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Bạn chỉ có thể chia sẻ tới tối đa %1$d cuộc trò chuyện</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">Chuyển tiếp tin nhắn</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">Chuyển tiếp tin nhắn</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Ảnh nền cuộc trò chuyện</string>
   <!--ChatWallpaperFragment-->
@@ -3126,9 +3126,9 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="AddAProfilePhotoMegaphone__add_photo">Thêm ảnh</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Trở thành người quyên góp</string>
-  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal đang ngày càng phát triển nhờ những đống góp của bạn. Hãy cùng nhau đống góp cho sự phát triển của Signal và nhận về những huy hiệu từ chúng tôi.</string>
-  <string name="BecomeASustainerMegaphone__no_thanks">Không, cảm ơn</string>
-  <string name="BecomeASustainerMegaphone__contribute">Đóng góp</string>
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">Signal đang ngày càng phát triển nhờ những đống góp của bạn. Hãy cùng nhau đống góp cho sự phát triển của Signal và nhận về những huy hiệu từ chúng tôi.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">Không, cảm ơn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">Đóng góp</string> -->
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Mở tìm kiếm emoji</string>
@@ -3307,19 +3307,19 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Việc quyên góp của bạn đã được hủy bỏ.</string>
   <string name="SubscribeFragment__update_subscription_question">Cập nhật quyên góp?</string>
   <string name="SubscribeFragment__update">Cập nhật</string>
-  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Bạn sẽ bị mất tất cả số tiền trong lần quyên góp hôm nay. Việc quyên góp của bạn sẽ được gia hạn vào mỗi tháng%1$s.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Bạn sẽ bị mất tất cả số tiền trong lần quyên góp hôm nay. Việc quyên góp của bạn sẽ được gia hạn vào mỗi tháng%1$s.</string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Bạn sẽ bị mất tất cả số tiền (%1$s) trong lần quyên góp hôm nay. Việc quyên góp của bạn sẽ được gia hạn vào mỗi tháng.</string>
   <string name="Subscription__s_per_month">%s/tháng</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/tháng. Gia hạn %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/tháng . Hết hạn %2$s</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal là một chương trình phi lợi nhuận, không thu tiền quảng cáo và không có nhà đầu tư, Signal chỉ được duy trì và phát triển bởi những người sử dụng và yêu thích nó. Đóng góp định kỳ hàng tháng và nhận huy hiệu trên hồ sơ cá nhận để chia sẻ sự ủng hộ của bạn đến mọi người.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Vì sao phải Quyên góp?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal là một chương trình phi lợi nhuận, không thu tiền quảng cáo và không có nhà đầu tư, Signal chỉ được duy trì và phát triển bởi những người sử dụng và yêu thích nó. Đóng góp định kỳ hàng tháng và nhận huy hiệu trên hồ sơ cá nhận để chia sẻ sự ủng hộ của bạn đến mọi người.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Vì sao phải Quyên góp?</string> -->
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal cam kết phát triển công nghệ bảo mật mã nguồn mở, đề cao tính tự do ngôn luận và hướng đến một môi trường giao tiếp toàn cầu an toàn.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Sự quyên góp của bạn đang góp phần không nhỏ vào sự phát triển và duy trì hoạt động của ứng dùng liên lạc bảo mật và riêng tư được cả triệu người sử dụng trên toàn thế giới. Không quảng cáo, không lấy thông tin riêng tư, và luôn đáng tin cậy.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Sự quyên góp của bạn đang góp phần không nhỏ vào sự phát triển và duy trì hoạt động của ứng dùng liên lạc bảo mật và riêng tư được cả triệu người sử dụng trên toàn thế giới. Không quảng cáo, không lấy thông tin riêng tư, và luôn đáng tin cậy.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Cảm ơn bạn đã đóng góp!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Cảm ơn bạn đã quyên góp!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Bạn đã nhận được huy hiệu %s! Hãy giúp Signal gửi thông điệp đến mọi người bằng cách đính huy hiệu này lên hồ sơ của bạn.</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Bạn đã nhận được huy hiệu quyên góp! Hãy giúp Signal gửi thông điệp đến mọi người bằng cách đính huy hiệu này lên hồ sơ của bạn.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Bạn đã nhận được huy hiệu %s! Hãy giúp Signal gửi thông điệp đến mọi người bằng cách đính huy hiệu này lên hồ sơ của bạn.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Bạn đã nhận được huy hiệu quyên góp! Hãy giúp Signal gửi thông điệp đến mọi người bằng cách đính huy hiệu này lên hồ sơ của bạn.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Bạn cũng có thể</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">trở thành người ủng hộ thường xuyên hàng tháng của chúng tôi.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Hiển thị trên thông tin cá nhân</string>
@@ -3335,7 +3335,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ManageDonationsFragment__subscription_faq">FAQ Quyên góp</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Lỗi nhận quyên góp.</string>
   <string name="BoostFragment__give_signal_a_boost">Quyên góp cho Signal</string>
-  <string name="BoostFragment__say_thanks_and_earn">Hãy cảm ơn và nhận huy hiệu đống góp trong %1$d ngày.</string>
+  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">Hãy cảm ơn và nhận huy hiệu đống góp trong %1$d ngày.</string> -->
   <string name="Boost__enter_custom_amount">Nhập vào Số tiền Tuỳ chọn</string>
   <string name="Boost__one_time_contribution">Quyên góp một lần</string>
   <string name="MySupportPreference__add_a_signal_boost">Thêm vào một phần quyên góp cho Signal</string>
@@ -3345,17 +3345,17 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Không thể thêm huy hiệu. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Xin vui lòng liên hệ với chúng tôi để được hổ trợ.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Huy hiệu của bạn đã hết hạn</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Huy hiệu hết hạn</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Quyên góp đã bị hủy bỏ</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Huy hiệu quyên góp của bạn đã hết hạn và mọi người sẽ không còn nhìn thấy nó trên hồ sơ cá nhân của bạn được nữa.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Huy hiệu của bạn đã hết hạn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Huy hiệu hết hạn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Quyên góp đã bị hủy bỏ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Huy hiệu quyên góp của bạn đã hết hạn và mọi người sẽ không còn nhìn thấy nó trên hồ sơ cá nhân của bạn được nữa.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Bạn có thể tái kích hoạt huy hiệu quyên góp của mình trong 30 ngày chỉ với một lần quyên góp.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Để tiếp tục ủng hộ chúng tôi, ứng dụng sinh ra để dành cho bạn, hãy trở thành người ủng hộ thường xuyên hàng tháng của chúng tôi.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Để tiếp tục ủng hộ chúng tôi, ứng dụng sinh ra để dành cho bạn, hãy trở thành người ủng hộ thường xuyên hàng tháng của chúng tôi.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Trở thành người quyên góp</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Thêm quyên góp</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Để sau</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Đăng ký quyên góp của bạn đã tự động hủy vì tài khoản của bạn đã không hoạt động quá lâu. Mọi người sẽ không thể nhìn thấy huy hiểu %1$strên hồ sơ cá nhận của bạn nữa.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Đăng ký quyên góp của bạn đã tự động hủy vì tài khoản của bạn đã không hoạt động quá lâu. Mọi người sẽ không thể nhìn thấy huy hiểu %1$strên hồ sơ cá nhận của bạn nữa.</string> -->
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Bạn vẫn có thể tiếp tục dùng Signal, nhưng nếu bạn muốn tiếp tục quyên góp ủng hộ cho ứng dụng và nhận lại huy hiệu của mình thì bạn cần đăng ký lại.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Đăng ký lại quyên góp</string>

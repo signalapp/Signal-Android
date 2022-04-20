@@ -463,9 +463,9 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">បង្ហាញ</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">ចែកទៅកាន់</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">ពហុឯកសារភ្ជាប់ គាំទ្រសម្រាប់តែរូបភាព និងវីដេអូ</string>
-  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">អ្នកមិនមានសិទ្ធិផ្ញើសារទៅក្រុមនេះទេ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">ចែកទៅកាន់</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">ពហុឯកសារភ្ជាប់ គាំទ្រសម្រាប់តែរូបភាព និងវីដេអូ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">អ្នកមិនមានសិទ្ធិផ្ញើសារទៅក្រុមនេះទេ</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">ការបរាជ័យក្នុងការទំនាក់ទំនង Signal អចិន្រ្តៃយ៍!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal មិនអាចចុះឈ្មោះជាមួយ Google Play Services។ ការផ្ញើសារ​ និងការហៅចេញSignal ត្រូវបានបិទ សូមព្យាយាមចុះឈ្មោះសារជាថ្មីក្នុង ការកំណត់ &gt; កម្រិតខ្ពស់។</string>
@@ -2006,8 +2006,8 @@
   <string name="preferences__advanced">កម្រិតខ្ពស់</string>
   <string name="preferences__donate_to_signal">ឧបត្ថម្ភទៅ Signal</string>
   <string name="preferences__subscription">ការជាវ</string>
-  <string name="preferences__become_a_signal_sustainer">ក្លាយជាអ្នកទ្រទ្រង់ Signal</string>
-  <string name="preferences__signal_boost">Signal Boost</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">ក្លាយជាអ្នកទ្រទ្រង់ Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Signal Boost</string> -->
   <string name="preferences__privacy">ឯកជនភាព</string>
   <string name="preferences__mms_user_agent">ភ្នាក់ងារអ្នកប្រើប្រាស់ MMS </string>
   <string name="preferences__advanced_mms_access_point_names">កំណត់ MMS ដោយខ្លួនឯង</string>
@@ -2839,7 +2839,7 @@
   <string name="MultiShareDialogs__failed_to_send_to_some_users">បរាជ័យក្នុងការផ្ញើទៅកាន់អ្នកប្រើប្រាស់មួយចំនួន</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">អ្នកអាចចែករំលែកទៅកាន់ការសន្ទនាបានដល់ %1$d</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">បញ្ជូនសារបន្ត</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">បញ្ជូនសារបន្ត</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">រូបភាពខាងក្រោយរបស់ឈែត</string>
   <!--ChatWallpaperFragment-->
@@ -3143,9 +3143,9 @@
   <string name="AddAProfilePhotoMegaphone__add_photo">បន្ថែមរូបភាព</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">ក្លាយជា Sustainer​ ម្នាក់</string>
-  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal ដំណើរការបានដោយមនុស្សដូចអ្នក។ ចូលរួមចំណែកដើម្បីទទួលបានស្លាកសម្គាល់គណនី។</string>
-  <string name="BecomeASustainerMegaphone__no_thanks">ទេ អរគុណ</string>
-  <string name="BecomeASustainerMegaphone__contribute">ចូលរួមចំណែក</string>
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">Signal ដំណើរការបានដោយមនុស្សដូចអ្នក។ ចូលរួមចំណែកដើម្បីទទួលបានស្លាកសម្គាល់គណនី។</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">ទេ អរគុណ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">ចូលរួមចំណែក</string> -->
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">រូបតំណាងអារម្មណ៍</string>
   <string name="KeyboardPagerFragment_open_emoji_search">បើកការស្វែងរករូបតំណាងអារម្មណ៍</string>
@@ -3324,19 +3324,19 @@
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">ការជាវរបស់អ្នកត្រូវបានបញ្ចប់។</string>
   <string name="SubscribeFragment__update_subscription_question">ធ្វើបច្ចុប្បន្នភាពការជាវ?</string>
   <string name="SubscribeFragment__update">បច្ចុប្បន្នភាព</string>
-  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">អ្នកនឹងត្រូវគិតលុយពេញថ្លៃសម្រាប់តម្លៃការជាវថ្មីរបស់អ្នកថ្ងៃនេះ។ ការជាវរបស់អ្នកនឹងភ្ជាប់ឡើងវិញជារៀងរាល់ខែ%1$s។</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">អ្នកនឹងត្រូវគិតលុយពេញថ្លៃសម្រាប់តម្លៃការជាវថ្មីរបស់អ្នកថ្ងៃនេះ។ ការជាវរបស់អ្នកនឹងភ្ជាប់ឡើងវិញជារៀងរាល់ខែ%1$s។</string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">អ្នកនឹងត្រូវគិតលុយពេញថ្លៃចំនួន (%1$s) សម្រាប់តម្លៃការជាវថ្មីរបស់អ្នកថ្ងៃនេះ។ ការជាវរបស់អ្នកនឹងភ្ជាប់ឡើងវិញជារៀងរាល់ខែ។</string>
   <string name="Subscription__s_per_month">%s/ខែ</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/ខែ ·  ភ្ជាប់ឡើងវិញ%2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/ខែ · ផុតកំណត់ %2$s</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal គឺមិនរកប្រាក់ចំនូលពីអ្នកផ្សព្វផ្សាយពាណិជ្ជកម្ម ឬអ្នកបណ្ដាក់ទុន តែទ្រទ្រង់ដោយមនុស្សដែលប្រើប្រាស់ និងអោយតម្លៃកម្មវិធីនេះ។ សូមជួយចូលរួមចំណែកប្រចាំខែ និងទទួលបាននូវស្លាកសម្គាល់សម្រាប់គណនីអ្នកដើម្បីចែករំលែកពីការគាំទ្ររបស់អ្នក។</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">ហេតុអ្វីចាំបាច់ចូលរួមចំណែក?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal គឺមិនរកប្រាក់ចំនូលពីអ្នកផ្សព្វផ្សាយពាណិជ្ជកម្ម ឬអ្នកបណ្ដាក់ទុន តែទ្រទ្រង់ដោយមនុស្សដែលប្រើប្រាស់ និងអោយតម្លៃកម្មវិធីនេះ។ សូមជួយចូលរួមចំណែកប្រចាំខែ និងទទួលបាននូវស្លាកសម្គាល់សម្រាប់គណនីអ្នកដើម្បីចែករំលែកពីការគាំទ្ររបស់អ្នក។</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">ហេតុអ្វីចាំបាច់ចូលរួមចំណែក?</string> -->
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal ប្ដេជ្ញាអភិវឌ្ឍនូវបច្ចេកវិទ្យាកូដចំហរ ដែលការពារសេរីភាពការបញ្ចេញមតិ និងការទំនាក់ទំនងជាសកលដែលមានសុវត្ថិភាព</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">ការចូលរួមចំណែករបស់អ្នក បានជះឥទ្ធិពល និងជំនួយដល់ការអភិវឌ្ឍ និងដំណើរការរបស់កម្មវិធីមួយដែលមានមនុស្សរាប់លានអ្នកកំពុងប្រើប្រាស់ក្នុងការទំនាក់ទំនងឯកជន ដោយគ្មានការផ្សព្វផ្សាយពាណិជ្ជកម្ម គ្មានការតាមដាន គ្មានការលេងសើច</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">ការចូលរួមចំណែករបស់អ្នក បានជះឥទ្ធិពល និងជំនួយដល់ការអភិវឌ្ឍ និងដំណើរការរបស់កម្មវិធីមួយដែលមានមនុស្សរាប់លានអ្នកកំពុងប្រើប្រាស់ក្នុងការទំនាក់ទំនងឯកជន ដោយគ្មានការផ្សព្វផ្សាយពាណិជ្ជកម្ម គ្មានការតាមដាន គ្មានការលេងសើច</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">អរគុណសម្រាប់ការគាំទ្ររបស់អ្នក!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">អរគុណសម្រាប់ការជំរុញ!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">អ្នកទទួលបាននូវស្លាកសម្គាល់ជំរុញ %s! ជួយកម្មវិធី Signal ក្នុងការលើកកម្ពស់ការយល់ដឹងដោយបង្ហាញស្លាកសម្គាល់លើគណនីអ្នក</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">អ្នកទទួលបាននូវស្លាកសម្គាល់ជំរុញមួយ! ជួយកម្មវិធី Signal ក្នុងការលើកកម្ពស់ការយល់ដឹងដោយបង្ហាញស្លាកសម្គាល់លើគណនីអ្នក</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">អ្នកទទួលបាននូវស្លាកសម្គាល់ជំរុញ %s! ជួយកម្មវិធី Signal ក្នុងការលើកកម្ពស់ការយល់ដឹងដោយបង្ហាញស្លាកសម្គាល់លើគណនីអ្នក</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">អ្នកទទួលបាននូវស្លាកសម្គាល់ជំរុញមួយ! ជួយកម្មវិធី Signal ក្នុងការលើកកម្ពស់ការយល់ដឹងដោយបង្ហាញស្លាកសម្គាល់លើគណនីអ្នក</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">អ្នកក៏អាចដែរ</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">ក្លាយជាអ្នកគាំទ្រប្រចាំខែម្នាក់</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">បង្ហាញលើគណនី</string>
@@ -3352,7 +3352,7 @@
   <string name="ManageDonationsFragment__subscription_faq">សំណួរដែលសួរញឺកញាប់អំពីការជាវ</string>
   <string name="ManageDonationsFragment__error_getting_subscription">មានបញ្ហាក្នុងការជាវ</string>
   <string name="BoostFragment__give_signal_a_boost">អោយ Signal នូវការជំរុញមួយ</string>
-  <string name="BoostFragment__say_thanks_and_earn">និយាយ អរគុណ ហើយទទួលបានស្លាកសម្គាល់ជំរុញសម្រាប់ %1$d ថ្ងៃ</string>
+  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">និយាយ អរគុណ ហើយទទួលបានស្លាកសម្គាល់ជំរុញសម្រាប់ %1$d ថ្ងៃ</string> -->
   <string name="Boost__enter_custom_amount">បញ្ជូលចំនួនប្រាក់ដោយខ្លួនឯង</string>
   <string name="Boost__one_time_contribution">ចូលរួមចំនែកតែមួយលើក</string>
   <string name="MySupportPreference__add_a_signal_boost">បន្ថែម Signal Boost</string>
@@ -3362,19 +3362,19 @@
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">មិនអាចបន្ថែមស្លាកសម្គាល់បាន %1$s</string>
   <string name="MySupportPreference__please_contact_support">សូមទាក់ទងទៅកាន់សេវាគាំទ្រ</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">ស្លាកសម្គាល់របស់អ្នកផុតកំណត់ហើយ</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">ស្លាកសម្គាល់អស់សុពលភាព</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">ការជាវត្រូវបានផ្ដាច់</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">ស្លាកសម្គាល់ជំរុញរបស់អ្នកផុតសុពលភាព ហើយអ្នកដទៃមិនអាចមើលឃើញលើគណនីរបស់អ្នកទេ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">ស្លាកសម្គាល់របស់អ្នកផុតកំណត់ហើយ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">ស្លាកសម្គាល់អស់សុពលភាព</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">ការជាវត្រូវបានផ្ដាច់</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">ស្លាកសម្គាល់ជំរុញរបស់អ្នកផុតសុពលភាព ហើយអ្នកដទៃមិនអាចមើលឃើញលើគណនីរបស់អ្នកទេ</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">អ្នកអាចដាក់ស្លាកសម្គាល់ជំរុញរបស់អោយសកម្មឡើងវិញសម្រាប់រយៈពេល ​៣០​ថ្ងៃដោយការចូលរួមចំណែកម្ដង</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">ដើម្បីបន្តគាំទ្របច្ចេកវិទ្យាដែលត្រូវបានបង្កើតឡើងសម្រាប់អ្នក សូមពិចារណាក្នុងការក្លាយជា Sustainer​ ម្នាក់ប្រចាំខែរបស់យើង។</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">ដើម្បីបន្តគាំទ្របច្ចេកវិទ្យាដែលត្រូវបានបង្កើតឡើងសម្រាប់អ្នក សូមពិចារណាក្នុងការក្លាយជា Sustainer​ ម្នាក់ប្រចាំខែរបស់យើង។</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">ធ្វើជាអ្នកគាំទ្រ​</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">បន្ថែមការជំរុញ</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ពេលក្រោយ</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">ការជាវ Sustainer​ របស់អ្នកត្រូវបានផ្ដាច់ ដោយសាយើងមិនអាចដំណើការទូទាត់ប្រាក់បាន។  %1$s ស្លាកសម្គាល់របស់អ្នកមិនអាចមើលឃើញទៀតទេនៅលើគណនីអ្នក។</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">ការជាវ Sustainer​ របស់អ្នកត្រូវបានផ្ដាច់ ដោយសាយើងមិនអាចដំណើការទូទាត់ប្រាក់បាន។  %1$s ស្លាកសម្គាល់របស់អ្នកមិនអាចមើលឃើញទៀតទេនៅលើគណនីអ្នក។</string> -->
   <!--Copy displayed when badge expires after payment failure-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">ការជាវ Sustainer​ របស់អ្នកត្រូវបានផ្ដាច់ ដោយសាយើងមិនអាចដំណើការទូទាត់ប្រាក់បាន។ ស្លាកសម្គាល់របស់អ្នកមិនអាចមើលឃើញទៀតទេនៅលើគណនីអ្នក។</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">ការជាវ Sustainer​ របស់អ្នកត្រូវបានផ្ដាច់ ដោយសាយើងមិនអាចដំណើការទូទាត់ប្រាក់បាន។ ស្លាកសម្គាល់របស់អ្នកមិនអាចមើលឃើញទៀតទេនៅលើគណនីអ្នក។</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">អ្នកនៅតែអាចបន្តប្រើ Signal​ បាន ប៉ុន្តែដើម្បីបន្តគាំទ្រ និងដំណើការស្លាកសម្គាល់របស់អ្នកឡើងវិញ អ្នកត្រូវការជាវឡើងវិញ។</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">ការជាវឡើងវិញ</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">មិនអាចដំណើការការទូទាត់ប្រាក់សម្រាប់ការជាវបាន</string>

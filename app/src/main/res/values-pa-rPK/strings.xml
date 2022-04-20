@@ -331,7 +331,7 @@
   <string name="DozeReminder_optimize_for_missing_play_services">رہ جان آلی پلے سروسز لئی احسن کاری کرو</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ایہہ آلہ پلے سروسز دی معاونت نئیں کر دا اے۔ سسٹم بیٹری دی احسن کاری نوں غیر فعال کرن لئی بٹن دباؤ جیہڑی Signal نوں غیر فعال ہون دے دوران سنیہے بازیافت کرن توں روکدی اے۔</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">ایہدے نال سانجھا کرو</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">ایہدے نال سانجھا کرو</string> -->
   <!--GcmBroadcastReceiver-->
   <!-- Removed by excludeNonTranslatables <string name="GcmBroadcastReceiver_retrieving_a_message">اک سنیہا بازیافت کر رئیا اے…</string> -->
   <!--GcmRefreshJob-->

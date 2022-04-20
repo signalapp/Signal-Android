@@ -439,9 +439,9 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">كۆرۈش</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">ھەمبەھىرلەنگۈچى</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">كۆپلىگەن قوشۇمچە ھۆججەتلەر پەقەت رەسىم ۋە سىنلارنىلا قوللايدۇ</string>
-  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">بۇ گۇرۇپپىغا يوللاش ھوقۇقىڭىز يوق</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">ھەمبەھىرلەنگۈچى</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">كۆپلىگەن قوشۇمچە ھۆججەتلەر پەقەت رەسىم ۋە سىنلارنىلا قوللايدۇ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">بۇ گۇرۇپپىغا يوللاش ھوقۇقىڭىز يوق</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">مەڭگۈلۈك Signal ئالاقىسى مەغلۇپ بولدى!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Google Play مۇلازىمەتلىرىگە تىزىملىتالمىدى. Signal ئۇچۇرلىرى ۋە تېلېفونلىرى چەكلىنىپ قالدى، تەڭشەكلەر &gt; ئىلغار دېگەن يەرگە بېرىپ قايتا تىزىملىتىپ سىناپ بېقىڭ.</string>
@@ -2832,7 +2832,7 @@
   <string name="MultiShareDialogs__failed_to_send_to_some_users">بەزى ئىشلەتكۈچىلەرگە يوللاش مەغلۇپ بولدى</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">كۆپ بولغاندا %1$d سۆھبەت بىلەن ھەمبەھىرلىيەلەيسىز.</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">ئۇچۇرنى ئۇلاپ يوللا</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">ئۇچۇرنى ئۇلاپ يوللا</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">سۆھبەت تام قەغەز</string>
   <!--ChatWallpaperFragment-->
@@ -3129,7 +3129,7 @@
   <string name="AddAProfilePhotoMegaphone__not_now">ھازىر ئەمەس</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">رەسىم قوش</string>
   <!--BecomeASustainerMegaphone-->
-  <string name="BecomeASustainerMegaphone__no_thanks">ياق، رەھمەت</string>
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">ياق، رەھمەت</string> -->
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">چىراي بەلگە</string>
   <string name="KeyboardPagerFragment_open_emoji_search">چىراي بەلگە ئىزدەشنى ئاچ</string>

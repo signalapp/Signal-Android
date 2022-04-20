@@ -161,7 +161,9 @@
   <string name="ContactsCursorLoader_phone_number_search">Telefon numarasıyla arama</string>
   <string name="ContactsCursorLoader_username_search">Kullanıcı adıyla arama</string>
   <!--Label for my stories when selecting who to send media to-->
+  <string name="ContactsCursorLoader_my_stories">Hikayelerim</string>
   <!--Action for creating a new story-->
+  <string name="ContactsCursorLoader_new_story">Yeni Hikaye</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">İleti %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal Araması %s</string>
@@ -418,6 +420,7 @@
   <string name="RestoreBackupFragment__choose_folder">Klasör seçin</string>
   <string name="RestoreBackupFragment__not_now">Şimdi değil</string>
   <!--Couldn\'t find the selected backup-->
+  <string name="RestoreBackupFragment__backup_not_found">Yedek bulunamadı.</string>
   <!--Couldn\'t read the selected backup-->
   <!--Backup has an unsupported file extension-->
   <!--BackupsPreferenceFragment-->
@@ -484,9 +487,9 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Görüntüle</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Paylaşılacak kişi</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">Çoklu ekler sadece resim ve dosyalarda destekleniyor</string>
-  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Bu gruba gönderim izniniz yok</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Paylaşılacak kişi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Çoklu ekler sadece resim ve dosyalarda destekleniyor</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Bu gruba gönderim izniniz yok</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Kalıcı Signal haberleşme hatası!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Google Play Hizmetleri\'ne kaydolamadı. Signal iletileri ve aramaları devre dışı bırakıldı, lütfen Ayarlar &gt; Gelişmiş kısmından tekrar kaydolmayı deneyin.</string>
@@ -761,6 +764,7 @@
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Bu grup bağlantısı artık geçerli değil.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">Bağlantı hatası</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
   <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Bu bağlantıyla katılım başarısız oldu. Daha sonra tekrar deneyin.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Bu gruba katılmak ve adınızı ve fotoğrafınızı üyeleriyle paylaşmak ister misiniz?</string>
@@ -1098,6 +1102,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s tarafından gelen bir ileti teslim edilemedi</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal, sizin gibi insanlar tarafından desteklenmektedir. Bugün bir destekleyici olun.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s grup araması başlattı · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s grup görüşmesinde· %2$s</string>
@@ -1237,6 +1242,7 @@
   <!--Recipient-->
   <string name="Recipient_you">Siz</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">Hikayem</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Engelle</string>
   <string name="RecipientPreferenceActivity_unblock">Engeli kaldır</string>
@@ -1703,6 +1709,10 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
     <item quantity="other">%1$d üye</item>
   </plurals>
   <!--Displays number of viewers for a story-->
+  <plurals name="contact_selection_list_item__number_of_viewers">
+    <item quantity="one">%1$d görüntüleyen</item>
+    <item quantity="other">%1$d görüntüleyen</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal iletisi</string>
   <string name="conversation_activity__type_message_sms_insecure">Şifresiz SMS</string>
@@ -1762,8 +1772,11 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="QuoteView_you">Siz</string>
   <string name="QuoteView_original_missing">İletinin aslı bulunamadı</string>
   <!--Author formatting for group stories-->
+  <string name="QuoteView_s_story">%1$s · Hikaye</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Siz · Hikaye</string>
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Artık mevcut değil.</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">En alta kaydır</string>
   <!--BubbleOptOutTooltip-->
@@ -2088,8 +2101,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__advanced">Gelişmiş</string>
   <string name="preferences__donate_to_signal">Signal\'e Bağış Yap</string>
   <string name="preferences__subscription">Abonelik</string>
-  <string name="preferences__become_a_signal_sustainer">Signal Destekçisi Ol</string>
-  <string name="preferences__signal_boost">Signal Arttırma</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">Signal Destekçisi Ol</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Signal Arttırma</string> -->
   <string name="preferences__privacy">Gizlilik</string>
   <string name="preferences__mms_user_agent">MMS Kullanıcı Aracı</string>
   <string name="preferences__advanced_mms_access_point_names">Manuel MMS ayarları</string>
@@ -2932,7 +2945,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Bazı kullanıcılara gönderilemedi</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">En fazla %1$d konuşmayı paylaşabilirsiniz</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">İletiyi yönlendir</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">İletiyi yönlendir</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Konuşma duvar kağıdı</string>
   <!--ChatWallpaperFragment-->
@@ -3237,9 +3250,9 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Fotoğraf ekleyin</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Destekçi Ol</string>
-  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal senin gibi insanlar tarafından destekleniyor. Katkıda bulun ve bir profil rozeti kazan.</string>
-  <string name="BecomeASustainerMegaphone__no_thanks">Hayır teşekkürler</string>
-  <string name="BecomeASustainerMegaphone__contribute">Katkıda Bulun</string>
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">Signal senin gibi insanlar tarafından destekleniyor. Katkıda bulun ve bir profil rozeti kazan.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">Hayır teşekkürler</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">Katkıda Bulun</string> -->
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Emoji arayıcıyı aç</string>
@@ -3422,19 +3435,19 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Aboneliğiniz iptal edildi.</string>
   <string name="SubscribeFragment__update_subscription_question">Abonelik güncellensin mi?</string>
   <string name="SubscribeFragment__update">Güncelle</string>
-  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Bugün yeni abonelik fiyatının tamamı sizden tahsil edilecektir. Aboneliğiniz %1$s tarihinde yenilenir.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Bugün yeni abonelik fiyatının tamamı sizden tahsil edilecektir. Aboneliğiniz %1$s tarihinde yenilenir.</string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Bugün yeni abonelik ücretinin tam tutarıyla (%1$s) ücretlendirileceksin. Aboneliğin aylık olarak yenilenecek.</string>
   <string name="Subscription__s_per_month">%s/ay</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/ay · Yenilenme %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/ay · Bitiş %2$s</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal, reklamvereni veya yatırımcıları olmayan, yalnızca onu kullanan ve değer veren kişiler tarafından sürdürülen kar amacı gütmeyen bir kuruluştur. Yinelenen bir aylık katkı yapın ve desteğinizi gösteren bir profil rozeti alın.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Neden Katkıda Bulunulmalı?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal, reklamvereni veya yatırımcıları olmayan, yalnızca onu kullanan ve değer veren kişiler tarafından sürdürülen kar amacı gütmeyen bir kuruluştur. Yinelenen bir aylık katkı yapın ve desteğinizi gösteren bir profil rozeti alın.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Neden Katkıda Bulunulmalı?</string> -->
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal, ifade özgürlüğünü koruyan ve güvenli küresel iletişimi mümkün kılan, açık kaynak gizlilik teknolojisi geliştirmeye adanmıştır.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Katkıların bu hedefe hizmet edecek ve milyonlar tarafından mahrem iletişimde kullanılan bir uygulamanın geliştirilmesi ve işletilmesi için harcanacaktır. Reklam yok. Takipçi yok. Yalan yok.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Katkıların bu hedefe hizmet edecek ve milyonlar tarafından mahrem iletişimde kullanılan bir uygulamanın geliştirilmesi ve işletilmesi için harcanacaktır. Reklam yok. Takipçi yok. Yalan yok.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Desteğiniz için teşekkürler!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Arttırıcı için teşekkürler!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">%s rozeti kazandın! Bu rozeti profilinde görüntüleyerek Signal\'ın farkındalık oluşturmasına yardımcı ol.</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Bir Boost rozeti kazandın! Bu rozeti profilinde göstererek Signal\'ın farkındalık oluşturmasına yardım et.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">%s rozeti kazandın! Bu rozeti profilinde görüntüleyerek Signal\'ın farkındalık oluşturmasına yardımcı ol.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Bir Boost rozeti kazandın! Bu rozeti profilinde göstererek Signal\'ın farkındalık oluşturmasına yardım et.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Aynı zamanda</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">aylık bir Destekçi ol.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Profilde Göster</string>
@@ -3450,7 +3463,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ManageDonationsFragment__subscription_faq">Abonelik SSS</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Abonelik alınamadı</string>
   <string name="BoostFragment__give_signal_a_boost">Signal\'i Arttırın</string>
-  <string name="BoostFragment__say_thanks_and_earn">Teşekkürlerinizi ileterek %1$d gün geçerli Arttırıcı rozeti kazanın.</string>
+  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">Teşekkürlerinizi ileterek %1$d gün geçerli Arttırıcı rozeti kazanın.</string> -->
   <string name="Boost__enter_custom_amount">Farklı Miktar Gir</string>
   <string name="Boost__one_time_contribution">Tek seferlik bağış</string>
   <string name="MySupportPreference__add_a_signal_boost">Signal Arttırıcı ekleyin</string>
@@ -3460,17 +3473,17 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Rozet eklenemedi. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Lütfen destek ekibiyle iletişime geç.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Rozetinizin Süresi Geçti</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Rozetin süresi doldu</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonelik iptal edildi</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Boost rozetinin süresi doldu ve artık profilinde başkalarına görünür olmayacak.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Rozetinizin Süresi Geçti</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Rozetin süresi doldu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonelik iptal edildi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Boost rozetinin süresi doldu ve artık profilinde başkalarına görünür olmayacak.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Bir seferlik bir katkıyla Boost rozetini ilave 30 gün için yeniden etkinleştirebilirsin.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Senin için geliştirilen teknolojiyi desteklemeye devam etmek için, lütfen aylık Destekçi olmayı düşün.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Senin için geliştirilen teknolojiyi desteklemeye devam etmek için, lütfen aylık Destekçi olmayı düşün.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Destekçi Ol</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Boost Ekle</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Şimdi değil</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Destekçi aboneliğin otomatik olarak iptal edildi, çünkü uzun süredir aktif değilsin. %1$s rozetin artık profilinde görülebilir değil.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Destekçi aboneliğin otomatik olarak iptal edildi, çünkü uzun süredir aktif değilsin. %1$s rozetin artık profilinde görülebilir değil.</string> -->
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal\'ı kullanmaya devam edebilirsin ama uygulamaya destek olmak ve rozetini tekrar etkinleştirmek için şimdi yenile.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Aboneliği yenile</string>
@@ -3674,6 +3687,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Donation receipts list end note-->
   <!--Donation receipts document title-->
   <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">Tutar</string>
   <!--Donation receipts thanks-->
   <!--Donation receipt type-->
   <!--region "Stories Tab"-->
@@ -3683,31 +3697,53 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ConversationListTabs__stories">Hikayeler</string>
   <!--String for counts above 99 in conversation list tabs-->
   <!--Title for "My Stories" row item in Stories landing page-->
+  <string name="StoriesLandingFragment__my_stories">Hikayelerim</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
+  <string name="StoriesLandingFragment__add_a_story">Bir hikaye ekle</string>
   <!--Displayed when there are no stories to display-->
   <!--Context menu option to hide a story-->
+  <string name="StoriesLandingItem__hide_story">Hikayeyi gizle</string>
   <!--Context menu option to unhide a story-->
+  <string name="StoriesLandingItem__unhide_story">Hikayeyi göster</string>
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">Yönlendir</string>
   <!--Context menu option to share a story-->
+  <string name="StoriesLandingItem__share">Paylaş…</string>
   <!--Context menu option to go to story chat-->
+  <string name="StoriesLandingItem__go_to_chat">Sohbete git</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Gönderiliyor…</string>
   <!--Label when a story fails to send-->
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingItem__couldnt_send">Gönderilemedi</string> -->
   <!--Title of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__hide_story">Hikaye gizlensin mi?</string>
   <!--Message of dialog confirming decision to hide a story-->
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">Gizle</string>
   <!--Displayed in Snackbar after story is hidden-->
+  <string name="StoriesLandingFragment__story_hidden">Hikaye gizlendi</string>
   <!--Section header for hidden stories-->
+  <string name="StoriesLandingFragment__hidden_stories">Gizlenmiş hikayeler</string>
   <!--Displayed on each sent story under My Stories-->
+  <plurals name="MyStories__d_views">
+    <item quantity="one">%1$d görülme</item>
+    <item quantity="other">%1$d görülme</item>
+  </plurals>
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">Yönlendir</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
   <!--Title of dialog to confirm deletion of story-->
   <!--Message of dialog to confirm deletion of story-->
   <!--Displayed at bottom of story viewer when current item has views-->
+  <plurals name="StoryViewerFragment__d_views">
+    <item quantity="one">%1$d görülme</item>
+    <item quantity="other">%1$d görülme</item>
+  </plurals>
   <!--Displayed at bottom of story viewer when current item has replies-->
+  <plurals name="StoryViewerFragment__d_replies">
+    <item quantity="one">%1$d yanıt</item>
+    <item quantity="other">%1$d yanıt</item>
+  </plurals>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3720,8 +3756,11 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Displayed when a story has no replies yet-->
   <!--Displayed for each user that reacted to a story when viewing replies-->
   <!--Label for story views tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__views">Görülmeler</string>
   <!--Label for story replies tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__replies">Yanıtlar</string>
   <!--Description of action for reaction button-->
+  <string name="StoryReplyComposer__react_to_this_story">Bu hikayeye tepki ver</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
   <!--Context menu item to privately reply to a story response-->
   <!--Context menu item to copy a story response-->
@@ -3729,10 +3768,13 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Sil</string>
   <!--Story settings page title-->
+  <string name="StorySettingsFragment__story_settings">Hikaye ayarları</string>
   <!--Story settings private stories heading-->
   <!--Option label for creating a new private story-->
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">Hikayem</string>
   <!--Section heading for story visibility-->
+  <string name="MyStorySettingsFragment__who_can_see_this_story">Bu hikayeyi kim görebilir</string>
   <!--Clickable option for selecting people to hide your story from-->
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
   <!--Section header for options related to replies and reactions-->

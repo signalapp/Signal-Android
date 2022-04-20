@@ -515,9 +515,9 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Skatīt</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Kopīgot ar</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">Vairāku pielikumu sūtīšana ir atbalstīta tikai attēliem un video</string>
-  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Jums nav atļauju sūtīt šai grupai</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Kopīgot ar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Vairāku pielikumu sūtīšana ir atbalstīta tikai attēliem un video</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Jums nav atļauju sūtīt šai grupai</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal sakaru permanenta kļūme!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal neizdevās reģistrēties Google Play pakalpojumos. Signal ziņas un zvani ir atspējoti. Lūdzu, mēģiniet vēlreiz piereģistrēties sadaļā Iestatījumi -&gt; Papildu.</string>
@@ -2205,8 +2205,8 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="preferences__advanced">Papildu</string>
   <string name="preferences__donate_to_signal">Ziedot Signal</string>
   <string name="preferences__subscription">Abonements</string>
-  <string name="preferences__become_a_signal_sustainer">Kļūstiet par Signal Uzturētāju</string>
-  <string name="preferences__signal_boost">Signal Atbalsts</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">Kļūstiet par Signal Uzturētāju</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Signal Atbalsts</string> -->
   <string name="preferences__privacy">Privātums</string>
   <string name="preferences__mms_user_agent">MMS lietotāja aģents</string>
   <string name="preferences__advanced_mms_access_point_names">Manuālie MMS uzstādījumi</string>
@@ -3062,7 +3062,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Neizdevās nosūtīt dažiem lietotājiem</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Var kopīgot tikai %1$d sarunas</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">Pārsūtīt ziņu</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">Pārsūtīt ziņu</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Sarunas fona tapete</string>
   <!--ChatWallpaperFragment-->
@@ -3370,9 +3370,9 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="AddAProfilePhotoMegaphone__add_photo">Pievienot fotoattēlu</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Kļūstiet par Uzturētāju</string>
-  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal darbību nodrošina tādi paši cilvēki kā jūs. Ziedojiet un saņemiet profila nozīmīti.</string>
-  <string name="BecomeASustainerMegaphone__no_thanks">Nē, paldies</string>
-  <string name="BecomeASustainerMegaphone__contribute">Ziedojiet</string>
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">Signal darbību nodrošina tādi paši cilvēki kā jūs. Ziedojiet un saņemiet profila nozīmīti.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">Nē, paldies</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">Ziedojiet</string> -->
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emocijzīme</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Atvērt emocijzīmju meklēšanu</string>
@@ -3559,19 +3559,19 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Jūsu abonements ir atcelts.</string>
   <string name="SubscribeFragment__update_subscription_question">Atjaunināt abonementu?</string>
   <string name="SubscribeFragment__update">Aktualizēt</string>
-  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Šodien no Jums tiks iekasēts pilns apjoms par jauno abonementu. Jūsu abonements tiks atjaunots %1$s.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Šodien no Jums tiks iekasēts pilns apjoms par jauno abonementu. Jūsu abonements tiks atjaunots %1$s.</string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Šodien no Jums tiks iekasēts pilns apjoms (%1$s) par jauno abonementu. Jūsu abonements tiks atjaunots katru mēnesi.</string>
   <string name="Subscription__s_per_month">%s/mēnesī</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/mēnesī · Atjaunojas %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/mēnesī · Beidzas %2$s</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal ir bezpeļņas organizācija bez reklāmdevējiem vai investoriem, kuru uztur tikai cilvēki, kuri to lieto un novērtē. Veiciet ikmēneša ziedojumu un saņemiet profila nozīmīti, lai dalītos ar savu atbalstu.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Kādēļ ziedot?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal ir bezpeļņas organizācija bez reklāmdevējiem vai investoriem, kuru uztur tikai cilvēki, kuri to lieto un novērtē. Veiciet ikmēneša ziedojumu un saņemiet profila nozīmīti, lai dalītos ar savu atbalstu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Kādēļ ziedot?</string> -->
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal ir apņēmies izstrādāt atvērtā pirmkoda tehnoloģiju, kas aizsargā brīvo izteiksmi un veicina drošu globālo komunikāciju.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Jūsu ziedojums palīdz šim mērķim un palīdz segt izstrādes un operatīvos izdevumus aplikācijai, kuru privātai saziņai lieto miljoni. Nekādu reklāmu. Nekādu izsekotāju. Nekādu joku.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Jūsu ziedojums palīdz šim mērķim un palīdz segt izstrādes un operatīvos izdevumus aplikācijai, kuru privātai saziņai lieto miljoni. Nekādu reklāmu. Nekādu izsekotāju. Nekādu joku.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Pateicamies par jūsu atbalstu!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Pateicamies par Atbalstu!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Jūs esat nopelnījis %s nozīmīti! Palīdziet Signal vairot izpratni, pievienojot šo nozīmīti jūsu profilam.</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Jūs esat nopelnījis Atbalsta nozīmīti! Palīdziet Signal vairot izpratni, pievienojot šo nozīmīti jūsu profilam.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Jūs esat nopelnījis %s nozīmīti! Palīdziet Signal vairot izpratni, pievienojot šo nozīmīti jūsu profilam.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Jūs esat nopelnījis Atbalsta nozīmīti! Palīdziet Signal vairot izpratni, pievienojot šo nozīmīti jūsu profilam.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Jūs varat arī</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">Kļūstiet par ikmēneša Uzturētāju</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Rādīt profilā</string>
@@ -3588,7 +3588,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ManageDonationsFragment__subscription_faq">Abonementu BUJ</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Kļūda saņemot abonementu.</string>
   <string name="BoostFragment__give_signal_a_boost">Atbalsti Signal</string>
-  <string name="BoostFragment__say_thanks_and_earn">Saki \"Paldies!\", un saņem Atbalsta nozīmīti uz %1$d dienām.</string>
+  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">Saki \"Paldies!\", un saņem Atbalsta nozīmīti uz %1$d dienām.</string> -->
   <string name="Boost__enter_custom_amount">Ievadīt pielāgotu summu</string>
   <string name="Boost__one_time_contribution">Vienreizējs ziedojums</string>
   <string name="MySupportPreference__add_a_signal_boost">Pievienot Signal Atbalstu</string>
@@ -3598,19 +3598,19 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Nevarēja pievienot nozīmīti. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Lūdzu, sazinieties ar tehnisko atbalstu.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Jūsu nozīmītei beidzies termiņš</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Nozīmītei beidzies termiņš</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonements atcelts</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Jūsu Atbalsta nozīmītei ir beidzies termiņš, un tā vairs nav redzama citiem jūsu profilā.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Jūsu nozīmītei beidzies termiņš</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Nozīmītei beidzies termiņš</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonements atcelts</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Jūsu Atbalsta nozīmītei ir beidzies termiņš, un tā vairs nav redzama citiem jūsu profilā.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Jūs varat atkārtoti aktivizēt jūsu Atbalsta nozīmīti uz nākamajām 30 dienām ar vienreizēju ziedojumu.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Lai turpinātu atbalstīt tehnoloģiju, kas izveidota Jums, lūdzu apsveriet kļūšanu par ikmēneša Uzturētāju.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Lai turpinātu atbalstīt tehnoloģiju, kas izveidota Jums, lūdzu apsveriet kļūšanu par ikmēneša Uzturētāju.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Kļūstiet par Uzturētāju</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Pievienot Atbalstu</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne tagad</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Jūsu Uzturētāja abonements tika automātiski atcelts, jo jūs pārāk ilgi bijāt neaktīvs. Jūsu %1$s nozīmīte vairs nav redzama uz jūsu profila.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Jūsu Uzturētāja abonements tika automātiski atcelts, jo jūs pārāk ilgi bijāt neaktīvs. Jūsu %1$s nozīmīte vairs nav redzama uz jūsu profila.</string> -->
   <!--Copy displayed when badge expires after payment failure-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Jūsu Uzturētāja abonements tika atcelts, jo mēs nevarējām apstrādāt jūsu maksājumu. Jūsu nozīmīte vairs nav redzama uz jūsu profila.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Jūsu Uzturētāja abonements tika atcelts, jo mēs nevarējām apstrādāt jūsu maksājumu. Jūsu nozīmīte vairs nav redzama uz jūsu profila.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Jūs varat turpināt izmantot Signal, bet lai atbalstītu aplikāciju un atkārtoti aktivizētu jūsu nozīmīti, atjaunojiet tagad.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Atjaunot abonementu</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Nevar apstrādāt abonementa maksājumu</string>
@@ -3861,7 +3861,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Sūta…</string>
   <!--Label when a story fails to send-->
-  <string name="StoriesLandingItem__couldnt_send">Nevarēja nosūtīt</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingItem__couldnt_send">Nevarēja nosūtīt</string> -->
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Paslēpt stāstu?</string>
   <!--Message of dialog confirming decision to hide a story-->

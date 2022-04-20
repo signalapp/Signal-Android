@@ -424,9 +424,9 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">వీక్షణ</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">తో పంచు</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">కేవలం ఛాయాచిత్రములు మరియు చలనచిత్రములు మాత్రమే ఒకటి కన్నా ఎక్కువ పంపగలం</string>
-  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">నీకు లేదు అనుమతి కు పంపండి దీనికి సమూహం</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">తో పంచు</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">కేవలం ఛాయాచిత్రములు మరియు చలనచిత్రములు మాత్రమే ఒకటి కన్నా ఎక్కువ పంపగలం</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">నీకు లేదు అనుమతి కు పంపండి దీనికి సమూహం</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal లో శాశ్వత సమాచార వైఫల్యం!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">గూగ్లె ప్లే సదుపాయలతొ Signal నమోదు కాలెదు. Signal సందెశాలు మరియు  కాల్స్ నిలిపివేయబడ్డాయి. దయచేసి ఆధునిక అమరికలు లో మళ్ళి నమోదు చెసుకొనగలరు.</string>
@@ -2515,7 +2515,7 @@
   <string name="MultiShareDialogs__failed_to_send_to_some_users">కొంతమంది వినియోగదారులకు పంపడంలో విఫలమైంది</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">మీరు %1$d చాట్‌లతో మాత్రమే భాగస్వామ్యం చేయవచ్చు</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">సందేశాన్ని బదలాయించు</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">సందేశాన్ని బదలాయించు</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">సంభాషణ వాల్పేపర్</string>
   <!--ChatWallpaperFragment-->

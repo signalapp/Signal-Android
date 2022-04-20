@@ -278,7 +278,7 @@
   <!-- Removed by excludeNonTranslatables <string name="DocumentView_unknown_file">Comhad anaithnid</string> -->
   <!--DozeReminder-->
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Comhroinn le</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Comhroinn le</string> -->
   <!--ExperienceUpgradeActivity-->
   <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Fáilte go Signal!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">Is an teachtaire príobháideach céanna anois iad TextSecure agus RedPhone le gach cúrsa: Signal.</string> -->

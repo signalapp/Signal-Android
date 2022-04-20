@@ -408,8 +408,8 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">ଦେଖନ୍ତୁ</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">ନିମ୍ନୋକ୍ତଙ୍କ ସହିତ ଅଂଶୀଦାର କରନ୍ତୁ</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">ଏକାଧିକ ସଂଲଗ୍ନକ କେବଳ ଛବି ଏବଂ ଭିଡିଓ ପାଇଁ ସମର୍ଥିତ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">ନିମ୍ନୋକ୍ତଙ୍କ ସହିତ ଅଂଶୀଦାର କରନ୍ତୁ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">ଏକାଧିକ ସଂଲଗ୍ନକ କେବଳ ଛବି ଏବଂ ଭିଡିଓ ପାଇଁ ସମର୍ଥିତ</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">ସ୍ଥାୟୀ Signal ଯୋଗାଯୋଗ ବିଫଳ!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ଗୁଗୁଲ୍ ପ୍ଲେ ସର୍ଭିସ୍ ସହିତ ପଞ୍ଜିକରଣ କରିବାରେ ଅସମର୍ଥ | Signal ବାର୍ତ୍ତା ଏବଂ କଲ୍ ଅକ୍ଷମ ହୋଇଛି, ଦୟାକରି ସେଟିଂସମୂହରେ ପୁନଃପଞ୍ଜିକରଣ କରିବାକୁ ଚେଷ୍ଟା କରନ୍ତୁ &amp; gt; ଉନ୍ନତ</string>
@@ -2517,7 +2517,7 @@
   <string name="MultiShareDialogs__failed_to_send_to_some_users">କିଛି ଉପଭୋକ୍ତାଙ୍କୁ ପଠାଇବାରେ ବିଫଳ</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">ଆପଣ କେବଳ %1$dଟି ବାର୍ତ୍ତାଳାପ ସହିତ ଅଂଶୀଦାର କରିପାରିବେ</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">ବାର୍ତ୍ତା ଅଗ୍ରଗାମୀ କରନ୍ତୁ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">ବାର୍ତ୍ତା ଅଗ୍ରଗାମୀ କରନ୍ତୁ</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">ବାର୍ତ୍ତା କାନ୍ଥଛବି</string>
   <!--ChatWallpaperFragment-->

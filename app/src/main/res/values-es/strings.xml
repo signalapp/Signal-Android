@@ -493,9 +493,9 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Ver</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Compartir con</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">Solo fotos y vídeos se pueden enviar como múltiples adjuntos</string>
-  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">No tienes permiso para enviar mensajes en este grupo</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Compartir con</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Solo fotos y vídeos se pueden enviar como múltiples adjuntos</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">No tienes permiso para enviar mensajes en este grupo</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">¡Fallo permanente de comunicación de Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal fué incapaz de registrarse con Google Play Services. Los mensajes y llamadas de Signal han sido desactivados, por favor, intenta registrarte otra vez en Configuración &gt; Avanzado.</string>
@@ -2129,8 +2129,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__advanced">Avanzado</string>
   <string name="preferences__donate_to_signal">Donar a Signal</string>
   <string name="preferences__subscription">Suscripción</string>
-  <string name="preferences__become_a_signal_sustainer">Sostén Signal</string>
-  <string name="preferences__signal_boost">Impulso Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">Sostén Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Impulso Signal</string> -->
   <string name="preferences__privacy">Privacidad</string>
   <string name="preferences__mms_user_agent">Agente de usuari@ de MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Configuración manual de MMS</string>
@@ -2975,7 +2975,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Fallo al enviar a algunas personas</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Puedes compartir con un máximo de %1$d chats</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">Reenviar mensaje</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">Reenviar mensaje</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Fondo de chat</string>
   <!--ChatWallpaperFragment-->
@@ -3135,13 +3135,13 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Debes especificar el código de país de tu número nuevo</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Debes especificar tu número nuevo</string>
   <!--ChangeNumberVerifyFragment-->
-  <string name="ChangeNumberVerifyFragment__change_number">Corregir número</string>
+  <string name="ChangeNumberVerifyFragment__change_number">Cambiar número</string>
   <string name="ChangeNumberVerifyFragment__verifying_s">Verificando %1$s</string>
   <string name="ChangeNumberVerifyFragment__captcha_required">Captha requerido</string>
   <!--ChangeNumberConfirmFragment-->
-  <string name="ChangeNumberConfirmFragment__change_number">Corregir número</string>
+  <string name="ChangeNumberConfirmFragment__change_number">Cambiar número</string>
   <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Estás a punto de cambiar tu número de teléfono en Signal de %1$s a %2$s.\n\nAntes de continuar, verifica que el número a continuación es correcto.</string>
-  <string name="ChangeNumberConfirmFragment__edit_number">Editar número</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Corregir número</string>
   <!--ChangeNumberRegistrationLockFragment-->
   <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Cambio de número en Signal - Ayuda necesaria con el PIN para Android (PIN v2)</string>
   <!--ChangeNumberPinDiffersFragment-->
@@ -3281,9 +3281,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="AddAProfilePhotoMegaphone__add_photo">Añade una foto</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Sostén Signal</string>
-  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal se mantiene gracias a gente como tú. Contribuye y recibe un distintivo para tu perfil.</string>
-  <string name="BecomeASustainerMegaphone__no_thanks">No gracias</string>
-  <string name="BecomeASustainerMegaphone__contribute">Contribuir</string>
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">Signal se mantiene gracias a gente como tú. Contribuye y recibe un distintivo para tu perfil.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">No gracias</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">Contribuir</string> -->
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emojis y personas</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Abrir búsqueda de emojis</string>
@@ -3466,19 +3466,19 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Se ha cancelado tu suscripción.</string>
   <string name="SubscribeFragment__update_subscription_question">¿Actualizar suscripción?</string>
   <string name="SubscribeFragment__update">Actualizar</string>
-  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Te haremos el cargo completo de la suscripción hoy. Tu suscripción se renovará el %1$s.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Te haremos el cargo completo de la suscripción hoy. Tu suscripción se renovará el %1$s.</string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Te haremos hoy el cargo completo (%1$s) de la suscripción. Tu suscripción se renovará mensualmente.</string>
   <string name="Subscription__s_per_month">%s al mes</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s al mes · Se renueva el %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s al mes · Caduca el %2$s</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal es una organización sin ánimo de lucro, sin anunciantes ni inversores, sólo sostenida por la gente que usa y valora la aplicación. Haz una contribución mensual y recibe un distintivo para tu perfil con el que mostrar tu apoyo</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">¿Por qué contribuir?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal es una organización sin ánimo de lucro, sin anunciantes ni inversores, sólo sostenida por la gente que usa y valora la aplicación. Haz una contribución mensual y recibe un distintivo para tu perfil con el que mostrar tu apoyo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">¿Por qué contribuir?</string> -->
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal está comprometida en desarrollar tecnología de privacidad de código abierto que protegen la libre expresión y habilita una comunicación global segura.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Tu soporte apoya la causa y contribuye a pagar los gastos del desarrollo y funcionamiento de una aplicación usada por millones para comunicaciones privadas. Sin anuncios. Sin rastreadores. Sin bromas.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Tu soporte apoya la causa y contribuye a pagar los gastos del desarrollo y funcionamiento de una aplicación usada por millones para comunicaciones privadas. Sin anuncios. Sin rastreadores. Sin bromas.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">¡Gracias por tu apoyo!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">¡Gracias por tu Impulso!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">¡Has conseguido el distintivo %s! Contribuye a difundir la ayuda que Signal necesita mostrando este distintivo en tu perfil.</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">¡Has conseguido el distintivo de Impulso! Contribuye a difundir la ayuda que Signal necesita mostrando el distintivo en tu perfil.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">¡Has conseguido el distintivo %s! Contribuye a difundir la ayuda que Signal necesita mostrando este distintivo en tu perfil.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">¡Has conseguido el distintivo de Impulso! Contribuye a difundir la ayuda que Signal necesita mostrando el distintivo en tu perfil.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">También puedes</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">contribuir mensualmente.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Mostrar en mi perfil</string>
@@ -3494,7 +3494,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ManageDonationsFragment__subscription_faq">Preguntas y respuestas sobre la suscripción</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Fallo al comprobar la suscripción.</string>
   <string name="BoostFragment__give_signal_a_boost">Da un Impulso a Signal</string>
-  <string name="BoostFragment__say_thanks_and_earn">Di «¡Gracias!» y consigue el distintivo de Impulso durante %1$d días.</string>
+  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">Di «¡Gracias!» y consigue el distintivo de Impulso durante %1$d días.</string> -->
   <string name="Boost__enter_custom_amount">Introduce una cantidad personalizada</string>
   <string name="Boost__one_time_contribution">Contribuir sólo una vez</string>
   <string name="MySupportPreference__add_a_signal_boost">Dale un Impulso a Signal</string>
@@ -3504,19 +3504,19 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Fallo al añadir distintivo. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Por favor, contacta con nuestro soporte.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Tu distintivo ha caducado</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Distintivo caducado</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Suscripción cancelada</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Tu distintivo de Impulso ha caducado y ya no es visible en tu perfil.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Tu distintivo ha caducado</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Distintivo caducado</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Suscripción cancelada</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Tu distintivo de Impulso ha caducado y ya no es visible en tu perfil.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Puedes reactivar tu distintivo de Impulso por otros 30 días al hacer otra contribución.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Para continuar apoyando la tecnología desarrollada para ti, considera una suscripción mensual.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Para continuar apoyando la tecnología desarrollada para ti, considera una suscripción mensual.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Sostén Signal</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Añade un Impulso</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ahora no</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Tu suscripción mensual se ha cancelado automáticamente por cuenta inactiva. Tu distintivo «%1$s» ya no es visible en tu perfil.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Tu suscripción mensual se ha cancelado automáticamente por cuenta inactiva. Tu distintivo «%1$s» ya no es visible en tu perfil.</string> -->
   <!--Copy displayed when badge expires after payment failure-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Tu suscripción mensual se ha cancelado porque no hemos podido procesar tu pago. Tu distintivo ya no es visible en tu perfil.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Tu suscripción mensual se ha cancelado porque no hemos podido procesar tu pago. Tu distintivo ya no es visible en tu perfil.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Puedes continuar usando la aplicación, pero para apoyar a Signal, reactiva tu distintivo. Renuévalo ahora.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renovar suscripción</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Imposible procesar el pago de la suscripción</string>
@@ -3766,7 +3766,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Enviando …</string>
   <!--Label when a story fails to send-->
-  <string name="StoriesLandingItem__couldnt_send">Imposible enviar historia</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingItem__couldnt_send">Imposible enviar historia</string> -->
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">¿Ocultar historia?</string>
   <!--Message of dialog confirming decision to hide a story-->

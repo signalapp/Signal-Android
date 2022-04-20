@@ -539,9 +539,9 @@ Anfon neges heb ei diogelu?</string>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Golwg</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Rhannu â</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">Dim ond ar gyfer delweddau a fideos y mae atodiadau lluosog yn cael eu cynnal</string>
-  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Nid oes gennych ganiatâd i anfon i\'r grŵp yma</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Rhannu â</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Dim ond ar gyfer delweddau a fideos y mae atodiadau lluosog yn cael eu cynnal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Nid oes gennych ganiatâd i anfon i\'r grŵp yma</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Methiant cyfathrebu Signal parhaol!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Nid oedd Signal yn gallu cofrestru gyda Google Play Services. Mae negeseuon a galwadau Signal wedi\'u hanalluogi, ceisiwch ailgofrestru yn Gosodiadau &gt; Uwch.</string>
@@ -2301,8 +2301,8 @@ Anfon neges heb ei diogelu?</string>
   <string name="preferences__advanced">Uwch</string>
   <string name="preferences__donate_to_signal">Cyfrannu at Signal</string>
   <string name="preferences__subscription">Tanysgrifiad</string>
-  <string name="preferences__become_a_signal_sustainer">Bod yn Gefnogwr Signal</string>
-  <string name="preferences__signal_boost">Signal Boost</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">Bod yn Gefnogwr Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Signal Boost</string> -->
   <string name="preferences__privacy">Preifatrwydd</string>
   <string name="preferences__mms_user_agent">Asiant Defnyddiwr MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Gosodiadau MMS â llaw</string>
@@ -3169,7 +3169,7 @@ Anfon neges heb ei diogelu?</string>
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Wedi methu anfon at rai defnyddwyr</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Dim ond gyda hyd at %1$d o sgyrsiau y gallwch chi eu rhannu</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">Anfon ymlaen</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">Anfon ymlaen</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Papur wal sgwrsio</string>
   <!--ChatWallpaperFragment-->
@@ -3479,9 +3479,9 @@ Anfon neges heb ei diogelu?</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Ychwanegu llun</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Dod yn Gefnogwr</string>
-  <string name="BecomeASustainerMegaphone__signal_is_powered">Mae Signal yn cael ei egni gan bobl fel chi. Cyfrannwch a derbyn bathodyn proffil.</string>
-  <string name="BecomeASustainerMegaphone__no_thanks">Dim diolch</string>
-  <string name="BecomeASustainerMegaphone__contribute">Cyfrannu</string>
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">Mae Signal yn cael ei egni gan bobl fel chi. Cyfrannwch a derbyn bathodyn proffil.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">Dim diolch</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">Cyfrannu</string> -->
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Agor chwilio emoji</string>
@@ -3672,19 +3672,19 @@ Anfon neges heb ei diogelu?</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Mae eich tanysgrifiad wedi\'i ddiddymu.</string>
   <string name="SubscribeFragment__update_subscription_question">Diweddaru tanysgrifiad?</string>
   <string name="SubscribeFragment__update">Diweddaru</string>
-  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Bydd swm llawn y pris tanysgrifio newydd yn cael ei godi arnoch heddiw. Bydd eich tanysgrifiad yn adnewyddu ar %1$s.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Bydd swm llawn y pris tanysgrifio newydd yn cael ei godi arnoch heddiw. Bydd eich tanysgrifiad yn adnewyddu ar %1$s.</string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Bydd swm llawn (%1$s) y pris tanysgrifio newydd yn cael ei godi arnoch heddiw. Bydd eich tanysgrifiad yn adnewyddu\'n fisol.</string>
   <string name="Subscription__s_per_month">%s/month</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/month · Adnewyddu ar %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/mis · Yn dod i ben %2$s</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Mae Signal yn gorff ddim-er-elw heb unrhyw hysbysebwyr na buddsoddwyr, sy\'n cael ei gynnal dim ond gan y bobl sy\'n ei ddefnyddio a\'i werthfawrogi. Gwnewch gyfraniad misol cylchol a derbyn bathodyn proffil i rannu\'ch cefnogaeth.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Pam Cyfrannu?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Mae Signal yn gorff ddim-er-elw heb unrhyw hysbysebwyr na buddsoddwyr, sy\'n cael ei gynnal dim ond gan y bobl sy\'n ei ddefnyddio a\'i werthfawrogi. Gwnewch gyfraniad misol cylchol a derbyn bathodyn proffil i rannu\'ch cefnogaeth.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Pam Cyfrannu?</string> -->
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Mae Signal wedi ymrwymo i ddatblygu technoleg preifatrwydd cod agored sy\'n diogelu mynegiant rhydd ac yn galluogi cyfathrebu byd-eang diogel.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Mae eich cyfraniad yn cynnal yr achos hwn ac yn talu am ddatblygu a gweithredu ap sy\'n cael ei ddefnyddio gan filiynau ar gyfer cyfathrebu preifat. Dim hysbysebion. Dim tracwyr. Dim chwarae o gwmpas.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Mae eich cyfraniad yn cynnal yr achos hwn ac yn talu am ddatblygu a gweithredu ap sy\'n cael ei ddefnyddio gan filiynau ar gyfer cyfathrebu preifat. Dim hysbysebion. Dim tracwyr. Dim chwarae o gwmpas.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Diolch am eich Cefnogaeth!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Diolch am yr Hwb!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Rydych wedi ennill bathodyn %s! Helpwch i godi ymwybyddiaeth am Signal trwy ddangos y bathodyn hwn ar eich proffil.</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Rydych chi wedi ennill bathodyn Boost! Helpwch i godi ymwybyddiaeth am Signal trwy ddangos y bathodyn hwn ar eich proffil.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Rydych wedi ennill bathodyn %s! Helpwch i godi ymwybyddiaeth am Signal trwy ddangos y bathodyn hwn ar eich proffil.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Rydych chi wedi ennill bathodyn Boost! Helpwch i godi ymwybyddiaeth am Signal trwy ddangos y bathodyn hwn ar eich proffil.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Gallwch hefyd</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">ddod yn Gefnogwr misol.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Dangos ar eich Proffil</string>
@@ -3700,7 +3700,7 @@ Anfon neges heb ei diogelu?</string>
   <string name="ManageDonationsFragment__subscription_faq">Cwestiynau Cyffredin Tanysgrifio</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Gwall wrth gael tanysgrifiad.</string>
   <string name="BoostFragment__give_signal_a_boost">Rhowch Hwb i Signal</string>
-  <string name="BoostFragment__say_thanks_and_earn">Dweud \"Diolch!\" ac ennill bathodyn Hwb am %1$d diwrnod.</string>
+  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">Dweud \"Diolch!\" ac ennill bathodyn Hwb am %1$d diwrnod.</string> -->
   <string name="Boost__enter_custom_amount">Rhowch Swm Penodol</string>
   <string name="Boost__one_time_contribution">Cyfraniad unwaith</string>
   <string name="MySupportPreference__add_a_signal_boost">Ychwanegu Hwb Signal</string>
@@ -3710,19 +3710,19 @@ Anfon neges heb ei diogelu?</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Methu ychwanegu bathodyn. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Cysylltwch â chymorth</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Mae\'ch Bathodyn wedi dod i ben</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Daeth y Bathodyn i ben</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Diddymwyd y tanysgrifiad</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Mae eich bathodyn Boost wedi dod i ben ac nid yw bellach yn weladwy i eraill ar eich proffil.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Mae\'ch Bathodyn wedi dod i ben</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Daeth y Bathodyn i ben</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Diddymwyd y tanysgrifiad</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Mae eich bathodyn Boost wedi dod i ben ac nid yw bellach yn weladwy i eraill ar eich proffil.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Gallwch ail-greu eich bathodyn Boost am 30 diwrnod arall gyda chyfraniad unwaith yn unig.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Er mwyn parhau i gefnogi technoleg sydd wedi\'i hadeiladu ar eich cyfer chi, ystyriwch ddod yn Gefnogwr misol.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Er mwyn parhau i gefnogi technoleg sydd wedi\'i hadeiladu ar eich cyfer chi, ystyriwch ddod yn Gefnogwr misol.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Dod yn Gefnogwr</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Ychwanegwch Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nid nawr</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Cafodd eich tanysgrifiad Cefnogwr ei ddiddymu\'n awtomatig oherwydd eich bod yn anweithredol am gyfnod rhy hir. Nid yw\'ch bathodyn %1$s i\'w weld ar eich proffil mwyach.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Cafodd eich tanysgrifiad Cefnogwr ei ddiddymu\'n awtomatig oherwydd eich bod yn anweithredol am gyfnod rhy hir. Nid yw\'ch bathodyn %1$s i\'w weld ar eich proffil mwyach.</string> -->
   <!--Copy displayed when badge expires after payment failure-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Cafodd eich tanysgrifiad Cefnogwr ei ddiddymu oherwydd nad oeddem yn gallu prosesu eich taliad. Nid yw eich bathodyn bellach yn weladwy ar eich proffil.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Cafodd eich tanysgrifiad Cefnogwr ei ddiddymu oherwydd nad oeddem yn gallu prosesu eich taliad. Nid yw eich bathodyn bellach yn weladwy ar eich proffil.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Gallwch barhau i ddefnyddio Signal ond i gefnogi\'r ap ac ail-greu\'ch bathodyn, adnewyddwch nawr.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Adnewyddu tanysgrifiad</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Methu â phrosesu taliad tanysgrifiad</string>
@@ -3972,7 +3972,7 @@ Anfon neges heb ei diogelu?</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Yn anfon…</string>
   <!--Label when a story fails to send-->
-  <string name="StoriesLandingItem__couldnt_send">Methu anfon</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingItem__couldnt_send">Methu anfon</string> -->
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Cuddio\'r stori?</string>
   <!--Message of dialog confirming decision to hide a story-->

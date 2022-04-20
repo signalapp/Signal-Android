@@ -327,7 +327,7 @@
   <string name="DozeReminder_optimize_for_missing_play_services">Inganta don rashin Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Wannan na\'urar baya daukan Google Play Services. Taba nan domin kashe fasalin batiri da yake hana Signal karban sakwanni idan ba\'a aiki dashi.</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Tura wa</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Tura wa</string> -->
   <!--GcmBroadcastReceiver-->
   <!-- Removed by excludeNonTranslatables <string name="GcmBroadcastReceiver_retrieving_a_message">Diban sakwanni.</string> -->
   <!--GcmRefreshJob-->

@@ -477,8 +477,8 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Näita</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Jaga inimesega</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">Mitu manust on lubatud ainult piltide ja videote puhul</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Jaga inimesega</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Mitu manust on lubatud ainult piltide ja videote puhul</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Püsiv Signali ühendusviga!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ei saanud registreerida teenusega Google Play Services. Signali sõnumid ja kõned on keelatud, palun proovi taas-registreerida menüüs Seaded &gt; Täpsem.</string>
@@ -2041,7 +2041,7 @@
   <string name="preferences__advanced">Täpsem</string>
   <string name="preferences__donate_to_signal">Anneta Signalile</string>
   <string name="preferences__subscription">Tellimus</string>
-  <string name="preferences__signal_boost">Signalile hoogu</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Signalile hoogu</string> -->
   <string name="preferences__privacy">Privaatsus</string>
   <string name="preferences__mms_user_agent">MMS kasutajaagent</string>
   <string name="preferences__advanced_mms_access_point_names">Käsitsi määratud MMS-seaded</string>
@@ -2813,7 +2813,7 @@
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Mõnedele kasutajatele saatmine ei õnnestunud.</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Saad jagada ainult kuni %1$d vestlusega</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">Edasta sõnum</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">Edasta sõnum</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Vestluse taustapilt</string>
   <!--ChatWallpaperFragment-->
@@ -3072,7 +3072,7 @@
   <string name="AddAProfilePhotoMegaphone__not_now">Mitte praegu</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Lisa foto</string>
   <!--BecomeASustainerMegaphone-->
-  <string name="BecomeASustainerMegaphone__no_thanks">Tänan, ei</string>
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">Tänan, ei</string> -->
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Ava emotikonide otsing</string>
@@ -3259,9 +3259,9 @@
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Märgi lisamine ei õnnestunud. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Palun võta ühendust kasutajatoega.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Sinu märk on aegunud</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Märk on aegunud</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Tellimus tühistatud</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Sinu märk on aegunud</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Märk on aegunud</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Tellimus tühistatud</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Mitte praegu</string>
   <!--Copy displayed when badge expires after user inactivity-->
   <!--Copy displayed when badge expires after payment failure-->

@@ -436,9 +436,9 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Tazama</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Shiriki na</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">Viambatisho vingi hutumika tu kwa picha na video</string>
-  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Huna ruhusa ya kutuma kwenye kikundi hiki</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Shiriki na</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Viambatisho vingi hutumika tu kwa picha na video</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Huna ruhusa ya kutuma kwenye kikundi hiki</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Muda wote mawasiliano ya Signal yanafeli!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal haikuweza kujisajili na Huduma za Google Play. Ujumbe wa Signal na simu zimezimwa, tafadhali jaribu kujiandikisha katika Mipangilio &gt;  Zaidi.</string>
@@ -2780,7 +2780,7 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Baadhi ya watumiaji hawajatumiwa</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Unaweza tu kushiriki hadi gumzo %1$d</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">Tuma ujumbe </string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">Tuma ujumbe </string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Picha ya mandhari ya gumzo</string>
   <!--ChatWallpaperFragment-->
@@ -3051,7 +3051,7 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Sio sasa</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Ongeza picha</string>
   <!--BecomeASustainerMegaphone-->
-  <string name="BecomeASustainerMegaphone__no_thanks">Hapana nashukuru</string>
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">Hapana nashukuru</string> -->
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Fungua utaftaji wa emoji</string>

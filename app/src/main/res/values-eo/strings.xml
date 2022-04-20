@@ -493,9 +493,9 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Montri pli</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Kunhavigi kun</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">Pluraj kunsendaĵoj nur eblas kun bildoj kaj videaĵoj</string>
-  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Vi ne rajtas sendi al tiu ĉi grupo</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Kunhavigi kun</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Pluraj kunsendaĵoj nur eblas kun bildoj kaj videaĵoj</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Vi ne rajtas sendi al tiu ĉi grupo</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Daŭra miso ĉe Signal-a komunikado!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ne eblis registri kun „Play Services“ de Google. Signal-aj mesaĝoj kaj alvokoj malŝaltiĝis, bonvolu provi re-registriĝi en Agordoj → Speciala.</string>
@@ -2131,8 +2131,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__advanced">Speciala</string>
   <string name="preferences__donate_to_signal">Donaci al Signal</string>
   <string name="preferences__subscription">Monata donaco</string>
-  <string name="preferences__become_a_signal_sustainer">Iĝi Signal-donacanto</string>
-  <string name="preferences__signal_boost">Signal-plikonatigo</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">Iĝi Signal-donacanto</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Signal-plikonatigo</string> -->
   <string name="preferences__privacy">Privateco</string>
   <string name="preferences__mms_user_agent">MMS-a uzant-ilo („user agent“)</string>
   <string name="preferences__advanced_mms_access_point_names">Permanaj agordoj de MMS</string>
@@ -2977,7 +2977,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MultiShareDialogs__failed_to_send_to_some_users">La sendo al kelkaj uzantoj malsukcesis</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Vi povas kunhavigi nur kun maks. %1$d interparoloj</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">Plusendi mesaĝon</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">Plusendi mesaĝon</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Interparola ekranfono</string>
   <!--ChatWallpaperFragment-->
@@ -3283,9 +3283,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="AddAProfilePhotoMegaphone__add_photo">Aldoni foton</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Iĝi donacanto</string>
-  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal ekzistas pro la subteno de homoj kiel vi. Ekdonacu kaj ricevu profil-insignon.</string>
-  <string name="BecomeASustainerMegaphone__no_thanks">Ne, dankon</string>
-  <string name="BecomeASustainerMegaphone__contribute">Donaci</string>
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">Signal ekzistas pro la subteno de homoj kiel vi. Ekdonacu kaj ricevu profil-insignon.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">Ne, dankon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">Donaci</string> -->
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoĝio</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Malfermi la serĉon de emoĝioj</string>
@@ -3468,19 +3468,19 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Via abono nuliĝis.</string>
   <string name="SubscribeFragment__update_subscription_question">Ĉu ĝisdatigi la abonon?</string>
   <string name="SubscribeFragment__update">Ĝisdatigi</string>
-  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">La plena monsumo de via nova abono pagigôs hodiaŭ. Via abono rekomenciĝos %1$s.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">La plena monsumo de via nova abono pagigôs hodiaŭ. Via abono rekomenciĝos %1$s.</string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">La plena monsumo (%1$s) de via nova abono pagigôs hodiaŭ. Via abono rekomenciĝos ĉiumonate.</string>
   <string name="Subscription__s_per_month">Po %s monate</string>
   <string name="Subscription__s_per_month_dot_renews_s">Po %1$s monate · Rekomenciĝos %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">Po %1$s monate · Finiĝos %2$s</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal estas neprofitocela organizaĵo sen reklamistoj, sen investistoj, ĝi nur estas subtenata de homoj, kiuj uzas kaj taksaj ĝin. Faru ĉiumonatan donacon, kaj ricevu profilan insignon por montri vian subtenon.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Kial donaci?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal estas neprofitocela organizaĵo sen reklamistoj, sen investistoj, ĝi nur estas subtenata de homoj, kiuj uzas kaj taksaj ĝin. Faru ĉiumonatan donacon, kaj ricevu profilan insignon por montri vian subtenon.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Kial donaci?</string> -->
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal sin dediĉas al la disvolvado de priprivateca malfermitkoda teĥnologio, kiuj protektas liberan esprimon, kaj ebligas mondan sekuran komunikadon.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Via donaco vivtenas tiun aferon, kaj pagas por la programado kaj la funkciigo de aplikâjo uzita de milionoj por komunikiĝi privatece. Neniu reklamo. Neniu spurilo. Neniu ŝerco.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Via donaco vivtenas tiun aferon, kaj pagas por la programado kaj la funkciigo de aplikâjo uzita de milionoj por komunikiĝi privatece. Neniu reklamo. Neniu spurilo. Neniu ŝerco.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Dankon pro via subtenado!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Dankon pro via subteno!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Vi gajnis insignon %s! Helpu al Signal konatiĝi per la montro de via insigno en via profilo.</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Vi gajnis la insignon pri plikonatigo! Helpu al Signal konatiĝi per la montro de via insigno en via profilo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Vi gajnis insignon %s! Helpu al Signal konatiĝi per la montro de via insigno en via profilo.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Vi gajnis la insignon pri plikonatigo! Helpu al Signal konatiĝi per la montro de via insigno en via profilo.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Vi povas ankaŭ</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">iĝi monata donacanto.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Montri ĉe profilo</string>
@@ -3497,7 +3497,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ManageDonationsFragment__subscription_faq">Respondaro pri abono</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Eraro dum ricevo de abono.</string>
   <string name="BoostFragment__give_signal_a_boost">Signal-plikonatigo</string>
-  <string name="BoostFragment__say_thanks_and_earn">Diru „Dankon!“ kaj gajnu la insignon „Plikonatigo“ dum %1$d tagoj.</string>
+  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">Diru „Dankon!“ kaj gajnu la insignon „Plikonatigo“ dum %1$d tagoj.</string> -->
   <string name="Boost__enter_custom_amount">Entajpi propran monsumon</string>
   <string name="Boost__one_time_contribution">Unufoja donaco</string>
   <string name="MySupportPreference__add_a_signal_boost">Aldoni Signal-plikonatigo</string>
@@ -3507,19 +3507,19 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">La insigno ne aldoniĝis. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Kontaktu la helpservon.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Via insigno finiĝis</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">La insigno eksvalidiĝis</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abono nuligita</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Via insigno pri plikonatigo senvalidiĝis kaj ne plu videblas al aliuloj ĉe via profilo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Via insigno finiĝis</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">La insigno eksvalidiĝis</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abono nuligita</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Via insigno pri plikonatigo senvalidiĝis kaj ne plu videblas al aliuloj ĉe via profilo.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Vi povas rehavi vian insignon pri plikonatigo dum 30 tagoj per unufoja donaco.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Por plu subteni teĥnologion, kiu estas farita por vi, konsideru donaci monate.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Por plu subteni teĥnologion, kiu estas farita por vi, konsideru donaci monate.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Iĝi donacanto</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Aldoni plikonatigon</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne nun</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Via subtenanto-abono aŭtomate nuliĝis pro via tro longa neaktiveco. Via insigno %1$s ne plu videblas en via profilo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Via subtenanto-abono aŭtomate nuliĝis pro via tro longa neaktiveco. Via insigno %1$s ne plu videblas en via profilo.</string> -->
   <!--Copy displayed when badge expires after payment failure-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Via subtenanto-abono nuliĝis pro tio, ke ni ne povis trakti vian pagon. Via insigno ne plu videblas en via profilo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Via subtenanto-abono nuliĝis pro tio, ke ni ne povis trakti vian pagon. Via insigno ne plu videblas en via profilo.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Vi povas daŭrigi uzi Signal-on, sed por subtenu la aplikaĵon kaj rehavi vian insignon, reaboniĝu nun.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Reabono</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Ne eblas trakti vian subtenanto-pagon.</string>
@@ -3770,7 +3770,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Sendo…</string>
   <!--Label when a story fails to send-->
-  <string name="StoriesLandingItem__couldnt_send">Sendo malsukcesis</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingItem__couldnt_send">Sendo malsukcesis</string> -->
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Ĉu kaŝi la rakonton?</string>
   <!--Message of dialog confirming decision to hide a story-->

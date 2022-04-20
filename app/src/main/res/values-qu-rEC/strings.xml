@@ -264,7 +264,7 @@
   <string name="DozeReminder_optimize_for_missing_play_services">Google Play mana yanapay paktaymanta ashtawan allichipay</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Kay antahillayka mana Google Play yanapayta chaski ushanchu. Kaypi llapishpa riti mirachita anchuchi, Signal chaskita ushachun kikin na internetpi kakpipash.</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Payman kachay</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Payman kachay</string> -->
   <!--ExperienceUpgradeActivity-->
   <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Signalman allishamushka kapay.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSegure shinallata RedPhone kunanka shukllashina chaski aplicacionmi kan, imakupapash: Signal.</string> -->

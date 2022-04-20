@@ -493,9 +493,9 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Преглед</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Сподели со</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">Повеќекратни прилози се поддржани само за слики и видеа</string>
-  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Немате дозвола да испраќате на оваа група</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Сподели со</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Повеќекратни прилози се поддржани само за слики и видеа</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Немате дозвола да испраќате на оваа група</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Трајно неуспешна комуникација со Signal</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не успеа да се регистрира со Google Play услуги. Пораките и повиците од Signal се оневозможени. Ве молиме пробајте да се регистрирате повторно во Поставувања &gt; Напредно.</string>
@@ -2128,8 +2128,8 @@
   <string name="preferences__advanced">Напредно</string>
   <string name="preferences__donate_to_signal">Донирај на Signal</string>
   <string name="preferences__subscription">Претплатa</string>
-  <string name="preferences__become_a_signal_sustainer">Станете поддржувач на Signal</string>
-  <string name="preferences__signal_boost">Signal поттик</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">Станете поддржувач на Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Signal поттик</string> -->
   <string name="preferences__privacy">Приватност</string>
   <string name="preferences__mms_user_agent">MMS кориснички агент</string>
   <string name="preferences__advanced_mms_access_point_names">Рачни MMS поставувања</string>
@@ -2974,7 +2974,7 @@
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Не успеав да испратам на некои корисници</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Можете да споделите со најмногу %1$d разговори</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">Препрати порака</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">Препрати порака</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Позадина за разговорот</string>
   <!--ChatWallpaperFragment-->
@@ -3280,9 +3280,9 @@
   <string name="AddAProfilePhotoMegaphone__add_photo">Додај слика</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Станете поддржувач</string>
-  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal е овозможен од луѓе како тебе. Придонеси и добиј беџ на профилот.</string>
-  <string name="BecomeASustainerMegaphone__no_thanks">Не, благодарам</string>
-  <string name="BecomeASustainerMegaphone__contribute">Придонесете</string>
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">Signal е овозможен од луѓе како тебе. Придонеси и добиј беџ на профилот.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">Не, благодарам</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">Придонесете</string> -->
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Емоџи</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Отвори пребарување на емоџи</string>
@@ -3465,19 +3465,19 @@
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Вашата претплата е откажана.</string>
   <string name="SubscribeFragment__update_subscription_question">Да ја ажурирам претплатата?</string>
   <string name="SubscribeFragment__update">Aжурирај</string>
-  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Ќе Ви биде наплатен целосниот износ на новата претплата денес. Вашата претплата ќе се обнови на %1$s.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Ќе Ви биде наплатен целосниот износ на новата претплата денес. Вашата претплата ќе се обнови на %1$s.</string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Ќе ви биде наплатена целата сума (%1$s) од цената за новата претплата денес. Вашата претплата ќе се обновува секој месец.</string>
   <string name="Subscription__s_per_month">%s/месец</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/месец · Се обновува на %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/месец · Истекува на %2$s</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal е непрофитна организација без огласувачи и инвеститори, оддржуван само од луѓето кои го користат и ценат. Започнете со месечен придонес и добијте беџ на профилот за да ја споделите Вашата поддршка.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Зошто да придонесете?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal е непрофитна организација без огласувачи и инвеститори, оддржуван само од луѓето кои го користат и ценат. Започнете со месечен придонес и добијте беџ на профилот за да ја споделите Вашата поддршка.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Зошто да придонесете?</string> -->
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal е посветен на развивање технологија за приватност со отворен код која го штити слободното изразување и овозможува сигурна глобална комуникација.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Вашите придонеси ја подгреваат каузата и плаќаат за развојот и операциите околу апликацијата која што се користи од милиони за приватна комуникација. Без реклами. Без тракери. Сериозно.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Вашите придонеси ја подгреваат каузата и плаќаат за развојот и операциите околу апликацијата која што се користи од милиони за приватна комуникација. Без реклами. Без тракери. Сериозно.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Ви благодариме за Вашата поддршка!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Благодариме за поттикот!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Добивте %s беџ! Помогнете му на Signal да изгради свест преку прикажување на овој беџ на Вашиот профил.</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Добивте беџ за поттик! Помогнете му на Signal да изгради свест преку прикажување на овој беџ на Вашиот профил.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Добивте %s беџ! Помогнете му на Signal да изгради свест преку прикажување на овој беџ на Вашиот профил.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Добивте беџ за поттик! Помогнете му на Signal да изгради свест преку прикажување на овој беџ на Вашиот профил.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Можете исто така да</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">Станете месечен поддржувач</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Прикажи на профил</string>
@@ -3494,7 +3494,7 @@
   <string name="ManageDonationsFragment__subscription_faq">ЧПП за претплата</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Грешка при добивање на претплата.</string>
   <string name="BoostFragment__give_signal_a_boost">Дајте му поттик на Signal</string>
-  <string name="BoostFragment__say_thanks_and_earn">Кажете „Благодарам!“ и добијте го беџот за поттик на%1$d дена.</string>
+  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">Кажете „Благодарам!“ и добијте го беџот за поттик на%1$d дена.</string> -->
   <string name="Boost__enter_custom_amount">Внесете износ</string>
   <string name="Boost__one_time_contribution">Еднократен придонес</string>
   <string name="MySupportPreference__add_a_signal_boost">Додај поттик за Signal</string>
@@ -3504,19 +3504,19 @@
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Не може да се додаде значка. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Ве молиме контактирајте со тимот за поддршка.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Вашиот беџ е истечен</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Беџот е истечен</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Претплатата е откажана</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Вашиот беџ за поттик истече и повеќе не е видлив за другите на Вашиот профил.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Вашиот беџ е истечен</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Беџот е истечен</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Претплатата е откажана</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Вашиот беџ за поттик истече и повеќе не е видлив за другите на Вашиот профил.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Можете повторно да го активирате Вашиот беџ за поттик за уште 30 дена со еднократен надомест.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">За да продолжите да ја поддржувате технологијата што е создадена за Вас, размислете да станете месечен поддржувач.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">За да продолжите да ја поддржувате технологијата што е создадена за Вас, размислете да станете месечен поддржувач.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Станете поддржувач</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Додај поттик</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сега</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Вашата претплата за поддршка беше автоматски откажана затоа што бевте премногу долго неактивни. Вашиот беџ %1$s повеќе не е видлив на Вашиот профил.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Вашата претплата за поддршка беше автоматски откажана затоа што бевте премногу долго неактивни. Вашиот беџ %1$s повеќе не е видлив на Вашиот профил.</string> -->
   <!--Copy displayed when badge expires after payment failure-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Вашата претплата за поддршка е откажана бидејќи не можевме да го обработиме Вашето плаќање. Вашиот беџ повеќе не е видлив на Вашиот профил.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Вашата претплата за поддршка е откажана бидејќи не можевме да го обработиме Вашето плаќање. Вашиот беџ повеќе не е видлив на Вашиот профил.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Можете да продолжите да го користите Signal, но за да ја поддржите апликацијата реактивирајте го беџот, обновете сега.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Обнови претплата</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Не може да се обработи плаќањето</string>
@@ -3767,7 +3767,7 @@
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Се испраќа…</string>
   <!--Label when a story fails to send-->
-  <string name="StoriesLandingItem__couldnt_send">Не може да се испрати</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingItem__couldnt_send">Не може да се испрати</string> -->
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Да се сокрие приказната?</string>
   <!--Message of dialog confirming decision to hide a story-->

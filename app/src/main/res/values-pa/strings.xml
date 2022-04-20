@@ -91,7 +91,9 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">ਤੁਸੀਂ ਇਕ ਦੂਜੇ ਨੂੰ ਸੁਨੇਹਾ ਭੇਜਣ ਅਤੇ ਕਾਲ ਕਰਨ ਦੇ ਯੋਗ ਹੋਵੋਗੇ ਅਤੇ ਤੁਹਾਡਾ ਨਾਂ ਅਤੇ ਫੋਟੋ ਉਨ੍ਹਾਂ ਨਾਲ ਸਾਂਝੀ ਕੀਤੀ ਜਾਏਗੀ।</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">ਪਾਬੰਦੀਸ਼ੁਦਾ ਲੋਕ ਤੁਹਾਨੂੰ ਕਾਲ ਨਹੀਂ ਕਰ ਸਕਣਗੇ ਜਾਂ ਸੁਨੇਹੇ ਨਹੀਂ ਭੇਜ ਸਕਣਗੇ।</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal ਅੱਪਡੇਟ ਤੇ ਖ਼ਬਰਾਂ ਲੈਣ ਤੋਂ ਪਾਬੰਦੀ ਲਾਓ।</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signal ਅੱਪਡੇਟ ਤੇ ਖ਼ਬਰਾਂ ਲੈਣਾ ਮੁੜ-ਸ਼ੁਰੂ ਕਰੋ।</string>
   <string name="BlockUnblockDialog_unblock_s">%1$s ਤੋਂ ਪਾਬੰਦੀ ਹਟਾਉਣੀ ਹੈ?</string>
   <string name="BlockUnblockDialog_block">ਪਾਬੰਦੀ ਲਾਓ</string>
   <string name="BlockUnblockDialog_block_and_leave">ਪਾਬੰਦੀ ਲਾਓ ਤੇ ਛੱਡੋ</string>
@@ -123,6 +125,7 @@
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">ਤੁਸੀਂ ਹੁਣ ਵਧੀਆ ਤਜਰਬੇ ਵਾਸਤੇ Signal ਸੇਵਾ ਨਾਲ ਸਿੱਧਾ ਕਨੈਕਟ ਕਰ ਸਕਦੇ ਹੋ।</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">ਬੰਦ ਕਰੋ</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
@@ -158,7 +161,9 @@
   <string name="ContactsCursorLoader_phone_number_search">ਫੋਨ ਨੰਬਰ ਖੋਜੋ</string>
   <string name="ContactsCursorLoader_username_search">ਵਰਤੋਂਕਾਰ-ਨਾਂ ਖੋਜੋ</string>
   <!--Label for my stories when selecting who to send media to-->
+  <string name="ContactsCursorLoader_my_stories">ਮੇਰੀਆਂ ਕਹਾਣੀਆਂ</string>
   <!--Action for creating a new story-->
+  <string name="ContactsCursorLoader_new_story">ਨਵੀਂ ਕਹਾਣੀ</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">ਸੁਨੇਹਾ %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal ਕਾਲ %s</string>
@@ -313,6 +318,7 @@
   <!--Dialog title for block group link join requests-->
   <!--Dialog message for block group link join requests-->
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">ਬੇਨਤੀ ਉੱਤੇ ਪਾਬੰਦੀ</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">ਰੱਦ ਕਰੋ</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -477,9 +483,9 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">ਵੇਖੋ</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">ਇਹਨਾਂ ਨਾਲ ਸ਼ੇਅਰ ਕਰੋ</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">ਇੱਕ ਤੋਂ ਵੱਧ ਅਟੈਚਮੈਂਟਾਂ ਸਿਰਫ਼ ਚਿੱਤਰਾਂ ਅਤੇ ਵੀਡੀਓ ਲਈ ਹੀ ਯੋਗ ਹਨ</string>
-  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">ਤੁਹਾਡੇ ਕੋਲ ਇਸ ਗਰੁੱਪ ਨੂੰ ਭੇਜਣ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ ਹੈ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">ਇਹਨਾਂ ਨਾਲ ਸ਼ੇਅਰ ਕਰੋ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">ਇੱਕ ਤੋਂ ਵੱਧ ਅਟੈਚਮੈਂਟਾਂ ਸਿਰਫ਼ ਚਿੱਤਰਾਂ ਅਤੇ ਵੀਡੀਓ ਲਈ ਹੀ ਯੋਗ ਹਨ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">ਤੁਹਾਡੇ ਕੋਲ ਇਸ ਗਰੁੱਪ ਨੂੰ ਭੇਜਣ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ ਹੈ</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">ਸਥਾਈ Signal ਸੰਚਾਰ ਅਸਫ਼ਲ!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Google Play ਸੇਵਾਵਾਂ ਨਾਲ ਰਜਿਸਟਰ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ ਸੀ। Signal ਸੁਨੇਹੇ ਅਤੇ ਕਾਲਾਂ ਅਸਮਰੱਥ ਕੀਤੇ ਗਏ ਹਨ, ਕਿਰਪਾ ਕਰਕੇ ਸੈਟਿੰਗਾਂ &gt; ਤਕਨੀਕੀ ਵਿੱਚੋਂ ਮੁੜ-ਰਜਿਸਟਰ ਕਰੋ।</string>
@@ -1230,6 +1236,7 @@
   <!--Recipient-->
   <string name="Recipient_you">ਤੁਸੀਂ</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">ਮੇਰੀ ਕਹਾਣੀ</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">ਪਾਬੰਦੀ ਲਾਓ</string>
   <string name="RecipientPreferenceActivity_unblock">ਪਾਬੰਦੀ ਹਟਾਓ</string>
@@ -1267,6 +1274,12 @@
   <string name="WebRtcCallView__reconnecting">ਦੁਬਾਰਾ ਕਨੈਕਟ ਹੋ ਰਿਹਾ ਹੈ…</string>
   <string name="WebRtcCallView__joining">ਸ਼ਾਮਲ ਹੋ ਰਹੇ ਹਨ…</string>
   <string name="WebRtcCallView__disconnected">ਕੁਨੈਕਸ਼ਨ ਬੰਦ</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal %1$s ਨੂੰ ਰਿੰਗ ਕਰੇਗਾ</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal %1$s ਅਤੇ %2$s ਨੂੰ ਰਿੰਗ ਕਰੇਗਾ</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal %1$s, %2$s ਅਤੇ %3$d ਹੋਰ ਨੂੰ ਰਿੰਗ ਕਰੇਗਾ</item>
+    <item quantity="other">Signal %1$s, %2$s ਅਤੇ %3$d ਹੋਰਾਂ ਨੂੰ ਰਿੰਗ ਕਰੇਗਾ</item>
+  </plurals>
   <string name="WebRtcCallView__s_will_be_notified">%1$s ਨੂੰ ਸੂਚਿਤ ਕੀਤਾ ਜਾਵੇਗਾ</string>
   <string name="WebRtcCallView__ringing_s">%1$s ਨੂੰ ਘੰਟੀ ਜਾ ਰਹੀ ਹੈ</string>
   <string name="WebRtcCallView__s_is_calling_you">%1$s ਤੁਹਾਨੂੰ ਕਾਲ ਕਰ ਰਹੇ ਹਨ</string>
@@ -1382,6 +1395,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">ਹੋਰ</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">ਪਿੰਨ ਕਾਮਯਾਬੀ ਨਾਲ ਤਸਦੀਕ ਕੀਤਾ। ਅਸੀਂ ਤੁਹਾਨੂੰ ਫੇਰ ਯਾਦ ਕਰਵਾਵਾਂਗੇ।</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">ਪਿੰਨ ਕਾਮਯਾਬੀ ਨਾਲ ਤਸਦੀਕ ਕੀਤਾ। ਅਸੀਂ ਤੁਹਾਨੂੰ ਭਲਕੇ ਫੇਰ ਯਾਦ ਕਰਵਾਵਾਂਗੇ।</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">ਪਿੰਨ ਕਾਮਯਾਬੀ ਨਾਲ ਤਸਦੀਕ ਕੀਤਾ। ਅਸੀਂ ਤੁਹਾਨੂੰ ਕੁਝ ਦਿਨਾਂ ਵਿੱਚ ਫੇਰ ਯਾਦ ਕਰਵਾਵਾਂਗੇ।</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">ਪਿੰਨ ਕਾਮਯਾਬੀ ਨਾਲ ਤਸਦੀਕ ਕੀਤਾ। ਅਸੀਂ ਤੁਹਾਨੂੰ ਹਫ਼ਤੇ ਕੁ ਵਿੱਚ ਫੇਰ ਯਾਦ ਕਰਵਾਵਾਂਗੇ।</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">ਪਿੰਨ ਕਾਮਯਾਬੀ ਨਾਲ ਤਸਦੀਕ ਕੀਤਾ। ਅਸੀਂ ਤੁਹਾਨੂੰ ਕੁਝ ਕੁ ਹਫ਼ਤਿਆਂ ਵਿੱਚ ਫੇਰ ਯਾਦ ਕਰਵਾਵਾਂਗੇ।</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">ਪਿੰਨ ਕਾਮਯਾਬੀ ਨਾਲ ਤਸਦੀਕ ਕੀਤਾ। ਅਸੀਂ ਤੁਹਾਨੂੰ ਮਹੀਨੇ ਕੁ ਵਿੱਚ ਫੇਰ ਯਾਦ ਕਰਵਾਵਾਂਗੇ।</string>
   <!--Slide-->
   <string name="Slide_image">ਚਿੱਤਰ</string>
   <string name="Slide_sticker">ਸਟਿੱਕਰ</string>
@@ -1532,7 +1551,9 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">ਇਹ ਇਸ ਸੁਨੇਹੇ ਨੂੰ ਪੱਕੇ ਤੌਰ ਉੱਤੇ ਹਟਾ ਦੇਵੇਗਾ।</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s ਤੋਂ %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">ਤੁਸੀਂ %1$s ਨੂੰ</string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s ਨੇ ਤੁਹਾਨੂੰ</string>
   <string name="MediaPreviewActivity_media_no_longer_available">ਮੀਡੀਆ ਹੁਣ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">ਇਸ ਮੀਡੀਆ ਨੂੰ ਸਾਂਝਾ ਕਰਨ ਦੇ ਯੋਗ ਕੋਈ ਐਪ ਨਹੀਂ ਹੈ।</string>
   <!--MessageNotifier-->
@@ -1579,7 +1600,9 @@
   <string name="NotificationChannel_contact_joined_signal">ਸੰਪਰਕ Signal ਦਾ ਹਿੱਸਾ ਬਣਿਆ</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">ਸੂਚਨਾ ਚੈਨਲ ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹਣ ਲਈ ਕੋਈ ਗਤੀਵਿਧੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ। </string>
   <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">ਬੈਕਗਰਾਊਂਡ ਕਨੈਕਸ਼ਨ</string>
   <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">ਕਾਲ ਦੀ ਸਥਿਤੀ</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal ਲੌਕ ਹੋਣ ਕਰਕੇ ਫ਼ੌਰੀ ਜਵਾਬ ਉਪਲਬਧ ਨਹੀਂ!</string>
@@ -1669,6 +1692,10 @@
     <item quantity="other">%1$d ਮੈਂਬਰ</item>
   </plurals>
   <!--Displays number of viewers for a story-->
+  <plurals name="contact_selection_list_item__number_of_viewers">
+    <item quantity="one">%1$d ਦਰਸ਼ਕ</item>
+    <item quantity="other">%1$d ਦਰਸ਼ਕ</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal ਸੁਨੇਹਾ</string>
   <string name="conversation_activity__type_message_sms_insecure">ਨਾ-ਸੁਰੱਖਿਅਤ SMS</string>
@@ -1707,6 +1734,7 @@
   <string name="ConversationUpdateItem_enable_call_notifications">ਕਾਲ ਸੂਚਨਾਵਾਂ ਸਮਰੱਥ ਕਰੋ</string>
   <string name="ConversationUpdateItem_update_contact">ਸੰਪਰਕ ਅੱਪਡੇਟ ਕਰੋ</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">ਬੇਨਤੀ ਉੱਤੇ ਪਾਬੰਦੀ</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">ਕੋਈ ਸਾਂਝੇ ਗਰੁੱਪ ਨਹੀਂ। ਬੇਨਤੀਆਂ ਦੀ ਧਿਆਨ ਨਾਲ ਸਮੀਖਿਆ ਕਰੋ।</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ। ਬੇਨਤੀਆਂ ਦੀ ਧਿਆਨ ਨਾਲ ਸਮੀਖਿਆ ਕਰੋ।</string>
   <string name="ConversationUpdateItem_view">ਵੇਖੋ</string>
@@ -1728,8 +1756,11 @@
   <string name="QuoteView_you">ਤੁਸੀਂ</string>
   <string name="QuoteView_original_missing">ਅਸਲ ਸੁਨੇਹਾ ਨਹੀਂ ਲੱਭਿਆ</string>
   <!--Author formatting for group stories-->
+  <string name="QuoteView_s_story">%1$s ਕਹਾਣੀ</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">ਤੁਹਾਡੀ ਕਹਾਣੀ</string>
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">ਹੁਣ ਮੌਜੂਦ ਨਹੀਂ ਹੈ</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">ਥੱਲੇ ਤਕ ਸਕ੍ਰੌਲ ਕਰੋ</string>
   <!--BubbleOptOutTooltip-->
@@ -2052,8 +2083,8 @@
   <string name="preferences__advanced">ਤਕਨੀਕੀ</string>
   <string name="preferences__donate_to_signal">Signal ਨੂੰ ਦਾਨ ਕਰੋ</string>
   <string name="preferences__subscription">ਮੈਂਬਰੀ</string>
-  <string name="preferences__become_a_signal_sustainer">ਇੱਕ Signal ਸਹਾਇਕ ਬਣੋ</string>
-  <string name="preferences__signal_boost">Signal ਬੂਸਟ</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">ਇੱਕ Signal ਸਹਾਇਕ ਬਣੋ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Signal ਬੂਸਟ</string> -->
   <string name="preferences__privacy">ਪਰਦੇਦਾਰੀ</string>
   <string name="preferences__mms_user_agent"> MMS ਯੂਜ਼ਰ ਏਜੰਟ</string>
   <string name="preferences__advanced_mms_access_point_names">ਦਸਤੀ MMS ਸੈਟਿੰਗਾਂ</string>
@@ -2894,7 +2925,7 @@
   <string name="MultiShareDialogs__failed_to_send_to_some_users">ਕੁਝ ਵਰਤੋਂਕਾਰਾਂ ਨੂੰ ਭੇਜਣਾ ਅਸਫਲ ਰਿਹਾ</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">ਤੁਸੀਂ ਸਿਰਫ਼ %1$d ਚੈਟਾਂ ਤੱਕ ਦੇ ਨਾਲ ਹੀ ਸਾਂਝਾ ਕਰ ਸਕਦੇ ਹੋ</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">ਸੁਨੇਹਾ ਅੱਗੇ ਭੇਜੋ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">ਸੁਨੇਹਾ ਅੱਗੇ ਭੇਜੋ</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">ਗੱਲਬਾਤ ਵਾਲਪੇਪਰ</string>
   <!--ChatWallpaperFragment-->
@@ -3199,9 +3230,9 @@
   <string name="AddAProfilePhotoMegaphone__add_photo">ਫ਼ੋਟੋ ਜੋੜੋ</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">ਸਹਾਇਕ ਬਣੋ</string>
-  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal ਨੂੰ ਤੁਹਾਡੇ ਵਰਗੇ ਲੋਕਾਂ ਦਾ ਆਸਰਾ ਹੈ। ਯੋਗਦਾਨ ਪਾਓ ਤੇ ਪ੍ਰੋਫ਼ਾਈਲ ਬਿੱਲਾ ਲਵੋ।</string>
-  <string name="BecomeASustainerMegaphone__no_thanks">ਨਹੀਂ ਧੰਨਵਾਦ</string>
-  <string name="BecomeASustainerMegaphone__contribute">ਯੋਗਦਾਨ</string>
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">Signal ਨੂੰ ਤੁਹਾਡੇ ਵਰਗੇ ਲੋਕਾਂ ਦਾ ਆਸਰਾ ਹੈ। ਯੋਗਦਾਨ ਪਾਓ ਤੇ ਪ੍ਰੋਫ਼ਾਈਲ ਬਿੱਲਾ ਲਵੋ।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">ਨਹੀਂ ਧੰਨਵਾਦ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">ਯੋਗਦਾਨ</string> -->
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">ਈਮੋਜ਼ੀ</string>
   <string name="KeyboardPagerFragment_open_emoji_search">ਇਮੋਜੀ ਖੋਜ ਖੋਲ੍ਹੋ</string>
@@ -3380,19 +3411,19 @@
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">ਤੁਹਾਡੀ ਮੈਂਬਰੀ ਰੱਦ ਕੀਤੀ ਜਾ ਚੁੱਕੀ ਹੈ।</string>
   <string name="SubscribeFragment__update_subscription_question">ਮੈਂਬਰੀ ਅੱਪਡੇਟ ਕਰਨੀ ਹੈ?</string>
   <string name="SubscribeFragment__update">ਅੱਪਡੇਟ ਕਰੋ</string>
-  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">ਤੁਹਾਡੇ ਤੋਂ ਨਵੇਂ ਮੈਂਬਰੀ ਕੀਮਤ ਦੀ ਪੂਰੀ ਰਕਮ ਅੱਜ ਵਸੂਲੀ ਜਾਵੇਗੀ। ਤੁਹਾਡੀ ਮੈਂਬਰੀ %1$s ਨੂੰ ਨਵਿਆਈ ਜਾਵੇਗੀ।</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">ਤੁਹਾਡੇ ਤੋਂ ਨਵੇਂ ਮੈਂਬਰੀ ਕੀਮਤ ਦੀ ਪੂਰੀ ਰਕਮ ਅੱਜ ਵਸੂਲੀ ਜਾਵੇਗੀ। ਤੁਹਾਡੀ ਮੈਂਬਰੀ %1$s ਨੂੰ ਨਵਿਆਈ ਜਾਵੇਗੀ।</string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">ਤੁਹਾਡੀ ਨਵੀਂ ਮੈਂਬਰੀ ਦੀ ਕੀਮਤ ਲਈ ਪੂਰੀ ਰਕਮ (%1$s) ਅੱਜ ਲੈ ਲਈ ਜਾਵੇਗੀ। ਤੁਹਾਡੀ ਮੈਂਬਰੀ ਹਰ ਮਹੀਨੇ ਨਵਿਆਈ ਜਾਵੇਗੀ।</string>
   <string name="Subscription__s_per_month">%s/ਮਹੀਨਾ</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/ਮਹੀਨਾ  ਨਵਿਆਉਣ %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/ਮਹੀਨਾ ਮਿਆਦ ਪੁੱਗਣੀ %2$s</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal ਬਿਨਾਂ ਇਸ਼ਤਿਹਾਰਾਂ ਜਾਂ ਨਿਵੇਸ਼ਕਾਂ ਤੋਂ ਗ਼ੈਰ-ਫਾਇਦਾ ਸੰਗਠਨ ਹੈ, ਜੋ ਕਿ ਸਿਰਫ਼ ਇਸ ਨੂੰ ਵਰਤਣ ਤੇ ਇਸ ਦੇ ਮਹੱਤਵ ਨੂੰ ਸਮਝਣ ਵਾਲੇ ਲੋਕਾਂ ਕਰਕੇ ਚੱਲਦੀ ਹੈ। ਲਗਾਤਾਰ ਮਹੀਨੇਵਾਰ ਯੋਗਦਾਨ ਪਾਓ ਅਤੇ ਆਪਣੇ ਸਹਿਯੋਗ ਨੂੰ ਸਾਂਝਾ ਕਰਨ ਲਈ ਆਪਣੇ ਪ੍ਰੋਫਾਇਲ ਲਈ ਬਿੱਲਾ ਪਾਓ।</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">ਯੋਗਦਾਨ ਕਿਓ ਪਾਈਏ?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal ਬਿਨਾਂ ਇਸ਼ਤਿਹਾਰਾਂ ਜਾਂ ਨਿਵੇਸ਼ਕਾਂ ਤੋਂ ਗ਼ੈਰ-ਫਾਇਦਾ ਸੰਗਠਨ ਹੈ, ਜੋ ਕਿ ਸਿਰਫ਼ ਇਸ ਨੂੰ ਵਰਤਣ ਤੇ ਇਸ ਦੇ ਮਹੱਤਵ ਨੂੰ ਸਮਝਣ ਵਾਲੇ ਲੋਕਾਂ ਕਰਕੇ ਚੱਲਦੀ ਹੈ। ਲਗਾਤਾਰ ਮਹੀਨੇਵਾਰ ਯੋਗਦਾਨ ਪਾਓ ਅਤੇ ਆਪਣੇ ਸਹਿਯੋਗ ਨੂੰ ਸਾਂਝਾ ਕਰਨ ਲਈ ਆਪਣੇ ਪ੍ਰੋਫਾਇਲ ਲਈ ਬਿੱਲਾ ਪਾਓ।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">ਯੋਗਦਾਨ ਕਿਓ ਪਾਈਏ?</string> -->
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal ਆਜ਼ਾਦ ਸਰੋਤ ਪਰਦੇਦਾਰੀ ਵਿਕਸਤ ਕਰਨ ਲਈ ਵਚਨਬੱਧ ਹੈ। ਤਕਨੀਕ ਜੋ ਆਜ਼ਾਦ ਵਿਚਾਰ ਰੱਖਣ ਤੇ ਸੰਸਾਰ ਭਰ ਦੇ ਸੰਚਾਰ ਨੂੰ ਸੁਰੱਖਿਅਤ ਰੱਖਣ ਦੇ ਸਮਰੱਥ ਕਰਦੀ ਹੈ।</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">ਤੁਹਾਡਾ ਯੋਗਦਾਨ ਇਸ ਮਕਸਦ ਨੂੰ ਜਾਰੀ ਰੱਖਦਾ ਹੈ ਅਤੇ ਪ੍ਰਾਈਵੇਟ ਸੰਚਾਰ ਲਈ ਲੱਖਾਂ ਲੋਕਾਂ ਵਲੋਂ ਵਰਤੀ ਜਾਂਦੀ ਐਪ ਦੇ ਵਿਕਾਸ ਤੇ ਕਾਰਜਕਾਰੀ ਕੰਮਾਂ ਲਈ ਭੁਗਤਾਨ ਕਰਦਾ ਹੈ। ਕੋਈ ਇਸ਼ਤਿਹਾਰ ਨਹੀ। ਕੋਈ ਟਰੈਕਰ ਨਹੀਂ। ਕੋਈ ਮਜ਼ਾਕ ਨਹੀਂ।</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">ਤੁਹਾਡਾ ਯੋਗਦਾਨ ਇਸ ਮਕਸਦ ਨੂੰ ਜਾਰੀ ਰੱਖਦਾ ਹੈ ਅਤੇ ਪ੍ਰਾਈਵੇਟ ਸੰਚਾਰ ਲਈ ਲੱਖਾਂ ਲੋਕਾਂ ਵਲੋਂ ਵਰਤੀ ਜਾਂਦੀ ਐਪ ਦੇ ਵਿਕਾਸ ਤੇ ਕਾਰਜਕਾਰੀ ਕੰਮਾਂ ਲਈ ਭੁਗਤਾਨ ਕਰਦਾ ਹੈ। ਕੋਈ ਇਸ਼ਤਿਹਾਰ ਨਹੀ। ਕੋਈ ਟਰੈਕਰ ਨਹੀਂ। ਕੋਈ ਮਜ਼ਾਕ ਨਹੀਂ।</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ਤੁਹਾਡੇ ਸਹਿਯੋਗ ਲਈ ਧੰਨਵਾਦ ਹੈ!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">ਬੂਸਟ ਲਈ ਧੰਨਵਾਦ ਹੈ!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">ਤੁਸੀਂ %sਬਿੱਲਾ ਪਾ ਲਿਆ ਹੈ! ਆਪਣੇ ਪ੍ਰੋਫ਼ਾਈਲ ਉੱਤੇ ਇਹ ਬਿੱਲਾ ਦਿਖਾ ਕੇ Signal ਜਾਗਰੂਕਤਾ ਫੈਲਾਉਂਣ ਲਈ ਮਦਦ ਕਰੋ।</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">ਤੁਸੀਂ ਬੂਸਟ ਬਿੱਲਾ ਪਾਇਆ ਹੈ। ਆਪਣੇ ਪ੍ਰੋਫ਼ਾਈਲ ਉੱਤੇ ਇਹ ਬਿੱਲਾ ਦਿਖਾ ਕੇ Signal ਜਾਗਰੂਕ ਫੈਲਾਉਣ ਲਈ ਮਦਦ ਕਰੋ!</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">ਤੁਸੀਂ %sਬਿੱਲਾ ਪਾ ਲਿਆ ਹੈ! ਆਪਣੇ ਪ੍ਰੋਫ਼ਾਈਲ ਉੱਤੇ ਇਹ ਬਿੱਲਾ ਦਿਖਾ ਕੇ Signal ਜਾਗਰੂਕਤਾ ਫੈਲਾਉਂਣ ਲਈ ਮਦਦ ਕਰੋ।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">ਤੁਸੀਂ ਬੂਸਟ ਬਿੱਲਾ ਪਾਇਆ ਹੈ। ਆਪਣੇ ਪ੍ਰੋਫ਼ਾਈਲ ਉੱਤੇ ਇਹ ਬਿੱਲਾ ਦਿਖਾ ਕੇ Signal ਜਾਗਰੂਕ ਫੈਲਾਉਣ ਲਈ ਮਦਦ ਕਰੋ!</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">ਤੁਹਾਡੇ ਕਰ ਸਕਦੇ ਹੋ</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">ਮਹੀਨੇਵਾਰ ਸਹਿਯੋਗੀ ਬਣ</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">ਪ੍ਰੋਫ਼ਾਈਲ ਉੱਤੇ ਦਿਖਾਓ</string>
@@ -3407,7 +3438,7 @@
   <string name="ManageDonationsFragment__badges">ਬੈਜ</string>
   <string name="ManageDonationsFragment__subscription_faq">ਮੈਂਬਰੀ ਲਈ ਸਵਾਲ-ਜਵਾਬ</string>
   <string name="BoostFragment__give_signal_a_boost">Signal ਨੂੰ ਸਹਿਯੋਗ ਦਿਓ</string>
-  <string name="BoostFragment__say_thanks_and_earn">\"ਧੰਨਵਾਦ!\" ਕਹੋ ਅਤੇ %1$d ਦਿਨਾਂ ਲਈ ਬੂਸਟ ਬਿੱਲਾ ਲਵੋ।</string>
+  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">\"ਧੰਨਵਾਦ!\" ਕਹੋ ਅਤੇ %1$d ਦਿਨਾਂ ਲਈ ਬੂਸਟ ਬਿੱਲਾ ਲਵੋ।</string> -->
   <string name="Boost__enter_custom_amount">ਪਸੰਦੀਦਾ ਰਕਮ ਦਿਓ</string>
   <string name="Boost__one_time_contribution">ਇੱਕ-ਵਾਰ ਯੋਗਦਾਨ</string>
   <string name="MySupportPreference__add_a_signal_boost">Signal ਬੂਸਟ ਜੋੜੋ</string>
@@ -3417,17 +3448,17 @@
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">ਬਿੱਲਾ ਜੋੜਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ। %1$s</string>
   <string name="MySupportPreference__please_contact_support">ਮਦਦ ਨਾਲ ਸੰਪਰਕ ਕਰੋ।</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">ਤੁਹਾਡੇ ਬਿੱਲੇ ਦੀ ਮਿਆਦ ਪੁੱਗੀ</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">ਬਿੱਲੇ ਦੀ ਮਿਆਦ ਪੁੱਗੀ</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">ਮੈਂਬਰੀ ਰੱਦ ਕੀਤੀ</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">ਤੁਹਾਡੇ ਬੂਸਟ ਬਿੱਲੇ ਦੀ ਮਿਆਦ ਪੁੱਗੀ ਹੈ ਅਤੇ ਤੁਹਾਡੇ ਪ੍ਰੋਫ਼ਾਈਲ ਉੱਤੇ ਹੋਰਾਂ ਨੂੰ ਦਿਖਾਈ ਨਹੀਂ ਦੇਵੇਗਾ।</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">ਤੁਹਾਡੇ ਬਿੱਲੇ ਦੀ ਮਿਆਦ ਪੁੱਗੀ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">ਬਿੱਲੇ ਦੀ ਮਿਆਦ ਪੁੱਗੀ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">ਮੈਂਬਰੀ ਰੱਦ ਕੀਤੀ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">ਤੁਹਾਡੇ ਬੂਸਟ ਬਿੱਲੇ ਦੀ ਮਿਆਦ ਪੁੱਗੀ ਹੈ ਅਤੇ ਤੁਹਾਡੇ ਪ੍ਰੋਫ਼ਾਈਲ ਉੱਤੇ ਹੋਰਾਂ ਨੂੰ ਦਿਖਾਈ ਨਹੀਂ ਦੇਵੇਗਾ।</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">ਤੁਸੀਂ ਇੱਕ ਵਾਰ ਯੋਗਦਾਨ ਨਾਲ ਹੋਰ 30 ਦਿਨਾਂ ਲਈ ਆਪਣੇ ਬੂਸਟ ਬਿੱਲੇ ਨੂੰ ਮੁੜ-ਐਕਟੀਵੇਟ ਕਰ ਸਕਦੇ ਹੋ।</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">ਤੁਹਾਡੇ ਲਈ ਬਣਾਈ ਤਕਨੀਕ ਨੂੰ ਸਹਿਯੋਗ ਦੇਣਾ ਜਾਰੀ ਰੱਖਣ ਲਈ ਮਹੀਨੇਵਾਰ ਯੋਗਦਾਨੀ ਬਣਨ ਉੱਤੇ ਵਿਚਾਰ ਕਰੋ।</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">ਤੁਹਾਡੇ ਲਈ ਬਣਾਈ ਤਕਨੀਕ ਨੂੰ ਸਹਿਯੋਗ ਦੇਣਾ ਜਾਰੀ ਰੱਖਣ ਲਈ ਮਹੀਨੇਵਾਰ ਯੋਗਦਾਨੀ ਬਣਨ ਉੱਤੇ ਵਿਚਾਰ ਕਰੋ।</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">ਸਹਾਇਕ ਬਣੋ</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">ਬੂਸਟ ਜੋੜੋ</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ਹੁਣੇ ਨਹੀਂ</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">ਤੁਹਾਡੇ ਬਹੁਤ ਜ਼ਿਆਦਾ ਦੇਰ ਨਾ-ਸਰਗਰਮ ਰਹਿਣ ਕਰਕੇ ਤੁਹਾਡੀ ਸਹਿਯੋਗ ਮੈਂਬਰੀ ਨੂੰ ਆਪਣੇ-ਆਪ ਹਟਾ ਦਿੱਤਾ ਗਿਆ ਸੀ। ਤੁਹਾਡਾ %1$s ਬਿੱਲਾ ਤੁਹਾਡੇ ਪ੍ਰੋਫ਼ਾਈਲ ਉੱਤੇ ਦਿਖਾਈ ਨਹੀਂ ਦੇਵੇਗਾ।</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">ਤੁਹਾਡੇ ਬਹੁਤ ਜ਼ਿਆਦਾ ਦੇਰ ਨਾ-ਸਰਗਰਮ ਰਹਿਣ ਕਰਕੇ ਤੁਹਾਡੀ ਸਹਿਯੋਗ ਮੈਂਬਰੀ ਨੂੰ ਆਪਣੇ-ਆਪ ਹਟਾ ਦਿੱਤਾ ਗਿਆ ਸੀ। ਤੁਹਾਡਾ %1$s ਬਿੱਲਾ ਤੁਹਾਡੇ ਪ੍ਰੋਫ਼ਾਈਲ ਉੱਤੇ ਦਿਖਾਈ ਨਹੀਂ ਦੇਵੇਗਾ।</string> -->
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">ਤੁਸੀਂ Signal ਵਰਤਣਾ ਜਾਰੀ ਰੱਖ ਸਕਦੇ ਹੋ, ਪਰ ਐਪ ਨੂੰ ਸਹਿਯੋਗ ਦੇਣ ਤੇ ਆਪਣੇ ਬਿੱਲੇ ਨੂੰ ਮੁੜ-ਸਰਗਰਮ ਕਰਨ ਲਈ ਹੁਣੇ ਨਵਿਆਓ।</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">ਮੈਂਬਰੀ ਨੂੰ ਨਵਿਆਓ</string>
@@ -3459,6 +3490,7 @@
   <!--Stripe decline code purchase not supported-->
   <!--Stripe decline code your card has expired-->
   <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">Google Pay ਉੱਤੇ ਜਾਓ</string>
   <!--Stripe decline code incorrect card number-->
   <!--Stripe decline code incorrect cvc-->
   <!--Stripe decline code insufficient funds-->
@@ -3625,12 +3657,16 @@
   <!--Donation receipts amount title-->
   <!--Donation receipts thanks-->
   <!--Donation receipt type-->
+  <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">ਚੈਟਾਂ</string>
   <!--Label for Stories tab in home app screen-->
+  <string name="ConversationListTabs__stories">ਕਹਾਣੀਆਂ</string>
   <!--String for counts above 99 in conversation list tabs-->
+  <string name="ConversationListTabs__99p">99+</string>
   <!--Title for "My Stories" row item in Stories landing page-->
+  <string name="StoriesLandingFragment__my_stories">ਮੇਰੀਆਂ ਕਹਾਣੀਆਂ</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <!--Displayed when there are no stories to display-->
   <!--Context menu option to hide a story-->
@@ -3680,6 +3716,7 @@
   <!--Story settings private stories heading-->
   <!--Option label for creating a new private story-->
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">ਮੇਰੀ ਕਹਾਣੀ</string>
   <!--Section heading for story visibility-->
   <!--Clickable option for selecting people to hide your story from-->
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
@@ -3708,6 +3745,7 @@
   <!--Displayed in text post creator before user enters text-->
   <!--Button label for changing font when creating a text post-->
   <!--Displayed in text post creator when prompting user to enter text-->
+  <string name="TextStoryPostTextEntryFragment__add_text">ਲਿਖਤ ਜੋੜੋ</string>
   <!--Content description for \'done\' button when adding text to a story post-->
   <!--Text label for media selection toggle-->
   <string name="MediaSelectionActivity__text">ਟੈਕਸਟ</string>
@@ -3750,12 +3788,15 @@
   <string name="StoryGroupReplyFragment__copied_to_clipboard">ਕਲਿਪਬੋਰਡ ਤੇ ਕਾਪੀ ਕੀਤਾ ਗਿਆ</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
   <!--Displayed in toast after sending a direct reply-->
+  <string name="StoryDirectReplyDialogFragment__reply_sent">ਜਵਾਬ ਭੇਜੋ</string>
   <!--Displayed in toast after sending a direct reaction-->
   <!--Displayed in the viewer when a story is no longer available-->
   <!--Displayed in the viewer when the network is not available-->
+  <string name="StorySlateView__no_internet_connection">ਇੰਟਰਨੈੱਟ ਕਨੈਕਸ਼ਨ ਨਹੀਂ ਹੈ</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">ਤੁਸੀਂ ਹੁਣ ਵਧੀਆ ਤਜਰਬੇ ਵਾਸਤੇ Signal ਸੇਵਾ ਨਾਲ ਸਿੱਧਾ ਕਨੈਕਟ ਕਰ ਸਕਦੇ ਹੋ।</string>
   <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_no_thanks">ਨਹੀਂ ਧੰਨਵਾਦ</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
@@ -3765,5 +3806,6 @@
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="ExpandModel__view_more">ਹੋਰ ਵੇਖੋ</string>
   <!--EOF-->
 </resources>

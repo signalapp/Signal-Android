@@ -409,8 +409,8 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">ကြည့်မည်။</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">နှင့် မျှဝေရန်</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">ဖိုင်တွဲအများအပြား ပူးတွဲခြင်းကို ရုပ်ပုံများနှင့် ဗွီဒီယိုများ အတွက်သာ ထောက်ပံ့သည်။</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">နှင့် မျှဝေရန်</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">ဖိုင်တွဲအများအပြား ပူးတွဲခြင်းကို ရုပ်ပုံများနှင့် ဗွီဒီယိုများ အတွက်သာ ထောက်ပံ့သည်။</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal ဆက်သွယ်မှု လုံးဝမလုပ်နိုင်ပါ။</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ကို Google Play Services ဖြင့် မှတ်ပုံတင်၍မရနိုင်ပါ။ Signal စာတိုနှင့် ဖုန်းခေါ်ဆိုမှု ကိုပိတ်လိုက်သည်။ ပြင်ဆင်ခြင်း &gt; အဆင့်မြင့်တွင် ပြန်လည်မှတ်ပုံတင်ကြည့်ပါ။ </string>
@@ -2632,7 +2632,7 @@
   <string name="MultiShareDialogs__failed_to_send_to_some_users">အသုံးပြုသူများသို့ပေးပို့ရန်မအောင်မြင်ပါ</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">စကားပြောဆိုမှု %1$d ခုထိသာ မျှဝေနိုင်ပါသည်</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">မက်ဆေ့ချ်ကို ထပ်ဆင့်ပို့မယ်</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">မက်ဆေ့ချ်ကို ထပ်ဆင့်ပို့မယ်</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">စကားပြောဆိုမှု၏ နောက်ခံပုံ</string>
   <!--ChatWallpaperFragment-->
@@ -2837,7 +2837,7 @@
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
   <!--BecomeASustainerMegaphone-->
-  <string name="BecomeASustainerMegaphone__no_thanks">မလုပ်လိုပါ။</string>
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">မလုပ်လိုပါ။</string> -->
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_stickers">စတစ်ကာများ </string>
   <string name="KeyboardPagerFragment_backspace">Backspace</string>

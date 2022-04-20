@@ -176,7 +176,7 @@ a</string>
   <!--DocumentView-->
   <!--DozeReminder-->
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Gabana ne</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Gabana ne</string> -->
   <!--ExperienceUpgradeActivity-->
   <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Tukwaniriza ku Signal</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Tukwaniriza ku Signal</string> -->

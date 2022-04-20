@@ -471,9 +471,9 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">檢視</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">分享給</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">僅支援影像和影片的多個附件</string>
-  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">您無權限傳送給此群組</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">分享給</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">僅支援影像和影片的多個附件</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">您無權限傳送給此群組</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">永久性 Signal 通訊失敗！</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal 無法與 Google Play 服務註冊。Signal 訊息和通話已被停用，請到「設定」&gt;「進階」嘗試重新註冊。</string>
@@ -2045,8 +2045,8 @@
   <string name="preferences__advanced">進階</string>
   <string name="preferences__donate_to_signal">捐款給 Signal</string>
   <string name="preferences__subscription">訂閱</string>
-  <string name="preferences__become_a_signal_sustainer">成為 Signal 延續人</string>
-  <string name="preferences__signal_boost">Signal 有團伙</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">成為 Signal 延續人</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Signal 有團伙</string> -->
   <string name="preferences__privacy">私隱</string>
   <string name="preferences__mms_user_agent">MMS 使用者代理</string>
   <string name="preferences__advanced_mms_access_point_names">手動 MMS 設定</string>
@@ -2880,7 +2880,7 @@
   <string name="MultiShareDialogs__failed_to_send_to_some_users">無法傳送給部分使用者</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">您只能分享到最多 %1$d 個聊天</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">轉寄訊息</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">轉寄訊息</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">聊天背景</string>
   <!--ChatWallpaperFragment-->
@@ -3184,9 +3184,9 @@
   <string name="AddAProfilePhotoMegaphone__add_photo">新增照片</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">成為延續人</string>
-  <string name="BecomeASustainerMegaphone__signal_is_powered">萬家燈火照，將點點光輝，放進 Signal。凡捐獻即獲贈個人資料徽章。</string>
-  <string name="BecomeASustainerMegaphone__no_thanks">在心中</string>
-  <string name="BecomeASustainerMegaphone__contribute">我捐款</string>
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">萬家燈火照，將點點光輝，放進 Signal。凡捐獻即獲贈個人資料徽章。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">在心中</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">我捐款</string> -->
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">表情符號</string>
   <string name="KeyboardPagerFragment_open_emoji_search">開啟表情符號搜尋</string>
@@ -3365,19 +3365,19 @@
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">您的訂閱經已取消。</string>
   <string name="SubscribeFragment__update_subscription_question">要更新訂閱嗎？</string>
   <string name="SubscribeFragment__update">更新</string>
-  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">是日將向您收取新的訂閱價格全額。您的訂閱將於 %1$s 續期。</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">是日將向您收取新的訂閱價格全額。您的訂閱將於 %1$s 續期。</string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">是日將向您收取新的訂閱價格全額 (%1$s)。您的訂閱將會每月續期。</string>
   <string name="Subscription__s_per_month">%s/月</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/月 · %2$s 續期</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/月 · %2$s 屆滿</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal 是非牟利機構，並無廣告商或投資者，純粹仰賴使用並珍重 Signal 的人維持。祈盼樂善好施，力所能及作月供捐款，並笑納一枚個人資料徽章，好與人分享您的支持。</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">為何要捐款？</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal 是非牟利機構，並無廣告商或投資者，純粹仰賴使用並珍重 Signal 的人維持。祈盼樂善好施，力所能及作月供捐款，並笑納一枚個人資料徽章，好與人分享您的支持。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">為何要捐款？</string> -->
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal 致力開發開放原始碼的私隱技術，保護自由表達並讓全球通訊變得安全。</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">您的捐款，驅動這因由，並有助補貼程式開發與運作，讓世界各地數以百萬計「惜爐」使用者，共星光中作私密通訊。無廣告 · 無追蹤 · 無戲言。</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">您的捐款，驅動這因由，並有助補貼程式開發與運作，讓世界各地數以百萬計「惜爐」使用者，共星光中作私密通訊。無廣告 · 無追蹤 · 無戲言。</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">感謝您力撐支持！</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">感謝您加油集氣！</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">您已獲贈一枚「%s」徽章！不妨在您的個人資料中展覽徽章，讓人一呼百應撐起 Signal。</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">您已獲贈一枚集氣徽章！不妨在您的個人資料中展覽徽章，讓人一呼百應撐起 Signal。</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">您已獲贈一枚「%s」徽章！不妨在您的個人資料中展覽徽章，讓人一呼百應撐起 Signal。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">您已獲贈一枚集氣徽章！不妨在您的個人資料中展覽徽章，讓人一呼百應撐起 Signal。</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">您亦可考慮</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">成為月供延續人。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">在個人資料中展現</string>
@@ -3394,7 +3394,7 @@
   <string name="ManageDonationsFragment__subscription_faq">訂閱常見問答</string>
   <string name="ManageDonationsFragment__error_getting_subscription">取得訂閱時發生錯誤。</string>
   <string name="BoostFragment__give_signal_a_boost">齊集氣，為 Signal 加加油</string>
-  <string name="BoostFragment__say_thanks_and_earn">小小心意，燃起星星爐火。凡捐款即獲贈「集氣」徽章，足以在個人資料中配戴 %1$d 天，以謝善舉。</string>
+  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">小小心意，燃起星星爐火。凡捐款即獲贈「集氣」徽章，足以在個人資料中配戴 %1$d 天，以謝善舉。</string> -->
   <string name="Boost__enter_custom_amount">請輸入自訂金額</string>
   <string name="Boost__one_time_contribution">單次捐款</string>
   <string name="MySupportPreference__add_a_signal_boost">新增 Signal 集氣</string>
@@ -3404,19 +3404,19 @@
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">無法新增徽章。%1$s</string>
   <string name="MySupportPreference__please_contact_support">請聯絡支援。</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">您的徽章已到時限</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">徽章已到時限</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">訂閱已取消</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">您的集氣徽章已到時限，不再在您的個人資料中讓別人看見。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">您的徽章已到時限</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">徽章已到時限</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">訂閱已取消</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">您的集氣徽章已到時限，不再在您的個人資料中讓別人看見。</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">您可憑單次捐款，將您的「集氣」徽章再延續 30 天。</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">如欲繼續支持為您而設的科技，請考慮成為月供延續人。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">如欲繼續支持為您而設的科技，請考慮成為月供延續人。</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">成為延續人</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">新增集氣</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">現在不要</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">有見您已有好一段日子未曾使用，您的延續人訂閱已自動取消。您的「%1$s」徽章不再在您的個人資料中讓別人看見。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">有見您已有好一段日子未曾使用，您的延續人訂閱已自動取消。您的「%1$s」徽章不再在您的個人資料中讓別人看見。</string> -->
   <!--Copy displayed when badge expires after payment failure-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">我們未能處理您的付款，因此您的延續人訂閱已取消。您的徽章不再在您的個人資料中讓別人看見。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">我們未能處理您的付款，因此您的延續人訂閱已取消。您的徽章不再在您的個人資料中讓別人看見。</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">您可如常使用 Signal，沒有關係。假如您希望支持此應用程式並延續您的徽章，請立即續期。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">為訂閱續期</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">未能處理訂閱付款</string>
@@ -3667,7 +3667,7 @@
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">正在傳送…</string>
   <!--Label when a story fails to send-->
-  <string name="StoriesLandingItem__couldnt_send">無法傳送</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingItem__couldnt_send">無法傳送</string> -->
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">要隱藏限時動態嗎？</string>
   <!--Message of dialog confirming decision to hide a story-->

@@ -448,9 +448,9 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Pregledaj</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Podijeli s</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">Višestruki privitci podržani su samo za slike i videozapise</string>
-  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Nemate dopuštenje za slanje poruka u ovoj grupi</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Podijeli s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Višestruki privitci podržani su samo za slike i videozapise</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Nemate dopuštenje za slanje poruka u ovoj grupi</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna pogreška u komunikaciji Signala!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal se nije uspješno registrirao na Google Play Services. Signal poruke i pozivi su onemogućeni. Pokušajte se ponovno registrirati kroz Postavke &gt; Napredno.</string>
@@ -2029,8 +2029,8 @@ broj telefona</string>
   <string name="preferences__advanced">Napredno</string>
   <string name="preferences__donate_to_signal">Donirajte Signalu</string>
   <string name="preferences__subscription">Pretplata</string>
-  <string name="preferences__become_a_signal_sustainer">Postanite Signalov pretplatnik</string>
-  <string name="preferences__signal_boost">Jednokratna donacija</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">Postanite Signalov pretplatnik</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Jednokratna donacija</string> -->
   <string name="preferences__privacy">Privatnost</string>
   <string name="preferences__mms_user_agent">MMS korisnički agent</string>
   <string name="preferences__advanced_mms_access_point_names">Ručne MMS postavke</string>
@@ -2861,7 +2861,7 @@ broj telefona</string>
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Slanje nije uspjelo za neke korisnike</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Možete dijeliti s najviše %1$d razgovora</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">Proslijedi poruku</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">Proslijedi poruku</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Pozadina razgovora</string>
   <!--ChatWallpaperFragment-->
@@ -3137,8 +3137,8 @@ broj telefona</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Dodaj fotografiju</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Postanite pretplatnik</string>
-  <string name="BecomeASustainerMegaphone__no_thanks">Ne, hvala</string>
-  <string name="BecomeASustainerMegaphone__contribute">Doprinesite</string>
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">Ne, hvala</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">Doprinesite</string> -->
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Smajlić</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Otvori pretragu emotikona</string>
@@ -3270,7 +3270,7 @@ broj telefona</string>
   <string name="SubscribeFragment__not_now">Ne sada</string>
   <string name="SubscribeFragment__confirm">Potvrdi</string>
   <string name="SubscribeFragment__update">Ažuriraj</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Zašto donirati?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Zašto donirati?</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Hvala vam na uplati!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Prikaži bedž na svom profilu</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Gotovo</string>

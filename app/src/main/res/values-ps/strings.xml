@@ -436,9 +436,9 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">ليدل</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">سره شریکول</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">ګڼ شمېر ضمیمې یوازې د انځورونو او ویډیوګانو لپاره دي</string>
-  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">تاسې اجازه نه لری چې دغه ګروپ ته یې ولیږئ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">سره شریکول</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">ګڼ شمېر ضمیمې یوازې د انځورونو او ویډیوګانو لپاره دي</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">تاسې اجازه نه لری چې دغه ګروپ ته یې ولیږئ</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">د Signal د مکالمې دایمي خرابوالی!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal د دې جوګه نه و تر څو له Google Play خدماتو سره ثبت شی. د Signal پیغامونه او اړیکې  غیرفعالې دي، د مهرباني له مخې په تنظیماتو کې بیاځلې نوم لیکنه وکړئ &amp;gt؛ پرمختللی.</string>
@@ -2006,7 +2006,7 @@
   <string name="preferences__advanced">پرمختللی</string>
   <string name="preferences__donate_to_signal">Signal سره مرسته کول</string>
   <string name="preferences__subscription">ګډون</string>
-  <string name="preferences__signal_boost">د Signal پیاوړی کول</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">د Signal پیاوړی کول</string> -->
   <string name="preferences__privacy">محرمیت</string>
   <string name="preferences__mms_user_agent">د MMS د کارن استازی</string>
   <string name="preferences__advanced_mms_access_point_names">د MMS لاسي تنظیمات</string>
@@ -2833,7 +2833,7 @@
   <string name="MultiShareDialogs__failed_to_send_to_some_users">ځینو کارنونو ته و نه لیږل شو</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">تاسې یوازې کولای شئ تر %1$d پورې چټونه شریک کړئ</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">د پیغام فاروارډ کول</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">د پیغام فاروارډ کول</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">د چټ والپیپر</string>
   <!--ChatWallpaperFragment-->
@@ -3132,7 +3132,7 @@
   <string name="AddAProfilePhotoMegaphone__not_now">اوس نه</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">د انځور اضافه کول</string>
   <!--BecomeASustainerMegaphone-->
-  <string name="BecomeASustainerMegaphone__no_thanks">نه مننه</string>
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">نه مننه</string> -->
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">د emoji د پلټنې پرانیستل</string>
@@ -3313,8 +3313,8 @@
   <string name="SubscribeFragment__update">اپډیټ کول</string>
   <string name="Subscription__s_per_month">%s په میاشت کې</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s په میاشت کې. %2$s کې نوی کېږي</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal یو غیرانتفاعي پروګرام دی چې هېڅ اعلان ورکوونکی یا پانګه وال نه لري او یوازې د هغو کسانو له خوا چې کاروي یې او ورته ارزښت ورکوي، ساتل کېږي. هره میاشت خپله مرسته وکړئ او د خپل ملاتړ د ښودلو په خاطر د پروفایل بج تر لاسه کړئ.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">ولې مرسته وکړئ؟</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal یو غیرانتفاعي پروګرام دی چې هېڅ اعلان ورکوونکی یا پانګه وال نه لري او یوازې د هغو کسانو له خوا چې کاروي یې او ورته ارزښت ورکوي، ساتل کېږي. هره میاشت خپله مرسته وکړئ او د خپل ملاتړ د ښودلو په خاطر د پروفایل بج تر لاسه کړئ.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">ولې مرسته وکړئ؟</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ستاسې له مرستې څخه مننه!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">له پیاوړتیا څخه مننه!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">پر پروفایل ښودل</string>
@@ -3327,14 +3327,14 @@
   <string name="ManageDonationsFragment__subscription_faq">د ګډون په اړه زیاتره پوښتل شوې پوښتنې</string>
   <string name="ManageDonationsFragment__error_getting_subscription">د ګډون په تر لاسه کولو کې تیروتنه شوې ده.</string>
   <string name="BoostFragment__give_signal_a_boost">د Signal پیاوړتیا ورکړئ</string>
-  <string name="BoostFragment__say_thanks_and_earn"> \"مننه!\" ووایاست او د %1$d ورځو لپاره د پیاوړتیا بج تر لاسه کړئ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn"> \"مننه!\" ووایاست او د %1$d ورځو لپاره د پیاوړتیا بج تر لاسه کړئ.</string> -->
   <string name="Boost__enter_custom_amount">سفارشي مقدار دننه کړئ</string>
   <string name="Boost__one_time_contribution">پر وخت مرسته</string>
   <string name="MySupportPreference__add_a_signal_boost">د Signal پیاوړی کوونکی اضافه کړئ</string>
   <string name="MySupportPreference__s_per_month">%1$s په میاشت کې</string>
   <string name="MySupportPreference__renews_s">%1$s کې نوی کېږي</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">ستاسې بج منقضي شوی دی</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">ستاسې بج منقضي شوی دی</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">اوس نه</string>
   <!--Copy displayed when badge expires after user inactivity-->
   <!--Copy displayed when badge expires after payment failure-->

@@ -345,8 +345,8 @@
   <string name="DozeReminder_optimize_for_missing_play_services">I-optimize para sa nawawalang Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Ang device na ito ay walang suporta para sa Play Services. Pindutin upang i-disable ang mga pang-sistemang optimisasyon ng baterya na pumipigil sa Signal na kuhanin ang mga mensahe habang hindi ito aktibo.</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Ibahagi kay</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">Ang maramihang kalakip ay suportado lamang para sa mga imahe at videos</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Ibahagi kay</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Ang maramihang kalakip ay suportado lamang para sa mga imahe at videos</string> -->
   <!--GcmBroadcastReceiver-->
   <!-- Removed by excludeNonTranslatables <string name="GcmBroadcastReceiver_retrieving_a_message">May kinukuhang mensahe…</string> -->
   <!--GcmRefreshJob-->

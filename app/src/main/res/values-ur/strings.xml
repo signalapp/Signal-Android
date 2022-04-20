@@ -441,9 +441,9 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">دیکھیں</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">کے ساتھ اشتراک کریں</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">متعدد منسلکات صرف تصاویر اور ویڈیوز کیلئے معاون ہیں</string>
-  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">آپ کو اس گروپ میں بھیجنے کی اجازت نہیں ہے۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">کے ساتھ اشتراک کریں</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">متعدد منسلکات صرف تصاویر اور ویڈیوز کیلئے معاون ہیں</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">آپ کو اس گروپ میں بھیجنے کی اجازت نہیں ہے۔</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal مواصلات مستقل ہونے میں ناکامی!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal گوگل پلے سروسز کے ساتھ رجسٹر ہونے کے قابل نہیں تھا۔Signal پیغامات اور کالیں غیر فعال ہو چکے ہیں،براہ کرم ترتیبات میں دوبارہ رجسٹر کرنے کی کوشش کریں اور ایڈوانس میں جائیں۔</string>
@@ -2781,7 +2781,7 @@
   <string name="MultiShareDialogs__failed_to_send_to_some_users">کچھ صارفین کو بھیجنے میں ناکام</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">آپ صرف %1$d چیٹس تک اشتراک کرسکتے ہیں</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">پیغام آگے بھیجیں</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">پیغام آگے بھیجیں</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">چیٹ وال پیپر</string>
   <!--ChatWallpaperFragment-->
@@ -3053,7 +3053,7 @@
   <string name="AddAProfilePhotoMegaphone__not_now">ابھی نہیں</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">تصویر لگاو</string>
   <!--BecomeASustainerMegaphone-->
-  <string name="BecomeASustainerMegaphone__no_thanks">نہیں شکریہ</string>
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">نہیں شکریہ</string> -->
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">ایموجی</string>
   <string name="KeyboardPagerFragment_open_emoji_search">ایموجی تلاش کھولیں</string>
