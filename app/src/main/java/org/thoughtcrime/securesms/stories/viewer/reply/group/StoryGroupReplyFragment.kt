@@ -181,9 +181,6 @@ class StoryGroupReplyFragment :
                   requireContext(),
                   it.sender
                 ),
-                onPrivateReplyClick = { model ->
-                  requireListener<Callback>().onStartDirectReply(model.storyGroupReplyItemData.sender.id)
-                },
                 onCopyClick = { model ->
                   val clipData = ClipData.newPlainText(requireContext().getString(R.string.app_name), model.text.message.getDisplayBody(requireContext()))
                   ServiceUtil.getClipboardManager(requireContext()).setPrimaryClip(clipData)
@@ -213,6 +210,25 @@ class StoryGroupReplyFragment :
                   requireContext(),
                   it.sender
                 )
+              )
+            )
+          }
+          is StoryGroupReplyItemData.ReplyBody.RemoteDelete -> {
+            customPref(
+              StoryGroupReplyItem.RemoteDeleteModel(
+                storyGroupReplyItemData = it,
+                remoteDelete = it.replyBody,
+                nameColor = colorizer.getIncomingGroupSenderColor(
+                  requireContext(),
+                  it.sender
+                ),
+                onDeleteClick = { model ->
+                  lifecycleDisposable += DeleteDialog.show(requireActivity(), setOf(model.remoteDelete.messageRecord)).subscribe { didDeleteThread ->
+                    if (didDeleteThread) {
+                      throw AssertionError("We should never end up deleting a Group Thread like this.")
+                    }
+                  }
+                },
               )
             )
           }

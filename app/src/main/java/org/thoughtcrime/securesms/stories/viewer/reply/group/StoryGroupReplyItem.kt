@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
@@ -38,13 +39,13 @@ object StoryGroupReplyItem {
   fun register(mappingAdapter: MappingAdapter) {
     mappingAdapter.registerFactory(TextModel::class.java, LayoutFactory(::TextViewHolder, R.layout.stories_group_text_reply_item))
     mappingAdapter.registerFactory(ReactionModel::class.java, LayoutFactory(::ReactionViewHolder, R.layout.stories_group_reaction_reply_item))
+    mappingAdapter.registerFactory(RemoteDeleteModel::class.java, LayoutFactory(::RemoteDeleteViewHolder, R.layout.stories_group_remote_delete_item))
   }
 
   class TextModel(
     val storyGroupReplyItemData: StoryGroupReplyItemData,
     val text: StoryGroupReplyItemData.ReplyBody.Text,
     @ColorInt val nameColor: Int,
-    val onPrivateReplyClick: (TextModel) -> Unit,
     val onCopyClick: (TextModel) -> Unit,
     val onDeleteClick: (TextModel) -> Unit,
     val onMentionClick: (RecipientId) -> Unit
@@ -66,6 +67,35 @@ object StoryGroupReplyItem {
         storyGroupReplyItemData == newItem.storyGroupReplyItemData &&
         storyGroupReplyItemData.sender.hasSameContent(newItem.storyGroupReplyItemData.sender) &&
         super.areContentsTheSame(newItem)
+      ) {
+        NAME_COLOR_CHANGED
+      } else {
+        null
+      }
+    }
+  }
+
+  class RemoteDeleteModel(
+    val storyGroupReplyItemData: StoryGroupReplyItemData,
+    val remoteDelete: StoryGroupReplyItemData.ReplyBody.RemoteDelete,
+    val onDeleteClick: (RemoteDeleteModel) -> Unit,
+    @ColorInt val nameColor: Int
+  ) : MappingModel<RemoteDeleteModel> {
+    override fun areItemsTheSame(newItem: RemoteDeleteModel): Boolean {
+      return storyGroupReplyItemData.sender == newItem.storyGroupReplyItemData.sender &&
+        storyGroupReplyItemData.sentAtMillis == newItem.storyGroupReplyItemData.sentAtMillis
+    }
+
+    override fun areContentsTheSame(newItem: RemoteDeleteModel): Boolean {
+      return storyGroupReplyItemData == newItem.storyGroupReplyItemData &&
+        storyGroupReplyItemData.sender.hasSameContent(newItem.storyGroupReplyItemData.sender) &&
+        nameColor == newItem.nameColor
+    }
+
+    override fun getChangePayload(newItem: RemoteDeleteModel): Any? {
+      return if (nameColor != newItem.nameColor &&
+        storyGroupReplyItemData == newItem.storyGroupReplyItemData &&
+        storyGroupReplyItemData.sender.hasSameContent(newItem.storyGroupReplyItemData.sender)
       ) {
         NAME_COLOR_CHANGED
       } else {
@@ -104,13 +134,12 @@ object StoryGroupReplyItem {
     }
   }
 
-  private class TextViewHolder(itemView: View) : MappingViewHolder<TextModel>(itemView) {
-
-    private val avatar: AvatarImageView = itemView.findViewById(R.id.avatar)
-    private val name: FromTextView = itemView.findViewById(R.id.name)
-    private val body: EmojiTextView = itemView.findViewById(R.id.body)
-    private val date: TextView = itemView.findViewById(R.id.viewed_at)
-    private val dateBelow: TextView = itemView.findViewById(R.id.viewed_at_below)
+  private abstract class BaseViewHolder<T>(itemView: View) : MappingViewHolder<T>(itemView) {
+    protected val avatar: AvatarImageView = itemView.findViewById(R.id.avatar)
+    protected val name: FromTextView = itemView.findViewById(R.id.name)
+    protected val body: EmojiTextView = itemView.findViewById(R.id.body)
+    protected val date: TextView = itemView.findViewById(R.id.viewed_at)
+    protected val dateBelow: TextView = itemView.findViewById(R.id.viewed_at_below)
 
     init {
       body.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
@@ -123,6 +152,9 @@ object StoryGroupReplyItem {
         }
       }
     }
+  }
+
+  private class TextViewHolder(itemView: View) : BaseViewHolder<TextModel>(itemView) {
 
     override fun bind(model: TextModel) {
       itemView.setOnLongClickListener {
@@ -176,6 +208,39 @@ object StoryGroupReplyItem {
       }
 
       override fun updateDrawState(ds: TextPaint) {}
+    }
+  }
+
+  private class RemoteDeleteViewHolder(itemView: View) : BaseViewHolder<RemoteDeleteModel>(itemView) {
+
+    override fun bind(model: RemoteDeleteModel) {
+      itemView.setOnLongClickListener {
+        displayContextMenu(model)
+        true
+      }
+
+      name.setTextColor(model.nameColor)
+      if (payload.contains(NAME_COLOR_CHANGED)) {
+        return
+      }
+
+      AvatarUtil.loadIconIntoImageView(model.storyGroupReplyItemData.sender, avatar, DimensionUnit.DP.toPixels(28f).toInt())
+      name.text = resolveName(context, model.storyGroupReplyItemData.sender)
+
+      date.text = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), model.storyGroupReplyItemData.sentAtMillis)
+      dateBelow.text = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), model.storyGroupReplyItemData.sentAtMillis)
+    }
+
+    private fun displayContextMenu(model: RemoteDeleteModel) {
+      itemView.isSelected = true
+      SignalContextMenu.Builder(itemView, itemView.rootView as ViewGroup)
+        .preferredHorizontalPosition(SignalContextMenu.HorizontalPosition.START)
+        .onDismiss { itemView.isSelected = false }
+        .show(
+          listOf(
+            ActionItem(R.drawable.ic_trash_24_solid_tinted, context.getString(R.string.StoryGroupReplyItem__delete)) { model.onDeleteClick(model) }
+          )
+        )
     }
   }
 

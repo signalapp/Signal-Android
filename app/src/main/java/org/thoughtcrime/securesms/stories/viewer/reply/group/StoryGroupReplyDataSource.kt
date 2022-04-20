@@ -36,11 +36,20 @@ class StoryGroupReplyDataSource(private val parentStoryId: Long) : PagedDataSour
   }
 
   private fun readRowFromRecord(record: MmsMessageRecord): StoryGroupReplyItemData {
-    return if (MmsSmsColumns.Types.isStoryReaction(record.type)) {
-      readReactionFromRecord(record)
-    } else {
-      readTextFromRecord(record)
+    return when {
+      record.isRemoteDelete -> readRemoteDeleteFromRecord(record)
+      MmsSmsColumns.Types.isStoryReaction(record.type) -> readReactionFromRecord(record)
+      else -> readTextFromRecord(record)
     }
+  }
+
+  private fun readRemoteDeleteFromRecord(record: MmsMessageRecord): StoryGroupReplyItemData {
+    return StoryGroupReplyItemData(
+      key = StoryGroupReplyItemData.Key.RemoteDelete(record.id),
+      sender = if (record.isOutgoing) Recipient.self() else record.individualRecipient.resolve(),
+      sentAtMillis = record.dateSent,
+      replyBody = StoryGroupReplyItemData.ReplyBody.RemoteDelete(record)
+    )
   }
 
   private fun readReactionFromRecord(record: MmsMessageRecord): StoryGroupReplyItemData {

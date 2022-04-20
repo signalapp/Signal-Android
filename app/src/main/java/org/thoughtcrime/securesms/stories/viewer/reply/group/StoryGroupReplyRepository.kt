@@ -29,6 +29,7 @@ class StoryGroupReplyRepository {
 
       val threadId = SignalDatabase.mms.getThreadIdForMessage(parentStoryId)
 
+      ApplicationDependencies.getDatabaseObserver().registerMessageUpdateObserver(messageObserver)
       ApplicationDependencies.getDatabaseObserver().registerMessageInsertObserver(threadId, messageObserver)
       ApplicationDependencies.getDatabaseObserver().registerConversationObserver(threadId, observer)
 

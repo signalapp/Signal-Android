@@ -15,6 +15,17 @@ import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask
 
 object DeleteDialog {
 
+  /**
+   * Displays a deletion dialog for the given set of message records.
+   *
+   * @param context           Android Context
+   * @param messageRecords    The message records to delete
+   * @param title             The dialog title
+   * @param message           The dialog message, or null
+   * @param forceRemoteDelete Allow remote deletion, even if it would normally be disallowed
+   *
+   * @return a Single, who's value notes whether or not a thread deletion occurred.
+   */
   fun show(
     context: Context,
     messageRecords: Set<MessageRecord>,
