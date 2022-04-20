@@ -76,6 +76,11 @@ public class StorageForcePushJob extends BaseJob {
       return;
     }
 
+    if (!SignalStore.account().isRegistered() || SignalStore.account().getE164() == null || Recipient.self().getStorageServiceId() == null) {
+      Log.w(TAG, "User not registered. Skipping.");
+      return;
+    }
+
     StorageKey                  storageServiceKey = SignalStore.storageService().getOrCreateStorageKey();
     SignalServiceAccountManager accountManager    = ApplicationDependencies.getSignalServiceAccountManager();
     RecipientDatabase           recipientDatabase = SignalDatabase.recipients();
