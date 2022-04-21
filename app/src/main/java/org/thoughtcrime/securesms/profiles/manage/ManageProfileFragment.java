@@ -198,7 +198,7 @@ public class ManageProfileFragment extends LoggingFragment {
     }
 
     if (avatarProgress == null && avatarState.getLoadingState() == ManageProfileViewModel.LoadingState.LOADING) {
-      avatarProgress = SimpleProgressDialog.show(requireContext());
+      avatarProgress = SimpleProgressDialog.show(requireContext(), R.color.transparent, 0.4f);
     } else if (avatarProgress != null && avatarState.getLoadingState() == ManageProfileViewModel.LoadingState.LOADED) {
       avatarProgress.dismiss();
     }

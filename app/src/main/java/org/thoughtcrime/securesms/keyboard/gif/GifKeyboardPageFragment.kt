@@ -88,7 +88,7 @@ class GifKeyboardPageFragment : LoggingFragment(R.layout.gif_keyboard_page_fragm
       hideProgressDialog()
       handleGiphyMp4ErrorResult()
     } else {
-      progressDialog = SimpleProgressDialog.show(requireContext())
+      progressDialog = SimpleProgressDialog.show(requireContext(), R.color.transparent, 0.4f)
     }
   }
 

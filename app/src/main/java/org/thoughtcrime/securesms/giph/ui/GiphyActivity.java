@@ -103,7 +103,7 @@ public class GiphyActivity extends PassphraseRequiredActivity implements Keyboar
       hideProgressDialog();
       handleGiphyMp4ErrorResult((GiphyMp4SaveResult.Error) result);
     } else {
-      progressDialog = SimpleProgressDialog.show(this);
+      progressDialog = SimpleProgressDialog.show(this, R.color.transparent, 0.4f);
     }
   }
 

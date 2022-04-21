@@ -71,7 +71,7 @@ public class NewConversationActivity extends ContactSelectionActivity
       if (SignalStore.account().isRegistered() && NetworkConstraint.isMet(getApplication())) {
         Log.i(TAG, "[onContactSelected] Doing contact refresh.");
 
-        AlertDialog progress = SimpleProgressDialog.show(this);
+        AlertDialog progress = SimpleProgressDialog.show(this, R.color.transparent, 0.4f);
 
         SimpleTask.run(getLifecycle(), () -> {
           Recipient resolved = Recipient.external(this, number);

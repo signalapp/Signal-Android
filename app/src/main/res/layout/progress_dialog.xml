@@ -13,6 +13,6 @@
         android:padding="8dp"
         android:indeterminate="true"
         app:matProg_progressIndeterminate="true"
-        app:matProg_barColor="@color/core_grey_25"/>
+        app:matProg_barColor="@color/core_ultramarine_dark"/>
 
 </FrameLayout>

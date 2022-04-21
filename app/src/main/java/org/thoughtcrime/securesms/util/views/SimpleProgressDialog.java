@@ -36,6 +36,21 @@ public final class SimpleProgressDialog {
     return dialog;
   }
 
+  @MainThread
+  public static @NonNull AlertDialog show(@NonNull Context context, int background, float dim) {
+    AlertDialog dialog = new AlertDialog.Builder(context)
+                                        .setView(R.layout.progress_dialog)
+                                        .setCancelable(false)
+                                        .create();
+    dialog.show();
+    dialog.getWindow().setDimAmount(dim);
+    dialog.getWindow().setBackgroundDrawableResource(background);
+    dialog.getWindow().setLayout(context.getResources().getDimensionPixelSize(R.dimen.progress_dialog_size),
+                                 context.getResources().getDimensionPixelSize(R.dimen.progress_dialog_size));
+
+    return dialog;
+  }
+
   @AnyThread
   public static @NonNull DismissibleDialog showDelayed(@NonNull Context context) {
     return showDelayed(context, 300, 1000);
@@ -63,7 +78,7 @@ public final class SimpleProgressDialog {
     Runnable showRunnable = () -> {
       Log.i(TAG, "Taking some time. Showing a progress dialog.");
       shownAt.set(System.currentTimeMillis());
-      dialogAtomicReference.set(show(context));
+      dialogAtomicReference.set(show(context, R.color.transparent, 0.4f));
     };
 
     ThreadUtil.runOnMainDelayed(showRunnable, delayMs);

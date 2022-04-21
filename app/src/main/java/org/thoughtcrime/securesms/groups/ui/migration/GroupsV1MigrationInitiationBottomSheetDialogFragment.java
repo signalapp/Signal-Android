@@ -121,7 +121,7 @@ public final class GroupsV1MigrationInitiationBottomSheetDialogFragment extends 
   }
 
   private void onUpgradeClicked() {
-    AlertDialog dialog = SimpleProgressDialog.show(requireContext());
+    AlertDialog dialog = SimpleProgressDialog.show(requireContext(), R.color.transparent, 0.4f);
     viewModel.onUpgradeClicked().observe(getViewLifecycleOwner(), result -> {
       switch (result) {
         case SUCCESS:

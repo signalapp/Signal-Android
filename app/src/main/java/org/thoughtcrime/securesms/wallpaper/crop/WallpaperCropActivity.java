@@ -156,7 +156,7 @@ public final class WallpaperCropActivity extends BaseActivity {
 
     Point size = new Point(imageEditor.getWidth(), imageEditor.getHeight());
 
-    AlertDialog dialog = SimpleProgressDialog.show(this);
+    AlertDialog dialog = SimpleProgressDialog.show(this, R.color.transparent, 0.4f);
     viewModel.render(this, model, size,
                      new AsynchronousCallback.MainThread<ChatWallpaper, WallpaperCropViewModel.Error>() {
                        @Override public void onComplete(@Nullable ChatWallpaper result) {

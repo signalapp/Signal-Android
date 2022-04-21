@@ -553,7 +553,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
       }
     }
 
-    AlertDialog progress = SimpleProgressDialog.show(requireContext());
+    AlertDialog progress = SimpleProgressDialog.show(requireContext(), R.color.transparent, 0.4f);
     mainImage.getFlags().setChildrenVisible(false);
 
     SimpleTask.run(getLifecycle(), () -> {

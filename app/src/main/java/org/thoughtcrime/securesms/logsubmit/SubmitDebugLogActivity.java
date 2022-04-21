@@ -176,7 +176,7 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
       }
     });
 
-    this.loadingDialog = SimpleProgressDialog.show(this);
+    this.loadingDialog = SimpleProgressDialog.show(this, R.color.transparent, 0.4f);
   }
 
   private void initViewModel() {

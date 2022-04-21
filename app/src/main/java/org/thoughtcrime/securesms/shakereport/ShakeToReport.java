@@ -93,7 +93,7 @@ public final class ShakeToReport implements ShakeDetector.Listener {
   }
 
   private void submitLog(@NonNull AppCompatActivity activity) {
-    AlertDialog              spinner = SimpleProgressDialog.show(activity);
+    AlertDialog              spinner = SimpleProgressDialog.show(activity, R.color.transparent, 0.4f);
     SubmitDebugLogRepository repo    = new SubmitDebugLogRepository();
 
     Log.i(TAG, "Submitting log...");
