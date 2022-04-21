@@ -140,7 +140,7 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
       .centerCrop()
       .into(targetView)
 
-    GlideApp.with(sourceBlurView).clear(sourceBlurView)
+    GlideApp.with(targetBlurView).clear(targetBlurView)
     isTargetBlurReady = true
   }
 
