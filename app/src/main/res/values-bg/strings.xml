@@ -456,10 +456,6 @@
     <item quantity="other">%d изчакващи членства.</item>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Преглед</string>
-  <!--ShareActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Споделяне с</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Можете да прикачвате повече от един файл само когато са картинки и видео.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Нямаш разрешение да пращаш на тази група</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Перманентна Signal комуникационна грешка!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не успя да се регистрира с Google Play Services. Signal съообщения и разговори са деактивирани, моля пререгистрирайте през менюто Настройки &gt; Допълнителние.</string>
@@ -2007,7 +2003,10 @@
   <string name="preferences__help">Помощ</string>
   <string name="preferences__advanced">Допълнителни</string>
   <string name="preferences__donate_to_signal">Дари на Signal</string>
+  <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">Абонамент</string>
+  <!--Preference label for making a monthly donation to Signal-->
+  <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">Поверителност</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Ръчни MMS настройки</string>
@@ -2753,8 +2752,6 @@
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Неуспешно изпращане до някои потребители</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Може да споделяте с максимум %1$d чата.</string>
-  <!--ShareInterstitialActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">Препрати съобщението</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Тапет на чата</string>
   <!--ChatWallpaperFragment-->
@@ -2975,7 +2972,9 @@
   <string name="AddAProfilePhotoMegaphone__not_now">Не сега</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Добави снимка</string>
   <!--BecomeASustainerMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">Не, благодаря</string> -->
+  <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__not_now">Не сега</string>
+  <string name="BecomeASustainerMegaphone__donate">Дари</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Емоджи</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Отвори търсачката на емоджита</string>
@@ -3070,7 +3069,11 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">. %1$s</string>
+  <!--Displayed in the toolbar when externally sharing text to multiple recipients-->
+  <string name="ShareInterstitialActivity__share">Споделяне</string>
   <!--DSLSettingsToolbar-->
+  <!--Displayed when sharing content via the fragment-->
+  <string name="MultiselectForwardFragment__share_with">Споделяне с</string>
   <string name="MultiselectForwardFragment__add_a_message">Добави съобщение</string>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="one">Съобщението е изпратено</item>
@@ -3089,9 +3092,15 @@
   <string name="SubscribeFragment__not_now">Не сега</string>
   <string name="SubscribeFragment__confirm">Потвърждение</string>
   <string name="SubscribeFragment__update">Обновяване</string>
+  <!--First small text blurb on learn more sheet-->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Готово</string>
   <!--Label for Donation Receipts button-->
+  <!--Description text in boost sheet-->
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <!--Displayed in the bottom sheet when a boost badge expires-->
+  <!--Displayed when we do not think the user is a subscriber when their boost expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сега</string>
   <!--Copy displayed when badge expires after user inactivity-->
   <!--Copy displayed when badge expires after payment failure-->
@@ -3213,8 +3222,7 @@
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">Всички</string>
   <!--Donation receipts recurring tab label-->
-  <!--Donation receipts one time tab label-->
-  <string name="DonationReceiptListFragment__one_time">Само веднъж</string>
+  <!--Donation receipts one-time tab label-->
   <!--Donation receipts boost row label-->
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Подробности</string>
@@ -3242,7 +3250,10 @@
   <!--Context menu option to go to story chat-->
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Изпращане…</string>
+  <!--Label when multiple stories are pending sending-->
   <!--Label when a story fails to send-->
+  <string name="StoriesLandingItem__send_failed">Изпращането неуспешно</string>
+  <!--Status label when a story fails to send indicating user action to retry-->
   <!--Title of dialog confirming decision to hide a story-->
   <!--Message of dialog confirming decision to hide a story-->
   <!--Positive action of dialog confirming decision to hide a story-->
@@ -3325,6 +3336,9 @@
   <!--Dialog message for first time adding something to a story-->
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <!--Error message shown when a failure occurs during story send-->
+  <!--Error message dialog button to resend a previously failed story send-->
+  <string name="StoryDialogs__send">Изпращане</string>
   <!--Privacy Settings toggle title for stories-->
   <!--Privacy Settings toggle summary for stories-->
   <!--New story viewer selection screen title-->
@@ -3355,6 +3369,8 @@
   <!--Displayed in the viewer when a story is no longer available-->
   <!--Displayed in the viewer when the network is not available-->
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <!--Toasted when the user externally shares to a text story successfully-->
+  <!--Toasted when the user external share to a text story fails-->
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->

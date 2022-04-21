@@ -536,10 +536,6 @@
     <item quantity="other">%d čakajočih vabil za članstvo.</item>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Preglej</string>
-  <!--ShareActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Deli z</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Več priponk je možnih le pri slikah in videu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Nimate dovoljenja pošiljati sporočila tej skupini</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna okvara pri komunikaciji aplikacije Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Registracija z Google Play Services ni bila uspešna. Podatkovna komunikacija je izklopljena, prosimo, poskusite s ponovno registracijo v meniju Nastavive &gt; Napredno.</string>
@@ -2291,9 +2287,12 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__help">Pomoč</string>
   <string name="preferences__advanced">Napredno</string>
   <string name="preferences__donate_to_signal">Podprite Signal</string>
+  <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">Naročnina</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">Postanite podpornik_ca Signala</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Pospešek Signalu</string> -->
+  <!--Preference label for making a monthly donation to Signal-->
+  <string name="preferences__monthly_donation">Mesečna donacija</string>
+  <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">Enkratna donacija</string>
   <string name="preferences__privacy">Zasebnost</string>
   <string name="preferences__mms_user_agent">Uporabniški posrednik MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Ročne nastavitve MMS</string>
@@ -3159,8 +3158,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Pošiljanje nekaterim uporabnikom_cam ni uspelo</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Pošljete lahko največ %1$d pogovorom</string>
-  <!--ShareInterstitialActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">Posreduj sporočilo</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Ozadje pogovora</string>
   <!--ChatWallpaperFragment-->
@@ -3470,9 +3467,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="AddAProfilePhotoMegaphone__add_photo">Dodaj fotografijo</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Postanite podpornik_ca</string>
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">Signal podpirajo ljudje kot ste vi. Prispevajte in si pridobite bedž za vaš Signal profil.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">Ne, hvala!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">Prispevaj</string> -->
+  <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal podpirajo ljudje, kot ste vi. Prispevajte in prejmite značko podpornika.</string>
+  <string name="BecomeASustainerMegaphone__not_now">Ne zdaj</string>
+  <string name="BecomeASustainerMegaphone__donate">Podpri Signal!</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Odpri iskanje po emojijih</string>
@@ -3581,9 +3579,13 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--Displayed in the toolbar when externally sharing text to multiple recipients-->
+  <string name="ShareInterstitialActivity__share">Deli</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Premik navzgor</string>
   <string name="MultiselectForwardFragment__forward_to">Posreduj</string>
+  <!--Displayed when sharing content via the fragment-->
+  <string name="MultiselectForwardFragment__share_with">Deli z</string>
   <string name="MultiselectForwardFragment__add_a_message">Dodaj sporočilo</string>
   <string name="MultiselectForwardFragment__faster_forwards">Hitrejše posredovanje</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Posredovana sporočila so zdaj poslana v trenutku.</string>
@@ -3652,6 +3654,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal podpirajo ljudje, kot ste vi.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Podprite tehnologijo, ki je bila izdelana zaradi vas -- ne zaradi vaših osebnih podatkov -- in se pridružite skupnosti podpornikov_ic.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Podprite tehnologijo, ki je bila izdelana zaradi vas in ne zaradi vaših osebnih podatkov, ter se pridružite skupnosti podpornikov_ic Signala.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Donirajte enkrat mesečno znesek po izbiri za Signal in prispevali boste tehnologiji, ki je bila ustvarjena zaradi vas, ne zaradi vaših podatkov.</string>
   <string name="SubscribeFragment__currency">Valuta</string>
   <string name="SubscribeFragment__more_payment_options">Več opcij za plačilo</string>
   <string name="SubscribeFragment__cancel_subscription">Prekini naročnino</string>
@@ -3663,19 +3666,19 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Vaša naročnina je bila prekinjena.</string>
   <string name="SubscribeFragment__update_subscription_question">Želite posodobiti naročnino?</string>
   <string name="SubscribeFragment__update">Posodobitev</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Zaračunan vam bo celoten znesek nove naročnine. Vaša naročnina bo obnovoljena %1$s.</string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Zaračunan vam bo celoten znesek  (%1$s) nove naročnine. Naročnina se bo obnavljala mesečno.</string>
   <string name="Subscription__s_per_month">%s/mesec</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/mesec · Obnovitev: %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/mesec · Poteče %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal je neprofitna organizacija, brez podpore oglaševalcev ali vlagateljev, financirajo jo zgolj običajni ljudje, ki jo cenijo. Odločite se za mesečno podporo Signalu in prejmite bedž podpornika_ce, ki bo viden na vašem profilu.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Zakaj prispevati?</string> -->
+  <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal je neprofitna organizacija, brez podpore oglaševalcev ali vlagateljev, financirajo jo zgolj običajni ljudje, ki jo cenijo. Odločite se za mesečno podporo Signalu in prejmite bedž podpornika_ce, ki bo viden na vašem profilu.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Zakaj prispevati?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal je zavezan razvoju odprtokodnih zasebnostnih tehnologij, ki ščitijo svobodo izražanja in omogočajo varne globalne komunikacije.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Vaš prispevek podpira te cilje, omogoča razvoj in vzdrževanje sistema, ki ga milijoni uporabljajo za varno komunikacijo. Brez reklam. Brez sledenja. Brez heca.</string> -->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Vaš prispevek podpira te cilje, omogoča razvoj in vzdrževanje sistema, ki ga milijoni uporabljajo za varno komunikacijo. Brez reklam. Brez sledenja. Brez heca.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Hvala za vašo podporo!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Hvala za Boost!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Prislužili ste si %s bedž! Pomagajte Signalu graditi ozaveščenost in prikazujte bedž na svojem profilu.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Prislužili ste si bedž podpornika_ce! Pomagajte Signalu graditi ozaveščenost in prikazujte bedž na svojem profilu.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Prislužili ste si bedž %s! Prikazujte ta bedž na svojem profilu in pomagajte ustvarjati zavest podpore Signalu.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Prislužili ste si bedž pospeševalca_ke! Prikazujte ta bedž na svojem profilu in pomagajte ustvarjati zavest podpore Signalu.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Lahko tudi</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">postanete mesečni podpornik_ca.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Prikazuj na profilu</string>
@@ -3692,7 +3695,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ManageDonationsFragment__subscription_faq">Pogosta vprašanja o naročnini</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Napaka pri uveljavitvi naročnine.</string>
   <string name="BoostFragment__give_signal_a_boost">Dajte Signalu pospešek</string>
-  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">Recite \"hvala!\" in si za %1$d dni prislužite bedž podpornika_ce.</string> -->
+  <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Prispevajte enkraten znesek in si za %1$d dni prislužite bedž Pospešek Signalu.</string>
   <string name="Boost__enter_custom_amount">Vnesite znesek po vašem izboru</string>
   <string name="Boost__one_time_contribution">Enkratna podpora</string>
   <string name="MySupportPreference__add_a_signal_boost">Dodaj pospešek Signalu</string>
@@ -3702,19 +3706,22 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Nismo mogli dodati bedža. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Prosimo obrnite se na podporo uporabnikom.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Vaš bedž je potekel</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Bedž je potekel</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Naročnina je prekinjena</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Vaš bedž Pospešek Signalu je potekel in zato ni več viden drugim na vašem profilu.</string> -->
+  <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Bedž Pospešek Signalu je potekel</string>
+  <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Mesečna donacija je bila preklicana.</string>
+  <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Vaš bedž Pospešek Signalu je potekel in zato ni več viden drugim na vašem profilu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Bedž Pospešek Signalu lahko aktivirate za nadaljnjih 30 dni z novim enkratnim prispevkom.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Razmislite, če želite postati naš mesečni podpornik_ca in tako še naprej prispevati k tehnologiji, ki je bila narejena zaradi vas.</string> -->
+  <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Še naprej lahko uporabljate Signal, lahko pa se odločite tudi za podporo tehnologiji, ki je bila ustvarjena za vas, in prispevate mesečno donacijo.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Postanite podpornik_ca</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Dodaj pospešek</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne zdaj</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Vaša naročnina je bila avtomatsko prekinjena, ker ste bili predolgo neaktivni. Vaš %1$s bedž ni več viden na vašem profilu.</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Vaša mesečna donacija je bila prekinjena, ker ste bili predolgo neaktivni. Vaš bedž %1$s ni več viden na vašem profilu.</string>
   <!--Copy displayed when badge expires after payment failure-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Vaša naročnina za podpornika_co Signala je bila prekinjena, ker ni bilo mogoče izvesti plačila. Bedž ni več viden na vašem profilu.</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Vaša mesečna donacija je bila prekinjena, ker nismo mogli procesirati plačila. Bedž ni več viden na vašem profilu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Še naprej lahko uporabljate Signal, za nadaljevanje podpore in reaktivacijo vašega bedža pa lahko obnovite naročnino.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Obnovitev naročnine</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Plačila naročnine ni mogoče izvesti</string>
@@ -3917,8 +3924,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="DonationReceiptListFragment__all">Vse</string>
   <!--Donation receipts recurring tab label-->
   <string name="DonationReceiptListFragment__recurring">Ponavljajoča</string>
-  <!--Donation receipts one time tab label-->
-  <string name="DonationReceiptListFragment__one_time">Enkrat</string>
+  <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">Enkraten</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Pospešek</string>
   <!--Donation receipts details title-->
@@ -3964,8 +3971,12 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="StoriesLandingItem__go_to_chat">Pojdi na pogovor</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Pošiljanje …</string>
+  <!--Label when multiple stories are pending sending-->
+  <string name="StoriesLandingItem__sending_d">Pošiljanje %1$d…</string>
   <!--Label when a story fails to send-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingItem__couldnt_send">Pošiljanje ni uspelo</string> -->
+  <string name="StoriesLandingItem__send_failed">Pošiljanje ni uspelo</string>
+  <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">Tapnite za ponoven poskus</string>
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Želite skriti zgodbo?</string>
   <!--Message of dialog confirming decision to hide a story-->
@@ -4122,6 +4133,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="StoryDialogs__add_to_story">Dodaj k zgodbi</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <string name="StoryDialogs__edit_viewers">Uredi gledalce</string>
+  <!--Error message shown when a failure occurs during story send-->
+  <string name="StoryDialogs__story_could_not_be_sent">Zgodba ni mogla biti poslana. Preverite svojo povezavo in poskusite znova.</string>
+  <!--Error message dialog button to resend a previously failed story send-->
+  <string name="StoryDialogs__send">Pošlji</string>
   <!--Privacy Settings toggle title for stories-->
   <string name="PrivacySettingsFragment__share_and_view_stories">Deljenje &amp; Ogled zgodb</string>
   <!--Privacy Settings toggle summary for stories-->
@@ -4177,6 +4192,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="StorySlateView__no_internet_connection">Ni internetne povezave</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <string name="StorySlateView__couldnt_load_content">Vsebine ni bilo mogoče naložiti</string>
+  <!--Toasted when the user externally shares to a text story successfully-->
+  <string name="TextStoryPostCreationFragment__sent_story">Poslana zgodba</string>
+  <!--Toasted when the user external share to a text story fails-->
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">Pošiljanje zgodbe neuspešno</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Želite izklopiti zaščito pred cenzuro?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->

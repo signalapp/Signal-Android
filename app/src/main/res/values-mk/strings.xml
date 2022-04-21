@@ -492,10 +492,6 @@
     <item quantity="other">%d барања за членство во листата на чекање.</item>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Преглед</string>
-  <!--ShareActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Сподели со</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Повеќекратни прилози се поддржани само за слики и видеа</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Немате дозвола да испраќате на оваа група</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Трајно неуспешна комуникација со Signal</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не успеа да се регистрира со Google Play услуги. Пораките и повиците од Signal се оневозможени. Ве молиме пробајте да се регистрирате повторно во Поставувања &gt; Напредно.</string>
@@ -1989,7 +1985,7 @@
   <string name="message_details_recipient_header__viewed">Видено од</string>
   <string name="message_details_recipient_header__skipped">Прескокнато</string>
   <!--message_Details_recipient-->
-  <string name="message_details_recipient__failed_to_send">Неуспешно испраќање</string>
+  <string name="message_details_recipient__failed_to_send">Не успеа да се испрати</string>
   <string name="message_details_recipient__new_safety_number">Нов сигурносен број</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Создај лозинка</string>
@@ -2127,9 +2123,12 @@
   <string name="preferences__help">Помош</string>
   <string name="preferences__advanced">Напредно</string>
   <string name="preferences__donate_to_signal">Донирај на Signal</string>
+  <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">Претплатa</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">Станете поддржувач на Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Signal поттик</string> -->
+  <!--Preference label for making a monthly donation to Signal-->
+  <string name="preferences__monthly_donation">Месечна донација</string>
+  <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">Еднократна донација</string>
   <string name="preferences__privacy">Приватност</string>
   <string name="preferences__mms_user_agent">MMS кориснички агент</string>
   <string name="preferences__advanced_mms_access_point_names">Рачни MMS поставувања</string>
@@ -2294,7 +2293,7 @@
   <string name="PaymentsHomeFragment__processing_payment">Обработка на плаќање</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__currency_conversion_not_available">Конверзија на валута не е достапна</string>
-  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Не може да се прикаже конверзија на валута. Проверете ја Вашата интернет врска и обидете се повторно.</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Не може да се прикаже конверзија на валута. Проверете ја Вашата интернет конекција на телефонот и обидете се повторно.</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Плаќањата не се достапни во Вашиот регион.</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">Не може да се овозможат плаќања. Обидете се повторно подоцна.</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">Да деактивирам плаќања?</string>
@@ -2704,11 +2703,11 @@
   <string name="preferences_app_protection__confirm_your_signal_pin">Потврдете го Вашиот Signal PIN</string>
   <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Осигурајте се дека ќе го запомните или безбедно ќе го зачувате Вашиот PIN бидејќи истиот не може да биде вратен доколку го изгубите. Ако го заборавите Вашиот PIN, може да изгубите податоци кога повторно ќе ја регистрирате Вашата сметка на Signal.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">Погрешен PIN. Обидете се повторно.</string>
-  <string name="preferences_app_protection__failed_to_enable_registration_lock">Не успеа вклучувањето на заклучување на регистрацијата.</string>
-  <string name="preferences_app_protection__failed_to_disable_registration_lock">Не успеа оневозможувањето на заклучување на регистрацијата.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">Не успеа да се вклучи заклучување на регистрацијата.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">Не успеа да се исклучи заклучување на регистрацијата.</string>
   <string name="AppProtectionPreferenceFragment_none">Нема</string>
   <string name="preferences_app_protection__registration_lock">Заклучување на регистрација</string>
-  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Морате да го внесете Вашиот PIN за заклучување на регистрацијата.</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Морате да го внесете Вашиот PIN за заклучување на регистрацијата</string>
   <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Вашиот PIN содржи најмалку %d цифри или знаци</string>
   <string name="RegistrationActivity_too_many_attempts">Премногу пробувања</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Внесовте премногу неточни PIN кодови за заклучување на регистрацијата. Ве молиме обидете се повторно утре.</string>
@@ -2940,7 +2939,7 @@
   <string name="DeleteAccountFragment__the_phone_number">Бројот што го внесовте не се совпаѓа со Вашите сметки.</string>
   <string name="DeleteAccountFragment__are_you_sure">Сигурни сте дека сакате да ја избришете Вашата сметка?</string>
   <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Ова ќе ја избрише Вашата Signal сметка и ќе ја ресетира апликацијата. Апликацијата ќе се затвори по завршување на процесот.</string>
-  <string name="DeleteAccountFragment__failed_to_delete_account">Не успеав да ја избришам сметката. Дали сте врзани на мрежата?</string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">Не успеа да се избрише сметката. Дали имате интернет конекција?</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Не успеав да ги избришам локалните податоци. Можете рачно да ги исчистите во системските поставувања на апликацијата.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Лансирај поставувања за апликацијата</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
@@ -2971,10 +2970,8 @@
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Споделување на повеќе разговори е поддржано само за Signal пораки</string>
   <!--MultiShareDialogs-->
-  <string name="MultiShareDialogs__failed_to_send_to_some_users">Не успеав да испратам на некои корисници</string>
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Не успеа да се испрати на некои корисници</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Можете да споделите со најмногу %1$d разговори</string>
-  <!--ShareInterstitialActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">Препрати порака</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Позадина за разговорот</string>
   <!--ChatWallpaperFragment-->
@@ -3161,7 +3158,7 @@
   <!--Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Не можевме да го одредиме статусот на Вашето барање за промена на бројот.\n\n(Грешка: %1$s)</string>
   <!--Dialog button to retry confirming the number on the server-->
-  <string name="ChangeNumberLockActivity__retry">Пробај пак</string>
+  <string name="ChangeNumberLockActivity__retry">Обидете се повторно</string>
   <!--Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow-->
   <string name="ChangeNumberLockActivity__leave">Напушти</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Испрати запис за отстранување грешки</string>
@@ -3280,9 +3277,10 @@
   <string name="AddAProfilePhotoMegaphone__add_photo">Додај слика</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Станете поддржувач</string>
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">Signal е овозможен од луѓе како тебе. Придонеси и добиј беџ на профилот.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">Не, благодарам</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">Придонесете</string> -->
+  <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal е овозможен од луѓе како тебе. Донирај и добиј беџ.</string>
+  <string name="BecomeASustainerMegaphone__not_now">Не сега</string>
+  <string name="BecomeASustainerMegaphone__donate">Донирај</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Емоџи</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Отвори пребарување на емоџи</string>
@@ -3391,9 +3389,13 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--Displayed in the toolbar when externally sharing text to multiple recipients-->
+  <string name="ShareInterstitialActivity__share">Сподели</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Оди нагоре</string>
   <string name="MultiselectForwardFragment__forward_to">Препрати до</string>
+  <!--Displayed when sharing content via the fragment-->
+  <string name="MultiselectForwardFragment__share_with">Сподели со</string>
   <string name="MultiselectForwardFragment__add_a_message">Додај порака</string>
   <string name="MultiselectForwardFragment__faster_forwards">Побрзо препратување</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Препратените пораки сега се испраќаат веднаш.</string>
@@ -3406,8 +3408,8 @@
     <item quantity="other">Пораките се испратени</item>
   </plurals>
   <plurals name="MultiselectForwardFragment_messages_failed_to_send">
-    <item quantity="one">Пораките не може да се испратат</item>
-    <item quantity="other">Испраќањето на пораки е неуспешно</item>
+    <item quantity="one">Пораката не успеа да се испрати</item>
+    <item quantity="other">Не успеа да се испратат пораките</item>
   </plurals>
   <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
     <item quantity="one">Не може да се препратат пораките бидејќи веќе не се достапни.</item>
@@ -3465,19 +3467,15 @@
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Вашата претплата е откажана.</string>
   <string name="SubscribeFragment__update_subscription_question">Да ја ажурирам претплатата?</string>
   <string name="SubscribeFragment__update">Aжурирај</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Ќе Ви биде наплатен целосниот износ на новата претплата денес. Вашата претплата ќе се обнови на %1$s.</string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Ќе ви биде наплатена целата сума (%1$s) од цената за новата претплата денес. Вашата претплата ќе се обновува секој месец.</string>
   <string name="Subscription__s_per_month">%s/месец</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/месец · Се обновува на %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/месец · Истекува на %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal е непрофитна организација без огласувачи и инвеститори, оддржуван само од луѓето кои го користат и ценат. Започнете со месечен придонес и добијте беџ на профилот за да ја споделите Вашата поддршка.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Зошто да придонесете?</string> -->
+  <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Зошто да донирате?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal е посветен на развивање технологија за приватност со отворен код која го штити слободното изразување и овозможува сигурна глобална комуникација.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Вашите придонеси ја подгреваат каузата и плаќаат за развојот и операциите околу апликацијата која што се користи од милиони за приватна комуникација. Без реклами. Без тракери. Сериозно.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Ви благодариме за Вашата поддршка!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Благодариме за поттикот!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Добивте %s беџ! Помогнете му на Signal да изгради свест преку прикажување на овој беџ на Вашиот профил.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Добивте беџ за поттик! Помогнете му на Signal да изгради свест преку прикажување на овој беџ на Вашиот профил.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Можете исто така да</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">Станете месечен поддржувач</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Прикажи на профил</string>
@@ -3494,7 +3492,8 @@
   <string name="ManageDonationsFragment__subscription_faq">ЧПП за претплата</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Грешка при добивање на претплата.</string>
   <string name="BoostFragment__give_signal_a_boost">Дајте му поттик на Signal</string>
-  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">Кажете „Благодарам!“ и добијте го беџот за поттик на%1$d дена.</string> -->
+  <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Направете еднократна донација и добијте беџ за поттик на %1$d дена.</string>
   <string name="Boost__enter_custom_amount">Внесете износ</string>
   <string name="Boost__one_time_contribution">Еднократен придонес</string>
   <string name="MySupportPreference__add_a_signal_boost">Додај поттик за Signal</string>
@@ -3504,19 +3503,19 @@
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Не може да се додаде значка. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Ве молиме контактирајте со тимот за поддршка.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Вашиот беџ е истечен</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Беџот е истечен</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Претплатата е откажана</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Вашиот беџ за поттик истече и повеќе не е видлив за другите на Вашиот профил.</string> -->
+  <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Беџот за поттик е истечен</string>
+  <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Месечната донација е откажана</string>
+  <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Вашиот беџ за поттик е истечен и повеќе не е видлив на Вашиот профил.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Можете повторно да го активирате Вашиот беџ за поттик за уште 30 дена со еднократен надомест.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">За да продолжите да ја поддржувате технологијата што е создадена за Вас, размислете да станете месечен поддржувач.</string> -->
+  <!--Displayed when we do not think the user is a subscriber when their boost expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Станете поддржувач</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Додај поттик</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сега</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Вашата претплата за поддршка беше автоматски откажана затоа што бевте премногу долго неактивни. Вашиот беџ %1$s повеќе не е видлив на Вашиот профил.</string> -->
   <!--Copy displayed when badge expires after payment failure-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Вашата претплата за поддршка е откажана бидејќи не можевме да го обработиме Вашето плаќање. Вашиот беџ повеќе не е видлив на Вашиот профил.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Можете да продолжите да го користите Signal, но за да ја поддржите апликацијата реактивирајте го беџот, обновете сега.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Обнови претплата</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Не може да се обработи плаќањето</string>
@@ -3542,7 +3541,7 @@
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">За откажување на претплата потребна е интернет врска.</string>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Вашиот уред не поддржува Google Pay, затоа не можете да се претплатите за да добиете беџ. Сѐ уште можете да го поддржите Signal преку донација на нашиот веб сајт.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Грешка во мрежата. Проверете ја Вашата интернет врска и обидете се повторно.</string>
-  <string name="NetworkFailure__retry">Пробај пак</string>
+  <string name="NetworkFailure__retry">Обидете се повторно</string>
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Обидете се со друг начин на плаќање или контактирајте со Вашата банка за повеќе информации.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3719,8 +3718,8 @@
   <string name="DonationReceiptListFragment__all">Сите</string>
   <!--Donation receipts recurring tab label-->
   <string name="DonationReceiptListFragment__recurring">Повторливи</string>
-  <!--Donation receipts one time tab label-->
-  <string name="DonationReceiptListFragment__one_time">Еднаш</string>
+  <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">Еднократна</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Поттик</string>
   <!--Donation receipts details title-->
@@ -3766,8 +3765,12 @@
   <string name="StoriesLandingItem__go_to_chat">Оди до разговорот</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Се испраќа…</string>
+  <!--Label when multiple stories are pending sending-->
+  <string name="StoriesLandingItem__sending_d">Се испраќа %1$d…</string>
   <!--Label when a story fails to send-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingItem__couldnt_send">Не може да се испрати</string> -->
+  <string name="StoriesLandingItem__send_failed">Испраќањето е неуспешно</string>
+  <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">Допрете за да се обидете повторно</string>
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Да се сокрие приказната?</string>
   <!--Message of dialog confirming decision to hide a story-->
@@ -3916,6 +3919,10 @@
   <string name="StoryDialogs__add_to_story">Додај во приказна</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <string name="StoryDialogs__edit_viewers">Уреди гледачи</string>
+  <!--Error message shown when a failure occurs during story send-->
+  <string name="StoryDialogs__story_could_not_be_sent">Приказната не може да се испрати. Проверете ја Вашата интернет конекција и обидете се повторно.</string>
+  <!--Error message dialog button to resend a previously failed story send-->
+  <string name="StoryDialogs__send">Испрати</string>
   <!--Privacy Settings toggle title for stories-->
   <string name="PrivacySettingsFragment__share_and_view_stories">Сподели и гледај приказни</string>
   <!--Privacy Settings toggle summary for stories-->
@@ -3969,6 +3976,10 @@
   <string name="StorySlateView__no_internet_connection">Нема интернет конекција</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <string name="StorySlateView__couldnt_load_content">Не може да се вчита содржината</string>
+  <!--Toasted when the user externally shares to a text story successfully-->
+  <string name="TextStoryPostCreationFragment__sent_story">Приказната е испратена</string>
+  <!--Toasted when the user external share to a text story fails-->
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">Не успеа да се испрати приказната</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Да се ​​исклучи заобиколувањето на цензурата?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->

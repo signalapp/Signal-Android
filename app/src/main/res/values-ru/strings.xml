@@ -536,10 +536,6 @@
     <item quantity="other">%d ожидающих запросов на участие.</item>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Просмотреть</string>
-  <!--ShareActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Поделиться с</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Несколько вложений поддерживаются только для изображений и видео</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Вы не можете отправлять сообщения в эту группу</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Неустранимая ошибка соединения!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не смог зарегистрироваться в Службах Google Play. Сообщения и звонки через Signal отключены, пожалуйста, попробуйте зарегистрироваться снова через Наcтройки &gt; Расширенные.</string>
@@ -2293,9 +2289,12 @@
   <string name="preferences__help">Помощь</string>
   <string name="preferences__advanced">Расширенные</string>
   <string name="preferences__donate_to_signal">Поддержать Signal</string>
+  <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">Подписка</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">Станьте Поддерживающим Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Ускорение Signal</string> -->
+  <!--Preference label for making a monthly donation to Signal-->
+  <string name="preferences__monthly_donation">Ежемесячное пожертвование</string>
+  <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">Одноразовое пожертвование</string>
   <string name="preferences__privacy">Конфиденциальность</string>
   <string name="preferences__mms_user_agent">User Agent для MMS </string>
   <string name="preferences__advanced_mms_access_point_names">Ручные настройки MMS</string>
@@ -3161,8 +3160,6 @@
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Не удалось отправить некоторым пользователям</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Можно поделиться максимум с %1$d чатами</string>
-  <!--ShareInterstitialActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">Переслать сообщение</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Обои чата</string>
   <!--ChatWallpaperFragment-->
@@ -3472,9 +3469,10 @@
   <string name="AddAProfilePhotoMegaphone__add_photo">Добавить фото</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Станьте Поддерживающим</string>
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">Signal существует благодаря таким людям, как вы. Поддержите нас и получите значок в профиль.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">Нет, спасибо</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">Поддержать</string> -->
+  <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal существует благодаря таким людям, как вы. Пожертвуйте и получите значок.</string>
+  <string name="BecomeASustainerMegaphone__not_now">Не сейчас</string>
+  <string name="BecomeASustainerMegaphone__donate">Пожертвовать</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Эмодзи</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Открыть поиск эмодзи</string>
@@ -3583,9 +3581,13 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--Displayed in the toolbar when externally sharing text to multiple recipients-->
+  <string name="ShareInterstitialActivity__share">Поделиться</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Перейти назад</string>
   <string name="MultiselectForwardFragment__forward_to">Переслать</string>
+  <!--Displayed when sharing content via the fragment-->
+  <string name="MultiselectForwardFragment__share_with">Поделиться с</string>
   <string name="MultiselectForwardFragment__add_a_message">Добавьте сообщение</string>
   <string name="MultiselectForwardFragment__faster_forwards">Более быстрая пересылка</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Пересылаемые сообщения теперь отправляются сразу.</string>
@@ -3654,6 +3656,7 @@
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal существует благодаря таким людям, как вы.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Поддержите технологию, которая создана для вас, а не ради ваших данных, присоединившись к сообществу людей, которые её поддерживают.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Поддержите технологию, сделанную для вас, а не для ваших данных, присоединившись к сообществу, которое поддерживает Signal.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Сделайте пожертвование в Signal, повторяющееся ежемесячно, чтобы поддерживать технологию, созданную для вас, а не ради ваших данных.</string>
   <string name="SubscribeFragment__currency">Валюта</string>
   <string name="SubscribeFragment__more_payment_options">Больше способов оплаты</string>
   <string name="SubscribeFragment__cancel_subscription">Отменить подписку</string>
@@ -3665,19 +3668,19 @@
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Ваша подписка была отменена.</string>
   <string name="SubscribeFragment__update_subscription_question">Обновить подписку?</string>
   <string name="SubscribeFragment__update">Обновить</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Полная сумма новой подписки будет взята с вас сегодня. Ваша подписка продлится %1$s.</string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Полная сумма новой подписки (%1$s) будет взята с вас сегодня. Ваша подписка будет продлеваться ежемесячно.</string>
   <string name="Subscription__s_per_month">%s/месяц</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/месяц · Продлится %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/месяц · Истекает %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal — некоммерческая организация без рекламодателей и инвесторов, поддерживаемая только людьми, которые используют и ценят приложение Signal. Вносите ежемесячные взносы, и вы получите значок для профиля, чтобы продемонстрировать свою поддержку.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Почему стоит поддерживать?</string> -->
+  <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal — некоммерческая организация без рекламодателей и инвесторов, поддерживаемая только людьми, которые используют и ценят приложение Signal. Сделайте пожертвование, повторяющееся ежемесячно, и вы получите значок для профиля, чтобы продемонстрировать свою поддержку.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Почему стоит пожертвовать?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal предан миссии по разработке технологии конфиденциальности с открытым исходным кодом, которая защищает свободу слова и делает возможным безопасное общение по всему миру.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Ваш вклад поддерживает эту миссию и оплачивает разработку и работу приложения, которое используется миллионами людей для конфиденциального общения. Без рекламы. Без трекеров. Без шуток.</string> -->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Ваше пожертвование поддерживает эту миссию и оплачивает разработку и работу приложения, которое используется миллионами людей для конфиденциального общения. Без рекламы. Без трекеров. Без шуток.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Спасибо за вашу поддержку!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Спасибо за Ускорение!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Вы заработали значок «%s»! Помогите Signal повысить осведомлённость, показав этот значок в своём профиле.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Вы заработали значок «Ускорение»! Помогите Signal повысить осведомлённость, показав этот значок в своём профиле.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Вы получили значок «%s»! Покажите этот значок в своём профиле, чтобы повысить осведомлённость о пожертвованиях в Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Вы получили значок «Ускорение»! Покажите этот значок в своём профиле, чтобы повысить осведомлённость о пожертвованиях в Signal.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Вы также можете</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">стать ежемесячным Поддерживающим.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Показывать в профиле</string>
@@ -3694,7 +3697,8 @@
   <string name="ManageDonationsFragment__subscription_faq">ЧаВо о подписке</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Не удалось получить информацию о подписке.</string>
   <string name="BoostFragment__give_signal_a_boost">Дайте «Ускорение» приложению Signal</string>
-  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">Скажите «Спасибо!» и получите значок «Ускорение» на %1$d дней.</string> -->
+  <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Сделайте одноразовое пожертвование и получите значок «Ускорение» на %1$d дней.</string>
   <string name="Boost__enter_custom_amount">Ввести сумму</string>
   <string name="Boost__one_time_contribution">Одноразовая поддержка</string>
   <string name="MySupportPreference__add_a_signal_boost">Добавить Ускорение Signal</string>
@@ -3704,19 +3708,22 @@
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Не удалось добавить значок. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Пожалуйста, свяжитесь с поддержкой.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Ваш значок истёк</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Значок истёк</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Подписка отменена</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Ваш значок «Ускорение» истёк и больше не виден другим людям в вашем профиле.</string> -->
+  <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Значок «Ускорение» истёк</string>
+  <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Ежемесячное пожертвование отменено</string>
+  <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Ваш значок «Ускорение» истёк и больше не виден в вашем профиле.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Вы можете заново активировать свой значок «Ускорение» ещё на 30 дней, сделав одноразовое пожертвование.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Чтобы продолжить поддерживать технологию, сделанную для вас, пожалуйста, подумайте о том, чтобы стать ежемесячным Поддерживающим.</string> -->
+  <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Вы можете продолжить пользоваться Signal, но чтобы поддерживать технологию, созданную для вас, подумайте о том, чтобы стать поддерживающим, сделав пожертвование, повторяющееся ежемесячно.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Стать Поддерживающим</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Добавить Ускорение</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сейчас</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Ваша подписка Поддерживающего была автоматически отменена, потому что вы были неактивны слишком долго. Ваш значок «%1$s» больше не виден в вашем профиле.</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Ваше пожертвование, повторяющееся ежемесячно, было автоматически отменено, потому что вы были неактивны слишком долго. Ваш значок «%1$s» больше не виден в вашем профиле.</string>
   <!--Copy displayed when badge expires after payment failure-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Ваша подписка Поддерживающего была отменена, потому что нам не удалось обработать ваш платёж. Ваш значок больше не виден в вашем профиле.</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Ваша пожертвование, повторяющееся ежемесячно, было отменено, потому что нам не удалось обработать ваш платёж. Ваш значок больше не виден в вашем профиле.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Вы можете продолжать использовать Signal, но чтобы поддержать приложение и заново активировать значок, продлите подписку сейчас.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Продлить подписку</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Не удалось обработать платёж для подписки</string>
@@ -3919,7 +3926,7 @@
   <string name="DonationReceiptListFragment__all">Все</string>
   <!--Donation receipts recurring tab label-->
   <string name="DonationReceiptListFragment__recurring">Повторяющиеся</string>
-  <!--Donation receipts one time tab label-->
+  <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">Одноразовые</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Ускорение</string>
@@ -3966,8 +3973,12 @@
   <string name="StoriesLandingItem__go_to_chat">Перейти к чату</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Отправляется…</string>
+  <!--Label when multiple stories are pending sending-->
+  <string name="StoriesLandingItem__sending_d">Отправляем %1$d…</string>
   <!--Label when a story fails to send-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingItem__couldnt_send">Не удалось отправить</string> -->
+  <string name="StoriesLandingItem__send_failed">Отправка не удалась</string>
+  <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">Нажмите, чтобы попробовать ещё раз</string>
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Скрыть историю?</string>
   <!--Message of dialog confirming decision to hide a story-->
@@ -4124,6 +4135,10 @@
   <string name="StoryDialogs__add_to_story">Добавить в историю</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <string name="StoryDialogs__edit_viewers">Редактировать зрителей</string>
+  <!--Error message shown when a failure occurs during story send-->
+  <string name="StoryDialogs__story_could_not_be_sent">Не удалось отправить историю. Проверьте ваше подключение к интернету и попробуйте ещё раз.</string>
+  <!--Error message dialog button to resend a previously failed story send-->
+  <string name="StoryDialogs__send">Отправить</string>
   <!--Privacy Settings toggle title for stories-->
   <string name="PrivacySettingsFragment__share_and_view_stories">Делиться историями и просматривать их</string>
   <!--Privacy Settings toggle summary for stories-->
@@ -4179,6 +4194,10 @@
   <string name="StorySlateView__no_internet_connection">Нет подключения к интернету</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <string name="StorySlateView__couldnt_load_content">Не удалось загрузить содержимое</string>
+  <!--Toasted when the user externally shares to a text story successfully-->
+  <string name="TextStoryPostCreationFragment__sent_story">История отправлена</string>
+  <!--Toasted when the user external share to a text story fails-->
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">Не удалось отправить историю</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Отключить обход цензуры?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->

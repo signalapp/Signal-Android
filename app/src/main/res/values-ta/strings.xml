@@ -449,10 +449,6 @@
     <item quantity="other">%dஉறுப்பினர் கோரிக்கைகள் நிலுவையில் உள்ளன</item>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">காண்க</string>
-  <!--ShareActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">பகிர்</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">பல இணைப்புகள் படங்கள் மற்றும் வீடியோக்களுக்கு மட்டுமே துணைபுரிகின்றன</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">உன்னிடம் இல்லை அனுமதி க்கு அனுப்பு இந்த குழு</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">நிரந்தர Signal தொடர்பு தோல்வி!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Google Play சேவை உடன் TextSecure-ஐ பதிவு செய்ய இயலவில்லை. இணையதளம் வழியாக தொடர்புடையாடல் முடக்கப்பட்டுள்ளது, TextSecure அமைப்புகள் மெனுவில் மறுபதிவுச்செய்ய முயற்சிக்கவும்</string>
@@ -1993,6 +1989,9 @@
   <string name="preferences__help">உதவி</string>
   <string name="preferences__advanced">மேம்பட்ட</string>
   <string name="preferences__donate_to_signal">Signal-க்கு நன்கொடை அளி</string>
+  <!--Preference label when someone is already a subscriber-->
+  <!--Preference label for making a monthly donation to Signal-->
+  <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">தனியுரிமை</string>
   <string name="preferences__mms_user_agent">எம்.எம்.எஸ் பயனர் முகவர்</string>
   <string name="preferences__advanced_mms_access_point_names">நீங்கள் செய்யவேண்டிய MMS அமைப்புகள்</string>
@@ -2819,8 +2818,6 @@
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">சில பயனர்களுக்கு அனுப்புவதில் தோல்வி</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to"> நீங்கள் அரட்டைகள் %1$d வரை மட்டுமே பகிர முடியும்</string>
-  <!--ShareInterstitialActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">செய்தியை முன்னனுப்புக</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">உரையாடல் பின்னணிப்படம்</string>
   <!--ChatWallpaperFragment-->
@@ -3094,7 +3091,9 @@
   <string name="AddAProfilePhotoMegaphone__not_now">இப்போது இல்லை</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">கூட்டு புகைப்படம்</string>
   <!--BecomeASustainerMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">தேவையில்லை,நன்றி</string> -->
+  <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__not_now">இப்போது இல்லை</string>
+  <string name="BecomeASustainerMegaphone__donate">நன்கொடை</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">உணர்வு படங்கள்</string>
   <string name="KeyboardPagerFragment_open_emoji_search">திற ஈமோஜி தேடல்</string>
@@ -3201,9 +3200,13 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--Displayed in the toolbar when externally sharing text to multiple recipients-->
+  <string name="ShareInterstitialActivity__share">பகிர்</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">மேலே செல்லவும்</string>
   <string name="MultiselectForwardFragment__forward_to">முன்னோக்கி</string>
+  <!--Displayed when sharing content via the fragment-->
+  <string name="MultiselectForwardFragment__share_with">பகிர்</string>
   <string name="MultiselectForwardFragment__add_a_message">கூட்டு ஒரு செய்தி</string>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="one">செய்தி அனுப்பப்பட்டது</item>
@@ -3228,10 +3231,17 @@
   <string name="SubscribeFragment__not_now">இப்போது இல்லை</string>
   <string name="SubscribeFragment__confirm">உறுதிப்படுத்தவும்</string>
   <string name="SubscribeFragment__update">புதுப்பிக்கப்பட்டது</string>
+  <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">ஏன் நன்கொடை?</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">முடிந்தது</string>
   <!--Label for Donation Receipts button-->
+  <!--Description text in boost sheet-->
   <string name="Boost__enter_custom_amount">உள்ளிடவும் தனிப்பயன் தொகை</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <!--Displayed in the bottom sheet when a boost badge expires-->
+  <!--Displayed when we do not think the user is a subscriber when their boost expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">இப்போது இல்லை</string>
   <!--Copy displayed when badge expires after user inactivity-->
   <!--Copy displayed when badge expires after payment failure-->
@@ -3382,8 +3392,7 @@
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">அனைத்து</string>
   <!--Donation receipts recurring tab label-->
-  <!--Donation receipts one time tab label-->
-  <string name="DonationReceiptListFragment__one_time">ஒரு முறை</string>
+  <!--Donation receipts one-time tab label-->
   <!--Donation receipts boost row label-->
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">விவரங்கள்</string>
@@ -3412,7 +3421,10 @@
   <!--Context menu option to go to story chat-->
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">அனுப்புகிறது …</string>
+  <!--Label when multiple stories are pending sending-->
   <!--Label when a story fails to send-->
+  <string name="StoriesLandingItem__send_failed">அனுப்புவது தோல்வியுற்றது</string>
+  <!--Status label when a story fails to send indicating user action to retry-->
   <!--Title of dialog confirming decision to hide a story-->
   <!--Message of dialog confirming decision to hide a story-->
   <!--Positive action of dialog confirming decision to hide a story-->
@@ -3495,6 +3507,9 @@
   <!--Dialog message for first time adding something to a story-->
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <!--Error message shown when a failure occurs during story send-->
+  <!--Error message dialog button to resend a previously failed story send-->
+  <string name="StoryDialogs__send">அனுப்புக</string>
   <!--Privacy Settings toggle title for stories-->
   <!--Privacy Settings toggle summary for stories-->
   <!--New story viewer selection screen title-->
@@ -3525,6 +3540,8 @@
   <!--Displayed in the viewer when a story is no longer available-->
   <!--Displayed in the viewer when the network is not available-->
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <!--Toasted when the user externally shares to a text story successfully-->
+  <!--Toasted when the user external share to a text story fails-->
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->

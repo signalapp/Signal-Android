@@ -492,10 +492,6 @@
     <item quantity="other">%d pedidos de membros pendentes.</item>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Ver</string>
-  <!--ShareActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Partilhar com</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Apenas são suportados anexos múltiplos para imagens e vídeos.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Você não tem permissão para enviar para esse grupo</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Falha permanente de comunicação do Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">O Signal não se conseguiu registar com os Serviços Google Play. As mensagens e chamadas do Signal estão desativadas, por favor tente registar-se novamente em Definições &gt; Avançado.</string>
@@ -2129,9 +2125,12 @@
   <string name="preferences__help">Ajuda</string>
   <string name="preferences__advanced">Avançado</string>
   <string name="preferences__donate_to_signal">Doar ao Signal</string>
+  <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">Assinatura</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">Torne-se num Apoiante do Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Apoiar o Signal</string> -->
+  <!--Preference label for making a monthly donation to Signal-->
+  <string name="preferences__monthly_donation">Doação mensal</string>
+  <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">Doação única</string>
   <string name="preferences__privacy">Privacidade</string>
   <string name="preferences__mms_user_agent">Agente do utilizador de MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Definições manuais de MMS</string>
@@ -2975,8 +2974,6 @@
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Falha ao enviar para alguns utilizadores</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Apenas pode partilhar com até %1$d conversas</string>
-  <!--ShareInterstitialActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">Reencaminhar mensagem</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Fundo de ecrã de conversas</string>
   <!--ChatWallpaperFragment-->
@@ -3282,9 +3279,10 @@
   <string name="AddAProfilePhotoMegaphone__add_photo">Adicionar fotografia</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Torne-se num Apoiante</string>
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">Signal é assegurado por pessoas como você. Contribua e receba um crachá no perfil.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">Não, obrigado</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">Contribuir</string> -->
+  <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">O Signal é mantido por pessoas como você. Doe e receba um crachá.</string>
+  <string name="BecomeASustainerMegaphone__not_now">Agora não</string>
+  <string name="BecomeASustainerMegaphone__donate">Doar</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Abrir a pesquisa de emoji</string>
@@ -3393,9 +3391,13 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--Displayed in the toolbar when externally sharing text to multiple recipients-->
+  <string name="ShareInterstitialActivity__share">Partilhar</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Ir para cima</string>
   <string name="MultiselectForwardFragment__forward_to">Reencaminhar para</string>
+  <!--Displayed when sharing content via the fragment-->
+  <string name="MultiselectForwardFragment__share_with">Partilhar com</string>
   <string name="MultiselectForwardFragment__add_a_message">Adicionar uma mensagem</string>
   <string name="MultiselectForwardFragment__faster_forwards">Reencaminhar mais rapidamente</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">As mensagens reencaminhadas agora são enviadas imediatamente.</string>
@@ -3456,6 +3458,7 @@
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">O Signal é feito por pessoas como você.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Apoie a tecnologia desenvolvida para si (não para os seus dados) juntando-se à comunidade de pessoas que a sustentam.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Apoie a tecnologia desenvolvida para si (não para os seus dados) juntando-se à comunidade de pessoas que sustentam o Signal.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Faça uma doação mensal recorrente para o Signal de forma a suportar a tecnologia criada para si, não para os seus dados.</string>
   <string name="SubscribeFragment__currency">Moeda</string>
   <string name="SubscribeFragment__more_payment_options">Mais opções de pagamento</string>
   <string name="SubscribeFragment__cancel_subscription">Cancelar assinatura</string>
@@ -3467,19 +3470,19 @@
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">A sua assinatura foi cancelada.</string>
   <string name="SubscribeFragment__update_subscription_question">Atualizar assinatura?</string>
   <string name="SubscribeFragment__update">Atualizar</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Ser-lhe-á cobrado o valor total do novo preço da assinatura aos dias de hoje. A sua assinatura será renovada %1$s. </string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Ser-lhe-á cobrado o valor total (%1$s) do novo preço da assinatura aos dias de hoje. A sua assinatura será renovada mensalmente. </string>
   <string name="Subscription__s_per_month">%s/mês</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/mês · Renovações %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/mês · Expira %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">A Signal é uma organização sem fins lucrativos, sem anunciantes ou investidores, sustentada apenas pelas pessoas que a utilizam e valorizam. Faça uma contribuição mensal recorrente e receba um crachá de perfil para partilhar o seu apoio.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Porque contribuir?</string> -->
+  <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">A Signal é uma organização sem fins lucrativos, sem anunciantes ou investidores, sustentada apenas pelas pessoas que a utilizam e valorizam. Faça uma doação mensal recorrente e receba um crachá de perfil para partilhar o seu apoio.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Porquê doar?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">O Signal está empenhado em desenvolver tecnologia de privacidade de código aberto que protege a liberdade de expressão e permite uma comunicação global segura.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">A sua contribuição alimenta essa causa e paga pelo desenvolvimento e operação de uma aplicação utilizada por milhões para comunicação privada. Sem anúncios. Sem rastreadores. Sem brincadeiras.</string> -->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">A sua doação alimenta essa causa e paga pelo desenvolvimento e operação de uma aplicação utilizada por milhões para comunicação privada. Sem anúncios. Sem rastreadores. Sem brincadeiras.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Obrigado pelo seu Apoio!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Obrigado pelo seu Apoio!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Você ganhou o crachá %s! Ajude o Signal a aumentar a conscientização exibindo este crachá no seu perfil. </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Você ganhou um crachá de Apoio! Ajude o Signal a aumentar a conscientização exibindo este crachá no seu perfil. </string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Você ganhou o crachá %s! Exiba este crachá no seu perfil para criar a consciencialização de doar ao Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Você ganhou um crachá de \'Apoio\'! Exiba este crachá no seu perfil para criar a consciencialização de doar ao Signal.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Também pode</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">torne-se num Apoiante do Signal.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Exibir no perfil</string>
@@ -3496,7 +3499,8 @@
   <string name="ManageDonationsFragment__subscription_faq">Assinatura - FAQ</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Ocorreu um erro ao tentar obter a assinatura.</string>
   <string name="BoostFragment__give_signal_a_boost">Dê um Apoio ao Signal</string>
-  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">Diga \"Obrigado\" e ganhe o crachá de Apoio durante %1$d dias.</string> -->
+  <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Faça uma doação única e ganhe o crachá de \'Apoio\' durante %1$d dias.</string>
   <string name="Boost__enter_custom_amount">Introduzir montante personalizado</string>
   <string name="Boost__one_time_contribution">Contribuição única</string>
   <string name="MySupportPreference__add_a_signal_boost">Apoiar o Signal</string>
@@ -3506,19 +3510,22 @@
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Não foi possível adicionar o crachá. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Por favor, entre em contacto com o suporte.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">O seu crachá expirou</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Crachá expirado</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Subscrição cancelada</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">O seu crachá de Apoio expirou e deixou de ser visível para os outras pessoas através do seu perfil.</string> -->
+  <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Crachá de Apoio expirado</string>
+  <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Doação mensal cancelada</string>
+  <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">O seu crachá de Apoio expirou e deixou de ser visível no seu perfil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Pode reativar o seu crachá de Apoio por mais 30 dias com uma contribuição única.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Para continuar a suportar a tecnologia que foi construída para si, considere ser um Apoiante mensal.</string> -->
+  <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Pode continuar a utilizar o Signal mas, para apoiar a tecnologia que foi criada para si, considere tornar-se num apoiante fazendo uma doação mensal.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Torne-se num Apoiante</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Apoiar o Signal</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Agora não</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">A sua classificação de Apoiante foi cancelada automaticamente porque se encontra inativo à muito tempo. O seu crachá %1$s deixou de estar visível no seu perfil.</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">A sua doação mensal recorrente foi cancelada automaticamente porque se encontra inativa à muito tempo. O seu crachá %1$s deixou de estar visível no seu perfil.</string>
   <!--Copy displayed when badge expires after payment failure-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">A sua assinatura de Apoiante foi cancelada porque o seu pagamento não pode ser processado. O seu crachá deixou de estar visível no seu perfil.</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">A sua doação mensal recorrente foi cancelada porque o seu pagamento não pode ser processado. O seu crachá deixou de estar visível no seu perfil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Pode continuar a utilizar o Signal mas, para apoiar a aplicação e reativar o seu crachá, renove agora.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renovar assinatura</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Não foi possível processar o pagamento da sua assinatura</string>
@@ -3721,8 +3728,8 @@
   <string name="DonationReceiptListFragment__all">Tudo</string>
   <!--Donation receipts recurring tab label-->
   <string name="DonationReceiptListFragment__recurring">Recorrente</string>
-  <!--Donation receipts one time tab label-->
-  <string name="DonationReceiptListFragment__one_time">Uma vez</string>
+  <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">Uma única vez</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Apoio</string>
   <!--Donation receipts details title-->
@@ -3768,8 +3775,12 @@
   <string name="StoriesLandingItem__go_to_chat">Ir para a conversa</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">A enviar…</string>
+  <!--Label when multiple stories are pending sending-->
+  <string name="StoriesLandingItem__sending_d">A enviar %1$d…</string>
   <!--Label when a story fails to send-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingItem__couldnt_send">Não foi possível enviar</string> -->
+  <string name="StoriesLandingItem__send_failed">Falha ao enviar</string>
+  <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">Toque para tentar de novo</string>
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Ocultar história?</string>
   <!--Message of dialog confirming decision to hide a story-->
@@ -3918,6 +3929,10 @@
   <string name="StoryDialogs__add_to_story">Adicionar à história</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <string name="StoryDialogs__edit_viewers">Editar visualizadores</string>
+  <!--Error message shown when a failure occurs during story send-->
+  <string name="StoryDialogs__story_could_not_be_sent">A história não pode ser enviada. Verifique a sua ligação e tente novamente.</string>
+  <!--Error message dialog button to resend a previously failed story send-->
+  <string name="StoryDialogs__send">Enviar</string>
   <!--Privacy Settings toggle title for stories-->
   <string name="PrivacySettingsFragment__share_and_view_stories">Partilhar e ver histórias</string>
   <!--Privacy Settings toggle summary for stories-->
@@ -3971,6 +3986,10 @@
   <string name="StorySlateView__no_internet_connection">Sem Ligaçāo à Internet</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <string name="StorySlateView__couldnt_load_content">Não foi possível carregar o conteúdo</string>
+  <!--Toasted when the user externally shares to a text story successfully-->
+  <string name="TextStoryPostCreationFragment__sent_story">Enviar história</string>
+  <!--Toasted when the user external share to a text story fails-->
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">Falha ao enviar história</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Desativar a circunscrição de censura?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->

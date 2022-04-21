@@ -482,10 +482,6 @@
     <item quantity="other">%d ਬਕਾਇਆ ਮੈਂਬਰ ਬੇਨਤੀਆਂ</item>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">ਵੇਖੋ</string>
-  <!--ShareActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">ਇਹਨਾਂ ਨਾਲ ਸ਼ੇਅਰ ਕਰੋ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">ਇੱਕ ਤੋਂ ਵੱਧ ਅਟੈਚਮੈਂਟਾਂ ਸਿਰਫ਼ ਚਿੱਤਰਾਂ ਅਤੇ ਵੀਡੀਓ ਲਈ ਹੀ ਯੋਗ ਹਨ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">ਤੁਹਾਡੇ ਕੋਲ ਇਸ ਗਰੁੱਪ ਨੂੰ ਭੇਜਣ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ ਹੈ</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">ਸਥਾਈ Signal ਸੰਚਾਰ ਅਸਫ਼ਲ!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Google Play ਸੇਵਾਵਾਂ ਨਾਲ ਰਜਿਸਟਰ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ ਸੀ। Signal ਸੁਨੇਹੇ ਅਤੇ ਕਾਲਾਂ ਅਸਮਰੱਥ ਕੀਤੇ ਗਏ ਹਨ, ਕਿਰਪਾ ਕਰਕੇ ਸੈਟਿੰਗਾਂ &gt; ਤਕਨੀਕੀ ਵਿੱਚੋਂ ਮੁੜ-ਰਜਿਸਟਰ ਕਰੋ।</string>
@@ -2082,9 +2078,10 @@
   <string name="preferences__help">ਮਦਦ</string>
   <string name="preferences__advanced">ਤਕਨੀਕੀ</string>
   <string name="preferences__donate_to_signal">Signal ਨੂੰ ਦਾਨ ਕਰੋ</string>
+  <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">ਮੈਂਬਰੀ</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">ਇੱਕ Signal ਸਹਾਇਕ ਬਣੋ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Signal ਬੂਸਟ</string> -->
+  <!--Preference label for making a monthly donation to Signal-->
+  <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">ਪਰਦੇਦਾਰੀ</string>
   <string name="preferences__mms_user_agent"> MMS ਯੂਜ਼ਰ ਏਜੰਟ</string>
   <string name="preferences__advanced_mms_access_point_names">ਦਸਤੀ MMS ਸੈਟਿੰਗਾਂ</string>
@@ -2924,8 +2921,6 @@
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">ਕੁਝ ਵਰਤੋਂਕਾਰਾਂ ਨੂੰ ਭੇਜਣਾ ਅਸਫਲ ਰਿਹਾ</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">ਤੁਸੀਂ ਸਿਰਫ਼ %1$d ਚੈਟਾਂ ਤੱਕ ਦੇ ਨਾਲ ਹੀ ਸਾਂਝਾ ਕਰ ਸਕਦੇ ਹੋ</string>
-  <!--ShareInterstitialActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">ਸੁਨੇਹਾ ਅੱਗੇ ਭੇਜੋ</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">ਗੱਲਬਾਤ ਵਾਲਪੇਪਰ</string>
   <!--ChatWallpaperFragment-->
@@ -3230,9 +3225,9 @@
   <string name="AddAProfilePhotoMegaphone__add_photo">ਫ਼ੋਟੋ ਜੋੜੋ</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">ਸਹਾਇਕ ਬਣੋ</string>
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">Signal ਨੂੰ ਤੁਹਾਡੇ ਵਰਗੇ ਲੋਕਾਂ ਦਾ ਆਸਰਾ ਹੈ। ਯੋਗਦਾਨ ਪਾਓ ਤੇ ਪ੍ਰੋਫ਼ਾਈਲ ਬਿੱਲਾ ਲਵੋ।</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">ਨਹੀਂ ਧੰਨਵਾਦ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">ਯੋਗਦਾਨ</string> -->
+  <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__not_now">ਹੁਣੇ ਨਹੀਂ</string>
+  <string name="BecomeASustainerMegaphone__donate">خیرات کرو</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">ਈਮੋਜ਼ੀ</string>
   <string name="KeyboardPagerFragment_open_emoji_search">ਇਮੋਜੀ ਖੋਜ ਖੋਲ੍ਹੋ</string>
@@ -3341,9 +3336,13 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--Displayed in the toolbar when externally sharing text to multiple recipients-->
+  <string name="ShareInterstitialActivity__share">ਸਾਂਝਾ ਕਰੋ</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">ਉੱਤੇ ਜਾਓ</string>
   <string name="MultiselectForwardFragment__forward_to">ਅੱਗੇ ਭੇਜੋ</string>
+  <!--Displayed when sharing content via the fragment-->
+  <string name="MultiselectForwardFragment__share_with">ਇਹਨਾਂ ਨਾਲ ਸ਼ੇਅਰ ਕਰੋ</string>
   <string name="MultiselectForwardFragment__add_a_message">ਸੁਨੇਹਾ ਜੋੜੋ</string>
   <string name="MultiselectForwardFragment__faster_forwards">ਵੱਧ ਤੇਜ਼ੀ ਨਾਲ ਅੱਗੇ </string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">ਅੱਗੇ ਭੇਜੇ ਸੁਨੇਹੇ ਹੁਣ ਫ਼ੌਰਨ ਭੇਜੇ ਜਾਂਦੇ ਹਨ।</string>
@@ -3411,19 +3410,15 @@
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">ਤੁਹਾਡੀ ਮੈਂਬਰੀ ਰੱਦ ਕੀਤੀ ਜਾ ਚੁੱਕੀ ਹੈ।</string>
   <string name="SubscribeFragment__update_subscription_question">ਮੈਂਬਰੀ ਅੱਪਡੇਟ ਕਰਨੀ ਹੈ?</string>
   <string name="SubscribeFragment__update">ਅੱਪਡੇਟ ਕਰੋ</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">ਤੁਹਾਡੇ ਤੋਂ ਨਵੇਂ ਮੈਂਬਰੀ ਕੀਮਤ ਦੀ ਪੂਰੀ ਰਕਮ ਅੱਜ ਵਸੂਲੀ ਜਾਵੇਗੀ। ਤੁਹਾਡੀ ਮੈਂਬਰੀ %1$s ਨੂੰ ਨਵਿਆਈ ਜਾਵੇਗੀ।</string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">ਤੁਹਾਡੀ ਨਵੀਂ ਮੈਂਬਰੀ ਦੀ ਕੀਮਤ ਲਈ ਪੂਰੀ ਰਕਮ (%1$s) ਅੱਜ ਲੈ ਲਈ ਜਾਵੇਗੀ। ਤੁਹਾਡੀ ਮੈਂਬਰੀ ਹਰ ਮਹੀਨੇ ਨਵਿਆਈ ਜਾਵੇਗੀ।</string>
   <string name="Subscription__s_per_month">%s/ਮਹੀਨਾ</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/ਮਹੀਨਾ  ਨਵਿਆਉਣ %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/ਮਹੀਨਾ ਮਿਆਦ ਪੁੱਗਣੀ %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal ਬਿਨਾਂ ਇਸ਼ਤਿਹਾਰਾਂ ਜਾਂ ਨਿਵੇਸ਼ਕਾਂ ਤੋਂ ਗ਼ੈਰ-ਫਾਇਦਾ ਸੰਗਠਨ ਹੈ, ਜੋ ਕਿ ਸਿਰਫ਼ ਇਸ ਨੂੰ ਵਰਤਣ ਤੇ ਇਸ ਦੇ ਮਹੱਤਵ ਨੂੰ ਸਮਝਣ ਵਾਲੇ ਲੋਕਾਂ ਕਰਕੇ ਚੱਲਦੀ ਹੈ। ਲਗਾਤਾਰ ਮਹੀਨੇਵਾਰ ਯੋਗਦਾਨ ਪਾਓ ਅਤੇ ਆਪਣੇ ਸਹਿਯੋਗ ਨੂੰ ਸਾਂਝਾ ਕਰਨ ਲਈ ਆਪਣੇ ਪ੍ਰੋਫਾਇਲ ਲਈ ਬਿੱਲਾ ਪਾਓ।</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">ਯੋਗਦਾਨ ਕਿਓ ਪਾਈਏ?</string> -->
+  <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">ਦਾਨ ਕਿਉਂ ਦੇਈਏ?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal ਆਜ਼ਾਦ ਸਰੋਤ ਪਰਦੇਦਾਰੀ ਵਿਕਸਤ ਕਰਨ ਲਈ ਵਚਨਬੱਧ ਹੈ। ਤਕਨੀਕ ਜੋ ਆਜ਼ਾਦ ਵਿਚਾਰ ਰੱਖਣ ਤੇ ਸੰਸਾਰ ਭਰ ਦੇ ਸੰਚਾਰ ਨੂੰ ਸੁਰੱਖਿਅਤ ਰੱਖਣ ਦੇ ਸਮਰੱਥ ਕਰਦੀ ਹੈ।</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">ਤੁਹਾਡਾ ਯੋਗਦਾਨ ਇਸ ਮਕਸਦ ਨੂੰ ਜਾਰੀ ਰੱਖਦਾ ਹੈ ਅਤੇ ਪ੍ਰਾਈਵੇਟ ਸੰਚਾਰ ਲਈ ਲੱਖਾਂ ਲੋਕਾਂ ਵਲੋਂ ਵਰਤੀ ਜਾਂਦੀ ਐਪ ਦੇ ਵਿਕਾਸ ਤੇ ਕਾਰਜਕਾਰੀ ਕੰਮਾਂ ਲਈ ਭੁਗਤਾਨ ਕਰਦਾ ਹੈ। ਕੋਈ ਇਸ਼ਤਿਹਾਰ ਨਹੀ। ਕੋਈ ਟਰੈਕਰ ਨਹੀਂ। ਕੋਈ ਮਜ਼ਾਕ ਨਹੀਂ।</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ਤੁਹਾਡੇ ਸਹਿਯੋਗ ਲਈ ਧੰਨਵਾਦ ਹੈ!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">ਬੂਸਟ ਲਈ ਧੰਨਵਾਦ ਹੈ!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">ਤੁਸੀਂ %sਬਿੱਲਾ ਪਾ ਲਿਆ ਹੈ! ਆਪਣੇ ਪ੍ਰੋਫ਼ਾਈਲ ਉੱਤੇ ਇਹ ਬਿੱਲਾ ਦਿਖਾ ਕੇ Signal ਜਾਗਰੂਕਤਾ ਫੈਲਾਉਂਣ ਲਈ ਮਦਦ ਕਰੋ।</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">ਤੁਸੀਂ ਬੂਸਟ ਬਿੱਲਾ ਪਾਇਆ ਹੈ। ਆਪਣੇ ਪ੍ਰੋਫ਼ਾਈਲ ਉੱਤੇ ਇਹ ਬਿੱਲਾ ਦਿਖਾ ਕੇ Signal ਜਾਗਰੂਕ ਫੈਲਾਉਣ ਲਈ ਮਦਦ ਕਰੋ!</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">ਤੁਹਾਡੇ ਕਰ ਸਕਦੇ ਹੋ</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">ਮਹੀਨੇਵਾਰ ਸਹਿਯੋਗੀ ਬਣ</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">ਪ੍ਰੋਫ਼ਾਈਲ ਉੱਤੇ ਦਿਖਾਓ</string>
@@ -3438,7 +3433,7 @@
   <string name="ManageDonationsFragment__badges">ਬੈਜ</string>
   <string name="ManageDonationsFragment__subscription_faq">ਮੈਂਬਰੀ ਲਈ ਸਵਾਲ-ਜਵਾਬ</string>
   <string name="BoostFragment__give_signal_a_boost">Signal ਨੂੰ ਸਹਿਯੋਗ ਦਿਓ</string>
-  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">\"ਧੰਨਵਾਦ!\" ਕਹੋ ਅਤੇ %1$d ਦਿਨਾਂ ਲਈ ਬੂਸਟ ਬਿੱਲਾ ਲਵੋ।</string> -->
+  <!--Description text in boost sheet-->
   <string name="Boost__enter_custom_amount">ਪਸੰਦੀਦਾ ਰਕਮ ਦਿਓ</string>
   <string name="Boost__one_time_contribution">ਇੱਕ-ਵਾਰ ਯੋਗਦਾਨ</string>
   <string name="MySupportPreference__add_a_signal_boost">Signal ਬੂਸਟ ਜੋੜੋ</string>
@@ -3448,17 +3443,15 @@
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">ਬਿੱਲਾ ਜੋੜਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ। %1$s</string>
   <string name="MySupportPreference__please_contact_support">ਮਦਦ ਨਾਲ ਸੰਪਰਕ ਕਰੋ।</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">ਤੁਹਾਡੇ ਬਿੱਲੇ ਦੀ ਮਿਆਦ ਪੁੱਗੀ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">ਬਿੱਲੇ ਦੀ ਮਿਆਦ ਪੁੱਗੀ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">ਮੈਂਬਰੀ ਰੱਦ ਕੀਤੀ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">ਤੁਹਾਡੇ ਬੂਸਟ ਬਿੱਲੇ ਦੀ ਮਿਆਦ ਪੁੱਗੀ ਹੈ ਅਤੇ ਤੁਹਾਡੇ ਪ੍ਰੋਫ਼ਾਈਲ ਉੱਤੇ ਹੋਰਾਂ ਨੂੰ ਦਿਖਾਈ ਨਹੀਂ ਦੇਵੇਗਾ।</string> -->
+  <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <!--Displayed in the bottom sheet when a boost badge expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">ਤੁਸੀਂ ਇੱਕ ਵਾਰ ਯੋਗਦਾਨ ਨਾਲ ਹੋਰ 30 ਦਿਨਾਂ ਲਈ ਆਪਣੇ ਬੂਸਟ ਬਿੱਲੇ ਨੂੰ ਮੁੜ-ਐਕਟੀਵੇਟ ਕਰ ਸਕਦੇ ਹੋ।</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">ਤੁਹਾਡੇ ਲਈ ਬਣਾਈ ਤਕਨੀਕ ਨੂੰ ਸਹਿਯੋਗ ਦੇਣਾ ਜਾਰੀ ਰੱਖਣ ਲਈ ਮਹੀਨੇਵਾਰ ਯੋਗਦਾਨੀ ਬਣਨ ਉੱਤੇ ਵਿਚਾਰ ਕਰੋ।</string> -->
+  <!--Displayed when we do not think the user is a subscriber when their boost expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">ਸਹਾਇਕ ਬਣੋ</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">ਬੂਸਟ ਜੋੜੋ</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ਹੁਣੇ ਨਹੀਂ</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">ਤੁਹਾਡੇ ਬਹੁਤ ਜ਼ਿਆਦਾ ਦੇਰ ਨਾ-ਸਰਗਰਮ ਰਹਿਣ ਕਰਕੇ ਤੁਹਾਡੀ ਸਹਿਯੋਗ ਮੈਂਬਰੀ ਨੂੰ ਆਪਣੇ-ਆਪ ਹਟਾ ਦਿੱਤਾ ਗਿਆ ਸੀ। ਤੁਹਾਡਾ %1$s ਬਿੱਲਾ ਤੁਹਾਡੇ ਪ੍ਰੋਫ਼ਾਈਲ ਉੱਤੇ ਦਿਖਾਈ ਨਹੀਂ ਦੇਵੇਗਾ।</string> -->
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">ਤੁਸੀਂ Signal ਵਰਤਣਾ ਜਾਰੀ ਰੱਖ ਸਕਦੇ ਹੋ, ਪਰ ਐਪ ਨੂੰ ਸਹਿਯੋਗ ਦੇਣ ਤੇ ਆਪਣੇ ਬਿੱਲੇ ਨੂੰ ਮੁੜ-ਸਰਗਰਮ ਕਰਨ ਲਈ ਹੁਣੇ ਨਵਿਆਓ।</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">ਮੈਂਬਰੀ ਨੂੰ ਨਵਿਆਓ</string>
@@ -3644,8 +3637,7 @@
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">ਸਾਰੇ</string>
   <!--Donation receipts recurring tab label-->
-  <!--Donation receipts one time tab label-->
-  <string name="DonationReceiptListFragment__one_time">ਇੱਕ ਵਾਰ</string>
+  <!--Donation receipts one-time tab label-->
   <!--Donation receipts boost row label-->
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">ਵੇਰਵਾ</string>
@@ -3677,7 +3669,10 @@
   <!--Context menu option to go to story chat-->
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">ਭੇਜਿਆ ਜਾ ਰਿਹਾ ਹੈ…</string>
+  <!--Label when multiple stories are pending sending-->
   <!--Label when a story fails to send-->
+  <string name="StoriesLandingItem__send_failed">ਭੇਜਣ ਵਿੱਚ ਅਸਫ਼ਲ</string>
+  <!--Status label when a story fails to send indicating user action to retry-->
   <!--Title of dialog confirming decision to hide a story-->
   <!--Message of dialog confirming decision to hide a story-->
   <!--Positive action of dialog confirming decision to hide a story-->
@@ -3762,6 +3757,9 @@
   <!--Dialog message for first time adding something to a story-->
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <!--Error message shown when a failure occurs during story send-->
+  <!--Error message dialog button to resend a previously failed story send-->
+  <string name="StoryDialogs__send">ਭੇਜੋ</string>
   <!--Privacy Settings toggle title for stories-->
   <!--Privacy Settings toggle summary for stories-->
   <!--New story viewer selection screen title-->
@@ -3794,6 +3792,8 @@
   <!--Displayed in the viewer when the network is not available-->
   <string name="StorySlateView__no_internet_connection">ਇੰਟਰਨੈੱਟ ਕਨੈਕਸ਼ਨ ਨਹੀਂ ਹੈ</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <!--Toasted when the user externally shares to a text story successfully-->
+  <!--Toasted when the user external share to a text story fails-->
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">ਤੁਸੀਂ ਹੁਣ ਵਧੀਆ ਤਜਰਬੇ ਵਾਸਤੇ Signal ਸੇਵਾ ਨਾਲ ਸਿੱਧਾ ਕਨੈਕਟ ਕਰ ਸਕਦੇ ਹੋ।</string>

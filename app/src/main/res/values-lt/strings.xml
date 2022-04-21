@@ -536,10 +536,6 @@
     <item quantity="other">%d laukiantis narių prašymas.</item>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Rodyti</string>
-  <!--ShareActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Bendrinti su</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Keli priedai yra palaikomi tik paveikslams ir vaizdo įrašams</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Jūs neturite leidimo siųsti į šią grupę</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Ilgalaikė Signal susisiekimo triktis!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal nepavyko prisiregistruoti prie „Google Play“ paslaugų. Signal žinutės ir skambučiai buvo išjungti, prašome pabandyti iš naujo registruotis skyrelyje Nustatymai (angl. Settings) &gt; Išplėstiniai (angl. Advanced).</string>
@@ -2300,9 +2296,10 @@
   <string name="preferences__help">Pagalba</string>
   <string name="preferences__advanced">Išplėstiniai</string>
   <string name="preferences__donate_to_signal">Paaukokite Signal programėlei</string>
+  <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">Prenumerata</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">Tapkite Signal rėmėju</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Signal paskatinimas</string> -->
+  <!--Preference label for making a monthly donation to Signal-->
+  <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">Privatumas</string>
   <string name="preferences__mms_user_agent">MMS naudotojo agentas</string>
   <string name="preferences__advanced_mms_access_point_names">Rankiniai MMS nustatymai</string>
@@ -3168,8 +3165,6 @@
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Nepavyko išsiųsti kai kuriems naudotojams</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Galite bendrinti daugiausiai su %1$d pokalbių</string>
-  <!--ShareInterstitialActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">Persiųsti žinutę</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Pokalbio fonas</string>
   <!--ChatWallpaperFragment-->
@@ -3479,9 +3474,9 @@
   <string name="AddAProfilePhotoMegaphone__add_photo">Pridėti nuotrauką</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Tapkite rėmėju</string>
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">Signal veikia dėka tokių žmonių kaip jūs. Prisidėkite ir gaukite profilio ženkliuką.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">Ne, ačiū</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">Prisidėkite</string> -->
+  <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__not_now">Ne dabar</string>
+  <string name="BecomeASustainerMegaphone__donate">Paaukokite</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Šypsenėlės</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Atverti šypsenėlių paiešką</string>
@@ -3590,9 +3585,13 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--Displayed in the toolbar when externally sharing text to multiple recipients-->
+  <string name="ShareInterstitialActivity__share">Bendrinti</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Naršyti aukštyn</string>
   <string name="MultiselectForwardFragment__forward_to">Kam persiųsti</string>
+  <!--Displayed when sharing content via the fragment-->
+  <string name="MultiselectForwardFragment__share_with">Bendrinti su</string>
   <string name="MultiselectForwardFragment__add_a_message">Pridėti žinutę</string>
   <string name="MultiselectForwardFragment__faster_forwards">Greitesni persiuntimai</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Dabar, persiunčiamos žinutės yra išsiunčiamos nedelsiant.</string>
@@ -3672,19 +3671,15 @@
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Jūsų prenumerata nutraukta.</string>
   <string name="SubscribeFragment__update_subscription_question">Atnaujinti prenumeratą?</string>
   <string name="SubscribeFragment__update">Atnaujinti</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Šiandien būsite apmokestinti pilna naujos prenumeratos kaina. Jūsų prenumerata atsinaujins %1$s.</string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Šiandien būsite apmokestinti pilna (%1$s) naujos prenumeratos kaina. Jūsų prenumerata kas mėnesį atsinaujins.</string>
   <string name="Subscription__s_per_month">%s/mėnesį</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/mėnesį · Atsinaujina %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/mėn · Baigia galioti %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal yra pelno nesiekianti organizacija, kuri neturi reklamuotojų ar investuotojųir, kurią remia tik Signal programėle besinaudojantys ir ją vertinantys žmonės.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Kodėl prisidėti?</string> -->
+  <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Kodėl aukoti?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal yra pasišventusi kurti atvirojo kodo privatumo technologiją, kuri apsaugo žodžio laisvę ir įgalina saugų bendravimą visame pasaulyje.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Jūsų įnašas paremia šį tikslą ir apmoka visame pasaulyje milijonų žmonių privačiam bendravimui naudojamos programėlės plėtojimą ir veiklą. Jokių reklamų, Jokių stebėjimo priemonių. Jokių trukdžių.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Dėkojame už jūsų palaikymą!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Dėkojame už paskatinimą!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Jūs pelnėte %s ženkliuką! Padėkite Signal ugdyti supratimą, atvaizduodami šį ženkliuką savo profilyje.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Jūs pelnėte paskatinimo ženkliuką! Padėkite Signal ugdyti supratimą, atvaizduodami šį ženkliuką savo profilyje.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Be to, galite</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">tapti rėmėju ir remti kas mėnesį.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Rodyti profilyje</string>
@@ -3701,7 +3696,7 @@
   <string name="ManageDonationsFragment__subscription_faq">DUK apie prenumeratą</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Klaida gaunant prenumeratą.</string>
   <string name="BoostFragment__give_signal_a_boost">Suteikite Signal paskatinimą</string>
-  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">Tarkite „Ačiū“ ir %1$d dienų pelnykite paskatinimo ženkliuką.</string> -->
+  <!--Description text in boost sheet-->
   <string name="Boost__enter_custom_amount">Įveskite tinkintą sumą</string>
   <string name="Boost__one_time_contribution">Vienkartinis įnašas</string>
   <string name="MySupportPreference__add_a_signal_boost">Pridėti Signal paskatinimą</string>
@@ -3711,19 +3706,16 @@
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Nepavyko pridėti ženkliuko. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Susisiekite su palaikymu.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Jūsų ženkliukas nebegalioja</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Ženkliukas nebegalioja</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Prenumerata nutraukta</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Jūsų paskatinimo ženkliukas nebegalioja ir daugiau nebėra matomas jūsų profilyje kitiems žmonėms.</string> -->
+  <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <!--Displayed in the bottom sheet when a boost badge expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Paaukodami, galite dar 30-čiai dienų iš naujo aktyvuoti paskatinimo ženkliuką.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Norėdami palaikyti jums kuriamą technologiją, apsvarstykite galimybę tapti rėmėju ir remti kas mėnesį.</string> -->
+  <!--Displayed when we do not think the user is a subscriber when their boost expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Tapti rėmėju</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Pridėti paskatinimą</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne dabar</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Jūsų rėmėjo prenumerata buvo automatiškai nutraukta, nes pernelyg ilgą laiką buvote neaktyvūs. Jūsų %1$s ženkliukas yra daugiau nebematomas jūsų profilyje.</string> -->
   <!--Copy displayed when badge expires after payment failure-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Jūsų rėmėjo prenumerata buvo nutraukta, nes nepavyko apdoroti jūsų mokėjimo. Jūsų ženkliukas yra daugiau nebematomas jūsų profilyje.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Galite ir toliau naudotis Signal programėle, bet norėdami ją paremti ir iš naujo aktyvuoti ženkliuką, atnaujinkite prenumeratą dabar.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Atnaujinti prenumeratą</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Nepavyksta apdoroti prenumeratos mokėjimo</string>
@@ -3926,8 +3918,7 @@
   <string name="DonationReceiptListFragment__all">Visi</string>
   <!--Donation receipts recurring tab label-->
   <string name="DonationReceiptListFragment__recurring">Pasikartojantys</string>
-  <!--Donation receipts one time tab label-->
-  <string name="DonationReceiptListFragment__one_time">Vieną kartą</string>
+  <!--Donation receipts one-time tab label-->
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Paskatinimas</string>
   <!--Donation receipts details title-->
@@ -3973,8 +3964,10 @@
   <string name="StoriesLandingItem__go_to_chat">Pereiti į pokalbį</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Siunčiama…</string>
+  <!--Label when multiple stories are pending sending-->
   <!--Label when a story fails to send-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingItem__couldnt_send">Nepavyko išsiųsti</string> -->
+  <string name="StoriesLandingItem__send_failed">Išsiuntimas nepavyko</string>
+  <!--Status label when a story fails to send indicating user action to retry-->
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Slėpti istoriją?</string>
   <!--Message of dialog confirming decision to hide a story-->
@@ -4131,6 +4124,9 @@
   <string name="StoryDialogs__add_to_story">Pridėti į istoriją</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <string name="StoryDialogs__edit_viewers">Keisti žiūrovus</string>
+  <!--Error message shown when a failure occurs during story send-->
+  <!--Error message dialog button to resend a previously failed story send-->
+  <string name="StoryDialogs__send">Siųsti</string>
   <!--Privacy Settings toggle title for stories-->
   <string name="PrivacySettingsFragment__share_and_view_stories">Bendrinti ir žiūrėti istorijas</string>
   <!--Privacy Settings toggle summary for stories-->
@@ -4186,6 +4182,8 @@
   <string name="StorySlateView__no_internet_connection">Nėra interneto ryšio</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <string name="StorySlateView__couldnt_load_content">Nepavyko įkelti turinio</string>
+  <!--Toasted when the user externally shares to a text story successfully-->
+  <!--Toasted when the user external share to a text story fails-->
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Išjungti cenzūravimo apėjimą?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->

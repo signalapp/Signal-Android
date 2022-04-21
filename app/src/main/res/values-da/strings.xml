@@ -492,10 +492,6 @@
     <item quantity="other">%d afventende medlemsanmodninger.</item>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Vis</string>
-  <!--ShareActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Del med</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Det er kun muligt at vedhæfte flere billeder og videoer</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Du har ikke tilladelse til at sende til denne gruppe</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent fejl ved Signal-kommunikationen!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal var ude af stand til at registrere med Google Play-tjenester. Signal-beskeder og opkald blev deaktiveret. Prøv venligst at registrere igen i Indstillinger -&gt; Avanceret</string>
@@ -2129,9 +2125,12 @@ nummer (%s) er ugyldigt</string>
   <string name="preferences__help">Hjælp</string>
   <string name="preferences__advanced">Avanceret</string>
   <string name="preferences__donate_to_signal">Donér til Signal</string>
+  <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">Abonnement</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">Bliv Signal-bidragsyder</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Signal Boost</string> -->
+  <!--Preference label for making a monthly donation to Signal-->
+  <string name="preferences__monthly_donation">Månedlig donation</string>
+  <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">Engangsdonation</string>
   <string name="preferences__privacy">Privatliv</string>
   <string name="preferences__mms_user_agent">MMS-brugeragent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuelle MMS-indstillinger</string>
@@ -2975,8 +2974,6 @@ nummer (%s) er ugyldigt</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Det kunne ikke sendes til nogle brugere</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Du kan kun dele med op til %1$d samtaler</string>
-  <!--ShareInterstitialActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">Videresend besked</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Samtalebaggrund</string>
   <!--ChatWallpaperFragment-->
@@ -3282,9 +3279,10 @@ nummer (%s) er ugyldigt</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Tilføj billede</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Bliv bidragsyder</string>
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">Signal er drevet af personer som dig. Bidrag og modtag et emblem.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">Nej tak</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">Bidrag</string> -->
+  <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal er drevet af personer som dig. Donér og modtag et emblem.</string>
+  <string name="BecomeASustainerMegaphone__not_now">Ikke nu</string>
+  <string name="BecomeASustainerMegaphone__donate">Donér</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Åbn emoji-søgning</string>
@@ -3393,9 +3391,13 @@ nummer (%s) er ugyldigt</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--Displayed in the toolbar when externally sharing text to multiple recipients-->
+  <string name="ShareInterstitialActivity__share">Del</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Naviger opad</string>
   <string name="MultiselectForwardFragment__forward_to">Videresend til</string>
+  <!--Displayed when sharing content via the fragment-->
+  <string name="MultiselectForwardFragment__share_with">Del med</string>
   <string name="MultiselectForwardFragment__add_a_message">Tilføj en besked</string>
   <string name="MultiselectForwardFragment__faster_forwards">Hurtigere videresendelser</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Videresendte beskeder sendes nu øjeblikkeligt.</string>
@@ -3456,6 +3458,7 @@ nummer (%s) er ugyldigt</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal er drevet af personer som dig.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Støt teknologi, der er udviklet til dig - ikke for at høste dine data - ved at blive en del af det fællesskab af mennesker, der støtter op om den.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Støt teknologi, der er udviklet til dig, ikke for at høste dine data, ved at blive en del af det fællesskab, der støtter op om Signal.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Lav en tilbagevendende, månedlig donation til Signal for at støtte teknologi, der er udviklet for dig, ikke for at høste dine data.</string>
   <string name="SubscribeFragment__currency">Valuta</string>
   <string name="SubscribeFragment__more_payment_options">Flere betalingsmuligheder</string>
   <string name="SubscribeFragment__cancel_subscription">Opsig abonnement</string>
@@ -3467,19 +3470,19 @@ nummer (%s) er ugyldigt</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Dit abonnement er blevet opsagt.</string>
   <string name="SubscribeFragment__update_subscription_question">Opdater abonnement?</string>
   <string name="SubscribeFragment__update">Opdatér</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Du vil blive opkrævet det fulde beløb for det nye abonnement i dag. Dit abonnement fornyes %1$s.</string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Du vil blive opkrævet det fulde beløb (%1$s) af den nye abonnementspris i dag. Dit abonnement vil fornyes hver måned.</string>
   <string name="Subscription__s_per_month">%s/måned</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/måned · Fornyes %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/måned · Udløber %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal er en non-profit uden annoncører eller investorer, som kun støttes af de mennesker, der bruger og værdsætter den. Giv et fast månedligt bidrag og få et profilemblem til at vise din støtte.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Hvorfor bidrage?</string> -->
+  <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal er en nonprofit uden annoncører eller investorer, der kun opretholdes af de mennesker, der bruger og værdsætter den. Lav en fast månedlig donation og få et profilemblem til at vise din støtte.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Hvorfor donere?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal er dedikeret til udviklingen af open source-privatlivsteknologi, der beskytter ytringsfriheden og muliggør sikker global kommunikation.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Dit bidrag støtter denne sag og betaler for udviklingen og driften af en app, der bruges af millioner til privat kommunikation. Ingen reklamer. Ingen trackere. Helt seriøst.</string> -->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Din donation støtter denne sag og betaler for udviklingen og driften af en app, der bruges af millioner til privat kommunikation. Ingen reklamer. Ingen trackere. Helt seriøst.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Tak for din støtte!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Tak for boostet!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Du har gjort dig fortjent til et %s-emblem! Hjælp Signal med at skabe opmærksomhed ved at vise dette emblem på din profil.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Du har gjort dig fortjent til et Boost-emblem! Hjælp Signal med at skabe opmærksomhed ved at vise dette emblem på din profil.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Du har gjort dig fortjent til et %s-emblem! Vis dette emblem på din profil for at øge kendskabet til muligheden for at donere til Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Du har gjort dig fortjent til et Boost-emblem! Vis dette emblem på din profil for at øge kendskabet til muligheden for at donere til Signal.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Du kan også</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">blive en månedlig bidragsyder.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Vis på profil</string>
@@ -3496,7 +3499,8 @@ nummer (%s) er ugyldigt</string>
   <string name="ManageDonationsFragment__subscription_faq">Abonnement OSS</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Fejl ved oprettelse af abonnement.</string>
   <string name="BoostFragment__give_signal_a_boost">Giv Signal et boost</string>
-  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">Sig \"Tak!\", og gør dig fortjent til Boost-emblemet i %1$d dage.</string> -->
+  <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Lav en engangsdonation og gør dig fortjent til et Boost-emblem i %1$d dage.</string>
   <string name="Boost__enter_custom_amount">Angiv tilpasset beløb</string>
   <string name="Boost__one_time_contribution">Engangsbidrag</string>
   <string name="MySupportPreference__add_a_signal_boost">Tilføj et Signal Boost</string>
@@ -3506,19 +3510,22 @@ nummer (%s) er ugyldigt</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Kunne ikke tilføje emblem. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Kontakt venligst support.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Dit emblem er udløbet</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Emblem udløbet</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonnement annulleret</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Dit Boost-emblem er udløbet og er ikke længere synligt for andre på din profil.</string> -->
+  <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Boost-emblem udløbet</string>
+  <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Månedlig donation annulleret</string>
+  <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Dit Boost-emblem er udløbet og er ikke længere synligt på din profil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Du kan genaktivere dit Boost-emblem i yderligere 30 dage med et engangsbidrag.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Overvej gerne at blive en månedlig bidragsyder for fortsat at støtte teknologi, der er bygget til dig.</string> -->
+  <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Du kan fortsætte med at bruge Signal, men hvis du vil støtte teknologi, der er udviklet til dig, kan du overveje at blive bidragsyder ved at lave en månedlig donation.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bliv bidragsyder</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Tilføj et Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikke nu</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Dit abonnement som bidragsyder blev automatisk annulleret, fordi du har været inaktiv for længe. Dit %1$s-emblem er ikke længere synligt på din profil.</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Din tilbagevendende, månedlige donation blev automatisk annulleret, fordi du har været inaktiv for længe. Dit %1$s-emblem er ikke længere synligt på din profil.</string>
   <!--Copy displayed when badge expires after payment failure-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Dit Bidragsyder-abonnement blev annulleret, fordi vi ikke kunne behandle din betaling. Dit badge er ikke længere synligt på din profil.</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Din tilbagevendende, månedlige donation blev annulleret, fordi vi ikke kunne behandle din betaling. Dit emblem er ikke længere synligt på din profil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan fortsætte med at bruge Signal, men hvis du vil støtte appen og genaktivere dit badge, skal du forny nu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Forny abonnement</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Kan ikke behandle betaling af abonnement</string>
@@ -3721,8 +3728,8 @@ nummer (%s) er ugyldigt</string>
   <string name="DonationReceiptListFragment__all">Alle</string>
   <!--Donation receipts recurring tab label-->
   <string name="DonationReceiptListFragment__recurring">Gentagende</string>
-  <!--Donation receipts one time tab label-->
-  <string name="DonationReceiptListFragment__one_time">1 gang</string>
+  <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">Engangsbeløb</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Boost</string>
   <!--Donation receipts details title-->
@@ -3768,8 +3775,12 @@ nummer (%s) er ugyldigt</string>
   <string name="StoriesLandingItem__go_to_chat">Gå til samtale</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Sender …</string>
+  <!--Label when multiple stories are pending sending-->
+  <string name="StoriesLandingItem__sending_d">Sender %1$d…</string>
   <!--Label when a story fails to send-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingItem__couldnt_send">Kunne ikke sende</string> -->
+  <string name="StoriesLandingItem__send_failed">Afsendelse mislykkedes</string>
+  <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">Tryk for at prøve igen</string>
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Skjul historie?</string>
   <!--Message of dialog confirming decision to hide a story-->
@@ -3918,6 +3929,10 @@ nummer (%s) er ugyldigt</string>
   <string name="StoryDialogs__add_to_story">Føj til historie</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <string name="StoryDialogs__edit_viewers">Rediger seere</string>
+  <!--Error message shown when a failure occurs during story send-->
+  <string name="StoryDialogs__story_could_not_be_sent">Historie kunne ikke sendes. Tjek din forbindelse og prøv igen.</string>
+  <!--Error message dialog button to resend a previously failed story send-->
+  <string name="StoryDialogs__send">Send</string>
   <!--Privacy Settings toggle title for stories-->
   <string name="PrivacySettingsFragment__share_and_view_stories">Del &amp; Se historier</string>
   <!--Privacy Settings toggle summary for stories-->
@@ -3971,6 +3986,10 @@ nummer (%s) er ugyldigt</string>
   <string name="StorySlateView__no_internet_connection">Ingen internetforbindelse</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <string name="StorySlateView__couldnt_load_content">Kunne ikke indlæse indhold</string>
+  <!--Toasted when the user externally shares to a text story successfully-->
+  <string name="TextStoryPostCreationFragment__sent_story">Historie sendt</string>
+  <!--Toasted when the user external share to a text story fails-->
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">Historie kunne ikke sendes</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Slå omgåelse af censur fra?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->

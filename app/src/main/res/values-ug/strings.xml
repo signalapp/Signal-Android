@@ -438,10 +438,6 @@
     <item quantity="other">%dكېچىكتۈرۈلگەن ئەزالىق ئىلتىماسى.</item>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">كۆرۈش</string>
-  <!--ShareActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">ھەمبەھىرلەنگۈچى</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">كۆپلىگەن قوشۇمچە ھۆججەتلەر پەقەت رەسىم ۋە سىنلارنىلا قوللايدۇ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">بۇ گۇرۇپپىغا يوللاش ھوقۇقىڭىز يوق</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">مەڭگۈلۈك Signal ئالاقىسى مەغلۇپ بولدى!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Google Play مۇلازىمەتلىرىگە تىزىملىتالمىدى. Signal ئۇچۇرلىرى ۋە تېلېفونلىرى چەكلىنىپ قالدى، تەڭشەكلەر &gt; ئىلغار دېگەن يەرگە بېرىپ قايتا تىزىملىتىپ سىناپ بېقىڭ.</string>
@@ -2007,6 +2003,9 @@
   <string name="preferences__help">ياردەم</string>
   <string name="preferences__advanced">ئالىي</string>
   <string name="preferences__donate_to_signal">Signal غا ئىئانە قىلىڭ</string>
+  <!--Preference label when someone is already a subscriber-->
+  <!--Preference label for making a monthly donation to Signal-->
+  <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">مەخپىيەتلىك</string>
   <string name="preferences__mms_user_agent">MMS ئىشلەتكۈچى ۋەكىلى</string>
   <string name="preferences__advanced_mms_access_point_names">MMS نىڭ قولدا تەڭشەكلىرى</string>
@@ -2831,8 +2830,6 @@
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">بەزى ئىشلەتكۈچىلەرگە يوللاش مەغلۇپ بولدى</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">كۆپ بولغاندا %1$d سۆھبەت بىلەن ھەمبەھىرلىيەلەيسىز.</string>
-  <!--ShareInterstitialActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">ئۇچۇرنى ئۇلاپ يوللا</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">سۆھبەت تام قەغەز</string>
   <!--ChatWallpaperFragment-->
@@ -3129,7 +3126,9 @@
   <string name="AddAProfilePhotoMegaphone__not_now">ھازىر ئەمەس</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">رەسىم قوش</string>
   <!--BecomeASustainerMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">ياق، رەھمەت</string> -->
+  <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__not_now">ھازىر ئەمەس</string>
+  <string name="BecomeASustainerMegaphone__donate">ئىئانە قىلىڭ</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">چىراي بەلگە</string>
   <string name="KeyboardPagerFragment_open_emoji_search">چىراي بەلگە ئىزدەشنى ئاچ</string>
@@ -3237,9 +3236,13 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">قىسقا ئۇچۇر</string>
   <string name="ContactSelectionListItem__dot_s">‏· %1$s</string>
+  <!--Displayed in the toolbar when externally sharing text to multiple recipients-->
+  <string name="ShareInterstitialActivity__share">ھەمبەھىرلە</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">يۇقىرىغا يېتەكلە</string>
   <string name="MultiselectForwardFragment__forward_to">گە ئۇلاپ يوللا</string>
+  <!--Displayed when sharing content via the fragment-->
+  <string name="MultiselectForwardFragment__share_with">ھەمبەھىرلەنگۈچى</string>
   <string name="MultiselectForwardFragment__add_a_message">بىز ئۇچۇر قوش</string>
   <string name="MultiselectForwardFragment__faster_forwards">تېزراق ئۇلاپ يوللاش</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">ئۇلاپ يوللانغان ئۇچۇرلار ئەمدى دەرھال ئەۋەتىلىدۇ.</string>
@@ -3298,11 +3301,18 @@
   <string name="SubscribeFragment__not_now">ھازىر ئەمەس</string>
   <string name="SubscribeFragment__confirm">جەزملە</string>
   <string name="SubscribeFragment__update">يېڭىلا</string>
+  <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">نېمىشقا ئىئانە قىلىمىز؟</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">بولدى</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">ئىزناكلار</string>
+  <!--Description text in boost sheet-->
   <string name="Boost__enter_custom_amount">ئىختىيارىچە سومما كىرگۈزۈڭ</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <!--Displayed in the bottom sheet when a boost badge expires-->
+  <!--Displayed when we do not think the user is a subscriber when their boost expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ھازىر ئەمەس</string>
   <!--Copy displayed when badge expires after user inactivity-->
   <!--Copy displayed when badge expires after payment failure-->
@@ -3423,8 +3433,7 @@
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">ھەممىسى</string>
   <!--Donation receipts recurring tab label-->
-  <!--Donation receipts one time tab label-->
-  <string name="DonationReceiptListFragment__one_time">بىر قېتىم</string>
+  <!--Donation receipts one-time tab label-->
   <!--Donation receipts boost row label-->
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">تەپسىلاتى</string>
@@ -3452,7 +3461,10 @@
   <!--Context menu option to go to story chat-->
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">ئەۋەتىلىۋاتىدۇ…</string>
+  <!--Label when multiple stories are pending sending-->
   <!--Label when a story fails to send-->
+  <string name="StoriesLandingItem__send_failed">ئەۋەتەلمىدى</string>
+  <!--Status label when a story fails to send indicating user action to retry-->
   <!--Title of dialog confirming decision to hide a story-->
   <!--Message of dialog confirming decision to hide a story-->
   <!--Positive action of dialog confirming decision to hide a story-->
@@ -3535,6 +3547,9 @@
   <!--Dialog message for first time adding something to a story-->
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <!--Error message shown when a failure occurs during story send-->
+  <!--Error message dialog button to resend a previously failed story send-->
+  <string name="StoryDialogs__send">ئەۋەت</string>
   <!--Privacy Settings toggle title for stories-->
   <!--Privacy Settings toggle summary for stories-->
   <!--New story viewer selection screen title-->
@@ -3565,6 +3580,8 @@
   <!--Displayed in the viewer when a story is no longer available-->
   <!--Displayed in the viewer when the network is not available-->
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <!--Toasted when the user externally shares to a text story successfully-->
+  <!--Toasted when the user external share to a text story fails-->
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">تەكشۈرۈشتىن دالدىلىنىشنى تاقامدۇ؟</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->

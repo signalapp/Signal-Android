@@ -487,10 +487,6 @@
     <item quantity="other">%d درخواست عضویت در حال انتظار.</item>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">مشاهده</string>
-  <!--ShareActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">اشتراک‌گذاری با</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">انتخاب چندگانهٔ پیوست‌ها فقط برای عکس‌ها و ویدئوها پشتیبانی می‌شود.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">شما اجازهٔ ارسال به این گروه را ندارید.</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">خرابی دائم در ارتباط سیگنال!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">سیگنال قادر نبود تا با خدمات ‌Google Play ثبت‌نام کند. پیام‌ها و تماس‌های سیگنال غیرفعال شده‌اند، لطفاً از طریق تنظیمات &gt; پیشرفته دوباره ثبت‌نام کنید.</string>
@@ -2095,9 +2091,10 @@
   <string name="preferences__help">راهنمایی</string>
   <string name="preferences__advanced">پیشرفته</string>
   <string name="preferences__donate_to_signal">حمایت از سیگنال</string>
+  <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">اشتراک</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">به یک حامی سیگنال تبدیل شوید</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">تقویت سیگنال</string> -->
+  <!--Preference label for making a monthly donation to Signal-->
+  <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">حریم خصوصی</string>
   <string name="preferences__mms_user_agent">عامل کاربر فراپیام</string>
   <string name="preferences__advanced_mms_access_point_names">تنظیمات دستی فراپیام</string>
@@ -2939,8 +2936,6 @@
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">ارسال به برخی کاربران موفق نبود</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">شما می‌توانید نهایتاً با %1$d گفتگو به اشتراک بگذارید</string>
-  <!--ShareInterstitialActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">بازارسال پیام</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">کاغذدیواری گفتگو</string>
   <!--ChatWallpaperFragment-->
@@ -3246,9 +3241,9 @@
   <string name="AddAProfilePhotoMegaphone__add_photo">افزودن عکس</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">به یک حامی تبدیل شوید</string>
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">سیگنال از افرادی همانند شما قدرت می‌گیرد. کمک کنید و یک نشان پروفایل دریافت کنید.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">نه ممنون</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">کمک کردن</string> -->
+  <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__not_now">حالا نه</string>
+  <string name="BecomeASustainerMegaphone__donate">حمایت کنید</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">ایموجی</string>
   <string name="KeyboardPagerFragment_open_emoji_search">جستجوی ایموجی را باز کنید</string>
@@ -3357,9 +3352,13 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">پیامک</string>
   <string name="ContactSelectionListItem__dot_s">%1$s</string>
+  <!--Displayed in the toolbar when externally sharing text to multiple recipients-->
+  <string name="ShareInterstitialActivity__share">اشتراک‌گذاری</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">حرکت به سمت بالا</string>
   <string name="MultiselectForwardFragment__forward_to">بازارسال به</string>
+  <!--Displayed when sharing content via the fragment-->
+  <string name="MultiselectForwardFragment__share_with">اشتراک‌گذاری با</string>
   <string name="MultiselectForwardFragment__add_a_message">افزودن یک پیام</string>
   <string name="MultiselectForwardFragment__faster_forwards">بازارسال‌های سریع‌تر</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">پیام‌های بازارسال شده حالا بلافاصله ارسال می‌شوند.</string>
@@ -3431,19 +3430,15 @@
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">اشتراک شما لغو شد.</string>
   <string name="SubscribeFragment__update_subscription_question">به‌روزرسانی اشتراک؟</string>
   <string name="SubscribeFragment__update">به‌روزرسانی</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">مبلغ کامل اشتراک جدید امروز از شما کسر خواهد شد. اشتراک شما در %1$s به‌روزرسانی خواهد شد. </string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">از شما امروز کل مبلغ (%1$s) هزینهٔ اشتراک کسر خواهد شد. اشتراک شما به صورت ماهانه تمدید خواهد شد.</string>
   <string name="Subscription__s_per_month">%s/ماه</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/ماه · در %2$s تمدید می‌شود</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/ماه · در %2$s منقضی می‌شود</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">سیگنال یک سازمان غیر-انتفاعی بدون تبلیغ‌کنندگان و سرمایه‌گذاران است، که تنها از سوی افرادی که از آن استفاده می‌کنند و برایش ارزش قائل هستند حمایت می‌شود. یک کمک اهدایی ماهیانه انجام دهید و یک نشان پروفایل برای به اشتراک گذاشتن حمایت خود با دیگران دریافت کنید.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">چرا کمک کنیم؟</string> -->
+  <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">چرا حمایت کنیم؟</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">سیگنال به توسعهٔ فناوری متن‌باز حریم خصوصی که از آزادی بیان حفاظت و ارتباطات جهانی را ممکن می‌کند متعهد است.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">کمک شما به این انگیزه نیرو می‌بخشد و به پرداخت هزینه‌های توسعه و عملیات برنامه‌ای کمک می‌کند که مورد استفادهٔ میلیون‌ها نفر در سراسر دنیا برای ارتباط خصوصی است. بدون آگهی. بدون ردیابی. بدون شوخی.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ممنون از پشتیبانی شما!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">ممنون بابت تقویت!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">شما نشان %s بدست آوردید! به سیگنال با نمایش این نشان روی پروفایل‌تان برای ایجاد آگاهی کمک کنید.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">شما یک نشان تقویت بدست آوردید! به سیگنال با نمایش این نشان روی پروفایل‌تان برای ایجاد آگاهی کمک کنید.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">شما همچنین می‌توانید</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">به یک حامی ماهیانه تبدیل شوید.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">نمایش روی پروفایل</string>
@@ -3459,7 +3454,7 @@
   <string name="ManageDonationsFragment__subscription_faq">پرسش‌های متداول اشتراک</string>
   <string name="ManageDonationsFragment__error_getting_subscription">خطا در دریافت اشتراک.</string>
   <string name="BoostFragment__give_signal_a_boost">سیگنال را تقویت کنید</string>
-  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">«تشکر» کنید و نشان تقویت را برای %1$d روز بدست آورید.</string> -->
+  <!--Description text in boost sheet-->
   <string name="Boost__enter_custom_amount">مبلغ دلخواه را وارد کنید</string>
   <string name="Boost__one_time_contribution">کمک اهدایی یک‌-باره</string>
   <string name="MySupportPreference__add_a_signal_boost">یک تقویت سیگنال اضافه کنید</string>
@@ -3469,19 +3464,16 @@
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">افزودن نشان ممکن نبود. %1$s</string>
   <string name="MySupportPreference__please_contact_support">لطفاً با پشتیبانی تماس بگیرید.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">نشان شما منقضی شده است</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">نشان منقضی شد.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">اشتراک لغو شد</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">نشان تقویت شما منقضی شد و دیگر روی پروفایل شما برای دیگران قابل مشاهده نیست.</string> -->
+  <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <!--Displayed in the bottom sheet when a boost badge expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">شما می‌توانید نشان تقویت خود را برای ۳۰ روز دیگر با یک کمک اهدایی یک‌-باره دوباره فعال کنید.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">برای ادامهٔ حمایت از تکنولوژی‌ای که برای شما ساخته شده است. لطفاً تبدیل شدن به یک حامی ماهانه را در نظر بگیرید.</string> -->
+  <!--Displayed when we do not think the user is a subscriber when their boost expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">به یک حامی تبدیل شوید</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">افزودن یک تقویت</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">حالا نه</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">اشتراک حامی شما به صورت خودکار لغو گردید چون شما برای مدتی طولانی غیرفعال بودید. نشان %1$s شما دیگر روی پروفایل شما قابل مشاهده نیست.</string> -->
   <!--Copy displayed when badge expires after payment failure-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">اشتراک حمایتی شما لغو شد، چرا که ما نتوانستیم پرداخت شما را پردازش کنیم. نشان شما دیگر روی پروفایل‌تان قابل رؤیت نیست.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">شما می‌توانید به استفاده از سیگنال ادامه دهید اما برای پشتیبانی از برنامه و فعال کردن دوبارهٔ نشان خود، حالا تمدید کنید.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">تمدید اشتراک</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">امکان پردازش پرداخت وجود ندارد</string>
@@ -3683,8 +3675,7 @@
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">همه</string>
   <!--Donation receipts recurring tab label-->
-  <!--Donation receipts one time tab label-->
-  <string name="DonationReceiptListFragment__one_time">یک بار</string>
+  <!--Donation receipts one-time tab label-->
   <!--Donation receipts boost row label-->
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">جزئیات</string>
@@ -3713,7 +3704,10 @@
   <!--Context menu option to go to story chat-->
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">در حال ارسال…</string>
+  <!--Label when multiple stories are pending sending-->
   <!--Label when a story fails to send-->
+  <string name="StoriesLandingItem__send_failed">ارسال ناموفق بود</string>
+  <!--Status label when a story fails to send indicating user action to retry-->
   <!--Title of dialog confirming decision to hide a story-->
   <!--Message of dialog confirming decision to hide a story-->
   <!--Positive action of dialog confirming decision to hide a story-->
@@ -3797,6 +3791,9 @@
   <!--Dialog message for first time adding something to a story-->
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <!--Error message shown when a failure occurs during story send-->
+  <!--Error message dialog button to resend a previously failed story send-->
+  <string name="StoryDialogs__send">ارسال</string>
   <!--Privacy Settings toggle title for stories-->
   <!--Privacy Settings toggle summary for stories-->
   <!--New story viewer selection screen title-->
@@ -3828,6 +3825,8 @@
   <!--Displayed in the viewer when the network is not available-->
   <string name="StorySlateView__no_internet_connection">اتصال با اینترنت برقرار نیست.</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <!--Toasted when the user externally shares to a text story successfully-->
+  <!--Toasted when the user external share to a text story fails-->
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">خاموش کردن عبور از فیلترینگ؟</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->

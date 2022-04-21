@@ -492,10 +492,6 @@
     <item quantity="other">Gözləyən %d üzv tələbi var.</item>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Bax</string>
-  <!--ShareActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Paylaş</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Çoxlu qoşmalar, yalnız təsvir və videolar üçün dəstəklənir</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Bu qrupa göndərmək üçün icazəniz yoxdur</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Daimi Signal ünsiyyət xətası!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal, Google Play Xidmətləri ilə qeydiyyatdan keçə bilmədi. Signal mesajları və zəngləri sıradan çıxarıldı, zəhmət olmasa Tənzimləmələr &gt; Qabaqcıl seçimlərində yenidən qeydiyyatdan keçməyə çalışın.</string>
@@ -2130,9 +2126,10 @@
   <string name="preferences__help">Kömək</string>
   <string name="preferences__advanced">Qabaqcıl</string>
   <string name="preferences__donate_to_signal">Signal-a ianə verin</string>
+  <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">Abunəlik</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">Signal Dəstəkçisi olun</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Signal Gücləndirmə</string> -->
+  <!--Preference label for making a monthly donation to Signal-->
+  <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">Gizlilik</string>
   <string name="preferences__mms_user_agent">MMS İstifadəçi Agenti</string>
   <string name="preferences__advanced_mms_access_point_names">Manual MMS tənzimləmələri</string>
@@ -2976,8 +2973,6 @@
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Bəzi istifadəçilərə göndərilmədi</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Yalnız %1$d söhbətə qədər paylaşa bilərsiniz</string>
-  <!--ShareInterstitialActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">Mesajı yönləndir</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Söhbət divar kağızı</string>
   <!--ChatWallpaperFragment-->
@@ -3283,9 +3278,9 @@
   <string name="AddAProfilePhotoMegaphone__add_photo">Foto əlavə et</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Bir dəstəkçi olun</string>
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">Signal, sizin kimi insanların sayəsində güclənir. Töhfə verin və bir profil nişanı əldə edin.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">Xeyr, təşəkkürlər</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">Töhfə ver</string> -->
+  <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__not_now">İndi yox</string>
+  <string name="BecomeASustainerMegaphone__donate">İanə vermə</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">İfadə</string>
   <string name="KeyboardPagerFragment_open_emoji_search">İfadə axtarışını aç</string>
@@ -3394,9 +3389,13 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--Displayed in the toolbar when externally sharing text to multiple recipients-->
+  <string name="ShareInterstitialActivity__share">Paylaş</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Yuxarı gedin</string>
   <string name="MultiselectForwardFragment__forward_to">Yönləndir</string>
+  <!--Displayed when sharing content via the fragment-->
+  <string name="MultiselectForwardFragment__share_with">Paylaş</string>
   <string name="MultiselectForwardFragment__add_a_message">Bir mesaj əlavə et</string>
   <string name="MultiselectForwardFragment__faster_forwards">Daha sürətli yönləndirmələr</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Yönləndirilən mesajlar, artıq dərhal göndərilir.</string>
@@ -3468,19 +3467,15 @@
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Abunəlikdən imtina edildi.</string>
   <string name="SubscribeFragment__update_subscription_question">Abunəlik yenilənsin?</string>
   <string name="SubscribeFragment__update">Yenilə</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Bu gün yeni abunəlik haqqı sizdən tutulacaq. Abunəlik %1$s yenilənəcək.</string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Bu gün yeni abunəlik haqqı (%1$s) sizdən tutulacaq. Abunəlik aylıq yenilənəcək.</string>
   <string name="Subscription__s_per_month">%s/ay</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/ay · Yenilənir %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/ay · %2$s bitir</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal, reklam verəni və ya investoru olmayan, yalnız onu istifadə edən və ona dəyər verən insanlar tərəfindən dəstəklənən qeyri-kommersiya təşkilatıdır. Hər ay müntəzəm olaraq töhfə verin və dəstəyinizi paylaşmaq üçün bir profil nişanı alın.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Niyə töhfə verməliyəm?</string> -->
+  <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Niyə ianə?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal, azad ifadəni qoruyan və güvənli qlobal ünsiyyətə imkan verən açıq mənbəli gizlilik texnologiyasını inkişaf etdirmək missiyasına sadiqdir.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Töhfəniz, bu niyyətə xidmət edir və özəl ünsiyyət üçün milyonlarla insan tərəfindən istifadə olunan tətbiqin inkişafı və əməliyyat xərclərini qarşılayır. Reklam yoxdur. İzləmə yoxdur. Zarafat yoxdur.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Dəstəyiniz üçün təşəkkürlər!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Gücləndirmə üçün təşəkkürlər!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">%s nişanını qazandınız. Bu nişanı profilinizdə görüntüləyərək Signal-ın fərqindəlik yaratmasına kömək edin.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Bir gücləndirmə nişanı qazandınız. Bu nişanı profilinizdə görüntüləyərək Signal-ın fərqindəlik yaratmasına kömək edin.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Həmçinin</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">aylıq bir Dəstəkçi ola bilərsiniz.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Profildə görüntülə</string>
@@ -3497,7 +3492,7 @@
   <string name="ManageDonationsFragment__subscription_faq">Abunəlik üçün TSS</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Abunəlik alma xətası.</string>
   <string name="BoostFragment__give_signal_a_boost">Signal-ı gücləndirin</string>
-  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">\"Təşəkkür et\" və %1$d gün ərzində Gücləndirmə nişanını qazan.</string> -->
+  <!--Description text in boost sheet-->
   <string name="Boost__enter_custom_amount">Özəl məbləğ daxil edin</string>
   <string name="Boost__one_time_contribution">Birdəfəlik töhfə</string>
   <string name="MySupportPreference__add_a_signal_boost">Signal gücləndirməsi əlavə et</string>
@@ -3507,19 +3502,16 @@
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Nişan əlavə edilə bilmir. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Zəhmət olmasa dəstəklə əlaqə saxlayın.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Nişanınızın müddəti bitdi</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Nişan müddəti bitdi</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abunəlik ləğv edildi</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Gücləndirmə nişanınızın müddəti bitdi, artıq profilinizdə digərlərinə görünmür.</string> -->
+  <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <!--Displayed in the bottom sheet when a boost badge expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Gücləndirmə nişanını növbəti 30 gün üçün təksəfərlik töhfə ilə təkrar aktivləşdirə bilərsiniz.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Sizin üçün hazırlanmış texnologiyaya dəstəyi davam etdirmək üçün zəhmət olmasa aylıq Dəstəkçi olmağı düşünün.</string> -->
+  <!--Displayed when we do not think the user is a subscriber when their boost expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bir dəstəkçi olun</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Bir Gücləndirmə əlavə et</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">İndi yox</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Uzun müddət aktiv olmadığınız üçün Dəstəkçi abunəliyiniz avtomatik olaraq ləğv edildi. %1$s nişanınız artıq profilinizdə görünmür.</string> -->
   <!--Copy displayed when badge expires after payment failure-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Ödənişinizi emal edə bilmədiyimizə görə Dəstəkçi abunəliyiniz ləğv edildi. Artıq nişanınız profilinizdə görünmür.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal-ı istifadə etməyə davam edə bilərsiniz, ancaq tətbiqi dəstəkləmək və nişanınızı təkrar aktiv etmək üçün abunəliyi indi yeniləyin.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Abunəliyi yenilə</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Abunəlik ödənişi emal edilə bilmir</string>
@@ -3722,8 +3714,8 @@
   <string name="DonationReceiptListFragment__all">Hamısı</string>
   <!--Donation receipts recurring tab label-->
   <string name="DonationReceiptListFragment__recurring">Təkrarlanan</string>
-  <!--Donation receipts one time tab label-->
-  <string name="DonationReceiptListFragment__one_time">Bir dəfə</string>
+  <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">Birdəfəlik</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Gücləndirmə</string>
   <!--Donation receipts details title-->
@@ -3769,8 +3761,10 @@
   <string name="StoriesLandingItem__go_to_chat">Söhbətə get</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Göndərilir…</string>
+  <!--Label when multiple stories are pending sending-->
   <!--Label when a story fails to send-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingItem__couldnt_send">Göndərilə bilmədi</string> -->
+  <string name="StoriesLandingItem__send_failed">Göndərilmədi</string>
+  <!--Status label when a story fails to send indicating user action to retry-->
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Hekayə gizlədilsin?</string>
   <!--Message of dialog confirming decision to hide a story-->
@@ -3919,6 +3913,9 @@
   <string name="StoryDialogs__add_to_story">Hekayəyə əlavə et</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <string name="StoryDialogs__edit_viewers">İzləyicilərə düzəliş et</string>
+  <!--Error message shown when a failure occurs during story send-->
+  <!--Error message dialog button to resend a previously failed story send-->
+  <string name="StoryDialogs__send">Göndər</string>
   <!--Privacy Settings toggle title for stories-->
   <string name="PrivacySettingsFragment__share_and_view_stories">Hekayələrə bax &amp; onları paylaş</string>
   <!--Privacy Settings toggle summary for stories-->
@@ -3972,6 +3969,8 @@
   <string name="StorySlateView__no_internet_connection">İnternet bağlantısı yoxdur</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <string name="StorySlateView__couldnt_load_content">Məzmun yüklənilə bilmədi</string>
+  <!--Toasted when the user externally shares to a text story successfully-->
+  <!--Toasted when the user external share to a text story fails-->
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Senzuradan yayınma söndürülsün?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->

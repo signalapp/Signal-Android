@@ -420,9 +420,6 @@
     <item quantity="other">%d 待处理成员请求。</item>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">查看</string>
-  <!--ShareActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">分享至</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">多个附件只支持图像和视频</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal 持续连接失效！</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal 无法注册 Google Play 服务。Signal 消息和呼叫已禁用。请尝试在设置 &gt; 高级中重新注册。</string>
@@ -1884,6 +1881,9 @@
   <string name="preferences__help">帮助</string>
   <string name="preferences__advanced">高级</string>
   <string name="preferences__donate_to_signal">捐赠 Signal</string>
+  <!--Preference label when someone is already a subscriber-->
+  <!--Preference label for making a monthly donation to Signal-->
+  <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">隐私</string>
   <string name="preferences__mms_user_agent">彩信用户代理</string>
   <string name="preferences__advanced_mms_access_point_names">手动设置彩信</string>
@@ -2699,8 +2699,6 @@
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">无法发送给某些用户</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">最多只能分享 %1$d 个对话</string>
-  <!--ShareInterstitialActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">转发消息</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">聊天墙纸</string>
   <!--ChatWallpaperFragment-->
@@ -2967,7 +2965,9 @@
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__not_now">稍后再说</string>
   <!--BecomeASustainerMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">不，谢谢。</string> -->
+  <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__not_now">稍后再说</string>
+  <string name="BecomeASustainerMegaphone__donate">捐赠</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">表情符号</string>
   <string name="KeyboardPagerFragment_open_emoji_search">打开表情符号搜索</string>
@@ -3061,7 +3061,11 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">短信</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--Displayed in the toolbar when externally sharing text to multiple recipients-->
+  <string name="ShareInterstitialActivity__share">分享</string>
   <!--DSLSettingsToolbar-->
+  <!--Displayed when sharing content via the fragment-->
+  <string name="MultiselectForwardFragment__share_with">分享至</string>
   <!--Media V2-->
   <string name="ImageEditorHud__cancel">取消</string>
   <string name="ImageEditorHud__blur">模糊</string>
@@ -3075,10 +3079,17 @@
   <string name="SubscribeFragment__not_now">稍后再说</string>
   <string name="SubscribeFragment__confirm">确认</string>
   <string name="SubscribeFragment__update">更新</string>
+  <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">为什么捐赠？</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">完成</string>
   <!--Label for Donation Receipts button-->
+  <!--Description text in boost sheet-->
   <string name="Boost__enter_custom_amount">输入自定义金额</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <!--Displayed in the bottom sheet when a boost badge expires-->
+  <!--Displayed when we do not think the user is a subscriber when their boost expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">稍后再说</string>
   <!--Copy displayed when badge expires after user inactivity-->
   <!--Copy displayed when badge expires after payment failure-->
@@ -3200,8 +3211,8 @@
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">全部</string>
   <!--Donation receipts recurring tab label-->
-  <!--Donation receipts one time tab label-->
-  <string name="DonationReceiptListFragment__one_time">一次</string>
+  <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">一次性</string>
   <!--Donation receipts boost row label-->
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">更多</string>
@@ -3229,7 +3240,10 @@
   <!--Context menu option to go to story chat-->
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">正在发送…</string>
+  <!--Label when multiple stories are pending sending-->
   <!--Label when a story fails to send-->
+  <string name="StoriesLandingItem__send_failed">发送失败</string>
+  <!--Status label when a story fails to send indicating user action to retry-->
   <!--Title of dialog confirming decision to hide a story-->
   <!--Message of dialog confirming decision to hide a story-->
   <!--Positive action of dialog confirming decision to hide a story-->
@@ -3312,6 +3326,9 @@
   <!--Dialog message for first time adding something to a story-->
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <!--Error message shown when a failure occurs during story send-->
+  <!--Error message dialog button to resend a previously failed story send-->
+  <string name="StoryDialogs__send">发送</string>
   <!--Privacy Settings toggle title for stories-->
   <!--Privacy Settings toggle summary for stories-->
   <!--New story viewer selection screen title-->
@@ -3343,6 +3360,8 @@
   <!--Displayed in the viewer when the network is not available-->
   <string name="StorySlateView__no_internet_connection">无可用的互联网连接</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <!--Toasted when the user externally shares to a text story successfully-->
+  <!--Toasted when the user external share to a text story fails-->
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->

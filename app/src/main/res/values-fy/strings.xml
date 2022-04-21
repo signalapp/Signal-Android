@@ -486,10 +486,6 @@
     <item quantity="other">%d iepensteande lidmaatskipsfersiken.</item>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Werjaan</string>
-  <!--ShareActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Trochstjoere nei</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">It ferstjoeren fan meardere bylagen is allinnich mooglik foar ôfbyldingen en fideo’s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Do bist net machtige om wat nei dizze groep te ferstjoeren</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permaninte Signal-kommunikaasjeflater!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal wie net yn steat harren by de Google Play services op dyn telefoan te registrearjen. Signal-berjochten en -oproppen binne no útskeakele, probearje opnij te registrearjen fia Ynstellingen &gt; Privacy &gt; Avansearre.</string>
@@ -2097,9 +2093,10 @@
   <string name="preferences__help">Help</string>
   <string name="preferences__advanced">Avansearre</string>
   <string name="preferences__donate_to_signal">Oan Signal donearje</string>
+  <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">Moanlikse donaasje</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">Help Signal mooglik meitsjen</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Ienmalige donaasje</string> -->
+  <!--Preference label for making a monthly donation to Signal-->
+  <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">Privacy</string>
   <string name="preferences__mms_user_agent">Mms-brûkersagent</string>
   <string name="preferences__advanced_mms_access_point_names">Hânmjittige mms-ynstellingen</string>
@@ -2941,8 +2938,6 @@
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">It ferstjoeren is nei guon persoanen mislearre</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Do kinst dit net nei mear as %1$d petearen tagelyk trochstjoere</string>
-  <!--ShareInterstitialActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">Berjocht trochstjoere</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Peteareftergrûn</string>
   <!--ChatWallpaperFragment-->
@@ -3248,9 +3243,8 @@
   <string name="AddAProfilePhotoMegaphone__add_photo">Foegje in foto ta</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Wurdt in stiper</string>
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">Signal wurdt finansiere troch donaasjes fan minsken lykas do. Asto ús stipest krigesto in profyl-badge.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">Nee, tankewol</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">Bydrage</string> -->
+  <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__not_now">No net</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Emoji sykje</string>
@@ -3359,9 +3353,13 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">Sms (net befeilige)</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--Displayed in the toolbar when externally sharing text to multiple recipients-->
+  <string name="ShareInterstitialActivity__share">Mei oaren diele</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Omheech navigearje</string>
   <string name="MultiselectForwardFragment__forward_to">Trochstjoere nei</string>
+  <!--Displayed when sharing content via the fragment-->
+  <string name="MultiselectForwardFragment__share_with">Trochstjoere nei</string>
   <string name="MultiselectForwardFragment__add_a_message">In berjocht tafoegje</string>
   <string name="MultiselectForwardFragment__faster_forwards">Flugger trochstjoere</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Trochstjoerde berjochten wurde fan no ôf daliks ferstjoerd.</string>
@@ -3433,19 +3431,14 @@
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Dyn moanlikse donaasje is annulearre.</string>
   <string name="SubscribeFragment__update_subscription_question">Moanlikse donaasje bywurkje?</string>
   <string name="SubscribeFragment__update">Bywurkje</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Hjoed wurdt it folsleine bedrach foar de moanlikse donaasje ôfskreaun. Dyn donaasje wurdt fernijd op %1$s.</string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Hjoed wurdt it folsleine bedrach (%1$s) foar de moanlikse donaasje ôfskreaun.</string>
   <string name="Subscription__s_per_month">%s/moanne</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/moanne · Wurdt %2$s fernijd</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/moanne · Ferrint %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal is in organisaasje sûnder winsteachmerk sûnder advertearders en sûnder ynvestearders, útslutend mooglik makke troch minsken dy’t de app brûke en dy’t wearde oan hechtsje. Jou in moanlikse donaasje en ûntfang in profylbadge dy’tsto — asto dat wolst — werjaan kinst op dyn profyl om sjen te litten datsto Signal stipest.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Wêrom bydrage?</string> -->
+  <!--First small text blurb on learn more sheet-->
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Wy ûntwikkelje iepen-boarnekoade privacytechnologyen wêrmei frijheid fan mieningsutering beskerme wurdt en wêrmei op in befeilige manier oer de hiele wrâld kommunisearre wurde kin.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Mei mei dyn bydrage wurdt dizze misje mooglik makke en wurdt betelle foar de ûntwikkeling en it yn wurking hâlden fan apps wêrtroch miljoenen minsken wrâldwiid yn frijheid petearen fiere kinne. Gjin advertinsjes, gjin folgers, gjin grapke.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Tank foar dyn stipe!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Tank foar dyn bydrage!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Do hast de ‘%s’-badge fertsjinne! Help Signal om bewustwurding te kreëarjen troch dizze badge op dyn profyl wer te jaan.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Do hast de ‘Ienmalige donateur’-badge fertsjinne! Help Signal om bewustwurding te kreëarjen troch dizze badge op dyn profyl wer te jaan.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Do kinst ek</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">moanliks donearje.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Op profyl werjaan</string>
@@ -3461,7 +3454,7 @@
   <string name="ManageDonationsFragment__subscription_faq">Ynformaasje oer moanlikse donaasjes</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Flater by it opheljen fan ynformaasje oer moanlikse donaasjes.</string>
   <string name="BoostFragment__give_signal_a_boost">Help Signal mei in ienmalige bydrage</string>
-  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">Betankje Signal en fertsjinje de ‘Ienmalige donateur’-badge foar %1$d dagen.</string> -->
+  <!--Description text in boost sheet-->
   <string name="Boost__enter_custom_amount">Folje in sels keazen bedrach yn</string>
   <string name="Boost__one_time_contribution">Ienmalige bydrage</string>
   <string name="MySupportPreference__add_a_signal_boost">Jou Signal in oppepper</string>
@@ -3471,19 +3464,16 @@
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Kin badge net tafoegje. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Nim kontakt op mei stipe.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Dyn badge is ferrûn</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Badge ferrûn</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Moanlikse donaasjes annulearre</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Dyn ‘Ienmalige donateur’-badge is ferrûn en is dêrom net langer foar oaren te sjen op dyn profyl.</string> -->
+  <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <!--Displayed in the bottom sheet when a boost badge expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Do kinst dyn ‘Ienmalige donateur’-badge opnij foar 30 dagen aktivearje mei in nije ienmalige donaasje.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Oerweagje moanlikse donaasjes yn te stellen om technology dy’t makke is foar dy yn stee fan foar it sammeljen fan gegevens stypje te bliuwen.</string> -->
+  <!--Displayed when we do not think the user is a subscriber when their boost expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Wurdt in stiper</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Nochris ienmalich donearje</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">No net</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Dyn moanlikse donaasjes binne automatysk annulearre, omdatsto te lang ynaktyf west bist. Dyn ‘%1$s’-badge is net langer foar oaren te sjen op dyn profyl.</string> -->
   <!--Copy displayed when badge expires after payment failure-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Dyn moanlikse donaasjes binne stopset, omdat Signal dyn betelling net ferwurkje koe. Dyn badge is net langer op dyn profyl sichtber.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Do kinst Signal gewoan brûke bliuwe, mar asto Signal stypje wolst en dyn badge wer werjaan wolst, dan kinsto no dyn donaasjes fernije.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Moanlikse donaasjes fernije</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Signal kin dyn moanlikse donaasje net ferwurkje</string>
@@ -3685,8 +3675,7 @@
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">Alles</string>
   <!--Donation receipts recurring tab label-->
-  <!--Donation receipts one time tab label-->
-  <string name="DonationReceiptListFragment__one_time">Ien kear</string>
+  <!--Donation receipts one-time tab label-->
   <!--Donation receipts boost row label-->
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Details</string>
@@ -3714,7 +3703,10 @@
   <!--Context menu option to go to story chat-->
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Dwaande mei ferstjoeren…</string>
+  <!--Label when multiple stories are pending sending-->
   <!--Label when a story fails to send-->
+  <string name="StoriesLandingItem__send_failed">Ferstjoeren is mislearre</string>
+  <!--Status label when a story fails to send indicating user action to retry-->
   <!--Title of dialog confirming decision to hide a story-->
   <!--Message of dialog confirming decision to hide a story-->
   <!--Positive action of dialog confirming decision to hide a story-->
@@ -3797,6 +3789,9 @@
   <!--Dialog message for first time adding something to a story-->
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <!--Error message shown when a failure occurs during story send-->
+  <!--Error message dialog button to resend a previously failed story send-->
+  <string name="StoryDialogs__send">Ferstjoere</string>
   <!--Privacy Settings toggle title for stories-->
   <!--Privacy Settings toggle summary for stories-->
   <!--New story viewer selection screen title-->
@@ -3827,6 +3822,8 @@
   <!--Displayed in the viewer when a story is no longer available-->
   <!--Displayed in the viewer when the network is not available-->
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <!--Toasted when the user externally shares to a text story successfully-->
+  <!--Toasted when the user external share to a text story fails-->
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Sensueromlieding útskeakelje?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->

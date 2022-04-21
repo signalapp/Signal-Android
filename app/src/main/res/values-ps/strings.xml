@@ -435,10 +435,6 @@
     <item quantity="other">د %d غړو ځنډول شوې غوښتنې.</item>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">ليدل</string>
-  <!--ShareActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">سره شریکول</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">ګڼ شمېر ضمیمې یوازې د انځورونو او ویډیوګانو لپاره دي</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">تاسې اجازه نه لری چې دغه ګروپ ته یې ولیږئ</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">د Signal د مکالمې دایمي خرابوالی!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal د دې جوګه نه و تر څو له Google Play خدماتو سره ثبت شی. د Signal پیغامونه او اړیکې  غیرفعالې دي، د مهرباني له مخې په تنظیماتو کې بیاځلې نوم لیکنه وکړئ &amp;gt؛ پرمختللی.</string>
@@ -2005,8 +2001,10 @@
   <string name="preferences__help">مرسته</string>
   <string name="preferences__advanced">پرمختللی</string>
   <string name="preferences__donate_to_signal">Signal سره مرسته کول</string>
+  <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">ګډون</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">د Signal پیاوړی کول</string> -->
+  <!--Preference label for making a monthly donation to Signal-->
+  <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">محرمیت</string>
   <string name="preferences__mms_user_agent">د MMS د کارن استازی</string>
   <string name="preferences__advanced_mms_access_point_names">د MMS لاسي تنظیمات</string>
@@ -2832,8 +2830,6 @@
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">ځینو کارنونو ته و نه لیږل شو</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">تاسې یوازې کولای شئ تر %1$d پورې چټونه شریک کړئ</string>
-  <!--ShareInterstitialActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">د پیغام فاروارډ کول</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">د چټ والپیپر</string>
   <!--ChatWallpaperFragment-->
@@ -3132,7 +3128,9 @@
   <string name="AddAProfilePhotoMegaphone__not_now">اوس نه</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">د انځور اضافه کول</string>
   <!--BecomeASustainerMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">نه مننه</string> -->
+  <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__not_now">اوس نه</string>
+  <string name="BecomeASustainerMegaphone__donate">مرسته کول</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">د emoji د پلټنې پرانیستل</string>
@@ -3240,9 +3238,13 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">. %1$s</string>
+  <!--Displayed in the toolbar when externally sharing text to multiple recipients-->
+  <string name="ShareInterstitialActivity__share">شریکول</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">پورته تلل</string>
   <string name="MultiselectForwardFragment__forward_to">ته فاروارډ</string>
+  <!--Displayed when sharing content via the fragment-->
+  <string name="MultiselectForwardFragment__share_with">سره شریکول</string>
   <string name="MultiselectForwardFragment__add_a_message">د پیغام اضافه کول</string>
   <string name="MultiselectForwardFragment__faster_forwards">چټک فاروارډونه</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">فاروارډ شوي پیغامونه اوس سملاسي ولیږل شول.</string>
@@ -3313,8 +3315,8 @@
   <string name="SubscribeFragment__update">اپډیټ کول</string>
   <string name="Subscription__s_per_month">%s په میاشت کې</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s په میاشت کې. %2$s کې نوی کېږي</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal یو غیرانتفاعي پروګرام دی چې هېڅ اعلان ورکوونکی یا پانګه وال نه لري او یوازې د هغو کسانو له خوا چې کاروي یې او ورته ارزښت ورکوي، ساتل کېږي. هره میاشت خپله مرسته وکړئ او د خپل ملاتړ د ښودلو په خاطر د پروفایل بج تر لاسه کړئ.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">ولې مرسته وکړئ؟</string> -->
+  <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">ولې مرسته وکړئ؟</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ستاسې له مرستې څخه مننه!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">له پیاوړتیا څخه مننه!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">پر پروفایل ښودل</string>
@@ -3327,14 +3329,17 @@
   <string name="ManageDonationsFragment__subscription_faq">د ګډون په اړه زیاتره پوښتل شوې پوښتنې</string>
   <string name="ManageDonationsFragment__error_getting_subscription">د ګډون په تر لاسه کولو کې تیروتنه شوې ده.</string>
   <string name="BoostFragment__give_signal_a_boost">د Signal پیاوړتیا ورکړئ</string>
-  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn"> \"مننه!\" ووایاست او د %1$d ورځو لپاره د پیاوړتیا بج تر لاسه کړئ.</string> -->
+  <!--Description text in boost sheet-->
   <string name="Boost__enter_custom_amount">سفارشي مقدار دننه کړئ</string>
   <string name="Boost__one_time_contribution">پر وخت مرسته</string>
   <string name="MySupportPreference__add_a_signal_boost">د Signal پیاوړی کوونکی اضافه کړئ</string>
   <string name="MySupportPreference__s_per_month">%1$s په میاشت کې</string>
   <string name="MySupportPreference__renews_s">%1$s کې نوی کېږي</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">ستاسې بج منقضي شوی دی</string> -->
+  <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <!--Displayed in the bottom sheet when a boost badge expires-->
+  <!--Displayed when we do not think the user is a subscriber when their boost expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">اوس نه</string>
   <!--Copy displayed when badge expires after user inactivity-->
   <!--Copy displayed when badge expires after payment failure-->
@@ -3455,8 +3460,7 @@
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">ټول</string>
   <!--Donation receipts recurring tab label-->
-  <!--Donation receipts one time tab label-->
-  <string name="DonationReceiptListFragment__one_time">یو وخته</string>
+  <!--Donation receipts one-time tab label-->
   <!--Donation receipts boost row label-->
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">جزئیات</string>
@@ -3484,7 +3488,10 @@
   <!--Context menu option to go to story chat-->
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">د لیږلو په حال کې ده…</string>
+  <!--Label when multiple stories are pending sending-->
   <!--Label when a story fails to send-->
+  <string name="StoriesLandingItem__send_failed">لیږل ناکامه شو</string>
+  <!--Status label when a story fails to send indicating user action to retry-->
   <!--Title of dialog confirming decision to hide a story-->
   <!--Message of dialog confirming decision to hide a story-->
   <!--Positive action of dialog confirming decision to hide a story-->
@@ -3567,6 +3574,9 @@
   <!--Dialog message for first time adding something to a story-->
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <!--Error message shown when a failure occurs during story send-->
+  <!--Error message dialog button to resend a previously failed story send-->
+  <string name="StoryDialogs__send">لیږل</string>
   <!--Privacy Settings toggle title for stories-->
   <!--Privacy Settings toggle summary for stories-->
   <!--New story viewer selection screen title-->
@@ -3597,6 +3607,8 @@
   <!--Displayed in the viewer when a story is no longer available-->
   <!--Displayed in the viewer when the network is not available-->
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <!--Toasted when the user externally shares to a text story successfully-->
+  <!--Toasted when the user external share to a text story fails-->
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->

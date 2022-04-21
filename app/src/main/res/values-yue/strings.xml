@@ -470,10 +470,6 @@
     <item quantity="other">%d 個成員請求仲等緊。</item>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">睇下</string>
-  <!--ShareActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">分享畀</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">多個附件僅限於啲相同埋片</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">您未准傳送去呢個谷度</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal 通訊有非暫時嘅失敗！</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal 註冊唔到 Google Play 服務。Signal 訊息同通話已經停用，請到 [設定] &gt; [進階] 試下重新註冊。</string>
@@ -2045,9 +2041,10 @@
   <string name="preferences__help">說明</string>
   <string name="preferences__advanced">進階</string>
   <string name="preferences__donate_to_signal">課金 Signal</string>
+  <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">課金計劃</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">擔當 Signal 後援</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">幫 Signal 買支旗</string> -->
+  <!--Preference label for making a monthly donation to Signal-->
+  <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">私隱</string>
   <string name="preferences__mms_user_agent">MMS 使用者代理</string>
   <string name="preferences__advanced_mms_access_point_names">手動 MMS 設定</string>
@@ -2880,8 +2877,6 @@
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">發送唔到畀部份使用者</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">您淨係可以分享畀最多 %1$d 個傾偈</string>
-  <!--ShareInterstitialActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">轉寄訊息</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">傾偈背景</string>
   <!--ChatWallpaperFragment-->
@@ -3185,9 +3180,9 @@
   <string name="AddAProfilePhotoMegaphone__add_photo">加張相</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">擔當後援</string>
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">Signal 應援靠團伙。誠意召集課金師隨心捐獻，並贈送一枚襟章，可以掛喺個人資料度展覽，等相知好友一呼百應。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">有心</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">課金</string> -->
+  <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__not_now">遲啲先啦</string>
+  <string name="BecomeASustainerMegaphone__donate">課金</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">表情符號</string>
   <string name="KeyboardPagerFragment_open_emoji_search">開啟表情符號搜尋</string>
@@ -3296,9 +3291,13 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">短訊</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--Displayed in the toolbar when externally sharing text to multiple recipients-->
+  <string name="ShareInterstitialActivity__share">分享</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">返去上一版</string>
   <string name="MultiselectForwardFragment__forward_to">轉寄畀</string>
+  <!--Displayed when sharing content via the fragment-->
+  <string name="MultiselectForwardFragment__share_with">分享畀</string>
   <string name="MultiselectForwardFragment__add_a_message">寫返句訊息</string>
   <string name="MultiselectForwardFragment__faster_forwards">更快趣嘅轉寄傳送門</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">轉寄訊息，而家嗱嗱聲同您迅速純熟送出。</string>
@@ -3366,19 +3365,15 @@
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">您嘅課金計劃已經取消。</string>
   <string name="SubscribeFragment__update_subscription_question">係咪要更新課金計劃？</string>
   <string name="SubscribeFragment__update">更新</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">新嘅課金計劃金額會喺今日扣您全數。之後您嘅課金計劃將會喺 %1$s 續期。</string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">新嘅課金計劃金額 (%1$s) 會喺今日扣您全數。之後您嘅課金計劃將會每個月續期。</string>
   <string name="Subscription__s_per_month">每月 %s</string>
   <string name="Subscription__s_per_month_dot_renews_s">每月 %1$s · 到 %2$s 續期</string>
   <string name="Subscription__s_per_month_dot_expires_s">每月 %1$s · %2$s 到期</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal 係非牟利組織，背後冇廣告商或投資者大條水喉硬碰加軟撼，全靠位位用呢個爐、錫呢個爐嘅「惜爐」團伙，燃亮最光的星斗，至能夠廢鉄到足金。希望您做我哋月供計劃嘅金主，同時可換取一枚襟章掛喺個人資料度，同好友分享您做力撐派嘅喜悅。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">何解要課金？</string> -->
+  <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">何解要課金？</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal 秉持初心，開發開放原始碼嘅私隱技術，去守護表達自由，同時令通訊變得安全、無遠弗屆。</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">擔當呢份使命，全靠您嘅捐款做後援，幫手補貼程式開發同營運嘅燈油火蠟，等世界上數以百萬計嘅人，都用到同一個 app 做私密通訊，開住個「爐」為對方焗一份蘋果派。無廣告、無追蹤、堅過石堅。</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">多謝您嘅鼎力支持！</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">多謝您為我哋集氣！</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">您已獲取一枚「%s」襟章！不妨將襟章掛上去個人資料度號召，等 Signal 團伙遍地開花。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">您已獲取一枚集氣襟章！不妨將襟章掛上去個人資料度號召，等 Signal 團伙遍地開花。</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">不妨考慮埋</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">擔當月供課金計劃嘅後援。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">掛上去個人資料度展示</string>
@@ -3395,7 +3390,7 @@
   <string name="ManageDonationsFragment__subscription_faq">課金計劃問答</string>
   <string name="ManageDonationsFragment__error_getting_subscription">攞返課金計劃嘅時候發生錯誤。</string>
   <string name="BoostFragment__give_signal_a_boost">Signal 賣旗籌款</string>
-  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">施主隨緣樂助，捐款多寡不拘。奉送「集氣」襟章一枚，可以掛喺個人資料度 %1$d 日，聊作心意。</string> -->
+  <!--Description text in boost sheet-->
   <string name="Boost__enter_custom_amount">輸入自訂金額</string>
   <string name="Boost__one_time_contribution">單次捐款</string>
   <string name="MySupportPreference__add_a_signal_boost">幫 Signal 買多支旗</string>
@@ -3405,19 +3400,16 @@
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">加唔到個襟章。%1$s</string>
   <string name="MySupportPreference__please_contact_support">請聯絡支援。</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">您個襟章已經褪色夠鐘換喇</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">襟章已經褪色夠鐘換喇</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">課金計劃已經取消</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">您個集氣襟章已經褪色夠鐘換喇，因此已經喺您嘅個人資料度除返落嚟，人哋唔會再睇到。</string> -->
+  <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <!--Displayed in the bottom sheet when a boost badge expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">您可以單次捐款，將您嘅「集氣」襟章重新掛上 30 日。</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">如果您想繼續力撐為您而設嘅科技，請考慮做我哋月供課金計劃嘅後援金主。</string> -->
+  <!--Displayed when we do not think the user is a subscriber when their boost expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">擔當後援</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">買多支旗</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">遲啲先啦</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">見您冇用好一排，您嘅後援課金計劃已經自動取消。您嘅「%1$s」襟章已經喺您嘅個人資料度除返落嚟，人哋唔會再睇到。</string> -->
   <!--Copy displayed when badge expires after payment failure-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">由於我哋未能處理您嘅付款，您嘅後援課金計劃已經取消。您嘅襟章已經喺您嘅個人資料度除返落嚟，人哋唔會再睇到。</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal 一切如常運作，並讓您自由使用。若要繼續支持呢個 app 並掛返起您個襟章，請立即續期。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">為課金計劃續期</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">課金計劃付款未能處理</string>
@@ -3620,8 +3612,7 @@
   <string name="DonationReceiptListFragment__all">全部</string>
   <!--Donation receipts recurring tab label-->
   <string name="DonationReceiptListFragment__recurring">長期</string>
-  <!--Donation receipts one time tab label-->
-  <string name="DonationReceiptListFragment__one_time">單次</string>
+  <!--Donation receipts one-time tab label-->
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">集氣</string>
   <!--Donation receipts details title-->
@@ -3667,8 +3658,10 @@
   <string name="StoriesLandingItem__go_to_chat">跳去傾偈</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">送緊出去…</string>
+  <!--Label when multiple stories are pending sending-->
   <!--Label when a story fails to send-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingItem__couldnt_send">發送唔到</string> -->
+  <string name="StoriesLandingItem__send_failed">傳送失敗</string>
+  <!--Status label when a story fails to send indicating user action to retry-->
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">係咪要隱藏是日花生？</string>
   <!--Message of dialog confirming decision to hide a story-->
@@ -3813,6 +3806,9 @@
   <string name="StoryDialogs__add_to_story">加料落是日花生</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <string name="StoryDialogs__edit_viewers">編輯花生友</string>
+  <!--Error message shown when a failure occurs during story send-->
+  <!--Error message dialog button to resend a previously failed story send-->
+  <string name="StoryDialogs__send">傳送</string>
   <!--Privacy Settings toggle title for stories-->
   <string name="PrivacySettingsFragment__share_and_view_stories">分享同遊覽是日花生</string>
   <!--Privacy Settings toggle summary for stories-->
@@ -3865,6 +3861,8 @@
   <string name="StorySlateView__no_internet_connection">連唔到上網</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <string name="StorySlateView__couldnt_load_content">載入唔到內容</string>
+  <!--Toasted when the user externally shares to a text story successfully-->
+  <!--Toasted when the user external share to a text story fails-->
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">封網迴避使唔使閂咗佢？</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->

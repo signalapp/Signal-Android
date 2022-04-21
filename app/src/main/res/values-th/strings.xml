@@ -423,10 +423,6 @@
     <item quantity="other">%d คำขอเป็นสมาชิกที่ค้างอยู่</item>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">ดู</string>
-  <!--ShareActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">แบ่งปันกับ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">การแนบแฟ้มหลายชิ้นแนบได้เฉพาะรูปภาพและวิดีโอ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">คุณไม่ได้รับอนุญาตให้ส่งไปยังกลุ่มนี้</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">การสื่อสารของ Signal ล้มเหลวอย่างถาวร!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ไม่สามารถลงทะเบียนกับ Google Play Services การใช้งานข้อความและการโทร Signal ได้ถูกปิดใช้งาน กรุณาลองลงทะเบียนอีกครั้งใน การตั้งค่า &gt; ขั้นสูง</string>
@@ -1893,6 +1889,9 @@
   <string name="preferences__help">ช่วยเหลือ</string>
   <string name="preferences__advanced">ขั้นสูง</string>
   <string name="preferences__donate_to_signal">บริจาคให้ Signal</string>
+  <!--Preference label when someone is already a subscriber-->
+  <!--Preference label for making a monthly donation to Signal-->
+  <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">ความเป็นส่วนตัว</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">ตั้งค่า MMS เอง</string>
@@ -2707,8 +2706,6 @@
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">การส่งไปยังผู้ใช้อื่นล้มเหลว</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">คุณสามารถแบ่งปันได้สูงสุดแค่ %1$d แชต เท่านั้น</string>
-  <!--ShareInterstitialActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">ส่งต่อข้อความ</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">ภาพพื้นหลังของหน้าแชต</string>
   <!--ChatWallpaperFragment-->
@@ -2977,7 +2974,9 @@
   <string name="AddAProfilePhotoMegaphone__not_now">ไม่ใช่ตอนนี้</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">เพิ่มรูปภาพ</string>
   <!--BecomeASustainerMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">ไม่ ขอบคุณ</string> -->
+  <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__not_now">ไม่ใช่ตอนนี้</string>
+  <string name="BecomeASustainerMegaphone__donate">บริจาค</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">อีโมจิ</string>
   <string name="KeyboardPagerFragment_open_emoji_search">หาอีโมจิ</string>
@@ -3084,8 +3083,12 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--Displayed in the toolbar when externally sharing text to multiple recipients-->
+  <string name="ShareInterstitialActivity__share">แบ่งปัน</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">เลื่อนขึ้น</string>
+  <!--Displayed when sharing content via the fragment-->
+  <string name="MultiselectForwardFragment__share_with">แบ่งปันกับ</string>
   <!--Media V2-->
   <string name="ImageEditorHud__cancel">ยกเลิก</string>
   <string name="ImageEditorHud__undo">เลิกทำ</string>
@@ -3098,10 +3101,17 @@
   <string name="SubscribeFragment__not_now">ไม่ใช่ตอนนี้</string>
   <string name="SubscribeFragment__confirm">ยืนยัน</string>
   <string name="SubscribeFragment__update">ปรับรุ่น</string>
+  <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">บริจาคไปทำไม?</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">เสร็จสิ้น</string>
   <!--Label for Donation Receipts button-->
+  <!--Description text in boost sheet-->
   <string name="Boost__enter_custom_amount">กรอกจำนวนเอง</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <!--Displayed in the bottom sheet when a boost badge expires-->
+  <!--Displayed when we do not think the user is a subscriber when their boost expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ไม่ใช่ตอนนี้</string>
   <!--Copy displayed when badge expires after user inactivity-->
   <!--Copy displayed when badge expires after payment failure-->
@@ -3222,8 +3232,7 @@
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">ทั้งหมด</string>
   <!--Donation receipts recurring tab label-->
-  <!--Donation receipts one time tab label-->
-  <string name="DonationReceiptListFragment__one_time">หนึ่งครั้ง</string>
+  <!--Donation receipts one-time tab label-->
   <!--Donation receipts boost row label-->
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">รายละเอียด</string>
@@ -3251,7 +3260,10 @@
   <!--Context menu option to go to story chat-->
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">กำลังส่ง…</string>
+  <!--Label when multiple stories are pending sending-->
   <!--Label when a story fails to send-->
+  <string name="StoriesLandingItem__send_failed">การส่งล้มเหลว</string>
+  <!--Status label when a story fails to send indicating user action to retry-->
   <!--Title of dialog confirming decision to hide a story-->
   <!--Message of dialog confirming decision to hide a story-->
   <!--Positive action of dialog confirming decision to hide a story-->
@@ -3334,6 +3346,9 @@
   <!--Dialog message for first time adding something to a story-->
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <!--Error message shown when a failure occurs during story send-->
+  <!--Error message dialog button to resend a previously failed story send-->
+  <string name="StoryDialogs__send">ส่ง</string>
   <!--Privacy Settings toggle title for stories-->
   <!--Privacy Settings toggle summary for stories-->
   <!--New story viewer selection screen title-->
@@ -3364,6 +3379,8 @@
   <!--Displayed in the viewer when a story is no longer available-->
   <!--Displayed in the viewer when the network is not available-->
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <!--Toasted when the user externally shares to a text story successfully-->
+  <!--Toasted when the user external share to a text story fails-->
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
