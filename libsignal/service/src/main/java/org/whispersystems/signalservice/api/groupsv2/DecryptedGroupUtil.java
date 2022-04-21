@@ -232,6 +232,10 @@ public final class DecryptedGroupUtil {
            findRequestingByUuid(group.getRequestingMembersList(), uuid).isPresent();
   }
 
+  public static boolean isRequesting(DecryptedGroup group, UUID uuid) {
+    return findRequestingByUuid(group.getRequestingMembersList(), uuid).isPresent();
+  }
+
   /**
    * Removes the uuid from the full members of a group.
    * <p>
