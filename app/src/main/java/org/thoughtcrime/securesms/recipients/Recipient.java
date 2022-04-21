@@ -12,6 +12,7 @@ import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.R;
@@ -44,7 +45,6 @@ import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.signal.core.util.StringUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.whispersystems.signalservice.api.push.PNI;
@@ -725,6 +725,10 @@ public class Recipient {
     return extras.map(Extras::hideStory).orElse(false);
   }
 
+  public boolean hasViewedStory() {
+    return extras.map(Extras::hasViewedStory).orElse(false);
+  }
+
   public @NonNull GroupId requireGroupId() {
     GroupId resolved = resolving ? resolve().groupId : groupId;
 
@@ -1218,17 +1222,21 @@ public class Recipient {
       return recipientExtras.getHideStory();
     }
 
+    public boolean hasViewedStory() {
+      return recipientExtras.getLastStoryView() > 0L;
+    }
+
     @Override
     public boolean equals(Object o) {
       if (this == o) return true;
       if (o == null || getClass() != o.getClass()) return false;
       final Extras that = (Extras) o;
-      return manuallyShownAvatar() == that.manuallyShownAvatar() && hideStory() == that.hideStory();
+      return manuallyShownAvatar() == that.manuallyShownAvatar() && hideStory() == that.hideStory() && hasViewedStory() == that.hasViewedStory();
     }
 
     @Override
     public int hashCode() {
-      return Objects.hash(manuallyShownAvatar(), hideStory());
+      return Objects.hash(manuallyShownAvatar(), hideStory(), hasViewedStory());
     }
   }
 

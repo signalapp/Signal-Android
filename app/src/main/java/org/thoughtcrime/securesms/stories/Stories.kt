@@ -5,9 +5,12 @@ import androidx.fragment.app.FragmentManager
 import io.reactivex.rxjava3.core.Completable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.HeaderAction
+import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.v2.stories.ChooseStoryTypeBottomSheet
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage
@@ -71,5 +74,25 @@ object Stories {
   fun onStorySettingsChanged(storyRecipientId: RecipientId) {
     SignalDatabase.recipients.markNeedsSync(storyRecipientId)
     StorageSyncHelper.scheduleSyncForDataChange()
+  }
+
+  @JvmStatic
+  @WorkerThread
+  fun enqueueNextStoriesForDownload(recipientId: RecipientId, ignoreAutoDownloadConstraints: Boolean = false) {
+    val recipient = Recipient.resolved(recipientId)
+    if (!recipient.isSelf && (recipient.shouldHideStory() || !recipient.hasViewedStory())) {
+      return
+    }
+
+    val unreadStoriesReader = SignalDatabase.mms.getUnreadStories(recipientId, FeatureFlags.storiesAutoDownloadMaximum())
+    while (unreadStoriesReader.next != null) {
+      val record = unreadStoriesReader.current as MmsMessageRecord
+      SignalDatabase.attachments.getAttachmentsForMessage(record.id).filterNot { it.isSticker }.forEach {
+        if (it.transferState == AttachmentDatabase.TRANSFER_PROGRESS_PENDING) {
+          val job = AttachmentDownloadJob(record.id, it.attachmentId, ignoreAutoDownloadConstraints)
+          ApplicationDependencies.getJobManager().add(job)
+        }
+      }
+    }
   }
 }

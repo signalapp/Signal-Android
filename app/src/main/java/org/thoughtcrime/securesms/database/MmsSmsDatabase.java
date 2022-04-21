@@ -32,6 +32,7 @@ import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.database.MessageDatabase.MessageUpdate;
 import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.StoryViewState;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.notifications.v2.MessageNotifierV2;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -529,6 +530,9 @@ public class MmsSmsDatabase extends Database {
     return SignalDatabase.mms().incrementReceiptCount(syncMessageId, timestamp, receiptType, true);
   }
 
+  public void updateViewedStories(@NonNull Set<SyncMessageId> syncMessageIds) {
+    SignalDatabase.mms().updateViewedStories(syncMessageIds);
+  }
 
   public void setTimestampRead(@NonNull Recipient senderRecipient, @NonNull List<ReadMessage> readMessages, long proposedExpireStarted, @NonNull Map<Long, Long> threadToLatestRead) {
     SQLiteDatabase db = getWritableDatabase();

@@ -547,6 +547,10 @@ class StoryViewerPageFragment :
       AttachmentDatabase.TRANSFER_PROGRESS_DONE -> {
         storySlate.moveToState(StorySlateView.State.HIDDEN, post.id)
         viewModel.setIsDisplayingSlate(false)
+
+        if (post.content.transferState == AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
+          viewModel.markViewed(post)
+        }
       }
       AttachmentDatabase.TRANSFER_PROGRESS_PENDING -> {
         storySlate.moveToState(StorySlateView.State.LOADING, post.id)

@@ -178,8 +178,9 @@ message ChatColor {
 }
 
 message RecipientExtras {
-    bool manuallyShownAvatar = 1;
-    bool hideStory           = 2;
+    bool  manuallyShownAvatar = 1;
+    bool  hideStory           = 2;
+    int64 lastStoryView       = 3;
 }
 
 message CustomAvatar {

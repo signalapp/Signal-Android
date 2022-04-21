@@ -1452,7 +1452,17 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public void updateViewedStories(@NonNull Set<SyncMessageId> syncMessageIds) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   public int deleteStoriesOlderThan(long timestamp) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public @NonNull MessageDatabase.Reader getUnreadStories(@NonNull RecipientId recipientId, int limit) {
     throw new UnsupportedOperationException();
   }
 

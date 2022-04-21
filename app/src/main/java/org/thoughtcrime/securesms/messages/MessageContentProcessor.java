@@ -177,12 +177,14 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -1407,13 +1409,7 @@ public final class MessageContentProcessor {
     }
 
     if (insertResult.isPresent()) {
-      List<DatabaseAttachment> allAttachments = SignalDatabase.attachments().getAttachmentsForMessage(insertResult.get().getMessageId());
-      List<DatabaseAttachment> attachments    = Stream.of(allAttachments).filterNot(Attachment::isSticker).toList();
-
-      for (DatabaseAttachment attachment : attachments) {
-        ApplicationDependencies.getJobManager().add(new AttachmentDownloadJob(insertResult.get().getMessageId(), attachment.getAttachmentId(), false));
-      }
-
+      Stories.enqueueNextStoriesForDownload(threadRecipient.getId(), false);
       ApplicationDependencies.getExpireStoriesManager().scheduleIfNecessary();
     }
   }
@@ -2163,6 +2159,11 @@ public final class MessageContentProcessor {
 
     Collection<SyncMessageId> unhandled = shouldOnlyProcessStories ? SignalDatabase.mmsSms().incrementViewedStoryReceiptCounts(ids, content.getTimestamp())
                                                                    : SignalDatabase.mmsSms().incrementViewedReceiptCounts(ids, content.getTimestamp());
+
+    Set<SyncMessageId> handled = new HashSet<>(ids);
+    handled.removeAll(unhandled);
+
+    SignalDatabase.mmsSms().updateViewedStories(handled);
 
     for (SyncMessageId id : unhandled) {
       warn(String.valueOf(content.getTimestamp()), "[handleViewedReceipt] Could not find matching message! timestamp: " + id.getTimetamp() + "  author: " + senderRecipient.getId());

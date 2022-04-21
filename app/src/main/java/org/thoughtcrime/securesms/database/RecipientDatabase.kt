@@ -1964,6 +1964,10 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     StorageSyncHelper.scheduleSyncForDataChange()
   }
 
+  fun updateLastStoryViewTimestamp(id: RecipientId) {
+    updateExtras(id) { it.setLastStoryView(System.currentTimeMillis()) }
+  }
+
   fun clearUsernameIfExists(username: String) {
     val existingUsername = getByUsername(username)
     if (existingUsername.isPresent) {

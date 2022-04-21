@@ -97,6 +97,7 @@ public final class FeatureFlags {
   private static final String PAYMENTS_COUNTRY_BLOCKLIST        = "android.payments.blocklist";
   private static final String PNP_CDS                           = "android.pnp.cds";
   private static final String USE_FCM_FOREGROUND_SERVICE        = "android.useFcmForegroundService";
+  private static final String STORIES_AUTO_DOWNLOAD_MAXIMUM     = "android.stories.autoDownloadMaximum";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -145,7 +146,8 @@ public final class FeatureFlags {
       USE_HARDWARE_AEC_IF_OLD,
       USE_AEC3,
       PAYMENTS_COUNTRY_BLOCKLIST,
-      USE_FCM_FOREGROUND_SERVICE
+      USE_FCM_FOREGROUND_SERVICE,
+      STORIES_AUTO_DOWNLOAD_MAXIMUM
   );
 
   @VisibleForTesting
@@ -510,6 +512,13 @@ public final class FeatureFlags {
 
   public static boolean useFcmForegroundService() {
     return getBoolean(USE_FCM_FOREGROUND_SERVICE, false);
+  }
+
+  /**
+   * Prefetch count for stories from a given user.
+   */
+  public static int storiesAutoDownloadMaximum() {
+    return getInteger(STORIES_AUTO_DOWNLOAD_MAXIMUM, 2);
   }
 
   /** Only for rendering debug info. */

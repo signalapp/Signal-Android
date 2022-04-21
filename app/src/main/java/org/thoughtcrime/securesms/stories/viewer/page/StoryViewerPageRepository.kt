@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceViewedUpdateJob
 import org.thoughtcrime.securesms.jobs.SendViewedReceiptJob
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.Base64
 
 /**
@@ -173,6 +174,10 @@ open class StoryViewerPageRepository(context: Context) {
             )
           )
           MultiDeviceViewedUpdateJob.enqueue(listOf(markedMessageInfo.syncMessageId))
+
+          val recipientId = storyPost.group?.id ?: storyPost.sender.id
+          SignalDatabase.recipients.updateLastStoryViewTimestamp(recipientId)
+          Stories.enqueueNextStoriesForDownload(recipientId, true)
         }
       }
     }

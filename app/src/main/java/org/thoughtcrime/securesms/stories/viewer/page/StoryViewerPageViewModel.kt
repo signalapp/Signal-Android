@@ -10,6 +10,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
+import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.livedata.Store
 import org.thoughtcrime.securesms.util.rx.RxStore
@@ -76,11 +77,15 @@ class StoryViewerPageViewModel(
     return repository.hideStory(recipientId)
   }
 
+  fun markViewed(storyPost: StoryPost) {
+    repository.markViewed(storyPost)
+  }
+
   fun setSelectedPostIndex(index: Int) {
     val selectedPost = getPostAt(index)
 
-    if (selectedPost != null) {
-      repository.markViewed(selectedPost)
+    if (selectedPost != null && selectedPost.content.transferState != AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
+      repository.forceDownload(selectedPost)
     }
 
     store.update {

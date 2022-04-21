@@ -195,7 +195,10 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   public abstract @NonNull Cursor getStoryReplies(long parentStoryId);
   public abstract @Nullable Long getOldestStorySendTimestamp();
   public abstract int deleteStoriesOlderThan(long timestamp);
+  public abstract @NonNull MessageDatabase.Reader getUnreadStories(@NonNull RecipientId recipientId, int limit);
+
   public abstract @NonNull StoryViewState getStoryViewState(@NonNull RecipientId recipientId);
+  public abstract void updateViewedStories(@NonNull Set<SyncMessageId> syncMessageIds);
 
   final @NonNull String getOutgoingTypeClause() {
     List<String> segments = new ArrayList<>(Types.OUTGOING_MESSAGE_TYPES.length);

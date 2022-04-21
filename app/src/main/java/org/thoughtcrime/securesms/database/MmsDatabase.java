@@ -591,6 +591,17 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public @NonNull MessageDatabase.Reader getUnreadStories(@NonNull RecipientId recipientId, int limit) {
+    final String query   = IS_STORY_CLAUSE +
+                           " AND NOT (" + getOutgoingTypeClause() + ") " +
+                           " AND " + RECIPIENT_ID + " = ?" +
+                           " AND " + VIEWED_RECEIPT_COUNT + " = ?";
+    final String[] args  = SqlUtil.buildArgs(recipientId, 0);
+
+    return new Reader(rawQuery(query, args, false, limit));
+  }
+
+  @Override
   public @NonNull StoryViewState getStoryViewState(@NonNull RecipientId recipientId) {
     if (!Stories.isFeatureEnabled()) {
       return StoryViewState.NONE;
@@ -599,6 +610,28 @@ public class MmsDatabase extends MessageDatabase {
     long threadId = SignalDatabase.threads().getThreadIdIfExistsFor(recipientId);
 
     return getStoryViewState(threadId);
+  }
+
+  /**
+   * Synchronizes whether we've viewed a recipient's story based on incoming sync messages.
+   */
+  public void updateViewedStories(@NonNull Set<SyncMessageId> syncMessageIds) {
+    final String   timestamps = Util.join(syncMessageIds.stream().map(SyncMessageId::getTimetamp).collect(java.util.stream.Collectors.toList()), ",");
+    final String[] projection = SqlUtil.buildArgs(RECIPIENT_ID);
+    final String   where      = IS_STORY_CLAUSE + " AND " + NORMALIZED_DATE_SENT + " IN (" + timestamps + ") AND NOT (" + getOutgoingTypeClause() + ") AND " + VIEWED_RECEIPT_COUNT + " > 0";
+
+    try {
+      getWritableDatabase().beginTransaction();
+      try (Cursor cursor = getWritableDatabase().query(TABLE_NAME, projection, where, null, null, null, null)) {
+        while (cursor != null && cursor.moveToNext()) {
+          Recipient recipient = Recipient.resolved(RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID)));
+          SignalDatabase.recipients().updateLastStoryViewTimestamp(recipient.getId());
+        }
+      }
+      getWritableDatabase().setTransactionSuccessful();
+    } finally {
+      getWritableDatabase().endTransaction();
+    }
   }
 
   @VisibleForTesting
