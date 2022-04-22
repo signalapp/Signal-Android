@@ -871,7 +871,7 @@ final class GroupsV2UpdateMessageProducer {
 
     for (RecipientId recipientId : recipientIds) {
       String placeholder      = makePlaceholder(recipientId);
-      int    placeHolderStart = template.indexOf(placeholder);
+      int    placeHolderStart = template.indexOf(placeholder, startIndex);
       String beforeChunk      = template.substring(startIndex, placeHolderStart);
 
       builder.append(beforeChunk);
