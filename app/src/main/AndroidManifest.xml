@@ -184,6 +184,7 @@
               android:excludeFromRecents="true"
               android:taskAffinity=""
               android:windowSoftInputMode="stateHidden"
+              android:exported="true"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
         <intent-filter>
             <action android:name="android.intent.action.SEND" />
