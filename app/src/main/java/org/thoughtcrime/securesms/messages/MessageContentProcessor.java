@@ -532,7 +532,8 @@ public final class MessageContentProcessor {
       throws IOException, GroupChangeBusyException
   {
     try {
-      GroupManager.updateGroupFromServer(context, groupV2.getMasterKey(), groupV2.getRevision(), content.getTimestamp(), groupV2.getSignedGroupChange());
+      long timestamp = groupV2.getSignedGroupChange() != null ? content.getTimestamp() : content.getTimestamp() - 1;
+      GroupManager.updateGroupFromServer(context, groupV2.getMasterKey(), groupV2.getRevision(), timestamp, groupV2.getSignedGroupChange());
       return true;
     } catch (GroupNotAMemberException e) {
       warn(String.valueOf(content.getTimestamp()), "Ignoring message for a group we're not in");

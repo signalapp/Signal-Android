@@ -25,7 +25,7 @@ object GV2UpdateTransformer : ColumnTransformer {
 
     return if (MmsSmsColumns.Types.isGroupV2(type) && MmsSmsColumns.Types.isGroupUpdate(type) && body != null) {
       val gv2ChangeDescription: UpdateDescription = MessageRecord.getGv2ChangeDescription(ApplicationDependencies.getApplication(), body, null)
-      gv2ChangeDescription.staticSpannable.toString()
+      gv2ChangeDescription.spannable.toString()
     } else {
       body ?: ""
     }
