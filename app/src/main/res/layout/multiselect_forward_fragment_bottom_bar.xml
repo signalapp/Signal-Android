@@ -20,8 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/signal_divider_major"
-        app:layout_constraintBottom_toBottomOf="@id/share_confirm"
-        app:layout_constraintTop_toTopOf="@id/share_confirm" />
+        app:layout_constraintBottom_toBottomOf="@id/share_confirm_frame"
+        app:layout_constraintTop_toTopOf="@id/share_confirm_frame" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/selected_list"
@@ -62,17 +62,25 @@
             android:textAppearance="@style/Signal.Text.Body" />
     </FrameLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/share_confirm"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:contentDescription="@string/ShareActivity__share"
-        app:backgroundTint="@color/signal_accent_primary"
+    <FrameLayout
+        android:id="@+id/share_confirm_frame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="@id/divider"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_send_24" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/share_confirm"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:contentDescription="@string/ShareActivity__share"
+            app:backgroundTint="@color/signal_accent_primary"
+            app:srcCompat="@drawable/ic_send_24" />
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,11 @@
 package org.thoughtcrime.securesms.conversation.mutiselect.forward
 
+import android.graphics.Rect
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
+import android.view.TouchDelegate
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
@@ -11,6 +13,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.PluralsRes
+import androidx.core.view.doOnNextLayout
 import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
@@ -125,6 +128,7 @@ class MultiselectForwardFragment :
     val bottomBar = LayoutInflater.from(requireContext()).inflate(R.layout.multiselect_forward_fragment_bottom_bar, container, false)
     val shareSelectionRecycler: RecyclerView = bottomBar.findViewById(R.id.selected_list)
     val shareSelectionAdapter = ShareSelectionAdapter()
+    val sendButtonFrame: View = bottomBar.findViewById(R.id.share_confirm_frame)
     val sendButton: View = bottomBar.findViewById(R.id.share_confirm)
     val backgroundHelper: View = bottomBar.findViewById(R.id.background_helper)
 
@@ -133,6 +137,16 @@ class MultiselectForwardFragment :
     title?.setText(requireArguments().getInt(ARG_TITLE))
 
     addMessage = bottomBar.findViewById(R.id.add_message)
+
+    sendButton.doOnNextLayout {
+      val rect = Rect()
+      sendButton.getHitRect(rect)
+      rect.top -= sendButtonFrame.paddingTop
+      rect.left -= sendButtonFrame.paddingStart
+      rect.right += sendButtonFrame.paddingEnd
+      rect.bottom += sendButtonFrame.paddingBottom
+      sendButtonFrame.touchDelegate = TouchDelegate(rect, sendButton)
+    }
 
     sendButton.setOnClickListener {
       sendButton.isEnabled = false
