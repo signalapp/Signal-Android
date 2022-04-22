@@ -9,6 +9,8 @@ import android.text.TextUtils
 import androidx.annotation.WorkerThread
 import org.signal.contacts.ContactLinkConfiguration
 import org.signal.contacts.SystemContactsRepository
+import org.signal.contacts.SystemContactsRepository.ContactIterator
+import org.signal.contacts.SystemContactsRepository.ContactPhoneDetails
 import org.signal.core.util.StringUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
@@ -130,7 +132,11 @@ object ContactDiscovery {
   @JvmStatic
   @WorkerThread
   fun syncRecipientInfoWithSystemContacts(context: Context) {
-    syncRecipientsWithSystemContacts(context, emptyMap())
+    syncRecipientsWithSystemContacts(
+      context = context,
+      rewrites = emptyMap(),
+      clearInfoForMissingContacts = true
+    )
   }
 
   private fun phoneNumberFormatter(context: Context): (String) -> String {
@@ -156,22 +162,24 @@ object ContactDiscovery {
       addSystemContactLinks(context, result.registeredIds, removeSystemContactLinksIfMissing)
       stopwatch.split("contact-links")
 
+      val useFullSync = removeSystemContactLinksIfMissing && result.registeredIds.size > FULL_SYSTEM_CONTACT_SYNC_THRESHOLD
       syncRecipientsWithSystemContacts(
         context = context,
         rewrites = result.rewrites,
         contactsProvider = {
-          if (result.registeredIds.size > FULL_SYSTEM_CONTACT_SYNC_THRESHOLD) {
-            Log.d(TAG, "Doing a full system contact sync because there are ${result.registeredIds.size} contacts to get info for.")
+          if (useFullSync) {
+            Log.d(TAG, "Doing a full system contact sync. There are ${result.registeredIds.size} contacts to get info for.")
             SystemContactsRepository.getAllSystemContacts(context, phoneNumberFormatter(context))
           } else {
-            Log.d(TAG, "Doing a partial system contact sync because there are ${result.registeredIds.size} contacts to get info for.")
+            Log.d(TAG, "Doing a partial system contact sync. There are ${result.registeredIds.size} contacts to get info for.")
             SystemContactsRepository.getContactDetailsByQueries(
               context = context,
               queries = Recipient.resolvedList(result.registeredIds).mapNotNull { it.e164.orElse(null) },
               e164Formatter = phoneNumberFormatter(context)
             )
           }
-        }
+        },
+        clearInfoForMissingContacts = useFullSync
       )
       stopwatch.split("contact-sync")
 
@@ -282,15 +290,18 @@ object ContactDiscovery {
   private fun syncRecipientsWithSystemContacts(
     context: Context,
     rewrites: Map<String, String>,
-    contactsProvider: () -> SystemContactsRepository.ContactIterator = { SystemContactsRepository.getAllSystemContacts(context, phoneNumberFormatter(context)) }
+    contactsProvider: () -> ContactIterator = { SystemContactsRepository.getAllSystemContacts(context, phoneNumberFormatter(context)) },
+    clearInfoForMissingContacts: Boolean
   ) {
-    val handle = SignalDatabase.recipients.beginBulkSystemContactUpdate()
+    val localNumber: String = SignalStore.account().e164 ?: ""
+    val handle = SignalDatabase.recipients.beginBulkSystemContactUpdate(clearInfoForMissingContacts)
     try {
       contactsProvider().use { iterator ->
         while (iterator.hasNext()) {
           val details = iterator.next()
+          val phoneDetailsWithoutSelf: List<ContactPhoneDetails> = details.numbers.filter { it.number != localNumber }
 
-          for (phoneDetails in details.numbers) {
+          for (phoneDetails in phoneDetailsWithoutSelf) {
             val realNumber: String = Util.getFirstNonEmpty(rewrites[phoneDetails.number], phoneDetails.number)
 
             val profileName: ProfileName = if (!StringUtil.isEmpty(details.givenName)) {

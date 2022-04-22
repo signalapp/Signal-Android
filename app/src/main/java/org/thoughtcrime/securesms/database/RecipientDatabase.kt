@@ -1162,15 +1162,23 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     return out
   }
 
-  fun beginBulkSystemContactUpdate(): BulkOperationsHandle {
-    val db = writableDatabase
-    val contentValues = ContentValues(1).apply {
-      put(SYSTEM_INFO_PENDING, 1)
+  /**
+   * @param clearInfoForMissingContacts If true, this will clear any saved contact details for any recipient that hasn't been updated
+   *                                    by the time finish() is called. Basically this should be true for full syncs and false for
+   *                                    partial syncs.
+   */
+  fun beginBulkSystemContactUpdate(clearInfoForMissingContacts: Boolean): BulkOperationsHandle {
+    writableDatabase.beginTransaction()
+
+    if (clearInfoForMissingContacts) {
+      writableDatabase
+        .update(TABLE_NAME)
+        .values(SYSTEM_INFO_PENDING to 1)
+        .where("$SYSTEM_CONTACT_URI NOT NULL")
+        .run()
     }
 
-    db.beginTransaction()
-    db.update(TABLE_NAME, contentValues, "$SYSTEM_CONTACT_URI NOT NULL", null)
-    return BulkOperationsHandle(db)
+    return BulkOperationsHandle(writableDatabase)
   }
 
   fun onUpdatedChatColors(chatColors: ChatColors) {
@@ -3212,19 +3220,18 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
 
     private fun clearSystemDataForPendingInfo() {
-      val query = "$SYSTEM_INFO_PENDING = ?"
-      val args = arrayOf("1")
-      val values = ContentValues(5).apply {
-        put(SYSTEM_INFO_PENDING, 0)
-        put(SYSTEM_GIVEN_NAME, null as String?)
-        put(SYSTEM_FAMILY_NAME, null as String?)
-        put(SYSTEM_JOINED_NAME, null as String?)
-        put(SYSTEM_PHOTO_URI, null as String?)
-        put(SYSTEM_PHONE_LABEL, null as String?)
-        put(SYSTEM_CONTACT_URI, null as String?)
-      }
-
-      database.update(TABLE_NAME, values, query, args)
+      database.update(TABLE_NAME)
+        .values(
+          SYSTEM_INFO_PENDING to 0,
+          SYSTEM_GIVEN_NAME to null,
+          SYSTEM_FAMILY_NAME to null,
+          SYSTEM_JOINED_NAME to null,
+          SYSTEM_PHOTO_URI to null,
+          SYSTEM_PHONE_LABEL to null,
+          SYSTEM_CONTACT_URI to null
+        )
+        .where("$SYSTEM_INFO_PENDING = ?", 1)
+        .run()
     }
   }
 
