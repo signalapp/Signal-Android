@@ -75,10 +75,10 @@ public class DownloadLatestEmojiDataJob extends BaseJob {
     }
   }
 
-  public DownloadLatestEmojiDataJob(boolean force) {
+  public DownloadLatestEmojiDataJob(boolean ignoreAutoDownloadConstraints) {
     this(new Job.Parameters.Builder()
              .setQueue(QUEUE_KEY)
-             .addConstraint(force ? NetworkConstraint.KEY : AutoDownloadEmojiConstraint.KEY)
+             .addConstraint(ignoreAutoDownloadConstraints ? NetworkConstraint.KEY : AutoDownloadEmojiConstraint.KEY)
              .setMaxInstancesForQueue(1)
              .setMaxAttempts(5)
              .setLifespan(TimeUnit.DAYS.toMillis(1))
@@ -126,10 +126,10 @@ public class DownloadLatestEmojiDataJob extends BaseJob {
       EmojiData    emojiData          = downloadJson(context, targetVersion);
       List<String> supportedDensities = emojiData.getDensities();
       String       format             = emojiData.getFormat();
-      List<String> imagePaths = Stream.of(emojiData.getDataPages())
-                                      .map(EmojiPageModel::getSpriteUri)
-                                      .map(Uri::getLastPathSegment)
-                                      .toList();
+      List<String> imagePaths         = Stream.of(emojiData.getDataPages())
+                                              .map(EmojiPageModel::getSpriteUri)
+                                              .map(Uri::getLastPathSegment)
+                                              .toList();
 
       String density = resolveDensity(supportedDensities, targetVersion.getDensity());
       targetVersion = new EmojiFiles.Version(targetVersion.getVersion(), targetVersion.getUuid(), density);
