@@ -30,6 +30,7 @@ import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -1349,8 +1350,73 @@ public final class GroupsV2UpdateMessageProducerTest {
                              .build();
 
     assertThat(describeNewGroup(group), is("Group updated."));
-  } 
-  
+  }
+
+  @Test
+  public void makeRecipientsClickable_onePlaceholder() {
+    RecipientId id = RecipientId.from(1);
+
+    Spannable result = GroupsV2UpdateMessageProducer.makeRecipientsClickable(
+        ApplicationProvider.getApplicationContext(),
+        GroupsV2UpdateMessageProducer.makePlaceholder(id),
+        Collections.singletonList(id),
+        null
+    );
+
+    assertEquals("Alice", result.toString());
+  }
+
+  @Test
+  public void makeRecipientsClickable_twoPlaceholders_sameRecipient() {
+    RecipientId id          = RecipientId.from(1);
+    String      placeholder = GroupsV2UpdateMessageProducer.makePlaceholder(id);
+
+    Spannable result = GroupsV2UpdateMessageProducer.makeRecipientsClickable(
+        ApplicationProvider.getApplicationContext(),
+        placeholder + " " + placeholder,
+        Collections.singletonList(id),
+        null
+    );
+
+    assertEquals("Alice Alice", result.toString());
+  }
+
+  @Test
+  public void makeRecipientsClickable_twoPlaceholders_differentRecipient() {
+    RecipientId id1 = RecipientId.from(1);
+    RecipientId id2 = RecipientId.from(2);
+
+    String placeholder1 = GroupsV2UpdateMessageProducer.makePlaceholder(id1);
+    String placeholder2 = GroupsV2UpdateMessageProducer.makePlaceholder(id2);
+
+    Spannable result = GroupsV2UpdateMessageProducer.makeRecipientsClickable(
+        ApplicationProvider.getApplicationContext(),
+        placeholder1 + " " + placeholder2,
+        Arrays.asList(id1, id2),
+        null
+    );
+
+    assertEquals("Alice Bob", result.toString());
+  }
+
+  @Test
+  public void makeRecipientsClickable_complicated() {
+    RecipientId id1 = RecipientId.from(1);
+    RecipientId id2 = RecipientId.from(2);
+
+    String placeholder1 = GroupsV2UpdateMessageProducer.makePlaceholder(id1);
+    String placeholder2 = GroupsV2UpdateMessageProducer.makePlaceholder(id2);
+
+    Spannable result = GroupsV2UpdateMessageProducer.makeRecipientsClickable(
+        ApplicationProvider.getApplicationContext(),
+        placeholder1 + " said hello to " + placeholder2 + ", and " + placeholder2 + " said hello back to " + placeholder1 + ".",
+        Arrays.asList(id1, id2),
+        null
+    );
+
+    assertEquals("Alice said hello to Bob, and Bob said hello back to Alice.", result.toString());
+  }
+
   private @NonNull List<String> describeChange(@NonNull DecryptedGroupChange change) {
     return describeChange(null, change);
   }

@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.StringRes;
+import androidx.annotation.VisibleForTesting;
 
 import com.google.protobuf.ByteString;
 
@@ -41,9 +42,11 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -865,33 +868,55 @@ final class GroupsV2UpdateMessageProducer {
     return args.toArray();
   }
 
-  private static @NonNull Spannable makeRecipientsClickable(@NonNull Context context, @NonNull String template, @NonNull List<RecipientId> recipientIds, @Nullable Consumer<RecipientId> clickHandler) {
+  @VisibleForTesting
+  static @NonNull Spannable makeRecipientsClickable(@NonNull Context context, @NonNull String template, @NonNull List<RecipientId> recipientIds, @Nullable Consumer<RecipientId> clickHandler) {
     SpannableStringBuilder builder = new SpannableStringBuilder();
     int startIndex = 0;
 
-    for (RecipientId recipientId : recipientIds) {
-      String placeholder      = makePlaceholder(recipientId);
-      int    placeHolderStart = template.indexOf(placeholder, startIndex);
-      String beforeChunk      = template.substring(startIndex, placeHolderStart);
-
-      builder.append(beforeChunk);
-      builder.append(SpanUtil.clickable(Recipient.resolved(recipientId).getDisplayName(context), 0, v -> {
-        if (!recipientId.isUnknown() && clickHandler != null) {
-          clickHandler.accept(recipientId);
-        }
-      }));
-
-      startIndex = placeHolderStart + placeholder.length();
+    Map<String, RecipientId> idByPlaceholder = new HashMap<>();
+    for (RecipientId id : recipientIds) {
+      idByPlaceholder.put(makePlaceholder(id), id);
     }
 
-    if (startIndex < template.length()) {
-      builder.append(template.substring(startIndex));
+    while (startIndex < template.length()) {
+      Map.Entry<String, RecipientId> nearestEntry    = null;
+      int                            nearestPosition = Integer.MAX_VALUE;
+
+      for (Map.Entry<String, RecipientId> entry : idByPlaceholder.entrySet()) {
+        String placeholder      = entry.getKey();
+        int    placeholderStart = template.indexOf(placeholder, startIndex);
+
+        if (placeholderStart >= 0 && placeholderStart < nearestPosition) {
+          nearestPosition = placeholderStart;
+          nearestEntry    = entry;
+        }
+      }
+
+      if (nearestEntry != null) {
+        String      placeholder = nearestEntry.getKey();
+        RecipientId recipientId = nearestEntry.getValue();
+
+        String beforeChunk = template.substring(startIndex, nearestPosition);
+
+        builder.append(beforeChunk);
+        builder.append(SpanUtil.clickable(Recipient.resolved(recipientId).getDisplayName(context), 0, v -> {
+          if (!recipientId.isUnknown() && clickHandler != null) {
+            clickHandler.accept(recipientId);
+          }
+        }));
+
+        startIndex = nearestPosition + placeholder.length();
+      } else {
+        builder.append(template.substring(startIndex));
+        startIndex = template.length();
+      }
     }
 
     return builder;
   }
 
-  private static @NonNull String makePlaceholder(@NonNull RecipientId recipientId) {
+  @VisibleForTesting
+  static @NonNull String makePlaceholder(@NonNull RecipientId recipientId) {
     return "{{SPAN_PLACEHOLDER_" + recipientId + "}}";
   }
 }
