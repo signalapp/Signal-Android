@@ -1501,8 +1501,13 @@ public final class MessageContentProcessor {
         } else if (SignalDatabase.storySends().canReply(senderRecipient.getId(), storyContext.getSentTimestamp())) {
           MmsMessageRecord story = (MmsMessageRecord) database.getMessageRecord(storyMessageId.getId());
 
+          String displayText = "";
+          if (story.getStoryType().isTextStory()) {
+            displayText = story.getBody();
+          }
+
           parentStoryId   = new ParentStoryId.DirectReply(storyMessageId.getId());
-          quoteModel      = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, "", false, story.getSlideDeck().asAttachments(), Collections.emptyList());
+          quoteModel      = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, displayText, false, story.getSlideDeck().asAttachments(), Collections.emptyList());
           expiresInMillis = TimeUnit.SECONDS.toMillis(message.getExpiresInSeconds());
         } else {
           warn(content.getTimestamp(), "Story has reactions disabled. Dropping reaction.");
@@ -1584,7 +1589,13 @@ public final class MessageContentProcessor {
           parentStoryId = new ParentStoryId.GroupReply(storyMessageId.getId());
         } else if (groupStory || SignalDatabase.storySends().canReply(senderRecipient.getId(), storyContext.getSentTimestamp())) {
           parentStoryId   = new ParentStoryId.DirectReply(storyMessageId.getId());
-          quoteModel      = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, "", false, story.getSlideDeck().asAttachments(), Collections.emptyList());
+
+          String displayText = "";
+          if (story.getStoryType().isTextStory()) {
+            displayText = story.getBody();
+          }
+
+          quoteModel      = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, displayText, false, story.getSlideDeck().asAttachments(), Collections.emptyList());
           expiresInMillis = TimeUnit.SECONDS.toMillis(message.getExpiresInSeconds());
         } else {
           warn(content.getTimestamp(), "Story has replies disabled. Dropping reply.");
@@ -1782,7 +1793,13 @@ public final class MessageContentProcessor {
         parentStoryId = new ParentStoryId.GroupReply(storyMessageId.getId());
       } else if (groupStory || SignalDatabase.storySends().canReply(storyAuthorRecipient, storyContext.getSentTimestamp())) {
         parentStoryId   = new ParentStoryId.DirectReply(storyMessageId.getId());
-        quoteModel      = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, "", false, story.getSlideDeck().asAttachments(), Collections.emptyList());
+
+        String quoteBody = "";
+        if (story.getStoryType().isTextStory()) {
+          quoteBody = story.getBody();
+        }
+
+        quoteModel      = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, quoteBody, false, story.getSlideDeck().asAttachments(), Collections.emptyList());
         expiresInMillis = TimeUnit.SECONDS.toMillis(message.getExpirationStartTimestamp());
       } else {
         warn(envelopeTimestamp, "Story has replies disabled. Dropping reply.");
