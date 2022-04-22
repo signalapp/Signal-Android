@@ -38,7 +38,7 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
   private lateinit var finishOnOkResultLauncher: ActivityResultLauncher<Intent>
 
   private val viewModel: ShareViewModel by viewModels {
-    ShareViewModel.Factory(getUnresolvedShareData(), directShareTarget, ShareRepository(this))
+    ShareViewModel.Factory(getUnresolvedShareData(), ShareRepository(this))
   }
 
   private val directShareTarget: RecipientId?
@@ -72,7 +72,17 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
         ShareState.ShareDataLoadState.Init -> Unit
         ShareState.ShareDataLoadState.Failed -> finish()
         is ShareState.ShareDataLoadState.Loaded -> {
-          ensureFragment(shareState.loadState.resolvedShareData)
+          val directShareTarget = this.directShareTarget
+          if (directShareTarget != null) {
+            openConversation(
+              ShareEvent.OpenConversation(
+                shareState.loadState.resolvedShareData,
+                ContactSearchKey.RecipientSearchKey.KnownRecipient(directShareTarget)
+              )
+            )
+          } else {
+            ensureFragment(shareState.loadState.resolvedShareData)
+          }
         }
       }
     }

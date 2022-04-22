@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
-    <share-target android:targetClass="org.thoughtcrime.securesms.sharing.ShareActivity">
+    <share-target android:targetClass="org.thoughtcrime.securesms.sharing.v2.ShareActivity">
         <data android:mimeType="*/*" />
         <category android:name="org.thoughtcrime.securesms.sharing.CATEGORY_SHARE_TARGET" />
     </share-target>

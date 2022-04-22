@@ -10,13 +10,11 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.subjects.PublishSubject
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sharing.InterstitialContentType
 import org.thoughtcrime.securesms.util.rx.RxStore
 
 class ShareViewModel(
   unresolvedShareData: UnresolvedShareData,
-  directShareTarget: RecipientId?,
   shareRepository: ShareRepository
 ) : ViewModel() {
 
@@ -34,12 +32,9 @@ class ShareViewModel(
   init {
     disposables += shareRepository.resolve(unresolvedShareData).subscribeBy(
       onSuccess = { data ->
-        when {
-          data == ResolvedShareData.Failure -> {
+        when (data) {
+          ResolvedShareData.Failure -> {
             moveToFailedState()
-          }
-          directShareTarget != null -> {
-            eventSubject.onNext(ShareEvent.OpenConversation(data, ContactSearchKey.RecipientSearchKey.KnownRecipient(directShareTarget)))
           }
           else -> {
             store.update { it.copy(loadState = ShareState.ShareDataLoadState.Loaded(data)) }
@@ -86,11 +81,10 @@ class ShareViewModel(
 
   class Factory(
     private val unresolvedShareData: UnresolvedShareData,
-    private val directShareTarget: RecipientId?,
     private val shareRepository: ShareRepository
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-      return modelClass.cast(ShareViewModel(unresolvedShareData, directShareTarget, shareRepository)) as T
+      return modelClass.cast(ShareViewModel(unresolvedShareData, shareRepository)) as T
     }
   }
 }
