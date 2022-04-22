@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +68,7 @@ public class ConversationShortcutUpdateJob extends BaseJob {
     int             maxShortcuts   = ConversationUtil.getMaxShortcuts(context);
     List<Recipient> ranked         = new ArrayList<>(maxShortcuts);
 
-    try (ThreadDatabase.Reader reader = threadDatabase.readerFor(threadDatabase.getRecentConversationList(maxShortcuts, false, false))) {
+    try (ThreadDatabase.Reader reader = threadDatabase.readerFor(threadDatabase.getRecentConversationList(maxShortcuts, false, false, true, !Util.isDefaultSmsProvider(context)))) {
       ThreadRecord record;
       while ((record = reader.getNext()) != null) {
         ranked.add(record.getRecipient().resolve());
