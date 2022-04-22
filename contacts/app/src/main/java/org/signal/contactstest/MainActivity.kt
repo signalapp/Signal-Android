@@ -30,8 +30,15 @@ class MainActivity : AppCompatActivity() {
 
     findViewById<Button>(R.id.contact_list_button).setOnClickListener { v ->
       if (hasPermission(Manifest.permission.READ_CONTACTS) && hasPermission(Manifest.permission.WRITE_CONTACTS)) {
-        startActivity(Intent(this, ContactsActivity::class.java))
-        finish()
+        startActivity(Intent(this, ContactListActivity::class.java))
+      } else {
+        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS), PERMISSION_CODE)
+      }
+    }
+
+    findViewById<Button>(R.id.contact_lookup_button).setOnClickListener { v ->
+      if (hasPermission(Manifest.permission.READ_CONTACTS) && hasPermission(Manifest.permission.WRITE_CONTACTS)) {
+        startActivity(Intent(this, ContactLookupActivity::class.java))
       } else {
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS), PERMISSION_CODE)
       }
@@ -92,12 +99,13 @@ class MainActivity : AppCompatActivity() {
   override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
     if (requestCode == PERMISSION_CODE) {
       if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
-        startActivity(Intent(this, ContactsActivity::class.java))
-        finish()
+        startActivity(Intent(this, ContactListActivity::class.java))
       } else {
         Toast.makeText(this, "You must provide permissions to continue.", Toast.LENGTH_SHORT).show()
       }
     }
+
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
   }
 
   private fun hasPermission(permission: String): Boolean {

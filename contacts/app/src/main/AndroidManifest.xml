@@ -20,7 +20,11 @@
         </activity>
 
         <activity
-            android:name=".ContactsActivity"
+            android:name=".ContactListActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ContactLookupActivity"
             android:exported="false" />
 
         <service

@@ -8,10 +8,8 @@ import android.os.RemoteException
 import android.text.TextUtils
 import androidx.annotation.WorkerThread
 import org.signal.contacts.ContactLinkConfiguration
-import org.signal.contacts.SystemContactsRepository.addMessageAndCallLinksToContacts
-import org.signal.contacts.SystemContactsRepository.getAllSystemContacts
-import org.signal.contacts.SystemContactsRepository.getOrCreateSystemAccount
-import org.signal.contacts.SystemContactsRepository.removeDeletedRawContactsForAccount
+import org.signal.contacts.SystemContactsRepository
+import org.signal.core.util.StringUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.R
@@ -22,6 +20,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
+import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.RegistrationUtil
@@ -45,6 +44,7 @@ object ContactDiscovery {
   private const val MESSAGE_MIMETYPE = "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.contact"
   private const val CALL_MIMETYPE = "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.call"
   private const val CONTACT_TAG = "__TS"
+  private const val FULL_SYSTEM_CONTACT_SYNC_THRESHOLD = 3
 
   @JvmStatic
   @Throws(IOException::class)
@@ -133,6 +133,10 @@ object ContactDiscovery {
     syncRecipientsWithSystemContacts(context, emptyMap())
   }
 
+  private fun phoneNumberFormatter(context: Context): (String) -> String {
+    return { PhoneNumberFormatter.get(context).format(it) }
+  }
+
   private fun refreshRecipients(
     context: Context,
     descriptor: String,
@@ -152,7 +156,23 @@ object ContactDiscovery {
       addSystemContactLinks(context, result.registeredIds, removeSystemContactLinksIfMissing)
       stopwatch.split("contact-links")
 
-      syncRecipientsWithSystemContacts(context, result.rewrites)
+      syncRecipientsWithSystemContacts(
+        context = context,
+        rewrites = result.rewrites,
+        contactsProvider = {
+          if (result.registeredIds.size > FULL_SYSTEM_CONTACT_SYNC_THRESHOLD) {
+            Log.d(TAG, "Doing a full system contact sync because there are ${result.registeredIds.size} contacts to get info for.")
+            SystemContactsRepository.getAllSystemContacts(context, phoneNumberFormatter(context))
+          } else {
+            Log.d(TAG, "Doing a partial system contact sync because there are ${result.registeredIds.size} contacts to get info for.")
+            SystemContactsRepository.getContactDetailsByQueries(
+              context = context,
+              queries = Recipient.resolvedList(result.registeredIds).mapNotNull { it.e164.orElse(null) },
+              e164Formatter = phoneNumberFormatter(context)
+            )
+          }
+        }
+      )
       stopwatch.split("contact-sync")
 
       if (TextSecurePreferences.hasSuccessfullyRetrievedDirectory(context) && notifyOfNewUsers) {
@@ -227,7 +247,7 @@ object ContactDiscovery {
 
     val stopwatch = Stopwatch("contact-links")
 
-    val account = getOrCreateSystemAccount(context, BuildConfig.APPLICATION_ID, context.getString(R.string.app_name))
+    val account = SystemContactsRepository.getOrCreateSystemAccount(context, BuildConfig.APPLICATION_ID, context.getString(R.string.app_name))
     if (account == null) {
       Log.w(TAG, "[addSystemContactLinks] Failed to create an account!")
       return
@@ -237,10 +257,10 @@ object ContactDiscovery {
       val registeredE164s: Set<String> = SignalDatabase.recipients.getE164sForIds(registeredIds)
       stopwatch.split("fetch-e164s")
 
-      removeDeletedRawContactsForAccount(context, account)
+      SystemContactsRepository.removeDeletedRawContactsForAccount(context, account)
       stopwatch.split("delete-stragglers")
 
-      addMessageAndCallLinksToContacts(
+      SystemContactsRepository.addMessageAndCallLinksToContacts(
         context = context,
         config = buildContactLinkConfiguration(context, account),
         targetE164s = registeredE164s,
@@ -259,30 +279,38 @@ object ContactDiscovery {
   /**
    * Synchronizes info from the system contacts (name, avatar, etc)
    */
-  private fun syncRecipientsWithSystemContacts(context: Context, rewrites: Map<String, String>) {
+  private fun syncRecipientsWithSystemContacts(
+    context: Context,
+    rewrites: Map<String, String>,
+    contactsProvider: () -> SystemContactsRepository.ContactIterator = { SystemContactsRepository.getAllSystemContacts(context, phoneNumberFormatter(context)) }
+  ) {
     val handle = SignalDatabase.recipients.beginBulkSystemContactUpdate()
     try {
-      getAllSystemContacts(context) { PhoneNumberFormatter.get(context).format(it) }.use { iterator ->
+      contactsProvider().use { iterator ->
         while (iterator.hasNext()) {
           val details = iterator.next()
-          val name = StructuredNameRecord(details.givenName, details.familyName)
-          val phones = details.numbers
-            .map { phoneDetails ->
-              val realNumber = Util.getFirstNonEmpty(rewrites[phoneDetails.number], phoneDetails.number)
-              PhoneNumberRecord.Builder()
-                .withRecipientId(Recipient.externalContact(context, realNumber).id)
-                .withContactUri(phoneDetails.contactUri)
-                .withDisplayName(phoneDetails.displayName)
-                .withContactPhotoUri(phoneDetails.photoUri)
-                .withContactLabel(phoneDetails.label)
-                .build()
-            }
-            .toList()
 
-          ContactHolder().apply {
-            setStructuredNameRecord(name)
-            addPhoneNumberRecords(phones)
-          }.commit(handle)
+          for (phoneDetails in details.numbers) {
+            val realNumber: String = Util.getFirstNonEmpty(rewrites[phoneDetails.number], phoneDetails.number)
+
+            val profileName: ProfileName = if (!StringUtil.isEmpty(details.givenName)) {
+              ProfileName.fromParts(details.givenName, details.familyName)
+            } else if (!StringUtil.isEmpty(phoneDetails.displayName)) {
+              ProfileName.asGiven(phoneDetails.displayName)
+            } else {
+              ProfileName.EMPTY
+            }
+
+            handle.setSystemContactInfo(
+              Recipient.externalContact(context, realNumber).id,
+              profileName,
+              phoneDetails.displayName,
+              phoneDetails.photoUri,
+              phoneDetails.label,
+              phoneDetails.type,
+              phoneDetails.contactUri.toString()
+            )
+          }
         }
       }
     } catch (e: IllegalStateException) {

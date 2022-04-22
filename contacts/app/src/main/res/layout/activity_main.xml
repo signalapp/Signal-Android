@@ -11,10 +11,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Contact List"
-        app:layout_constraintBottom_toTopOf="@id/link_contacts_button"
+        app:layout_constraintBottom_toTopOf="@id/contact_lookup_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"/>
+
+    <Button
+        android:id="@+id/contact_lookup_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contact Lookup"
+        app:layout_constraintBottom_toTopOf="@id/link_contacts_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/contact_list_button"
         app:layout_constraintVertical_chainStyle="packed"/>
 
     <Button
@@ -25,7 +36,7 @@
         app:layout_constraintBottom_toTopOf="@id/unlink_contact_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/contact_list_button" />
+        app:layout_constraintTop_toBottomOf="@id/contact_lookup_button" />
 
     <Button
         android:id="@+id/unlink_contact_button"

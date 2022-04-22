@@ -38,7 +38,7 @@ object SystemContactsRepository {
   @JvmStatic
   fun getAllSystemContacts(context: Context, e164Formatter: (String) -> String): ContactIterator {
     val uri = ContactsContract.Data.CONTENT_URI
-    val projection = SqlUtil.buildArgs(
+    val projection = arrayOf(
       ContactsContract.Data.MIMETYPE,
       ContactsContract.CommonDataKinds.Phone.NUMBER,
       ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
@@ -56,6 +56,50 @@ object SystemContactsRepository {
 
     val cursor: Cursor = context.contentResolver.query(uri, projection, where, args, orderBy) ?: return EmptyContactIterator()
 
+    return CursorContactIterator(cursor, e164Formatter)
+  }
+
+  @JvmStatic
+  fun getContactDetailsByQueries(context: Context, queries: List<String>, e164Formatter: (String) -> String): ContactIterator {
+    val lookupKeys: MutableSet<String> = mutableSetOf()
+
+    for (query in queries) {
+      val lookupKeyUri: Uri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_FILTER_URI, Uri.encode(query))
+      context.contentResolver.query(lookupKeyUri, arrayOf(ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY), null, null, null).use { cursor ->
+        while (cursor != null && cursor.moveToNext()) {
+          val lookup: String? = cursor.requireString(ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY)
+          if (lookup != null) {
+            lookupKeys += lookup
+          }
+        }
+      }
+    }
+
+    if (lookupKeys.isEmpty()) {
+      return EmptyContactIterator()
+    }
+
+    val uri = ContactsContract.Data.CONTENT_URI
+    val projection = arrayOf(
+      ContactsContract.Data.MIMETYPE,
+      ContactsContract.CommonDataKinds.Phone.NUMBER,
+      ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
+      ContactsContract.CommonDataKinds.Phone.LABEL,
+      ContactsContract.CommonDataKinds.Phone.PHOTO_URI,
+      ContactsContract.CommonDataKinds.Phone._ID,
+      ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY,
+      ContactsContract.CommonDataKinds.Phone.TYPE,
+      ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME,
+      ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME
+    )
+
+    val lookupPlaceholder = lookupKeys.map { "?" }.joinToString(separator = ",")
+
+    val where = "${ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY} IN ($lookupPlaceholder) AND ${ContactsContract.Data.MIMETYPE} IN (?, ?)"
+    val args = lookupKeys.toTypedArray() + SqlUtil.buildArgs(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE, ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
+    val orderBy = "${ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY} ASC, ${ContactsContract.Data.MIMETYPE} DESC, ${ContactsContract.CommonDataKinds.Phone._ID} DESC"
+
+    val cursor: Cursor = context.contentResolver.query(uri, projection, where, args, orderBy) ?: return EmptyContactIterator()
     return CursorContactIterator(cursor, e164Formatter)
   }
 
