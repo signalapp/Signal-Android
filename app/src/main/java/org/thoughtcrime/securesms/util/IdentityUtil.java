@@ -164,6 +164,12 @@ public final class IdentityUtil {
     try(SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
       SignalIdentityKeyStore   identityStore  = ApplicationDependencies.getProtocolStore().aci().identities();
       Recipient                recipient      = Recipient.externalPush(verifiedMessage.getDestination());
+
+      if (recipient.isSelf()) {
+        Log.w(TAG, "Attempting to change verified status of self to " + verifiedMessage.getVerified() + ", skipping.");
+        return;
+      }
+
       Optional<IdentityRecord> identityRecord = identityStore.getIdentityRecord(recipient.getId());
 
       if (!identityRecord.isPresent() && verifiedMessage.getVerified() == VerifiedMessage.VerifiedState.DEFAULT) {
@@ -176,6 +182,7 @@ public final class IdentityUtil {
           identityRecord.get().getIdentityKey().equals(verifiedMessage.getIdentityKey())      &&
           identityRecord.get().getVerifiedStatus() != IdentityDatabase.VerifiedStatus.DEFAULT)
       {
+        Log.i(TAG, "Setting " + recipient.getId() + " verified status to " + IdentityDatabase.VerifiedStatus.DEFAULT);
         identityStore.setVerified(recipient.getId(), identityRecord.get().getIdentityKey(), IdentityDatabase.VerifiedStatus.DEFAULT);
         markIdentityVerified(context, recipient, false, true);
       }
@@ -185,6 +192,7 @@ public final class IdentityUtil {
               (identityRecord.isPresent() && !identityRecord.get().getIdentityKey().equals(verifiedMessage.getIdentityKey())) ||
               (identityRecord.isPresent() && identityRecord.get().getVerifiedStatus() != IdentityDatabase.VerifiedStatus.VERIFIED)))
       {
+        Log.i(TAG, "Setting " + recipient.getId() + " verified status to " + IdentityDatabase.VerifiedStatus.VERIFIED);
         saveIdentity(verifiedMessage.getDestination().getIdentifier(), verifiedMessage.getIdentityKey());
         identityStore.setVerified(recipient.getId(), verifiedMessage.getIdentityKey(), IdentityDatabase.VerifiedStatus.VERIFIED);
         markIdentityVerified(context, recipient, true, true);
