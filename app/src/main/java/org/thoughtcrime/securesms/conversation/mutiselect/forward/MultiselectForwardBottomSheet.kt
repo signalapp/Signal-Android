@@ -11,7 +11,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.util.fragments.findListener
-import org.thoughtcrime.securesms.util.fragments.requireListener
 
 class MultiselectForwardBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(), MultiselectForwardFragment.Callback {
 
@@ -45,7 +44,7 @@ class MultiselectForwardBottomSheet : FixedRoundedCornerBottomSheetDialogFragmen
   }
 
   override fun canSendMediaToStories(): Boolean {
-    return requireListener<Callback>().canSendMediaToStories()
+    return findListener<Callback>()?.canSendMediaToStories() ?: true
   }
 
   override fun setResult(bundle: Bundle) {
