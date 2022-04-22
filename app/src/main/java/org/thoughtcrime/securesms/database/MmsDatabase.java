@@ -618,7 +618,7 @@ public class MmsDatabase extends MessageDatabase {
   public void updateViewedStories(@NonNull Set<SyncMessageId> syncMessageIds) {
     final String   timestamps = Util.join(syncMessageIds.stream().map(SyncMessageId::getTimetamp).collect(java.util.stream.Collectors.toList()), ",");
     final String[] projection = SqlUtil.buildArgs(RECIPIENT_ID);
-    final String   where      = IS_STORY_CLAUSE + " AND " + NORMALIZED_DATE_SENT + " IN (" + timestamps + ") AND NOT (" + getOutgoingTypeClause() + ") AND " + VIEWED_RECEIPT_COUNT + " > 0";
+    final String   where      = IS_STORY_CLAUSE + " AND " + DATE_SENT + " IN (" + timestamps + ") AND NOT (" + getOutgoingTypeClause() + ") AND " + VIEWED_RECEIPT_COUNT + " > 0";
 
     try {
       getWritableDatabase().beginTransaction();
