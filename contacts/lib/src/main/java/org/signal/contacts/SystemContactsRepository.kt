@@ -87,15 +87,19 @@ object SystemContactsRepository {
     var account: Account? = if (accounts.isNotEmpty()) accounts[0] else null
 
     if (account == null) {
-      Log.i(TAG, "Attempting to create a new account...")
-      val newAccount = Account(accountDisplayName, applicationId)
+      try {
+        Log.i(TAG, "Attempting to create a new account...")
+        val newAccount = Account(accountDisplayName, applicationId)
 
-      if (accountManager.addAccountExplicitly(newAccount, null, null)) {
-        Log.i(TAG, "Successfully created a new account.")
-        ContentResolver.setIsSyncable(newAccount, ContactsContract.AUTHORITY, 1)
-        account = newAccount
-      } else {
-        Log.w(TAG, "Failed to create a new account!")
+        if (accountManager.addAccountExplicitly(newAccount, null, null)) {
+          Log.i(TAG, "Successfully created a new account.")
+          ContentResolver.setIsSyncable(newAccount, ContactsContract.AUTHORITY, 1)
+          account = newAccount
+        } else {
+          Log.w(TAG, "Failed to create a new account!")
+        }
+      } catch (e: SecurityException) {
+        Log.w(TAG, "Failed to add an account.", e)
       }
     }
 
