@@ -23,6 +23,7 @@ public final class KbsValues extends SignalStoreValues {
   private static final String LOCK_LOCAL_PIN_HASH          = "kbs.registration_lock_local_pin_hash";
   private static final String LAST_CREATE_FAILED_TIMESTAMP = "kbs.last_create_failed_timestamp";
   public  static final String OPTED_OUT                    = "kbs.opted_out";
+  private static final String PIN_FORGOTTEN_OR_SKIPPED     = "kbs.pin.forgotten.or.skipped";
 
   KbsValues(KeyValueStore store) {
     super(store);
@@ -154,6 +155,14 @@ public final class KbsValues extends SignalStoreValues {
 
   public synchronized boolean hasPin() {
     return getLocalPinHash() != null;
+  }
+
+  public synchronized boolean isPinForgottenOrSkipped() {
+    return getBoolean(PIN_FORGOTTEN_OR_SKIPPED, false);
+  }
+
+  public synchronized void setPinForgottenOrSkipped(boolean value) {
+    putBoolean(PIN_FORGOTTEN_OR_SKIPPED, value);
   }
 
   /** Should only be called by {@link org.thoughtcrime.securesms.pin.PinState}. */

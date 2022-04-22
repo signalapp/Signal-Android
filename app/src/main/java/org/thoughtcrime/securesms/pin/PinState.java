@@ -86,6 +86,7 @@ public final class PinState {
     SignalStore.kbsValues().setKbsMasterKey(kbsData, pin);
     SignalStore.kbsValues().setV2RegistrationLockEnabled(false);
     SignalStore.pinValues().resetPinReminders();
+    SignalStore.kbsValues().setPinForgottenOrSkipped(false);
     SignalStore.storageService().setNeedsAccountRestore(false);
     resetPinRetryCount(context, pin);
     ClearFallbackKbsEnclaveJob.clearAll();
@@ -99,6 +100,7 @@ public final class PinState {
   public static synchronized void onPinRestoreForgottenOrSkipped() {
     SignalStore.kbsValues().clearRegistrationLockAndPin();
     SignalStore.storageService().setNeedsAccountRestore(false);
+    SignalStore.kbsValues().setPinForgottenOrSkipped(true);
 
     updateState(buildInferredStateFromOtherFields());
   }
@@ -122,6 +124,7 @@ public final class PinState {
     KbsPinData                        kbsData          = pinChangeSession.setPin(hashedPin, masterKey);
 
     kbsValues.setKbsMasterKey(kbsData, pin);
+    kbsValues.setPinForgottenOrSkipped(false);
     TextSecurePreferences.clearRegistrationLockV1(context);
     SignalStore.pinValues().setKeyboardType(keyboard);
     SignalStore.pinValues().resetPinReminders();
