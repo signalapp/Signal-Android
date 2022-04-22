@@ -116,6 +116,8 @@ public class SmsSendJob extends SendJob {
 
     if (threadId != -1 && recipient != null) {
       ApplicationDependencies.getMessageNotifier().notifyMessageDeliveryFailed(context, recipient, threadId);
+    } else {
+      Log.w(TAG, "Could not find message! threadId: " + threadId + ", recipient: " + (recipient != null ? recipient.getId().toString() : "null"));
     }
   }
 

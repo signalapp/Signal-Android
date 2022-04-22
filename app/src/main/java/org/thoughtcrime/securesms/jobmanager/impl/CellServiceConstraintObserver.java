@@ -2,17 +2,23 @@ package org.thoughtcrime.securesms.jobmanager.impl;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Build;
 import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
+import android.telephony.TelephonyCallback;
 import android.telephony.TelephonyManager;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobmanager.ConstraintObserver;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 
 public class CellServiceConstraintObserver implements ConstraintObserver {
+
+  private static final String TAG = Log.tag(CellServiceConstraintObserver.class);
 
   private static final String REASON = Log.tag(CellServiceConstraintObserver.class);
 
@@ -33,12 +39,16 @@ public class CellServiceConstraintObserver implements ConstraintObserver {
   }
 
   private CellServiceConstraintObserver(@NonNull Application application) {
-    TelephonyManager     telephonyManager     = (TelephonyManager) application.getSystemService(Context.TELEPHONY_SERVICE);
-    ServiceStateListener serviceStateListener = new ServiceStateListener();
+    TelephonyManager           telephonyManager     = ServiceUtil.getTelephonyManager(application);
+    LegacyServiceStateListener serviceStateListener = new LegacyServiceStateListener();
 
-    SignalExecutors.BOUNDED.execute(() -> {
-      telephonyManager.listen(serviceStateListener, PhoneStateListener.LISTEN_SERVICE_STATE);
-    });
+    if (Build.VERSION.SDK_INT >= 31) {
+      telephonyManager.registerTelephonyCallback(SignalExecutors.BOUNDED, new ServiceStateListenerApi31());
+    } else {
+      SignalExecutors.BOUNDED.execute(() -> {
+        telephonyManager.listen(serviceStateListener, PhoneStateListener.LISTEN_SERVICE_STATE);
+      });
+    }
   }
 
   @Override
@@ -50,13 +60,42 @@ public class CellServiceConstraintObserver implements ConstraintObserver {
     return lastKnownState != null && lastKnownState.getState() == ServiceState.STATE_IN_SERVICE;
   }
 
-  private class ServiceStateListener extends PhoneStateListener {
+  @RequiresApi(31)
+  private class ServiceStateListenerApi31 extends TelephonyCallback implements TelephonyCallback.ServiceStateListener {
+    @Override
+    public void onServiceStateChanged(@NonNull ServiceState serviceState) {
+      lastKnownState = serviceState;
+
+      if (serviceState.getState() == ServiceState.STATE_IN_SERVICE) {
+        Log.i(TAG, "[API " + Build.VERSION.SDK_INT + "] Cell service available.");
+
+        if (notifier != null) {
+          notifier.onConstraintMet(REASON);
+        }
+      } else {
+        Log.w(TAG, "[API " + Build.VERSION.SDK_INT + "] Cell service unavailable. State: " + serviceState.getState());
+      }
+    }
+  }
+
+  private class LegacyServiceStateListener extends PhoneStateListener {
+
+    LegacyServiceStateListener() {
+      super();
+    }
+
     @Override
     public void onServiceStateChanged(ServiceState serviceState) {
       lastKnownState = serviceState;
 
-      if (serviceState.getState() == ServiceState.STATE_IN_SERVICE && notifier != null) {
-        notifier.onConstraintMet(REASON);
+      if (serviceState.getState() == ServiceState.STATE_IN_SERVICE) {
+        Log.i(TAG, "[API " + Build.VERSION.SDK_INT + "] Cell service available.");
+
+        if (notifier != null) {
+          notifier.onConstraintMet(REASON);
+        }
+      } else {
+        Log.w(TAG, "[API " + Build.VERSION.SDK_INT + "] Cell service unavailable. State: " + serviceState.getState());
       }
     }
   }
