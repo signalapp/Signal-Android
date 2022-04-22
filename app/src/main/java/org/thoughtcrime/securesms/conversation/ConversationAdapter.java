@@ -377,7 +377,7 @@ public class ConversationAdapter
         pagingController.onDataNeededAroundIndex(position);
       }
 
-      if (position < getItemCount()) {
+      if (position < super.getItemCount()) {
         return super.getItem(position);
       } else {
         Log.d(TAG, "Could not access corrected position " + position + " as it is out of bounds.");
