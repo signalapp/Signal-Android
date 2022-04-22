@@ -10,32 +10,32 @@
   <string name="AbstractNotificationBuilder_new_message">رسالة جديدة</string>
   <!--AlbumThumbnailView-->
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signal قيد التحديث…</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">إن Signal في طور التحديث…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">حاليا: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">لم تقم بتحديد عبارة سرية بعد!</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">تعطيل العبارة السرية؟</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">تفعيل Signal وإشعارات الرسائل بشكل دائم</string>
   <string name="ApplicationPreferencesActivity_disable">تعطيل</string>
-  <string name="ApplicationPreferencesActivity_unregistering">جارٍ إلغاء التسجيل</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">جاري إلغاء التسجيل من رسائل ومكالمات Signal…</string>
+  <string name="ApplicationPreferencesActivity_unregistering">يجري إلغاء التسجيل</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">يجري إلغاء التسجيل من رسائل ومكالمات Signal…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">تعطيل رسائل ومكالمات Signal؟</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">سيتم تعطيل رسائل ومكالمات Signal عند إلغاء التسجيل من الخادوم. سيجب عليكم إعادة تسجيل رقم الهاتف لمعاودة استخدام هذه الخدمات في المستقبل.</string>
-  <string name="ApplicationPreferencesActivity_error_connecting_to_server">خطأ خلال الاتصال بالخادم !</string>
+  <string name="ApplicationPreferencesActivity_error_connecting_to_server">حدث خطأ خلال الاتصال بالخادم !</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">رسائل SMS مُفعَّلة</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">المس لتغيير التطبيق الافتراضي لرسائل SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">رسائل SMS معطلة</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">يرجى الضغط لجعل Signal التطبيق الرئيسي لرسائل SMS</string>
-  <string name="ApplicationPreferencesActivity_on">يعمل</string>
-  <string name="ApplicationPreferencesActivity_On">يعمل</string>
-  <string name="ApplicationPreferencesActivity_off">مغلق</string>
-  <string name="ApplicationPreferencesActivity_Off">مغلق</string>
+  <string name="ApplicationPreferencesActivity_on">مُشغَّل</string>
+  <string name="ApplicationPreferencesActivity_On">مُشغَّل</string>
+  <string name="ApplicationPreferencesActivity_off">غير مشغل</string>
+  <string name="ApplicationPreferencesActivity_Off">غير مُشغَّل</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">رسائل MMS ،%1$s SMS%2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">إقفال الشاشة %1$s، إنهاء التسجيل %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">المظهر %1$s، اللغة %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">إن الرقم التعريفي الشخصي (PIN) مطلوب لحماية التسجيل. لتعطيله، يُرجى أولا تعطيل قفل التسجيل.</string>
-  <string name="ApplicationPreferencesActivity_pin_created">تم إنشاء الرقم التعريفي الشخصي.</string>
-  <string name="ApplicationPreferencesActivity_pin_disabled">الرقم التعريفي الشخصي غير مُفعَّل.</string>
+  <string name="ApplicationPreferencesActivity_pin_created">لقد تم إنشاء الرقم التعريفي الشخصي.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">لقد تم تعطيل الرقم التعريفي الشخصي.</string>
   <string name="ApplicationPreferencesActivity_hide">إخفاء</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">إخفاء التذكير؟</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">تسجيل جملة استعادة المدفوعات</string>
@@ -45,10 +45,10 @@
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="zero">%d دقيقة</item>
     <item quantity="one">%d دقيقة</item>
-    <item quantity="two">%d دقيقتين</item>
+    <item quantity="two">%d دقيقة</item>
     <item quantity="few">%d دقائق</item>
-    <item quantity="many">%d دقائق</item>
-    <item quantity="other">%d دقائق</item>
+    <item quantity="many">%d دقيقة</item>
+    <item quantity="other">%d دقيقة</item>
   </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(صورة)</string>
@@ -66,13 +66,13 @@
   <string name="AttachmentKeyboard_give_access">منح الصلاحيات</string>
   <string name="AttachmentKeyboard_payment">دفع مال</string>
   <!--AttachmentManager-->
-  <string name="AttachmentManager_cant_open_media_selection">لم يتم العثور على تطبيق لاختيار ملف.</string>
+  <string name="AttachmentManager_cant_open_media_selection">تعذر العثور على تطبيق لتحديد الوسائط.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">يحتاج Signal إلى إذن الوصول إلى التخزين من أجل إرفاق الصور والفيديوهات والملفّات الصوتيّة، ولكن الإذن لم يُمنح  بشكل دائم. الّرجاء زيارة قائمة إعدادات التطبيق، واختيار \"الأذونات\"، ومن ثمّ تفعيل \"سعة التخزين\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">يحتاج Signal إلى إذن الوصول لِ جهات الاتصال من أجل إرفاق بيانات جهة اتصال، لكن الإذن لم يُمنح بشكل دائم. الّرجاء زيارة قائمة إعدادات التطبيق، واختيار \"الأذونات\"، ومن ثم تفعيل \"جهات الاتصال\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">يحتاج Signal إلى إذن الوصول إلى الموقع من أجل إرفاق الموقع الجغرافي ولكن تم إيقاف الإذن على نحو دائم. يرجى زيارة قائمة إعدادات التطبيق ثم اختيار \"الأذونات\" وتفعيل \"الموقع\".</string>
   <!--AttachmentUploadJob-->
-  <string name="AttachmentUploadJob_uploading_media">جاري رفع الملف …</string>
-  <string name="AttachmentUploadJob_compressing_video_start">جاري ضغط الفيديو…</string>
+  <string name="AttachmentUploadJob_uploading_media">يجري رفع الوسائط…</string>
+  <string name="AttachmentUploadJob_compressing_video_start">يجري ضغط الفيديو…</string>
   <!--BackgroundMessageRetriever-->
   <string name="BackgroundMessageRetriever_checking_for_messages">يبحث عن الرسائل…</string>
   <!--BlockedUsersActivity-->
@@ -83,11 +83,11 @@
   <string name="BlockedUsersActivity__block_user">حظر المستخدم ؟</string>
   <string name="BlockedUserActivity__s_will_not_be_able_to"> لن يتمكن \"%1$s\" من الاتصال بك ولا إرسال الرسائل إليك.</string>
   <string name="BlockedUsersActivity__block">حظر</string>
-  <string name="BlockedUsersActivity__unblock_user">إلغاء حظر المستخدم ؟</string>
-  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">أتريد إلغاء حظر \"%1$s\" ؟</string>
+  <string name="BlockedUsersActivity__unblock_user">رفع الحظر عن المستخدم ؟</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">أتريد رفع الحظر عن \"%1$s\" ؟</string>
   <string name="BlockedUsersActivity__unblock">رفع الحظر</string>
   <!--BlockUnblockDialog-->
-  <string name="BlockUnblockDialog_block_and_leave_s">حظر و مغادرة %1$s؟</string>
+  <string name="BlockUnblockDialog_block_and_leave_s">حظر ثم مغادرة %1$s؟</string>
   <string name="BlockUnblockDialog_block_s">حظر %1$s؟</string>
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">لن تستلم بعد الآن رسائل أو تحديثات من هذه المجموعة، ولن يتمكن الأعضاء من إضافتك مرة أخرى إلى هذه المجموعة.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">لن يتمكن أعضاء المجموعة من إضافتك إلى مجموعتهم مرة أخرى.</string>
@@ -98,20 +98,20 @@
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">حظر الحصول على الجديد والتحديثات من Signal.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">استئناف الحصول على الجديد والتحديثات من Signal.</string>
-  <string name="BlockUnblockDialog_unblock_s">إلغاء حظر %1$s ؟</string>
+  <string name="BlockUnblockDialog_unblock_s">رفع الحظر عن %1$s ؟</string>
   <string name="BlockUnblockDialog_block">حظر</string>
   <string name="BlockUnblockDialog_block_and_leave">حظر ثم المغادرة</string>
   <string name="BlockUnblockDialog_report_spam_and_block">إبلاغ عن بريد عشوائي ثم حظره</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">اليوم</string>
-  <string name="BucketedThreadMedia_Yesterday">البارحة</string>
+  <string name="BucketedThreadMedia_Yesterday">الأمس</string>
   <string name="BucketedThreadMedia_This_week">هذا الأسبوع</string>
   <string name="BucketedThreadMedia_This_month">هذا الشهر</string>
   <string name="BucketedThreadMedia_Large">كبير</string>
   <string name="BucketedThreadMedia_Medium">متوسط</string>
   <string name="BucketedThreadMedia_Small">صغير</string>
   <!--CameraXFragment-->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">أنقر لالتقاط صورة، أو أضغط باستمرار لتصوير فيديو</string>
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">المس لالتقاط صورة، أو ابق أصبعك على الشاشة باستمرار لتصوير الفيديو</string>
   <string name="CameraXFragment_capture_description">التقاط</string>
   <string name="CameraXFragment_change_camera_description">تغيير الكاميرا</string>
   <string name="CameraXFragment_open_gallery_description">فتح المعرض </string>
@@ -128,7 +128,7 @@
   <string name="CameraContacts__menu_search">بحث</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
-  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention"> هل تريدإ بطال تجاوز الرقابة </string>
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention"> هل تريد إبطال تجاوز الرقابة </string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">يمكنك الآن ربط الاتصال بخدمة Signal‬ مباشرة لتجربة استخدام أفضل.</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
@@ -145,7 +145,7 @@
   <string name="ClientDeprecatedActivity_update">تحديث التطبيق</string>
   <string name="ClientDeprecatedActivity_dont_update">لا تقم بالتحديث</string>
   <string name="ClientDeprecatedActivity_warning">تحذير</string>
-  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">لقد انتهت صلاحية إصدار Signal الخاص بك. يمكنك عرض محفوظات رسائلك ولكنك لن يكون بإمكانك إرسال أو استلام الرسائل  إلى حين قيامك بالتحديث.</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">لقد انتهت صلاحية إصدار Signal الخاص بك. يمكنك عرض محفوظات رسائلك ولكنك لن يصبح بإمكانك إرسال أو استلام الرسائل إلى حين قيامك بالتحديث.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">لم يتم العثور على متصفح للإنترنت.</string>
   <string name="CommunicationActions_send_email">إرسال رسالة إلكترونية</string>
@@ -161,8 +161,8 @@
   <string name="ConfirmIdentityDialog_accept">موافقة</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">المحادثات الأحدث</string>
-  <string name="ContactsCursorLoader_contacts">جهات الإتصال</string>
-  <string name="ContactsCursorLoader_groups">مجموعات</string>
+  <string name="ContactsCursorLoader_contacts">جهات الاتصال</string>
+  <string name="ContactsCursorLoader_groups">المجموعات</string>
   <string name="ContactsCursorLoader_phone_number_search">البحث عن طريق رقم الهاتف</string>
   <string name="ContactsCursorLoader_username_search">البحث عن طريق اسم المستخدم</string>
   <!--Label for my stories when selecting who to send media to-->
@@ -173,11 +173,11 @@
   <string name="ContactsDatabase_message_s">رسالة %s</string>
   <string name="ContactsDatabase_signal_call_s">مكالمة Signal %s</string>
   <!--ContactNameEditActivity-->
-  <string name="ContactNameEditActivity_given_name">الاسم الأول</string>
-  <string name="ContactNameEditActivity_family_name">اسم العائلة</string>
+  <string name="ContactNameEditActivity_given_name">الاسم الشخصي</string>
+  <string name="ContactNameEditActivity_family_name">الاسم العائلي</string>
   <string name="ContactNameEditActivity_prefix">اللّقب</string>
   <string name="ContactNameEditActivity_suffix">لاحقة الاسم</string>
-  <string name="ContactNameEditActivity_middle_name">الاسم الأوسط</string>
+  <string name="ContactNameEditActivity_middle_name">الاسم الثاني</string>
   <!--ContactShareEditActivity-->
   <string name="ContactShareEditActivity_type_home">المنزل</string>
   <string name="ContactShareEditActivity_type_mobile">الهاتف</string>
@@ -189,8 +189,8 @@
   <string name="ConversationItem_error_partially_not_delivered">أُرسلَت جزئيا فقط، يرجى اللمس لمعرفة المزيد</string>
   <string name="ConversationItem_error_network_not_delivered">فشل الإرسال</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">تم استلام رسالة تبادل المفاتيح، المس للمتابعة.</string>
-  <string name="ConversationItem_group_action_left">%1$s تَرك المجموعة.</string>
-  <string name="ConversationItem_send_paused">الإرسال متوقف مؤقتا</string>
+  <string name="ConversationItem_group_action_left">لقد غادر المستخدم %1$s المجموعة.</string>
+  <string name="ConversationItem_send_paused">إن الإرسال متوقف مؤقتا</string>
   <string name="ConversationItem_click_to_approve_unencrypted">فشل الإرسال، المس للاستعاضة بإرسال غير آمن</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">الاستعاضة برسالة SMS غير مُعمَّاة؟</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">الاستعاضة برسالة وسائط متعددة غير مُعمَّاة؟</string>
@@ -200,7 +200,7 @@
   <string name="ConversationItem_from_s">من %s</string>
   <string name="ConversationItem_to_s">إلى %s</string>
   <string name="ConversationItem_read_more">  قراءة المزيد</string>
-  <string name="ConversationItem_download_more">  تحميل المزيد</string>
+  <string name="ConversationItem_download_more">  تنزيل المزيد</string>
   <string name="ConversationItem_pending">  معلّق</string>
   <string name="ConversationItem_this_message_was_deleted">حُذفَت هذه الرسالة.</string>
   <string name="ConversationItem_you_deleted_this_message">لقد حذفت هذه الرسالة.</string>
@@ -222,8 +222,8 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">هيا ننتقل إلى Signal %1$s</string>
   <string name="ConversationActivity_specify_recipient">رجاء اختيار جهة اتصال</string>
-  <string name="ConversationActivity_unblock">إلغاء الحظر</string>
-  <string name="ConversationActivity_attachment_exceeds_size_limits">حجم المرفق تجاوز الحد المسموح بهذا النوع من الرسائل.</string>
+  <string name="ConversationActivity_unblock">رفع الحظر</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">لقد تجاوز حجم المرفق الحد المسموح به لهذا الصنف من الرسائل.</string>
   <string name="ConversationActivity_unable_to_record_audio">تعذر تسجيل الصوت!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">لا تستطيع إرسال الرسائل لهذه المجموعة لأنك لم تعد عضواً.</string>
   <string name="ConversationActivity_only_s_can_send_messages">يمكن فقط لـ %1$s إرسال الرسائل.</string>
@@ -301,27 +301,27 @@
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">تعذر الإضافة إلى الذاكرة!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
-    <item quantity="zero">جارٍ حفظ %1$d مرفق</item>
-    <item quantity="one">جارٍ حفظ المرفق</item>
-    <item quantity="two">جارٍ حفظ %1$d مرفق</item>
-    <item quantity="few">جارٍ حفظ %1$d مرفق</item>
-    <item quantity="many">جارٍ حفظ %1$d مرفق</item>
-    <item quantity="other">جارٍ حفظ %1$d مرفق</item>
+    <item quantity="zero">لا يجري حفظ أي مرفق (%1$d)</item>
+    <item quantity="one">يجري حفظ مرفق واحد</item>
+    <item quantity="two">يجري حفظ مرفقين (%1$d)</item>
+    <item quantity="few">يجري حفظ %1$d مرفقات</item>
+    <item quantity="many">يجري حفظ %1$d مرفقا</item>
+    <item quantity="other">يجري حفظ %1$d مرفق</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="zero">جارٍ حفظ %1$d مرفق في الذاكرة…</item>
-    <item quantity="one">جارٍ حفظ المرفق في الذاكرة…</item>
-    <item quantity="two">جارٍ حفظ %1$d مرفق في الذاكرة…</item>
-    <item quantity="few">جارٍ حفظ %1$d مرفق في الذاكرة…</item>
-    <item quantity="many">جارٍ حفظ %1$d مرفق في الذاكرة…</item>
-    <item quantity="other">جارٍ حفظ %1$d ملف مرفق في الذاكرة…</item>
+    <item quantity="zero">لا يجري حفظ أي مرفق (%1$d) في ذاكرة التخزين…</item>
+    <item quantity="one">يجري حفظ مرفق واحد في ذاكرة التخزين…</item>
+    <item quantity="two">يجري حفظ مرفقين (%1$d) في ذاكرة التخزين…</item>
+    <item quantity="few">يجري حفظ %1$d مرفقات في ذاكرة التخزين…</item>
+    <item quantity="many">يجري حفظ %1$d مرفقا في ذاكرة التخزين…</item>
+    <item quantity="other">يجري حفظ %1$d ملف مرفق في ذاكرة التخزين…</item>
   </plurals>
   <string name="ConversationFragment_pending">معلق…</string>
   <string name="ConversationFragment_push">بيانات (Signal)</string>
   <string name="ConversationFragment_mms">رسالة وسائط متعددة</string>
   <string name="ConversationFragment_sms">رسالة SMS</string>
-  <string name="ConversationFragment_deleting">جارٍ الحذف</string>
-  <string name="ConversationFragment_deleting_messages">حذف الرسائل جارٍ…</string>
+  <string name="ConversationFragment_deleting">يجري الحذف</string>
+  <string name="ConversationFragment_deleting_messages">يجري حذف الرسائل…</string>
   <string name="ConversationFragment_delete_for_me">احذف بالنسبة لي</string>
   <string name="ConversationFragment_delete_for_everyone">احذف للجميع</string>
   <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">سوف تُحذَف هذه الرسالة لكل من كان في هذه المحادثة شريطة استخدامه إصدار Signal حديث. لن يتمكن أحد من رؤية الرسالة التي قمت بحذفها.</string>
@@ -341,8 +341,8 @@
   <string name="ConversationFragment_contact_us">تواصل معنا</string>
   <string name="ConversationFragment_verify">تحقق</string>
   <string name="ConversationFragment_not_now">ليس الآن</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed">لقد تغير رقم أمانك مع %s</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">لقد تغير رقم أمانك مع %s، يُحتَمل أن يكون هذا الشخص قد أعاد تثبيت Signal أو أنه غيَّر جهازه. يُرجى لمس زر التحقق للتأكيد على رقم اﻷمان الجديد. إن هذا اﻹجراء اختياري.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">‫لقد تغير رقم أمانك مع %s</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">‫لقد تغير رقم أمانك مع %s، يُحتَمل أن يكون هذا الشخص قد أعاد تثبيت Signal أو أنه غيَّر جهازه. يُرجى لمس زر التحقق للتأكيد على رقم اﻷمان الجديد. إن هذا اﻹجراء اختياري.</string>
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s مشغّل</string>
   <!--Dialog title for block group link join requests-->
@@ -371,8 +371,8 @@
     <item quantity="many">سوف يتم حذف %1$d رسائل مختارة بشكل نهائي.</item>
     <item quantity="other">سوف يتم حذف %1$d رسائل مختارة بشكل نهائي.</item>
   </plurals>
-  <string name="ConversationListFragment_deleting">حذف</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">جارٍ حذف المحادثات المختارة…</string>
+  <string name="ConversationListFragment_deleting">يجري الحذف</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">يجري حذف المحادثات المختارة…</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="zero">تم نقل %d رسالة إلى الأرشيف</item>
     <item quantity="one">تم نقل رسالة إلى الأرشيف</item>
@@ -483,7 +483,7 @@
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">أرشيف المحادثات (%d)</string>
   <!--ConversationTitleView-->
-  <string name="ConversationTitleView_verified"> تم التحقق </string>
+  <string name="ConversationTitleView_verified">متحقق منه</string>
   <string name="ConversationTitleView_you">أنت</string>
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
@@ -495,7 +495,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">خطأ في إعداد الملف الشخصي</string>
   <string name="CreateProfileActivity_set_up_your_profile">إعداد الملف الشخصي</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">إن حسابك الشخصي مُعمَّى من طرف لطرف. كما أن أي تغيير سيكون ظاهرا لجهات اتصالك، وذلك بعد قبولك طلب محادثتهم أو بعد انضمامك لمجموعة جديدة.</string>
-  <string name="CreateProfileActivity_set_avatar_description">اختيار صورة ملفك الشخصي</string>
+  <string name="CreateProfileActivity_set_avatar_description">تعيين صورة ملفك الشخصي</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">الاستعادة مِن نسخة احتياطية؟</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">استعادة الرسائل والوسائط من نسخة احتياطية محلية. إن لم تتم استعادتها الآن، لن يكون بإمكانك ذلك لاحقا.</string>
@@ -546,17 +546,17 @@
   <string name="DateUtils_just_now">الآن</string>
   <string name="DateUtils_minutes_ago">%d دقيقة</string>
   <string name="DateUtils_today">اليوم</string>
-  <string name="DateUtils_yesterday">البارحة</string>
+  <string name="DateUtils_yesterday">الأمس</string>
   <!--DecryptionFailedDialog-->
-  <string name="DecryptionFailedDialog_chat_session_refreshed">تم إنعاش جلسة المحادثة</string>
-  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">يستخدم Signal التعمية من طرف لطرف ويحتاج بعض اﻷحيان لإنعاش جلسات المحادثات. إن هذا لا يؤثر على أمان محادثتك، لكن قد تفوتك رسالة من جهة الاتصال تلك، لكن يمكن الطلب منها إعادة إرسالها.</string>
+  <string name="DecryptionFailedDialog_chat_session_refreshed">لقد تم إنعاش جلسة المحادثة</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">يستخدم Signal التعمية من طرف لطرف ويحتاج بعض اﻷحيان لإنعاش جلسات المحادثات. إن هذا لا يؤثر على أمان محادثتك، لكن قد تفوتك رسالة من جهة الاتصال هذه، لكن يمكن الطلب منها إعادة إرسالها.</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">إلغاء ربط  \'%s\'؟</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">لن يكون إرسال واستقبال الرسائل ممكنا بمجرد إلغاء ربط الجهاز.</string>
   <string name="DeviceListActivity_network_connection_failed">فشل الاتصال بالشبكة</string>
   <string name="DeviceListActivity_try_again">حاول مجددا</string>
-  <string name="DeviceListActivity_unlinking_device">جارٍ إلغاء ربط الجهاز…</string>
-  <string name="DeviceListActivity_unlinking_device_no_ellipsis">جارٍ إلغاء ربط الجهاز</string>
+  <string name="DeviceListActivity_unlinking_device">يجري فك الارتباط بالجهاز…</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">يجري فك الارتباط بالجهاز</string>
   <string name="DeviceListActivity_network_failed">فشل في الشبكة!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">جهاز غير مسمى</string>
@@ -2458,7 +2458,9 @@
   <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">الاشتراك</string>
   <!--Preference label for making a monthly donation to Signal-->
+  <string name="preferences__monthly_donation">التبرع شهريا</string>
   <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">التبرع مرة واحدة</string>
   <string name="preferences__privacy">الخصوصية</string>
   <string name="preferences__mms_user_agent">الوكيل المستخدم لرسائل الوسائط المتعددة</string>
   <string name="preferences__advanced_mms_access_point_names">الإعدادات اليدوية لرسائل الوسائط المتعددة</string>
@@ -3660,6 +3662,7 @@
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">كن من الداعمين</string>
   <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">إن Signal مدعوم بفضل أفراد مثلك. يُرجى التبرع للحصول على الشارة.</string>
   <string name="BecomeASustainerMegaphone__not_now">ليس الآن</string>
   <string name="BecomeASustainerMegaphone__donate">تبرع</string>
   <!--KeyboardPagerFragment-->
@@ -3853,6 +3856,7 @@
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">يُشغَّل Signal بِواسِطَة أشخاص مِثلَك.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">دعم التكنولوجيا المصممة لك - وليس لبياناتك - من خلال الانضمام إلى مجتمع الأشخاص الذين يدعمونها.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">يُرجى دعم التكنولوجيا المبنية لأجلك، لا لأجل بياناتك، وذلك عبر الانضمام إلى المجتمع الداعم لـ Signal.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">يُرجى التبرع شهريا لـ Signal بشكل متواصل، وذلك لدعم التكنولوجيا التي بُنيَت لأجلك، وليس لأجل الحصول على بياناتك.</string>
   <string name="SubscribeFragment__currency">العملة</string>
   <string name="SubscribeFragment__more_payment_options">المزيد من خيارات الدفع</string>
   <string name="SubscribeFragment__cancel_subscription">إلغاء الاشتراك</string>
@@ -3869,10 +3873,14 @@
   <string name="Subscription__s_per_month_dot_renews_s">%1$s شهرياً . يُجدد في  %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s شهرياً . ينتهي في  %2$s</string>
   <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">إن Signal غير ربحي، وبلا إعلانات ولا مستثمرين، يدعمه فقط الأشخاص الذين يستخدمونه ويقدرونه. نرجو منك التبرع بشكل شهري للحصول على شارة في حسابك لأجل مشاركة دعمك لنا مع الآخرين.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">لِماذا أتبرع؟</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">إن Signal ملتزم بتطوير تكنولوجيا الخصوصية مفتوحة المصدر، والتي تحمي حرية التعبير وتُمكِّن التواصل العالمي الآمن.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">إن مساهماتك تُقوِّي هذه القضية وتُموِّل تطوير التطبيق وسير عمله للملايين من الناس لحماية خصوصية اتصالاتهم. إذ ليست فيه الإعلانات، ولا أي متعقبات. نحن حقا لا نمزح في ذلك.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">شكرا لدعمك!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">شكراً على الدعم!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">لقد حصلت باستحقاق على %s شارات ! يمكنك عرض هذه الشارة في حسابك لتحفيز الوعي بضرورة التبرع لـ Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">لقد حصلت باستحقاق على شارة التعزيز ! يمكنك عرض هذه الشارة في حسابك لتحفيز الوعي بضرورة التبرع لـ Signal.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">يُمكنك أيضاً</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">كُن داعماً شهرياً.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">عرض في الملف الشخصي</string>
@@ -3890,6 +3898,7 @@
   <string name="ManageDonationsFragment__error_getting_subscription">خطأ في الحصول على الاشتراك.</string>
   <string name="BoostFragment__give_signal_a_boost">دعم Signal </string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">يُرجى التبرع مرة واحدة. سيمكنك ذلك من الحصول على شارة التعزيز لمدة %1$d يوم.</string>
   <string name="Boost__enter_custom_amount">إدخال مَبلَغ مُخَصَّص</string>
   <string name="Boost__one_time_contribution">مساهمة لمرة واحدة</string>
   <string name="MySupportPreference__add_a_signal_boost">دعم Signal </string>
@@ -3900,15 +3909,21 @@
   <string name="MySupportPreference__couldnt_add_badge_s">تعذّر إضافة الشارة. %1$s</string>
   <string name="MySupportPreference__please_contact_support">يُرجى الاتصال بفريق الدعم.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">لقد نفذت صلاحية شارة التعزيز</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">لقد تم إلغاء التبرعات الشهرية</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">لقد نفذت صلاحية شارة التعزيز لديك، لذلك لم تعد ظاهرة في حسابك.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">يُمكنك إعادة تفعيل شارة الدعم الخاصة بك لمدة 30 يوماً آخرين بالمساهمة لمرة واحدة.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">يمكنك الاستمرار في استخدام Signal، لكن لدعم التكنولوجيا التي بُنيَت لأجلك، نطلب منك الانضمام لفئة الداعمين، وذلك عبر التبرع لنا شهريا.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">كن من الداعمين</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">أضف دعماً</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ليس الآن</string>
   <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">لقد تم إلغاء تبرعك الشهري الدوري تلقائيا، بسبب طول غياب نشاطك لفترة طويلة. لن تظهر بعد ذلك شارة %1$s في حسابك.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">لقد تم إلغاء تبرعك الشهري الدوري تلقائيا، لأنه تعذر علينا معالجة دفوعاتك. لن تظهر بعد ذلك شارتك في حسابك.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">يُمكنك الاستمرار في استخدام Signal، ولكن لدعم التطبيق وإعادة تفعيل شارتك، جدد الآن.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">إعادة الاشتراك</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">لقد تعذرت معالجة دفوعات اشتراكك</string>
@@ -4112,6 +4127,7 @@
   <!--Donation receipts recurring tab label-->
   <string name="DonationReceiptListFragment__recurring">التكرار</string>
   <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">مرة واحدة</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">معزز</string>
   <!--Donation receipts details title-->
@@ -4158,9 +4174,11 @@
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">يَجري الإرسال…</string>
   <!--Label when multiple stories are pending sending-->
+  <string name="StoriesLandingItem__sending_d">يجري إرسال %1$d…</string>
   <!--Label when a story fails to send-->
   <string name="StoriesLandingItem__send_failed">فشل الإرسال</string>
   <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">يُرجى اللمس لإعادة المحاولة</string>
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">أأخفي القصة ؟</string>
   <!--Message of dialog confirming decision to hide a story-->
@@ -4326,6 +4344,7 @@
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <string name="StoryDialogs__edit_viewers">تحرير المشاهدين</string>
   <!--Error message shown when a failure occurs during story send-->
+  <string name="StoryDialogs__story_could_not_be_sent">لقد تعذر إرسال القصة. يُرجى التحقق من اتصالك ثم المحاولة مرة أخرى.</string>
   <!--Error message dialog button to resend a previously failed story send-->
   <string name="StoryDialogs__send">أرسلْ</string>
   <!--Privacy Settings toggle title for stories-->
@@ -4386,7 +4405,9 @@
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <string name="StorySlateView__couldnt_load_content">لقد تعذر تحميل المحتوى</string>
   <!--Toasted when the user externally shares to a text story successfully-->
+  <string name="TextStoryPostCreationFragment__sent_story">القصة مُرسَلة</string>
   <!--Toasted when the user external share to a text story fails-->
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">لقد فشل إرسال القصة</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention"> هل تريدإ بطال تجاوز الرقابة </string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->

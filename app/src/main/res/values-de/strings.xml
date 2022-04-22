@@ -3471,6 +3471,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Mit deiner Spende finanzierst du die Entwicklung und den Betrieb einer App, die von Millionen Menschen für die private Kommunikation genutzt wird. Keine Werbung. Keine Tracker. Kein Scherz.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Danke für deine Unterstützung!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Danke für deine Spende!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Du hast das %s-Abzeichen erhalten! Zeige dieses Abzeichen in deinem Profil, um auf Spenden für Signal aufmerksam zu machen.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Du hast ein Boost-Abzeichen erhalten! Zeige dieses Abzeichen in deinem Profil, um auf Spenden für Signal aufmerksam zu machen.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Du kannst auch</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">ein monatlicher Unterstützer werden.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Im Profil anzeigen</string>
@@ -3488,6 +3490,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ManageDonationsFragment__error_getting_subscription">Die regelmäßige Spende konnte nicht abgerufen werden.</string>
   <string name="BoostFragment__give_signal_a_boost">Gib Signal einen Boost</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Mit einer einmaligen Spende erhältst du für %1$d Tage ein Boost-Abzeichen.</string>
   <string name="Boost__enter_custom_amount">Eigenen Betrag eingeben</string>
   <string name="Boost__one_time_contribution">Einmaliger Beitrag</string>
   <string name="MySupportPreference__add_a_signal_boost">Signal-Boost hinzufügen</string>
@@ -3502,8 +3505,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Monatliche Spende abgebrochen</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Dein Boost-Abzeichen ist abgelaufen und daher in deinem Profil nicht mehr sichtbar.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Du kannst dein Boost-Abzeichen für weitere 30 Tage mit einer Einmalspende reaktivieren.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Du kannst Signal weiterhin nutzen, aber um eine Technologie zu unterstützen, die für dich entwickelt wird, zieh bitte eine monatliche Spende in Betracht.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Unterstützer werden</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Boost hinzufügen</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Jetzt nicht</string>

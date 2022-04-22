@@ -1542,15 +1542,15 @@
   <string name="UsernameEditFragment_usernames_can_only_include">Корисничките имиња можат да се состојат од а-Ш, 0-9 и долни цртички.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Корисничкото име не може да започне со број.</string>
   <string name="UsernameEditFragment_username_is_invalid">Корисничкоти име е невалидно.</string>
-  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Корисничките имиња мора да бидат помеѓу %1$d и %2$d знаци.</string>
+  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Корисничкото име мора да биде помеѓу %1$d и %2$d знаци.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Корисничките имиња на Signal се опционални. Ако изберете да создадете корисничко име, другите Signal корисници ќе можат да Ве пронајдат по ова корисничко име и да Ве контактираат без да го знаат Вашиот телефонски број.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d контакт е на Signal!</item>
     <item quantity="other">%d контакти се на Signal!</item>
   </plurals>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Вашиот контакт има стара верзија на Signal. Замолете го/ја да ажурираат пред да правите проверка на сигурносниот број.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Вашиот контакт има понова верзија на Signal со некомпатибилен формат на QR код. Ве молиме ажурирајте го Signal за да споредите.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Вашиот контакт има стара верзија на Signal. Замолете го да ја ажурира апликацијата пред проверка на Вашиот сигурносен број.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Вашиот контакт има понова верзија на Signal со некомпатибилен формат на QR код. Ве молиме ажурирајте ја апликацијата за да споредите.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Скенираниот QR код не е правилно форматиран код за проверка на сигурносен број. Ве молиме скенирајте го повторно.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Сподели сигурносен број преку…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Нашиот Signal сигурносен број:</string>
@@ -1565,7 +1565,7 @@
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Пораката е шифрирана за непостоечка сесија</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Погрешно шифрирана MMS порака</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Шифрирање на MMS порака за непостоечка сесија</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS порака шифрирана за непостоечка сесија</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Исклучи известувања</string>
   <!--ApplicationMigrationService-->

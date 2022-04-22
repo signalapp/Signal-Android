@@ -3398,7 +3398,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="ContactSelectionListItem__sms">Sms (onbeveiligd)</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--Displayed in the toolbar when externally sharing text to multiple recipients-->
-  <string name="ShareInterstitialActivity__share">Met anderen delen</string>
+  <string name="ShareInterstitialActivity__share">Naar gesprekken doorsturen</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Omhoog navigeren</string>
   <string name="MultiselectForwardFragment__forward_to">Doorsturen naar</string>
@@ -3473,7 +3473,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="SubscribeFragment__not_now">Niet nu</string>
   <string name="SubscribeFragment__confirm">Bevestigen</string>
   <string name="SubscribeFragment__update_subscription">Maandelijkse donaties bijwerken</string>
-  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Je maandelijkse donaties zijn geannuleerd.</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Je maandelijkse donaties zijn stopgezet.</string>
   <string name="SubscribeFragment__update_subscription_question">Maandelijkse donaties aanpassen?</string>
   <string name="SubscribeFragment__update">Bijwerken</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Het nieuw ingestelde bedrag (%1$s) zal vandaag al worden afgeschreven. Datzelfde bedrag zal dan steeds precies een maand later opnieuw worden afgeschreven.</string>
@@ -3487,7 +3487,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Mede met jou bijdrage wordt deze missie mogelijk gemaakt en wordt betaald voor de ontwikkeling en het in werking houden van apps waardoor miljoenen mensen wereldwijd in vrijheid gesprekken kunnen voeren. Geen advertenties, geen volgers, geen grapje.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Bedankt voor je ondersteuning!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Bedankt voor je bijdrage!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Je hebt een %s- badge verdiend. Als je deze laat zien op je profiel dan leren via jou andere mensen dat Signal afhankelijk is van donaties.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Je hebt een ‘%s’-badge verdiend. Als je deze laat zien op je profiel dan leren via jou andere mensen dat Signal afhankelijk is van donaties.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Je hebt een ‘eenmalige donateur’-badge verdiend. Als je deze laat zien op je profiel dan leren via jou andere mensen dat Signal afhankelijk is van donaties.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Je kunt ook</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">maandelijks doneren.</string>
@@ -3529,7 +3529,9 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Nogmaals eenmalig doneren</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Niet nu</string>
   <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Je maandelijkse donaties zijn automatisch stopgezet omdat je te lang inactief bent geweest. Je ‘%1$s’-badge is niet langer voor anderen te zien op je profiel.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Je maandelijkse donaties zijn stopgezet omdat Signal je betaling niet kon verwerken. Je badge is niet langer op je profiel zichtbaar.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Je kunt Signal gewoon blijven gebruiken, maar als je Signal wilt ondersteunen en je badge weer wilt weergeven dan kun je nu je donaties vernieuwen.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Maandelijkse donaties vernieuwen</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Signal kan je maandelijkse donatie niet verwerken</string>

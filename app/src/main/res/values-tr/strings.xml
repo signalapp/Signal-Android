@@ -316,8 +316,10 @@
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$saktif</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">İstek engellensin mi?</string>
   <!--Dialog message for block group link join requests-->
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">İsteği engelle</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">İptal</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -1417,6 +1419,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Daha fazla</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN başarıyla doğrulandı. Size daha sonra hatırlatacağız.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN başarıyla doğrulandı. Size yarın hatırlatacağız.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN başarıyla doğrulandı. Size birkaç gün içinde hatırlatacağız.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN başarıyla doğrulandı. Size bir hafta içinde hatırlatacağız.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN başarıyla doğrulandı. Size birkaç hafta içinde hatırlatacağız.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN başarıyla doğrulandı. Size bir ay içinde hatırlatacağız.</string>
   <!--Slide-->
   <string name="Slide_image">Görüntü</string>
   <string name="Slide_sticker">Çıkartma</string>
@@ -1747,6 +1755,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Arama Bildirimlerini Etkinleştir</string>
   <string name="ConversationUpdateItem_update_contact">Kişiyi güncelle</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">İsteği engelle</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ortak bir grup yok. İstekleri dikkatlice gözden geçirin.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Bu grupta kişilerinizden kimse yok. İstekleri dikkatlice gözden geçirin.</string>
   <string name="ConversationUpdateItem_view">Görüntüle</string>
@@ -2099,7 +2108,9 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">Abonelik</string>
   <!--Preference label for making a monthly donation to Signal-->
+  <string name="preferences__monthly_donation">Aylık Bağış</string>
   <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">Tek Seferlik Bağış</string>
   <string name="preferences__privacy">Gizlilik</string>
   <string name="preferences__mms_user_agent">MMS Kullanıcı Aracı</string>
   <string name="preferences__advanced_mms_access_point_names">Manuel MMS ayarları</string>
@@ -3439,6 +3450,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/ay · Yenilenme %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/ay · Bitiş %2$s</string>
   <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal, reklamvereni veya yatırımcıları olmayan, yalnızca onu kullanan ve değer veren kişiler tarafından sürdürülen kar amacı gütmeyen bir kuruluştur. Yinelenen bir aylık katkı yapın ve desteğinizi gösteren bir profil rozeti alın.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Neden Bağış Yapılmalı?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal, ifade özgürlüğünü koruyan ve güvenli küresel iletişimi mümkün kılan, açık kaynak gizlilik teknolojisi geliştirmeye adanmıştır.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Desteğiniz için teşekkürler!</string>
@@ -3670,10 +3682,12 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="DonationReceiptListFragment__all">Tümü</string>
   <!--Donation receipts recurring tab label-->
   <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">Tek Seferlik</string>
   <!--Donation receipts boost row label-->
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Detaylar</string>
   <!--Donation receipts donation type heading-->
+  <string name="DonationReceiptDetailsFragment__donation_type">Bağış türü</string>
   <!--Donation receipts date paid heading-->
   <!--Donation receipts share PNG-->
   <!--Donation receipts list end note-->
@@ -3688,6 +3702,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Label for Stories tab in home app screen-->
   <string name="ConversationListTabs__stories">Hikayeler</string>
   <!--String for counts above 99 in conversation list tabs-->
+  <string name="ConversationListTabs__99p">99+</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Hikayelerim</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
@@ -3709,6 +3724,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Label when a story fails to send-->
   <string name="StoriesLandingItem__send_failed">Gönderme başarısız</string>
   <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">Tekrar dene</string>
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Hikaye gizlensin mi?</string>
   <!--Message of dialog confirming decision to hide a story-->
@@ -3727,6 +3743,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MyStories_forward">Yönlendir</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
   <!--Title of dialog to confirm deletion of story-->
+  <string name="MyStories__delete_story">Hikaye silinsin mi?</string>
   <!--Message of dialog to confirm deletion of story-->
   <!--Displayed at bottom of story viewer when current item has views-->
   <plurals name="StoryViewerFragment__d_views">
@@ -3747,7 +3764,9 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Cevapla</string>
   <!--Displayed when a story has no views-->
+  <string name="StoryViewsFragment__no_views_yet">Henüz görülme yok</string>
   <!--Displayed when a story has no replies yet-->
+  <string name="StoryGroupReplyFragment__no_replies_yet">Henüz yanıt yok</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
   <!--Label for story views tab-->
   <string name="StoryViewsAndRepliesDialogFragment__views">Görülmeler</string>
@@ -3771,6 +3790,10 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MyStorySettingsFragment__who_can_see_this_story">Bu hikayeyi kim görebilir</string>
   <!--Clickable option for selecting people to hide your story from-->
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <plurals name="MyStorySettingsFragment__d_people">
+    <item quantity="one">%1$d kişi</item>
+    <item quantity="other">%1$d kişi</item>
+  </plurals>
   <!--Section header for options related to replies and reactions-->
   <!--Switchable option for allowing replies and reactions on your stories-->
   <!--Summary for switchable option allowing replies and reactions on your story-->
@@ -3790,11 +3813,15 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Dialog title when deleting a private story-->
   <!--Dialog message when deleting a private story-->
   <!--Page title for editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__edit_story_name">Hikaye adını düzenle</string>
   <!--Input field hint when editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__story_name">Hikaye adı</string>
   <!--Save button label when editing a private story name-->
   <string name="EditPrivateStoryNameFragment__save">Kaydet</string>
   <!--Displayed in text post creator before user enters text-->
+  <string name="TextStoryPostCreationFragment__tap_to_add_text">Yazı eklemek için dokunun</string>
   <!--Button label for changing font when creating a text post-->
+  <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
   <!--Displayed in text post creator when prompting user to enter text-->
   <string name="TextStoryPostTextEntryFragment__add_text">Metin ekle</string>
   <!--Content description for \'done\' button when adding text to a story post-->

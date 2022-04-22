@@ -3715,7 +3715,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Twoja odznaka Wsparcie wygasła i nie jest już widoczna w Twoim profilu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Możesz reaktywować swoją odznakę Wsparcie na kolejne 30 dni, dzięki jednorazowemu datkowi.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Możesz nadal korzystać z Signal, ale rozważ wspieranie technologii stworzonej dla Ciebie, przez składanie comiesięcznego datku.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Możesz nadal korzystać z Signal, ale rozważ comiesięczny datek, aby wspierać technologię stworzoną dla Ciebie.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Zostań wspierającym</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Wesprzyj</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nie teraz</string>

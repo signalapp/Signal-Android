@@ -3716,7 +3716,7 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Ваш значок «Ускорение» истёк и больше не виден в вашем профиле.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Вы можете заново активировать свой значок «Ускорение» ещё на 30 дней, сделав одноразовое пожертвование.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Вы можете продолжить пользоваться Signal, но чтобы поддерживать технологию, созданную для вас, подумайте о том, чтобы стать поддерживающим, сделав пожертвование, повторяющееся ежемесячно.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Вы можете продолжить пользоваться Signal, но чтобы поддерживать технологию, созданную для вас, подумайте о том, чтобы сделать пожертвование, повторяющееся ежемесячно.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Стать Поддерживающим</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Добавить Ускорение</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сейчас</string>
@@ -3939,13 +3939,13 @@
   <!--Donation receipts share PNG-->
   <string name="DonationReceiptDetailsFragment__share_receipt">Поделиться квитанцией</string>
   <!--Donation receipts list end note-->
-  <string name="DonationReceiptListFragment__if_you_have">Если вы переустановили Signal, квитанции для ранее сделанных пожертвованиях не будут доступны.</string>
+  <string name="DonationReceiptListFragment__if_you_have">Если вы переустановили Signal, квитанции о ранее сделанных пожертвованиях не будут доступны.</string>
   <!--Donation receipts document title-->
   <string name="DonationReceiptDetailsFragment__donation_receipt">Квитанция о пожертвовании</string>
   <!--Donation receipts amount title-->
   <string name="DonationReceiptDetailsFragment__amount">Сумма</string>
   <!--Donation receipts thanks-->
-  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Спасибо, что поддерживаете Signal. Ваш вклад помогает поддерживать миссию по разработке технологии конфиденциальности с открытым исходным кодом, которая защищает свободу слова и делает возможным безопасное общение между миллионами людей по всему миру. Если вы проживаете в США, пожалуйста, сохраните эту квитанцию для своего налогового учёта. Signal Technology Foundation — это некоммерческая организация, освобождённая от налогов со статусом 501c3, которая базируется в США. Наш ИНН: 82–4506840.</string>
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Спасибо, что поддерживаете Signal. Ваш вклад помогает поддерживать миссию по разработке технологии конфиденциальности с открытым исходным кодом, которая защищает свободу слова и делает возможным безопасное общение между миллионами людей по всему миру. Если вы проживаете в США, пожалуйста, сохраните эту квитанцию для своего налогового учёта. Signal Technology Foundation — это некоммерческая организация, освобождённая от налогов в США со статусом 501c3. Наш ИНН: 82–4506840.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--region "Stories Tab"-->

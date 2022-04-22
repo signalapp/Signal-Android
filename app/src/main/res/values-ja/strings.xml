@@ -2034,7 +2034,9 @@
   <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">サブスクリプション</string>
   <!--Preference label for making a monthly donation to Signal-->
+  <string name="preferences__monthly_donation">月々の寄付</string>
   <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">1回限りの寄付</string>
   <string name="preferences__privacy">プライバシー</string>
   <string name="preferences__mms_user_agent">MMSユーザーエージェント</string>
   <string name="preferences__advanced_mms_access_point_names">手動MMS設定</string>
@@ -3171,6 +3173,8 @@
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">サポーターになりませんか</string>
   <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signalは、あなたのようなユーザーの皆様によって支えられています。
+ぜひ寄付をして、バッジを手に入れましょう。</string>
   <string name="BecomeASustainerMegaphone__not_now">今はしない</string>
   <string name="BecomeASustainerMegaphone__donate">寄付する</string>
   <!--KeyboardPagerFragment-->
@@ -3344,6 +3348,7 @@
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signalはユーザーの皆様によって支えられています</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">データのためではなく、あなたのために作られた技術を支える人々のコミュニティに参加して、ご支援をお願いします。</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Signalを支えるコミュニティに参加して、データのためではなく、あなたのために作られた技術をサポートしてください。</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">データ収集のためではなく、ユーザのために作られたアプリを維持するために、毎月の定期的な寄付をお願いします。</string>
   <string name="SubscribeFragment__currency">通貨</string>
   <string name="SubscribeFragment__more_payment_options">その他の決済方法</string>
   <string name="SubscribeFragment__cancel_subscription">サブスクリプションを解除</string>
@@ -3360,6 +3365,7 @@
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/月 · 更新 %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/月 · 期限 %2$s</string>
   <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signalは、広告主や投資家を持たない非営利団体であり、ユーザの皆様の寄付によって成り立っています。毎月の定期的な寄付をしていただくと、寄付をしたことを他のユーザに知らせることができる、プロフィールバッジをプレゼントします。</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">寄付をお願いする理由</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signalは、表現の自由を守り、安全なグローバルコミュニケーションを可能にする、オープンソースのプライバシー保護技術の開発に取り組んでいます。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ご支援をありがとうございます！</string>
@@ -3375,6 +3381,7 @@
   <string name="ManageDonationsFragment__my_support">マイサポート</string>
   <string name="ManageDonationsFragment__manage_subscription">サブスクリプションの管理</string>
   <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__donation_receipts">寄付の領収書</string>
   <string name="ManageDonationsFragment__badges">バッジ</string>
   <string name="ManageDonationsFragment__subscription_faq">サブスクリプションのよくある質問</string>
   <string name="ManageDonationsFragment__error_getting_subscription">サブスクリプションを取得できませんでした。</string>
@@ -3391,6 +3398,7 @@
   <string name="MySupportPreference__please_contact_support">サポートにお問い合わせください。</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">月々の寄付をキャンセル</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">1回の寄付で、ブーストバッジをさらに30日間有効にすることができます。</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
@@ -3600,6 +3608,7 @@
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">すべて</string>
   <!--Donation receipts recurring tab label-->
+  <string name="DonationReceiptListFragment__recurring">サブスクリプション</string>
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">都度</string>
   <!--Donation receipts boost row label-->
@@ -3613,6 +3622,7 @@
   <!--Donation receipts share PNG-->
   <string name="DonationReceiptDetailsFragment__share_receipt">領収書を共有</string>
   <!--Donation receipts list end note-->
+  <string name="DonationReceiptListFragment__if_you_have">Signalをインストールし直すと、過去の寄付の領収書を表示できなくなります。</string>
   <!--Donation receipts document title-->
   <string name="DonationReceiptDetailsFragment__donation_receipt">寄付の領収書</string>
   <!--Donation receipts amount title-->

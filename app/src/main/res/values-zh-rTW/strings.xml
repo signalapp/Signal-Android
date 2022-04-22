@@ -1498,7 +1498,7 @@
   <string name="ApplicationMigrationService_import_in_progress">匯入中</string>
   <string name="ApplicationMigrationService_importing_text_messages">匯入文字簡訊</string>
   <string name="ApplicationMigrationService_import_complete">匯入完成</string>
-  <string name="ApplicationMigrationService_system_database_import_is_complete">系統數據庫導入完成。</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">系統資料庫導入完成。</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">按一下開啟。</string>
   <string name="KeyCachingService_passphrase_cached">Signal 已經解鎖</string>

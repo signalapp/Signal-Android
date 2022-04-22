@@ -2290,7 +2290,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">Naročnina</string>
   <!--Preference label for making a monthly donation to Signal-->
-  <string name="preferences__monthly_donation">Mesečna donacija</string>
+  <string name="preferences__monthly_donation">Mesečne donacije</string>
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Enkratna donacija</string>
   <string name="preferences__privacy">Zasebnost</string>
@@ -3654,7 +3654,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal podpirajo ljudje, kot ste vi.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Podprite tehnologijo, ki je bila izdelana zaradi vas -- ne zaradi vaših osebnih podatkov -- in se pridružite skupnosti podpornikov_ic.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Podprite tehnologijo, ki je bila izdelana zaradi vas in ne zaradi vaših osebnih podatkov, ter se pridružite skupnosti podpornikov_ic Signala.</string>
-  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Donirajte enkrat mesečno znesek po izbiri za Signal in prispevali boste tehnologiji, ki je bila ustvarjena zaradi vas, ne zaradi vaših podatkov.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Prispevajte enkrat mesečno znesek po izbiri za Signal in podprli boste tehnologijo, ki je bila ustvarjena zaradi vas, ne zaradi vaših podatkov.</string>
   <string name="SubscribeFragment__currency">Valuta</string>
   <string name="SubscribeFragment__more_payment_options">Več opcij za plačilo</string>
   <string name="SubscribeFragment__cancel_subscription">Prekini naročnino</string>
@@ -3709,7 +3709,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Bedž Pospešek Signalu je potekel</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Mesečna donacija je bila preklicana.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Mesečne donacije so bile preklicane.</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Vaš bedž Pospešek Signalu je potekel in zato ni več viden drugim na vašem profilu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Bedž Pospešek Signalu lahko aktivirate za nadaljnjih 30 dni z novim enkratnim prispevkom.</string>
@@ -3719,9 +3719,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Dodaj pospešek</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne zdaj</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Vaša mesečna donacija je bila prekinjena, ker ste bili predolgo neaktivni. Vaš bedž %1$s ni več viden na vašem profilu.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Vaše mesečne donacije so bile preklicane, ker ste bili predolgo neaktivni. Vaš bedž %1$s ni več viden na vašem profilu.</string>
   <!--Copy displayed when badge expires after payment failure-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Vaša mesečna donacija je bila prekinjena, ker nismo mogli procesirati plačila. Bedž ni več viden na vašem profilu.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Vaše mesečne donacije so bile preklicane, ker nismo mogli procesirati plačila. Bedž ni več viden na vašem profilu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Še naprej lahko uporabljate Signal, za nadaljevanje podpore in reaktivacijo vašega bedža pa lahko obnovite naročnino.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Obnovitev naročnine</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Plačila naročnine ni mogoče izvesti</string>

@@ -867,7 +867,7 @@
   <string name="InviteActivity_no_app_to_share_to">Se pare că nu ai aplicații cu care să poți distribui.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Află mai multe</string>
-  <string name="SpanUtil__read_more">Citiți mai multe</string>
+  <string name="SpanUtil__read_more">Citește mai mult</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Mesajul nu a putut fi găsit</string>
   <string name="LongMessageActivity_message_from_s">Mesaj de la %1$s</string>
@@ -2210,7 +2210,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">Abonament</string>
   <!--Preference label for making a monthly donation to Signal-->
+  <string name="preferences__monthly_donation">Donație lunară</string>
   <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">Donație unică</string>
   <string name="preferences__privacy">Confidențialitate</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Setări MMS manuale</string>
@@ -3373,6 +3375,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Fii un Susținător</string>
   <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal este susținut de oameni ca tine. Donează și primești o insignă.</string>
   <string name="BecomeASustainerMegaphone__not_now">Nu acum</string>
   <string name="BecomeASustainerMegaphone__donate">Donați</string>
   <!--KeyboardPagerFragment-->
@@ -3554,6 +3557,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal este susținut de oameni ca tine.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Sprijină tehnologia construită pentru tine—nu pentru datele tale— alăturându-te comunității de oameni care o susțin.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Sprijină tehnologia construită pentru tine și nu pentru datele tale, alăturându-te comunității susținătorilor Signal.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Fă o donație lunară recurentă către Signal pentru a sprijini tehnologia creată pentru tine, nu pentru datele tale.</string>
   <string name="SubscribeFragment__currency">Monedă</string>
   <string name="SubscribeFragment__more_payment_options">Mai multe opțiuni de plată</string>
   <string name="SubscribeFragment__cancel_subscription">Anulare abonament</string>
@@ -3570,10 +3574,14 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/lună · Se reînnoiește %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/lună · Expiră %2$s</string>
   <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal este o organizație non-profit, fără agenți de publicitate sau investitori, susținută doar de oamenii care o folosesc și o apreciază. Fă o donație lunară recurentă și primești o insignă de profil pentru a-ți împărtăși sprijinul.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">De ce să donezi?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal este dedicat dezvoltării de tehnologii open source pentru confidențialitate care protejează libertatea de exprimare și permit o comunicare globală sigură</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Donația ta susține această cauză și plătește pentru dezvoltarea și funcționarea unei aplicații folosite de milioane de oameni pentru comunicații private. Fără reclame. Fără elemente de urmărire. Pe bune.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Îți mulțumim pentru sprijin!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Îți mulțumim pentru Boost!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Ai dobândit %s insignă Boost! Afișează această insignă pe profilul tău pentru a crește gradul de conștientizare pentru donarea către Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Ai dobândit o insignă Boost! Afișează această insignă pe profilul tău pentru a crește gradul de conștientizare pentru donarea către Signal.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Poți de asemenea </string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">fii un Susținător lunar.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Afișează la profil</string>
@@ -3591,6 +3599,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ManageDonationsFragment__error_getting_subscription">Eroare la obținerea abonamentului.</string>
   <string name="BoostFragment__give_signal_a_boost">Dă un Boost la Signal</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Donează o singură dată și obține insigna Boost pentru %1$d de zile.</string>
   <string name="Boost__enter_custom_amount">Introdu o sumă specifică</string>
   <string name="Boost__one_time_contribution">Contribuție unică</string>
   <string name="MySupportPreference__add_a_signal_boost">Adaugă un Boost la Signal</string>
@@ -3601,15 +3610,21 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MySupportPreference__couldnt_add_badge_s">Nu s-a putut adăuga insigna. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Te rugăm contactează asistența.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Insigna Boost a expirat</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Donație lunară anulată</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Insigna ta Boost a expirat și nu mai este vizibilă pe profilul tău.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Iți poți reactiva insigna Boost pentru încă 30 de zile cu o contribuție unică.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Poți continua să utilizezi Signal, dar pentru a susține tehnologia creată pentru tine, ia în considerare să devii un susținător făcând o donație lunară.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Fii un Susținător</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Adaugă un Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nu acum</string>
   <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Donația ta lunară recurentă a fost anulată automat deoarece ai fost inactiv pentru o perioadă lungă de timp. Insigna ta %1$s nu va mai fi vizibilă pe profilul tău.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Donația ta lunară recurentă a fost anulată deoarece nu am putut procesa plata. Insigna ta nu va mai fi vizibilă pe profilul tău.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Poți folosi în continuare Signal dar pentru a sprijini aplicația și pentru a-ți reactiva insigna, reînnoiește acum.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Reînnoiește abonamentul</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Nu s-a putut procesa plata abonamentului</string>
@@ -3813,6 +3828,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Donation receipts recurring tab label-->
   <string name="DonationReceiptListFragment__recurring">Recurente</string>
   <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">O dată</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Boost</string>
   <!--Donation receipts details title-->
@@ -3859,9 +3875,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Se trimite…</string>
   <!--Label when multiple stories are pending sending-->
+  <string name="StoriesLandingItem__sending_d">Se trimite %1$d…</string>
   <!--Label when a story fails to send-->
   <string name="StoriesLandingItem__send_failed">Trimitere eșuată</string>
   <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">Atinge pentru a încerca din nou</string>
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Ascunzi povestea?</string>
   <!--Message of dialog confirming decision to hide a story-->
@@ -4015,6 +4033,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <string name="StoryDialogs__edit_viewers">Editare spectatori</string>
   <!--Error message shown when a failure occurs during story send-->
+  <string name="StoryDialogs__story_could_not_be_sent">Povestea nu a putut fi trimisă. Verifică-ți conexiunea și încearcă din nou.</string>
   <!--Error message dialog button to resend a previously failed story send-->
   <string name="StoryDialogs__send">Trimite</string>
   <!--Privacy Settings toggle title for stories-->
@@ -4072,7 +4091,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <string name="StorySlateView__couldnt_load_content">Conținutul nu a putut fi încărcat</string>
   <!--Toasted when the user externally shares to a text story successfully-->
+  <string name="TextStoryPostCreationFragment__sent_story">Poveste trimisă</string>
   <!--Toasted when the user external share to a text story fails-->
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">Trimiterea poveștii a eșuat.</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Dezactivezi ocolirea cenzurii?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->

@@ -1906,7 +1906,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="message_recipients_list_item__view">VER</string>
   <string name="message_recipients_list_item__resend">REENVIAR</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
+  <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Tiempo de envío copiado al portapapeles.</string>
   <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Actualizaciones de tu historia se mostrarán aquí.</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s se ha unido al grupo.</item>
@@ -2127,7 +2129,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">Suscripción</string>
   <!--Preference label for making a monthly donation to Signal-->
+  <string name="preferences__monthly_donation">Donación mensual</string>
   <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">Donación puntual</string>
   <string name="preferences__privacy">Privacidad</string>
   <string name="preferences__mms_user_agent">Agente de usuari@ de MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Configuración manual de MMS</string>
@@ -3277,6 +3281,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Sostén Signal</string>
   <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal se mantiene gracias a gente como tú. Dona y recibe un distintivo para tu perfil.</string>
   <string name="BecomeASustainerMegaphone__not_now">Ahora no</string>
   <string name="BecomeASustainerMegaphone__donate">Donar</string>
   <!--KeyboardPagerFragment-->
@@ -3454,6 +3459,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal depende de gente como tú.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Incentiva la tecnología que desarrollamos para ti (no para tus datos) y únete a la comunidad que la sostiene.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Sostén la tecnología desarrollada para ti (no para tus datos) y únete a la comunidad que la sostiene.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Haz una donación mensual para que Signal siga manteniendo la tecnología hecha para ti, no para tus datos.</string>
   <string name="SubscribeFragment__currency">Fijar moneda</string>
   <string name="SubscribeFragment__more_payment_options">Más opciones de pago</string>
   <string name="SubscribeFragment__cancel_subscription">Cancelar suscripción</string>
@@ -3470,10 +3476,14 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="Subscription__s_per_month_dot_renews_s">%1$s al mes · Se renueva el %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s al mes · Caduca el %2$s</string>
   <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal es una organización sin ánimo de lucro, sin anuncios ni fondos de inversión, sólo sostenida por la gente que usa y valora la aplicación. Haz una donación mensual y recibe un distintivo para tu perfil con el que mostrar tu apoyo.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">¿Por qué donar?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal está comprometida en desarrollar tecnología de privacidad de código abierto que protegen la libre expresión y habilita una comunicación global segura.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Tu donación apoya la causa y contribuye a pagar los gastos del desarrollo y funcionamiento de una aplicación usada por millones para comunicaciones privadas. Sin anuncios. Sin rastreadores. Sin bromas.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">¡Gracias por tu apoyo!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">¡Gracias por tu Impulso!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">¡Has conseguido el distintivo «%s»! Muestra este distintivo en tu perfil para que tus amistades sean conscientes de la necesidad de donar.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">¡Has conseguido el distintivo de «Impulso»! Muestra este distintivo en tu perfil para que tus amistades sean conscientes de la necesidad de donar.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">También puedes</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">contribuir mensualmente.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Mostrar en mi perfil</string>
@@ -3481,15 +3491,17 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Hecho</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Si tienes más de un distintivo, puedes seleccionar cuál mostrar en tu perfil a otras personas.</string>
   <string name="BecomeASustainerFragment__get_badges">conseguir distintivos para tu perfil al sostener Signal.</string>
-  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal es una asociación sin ánimo de lucro sin anunciantes o inversor@s, sostenida por gente como tú.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal es una asociación sin ánimo de lucro sin anuncios ni fondos de inversión, sostenida por gente como tú.</string>
   <string name="ManageDonationsFragment__my_support">Mi apoyo</string>
   <string name="ManageDonationsFragment__manage_subscription">Gestionar suscripción</string>
   <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__donation_receipts">Justificantes de donación</string>
   <string name="ManageDonationsFragment__badges">Distintivos</string>
   <string name="ManageDonationsFragment__subscription_faq">Preguntas y respuestas sobre la suscripción</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Fallo al comprobar la suscripción.</string>
   <string name="BoostFragment__give_signal_a_boost">Da un Impulso a Signal</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Haz una donación puntual y consigue el distintivo de «Impulso» por %1$d días.</string>
   <string name="Boost__enter_custom_amount">Introduce una cantidad personalizada</string>
   <string name="Boost__one_time_contribution">Contribuir sólo una vez</string>
   <string name="MySupportPreference__add_a_signal_boost">Dale un Impulso a Signal</string>
@@ -3500,15 +3512,21 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MySupportPreference__couldnt_add_badge_s">Fallo al añadir distintivo. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Por favor, contacta con nuestro soporte.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Distintivo de «Impulso» caducado</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Donación mensual cancelada</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Tu distintivo de «Impulso» ha caducado y ya no es visible en tu perfil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Puedes reactivar tu distintivo de Impulso por otros 30 días al hacer otra contribución.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Puedes seguir usando Signal, pero para contribuir a impulsar tecnología hecha para ti (y no para tus datos), considera hacer una donación mensual.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Sostén Signal</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Añade un Impulso</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ahora no</string>
   <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Tu suscripción mensual se ha cancelado automáticamente por cuenta inactiva. Tu distintivo «%1$s» ya no es visible en tu perfil.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Tu suscripción mensual se ha cancelado porque no hemos podido procesar tu pago. Tu distintivo ya no es visible en tu perfil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Puedes continuar usando la aplicación, pero para apoyar a Signal, reactiva tu distintivo. Renuévalo ahora.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renovar suscripción</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Imposible procesar el pago de la suscripción</string>
@@ -3712,6 +3730,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Donation receipts recurring tab label-->
   <string name="DonationReceiptListFragment__recurring">Recurrente</string>
   <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">Puntual</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Impulso (puntual)</string>
   <!--Donation receipts details title-->
@@ -3744,6 +3763,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Añade una historia</string>
   <!--Displayed when there are no stories to display-->
+  <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">No hay actualizaciones recientes que mostrar. Toca sobre «+» para añadir tu historia.</string>
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Ocultar historia</string>
   <!--Context menu option to unhide a story-->
@@ -3757,9 +3777,11 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Enviando …</string>
   <!--Label when multiple stories are pending sending-->
+  <string name="StoriesLandingItem__sending_d">Enviando %1$d …</string>
   <!--Label when a story fails to send-->
   <string name="StoriesLandingItem__send_failed">Fallo al enviar</string>
   <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">Toca para reintentar</string>
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">¿Ocultar historia?</string>
   <!--Message of dialog confirming decision to hide a story-->
@@ -3909,6 +3931,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <string name="StoryDialogs__edit_viewers">Modificar quién puede verla</string>
   <!--Error message shown when a failure occurs during story send-->
+  <string name="StoryDialogs__story_could_not_be_sent">Fallo al enviar la historia. Comprueba tu conexión e inténtalo de nuevo.</string>
   <!--Error message dialog button to resend a previously failed story send-->
   <string name="StoryDialogs__send">Enviar</string>
   <!--Privacy Settings toggle title for stories-->
@@ -3965,7 +3988,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <string name="StorySlateView__couldnt_load_content">Imposible cargar contenido</string>
   <!--Toasted when the user externally shares to a text story successfully-->
+  <string name="TextStoryPostCreationFragment__sent_story">Enviar historia</string>
   <!--Toasted when the user external share to a text story fails-->
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">Fallo al enviar historia</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">¿Desactivar la opción para evitar la censura?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -3975,7 +4000,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Desactivar</string>
   <!--Conversation Item label for when you react to someone else\'s story-->
+  <string name="ConversationItem__you_reacted_to_s_story">Has reaccionado a la historia de %1$s</string>
   <!--Conversation Item label for reactions to your story-->
+  <string name="ConversationItem__reacted_to_your_story">Ha reaccionado a tu historia</string>
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Reaccionó a una historia</string>
   <!--endregion-->
