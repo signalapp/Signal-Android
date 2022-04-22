@@ -87,8 +87,8 @@
         android:id="@+id/call_participant_audio_indicator"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginStart="@dimen/webrtc_audio_indicator_margin"
+        android:layout_marginBottom="@dimen/webrtc_audio_indicator_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

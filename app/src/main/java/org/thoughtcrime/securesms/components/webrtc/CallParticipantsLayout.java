@@ -34,6 +34,7 @@ public class CallParticipantsLayout extends FlexboxLayout {
   private boolean               shouldRenderInPip;
   private boolean               isPortrait;
   private boolean               isIncomingRing;
+  private int                   navBarBottomInset;
   private LayoutStrategy        layoutStrategy;
 
   public CallParticipantsLayout(@NonNull Context context) {
@@ -53,6 +54,7 @@ public class CallParticipantsLayout extends FlexboxLayout {
               boolean shouldRenderInPip,
               boolean isPortrait,
               boolean isIncomingRing,
+              int navBarBottomInset,
               @NonNull LayoutStrategy layoutStrategy)
   {
     this.callParticipants   = callParticipants;
@@ -60,6 +62,7 @@ public class CallParticipantsLayout extends FlexboxLayout {
     this.shouldRenderInPip  = shouldRenderInPip;
     this.isPortrait         = isPortrait;
     this.isIncomingRing     = isIncomingRing;
+    this.navBarBottomInset  = navBarBottomInset;
     this.layoutStrategy     = layoutStrategy;
 
     setFlexDirection(layoutStrategy.getFlexDirection());
@@ -123,9 +126,11 @@ public class CallParticipantsLayout extends FlexboxLayout {
     if (count > 1) {
       view.setPadding(MULTIPLE_PARTICIPANT_SPACING, MULTIPLE_PARTICIPANT_SPACING, MULTIPLE_PARTICIPANT_SPACING, MULTIPLE_PARTICIPANT_SPACING);
       cardView.setRadius(CORNER_RADIUS);
+      callParticipantView.setBottomInset(0);
     } else {
       view.setPadding(0, 0, 0, 0);
       cardView.setRadius(0);
+      callParticipantView.setBottomInset(navBarBottomInset);
     }
 
     if (isIncomingRing) {

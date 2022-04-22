@@ -213,7 +213,9 @@
     <dimen name="verify_identity_vertical_margin">16dp</dimen>
 
     <dimen name="signal_context_menu_corner_radius">18dp</dimen>
+
     <dimen name="webrtc_button_size">48dp</dimen>
+    <dimen name="webrtc_audio_indicator_margin">14dp</dimen>
 
     <dimen name="segmentedprogressbar_default_segment_margin">8dp</dimen>
     <dimen name="segmentedprogressbar_default_corner_radius">0dp</dimen>

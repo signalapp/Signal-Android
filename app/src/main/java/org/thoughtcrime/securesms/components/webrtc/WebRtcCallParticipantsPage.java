@@ -17,15 +17,17 @@ class WebRtcCallParticipantsPage {
   private final boolean               isPortrait;
   private final boolean               isLandscapeEnabled;
   private final boolean               isIncomingRing;
+  private final int                   navBarBottomInset;
 
   static WebRtcCallParticipantsPage forMultipleParticipants(@NonNull List<CallParticipant> callParticipants,
                                                             @NonNull CallParticipant focusedParticipant,
                                                             boolean isRenderInPip,
                                                             boolean isPortrait,
                                                             boolean isLandscapeEnabled,
-                                                            boolean isIncomingRing)
+                                                            boolean isIncomingRing,
+                                                            int navBarBottomInset)
   {
-    return new WebRtcCallParticipantsPage(callParticipants, focusedParticipant, false, isRenderInPip, isPortrait, isLandscapeEnabled, isIncomingRing);
+    return new WebRtcCallParticipantsPage(callParticipants, focusedParticipant, false, isRenderInPip, isPortrait, isLandscapeEnabled, isIncomingRing, navBarBottomInset);
   }
 
   static WebRtcCallParticipantsPage forSingleParticipant(@NonNull CallParticipant singleParticipant,
@@ -33,7 +35,7 @@ class WebRtcCallParticipantsPage {
                                                          boolean isPortrait,
                                                          boolean isLandscapeEnabled)
   {
-    return new WebRtcCallParticipantsPage(Collections.singletonList(singleParticipant), singleParticipant, true, isRenderInPip, isPortrait, isLandscapeEnabled, false);
+    return new WebRtcCallParticipantsPage(Collections.singletonList(singleParticipant), singleParticipant, true, isRenderInPip, isPortrait, isLandscapeEnabled, false, 0);
   }
 
   private WebRtcCallParticipantsPage(@NonNull List<CallParticipant> callParticipants,
@@ -42,7 +44,8 @@ class WebRtcCallParticipantsPage {
                                      boolean isRenderInPip,
                                      boolean isPortrait,
                                      boolean isLandscapeEnabled,
-                                     boolean isIncomingRing)
+                                     boolean isIncomingRing,
+                                     int navBarBottomInset)
   {
     this.callParticipants   = callParticipants;
     this.focusedParticipant = focusedParticipant;
@@ -51,6 +54,7 @@ class WebRtcCallParticipantsPage {
     this.isPortrait         = isPortrait;
     this.isLandscapeEnabled = isLandscapeEnabled;
     this.isIncomingRing     = isIncomingRing;
+    this.navBarBottomInset  = navBarBottomInset;
   }
 
   public @NonNull List<CallParticipant> getCallParticipants() {
@@ -77,6 +81,10 @@ class WebRtcCallParticipantsPage {
     return isIncomingRing;
   }
 
+  public int getNavBarBottomInset() {
+    return navBarBottomInset;
+  }
+
   public @NonNull CallParticipantsLayout.LayoutStrategy getLayoutStrategy() {
     return CallParticipantsLayoutStrategies.getStrategy(isPortrait, isLandscapeEnabled);
   }
@@ -92,11 +100,12 @@ class WebRtcCallParticipantsPage {
            isLandscapeEnabled == that.isLandscapeEnabled &&
            isIncomingRing == that.isIncomingRing &&
            callParticipants.equals(that.callParticipants) &&
-           focusedParticipant.equals(that.focusedParticipant);
+           focusedParticipant.equals(that.focusedParticipant) &&
+           navBarBottomInset == that.navBarBottomInset;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(callParticipants, focusedParticipant, isSpeaker, isRenderInPip, isPortrait, isLandscapeEnabled, isIncomingRing);
+    return Objects.hash(callParticipants, focusedParticipant, isSpeaker, isRenderInPip, isPortrait, isLandscapeEnabled, isIncomingRing, navBarBottomInset);
   }
 }

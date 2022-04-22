@@ -8,6 +8,7 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowInsets;
 import android.view.animation.Animation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -21,6 +22,7 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.constraintlayout.widget.Guideline;
 import androidx.core.util.Consumer;
 import androidx.core.view.ViewKt;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.AutoTransition;
@@ -122,6 +124,7 @@ public class WebRtcCallView extends ConstraintLayout {
   private ConstraintSet                 largeHeaderConstraints;
   private ConstraintSet                 smallHeaderConstraints;
   private Guideline                     statusBarGuideline;
+  private int                           navBarBottomInset;
   private View                          fullScreenShade;
 
   private WebRtcCallParticipantsPagerAdapter    pagerAdapter;
@@ -141,6 +144,8 @@ public class WebRtcCallView extends ConstraintLayout {
   private final Runnable           fadeOutRunnable    = () -> {
     if (isAttachedToWindow() && controls.isFadeOutEnabled()) fadeOutControls();
   };
+
+  private CallParticipantsViewState lastState;
 
   public WebRtcCallView(@NonNull Context context) {
     this(context, null);
@@ -334,6 +339,19 @@ public class WebRtcCallView extends ConstraintLayout {
   }
 
   @Override
+  public WindowInsets onApplyWindowInsets(WindowInsets insets) {
+    if (android.os.Build.VERSION.SDK_INT >= 20) {
+      navBarBottomInset = WindowInsetsCompat.toWindowInsetsCompat(insets).getInsets(WindowInsetsCompat.Type.navigationBars()).bottom;
+
+      if (lastState != null) {
+        updateCallParticipants(lastState);
+      }
+    }
+
+    return super.onApplyWindowInsets(insets);
+  }
+
+  @Override
   public void onWindowSystemUiVisibilityChanged(int visible) {
     if ((visible & SYSTEM_UI_FLAG_HIDE_NAVIGATION) == 0) {
       if (controls.adjustForFold()) {
@@ -371,13 +389,15 @@ public class WebRtcCallView extends ConstraintLayout {
   }
 
   public void updateCallParticipants(@NonNull CallParticipantsViewState callParticipantsViewState) {
+    lastState = callParticipantsViewState;
+
     CallParticipantsState            state              = callParticipantsViewState.getCallParticipantsState();
     boolean                          isPortrait         = callParticipantsViewState.isPortrait();
     boolean                          isLandscapeEnabled = callParticipantsViewState.isLandscapeEnabled();
     List<WebRtcCallParticipantsPage> pages              = new ArrayList<>(2);
 
     if (!state.getGridParticipants().isEmpty()) {
-      pages.add(WebRtcCallParticipantsPage.forMultipleParticipants(state.getGridParticipants(), state.getFocusedParticipant(), state.isInPipMode(), isPortrait, isLandscapeEnabled, state.isIncomingRing()));
+      pages.add(WebRtcCallParticipantsPage.forMultipleParticipants(state.getGridParticipants(), state.getFocusedParticipant(), state.isInPipMode(), isPortrait, isLandscapeEnabled, state.isIncomingRing(), navBarBottomInset));
     }
 
     if (state.getFocusedParticipant() != CallParticipant.EMPTY && state.getAllRemoteParticipants().size() > 1) {

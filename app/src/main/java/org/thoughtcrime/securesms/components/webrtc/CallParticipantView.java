@@ -13,7 +13,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewKt;
 import androidx.core.widget.ImageViewCompat;
+import androidx.transition.TransitionManager;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
@@ -224,6 +226,17 @@ public class CallParticipantView extends ConstraintLayout {
 
   void useSmallAvatar() {
     changeAvatarParams(SMALL_AVATAR);
+  }
+
+  void setBottomInset(int bottomInset) {
+    int desiredMargin = getResources().getDimensionPixelSize(R.dimen.webrtc_audio_indicator_margin) + bottomInset;
+    if (ViewKt.getMarginBottom(audioIndicator) == desiredMargin) {
+      return;
+    }
+
+    TransitionManager.beginDelayedTransition(this);
+
+    ViewUtil.setBottomMargin(audioIndicator, desiredMargin);
   }
 
   void releaseRenderer() {
