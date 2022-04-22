@@ -515,7 +515,7 @@ public class Recipient {
   }
 
   /**
-   * False iff it {@link #getDisplayName} would fall back to e164, email or unknown.
+   * False if {@link #getDisplayName} would fall back to e164, email or unknown.
    */
   public boolean hasAUserSetDisplayName(@NonNull Context context) {
     return !TextUtils.isEmpty(getGroupName(context))             ||
