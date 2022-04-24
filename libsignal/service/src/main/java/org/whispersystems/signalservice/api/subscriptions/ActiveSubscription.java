@@ -252,7 +252,7 @@ public final class ActiveSubscription {
     /**
      * Possible values are approved_by_network, declined_by_network, not_sent_to_network, and reversed_after_approval.
      * The value reversed_after_approval indicates the payment was blocked by Stripe after bank authorization,
-     * and may temporarily appear as “pending” on a cardholder’s statement.
+     * and may temporarily appear as "pending" on a cardholder's statement.
      * <p>
      * See: <a href="https://stripe.com/docs/api/charges/object#charge_object-outcome-network_status">https://stripe.com/docs/api/charges/object#charge_object-outcome-network_status</a>
      */
@@ -261,8 +261,8 @@ public final class ActiveSubscription {
     }
 
     /**
-     * An enumerated value providing a more detailed explanation of the outcome’s type. Charges blocked by Radar’s default block rule have the value
-     * highest_risk_level. Charges placed in review by Radar’s default review rule have the value elevated_risk_level. Charges authorized, blocked, or placed
+     * An enumerated value providing a more detailed explanation of the outcome's type. Charges blocked by Radar's default block rule have the value
+     * highest_risk_level. Charges placed in review by Radar's default review rule have the value elevated_risk_level. Charges authorized, blocked, or placed
      * in review by custom rules have the value rule. See understanding declines for more details.
      * <p>
      * See: <a href="https://stripe.com/docs/api/charges/object#charge_object-outcome-reason">https://stripe.com/docs/api/charges/object#charge_object-outcome-reason</a>
