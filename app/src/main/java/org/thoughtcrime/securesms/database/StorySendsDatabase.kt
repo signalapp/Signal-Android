@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 /**
  * Sending to a distribution list is a bit trickier. When we send to multiple distribution lists with overlapping membership, we want to
  * show them as distinct items on the sending side, but as a single item on the receiving side. Basically, if Alice has two lists and Bob
- * is on both, Bob should always see a story for “Alice” and not know that Alice has him in multiple lists. And when Bob views the story,
+ * is on both, Bob should always see a story for "Alice" and not know that Alice has him in multiple lists. And when Bob views the story,
  * Alice should update the UI to show a view in each list. To do this, we need to:
  * 1. Only send a single copy of each story to a given recipient, while
  * 2. Knowing which people would have gotten duplicate copies.
