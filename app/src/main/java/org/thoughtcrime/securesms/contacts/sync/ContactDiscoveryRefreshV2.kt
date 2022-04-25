@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.util.Stopwatch
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.services.CdshV2Service
 import java.io.IOException
-import java.lang.NumberFormatException
 import java.util.Optional
 
 /**
@@ -90,7 +89,7 @@ object ContactDiscoveryRefreshV2 {
     val inputIds: Set<RecipientId> = recipients.map { it.id }.toSet()
     val inputE164s: Set<String> = recipients.mapNotNull { it.e164.orElse(null) }.toSet()
 
-    if (recipients.size > MAXIMUM_ONE_OFF_REQUEST_SIZE) {
+    if (inputE164s.size > MAXIMUM_ONE_OFF_REQUEST_SIZE) {
       Log.i(TAG, "List of specific recipients to refresh is too large! (Size: ${recipients.size}). Doing a full refresh instead.")
       val fullResult: ContactDiscovery.RefreshResult = refreshAll(context)
 
@@ -100,7 +99,12 @@ object ContactDiscoveryRefreshV2 {
       )
     }
 
-    Log.i(TAG, "Doing a one-off request for ${recipients.size} recipients.")
+    if (inputE164s.isEmpty()) {
+      Log.w(TAG, "No numbers to refresh!")
+      return ContactDiscovery.RefreshResult(emptySet(), emptyMap())
+    } else {
+      Log.i(TAG, "Doing a one-off request for ${inputE164s.size} recipients.")
+    }
 
     val response: CdshV2Service.Response = makeRequest(
       previousE164s = emptySet(),

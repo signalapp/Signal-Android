@@ -58,7 +58,8 @@ final class AddGroupDetailsRepository {
       Set<Recipient> recipients = new HashSet<>(Stream.of(members).map(Recipient::resolved).toList());
 
       try {
-        GroupManager.GroupActionResult result = GroupManager.createGroup(context,
+        GroupManager.GroupActionResult result = GroupManager.createGroup(SignalStore.account().requireAci(),
+                                                                         context,
                                                                          recipients,
                                                                          avatar,
                                                                          name,

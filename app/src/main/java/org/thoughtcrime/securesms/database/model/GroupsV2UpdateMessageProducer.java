@@ -1,12 +1,8 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.text.PrecomputedText;
 import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
-import android.widget.Toast;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
@@ -17,6 +13,7 @@ import androidx.annotation.VisibleForTesting;
 
 import com.google.protobuf.ByteString;
 
+import org.signal.core.util.StringUtil;
 import org.signal.storageservice.protos.groups.AccessControl;
 import org.signal.storageservice.protos.groups.Member;
 import org.signal.storageservice.protos.groups.local.DecryptedApproveMember;
@@ -30,16 +27,15 @@ import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.signal.storageservice.protos.groups.local.EnabledState;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.GV2AccessLevelUtil;
+import org.thoughtcrime.securesms.keyvalue.ServiceIds;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
-import org.signal.core.util.StringUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -55,15 +51,13 @@ import java.util.stream.Collectors;
 
 final class GroupsV2UpdateMessageProducer {
 
-  @NonNull private final Context                context;
-  @NonNull private final UUID                   selfUuid;
-  @NonNull private final ByteString             selfUuidBytes;
+  @NonNull private final  Context               context;
+  @NonNull private final  ServiceIds            selfIds;
   @Nullable private final Consumer<RecipientId> recipientClickHandler;
 
-  GroupsV2UpdateMessageProducer(@NonNull Context context, @NonNull UUID selfUuid, @Nullable Consumer<RecipientId> recipientClickHandler) {
+  GroupsV2UpdateMessageProducer(@NonNull Context context, @NonNull ServiceIds selfIds, @Nullable Consumer<RecipientId> recipientClickHandler) {
     this.context               = context;
-    this.selfUuid              = selfUuid;
-    this.selfUuidBytes         = UuidUtil.toByteString(selfUuid);
+    this.selfIds               = selfIds;
     this.recipientClickHandler = recipientClickHandler;
   }
 
@@ -77,21 +71,25 @@ final class GroupsV2UpdateMessageProducer {
    * When the revision of the group is 0, the change is very noisy and only the editor is useful.
    */
   UpdateDescription describeNewGroup(@NonNull DecryptedGroup group, @NonNull DecryptedGroupChange decryptedGroupChange) {
-    Optional<DecryptedPendingMember> selfPending = DecryptedGroupUtil.findPendingByUuid(group.getPendingMembersList(), selfUuid);
+    Optional<DecryptedPendingMember> selfPending = DecryptedGroupUtil.findPendingByUuid(group.getPendingMembersList(), selfIds.getAci().uuid());
+    if (!selfPending.isPresent()) {
+      selfPending = DecryptedGroupUtil.findPendingByUuid(group.getPendingMembersList(), selfIds.getPni().uuid());
+    }
+
     if (selfPending.isPresent()) {
       return updateDescription(R.string.MessageRecord_s_invited_you_to_the_group, selfPending.get().getAddedByUuid(), R.drawable.ic_update_group_add_16);
     }
 
     ByteString foundingMemberUuid = decryptedGroupChange.getEditor();
     if (!foundingMemberUuid.isEmpty()) {
-      if (selfUuidBytes.equals(foundingMemberUuid)) {
+      if (selfIds.matches(foundingMemberUuid)) {
         return updateDescription(context.getString(R.string.MessageRecord_you_created_the_group), R.drawable.ic_update_group_16);
       } else {
         return updateDescription(R.string.MessageRecord_s_added_you, foundingMemberUuid, R.drawable.ic_update_group_add_16);
       }
     }
 
-    if (DecryptedGroupUtil.findMemberByUuid(group.getMembersList(), selfUuid).isPresent()) {
+    if (DecryptedGroupUtil.findMemberByUuid(group.getMembersList(), selfIds.getAci().uuid()).isPresent() || DecryptedGroupUtil.findMemberByUuid(group.getMembersList(), selfIds.getPni().uuid()).isPresent()) {
       return updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group), R.drawable.ic_update_group_add_16);
     } else {
       return updateDescription(context.getString(R.string.MessageRecord_group_updated), R.drawable.ic_update_group_16);
@@ -163,7 +161,7 @@ final class GroupsV2UpdateMessageProducer {
    * Handles case of future protocol versions where we don't know what has changed.
    */
   private void describeUnknownChange(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
+    boolean editorIsYou = selfIds.matches(change.getEditor());
 
     if (editorIsYou) {
       updates.add(updateDescription(context.getString(R.string.MessageRecord_you_updated_group), R.drawable.ic_update_group_16));
@@ -177,10 +175,10 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeMemberAdditions(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
+    boolean editorIsYou = selfIds.matches(change.getEditor());
 
     for (DecryptedMember member : change.getNewMembersList()) {
-      boolean newMemberIsYou = member.getUuid().equals(selfUuidBytes);
+      boolean newMemberIsYou = selfIds.matches(member.getUuid());
 
       if (editorIsYou) {
         if (newMemberIsYou) {
@@ -204,7 +202,7 @@ final class GroupsV2UpdateMessageProducer {
 
   private void describeUnknownEditorMemberAdditions(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
     for (DecryptedMember member : change.getNewMembersList()) {
-      boolean newMemberIsYou = member.getUuid().equals(selfUuidBytes);
+      boolean newMemberIsYou = selfIds.matches(member.getUuid());
 
       if (newMemberIsYou) {
         updates.add(0, updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group), R.drawable.ic_update_group_add_16));
@@ -215,10 +213,10 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeMemberRemovals(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
+    boolean editorIsYou = selfIds.matches(change.getEditor());
 
     for (ByteString member : change.getDeleteMembersList()) {
-      boolean removedMemberIsYou = member.equals(selfUuidBytes);
+      boolean removedMemberIsYou = selfIds.matches(member);
 
       if (editorIsYou) {
         if (removedMemberIsYou) {
@@ -242,7 +240,7 @@ final class GroupsV2UpdateMessageProducer {
 
   private void describeUnknownEditorMemberRemovals(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
     for (ByteString member : change.getDeleteMembersList()) {
-      boolean removedMemberIsYou = member.equals(selfUuidBytes);
+      boolean removedMemberIsYou = selfIds.matches(member);
 
       if (removedMemberIsYou) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_you_are_no_longer_in_the_group), R.drawable.ic_update_group_leave_16));
@@ -253,10 +251,10 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeModifyMemberRoles(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
+    boolean editorIsYou = selfIds.matches(change.getEditor());
 
     for (DecryptedModifyMemberRole roleChange : change.getModifyMemberRolesList()) {
-      boolean changedMemberIsYou = roleChange.getUuid().equals(selfUuidBytes);
+      boolean changedMemberIsYou = selfIds.matches(roleChange.getUuid());
       if (roleChange.getRole() == Member.Role.ADMINISTRATOR) {
         if (editorIsYou) {
           updates.add(updateDescription(R.string.MessageRecord_you_made_s_an_admin, roleChange.getUuid(), R.drawable.ic_update_group_role_16));
@@ -284,7 +282,7 @@ final class GroupsV2UpdateMessageProducer {
 
   private void describeUnknownEditorModifyMemberRoles(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
     for (DecryptedModifyMemberRole roleChange : change.getModifyMemberRolesList()) {
-      boolean changedMemberIsYou = roleChange.getUuid().equals(selfUuidBytes);
+      boolean changedMemberIsYou = selfIds.matches(roleChange.getUuid());
 
       if (roleChange.getRole() == Member.Role.ADMINISTRATOR) {
         if (changedMemberIsYou) {
@@ -303,11 +301,11 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeInvitations(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
+    boolean editorIsYou = selfIds.matches(change.getEditor());
     int notYouInviteCount = 0;
 
     for (DecryptedPendingMember invitee : change.getNewPendingMembersList()) {
-      boolean newMemberIsYou = invitee.getUuid().equals(selfUuidBytes);
+      boolean newMemberIsYou = selfIds.matches(invitee.getUuid());
 
       if (newMemberIsYou) {
         updates.add(0, updateDescription(R.string.MessageRecord_s_invited_you_to_the_group, change.getEditor(), R.drawable.ic_update_group_add_16));
@@ -321,8 +319,7 @@ final class GroupsV2UpdateMessageProducer {
     }
 
     if (notYouInviteCount > 0) {
-      final int notYouInviteCountFinalCopy = notYouInviteCount;
-      updates.add(updateDescription(R.plurals.MessageRecord_s_invited_members, notYouInviteCountFinalCopy, change.getEditor(), notYouInviteCountFinalCopy, R.drawable.ic_update_group_add_16));
+      updates.add(updateDescription(R.plurals.MessageRecord_s_invited_members, notYouInviteCount, change.getEditor(), notYouInviteCount, R.drawable.ic_update_group_add_16));
     }
   }
 
@@ -330,7 +327,7 @@ final class GroupsV2UpdateMessageProducer {
     int notYouInviteCount = 0;
 
     for (DecryptedPendingMember invitee : change.getNewPendingMembersList()) {
-      boolean newMemberIsYou = invitee.getUuid().equals(selfUuidBytes);
+      boolean newMemberIsYou = selfIds.matches(invitee.getUuid());
 
       if (newMemberIsYou) {
         UUID uuid = UuidUtil.fromByteStringOrUnknown(invitee.getAddedByUuid());
@@ -351,7 +348,7 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeRevokedInvitations(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
+    boolean editorIsYou = selfIds.matches(change.getEditor());
     int notDeclineCount = 0;
 
     for (DecryptedPendingMemberRemoval invitee : change.getDeletePendingMembersList()) {
@@ -362,7 +359,7 @@ final class GroupsV2UpdateMessageProducer {
         } else {
           updates.add(updateDescription(context.getString(R.string.MessageRecord_someone_declined_an_invitation_to_the_group), R.drawable.ic_update_group_decline_16));
         }
-      } else if (invitee.getUuid().equals(selfUuidBytes)) {
+      } else if (selfIds.matches(invitee.getUuid())) {
         updates.add(updateDescription(R.string.MessageRecord_s_revoked_your_invitation_to_the_group, change.getEditor(), R.drawable.ic_update_group_decline_16));
       } else {
         notDeclineCount++;
@@ -373,8 +370,7 @@ final class GroupsV2UpdateMessageProducer {
       if (editorIsYou) {
         updates.add(updateDescription(context.getResources().getQuantityString(R.plurals.MessageRecord_you_revoked_invites, notDeclineCount, notDeclineCount), R.drawable.ic_update_group_decline_16));
       } else {
-        final int notDeclineCountFinalCopy = notDeclineCount;
-        updates.add(updateDescription(R.plurals.MessageRecord_s_revoked_invites, notDeclineCountFinalCopy, change.getEditor(), notDeclineCountFinalCopy, R.drawable.ic_update_group_decline_16));
+        updates.add(updateDescription(R.plurals.MessageRecord_s_revoked_invites, notDeclineCount, change.getEditor(), notDeclineCount, R.drawable.ic_update_group_decline_16));
       }
     }
   }
@@ -383,7 +379,7 @@ final class GroupsV2UpdateMessageProducer {
     int notDeclineCount = 0;
 
     for (DecryptedPendingMemberRemoval invitee : change.getDeletePendingMembersList()) {
-      boolean inviteeWasYou = invitee.getUuid().equals(selfUuidBytes);
+      boolean inviteeWasYou = selfIds.matches(invitee.getUuid());
 
       if (inviteeWasYou) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_an_admin_revoked_your_invitation_to_the_group), R.drawable.ic_update_group_decline_16));
@@ -398,11 +394,11 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describePromotePending(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
+    boolean editorIsYou = selfIds.matches(change.getEditor());
 
     for (DecryptedMember newMember : change.getPromotePendingMembersList()) {
       ByteString uuid = newMember.getUuid();
-      boolean newMemberIsYou = uuid.equals(selfUuidBytes);
+      boolean newMemberIsYou = selfIds.matches(uuid);
 
       if (editorIsYou) {
         if (newMemberIsYou) {
@@ -427,7 +423,7 @@ final class GroupsV2UpdateMessageProducer {
   private void describeUnknownEditorPromotePending(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
     for (DecryptedMember newMember : change.getPromotePendingMembersList()) {
       ByteString uuid = newMember.getUuid();
-      boolean newMemberIsYou = uuid.equals(selfUuidBytes);
+      boolean newMemberIsYou = selfIds.matches(uuid);
 
       if (newMemberIsYou) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group), R.drawable.ic_update_group_add_16));
@@ -438,7 +434,7 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeNewTitle(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
+    boolean editorIsYou = selfIds.matches(change.getEditor());
 
     if (change.hasNewTitle()) {
       String newTitle = StringUtil.isolateBidi(change.getNewTitle().getValue());
@@ -451,7 +447,7 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeNewDescription(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
+    boolean editorIsYou = selfIds.matches(change.getEditor());
 
     if (change.hasNewDescription()) {
       if (editorIsYou) {
@@ -475,7 +471,7 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeNewAvatar(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
+    boolean editorIsYou = selfIds.matches(change.getEditor());
 
     if (change.hasNewAvatar()) {
       if (editorIsYou) {
@@ -493,7 +489,7 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   void describeNewTimer(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
+    boolean editorIsYou = selfIds.matches(change.getEditor());
 
     if (change.hasNewTimer()) {
       String time = ExpirationUtil.getExpirationDisplayValue(context, change.getNewTimer().getDuration());
@@ -513,7 +509,7 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeNewAttributeAccess(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
+    boolean editorIsYou = selfIds.matches(change.getEditor());
 
     if (change.getNewAttributeAccess() != AccessControl.AccessRequired.UNKNOWN) {
       String accessLevel = GV2AccessLevelUtil.toString(context, change.getNewAttributeAccess());
@@ -533,7 +529,7 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeNewMembershipAccess(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
+    boolean editorIsYou = selfIds.matches(change.getEditor());
 
     if (change.getNewMemberAccess() != AccessControl.AccessRequired.UNKNOWN) {
       String accessLevel = GV2AccessLevelUtil.toString(context, change.getNewMemberAccess());
@@ -562,7 +558,7 @@ final class GroupsV2UpdateMessageProducer {
       previousAccessControl = previousGroupState.getAccessControl().getAddFromInviteLink();
     }
 
-    boolean editorIsYou      = change.getEditor().equals(selfUuidBytes);
+    boolean editorIsYou      = selfIds.matches(change.getEditor());
     boolean groupLinkEnabled = false;
 
     switch (change.getNewInviteLinkAccess()) {
@@ -655,7 +651,7 @@ final class GroupsV2UpdateMessageProducer {
     Set<ByteString> deleteRequestingUuids = new HashSet<>(change.getDeleteRequestingMembersList());
 
     for (DecryptedRequestingMember member : change.getNewRequestingMembersList()) {
-      boolean requestingMemberIsYou = member.getUuid().equals(selfUuidBytes);
+      boolean requestingMemberIsYou = selfIds.matches(member.getUuid());
 
       if (requestingMemberIsYou) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_you_sent_a_request_to_join_the_group), R.drawable.ic_update_group_16));
@@ -675,12 +671,12 @@ final class GroupsV2UpdateMessageProducer {
 
   private void describeRequestingMembersApprovals(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
     for (DecryptedApproveMember requestingMember : change.getPromoteRequestingMembersList()) {
-      boolean requestingMemberIsYou = requestingMember.getUuid().equals(selfUuidBytes);
+      boolean requestingMemberIsYou = selfIds.matches(requestingMember.getUuid());
 
       if (requestingMemberIsYou) {
         updates.add(updateDescription(R.string.MessageRecord_s_approved_your_request_to_join_the_group, change.getEditor(), R.drawable.ic_update_group_accept_16));
       } else {
-      boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
+      boolean editorIsYou = selfIds.matches(change.getEditor());
 
         if (editorIsYou) {
           updates.add(updateDescription(R.string.MessageRecord_you_approved_a_request_to_join_the_group_from_s, requestingMember.getUuid(), R.drawable.ic_update_group_accept_16));
@@ -693,7 +689,7 @@ final class GroupsV2UpdateMessageProducer {
 
   private void describeUnknownEditorRequestingMembersApprovals(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
     for (DecryptedApproveMember requestingMember : change.getPromoteRequestingMembersList()) {
-      boolean requestingMemberIsYou = requestingMember.getUuid().equals(selfUuidBytes);
+      boolean requestingMemberIsYou = selfIds.matches(requestingMember.getUuid());
 
       if (requestingMemberIsYou) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_your_request_to_join_the_group_has_been_approved), R.drawable.ic_update_group_accept_16));
@@ -704,16 +700,16 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeRequestingMembersDeletes(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    Set<ByteString> newRequestingUuids = change.getNewRequestingMembersList().stream().map(r -> r.getUuid()).collect(Collectors.toSet());
+    Set<ByteString> newRequestingUuids = change.getNewRequestingMembersList().stream().map(DecryptedRequestingMember::getUuid).collect(Collectors.toSet());
 
-    boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
+    boolean editorIsYou = selfIds.matches(change.getEditor());
 
     for (ByteString requestingMember : change.getDeleteRequestingMembersList()) {
       if (newRequestingUuids.contains(requestingMember)) {
         continue;
       }
 
-      boolean requestingMemberIsYou = requestingMember.equals(selfUuidBytes);
+      boolean requestingMemberIsYou = selfIds.matches(requestingMember);
 
       if (requestingMemberIsYou) {
         if (editorIsYou) {
@@ -735,7 +731,7 @@ final class GroupsV2UpdateMessageProducer {
 
   private void describeUnknownEditorRequestingMembersDeletes(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
     for (ByteString requestingMember : change.getDeleteRequestingMembersList()) {
-      boolean requestingMemberIsYou = requestingMember.equals(selfUuidBytes);
+      boolean requestingMemberIsYou = selfIds.matches(requestingMember);
 
       if (requestingMemberIsYou) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin), R.drawable.ic_update_group_decline_16));
@@ -746,7 +742,7 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeAnnouncementGroupChange(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
+    boolean editorIsYou = selfIds.matches(change.getEditor());
 
     if (change.getNewIsAnnouncementGroup() == EnabledState.ENABLED) {
       if (editorIsYou) {
@@ -858,8 +854,7 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private static @NonNull Object[] makePlaceholders(@NonNull List<RecipientId> recipientIds, @Nullable List<Object> formatArgs) {
-    List<String> placeholders = recipientIds.stream().map(GroupsV2UpdateMessageProducer::makePlaceholder).collect(Collectors.toList());
-    List<Object> args         = new LinkedList<>(placeholders);
+    List<Object> args = recipientIds.stream().map(GroupsV2UpdateMessageProducer::makePlaceholder).collect(Collectors.toList());
 
     if (formatArgs != null) {
       args.addAll(formatArgs);

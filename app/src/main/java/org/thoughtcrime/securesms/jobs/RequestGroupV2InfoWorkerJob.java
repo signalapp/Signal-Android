@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -15,8 +16,10 @@ import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.signalservice.api.groupsv2.NoCredentialForRedemptionTimeException;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
@@ -89,7 +92,24 @@ final class RequestGroupV2InfoWorkerJob extends BaseJob {
       return;
     }
 
-    GroupManager.updateGroupFromServer(context, group.get().requireV2GroupProperties().getGroupMasterKey(), toRevision, System.currentTimeMillis(), null);
+    ServiceId authServiceId = group.get().getAuthServiceId() != null ? group.get().getAuthServiceId() : SignalStore.account().requireAci();
+
+    try {
+      GroupManager.updateGroupFromServer(context, authServiceId, group.get().requireV2GroupProperties().getGroupMasterKey(), toRevision, System.currentTimeMillis(), null);
+    } catch (GroupNotAMemberException | IOException e) {
+      ServiceId otherServiceId        = authServiceId.equals(SignalStore.account().getPni()) ? SignalStore.account().getAci() : SignalStore.account().getPni();
+      boolean   isNotAMemberOrPending = e instanceof GroupNotAMemberException && !((GroupNotAMemberException) e).isLikelyPendingMember();
+      boolean   verificationFailed    = e.getCause() instanceof VerificationFailedException;
+
+      if (otherServiceId != null && (isNotAMemberOrPending || verificationFailed)) {
+        Log.i(TAG, "Request failed, attempting with other id");
+        GroupManager.updateGroupFromServer(context, otherServiceId, group.get().requireV2GroupProperties().getGroupMasterKey(), toRevision, System.currentTimeMillis(), null);
+        Log.i(TAG, "Request succeeded with other credential. Associating " + otherServiceId + " with group " + groupId);
+        SignalDatabase.groups().setAuthServiceId(otherServiceId, groupId);
+      } else {
+        throw e;
+      }
+    }
   }
 
   @Override

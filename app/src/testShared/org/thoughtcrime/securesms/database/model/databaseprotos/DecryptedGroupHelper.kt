@@ -5,6 +5,7 @@ import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.storageservice.protos.groups.Member
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
 import org.signal.storageservice.protos.groups.local.DecryptedMember
+import org.signal.storageservice.protos.groups.local.DecryptedPendingMember
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.util.UuidUtil
@@ -59,6 +60,12 @@ fun member(serviceId: ServiceId, role: Member.Role = Member.Role.DEFAULT, joined
 
 fun requestingMember(serviceId: ServiceId): DecryptedRequestingMember {
   return DecryptedRequestingMember.newBuilder()
+    .setUuid(serviceId.toByteString())
+    .build()
+}
+
+fun pendingMember(serviceId: ServiceId): DecryptedPendingMember {
+  return DecryptedPendingMember.newBuilder()
     .setUuid(serviceId.toByteString())
     .build()
 }

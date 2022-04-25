@@ -12,6 +12,7 @@ import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.mobilecoin.lib.exceptions.SerializationException;
 
+import org.signal.core.util.Hex;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
@@ -126,7 +127,6 @@ import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.signal.core.util.Hex;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
@@ -168,6 +168,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.ViewedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.payments.Money;
 import org.whispersystems.signalservice.api.push.DistributionId;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.io.IOException;
@@ -532,8 +533,13 @@ public final class MessageContentProcessor {
       throws IOException, GroupChangeBusyException
   {
     try {
-      long timestamp = groupV2.getSignedGroupChange() != null ? content.getTimestamp() : content.getTimestamp() - 1;
-      GroupManager.updateGroupFromServer(context, groupV2.getMasterKey(), groupV2.getRevision(), timestamp, groupV2.getSignedGroupChange());
+      ServiceId authServiceId = ServiceId.parseOrNull(content.getDestinationUuid());
+      if (authServiceId == null) {
+        warn(content.getTimestamp(), "Group message missing destination uuid, defaulting to ACI");
+        authServiceId = SignalStore.account().requireAci();
+      }
+      long      timestamp     = groupV2.getSignedGroupChange() != null ? content.getTimestamp() : content.getTimestamp() - 1;
+      GroupManager.updateGroupFromServer(context, authServiceId, groupV2.getMasterKey(), groupV2.getRevision(), timestamp, groupV2.getSignedGroupChange());
       return true;
     } catch (GroupNotAMemberException e) {
       warn(String.valueOf(content.getTimestamp()), "Ignoring message for a group we're not in");
@@ -816,7 +822,12 @@ public final class MessageContentProcessor {
       }
     } else if (group.getGroupV2().isPresent()) {
       warn(content.getTimestamp(), "Received a GV2 message for a group we have no knowledge of -- attempting to fix this state.");
-      SignalDatabase.groups().fixMissingMasterKey(group.getGroupV2().get().getMasterKey());
+      ServiceId authServiceId = ServiceId.parseOrNull(content.getDestinationUuid());
+      if (authServiceId == null) {
+        warn(content.getTimestamp(), "Group message missing destination uuid, defaulting to ACI");
+        authServiceId = SignalStore.account().requireAci();
+      }
+      SignalDatabase.groups().fixMissingMasterKey(authServiceId, group.getGroupV2().get().getMasterKey());
     } else {
       warn(content.getTimestamp(), "Received a message for a group we don't know about without a group context. Ignoring.");
     }

@@ -21,6 +21,7 @@ import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.push.ServiceId
 import java.util.Optional
+import java.util.UUID
 
 fun DecryptedGroupChange.Builder.setNewDescription(description: String) {
   newDescription = DecryptedString.newBuilder().setValue(description).build()
@@ -107,6 +108,7 @@ class GroupStateTestData(private val masterKey: GroupMasterKey, private val grou
   var requestedRevision: Int = 0
 
   fun localState(
+    active: Boolean = true,
     revision: Int = 0,
     title: String = "",
     avatar: String = "",
@@ -116,10 +118,11 @@ class GroupStateTestData(private val masterKey: GroupMasterKey, private val grou
     pendingMembers: List<DecryptedPendingMember> = emptyList(),
     requestingMembers: List<DecryptedRequestingMember> = emptyList(),
     inviteLinkPassword: ByteArray = ByteArray(0),
-    disappearingMessageTimer: DecryptedTimer = DecryptedTimer.getDefaultInstance()
+    disappearingMessageTimer: DecryptedTimer = DecryptedTimer.getDefaultInstance(),
+    serviceId: String = ServiceId.from(UUID.randomUUID()).toString()
   ) {
     localState = decryptedGroup(revision, title, avatar, description, accessControl, members, pendingMembers, requestingMembers, inviteLinkPassword, disappearingMessageTimer)
-    groupRecord = groupRecord(masterKey, localState!!)
+    groupRecord = groupRecord(masterKey, localState!!, active = active, serviceId = serviceId)
   }
 
   fun serverState(
@@ -170,7 +173,8 @@ fun groupRecord(
   active: Boolean = true,
   avatarDigest: ByteArray = ByteArray(0),
   mms: Boolean = false,
-  distributionId: DistributionId? = null
+  distributionId: DistributionId? = null,
+  serviceId: String = ServiceId.from(UUID.randomUUID()).toString()
 ): Optional<GroupDatabase.GroupRecord> {
   return Optional.of(
     GroupDatabase.GroupRecord(
@@ -189,7 +193,8 @@ fun groupRecord(
       masterKey.serialize(),
       decryptedGroup.revision,
       decryptedGroup.toByteArray(),
-      distributionId
+      distributionId,
+      serviceId
     )
   )
 }

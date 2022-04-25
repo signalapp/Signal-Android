@@ -20,7 +20,7 @@ import org.signal.storageservice.protos.groups.GroupJoinInfo;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupJoinInfo;
-import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.exceptions.ForbiddenException;
 
@@ -44,16 +44,16 @@ public class GroupsV2Api {
   /**
    * Provides 7 days of credentials, which you should cache.
    */
-  public HashMap<Integer, AuthCredentialResponse> getCredentials(int today)
+  public HashMap<Integer, AuthCredentialResponse> getCredentials(int today, boolean isAci)
       throws IOException
   {
-    return parseCredentialResponse(socket.retrieveGroupsV2Credentials(today));
+    return parseCredentialResponse(socket.retrieveGroupsV2Credentials(today, isAci));
   }
 
   /**
    * Create an auth token from a credential response.
    */
-  public GroupsV2AuthorizationString getGroupsV2AuthorizationString(ACI self,
+  public GroupsV2AuthorizationString getGroupsV2AuthorizationString(ServiceId self,
                                                                     int today,
                                                                     GroupSecretParams groupSecretParams,
                                                                     AuthCredentialResponse authCredentialResponse)

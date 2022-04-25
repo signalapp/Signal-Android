@@ -21,37 +21,49 @@ public final class GroupsV2AuthorizationSignalStoreCache implements GroupsV2Auth
 
   private static final String TAG = Log.tag(GroupsV2AuthorizationSignalStoreCache.class);
 
-  private static final String PREFIX  = "gv2:auth_token_cache";
-  private static final int    VERSION = 2;
-  private static final String KEY     = PREFIX + ":" + VERSION;
+  private static final String ACI_PREFIX  = "gv2:auth_token_cache";
+  private static final int    ACI_VERSION = 2;
 
+  private static final String PNI_PREFIX  = "gv2:auth_token_cache:pni";
+  private static final int    PNI_VERSION = 1;
+
+  private final String        key;
   private final KeyValueStore store;
 
-  GroupsV2AuthorizationSignalStoreCache(KeyValueStore store) {
-    this.store = store;
-
-    if (store.containsKey(PREFIX)) {
+  public static GroupsV2AuthorizationSignalStoreCache createAciCache(@NonNull KeyValueStore store) {
+    if (store.containsKey(ACI_PREFIX)) {
       store.beginWrite()
-           .remove(PREFIX)
+           .remove(ACI_PREFIX)
            .commit();
     }
+
+    return new GroupsV2AuthorizationSignalStoreCache(store, ACI_PREFIX + ":" + ACI_VERSION);
+  }
+
+  public static GroupsV2AuthorizationSignalStoreCache createPniCache(@NonNull KeyValueStore store) {
+    return new GroupsV2AuthorizationSignalStoreCache(store, PNI_PREFIX + ":" + PNI_VERSION);
+  }
+
+  private GroupsV2AuthorizationSignalStoreCache(@NonNull KeyValueStore store, @NonNull String key) {
+    this.store = store;
+    this.key   = key;
   }
 
   @Override
   public void clear() {
     store.beginWrite()
-         .remove(KEY)
+         .remove(key)
          .commit();
 
-    Log.i(TAG, "Cleared local response cache");
+    info("Cleared local response cache");
   }
 
   @Override
   public @NonNull Map<Integer, AuthCredentialResponse> read() {
-    byte[] credentialBlob = store.getBlob(KEY, null);
+    byte[] credentialBlob = store.getBlob(key, null);
 
     if (credentialBlob == null) {
-      Log.i(TAG, "No credentials responses are cached locally");
+      info("No credentials responses are cached locally");
       return Collections.emptyMap();
     }
 
@@ -63,7 +75,7 @@ public final class GroupsV2AuthorizationSignalStoreCache implements GroupsV2Auth
         result.put(credential.getDate(), new AuthCredentialResponse(credential.getAuthCredentialResponse().toByteArray()));
       }
 
-      Log.i(TAG, String.format(Locale.US, "Loaded %d credentials from local storage", result.size()));
+      info(String.format(Locale.US, "Loaded %d credentials from local storage", result.size()));
 
       return result;
     } catch (InvalidProtocolBufferException | InvalidInputException e) {
@@ -82,9 +94,13 @@ public final class GroupsV2AuthorizationSignalStoreCache implements GroupsV2Auth
     }
 
     store.beginWrite()
-         .putBlob(KEY, builder.build().toByteArray())
+         .putBlob(key, builder.build().toByteArray())
          .commit();
 
-    Log.i(TAG, String.format(Locale.US, "Written %d credentials to local storage", values.size()));
+    info(String.format(Locale.US, "Written %d credentials to local storage", values.size()));
+  }
+
+  private void info(String message) {
+    Log.i(TAG, (key.startsWith(PNI_PREFIX) ? "[PNI]" : "[ACI]") + " " + message);
   }
 }

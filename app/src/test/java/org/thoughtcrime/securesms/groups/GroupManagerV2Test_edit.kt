@@ -39,6 +39,7 @@ import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.push.ACI
+import org.whispersystems.signalservice.api.push.PNI
 import org.whispersystems.signalservice.api.push.ServiceId
 import java.util.UUID
 
@@ -53,6 +54,7 @@ class GroupManagerV2Test_edit {
     val groupId: GroupId.V2 = GroupId.v2(masterKey)
 
     val selfAci: ACI = ACI.from(UUID.randomUUID())
+    val selfPni: PNI = PNI.from(UUID.randomUUID())
     val otherSid: ServiceId = ServiceId.from(UUID.randomUUID())
     val selfAndOthers: List<DecryptedMember> = listOf(member(selfAci), member(otherSid))
     val others: List<DecryptedMember> = listOf(member(otherSid))
@@ -102,6 +104,7 @@ class GroupManagerV2Test_edit {
       groupsV2Authorization,
       groupsV2StateProcessor,
       selfAci,
+      selfPni,
       groupCandidateHelper,
       sendGroupUpdateHelper
     )
@@ -114,7 +117,7 @@ class GroupManagerV2Test_edit {
     Mockito.doReturn(data.groupRecord).`when`(groupDatabase).getGroup(groupId)
     Mockito.doReturn(data.groupRecord.get()).`when`(groupDatabase).requireGroup(groupId)
 
-    Mockito.doReturn(GroupManagerV2.RecipientAndThread(Recipient.UNKNOWN, 1)).`when`(sendGroupUpdateHelper).sendGroupUpdate(Mockito.eq(masterKey), Mockito.any(), Mockito.any())
+    Mockito.doReturn(GroupManagerV2.RecipientAndThread(Recipient.UNKNOWN, 1)).`when`(sendGroupUpdateHelper).sendGroupUpdate(Mockito.eq(masterKey), Mockito.any(), Mockito.any(), Mockito.anyBoolean())
 
     Mockito.doReturn(data.groupChange!!).`when`(groupsV2API).patchGroup(Mockito.any(), Mockito.any(), Mockito.any())
   }
@@ -136,7 +139,8 @@ class GroupManagerV2Test_edit {
         members = listOf(
           member(selfAci, role = Member.Role.ADMINISTRATOR),
           member(otherSid)
-        )
+        ),
+        serviceId = selfAci.toString()
       )
       groupChange(6) {
         source(selfAci)

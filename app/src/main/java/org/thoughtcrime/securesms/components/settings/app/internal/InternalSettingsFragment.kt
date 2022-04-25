@@ -590,7 +590,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       .setTitle("Clear all profile keys?")
       .setMessage("Are you sure? Never do this on a non-test device.")
       .setPositiveButton(android.R.string.ok) { _, _ ->
-        SignalDatabase.recipients.debugClearServiceIds()
+        SignalDatabase.recipients.debugClearProfileData()
         Toast.makeText(context, "Cleared all profile keys.", Toast.LENGTH_SHORT).show()
       }
       .setNegativeButton(android.R.string.cancel) { d, _ ->

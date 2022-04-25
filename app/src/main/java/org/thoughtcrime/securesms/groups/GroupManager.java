@@ -6,8 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import com.google.protobuf.ByteString;
-
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
@@ -24,7 +22,7 @@ import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.groupsv2.GroupLinkNotActiveException;
-import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -40,7 +38,8 @@ public final class GroupManager {
   private static final String TAG = Log.tag(GroupManager.class);
 
   @WorkerThread
-  public static @NonNull GroupActionResult createGroup(@NonNull Context context,
+  public static @NonNull GroupActionResult createGroup(@NonNull ServiceId authServiceId,
+                                                       @NonNull Context context,
                                                        @NonNull Set<Recipient> members,
                                                        @Nullable byte[] avatar,
                                                        @Nullable String name,
@@ -54,7 +53,7 @@ public final class GroupManager {
     if (shouldAttemptToCreateV2) {
       try {
         try (GroupManagerV2.GroupCreator groupCreator = new GroupManagerV2(context).create()) {
-          return groupCreator.createGroup(memberIds, name, avatar, disappearingMessagesTimer);
+          return groupCreator.createGroup(authServiceId, memberIds, name, avatar, disappearingMessagesTimer);
         }
       } catch (MembershipNotSuitableForV2Exception e) {
         Log.w(TAG, "Attempted to make a GV2, but membership was not suitable, falling back to GV1", e);
@@ -178,6 +177,7 @@ public final class GroupManager {
    */
   @WorkerThread
   public static void updateGroupFromServer(@NonNull Context context,
+                                           @NonNull ServiceId authServiceId,
                                            @NonNull GroupMasterKey groupMasterKey,
                                            int revision,
                                            long timestamp,
@@ -185,17 +185,18 @@ public final class GroupManager {
       throws GroupChangeBusyException, IOException, GroupNotAMemberException
   {
     try (GroupManagerV2.GroupUpdater updater = new GroupManagerV2(context).updater(groupMasterKey)) {
-      updater.updateLocalToServerRevision(revision, timestamp, signedGroupChange);
+      updater.updateLocalToServerRevision(authServiceId, revision, timestamp, signedGroupChange);
     }
   }
 
   @WorkerThread
   public static V2GroupServerStatus v2GroupStatus(@NonNull Context context,
+                                                  @NonNull ServiceId authServiceserviceId,
                                                   @NonNull GroupMasterKey groupMasterKey)
       throws IOException
   {
     try {
-      new GroupManagerV2(context).groupServerQuery(groupMasterKey);
+      new GroupManagerV2(context).groupServerQuery(authServiceserviceId, groupMasterKey);
       return V2GroupServerStatus.FULL_OR_PENDING_MEMBER;
     } catch (GroupNotAMemberException e) {
       return V2GroupServerStatus.NOT_A_MEMBER;
@@ -210,11 +211,12 @@ public final class GroupManager {
    * If it fails to get the exact version, it will give the latest.
    */
   @WorkerThread
-  public static DecryptedGroup addedGroupVersion(@NonNull Context context,
+  public static DecryptedGroup addedGroupVersion(@NonNull ServiceId authServiceId,
+                                                 @NonNull Context context,
                                                  @NonNull GroupMasterKey groupMasterKey)
     throws IOException, GroupDoesNotExistException, GroupNotAMemberException
   {
-    return new GroupManagerV2(context).addedGroupVersion(groupMasterKey);
+    return new GroupManagerV2(context).addedGroupVersion(authServiceId, groupMasterKey);
   }
 
   @WorkerThread
@@ -268,12 +270,13 @@ public final class GroupManager {
 
   @WorkerThread
   public static void revokeInvites(@NonNull Context context,
+                                   @NonNull ServiceId authServiceId,
                                    @NonNull GroupId.V2 groupId,
                                    @NonNull Collection<UuidCiphertext> uuidCipherTexts)
       throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException
   {
     try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
-      editor.revokeInvites(uuidCipherTexts);
+      editor.revokeInvites(authServiceId, uuidCipherTexts, true);
     }
   }
 

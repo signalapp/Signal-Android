@@ -24,8 +24,11 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
+import org.thoughtcrime.securesms.keyvalue.ServiceIds;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.PNI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
@@ -44,9 +47,9 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.signal.core.util.StringUtil.isolateBidi;
 import static org.thoughtcrime.securesms.groups.v2.ChangeBuilder.changeBy;
 import static org.thoughtcrime.securesms.groups.v2.ChangeBuilder.changeByUnknown;
-import static org.signal.core.util.StringUtil.isolateBidi;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 
@@ -83,7 +86,7 @@ public final class GroupsV2UpdateMessageProducerTest {
     Recipient aliceRecipient = recipientWithName(aliceId, "Alice");
     Recipient bobRecipient   = recipientWithName(bobId, "Bob");
 
-    producer = new GroupsV2UpdateMessageProducer(ApplicationProvider.getApplicationContext(), you, null);
+    producer = new GroupsV2UpdateMessageProducer(ApplicationProvider.getApplicationContext(), new ServiceIds(ACI.from(you), PNI.from(UUID.randomUUID())), null);
 
     recipientIdMockedStatic.when(() -> RecipientId.from(ServiceId.from(alice), null)).thenReturn(aliceId);
     recipientIdMockedStatic.when(() -> RecipientId.from(ServiceId.from(bob), null)).thenReturn(bobId);

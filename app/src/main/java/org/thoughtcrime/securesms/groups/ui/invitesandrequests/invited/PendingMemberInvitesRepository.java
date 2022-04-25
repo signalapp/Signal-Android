@@ -100,7 +100,7 @@ final class PendingMemberInvitesRepository {
   @WorkerThread
   boolean revokeInvites(@NonNull Collection<UuidCiphertext> uuidCipherTexts) {
     try {
-      GroupManager.revokeInvites(context, groupId, uuidCipherTexts);
+      GroupManager.revokeInvites(context, SignalStore.account().requireAci(), groupId, uuidCipherTexts);
       return true;
     } catch (GroupChangeException | IOException e) {
       Log.w(TAG, e);

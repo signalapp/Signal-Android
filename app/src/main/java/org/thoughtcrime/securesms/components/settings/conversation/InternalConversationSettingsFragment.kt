@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.Hex
 import org.signal.core.util.concurrent.SignalExecutors
+import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
@@ -16,6 +17,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -168,6 +170,28 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
           }
         )
       }
+
+      clickPref(
+        title = DSLSettingsText.from("Clear recipient data"),
+        summary = DSLSettingsText.from("Clears service id, profile data, sessions, identities, and thread."),
+        onClick = {
+          MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Are you sure?")
+            .setNegativeButton(android.R.string.cancel) { d, _ -> d.dismiss() }
+            .setPositiveButton(android.R.string.ok) { _, _ ->
+              if (recipient.hasServiceId()) {
+                SignalDatabase.recipients.debugClearServiceIds(recipient.id)
+                SignalDatabase.recipients.debugClearProfileData(recipient.id)
+                SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account().requireAci(), addressName = recipient.requireServiceId().toString())
+                ApplicationDependencies.getProtocolStore().aci().identities().delete(recipient.requireServiceId().toString())
+                ApplicationDependencies.getProtocolStore().pni().identities().delete(recipient.requireServiceId().toString())
+                SignalDatabase.threads.deleteConversation(SignalDatabase.threads.getThreadIdIfExistsFor(recipient.id))
+              }
+              startActivity(MainActivity.clearTop(requireContext()))
+            }
+            .show()
+        }
+      )
 
       if (recipient.isSelf) {
         sectionHeaderPref(DSLSettingsText.from("Donations"))

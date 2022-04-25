@@ -26,23 +26,4 @@ public final class PNI extends ServiceId {
   private PNI(UUID uuid) {
     super(uuid);
   }
-
-  @Override
-  public int hashCode() {
-    return uuid.hashCode();
-  }
-
-  @Override
-  public boolean equals(Object other) {
-    if (other instanceof PNI) {
-      return uuid.equals(((PNI) other).uuid);
-    } else {
-      return false;
-    }
-  }
-
-  @Override
-  public String toString() {
-    return uuid.toString();
-  }
 }

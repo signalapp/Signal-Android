@@ -194,8 +194,9 @@ object SignalDatabaseMigrations {
   private const val CLEAN_DELETED_DISTRIBUTION_LISTS = 138
   private const val REMOVE_KNOWN_UNKNOWNS = 139
   private const val CDS_V2 = 140
+  private const val GROUP_SERVICE_ID = 141
 
-  const val DATABASE_VERSION = 140
+  const val DATABASE_VERSION = 141
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -2522,6 +2523,10 @@ object SignalDatabaseMigrations {
         )
       """
       )
+    }
+
+    if (oldVersion < GROUP_SERVICE_ID) {
+      db.execSQL("ALTER TABLE groups ADD COLUMN auth_service_id TEXT DEFAULT NULL")
     }
   }
 

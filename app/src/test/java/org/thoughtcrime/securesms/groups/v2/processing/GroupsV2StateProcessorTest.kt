@@ -51,11 +51,11 @@ import java.util.UUID
 class GroupsV2StateProcessorTest {
 
   companion object {
-    val masterKey = GroupMasterKey(fromStringCondensed("0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"))
-    val selfAci: ACI = ACI.from(UUID.randomUUID())
-    val otherSid: ServiceId = ServiceId.from(UUID.randomUUID())
-    val selfAndOthers: List<DecryptedMember> = listOf(member(selfAci), member(otherSid))
-    val others: List<DecryptedMember> = listOf(member(otherSid))
+    private val masterKey = GroupMasterKey(fromStringCondensed("0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"))
+    private val selfAci: ACI = ACI.from(UUID.randomUUID())
+    private val otherSid: ServiceId = ServiceId.from(UUID.randomUUID())
+    private val selfAndOthers: List<DecryptedMember> = listOf(member(selfAci), member(otherSid))
+    private val others: List<DecryptedMember> = listOf(member(otherSid))
   }
 
   private lateinit var groupDatabase: GroupDatabase
@@ -89,8 +89,7 @@ class GroupsV2StateProcessorTest {
   }
 
   private fun given(init: GroupStateTestData.() -> Unit) {
-    val data = GroupStateTestData(masterKey)
-    data.init()
+    val data = givenData(init)
 
     doReturn(data.groupRecord).`when`(groupDatabase).getGroup(any(GroupId.V2::class.java))
     doReturn(!data.groupRecord.isPresent).`when`(groupDatabase).isUnknownGroup(any())
@@ -107,6 +106,12 @@ class GroupsV2StateProcessorTest {
     data.changeSet?.let { changeSet ->
       doReturn(changeSet.toApiResponse()).`when`(groupsV2API).getGroupHistoryPage(any(), eq(data.requestedRevision), any(), eq(data.includeFirst))
     }
+  }
+
+  private fun givenData(init: GroupStateTestData.() -> Unit): GroupStateTestData {
+    val data = GroupStateTestData(masterKey)
+    data.init()
+    return data
   }
 
   @Test

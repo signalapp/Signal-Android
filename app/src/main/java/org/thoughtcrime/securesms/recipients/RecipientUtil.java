@@ -154,7 +154,7 @@ public class RecipientUtil {
 
     recipient = recipient.resolve();
 
-    if (recipient.isGroup() && recipient.getGroupId().get().isPush() && recipient.isActiveGroup()) {
+    if (recipient.isGroup() && recipient.getGroupId().get().isPush()) {
       GroupManager.leaveGroupFromBlockOrMessageRequest(context, recipient.getGroupId().get().requirePush());
     }
 

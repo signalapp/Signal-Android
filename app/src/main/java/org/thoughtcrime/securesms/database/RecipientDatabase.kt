@@ -953,6 +953,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
     Log.i(TAG, "Creating restore placeholder for $groupId")
     groups.create(
+      null,
       masterKey,
       DecryptedGroup.newBuilder()
         .setRevision(GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION)
@@ -1597,9 +1598,11 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     return updated
   }
 
-  private fun clearProfileKeyCredential(id: RecipientId) {
+  fun clearProfileKeyCredential(id: RecipientId) {
     val values = ContentValues(1)
     values.putNull(PROFILE_KEY_CREDENTIAL)
+    values.putNull(PROFILE_KEY)
+    values.put(PROFILE_SHARING, 0)
     if (update(id, values)) {
       rotateStorageId(id)
       ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
@@ -2938,28 +2941,45 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   /**
    * Should only be used for debugging! A very destructive action that clears all known serviceIds.
    */
-  fun debugClearServiceIds() {
+  fun debugClearServiceIds(recipientId: RecipientId? = null) {
     writableDatabase
       .update(TABLE_NAME)
       .values(
         SERVICE_ID to null,
         PNI_COLUMN to null
       )
-      .where("$ID != ?", Recipient.self().id)
+      .run {
+        if (recipientId == null) {
+          where("$ID != ?", Recipient.self().id)
+        } else {
+          where("$ID = ?", recipientId)
+        }
+      }
       .run()
   }
 
   /**
    * Should only be used for debugging! A very destructive action that clears all known profile keys and credentials.
    */
-  fun debugClearProfileKeys() {
+  fun debugClearProfileData(recipientId: RecipientId? = null) {
     writableDatabase
       .update(TABLE_NAME)
       .values(
         PROFILE_KEY to null,
-        PROFILE_KEY_CREDENTIAL to null
+        PROFILE_KEY_CREDENTIAL to null,
+        PROFILE_GIVEN_NAME to null,
+        PROFILE_FAMILY_NAME to null,
+        PROFILE_JOINED_NAME to null,
+        LAST_PROFILE_FETCH to 0,
+        SIGNAL_PROFILE_AVATAR to null
       )
-      .where("$ID != ?", Recipient.self().id)
+      .run {
+        if (recipientId == null) {
+          where("$ID != ?", Recipient.self().id)
+        } else {
+          where("$ID = ?", recipientId)
+        }
+      }
       .run()
   }
 

@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.AppSignatureUtil
 import shark.AndroidReferenceMatchers
+import java.util.Locale
 
 class SpinnerApplicationContext : ApplicationContext() {
   override fun onCreate() {
@@ -36,7 +37,8 @@ class SpinnerApplicationContext : ApplicationContext() {
         "Profile Name" to (if (SignalStore.account().isRegistered) Recipient.self().profileName.toString() else "none"),
         "E164" to (SignalStore.account().e164 ?: "none"),
         "ACI" to (SignalStore.account().aci?.toString() ?: "none"),
-        "PNI" to (SignalStore.account().pni?.toString() ?: "none")
+        "PNI" to (SignalStore.account().pni?.toString() ?: "none"),
+        Spinner.KEY_ENVIRONMENT to BuildConfig.FLAVOR_environment.toUpperCase(Locale.US)
       ),
       linkedMapOf(
         "signal" to DatabaseConfig(
