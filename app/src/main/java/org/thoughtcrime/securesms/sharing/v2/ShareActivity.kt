@@ -140,7 +140,7 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
   }
 
   private fun ensureFragment(resolvedShareData: ResolvedShareData) {
-    if (supportFragmentManager.fragments.none { it is MultiselectForwardFullScreenDialogFragment }) {
+    if (!supportFragmentManager.isStateSaved && supportFragmentManager.fragments.none { it is MultiselectForwardFullScreenDialogFragment }) {
       supportFragmentManager.beginTransaction()
         .replace(
           R.id.fragment_container,
