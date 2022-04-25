@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.util.Stopwatch
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
+import org.whispersystems.signalservice.api.util.UuidUtil
 import java.io.IOException
 import java.util.Calendar
 
@@ -299,7 +300,9 @@ object ContactDiscovery {
       contactsProvider().use { iterator ->
         while (iterator.hasNext()) {
           val details = iterator.next()
-          val phoneDetailsWithoutSelf: List<ContactPhoneDetails> = details.numbers.filter { it.number != localNumber }
+          val phoneDetailsWithoutSelf: List<ContactPhoneDetails> = details.numbers
+            .filter { it.number != localNumber }
+            .filterNot { UuidUtil.isUuid(it.number) }
 
           for (phoneDetails in phoneDetailsWithoutSelf) {
             val realNumber: String = Util.getFirstNonEmpty(rewrites[phoneDetails.number], phoneDetails.number)
