@@ -75,6 +75,8 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientExporter
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
+import org.thoughtcrime.securesms.stories.Stories
+import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ContextUtil
@@ -269,15 +271,18 @@ class ConversationSettingsFragment : DSLSettingsFragment(
           recipient = state.recipient,
           storyViewState = state.storyViewState,
           onAvatarClick = { avatar ->
-            if (avatar.hasStory()) {
-              startActivity(StoryViewerActivity.createIntent(requireContext(), state.recipient.id))
+            val viewAvatarIntent = AvatarPreviewActivity.intentFromRecipientId(requireContext(), state.recipient.id)
+            val viewAvatarTransitionBundle = AvatarPreviewActivity.createTransitionBundle(requireActivity(), avatar)
+
+            if (Stories.isFeatureEnabled() && avatar.hasStory()) {
+              val viewStoryIntent = StoryViewerActivity.createIntent(requireContext(), state.recipient.id)
+              StoryDialogs.displayStoryOrProfileImage(
+                context = requireContext(),
+                onViewStory = { startActivity(viewStoryIntent) },
+                onViewAvatar = { startActivity(viewAvatarIntent, viewAvatarTransitionBundle) }
+              )
             } else if (!state.recipient.isSelf) {
-              requireActivity().apply {
-                startActivity(
-                  AvatarPreviewActivity.intentFromRecipientId(this, state.recipient.id),
-                  AvatarPreviewActivity.createTransitionBundle(this, avatar)
-                )
-              }
+              startActivity(viewAvatarIntent, viewAvatarTransitionBundle)
             }
           },
           onBadgeClick = { badge ->

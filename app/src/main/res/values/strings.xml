@@ -4662,6 +4662,10 @@
     <string name="TextStoryPostCreationFragment__sent_story">Sent story</string>
     <!-- Toasted when the user external share to a text story fails -->
     <string name="TextStoryPostCreationFragment__failed_to_send_story">Failed to send story</string>
+    <!-- Displayed in a dialog to let the user select a given users story -->
+    <string name="StoryDialogs__view_story">View story</string>
+    <!-- Displayed in a dialog to let the user select a given users profile photo -->
+    <string name="StoryDialogs__view_profile_photo">View profile photo</string>
 
     <!-- Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
     <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Turn off censorship circumvention?</string>
