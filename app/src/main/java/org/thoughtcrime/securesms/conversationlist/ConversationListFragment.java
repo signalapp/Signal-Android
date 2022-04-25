@@ -1568,7 +1568,13 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       super.clearView(recyclerView, viewHolder);
       ViewCompat.setElevation(viewHolder.itemView, 0);
       lastTouched = null;
-      itemAnimator.postDisable(requireView().getHandler());
+
+      View view = getView();
+      if (view != null) {
+        itemAnimator.postDisable(view.getHandler());
+      } else {
+        itemAnimator.disable();
+      }
     }
   }
 
