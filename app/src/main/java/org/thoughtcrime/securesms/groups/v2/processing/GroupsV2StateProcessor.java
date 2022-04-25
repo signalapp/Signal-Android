@@ -567,7 +567,8 @@ public class GroupsV2StateProcessor {
         }
       }
 
-      Optional<DecryptedMember> selfAsMemberOptional = DecryptedGroupUtil.findMemberByUuid(newLocalState.getMembersList(), selfAci.uuid());
+      Optional<DecryptedMember>        selfAsMemberOptional  = DecryptedGroupUtil.findMemberByUuid(newLocalState.getMembersList(), selfAci.uuid());
+      Optional<DecryptedPendingMember> selfAsPendingOptional = DecryptedGroupUtil.findPendingByUuid(newLocalState.getPendingMembersList(), selfAci.uuid());
 
       if (selfAsMemberOptional.isPresent()) {
         DecryptedMember selfAsMember     = selfAsMemberOptional.get();
@@ -600,6 +601,18 @@ public class GroupsV2StateProcessor {
           }
         } else {
           Log.w(TAG, "Could not find founding member during gv2 create. Not enabling profile sharing.");
+        }
+      } else if (selfAsPendingOptional.isPresent()) {
+        Optional<Recipient> addedBy = selfAsPendingOptional.flatMap(adder -> Optional.ofNullable(UuidUtil.fromByteStringOrNull(adder.getAddedByUuid()))
+                                                                                     .map(a -> Recipient.externalPush(ServiceId.fromByteStringOrNull(adder.getAddedByUuid()), null, false)));
+
+        if (addedBy.isPresent() && addedBy.get().isBlocked()) {
+          Log.i(TAG, String.format( "Added to group %s by a blocked user %s. Leaving group.", groupId, addedBy.get().getId()));
+          ApplicationDependencies.getJobManager().add(new LeaveGroupV2Job(groupId));
+          //noinspection UnnecessaryReturnStatement
+          return;
+        } else {
+          Log.i(TAG, String.format("Added to %s, but not enabling profile sharing as we are a pending member.", groupId));
         }
       } else {
         Log.i(TAG, String.format("Added to %s, but not enabling profile sharing as not a fullMember.", groupId));
