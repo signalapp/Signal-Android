@@ -6,6 +6,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
+import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -65,6 +66,8 @@ class StorySettingsFragment : DSLSettingsFragment(
           )
         )
       }
+
+      textPref(summary = DSLSettingsText.from(R.string.StorySettingsFragment__private_stories_can_only_be_viewed))
     }
   }
 }
