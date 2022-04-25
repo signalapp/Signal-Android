@@ -146,7 +146,11 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
   }
 
   private @Nullable MediaControllerCompat getMediaController() {
-    return MediaControllerCompat.getMediaController(activity);
+    if (activity != null) {
+      return MediaControllerCompat.getMediaController(activity);
+    } else {
+      return null;
+    }
   }
 
 
