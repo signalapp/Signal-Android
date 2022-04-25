@@ -78,7 +78,7 @@ internal class SpinnerServer(
     val commands: Queue<QueryItem> = recentSql[dbName] ?: ConcurrentLinkedQueue()
 
     commands += QueryItem(System.currentTimeMillis(), sql)
-    if (commands.size > 100) {
+    if (commands.size > 500) {
       commands.remove()
     }
 
@@ -260,7 +260,11 @@ internal class SpinnerServer(
       val row = mutableListOf<String>()
       for (i in 0 until numColumns) {
         val columnName: String = getColumnName(i)
-        row += transformers[i].transform(null, columnName, this)
+        try {
+          row += transformers[i].transform(null, columnName, this)
+        } catch (e: Exception) {
+          row += "*Failed to Transform*\n\n${DefaultColumnTransformer.transform(null, columnName, this)}"
+        }
       }
 
       rows += row
