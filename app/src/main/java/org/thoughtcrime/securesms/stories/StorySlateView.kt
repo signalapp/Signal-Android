@@ -162,6 +162,10 @@ class StorySlateView @JvmOverloads constructor(
         return true
       }
 
+      if (newState == this) {
+        return true
+      }
+
       return when (this) {
         LOADING -> newState == ERROR
         ERROR -> newState == RETRY
