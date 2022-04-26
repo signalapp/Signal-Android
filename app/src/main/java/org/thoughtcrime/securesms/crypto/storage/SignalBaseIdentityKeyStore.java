@@ -116,7 +116,7 @@ public class SignalBaseIdentityKeyStore {
     if (recipient.hasServiceId()) {
       cache.save(recipient.requireServiceId().toString(), recipientId, identityKey, verifiedStatus, firstUse, timestamp, nonBlockingApproval);
     } else {
-      Log.w(TAG, "[saveIdentity] No serviceId for " + recipient.getId());
+      Log.w(TAG, "[saveIdentity] No serviceId for " + recipient.getId(), new Throwable());
     }
   }
 
@@ -157,7 +157,11 @@ public class SignalBaseIdentityKeyStore {
       IdentityStoreRecord record = cache.get(recipient.requireServiceId().toString());
       return Optional.ofNullable(record).map(r -> r.toIdentityRecord(recipient.getId()));
     } else {
-      Log.w(TAG, "[getIdentityRecord] No ServiceId for " + recipient.getId());
+      if (recipient.isRegistered()) {
+        Log.w(TAG, "[getIdentityRecord] No ServiceId for registered user " + recipient.getId(), new Throwable());
+      } else {
+        Log.d(TAG, "[getIdentityRecord] No ServiceId for unregistered user " + recipient.getId());
+      }
       return Optional.empty();
     }
   }
@@ -183,7 +187,11 @@ public class SignalBaseIdentityKeyStore {
           records.add(record.toIdentityRecord(recipient.getId()));
         }
       } else {
-        Log.w(TAG, "[getIdentityRecords] No serviceId for " + recipient.getId());
+        if (recipient.isRegistered()) {
+          Log.w(TAG, "[getIdentityRecords] No serviceId for registered user " + recipient.getId(), new Throwable());
+        } else {
+          Log.d(TAG, "[getIdentityRecords] No serviceId for unregistered user " + recipient.getId());
+        }
       }
     }
 
@@ -196,7 +204,7 @@ public class SignalBaseIdentityKeyStore {
     if (recipient.hasServiceId()) {
       cache.setApproval(recipient.requireServiceId().toString(), recipientId, nonBlockingApproval);
     } else {
-      Log.w(TAG, "[setApproval] No serviceId for " + recipient.getId());
+      Log.w(TAG, "[setApproval] No serviceId for " + recipient.getId(), new Throwable());
     }
   }
 
@@ -206,7 +214,7 @@ public class SignalBaseIdentityKeyStore {
     if (recipient.hasServiceId()) {
       cache.setVerified(recipient.requireServiceId().toString(), recipientId, identityKey, verifiedStatus);
     } else {
-      Log.w(TAG, "[setVerified] No serviceId for " + recipient.getId());
+      Log.w(TAG, "[setVerified] No serviceId for " + recipient.getId(), new Throwable());
     }
   }
 
