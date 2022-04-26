@@ -2702,6 +2702,7 @@
     <string name="preferences__internal_calling" translatable="false">Calling options</string>
     <string name="preferences__internal_calling_audio_processing_method" translatable="false">Audio processing method</string>
     <string name="preferences__internal_calling_bandwidth_mode" translatable="false">Bandwidth mode</string>
+    <string name="preferences__internal_calling_disable_telecom" translatable="false">Disable Telecom integration</string>
     <string name="preferences__internal_badges" translatable="false">Badges</string>
     <string name="preferences__internal_badges_enqueue_redemption" translatable="false">Enqueue redemption.</string>
     <string name="preferences__internal_release_channel" translatable="false">Release channel</string>

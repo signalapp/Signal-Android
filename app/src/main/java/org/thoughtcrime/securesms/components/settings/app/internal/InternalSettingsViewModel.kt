@@ -101,6 +101,11 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
+  fun setInternalCallingDisableTelecom(enabled: Boolean) {
+    preferenceDataStore.putBoolean(InternalValues.CALLING_DISABLE_TELECOM, enabled)
+    refresh()
+  }
+
   fun toggleStories() {
     val newState = !SignalStore.storyValues().isFeatureDisabled
     SignalStore.storyValues().isFeatureDisabled = newState
@@ -128,6 +133,7 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     callingServer = SignalStore.internalValues().groupCallingServer(),
     callingAudioProcessingMethod = SignalStore.internalValues().callingAudioProcessingMethod(),
     callingBandwidthMode = SignalStore.internalValues().callingBandwidthMode(),
+    callingDisableTelecom = SignalStore.internalValues().callingDisableTelecom(),
     useBuiltInEmojiSet = SignalStore.internalValues().forceBuiltInEmoji(),
     emojiVersion = null,
     removeSenderKeyMinimium = SignalStore.internalValues().removeSenderKeyMinimum(),

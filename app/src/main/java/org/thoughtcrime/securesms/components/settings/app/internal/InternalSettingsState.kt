@@ -16,6 +16,7 @@ data class InternalSettingsState(
   val callingServer: String,
   val callingAudioProcessingMethod: CallManager.AudioProcessingMethod,
   val callingBandwidthMode: CallManager.BandwidthMode,
+  val callingDisableTelecom: Boolean,
   val useBuiltInEmojiSet: Boolean,
   val emojiVersion: EmojiFiles.Version?,
   val removeSenderKeyMinimium: Boolean,

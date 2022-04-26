@@ -382,6 +382,14 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         }
       )
 
+      switchPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_calling_disable_telecom),
+        isChecked = state.callingDisableTelecom,
+        onClick = {
+          viewModel.setInternalCallingDisableTelecom(!state.callingDisableTelecom)
+        }
+      )
+
       if (FeatureFlags.donorBadges() && SignalStore.donationsValues().getSubscriber() != null) {
         dividerPref()
 

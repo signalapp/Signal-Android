@@ -19,8 +19,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
 
 /**
@@ -189,7 +189,7 @@ object AndroidTelecomUtil {
   }
 
   private fun isRestrictedDevice(): Boolean {
-    return !FeatureFlags.internalUser()
+    return SignalStore.internalValues().callingDisableTelecom()
   }
 }
 
