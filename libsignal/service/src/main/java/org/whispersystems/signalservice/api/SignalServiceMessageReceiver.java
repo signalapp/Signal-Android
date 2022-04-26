@@ -221,7 +221,8 @@ public class SignalServiceMessageReceiver {
                                              entity.getContent(),
                                              entity.getServerTimestamp(),
                                              messageResult.getServerDeliveredTimestamp(),
-                                             entity.getServerUuid());
+                                             entity.getServerUuid(),
+                                             entity.getDestinationUuid());
       }
 
       callback.onMessage(envelope);

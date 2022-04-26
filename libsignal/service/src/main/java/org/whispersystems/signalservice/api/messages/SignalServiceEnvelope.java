@@ -99,12 +99,14 @@ public class SignalServiceEnvelope {
                                byte[] content,
                                long serverReceivedTimestamp,
                                long serverDeliveredTimestamp,
-                               String uuid)
+                               String uuid,
+                               String destinationUuid)
   {
     Envelope.Builder builder = Envelope.newBuilder()
                                        .setType(Envelope.Type.valueOf(type))
                                        .setTimestamp(timestamp)
-                                       .setServerTimestamp(serverReceivedTimestamp);
+                                       .setServerTimestamp(serverReceivedTimestamp)
+                                       .setDestinationUuid(destinationUuid);
 
     if (uuid != null) {
       builder.setServerGuid(uuid);
