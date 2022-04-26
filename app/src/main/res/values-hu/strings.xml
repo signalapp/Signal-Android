@@ -1774,6 +1774,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Nem elérhető</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Görgetés az aljára</string>
   <!--BubbleOptOutTooltip-->
@@ -2100,7 +2101,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">Előfizetés</string>
   <!--Preference label for making a monthly donation to Signal-->
+  <string name="preferences__monthly_donation">Havi adomány</string>
   <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">Egyszeri adomány</string>
   <string name="preferences__privacy">Adatvédelem</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuális MMS beállítások</string>
@@ -3248,6 +3251,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Válj Fenntartóvá!</string>
   <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">A Signalt hozzád hasonló emberek működtetik. Adományoddal kitűzőhöz juthatsz.</string>
   <string name="BecomeASustainerMegaphone__not_now">Később</string>
   <string name="BecomeASustainerMegaphone__donate">Támogatás</string>
   <!--KeyboardPagerFragment-->
@@ -3425,6 +3429,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">A Signalt hozzád hasonló emberek működtetik.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Csatlakozz Te is a támogatói közösséghez, hogy te is hozzájárulhass a technológiánk sikeréhez, amit érted, nem pedig adataid megszerzéséért építettünk!</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Csatlakozz Te is a támogatói közösséghez, hogy te is hozzájárulhass a technológiánk sikeréhez, amit érted, nem pedig adataid megszerzéséért építettünk!</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Havi támogatással segítheted a technológiát, ami számodra, nem pedig adataid megszerzéséért készült.</string>
   <string name="SubscribeFragment__currency">Pénznem</string>
   <string name="SubscribeFragment__more_payment_options">További fizetési lehetőség</string>
   <string name="SubscribeFragment__cancel_subscription">Előfizetés megszüntetése</string>
@@ -3441,6 +3446,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/hó · Megújul: %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/hó  · Lejár: %2$s</string>
   <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">A Signal egy nonprofit, hirdetők és befektetők nélküli, kizárólag felhasználók és rajongók által fenntartott alkalmazás. Indíts havi, rendszeres támogatást, és cserébe kitűzőt kapsz profilképedre, amivel láthatóvá teheted támogatásodat.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Miért támogassam?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">A Signal csapata elkötelezett, hogy nyílt forrású fejlesztéseivel előmozdítsa a privát technológiák térnyerését, amelyek a szólásszabadságot és a biztonságos globális kommunikáció elterjedését biztosítják.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Köszönjük a támogatásodat!</string>
@@ -3456,6 +3462,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ManageDonationsFragment__my_support">Támogatásaim</string>
   <string name="ManageDonationsFragment__manage_subscription">Előfizetés kezelése</string>
   <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__donation_receipts">Adomány nyugták</string>
   <string name="ManageDonationsFragment__badges">Jelvények</string>
   <string name="ManageDonationsFragment__subscription_faq">Előfizetés GYIK</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Előfizetés lekérdezése sikertelen</string>
@@ -3472,6 +3479,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MySupportPreference__please_contact_support">Kérjük vedd fel a kapcsolatot a Támogatási Központtal!</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Havi támogatás visszavonva</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Egy egyszeri hozzájárulással újraaktiválhatod a \"Löket\" kitűzőt újabb 30 napra.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
@@ -3681,16 +3689,22 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">Összes</string>
   <!--Donation receipts recurring tab label-->
+  <string name="DonationReceiptListFragment__recurring">Rendszeres</string>
   <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">Egyszeri</string>
   <!--Donation receipts boost row label-->
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Részletek</string>
   <!--Donation receipts donation type heading-->
   <!--Donation receipts date paid heading-->
+  <string name="DonationReceiptDetailsFragment__date_paid">Fizetés dátuma</string>
   <!--Donation receipts share PNG-->
   <!--Donation receipts list end note-->
+  <string name="DonationReceiptListFragment__if_you_have">Ha újratelepítetted a Signalt, korábbi adományaid nyugtái nem lesznek elérhetőek.</string>
   <!--Donation receipts document title-->
+  <string name="DonationReceiptDetailsFragment__donation_receipt">Adomány nyugta</string>
   <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">Összeg</string>
   <!--Donation receipts thanks-->
   <!--Donation receipt type-->
   <!--region "Stories Tab"-->
@@ -3724,6 +3738,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="StoriesLandingFragment__hide">Elrejtés</string>
   <!--Displayed in Snackbar after story is hidden-->
   <!--Section header for hidden stories-->
+  <string name="StoriesLandingFragment__hidden_stories">Elrejtett történetek</string>
   <!--Displayed on each sent story under My Stories-->
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">Továbbítás</string>
@@ -3742,6 +3757,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="StoryViewerPageFragment__reply">Válasz</string>
   <!--Displayed when a story has no views-->
   <!--Displayed when a story has no replies yet-->
+  <string name="StoryGroupReplyFragment__no_replies_yet">Még nem érkeztek reakciók</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
   <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Reakció elküldve a történetre</string>
   <!--Label for story views tab-->
@@ -3851,6 +3867,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="TurnOffCircumventionMegaphone_turn_off">Kikapcsolás</string>
   <!--Conversation Item label for when you react to someone else\'s story-->
   <!--Conversation Item label for reactions to your story-->
+  <string name="ConversationItem__reacted_to_your_story">Válasz a történetedre</string>
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->

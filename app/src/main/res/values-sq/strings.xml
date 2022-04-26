@@ -1799,6 +1799,7 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <!--Author formatting for group stories-->
   <string name="QuoteView_s_story">%1$s · Histori</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Ju · Histori</string>
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">S’mund të kihet më</string>
   <!--conversation_fragment-->
@@ -1906,7 +1907,9 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="message_recipients_list_item__view">SHIHENI</string>
   <string name="message_recipients_list_item__resend">RIDËRGOJE</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
+  <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">U kopjua në të papastër vulë kohore dërgimi.</string>
   <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Këtu do të shfaqen përditësime te historia juaj.</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s u bë pjesë e grupit.</item>
@@ -2127,7 +2130,9 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">Pajtim</string>
   <!--Preference label for making a monthly donation to Signal-->
+  <string name="preferences__monthly_donation">Dhurim Mujor</string>
   <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">Dhurim Një Herë</string>
   <string name="preferences__privacy">Privatësi</string>
   <string name="preferences__mms_user_agent">Agjent Përdoruesi MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Rregullime dorazi për MMS-në</string>
@@ -3281,6 +3286,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Bëhuni një Mbështetës</string>
   <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal-i bazohet në njerëz si ju. Dhuroni dhe merrni një stemë.</string>
   <string name="BecomeASustainerMegaphone__not_now">Jo tani</string>
   <string name="BecomeASustainerMegaphone__donate">Dhuroni</string>
   <!--KeyboardPagerFragment-->
@@ -3458,6 +3464,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal bazohet në njerëz si ju.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Përkrahni teknologjinë e ngritur për ju—jo për të dhënat tuaja—duke u bërë pjesë e bashkësisë së njerëzve që e mbajnë atë gjallë.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Përkrahni teknologjinë që është ngritur për ju, jo për të dhënat tuaja, duke u bërë pjesë e bashkësisë që mbështet Signal-in.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Bëni një dhurim përsëritës mujor për Signal-in që të përkrahni teknologji të ndërtuar për ju, jo për të dhënat tuaja.</string>
   <string name="SubscribeFragment__currency">Monedhë</string>
   <string name="SubscribeFragment__more_payment_options">Më Tepër Mundësi Pagesash</string>
   <string name="SubscribeFragment__cancel_subscription">Anuloje Pajtimin</string>
@@ -3474,8 +3481,10 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/muaj · Rinovohet më %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/muaj · Skadon më %2$s</string>
   <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal-i është një ent jofitimprurës, pa reklamues për të apo investues, i bazuar vetëm te njerëzit që e përdorin dhe vlerësojnë. Bëni një dhurim mujor ripërsëritës dhe merrni një stemë profili për t\’u treguar të tjerëve përkrahjen tuaj.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Pse të Dhurohet?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal-i është i përkushtuar zhvillimit të teknologjive të privatësisë me burim të hapët që mbrojnë shprehjen e lirë dhe bëjnë të mundur komunikim të sigurt global.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Dhurimi juaj i shërben kësaj kauze dhe paguan për zhvillimin dhe operacioneve të lidhura me një aplikacion të përdorur nga miliona vetë për komunikim privat. Pa reklama. Pa gjurmues. Pa shaka.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Faleminderit për Përkrahjen tuaj!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Faleminderit për Fuqizimin!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Mundeni edhe të</string>
@@ -3489,6 +3498,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ManageDonationsFragment__my_support">Përkrahja ime</string>
   <string name="ManageDonationsFragment__manage_subscription">Administroni pajtim</string>
   <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__donation_receipts">Dëftesa Dhurimesh</string>
   <string name="ManageDonationsFragment__badges">Stema</string>
   <string name="ManageDonationsFragment__subscription_faq">PBR pajtimesh</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Gabim në marrje pajtimi.</string>
@@ -3505,6 +3515,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="MySupportPreference__please_contact_support">Ju lutemi, lidhuni me ata të asistencës.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Dhurim i Përmuajshëm i Anuluar</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Stemën tua Përforcim mund ta riaktivizoni për 30 ditë të tjera përmes një kontributi një herësh.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
@@ -3716,6 +3727,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Donation receipts recurring tab label-->
   <string name="DonationReceiptListFragment__recurring">E ripërsëritshme</string>
   <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">Një herë</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Përforcojeni</string>
   <!--Donation receipts details title-->
@@ -3979,6 +3991,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="TurnOffCircumventionMegaphone_turn_off">Çaktivizoje</string>
   <!--Conversation Item label for when you react to someone else\'s story-->
   <!--Conversation Item label for reactions to your story-->
+  <string name="ConversationItem__reacted_to_your_story">Reagoi ndaj historisë tuaj</string>
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Reagoi te një histori</string>
   <!--endregion-->

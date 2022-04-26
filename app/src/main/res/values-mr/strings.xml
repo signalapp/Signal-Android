@@ -1896,6 +1896,7 @@
   <string name="message_recipients_list_item__view">बघा</string>
   <string name="message_recipients_list_item__resend">पुन्हा पाठवा</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
+  <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">क्लिपबोर्डवर पाठवलेला टाइमस्टॅम्प कॉपी केला.</string>
   <!--Displayed when there are no outgoing stories-->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
@@ -2117,7 +2118,9 @@
   <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">सब्स्क्रिप्शन</string>
   <!--Preference label for making a monthly donation to Signal-->
+  <string name="preferences__monthly_donation">मासिक देणगी</string>
   <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation"> एक-वेळ देणगी</string>
   <string name="preferences__privacy">गोपनीयता</string>
   <string name="preferences__mms_user_agent">MMS वापरकर्ता एजंट</string>
   <string name="preferences__advanced_mms_access_point_names">व्यक्तिचलित MMS सेटिंग</string>
@@ -3266,6 +3269,7 @@
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">सस्टेनर बना</string>
   <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal आपल्यासारख्या लोकांद्वारे समर्थित आहे. देणगी द्या आणि प्रोफाइल बॅज प्राप्त करा.</string>
   <string name="BecomeASustainerMegaphone__not_now">आता नाही</string>
   <string name="BecomeASustainerMegaphone__donate">दान करा</string>
   <!--KeyboardPagerFragment-->
@@ -3443,6 +3447,7 @@
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal आपल्यासारख्या लोकांद्वारा समर्थित आहे.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">या तंत्रज्ञानाचे समर्थन करा जे तुमच्या साठी बनवले आहे — तुमच्या डेटासाठी नाही — ते टिकवून ठेवणाऱ्या लोकांच्या समुदायात सामील होऊन.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">या तंत्रज्ञानाचे समर्थन करा जे तुमच्या साठी बनवले आहे — तुमच्या डेटासाठी नाही — ते टिकवून ठेवणाऱ्या लोकांच्या समुदायात सामील होऊन.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">तुमच्या डेटासाठी नव्हे तर तुमच्यासाठी तयार केलेल्या तंत्रज्ञानाला समर्थन देण्यासाठी Signal ला आवर्ती मासिक देणगी द्या.</string>
   <string name="SubscribeFragment__currency">चलन</string>
   <string name="SubscribeFragment__more_payment_options">अधिक पेमेंट पर्याय</string>
   <string name="SubscribeFragment__cancel_subscription">सब्स्क्रिप्शन रद्द करा</string>
@@ -3459,8 +3464,10 @@
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/महिना . नूतनीकरण %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/महिना . कालबाह्य %2$s</string>
   <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal ही एक विना - नफा संस्था आहे ज्यामध्ये कोणतेही जाहिरातदार किंवा गुंतवणूकदार नसतात, केवळ ते वापरणाऱ्या आणि मूल्यवान लोकांद्वारे टिकून राहते. आवर्ती मासिक देणगी द्या आणि तुमचे समर्थन सामायिक करण्यासाठी प्रोफाइल बॅज मिळवा.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">देणगी का द्यायची?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">मुक्त अभिव्यक्तीचे संरक्षण करणारे आणि सुरक्षित जागतिक संचार सक्षम करणारे मुक्त स्रोत गोपनीयता तंत्रज्ञान विकसित करण्यासाठी Signal वचनबद्ध आहे.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">आपली देणगी या कारणाला चालना देते आणि खाजगी संचारासाठी लाखो लोक वापरत असलेल्या अॅपच्या विकासासाठी आणि कार्यासाठी पैसे देतात. जाहिराती नाहीत. ट्रॅकर्स नाहीत. चेष्टा नाही.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">आपल्या समर्थनासाठी धन्यवाद !</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">बूस्ट साठी धन्यवाद !</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">आपण सुद्धा</string>
@@ -3474,6 +3481,7 @@
   <string name="ManageDonationsFragment__my_support">आपले समर्थन</string>
   <string name="ManageDonationsFragment__manage_subscription">सब्स्क्रिप्शन व्यवस्थापित करा</string>
   <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__donation_receipts">देणगी पावत्या </string>
   <string name="ManageDonationsFragment__badges">बॅजेस्</string>
   <string name="ManageDonationsFragment__subscription_faq">सब्स्क्रिप्शन बद्दल वारंवार विचारले जाणारे प्रश्न</string>
   <string name="ManageDonationsFragment__error_getting_subscription">सब्स्क्रिप्शन मिळविण्यात त्रुटी.</string>
@@ -3491,6 +3499,7 @@
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
   <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">आपला बूस्ट बॅज कालबाह्य झाला आहे आणि तो यापुढे आपल्या प्रोफाइलवर दिसणार नाही.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">आपण आपला बूस्ट बॅज आणखी ३० दिवसांसाठी एक-वेळच्या योगदानासह पुन्हा सक्रिय करू शकता.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">सस्टेनर बना</string>
@@ -3701,6 +3710,7 @@
   <!--Donation receipts recurring tab label-->
   <string name="DonationReceiptListFragment__recurring">आवर्ती</string>
   <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">एक-वेळ </string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">बूस्ट</string>
   <!--Donation receipts details title-->

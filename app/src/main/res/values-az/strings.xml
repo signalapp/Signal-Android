@@ -3482,7 +3482,7 @@
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">İanəniz, bu niyyətə xidmət edir və özəl ünsiyyət üçün milyonlarla insan tərəfindən istifadə olunan tətbiqin inkişafı və əməliyyat xərclərini qarşılayır. Reklam yoxdur. İzləmə yoxdur. Zarafat yoxdur.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Dəstəyiniz üçün təşəkkürlər!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Gücləndirmə üçün təşəkkürlər!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">%s nişanını qazandınız! Signal-a ianə verilməsi üzrə fərqindəlik yaratmaq üçün bu nişanını profilinizdə nümayiş etdirin.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">%s nişanını qazandınız! Signal-a ianə verilməsi üzrə fərqindəlik yaratmaq üçün bu nişanı profilinizdə nümayiş etdirin.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Gücləndirmə işanını qazandınız! Signal-a ianə verilməsi üzrə fərqindəlik yaratmaq üçün bu nişanını profilinizdə nümayiş etdirin.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Həmçinin</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">aylıq bir Dəstəkçi ola bilərsiniz.</string>

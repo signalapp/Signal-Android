@@ -223,7 +223,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="ConversationActivity_unblock">Deblokkeren</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Bijlage overschrijdt de maximale grootte voor het type bericht dat je wilt verzenden.</string>
   <string name="ConversationActivity_unable_to_record_audio">Kan audio niet opnemen!</string>
-  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Je kunt naar dit groepsgesprek geen berichten verzenden omdat je niet langer een lid van deze groep bent.</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Omdat je niet langer lid bent van deze groep ontvang je geen nieuwe berichten en kun je geen berichten verzenden.</string>
   <string name="ConversationActivity_only_s_can_send_messages">Alleen %1$s kunnen berichten verzenden.</string>
   <string name="ConversationActivity_admins">beheerders</string>
   <string name="ConversationActivity_message_an_admin">Bericht verzenden naar een beheerder</string>
@@ -250,12 +250,12 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="ConversationActivity_sticker_pack_installed">Stickerpakket geïnstalleerd</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Nieuw: zeg het met stickers</string>
   <string name="ConversationActivity_cancel">Annuleren</string>
-  <string name="ConversationActivity_delete_conversation">Gesprek verwijderen?</string>
-  <string name="ConversationActivity_delete_and_leave_group">Groep verwijderen en verlaten?</string>
+  <string name="ConversationActivity_delete_conversation">Gesprek wissen?</string>
+  <string name="ConversationActivity_delete_and_leave_group">Groep wissen en verlaten?</string>
   <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Dit gesprek zal op al je eigen apparaten worden gewist.</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Je zult deze groep verlaten en het gesprek zal op al je eigen apparaten worden gewist.</string>
-  <string name="ConversationActivity_delete">Verwijderen</string>
-  <string name="ConversationActivity_delete_and_leave">Verwijderen en verlaten</string>
+  <string name="ConversationActivity_delete">Wissen</string>
+  <string name="ConversationActivity_delete_and_leave">Wissen en verlaten</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal heeft toegang nodig tot je microfoon om %1$s te bellen.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Er zijn vanaf nu meer opties in de ‘Groepsgesprek-instellingen’</string>
   <string name="ConversationActivity_join">Deelnemen</string>
@@ -333,11 +333,11 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
     <item quantity="other">Geselecteerde gesprekken wissen?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-    <item quantity="one">Dit zal het geselecteerde gesprek alleen voor jou onherroepelijk wissen, maar dus niet voor je gesprekspartner(s).</item>
-    <item quantity="other">Dit zal alle %1$d geselecteerde gesprekken alleen voor jou onherroepelijk wissen, maar dus niet voor je gesprekspartner(s).</item>
+    <item quantity="one">Dit zal het geselecteerde gesprek onherroepelijk van je eigen apparaat wissen. Het gesprek wordt niet gewist voor je gesprekspartner(s).</item>
+    <item quantity="other">Dit zal alle %1$d geselecteerde gesprekken onherroepelijk van je eigen apparaat wissen. De gesprekken worden niet gewist voor je gesprekspartners.</item>
   </plurals>
-  <string name="ConversationListFragment_deleting">Verwijderen</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">Geselecteerde gesprekken aan het verwijderen …</string>
+  <string name="ConversationListFragment_deleting">Aan het wissen</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Geselecteerde gesprekken aan het wissen …</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">Gesprek gearchiveerd</item>
     <item quantity="other">%d gesprekken gearchiveerd</item>
@@ -590,7 +590,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Groep verlaten?</string>
-  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Je zult in dit groepsgesprek niet langer berichten kunnen verzenden of ontvangen.</string>
+  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Je zult dit groepsgesprek nog wel kunnen teruglezen maar je zult niet langer berichten kunnen verzenden of ontvangen.</string>
   <string name="LeaveGroupDialog_leave">Verlaten</string>
   <string name="LeaveGroupDialog_choose_new_admin">Kies een nieuwe beheerder</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Voor je de groep verlaat moet je tenminste één beheerder aanwijzen voor deze groep.</string>
@@ -768,7 +768,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
   <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Je kunt niet door middel van een groepsverwijzing lid worden van deze groep omdat je door een beheerder uit deze groep bent verwijderd. </string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
-  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">De groepsverwijzing is niet langer geldig.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Deze groepsverwijzing is niet langer geldig.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
   <string name="GroupJoinBottomSheetDialogFragment_link_error">Fout bij groepsverwijzing</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
@@ -845,10 +845,10 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
     <item quantity="other">Geselecteerde items wissen?</item>
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">Dit zal het geselecteerde bestand alleen voor jou onherroepelijk wissen, maar dus niet voor je gesprekspartner(s). Enig berichttekst geassocieerd met dit bestand zal ook worden gewist.</item>
-    <item quantity="other">Dit zal alle %1$d geselecteerde bestanden alleen voor jou onherroepelijk wissen, maar dus niet voor je gesprekspartner(s). Enig berichttekst geassocieerd met deze bestanden zal ook worden gewist.</item>
+    <item quantity="one">Dit zal het geselecteerde bestand onherroepelijk van je eigen apparaat wissen. Het bestanden wordt niet gewist voor je gesprekspartner(s). Als er tekst was bijgevoegd zal ook die worden gewist.</item>
+    <item quantity="other">Dit zal alle %1$d geselecteerde bestanden onherroepelijk van je eigen apparaat wissen. De bestanden worden niet gewist voor je gesprekspartners. Als er tekst was bijgevoegd zal ook die worden gewist.</item>
   </plurals>
-  <string name="MediaOverviewActivity_Media_delete_progress_title">Aan het verwijderen</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Aan het wissen</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Berichten aan het wissen …</string>
   <string name="MediaOverviewActivity_Select_all">Alles selecteren</string>
   <string name="MediaOverviewActivity_collecting_attachments">Bijlagen aan het verzamelen …</string>
@@ -985,7 +985,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="MessageRecord_you_removed_s">Je hebt %1$s verwijderd van de groep.</string>
   <string name="MessageRecord_s_removed_s">%1$s heeft %2$s verwijderd van de groep.</string>
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s heeft je verwijderd van de groep.</string>
-  <string name="MessageRecord_you_left_the_group">Je kunt geen berichten verzenden omdat je de groep hebt verlaten.</string>
+  <string name="MessageRecord_you_left_the_group">Je bent niet langer lid van deze groep.</string>
   <string name="MessageRecord_s_left_the_group">%1$s heeft de groep verlaten.</string>
   <string name="MessageRecord_you_are_no_longer_in_the_group">Je bent niet langer lid van de groep.</string>
   <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s is niet langer lid van de groep.</string>
@@ -1143,7 +1143,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="MessageRequestBottomView_block">Blokkeren</string>
   <string name="MessageRequestBottomView_unblock">Deblokkeren</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je berichten van %1$s ontvangen, en sta je toe dat hij of zij je profielnaam, -foto en -omschrijving kan zien? Als je leesbevestigingen hebt ingeschakeld kan hij of zij die nog niet zien totdat je de uitnodiging hebt aanvaard.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Wil je berichten van %1$s ontvangen, en sta je toe dat hij of zij je profielnaam, -foto en -omschrijving kan zien? Je zult geen berichten ontvangen en je profiel zal voor hem of haar niet meer worden bijgewerkt totdat je hem of haar hebt gedeblokkeerd.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Wil je berichten van %1$s ontvangen, en sta je toe dat hij of zij je profielnaam, -foto en -omschrijving kan zien? Totdat je hem of haar hebt gedeblokkeerd zul je geen berichten ontvangen en je profiel voor hem of haar niet meer worden bijgewerkt.</string>
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Wil je nieuwsberichten van %1$s ontvangen? Je zult geen berichten ontvangen totdat je hen hebt gedeblokkeerd.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Wil je je profielnaam, -foto en -omschrijving voor deze groep zichtbaar maken om je gesprek met de groep voort te kunnen zetten?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Zet deze groep om om nieuwe functionaliteiten te kunnen gebruiken zoals  @vermeldingen en beheerders. Groepsleden die hun profielnaam, -foto en -omschrijving niet voor deze groep zichtbaar hebben gemaakt, zullen worden uitgenodigd om tot deze groep toe te treden.</string>
@@ -1151,7 +1151,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Wil je je profielnaam, -foto en -omschrijving voor %1$s zichtbaar maken om je gesprek voort te kunnen zetten?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Als je leesbevestigingen hebt ingeschakeld kunnen de leden van deze groep die nog niet zien totdat je de uitnodiging hebt aanvaard.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Je bent door iemand met wie je eerder een gesprek hebt gehad of met wie je in dezelfde groep zat toegevoegd aan deze groep. Wil je lid blijven van deze groep? Als je leesbevestigingen hebt ingeschakeld kunnen de leden van deze groep die nog niet zien totdat je de uitnodiging hebt aanvaard.</string>
-  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Wil je weer berichten van deze groep ontvangen, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Je zult geen berichten ontvangen en je profiel zal voor de leden van deze groep niet worden bijgewerkt totdat je de groep hebt gedeblokkeerd.</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Wil je weer berichten van deze groep ontvangen, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Totdat je de groep hebt gedeblokkeerd zul je geen berichten ontvangen en je profiel zal voor de leden van deze groep niet worden bijgewerkt.</string>
   <string name="MessageRequestProfileView_view">Weergeven</string>
   <string name="MessageRequestProfileView_member_of_one_group">Lid van %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Lid van %1$s en %2$s</string>
@@ -1161,8 +1161,8 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
     <item quantity="other">%1$d leden</item>
   </plurals>
   <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="one">%1$d lid (+%2$d uitgenodigden)</item>
-    <item quantity="other">%1$d leden (+%2$d uitgenodigden)</item>
+    <item quantity="one">%1$d lid (+%2$d genodigden)</item>
+    <item quantity="other">%1$d leden (+%2$d genodigden)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d extra groep</item>
@@ -1227,8 +1227,8 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
     <item quantity="other">Je hebt nog %1$d pogingen resterend. Wanneer je geen pogingen meer over hebt, dan kun je nog wel een nieuwe pincode aanmaken. Je kunt Signal dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam, -foto en -omschrijving zullen dan verloren gaan.</item>
   </plurals>
   <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal-registratratie - Ik heb hulp nodig bij de Signal-pincode op een Android apparaat</string>
-  <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Alfanumerieke pincode invoeren</string>
-  <string name="PinRestoreEntryFragment_enter_numeric_pin">Voer numerieke pincode in.</string>
+  <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Een alfanumerieke pincode invoeren</string>
+  <string name="PinRestoreEntryFragment_enter_numeric_pin">Een numerieke pincode invoeren</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Pincode aanmaken</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Je hebt geen pogingen resterend om je pincode te raden, maar je kunt nog wel gebruik blijven maken van Signal door een nieuwe pincode aan te maken. Ter beveiliging van je profielinformatie, zullen je instellingen, profielnaam, -foto en -omschrijving niet worden herstelt.</string>
@@ -1332,7 +1332,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
     <item quantity="other">In dit gesprek zijn %1$s, %2$s en %3$d anderen aanwezig</item>
   </plurals>
   <string name="WebRtcCallView__flip">Omdraaien</string>
-  <string name="WebRtcCallView__speaker">Luidspreker</string>
+  <string name="WebRtcCallView__speaker">Luid­spreker</string>
   <string name="WebRtcCallView__camera">Camera</string>
   <string name="WebRtcCallView__unmute">Microfoon niet langer dempen</string>
   <string name="WebRtcCallView__mute">Dempen</string>
@@ -1592,7 +1592,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal heeft toegang tot externe opslag nodig om iets op te slaan op de externe opslag, maar deze is permanent geweigerd. Ga naar de instellingen voor deze app, tik op ‘App-machtigingen’ en schakel ‘Opslagruimte’ in.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan niet opslaan naar externe opslag zonder machtiging</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Bericht wissen?</string>
-  <string name="MediaPreviewActivity_media_delete_confirmation_message">Dit bericht zal alleen voor jou onherroepelijk worden gewist, maar dus niet voor je gesprekspartner(s).</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Dit bericht zal onherroepelijk van je eigen apparaat worden gewist. Het bericht wordt niet gewist voor je gesprekspartner(s).</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s naar %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_you_to_s">Jij naar %1$s</string>
@@ -2098,7 +2098,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="preferences__enable_passphrase">Appvergrendeling met wachtwoord inschakelen</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Vergrendel de Signal-app en -meldingen met een wachtwoord</string>
   <string name="preferences__screen_security">Meekijkpreventie</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Bescherm je gesprekken op je eigen telefoon tegen schermopnames vanuit andere apps door Signals inhoud te verbergen in de lijst van recent geopende apps en door schermafdrukken te blokkeren</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Bescherm op je eigen telefoon je gesprekken tegen stiekeme schermopnames vanuit spionerende apps, door Signals inhoud te verbergen in het overzicht van recent geopende apps en door schermafdrukken te blokkeren.</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Signal automatisch vergrendelen na een bepaalde periode van inactiviteit</string>
   <string name="preferences__inactivity_timeout_passphrase">Vergrendeling bij inactiviteit</string>
   <string name="preferences__inactivity_timeout_interval">Inactiviteitsduur voor vergrendeling</string>
@@ -2581,7 +2581,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Om je te helpen je pincode te onthouden vraagt Signal je periodiek om te bewijzen dat je je pincode nog weet. Als je je pincode een aantal keer juist invoert, dan zal Signal je minder vaak deze vraag stellen. Je kunt deze herinneringen uitschakelen via Instellingen &gt; Jouw registratie.</string>
   <string name="KbsReminderDialog__skip">Overslaan</string>
   <string name="KbsReminderDialog__submit">Bevestigen</string>
-  <string name="KbsReminderDialog__forgot_pin">Pincode vergeten?</string>
+  <string name="KbsReminderDialog__forgot_pin">Tik hier als je je pincode bent vergeten</string>
   <string name="KbsReminderDialog__incorrect_pin_try_again">Foutieve pincode, probeer het opnieuw.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Vergrendeld voor dit telefoonnummer</string>
@@ -2591,8 +2591,8 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Voer je pincode in</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Voer de pincode in welke je eerder hebt aangemaakt om informatie versleuteld op te slaan op Signals servers. Dit is niet dezelfde code als de telefoonnummer verificatie code die je per sms of telefoonoproep hebt ontvangen.</string>
-  <string name="RegistrationLockFragment__enter_alphanumeric_pin">Alfanumerieke pincode invoeren</string>
-  <string name="RegistrationLockFragment__enter_numeric_pin">Voer numerieke pincode in.</string>
+  <string name="RegistrationLockFragment__enter_alphanumeric_pin">Een alfanumerieke pincode invoeren</string>
+  <string name="RegistrationLockFragment__enter_numeric_pin">Een numerieke pincode invoeren</string>
   <string name="RegistrationLockFragment__incorrect_pin_try_again">Foutieve pincode, probeer het opnieuw.</string>
   <string name="RegistrationLockFragment__forgot_pin">Pincode vergeten?</string>
   <string name="RegistrationLockFragment__incorrect_pin">Foutieve pincode</string>
@@ -3117,7 +3117,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="AppSettingsFragment__invite_your_friends">Kennissen uitnodigingen</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Jouw registratie</string>
-  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Herinneringen helpen je om je Signal-pincode te onthouden. Dit is belangrijk, omdat je je pincode later niet kunt veranderen of teruglezen en omdat je de pincode nodig zult hebben om je gegevens te herstellen wanneer je je telefoonnummer opnieuw registreert. Naarmate je je pincode een aantal keer juist invoert, zul je minder vaak herinneringen te zien krijgen.</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Herinneringen helpen je om je Signal-pincode te onthouden. Dit is belangrijk, omdat je je pincode later niet kunt veranderen of teruglezen en omdat je de pincode nodig zult hebben om je gegevens te herstellen wanneer je je telefoonnummer opnieuw registreert.</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Als je dit inschakelt zal Signal je verplichten om je Signal-pincode in te voeren wanneer je je opnieuw met dit telefoonnummer registreert. Zo voorkom je dat iemand anders zich met jouw telefoonnummer registreert om berichten te ontvangen die voor jou bedoeld zijn. Dit wordt ook wel twee-factor-authenticatie genoemd.</string>
   <string name="AccountSettingsFragment__change_phone_number">Telefoonnummer wijzigen</string>
   <!--ChangeNumberFragment-->
@@ -3245,12 +3245,12 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="ChatColorSelectionFragment__edit">Aanpassen</string>
   <string name="ChatColorSelectionFragment__duplicate">Kopie maken</string>
   <string name="ChatColorSelectionFragment__delete">Wissen</string>
-  <string name="ChatColorSelectionFragment__delete_color">Kleur verwijderen</string>
+  <string name="ChatColorSelectionFragment__delete_color">Kleur wissen</string>
   <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-    <item quantity="one">Deze zelfgekozen kleur wordt in %1$d gesprek gebruikt. Wil je het voor dat gesprek wissen?</item>
-    <item quantity="other">Deze zelfgekozen kleur wordt in %1$d gesprekken gebruikt. Wil je het voor die gesprekken wissen?</item>
+    <item quantity="one">Deze zelfgekozen kleur wordt nog in %1$d gesprek gebruikt. Wil je het voor dat gesprek wissen?</item>
+    <item quantity="other">Deze zelfgekozen kleur wordt nog in %1$d gesprekken gebruikt. Wil je het voor al die gesprekken wissen?</item>
   </plurals>
-  <string name="ChatColorSelectionFragment__delete_chat_color">Gesprekskleur verwijderen?</string>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Gesprekskleur wissen?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Effen</string>
   <string name="CustomChatColorCreatorFragment__gradient">Verloop</string>

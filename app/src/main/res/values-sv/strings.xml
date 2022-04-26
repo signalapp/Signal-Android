@@ -2123,7 +2123,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">Abonnemang</string>
   <!--Preference label for making a monthly donation to Signal-->
+  <string name="preferences__monthly_donation">Månatlig donation</string>
   <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">Engångsdonation</string>
   <string name="preferences__privacy">Integritet</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuella MMS-inställningar</string>
@@ -3273,6 +3275,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Bli en upprätthållare</string>
   <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal drivs av människor som du. Bidra och få ett märke.</string>
   <string name="BecomeASustainerMegaphone__not_now">Inte nu</string>
   <string name="BecomeASustainerMegaphone__donate">Donera</string>
   <!--KeyboardPagerFragment-->
@@ -3449,7 +3452,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ImageView__badge">Märke</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal drivs av personer som du.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Stöd teknik som är byggd för dig—inte för dina data—genom att gå med gemenskapen som upprätthåller den.</string>
-  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Stöd teknik som är byggd för dig, inte för din data, genom att gå med i gemenskapen som upprätthåller Signal.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Stöd teknik som är byggd för dig, inte för dina data, genom att gå med i gemenskapen som upprätthåller Signal.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Gör en återkommande månatlig donation till Signal för att stöda teknik byggd för dig, inte dina data.</string>
   <string name="SubscribeFragment__currency">Valuta</string>
   <string name="SubscribeFragment__more_payment_options">Fler betalningsalternativ</string>
   <string name="SubscribeFragment__cancel_subscription">Avbryt abonnemang</string>
@@ -3466,8 +3470,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/månad · Förnyar %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/månad · Upphör %2$s</string>
   <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal är en ideell organisation utan annonsörer eller investerare, endast stödd av de människor som använder och värdesätter den. Gör en återkommande månatlig donation och få ett profilmärke för att dela ditt stöd.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Varför donera?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal är engagerad i att utveckla integritetsteknologi med öppen källkod som skyddar yttrandefriheten och möjliggör säker global kommunikation.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Din donation driver denna sak och betalar för utvecklingen och driften av en app som används av miljoner för privat kommunikation. Inga annonser. Inga spårare. Inget påhitt.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Tack för ditt stöd!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Tack för boosten!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Du kan också</string>
@@ -3498,6 +3504,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MySupportPreference__please_contact_support">Kontakta supporten.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Månatlig donation avbruten</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Du kan återaktivera ditt Boost-märke för ytterligare 30 dagar med ett engångsbidrag.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
@@ -3755,9 +3762,11 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Skickar…</string>
   <!--Label when multiple stories are pending sending-->
+  <string name="StoriesLandingItem__sending_d">Skickar %1$d…</string>
   <!--Label when a story fails to send-->
   <string name="StoriesLandingItem__send_failed">Att skicka meddelandet misslyckades</string>
   <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">Klicka för att försöka igen</string>
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Dölj berättelse?</string>
   <!--Message of dialog confirming decision to hide a story-->
@@ -3964,6 +3973,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="StorySlateView__couldnt_load_content">Det gick inte att ladda innehåll</string>
   <!--Toasted when the user externally shares to a text story successfully-->
   <!--Toasted when the user external share to a text story fails-->
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">Det gick inte att skicka berättelsen</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Stänga av censur kringgående?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->

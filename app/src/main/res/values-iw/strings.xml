@@ -2299,7 +2299,9 @@
   <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">מינוי</string>
   <!--Preference label for making a monthly donation to Signal-->
+  <string name="preferences__monthly_donation">תרומה חודשית</string>
   <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">תרומה חד־פעמית</string>
   <string name="preferences__privacy">פרטיות</string>
   <string name="preferences__mms_user_agent">סוכן משתמש MMS</string>
   <string name="preferences__advanced_mms_access_point_names">הגדרות MMS ידניות</string>
@@ -3475,6 +3477,7 @@
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">הפוך אל מחזיק</string>
   <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal ממונע על ידי אנשים כמוך. תרום וקבל תג.</string>
   <string name="BecomeASustainerMegaphone__not_now">לא עכשיו</string>
   <string name="BecomeASustainerMegaphone__donate">תרום</string>
   <!--KeyboardPagerFragment-->
@@ -3660,6 +3663,7 @@
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal ממונע על ידי אנשים כמוך.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">תמוך בטכנולוגיה שנבנתה עבורך—לא עבור הנתונים שלך—ע״י הצטרפות אל קהילת האנשים שמחזיקים אותה.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">תמוך בטכנולוגיה שנבנתה עבורך, לא עבור הנתונים שלך, ע״י הצטרפות אל הקהילה שמחזיקה את Signal.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">בצע תרומה חודשית מחזורית אל Signal כדי לתמוך בטכנולוגיה שנבנתה עבורך, לא עבור הנתונים שלך.</string>
   <string name="SubscribeFragment__currency">מטבע</string>
   <string name="SubscribeFragment__more_payment_options">עוד אפשרויות תשלום</string>
   <string name="SubscribeFragment__cancel_subscription">בטל מינוי</string>
@@ -3676,10 +3680,14 @@
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/חודש · מתחדש %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/חודש · יפוג %2$s</string>
   <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal הוא ללא מטרות רווח בלי מפרסמים או משקיעים, מוחזק רק ע״י האנשים שמשתמשים בו ומעריכים אותו. בצע תרומה חודשית חוזרת וקבל תג פרופיל כדי לשתף את התמיכה שלך.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">למה לתרום?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal מחויב לפתח טכנולוגית פרטיות בקוד פתוח אשר מגינה על חופש ביטוי ומאפשרת תקשורת עולמית מאובטחת.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">התרומה שלך מתדלקת את המטרה הזאת ומשלמת עבור הפיתוח והפעולות של יישום שנמצא בשימוש ע״י מיליוני אנשים למען תקשורת פרטית. ללא פרסומות. ללא עוקבנים. ללא שטויות.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">תודה על התמיכה שלך!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">תודה על התמריץ!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">הרווחת תג %s! הצג את התג הזה בפרופיל שלך כדי לעלות מודעות לגבי תרומה אל Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">הרווחת תג תמריץ! הצג את התג הזה בפרופיל שלך כדי לעלות מודעות לגבי תרומה אל Signal.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">אתה גם יכול</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">הפוך אל מחזיק חודשי.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">הצג בפרופיל</string>
@@ -3697,6 +3705,7 @@
   <string name="ManageDonationsFragment__error_getting_subscription">שגיאה בהשגת מינוי.</string>
   <string name="BoostFragment__give_signal_a_boost">תן אל Signal תמריץ</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">בצע תרומה חד־פעמית והרווח תג תמריץ למשך %1$d ימים.</string>
   <string name="Boost__enter_custom_amount">הכנס סכום מותאם אישית</string>
   <string name="Boost__one_time_contribution">תרומה חד־פעמית</string>
   <string name="MySupportPreference__add_a_signal_boost">הוסף תמריץ Signal</string>
@@ -3707,15 +3716,21 @@
   <string name="MySupportPreference__couldnt_add_badge_s">לא היה ניתן להוסיף תג. %1$s</string>
   <string name="MySupportPreference__please_contact_support">אנא צור קשר עם התמיכה.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">תג תמריץ פג</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">תרומה חודשית בוטלה</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">תג התמריץ שלך פג והוא אינו גלוי יותר בפרופיל שלך.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">אתה יכול להפעיל מחדש את תג התמריץ שלך למשך 30 ימים נוספים עם תרומה חד־פעמית.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">אתה יכול להמשיך להשתמש ב־Signal אבל כדי לתמוך בטכנולוגיה שנבנתה עבורך, שקול להפוך אל מחזיק חודשי ע״י ביצוע תרומה חודשית.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">הפוך אל מחזיק</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">הוסף תמריץ</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">לא עכשיו</string>
   <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">התרומה החודשית המחזורית שלך בוטלה באופן אוטומטי מאחר שהיית בלתי פעיל למשך זמן רב. תג ה%1$s שלך אינו גלוי יותר בפרופיל שלך.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">התרומה החודשית המחזורית שלך בוטלה מאחר שלא יכולנו לעבד את התשלום שלך. התג שלך אינו גלוי יותר בפרופיל שלך.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">אתה יכול להמשיך להשתמש ב־Signal אבל כדי לתמוך ביישום ולהפעיל מחדש את התג שלך, חדש עכשיו.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">חדש מינוי</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">לא ניתן לעבד תשלום מינוי</string>
@@ -3966,9 +3981,11 @@
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">שולח…</string>
   <!--Label when multiple stories are pending sending-->
+  <string name="StoriesLandingItem__sending_d">שולח %1$d…</string>
   <!--Label when a story fails to send-->
   <string name="StoriesLandingItem__send_failed">השליחה נכשלה</string>
   <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">הקש כדי לנסות שוב</string>
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">להסתיר סיפור?</string>
   <!--Message of dialog confirming decision to hide a story-->
@@ -4126,6 +4143,7 @@
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <string name="StoryDialogs__edit_viewers">ערוך צופים</string>
   <!--Error message shown when a failure occurs during story send-->
+  <string name="StoryDialogs__story_could_not_be_sent">סיפור לא היה יכול להישלח. בדוק את החיבור שלך ונסה שוב.</string>
   <!--Error message dialog button to resend a previously failed story send-->
   <string name="StoryDialogs__send">שלח</string>
   <!--Privacy Settings toggle title for stories-->
@@ -4184,7 +4202,9 @@
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <string name="StorySlateView__couldnt_load_content">לא היה ניתן לטעון תוכן</string>
   <!--Toasted when the user externally shares to a text story successfully-->
+  <string name="TextStoryPostCreationFragment__sent_story">סיפור נשלח</string>
   <!--Toasted when the user external share to a text story fails-->
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">נכשל בשליחת סיפור</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">לכבות עקיפת צנזורה?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->

@@ -2298,7 +2298,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">Předplatné</string>
   <!--Preference label for making a monthly donation to Signal-->
+  <string name="preferences__monthly_donation">Měsíční příspěvek</string>
   <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">Jednorázový příspěvek</string>
   <string name="preferences__privacy">Soukromí</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuální nastavení MMS</string>
@@ -3474,6 +3476,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Staňte se podporovatelem</string>
   <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal je aplikace, za kterou stojí lidé jako vy. Prokažte jim dnes svoji podporu!</string>
   <string name="BecomeASustainerMegaphone__not_now">Teď ne</string>
   <string name="BecomeASustainerMegaphone__donate">Sponzorujte</string>
   <!--KeyboardPagerFragment-->
@@ -3659,6 +3662,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal pohání lidé, jako jste vy.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Podpořte technologii, která je vytvořena pro vás - ne pro vaše data - a připojte se ke komunitě lidí, kteří ji podporují.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Podpořte technologii, která je vytvořena pro vás, ne kvůli vašim datům, a připojte se ke komunitě lidí, kteří ji podporují.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Pravidelným měsíčním příspěvkem společnosti Signal podpoříte technologii vytvořenou pro vás, ne pro vaše data.</string>
   <string name="SubscribeFragment__currency">Měna</string>
   <string name="SubscribeFragment__more_payment_options">Více možností plateb</string>
   <string name="SubscribeFragment__cancel_subscription">Zrušit předplatné</string>
@@ -3675,10 +3679,14 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/měsíc · Obnovení %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/měsíčně · Exspiruje %2$s</string>
   <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal je nezisková organizace bez inzerentů a investorů, kterou živí pouze lidé, kteří ji používají a oceňují. Přispívejte pravidelně každý měsíc a získejte profilový odznak, abyste se podělili o svou podporu.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Proč přispět?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Společnost Signal se zavázala vyvíjet open source technologii ochrany soukromí, která chrání svobodu projevu a umožňuje bezpečnou globální komunikaci.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Svým příspěvkem podpoříte tento účel a zaplatíte vývoj a provoz aplikace, kterou používají miliony lidí pro soukromou komunikaci. Bez reklamy. Bez sledování. Beze srandy.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Díky za vaši podporu!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Díky za Boost!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Získali jste %s odznak. Zobrazte tento odznak na svém profilu a zvyšte povědomí o dárcovství ve službě Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Získali jste Boost odznak. Zobrazte tento odznak na svém profilu a zvyšte povědomí o dárcovství ve službě Signal.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Můžete také</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">stát se měsíčním podporovatelem.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Zobrazit v profilu</string>
@@ -3696,6 +3704,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ManageDonationsFragment__error_getting_subscription">Chyba při získávání předplatného.</string>
   <string name="BoostFragment__give_signal_a_boost">Dejte Signalu Boost</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Přispějte jednorázově a získejte Boost odznak na %1$d dnů.</string>
   <string name="Boost__enter_custom_amount">Zadat vlastní výši</string>
   <string name="Boost__one_time_contribution">Jednorázový příspěvek</string>
   <string name="MySupportPreference__add_a_signal_boost">Přidat Signal Boost</string>
@@ -3706,15 +3715,21 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MySupportPreference__couldnt_add_badge_s">Nezdařilo se přidat odznak.%1$s</string>
   <string name="MySupportPreference__please_contact_support">Prosím kontaktujte podporu.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Boost odznak vypršel</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Měsíční příspěvek zrušen</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Platnost vašeho odznaku Boost vypršela a již není pro ostatní na vašem profilu viditelný.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Jednorázovým příspěvkem si můžete odznak Boost znovu aktivovat na dalších 30 dní.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Signál můžete používat i nadále, ale abyste podpořili technologii, která je vytvořena pro vás, zvažte možnost stát se podporovatelem měsíčním příspěvkem.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Staňte se podporovatelem</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Přidat Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Teď ne</string>
   <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Váš pravidelný měsíční příspěvek byl automaticky zrušen, protože jste byli příliš dlouho neaktivní. Váš %1$s odznak již není viditelný na vašem profilu.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Váš pravidelný měsíční příspěvek byl zrušen, protože jsme nemohli zpracovat vaši platbu. Váš odznak již není na vašem profilu viditelný.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Aplikaci Signal můžete používat i nadále, ale abyste ji podpořili a znovu aktivovali svůj odznak, obnovte předplatné nyní.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Obnovit předplatné</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Nelze zpracovat platbu za předplatné</string>
@@ -3918,6 +3933,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Donation receipts recurring tab label-->
   <string name="DonationReceiptListFragment__recurring">Opakující se</string>
   <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">Jednorázově</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Boost</string>
   <!--Donation receipts details title-->
@@ -3964,9 +3980,11 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Odesílání…</string>
   <!--Label when multiple stories are pending sending-->
+  <string name="StoriesLandingItem__sending_d">Odesílám %1$d…</string>
   <!--Label when a story fails to send-->
   <string name="StoriesLandingItem__send_failed">Odeslání selhalo</string>
   <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">Klepněte pro opakování</string>
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Skrýt příběh?</string>
   <!--Message of dialog confirming decision to hide a story-->
@@ -4124,6 +4142,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <string name="StoryDialogs__edit_viewers">Upravit, kdo si může příběh zobrazit</string>
   <!--Error message shown when a failure occurs during story send-->
+  <string name="StoryDialogs__story_could_not_be_sent">Příběh se nepodařilo odeslat. Zkontrolujte připojení a zkuste to znovu.</string>
   <!--Error message dialog button to resend a previously failed story send-->
   <string name="StoryDialogs__send">Odeslat</string>
   <!--Privacy Settings toggle title for stories-->
@@ -4182,7 +4201,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <string name="StorySlateView__couldnt_load_content">Obsah se nepodařilo načíst</string>
   <!--Toasted when the user externally shares to a text story successfully-->
+  <string name="TextStoryPostCreationFragment__sent_story">Odeslaný příběh</string>
   <!--Toasted when the user external share to a text story fails-->
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">Nepodařilo se odeslat příběh</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Zapnout obcházení cenzury?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->

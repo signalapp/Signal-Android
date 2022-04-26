@@ -1651,7 +1651,9 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Ово ће трајно да обрише ову поруку.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s за %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Ви за %1$s</string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s за вас</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Медијуч више није доступан.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Нема апликације која може да подели овај медијум.</string>
   <!--MessageNotifier-->
@@ -1862,7 +1864,9 @@
   <!--Author formatting for group stories-->
   <string name="QuoteView_s_story">%1$s · Прича</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Ви · Прича</string>
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Није више доступно</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Клизај на дно</string>
   <!--BubbleOptOutTooltip-->
@@ -1974,7 +1978,9 @@
   <string name="message_recipients_list_item__view">ПРИКАЖИ</string>
   <string name="message_recipients_list_item__resend">ПОШАЉИ ПОНОВО</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
+  <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Копирана послата временска ознака у остави.</string>
   <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Ажурирања ваше приче ће се појавити овде.</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s се придружи групи.</item>
@@ -2197,7 +2203,9 @@
   <!--Preference label when someone is already a subscriber-->
   <string name="preferences__subscription">Претплата</string>
   <!--Preference label for making a monthly donation to Signal-->
+  <string name="preferences__monthly_donation">Месечни допринос</string>
   <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">Једнократни допринос</string>
   <string name="preferences__privacy">Приватност</string>
   <string name="preferences__mms_user_agent">ММС кориснички агент</string>
   <string name="preferences__advanced_mms_access_point_names">Ручне ММС поставке</string>
@@ -3361,6 +3369,7 @@
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Постати одрживач</string>
   <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal покрећу особе попут Вас. Доприносите и добијте значку.</string>
   <string name="BecomeASustainerMegaphone__not_now">Не сада</string>
   <string name="BecomeASustainerMegaphone__donate">Донирајте</string>
   <!--KeyboardPagerFragment-->
@@ -3542,6 +3551,7 @@
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal покрећу особе попут Вас.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Подржите технологију која је изграђена за вас -не за ваше податке- придруживањем заједници људи који је издржавају.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Подржите технологију која је изграђена за вас, не за ваше податке, придруживањем заједници људи који је издржавају.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Дајте периодичне месечне донације за Signal да подржите технологију направљену за вас, а не за ваше податке.</string>
   <string name="SubscribeFragment__currency">Валута</string>
   <string name="SubscribeFragment__more_payment_options">Више опција плаћања</string>
   <string name="SubscribeFragment__cancel_subscription">Отказати претплату</string>
@@ -3558,6 +3568,7 @@
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/месечно · Обнова %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/месец · Крај %2$s</string>
   <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal је непрофитна без оглашивача или инвеститора, што је одржило само људи који га користе и цене. Направите понављајући месечни допринос и примите значку профила да бисте поделили своју подршку.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Зашто донирати?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal се залаже за развој технологије приватности отвореног кода која штити слободно изражавање и омогућава сигурну глобалну комуникацију.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Хвала вам на подршци!</string>
@@ -3573,6 +3584,7 @@
   <string name="ManageDonationsFragment__my_support">Моја подршка</string>
   <string name="ManageDonationsFragment__manage_subscription">Управљање претплатом</string>
   <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__donation_receipts">Признанице донације</string>
   <string name="ManageDonationsFragment__badges">Значке</string>
   <string name="ManageDonationsFragment__subscription_faq">FAQ претплате</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Грешка приликом добијања претплате.</string>
@@ -3588,8 +3600,11 @@
   <string name="MySupportPreference__couldnt_add_badge_s">Не могу да додам значку. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Молимо контактирајте подршку.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Значка је истекла</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Отказана месечна донација</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Ваша Boost значка је истекла, и не може више де се види на вашем профилу.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Можете поново активирати своју Boost значку још 30 дана са једнократним доприносом.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Постати одрживач</string>
@@ -3800,6 +3815,7 @@
   <!--Donation receipts recurring tab label-->
   <string name="DonationReceiptListFragment__recurring">Понављајући</string>
   <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">Једном</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Boost</string>
   <!--Donation receipts details title-->
@@ -3831,6 +3847,7 @@
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Додај причу</string>
   <!--Displayed when there are no stories to display-->
+  <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Тренутно нема недавних ажурирања за приказ. Стисните + да додате својој причи.</string>
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Сакриј причу</string>
   <!--Context menu option to unhide a story-->
@@ -3844,9 +3861,11 @@
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Шаље се…</string>
   <!--Label when multiple stories are pending sending-->
+  <string name="StoriesLandingItem__sending_d">Слање %1$d…</string>
   <!--Label when a story fails to send-->
   <string name="StoriesLandingItem__send_failed">Слање није успело</string>
   <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">Пипнути да се понови</string>
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Сакрити причу?</string>
   <!--Message of dialog confirming decision to hide a story-->
@@ -4000,6 +4019,7 @@
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <string name="StoryDialogs__edit_viewers">Уредите гледаоце</string>
   <!--Error message shown when a failure occurs during story send-->
+  <string name="StoryDialogs__story_could_not_be_sent">Није могуће послати причу. Проверите своју везу и покушајте поново.</string>
   <!--Error message dialog button to resend a previously failed story send-->
   <string name="StoryDialogs__send">Пошаљи</string>
   <!--Privacy Settings toggle title for stories-->
@@ -4057,7 +4077,9 @@
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <string name="StorySlateView__couldnt_load_content">Погрешно учитаање садржаја</string>
   <!--Toasted when the user externally shares to a text story successfully-->
+  <string name="TextStoryPostCreationFragment__sent_story">Послати причу</string>
   <!--Toasted when the user external share to a text story fails-->
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">Неуспешно слање приче</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Искључити заобилажење цензуре?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -4067,7 +4089,9 @@
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Искључи</string>
   <!--Conversation Item label for when you react to someone else\'s story-->
+  <string name="ConversationItem__you_reacted_to_s_story">Реаговали сте на причу од %1$s</string>
   <!--Conversation Item label for reactions to your story-->
+  <string name="ConversationItem__reacted_to_your_story">Реаговано на причу</string>
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Реакција на причу</string>
   <!--endregion-->

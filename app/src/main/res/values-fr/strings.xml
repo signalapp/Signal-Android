@@ -3276,6 +3276,7 @@ Nouvelle tentative…</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Devenir donateur mensuel</string>
   <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal est alimenté par des gens comme vous. Faites un don et recevez un macaron.</string>
   <string name="BecomeASustainerMegaphone__not_now">Pas maintenant</string>
   <string name="BecomeASustainerMegaphone__donate">Faire un don</string>
   <!--KeyboardPagerFragment-->
@@ -3453,6 +3454,7 @@ Nouvelle tentative…</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal est propulsé par des personnes comme vous.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Soutenez une technologie conçue pour vous – pas pour vos données – en rejoignant la communauté qui la porte.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Soutenez une technologie conçue pour vous, pas pour vos données, en rejoignant la communauté qui porte Signal.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Faites un don mensuel récurrent à Signal pour soutenir une technologie conçue pour vous, pas pour vos données.</string>
   <string name="SubscribeFragment__currency">Devise</string>
   <string name="SubscribeFragment__more_payment_options">Plus d’options de paiement</string>
   <string name="SubscribeFragment__cancel_subscription">Annuler l’abonnement</string>
@@ -3469,10 +3471,14 @@ Nouvelle tentative…</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/mois · Renouvellement %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/mois · Expire %2$s </string>
   <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal est un organisme sans but lucratif, sans annonceurs ni investisseurs, soutenue uniquement par les gens qui l’utilisent et l’apprécient. Faites un don mensuel récurrent et recevez un macaron de profil pour afficher votre soutien.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Pourquoi faire un don ?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal s’engage à développer une technologie ouverte de protection de la vie privée et des données personnelles, qui protège la liberté d’expression et permet une communication sécurisée à l’échelle planétaire.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Votre contribution alimente cette cause et permet de financer le développement et le fonctionnement d’une appli utilisée par des millions de personnes pour des communications confidentielles et protégées. Aucune publicité, aucun traqueur, vraiment.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Merci pour votre soutien !</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Merci pour le Coup de pouce !</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Vous avez obtenu le macaron %s  ! Affichez ce badge sur votre profil pour faire connaître votre don à Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Vous avez obtenu le macaron Coup de pouce ! Affichez ce badge sur votre profil pour faire connaître votre don à Signal.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Vous pouvez aussi</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">devenir un donateur mensuel.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Afficher sur le profil</string>
@@ -3490,6 +3496,7 @@ Nouvelle tentative…</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Erreur de lecture de l\'abonnement</string>
   <string name="BoostFragment__give_signal_a_boost">Donnez un Coup de pouce à Signal</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Faites un don unique et obtenez un macaron Coup de pouce pour %1$d jours.</string>
   <string name="Boost__enter_custom_amount">Saisissez un montant personnalisé</string>
   <string name="Boost__one_time_contribution">Contribution unique</string>
   <string name="MySupportPreference__add_a_signal_boost">Donner un Coup de pouce à Signal</string>
@@ -3500,15 +3507,21 @@ Nouvelle tentative…</string>
   <string name="MySupportPreference__couldnt_add_badge_s">Impossible d\'ajouter un macaron. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Veuillez contacter l’assistance.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Macaron Coup de pouce expiré</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Don mensuel résilié</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Votre macaron Coup de pouce a expiré et n’est plus visible sur votre profil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Vous pouvez réactiver votre macaron Coup de pouce pour 30 jours supplémentaires en versant une somme unique.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Vous pouvez continuer à utiliser Signal, mais pour soutenir une technologie conçue pour vous, envisagez de devenir un donateur mensuel en faisant un don chaque mois.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Devenir donateur mensuel</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Donner un Coup de pouce</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Pas maintenant</string>
   <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Votre don mensuel récurrent a été automatiquement annulé car vous êtes resté inactif trop longtemps. Votre maracon %1$s n’est plus visible sur votre profil.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Votre don mensuel a automatiquement été résilié car nous n’avons pas pu traiter votre paiement. Votre macaron n’est plus visible sur votre profil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Vous pouvez continuer à utiliser Signal, mais pour soutenir l\'appli t réactiver votre macaron, renouvelez maintenant.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renouveler l’abonnement</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Impossible de traiter le paiement de l’abonnement</string>
@@ -3712,6 +3725,7 @@ Nouvelle tentative…</string>
   <!--Donation receipts recurring tab label-->
   <string name="DonationReceiptListFragment__recurring">Périodique</string>
   <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">Une fois</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Coup de pouce</string>
   <!--Donation receipts details title-->
@@ -3758,9 +3772,11 @@ Nouvelle tentative…</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Envoi…</string>
   <!--Label when multiple stories are pending sending-->
+  <string name="StoriesLandingItem__sending_d">Envoi de %1$d…</string>
   <!--Label when a story fails to send-->
   <string name="StoriesLandingItem__send_failed">Échec d’envoi</string>
   <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">Touchez pour réessayer</string>
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Cacher l’histoire ?</string>
   <!--Message of dialog confirming decision to hide a story-->
@@ -3910,6 +3926,7 @@ Nouvelle tentative…</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <string name="StoryDialogs__edit_viewers">Modifier les spectateurs</string>
   <!--Error message shown when a failure occurs during story send-->
+  <string name="StoryDialogs__story_could_not_be_sent">L\'histoire n’a pas pu être envoyée. Veuillez vérifier votre connexion et réessayer.</string>
   <!--Error message dialog button to resend a previously failed story send-->
   <string name="StoryDialogs__send">Envoyer</string>
   <!--Privacy Settings toggle title for stories-->
@@ -3966,7 +3983,9 @@ Nouvelle tentative…</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <string name="StorySlateView__couldnt_load_content">Impossible de charger le contenu</string>
   <!--Toasted when the user externally shares to a text story successfully-->
+  <string name="TextStoryPostCreationFragment__sent_story">Histoire envoyée</string>
   <!--Toasted when the user external share to a text story fails-->
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">Échec de l\'envoi de l\'histoire</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Désactiver le contournement de la censure ?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->

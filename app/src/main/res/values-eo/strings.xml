@@ -3482,6 +3482,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Via donaco vivtenas tiun aferon, kaj pagas por la programado kaj la funkciigo de aplikâjo uzita de milionoj por komunikiĝi privatece. Neniu reklamo. Neniu spurilo. Vere.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Dankon pro via subtenado!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Dankon pro via subteno!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Vi gajnis la insignon „%s“! Montru tiun insignon en via profilo por konigi donacon al Signal. </string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Vi gajnis la insignon „Plikonatigo“! Montru tiun insignon en via profilo por konigi donacon al Signal. </string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Vi povas ankaŭ</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">iĝi monata donacanto.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Montri ĉe profilo</string>
@@ -3517,11 +3519,14 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Via insigno pri plikonatigo senvalidiĝis kaj ne plu videblas ĉe via profilo.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Vi povas rehavi vian insignon pri plikonatigo dum 30 tagoj per unufoja donaco.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Vi povas plu uzi Signal-on, sed por subteni teĥnologion, kiu estas farita por vi, konsideru donaci monate.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Iĝi donacanto</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Aldoni plikonatigon</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne nun</string>
   <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Via ĉiumonata donaco aŭtomate nuliĝis pro via tro longa neaktiveco.  Via insigno „%1$s“ ne plu videblas en via profilo.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Via ĉiumonata donaco aŭtomate nuliĝis pro netrakteblo de via pago. Via insigno ne plu videblas en via profilo.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Vi povas daŭrigi uzi Signal-on, sed por subtenu la aplikaĵon kaj rehavi vian insignon, reaboniĝu nun.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Reabono</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Ne eblas trakti vian subtenanto-pagon.</string>
@@ -3725,6 +3730,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Donation receipts recurring tab label-->
   <string name="DonationReceiptListFragment__recurring">Ripetanta</string>
   <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">Unufoje</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Plikonatigo</string>
   <!--Donation receipts details title-->
@@ -3771,9 +3777,11 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Sendo…</string>
   <!--Label when multiple stories are pending sending-->
+  <string name="StoriesLandingItem__sending_d">Sendado de %1$d…</string>
   <!--Label when a story fails to send-->
   <string name="StoriesLandingItem__send_failed">Sendo malsukcesis</string>
   <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">Tuŝeti por reprovi</string>
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Ĉu kaŝi la rakonton?</string>
   <!--Message of dialog confirming decision to hide a story-->
@@ -3923,6 +3931,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <string name="StoryDialogs__edit_viewers">Modifi spektantojn</string>
   <!--Error message shown when a failure occurs during story send-->
+  <string name="StoryDialogs__story_could_not_be_sent">La rakonto ne povis sendiĝi. Kontrolu la retkonekton, kaj provu denove.</string>
   <!--Error message dialog button to resend a previously failed story send-->
   <string name="StoryDialogs__send">Sendi</string>
   <!--Privacy Settings toggle title for stories-->
@@ -3979,7 +3988,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <string name="StorySlateView__couldnt_load_content">Ne eblas montri la enhavon</string>
   <!--Toasted when the user externally shares to a text story successfully-->
+  <string name="TextStoryPostCreationFragment__sent_story">La rakonto sendiĝis</string>
   <!--Toasted when the user external share to a text story fails-->
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">Malsukcesa sendo de rakonto</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Ĉu malŝati Cenzur-preterpason?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
