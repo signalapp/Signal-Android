@@ -68,13 +68,10 @@ class CdsDatabase(context: Context, databaseHelper: SignalDatabase) : Database(c
       SqlUtil.buildBulkInsert(TABLE_NAME, arrayOf(E164), insertValues)
         .forEach { writableDatabase.execSQL(it.where, it.whereArgs) }
 
-      for (e164 in seenE164s) {
-        writableDatabase
-          .update(TABLE_NAME)
-          .values(LAST_SEEN_AT to lastSeen)
-          .where("$E164 = ?", e164)
-          .run()
-      }
+      val contentValues = contentValuesOf(LAST_SEEN_AT to lastSeen)
+
+      SqlUtil.buildCollectionQuery(E164, seenE164s)
+        .forEach { query -> writableDatabase.update(TABLE_NAME, contentValues, query.where, query.whereArgs) }
 
       writableDatabase.setTransactionSuccessful()
     } finally {

@@ -472,7 +472,7 @@ public class ThreadDatabase extends Database {
 
     db.beginTransaction();
     try {
-      SqlUtil.Query     query         = SqlUtil.buildCollectionQuery(ID, threadIds);
+      SqlUtil.Query     query         = SqlUtil.buildSingleCollectionQuery(ID, threadIds);
       ContentValues     contentValues = new ContentValues();
 
       contentValues.put(READ, ReadStatus.FORCED_UNREAD.serialize());
@@ -1062,7 +1062,7 @@ public class ThreadDatabase extends Database {
 
   public Map<RecipientId, Long> getThreadIdsIfExistsFor(@NonNull RecipientId ... recipientIds) {
     SQLiteDatabase db    = databaseHelper.getSignalReadableDatabase();
-    SqlUtil.Query  query = SqlUtil.buildCollectionQuery(RECIPIENT_ID, Arrays.asList(recipientIds));
+    SqlUtil.Query  query = SqlUtil.buildSingleCollectionQuery(RECIPIENT_ID, Arrays.asList(recipientIds));
 
     Map<RecipientId, Long> results = new HashMap<>();
     try (Cursor cursor = db.query(TABLE_NAME, new String[]{ ID, RECIPIENT_ID }, query.getWhere(), query.getWhereArgs(), null, null, null, "1")) {
@@ -1140,7 +1140,7 @@ public class ThreadDatabase extends Database {
 
   public @NonNull List<RecipientId> getRecipientIdsForThreadIds(Collection<Long> threadIds) {
     SQLiteDatabase    db    = databaseHelper.getSignalReadableDatabase();
-    SqlUtil.Query     query = SqlUtil.buildCollectionQuery(ID, threadIds);
+    SqlUtil.Query     query = SqlUtil.buildSingleCollectionQuery(ID, threadIds);
     List<RecipientId> ids   = new ArrayList<>(threadIds.size());
 
     try (Cursor cursor = db.query(TABLE_NAME, new String[] { RECIPIENT_ID }, query.getWhere(), query.getWhereArgs(), null, null, null)) {

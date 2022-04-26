@@ -117,26 +117,42 @@ public final class SqlUtilTest {
 
   @Test
   public void buildCollectionQuery_single() {
-    SqlUtil.Query updateQuery = SqlUtil.buildCollectionQuery("a", Arrays.asList(1));
+    List<SqlUtil.Query> updateQuery = SqlUtil.buildCollectionQuery("a", Arrays.asList(1));
 
-    assertEquals("a IN (?)", updateQuery.getWhere());
-    assertArrayEquals(new String[] { "1" }, updateQuery.getWhereArgs());
+    assertEquals(1, updateQuery.size());
+    assertEquals("a IN (?)", updateQuery.get(0).getWhere());
+    assertArrayEquals(new String[] { "1" }, updateQuery.get(0).getWhereArgs());
   }
 
   @Test
   public void buildCollectionQuery_multiple() {
-    SqlUtil.Query updateQuery = SqlUtil.buildCollectionQuery("a", Arrays.asList(1, 2, 3));
+    List<SqlUtil.Query> updateQuery = SqlUtil.buildCollectionQuery("a", Arrays.asList(1, 2, 3));
 
-    assertEquals("a IN (?, ?, ?)", updateQuery.getWhere());
-    assertArrayEquals(new String[] { "1", "2", "3" }, updateQuery.getWhereArgs());
+    assertEquals(1, updateQuery.size());
+    assertEquals("a IN (?, ?, ?)", updateQuery.get(0).getWhere());
+    assertArrayEquals(new String[] { "1", "2", "3" }, updateQuery.get(0).getWhereArgs());
+  }
+
+  @Test
+  public void buildCollectionQuery_multiple_twoBatches() {
+    List<SqlUtil.Query> updateQuery = SqlUtil.buildCollectionQuery("a", Arrays.asList(1, 2, 3), 2);
+
+    assertEquals(2, updateQuery.size());
+
+    assertEquals("a IN (?, ?)", updateQuery.get(0).getWhere());
+    assertArrayEquals(new String[] { "1", "2" }, updateQuery.get(0).getWhereArgs());
+
+    assertEquals("a IN (?)", updateQuery.get(1).getWhere());
+    assertArrayEquals(new String[] { "3" }, updateQuery.get(1).getWhereArgs());
   }
 
   @Test
   public void buildCollectionQuery_multipleRecipientIds() {
-    SqlUtil.Query updateQuery = SqlUtil.buildCollectionQuery("a", Arrays.asList(new TestId(1), new TestId(2), new TestId(3)));
+    List<SqlUtil.Query> updateQuery = SqlUtil.buildCollectionQuery("a", Arrays.asList(new TestId(1), new TestId(2), new TestId(3)));
 
-    assertEquals("a IN (?, ?, ?)", updateQuery.getWhere());
-    assertArrayEquals(new String[] { "1", "2", "3" }, updateQuery.getWhereArgs());
+    assertEquals(1, updateQuery.size());
+    assertEquals("a IN (?, ?, ?)", updateQuery.get(0).getWhere());
+    assertArrayEquals(new String[] { "1", "2", "3" }, updateQuery.get(0).getWhereArgs());
   }
 
   @Test(expected = IllegalArgumentException.class)

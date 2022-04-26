@@ -7,8 +7,6 @@ import android.database.Cursor;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
-
 import org.signal.core.util.CursorUtil;
 import org.thoughtcrime.securesms.util.Base64;
 import org.signal.core.util.SqlUtil;
@@ -67,7 +65,7 @@ public class UnknownStorageIdDatabase extends Database {
    */
   public List<StorageId> getAllWithTypes(List<Integer> types) {
     List<StorageId> ids   = new ArrayList<>();
-    SqlUtil.Query   query = SqlUtil.buildCollectionQuery(TYPE, types);
+    SqlUtil.Query   query = SqlUtil.buildSingleCollectionQuery(TYPE, types);
 
     try (Cursor cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, query.getWhere(), query.getWhereArgs(), null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {

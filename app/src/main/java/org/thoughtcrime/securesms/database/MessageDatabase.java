@@ -330,7 +330,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
     }
 
     SQLiteDatabase db     = databaseHelper.getSignalWritableDatabase();
-    SqlUtil.Query  where  = SqlUtil.buildCollectionQuery(ID, ids);
+    SqlUtil.Query  where  = SqlUtil.buildSingleCollectionQuery(ID, ids);
     ContentValues  values = new ContentValues();
 
     values.put(NOTIFIED_TIMESTAMP, timestamp);

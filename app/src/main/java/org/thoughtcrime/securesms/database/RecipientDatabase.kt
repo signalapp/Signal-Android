@@ -1378,7 +1378,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
     db.beginTransaction()
     try {
-      val query = SqlUtil.buildCollectionQuery(ID, ids)
+      val query = SqlUtil.buildSingleCollectionQuery(ID, ids)
       val values = ContentValues().apply {
         put(MUTE_UNTIL, until)
       }
@@ -2518,7 +2518,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
 
     if (Util.hasItems(idsToUpdate)) {
-      val query = SqlUtil.buildCollectionQuery(ID, idsToUpdate)
+      val query = SqlUtil.buildSingleCollectionQuery(ID, idsToUpdate)
       val values = ContentValues(1).apply {
         put(PROFILE_SHARING, 1)
       }
@@ -2536,7 +2536,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       return
     }
 
-    var query = SqlUtil.buildCollectionQuery(ID, recipientIds)
+    var query = SqlUtil.buildSingleCollectionQuery(ID, recipientIds)
     val db = writableDatabase
 
     db.query(TABLE_NAME, arrayOf(ID), "${query.where} AND $GROUPS_IN_COMMON = 0", query.whereArgs, null, null, null).use { cursor ->
@@ -2547,7 +2547,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       }
 
       if (Util.hasItems(idsToUpdate)) {
-        query = SqlUtil.buildCollectionQuery(ID, idsToUpdate)
+        query = SqlUtil.buildSingleCollectionQuery(ID, idsToUpdate)
         val values = ContentValues().apply {
           put(GROUPS_IN_COMMON, 1)
         }

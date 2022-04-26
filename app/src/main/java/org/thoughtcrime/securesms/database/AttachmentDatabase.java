@@ -278,7 +278,7 @@ public class AttachmentDatabase extends Database {
     }
 
     SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
-    SqlUtil.Query  query    = SqlUtil.buildCollectionQuery(MMS_ID, mmsIds);
+    SqlUtil.Query  query    = SqlUtil.buildSingleCollectionQuery(MMS_ID, mmsIds);
 
     Map<Long, List<DatabaseAttachment>> output = new HashMap<>();
 

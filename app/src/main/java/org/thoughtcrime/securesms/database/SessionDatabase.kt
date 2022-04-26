@@ -119,7 +119,7 @@ class SessionDatabase(context: Context, databaseHelper: SignalDatabase) : Databa
   }
 
   fun getAllFor(serviceId: ServiceId, addressNames: List<String?>): List<SessionRow> {
-    val query: SqlUtil.Query = SqlUtil.buildCollectionQuery(ADDRESS, addressNames)
+    val query: SqlUtil.Query = SqlUtil.buildSingleCollectionQuery(ADDRESS, addressNames)
     val results: MutableList<SessionRow> = LinkedList()
 
     val queryString = "$ACCOUNT_ID = ? AND (${query.where})"

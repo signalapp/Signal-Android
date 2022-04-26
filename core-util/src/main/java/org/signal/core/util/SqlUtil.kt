@@ -183,8 +183,33 @@ object SqlUtil {
     return Query("($selection) AND ($qualifier)", fullArgs.toTypedArray())
   }
 
+  /**
+   * A convenient way of making queries in the form: WHERE [column] IN (?, ?, ..., ?)
+   * Handles breaking it 
+   */
   @JvmStatic
-  fun buildCollectionQuery(column: String, values: Collection<Any?>): Query {
+  fun buildCollectionQuery(column: String, values: Collection<Any?>): List<Query> {
+    return buildCollectionQuery(column, values, MAX_QUERY_ARGS)
+  }
+
+  @VisibleForTesting
+  @JvmStatic
+  fun buildCollectionQuery(column: String, values: Collection<Any?>, maxSize: Int): List<Query> {
+    require(!values.isEmpty()) { "Must have values!" }
+
+    return values
+      .chunked(maxSize)
+      .map { batch -> buildSingleCollectionQuery(column, batch) }
+  }
+
+  /**
+   * A convenient way of making queries in the form: WHERE [column] IN (?, ?, ..., ?)
+   *
+   * Important: Should only be used if you know the number of values is < 1000. Otherwise you risk creating a SQL statement this is too large.
+   * Prefer [buildCollectionQuery] when possible.
+   */
+  @JvmStatic
+  fun buildSingleCollectionQuery(column: String, values: Collection<Any?>): Query {
     require(!values.isEmpty()) { "Must have values!" }
 
     val query = StringBuilder()
