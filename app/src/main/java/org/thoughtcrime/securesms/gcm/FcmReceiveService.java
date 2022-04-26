@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.SubmitRateLimitPushChallengeJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.registration.PushChallengeRequest;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -79,8 +80,8 @@ public class FcmReceiveService extends FirebaseMessagingService {
   private static void handleReceivedNotification(Context context, @Nullable RemoteMessage remoteMessage) {
     try {
       long timeSinceLastRefresh = System.currentTimeMillis() - SignalStore.misc().getLastFcmForegroundServiceTime();
-      if (Build.VERSION.SDK_INT >= 31 && remoteMessage != null && remoteMessage.getPriority() == RemoteMessage.PRIORITY_HIGH && timeSinceLastRefresh > FCM_FOREGROUND_INTERVAL) {
-        ContextCompat.startForegroundService(context, FcmFetchService.buildIntent(context, true));
+      if (FeatureFlags.useFcmForegroundService() && Build.VERSION.SDK_INT >= 31 && remoteMessage != null && remoteMessage.getPriority() == RemoteMessage.PRIORITY_HIGH && timeSinceLastRefresh > FCM_FOREGROUND_INTERVAL) {
+        context.startService(FcmFetchService.buildIntent(context, true));
         SignalStore.misc().setLastFcmForegroundServiceTime(System.currentTimeMillis());
       } else {
         context.startService(FcmFetchService.buildIntent(context, false));
