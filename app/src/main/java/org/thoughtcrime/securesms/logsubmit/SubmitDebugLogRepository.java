@@ -83,7 +83,7 @@ public class SubmitDebugLogRepository {
     add(new LogSectionPermissions());
     add(new LogSectionTrace());
     add(new LogSectionThreads());
-    add(new LogSectionBlockedThreads());
+    add(new LogSectionThreadDump());
     if (FeatureFlags.internalUser()) {
       add(new LogSectionSenderKey());
     }
