@@ -24,6 +24,7 @@ public final class NotificationController implements AutoCloseable,
   private int     progressMax;
   private boolean indeterminate;
   private long    percent = -1;
+  private boolean isBound;
 
   private final AtomicReference<GenericForegroundService> service = new AtomicReference<>();
 
@@ -31,11 +32,11 @@ public final class NotificationController implements AutoCloseable,
     this.context = context;
     this.id      = id;
 
-    bindToService();
+    isBound = bindToService();
   }
 
-  private void bindToService() {
-    context.bindService(new Intent(context, GenericForegroundService.class), this, Context.BIND_AUTO_CREATE);
+  private boolean bindToService() {
+    return context.bindService(new Intent(context, GenericForegroundService.class), this, Context.BIND_AUTO_CREATE);
   }
 
   public int getId() {
@@ -44,8 +45,18 @@ public final class NotificationController implements AutoCloseable,
 
   @Override
   public void close() {
-    context.unbindService(this);
-    GenericForegroundService.stopForegroundTask(context, id);
+    try {
+      if (isBound) {
+        context.unbindService(this);
+        isBound = false;
+      } else {
+        Log.w(TAG, "Service was not bound at the time of close()...");
+      }
+
+      GenericForegroundService.stopForegroundTask(context, id);
+    } catch (IllegalArgumentException e) {
+      Log.w(TAG, "Failed to unbind service...", e);
+    }
   }
 
   public void setIndeterminateProgress() {
