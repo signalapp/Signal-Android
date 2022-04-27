@@ -774,7 +774,7 @@ public class TextSecurePreferences {
    * @deprecated Use {@link SettingsValues#getTheme()} via {@link org.thoughtcrime.securesms.keyvalue.SignalStore} instead.
    */
   public static String getTheme(Context context) {
-    return getStringPreference(context, THEME_PREF, DynamicTheme.systemThemeAvailable() ? DynamicTheme.SYSTEM : DynamicTheme.LIGHT);
+    return getStringPreference(context, THEME_PREF, DynamicTheme.systemThemeAvailable() ? "system" : "light");
   }
 
   public static boolean isShowInviteReminders(Context context) {

@@ -181,12 +181,12 @@ public final class SettingsValues extends SignalStoreValues {
     return CallBandwidthMode.fromCode(getInteger(CALL_BANDWIDTH_MODE, CallBandwidthMode.HIGH_ALWAYS.getCode()));
   }
 
-  public @NonNull String getTheme() {
-    return getString(THEME, TextSecurePreferences.getTheme(ApplicationDependencies.getApplication()));
+  public @NonNull Theme getTheme() {
+    return Theme.deserialize(getString(THEME, TextSecurePreferences.getTheme(ApplicationDependencies.getApplication())));
   }
 
-  public void setTheme(@NonNull String theme) {
-    putString(THEME, theme);
+  public void setTheme(@NonNull Theme theme) {
+    putString(THEME, theme.serialize());
     onConfigurationSettingChanged.postValue(THEME);
   }
 
@@ -430,6 +430,29 @@ public final class SettingsValues extends SignalStoreValues {
 
     public int serialize() {
       return value;
+    }
+  }
+
+  public enum Theme {
+    SYSTEM("system"), LIGHT("light"), DARK("dark");
+
+    private final String value;
+
+    Theme(String value) {
+      this.value = value;
+    }
+
+    public @NonNull String serialize() {
+      return value;
+    }
+
+    public static @NonNull Theme deserialize(@NonNull String value) {
+      switch (value) {
+        case "system": return SYSTEM;
+        case "light":  return LIGHT;
+        case "dark":   return DARK;
+        default:       throw new IllegalArgumentException("Unrecognized value " + value);
+      }
     }
   }
 }

@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.SplashScreenUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 
 public class MainActivity extends PassphraseRequiredActivity implements VoiceNoteMediaControllerOwner {
@@ -98,6 +99,12 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
     }
 
     updateTabVisibility();
+  }
+
+  @Override
+  protected void onStop() {
+    super.onStop();
+    SplashScreenUtil.setSplashScreenThemeIfNecessary(this, SignalStore.settings().getTheme());
   }
 
   @Override

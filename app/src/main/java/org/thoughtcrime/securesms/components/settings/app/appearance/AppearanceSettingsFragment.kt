@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class AppearanceSettingsFragment : DSLSettingsFragment(R.string.preferences__appearance) {
@@ -36,9 +37,9 @@ class AppearanceSettingsFragment : DSLSettingsFragment(R.string.preferences__app
       radioListPref(
         title = DSLSettingsText.from(R.string.preferences__theme),
         listItems = themeLabels,
-        selected = themeValues.indexOf(state.theme),
+        selected = themeValues.indexOf(state.theme.serialize()),
         onSelected = {
-          viewModel.setTheme(themeValues[it])
+          viewModel.setTheme(activity, SettingsValues.Theme.deserialize(themeValues[it]))
         }
       )
 

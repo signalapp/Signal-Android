@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Signal.DayNight.NoActionBar" parent="TextSecure.LightNoActionBar">
+        <item name="android:windowSplashScreenBackground">@color/signal_background_primary</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_splash</item>
+    </style>
+</resources>
