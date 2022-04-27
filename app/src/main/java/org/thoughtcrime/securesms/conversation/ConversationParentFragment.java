@@ -3767,11 +3767,15 @@ public class ConversationParentFragment extends Fragment
     if (messageRecord.isIdentityMismatchFailure()) {
       SafetyNumberChangeDialog.show(requireContext(), getChildFragmentManager(), messageRecord);
     } else if (messageRecord.hasFailedWithNetworkFailures()) {
-      new AlertDialog.Builder(requireContext())
-                     .setMessage(R.string.conversation_activity__message_could_not_be_sent)
-                     .setNegativeButton(android.R.string.cancel, null)
-                     .setPositiveButton(R.string.conversation_activity__send, (dialog, which) -> MessageSender.resend(requireContext(), messageRecord))
-                     .show();
+      new MaterialAlertDialogBuilder(requireContext())
+          .setMessage(R.string.conversation_activity__message_could_not_be_sent)
+          .setNegativeButton(android.R.string.cancel, null)
+          .setPositiveButton(R.string.conversation_activity__send, (dialog, which) -> {
+            SignalExecutors.BOUNDED.execute(() -> {
+              MessageSender.resend(requireContext(), messageRecord);
+            });
+          })
+          .show();
     } else {
       MessageDetailsFragment.create(messageRecord, recipient.getId()).show(getChildFragmentManager(), null);
     }
