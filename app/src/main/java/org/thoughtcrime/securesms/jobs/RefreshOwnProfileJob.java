@@ -114,6 +114,15 @@ public class RefreshOwnProfileJob extends BaseJob {
     ProfileAndCredential profileAndCredential = ProfileUtil.retrieveProfileSync(context, self, getRequestType(self), false);
     SignalServiceProfile profile              = profileAndCredential.getProfile();
 
+    if (Util.isEmpty(profile.getName()) &&
+        Util.isEmpty(profile.getAvatar()) &&
+        Util.isEmpty(profile.getAbout()) &&
+        Util.isEmpty(profile.getAboutEmoji()))
+    {
+      Log.w(TAG, "The profile we retrieved was empty! Ignoring it.");
+      return;
+    }
+
     setProfileName(profile.getName());
     setProfileAbout(profile.getAbout(), profile.getAboutEmoji());
     setProfileAvatar(profile.getAvatar());
@@ -155,8 +164,13 @@ public class RefreshOwnProfileJob extends BaseJob {
       String      plaintextName = ProfileUtil.decryptString(profileKey, encryptedName);
       ProfileName profileName   = ProfileName.fromSerialized(plaintextName);
 
-      Log.d(TAG, "Saving " + (!Util.isEmpty(plaintextName) ? "non-" : "") + "empty name.");
-      SignalDatabase.recipients().setProfileName(Recipient.self().getId(), profileName);
+      if (!profileName.isEmpty()) {
+        Log.d(TAG, "Saving non-empty name.");
+        SignalDatabase.recipients().setProfileName(Recipient.self().getId(), profileName);
+      } else {
+        Log.w(TAG, "Ignoring empty name.");
+      }
+
     } catch (InvalidCiphertextException | IOException e) {
       Log.w(TAG, e);
     }

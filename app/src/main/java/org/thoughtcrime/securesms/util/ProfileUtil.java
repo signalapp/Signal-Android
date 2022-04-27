@@ -81,7 +81,6 @@ public final class ProfileUtil {
     ApplicationDependencies.getJobManager()
                            .startChain(new RefreshAttributesJob())
                            .then(new ProfileUploadJob())
-                           .then(new RefreshOwnProfileJob())
                            .then(new MultiDeviceProfileKeyUpdateJob())
                            .then(gv2UpdateJobs)
                            .enqueue();
