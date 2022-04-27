@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.settings.app
 
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import org.thoughtcrime.securesms.R
@@ -22,6 +23,7 @@ import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.PlayServicesUtil
+import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -162,7 +164,8 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
               } else {
                 findNavController().safeNavigate(AppSettingsFragmentDirections.actionAppSettingsFragmentToSubscribeFragment())
               }
-            }
+            },
+            onLongClick = this@AppSettingsFragment::copySubscriberIdToClipboard
           )
         )
         clickPref(
@@ -170,7 +173,8 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
           icon = DSLSettingsIcon.from(R.drawable.ic_boost_24),
           onClick = {
             findNavController().safeNavigate(AppSettingsFragmentDirections.actionAppSettingsFragmentToBoostsFragment())
-          }
+          },
+          onLongClick = this@AppSettingsFragment::copySubscriberIdToClipboard
         )
       } else {
         externalLinkPref(
@@ -193,13 +197,25 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
     }
   }
 
+  private fun copySubscriberIdToClipboard(): Boolean {
+    val subscriber = SignalStore.donationsValues().getSubscriber()
+    return if (subscriber == null) {
+      false
+    } else {
+      Toast.makeText(requireContext(), R.string.AppSettingsFragment__copied_subscriber_id_to_clipboard, Toast.LENGTH_LONG).show()
+      Util.copyToClipboard(requireContext(), subscriber.subscriberId.serialize())
+      true
+    }
+  }
+
   private class SubscriptionPreference(
     override val title: DSLSettingsText,
     override val summary: DSLSettingsText? = null,
     override val icon: DSLSettingsIcon? = null,
     override val isEnabled: Boolean = true,
     val isActive: Boolean = false,
-    val onClick: (Boolean) -> Unit
+    val onClick: (Boolean) -> Unit,
+    val onLongClick: () -> Boolean
   ) : PreferenceModel<SubscriptionPreference>() {
     override fun areItemsTheSame(newItem: SubscriptionPreference): Boolean {
       return true
@@ -214,6 +230,7 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
     override fun bind(model: SubscriptionPreference) {
       super.bind(model)
       itemView.setOnClickListener { model.onClick(model.isActive) }
+      itemView.setOnLongClickListener { model.onLongClick() }
     }
   }
 

@@ -96,9 +96,10 @@ class DSLConfiguration {
     summary: DSLSettingsText? = null,
     icon: DSLSettingsIcon? = null,
     isEnabled: Boolean = true,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    onLongClick: (() -> Boolean)? = null
   ) {
-    val preference = ClickPreference(title, summary, icon, isEnabled, onClick)
+    val preference = ClickPreference(title, summary, icon, isEnabled, onClick, onLongClick)
     children.add(preference)
   }
 
@@ -269,7 +270,8 @@ class ClickPreference(
   override val summary: DSLSettingsText? = null,
   override val icon: DSLSettingsIcon? = null,
   override val isEnabled: Boolean = true,
-  val onClick: () -> Unit
+  val onClick: () -> Unit,
+  val onLongClick: (() -> Boolean)? = null
 ) : PreferenceModel<ClickPreference>()
 
 class LongClickPreference(
