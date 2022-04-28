@@ -57,7 +57,6 @@ public final class ActiveSubscription {
     private static final Set<Status> FAILURE_STATUSES = new HashSet<>(Arrays.asList(
         INCOMPLETE_EXPIRED,
         PAST_DUE,
-        CANCELED,
         UNPAID
     ));
 
@@ -195,6 +194,10 @@ public final class ActiveSubscription {
 
     public boolean isFailedPayment() {
       return Status.isPaymentFailed(getStatus());
+    }
+
+    public boolean isCanceled() {
+      return Status.getStatus(getStatus()) == Status.CANCELED;
     }
 
     @Override public boolean equals(Object o) {

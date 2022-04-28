@@ -161,6 +161,9 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
       Log.w(TAG, "Subscription is not yet active. Status: " + subscription.getStatus(), true);
       throw new RetryableException();
+    } else if (subscription.isCanceled()) {
+      Log.w(TAG, "Subscription is marked as cancelled, but it's possible that the user cancelled and then later tried to resubscribe. Scheduling a retry.", true);
+      throw new RetryableException();
     } else {
       Log.i(TAG, "Recording end of period from active subscription: " + subscription.getStatus(), true);
       SignalStore.donationsValues().setLastEndOfPeriod(subscription.getEndOfCurrentPeriod());
