@@ -6,17 +6,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <org.thoughtcrime.securesms.stories.StoryTextPostView
-        android:id="@+id/story_text_post"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/story_text_post_card"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="12dp"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toTopOf="@id/toggle_spacer"
         app:layout_constraintDimensionRatio="9:16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0" />
+        app:layout_constraintVertical_bias="0">
+
+        <org.thoughtcrime.securesms.stories.StoryTextPostView
+            android:id="@+id/story_text_post"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.cardview.widget.CardView>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/background_protection"
@@ -27,7 +36,7 @@
         android:padding="2dp"
         android:src="@drawable/circle_tintable"
         app:layout_constraintBottom_toTopOf="@id/button_bar_barrier"
-        app:layout_constraintStart_toStartOf="@id/story_text_post"
+        app:layout_constraintStart_toStartOf="@id/story_text_post_card"
         app:tint="@color/transparent_black_40" />
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -91,7 +100,7 @@
         android:id="@+id/barrier_helper"
         android:layout_width="1dp"
         android:layout_height="1dp"
-        app:layout_constraintTop_toBottomOf="@id/story_text_post" />
+        app:layout_constraintTop_toBottomOf="@id/story_text_post_card" />
 
     <View
         android:id="@+id/toggle_spacer"
