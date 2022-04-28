@@ -121,12 +121,14 @@ class TextStoryPostTextEntryFragment : KeyboardEntryDialogFragment(
 
   private fun presentHint() {
     if (TextUtils.isEmpty(input.text)) {
+      input.alpha = 0.6f
       if (input.filters.contains(allCapsFilter)) {
         input.hint = getString(R.string.TextStoryPostTextEntryFragment__add_text).toUpperCase(Locale.getDefault())
       } else {
         input.setHint(R.string.TextStoryPostTextEntryFragment__add_text)
       }
     } else {
+      input.alpha = 1f
       input.hint = ""
     }
   }
