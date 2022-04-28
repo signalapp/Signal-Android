@@ -21,13 +21,12 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/bottom_sheet_handle" />
 
-        <!-- TODO [stories] - need art asset -->
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/header_image"
             android:layout_width="88dp"
             android:layout_height="88dp"
             android:layout_marginTop="28dp"
-            android:background="@color/red"
+            app:srcCompat="@drawable/ic_signal_connections"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/handle" />
