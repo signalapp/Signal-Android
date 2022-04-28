@@ -154,6 +154,11 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       onPaymentFailure(subscription.getStatus(), chargeFailure, subscription.getEndOfCurrentPeriod());
       throw new Exception("Subscription has a payment failure: " + subscription.getStatus());
     } else if (!subscription.isActive()) {
+      ActiveSubscription.ChargeFailure chargeFailure = activeSubscription.getChargeFailure();
+      if (chargeFailure != null) {
+        Log.w(TAG, "Subscription payment charge failure code: " + chargeFailure.getCode() + ", message: " + chargeFailure.getMessage(), true);
+      }
+
       Log.w(TAG, "Subscription is not yet active. Status: " + subscription.getStatus(), true);
       throw new RetryableException();
     } else {
