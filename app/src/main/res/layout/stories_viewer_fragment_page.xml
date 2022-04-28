@@ -118,11 +118,6 @@
             android:layout_marginBottom="24dp"
             android:gravity="bottom"
             android:textAppearance="@style/Signal.Text.Body"
-            android:textStyle="bold"
-            app:autoSizeMaxTextSize="20sp"
-            app:autoSizeMinTextSize="16sp"
-            app:autoSizeStepGranularity="4sp"
-            app:autoSizeTextType="uniform"
             tools:text="Ugh." />
     </FrameLayout>
 
@@ -143,7 +138,6 @@
         android:layout_marginBottom="24dp"
         android:gravity="bottom"
         android:textAppearance="@style/Signal.Text.Body"
-        android:textStyle="bold"
         android:visibility="gone"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toTopOf="@id/story_from_barrier"
