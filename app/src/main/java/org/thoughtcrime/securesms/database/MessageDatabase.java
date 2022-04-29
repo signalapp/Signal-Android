@@ -556,6 +556,19 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
     public long getTimetamp() {
       return timetamp;
     }
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      final SyncMessageId that = (SyncMessageId) o;
+      return timetamp == that.timetamp && Objects.equals(recipientId, that.recipientId);
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(recipientId, timetamp);
+    }
   }
 
   public static class ExpirationInfo {

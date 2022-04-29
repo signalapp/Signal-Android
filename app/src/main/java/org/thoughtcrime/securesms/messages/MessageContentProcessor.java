@@ -332,9 +332,9 @@ public final class MessageContentProcessor {
 
         if      (syncMessage.getSent().isPresent())                   handleSynchronizeSentMessage(content, syncMessage.getSent().get(), senderRecipient);
         else if (syncMessage.getRequest().isPresent())                handleSynchronizeRequestMessage(syncMessage.getRequest().get(), content.getTimestamp());
-        else if (syncMessage.getRead().isPresent())                   handleSynchronizeReadMessage(syncMessage.getRead().get(), content.getTimestamp(), senderRecipient);
+        else if (syncMessage.getRead().isPresent())                   handleSynchronizeReadMessage(content, syncMessage.getRead().get(), content.getTimestamp(), senderRecipient);
         else if (syncMessage.getViewed().isPresent())                 handleSynchronizeViewedMessage(syncMessage.getViewed().get(), content.getTimestamp());
-        else if (syncMessage.getViewOnceOpen().isPresent())           handleSynchronizeViewOnceOpenMessage(syncMessage.getViewOnceOpen().get(), content.getTimestamp());
+        else if (syncMessage.getViewOnceOpen().isPresent())           handleSynchronizeViewOnceOpenMessage(content, syncMessage.getViewOnceOpen().get(), content.getTimestamp());
         else if (syncMessage.getVerified().isPresent())               handleSynchronizeVerifiedMessage(syncMessage.getVerified().get());
         else if (syncMessage.getStickerPackOperations().isPresent())  handleSynchronizeStickerPackOperation(syncMessage.getStickerPackOperations().get(), content.getTimestamp());
         else if (syncMessage.getConfiguration().isPresent())          handleSynchronizeConfigurationMessage(syncMessage.getConfiguration().get(), content.getTimestamp());
@@ -1295,19 +1295,33 @@ public final class MessageContentProcessor {
     }
   }
 
-  private void handleSynchronizeReadMessage(@NonNull List<ReadMessage> readMessages, long envelopeTimestamp, @NonNull Recipient senderRecipient)
+  private void handleSynchronizeReadMessage(@NonNull SignalServiceContent content,
+                                            @NonNull List<ReadMessage> readMessages,
+                                            long envelopeTimestamp,
+                                            @NonNull Recipient senderRecipient)
   {
     log(envelopeTimestamp, "Synchronize read message. Count: " + readMessages.size() + ", Timestamps: " + Stream.of(readMessages).map(ReadMessage::getTimestamp).toList());
 
     Map<Long, Long> threadToLatestRead = new HashMap<>();
 
-    SignalDatabase.mmsSms().setTimestampRead(senderRecipient, readMessages, envelopeTimestamp, threadToLatestRead);
+    Collection<SyncMessageId> unhandled = SignalDatabase.mmsSms().setTimestampRead(senderRecipient, readMessages, envelopeTimestamp, threadToLatestRead);
 
     List<MessageDatabase.MarkedMessageInfo> markedMessages = SignalDatabase.threads().setReadSince(threadToLatestRead, false);
 
     if (Util.hasItems(markedMessages)) {
       Log.i(TAG, "Updating past messages: " + markedMessages.size());
       MarkReadReceiver.process(context, markedMessages);
+    }
+
+    for (SyncMessageId id : unhandled) {
+      warn(String.valueOf(content.getTimestamp()), "[handleSynchronizeReadMessage] Could not find matching message! timestamp: " + id.getTimetamp() + "  author: " + id.getRecipientId());
+      if (!processingEarlyContent) {
+        ApplicationDependencies.getEarlyMessageCache().store(id.getRecipientId(), id.getTimetamp(), content);
+      }
+    }
+
+    if (unhandled.size() > 0 && !processingEarlyContent) {
+      PushProcessEarlyMessagesJob.enqueue();
     }
 
     MessageNotifier messageNotifier = ApplicationDependencies.getMessageNotifier();
@@ -1336,7 +1350,7 @@ public final class MessageContentProcessor {
     messageNotifier.updateNotification(context);
   }
 
-  private void handleSynchronizeViewOnceOpenMessage(@NonNull ViewOnceOpenMessage openMessage, long envelopeTimestamp) {
+  private void handleSynchronizeViewOnceOpenMessage(@NonNull SignalServiceContent content, @NonNull ViewOnceOpenMessage openMessage, long envelopeTimestamp) {
     log(envelopeTimestamp, "Handling a view-once open for message: " + openMessage.getTimestamp());
 
     RecipientId   author    = Recipient.externalPush(openMessage.getSender()).getId();
@@ -1347,6 +1361,11 @@ public final class MessageContentProcessor {
       SignalDatabase.attachments().deleteAttachmentFilesForViewOnceMessage(record.getId());
     } else {
       warn(String.valueOf(envelopeTimestamp), "Got a view-once open message for a message we don't have!");
+
+      if (!processingEarlyContent) {
+        ApplicationDependencies.getEarlyMessageCache().store(author, timestamp, content);
+        PushProcessEarlyMessagesJob.enqueue();
+      }
     }
 
     MessageNotifier messageNotifier = ApplicationDependencies.getMessageNotifier();
@@ -2302,9 +2321,9 @@ public final class MessageContentProcessor {
     SignalDatabase.mmsSms().updateViewedStories(handled);
 
     for (SyncMessageId id : unhandled) {
-      warn(String.valueOf(content.getTimestamp()), "[handleViewedReceipt] Could not find matching message! timestamp: " + id.getTimetamp() + "  author: " + senderRecipient.getId());
+      warn(String.valueOf(content.getTimestamp()), "[handleViewedReceipt] Could not find matching message! timestamp: " + id.getTimetamp() + "  author: " + id.getRecipientId());
       if (!processingEarlyContent) {
-        ApplicationDependencies.getEarlyMessageCache().store(senderRecipient.getId(), id.getTimetamp(), content);
+        ApplicationDependencies.getEarlyMessageCache().store(id.getRecipientId(), id.getTimetamp(), content);
       }
     }
 
@@ -2327,7 +2346,7 @@ public final class MessageContentProcessor {
     Collection<SyncMessageId> unhandled = SignalDatabase.mmsSms().incrementDeliveryReceiptCounts(ids, System.currentTimeMillis());
 
     for (SyncMessageId id : unhandled) {
-      warn(String.valueOf(content.getTimestamp()), "[handleDeliveryReceipt] Could not find matching message! timestamp: " + id.getTimetamp() + "  author: " + senderRecipient.getId());
+      warn(String.valueOf(content.getTimestamp()), "[handleDeliveryReceipt] Could not find matching message! timestamp: " + id.getTimetamp() + "  author: " + id.getRecipientId());
       // Early delivery receipts are special-cased in the database methods
     }
 
@@ -2357,9 +2376,9 @@ public final class MessageContentProcessor {
     Collection<SyncMessageId> unhandled = SignalDatabase.mmsSms().incrementReadReceiptCounts(ids, content.getTimestamp());
 
     for (SyncMessageId id : unhandled) {
-      warn(String.valueOf(content.getTimestamp()), "[handleReadReceipt] Could not find matching message! timestamp: " + id.getTimetamp() + "  author: " + senderRecipient.getId());
+      warn(String.valueOf(content.getTimestamp()), "[handleReadReceipt] Could not find matching message! timestamp: " + id.getTimetamp() + "  author: " + id.getRecipientId());
       if (!processingEarlyContent) {
-        ApplicationDependencies.getEarlyMessageCache().store(senderRecipient.getId(), id.getTimetamp(), content);
+        ApplicationDependencies.getEarlyMessageCache().store(id.getRecipientId(), id.getTimetamp(), content);
       }
     }
 

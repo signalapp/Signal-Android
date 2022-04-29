@@ -534,12 +534,16 @@ public class MmsSmsDatabase extends Database {
     SignalDatabase.mms().updateViewedStories(syncMessageIds);
   }
 
-  public void setTimestampRead(@NonNull Recipient senderRecipient, @NonNull List<ReadMessage> readMessages, long proposedExpireStarted, @NonNull Map<Long, Long> threadToLatestRead) {
+  /**
+   * @return Unhandled ids
+   */
+  public Collection<SyncMessageId> setTimestampRead(@NonNull Recipient senderRecipient, @NonNull List<ReadMessage> readMessages, long proposedExpireStarted, @NonNull Map<Long, Long> threadToLatestRead) {
     SQLiteDatabase db = getWritableDatabase();
 
-    List<Pair<Long, Long>> expiringText   = new LinkedList<>();
-    List<Pair<Long, Long>> expiringMedia  = new LinkedList<>();
-    Set<Long>              updatedThreads = new HashSet<>();
+    List<Pair<Long, Long>>    expiringText   = new LinkedList<>();
+    List<Pair<Long, Long>>    expiringMedia  = new LinkedList<>();
+    Set<Long>                 updatedThreads = new HashSet<>();
+    Collection<SyncMessageId> unhandled      = new LinkedList<>();
 
     db.beginTransaction();
     try {
@@ -556,6 +560,10 @@ public class MmsSmsDatabase extends Database {
 
         updatedThreads.addAll(textResult.threads);
         updatedThreads.addAll(mediaResult.threads);
+
+        if (textResult.threads.isEmpty() && mediaResult.threads.isEmpty()) {
+          unhandled.add(new SyncMessageId(senderRecipient.getId(), readMessage.getTimestamp()));
+        }
       }
 
       for (long threadId : updatedThreads) {
@@ -581,6 +589,8 @@ public class MmsSmsDatabase extends Database {
     for (long threadId : updatedThreads) {
       notifyConversationListeners(threadId);
     }
+
+    return unhandled;
   }
 
   public int getQuotedMessagePosition(long threadId, long quoteId, @NonNull RecipientId recipientId) {
