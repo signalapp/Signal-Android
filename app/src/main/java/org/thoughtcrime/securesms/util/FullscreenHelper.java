@@ -39,7 +39,7 @@ public final class FullscreenHelper {
   public void configureToolbarLayout(@NonNull View spacer, @NonNull View toolbar) {
     if (Build.VERSION.SDK_INT == 19) {
       setSpacerHeight(spacer, ViewUtil.getStatusBarHeight(spacer));
-      int[] padding = makePaddingValuesForAPI19();
+      int[] padding = makePaddingValuesForAPI19(activity);
       toolbar.setPadding(padding[0], 0, padding[1], 0);
       return;
     }
@@ -56,7 +56,27 @@ public final class FullscreenHelper {
     });
   }
 
-  private void setSpacerHeight(@NonNull View spacer, int height) {
+  public static void configureBottomBarLayout(@NonNull Activity activity, @NonNull View spacer, @NonNull View bottomBar) {
+    if (Build.VERSION.SDK_INT == 19) {
+      setSpacerHeight(spacer, ViewUtil.getNavigationBarHeight(spacer));
+      int[] padding = makePaddingValuesForAPI19(activity);
+      bottomBar.setPadding(padding[0], 0, padding[1], 0);
+      return;
+    }
+
+    ViewCompat.setOnApplyWindowInsetsListener(spacer, (view, insets) -> {
+      setSpacerHeight(view, insets.getSystemWindowInsetBottom());
+      return insets;
+    });
+
+    ViewCompat.setOnApplyWindowInsetsListener(bottomBar, (view, insets) -> {
+      int[] padding = makePaddingValues(insets);
+      bottomBar.setPadding(padding[0], 0, padding[1], 0);
+      return insets;
+    });
+  }
+
+  private static void setSpacerHeight(@NonNull View spacer, int height) {
     ViewGroup.LayoutParams params = spacer.getLayoutParams();
 
     params.height = height;
@@ -66,7 +86,7 @@ public final class FullscreenHelper {
   }
 
   @SuppressLint("SwitchIntDef")
-  private int[] makePaddingValuesForAPI19() {
+  private static int[] makePaddingValuesForAPI19(@NonNull Activity activity) {
     int rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
     if (rotation == Surface.ROTATION_0 || rotation == Surface.ROTATION_180) {
       return new int[]{0, 0};
@@ -88,7 +108,7 @@ public final class FullscreenHelper {
     }
   }
 
-  private int[] makePaddingValues(WindowInsetsCompat insets) {
+  private static int[] makePaddingValues(WindowInsetsCompat insets) {
     Insets              tappable = insets.getTappableElementInsets();
     DisplayCutoutCompat cutout   = insets.getDisplayCutout();
 

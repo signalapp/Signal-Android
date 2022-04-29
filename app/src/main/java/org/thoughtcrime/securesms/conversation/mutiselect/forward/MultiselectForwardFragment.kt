@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.stories.settings.create.CreateStoryWithViewers
 import org.thoughtcrime.securesms.stories.settings.hide.HideStoryFromDialogFragment
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.FullscreenHelper
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.fragments.findListener
@@ -125,14 +126,19 @@ class MultiselectForwardFragment :
 
     val container = callback.getContainer()
     val title: TextView? = container.findViewById(R.id.title)
-    val bottomBar = LayoutInflater.from(requireContext()).inflate(R.layout.multiselect_forward_fragment_bottom_bar, container, false)
+    val bottomBarAndSpacer = LayoutInflater.from(requireContext()).inflate(R.layout.multiselect_forward_fragment_bottom_bar_and_spacer, container, false)
+    val bottomBar: ViewGroup = bottomBarAndSpacer.findViewById(R.id.bottom_bar)
+    val bottomBarSpacer: View = bottomBarAndSpacer.findViewById(R.id.bottom_bar_spacer)
     val shareSelectionRecycler: RecyclerView = bottomBar.findViewById(R.id.selected_list)
     val shareSelectionAdapter = ShareSelectionAdapter()
     val sendButtonFrame: View = bottomBar.findViewById(R.id.share_confirm_frame)
     val sendButton: View = bottomBar.findViewById(R.id.share_confirm)
     val backgroundHelper: View = bottomBar.findViewById(R.id.background_helper)
 
+    FullscreenHelper.configureBottomBarLayout(requireActivity(), bottomBarSpacer, bottomBar)
+
     backgroundHelper.setBackgroundColor(callback.getDialogBackgroundColor())
+    bottomBarSpacer.setBackgroundColor(callback.getDialogBackgroundColor())
 
     title?.setText(requireArguments().getInt(ARG_TITLE))
 
@@ -171,7 +177,7 @@ class MultiselectForwardFragment :
 
     bottomBar.visible = false
 
-    container.addView(bottomBar)
+    container.addView(bottomBarAndSpacer)
 
     contactSearchMediator.getSelectionState().observe(viewLifecycleOwner) { contactSelection ->
       shareSelectionAdapter.submitList(contactSelection.mapIndexed { index, key -> ShareSelectionMappingModel(key.requireShareContact(), index == 0) })
