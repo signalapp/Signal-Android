@@ -105,7 +105,7 @@ object HSVColorSlider {
       }
     )
 
-    progress = 0
+    progress = BLACK_DIVISIONS + 1
     (thumb as ThumbDrawable).setColor(colors[progress])
   }
 
