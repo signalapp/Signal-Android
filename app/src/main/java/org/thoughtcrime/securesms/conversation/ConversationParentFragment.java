@@ -3225,6 +3225,7 @@ public class ConversationParentFragment extends Fragment
     requireActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
 
+    voiceNoteMediaController.pausePlayback();
     audioRecorder.startRecording();
   }
 
