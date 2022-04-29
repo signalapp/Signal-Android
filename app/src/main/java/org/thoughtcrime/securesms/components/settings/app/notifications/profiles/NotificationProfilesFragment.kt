@@ -17,8 +17,6 @@ import org.thoughtcrime.securesms.components.settings.app.notifications.profiles
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.models.NotificationProfilePreference
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.LargeIconClickPreference
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfiles
 import org.thoughtcrime.securesms.util.LifecycleDisposable
@@ -36,11 +34,6 @@ class NotificationProfilesFragment : DSLSettingsFragment() {
 
   private val lifecycleDisposable = LifecycleDisposable()
   private var toolbar: Toolbar? = null
-
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    ApplicationDependencies.getMegaphoneRepository().markFinished(Megaphones.Event.NOTIFICATION_PROFILES)
-  }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)

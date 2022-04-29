@@ -4377,15 +4377,6 @@
     <!-- Descriptor text indicating how long a profile will be on when there is a time component associated with it -->
     <string name="NotificationProfileSelection__on_until_s">On until %1$s</string>
 
-    <!-- Title for notification profile megaphone -->
-    <string name="NotificationProfilesMegaphone__notification_profiles">Notification profiles</string>
-    <!-- Description for notification profile megaphone -->
-    <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Only get notifications from the people and groups you choose.</string>
-    <!-- Call to action button to create a profile from megaphone -->
-    <string name="NotificationProfilesMegaphone__create_a_profile">Create a profile</string>
-    <!-- Button to dismiss notification profile megaphone -->
-    <string name="NotificationProfilesMegaphone__not_now">Not now</string>
-
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">Failed to open picker.</string>
 

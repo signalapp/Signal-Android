@@ -22,8 +22,6 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.EditNotificationProfileViewModel.SaveNotificationProfileResult
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.models.NotificationProfileNamePreset
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.CircularProgressButtonUtil
@@ -47,11 +45,6 @@ class EditNotificationProfileFragment : DSLSettingsFragment(layoutId = R.layout.
   private fun createFactory(): ViewModelProvider.Factory {
     val profileId = EditNotificationProfileFragmentArgs.fromBundle(requireArguments()).profileId
     return EditNotificationProfileViewModel.Factory(profileId)
-  }
-
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    ApplicationDependencies.getMegaphoneRepository().markFinished(Megaphones.Event.NOTIFICATION_PROFILES)
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

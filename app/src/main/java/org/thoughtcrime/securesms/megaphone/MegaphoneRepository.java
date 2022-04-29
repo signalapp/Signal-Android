@@ -51,7 +51,6 @@ public class MegaphoneRepository {
     executor.execute(() -> {
       database.markFinished(Event.CHAT_COLORS);
       database.markFinished(Event.ADD_A_PROFILE_PHOTO);
-      database.markFinished(Event.NOTIFICATION_PROFILES);
       resetDatabaseCache();
     });
   }
