@@ -71,7 +71,7 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     _toolbar = view.findViewById(R.id.toolbar)
-    _basicToolbar = Stub(view.findViewById(R.id.toolbar_basic))
+    _basicToolbar = Stub(view.findViewById(R.id.toolbar_basic_stub))
     notificationProfileStatus = view.findViewById(R.id.conversation_list_notification_profile_status)
     proxyStatus = view.findViewById(R.id.conversation_list_proxy_status)
     _searchAction = view.findViewById(R.id.search_action)
