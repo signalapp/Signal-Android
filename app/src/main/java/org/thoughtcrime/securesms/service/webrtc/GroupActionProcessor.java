@@ -105,6 +105,7 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
                                                           recipient,
                                                           null,
                                                           videoSink,
+                                                          device.getForwardingVideo() == null || device.getForwardingVideo(),
                                                           Boolean.FALSE.equals(device.getAudioMuted()),
                                                           Boolean.FALSE.equals(device.getVideoMuted()),
                                                           device.getSpeakerTime(),

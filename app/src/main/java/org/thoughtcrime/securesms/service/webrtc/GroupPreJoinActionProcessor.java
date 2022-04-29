@@ -130,6 +130,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
                                                                      new BroadcastVideoSink(),
                                                                      true,
                                                                      true,
+                                                                     true,
                                                                      0,
                                                                      false,
                                                                      0,

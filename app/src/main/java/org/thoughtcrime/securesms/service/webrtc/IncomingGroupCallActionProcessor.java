@@ -154,6 +154,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
                                                                                            true,
                                                                                            currentState.getLocalDeviceState().getOrientation().getDegrees()),
                                                                     true,
+                                                                    true,
                                                                     false,
                                                                     0,
                                                                     true,

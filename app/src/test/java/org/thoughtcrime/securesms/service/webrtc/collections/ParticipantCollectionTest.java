@@ -242,6 +242,7 @@ public class ParticipantCollectionTest {
         new BroadcastVideoSink(),
         false,
         false,
+        false,
         lastSpoke,
         false,
         added,

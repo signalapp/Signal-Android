@@ -147,7 +147,7 @@ public class CallParticipantView extends ConstraintLayout {
     } else {
       infoOverlay.setVisibility(View.GONE);
 
-      boolean hasContentToRender = participant.isVideoEnabled() || participant.isScreenSharing();
+      boolean hasContentToRender = (participant.isVideoEnabled() || participant.isScreenSharing()) && participant.isForwardingVideo();
 
       rendererFrame.setVisibility(hasContentToRender ? View.VISIBLE : View.GONE);
       renderer.setVisibility(hasContentToRender ? View.VISIBLE : View.GONE);
