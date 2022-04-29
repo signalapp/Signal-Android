@@ -582,9 +582,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
       if (recipient.isGroup()) {
         if (pendingMemberCount > 0) {
-          conversationBanner.setSubtitle(context.getResources()
-                                                .getQuantityString(R.plurals.MessageRequestProfileView_members_and_invited, memberCount,
-                                                                   memberCount, pendingMemberCount));
+          String invited = context.getResources().getQuantityString(R.plurals.MessageRequestProfileView_invited, pendingMemberCount, pendingMemberCount);
+          conversationBanner.setSubtitle(context.getResources().getQuantityString(R.plurals.MessageRequestProfileView_members_and_invited, memberCount, memberCount, invited));
         } else if (memberCount > 0) {
           conversationBanner.setSubtitle(context.getResources().getQuantityString(R.plurals.MessageRequestProfileView_members, memberCount,
                                                                                   memberCount));

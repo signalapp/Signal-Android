@@ -226,10 +226,12 @@ public final class LiveGroup {
   }
 
   private static String getMembershipDescription(@NonNull Resources resources, int invitedCount, int fullMemberCount) {
-    return invitedCount > 0 ? resources.getQuantityString(R.plurals.MessageRequestProfileView_members_and_invited, fullMemberCount,
-                                                          fullMemberCount, invitedCount)
-                            : resources.getQuantityString(R.plurals.MessageRequestProfileView_members, fullMemberCount,
-                                                          fullMemberCount);
+    if (invitedCount > 0) {
+      String invited = resources.getQuantityString(R.plurals.MessageRequestProfileView_invited, invitedCount, invitedCount);
+      return resources.getQuantityString(R.plurals.MessageRequestProfileView_members_and_invited, fullMemberCount, fullMemberCount, invited);
+    } else {
+      return resources.getQuantityString(R.plurals.MessageRequestProfileView_members, fullMemberCount, fullMemberCount);
+    }
   }
 
   private LiveData<GroupDatabase.MemberLevel> selfMemberLevel() {
