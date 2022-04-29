@@ -1612,7 +1612,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
         startActivity(StoryViewerActivity.createIntent(
             requireContext(),
             messageRecord.getQuote().getAuthor(),
-            messageRecord.getParentStoryId().serialize(),
+            messageRecord.getParentStoryId().asMessageId().getId(),
             Recipient.resolved(messageRecord.getQuote().getAuthor()).shouldHideStory(),
             null,
             null,
