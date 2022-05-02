@@ -290,12 +290,12 @@ public final class MessageContentProcessor {
         if      (isInvalidMessage(message))                                                  handleInvalidMessage(content.getSender(), content.getSenderDevice(), groupId, content.getTimestamp(), smsMessageId);
         else if (message.isEndSession())                                                     messageId = handleEndSessionMessage(content, smsMessageId, senderRecipient);
         else if (message.isGroupV1Update())                                                  handleGroupV1Message(content, message, smsMessageId, groupId.get().requireV1(), senderRecipient, threadRecipient, receivedTime);
-        else if (message.isExpirationUpdate())                                               messageId = handleExpirationUpdate(content, message, smsMessageId, groupId, senderRecipient, threadRecipient, receivedTime);
+        else if (message.isExpirationUpdate())                                               messageId = handleExpirationUpdate(content, message, smsMessageId, groupId, senderRecipient, threadRecipient, receivedTime, false);
         else if (message.getReaction().isPresent() && message.getStoryContext().isPresent()) messageId = handleStoryReaction(content, message, senderRecipient);
         else if (message.getReaction().isPresent())                                          messageId = handleReaction(content, message, senderRecipient);
         else if (message.getRemoteDelete().isPresent())                                      messageId = handleRemoteDelete(content, message, senderRecipient);
         else if (message.getPayment().isPresent())                                           handlePayment(content, message, senderRecipient);
-        else if (message.getStoryContext().isPresent())                                      messageId = handleStoryReply(content, message, senderRecipient);
+        else if (message.getStoryContext().isPresent())                                      messageId = handleStoryReply(content, message, senderRecipient, receivedTime);
         else if (message.getGiftBadge().isPresent())                                         messageId = handleGiftMessage(content, message, senderRecipient, threadRecipient, receivedTime);
         else if (isMediaMessage)                                                             messageId = handleMediaMessage(content, message, smsMessageId, senderRecipient, threadRecipient, receivedTime);
         else if (message.getBody().isPresent())                                              messageId = handleTextMessage(content, message, smsMessageId, groupId, senderRecipient, threadRecipient, receivedTime);
@@ -801,9 +801,7 @@ public final class MessageContentProcessor {
 
     GroupV1MessageProcessor.process(context, content, message, false);
 
-    if (message.getExpiresInSeconds() != 0 && message.getExpiresInSeconds() != threadRecipient.getExpiresInSeconds()) {
-      handleExpirationUpdate(content, message, Optional.empty(), Optional.of(groupId), senderRecipient, threadRecipient, receivedTime);
-    }
+    handlePossibleExpirationUpdate(content, message, Optional.of(groupId), senderRecipient, threadRecipient, receivedTime);
 
     if (smsMessageId.isPresent()) {
       SignalDatabase.sms().deleteMessage(smsMessageId.get());
@@ -837,13 +835,36 @@ public final class MessageContentProcessor {
     }
   }
 
+  /**
+   * Inserts an expiration update if the message timer doesn't match the thread timer.
+   */
+  private void handlePossibleExpirationUpdate(@NonNull SignalServiceContent content,
+                                              @NonNull SignalServiceDataMessage message,
+                                              Optional<GroupId> groupId,
+                                              @NonNull Recipient senderRecipient,
+                                              @NonNull Recipient threadRecipient,
+                                              long receivedTime)
+      throws StorageFailedException
+  {
+    if (message.getExpiresInSeconds() != threadRecipient.getExpiresInSeconds()) {
+      warn(content.getTimestamp(), "Message expire time didn't match thread expire time. Handling timer update.");
+      handleExpirationUpdate(content, message, Optional.empty(), groupId, senderRecipient, threadRecipient, receivedTime, true);
+    }
+  }
+
+
+  /**
+   * @param sideEffect True if the event is side effect of a different message, false if the message itself was an expiration update.
+   * @throws StorageFailedException
+   */
   private @Nullable MessageId handleExpirationUpdate(@NonNull SignalServiceContent content,
                                                      @NonNull SignalServiceDataMessage message,
                                                      @NonNull Optional<Long> smsMessageId,
                                                      @NonNull Optional<GroupId> groupId,
                                                      @NonNull Recipient senderRecipient,
                                                      @NonNull Recipient threadRecipient,
-                                                     long receivedTime)
+                                                     long receivedTime,
+                                                     boolean sideEffect)
       throws StorageFailedException
   {
     log(content.getTimestamp(), "Expiration update.");
@@ -864,7 +885,7 @@ public final class MessageContentProcessor {
     try {
       MessageDatabase      database     = SignalDatabase.mms();
       IncomingMediaMessage mediaMessage = new IncomingMediaMessage(senderRecipient.getId(),
-                                                                   content.getTimestamp(),
+                                                                   content.getTimestamp() - (sideEffect ? 1 : 0),
                                                                    content.getServerReceivedTimestamp(),
                                                                    receivedTime,
                                                                    StoryType.NONE,
@@ -1598,7 +1619,7 @@ public final class MessageContentProcessor {
     }
   }
 
-  private @Nullable MessageId handleStoryReply(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message, @NonNull Recipient senderRecipient) throws StorageFailedException {
+  private @Nullable MessageId handleStoryReply(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message, @NonNull Recipient senderRecipient, long receivedTime) throws StorageFailedException {
     log(content.getTimestamp(), "Story reply.");
 
     if (!Stories.isFeatureAvailable()) {
@@ -1620,8 +1641,10 @@ public final class MessageContentProcessor {
       try {
         MessageId        storyMessageId  = database.getStoryId(storyAuthorRecipient, storyContext.getSentTimestamp());
         MmsMessageRecord story           = (MmsMessageRecord) database.getMessageRecord(storyMessageId.getId());
-        Recipient        threadRecipient = SignalDatabase.threads().getRecipientForThreadId(story.getThreadId());
-        boolean          groupStory      = threadRecipient != null && threadRecipient.isActiveGroup();
+        Recipient        threadRecipient = Objects.requireNonNull(SignalDatabase.threads().getRecipientForThreadId(story.getThreadId()));
+        boolean          groupStory      = threadRecipient.isActiveGroup();
+
+        handlePossibleExpirationUpdate(content, message, threadRecipient.getGroupId(), senderRecipient, threadRecipient, receivedTime);
 
         if (message.getGroupContext().isPresent() ) {
           parentStoryId = new ParentStoryId.GroupReply(storyMessageId.getId());
@@ -1775,6 +1798,8 @@ public final class MessageContentProcessor {
       Optional<List<LinkPreview>> linkPreviews   = getLinkPreviews(message.getPreviews(), message.getBody().orElse(""), false);
       Optional<List<Mention>>     mentions       = getMentions(message.getMentions());
       Optional<Attachment>        sticker        = getStickerAttachment(message.getSticker());
+
+      handlePossibleExpirationUpdate(content, message, Optional.empty(), senderRecipient, threadRecipient, receivedTime);
 
       IncomingMediaMessage mediaMessage = new IncomingMediaMessage(senderRecipient.getId(),
                                                                    message.getTimestamp(),
@@ -2139,9 +2164,7 @@ public final class MessageContentProcessor {
     MessageDatabase database = SignalDatabase.sms();
     String          body     = message.getBody().isPresent() ? message.getBody().get() : "";
 
-    if (message.getExpiresInSeconds() != threadRecipient.getExpiresInSeconds()) {
-      handleExpirationUpdate(content, message, Optional.empty(), groupId, senderRecipient, threadRecipient, receivedTime);
-    }
+    handlePossibleExpirationUpdate(content, message, groupId, senderRecipient, threadRecipient, receivedTime);
 
     Optional<InsertResult> insertResult;
 
