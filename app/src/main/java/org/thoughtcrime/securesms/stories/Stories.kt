@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.stories
 import androidx.annotation.WorkerThread
 import androidx.fragment.app.FragmentManager
 import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.HeaderAction
 import org.thoughtcrime.securesms.database.AttachmentDatabase
@@ -21,6 +22,7 @@ import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.hasLinkPreview
 import java.util.concurrent.TimeUnit
 
 object Stories {
@@ -49,10 +51,9 @@ object Stories {
     }
   }
 
-  @WorkerThread
   fun sendTextStories(messages: List<OutgoingSecureMediaMessage>): Completable {
     return Completable.create { emitter ->
-      MessageSender.sendMediaBroadcast(ApplicationDependencies.getApplication(), messages, listOf(), listOf())
+      MessageSender.sendStories(ApplicationDependencies.getApplication(), messages, null, null)
       emitter.onComplete()
     }
   }
@@ -87,12 +88,29 @@ object Stories {
     val unreadStoriesReader = SignalDatabase.mms.getUnreadStories(recipientId, FeatureFlags.storiesAutoDownloadMaximum())
     while (unreadStoriesReader.next != null) {
       val record = unreadStoriesReader.current as MmsMessageRecord
-      SignalDatabase.attachments.getAttachmentsForMessage(record.id).filterNot { it.isSticker }.forEach {
-        if (it.transferState == AttachmentDatabase.TRANSFER_PROGRESS_PENDING) {
-          val job = AttachmentDownloadJob(record.id, it.attachmentId, ignoreAutoDownloadConstraints)
-          ApplicationDependencies.getJobManager().add(job)
-        }
+      enqueueAttachmentsFromStoryForDownloadSync(record, ignoreAutoDownloadConstraints)
+    }
+  }
+
+  fun enqueueAttachmentsFromStoryForDownload(record: MmsMessageRecord, ignoreAutoDownloadConstraints: Boolean): Completable {
+    return Completable.fromAction {
+      enqueueAttachmentsFromStoryForDownloadSync(record, ignoreAutoDownloadConstraints)
+    }.subscribeOn(Schedulers.io())
+  }
+
+  @WorkerThread
+  private fun enqueueAttachmentsFromStoryForDownloadSync(record: MmsMessageRecord, ignoreAutoDownloadConstraints: Boolean) {
+    SignalDatabase.attachments.getAttachmentsForMessage(record.id).filterNot { it.isSticker }.forEach {
+      if (it.transferState == AttachmentDatabase.TRANSFER_PROGRESS_PENDING) {
+        val job = AttachmentDownloadJob(record.id, it.attachmentId, ignoreAutoDownloadConstraints)
+        ApplicationDependencies.getJobManager().add(job)
       }
+    }
+
+    if (record.hasLinkPreview()) {
+      ApplicationDependencies.getJobManager().add(
+        AttachmentDownloadJob(record.id, record.linkPreviews[0].attachmentId, true)
+      )
     }
   }
 }

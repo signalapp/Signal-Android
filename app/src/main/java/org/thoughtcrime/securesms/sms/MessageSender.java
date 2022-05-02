@@ -130,6 +130,67 @@ public class MessageSender {
     return allocatedThreadId;
   }
 
+  public static void sendStories(@NonNull final Context context,
+                                 @NonNull final List<OutgoingSecureMediaMessage> messages,
+                                 @Nullable final String metricId,
+                                 @Nullable final SmsDatabase.InsertListener insertListener)
+  {
+    Log.i(TAG, "Sending story messages to " + messages.size() + " targets.");
+    ThreadDatabase  threadDatabase = SignalDatabase.threads();
+    MessageDatabase database       = SignalDatabase.mms();
+    List<Long>      messageIds     = new ArrayList<>(messages.size());
+    List<Long>      threads        = new ArrayList<>(messages.size());
+
+    try {
+      database.beginTransaction();
+      for (OutgoingMediaMessage message : messages) {
+        long      allocatedThreadId = threadDatabase.getOrCreateValidThreadId(message.getRecipient(), -1L, message.getDistributionType());
+        Recipient recipient         = message.getRecipient();
+        long      messageId         = database.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, recipient, message, allocatedThreadId), allocatedThreadId, false, insertListener);
+
+        messageIds.add(messageId);
+        threads.add(allocatedThreadId);
+
+        if (message.getRecipient().isGroup() && message.getAttachments().isEmpty() && message.getLinkPreviews().isEmpty() && message.getSharedContacts().isEmpty()) {
+          SignalLocalMetrics.GroupMessageSend.onInsertedIntoDatabase(messageId, metricId);
+        } else {
+          SignalLocalMetrics.GroupMessageSend.cancel(metricId);
+        }
+      }
+
+      for (int i = 0; i < messageIds.size(); i++) {
+        long                       messageId = messageIds.get(i);
+        OutgoingSecureMediaMessage message   = messages.get(i);
+        Recipient                  recipient = message.getRecipient();
+
+        if (recipient.isDistributionList()) {
+          List<RecipientId> members = SignalDatabase.distributionLists().getMembers(recipient.requireDistributionListId());
+          SignalDatabase.storySends().insert(messageId, members, message.getSentTimeMillis(), message.getStoryType().isStoryWithReplies());
+        }
+      }
+
+      database.setTransactionSuccessful();
+    } catch (MmsException e) {
+      Log.w(TAG, e);
+    } finally {
+      database.endTransaction();
+    }
+
+    for (int i = 0; i < messageIds.size(); i++) {
+      long                       messageId = messageIds.get(i);
+      OutgoingSecureMediaMessage message   = messages.get(i);
+      Recipient                  recipient = message.getRecipient();
+
+      sendMediaMessage(context, recipient, false, messageId, Collections.emptyList());
+    }
+
+    onMessageSent();
+
+    for (long threadId : threads) {
+      threadDatabase.update(threadId, true);
+    }
+  }
+
   public static long send(final Context context,
                           final OutgoingMediaMessage message,
                           final long threadId,

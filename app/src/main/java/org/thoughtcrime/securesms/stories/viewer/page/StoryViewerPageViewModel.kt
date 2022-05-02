@@ -85,7 +85,7 @@ class StoryViewerPageViewModel(
     val selectedPost = getPostAt(index)
 
     if (selectedPost != null && selectedPost.content.transferState != AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
-      repository.forceDownload(selectedPost)
+      disposables += repository.forceDownload(selectedPost).subscribe()
     }
 
     store.update {
@@ -136,7 +136,7 @@ class StoryViewerPageViewModel(
   }
 
   fun forceDownloadSelectedPost() {
-    repository.forceDownload(getPost())
+    disposables += repository.forceDownload(getPost()).subscribe()
   }
 
   fun startDirectReply(storyId: Long, recipientId: RecipientId) {

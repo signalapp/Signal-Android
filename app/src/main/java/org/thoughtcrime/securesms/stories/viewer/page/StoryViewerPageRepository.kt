@@ -7,7 +7,6 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.concurrent.SignalExecutors
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.NoSuchMessageException
@@ -17,7 +16,6 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewedUpdateJob
 import org.thoughtcrime.securesms.jobs.SendViewedReceiptJob
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -133,12 +131,8 @@ open class StoryViewerPageRepository(context: Context) {
     }
   }
 
-  fun forceDownload(post: StoryPost) {
-    if (post.content is StoryPost.Content.AttachmentContent) {
-      ApplicationDependencies.getJobManager().add(
-        AttachmentDownloadJob(post.id, (post.content.attachment as DatabaseAttachment).attachmentId, true)
-      )
-    }
+  fun forceDownload(post: StoryPost): Completable {
+    return Stories.enqueueAttachmentsFromStoryForDownload(post.conversationMessage.messageRecord as MmsMessageRecord, true)
   }
 
   fun getStoryPostsFor(recipientId: RecipientId): Observable<List<StoryPost>> {
