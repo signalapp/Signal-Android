@@ -2488,10 +2488,6 @@
     <string name="preferences__help">Help</string>
     <string name="preferences__advanced">Advanced</string>
     <string name="preferences__donate_to_signal">Donate to Signal</string>
-    <!-- Preference label when someone is already a subscriber -->
-    <string name="preferences__subscription">Subscription</string>
-    <!-- Preference label for making a monthly donation to Signal -->
-    <string name="preferences__monthly_donation">Monthly Donation</string>
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__one_time_donation">One-time Donation</string>
     <string name="preferences__privacy">Privacy</string>
@@ -4145,17 +4141,28 @@
     <string name="BecomeASustainerFragment__get_badges">Get badges for your profile by supporting Signal.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
 
-    <string name="ManageDonationsFragment__my_support">My support</string>
+    <!-- Button label for creating a monthly donation -->
+    <string name="ManageDonationsFragment__make_a_monthly_donation">Make a monthly donation</string>
+    <!-- Heading for more area of manage subscriptions page -->
+    <string name="ManageDonationsFragment__more">More</string>
+    <!-- Heading for receipts area of manage subscriptions page -->
+    <string name="ManageDonationsFragment__receipts">Receipts</string>
+    <!-- Heading for my subscription area of manage subscriptions page -->
+    <string name="ManageDonationsFragment__my_subscription">My subscription</string>
     <string name="ManageDonationsFragment__manage_subscription">Manage subscription</string>
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Donation Receipts</string>
     <string name="ManageDonationsFragment__badges">Badges</string>
     <string name="ManageDonationsFragment__subscription_faq">Subscription FAQ</string>
     <string name="ManageDonationsFragment__error_getting_subscription">Error getting subscription.</string>
+    <!-- Preference heading for other ways to donate -->
+    <string name="ManageDonationsFragment__other_ways_to_give">Other ways to give</string>
+    <!-- Preference label to launch badge gifting -->
+    <string name="ManageDonationsFragment__gift_a_badge">Gift a badge</string>
 
     <string name="BoostFragment__give_signal_a_boost">Give Signal a Boost</string>
     <!-- Description text in boost sheet -->
-    <string name="BoostFragment__make_a_one_time">Make a one time donation and earn a Boost badge for %1$d days.</string>
+    <string name="BoostFragment__make_a_one_time">Make a one-time donation and earn a Boost badge for %1$d days.</string>
 
     <string name="Boost__enter_custom_amount">Enter Custom Amount</string>
     <string name="Boost__one_time_contribution">One-time contribution</string>
@@ -4204,6 +4211,14 @@
     <string name="DonationsErrors__your_payment">Your payment couldn\'t be processed and you have not been charged. Please try again.</string>
     <string name="DonationsErrors__still_processing">Still processing</string>
     <string name="DonationsErrors__couldnt_add_badge">Couldn\'t add badge</string>
+    <!-- Displayed when badge credential couldn't be verified -->
+    <string name="DonationsErrors__failed_to_validate_badge">Failed to validate badge</string>
+    <!-- Displayed when badge credential couldn't be verified -->
+    <string name="DonationsErrors__could_not_validate">Could not validate server response. Please contact support.</string>
+    <!-- Displayed as title when some generic error happens during gift badge sending -->
+    <string name="DonationsErrors__failed_to_send_gift_badge">Failed to send gift badge</string>
+    <!-- Displayed as message when some generic error happens during gift badge sending -->
+    <string name="DonationsErrors__could_not_send_gift_badge">Could not send gift badge. Please contact support.</string>
     <string name="DonationsErrors__your_badge_could_not">Your badge could not be added to your account, but you may have been charged. Please contact support.</string>
     <string name="DonationsErrors__your_payment_is_still">Your payment is still being processed. This can take a few minutes depending on your connection.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay Unavailable</string>
@@ -4213,6 +4228,24 @@
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Your device doesn\'t support Google Pay, so you can\'t subscribe to earn a badge. You can still support Signal by making a donation on our website.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Network error. Check your connection and try again.</string>
     <string name="NetworkFailure__retry">Retry</string>
+    <string name="DonationsErrors__recipient_verification_failed">Recipient verification failed.</string>
+    <string name="DonationsErrors__target_does_not_support_gifting">Target does not support gifting.</string>
+
+    <!-- Gift message view title -->
+    <string name="GiftMessageView__gift_badge">Gift badge</string>
+    <!-- Gift message view expiry information -->
+    <plurals name="GiftMessageView__lasts_for_d_months">
+        <item quantity="one">Lasts for %1$d month</item>
+        <item quantity="other">Lasts for %1$d months</item>
+    </plurals>
+    <!-- Gift badge redeem action label -->
+    <string name="GiftMessageView__redeem">Redeem</string>
+    <!-- Gift badge view action label -->
+    <string name="GiftMessageView__view">View</string>
+    <!-- Gift badge redeeming action label -->
+    <string name="GiftMessageView__redeeming">Redeeming…</string>
+    <!-- Gift badge redeemed label -->
+    <string name="GiftMessageView__redeemed">Redeemed</string>
 
     <string name="Boost__thank_you_for_your_donation" translatable="false">Thank you for your donation. Your contribution helps fuel the mission of developing open source privacy technology that protects free expression and enables secure global communication for millions around the world. Signal Technology Foundation is a tax-exempt nonprofit organization in the United States under section 501c3 of the Internal Revenue Code. Our Federal Tax ID is 82-4506840. No goods or services were provided in exchange for this donation. Please retain this receipt for your tax records.</string>
 
@@ -4397,6 +4430,8 @@
     <string name="DonationReceiptListFragment__recurring">Recurring</string>
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">One-time</string>
+    <!-- Donation receipts gift tab label -->
+    <string name="DonationReceiptListFragment__gift">Gift</string>
     <!-- Donation receipts boost row label -->
     <string name="DonationReceiptListFragment__boost">Boost</string>
     <!-- Donation receipts details title -->
@@ -4686,6 +4721,55 @@
     <!-- Content description for expand contacts chevron -->
     <string name="ExpandModel__view_more">View more</string>
     <string name="StoriesLinkPopup__visit_link">Visit link</string>
+
+    <!-- Tagline for gift row items -->
+    <string name="GiftRowItem__send_a_gift_badge">Send a gift badge</string>
+    <!-- Headline text on start fragment for gifting a badge -->
+    <string name="GiftFlowStartFragment__gift_a_badge">Gift a Badge</string>
+    <!-- Description text on start fragment for gifting a badge -->
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">Gift someone a badge by making a donation to Signal in their name. They\'ll get a badge to display on their profile photo.</string>
+    <!-- Action button label for start fragment for gifting a badge -->
+    <string name="GiftFlowStartFragment__next">Next</string>
+    <!-- Title text on choose recipient page for badge gifting -->
+    <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Choose recipient</string>
+    <!-- Title text on confirm gift page -->
+    <string name="GiftFlowConfirmationFragment__confirm_gift">Confirm gift</string>
+    <!-- Heading text specifying who the gift will be sent to -->
+    <string name="GiftFlowConfirmationFragment__send_to">Send to</string>
+    <!-- Text explaining that gift will be sent to the chosen recipient -->
+    <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Your gift will be sent in a 1 on 1 message to the recipient. Add your own message below.</string>
+    <!-- Text explaining that this gift is a one time donation -->
+    <string name="GiftFlowConfirmationFragment__one_time_donation">One-time donation</string>
+    <!-- Hint for add message input -->
+    <string name="GiftFlowConfirmationFragment__add_a_message">Add a message</string>
+    <!-- Title for sheet shown when opening a redeemed gift -->
+    <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s sent you a gift</string>
+    <!-- Title for sheet shown when opening a sent gift -->
+    <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Thanks for your support!</string>
+    <!-- Description for sheet shown when opening a redeemed gift -->
+    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">You\'ve received a gift badge from %1$s! Help Signal build awareness by displaying this badge on your profile.</string>
+    <!-- Description for sheet shown when opening a sent gift -->
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">You\'ve gifted a badge to %1$s. When they accept, they\'ll be given a choice to show or hide their badge.</string>
+    <!-- Primary action for pending gift sheet to redeem badge now -->
+    <string name="ViewReceivedGiftSheet__redeem">Redeem</string>
+    <!-- Primary action for pending gift sheet to redeem badge later -->
+    <string name="ViewReceivedGiftSheet__not_now">Not now</string>
+    <!-- Dialog text while redeeming a gift -->
+    <string name="ViewReceivedGiftSheet__redeeming_gift">Redeeming gift…</string>
+    <!-- Snackbar text when user presses "not now" on redemption sheet -->
+    <string name="ConversationFragment__you_can_redeem_your_badge_later">You can redeem your badge later.</string>
+    <!-- Description text in gift thanks sheet -->
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">You\'ve gifted a badge to %1$s. When they accept, they\'ll be given a choice to show or hide their badge.</string>
+    <!-- Expired gift sheet title -->
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Your gift badge has expired</string>
+    <!-- Expired gift sheet top description text -->
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Your gift badge has expired, and is no longer visible to others on your profile.</string>
+    <!-- Expired gift sheet bottom description text -->
+    <string name="ExpiredGiftSheetConfiguration__to_continue">To continue supporting technology that is built for you, please consider becoming a monthly Sustainer.</string>
+    <!-- Expired gift sheet make a monthly donation button -->
+    <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Make a monthly donation</string>
+    <!-- Expired gift sheet not now button -->
+    <string name="ExpiredGiftSheetConfiguration__not_now">Not now</string>
 
     <!-- EOF -->
 

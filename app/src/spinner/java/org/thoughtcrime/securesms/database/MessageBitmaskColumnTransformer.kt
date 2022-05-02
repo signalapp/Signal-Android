@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.database.MmsSmsColumns.Types.PROFILE_CHANGE_TY
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types.PUSH_MESSAGE_BIT
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types.SECURE_MESSAGE_BIT
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types.SPECIAL_TYPES_MASK
+import org.thoughtcrime.securesms.database.MmsSmsColumns.Types.SPECIAL_TYPE_GIFT_BADGE
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types.SPECIAL_TYPE_STORY_REACTION
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types.UNSUPPORTED_MESSAGE_TYPE
 
@@ -112,7 +113,8 @@ object MessageBitmaskColumnTransformer : ColumnTransformer {
       isBoostRequest:${type == BOOST_REQUEST_TYPE}
       isGroupV2LeaveOnly:${type and GROUP_V2_LEAVE_BITS == GROUP_V2_LEAVE_BITS}
       isSpecialType:${type and SPECIAL_TYPES_MASK != 0L}
-      isStoryReaction:${type and SPECIAL_TYPE_STORY_REACTION == SPECIAL_TYPE_STORY_REACTION}
+      isStoryReaction:${type and SPECIAL_TYPES_MASK == SPECIAL_TYPE_STORY_REACTION}
+      isGiftBadge:${type and SPECIAL_TYPES_MASK == SPECIAL_TYPE_GIFT_BADGE}
     """.trimIndent()
 
     return "$type<br><br>" + describe.replace(Regex("is[A-Z][A-Za-z0-9]*:false\n?"), "").replace("\n", "<br>")

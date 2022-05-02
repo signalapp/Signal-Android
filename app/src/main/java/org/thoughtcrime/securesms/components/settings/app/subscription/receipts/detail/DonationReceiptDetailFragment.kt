@@ -71,6 +71,7 @@ class DonationReceiptDetailFragment : DSLSettingsFragment(layoutId = R.layout.do
     val type: String = when (record.type) {
       DonationReceiptRecord.Type.RECURRING -> getString(R.string.DonationReceiptDetailsFragment__s_dash_s, subscriptionName, getString(R.string.DonationReceiptListFragment__recurring))
       DonationReceiptRecord.Type.BOOST -> getString(R.string.DonationReceiptListFragment__one_time)
+      DonationReceiptRecord.Type.GIFT -> getString(R.string.DonationReceiptListFragment__gift)
     }
     val datePaid: String = DateUtils.formatDate(Locale.getDefault(), record.timestamp)
 
@@ -142,6 +143,7 @@ class DonationReceiptDetailFragment : DSLSettingsFragment(layoutId = R.layout.do
           when (record.type) {
             DonationReceiptRecord.Type.RECURRING -> getString(R.string.DonationReceiptDetailsFragment__s_dash_s, subscriptionName, getString(R.string.DonationReceiptListFragment__recurring))
             DonationReceiptRecord.Type.BOOST -> getString(R.string.DonationReceiptListFragment__one_time)
+            DonationReceiptRecord.Type.GIFT -> getString(R.string.DonationReceiptListFragment__gift)
           }
         )
       )

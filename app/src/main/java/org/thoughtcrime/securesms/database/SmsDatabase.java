@@ -1697,6 +1697,21 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public void markGiftRedemptionCompleted(long messageId) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public void markGiftRedemptionStarted(long messageId) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public void markGiftRedemptionFailed(long messageId) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   public MessageDatabase.Reader getMessages(Collection<Long> messageIds) {
     throw new UnsupportedOperationException();
   }

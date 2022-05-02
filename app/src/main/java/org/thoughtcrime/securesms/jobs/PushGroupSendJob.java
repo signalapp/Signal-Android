@@ -119,6 +119,10 @@ public final class PushGroupSendJob extends PushSendJob {
       OutgoingMediaMessage message             = database.getOutgoingMessage(messageId);
       Set<String>          attachmentUploadIds = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
 
+      if (message.getGiftBadge() != null) {
+        throw new MmsException("Cannot send a gift badge to a group!");
+      }
+
       if (!SignalDatabase.groups().isActive(group.requireGroupId()) && !isGv2UpdateMessage(message)) {
         throw new MmsException("Inactive group!");
       }

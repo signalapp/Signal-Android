@@ -20,9 +20,12 @@ import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
+import java.util.TreeMap;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Single;
@@ -77,8 +80,8 @@ public class DonationsService {
    * @param currencyCode  The currency code for the amount
    * @return              A ServiceResponse containing a DonationIntentResult with details given to us by the payment gateway.
    */
-  public Single<ServiceResponse<SubscriptionClientSecret>> createDonationIntentWithAmount(String amount, String currencyCode, String description) {
-    return createServiceResponse(() -> new Pair<>(pushServiceSocket.createBoostPaymentMethod(currencyCode, Long.parseLong(amount), description), 200));
+  public Single<ServiceResponse<SubscriptionClientSecret>> createDonationIntentWithAmount(String amount, String currencyCode, long level) {
+    return createServiceResponse(() -> new Pair<>(pushServiceSocket.createBoostPaymentMethod(currencyCode, Long.parseLong(amount), level), 200));
   }
 
   /**
@@ -103,7 +106,43 @@ public class DonationsService {
    * @return The badge configuration for signal boost. Expect for right now only a single level numbered 1.
    */
   public Single<ServiceResponse<SignalServiceProfile.Badge>> getBoostBadge(Locale locale) {
-    return createServiceResponse(() -> new Pair<>(pushServiceSocket.getBoostLevels(locale).getLevels().get("1").getBadge(), 200));
+    return createServiceResponse(() -> new Pair<>(pushServiceSocket.getBoostLevels(locale).getLevels().get(SubscriptionLevels.BOOST_LEVEL).getBadge(), 200));
+  }
+
+  /**
+   * @return A specific gift badge, by level.
+   */
+  public Single<ServiceResponse<SignalServiceProfile.Badge>> getGiftBadge(Locale locale, long level) {
+    return createServiceResponse(() -> new Pair<>(pushServiceSocket.getBoostLevels(locale).getLevels().get(String.valueOf(level)).getBadge(), 200));
+  }
+
+  /**
+   * @return All gift badges the server currently has available.
+   */
+  public Single<ServiceResponse<Map<Long, SignalServiceProfile.Badge>>> getGiftBadges(Locale locale) {
+    return createServiceResponse(() -> {
+      Map<String, SubscriptionLevels.Level> levels = pushServiceSocket.getBoostLevels(locale).getLevels();
+      Map<Long, SignalServiceProfile.Badge> badges = new TreeMap<>();
+
+      for (Map.Entry<String, SubscriptionLevels.Level> levelEntry : levels.entrySet()) {
+        if (!Objects.equals(levelEntry.getKey(), SubscriptionLevels.BOOST_LEVEL)) {
+          try {
+            badges.put(Long.parseLong(levelEntry.getKey()), levelEntry.getValue().getBadge());
+          } catch (NumberFormatException e) {
+            Log.w(TAG, "Could not parse gift badge for level entry " + levelEntry.getKey(), e);
+          }
+        }
+      }
+
+      return new Pair<>(badges, 200);
+    });
+  }
+
+  /**
+   * Returns the amounts for the gift badge.
+   */
+  public Single<ServiceResponse<Map<String, BigDecimal>>> getGiftAmount() {
+    return createServiceResponse(() -> new Pair<>(pushServiceSocket.getGiftAmount(), 200));
   }
 
   /**
@@ -213,12 +252,12 @@ public class DonationsService {
         return ServiceResponse.forResult(responseAndCode.first(), responseAndCode.second(), null);
       } catch (NonSuccessfulResponseCodeException e) {
         Log.w(TAG, "Bad response code from server.", e);
-        return ServiceResponse.<T>forApplicationError(e, e.getCode(), e.getMessage());
+        return ServiceResponse.forApplicationError(e, e.getCode(), e.getMessage());
       } catch (IOException e) {
         Log.w(TAG, "An unknown error occurred.", e);
-        return ServiceResponse.<T>forUnknownError(e);
+        return ServiceResponse.forUnknownError(e);
       }
-    }).subscribeOn(Schedulers.io());
+    });
   }
 
   private interface Producer<T> {

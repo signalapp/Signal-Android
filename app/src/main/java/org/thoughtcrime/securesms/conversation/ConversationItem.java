@@ -71,6 +71,8 @@ import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.badges.BadgeImageView;
+import org.thoughtcrime.securesms.badges.gifts.GiftMessageView;
+import org.thoughtcrime.securesms.badges.gifts.OpenableGift;
 import org.thoughtcrime.securesms.components.AlertView;
 import org.thoughtcrime.securesms.components.AudioView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
@@ -147,6 +149,9 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
+
 /**
  * A view that displays an individual conversation item within a conversation
  * thread.  Used by ComposeMessageActivity's ListActivity via a ConversationAdapter.
@@ -156,7 +161,8 @@ import java.util.concurrent.TimeUnit;
  */
 
 public final class ConversationItem extends RelativeLayout implements BindableConversationItem,
-    RecipientForeverObserver
+                                                                      RecipientForeverObserver,
+                                                                      OpenableGift
 {
   private static final String TAG = Log.tag(ConversationItem.class);
 
@@ -207,6 +213,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private           Stub<BorderlessImageView>               stickerStub;
   private           Stub<ViewOnceMessageView>               revealableStub;
   private           Stub<Button>                            callToActionStub;
+  private           Stub<GiftMessageView>                   giftViewStub;
   private @Nullable EventListener                           eventListener;
 
   private int     defaultBubbleColor;
@@ -224,6 +231,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private final UrlClickListener                urlClickListener             = new UrlClickListener();
   private final Rect                            thumbnailMaskingRect         = new Rect();
   private final TouchDelegateChangedListener    touchDelegateChangedListener = new TouchDelegateChangedListener();
+  private final GiftMessageViewCallback         giftMessageViewCallback      = new GiftMessageViewCallback();
 
   private final Context context;
 
@@ -298,6 +306,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     this.badgeImageView            =                    findViewById(R.id.badge);
     this.storyReactionLabelWrapper =                    findViewById(R.id.story_reacted_label_holder);
     this.storyReactionLabel        =                    findViewById(R.id.story_reacted_label);
+    this.giftViewStub              =         new Stub<>(findViewById(R.id.gift_view_stub));
 
     setOnClickListener(new ClickListener(null));
 
@@ -914,6 +923,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     return MessageRecordUtil.isViewOnceMessage(messageRecord);
   }
 
+  private boolean isGiftMessage(MessageRecord messageRecord) {
+    return MessageRecordUtil.hasGiftBadge(messageRecord);
+  }
+
   private void setBodyText(@NonNull MessageRecord messageRecord,
                            @Nullable String searchQuery,
                            boolean messageRequestAccepted)
@@ -935,7 +948,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       bodyText.setText(italics);
       bodyText.setVisibility(View.VISIBLE);
       bodyText.setOverflowText(null);
-    } else if (isCaptionlessMms(messageRecord) || isStoryReaction(messageRecord)) {
+    } else if (isCaptionlessMms(messageRecord) || isStoryReaction(messageRecord) || isGiftMessage(messageRecord)) {
       bodyText.setVisibility(View.GONE);
     } else {
       Spannable styledText = conversationMessage.getDisplayBody(getContext());
@@ -1004,6 +1017,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (sharedContactStub.resolved())  sharedContactStub.get().setVisibility(GONE);
       if (linkPreviewStub.resolved())    linkPreviewStub.get().setVisibility(GONE);
       if (stickerStub.resolved())        stickerStub.get().setVisibility(View.GONE);
+      if (giftViewStub.resolved())       giftViewStub.get().setVisibility(View.GONE);
 
       revealableStub.get().setMessage((MmsMessageRecord) messageRecord, hasWallpaper);
       revealableStub.get().setOnClickListener(revealableClickListener);
@@ -1020,6 +1034,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (linkPreviewStub.resolved())    linkPreviewStub.get().setVisibility(GONE);
       if (stickerStub.resolved())        stickerStub.get().setVisibility(View.GONE);
       if (revealableStub.resolved())     revealableStub.get().setVisibility(View.GONE);
+      if (giftViewStub.resolved())       giftViewStub.get().setVisibility(View.GONE);
 
       sharedContactStub.get().setContact(((MediaMmsMessageRecord) messageRecord).getSharedContacts().get(0), glideRequests, locale);
       sharedContactStub.get().setEventListener(sharedContactEventListener);
@@ -1039,6 +1054,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (sharedContactStub.resolved())  sharedContactStub.get().setVisibility(GONE);
       if (stickerStub.resolved())        stickerStub.get().setVisibility(View.GONE);
       if (revealableStub.resolved())     revealableStub.get().setVisibility(View.GONE);
+      if (giftViewStub.resolved())       giftViewStub.get().setVisibility(View.GONE);
 
       //noinspection ConstantConditions
       LinkPreview linkPreview = ((MmsMessageRecord) messageRecord).getLinkPreviews().get(0);
@@ -1083,6 +1099,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (linkPreviewStub.resolved())    linkPreviewStub.get().setVisibility(GONE);
       if (stickerStub.resolved())        stickerStub.get().setVisibility(View.GONE);
       if (revealableStub.resolved())     revealableStub.get().setVisibility(View.GONE);
+      if (giftViewStub.resolved())       giftViewStub.get().setVisibility(View.GONE);
 
       audioViewStub.get().setAudio(Objects.requireNonNull(((MediaMmsMessageRecord) messageRecord).getSlideDeck().getAudioSlide()), new AudioViewCallbacks(), showControls, true);
       audioViewStub.get().setDownloadClickListener(singleDownloadClickListener);
@@ -1108,6 +1125,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (linkPreviewStub.resolved())    linkPreviewStub.get().setVisibility(GONE);
       if (stickerStub.resolved())        stickerStub.get().setVisibility(View.GONE);
       if (revealableStub.resolved())     revealableStub.get().setVisibility(View.GONE);
+      if (giftViewStub.resolved())       giftViewStub.get().setVisibility(View.GONE);
 
       //noinspection ConstantConditions
       documentViewStub.get().setDocument(((MediaMmsMessageRecord) messageRecord).getSlideDeck().getDocumentSlide(), showControls);
@@ -1130,6 +1148,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (sharedContactStub.resolved())  sharedContactStub.get().setVisibility(GONE);
       if (linkPreviewStub.resolved())    linkPreviewStub.get().setVisibility(GONE);
       if (revealableStub.resolved())     revealableStub.get().setVisibility(View.GONE);
+      if (giftViewStub.resolved())       giftViewStub.get().setVisibility(View.GONE);
 
       if (hasSticker(messageRecord)) {
         //noinspection ConstantConditions
@@ -1159,6 +1178,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (linkPreviewStub.resolved())   linkPreviewStub.get().setVisibility(GONE);
       if (stickerStub.resolved())       stickerStub.get().setVisibility(View.GONE);
       if (revealableStub.resolved())    revealableStub.get().setVisibility(View.GONE);
+      if (giftViewStub.resolved())       giftViewStub.get().setVisibility(View.GONE);
 
       List<Slide> thumbnailSlides = ((MmsMessageRecord) messageRecord).getSlideDeck().getThumbnailSlides();
       mediaThumbnailStub.require().setMinimumThumbnailWidth(readDimen(isCaptionlessMms(messageRecord) ? R.dimen.media_bubble_min_width_solo
@@ -1202,6 +1222,20 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         canPlayContent = (GiphyMp4PlaybackPolicy.autoplay() || allowedToPlayInline) && mediaItem != null;
       }
 
+    } else if (isGiftMessage(messageRecord)) {
+      if (mediaThumbnailStub.resolved()) mediaThumbnailStub.require().setVisibility(GONE);
+      if (audioViewStub.resolved())      audioViewStub.get().setVisibility(GONE);
+      if (documentViewStub.resolved())   documentViewStub.get().setVisibility(GONE);
+      if (sharedContactStub.resolved())  sharedContactStub.get().setVisibility(GONE);
+      if (linkPreviewStub.resolved())    linkPreviewStub.get().setVisibility(GONE);
+      if (stickerStub.resolved())        stickerStub.get().setVisibility(GONE);
+      if (revealableStub.resolved())     revealableStub.get().setVisibility(GONE);
+
+      MmsMessageRecord mmsMessageRecord = (MmsMessageRecord) messageRecord;
+      giftViewStub.get().setGiftBadge(glideRequests, Objects.requireNonNull(mmsMessageRecord.getGiftBadge()), messageRecord.isOutgoing(), giftMessageViewCallback);
+      giftViewStub.get().setVisibility(VISIBLE);
+
+      footer.setVisibility(VISIBLE);
     } else {
       if (mediaThumbnailStub.resolved()) mediaThumbnailStub.require().setVisibility(View.GONE);
       if (audioViewStub.resolved())      audioViewStub.get().setVisibility(View.GONE);
@@ -1210,6 +1244,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (linkPreviewStub.resolved())    linkPreviewStub.get().setVisibility(GONE);
       if (stickerStub.resolved())        stickerStub.get().setVisibility(View.GONE);
       if (revealableStub.resolved())     revealableStub.get().setVisibility(View.GONE);
+      if (giftViewStub.resolved())       giftViewStub.get().setVisibility(View.GONE);
 
       ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       ViewUtil.updateLayoutParamsIfNonNull(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -1699,7 +1734,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         background = R.drawable.message_bubble_background_received_alone;
         outliner.setRadius(bigRadius);
         pulseOutliner.setRadius(bigRadius);
-        bodyBubbleCorners = null;
+        bodyBubbleCorners = new Projection.Corners(bigRadius);
       }
     } else if (isStartOfMessageCluster(current, previous, isGroupThread)) {
       if (current.isOutgoing()) {
@@ -1711,7 +1746,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         background = R.drawable.message_bubble_background_received_start;
         setOutlinerRadii(outliner, bigRadius, bigRadius, bigRadius, smallRadius);
         setOutlinerRadii(pulseOutliner, bigRadius, bigRadius, bigRadius, smallRadius);
-        bodyBubbleCorners = null;
+        bodyBubbleCorners = getBodyBubbleCorners(bigRadius, bigRadius, bigRadius, smallRadius);
       }
     } else if (isEndOfMessageCluster(current, next, isGroupThread)) {
       if (current.isOutgoing()) {
@@ -1723,7 +1758,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         background = R.drawable.message_bubble_background_received_end;
         setOutlinerRadii(outliner, smallRadius, bigRadius, bigRadius, bigRadius);
         setOutlinerRadii(pulseOutliner, smallRadius, bigRadius, bigRadius, bigRadius);
-        bodyBubbleCorners = null;
+        bodyBubbleCorners = getBodyBubbleCorners(smallRadius, bigRadius, bigRadius, bigRadius);
       }
     } else {
       if (current.isOutgoing()) {
@@ -1735,7 +1770,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         background = R.drawable.message_bubble_background_received_middle;
         setOutlinerRadii(outliner, smallRadius, bigRadius, bigRadius, smallRadius);
         setOutlinerRadii(pulseOutliner, smallRadius, bigRadius, bigRadius, smallRadius);
-        bodyBubbleCorners = null;
+        bodyBubbleCorners = getBodyBubbleCorners(smallRadius, bigRadius, bigRadius, smallRadius);
       }
     }
 
@@ -2004,6 +2039,41 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     }
   }
 
+  @Override
+  public @Nullable Projection getOpenableGiftProjection() {
+    boolean isViewedAndIncoming = !messageRecord.isOutgoing() && messageRecord.getViewedReceiptCount() > 0;
+    if (!isGiftMessage(messageRecord) || messageRecord.isRemoteDelete() || isViewedAndIncoming) {
+      return null;
+    }
+
+    return Projection.relativeToViewRoot(bodyBubble, bodyBubbleCorners)
+                     .translateX(bodyBubble.getTranslationX())
+                     .translateX(getTranslationX())
+                     .scale(bodyBubble.getScaleX());
+  }
+
+  @Override
+  public long getGiftId() {
+    return messageRecord.getId();
+  }
+
+  @Override
+  public void setOpenGiftCallback(@NonNull Function1<? super OpenableGift, Unit> openGift) {
+    if (giftViewStub.resolved()) {
+      bodyBubble.setOnClickListener(unused -> openGift.invoke(this));
+      giftViewStub.get().onGiftNotOpened();
+    }
+  }
+
+  @Override
+  public void clearOpenGiftCallback() {
+    if (giftViewStub.resolved()) {
+      bodyBubble.setOnClickListener(null);
+      bodyBubble.setClickable(false);
+      giftViewStub.get().onGiftOpened();
+    }
+  }
+
   private class SharedContactEventListener implements SharedContactView.EventListener {
     @Override
     public void onAddToContactsClicked(@NonNull Contact contact) {
@@ -2176,6 +2246,14 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     @Override
     public void onClick(View v) {
       performClick();
+    }
+  }
+
+  private class GiftMessageViewCallback implements GiftMessageView.Callback {
+
+    @Override
+    public void onViewGiftBadgeClicked() {
+      eventListener.onViewGiftBadgeClicked(messageRecord);
     }
   }
 

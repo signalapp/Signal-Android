@@ -16,6 +16,8 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.metadata.certificate.InvalidCertificateException;
 import org.signal.libsignal.metadata.certificate.SenderCertificate;
+import org.signal.libsignal.zkgroup.InvalidInputException;
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation;
 import org.thoughtcrime.securesms.TextSecureExpiredException;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
@@ -26,6 +28,7 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
+import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -43,6 +46,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
+import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
@@ -417,6 +421,21 @@ public abstract class PushSendJob extends SendJob {
     return Stream.of(mentions)
                  .map(m -> new SignalServiceDataMessage.Mention(Recipient.resolved(m.getRecipientId()).requireServiceId(), m.getStart(), m.getLength()))
                  .toList();
+  }
+
+  @Nullable SignalServiceDataMessage.GiftBadge getGiftBadgeFor(@NonNull OutgoingMediaMessage message) throws UndeliverableMessageException {
+    GiftBadge giftBadge = message.getGiftBadge();
+    if (giftBadge == null) {
+      return null;
+    }
+
+    try {
+      ReceiptCredentialPresentation presentation = new ReceiptCredentialPresentation(giftBadge.getRedemptionToken().toByteArray());
+
+      return new SignalServiceDataMessage.GiftBadge(presentation);
+    } catch (InvalidInputException invalidInputException) {
+      throw new UndeliverableMessageException(invalidInputException);
+    }
   }
 
   protected void rotateSenderCertificateIfNecessary() throws IOException {

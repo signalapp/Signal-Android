@@ -13,7 +13,8 @@ data class DonationReceiptRecord(
 ) {
   enum class Type(val code: String) {
     RECURRING("recurring"),
-    BOOST("boost");
+    BOOST("boost"),
+    GIFT("gift");
 
     companion object {
       fun fromCode(code: String): Type {
@@ -44,6 +45,16 @@ data class DonationReceiptRecord(
         timestamp = System.currentTimeMillis(),
         subscriptionLevel = -1,
         type = Type.BOOST
+      )
+    }
+
+    fun createForGift(amount: FiatMoney): DonationReceiptRecord {
+      return DonationReceiptRecord(
+        id = -1L,
+        amount = amount,
+        timestamp = System.currentTimeMillis(),
+        subscriptionLevel = -1,
+        type = Type.GIFT
       )
     }
   }

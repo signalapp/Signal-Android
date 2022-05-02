@@ -23,7 +23,8 @@ public class OutgoingExpirationUpdateMessage extends OutgoingSecureMediaMessage 
           null,
           Collections.emptyList(),
           Collections.emptyList(),
-          Collections.emptyList());
+          Collections.emptyList(),
+          null);
   }
 
   @Override

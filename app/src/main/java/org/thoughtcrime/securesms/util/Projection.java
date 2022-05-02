@@ -115,10 +115,10 @@ public final class Projection {
   }
 
   public @NonNull Projection scale(float scale) {
-    Corners newCorners = new Corners(this.corners.topLeft * scale,
-                                     this.corners.topRight * scale,
-                                     this.corners.bottomRight * scale,
-                                     this.corners.bottomLeft * scale);
+    Corners newCorners = this.corners == null ? null : new Corners(this.corners.topLeft * scale,
+                                                                   this.corners.topRight * scale,
+                                                                   this.corners.bottomRight * scale,
+                                                                   this.corners.bottomLeft * scale);
     return set(x, y, (int) (width * scale), (int) (height * scale), newCorners);
   }
 

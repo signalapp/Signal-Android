@@ -59,7 +59,8 @@ object StoryGroupReplySender {
                   emptyList(),
                   mentions,
                   emptySet(),
-                  emptySet()
+                  emptySet(),
+                  null
                 )
               ),
               message.threadId,

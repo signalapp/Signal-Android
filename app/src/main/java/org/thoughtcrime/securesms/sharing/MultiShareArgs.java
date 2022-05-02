@@ -66,7 +66,7 @@ public final class MultiShareArgs implements Parcelable {
     List<ContactSearchKey.ParcelableRecipientSearchKey> parcelableRecipientSearchKeys = in.createTypedArrayList(ContactSearchKey.ParcelableRecipientSearchKey.CREATOR);
 
     contactSearchKeys = parcelableRecipientSearchKeys.stream()
-                                                     .map(ContactSearchKey.ParcelableRecipientSearchKey::asContactSearchKey)
+                                                     .map(ContactSearchKey.ParcelableRecipientSearchKey::asRecipientSearchKey)
                                                      .collect(Collectors.toSet());
     media             = in.createTypedArrayList(Media.CREATOR);
     draftText         = in.readString();

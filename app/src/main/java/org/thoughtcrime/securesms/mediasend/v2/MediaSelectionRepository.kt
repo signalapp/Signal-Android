@@ -244,7 +244,8 @@ class MediaSelectionRepository(context: Context) {
         emptyList(),
         mentions,
         mutableSetOf(),
-        mutableSetOf()
+        mutableSetOf(),
+        null
       )
 
       if (isStory && preUploadResults.size > 1) {

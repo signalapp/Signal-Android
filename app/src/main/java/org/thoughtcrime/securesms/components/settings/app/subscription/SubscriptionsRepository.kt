@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription
 
 import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -23,6 +24,7 @@ class SubscriptionsRepository(private val donationsService: DonationsService) {
     val localSubscription = SignalStore.donationsValues().getSubscriber()
     return if (localSubscription != null) {
       donationsService.getSubscription(localSubscription.subscriberId)
+        .subscribeOn(Schedulers.io())
         .flatMap(ServiceResponse<ActiveSubscription>::flattenResult)
     } else {
       Single.just(ActiveSubscription.EMPTY)
@@ -30,6 +32,7 @@ class SubscriptionsRepository(private val donationsService: DonationsService) {
   }
 
   fun getSubscriptions(): Single<List<Subscription>> = donationsService.getSubscriptionLevels(Locale.getDefault())
+    .subscribeOn(Schedulers.io())
     .flatMap(ServiceResponse<SubscriptionLevels>::flattenResult)
     .map { subscriptionLevels ->
       subscriptionLevels.levels.map { (code, level) ->

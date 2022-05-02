@@ -34,7 +34,7 @@ class BecomeASustainerFragment : DSLSettingsBottomSheetFragment() {
 
   private fun getConfiguration(state: BecomeASustainerState): DSLConfiguration {
     return configure {
-      customPref(BadgePreview.Model(badge = state.badge))
+      customPref(BadgePreview.BadgeModel.FeaturedModel(badge = state.badge))
 
       sectionHeaderPref(
         title = DSLSettingsText.from(

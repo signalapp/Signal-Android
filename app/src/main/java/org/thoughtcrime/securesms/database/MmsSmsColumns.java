@@ -138,13 +138,14 @@ public interface MmsSmsColumns {
     // Special message types
     public static final long SPECIAL_TYPES_MASK          = 0xF00000000L;
     public static final long SPECIAL_TYPE_STORY_REACTION = 0x100000000L;
-
-    public static boolean isSpecialType(long type) {
-      return (type & SPECIAL_TYPES_MASK) != 0L;
-    }
+    public static final long SPECIAL_TYPE_GIFT_BADGE     = 0x200000000L;
 
     public static boolean isStoryReaction(long type) {
-      return (type & SPECIAL_TYPE_STORY_REACTION) == SPECIAL_TYPE_STORY_REACTION;
+      return (type & SPECIAL_TYPES_MASK) == SPECIAL_TYPE_STORY_REACTION;
+    }
+
+    public static boolean isGiftBadge(long type) {
+      return (type & SPECIAL_TYPES_MASK) == SPECIAL_TYPE_GIFT_BADGE;
     }
 
     public static boolean isDraftMessageType(long type) {

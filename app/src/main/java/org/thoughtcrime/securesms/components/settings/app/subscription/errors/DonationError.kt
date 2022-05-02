@@ -19,12 +19,21 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
   }
 
   /**
-   * Boost validation errors, which occur before the user could be charged.
+   * Gifting recipient validation errors, which occur before the user could be charged for a gift.
    */
-  sealed class BoostError(message: String) : DonationError(DonationErrorSource.BOOST, Exception(message)) {
-    object AmountTooSmallError : BoostError("Amount is too small")
-    object AmountTooLargeError : BoostError("Amount is too large")
-    object InvalidCurrencyError : BoostError("Currency is not supported")
+  sealed class GiftRecipientVerificationError(cause: Throwable) : DonationError(DonationErrorSource.GIFT, cause) {
+    object SelectedRecipientIsInvalid : GiftRecipientVerificationError(Exception("Selected recipient is invalid."))
+    object SelectedRecipientDoesNotSupportGifts : GiftRecipientVerificationError(Exception("Selected recipient does not support gifts."))
+    class FailedToFetchProfile(cause: Throwable) : GiftRecipientVerificationError(Exception("Failed to fetch recipient profile.", cause))
+  }
+
+  /**
+   * One-time donation validation errors, which occur before the user could be charged.
+   */
+  sealed class OneTimeDonationError(source: DonationErrorSource, message: String) : DonationError(source, Exception(message)) {
+    class AmountTooSmallError(source: DonationErrorSource) : OneTimeDonationError(source, "Amount is too small")
+    class AmountTooLargeError(source: DonationErrorSource) : OneTimeDonationError(source, "Amount is too large")
+    class InvalidCurrencyError(source: DonationErrorSource) : OneTimeDonationError(source, "Currency is not supported")
   }
 
   /**
@@ -68,6 +77,11 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
      * redemption failed, just that it is taking longer than we can reasonably show a spinner.
      */
     class TimeoutWaitingForTokenError(source: DonationErrorSource) : BadgeRedemptionError(source, Exception("Timed out waiting for badge redemption to complete."))
+
+    /**
+     * Verification of request credentials object failed
+     */
+    class FailedToValidateCredentialError(source: DonationErrorSource) : BadgeRedemptionError(source, Exception("Failed to validate credential from server."))
 
     /**
      * Some generic error not otherwise accounted for occurred during the redemption process.
@@ -134,19 +148,22 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
     }
 
     @JvmStatic
-    fun boostAmountTooSmall(): DonationError = BoostError.AmountTooSmallError
+    fun oneTimeDonationAmountTooSmall(source: DonationErrorSource): DonationError = OneTimeDonationError.AmountTooSmallError(source)
 
     @JvmStatic
-    fun boostAmountTooLarge(): DonationError = BoostError.AmountTooLargeError
+    fun oneTimeDonationAmountTooLarge(source: DonationErrorSource): DonationError = OneTimeDonationError.AmountTooLargeError(source)
 
     @JvmStatic
-    fun invalidCurrencyForBoost(): DonationError = BoostError.InvalidCurrencyError
+    fun invalidCurrencyForOneTimeDonation(source: DonationErrorSource): DonationError = OneTimeDonationError.InvalidCurrencyError(source)
 
     @JvmStatic
     fun timeoutWaitingForToken(source: DonationErrorSource): DonationError = BadgeRedemptionError.TimeoutWaitingForTokenError(source)
 
     @JvmStatic
     fun genericBadgeRedemptionFailure(source: DonationErrorSource): DonationError = BadgeRedemptionError.GenericError(source)
+
+    @JvmStatic
+    fun badgeCredentialVerificationFailure(source: DonationErrorSource): DonationError = BadgeRedemptionError.FailedToValidateCredentialError(source)
 
     @JvmStatic
     fun genericPaymentFailure(source: DonationErrorSource): DonationError = PaymentProcessingError.GenericError(source)

@@ -23,9 +23,11 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.Do
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.InternetConnectionObserver
 import org.thoughtcrime.securesms.util.PlatformCurrencyUtil
 import org.thoughtcrime.securesms.util.livedata.Store
+import org.whispersystems.signalservice.api.subscriptions.SubscriptionLevels
 import java.math.BigDecimal
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
@@ -37,7 +39,7 @@ class BoostViewModel(
   private val fetchTokenRequestCode: Int
 ) : ViewModel() {
 
-  private val store = Store(BoostState(currencySelection = SignalStore.donationsValues().getBoostCurrency()))
+  private val store = Store(BoostState(currencySelection = SignalStore.donationsValues().getOneTimeCurrency()))
   private val eventPublisher: PublishSubject<DonationEvent> = PublishSubject.create()
   private val disposables = CompositeDisposable()
   private val networkDisposable: Disposable
@@ -77,7 +79,7 @@ class BoostViewModel(
   fun refresh() {
     disposables.clear()
 
-    val currencyObservable = SignalStore.donationsValues().observableBoostCurrency
+    val currencyObservable = SignalStore.donationsValues().observableOneTimeCurrency
     val allBoosts = boostRepository.getBoosts()
     val boostBadge = boostRepository.getBoostBadge()
 
@@ -85,7 +87,7 @@ class BoostViewModel(
       val boostList = if (currency in boostMap) {
         boostMap[currency]!!
       } else {
-        SignalStore.donationsValues().setBoostCurrency(PlatformCurrencyUtil.USD)
+        SignalStore.donationsValues().setOneTimeCurrency(PlatformCurrencyUtil.USD)
         listOf()
       }
 
@@ -140,7 +142,7 @@ class BoostViewModel(
 
             store.update { it.copy(stage = BoostState.Stage.PAYMENT_PIPELINE) }
 
-            donationPaymentRepository.continuePayment(boost.price, paymentData).subscribeBy(
+            donationPaymentRepository.continuePayment(boost.price, paymentData, Recipient.self().id, null, SubscriptionLevels.BOOST_LEVEL.toLong()).subscribeBy(
               onError = { throwable ->
                 store.update { it.copy(stage = BoostState.Stage.READY) }
                 val donationError: DonationError = if (throwable is DonationError) {

@@ -107,7 +107,7 @@ class MultiselectForwardFragment :
     view.minimumHeight = resources.displayMetrics.heightPixels
 
     val contactSearchRecycler: RecyclerView = view.findViewById(R.id.contact_selection_list)
-    contactSearchMediator = ContactSearchMediator(this, contactSearchRecycler, FeatureFlags.shareSelectionLimit(), this::getConfiguration)
+    contactSearchMediator = ContactSearchMediator(this, contactSearchRecycler, FeatureFlags.shareSelectionLimit(), !isSingleRecipientSelection(), this::getConfiguration)
 
     callback = findListener()!!
     disposables.bindTo(viewLifecycleOwner.lifecycle)
@@ -155,23 +155,10 @@ class MultiselectForwardFragment :
     }
 
     sendButton.setOnClickListener {
-      sendButton.isEnabled = false
-
-      StoryDialogs.guardWithAddToYourStoryDialog(
-        requireContext(),
-        contactSearchMediator.getSelectedContacts(),
-        onAddToStory = {
-          performSend()
-        },
-        onEditViewers = {
-          sendButton.isEnabled = true
-          HideStoryFromDialogFragment().show(childFragmentManager, null)
-        },
-        onCancel = {
-          sendButton.isEnabled = true
-        }
-      )
+      onSend(it)
     }
+
+    sendButton.visible = !isSingleRecipientSelection()
 
     shareSelectionRecycler.adapter = shareSelectionAdapter
 
@@ -180,6 +167,11 @@ class MultiselectForwardFragment :
     container.addView(bottomBarAndSpacer)
 
     contactSearchMediator.getSelectionState().observe(viewLifecycleOwner) { contactSelection ->
+      if (contactSelection.isNotEmpty() && isSingleRecipientSelection()) {
+        onSend(sendButton)
+        return@observe
+      }
+
       shareSelectionAdapter.submitList(contactSelection.mapIndexed { index, key -> ShareSelectionMappingModel(key.requireShareContact(), index == 0) })
 
       addMessage.visible = !forceDisableAddMessage && contactSelection.any { key -> key !is ContactSearchKey.RecipientSearchKey.Story } && getMultiShareArgs().isNotEmpty()
@@ -274,6 +266,25 @@ class MultiselectForwardFragment :
         viewModel.cancelSend()
       }
       .show()
+  }
+
+  private fun onSend(sendButton: View) {
+    sendButton.isEnabled = false
+
+    StoryDialogs.guardWithAddToYourStoryDialog(
+      requireContext(),
+      contactSearchMediator.getSelectedContacts(),
+      onAddToStory = {
+        performSend()
+      },
+      onEditViewers = {
+        sendButton.isEnabled = true
+        HideStoryFromDialogFragment().show(childFragmentManager, null)
+      },
+      onCancel = {
+        sendButton.isEnabled = true
+      }
+    )
   }
 
   private fun performSend() {
@@ -390,6 +401,10 @@ class MultiselectForwardFragment :
     return Util.isDefaultSmsProvider(requireContext()) && requireArguments().getBoolean(ARG_CAN_SEND_TO_NON_PUSH)
   }
 
+  private fun isSingleRecipientSelection(): Boolean {
+    return requireArguments().getBoolean(ARG_SELECT_SINGLE_RECIPIENT, false)
+  }
+
   private fun isSelectedMediaValidForStories(): Boolean {
     return requireListener<Callback>().canSendMediaToStories() && getMultiShareArgs().all { it.isValidForStories }
   }
@@ -422,6 +437,7 @@ class MultiselectForwardFragment :
     const val ARG_TITLE = "multiselect.forward.fragment.title"
     const val ARG_FORCE_DISABLE_ADD_MESSAGE = "multiselect.forward.fragment.force.disable.add.message"
     const val ARG_FORCE_SELECTION_ONLY = "multiselect.forward.fragment.force.disable.add.message"
+    const val ARG_SELECT_SINGLE_RECIPIENT = "multiselect.forward.framgent.select.single.recipient"
     const val RESULT_KEY = "result_key"
     const val RESULT_SELECTION = "result_selection_recipients"
     const val RESULT_SENT = "result_sent"
@@ -460,6 +476,7 @@ class MultiselectForwardFragment :
         putInt(ARG_TITLE, multiselectForwardFragmentArgs.title)
         putBoolean(ARG_FORCE_DISABLE_ADD_MESSAGE, multiselectForwardFragmentArgs.forceDisableAddMessage)
         putBoolean(ARG_FORCE_SELECTION_ONLY, multiselectForwardFragmentArgs.forceSelectionOnly)
+        putBoolean(ARG_SELECT_SINGLE_RECIPIENT, multiselectForwardFragmentArgs.selectSingleRecipient)
       }
     }
   }

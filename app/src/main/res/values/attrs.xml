@@ -364,4 +364,10 @@
     <declare-styleable name="EmojiToggle">
         <attr name="force_outline" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="GiftMessageView">
+        <attr name="giftMessageView__textColor" format="color" />
+        <attr name="giftMessageView__buttonTextColor" format="color" />
+        <attr name="giftMessageView__buttonBackgroundTint" format="color" />
+    </declare-styleable>
 </resources>

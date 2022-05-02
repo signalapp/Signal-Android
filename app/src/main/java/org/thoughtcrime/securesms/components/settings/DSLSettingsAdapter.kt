@@ -45,6 +45,7 @@ class DSLSettingsAdapter : MappingAdapter() {
 
 abstract class PreferenceViewHolder<T : PreferenceModel<T>>(itemView: View) : MappingViewHolder<T>(itemView) {
   protected val iconView: ImageView = itemView.findViewById(R.id.icon)
+  private val iconEndView: ImageView? = itemView.findViewById(R.id.icon_end)
   protected val titleView: TextView = itemView.findViewById(R.id.title)
   protected val summaryView: TextView = itemView.findViewById(R.id.summary)
 
@@ -57,6 +58,10 @@ abstract class PreferenceViewHolder<T : PreferenceModel<T>>(itemView: View) : Ma
     val icon = model.icon?.resolve(context)
     iconView.setImageDrawable(icon)
     iconView.visible = icon != null
+
+    val iconEnd = model.iconEnd?.resolve(context)
+    iconEndView?.setImageDrawable(iconEnd)
+    iconEndView?.visible = iconEnd != null
 
     val title = model.title?.resolve(context)
     if (title != null) {

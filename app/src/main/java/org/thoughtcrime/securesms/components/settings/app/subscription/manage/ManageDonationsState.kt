@@ -14,6 +14,7 @@ data class ManageDonationsState(
   fun getRedemptionState(): SubscriptionRedemptionState {
     return when (transactionState) {
       TransactionState.Init -> subscriptionRedemptionState
+      TransactionState.NetworkFailure -> subscriptionRedemptionState
       TransactionState.InTransaction -> SubscriptionRedemptionState.IN_PROGRESS
       is TransactionState.NotInTransaction -> getStateFromActiveSubscription(transactionState.activeSubscription) ?: subscriptionRedemptionState
     }
@@ -29,6 +30,7 @@ data class ManageDonationsState(
 
   sealed class TransactionState {
     object Init : TransactionState()
+    object NetworkFailure : TransactionState()
     object InTransaction : TransactionState()
     class NotInTransaction(val activeSubscription: ActiveSubscription) : TransactionState()
   }

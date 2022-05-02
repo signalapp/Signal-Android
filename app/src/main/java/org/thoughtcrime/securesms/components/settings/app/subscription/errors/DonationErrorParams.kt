@@ -23,6 +23,7 @@ class DonationErrorParams<V> private constructor(
       callback: Callback<V>
     ): DonationErrorParams<V> {
       return when (throwable) {
+        is DonationError.GiftRecipientVerificationError -> getVerificationErrorParams(context, throwable, callback)
         is DonationError.PaymentSetupError.DeclinedError -> getDeclinedErrorParams(context, throwable, callback)
         is DonationError.PaymentSetupError -> DonationErrorParams(
           title = R.string.DonationsErrors__error_processing_payment,
@@ -36,6 +37,13 @@ class DonationErrorParams<V> private constructor(
           positiveAction = callback.onOk(context),
           negativeAction = null
         )
+        is DonationError.BadgeRedemptionError.FailedToValidateCredentialError -> DonationErrorParams(
+          title = R.string.DonationsErrors__failed_to_validate_badge,
+          message = R.string.DonationsErrors__could_not_validate,
+          positiveAction = callback.onContactSupport(context),
+          negativeAction = null
+        )
+        is DonationError.BadgeRedemptionError.GenericError -> getGenericRedemptionError(context, throwable, callback)
         else -> DonationErrorParams(
           title = R.string.DonationsErrors__couldnt_add_badge,
           message = R.string.DonationsErrors__your_badge_could_not,
@@ -43,6 +51,32 @@ class DonationErrorParams<V> private constructor(
           negativeAction = null
         )
       }
+    }
+
+    private fun <V> getGenericRedemptionError(context: Context, genericError: DonationError.BadgeRedemptionError.GenericError, callback: Callback<V>): DonationErrorParams<V> {
+      return when (genericError.source) {
+        DonationErrorSource.GIFT -> DonationErrorParams(
+          title = R.string.DonationsErrors__failed_to_send_gift_badge,
+          message = R.string.DonationsErrors__could_not_send_gift_badge,
+          positiveAction = callback.onContactSupport(context),
+          negativeAction = null
+        )
+        else -> DonationErrorParams(
+          title = R.string.DonationsErrors__couldnt_add_badge,
+          message = R.string.DonationsErrors__your_badge_could_not,
+          positiveAction = callback.onContactSupport(context),
+          negativeAction = null
+        )
+      }
+    }
+
+    private fun <V> getVerificationErrorParams(context: Context, verificationError: DonationError.GiftRecipientVerificationError, callback: Callback<V>): DonationErrorParams<V> {
+      return DonationErrorParams(
+        title = R.string.DonationsErrors__recipient_verification_failed,
+        message = R.string.DonationsErrors__target_does_not_support_gifting,
+        positiveAction = callback.onContactSupport(context),
+        negativeAction = null
+      )
     }
 
     private fun <V> getDeclinedErrorParams(context: Context, declinedError: DonationError.PaymentSetupError.DeclinedError, callback: Callback<V>): DonationErrorParams<V> {

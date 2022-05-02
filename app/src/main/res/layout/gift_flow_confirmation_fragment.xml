@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.InputAwareLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/input_aware_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/gift_flow_confirmation_content" />
+
+    <org.thoughtcrime.securesms.components.emoji.MediaKeyboard
+        android:id="@+id/emoji_drawer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+</org.thoughtcrime.securesms.components.InputAwareLayout>

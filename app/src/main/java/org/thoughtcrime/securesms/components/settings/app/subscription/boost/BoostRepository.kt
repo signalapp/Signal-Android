@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.boost
 
 import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.Badge
@@ -16,6 +17,7 @@ class BoostRepository(private val donationsService: DonationsService) {
 
   fun getBoosts(): Single<Map<Currency, List<Boost>>> {
     return donationsService.boostAmounts
+      .subscribeOn(Schedulers.io())
       .flatMap(ServiceResponse<Map<String, List<BigDecimal>>>::flattenResult)
       .map { result ->
         result
@@ -27,6 +29,7 @@ class BoostRepository(private val donationsService: DonationsService) {
 
   fun getBoostBadge(): Single<Badge> {
     return donationsService.getBoostBadge(Locale.getDefault())
+      .subscribeOn(Schedulers.io())
       .flatMap(ServiceResponse<SignalServiceProfile.Badge>::flattenResult)
       .map(Badges::fromServiceBadge)
   }

@@ -211,6 +211,7 @@ public class PushMediaSendJob extends PushSendJob {
       Optional<SignalServiceDataMessage.Sticker> sticker             = getStickerFor(message);
       List<SharedContact>                        sharedContacts      = getSharedContactsFor(message);
       List<SignalServicePreview>                 previews            = getPreviewsFor(message);
+      SignalServiceDataMessage.GiftBadge         giftBadge           = getGiftBadgeFor(message);
       SignalServiceDataMessage.Builder           mediaMessageBuilder = SignalServiceDataMessage.newBuilder()
                                                                                                .withBody(message.getBody())
                                                                                                .withAttachments(serviceAttachments)
@@ -221,6 +222,7 @@ public class PushMediaSendJob extends PushSendJob {
                                                                                                .withSticker(sticker.orElse(null))
                                                                                                .withSharedContacts(sharedContacts)
                                                                                                .withPreviews(previews)
+                                                                                               .withGiftBadge(giftBadge)
                                                                                                .asExpirationUpdate(message.isExpirationUpdate());
 
       if (message.getParentStoryId() != null) {
@@ -243,6 +245,10 @@ public class PushMediaSendJob extends PushSendJob {
         }
       } else {
         mediaMessageBuilder.withQuote(getQuoteFor(message).orElse(null));
+      }
+
+      if (message.getGiftBadge() != null) {
+        mediaMessageBuilder.withBody(null);
       }
 
       SignalServiceDataMessage mediaMessage = mediaMessageBuilder.build();

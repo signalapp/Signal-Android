@@ -64,7 +64,7 @@ sealed class ContactSearchKey {
 
   @Parcelize
   data class ParcelableRecipientSearchKey(val type: ParcelableType, val recipientId: RecipientId) : Parcelable {
-    fun asContactSearchKey(): ContactSearchKey {
+    fun asRecipientSearchKey(): RecipientSearchKey {
       return when (type) {
         ParcelableType.STORY -> RecipientSearchKey.Story(recipientId)
         ParcelableType.KNOWN_RECIPIENT -> RecipientSearchKey.KnownRecipient(recipientId)

@@ -60,7 +60,8 @@ class StoryDirectReplyRepository(context: Context) {
           emptyList(),
           emptyList(),
           emptySet(),
-          emptySet()
+          emptySet(),
+          null
         ),
         threadId,
         false,

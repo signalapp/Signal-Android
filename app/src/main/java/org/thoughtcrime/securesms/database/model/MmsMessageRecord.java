@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
+import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -24,6 +25,7 @@ public abstract class MmsMessageRecord extends MessageRecord {
   private final @NonNull  List<LinkPreview> linkPreviews = new LinkedList<>();
   private final @NonNull  StoryType         storyType;
   private final @Nullable ParentStoryId     parentStoryId;
+  private final @Nullable GiftBadge         giftBadge;
 
   private final boolean viewOnce;
 
@@ -38,7 +40,7 @@ public abstract class MmsMessageRecord extends MessageRecord {
                    @NonNull List<LinkPreview> linkPreviews, boolean unidentified,
                    @NonNull List<ReactionRecord> reactions, boolean remoteDelete, long notifiedTimestamp,
                    int viewedReceiptCount, long receiptTimestamp, @NonNull StoryType storyType,
-                   @Nullable ParentStoryId parentStoryId)
+                   @Nullable ParentStoryId parentStoryId, @Nullable GiftBadge giftBadge)
   {
     super(id, body, conversationRecipient, individualRecipient, recipientDeviceId,
           dateSent, dateReceived, dateServer, threadId, deliveryStatus, deliveryReceiptCount,
@@ -50,6 +52,7 @@ public abstract class MmsMessageRecord extends MessageRecord {
     this.viewOnce      = viewOnce;
     this.storyType     = storyType;
     this.parentStoryId = parentStoryId;
+    this.giftBadge     = giftBadge;
 
     this.contacts.addAll(contacts);
     this.linkPreviews.addAll(linkPreviews);
@@ -103,5 +106,9 @@ public abstract class MmsMessageRecord extends MessageRecord {
 
   public @NonNull List<LinkPreview> getLinkPreviews() {
     return linkPreviews;
+  }
+
+  public @Nullable GiftBadge getGiftBadge() {
+    return giftBadge;
   }
 }

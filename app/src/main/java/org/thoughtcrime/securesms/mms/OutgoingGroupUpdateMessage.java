@@ -45,7 +45,8 @@ public final class OutgoingGroupUpdateMessage extends OutgoingSecureMediaMessage
           quote,
           contacts,
           previews,
-          mentions);
+          mentions,
+          null);
 
     this.messageGroupContext = groupContext;
   }

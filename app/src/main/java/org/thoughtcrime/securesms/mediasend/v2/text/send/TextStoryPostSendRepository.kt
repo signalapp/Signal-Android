@@ -75,7 +75,8 @@ class TextStoryPostSendRepository {
           listOfNotNull(linkPreview),
           emptyList(),
           mutableSetOf(),
-          mutableSetOf()
+          mutableSetOf(),
+          null
         )
 
         messages.add(OutgoingSecureMediaMessage(message))

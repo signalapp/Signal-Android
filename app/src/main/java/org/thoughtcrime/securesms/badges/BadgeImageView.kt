@@ -8,9 +8,12 @@ import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.glide.BadgeSpriteTransformation
 import org.thoughtcrime.securesms.badges.models.Badge
+import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
+import org.thoughtcrime.securesms.glide.GiftBadgeModel
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.ScreenDensity
 import org.thoughtcrime.securesms.util.ThemeUtil
 
 class BadgeImageView @JvmOverloads constructor(
@@ -67,6 +70,22 @@ class BadgeImageView @JvmOverloads constructor(
         .load(badge)
         .downsample(DownsampleStrategy.NONE)
         .transform(BadgeSpriteTransformation(BadgeSpriteTransformation.Size.fromInteger(badgeSize), badge.imageDensity, ThemeUtil.isDarkTheme(context)))
+        .into(this)
+
+      isClickable = true
+    } else {
+      glideRequests
+        .clear(this)
+      clearDrawable()
+    }
+  }
+
+  fun setGiftBadge(badge: GiftBadge?, glideRequests: GlideRequests) {
+    if (badge != null) {
+      glideRequests
+        .load(GiftBadgeModel(badge))
+        .downsample(DownsampleStrategy.NONE)
+        .transform(BadgeSpriteTransformation(BadgeSpriteTransformation.Size.fromInteger(badgeSize), ScreenDensity.getBestDensityBucketForDevice(), ThemeUtil.isDarkTheme(context)))
         .into(this)
 
       isClickable = true

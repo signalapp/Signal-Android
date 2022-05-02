@@ -66,6 +66,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 import static org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBannerTier;
 
 public class Recipient {
@@ -118,6 +121,7 @@ public class Recipient {
   private final Capability             announcementGroupCapability;
   private final Capability             changeNumberCapability;
   private final Capability             storiesCapability;
+  private final Capability             giftBadgesCapability;
   private final InsightsBannerTier     insightsBannerTier;
   private final byte[]                 storageId;
   private final MentionSetting         mentionSetting;
@@ -142,6 +146,25 @@ public class Recipient {
   public static @NonNull LiveRecipient live(@NonNull RecipientId id) {
     Preconditions.checkNotNull(id, "ID cannot be null.");
     return ApplicationDependencies.getRecipientCache().getLive(id);
+  }
+
+  /**
+   * Returns a live recipient wrapped in an Observable. All work is done on the IO threadpool.
+   */
+  @AnyThread
+  public static @NonNull Observable<Recipient> observable(@NonNull RecipientId id) {
+    Preconditions.checkNotNull(id, "ID cannot be null");
+    return Observable.<Recipient>create(emitter -> {
+      LiveRecipient live = live(id);
+      emitter.onNext(live.resolve());
+
+      RecipientForeverObserver observer = emitter::onNext;
+
+      live.observeForever(observer);
+      emitter.setCancellable(() -> {
+        live.removeForeverObserver(observer);
+      });
+    }).subscribeOn(Schedulers.io());
   }
 
   /**
@@ -385,6 +408,7 @@ public class Recipient {
     this.announcementGroupCapability = Capability.UNKNOWN;
     this.changeNumberCapability      = Capability.UNKNOWN;
     this.storiesCapability           = Capability.UNKNOWN;
+    this.giftBadgesCapability        = Capability.UNKNOWN;
     this.storageId                   = null;
     this.mentionSetting              = MentionSetting.ALWAYS_NOTIFY;
     this.wallpaper                   = null;
@@ -442,6 +466,7 @@ public class Recipient {
     this.announcementGroupCapability = details.announcementGroupCapability;
     this.changeNumberCapability      = details.changeNumberCapability;
     this.storiesCapability           = details.storiesCapability;
+    this.giftBadgesCapability        = details.giftBadgesCapability;
     this.storageId                   = details.storageId;
     this.mentionSetting              = details.mentionSetting;
     this.wallpaper                   = details.wallpaper;
@@ -989,6 +1014,10 @@ public class Recipient {
 
   public @NonNull Capability getStoriesCapability() {
     return storiesCapability;
+  }
+
+  public @NonNull Capability getGiftBadgesCapability() {
+    return giftBadgesCapability;
   }
 
   /**

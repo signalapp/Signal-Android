@@ -15,9 +15,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.components.settings.PreferenceViewHolder
-import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
 import org.thoughtcrime.securesms.components.settings.configure
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -30,11 +28,7 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__menu_settings) {
 
-  private val viewModel: AppSettingsViewModel by viewModels(
-    factoryProducer = {
-      AppSettingsViewModel.Factory(SubscriptionsRepository(ApplicationDependencies.getDonationsService()))
-    }
-  )
+  private val viewModel: AppSettingsViewModel by viewModels()
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
     adapter.registerFactory(BioPreference::class.java, LayoutFactory(::BioPreferenceViewHolder, R.layout.bio_preference_item))
@@ -48,7 +42,7 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
 
   override fun onResume() {
     super.onResume()
-    viewModel.refreshActiveSubscription()
+    viewModel.refreshExpiredGiftBadge()
   }
 
   private fun getConfiguration(state: AppSettingsState): DSLConfiguration {
@@ -76,13 +70,22 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
         }
       )
 
-      if (SignalStore.paymentsValues().paymentsAvailability.showPaymentsMenu()) {
-        customPref(
-          PaymentsPreference(
-            unreadCount = state.unreadPaymentsCount
-          ) {
-            findNavController().safeNavigate(R.id.action_appSettingsFragment_to_paymentsActivity)
-          }
+      if (FeatureFlags.donorBadges() && PlayServicesUtil.getPlayServicesStatus(requireContext()) == PlayServicesUtil.PlayServicesStatus.SUCCESS) {
+
+        clickPref(
+          title = DSLSettingsText.from(R.string.preferences__donate_to_signal),
+          icon = DSLSettingsIcon.from(R.drawable.ic_heart_24),
+          iconEnd = if (state.hasExpiredGiftBadge) DSLSettingsIcon.from(R.drawable.ic_info_solid_24, R.color.signal_accent_primary) else null,
+          onClick = {
+            findNavController().safeNavigate(AppSettingsFragmentDirections.actionAppSettingsFragmentToManageDonationsFragment())
+          },
+          onLongClick = this@AppSettingsFragment::copySubscriberIdToClipboard
+        )
+      } else {
+        externalLinkPref(
+          title = DSLSettingsText.from(R.string.preferences__donate_to_signal),
+          icon = DSLSettingsIcon.from(R.drawable.ic_heart_24),
+          linkId = R.string.donate_url
         )
       }
 
@@ -130,6 +133,18 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
 
       dividerPref()
 
+      if (SignalStore.paymentsValues().paymentsAvailability.showPaymentsMenu()) {
+        customPref(
+          PaymentsPreference(
+            unreadCount = state.unreadPaymentsCount
+          ) {
+            findNavController().safeNavigate(R.id.action_appSettingsFragment_to_paymentsActivity)
+          }
+        )
+      }
+
+      dividerPref()
+
       clickPref(
         title = DSLSettingsText.from(R.string.preferences__help),
         icon = DSLSettingsIcon.from(R.drawable.ic_help_24),
@@ -145,44 +160,6 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
           findNavController().safeNavigate(R.id.action_appSettingsFragment_to_inviteActivity)
         }
       )
-
-      if (FeatureFlags.donorBadges() && PlayServicesUtil.getPlayServicesStatus(requireContext()) == PlayServicesUtil.PlayServicesStatus.SUCCESS) {
-        customPref(
-          SubscriptionPreference(
-            title = DSLSettingsText.from(
-              if (state.hasActiveSubscription) {
-                R.string.preferences__subscription
-              } else {
-                R.string.preferences__monthly_donation
-              }
-            ),
-            icon = DSLSettingsIcon.from(R.drawable.ic_heart_24),
-            isActive = state.hasActiveSubscription,
-            onClick = { isActive ->
-              if (isActive) {
-                findNavController().safeNavigate(AppSettingsFragmentDirections.actionAppSettingsFragmentToManageDonationsFragment())
-              } else {
-                findNavController().safeNavigate(AppSettingsFragmentDirections.actionAppSettingsFragmentToSubscribeFragment())
-              }
-            },
-            onLongClick = this@AppSettingsFragment::copySubscriberIdToClipboard
-          )
-        )
-        clickPref(
-          title = DSLSettingsText.from(R.string.preferences__one_time_donation),
-          icon = DSLSettingsIcon.from(R.drawable.ic_boost_24),
-          onClick = {
-            findNavController().safeNavigate(AppSettingsFragmentDirections.actionAppSettingsFragmentToBoostsFragment())
-          },
-          onLongClick = this@AppSettingsFragment::copySubscriberIdToClipboard
-        )
-      } else {
-        externalLinkPref(
-          title = DSLSettingsText.from(R.string.preferences__donate_to_signal),
-          icon = DSLSettingsIcon.from(R.drawable.ic_heart_24),
-          linkId = R.string.donate_url
-        )
-      }
 
       if (FeatureFlags.internalUser()) {
         dividerPref()

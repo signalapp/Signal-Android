@@ -114,6 +114,7 @@ import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment;
 import org.thoughtcrime.securesms.audio.AudioRecorder;
+import org.thoughtcrime.securesms.badges.gifts.thanks.GiftThanksSheet;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.components.ComposeText;
 import org.thoughtcrime.securesms.components.ConversationSearchBottomBar;
@@ -485,6 +486,9 @@ public class ConversationParentFragment extends Fragment
 
     // TODO [alex] LargeScreenSupport -- This will need to be built from requireArguments()
     ConversationIntents.Args args = ConversationIntents.Args.from(requireActivity().getIntent());
+    if (savedInstanceState == null && args.getGiftBadge() != null) {
+      GiftThanksSheet.show(getChildFragmentManager(), args.getRecipientId(), args.getGiftBadge());
+    }
 
     isSearchRequested = args.isWithSearchOpen();
 
@@ -2979,7 +2983,7 @@ public class ConversationParentFragment extends Fragment
     long                 expiresIn     = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
     QuoteModel           quote         = result.isViewOnce() ? null : inputPanel.getQuote().orElse(null);
     List<Mention>        mentions      = new ArrayList<>(result.getMentions());
-    OutgoingMediaMessage message       = new OutgoingMediaMessage(recipient.get(), new SlideDeck(), result.getBody(), System.currentTimeMillis(), -1, expiresIn, result.isViewOnce(), distributionType, result.getStoryType(), null, false, quote, Collections.emptyList(), Collections.emptyList(), mentions);
+    OutgoingMediaMessage message       = new OutgoingMediaMessage(recipient.get(), new SlideDeck(), result.getBody(), System.currentTimeMillis(), -1, expiresIn, result.isViewOnce(), distributionType, result.getStoryType(), null, false, quote, Collections.emptyList(), Collections.emptyList(), mentions, null);
     OutgoingMediaMessage secureMessage = new OutgoingSecureMediaMessage(message);
 
     final Context context = requireContext().getApplicationContext();
@@ -3055,7 +3059,7 @@ public class ConversationParentFragment extends Fragment
       }
     }
 
-    OutgoingMediaMessage outgoingMessageCandidate = new OutgoingMediaMessage(Recipient.resolved(recipientId), slideDeck, body, System.currentTimeMillis(), subscriptionId, expiresIn, viewOnce, distributionType, StoryType.NONE, null, false, quote, contacts, previews, mentions);
+    OutgoingMediaMessage outgoingMessageCandidate = new OutgoingMediaMessage(Recipient.resolved(recipientId), slideDeck, body, System.currentTimeMillis(), subscriptionId, expiresIn, viewOnce, distributionType, StoryType.NONE, null, false, quote, contacts, previews, mentions, null);
 
     final SettableFuture<Void> future  = new SettableFuture<>();
     final Context              context = requireContext().getApplicationContext();

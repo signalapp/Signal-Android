@@ -199,6 +199,12 @@
             android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
             android:layout="@layout/conversation_item_received_revealable" />
 
+        <ViewStub
+            android:id="@+id/gift_view_stub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout="@layout/conversation_item_received_gift" />
+
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/conversation_item_body"
             style="@style/Signal.Text.Body"

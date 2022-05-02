@@ -1,0 +1,113 @@
+package org.thoughtcrime.securesms.jobs
+
+import com.google.protobuf.ByteString
+import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.badges.gifts.Gifts
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
+import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
+import org.thoughtcrime.securesms.jobmanager.Data
+import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.sharing.MultiShareArgs
+import org.thoughtcrime.securesms.sharing.MultiShareSender
+import org.thoughtcrime.securesms.sms.MessageSender
+import java.util.concurrent.TimeUnit
+
+/**
+ * Sends a message to the given recipient containing a redeemable badge token.
+ * This job assumes that the client has already determined whether the given recipient can receive a gift badge.
+ */
+class GiftSendJob private constructor(parameters: Parameters, private val recipientId: RecipientId, private val additionalMessage: String?) : Job(parameters) {
+
+  companion object {
+    private val TAG = Log.tag(GiftSendJob::class.java)
+
+    const val KEY = "SendGiftJob"
+    const val DATA_RECIPIENT_ID = "data.recipient.id"
+    const val DATA_ADDITIONAL_MESSAGE = "data.additional.message"
+  }
+
+  constructor(recipientId: RecipientId, additionalMessage: String?) :
+    this(
+      parameters = Parameters.Builder()
+        .build(),
+      recipientId = recipientId,
+      additionalMessage = additionalMessage
+    )
+
+  override fun serialize(): Data = Data.Builder()
+    .putLong(DATA_RECIPIENT_ID, recipientId.toLong())
+    .putString(DATA_ADDITIONAL_MESSAGE, additionalMessage)
+    .build()
+
+  override fun getFactoryKey(): String = KEY
+
+  override fun run(): Result {
+    Log.i(TAG, "Getting data and generating message for gift send to $recipientId")
+
+    val token = this.inputData?.getStringAsBlob(DonationReceiptRedemptionJob.INPUT_RECEIPT_CREDENTIAL_PRESENTATION) ?: return Result.failure()
+
+    val recipient = Recipient.resolved(recipientId)
+
+    if (recipient.isGroup || recipient.isDistributionList || recipient.registered != RecipientDatabase.RegisteredState.REGISTERED) {
+      Log.w(TAG, "Invalid recipient $recipientId for gift send.")
+      return Result.failure()
+    }
+
+    val thread = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
+
+    val outgoingMessage = Gifts.createOutgoingGiftMessage(
+      recipient = recipient,
+      expiresIn = TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong()),
+      sentTimestamp = System.currentTimeMillis(),
+      giftBadge = GiftBadge.newBuilder().setRedemptionToken(ByteString.copyFrom(token)).build()
+    )
+
+    Log.i(TAG, "Sending gift badge to $recipientId...")
+    var didInsert = false
+    MessageSender.send(context, outgoingMessage, thread, false, null) {
+      didInsert = true
+    }
+
+    return if (didInsert) {
+      Log.i(TAG, "Successfully inserted outbox message for gift", true)
+
+      if (additionalMessage != null) {
+        Log.i(TAG, "Sending additional message...")
+
+        val result = MultiShareSender.sendSync(
+          MultiShareArgs.Builder(setOf(ContactSearchKey.RecipientSearchKey.KnownRecipient(recipientId)))
+            .withDraftText(additionalMessage)
+            .build()
+        )
+
+        if (result.containsFailures()) {
+          Log.w(TAG, "Failed to send additional message, but gift sent fine.", true)
+        }
+
+        Result.success()
+      } else {
+        Result.success()
+      }
+    } else {
+      Log.w(TAG, "Failed to insert outbox message for gift", true)
+      Result.failure()
+    }
+  }
+
+  override fun onFailure() {
+    Log.w(TAG, "Failed to submit send of gift badge to $recipientId")
+  }
+
+  class Factory : Job.Factory<GiftSendJob> {
+    override fun create(parameters: Parameters, data: Data): GiftSendJob {
+      val recipientId = RecipientId.from(data.getLong(DATA_RECIPIENT_ID))
+      val additionalMessage = data.getStringOrDefault(DATA_ADDITIONAL_MESSAGE, null)
+
+      return GiftSendJob(parameters, recipientId, additionalMessage)
+    }
+  }
+}

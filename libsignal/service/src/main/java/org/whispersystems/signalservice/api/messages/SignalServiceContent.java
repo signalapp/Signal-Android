@@ -21,6 +21,7 @@ import org.signal.libsignal.protocol.message.DecryptionErrorMessage;
 import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation;
 import org.whispersystems.signalservice.api.InvalidMessageStructureException;
 import org.whispersystems.signalservice.api.messages.calls.AnswerMessage;
 import org.whispersystems.signalservice.api.messages.calls.BusyMessage;
@@ -614,6 +615,7 @@ public final class SignalServiceContent {
     SignalServiceDataMessage.RemoteDelete    remoteDelete     = createRemoteDelete(content);
     SignalServiceDataMessage.GroupCallUpdate groupCallUpdate  = createGroupCallUpdate(content);
     SignalServiceDataMessage.StoryContext    storyContext     = createStoryContext(content);
+    SignalServiceDataMessage.GiftBadge       giftBadge        = createGiftBadge(content);
 
     if (content.getRequiredProtocolVersion() > SignalServiceProtos.DataMessage.ProtocolVersion.CURRENT_VALUE) {
       throw new UnsupportedDataMessageProtocolVersionException(SignalServiceProtos.DataMessage.ProtocolVersion.CURRENT_VALUE,
@@ -663,7 +665,8 @@ public final class SignalServiceContent {
                                         remoteDelete,
                                         groupCallUpdate,
                                         payment,
-                                        storyContext);
+                                        storyContext,
+                                        giftBadge);
   }
 
   private static SignalServiceSyncMessage createSynchronizeMessage(SignalServiceMetadata metadata,
@@ -1164,6 +1167,23 @@ public final class SignalServiceContent {
     }
 
     return new SignalServiceDataMessage.StoryContext(serviceId, content.getStoryContext().getSentTimestamp());
+  }
+
+  private static SignalServiceDataMessage.GiftBadge createGiftBadge(SignalServiceProtos.DataMessage content) throws InvalidMessageStructureException {
+    if (!content.hasGiftBadge()) {
+      return null;
+    }
+
+    if (!content.getGiftBadge().hasReceiptCredentialPresentation()) {
+      throw new InvalidMessageStructureException("GiftBadge does not contain a receipt credential presentation!");
+    }
+
+    try {
+      ReceiptCredentialPresentation receiptCredentialPresentation = new ReceiptCredentialPresentation(content.getGiftBadge().getReceiptCredentialPresentation().toByteArray());
+      return new SignalServiceDataMessage.GiftBadge(receiptCredentialPresentation);
+    } catch (InvalidInputException invalidInputException) {
+      throw new InvalidMessageStructureException(invalidInputException);
+    }
   }
 
   private static SignalServiceDataMessage.PaymentNotification createPaymentNotification(SignalServiceProtos.DataMessage.Payment content)

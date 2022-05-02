@@ -968,6 +968,13 @@ public class SignalServiceMessageSender {
                                                       .setSentTimestamp(storyContext.getSentTimestamp()));
     }
 
+    if (message.getGiftBadge().isPresent()) {
+      SignalServiceDataMessage.GiftBadge giftBadge = message.getGiftBadge().get();
+
+      builder.setGiftBadge(DataMessage.GiftBadge.newBuilder()
+                                                .setReceiptCredentialPresentation(ByteString.copyFrom(giftBadge.getReceiptCredentialPresentation().serialize())));
+    }
+
     builder.setTimestamp(message.getTimestamp());
 
     return enforceMaxContentSize(container.setDataMessage(builder).build());

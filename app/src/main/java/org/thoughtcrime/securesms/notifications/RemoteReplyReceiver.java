@@ -95,7 +95,8 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
                                                                   Collections.emptyList(),
                                                                   Collections.emptyList(),
                                                                   Collections.emptySet(),
-                                                                  Collections.emptySet());
+                                                                  Collections.emptySet(),
+                                                                  null);
             threadId = MessageSender.send(context, reply, -1, false, null, null);
             break;
           }

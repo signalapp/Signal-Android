@@ -73,6 +73,7 @@ public class RecipientDetails {
   final Recipient.Capability       announcementGroupCapability;
   final Recipient.Capability       changeNumberCapability;
   final Recipient.Capability       storiesCapability;
+  final Recipient.Capability       giftBadgesCapability;
   final InsightsBannerTier         insightsBannerTier;
   final byte[]                     storageId;
   final MentionSetting             mentionSetting;
@@ -135,6 +136,7 @@ public class RecipientDetails {
     this.announcementGroupCapability = record.getAnnouncementGroupCapability();
     this.changeNumberCapability      = record.getChangeNumberCapability();
     this.storiesCapability           = record.getStoriesCapability();
+    this.giftBadgesCapability        = record.getGiftBadgesCapability();
     this.insightsBannerTier          = record.getInsightsBannerTier();
     this.storageId                   = record.getStorageId();
     this.mentionSetting              = record.getMentionSetting();
@@ -193,6 +195,7 @@ public class RecipientDetails {
     this.announcementGroupCapability = Recipient.Capability.UNKNOWN;
     this.changeNumberCapability      = Recipient.Capability.UNKNOWN;
     this.storiesCapability           = Recipient.Capability.UNKNOWN;
+    this.giftBadgesCapability        = Recipient.Capability.UNKNOWN;
     this.storageId                   = null;
     this.mentionSetting              = MentionSetting.ALWAYS_NOTIFY;
     this.wallpaper                   = null;

@@ -7,6 +7,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mediasend.Media;
@@ -33,6 +34,7 @@ public class ConversationIntents {
   private static final String EXTRA_STARTING_POSITION                = "starting_position";
   private static final String EXTRA_FIRST_TIME_IN_SELF_CREATED_GROUP = "first_time_in_group";
   private static final String EXTRA_WITH_SEARCH_OPEN                 = "with_search_open";
+  private static final String EXTRA_GIFT_BADGE                       = "gift_badge";
 
   private ConversationIntents() {
   }
@@ -72,6 +74,7 @@ public class ConversationIntents {
     private final int              startingPosition;
     private final boolean          firstTimeInSelfCreatedGroup;
     private final boolean          withSearchOpen;
+    private final Badge            giftBadge;
 
     static Args from(@NonNull Intent intent) {
       if (isBubbleIntent(intent)) {
@@ -84,7 +87,8 @@ public class ConversationIntents {
                         ThreadDatabase.DistributionTypes.DEFAULT,
                         -1,
                         false,
-                        false);
+                        false,
+                        null);
       }
 
       return new Args(RecipientId.from(Objects.requireNonNull(intent.getStringExtra(EXTRA_RECIPIENT))),
@@ -96,7 +100,8 @@ public class ConversationIntents {
                       intent.getIntExtra(EXTRA_DISTRIBUTION_TYPE, ThreadDatabase.DistributionTypes.DEFAULT),
                       intent.getIntExtra(EXTRA_STARTING_POSITION, -1),
                       intent.getBooleanExtra(EXTRA_FIRST_TIME_IN_SELF_CREATED_GROUP, false),
-                      intent.getBooleanExtra(EXTRA_WITH_SEARCH_OPEN, false));
+                      intent.getBooleanExtra(EXTRA_WITH_SEARCH_OPEN, false),
+                      intent.getParcelableExtra(EXTRA_GIFT_BADGE));
     }
 
     private Args(@NonNull RecipientId recipientId,
@@ -108,7 +113,8 @@ public class ConversationIntents {
                  int distributionType,
                  int startingPosition,
                  boolean firstTimeInSelfCreatedGroup,
-                 boolean withSearchOpen)
+                 boolean withSearchOpen,
+                 @Nullable Badge giftBadge)
     {
       this.recipientId                 = recipientId;
       this.threadId                    = threadId;
@@ -120,6 +126,7 @@ public class ConversationIntents {
       this.startingPosition            = startingPosition;
       this.firstTimeInSelfCreatedGroup = firstTimeInSelfCreatedGroup;
       this.withSearchOpen              = withSearchOpen;
+      this.giftBadge                   = giftBadge;
     }
 
     public @NonNull RecipientId getRecipientId() {
@@ -169,6 +176,10 @@ public class ConversationIntents {
     public boolean isWithSearchOpen() {
       return withSearchOpen;
     }
+
+    public @Nullable Badge getGiftBadge() {
+      return giftBadge;
+    }
   }
 
   public final static class Builder {
@@ -187,6 +198,7 @@ public class ConversationIntents {
     private String         dataType;
     private boolean        firstTimeInSelfCreatedGroup;
     private boolean        withSearchOpen;
+    private Badge          giftBadge;
 
     private Builder(@NonNull Context context,
                     @NonNull RecipientId recipientId,
@@ -255,7 +267,12 @@ public class ConversationIntents {
       this.firstTimeInSelfCreatedGroup = true;
       return this;
     }
-
+    
+    public Builder withGiftBadge(@NonNull Badge badge) {
+      this.giftBadge = badge;
+      return this;
+    }
+    
     public @NonNull Intent build() {
       if (stickerLocator != null && media != null) {
         throw new IllegalStateException("Cannot have both sticker and media array");
@@ -281,6 +298,7 @@ public class ConversationIntents {
       intent.putExtra(EXTRA_BORDERLESS, isBorderless);
       intent.putExtra(EXTRA_FIRST_TIME_IN_SELF_CREATED_GROUP, firstTimeInSelfCreatedGroup);
       intent.putExtra(EXTRA_WITH_SEARCH_OPEN, withSearchOpen);
+      intent.putExtra(EXTRA_GIFT_BADGE, giftBadge);
 
       if (draftText != null) {
         intent.putExtra(EXTRA_TEXT, draftText);

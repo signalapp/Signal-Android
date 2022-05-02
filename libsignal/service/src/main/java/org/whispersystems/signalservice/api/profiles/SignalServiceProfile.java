@@ -142,6 +142,9 @@ public class SignalServiceProfile {
     @JsonProperty
     private boolean visible;
 
+    @JsonProperty
+    private long duration;
+
     public String getId() {
       return id;
     }
@@ -169,6 +172,13 @@ public class SignalServiceProfile {
     public boolean isVisible() {
       return visible;
     }
+
+    /**
+     * @return Duration badge is valid for, in seconds.
+     */
+    public long getDuration() {
+      return duration;
+    }
   }
 
   public static class Capabilities {
@@ -189,6 +199,9 @@ public class SignalServiceProfile {
 
     @JsonProperty
     private boolean stories;
+
+    @JsonProperty
+    private boolean giftBadges;
 
     @JsonCreator
     public Capabilities() {}
@@ -215,6 +228,10 @@ public class SignalServiceProfile {
 
     public boolean isStories() {
       return stories;
+    }
+
+    public boolean isGiftBadges() {
+      return giftBadges;
     }
   }
 

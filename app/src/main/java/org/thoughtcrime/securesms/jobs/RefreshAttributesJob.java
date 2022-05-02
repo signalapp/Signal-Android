@@ -111,6 +111,7 @@ public class RefreshAttributesJob extends BaseJob {
                "\n    Announcement Groups? " + capabilities.isAnnouncementGroup() +
                "\n    Change Number? " + capabilities.isChangeNumber() +
                "\n    Stories? " + capabilities.isStories() +
+               "\n    Gift Badges? " + capabilities.isGiftBadges() +
                "\n    UUID? " + capabilities.isUuid());
 
     SignalServiceAccountManager signalAccountManager = ApplicationDependencies.getSignalServiceAccountManager();

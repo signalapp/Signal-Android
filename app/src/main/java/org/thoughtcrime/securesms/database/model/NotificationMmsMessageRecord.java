@@ -25,6 +25,7 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase.Status;
+import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
@@ -54,13 +55,13 @@ public class NotificationMmsMessageRecord extends MmsMessageRecord {
                                       long expiry, int status, byte[] transactionId, long mailbox,
                                       int subscriptionId, SlideDeck slideDeck, int readReceiptCount,
                                       int viewedReceiptCount, long receiptTimestamp, @NonNull StoryType storyType,
-                                      @Nullable ParentStoryId parentStoryId)
+                                      @Nullable ParentStoryId parentStoryId, @Nullable GiftBadge giftBadge)
   {
     super(id, "", conversationRecipient, individualRecipient, recipientDeviceId,
           dateSent, dateReceived, -1, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox,
           new HashSet<>(), new HashSet<>(), subscriptionId,
           0, 0, false, slideDeck, readReceiptCount, null, Collections.emptyList(), Collections.emptyList(), false,
-          Collections.emptyList(), false, 0, viewedReceiptCount, receiptTimestamp, storyType, parentStoryId);
+          Collections.emptyList(), false, 0, viewedReceiptCount, receiptTimestamp, storyType, parentStoryId, giftBadge);
 
     this.contentLocation = contentLocation;
     this.messageSize     = messageSize;

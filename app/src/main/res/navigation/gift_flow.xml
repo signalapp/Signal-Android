@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/gift_flow"
+    app:startDestination="@id/giftFlowStartFragment">
+
+    <fragment
+        android:id="@+id/giftFlowStartFragment"
+        android:name="org.thoughtcrime.securesms.badges.gifts.flow.GiftFlowStartFragment"
+        android:label="GiftFlowStartFragment">
+        <action
+            android:id="@+id/action_giftFlowStartFragment_to_setCurrencyFragment"
+            app:destination="@id/setCurrencyFragment">
+            <argument
+                android:name="isBoost"
+                app:argType="boolean" />
+
+            <argument
+                android:name="supportedCurrencyCodes"
+                app:argType="string[]" />
+        </action>
+        <action
+            android:id="@+id/action_giftFlowStartFragment_to_giftFlowRecipientSelectionFragment"
+            app:destination="@id/giftFlowRecipientSelectionFragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/setCurrencyFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.currency.SetCurrencyFragment"
+        android:label="SetCurrencyFragment" />
+
+    <fragment
+        android:id="@+id/giftFlowRecipientSelectionFragment"
+        android:name="org.thoughtcrime.securesms.badges.gifts.flow.GiftFlowRecipientSelectionFragment"
+        android:label="GiftFlowRecipientSelectionFragment" >
+        <action
+            android:id="@+id/action_giftFlowRecipientSelectionFragment_to_giftFlowConfirmationFragment"
+            app:destination="@id/giftFlowConfirmationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/giftFlowConfirmationFragment"
+        android:name="org.thoughtcrime.securesms.badges.gifts.flow.GiftFlowConfirmationFragment"
+        android:label="GiftFlowConfirmationFragment" />
+</navigation>

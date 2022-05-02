@@ -44,6 +44,7 @@ object DonationReceiptListItem {
         when (model.record.type) {
           DonationReceiptRecord.Type.RECURRING -> R.string.DonationReceiptListFragment__recurring
           DonationReceiptRecord.Type.BOOST -> R.string.DonationReceiptListFragment__one_time
+          DonationReceiptRecord.Type.GIFT -> R.string.DonationReceiptListFragment__gift
         }
       )
       moneyView.text = FiatMoneyUtil.format(context.resources, model.record.amount)

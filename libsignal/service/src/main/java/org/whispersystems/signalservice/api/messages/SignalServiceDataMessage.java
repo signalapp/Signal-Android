@@ -8,6 +8,7 @@ package org.whispersystems.signalservice.api.messages;
 
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams;
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
@@ -42,6 +43,7 @@ public class SignalServiceDataMessage {
   private final Optional<GroupCallUpdate>               groupCallUpdate;
   private final Optional<Payment>                       payment;
   private final Optional<StoryContext>                  storyContext;
+  private final Optional<GiftBadge>                     giftBadge;
 
   /**
    * Construct a SignalServiceDataMessage.
@@ -74,7 +76,8 @@ public class SignalServiceDataMessage {
                            RemoteDelete remoteDelete,
                            GroupCallUpdate groupCallUpdate,
                            Payment payment,
-                           StoryContext storyContext)
+                           StoryContext storyContext,
+                           GiftBadge giftBadge)
   {
     try {
       this.group = SignalServiceGroupContext.createOptional(group, groupV2);
@@ -97,6 +100,7 @@ public class SignalServiceDataMessage {
     this.groupCallUpdate  = Optional.ofNullable(groupCallUpdate);
     this.payment          = Optional.ofNullable(payment);
     this.storyContext     = Optional.ofNullable(storyContext);
+    this.giftBadge        = Optional.ofNullable(giftBadge);
 
     if (attachments != null && !attachments.isEmpty()) {
       this.attachments = Optional.of(attachments);
@@ -253,6 +257,10 @@ public class SignalServiceDataMessage {
     return storyContext;
   }
 
+  public Optional<GiftBadge> getGiftBadge() {
+    return giftBadge;
+  }
+
   public Optional<byte[]> getGroupId() {
     byte[] groupId = null;
 
@@ -291,6 +299,7 @@ public class SignalServiceDataMessage {
     private GroupCallUpdate      groupCallUpdate;
     private Payment              payment;
     private StoryContext         storyContext;
+    private GiftBadge            giftBadge;
 
     private Builder() {}
 
@@ -423,6 +432,11 @@ public class SignalServiceDataMessage {
       return this;
     }
 
+    public Builder withGiftBadge(GiftBadge giftBadge) {
+      this.giftBadge = giftBadge;
+      return this;
+    }
+
     public SignalServiceDataMessage build() {
       if (timestamp == 0) timestamp = System.currentTimeMillis();
       return new SignalServiceDataMessage(timestamp, group, groupV2, attachments, body, endSession,
@@ -431,7 +445,8 @@ public class SignalServiceDataMessage {
                                           mentions, sticker, viewOnce, reaction, remoteDelete,
                                           groupCallUpdate,
                                           payment,
-                                          storyContext);
+                                          storyContext,
+                                          giftBadge);
     }
   }
 
@@ -655,6 +670,18 @@ public class SignalServiceDataMessage {
 
     public long getSentTimestamp() {
       return sentTimestamp;
+    }
+  }
+
+  public static class GiftBadge {
+    private final ReceiptCredentialPresentation receiptCredentialPresentation;
+
+    public GiftBadge(ReceiptCredentialPresentation receiptCredentialPresentation) {
+      this.receiptCredentialPresentation = receiptCredentialPresentation;
+    }
+
+    public ReceiptCredentialPresentation getReceiptCredentialPresentation() {
+      return receiptCredentialPresentation;
     }
   }
 }

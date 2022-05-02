@@ -223,3 +223,15 @@ message StoryTextPost {
     int32     textBackgroundColor = 4;
     ChatColor background          = 5;
 }
+
+message GiftBadge {
+    enum RedemptionState {
+        PENDING =  0;
+        STARTED =  1;
+        REDEEMED = 2;
+        FAILED =   3;
+    }
+
+    bytes           redemptionToken = 1;
+    RedemptionState redemptionState = 2;
+}

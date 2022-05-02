@@ -162,6 +162,7 @@ data class Badge(
 
   companion object {
     const val BOOST_BADGE_ID = "BOOST"
+    const val GIFT_BADGE_ID = "GIFT"
 
     private val SELECTION_CHANGED = Any()
 

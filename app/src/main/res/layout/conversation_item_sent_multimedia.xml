@@ -131,6 +131,12 @@
             android:layout="@layout/conversation_item_sent_document" />
 
         <ViewStub
+            android:id="@+id/gift_view_stub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout="@layout/conversation_item_sent_gift" />
+
+        <ViewStub
             android:id="@+id/revealable_view_stub"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -13,6 +13,11 @@ import java.util.Map;
  */
 public final class SubscriptionLevels {
 
+  /**
+   * Reserved level for boost badge.
+   */
+  public static final String BOOST_LEVEL = "1";
+
   private final Map<String, Level> levels;
 
   @JsonCreator

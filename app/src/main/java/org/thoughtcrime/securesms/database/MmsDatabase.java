@@ -62,6 +62,7 @@ import org.thoughtcrime.securesms.database.model.StoryResult;
 import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.database.model.StoryViewState;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
+import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
@@ -83,6 +84,7 @@ import org.thoughtcrime.securesms.revealable.ViewOnceUtil;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stories.Stories;
+import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -1578,6 +1580,11 @@ public class MmsDatabase extends MessageDatabase {
           return new OutgoingExpirationUpdateMessage(recipient, timestamp, expiresIn);
         }
 
+        GiftBadge giftBadge = null;
+        if (body != null && Types.isGiftBadge(outboxType)) {
+          giftBadge = GiftBadge.parseFrom(Base64.decode(body));
+        }
+
         OutgoingMediaMessage message = new OutgoingMediaMessage(recipient,
                                                                 body,
                                                                 attachments,
@@ -1594,7 +1601,8 @@ public class MmsDatabase extends MessageDatabase {
                                                                 previews,
                                                                 mentions,
                                                                 networkFailures,
-                                                                mismatches);
+                                                                mismatches,
+                                                                giftBadge);
 
         if (Types.isSecureType(outboxType)) {
           return new OutgoingSecureMediaMessage(message);
@@ -1791,8 +1799,18 @@ public class MmsDatabase extends MessageDatabase {
       type |= Types.EXPIRATION_TIMER_UPDATE_BIT;
     }
 
+    boolean hasSpecialType = false;
     if (retrieved.isStoryReaction()) {
+      hasSpecialType = true;
       type |= Types.SPECIAL_TYPE_STORY_REACTION;
+    }
+
+    if (retrieved.getGiftBadge() != null) {
+      if (hasSpecialType) {
+        throw new MmsException("Cannot insert message with multiple special types.");
+      }
+
+      type |= Types.SPECIAL_TYPE_GIFT_BADGE;
     }
 
     return insertMessageInbox(retrieved, "", threadId, type);
@@ -1859,6 +1877,55 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public void markGiftRedemptionCompleted(long messageId) {
+    markGiftRedemptionState(messageId, GiftBadge.RedemptionState.REDEEMED);
+  }
+
+  @Override
+  public void markGiftRedemptionStarted(long messageId) {
+    markGiftRedemptionState(messageId, GiftBadge.RedemptionState.STARTED);
+  }
+
+  @Override
+  public void markGiftRedemptionFailed(long messageId) {
+    markGiftRedemptionState(messageId, GiftBadge.RedemptionState.FAILED);
+  }
+
+  private void markGiftRedemptionState(long messageId, @NonNull GiftBadge.RedemptionState redemptionState) {
+    String[] projection = SqlUtil.buildArgs(BODY, THREAD_ID);
+    String   where      = "(" + MESSAGE_BOX + " & " + Types.SPECIAL_TYPES_MASK + " = " + Types.SPECIAL_TYPE_GIFT_BADGE + ") AND " +
+                          ID + " = ?";
+    String[] args       = SqlUtil.buildArgs(messageId);
+    boolean  updated    = false;
+    long     threadId   = -1;
+
+    getWritableDatabase().beginTransaction();
+    try (Cursor cursor = getWritableDatabase().query(TABLE_NAME, projection, where, args, null, null, null)) {
+      if (cursor.moveToFirst()) {
+        GiftBadge     giftBadge     = GiftBadge.parseFrom(Base64.decode(CursorUtil.requireString(cursor, BODY)));
+        GiftBadge     updatedBadge  = giftBadge.toBuilder().setRedemptionState(redemptionState).build();
+        ContentValues contentValues = new ContentValues(1);
+
+        contentValues.put(BODY, Base64.encodeBytes(updatedBadge.toByteArray()));
+
+        updated  = getWritableDatabase().update(TABLE_NAME, contentValues, ID_WHERE, args) > 0;
+        threadId = CursorUtil.requireLong(cursor, THREAD_ID);
+
+        getWritableDatabase().setTransactionSuccessful();
+      }
+    } catch (IOException e) {
+      Log.w(TAG, "Failed to mark gift badge " + redemptionState.name(), e, true);
+    } finally {
+      getWritableDatabase().endTransaction();
+    }
+
+    if (updated) {
+      ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId, true));
+      notifyConversationListeners(threadId);
+    }
+  }
+
+  @Override
   public long insertMessageOutbox(@NonNull OutgoingMediaMessage message,
                                   long threadId,
                                   boolean forceSms,
@@ -1899,8 +1966,18 @@ public class MmsDatabase extends MessageDatabase {
       type |= Types.EXPIRATION_TIMER_UPDATE_BIT;
     }
 
+    boolean hasSpecialType = false;
     if (message.isStoryReaction()) {
+      hasSpecialType = true;
       type |= Types.SPECIAL_TYPE_STORY_REACTION;
+    }
+
+    if (message.getGiftBadge() != null) {
+      if (hasSpecialType) {
+        throw new MmsException("Cannot insert message with multiple special types.");
+      }
+
+      type |= Types.SPECIAL_TYPE_GIFT_BADGE;
     }
 
     Map<RecipientId, EarlyReceiptCache.Receipt> earlyDeliveryReceipts = earlyDeliveryReceiptCache.remove(message.getSentTimeMillis());
@@ -2421,7 +2498,8 @@ public class MmsDatabase extends MessageDatabase {
                                        -1,
                                        null,
                                        message.getStoryType(),
-                                       message.getParentStoryId());
+                                       message.getParentStoryId(),
+                                       message.getGiftBadge());
     }
   }
 
@@ -2476,6 +2554,7 @@ public class MmsDatabase extends MessageDatabase {
       long          receiptTimestamp     = CursorUtil.requireLong(cursor, MmsSmsColumns.RECEIPT_TIMESTAMP);
       StoryType     storyType            = StoryType.fromCode(CursorUtil.requireInt(cursor, STORY_TYPE));
       ParentStoryId parentStoryId        = ParentStoryId.deserialize(CursorUtil.requireLong(cursor, PARENT_STORY_ID));
+      String        body                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.BODY));
 
       if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
         readReceiptCount = 0;
@@ -2492,13 +2571,21 @@ public class MmsDatabase extends MessageDatabase {
 
       SlideDeck slideDeck = new SlideDeck(context, new MmsNotificationAttachment(status, messageSize));
 
+      GiftBadge giftBadge = null;
+      if (body != null && Types.isGiftBadge(mailbox)) {
+        try {
+          giftBadge = GiftBadge.parseFrom(Base64.decode(body));
+        } catch (IOException e) {
+          Log.w(TAG, "Error parsing gift badge", e);
+        }
+      }
 
       return new NotificationMmsMessageRecord(id, recipient, recipient,
                                               addressDeviceId, dateSent, dateReceived, deliveryReceiptCount, threadId,
                                               contentLocationBytes, messageSize, expiry, status,
                                               transactionIdBytes, mailbox, subscriptionId, slideDeck,
                                               readReceiptCount, viewedReceiptCount, receiptTimestamp, storyType,
-                                              parentStoryId);
+                                              parentStoryId, giftBadge);
     }
 
     private MediaMmsMessageRecord getMediaMmsMessageRecord(Cursor cursor) {
@@ -2558,13 +2645,22 @@ public class MmsDatabase extends MessageDatabase {
         Log.w(TAG, "Error parsing message ranges", e);
       }
 
+      GiftBadge giftBadge = null;
+      if (body != null && Types.isGiftBadge(box)) {
+        try {
+          giftBadge = GiftBadge.parseFrom(Base64.decode(body));
+        } catch (IOException e) {
+          Log.w(TAG, "Error parsing gift badge", e);
+        }
+      }
+
       return new MediaMmsMessageRecord(id, recipient, recipient,
                                        addressDeviceId, dateSent, dateReceived, dateServer, deliveryReceiptCount,
                                        threadId, body, slideDeck, partCount, box, mismatches,
                                        networkFailures, subscriptionId, expiresIn, expireStarted,
                                        isViewOnce, readReceiptCount, quote, contacts, previews, unidentified, Collections.emptyList(),
                                        remoteDelete, mentionsSelf, notifiedTimestamp, viewedReceiptCount, receiptTimestamp, messageRanges,
-                                       storyType, parentStoryId);
+                                       storyType, parentStoryId, giftBadge);
     }
 
     private Set<IdentityKeyMismatch> getMismatchedIdentities(String document) {

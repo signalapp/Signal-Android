@@ -95,11 +95,12 @@ class DSLConfiguration {
     title: DSLSettingsText,
     summary: DSLSettingsText? = null,
     icon: DSLSettingsIcon? = null,
+    iconEnd: DSLSettingsIcon? = null,
     isEnabled: Boolean = true,
     onClick: () -> Unit,
     onLongClick: (() -> Boolean)? = null
   ) {
-    val preference = ClickPreference(title, summary, icon, isEnabled, onClick, onLongClick)
+    val preference = ClickPreference(title, summary, icon, iconEnd, isEnabled, onClick, onLongClick)
     children.add(preference)
   }
 
@@ -182,6 +183,7 @@ abstract class PreferenceModel<T : PreferenceModel<T>>(
   open val title: DSLSettingsText? = null,
   open val summary: DSLSettingsText? = null,
   open val icon: DSLSettingsIcon? = null,
+  open val iconEnd: DSLSettingsIcon? = null,
   open val isEnabled: Boolean = true,
 ) : MappingModel<T> {
   override fun areItemsTheSame(newItem: T): Boolean {
@@ -197,7 +199,8 @@ abstract class PreferenceModel<T : PreferenceModel<T>>(
     return areItemsTheSame(newItem) &&
       newItem.summary == summary &&
       newItem.icon == icon &&
-      newItem.isEnabled == isEnabled
+      newItem.isEnabled == isEnabled &&
+      newItem.iconEnd == iconEnd
   }
 }
 
@@ -269,6 +272,7 @@ class ClickPreference(
   override val title: DSLSettingsText,
   override val summary: DSLSettingsText? = null,
   override val icon: DSLSettingsIcon? = null,
+  override val iconEnd: DSLSettingsIcon? = null,
   override val isEnabled: Boolean = true,
   val onClick: () -> Unit,
   val onLongClick: (() -> Boolean)? = null

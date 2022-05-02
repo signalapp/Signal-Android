@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
+import com.google.protobuf.ByteString;
 import com.mobilecoin.lib.exceptions.SerializationException;
 
 import org.signal.core.util.Hex;
@@ -58,6 +59,7 @@ import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.ChatColor;
+import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge;
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.BadGroupIdException;
@@ -294,6 +296,7 @@ public final class MessageContentProcessor {
         else if (message.getRemoteDelete().isPresent())                                      messageId = handleRemoteDelete(content, message, senderRecipient);
         else if (message.getPayment().isPresent())                                           handlePayment(content, message, senderRecipient);
         else if (message.getStoryContext().isPresent())                                      messageId = handleStoryReply(content, message, senderRecipient);
+        else if (message.getGiftBadge().isPresent())                                         messageId = handleGiftMessage(content, message, senderRecipient, threadRecipient, receivedTime);
         else if (isMediaMessage)                                                             messageId = handleMediaMessage(content, message, smsMessageId, senderRecipient, threadRecipient, receivedTime);
         else if (message.getBody().isPresent())                                              messageId = handleTextMessage(content, message, smsMessageId, groupId, senderRecipient, threadRecipient, receivedTime);
         else if (Build.VERSION.SDK_INT > 19 && message.getGroupCallUpdate().isPresent())     handleGroupCallUpdateMessage(content, message, groupId, senderRecipient);
@@ -880,7 +883,8 @@ public final class MessageContentProcessor {
                                                                    Optional.empty(),
                                                                    Optional.empty(),
                                                                    Optional.empty(),
-                                                                   content.getServerUuid());
+                                                                   content.getServerUuid(),
+                                                                   null);
 
       Optional<InsertResult> insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
 
@@ -1423,7 +1427,8 @@ public final class MessageContentProcessor {
                                                                                    true),
                                                                    Optional.empty(),
                                                                    Optional.empty(),
-                                                                   content.getServerUuid());
+                                                                   content.getServerUuid(),
+                                                                   null);
 
       insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
 
@@ -1570,7 +1575,8 @@ public final class MessageContentProcessor {
                                                                    Optional.empty(),
                                                                    Optional.empty(),
                                                                    Optional.empty(),
-                                                                   content.getServerUuid());
+                                                                   content.getServerUuid(),
+                                                                   null);
 
       Optional<InsertResult> insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
 
@@ -1658,7 +1664,8 @@ public final class MessageContentProcessor {
                                                                    Optional.empty(),
                                                                    getMentions(message.getMentions()),
                                                                    Optional.empty(),
-                                                                   content.getServerUuid());
+                                                                   content.getServerUuid(),
+                                                                   null);
 
       Optional<InsertResult> insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
 
@@ -1677,6 +1684,71 @@ public final class MessageContentProcessor {
       throw new StorageFailedException(e, content.getSender().getIdentifier(), content.getSenderDevice());
     } finally {
       database.endTransaction();
+    }
+  }
+
+  private @Nullable MessageId handleGiftMessage(@NonNull SignalServiceContent content,
+                                                @NonNull SignalServiceDataMessage message,
+                                                @NonNull Recipient senderRecipient,
+                                                @NonNull Recipient threadRecipient,
+                                                long receivedTime)
+      throws StorageFailedException
+  {
+    log(message.getTimestamp(), "Gift message.");
+
+    if (!FeatureFlags.giftBadges()) {
+      warn(message.getTimestamp(), "Dropping unsupported gift badge message.");
+      return null;
+    }
+
+    notifyTypingStoppedFromIncomingMessage(senderRecipient, threadRecipient, content.getSenderDevice());
+
+    Optional<InsertResult> insertResult;
+
+    MessageDatabase database = SignalDatabase.mms();
+
+    byte[]    token     = message.getGiftBadge().get().getReceiptCredentialPresentation().serialize();
+    GiftBadge giftBadge = GiftBadge.newBuilder()
+                                   .setRedemptionToken(ByteString.copyFrom(token))
+                                   .setRedemptionState(GiftBadge.RedemptionState.PENDING)
+                                   .build();
+
+    try {
+      IncomingMediaMessage mediaMessage = new IncomingMediaMessage(senderRecipient.getId(),
+                                                                   message.getTimestamp(),
+                                                                   content.getServerReceivedTimestamp(),
+                                                                   receivedTime,
+                                                                   StoryType.NONE,
+                                                                   null,
+                                                                   false,
+                                                                   -1,
+                                                                   TimeUnit.SECONDS.toMillis(message.getExpiresInSeconds()),
+                                                                   false,
+                                                                   false,
+                                                                   content.isNeedsReceipt(),
+                                                                   Optional.of(Base64.encodeBytes(giftBadge.toByteArray())),
+                                                                   Optional.empty(),
+                                                                   Optional.empty(),
+                                                                   Optional.empty(),
+                                                                   Optional.empty(),
+                                                                   Optional.empty(),
+                                                                   Optional.empty(),
+                                                                   Optional.empty(),
+                                                                   content.getServerUuid(),
+                                                                   giftBadge);
+
+      insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
+    } catch (MmsException e) {
+      throw new StorageFailedException(e, content.getSender().getIdentifier(), content.getSenderDevice());
+    }
+
+    if (insertResult.isPresent()) {
+      ApplicationDependencies.getMessageNotifier().updateNotification(context, insertResult.get().getThreadId());
+      TrimThreadJob.enqueueAsync(insertResult.get().getThreadId());
+
+      return new MessageId(insertResult.get().getMessageId(), true);
+    } else {
+      return null;
     }
   }
 
@@ -1724,7 +1796,8 @@ public final class MessageContentProcessor {
                                                                    linkPreviews,
                                                                    mentions,
                                                                    sticker,
-                                                                   content.getServerUuid());
+                                                                   content.getServerUuid(),
+                                                                   null);
 
       insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
 
@@ -1854,7 +1927,8 @@ public final class MessageContentProcessor {
                                                                    Collections.emptyList(),
                                                                    getMentions(message.getMessage().getMentions()).orElse(Collections.emptyList()),
                                                                    Collections.emptySet(),
-                                                                   Collections.emptySet());
+                                                                   Collections.emptySet(),
+                                                                   null);
 
       mediaMessage = new OutgoingSecureMediaMessage(mediaMessage);
 
@@ -1916,6 +1990,7 @@ public final class MessageContentProcessor {
     Optional<List<Contact>>     sharedContacts  = getContacts(message.getMessage().getSharedContacts());
     Optional<List<LinkPreview>> previews        = getLinkPreviews(message.getMessage().getPreviews(), message.getMessage().getBody().orElse(""), false);
     Optional<List<Mention>>     mentions        = getMentions(message.getMessage().getMentions());
+    Optional<GiftBadge>         giftBadge       = getGiftBadge(message.getMessage().getGiftBadge());
     boolean                     viewOnce        = message.getMessage().isViewOnce();
     List<Attachment>            syncAttachments = viewOnce ? Collections.singletonList(new TombstoneAttachment(MediaUtil.VIEW_ONCE, false))
         : PointerAttachment.forPointers(message.getMessage().getAttachments());
@@ -1940,7 +2015,8 @@ public final class MessageContentProcessor {
                                                                  previews.orElse(Collections.emptyList()),
                                                                  mentions.orElse(Collections.emptyList()),
                                                                  Collections.emptySet(),
-                                                                 Collections.emptySet());
+                                                                 Collections.emptySet(),
+                                                                 giftBadge.orElse(null));
 
     mediaMessage = new OutgoingSecureMediaMessage(mediaMessage);
 
@@ -2133,7 +2209,8 @@ public final class MessageContentProcessor {
                                                                            null,
                                                                            Collections.emptyList(),
                                                                            Collections.emptyList(),
-                                                                           Collections.emptyList());
+                                                                           Collections.emptyList(),
+                                                                           null);
       outgoingMediaMessage = new OutgoingSecureMediaMessage(outgoingMediaMessage);
 
       messageId = SignalDatabase.mms().insertMessageOutbox(outgoingMediaMessage, threadId, false, GroupReceiptDatabase.STATUS_UNKNOWN, null);
@@ -2734,6 +2811,14 @@ public final class MessageContentProcessor {
     }
 
     return mentions;
+  }
+
+  private Optional<GiftBadge> getGiftBadge(Optional<SignalServiceDataMessage.GiftBadge> giftBadge) {
+    if (!giftBadge.isPresent()) return Optional.empty();
+
+    return Optional.of(GiftBadge.newBuilder()
+                                .setRedemptionToken(ByteString.copyFrom(giftBadge.get().getReceiptCredentialPresentation().serialize()))
+                                .build());
   }
 
   private Optional<InsertResult> insertPlaceholder(@NonNull String sender, int senderDevice, long timestamp) {

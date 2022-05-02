@@ -287,6 +287,10 @@ message DataMessage {
     }
   }
 
+  message GiftBadge {
+    optional bytes receiptCredentialPresentation = 1;
+  }
+
   enum ProtocolVersion {
     option allow_alias = true;
 
@@ -321,6 +325,7 @@ message DataMessage {
   optional GroupCallUpdate    groupCallUpdate         = 19;
   optional Payment            payment                 = 20;
   optional StoryContext       storyContext            = 21;
+  optional GiftBadge          giftBadge               = 22;
 }
 
 message NullMessage {

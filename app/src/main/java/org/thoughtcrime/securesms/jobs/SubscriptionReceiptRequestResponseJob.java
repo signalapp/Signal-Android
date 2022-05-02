@@ -297,11 +297,11 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
    * - level should match the current subscription level and be the same level you signed up for at the time the subscription was last updated
    * - expiration time should have the following characteristics:
    * - expiration_time mod 86400 == 0
-   * - expiration_time is between now and 60 days from now
+   * - expiration_time is between now and 90 days from now
    */
   private static boolean isCredentialValid(@NonNull ActiveSubscription.Subscription subscription, @NonNull ReceiptCredential receiptCredential) {
     long    now                     = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
-    long    maxExpirationTime       = now + TimeUnit.DAYS.toSeconds(60);
+    long    maxExpirationTime       = now + TimeUnit.DAYS.toSeconds(90);
     boolean isSameLevel             = subscription.getLevel() == receiptCredential.getReceiptLevel();
     boolean isExpirationAfterSub    = subscription.getEndOfCurrentPeriod() < receiptCredential.getReceiptExpirationTime();
     boolean isExpiration86400       = receiptCredential.getReceiptExpirationTime() % 86400 == 0;

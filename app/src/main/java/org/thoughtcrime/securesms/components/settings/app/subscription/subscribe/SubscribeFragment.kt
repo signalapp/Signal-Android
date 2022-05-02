@@ -120,7 +120,7 @@ class SubscribeFragment : DSLSettingsFragment(
 
   override fun onDestroyView() {
     super.onDestroyView()
-    processingDonationPaymentDialog.hide()
+    processingDonationPaymentDialog.dismiss()
   }
 
   private fun getConfiguration(state: SubscribeState): DSLConfiguration {
@@ -133,7 +133,7 @@ class SubscribeFragment : DSLSettingsFragment(
     val areFieldsEnabled = state.stage == SubscribeState.Stage.READY && !state.hasInProgressSubscriptionTransaction
 
     return configure {
-      customPref(BadgePreview.SubscriptionModel(state.selectedSubscription?.badge))
+      customPref(BadgePreview.BadgeModel.SubscriptionModel(state.selectedSubscription?.badge))
 
       sectionHeaderPref(
         title = DSLSettingsText.from(

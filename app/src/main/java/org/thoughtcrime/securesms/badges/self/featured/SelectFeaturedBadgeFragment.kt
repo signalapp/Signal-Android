@@ -58,7 +58,7 @@ class SelectFeaturedBadgeFragment : DSLSettingsFragment(
     }
 
     val previewView: View = requireView().findViewById(R.id.preview)
-    val previewViewHolder = BadgePreview.ViewHolder<BadgePreview.Model>(previewView)
+    val previewViewHolder = BadgePreview.ViewHolder<BadgePreview.BadgeModel.FeaturedModel>(previewView)
 
     lifecycleDisposable.bindTo(viewLifecycleOwner.lifecycle)
     lifecycleDisposable += viewModel.events.subscribe { event: SelectFeaturedBadgeEvent ->
@@ -79,7 +79,7 @@ class SelectFeaturedBadgeFragment : DSLSettingsFragment(
         hasBoundPreview = true
       }
 
-      previewViewHolder.bind(BadgePreview.Model(state.selectedBadge))
+      previewViewHolder.bind(BadgePreview.BadgeModel.FeaturedModel(state.selectedBadge))
       adapter.submitList(getConfiguration(state).toMappingModelList())
     }
   }

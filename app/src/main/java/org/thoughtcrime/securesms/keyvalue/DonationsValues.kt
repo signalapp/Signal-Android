@@ -25,11 +25,12 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     private val TAG = Log.tag(DonationsValues::class.java)
 
     private const val KEY_SUBSCRIPTION_CURRENCY_CODE = "donation.currency.code"
-    private const val KEY_CURRENCY_CODE_BOOST = "donation.currency.code.boost"
+    private const val KEY_CURRENCY_CODE_ONE_TIME = "donation.currency.code.boost"
     private const val KEY_SUBSCRIBER_ID_PREFIX = "donation.subscriber.id."
     private const val KEY_LAST_KEEP_ALIVE_LAUNCH = "donation.last.successful.ping"
     private const val KEY_LAST_END_OF_PERIOD_SECONDS = "donation.last.end.of.period"
     private const val EXPIRED_BADGE = "donation.expired.badge"
+    private const val EXPIRED_GIFT_BADGE = "donation.expired.gift.badge"
     private const val USER_MANUALLY_CANCELLED = "donation.user.manually.cancelled"
     private const val KEY_LEVEL_OPERATION_PREFIX = "donation.level.operation."
     private const val KEY_LEVEL_HISTORY = "donation.level.history"
@@ -46,7 +47,7 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
   override fun onFirstEverAppLaunch() = Unit
 
   override fun getKeysToIncludeInBackup(): MutableList<String> = mutableListOf(
-    KEY_CURRENCY_CODE_BOOST,
+    KEY_CURRENCY_CODE_ONE_TIME,
     KEY_LAST_KEEP_ALIVE_LAUNCH,
     KEY_LAST_END_OF_PERIOD_SECONDS,
     SHOULD_CANCEL_SUBSCRIPTION_BEFORE_NEXT_SUBSCRIBE_ATTEMPT,
@@ -59,8 +60,8 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
   private val subscriptionCurrencyPublisher: Subject<Currency> by lazy { BehaviorSubject.createDefault(getSubscriptionCurrency()) }
   val observableSubscriptionCurrency: Observable<Currency> by lazy { subscriptionCurrencyPublisher }
 
-  private val boostCurrencyPublisher: Subject<Currency> by lazy { BehaviorSubject.createDefault(getBoostCurrency()) }
-  val observableBoostCurrency: Observable<Currency> by lazy { boostCurrencyPublisher }
+  private val oneTimeCurrencyPublisher: Subject<Currency> by lazy { BehaviorSubject.createDefault(getOneTimeCurrency()) }
+  val observableOneTimeCurrency: Observable<Currency> by lazy { oneTimeCurrencyPublisher }
 
   fun getSubscriptionCurrency(): Currency {
     val currencyCode = getString(KEY_SUBSCRIPTION_CURRENCY_CODE, null)
@@ -87,20 +88,20 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     }
   }
 
-  fun getBoostCurrency(): Currency {
-    val boostCurrencyCode = getString(KEY_CURRENCY_CODE_BOOST, null)
-    return if (boostCurrencyCode == null) {
+  fun getOneTimeCurrency(): Currency {
+    val oneTimeCurrency = getString(KEY_CURRENCY_CODE_ONE_TIME, null)
+    return if (oneTimeCurrency == null) {
       val currency = getSubscriptionCurrency()
-      setBoostCurrency(currency)
+      setOneTimeCurrency(currency)
       currency
     } else {
-      Currency.getInstance(boostCurrencyCode)
+      Currency.getInstance(oneTimeCurrency)
     }
   }
 
-  fun setBoostCurrency(currency: Currency) {
-    putString(KEY_CURRENCY_CODE_BOOST, currency.currencyCode)
-    boostCurrencyPublisher.onNext(currency)
+  fun setOneTimeCurrency(currency: Currency) {
+    putString(KEY_CURRENCY_CODE_ONE_TIME, currency.currencyCode)
+    oneTimeCurrencyPublisher.onNext(currency)
   }
 
   fun getSubscriber(currency: Currency): Subscriber? {
@@ -175,6 +176,20 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
 
   fun getExpiredBadge(): Badge? {
     val badgeBytes = getBlob(EXPIRED_BADGE, null) ?: return null
+
+    return Badges.fromDatabaseBadge(BadgeList.Badge.parseFrom(badgeBytes))
+  }
+
+  fun setExpiredGiftBadge(badge: Badge?) {
+    if (badge != null) {
+      putBlob(EXPIRED_GIFT_BADGE, Badges.toDatabaseBadge(badge).toByteArray())
+    } else {
+      remove(EXPIRED_GIFT_BADGE)
+    }
+  }
+
+  fun getExpiredGiftBadge(): Badge? {
+    val badgeBytes = getBlob(EXPIRED_GIFT_BADGE, null) ?: return null
 
     return Badges.fromDatabaseBadge(BadgeList.Badge.parseFrom(badgeBytes))
   }

@@ -42,7 +42,7 @@ sealed class MediaSelectionDestination {
 
     companion object {
       fun fromParcel(parcelables: List<ContactSearchKey.ParcelableRecipientSearchKey>): MultipleRecipients {
-        return MultipleRecipients(parcelables.map { it.asContactSearchKey() }.filterIsInstance(ContactSearchKey.RecipientSearchKey::class.java))
+        return MultipleRecipients(parcelables.map { it.asRecipientSearchKey() }.filterIsInstance(ContactSearchKey.RecipientSearchKey::class.java))
       }
     }
 

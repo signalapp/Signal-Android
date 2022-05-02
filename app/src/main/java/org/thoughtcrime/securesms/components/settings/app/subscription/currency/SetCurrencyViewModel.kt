@@ -13,14 +13,14 @@ import java.util.Currency
 import java.util.Locale
 
 class SetCurrencyViewModel(
-  private val isBoost: Boolean,
+  private val isOneTime: Boolean,
   supportedCurrencyCodes: List<String>
 ) : ViewModel() {
 
   private val store = Store(
     SetCurrencyState(
-      selectedCurrencyCode = if (isBoost) {
-        SignalStore.donationsValues().getBoostCurrency().currencyCode
+      selectedCurrencyCode = if (isOneTime) {
+        SignalStore.donationsValues().getOneTimeCurrency().currencyCode
       } else {
         SignalStore.donationsValues().getSubscriptionCurrency().currencyCode
       },
@@ -35,8 +35,8 @@ class SetCurrencyViewModel(
   fun setSelectedCurrency(selectedCurrencyCode: String) {
     store.update { it.copy(selectedCurrencyCode = selectedCurrencyCode) }
 
-    if (isBoost) {
-      SignalStore.donationsValues().setBoostCurrency(Currency.getInstance(selectedCurrencyCode))
+    if (isOneTime) {
+      SignalStore.donationsValues().setOneTimeCurrency(Currency.getInstance(selectedCurrencyCode))
     } else {
       val currency = Currency.getInstance(selectedCurrencyCode)
       val subscriber = SignalStore.donationsValues().getSubscriber(currency)
@@ -83,9 +83,9 @@ class SetCurrencyViewModel(
     }
   }
 
-  class Factory(private val isBoost: Boolean, private val supportedCurrencyCodes: List<String>) : ViewModelProvider.Factory {
+  class Factory(private val isOneTime: Boolean, private val supportedCurrencyCodes: List<String>) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-      return modelClass.cast(SetCurrencyViewModel(isBoost, supportedCurrencyCodes))!!
+      return modelClass.cast(SetCurrencyViewModel(isOneTime, supportedCurrencyCodes))!!
     }
   }
 }

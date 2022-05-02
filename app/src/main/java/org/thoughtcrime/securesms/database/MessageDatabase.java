@@ -121,6 +121,9 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   public abstract void markSmsStatus(long id, int status);
   public abstract void markDownloadState(long messageId, long state);
   public abstract void markIncomingNotificationReceived(long threadId);
+  public abstract void markGiftRedemptionCompleted(long messageId);
+  public abstract void markGiftRedemptionStarted(long messageId);
+  public abstract void markGiftRedemptionFailed(long messageId);
 
   public abstract Set<MessageUpdate> incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType, boolean storiesOnly);
   abstract @NonNull MmsSmsDatabase.TimestampReadResult setTimestampRead(SyncMessageId messageId, long proposedExpireStarted, @NonNull Map<Long, Long> threadToLatestRead);

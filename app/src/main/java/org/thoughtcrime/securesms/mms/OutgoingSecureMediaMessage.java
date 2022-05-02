@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.ParentStoryId;
 import org.thoughtcrime.securesms.database.model.StoryType;
+import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
@@ -29,9 +30,10 @@ public class OutgoingSecureMediaMessage extends OutgoingMediaMessage {
                                     @Nullable QuoteModel quote,
                                     @NonNull List<Contact> contacts,
                                     @NonNull List<LinkPreview> previews,
-                                    @NonNull List<Mention> mentions)
+                                    @NonNull List<Mention> mentions,
+                                    @Nullable GiftBadge giftBadge)
   {
-    super(recipient, body, attachments, sentTimeMillis, -1, expiresIn, viewOnce, distributionType, storyType, parentStoryId, isStoryReaction, quote, contacts, previews, mentions, Collections.emptySet(), Collections.emptySet());
+    super(recipient, body, attachments, sentTimeMillis, -1, expiresIn, viewOnce, distributionType, storyType, parentStoryId, isStoryReaction, quote, contacts, previews, mentions, Collections.emptySet(), Collections.emptySet(), giftBadge);
   }
 
   public OutgoingSecureMediaMessage(OutgoingMediaMessage base) {
@@ -58,7 +60,8 @@ public class OutgoingSecureMediaMessage extends OutgoingMediaMessage {
                                           getOutgoingQuote(),
                                           getSharedContacts(),
                                           getLinkPreviews(),
-                                          getMentions());
+                                          getMentions(),
+                                          getGiftBadge());
   }
 
   public @NonNull OutgoingSecureMediaMessage withSentTimestamp(long sentTimestamp) {
@@ -75,6 +78,7 @@ public class OutgoingSecureMediaMessage extends OutgoingMediaMessage {
                                           getOutgoingQuote(),
                                           getSharedContacts(),
                                           getLinkPreviews(),
-                                          getMentions());
+                                          getMentions(),
+                                          getGiftBadge());
   }
 }

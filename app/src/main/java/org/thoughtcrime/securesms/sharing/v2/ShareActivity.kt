@@ -109,7 +109,7 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
     }
 
     val parcelizedKeys: List<ContactSearchKey.ParcelableRecipientSearchKey> = bundle.getParcelableArrayList(MultiselectForwardFragment.RESULT_SELECTION)!!
-    val contactSearchKeys = parcelizedKeys.map { it.asContactSearchKey() }
+    val contactSearchKeys = parcelizedKeys.map { it.asRecipientSearchKey() }
 
     viewModel.onContactSelectionConfirmed(contactSearchKeys)
   }

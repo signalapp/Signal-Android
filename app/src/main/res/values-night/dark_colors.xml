@@ -182,4 +182,7 @@
     <color name="notification_profile_moon_tint">#8B8BF9</color>
 
     <color name="top_toast_background_color">@color/core_grey_80</color>
+
+    <color name="sent_gift_button_tint">@color/transparent_white_20</color>
+    <color name="recv_gift_button_tint">@color/transparent_white_20</color>
 </resources>

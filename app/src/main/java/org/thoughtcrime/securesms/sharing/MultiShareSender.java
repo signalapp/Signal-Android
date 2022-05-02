@@ -227,7 +227,8 @@ public final class MultiShareSender {
                                                                              Collections.emptyList(),
                                                                              multiShareArgs.getLinkPreview() != null ? Collections.singletonList(multiShareArgs.getLinkPreview())
                                                                                                                      : Collections.emptyList(),
-                                                                             Collections.emptyList());
+                                                                             Collections.emptyList(),
+                                                                             null);
 
         outgoingMessages.add(outgoingMediaMessage);
       } else if (canSendAsTextStory) {
@@ -256,7 +257,8 @@ public final class MultiShareSender {
                                                                                null,
                                                                                Collections.emptyList(),
                                                                                Collections.emptyList(),
-                                                                               validatedMentions);
+                                                                               validatedMentions,
+                                                                               null);
 
           outgoingMessages.add(outgoingMediaMessage);
         }
@@ -277,7 +279,8 @@ public final class MultiShareSender {
                                                                            Collections.emptyList(),
                                                                            multiShareArgs.getLinkPreview() != null ? Collections.singletonList(multiShareArgs.getLinkPreview())
                                                                                                                    : Collections.emptyList(),
-                                                                           validatedMentions);
+                                                                           validatedMentions,
+                                                                           null);
 
       outgoingMessages.add(outgoingMediaMessage);
     }
@@ -344,7 +347,8 @@ public final class MultiShareSender {
                                                 : Collections.emptyList(),
         Collections.emptyList(),
         Collections.emptySet(),
-        Collections.emptySet());
+        Collections.emptySet(),
+        null);
   }
 
   private static @NonNull String getBodyForTextStory(@Nullable String draftText, @Nullable LinkPreview linkPreview) {

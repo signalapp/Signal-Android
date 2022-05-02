@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.MessageRecordUtil;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -82,6 +83,7 @@ final class MenuState {
     boolean hasInMemory     = false;
     boolean hasPendingMedia = false;
     boolean mediaIsSelected = false;
+    boolean hasGift         = false;
 
     for (MultiselectPart part : selectedParts) {
       MessageRecord messageRecord = part.getMessageRecord();
@@ -115,6 +117,10 @@ final class MenuState {
       if (messageRecord.isRemoteDelete()) {
         remoteDelete = true;
       }
+
+      if (MessageRecordUtil.hasGiftBadge(messageRecord)) {
+        hasGift = true;
+      }
     }
 
     boolean shouldShowForwardAction = !actionMessage   &&
@@ -122,6 +128,7 @@ final class MenuState {
                                       !viewOnce        &&
                                       !remoteDelete    &&
                                       !hasPendingMedia &&
+                                      !hasGift         &&
                                       selectedParts.size() <= MAX_FORWARDABLE_COUNT;
 
     int uniqueRecords = selectedParts.stream()
@@ -144,6 +151,7 @@ final class MenuState {
                                              !viewOnce                                                   &&
                                              messageRecord.isMms()                                       &&
                                              !hasPendingMedia                                            &&
+                                             !hasGift                                                    &&
                                              !messageRecord.isMmsNotification()                          &&
                                              ((MediaMmsMessageRecord)messageRecord).containsMediaSlide() &&
                                              ((MediaMmsMessageRecord)messageRecord).getSlideDeck().getStickerSlide() == null)
@@ -152,7 +160,7 @@ final class MenuState {
              .shouldShowReplyAction(canReplyToMessage(conversationRecipient, actionMessage, messageRecord, shouldShowMessageRequest, isNonAdminInAnnouncementGroup));
     }
 
-    return builder.shouldShowCopyAction(!actionMessage && !remoteDelete && hasText)
+    return builder.shouldShowCopyAction(!actionMessage && !remoteDelete && hasText && !hasGift)
                   .shouldShowDeleteAction(!hasInMemory && onlyContainsCompleteMessages(selectedParts))
                   .shouldShowReactions(!conversationRecipient.isReleaseNotes())
                   .build();
@@ -180,6 +188,7 @@ final class MenuState {
            messageRecord.isSecure()                                                    &&
            (!conversationRecipient.isGroup() || conversationRecipient.isActiveGroup()) &&
            !messageRecord.getRecipient().isBlocked()                                   &&
+           !MessageRecordUtil.hasGiftBadge(messageRecord)                              &&
            !conversationRecipient.isReleaseNotes();
   }
 

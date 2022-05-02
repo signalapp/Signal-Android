@@ -5,5 +5,5 @@ import org.thoughtcrime.securesms.recipients.Recipient
 data class AppSettingsState(
   val self: Recipient,
   val unreadPaymentsCount: Int,
-  val hasActiveSubscription: Boolean
+  val hasExpiredGiftBadge: Boolean
 )

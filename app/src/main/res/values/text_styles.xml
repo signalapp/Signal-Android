@@ -196,6 +196,11 @@
     <style name="Signal.Text.Title" parent="Base.TextAppearance.AppCompat.Title">
     </style>
 
+    <style name="Signal.Text.Title.Large">
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
     <style name="Signal.Text.Title.SettingsBio">
     </style>
 

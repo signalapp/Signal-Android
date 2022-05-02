@@ -70,6 +70,7 @@ data class RecipientRecord(
   val announcementGroupCapability: Recipient.Capability,
   val changeNumberCapability: Recipient.Capability,
   val storiesCapability: Recipient.Capability,
+  val giftBadgesCapability: Recipient.Capability,
   val insightsBannerTier: InsightsBannerTier,
   val storageId: ByteArray?,
   val mentionSetting: MentionSetting,

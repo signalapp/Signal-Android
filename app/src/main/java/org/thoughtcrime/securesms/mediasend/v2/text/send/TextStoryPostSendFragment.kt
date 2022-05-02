@@ -122,7 +122,7 @@ class TextStoryPostSendFragment : Fragment(R.layout.stories_send_text_post_fragm
     }
 
     val contactsRecyclerView: RecyclerView = view.findViewById(R.id.contacts_container)
-    contactSearchMediator = ContactSearchMediator(this, contactsRecyclerView, FeatureFlags.shareSelectionLimit()) { contactSearchState ->
+    contactSearchMediator = ContactSearchMediator(this, contactsRecyclerView, FeatureFlags.shareSelectionLimit(), true) { contactSearchState ->
       ContactSearchConfiguration.build {
         query = contactSearchState.query
 

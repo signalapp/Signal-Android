@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.ParentStoryId;
 import org.thoughtcrime.securesms.database.model.StoryType;
+import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
@@ -34,6 +35,7 @@ public class OutgoingMediaMessage {
   private   final StoryType                 storyType;
   private   final ParentStoryId             parentStoryId;
   private   final boolean                   isStoryReaction;
+  private   final GiftBadge                 giftBadge;
 
   private   final Set<NetworkFailure>      networkFailures       = new HashSet<>();
   private   final Set<IdentityKeyMismatch> identityKeyMismatches = new HashSet<>();
@@ -57,7 +59,8 @@ public class OutgoingMediaMessage {
                               @NonNull List<LinkPreview> linkPreviews,
                               @NonNull List<Mention> mentions,
                               @NonNull Set<NetworkFailure> networkFailures,
-                              @NonNull Set<IdentityKeyMismatch> identityKeyMismatches)
+                              @NonNull Set<IdentityKeyMismatch> identityKeyMismatches,
+                              @Nullable GiftBadge giftBadge)
   {
     this.recipient             = recipient;
     this.body                  = message;
@@ -71,6 +74,7 @@ public class OutgoingMediaMessage {
     this.storyType             = storyType;
     this.parentStoryId         = parentStoryId;
     this.isStoryReaction       = isStoryReaction;
+    this.giftBadge             = giftBadge;
 
     this.contacts.addAll(contacts);
     this.linkPreviews.addAll(linkPreviews);
@@ -93,7 +97,8 @@ public class OutgoingMediaMessage {
                               @Nullable QuoteModel outgoingQuote,
                               @NonNull List<Contact> contacts,
                               @NonNull List<LinkPreview> linkPreviews,
-                              @NonNull List<Mention> mentions)
+                              @NonNull List<Mention> mentions,
+                              @Nullable GiftBadge giftBadge)
   {
     this(recipient,
          buildMessage(slideDeck, message),
@@ -111,7 +116,8 @@ public class OutgoingMediaMessage {
          linkPreviews,
          mentions,
          new HashSet<>(),
-         new HashSet<>());
+         new HashSet<>(),
+         giftBadge);
   }
 
   public OutgoingMediaMessage(OutgoingMediaMessage that) {
@@ -127,6 +133,7 @@ public class OutgoingMediaMessage {
     this.storyType           = that.storyType;
     this.parentStoryId       = that.parentStoryId;
     this.isStoryReaction     = that.isStoryReaction;
+    this.giftBadge           = that.giftBadge;
 
     this.identityKeyMismatches.addAll(that.identityKeyMismatches);
     this.networkFailures.addAll(that.networkFailures);
@@ -153,7 +160,8 @@ public class OutgoingMediaMessage {
         linkPreviews,
         mentions,
         networkFailures,
-        identityKeyMismatches
+        identityKeyMismatches,
+        giftBadge
     );
   }
 
@@ -235,6 +243,10 @@ public class OutgoingMediaMessage {
 
   public @NonNull Set<IdentityKeyMismatch> getIdentityKeyMismatches() {
     return identityKeyMismatches;
+  }
+
+  public @Nullable GiftBadge getGiftBadge() {
+    return giftBadge;
   }
 
   private static String buildMessage(SlideDeck slideDeck, String message) {

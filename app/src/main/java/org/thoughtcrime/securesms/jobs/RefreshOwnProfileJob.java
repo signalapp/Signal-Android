@@ -255,6 +255,8 @@ public class RefreshOwnProfileJob extends BaseJob {
     boolean localHasSubscriptionBadges  = localDonorBadgeIds.stream().anyMatch(RefreshOwnProfileJob::isSubscription);
     boolean remoteHasBoostBadges        = remoteDonorBadgeIds.stream().anyMatch(RefreshOwnProfileJob::isBoost);
     boolean localHasBoostBadges         = localDonorBadgeIds.stream().anyMatch(RefreshOwnProfileJob::isBoost);
+    boolean remoteHasGiftBadges         = remoteDonorBadgeIds.stream().anyMatch(RefreshOwnProfileJob::isGift);
+    boolean localHasGiftBadges          = localDonorBadgeIds.stream().anyMatch(RefreshOwnProfileJob::isGift);
 
     if (!remoteHasSubscriptionBadges && localHasSubscriptionBadges) {
       Badge mostRecentExpiration = Recipient.self()
@@ -307,6 +309,19 @@ public class RefreshOwnProfileJob extends BaseJob {
       SignalStore.donationsValues().setExpiredBadge(mostRecentExpiration);
     }
 
+    if (!remoteHasGiftBadges && localHasGiftBadges) {
+      Badge mostRecentExpiration = Recipient.self()
+                                            .getBadges()
+                                            .stream()
+                                            .filter(badge -> badge.getCategory() == Badge.Category.Donor)
+                                            .filter(badge -> isGift(badge.getId()))
+                                            .max(Comparator.comparingLong(Badge::getExpirationTimestamp))
+                                            .get();
+
+      Log.d(TAG, "Marking gift badge as expired, should notify next time the manage donations screen is open.", true);
+      SignalStore.donationsValues().setExpiredGiftBadge(mostRecentExpiration);
+    }
+
     boolean userHasVisibleBadges   = badges.stream().anyMatch(SignalServiceProfile.Badge::isVisible);
     boolean userHasInvisibleBadges = badges.stream().anyMatch(b -> !b.isVisible());
 
@@ -326,11 +341,15 @@ public class RefreshOwnProfileJob extends BaseJob {
   }
 
   private static boolean isSubscription(String badgeId) {
-    return !Objects.equals(badgeId, Badge.BOOST_BADGE_ID);
+    return !isBoost(badgeId) && !isGift(badgeId);
   }
 
   private static boolean isBoost(String badgeId) {
     return Objects.equals(badgeId, Badge.BOOST_BADGE_ID);
+  }
+
+  private static boolean isGift(String badgeId) {
+    return Objects.equals(badgeId, Badge.GIFT_BADGE_ID);
   }
 
   public static final class Factory implements Job.Factory<RefreshOwnProfileJob> {

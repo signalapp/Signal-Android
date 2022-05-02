@@ -10,11 +10,11 @@ class DonationIntentPayload {
   private String currency;
 
   @JsonProperty
-  private String description;
+  private long level;
 
-  public DonationIntentPayload(long amount, String currency, String description) {
+  public DonationIntentPayload(long amount, String currency, long level) {
     this.amount      = amount;
     this.currency    = currency;
-    this.description = description;
+    this.level       = level;
   }
 }

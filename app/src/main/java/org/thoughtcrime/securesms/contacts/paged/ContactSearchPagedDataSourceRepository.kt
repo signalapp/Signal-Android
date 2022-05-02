@@ -42,7 +42,8 @@ open class ContactSearchPagedDataSourceRepository(
     return SignalDatabase.threads.getRecentConversationList(
       section.limit,
       section.includeInactiveGroups,
-      section.groupsOnly,
+      section.mode == ContactSearchConfiguration.Section.Recents.Mode.INDIVIDUALS,
+      section.mode == ContactSearchConfiguration.Section.Recents.Mode.GROUPS,
       !section.includeGroupsV1,
       !section.includeSms
     )
