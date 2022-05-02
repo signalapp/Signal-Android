@@ -183,7 +183,8 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
     members: List<RecipientId>,
     distributionId: DistributionId = DistributionId.from(UUID.randomUUID()),
     allowsReplies: Boolean = true,
-    deletionTimestamp: Long = 0L
+    deletionTimestamp: Long = 0L,
+    storageId: ByteArray? = null
   ): DistributionListId? {
     val db = writableDatabase
 
@@ -203,7 +204,7 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
         return null
       }
 
-      val recipientId = SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.from(id))
+      val recipientId = SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.from(id), storageId)
       writableDatabase.update(
         ListTable.TABLE_NAME,
         ContentValues().apply { put(ListTable.RECIPIENT_ID, recipientId.serialize()) },
@@ -422,7 +423,8 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
       members = insert.recipients.map(RecipientId::from),
       distributionId = distributionId,
       allowsReplies = insert.allowsReplies(),
-      deletionTimestamp = insert.deletedAtTimestamp
+      deletionTimestamp = insert.deletedAtTimestamp,
+      storageId = insert.id.raw
     )
   }
 

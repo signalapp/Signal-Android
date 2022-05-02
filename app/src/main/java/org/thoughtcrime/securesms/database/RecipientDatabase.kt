@@ -614,14 +614,15 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     return getOrInsertByColumn(EMAIL, email).recipientId
   }
 
-  fun getOrInsertFromDistributionListId(distributionListId: DistributionListId): RecipientId {
+  @JvmOverloads
+  fun getOrInsertFromDistributionListId(distributionListId: DistributionListId, storageId: ByteArray? = null): RecipientId {
     return getOrInsertByColumn(
       DISTRIBUTION_LIST_ID,
       distributionListId.serialize(),
       ContentValues().apply {
         put(GROUP_TYPE, GroupType.DISTRIBUTION_LIST.id)
         put(DISTRIBUTION_LIST_ID, distributionListId.serialize())
-        put(STORAGE_SERVICE_ID, Base64.encodeBytes(StorageSyncHelper.generateKey()))
+        put(STORAGE_SERVICE_ID, Base64.encodeBytes(storageId ?: StorageSyncHelper.generateKey()))
         put(PROFILE_SHARING, 1)
       }
     ).recipientId
