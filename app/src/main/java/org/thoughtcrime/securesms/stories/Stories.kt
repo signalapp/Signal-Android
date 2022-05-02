@@ -52,17 +52,7 @@ object Stories {
   @WorkerThread
   fun sendTextStories(messages: List<OutgoingSecureMediaMessage>): Completable {
     return Completable.create { emitter ->
-      messages.forEach { outgoingSecureMediaMessage ->
-        MessageSender.send(
-          ApplicationDependencies.getApplication(),
-          outgoingSecureMediaMessage,
-          -1L,
-          false,
-          null,
-          null
-        )
-      }
-
+      MessageSender.sendMediaBroadcast(ApplicationDependencies.getApplication(), messages, listOf(), listOf())
       emitter.onComplete()
     }
   }
