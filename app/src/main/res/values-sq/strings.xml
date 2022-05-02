@@ -2128,9 +2128,9 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="preferences__advanced">Të mëtejshme</string>
   <string name="preferences__donate_to_signal">Dhuroni për Signal-in</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">Pajtim</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Pajtim</string> -->
   <!--Preference label for making a monthly donation to Signal-->
-  <string name="preferences__monthly_donation">Dhurim Mujor</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__monthly_donation">Dhurim Mujor</string> -->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Dhurim Një Herë</string>
   <string name="preferences__privacy">Privatësi</string>
@@ -3495,7 +3495,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kur keni më shumë se një stemë, mund të zgjidhni cila t\’u shfaqet të tjerëve te profili juaj për ta parë.</string>
   <string name="BecomeASustainerFragment__get_badges">Merrni stema për profilin tuaj, duke përkrahur Signal-in.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal-i është një ent jofitimprurës pa rrjete reklamash dhe investues, i përkrahur vetëm nga njerëz si ju.</string>
-  <string name="ManageDonationsFragment__my_support">Përkrahja ime</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">Përkrahja ime</string> -->
   <string name="ManageDonationsFragment__manage_subscription">Administroni pajtim</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Dëftesa Dhurimesh</string>
@@ -3709,13 +3709,13 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">Aktiv deri më %1$s</string>
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">Profile njoftimesh</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">Profile njoftimesh</string> -->
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Merrni njoftime vetëm nga persona dhe grupe që zgidhni ju.</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Merrni njoftime vetëm nga persona dhe grupe që zgidhni ju.</string> -->
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">Krijoni një profil</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">Krijoni një profil</string> -->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">Jo tani</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Jo tani</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">S\’u arrit të hapet zgjedhësi.</string>
   <!--Description shown for the Signal Release Notes channel-->

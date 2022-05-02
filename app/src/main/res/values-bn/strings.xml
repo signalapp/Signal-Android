@@ -2056,7 +2056,7 @@
   <string name="preferences__advanced">উন্নততর</string>
   <string name="preferences__donate_to_signal">Signal -এ দান করুন</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">সাবস্ক্রিপশন</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">সাবস্ক্রিপশন</string> -->
   <!--Preference label for making a monthly donation to Signal-->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">গোপনীয়তা</string>
@@ -3391,7 +3391,7 @@
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">যখন আপনার একাধিক ব্যাজ থাকে, আপনি অন্যদের আপনার প্রোফাইলে দেখার জন্য বৈশিষ্ট্যের একটি বেছে নিতে পারেন।</string>
   <string name="BecomeASustainerFragment__get_badges">সিগন্যাল সমর্থন করে আপনার প্রোফাইলের জন্য ব্যাজ পান।</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">সিগন্যাল হল একটি অলাভজনক যেখানে কোন বিজ্ঞাপনদাতা বা বিনিয়োগকারী নেই, শুধুমাত্র আপনার মত লোকেদের দ্বারা সমর্থিত।</string>
-  <string name="ManageDonationsFragment__my_support">আমার সমর্থন</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">আমার সমর্থন</string> -->
   <string name="ManageDonationsFragment__manage_subscription">সাবস্ক্রিপশন ব্যবহার করুন</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">ব্যাজ</string>
@@ -3545,7 +3545,7 @@
   <!--Description for notification profile megaphone-->
   <!--Call to action button to create a profile from megaphone-->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">এখন না</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">এখন না</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">পিকার খুলতে ব্যর্থ হয়েছে।</string>
   <!--Description shown for the Signal Release Notes channel-->

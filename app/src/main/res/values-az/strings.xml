@@ -2127,9 +2127,9 @@
   <string name="preferences__advanced">Qabaqcıl</string>
   <string name="preferences__donate_to_signal">Signal-a ianə verin</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">Abunəlik</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Abunəlik</string> -->
   <!--Preference label for making a monthly donation to Signal-->
-  <string name="preferences__monthly_donation">Aylıq ianə</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__monthly_donation">Aylıq ianə</string> -->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Birdəfəlik ianə</string>
   <string name="preferences__privacy">Gizlilik</string>
@@ -3492,7 +3492,7 @@
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Bir neçə nişana sahib olanda, profilinizdə başqalarının görməsi üçün birini seçə bilərsiniz.</string>
   <string name="BecomeASustainerFragment__get_badges">Signal-ı dəstəkləyərək profiliniz üçün nişanlar qazanın.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal, reklamları və ya investoru olmayan və yalnız sizin kimi insanlardan dəstək alan qeyri-kommersiya təşkilatıdır.</string>
-  <string name="ManageDonationsFragment__my_support">Dəstəyim</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">Dəstəyim</string> -->
   <string name="ManageDonationsFragment__manage_subscription">Abunəliyi idarə et</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">İanə qəbzləri</string>
@@ -3501,7 +3501,7 @@
   <string name="ManageDonationsFragment__error_getting_subscription">Abunəlik alma xətası.</string>
   <string name="BoostFragment__give_signal_a_boost">Signal-ı gücləndirin</string>
   <!--Description text in boost sheet-->
-  <string name="BoostFragment__make_a_one_time">Birədəfəlik ianə ilə %1$d günlük Gücləndirmə nişanını qazanın.</string>
+  <string name="BoostFragment__make_a_one_time">Birdəfəlik ianə ilə %1$d günlük Gücləndirmə nişanını qazanın.</string>
   <string name="Boost__enter_custom_amount">Özəl məbləğ daxil edin</string>
   <string name="Boost__one_time_contribution">Birdəfəlik töhfə</string>
   <string name="MySupportPreference__add_a_signal_boost">Signal gücləndirməsi əlavə et</string>
@@ -3712,13 +3712,13 @@
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">%1$s-a qədər</string>
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">Bildiriş profilləri</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">Bildiriş profilləri</string> -->
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Yalnız seçdiyiniz şəxslərdən və qruplardan bildiriş alın.</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Yalnız seçdiyiniz şəxslərdən və qruplardan bildiriş alın.</string> -->
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">Bir profil yarat</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">Bir profil yarat</string> -->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">İndi yox</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">İndi yox</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Seçici, açılmadı.</string>
   <!--Description shown for the Signal Release Notes channel-->

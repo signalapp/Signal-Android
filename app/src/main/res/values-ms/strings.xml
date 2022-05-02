@@ -1980,7 +1980,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="preferences__advanced">Lanjutan</string>
   <string name="preferences__donate_to_signal">Sumbang kepada Signal</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">Langganan</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Langganan</string> -->
   <!--Preference label for making a monthly donation to Signal-->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">Privasi</string>
@@ -3298,7 +3298,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Apabila anda memiliki lebih daripada satu lencana, anda boleh memilih satu untuk dipamerkan agar dapat dilihat oleh orang lain di profil anda.</string>
   <string name="BecomeASustainerFragment__get_badges">Dapatkan lencana untuk profil anda dengan menyokong Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal adalah organisasi bukan untung tanpa pengiklan atau pelabur, hanya disokong oleh orang ramai seperti anda.</string>
-  <string name="ManageDonationsFragment__my_support">Sokongan saya</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">Sokongan saya</string> -->
   <string name="ManageDonationsFragment__manage_subscription">Urus langganan</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">Lencana</string>
@@ -3452,7 +3452,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Description for notification profile megaphone-->
   <!--Call to action button to create a profile from megaphone-->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">Bukan sekarang</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Bukan sekarang</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Gagal untuk membuka pemilih.</string>
   <!--Description shown for the Signal Release Notes channel-->

@@ -2122,7 +2122,7 @@
   <string name="preferences__advanced">Για προχωρημένους</string>
   <string name="preferences__donate_to_signal">Κάνε μια δωρεά στο Signal</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">Συνδρομή</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Συνδρομή</string> -->
   <!--Preference label for making a monthly donation to Signal-->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">Ιδιωτικότητα</string>
@@ -3479,7 +3479,7 @@
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Όταν έχεις πάνω από ένα έμβλημα, μπορείς να επιλέξεις ποιο μπορούν να δουν τα άλλα άτομα στο προφίλ σου.</string>
   <string name="BecomeASustainerFragment__get_badges">Στηρίζοντας το Signal παίρνεις εμβλήματα για το προφίλ σου. </string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Το Signal είναι μια μη κερδοσκοπική οργάνωση, χωρίς διαφημιστές και επενδυτές, που υποστηρίζεται από άτομα σαν κι εσένα.</string>
-  <string name="ManageDonationsFragment__my_support">Η υποστήριξή μου</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">Η υποστήριξή μου</string> -->
   <string name="ManageDonationsFragment__manage_subscription">Διαχείριση συνδρομής</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Αποδείξεις δωρεών</string>
@@ -3692,13 +3692,13 @@
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">Ενεργό μέχρι %1$s</string>
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">Προφίλ ειδοποιήσεων</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">Προφίλ ειδοποιήσεων</string> -->
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Λήψη ειδοποιήσεων μόνο από τα άτομα και τις ομάδες που επιλέγεις.</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Λήψη ειδοποιήσεων μόνο από τα άτομα και τις ομάδες που επιλέγεις.</string> -->
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">Δημιουργία προφίλ</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">Δημιουργία προφίλ</string> -->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">Όχι τώρα</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Όχι τώρα</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Αποτυχία ανοίγματος επιλογέα.</string>
   <!--Description shown for the Signal Release Notes channel-->

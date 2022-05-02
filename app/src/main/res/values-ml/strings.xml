@@ -2097,7 +2097,7 @@
   <string name="preferences__advanced">വിപുലമായ</string>
   <string name="preferences__donate_to_signal">Signal-ന് സംഭാവന ചെയ്യുക</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">സബ്സ്ക്രിപ്ഷൻ</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">സബ്സ്ക്രിപ്ഷൻ</string> -->
   <!--Preference label for making a monthly donation to Signal-->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">സ്വകാര്യത</string>
@@ -3453,7 +3453,7 @@
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">നിങ്ങൾക്ക് ഒന്നിലധികം ബാഡ്‌ജുകൾ ഉള്ളപ്പോൾ, നിങ്ങളുടെ പ്രൊഫൈലിൽ മറ്റുള്ളവർക്ക് കാണുന്നതിന് ഫീച്ചർ ചെയ്യുന്നതിനായി നിങ്ങൾക്ക് ഒന്ന് തിരഞ്ഞെടുക്കാം.</string>
   <string name="BecomeASustainerFragment__get_badges">Signal-നെ പിന്തുണച്ച് നിങ്ങളുടെ പ്രൊഫൈലിനായി ബാഡ്ജുകൾ നേടുക.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">നിങ്ങളെപ്പോലുള്ള ആളുകൾ മാത്രം പിന്തുണയ്ക്കുന്ന, പരസ്യദാതാക്കളോ നിക്ഷേപകരോ ഇല്ലാത്ത ലാഭേച്ഛയില്ലാതെ പ്രവർത്തിക്കുന്ന ഒന്നാണ്  Signal.</string>
-  <string name="ManageDonationsFragment__my_support">എന്റെ പിന്തുണ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">എന്റെ പിന്തുണ</string> -->
   <string name="ManageDonationsFragment__manage_subscription">സബ്സ്ക്രിപ്ഷൻ നിയന്ത്രിക്കുക</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">ബാഡ്ജുകള്‍</string>
@@ -3665,13 +3665,13 @@
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">%1$s വരെ സജീവം</string>
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">അറിയിപ്പ് പ്രൊഫൈലുകൾ</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">അറിയിപ്പ് പ്രൊഫൈലുകൾ</string> -->
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">നിങ്ങൾ തിരഞ്ഞെടുക്കുന്ന ആളുകളിൽ നിന്നും ഗ്രൂപ്പുകളിൽ നിന്നും മാത്രം അറിയിപ്പുകൾ നേടുക.</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">നിങ്ങൾ തിരഞ്ഞെടുക്കുന്ന ആളുകളിൽ നിന്നും ഗ്രൂപ്പുകളിൽ നിന്നും മാത്രം അറിയിപ്പുകൾ നേടുക.</string> -->
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">ഒരു പ്രൊഫൈൽ സൃഷ്ടിക്കുക</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">ഒരു പ്രൊഫൈൽ സൃഷ്ടിക്കുക</string> -->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">ഇപ്പോൾ വേണ്ട</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">ഇപ്പോൾ വേണ്ട</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">പിക്കർ തുറക്കുന്നത് പരാജയപ്പെട്ടു.</string>
   <!--Description shown for the Signal Release Notes channel-->

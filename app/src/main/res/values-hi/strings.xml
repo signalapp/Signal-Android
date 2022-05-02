@@ -2066,7 +2066,7 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="preferences__advanced">अधिक</string>
   <string name="preferences__donate_to_signal">Signal  को दान करें</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">सब्सक्रिप्शन</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">सब्सक्रिप्शन</string> -->
   <!--Preference label for making a monthly donation to Signal-->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">गोपनियता </string>
@@ -3403,7 +3403,7 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">जब आपके पास एक से ज़्यादा बैज हों, तो आप अपनी प्रोफ़ाइल पर दूसरों को देखने की ख़ातिर फ़ीचर के लिए एक को चुन सकते हैं.</string>
   <string name="BecomeASustainerFragment__get_badges">Signal का समर्थन करके अपनी प्रोफ़ाइल के लिए बैज पाएं.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal एक गैर-लाभकारी संस्था है जिसमें कोई विज्ञापनदाता या निवेशक नहीं है, जो सिर्फ़ आप जैसे लोगों द्वारा समर्थित है.</string>
-  <string name="ManageDonationsFragment__my_support">मेरे लिए सपोर्ट</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">मेरे लिए सपोर्ट</string> -->
   <string name="ManageDonationsFragment__manage_subscription">सब्सक्रिप्शन मैनेज करें</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">बैज</string>
@@ -3559,7 +3559,7 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <!--Description for notification profile megaphone-->
   <!--Call to action button to create a profile from megaphone-->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">अभी नहीं</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">अभी नहीं</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">पिकर ओपेन करने में असफ़ल.</string>
   <!--Description shown for the Signal Release Notes channel-->

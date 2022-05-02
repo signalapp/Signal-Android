@@ -2025,7 +2025,7 @@ broj telefona</string>
   <string name="preferences__advanced">Napredno</string>
   <string name="preferences__donate_to_signal">Donirajte Signalu</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">Pretplata</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Pretplata</string> -->
   <!--Preference label for making a monthly donation to Signal-->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">Privatnost</string>
@@ -3287,6 +3287,7 @@ broj telefona</string>
   <string name="MySupportPreference__please_contact_support">Molimo Vas da kontaktirate podršku</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Mjesečna donacija otkazana</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Postanite pretplatnik</string>
@@ -3405,7 +3406,7 @@ broj telefona</string>
   <!--Description for notification profile megaphone-->
   <!--Call to action button to create a profile from megaphone-->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">Ne sada</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Ne sada</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--Description shown for the Signal Release Notes channel-->
   <!--Donation receipts activity title-->
@@ -3413,16 +3414,21 @@ broj telefona</string>
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">Sve</string>
   <!--Donation receipts recurring tab label-->
+  <string name="DonationReceiptListFragment__recurring">Obnavljajuća</string>
   <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">Jednokratno</string>
   <!--Donation receipts boost row label-->
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Detalji</string>
   <!--Donation receipts donation type heading-->
   <!--Donation receipts date paid heading-->
+  <string name="DonationReceiptDetailsFragment__date_paid">Datum plaćanja</string>
   <!--Donation receipts share PNG-->
   <!--Donation receipts list end note-->
   <!--Donation receipts document title-->
+  <string name="DonationReceiptDetailsFragment__donation_receipt">Potvrda o donaciji</string>
   <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">Količina</string>
   <!--Donation receipts thanks-->
   <!--Donation receipt type-->
   <!--region "Stories Tab"-->

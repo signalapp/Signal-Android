@@ -2297,9 +2297,9 @@
   <string name="preferences__advanced">מתקדם</string>
   <string name="preferences__donate_to_signal">תרום אל Signal</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">מינוי</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">מינוי</string> -->
   <!--Preference label for making a monthly donation to Signal-->
-  <string name="preferences__monthly_donation">תרומה חודשית</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__monthly_donation">תרומה חודשית</string> -->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">תרומה חד־פעמית</string>
   <string name="preferences__privacy">פרטיות</string>
@@ -3696,7 +3696,7 @@
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">כשיהיו לך יותר מתג אחד, תוכל לבחור אחד להבליט כדי שאחרים יראו בפרופיל שלך.</string>
   <string name="BecomeASustainerFragment__get_badges">השג תגים עבור הפרופיל שלך ע״י תמיכה ב־Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal הוא ארגון ללא מטרות רווח בלי מפרסמים או משקיעים, שנתמך רק ע״י אנשים כמוך.</string>
-  <string name="ManageDonationsFragment__my_support">התמיכה שלי</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">התמיכה שלי</string> -->
   <string name="ManageDonationsFragment__manage_subscription">נהל מינוי</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">קבלות תרומה</string>
@@ -3916,13 +3916,13 @@
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">מופעל עד %1$s</string>
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">פרופילי התראות</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">פרופילי התראות</string> -->
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">קבל התראות רק מהאנשים ומהקבוצות שאתה בוחר.</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">קבל התראות רק מהאנשים ומהקבוצות שאתה בוחר.</string> -->
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">צור פרופיל</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">צור פרופיל</string> -->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">לא עכשיו</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">לא עכשיו</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">נכשל בפתיחת בורר.</string>
   <!--Description shown for the Signal Release Notes channel-->

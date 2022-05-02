@@ -3376,13 +3376,13 @@
   <string name="NotificationProfileSelection__view_settings">அமைப்புகளைப் காண்க</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">அறிவிப்பு சுயவிவரங்கள்</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">அறிவிப்பு சுயவிவரங்கள்</string> -->
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">நீங்கள் தேர்வு செய்யும் நபர்கள் மற்றும் குழுக்களிடமிருந்து மட்டுமே அறிவிப்புகளைப் பெறுங்கள்.</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">நீங்கள் தேர்வு செய்யும் நபர்கள் மற்றும் குழுக்களிடமிருந்து மட்டுமே அறிவிப்புகளைப் பெறுங்கள்.</string> -->
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">சுயவிவரத்தை உருவாக்கு</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">சுயவிவரத்தை உருவாக்கு</string> -->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">இப்போது இல்லை</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">இப்போது இல்லை</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">பிக்கரைத் திறக்க முடியவில்லை.</string>
   <!--Description shown for the Signal Release Notes channel-->

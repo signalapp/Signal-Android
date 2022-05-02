@@ -2116,9 +2116,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__advanced">Erweiterte Einstellungen</string>
   <string name="preferences__donate_to_signal">An Signal spenden</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">Regelmäßige Spende</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Regelmäßige Spende</string> -->
   <!--Preference label for making a monthly donation to Signal-->
-  <string name="preferences__monthly_donation">Monatliche Spende</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__monthly_donation">Monatliche Spende</string> -->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Einmalige Spende</string>
   <string name="preferences__privacy">Datenschutz</string>
@@ -3481,7 +3481,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Falls du mehrere Abzeichen hast, kannst du eines davon auswählen, das andere in deinem Profil sehen können.</string>
   <string name="BecomeASustainerFragment__get_badges">Unterstütze Signal und erhalte Abzeichen für dein Profil.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal ist eine gemeinnützige Organisation ohne Werbekunden oder Investoren, die nur von Menschen wie dir unterstützt wird.</string>
-  <string name="ManageDonationsFragment__my_support">Meine Unterstützung</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">Meine Unterstützung</string> -->
   <string name="ManageDonationsFragment__manage_subscription">Regelmäßige Spende verwalten</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Spendenbescheinigungen</string>
@@ -3701,13 +3701,13 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">Eingeschaltet bis %1$s Uhr</string>
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">Benachrichtigungsprofile</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">Benachrichtigungsprofile</string> -->
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Erhalte Benachrichtigungen nur von ausgewählten Personen und Gruppen.</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Erhalte Benachrichtigungen nur von ausgewählten Personen und Gruppen.</string> -->
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">Profil erstellen</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">Profil erstellen</string> -->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">Jetzt nicht</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Jetzt nicht</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Tonauswahlmenü konnte nicht geöffnet werden.</string>
   <!--Description shown for the Signal Release Notes channel-->

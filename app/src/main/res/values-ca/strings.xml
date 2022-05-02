@@ -2121,9 +2121,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__advanced">Avançat</string>
   <string name="preferences__donate_to_signal">Feu una donació a Signal</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">Subscripció</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Subscripció</string> -->
   <!--Preference label for making a monthly donation to Signal-->
-  <string name="preferences__monthly_donation">Donació mensual</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__monthly_donation">Donació mensual</string> -->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Donació única</string>
   <string name="preferences__privacy">Privadesa</string>
@@ -3486,7 +3486,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Quan tingueu més d\'una insígnia, podeu triar-ne una per mostrar-la perquè altres la vegin al perfil.</string>
   <string name="BecomeASustainerFragment__get_badges">Aconseguiu insígnies per al perfil donant suport al Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">El Signal és una organització sense ànim de lucre sense anunciants ni inversors, amb el suport només de persones com vós.</string>
-  <string name="ManageDonationsFragment__my_support">Suport</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">Suport</string> -->
   <string name="ManageDonationsFragment__manage_subscription">Gestioneu la subscripció</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Rebuts de donació</string>
@@ -3706,13 +3706,13 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">Actiu fins %1$s</string>
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">Perfils de notificacions</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">Perfils de notificacions</string> -->
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Només rebeu notificacions de les persones i grups que trieu.</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Només rebeu notificacions de les persones i grups que trieu.</string> -->
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">Crea un perfil</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">Crea un perfil</string> -->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">Ara no</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Ara no</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Ha fallat obrir el selector.</string>
   <!--Description shown for the Signal Release Notes channel-->

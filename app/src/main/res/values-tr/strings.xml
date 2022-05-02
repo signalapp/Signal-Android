@@ -2106,9 +2106,9 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__advanced">Gelişmiş</string>
   <string name="preferences__donate_to_signal">Signal\'e Bağış Yap</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">Abonelik</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Abonelik</string> -->
   <!--Preference label for making a monthly donation to Signal-->
-  <string name="preferences__monthly_donation">Aylık Bağış</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__monthly_donation">Aylık Bağış</string> -->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Tek Seferlik Bağış</string>
   <string name="preferences__privacy">Gizlilik</string>
@@ -3463,7 +3463,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Birden fazla rozetiniz olduğunda, profilinizde başkalarının görmesi için birini seçebilirsiniz.</string>
   <string name="BecomeASustainerFragment__get_badges">Signal\'ı destekleyerek profilin için rozet kazan.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal reklam almaz, sponsoru yoktur ve kâr amacı gütmez; sadece senin gibi gönüllüler tarafından destekleniyor.</string>
-  <string name="ManageDonationsFragment__my_support">Desteğim</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">Desteğim</string> -->
   <string name="ManageDonationsFragment__manage_subscription">Aboneliği yönet</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">Rozetler</string>
@@ -3665,13 +3665,13 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">%1$s tarihine kadar açık</string>
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">Bildirim Profilleri</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">Bildirim Profilleri</string> -->
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Yalnızca seçtiğiniz kişilerden ve gruplardan bildirim alın.</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Yalnızca seçtiğiniz kişilerden ve gruplardan bildirim alın.</string> -->
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">Profil oluştur</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">Profil oluştur</string> -->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">Şimdi değil</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Şimdi değil</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Seçicinin açılmasında hata oldu.</string>
   <!--Description shown for the Signal Release Notes channel-->

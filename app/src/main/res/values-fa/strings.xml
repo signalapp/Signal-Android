@@ -2092,7 +2092,7 @@
   <string name="preferences__advanced">پیشرفته</string>
   <string name="preferences__donate_to_signal">حمایت از سیگنال</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">اشتراک</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">اشتراک</string> -->
   <!--Preference label for making a monthly donation to Signal-->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">حریم خصوصی</string>
@@ -3447,7 +3447,7 @@
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">هنگامی که شما بیش از یک نشان دارید، می‌توانید یکی را برای نمایش روی پروفایل‌تان انتخاب کنید تا دیگران ببینند.</string>
   <string name="BecomeASustainerFragment__get_badges">نشان‌هایی برای پروفایل خود از طریق پشتیبانی سیگنال دریافت کنید.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">سیگنال یک سازمان غیرانتفاعی بدون تبلیغ‌کنندگان و سرمایه‌گذاران است که از سوی افرادی مانند شما حمایت می‌شود.</string>
-  <string name="ManageDonationsFragment__my_support">پشتیبانی من</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">پشتیبانی من</string> -->
   <string name="ManageDonationsFragment__manage_subscription">مدیریت اشتراک</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">نشان‌ها</string>
@@ -3659,13 +3659,13 @@
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">روشن تا %1$s</string>
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">پروفایل‌های اعلان</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">پروفایل‌های اعلان</string> -->
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">اعلان‌ها را فقط از افراد و گروه‌هایی که انتخاب می‌کنید دریافت کنید.</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">اعلان‌ها را فقط از افراد و گروه‌هایی که انتخاب می‌کنید دریافت کنید.</string> -->
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">ایجاد یک پروفایل</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">ایجاد یک پروفایل</string> -->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">حالا نه</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">حالا نه</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">باز کردن گزینش‌گر ناموفق بود.</string>
   <!--Description shown for the Signal Release Notes channel-->

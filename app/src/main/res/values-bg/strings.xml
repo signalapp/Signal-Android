@@ -2004,7 +2004,7 @@
   <string name="preferences__advanced">Допълнителни</string>
   <string name="preferences__donate_to_signal">Дари на Signal</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">Абонамент</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Абонамент</string> -->
   <!--Preference label for making a monthly donation to Signal-->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">Поверителност</string>
@@ -3214,7 +3214,7 @@
   <!--Description for notification profile megaphone-->
   <!--Call to action button to create a profile from megaphone-->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">Не сега</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Не сега</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--Description shown for the Signal Release Notes channel-->
   <!--Donation receipts activity title-->

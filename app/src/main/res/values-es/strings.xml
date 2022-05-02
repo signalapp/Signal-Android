@@ -2127,9 +2127,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__advanced">Avanzado</string>
   <string name="preferences__donate_to_signal">Donar a Signal</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">Suscripción</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Suscripción</string> -->
   <!--Preference label for making a monthly donation to Signal-->
-  <string name="preferences__monthly_donation">Donación mensual</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__monthly_donation">Donación mensual</string> -->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Donación puntual</string>
   <string name="preferences__privacy">Privacidad</string>
@@ -3492,7 +3492,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Si tienes más de un distintivo, puedes seleccionar cuál mostrar en tu perfil a otras personas.</string>
   <string name="BecomeASustainerFragment__get_badges">conseguir distintivos para tu perfil al sostener Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal es una asociación sin ánimo de lucro sin anuncios ni fondos de inversión, sostenida por gente como tú.</string>
-  <string name="ManageDonationsFragment__my_support">Mi apoyo</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">Mi apoyo</string> -->
   <string name="ManageDonationsFragment__manage_subscription">Gestionar suscripción</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Justificantes de donación</string>
@@ -3712,13 +3712,13 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">Activo hasta %1$s</string>
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">Perfiles de notificaciones</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">Perfiles de notificaciones</string> -->
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Recibe notificaciones sólo de gente y grupos que tú decidas.</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Recibe notificaciones sólo de gente y grupos que tú decidas.</string> -->
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">Crear un perfil</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">Crear un perfil</string> -->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">Ahora no</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Ahora no</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Fallo al abrir el selector.</string>
   <!--Description shown for the Signal Release Notes channel-->

@@ -1991,7 +1991,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences__advanced">Nâng cao</string>
   <string name="preferences__donate_to_signal">Ủng hộ Signal</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">Đăng ký</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Đăng ký</string> -->
   <!--Preference label for making a monthly donation to Signal-->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">Riêng tư</string>
@@ -3323,7 +3323,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Khi bạn có nhiều hơn một huy hiệu. bạn có thể chọn huy hiệu mặc định mà mọi người sẽ nhìn thấy trên hồ sơ của bạn.</string>
   <string name="BecomeASustainerFragment__get_badges">Hãy thu thập nhiều huy hiệu đính trên hồ sơ của bạn bằng cách hổ trở cho Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal là một ứng dụng phi lợi nhuận, không có quảng cao cũng như nhà đầu tư nào. Nó chỉ được duy trì và phát triển bỡi hàng triệu người dùng như bạn mà thôi.</string>
-  <string name="ManageDonationsFragment__my_support">Hổ trợ của tôi</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">Hổ trợ của tôi</string> -->
   <string name="ManageDonationsFragment__manage_subscription">Quản lý Quyên góp</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">Huy hiệu</string>
@@ -3519,13 +3519,13 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">Bật cho đến khi %1$s</string>
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">Cấu hình thông báo</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">Cấu hình thông báo</string> -->
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Chỉ nhận thông báo từ những người và nhóm bạn chọn.</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Chỉ nhận thông báo từ những người và nhóm bạn chọn.</string> -->
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">Tạo một cấu hình</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">Tạo một cấu hình</string> -->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">Để sau</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Để sau</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Không mở được bộ chọn.</string>
   <!--Description shown for the Signal Release Notes channel-->

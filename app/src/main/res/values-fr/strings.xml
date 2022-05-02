@@ -64,7 +64,7 @@
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Impossible de trouver une appli pour sélectionner le média.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal exige l’autorisation Stockage afin de joindre des photos, des vidéos ou du son, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Stockage ».</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal exige l’autorisation Contacts afin de joindre des renseignements de contact, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Contacts ».</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal exige l’autorisation Contacts afin de joindre des coordonnées de contact, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Contacts ».</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal exige l’autorisation Position afin de joindre une position géographique, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Position ».</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Téléversement du média…</string>
@@ -202,7 +202,7 @@
   <string name="ConversationItem_you_deleted_this_message">Vous avez supprimé ce message.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_add_attachment">Ajouter un fichier joint</string>
-  <string name="ConversationActivity_select_contact_info">Sélectionner les renseignements du contact</string>
+  <string name="ConversationActivity_select_contact_info">Sélectionner les coordonnées du contact</string>
   <string name="ConversationActivity_compose_message">Rédiger un message</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Désolé, une erreur de mise en place de votre fichier joint est survenue.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Le destinataire n’est pas une adresse texto ou courriel valide.</string>
@@ -610,7 +610,7 @@
   <string name="PendingMembersActivity_you_have_no_pending_invites">Vous n’avez aucune invitation en attente.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Invitations par d’autres membres du groupe</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Il n’y a aucune invitation par d’autres membres du groupe en attente.</string>
-  <string name="PendingMembersActivity_missing_detail_explanation">Les détails des personnes invitées par d’autres membres du groupe ne sont pas affichés. Si les invités choisissent de se joindre au groupe, leurs renseignements seront alors communiqués au groupe. Ils ne verront aucun message dans le groupe avant de s’y être joints.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">Les détails des personnes invitées par d’autres membres du groupe ne sont pas affichés. Si les invités choisissent de se joindre au groupe, leurs informations seront alors communiquées au groupe. Ils ne verront aucun message dans le groupe avant de s’y être joints.</string>
   <string name="PendingMembersActivity_revoke_invite">Révoquer l’invitation</string>
   <string name="PendingMembersActivity_revoke_invites">Révoquer les invitations</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">
@@ -656,9 +656,9 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Demandes et invitations de membres</string>
   <string name="ManageGroupActivity_add_members">Ajouter des membres</string>
-  <string name="ManageGroupActivity_edit_group_info">Modifier les renseignements</string>
+  <string name="ManageGroupActivity_edit_group_info">Modifier les informations du groupe</string>
   <string name="ManageGroupActivity_who_can_add_new_members">Qui peut ajouter de nouveaux membres ?</string>
-  <string name="ManageGroupActivity_who_can_edit_this_groups_info">Qui peut modifier les renseignements de ce groupe ?</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">Qui peut modifier les informations de ce groupe ?</string>
   <string name="ManageGroupActivity_group_link">Lien de groupe</string>
   <string name="ManageGroupActivity_block_group">Bloquer le groupe</string>
   <string name="ManageGroupActivity_unblock_group">Débloquer le groupe</string>
@@ -1045,9 +1045,9 @@
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s a changé l’avatar du groupe.</string>
   <string name="MessageRecord_the_group_group_avatar_has_been_changed">L’avatar du groupe a été changé.</string>
   <!--GV2 attribute access level change-->
-  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Vous avez changé qui peut modifier les renseignements du groupe en « %1$s ».</string>
-  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s a changé qui peut modifier les renseignements du groupe en « %2$s ».</string>
-  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Qui peut modifier les renseignements du groupe a été changé en « %1$s ».</string>
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Vous avez changé qui peut modifier les informations du groupe en « %1$s ».</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s a changé qui peut modifier les informations du groupe en « %2$s ».</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Qui peut modifier les informations du groupe a été changé en « %1$s ».</string>
   <!--GV2 membership access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Vous avez changé qui peut modifier les membres du groupe en « %1$s ».</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s a changé qui peut modifier les membres du groupe en « %2$s ».</string>
@@ -1214,22 +1214,22 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">Le NIP est erroné</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Ignorer la saisie du NIP ?</string>
   <string name="PinRestoreEntryFragment_need_help">Besoin d’aide ?</string>
-  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Votre NIP est un code à %1$d chiffres ou plus que vous avez créé et qui peut être numérique ou alphanumérique. Si vous avez oublié votre NIP, vous pouvez en créer un nouveau. Vous pouvez vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres enregistrés tels que les renseignements de votre profil.</string>
-  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Si vous ne vous souvenez pas de votre NIP, vous pouvez en créer un nouveau. Vous pouvez vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres enregistrés tels que les renseignements de votre profil.</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Votre NIP est un code à %1$d chiffres ou plus que vous avez créé et qui peut être numérique ou alphanumérique. Si vous avez oublié votre NIP, vous pouvez en créer un nouveau. Vous pouvez vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres enregistrés tels que les informations de votre profil.</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Si vous ne vous souvenez pas de votre NIP, vous pouvez en créer un nouveau. Vous pouvez vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres enregistrés tels que les informations de votre profil.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Créer un nouveau NIP</string>
   <string name="PinRestoreEntryFragment_contact_support">Contacter l’assistance</string>
   <string name="PinRestoreEntryFragment_cancel">Annuler</string>
   <string name="PinRestoreEntryFragment_skip">Ignorer</string>
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
-    <item quantity="one">Il vous reste %1$d essai. Si vous épuisez le nombre limite d’essais, vous pouvez créer un nouveau NIP. Vous pouvez vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres enregistrés tels que les renseignements de votre profil.</item>
-    <item quantity="other">Il vous reste %1$d essai. Si vous épuisez le nombre limite d’essais, vous pouvez créer un nouveau NIP. Vous pouvez vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres enregistrés tels que les renseignements de votre profil.</item>
+    <item quantity="one">Il vous reste %1$d essai. Si vous épuisez le nombre limite d’essais, vous pouvez créer un nouveau NIP. Vous pouvez vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres enregistrés tels que les informations de votre profil.</item>
+    <item quantity="other">Il vous reste %1$d essai. Si vous épuisez le nombre limite d’essais, vous pouvez créer un nouveau NIP. Vous pouvez vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres enregistrés tels que les informations de votre profil.</item>
   </plurals>
   <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Inscription à Signal – Besoin d’aide avec le NIP sur Android</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Saisir un NIP alphanumérique</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Saisir un NIP numérique</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Créer votre NIP</string>
-  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Vous avez épuisé tous vos essais de NIP, mais vous pouvez encore accéder à votre compte Signal en créant un nouveau NIP. Afin de protéger vos données personnelles et votre sécurité, votre compte sera restauré sans renseignements de profil enregistrés ni préférences.</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Vous avez épuisé tous vos essais de NIP, mais vous pouvez encore accéder à votre compte Signal en créant un nouveau NIP. Afin de protéger vos données personnelles et votre sécurité, votre compte sera restauré sans informations de profil enregistrées ni préférences.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Créer un nouveau NIP</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Avertissement</string>
@@ -1478,7 +1478,7 @@
   <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Ce journal sera publié publiquement sur Internet pour être consulté par les contributeurs. Vous pouvez l’examiner avant de le téléverser.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtre :</string>
-  <string name="SupportEmailUtil_device_info">Renseignements sur l’appareil :</string>
+  <string name="SupportEmailUtil_device_info">Info sur l’appareil :</string>
   <string name="SupportEmailUtil_android_version">Version d’Android :</string>
   <string name="SupportEmailUtil_signal_version">Version de Signal :</string>
   <string name="SupportEmailUtil_signal_package">Paquet Signal :</string>
@@ -1909,7 +1909,7 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Déverrouiller</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal exige que les paramètres de messages multimédias remettent les messages multimédias et de groupe en utilisant votre opérateur de réseau mobile. Votre appareil n’offre pas ces renseignements, ce qui arrive parfois pour les appareils verrouillés ou d’autres configurations restrictives.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal exige que les paramètres de messages multimédias remettent les messages multimédias et de groupe en utilisant votre opérateur de réseau mobile. Votre appareil n’offre pas ces informations, ce qui arrive parfois pour les appareils verrouillés ou d’autres configurations restrictives.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Pour envoyer des messages multimédias ou de groupe, touchez Valider et remplissez les paramètres demandés. Les paramètres de messages multimédias pour votre opérateur peuvent habituellement être trouvés en cherchant l’APN (nom du point d’accès) de votre opérateur. Vous n’aurez à le faire qu’une seule fois.</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">Problème de remise</string>
@@ -2006,7 +2006,7 @@
   <string name="HelpFragment__whats_this">Qu’est-ce donc ?</string>
   <string name="HelpFragment__how_do_you_feel">Comment vous sentez-vous ? (facultatif)</string>
   <string name="HelpFragment__tell_us_why_youre_reaching_out">Dites-nous pourquoi vous nous contactez.</string>
-  <string name="HelpFragment__support_info">Renseignements d’assistance</string>
+  <string name="HelpFragment__support_info">Info d’assistance</string>
   <string name="HelpFragment__signal_android_support_request">Demande d’assistance – Signal pour Android</string>
   <string name="HelpFragment__debug_log">Journal de débogage :</string>
   <string name="HelpFragment__could_not_upload_logs">Impossible de téléverser les journaux</string>
@@ -2118,9 +2118,9 @@
   <string name="preferences__advanced">Avancés</string>
   <string name="preferences__donate_to_signal">Faire un don à Signal</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">Abonnement</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Abonnement</string> -->
   <!--Preference label for making a monthly donation to Signal-->
-  <string name="preferences__monthly_donation">Don mensuel</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__monthly_donation">Don mensuel</string> -->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Don ponctuel</string>
   <string name="preferences__privacy">Confidentialité</string>
@@ -2150,7 +2150,7 @@
   <string name="preferences__disable_pin">Désactiver le NIP</string>
   <string name="preferences__enable_pin">Activer le NIP</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Si vous désactivez le NIP, vous perdrez toutes vos données lors de votre réinscription sur Signal, à moins que vous ne les sauvegardiez et les restauriez manuellement. Vous ne pouvez pas activer le blocage de l’inscription si le NIP est désactivé.</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Les NIP font en sorte que les renseignements sont enregistrés chiffrés dans Signal afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés quand vous réinstallerez Signal. Vous n’aurez pas besoin de votre NIP pour ouvrir l’appli.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Les NIP font en sorte que les informations sont enregistrées chiffrées dans Signal afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés quand vous réinstallerez Signal. Vous n’aurez pas besoin de votre NIP pour ouvrir l’appli.</string>
   <string name="preferences__system_default">Valeur par défaut du système</string>
   <string name="preferences__language">Langue</string>
   <string name="preferences__signal_messages_and_calls">Appels et messages Signal</string>
@@ -2414,7 +2414,7 @@
   <string name="conversation_expiring_off__disappearing_messages">Messages éphémères</string>
   <!--conversation_selection-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_selection__menu_message_details">Renseignements</string>
+  <string name="conversation_selection__menu_message_details">Info</string>
   <!--Button to copy a message\'s text to the clipboard-->
   <string name="conversation_selection__menu_copy">Copier</string>
   <!--Button to delete a message-->
@@ -2542,7 +2542,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">Créer un nouveau NIP</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Vous pouvez changer votre NIP tant que cet appareil est inscrit.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Créer votre NIP</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Les NIP font en sorte que les renseignements sont enregistrés chiffrés dans Signal afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés quand vous réinstallerez Signal. Vous n’aurez pas besoin de votre NIP pour ouvrir l’appli.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Les NIP font en sorte que les informations sont enregistrées chiffrées dans Signal afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés quand vous réinstallerez Signal. Vous n’aurez pas besoin de votre NIP pour ouvrir l’appli.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Choisissez une NIP plus robuste</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Les NIP ne correspondent pas. Veuillez réessayez.</string>
@@ -2554,7 +2554,7 @@
   <string name="ConfirmKbsPinFragment__creating_pin">Création du NIP…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Nous présentons les NIP</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Les NIP font en sorte que les renseignements sont enregistrés chiffrés dans Signal afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés quand vous réinstallerez Signal. Vous n’aurez pas besoin de votre NIP pour ouvrir l’appli.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Les NIP font en sorte que les informations sont enregistrées chiffrées dans Signal afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés quand vous réinstallerez Signal. Vous n’aurez pas besoin de votre NIP pour ouvrir l’appli.</string>
   <string name="KbsSplashFragment__learn_more">En apprendre davantage</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Blocage de l’inscription = NIP</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Votre blocage de l’inscription s’appelle désormais un NIP et il accomplit encore plus. Mettez-le à jour maintenant.</string>
@@ -2610,7 +2610,7 @@
   <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s recevra une demande de message de votre part. Vous pourrez appeler une fois la demande de message acceptée.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Créer un NIP</string>
-  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Les NIP font en sorte que les renseignements sont enregistrés chiffrés dans Signal.</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Les NIP font en sorte que les informations sont enregistrées chiffrées dans Signal.</string>
   <string name="KbsMegaphone__create_pin">Créer un NIP</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icône de transport</string>
@@ -2689,7 +2689,7 @@
   <string name="preferences_app_protection__create_a_pin">Créer un NIP</string>
   <string name="preferences_app_protection__change_your_pin">Changer votre NIP</string>
   <string name="preferences_app_protection__pin_reminders">Rappels du NIP</string>
-  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Les NIP font en sorte que les renseignements sont enregistrés chiffrés dans Signal afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés quand vous réinstallerez Signal.</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Les NIP font en sorte que les informations sont enregistrées chiffrées dans Signal afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés quand vous réinstallerez Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Pour une sécurité accrue, exigez votre NIP Signal pour réinscrire votre numéro de téléphone auprès de Signal.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Les rappels vous aident à vous souvenir de votre NIP, car il ne peut pas être récupéré. Il vous sera demandé de moins en moins souvent.</string>
   <string name="preferences_app_protection__turn_off">Désactiver</string>
@@ -2925,7 +2925,7 @@
   <string name="DeleteAccountFragment__deleting_your_account_will">Supprimer votre compte implique :</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Saisir votre numéro de téléphone</string>
   <string name="DeleteAccountFragment__delete_account">Supprimer le compte</string>
-  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Supprimer les renseignements de votre compte et votre photo de profil</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Supprimer les informations de votre compte et votre photo de profil</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Supprimer tous vos messages</string>
   <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Supprimer %1$s de votre compte de paiements</string>
   <string name="DeleteAccountFragment__no_country_code">Aucun indicatif de pays n’a été indiqué</string>
@@ -3330,12 +3330,12 @@ Nouvelle tentative…</string>
   <string name="ConversationSettingsFragment__get_badges">Obtenez des macarons pour votre profil en soutenant Signal. Touchez un macaron pour en savoir plus.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Ajouter des membres</string>
-  <string name="PermissionsSettingsFragment__edit_group_info">Modifier les renseignements</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Modifier les informations</string>
   <string name="PermissionsSettingsFragment__send_messages">Envoyer des messages</string>
   <string name="PermissionsSettingsFragment__all_members">Tous les membres</string>
   <string name="PermissionsSettingsFragment__only_admins">Les administrateurs</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Qui peut ajouter de nouveaux membres ?</string>
-  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Qui peut modifier les renseignements de ce groupe ?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Qui peut modifier les informations de ce groupe ?</string>
   <string name="PermissionsSettingsFragment__who_can_send_messages">Qui peut envoyer des messages ?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Mettre les notifications en sourdine</string>
@@ -3487,7 +3487,7 @@ Nouvelle tentative…</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Si vous avez plus d’un macaron, vous pouvez en choisir un que les autres pourront voir sur votre profil.</string>
   <string name="BecomeASustainerFragment__get_badges">Obtenez des macarons pour votre profil en soutenant Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal est un organisme sans but lucratif, sans annonceurs ni investisseurs, soutenu uniquement par des personnes comme vous.</string>
-  <string name="ManageDonationsFragment__my_support">Mon soutien</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">Mon soutien</string> -->
   <string name="ManageDonationsFragment__manage_subscription">Gérer l\'abonnement</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Reçus de don</string>
@@ -3527,7 +3527,7 @@ Nouvelle tentative…</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Impossible de traiter le paiement de l’abonnement</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Nous avons des difficultés à encaisser le paiement de votre don mensuel à Signal. Vérifiez que votre mode de paiement est à jour. Si ce n’est pas le cas, mettez-le à jour dans Google Pay. Signal essaiera de traiter à nouveau le paiement dans quelques jours.</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Ne plus montrer cela</string>
-  <string name="Subscription__please_contact_support_for_more_information">Veuillez contacter l’assistance pour plus de renseignements.</string>
+  <string name="Subscription__please_contact_support_for_more_information">Pour plus de précisions, veuillez contacter l’assistance.</string>
   <string name="Subscription__contact_support">Contacter l’assistance</string>
   <string name="Subscription__earn_a_s_badge">Obtenez un macaron %1$s</string>
   <string name="SubscribeFragment__processing_payment">Traitement du paiement…</string>
@@ -3707,13 +3707,13 @@ Nouvelle tentative…</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">Activé jusqu’à %1$s</string>
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">Profils de notification</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">Profils de notification</string> -->
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Recevez uniquement les notifications des personnes et des groupes que vous avez choisis.</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Recevez uniquement les notifications des personnes et des groupes que vous avez choisis.</string> -->
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">Créer un profil</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">Créer un profil</string> -->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">Pas maintenant</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Pas maintenant</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Échec d’ouverture du sélecteur.</string>
   <!--Description shown for the Signal Release Notes channel-->

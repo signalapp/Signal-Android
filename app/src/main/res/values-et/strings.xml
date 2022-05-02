@@ -2038,7 +2038,7 @@
   <string name="preferences__advanced">Täpsem</string>
   <string name="preferences__donate_to_signal">Anneta Signalile</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">Tellimus</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Tellimus</string> -->
   <!--Preference label for making a monthly donation to Signal-->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">Privaatsus</string>
@@ -3251,7 +3251,7 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Aitäh hooandmise eest!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Kuva profiilil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Tehtud</string>
-  <string name="ManageDonationsFragment__my_support">Minu toetus</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">Minu toetus</string> -->
   <string name="ManageDonationsFragment__manage_subscription">Tellimuse haldamine</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">Märgid</string>
@@ -3395,11 +3395,11 @@
   <!--Option to view profile details-->
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">Teavitusprofiilid</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">Teavitusprofiilid</string> -->
   <!--Description for notification profile megaphone-->
   <!--Call to action button to create a profile from megaphone-->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">Mitte praegu</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Mitte praegu</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--Description shown for the Signal Release Notes channel-->
   <!--Donation receipts activity title-->

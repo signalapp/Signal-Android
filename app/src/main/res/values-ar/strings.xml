@@ -2456,9 +2456,9 @@
   <string name="preferences__advanced">متقدم</string>
   <string name="preferences__donate_to_signal">التبرع لـ Signal</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">الاشتراك</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">الاشتراك</string> -->
   <!--Preference label for making a monthly donation to Signal-->
-  <string name="preferences__monthly_donation">التبرع شهريا</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__monthly_donation">التبرع شهريا</string> -->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">التبرع مرة واحدة</string>
   <string name="preferences__privacy">الخصوصية</string>
@@ -3889,7 +3889,7 @@
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">عندما يكون لديك أكثر من شارة واحدة، يمكنك اختيار واحدة لتمييزها ليراها الآخرين في ملفك الشخصي.</string>
   <string name="BecomeASustainerFragment__get_badges">احصل على شارات لملفك الشخصي عن طريق دعم Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">إن Signal غير ربحي بلا إعلانات أو مستثمرين، ويدعمه فقط أشخاص مثلك.</string>
-  <string name="ManageDonationsFragment__my_support">دعمي</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">دعمي</string> -->
   <string name="ManageDonationsFragment__manage_subscription">إدارة الاشتراك</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">وصولات التبرعات</string>
@@ -4109,13 +4109,13 @@
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">مُشغَّلة حتى %1$s</string>
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles"> هيئات الإشعار</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles"> هيئات الإشعار</string> -->
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">الحصول على الإشعارات من اﻷفراد والمجموعات التي اخترت فقط.</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">الحصول على الإشعارات من اﻷفراد والمجموعات التي اخترت فقط.</string> -->
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">إنشاء  هيئة للإشعار</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">إنشاء  هيئة للإشعار</string> -->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">ليس الآن</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">ليس الآن</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">تعذّر فتح المنتقي.</string>
   <!--Description shown for the Signal Release Notes channel-->

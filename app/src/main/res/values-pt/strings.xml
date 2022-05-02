@@ -2126,9 +2126,9 @@
   <string name="preferences__advanced">Avançado</string>
   <string name="preferences__donate_to_signal">Doar ao Signal</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">Assinatura</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Assinatura</string> -->
   <!--Preference label for making a monthly donation to Signal-->
-  <string name="preferences__monthly_donation">Doação mensal</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__monthly_donation">Doação mensal</string> -->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Doação única</string>
   <string name="preferences__privacy">Privacidade</string>
@@ -3491,7 +3491,7 @@
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Quando tem mais do que um crachá, você pode escolher apresentar um para para que outras pessoas o vejam no seu perfil.</string>
   <string name="BecomeASustainerFragment__get_badges">Obtenha crachás para o seu perfil ao apoiar o Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal é uma organização sem fins lucrativos, sem anunciantes ou investidores, sustentada apenas por pessoas como você.</string>
-  <string name="ManageDonationsFragment__my_support">O meu apoio</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">O meu apoio</string> -->
   <string name="ManageDonationsFragment__manage_subscription">Gerir assinatura</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Recibos de doações</string>
@@ -3711,13 +3711,13 @@
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">Ligado até %1$s</string>
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">Perfis de notificações</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">Perfis de notificações</string> -->
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Receba notificações apenas a partir das pessoas e grupos que você escolha.</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Receba notificações apenas a partir das pessoas e grupos que você escolha.</string> -->
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">Criar um perfil</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">Criar um perfil</string> -->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">Agora não</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Agora não</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Falha ao abrir o seletor.</string>
   <!--Description shown for the Signal Release Notes channel-->

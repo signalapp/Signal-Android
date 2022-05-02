@@ -2032,9 +2032,9 @@
   <string name="preferences__advanced">詳細設定</string>
   <string name="preferences__donate_to_signal">Signalへの寄付</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">サブスクリプション</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">サブスクリプション</string> -->
   <!--Preference label for making a monthly donation to Signal-->
-  <string name="preferences__monthly_donation">月々の寄付</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__monthly_donation">月々の寄付</string> -->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">1回限りの寄付</string>
   <string name="preferences__privacy">プライバシー</string>
@@ -3378,7 +3378,7 @@
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">複数のバッジを持っている場合は、自分のプロフィールに表示するバッジを選ぶことができます。</string>
   <string name="BecomeASustainerFragment__get_badges">Signalをサポートすると、あなたのプロフィールにバッジが表示されます。</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signalは広告主や投資家を持たない非営利団体で、ユーザーの皆様によって支えられています。</string>
-  <string name="ManageDonationsFragment__my_support">マイサポート</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">マイサポート</string> -->
   <string name="ManageDonationsFragment__manage_subscription">サブスクリプションの管理</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">寄付の領収書</string>
@@ -3592,13 +3592,13 @@
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">%1$sまで有効</string>
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">通知プロファイル</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">通知プロファイル</string> -->
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">通知を受け取りたい相手やグループを限定できます。</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">通知を受け取りたい相手やグループを限定できます。</string> -->
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">プロファイルを作成</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">プロファイルを作成</string> -->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">今はしない</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">今はしない</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">ファイルピッカーを開けませんでした</string>
   <!--Description shown for the Signal Release Notes channel-->

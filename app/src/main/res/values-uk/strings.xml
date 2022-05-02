@@ -2297,7 +2297,7 @@
   <string name="preferences__advanced">Розширені</string>
   <string name="preferences__donate_to_signal">Підтримати Signal</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">Передплата</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Передплата</string> -->
   <!--Preference label for making a monthly donation to Signal-->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">Приватність</string>
@@ -3477,6 +3477,7 @@
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Стати підтримувачем</string>
   <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal працює завдяки таким людям, як ви. Зробіть внесок та отримайте відзнаку.</string>
   <string name="BecomeASustainerMegaphone__not_now">Не зараз</string>
   <string name="BecomeASustainerMegaphone__donate">Дарувати</string>
   <!--KeyboardPagerFragment-->
@@ -3662,6 +3663,7 @@
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal працює завдяки таким людям як ви.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Підтримайте технологію, що побудована для вас, а не для ваших даних, долучившись до спільноти людей, які підтримують її.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Підтримайте технологію, що побудована для вас, а не для ваших даних, долучившись до спільноти, яка підтримує Signal.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Робіть регулярні щомісячні внески для Signal на підтримку технології, створеної для вас, а не для ваших даних.</string>
   <string name="SubscribeFragment__currency">Валюта</string>
   <string name="SubscribeFragment__more_payment_options">Більше опцій для сплати</string>
   <string name="SubscribeFragment__cancel_subscription">Скасувати передплату</string>
@@ -3678,6 +3680,7 @@
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/місяць  · Оновлюється %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/місяць · Спливає %2$s</string>
   <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal — некомерційний, без рекламодавців чи інвесторів, підтримуваний лише людьми, які ним користуються та цінують. Зробіть регулярний щомісячний внесок та отримайте відзнаку профілю, повідомляючи про свою підтримку.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Навіщо робити внески?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal прагне розвивати технологію конфіденційності з відкритим вихідним кодом, яка захищає свободу слова і забезпечує безпечне глобальне спілкування.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Дякуємо за вашу підтримку!</string>
@@ -3690,7 +3693,7 @@
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Коли у вас більше однієї емблеми, ви можете обирати, яку саме демонструвати у своєму обліковому записі.</string>
   <string name="BecomeASustainerFragment__get_badges">Отримайте емблеми для свого облікового запису підтримуючи Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal — неприбутковий, без рекламодавців чи інвесторів, що підтримується лише такими людьми, як ви.</string>
-  <string name="ManageDonationsFragment__my_support">Моя підтримка</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">Моя підтримка</string> -->
   <string name="ManageDonationsFragment__manage_subscription">Керувати передплатою</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Квитанція внеску</string>
@@ -3710,6 +3713,7 @@
   <string name="MySupportPreference__please_contact_support">Будь ласка, зверніться до служби підтримки.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Щомісячний внесок скасовано</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Ви можете повторно активувати свій значок Boost ще на 30 днів за допомогою одноразового внеску.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
@@ -3903,13 +3907,13 @@
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">До %1$s</string>
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">Профілі сповіщень</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">Профілі сповіщень</string> -->
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Отримуйте сповіщення від людей та груп, яких ви оберете.</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Отримуйте сповіщення від людей та груп, яких ви оберете.</string> -->
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">Створити профіль</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">Створити профіль</string> -->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">Не зараз</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Не зараз</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Не вдалося відкрити вибір.</string>
   <!--Description shown for the Signal Release Notes channel-->

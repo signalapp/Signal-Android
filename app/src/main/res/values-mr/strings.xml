@@ -2116,9 +2116,9 @@
   <string name="preferences__advanced">प्रगत</string>
   <string name="preferences__donate_to_signal">Signal ला देणगी द्या</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">सब्स्क्रिप्शन</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">सब्स्क्रिप्शन</string> -->
   <!--Preference label for making a monthly donation to Signal-->
-  <string name="preferences__monthly_donation">मासिक देणगी</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__monthly_donation">मासिक देणगी</string> -->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation"> एक-वेळ देणगी</string>
   <string name="preferences__privacy">गोपनीयता</string>
@@ -3478,7 +3478,7 @@
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">जेव्हा तुमच्याकडे एकापेक्षा जास्त बॅज असतील, तेव्हा तुम्ही तुमच्या प्रोफाईलवर इतरांना पाहण्यासाठी एक निवडू शकता.</string>
   <string name="BecomeASustainerFragment__get_badges">Signal ला सपोर्ट करून आपल्या प्रोफाइलसाठी बॅज मिळवा.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal ही जाहिरातदार किंवा गुंतवणूकदार नसलेली विना-नफा संस्था आहे, केवळ आपल्यासारख्या लोकांकडून समर्थित आहे.</string>
-  <string name="ManageDonationsFragment__my_support">आपले समर्थन</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">आपले समर्थन</string> -->
   <string name="ManageDonationsFragment__manage_subscription">सब्स्क्रिप्शन व्यवस्थापित करा</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">देणगी पावत्या </string>
@@ -3692,13 +3692,13 @@
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">%1$s पर्यंत चालू राहील</string>
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">सूचना प्रोफाइल</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">सूचना प्रोफाइल</string> -->
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">फक्त आपण निवडलेल्या लोकांकडून आणि गटांकडून सूचना मिळवा.</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">फक्त आपण निवडलेल्या लोकांकडून आणि गटांकडून सूचना मिळवा.</string> -->
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">प्रोफाइल तयार करा</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">प्रोफाइल तयार करा</string> -->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">आता नाही</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">आता नाही</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">पिकर उघडण्यात अयशस्वी.</string>
   <!--Description shown for the Signal Release Notes channel-->

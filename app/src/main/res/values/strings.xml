@@ -4211,9 +4211,9 @@
     <string name="DonationsErrors__your_payment">Your payment couldn\'t be processed and you have not been charged. Please try again.</string>
     <string name="DonationsErrors__still_processing">Still processing</string>
     <string name="DonationsErrors__couldnt_add_badge">Couldn\'t add badge</string>
-    <!-- Displayed when badge credential couldn't be verified -->
+    <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">Failed to validate badge</string>
-    <!-- Displayed when badge credential couldn't be verified -->
+    <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">Could not validate server response. Please contact support.</string>
     <!-- Displayed as title when some generic error happens during gift badge sending -->
     <string name="DonationsErrors__failed_to_send_gift_badge">Failed to send gift badge</string>

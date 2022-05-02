@@ -1107,7 +1107,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %s is veranderd.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Je hebt je veiligheidsnummer met %s gemarkeerd als ‘geverifieerd’</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Je hebt je veiligheidsnummer met %s gemarkeerd als ‘geverifieerd’ vanaf een ander apparaat</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Je hebt je veiligheidsnummer met %s vanaf een ander apparaat gemarkeerd als ‘geverifieerd’</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Je hebt je veiligheidsnummer met %s gemarkeerd als ‘niet geverifieerd’</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Je hebt je veiligheidsnummer met %s vanaf een ander apparaat gemarkeerd als ‘niet geverifieerd’</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Een bericht van %s kan niet worden afgeleverd</string>
@@ -1487,9 +1487,9 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="SubmitDebugLogActivity_submit">Uploaden</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Uploaden van foutlogs is mislukt</string>
   <string name="SubmitDebugLogActivity_success">Succesvol geüpload!</string>
-  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopieer deze URL (door deze aan te tikken en vast te houden) en voeg die toe aan je foutrapport op GitHub of aan een e-mail aan onze ondersteuning:\n\n<b>%1$s</b></string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopieer deze verwijzing (door deze aan te tikken en vast te houden) en voeg die toe aan je foutrapport op GitHub of aan een e-mail naar ondersteuning:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Doorsturen via andere app</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Dit logbestand wordt publiekelijk beschikbaar gesteld op internet zodat de ontwikkelaars en vrijwilligers het kunnen bestuderen. Je kunt het bekijken voor je het upload.</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Dit log bevat geen persoonlijke details zoals telefoonnummers. Als je op uploaden klikt dan wordt dit log 30 dagen lang online beschikbaar gesteld op een unieke nergens onthulde verwijzing. Die verwijzing kun je zelf naar de ontwikkelaars sturen.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Apparaatinformatie:</string>
@@ -2132,15 +2132,15 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="preferences__advanced">Geavanceerd</string>
   <string name="preferences__donate_to_signal">Aan Signal doneren</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">Maandelijkse donaties</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Maandelijkse donaties</string> -->
   <!--Preference label for making a monthly donation to Signal-->
-  <string name="preferences__monthly_donation">Maandelijkse donatie</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__monthly_donation">Maandelijkse donatie</string> -->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Eenmalige donatie</string>
   <string name="preferences__privacy">Privacy</string>
   <string name="preferences__mms_user_agent">Mms-gebruikersagent</string>
   <string name="preferences__advanced_mms_access_point_names">Handmatige mms-instellingen</string>
-  <string name="preferences__mmsc_url">MMSC-URL</string>
+  <string name="preferences__mmsc_url">MMSC-verwijzing</string>
   <string name="preferences__mms_proxy_host">Mms-proxyserver</string>
   <string name="preferences__mms_proxy_port">Mms-proxypoort</string>
   <string name="preferences__mmsc_username">MMSC-gebruikersnaam</string>
@@ -3197,7 +3197,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="PrivacySettingsFragment__messaging">Berichten</string>
   <string name="PrivacySettingsFragment__disappearing_messages">Verlopende berichten</string>
   <string name="PrivacySettingsFragment__app_security">App-beveiliging</string>
-  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bescherm je gesprekken op je eigen telefoon tegen schermopnames vanuit andere apps door Signals inhoud te verbergen in de lijst van recent geopende apps en door schermafdrukken te blokkeren</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bescherm op je eigen telefoon je gesprekken tegen stiekeme schermopnames vanuit spionerende apps, door Signals inhoud te verbergen in het overzicht van recent geopende apps en door schermafdrukken te blokkeren.</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-berichten en -oproepen, alle omroepen omleiden en verzegelde afzender</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standaard-tijdspanne voor alle nieuwe gesprekken</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel in dat berichten in alle nieuwe gesprekken die jij zelf begint een bepaalde tijd nadat ze gezien zijn voor zowel jou als je gesprekspartner vanzelf worden gewist.</string>
@@ -3497,7 +3497,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Als je meerdere badges hebt dan kun je er één kiezen om voor anderen op je profiel weer te geven.</string>
   <string name="BecomeASustainerFragment__get_badges">Door Signal te ondersteunen verdien je badges om op je profiel weer te geven.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal is een organisatie zonder winstoogmerk, zonder advertenties en zonder investeerders. Signal wordt uitsluitend mogelijk gemaakt door donaties van mensen zoals jij.</string>
-  <string name="ManageDonationsFragment__my_support">Mijn bijdrage</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">Mijn bijdrage</string> -->
   <string name="ManageDonationsFragment__manage_subscription">Maandelijkse donaties beheren</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Donatie-afschriften</string>
@@ -3717,13 +3717,13 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">Ingeschakeld tot %1$s</string>
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">Meldingsprofielen</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">Meldingsprofielen</string> -->
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Ontvang alleen meldingen van personen en groepen van wie jij dat wilt, wanneer jij dat wilt.</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Ontvang alleen meldingen van personen en groepen van wie jij dat wilt, wanneer jij dat wilt.</string> -->
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">Meldingsprofiel aanmaken</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">Meldingsprofiel aanmaken</string> -->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">Niet nu</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Niet nu</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Het openen van het belgeluid-keuzemenu is mislukt.</string>
   <!--Description shown for the Signal Release Notes channel-->
@@ -3918,7 +3918,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--Camera label for media selection toggle-->
   <string name="MediaSelectionActivity__camera">Camera</string>
   <!--Hint for entering a URL for a text post-->
-  <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Typ of plak een URL</string>
+  <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Typ of plak een verwijzing</string>
   <!--Displayed prior to the user entering a URL for a text post-->
   <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Een verwijzing delen met de personen die je verhaal bekijken</string>
   <!--Hint text for searching for a story text post recipient.-->

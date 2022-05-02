@@ -2041,9 +2041,9 @@
   <string name="preferences__advanced">進階</string>
   <string name="preferences__donate_to_signal">捐款給 Signal</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">訂閱</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">訂閱</string> -->
   <!--Preference label for making a monthly donation to Signal-->
-  <string name="preferences__monthly_donation">每月捐款</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__monthly_donation">每月捐款</string> -->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">單次捐款</string>
   <string name="preferences__privacy">私隱</string>
@@ -3389,7 +3389,7 @@
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">若您有多於一枚徽章，您可選取一枚作為別注徽章，在個人資料中供其他人看見。</string>
   <string name="BecomeASustainerFragment__get_badges">撐起 Signal 並在您的個人資料中獲贈徽章。</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal 是非牟利機構，並無廣告商或投資者，純粹仰賴像您這樣的人撐起。</string>
-  <string name="ManageDonationsFragment__my_support">我的支持</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">我的支持</string> -->
   <string name="ManageDonationsFragment__manage_subscription">管理訂閱</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">捐款收據</string>
@@ -3609,13 +3609,13 @@
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">開啟直到 %1$s</string>
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">通知情景</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">通知情景</string> -->
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">僅限接收您所選的人和群組的通知。</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">僅限接收您所選的人和群組的通知。</string> -->
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">建立一個情景</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">建立一個情景</string> -->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">現在不要</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">現在不要</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">無法開啟挑選器。</string>
   <!--Description shown for the Signal Release Notes channel-->

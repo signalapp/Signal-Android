@@ -2121,9 +2121,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__advanced">Avancerat</string>
   <string name="preferences__donate_to_signal">Donera till Signal</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">Abonnemang</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Abonnemang</string> -->
   <!--Preference label for making a monthly donation to Signal-->
-  <string name="preferences__monthly_donation">Månatlig donation</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__monthly_donation">Månatlig donation</string> -->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Engångsdonation</string>
   <string name="preferences__privacy">Integritet</string>
@@ -3476,6 +3476,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Din donation driver denna sak och betalar för utvecklingen och driften av en app som används av miljoner för privat kommunikation. Inga annonser. Inga spårare. Inget påhitt.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Tack för ditt stöd!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Tack för boosten!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Du har fått %s märket! Visa detta märke på din profil för att väcka intresse om att donera till Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Du har fått ett Boost märke! Visa detta märke på din profil för att väcka intresse om att donera till Signal.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Du kan också</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">bli en månatlig upprätthållare.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Visa på profilen</string>
@@ -3484,7 +3486,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">När du har mer än ett märke kan du välja ett för att visa andra i din profil.</string>
   <string name="BecomeASustainerFragment__get_badges">Få märken för din profil genom att stöda Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal är en ideell organisation utan annonsörer eller investerare, som endast stöds av personer som du.</string>
-  <string name="ManageDonationsFragment__my_support">Mitt stöd</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">Mitt stöd</string> -->
   <string name="ManageDonationsFragment__manage_subscription">Hantera abonnemang</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Donationskvitton</string>
@@ -3493,6 +3495,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Det gick inte att få abonnemang.</string>
   <string name="BoostFragment__give_signal_a_boost">Ge Signal en Boost</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Gör en engångsdonation och får ett Boost märke i %1$d dagar.</string>
   <string name="Boost__enter_custom_amount">Ange anpassat belopp</string>
   <string name="Boost__one_time_contribution">Engångsbidrag</string>
   <string name="MySupportPreference__add_a_signal_boost">Lägg till en Signal Boost</string>
@@ -3503,16 +3506,21 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MySupportPreference__couldnt_add_badge_s">Det gick inte att lägga till märket. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Kontakta supporten.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Boost märke gick ut</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Månatlig donation avbruten</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Ditt Boost märke har gått ut och är inte längre synligt på din profil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Du kan återaktivera ditt Boost-märke för ytterligare 30 dagar med ett engångsbidrag.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Du kan fortsätta att använda Signal men för att stöda teknik byggd för dig, överväg att bli en upprätthållare genom att göra en månatlig donation.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bli en upprätthållare</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Lägg till en Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Inte nu</string>
   <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Din månatliga donation var automatiskt avbruten för att du var inaktiv för länge. Ditt %1$s märke är inte längre synligt på din profil.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Din månatliga donation var avbruten för att vi inte kunde bearbeta din betalning. Ditt märke är inte längre synligt på din profil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan fortsätta använda Signal men för att stöda appen och återaktivera ditt märke, förnya nu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Förnya abonnemang</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Det går inte att behandla abonnemangsbetalningen</string>
@@ -3698,13 +3706,13 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">På till %1$s</string>
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">Aviseringsprofiler</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">Aviseringsprofiler</string> -->
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Få bara aviseringar från de personer och grupper du väljer.</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Få bara aviseringar från de personer och grupper du väljer.</string> -->
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">Skapa en profil</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">Skapa en profil</string> -->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">Inte nu</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Inte nu</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Det gick inte att öppna väljaren.</string>
   <!--Description shown for the Signal Release Notes channel-->
@@ -3716,6 +3724,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Donation receipts recurring tab label-->
   <string name="DonationReceiptListFragment__recurring">Återkommande</string>
   <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">En gång</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Boost</string>
   <!--Donation receipts details title-->
@@ -3916,6 +3925,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <string name="StoryDialogs__edit_viewers">Ändra tittare</string>
   <!--Error message shown when a failure occurs during story send-->
+  <string name="StoryDialogs__story_could_not_be_sent">Berättelse kunde inte skickas. Kontrollera din anslutning och försök igen.</string>
   <!--Error message dialog button to resend a previously failed story send-->
   <string name="StoryDialogs__send">Skicka</string>
   <!--Privacy Settings toggle title for stories-->
@@ -3972,6 +3982,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <string name="StorySlateView__couldnt_load_content">Det gick inte att ladda innehåll</string>
   <!--Toasted when the user externally shares to a text story successfully-->
+  <string name="TextStoryPostCreationFragment__sent_story">Skickade berättelse</string>
   <!--Toasted when the user external share to a text story fails-->
   <string name="TextStoryPostCreationFragment__failed_to_send_story">Det gick inte att skicka berättelsen</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->

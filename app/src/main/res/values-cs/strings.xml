@@ -2296,9 +2296,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__advanced">Rozšířené možnosti</string>
   <string name="preferences__donate_to_signal">Podpořte Signal finančně</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">Předplatné</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Předplatné</string> -->
   <!--Preference label for making a monthly donation to Signal-->
-  <string name="preferences__monthly_donation">Měsíční příspěvek</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__monthly_donation">Měsíční příspěvek</string> -->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Jednorázový příspěvek</string>
   <string name="preferences__privacy">Soukromí</string>
@@ -3695,7 +3695,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Pokud máte více odznaků, můžete si jeden z nich vybrat, aby ho ostatní viděli na vašem profilu.</string>
   <string name="BecomeASustainerFragment__get_badges">Získejte odznaky pro svůj profil za podporu Signalu.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal je nezisková organizace fungující bez reklam a investorů, kterou podporují pouze lidé jako vy.</string>
-  <string name="ManageDonationsFragment__my_support">Má podpora</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">Má podpora</string> -->
   <string name="ManageDonationsFragment__manage_subscription">Spravovat předplatné</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Doklady o příspěvku</string>
@@ -3915,13 +3915,13 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">Zapnuto do %1$s</string>
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">Profily oznámení</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">Profily oznámení</string> -->
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Dostávejte oznámení pouze od vybraných osob a skupin.</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Dostávejte oznámení pouze od vybraných osob a skupin.</string> -->
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">Vytvořit profil</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">Vytvořit profil</string> -->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">Teď ne</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Teď ne</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Nepodařilo se otevřít picker.</string>
   <!--Description shown for the Signal Release Notes channel-->

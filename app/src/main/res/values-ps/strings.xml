@@ -2002,7 +2002,7 @@
   <string name="preferences__advanced">پرمختللی</string>
   <string name="preferences__donate_to_signal">Signal سره مرسته کول</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">ګډون</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">ګډون</string> -->
   <!--Preference label for making a monthly donation to Signal-->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">محرمیت</string>
@@ -3322,7 +3322,7 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">پر پروفایل ښودل</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">ځانګړی بج جوړول</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">تر سره شو</string>
-  <string name="ManageDonationsFragment__my_support">زما  ملاتړ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">زما  ملاتړ</string> -->
   <string name="ManageDonationsFragment__manage_subscription">د ګډون مدیریت</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">بجونه</string>
@@ -3452,7 +3452,7 @@
   <!--Description for notification profile megaphone-->
   <!--Call to action button to create a profile from megaphone-->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">اوس نه</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">اوس نه</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--Description shown for the Signal Release Notes channel-->
   <!--Donation receipts activity title-->

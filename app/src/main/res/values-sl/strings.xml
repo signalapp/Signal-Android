@@ -2288,9 +2288,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__advanced">Napredno</string>
   <string name="preferences__donate_to_signal">Podprite Signal</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">Naročnina</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Naročnina</string> -->
   <!--Preference label for making a monthly donation to Signal-->
-  <string name="preferences__monthly_donation">Mesečne donacije</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__monthly_donation">Mesečne donacije</string> -->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Enkratna donacija</string>
   <string name="preferences__privacy">Zasebnost</string>
@@ -3687,7 +3687,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Če imate več kot en bedž, lahko enega izberete za prikaz na vašem profilu.</string>
   <string name="BecomeASustainerFragment__get_badges">S podporo Signalu si pridobite bedž za profil.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal je neprofitna organizacija brez oglaševalcev in investitorjev, podpirajo pa jo ljudje, kot ste vi.</string>
-  <string name="ManageDonationsFragment__my_support">Moja podpora</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">Moja podpora</string> -->
   <string name="ManageDonationsFragment__manage_subscription">Upravljanje naročnine</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Računi donacij</string>
@@ -3907,13 +3907,13 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">Vklopljeno do %1$s</string>
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">Profili za obvestila</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">Profili za obvestila</string> -->
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Prejemajte obvestila zgolj od izbranih uporabnikov_ic oz. skupin.</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Prejemajte obvestila zgolj od izbranih uporabnikov_ic oz. skupin.</string> -->
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">Ustvari profil</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">Ustvari profil</string> -->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">Ne zdaj</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Ne zdaj</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Odpiranje izbirnika ni uspelo.</string>
   <!--Description shown for the Signal Release Notes channel-->

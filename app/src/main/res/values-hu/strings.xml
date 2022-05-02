@@ -2099,9 +2099,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__advanced">Haladó</string>
   <string name="preferences__donate_to_signal">Adomány a Signal számára</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">Előfizetés</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Előfizetés</string> -->
   <!--Preference label for making a monthly donation to Signal-->
-  <string name="preferences__monthly_donation">Havi adomány</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__monthly_donation">Havi adomány</string> -->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Egyszeri adomány</string>
   <string name="preferences__privacy">Adatvédelem</string>
@@ -3459,7 +3459,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Ha egynél több jelvényed van, kiválaszthatod, hogy melyiket tűzöd ki a profilképedre.</string>
   <string name="BecomeASustainerFragment__get_badges">Szerezz kitűzőket profilképedre a Signal anyagi támogatásával.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">A Signal egy nonprofit, hirdetők és befektetők nélküli, kizárólag felhasználók és rajongók által fenntartott alkalmazás. </string>
-  <string name="ManageDonationsFragment__my_support">Támogatásaim</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">Támogatásaim</string> -->
   <string name="ManageDonationsFragment__manage_subscription">Előfizetés kezelése</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Adomány nyugták</string>
@@ -3673,13 +3673,13 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">Bekapcsolva eddig: %1$s</string>
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">Értesítési profilok</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">Értesítési profilok</string> -->
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Csak azoktól a személyektől és csoportoktól érkezik értesítés, akiket kiválasztasz.</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Csak azoktól a személyektől és csoportoktól érkezik értesítés, akiket kiválasztasz.</string> -->
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">Profil létrehozása</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">Profil létrehozása</string> -->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">Később</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Később</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Sikertelen tallózás.</string>
   <!--Description shown for the Signal Release Notes channel-->

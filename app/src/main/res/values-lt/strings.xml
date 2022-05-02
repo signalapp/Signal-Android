@@ -2297,9 +2297,9 @@
   <string name="preferences__advanced">Išplėstiniai</string>
   <string name="preferences__donate_to_signal">Paaukokite Signal programėlei</string>
   <!--Preference label when someone is already a subscriber-->
-  <string name="preferences__subscription">Prenumerata</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Prenumerata</string> -->
   <!--Preference label for making a monthly donation to Signal-->
-  <string name="preferences__monthly_donation">Mėnesinis paaukojimas</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__monthly_donation">Mėnesinis paaukojimas</string> -->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Vienkartinis paaukojimas</string>
   <string name="preferences__privacy">Privatumas</string>
@@ -3692,7 +3692,7 @@
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kai turite daugiau kaip vieną ženkliuką, galite paversti kurį nors vieną iš jų pagrindiniu, Toks ženkliukas jūsų profilyje bus matomas kitiems žmonėms.</string>
   <string name="BecomeASustainerFragment__get_badges">Palaikydami Signal, gaukite ženkliukus savo profiliui.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal yra pelno nesiekianti organizacija, kuri neturi reklamuotojų ar investuotojų ir, kuri yra palaikoma tik tokių žmonių, kaip jūs.</string>
-  <string name="ManageDonationsFragment__my_support">Mano palaikymas</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">Mano palaikymas</string> -->
   <string name="ManageDonationsFragment__manage_subscription">Tvarkyti prenumeratą</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Paaukojimo kvitai</string>
@@ -3906,13 +3906,13 @@
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">Įjungtas iki %1$s</string>
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">Pranešimų profiliai</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">Pranešimų profiliai</string> -->
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Gaukite pranešimus tik iš pasirinktų žmonių ir grupių.</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Gaukite pranešimus tik iš pasirinktų žmonių ir grupių.</string> -->
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">Sukurti profilį</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">Sukurti profilį</string> -->
   <!--Button to dismiss notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__not_now">Ne dabar</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Ne dabar</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Nepavyko atverti parinkiklio.</string>
   <!--Description shown for the Signal Release Notes channel-->
