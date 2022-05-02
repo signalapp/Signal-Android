@@ -39,7 +39,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.util.Consumer;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.window.DisplayFeature;
 import androidx.window.FoldingFeature;
 import androidx.window.WindowLayoutInfo;
@@ -167,9 +167,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     ephemeralStateDisposable = ApplicationDependencies.getSignalCallManager()
                                                       .ephemeralStates()
                                                       .observeOn(AndroidSchedulers.mainThread())
-                                                      .subscribe(state -> {
-                                                        viewModel.updateFromEphemeralState(state);
-                                                      });
+                                                      .subscribe(viewModel::updateFromEphemeralState);
   }
 
   @Override
@@ -306,7 +304,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
     WebRtcCallViewModel.Factory factory = new WebRtcCallViewModel.Factory(deviceOrientationMonitor);
 
-    viewModel = ViewModelProviders.of(this, factory).get(WebRtcCallViewModel.class);
+    viewModel = new ViewModelProvider(this, factory).get(WebRtcCallViewModel.class);
     viewModel.setIsLandscapeEnabled(isLandscapeEnabled);
     viewModel.setIsInPipMode(isInPipMode());
     viewModel.getMicrophoneEnabled().observe(this, callScreen::setMicEnabled);
