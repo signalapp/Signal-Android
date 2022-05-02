@@ -54,6 +54,10 @@ public final class EmojiUtil {
     return canonical != null ? canonical : emoji;
   }
 
+  public static boolean isCanonicallyEqual(@NonNull String left, @NonNull String right) {
+    return getCanonicalRepresentation(left).equals(getCanonicalRepresentation(right));
+  }
+
   /**
    * Converts the provided emoji string into a single drawable, if possible.
    */

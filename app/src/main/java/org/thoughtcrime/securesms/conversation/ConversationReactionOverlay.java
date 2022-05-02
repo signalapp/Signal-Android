@@ -612,7 +612,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
       view.setTranslationY(0);
 
       boolean isAtCustomIndex                      = i == customEmojiIndex;
-      boolean isNotAtCustomIndexAndOldEmojiMatches = !isAtCustomIndex && oldEmoji != null && emojis.get(i).equals(EmojiUtil.getCanonicalRepresentation(oldEmoji));
+      boolean isNotAtCustomIndexAndOldEmojiMatches = !isAtCustomIndex && oldEmoji != null && EmojiUtil.isCanonicallyEqual(emojis.get(i), oldEmoji);
       boolean isAtCustomIndexAndOldEmojiExists     = isAtCustomIndex && oldEmoji != null;
 
       if (!foundSelected &&

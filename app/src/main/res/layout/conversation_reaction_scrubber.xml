@@ -5,12 +5,12 @@
     android:id="@+id/conversation_reaction_scrubber"
     android:layout_width="0dp"
     android:layout_height="0dp"
-    app:layout_constraintTop_toTopOf="@+id/status_bar_guideline"
-    app:layout_constraintStart_toStartOf="@+id/parent_start_guideline"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="@+id/parent_end_guideline"
     android:elevation="1000dp"
     android:visibility="gone"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="@+id/parent_end_guideline"
+    app:layout_constraintStart_toStartOf="@+id/parent_start_guideline"
+    app:layout_constraintTop_toTopOf="@+id/status_bar_guideline"
     tools:visibility="visible">
 
     <Space
@@ -159,6 +159,7 @@
             android:layout_height="48dp"
             android:alpha="0"
             android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
+            app:forceJumbo="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/reaction_6"
