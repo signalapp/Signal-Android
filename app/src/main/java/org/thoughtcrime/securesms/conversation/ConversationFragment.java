@@ -997,14 +997,14 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private AlertDialog.Builder buildRemoteDeleteConfirmationDialog(Set<MessageRecord> messageRecords) {
     Context             context       = requireActivity();
     int                 messagesCount = messageRecords.size();
-    AlertDialog.Builder builder       = new MaterialAlertDialogBuilder(getActivity());
+    AlertDialog.Builder builder       = new MaterialAlertDialogBuilder(context);
 
-    builder.setTitle(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_delete_selected_messages, messagesCount, messagesCount));
+    builder.setTitle(context.getResources().getQuantityString(R.plurals.ConversationFragment_delete_selected_messages, messagesCount, messagesCount));
     builder.setCancelable(true);
 
     builder.setPositiveButton(R.string.ConversationFragment_delete_for_me, (dialog, which) -> {
       closeActionModeIfOpen();
-      new ProgressDialogAsyncTask<Void, Void, Void>(getActivity(),
+      new ProgressDialogAsyncTask<Void, Void, Void>(context,
                                                     R.string.ConversationFragment_deleting,
                                                     R.string.ConversationFragment_deleting_messages)
       {
