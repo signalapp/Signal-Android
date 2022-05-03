@@ -59,7 +59,7 @@ public final class Wallet {
   public Wallet(@NonNull MobileCoinConfig mobileCoinConfig, @NonNull Entropy paymentsEntropy) {
     this.mobileCoinConfig = mobileCoinConfig;
     try {
-      this.account       = AccountKey.fromBip39Entropy(paymentsEntropy.getBytes(), 0, mobileCoinConfig.getFogUri(), "", mobileCoinConfig.getFogAuthoritySpki());
+      this.account       = AccountKey.fromBip39Entropy(paymentsEntropy.getBytes(), 0, mobileCoinConfig.getFogReportUri(), "", mobileCoinConfig.getFogAuthoritySpki());
       this.publicAddress = new MobileCoinPublicAddress(account.getPublicAddress());
 
       this.mobileCoinClient = new MobileCoinClient(account,

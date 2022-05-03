@@ -27,6 +27,8 @@ public abstract class MobileCoinConfig {
 
   abstract @NonNull Uri getFogUri();
 
+  abstract @NonNull Uri getFogReportUri();
+
   abstract @NonNull byte[] getFogAuthoritySpki();
 
   abstract @NonNull AuthCredentials getAuth() throws IOException;

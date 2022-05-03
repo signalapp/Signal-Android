@@ -43,6 +43,11 @@ final class MobileCoinTestNetConfig extends MobileCoinConfig {
   }
 
   @Override
+  @NonNull Uri getFogReportUri() {
+    return Uri.parse("fog://fog-rpt-stg.namda.net");
+  }
+
+  @Override
   @NonNull byte[] getFogAuthoritySpki() {
     return Base64.decodeOrThrow("MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAoCMq8nnjTq5EEQ4EI7yr\n"
                                 + "ABL9P4y4h1P/h0DepWgXx+w/fywcfRSZINxbaMpvcV3uSJayExrpV1KmaS2wfASe\n"
