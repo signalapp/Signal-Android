@@ -1214,11 +1214,8 @@
     <item quantity="few">%1$d члан(ов)а</item>
     <item quantity="other">%1$d члан(ов)а</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="one">%1$d члан (+%2$d позван(и))</item>
-    <item quantity="few">%1$d члан(ов)а (+%2$d позван(и))</item>
-    <item quantity="other">%1$d члан(ов)а (+%2$d позван(и))</item>
-  </plurals>
+  <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d додатна група</item>
     <item quantity="few">%d додатне групе</item>
@@ -2200,10 +2197,6 @@
   <string name="preferences__help">Помоћ</string>
   <string name="preferences__advanced">Напредно</string>
   <string name="preferences__donate_to_signal">Донирајте услузи Signal</string>
-  <!--Preference label when someone is already a subscriber-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Претплата</string> -->
-  <!--Preference label for making a monthly donation to Signal-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__monthly_donation">Месечни допринос</string> -->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Једнократни допринос</string>
   <string name="preferences__privacy">Приватност</string>
@@ -3581,13 +3574,20 @@
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Када имате више од једне значке, можете да изаберете једну да садржите да другу да се види на ваш профил.</string>
   <string name="BecomeASustainerFragment__get_badges">Добијте значке за свој профил подржавајући Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal је непрофитна без оглашивача или инвеститора, подржано само са људима попут вас.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">Моја подршка</string> -->
+  <!--Button label for creating a monthly donation-->
+  <!--Heading for more area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__more">Више</string>
+  <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">Признанице</string>
+  <!--Heading for my subscription area of manage subscriptions page-->
   <string name="ManageDonationsFragment__manage_subscription">Управљање претплатом</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Признанице донације</string>
   <string name="ManageDonationsFragment__badges">Значке</string>
   <string name="ManageDonationsFragment__subscription_faq">FAQ претплате</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Грешка приликом добијања претплате.</string>
+  <!--Preference heading for other ways to donate-->
+  <!--Preference label to launch badge gifting-->
   <string name="BoostFragment__give_signal_a_boost">Додај Signal-у подстицај</string>
   <!--Description text in boost sheet-->
   <string name="Boost__enter_custom_amount">Унети износ</string>
@@ -3629,6 +3629,10 @@
   <string name="DonationsErrors__your_payment">Ваша уплата се не може обрадити и нисте наплаћени. Молим вас, покушајте поново.</string>
   <string name="DonationsErrors__still_processing">У обраду</string>
   <string name="DonationsErrors__couldnt_add_badge">Не могу да додам значку</string>
+  <!--Displayed when badge credential couldn\'t be verified-->
+  <!--Displayed when badge credential couldn\'t be verified-->
+  <!--Displayed as title when some generic error happens during gift badge sending-->
+  <!--Displayed as message when some generic error happens during gift badge sending-->
   <string name="DonationsErrors__your_badge_could_not">Ваша значка није могла да се дода на ваш рачун, али можда су паре узете. Молимо контактирајте подршку.</string>
   <string name="DonationsErrors__your_payment_is_still">Ваша уплата се и даље обрађује. Ово може потрајати неколико минута у зависности од ваше везе.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay недоступан</string>
@@ -3638,6 +3642,13 @@
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Ваш уређај не подржава Google Pay, дакле, не можете се претплатити да бисте зарадили значку. Ипак можете да подржите Signal давањем донације на нашој веб страници.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Мрежна грешка. Проверите да ли сте повезани и покушајте поново.</string>
   <string name="NetworkFailure__retry">Покушај поново</string>
+  <!--Gift message view title-->
+  <!--Gift message view expiry information-->
+  <!--Gift badge redeem action label-->
+  <!--Gift badge view action label-->
+  <string name="GiftMessageView__view">Приказ</string>
+  <!--Gift badge redeeming action label-->
+  <!--Gift badge redeemed label-->
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Покушајте са другим начином плаћања или контактирајте своју банку за више информација.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3796,14 +3807,6 @@
   <string name="NotificationProfileSelection__view_settings">Види подешавања</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">Упаљено до %1$s</string>
-  <!--Title for notification profile megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">Профили нотификације</string> -->
-  <!--Description for notification profile megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Примајте обавештења само од људи и група које одаберете.</string> -->
-  <!--Call to action button to create a profile from megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">Креирати профил</string> -->
-  <!--Button to dismiss notification profile megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Не сада</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Неуспешно отварање бирача.</string>
   <!--Description shown for the Signal Release Notes channel-->
@@ -3816,6 +3819,7 @@
   <string name="DonationReceiptListFragment__recurring">Понављајући</string>
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">Једном</string>
+  <!--Donation receipts gift tab label-->
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Boost</string>
   <!--Donation receipts details title-->
@@ -3934,6 +3938,7 @@
   <string name="StorySettingsFragment__story_settings">Подешавања приче</string>
   <!--Story settings private stories heading-->
   <string name="StorySettingsFragment__private_stories">Привате приче</string>
+  <!--Note at bottom of story settings regarding who can see private stories.-->
   <!--Option label for creating a new private story-->
   <string name="StorySettingsFragment__new_private_story">Нова приватна приче</string>
   <!--Page title for My Story options-->
@@ -4080,6 +4085,8 @@
   <string name="TextStoryPostCreationFragment__sent_story">Послати причу</string>
   <!--Toasted when the user external share to a text story fails-->
   <string name="TextStoryPostCreationFragment__failed_to_send_story">Неуспешно слање приче</string>
+  <!--Displayed in a dialog to let the user select a given users story-->
+  <!--Displayed in a dialog to let the user select a given users profile photo-->
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Искључити заобилажење цензуре?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -4098,5 +4105,37 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Види још</string>
   <string name="StoriesLinkPopup__visit_link">Посетите везу</string>
+  <!--Tagline for gift row items-->
+  <!--Headline text on start fragment for gifting a badge-->
+  <!--Description text on start fragment for gifting a badge-->
+  <!--Action button label for start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__next">Даље</string>
+  <!--Title text on choose recipient page for badge gifting-->
+  <!--Title text on confirm gift page-->
+  <!--Heading text specifying who the gift will be sent to-->
+  <string name="GiftFlowConfirmationFragment__send_to">Пошаљи у</string>
+  <!--Text explaining that gift will be sent to the chosen recipient-->
+  <!--Text explaining that this gift is a one time donation-->
+  <string name="GiftFlowConfirmationFragment__one_time_donation">Једнократни допринос</string>
+  <!--Hint for add message input-->
+  <string name="GiftFlowConfirmationFragment__add_a_message">Додати поруку</string>
+  <!--Title for sheet shown when opening a redeemed gift-->
+  <!--Title for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Хвала вам на подршци!</string>
+  <!--Description for sheet shown when opening a redeemed gift-->
+  <!--Description for sheet shown when opening a sent gift-->
+  <!--Primary action for pending gift sheet to redeem badge now-->
+  <!--Primary action for pending gift sheet to redeem badge later-->
+  <string name="ViewReceivedGiftSheet__not_now">Не сада</string>
+  <!--Dialog text while redeeming a gift-->
+  <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <!--Description text in gift thanks sheet-->
+  <!--Expired gift sheet title-->
+  <!--Expired gift sheet top description text-->
+  <!--Expired gift sheet bottom description text-->
+  <string name="ExpiredGiftSheetConfiguration__to_continue">За наставак пратеће технологије која је изграђена за вас, размислите да постанете месечни претплатник.</string>
+  <!--Expired gift sheet make a monthly donation button-->
+  <!--Expired gift sheet not now button-->
+  <string name="ExpiredGiftSheetConfiguration__not_now">Не сада</string>
   <!--EOF-->
 </resources>

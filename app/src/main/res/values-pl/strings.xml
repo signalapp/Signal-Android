@@ -1280,11 +1280,19 @@
     <item quantity="many">%1$d członków</item>
     <item quantity="other">%1$d członków</item>
   </plurals>
+  <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
   <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="one">%1$d członek (+%2$d zaproszony/ch)</item>
-    <item quantity="few">%1$d członków (+%2$d zaproszony/ch)</item>
-    <item quantity="many">%1$d członków (+%2$d zaproszony/ch)</item>
-    <item quantity="other">%1$d członków (+%2$d zaproszony/ch)</item>
+    <item quantity="one">%1$d członek (%2$s)</item>
+    <item quantity="few">%1$d członków (%2$s)</item>
+    <item quantity="many">%1$d członków (%2$s)</item>
+    <item quantity="other">%1$d członków (%2$s)</item>
+  </plurals>
+  <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="one">+%1$d zaproszony</item>
+    <item quantity="few">+%1$d zaproszonych</item>
+    <item quantity="many">+%1$d zaproszonych</item>
+    <item quantity="other">+%1$d zaproszonych</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d dodatkowa grupa</item>
@@ -2288,10 +2296,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__help">Pomoc</string>
   <string name="preferences__advanced">Zaawansowane</string>
   <string name="preferences__donate_to_signal">Datek na Signal</string>
-  <!--Preference label when someone is already a subscriber-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Subskrypcja</string> -->
-  <!--Preference label for making a monthly donation to Signal-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__monthly_donation">Datek comiesięczny</string> -->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Datek jednorazowy</string>
   <string name="preferences__privacy">Prywatność</string>
@@ -3294,6 +3298,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Jakość zdjęcia</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">Zaproś znajomych</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">Skopiowano identyfikator subskrybenta do schowka</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Konto</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Z czasem pytanie będzie pojawiać się coraz rzadziej</string>
@@ -3688,13 +3693,24 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kiedy masz więcej, niż jedną odznakę, możesz zdecydować, którą z nich pokazać na swoim profilu.</string>
   <string name="BecomeASustainerFragment__get_badges">Zdobywaj odznaki dla swojego profilu, wspierając Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal jest organizacją non-profit, bez reklamodawców i inwestorów, finansowaną wyłącznie przez ludzi takich, jak Ty.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">Moje wsparcie</string> -->
+  <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">Złóż comiesięczny datek</string>
+  <!--Heading for more area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__more">Więcej</string>
+  <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">Faktury</string>
+  <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">Moja subskrypcja</string>
   <string name="ManageDonationsFragment__manage_subscription">Zarządzaj subskrypcją</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Faktury za dotację</string>
   <string name="ManageDonationsFragment__badges">Odznaki</string>
   <string name="ManageDonationsFragment__subscription_faq">FAQ subskrypcji</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Błąd subskrypcji.</string>
+  <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">Inne metody</string>
+  <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">Podaruj odznakę</string>
   <string name="BoostFragment__give_signal_a_boost">Wesprzyj Signal</string>
   <!--Description text in boost sheet-->
   <string name="BoostFragment__make_a_one_time">Złóż jednorazowy datek i otrzymaj odznakę Wsparcie na %1$d dni.</string>
@@ -3740,6 +3756,14 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="DonationsErrors__your_payment">Twoja płatność nie mogła zostać przetworzona i Twoje konto nie zostało obciążone. Spróbuj ponownie.</string>
   <string name="DonationsErrors__still_processing">Trwa przetwarzanie</string>
   <string name="DonationsErrors__couldnt_add_badge">Nie udało się dodać odznaki</string>
+  <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__failed_to_validate_badge">Nie udało się zweryfikować odznaki</string>
+  <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__could_not_validate">Nie udało się potwierdzić odpowiedzi serwera. Skontaktuj się z pomocą techniczną.</string>
+  <!--Displayed as title when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__failed_to_send_gift_badge">Nie udało się wysłać podarowanej odznaki</string>
+  <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__could_not_send_gift_badge">Nie udało się wysłać podarowanej odznaki. Skontaktuj się z pomocą techniczną.</string>
   <string name="DonationsErrors__your_badge_could_not">Nie udało się dodać odznaki do Twojego profilu, ale Twoje konto mogło zostać obciążone. Skontaktuj się z pomocą techniczną.</string>
   <string name="DonationsErrors__your_payment_is_still">Twoja płatność wciąż jest przetwarzana. W zależności od Twojego połączenia z siecią, to może potrwać kilka minut.</string>
   <string name="DonationsErrors__google_pay_unavailable">Aplikacja Google Pay nie jest dostępna</string>
@@ -3749,6 +3773,25 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Twoje urządzenie nie obsługuje Google Pay, więc nie możesz użyć subskrypcji, aby otrzymać odznakę. Wciąż możesz wesprzeć Signal datkiem, korzystając z naszej strony internetowej.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Błąd sieci. Sprawdź połączenie z internetem i spróbuj ponownie.</string>
   <string name="NetworkFailure__retry">Ponów</string>
+  <string name="DonationsErrors__recipient_verification_failed">Weryfikacja odbiorcy nie powiodła się.</string>
+  <string name="DonationsErrors__target_does_not_support_gifting">Odbiorca nie obsługuje prezentów.</string>
+  <!--Gift message view title-->
+  <string name="GiftMessageView__gift_badge">Podaruj odznakę</string>
+  <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="one">Aktywna przez %1$d miesiąc</item>
+    <item quantity="few">Aktywna przez %1$d miesiące</item>
+    <item quantity="many">Aktywna przez %1$d miesięcy</item>
+    <item quantity="other">Aktywna przez %1$d miesiące</item>
+  </plurals>
+  <!--Gift badge redeem action label-->
+  <string name="GiftMessageView__redeem">Odbierz</string>
+  <!--Gift badge view action label-->
+  <string name="GiftMessageView__view">Pokaż</string>
+  <!--Gift badge redeeming action label-->
+  <string name="GiftMessageView__redeeming">Odbieranie…</string>
+  <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">Odebrane</string>
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Wypróbuj inną metodę płatności lub skontaktuj się ze swoim bankiem, aby otrzymać więcej informacji.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3907,14 +3950,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="NotificationProfileSelection__view_settings">Pokaż ustawienia</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">Włączony do %1$s</string>
-  <!--Title for notification profile megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">Profile powiadomień</string> -->
-  <!--Description for notification profile megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Otrzymuj powiadomienia i połączenia tylko od wybranych osób i grup.</string> -->
-  <!--Call to action button to create a profile from megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">Utwórz profil</string> -->
-  <!--Button to dismiss notification profile megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Nie teraz</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Nie udało się otworzyć selektora dzwonków.</string>
   <!--Description shown for the Signal Release Notes channel-->
@@ -3927,6 +3962,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="DonationReceiptListFragment__recurring">Odnawiana</string>
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">Jeden raz</string>
+  <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">Prezent</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Wsparcie</string>
   <!--Donation receipts details title-->
@@ -4049,6 +4086,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="StorySettingsFragment__story_settings">Ustawienia historii</string>
   <!--Story settings private stories heading-->
   <string name="StorySettingsFragment__private_stories">Prywatne historie</string>
+  <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Prywatne historie mogą być przeglądane wyłącznie przez osoby, które dodasz. Tylko Ty widzisz nazwę historii.</string>
   <!--Option label for creating a new private story-->
   <string name="StorySettingsFragment__new_private_story">Nowa, prywatna historia</string>
   <!--Page title for My Story options-->
@@ -4197,6 +4236,10 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="TextStoryPostCreationFragment__sent_story">Wysłano historię</string>
   <!--Toasted when the user external share to a text story fails-->
   <string name="TextStoryPostCreationFragment__failed_to_send_story">Nie udało się wysłać historii</string>
+  <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">Obejrzyj historię</string>
+  <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">Zobacz zdjęcie profilowe</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Wyłączyć omijanie cenzury?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -4215,5 +4258,41 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Pokaż więcej</string>
   <string name="StoriesLinkPopup__visit_link">Odwiedź link</string>
+  <!--Tagline for gift row items-->
+  <string name="GiftRowItem__send_a_gift_badge">Wyślij odznakę w prezencie</string>
+  <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">Podaruj odznakę</string>
+  <!--Description text on start fragment for gifting a badge-->
+  <!--Action button label for start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__next">Dalej</string>
+  <!--Title text on choose recipient page for badge gifting-->
+  <!--Title text on confirm gift page-->
+  <!--Heading text specifying who the gift will be sent to-->
+  <string name="GiftFlowConfirmationFragment__send_to">Wyślij do</string>
+  <!--Text explaining that gift will be sent to the chosen recipient-->
+  <!--Text explaining that this gift is a one time donation-->
+  <string name="GiftFlowConfirmationFragment__one_time_donation">Datek jednorazowy</string>
+  <!--Hint for add message input-->
+  <string name="GiftFlowConfirmationFragment__add_a_message">Dodaj wiadomość</string>
+  <!--Title for sheet shown when opening a redeemed gift-->
+  <!--Title for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Dziękujemy za Twoje wsparcie!</string>
+  <!--Description for sheet shown when opening a redeemed gift-->
+  <!--Description for sheet shown when opening a sent gift-->
+  <!--Primary action for pending gift sheet to redeem badge now-->
+  <string name="ViewReceivedGiftSheet__redeem">Odbierz</string>
+  <!--Primary action for pending gift sheet to redeem badge later-->
+  <string name="ViewReceivedGiftSheet__not_now">Nie teraz</string>
+  <!--Dialog text while redeeming a gift-->
+  <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <!--Description text in gift thanks sheet-->
+  <!--Expired gift sheet title-->
+  <!--Expired gift sheet top description text-->
+  <!--Expired gift sheet bottom description text-->
+  <string name="ExpiredGiftSheetConfiguration__to_continue">Aby nadal wspierać technologię stworzoną dla Ciebie, nie dla zdobycia Twoich danych, rozważ miesięczną subskrypcję.</string>
+  <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Złóż comiesięczny datek</string>
+  <!--Expired gift sheet not now button-->
+  <string name="ExpiredGiftSheetConfiguration__not_now">Nie teraz</string>
   <!--EOF-->
 </resources>

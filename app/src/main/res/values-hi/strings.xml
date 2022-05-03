@@ -1129,10 +1129,8 @@
     <item quantity="one">%1$d मेंबर</item>
     <item quantity="other">%1$d मेंबर्स</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="one">%1$d मेंबर (+%2$d आमंत्रित)</item>
-    <item quantity="other">%1$d मेंबर्स (+%2$d आमंत्रित)</item>
-  </plurals>
+  <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d अतिरिक्त ग्रुप</item>
     <item quantity="other">%d अतिरिक्त ग्रुप्स</item>
@@ -2065,9 +2063,6 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="preferences__help">मदद</string>
   <string name="preferences__advanced">अधिक</string>
   <string name="preferences__donate_to_signal">Signal  को दान करें</string>
-  <!--Preference label when someone is already a subscriber-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">सब्सक्रिप्शन</string> -->
-  <!--Preference label for making a monthly donation to Signal-->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">गोपनियता </string>
   <string name="preferences__mms_user_agent">MMS उपयोगकर्ता एजेंट</string>
@@ -3403,12 +3398,18 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">जब आपके पास एक से ज़्यादा बैज हों, तो आप अपनी प्रोफ़ाइल पर दूसरों को देखने की ख़ातिर फ़ीचर के लिए एक को चुन सकते हैं.</string>
   <string name="BecomeASustainerFragment__get_badges">Signal का समर्थन करके अपनी प्रोफ़ाइल के लिए बैज पाएं.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal एक गैर-लाभकारी संस्था है जिसमें कोई विज्ञापनदाता या निवेशक नहीं है, जो सिर्फ़ आप जैसे लोगों द्वारा समर्थित है.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">मेरे लिए सपोर्ट</string> -->
+  <!--Button label for creating a monthly donation-->
+  <!--Heading for more area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__more">अधिक</string>
+  <!--Heading for receipts area of manage subscriptions page-->
+  <!--Heading for my subscription area of manage subscriptions page-->
   <string name="ManageDonationsFragment__manage_subscription">सब्सक्रिप्शन मैनेज करें</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">बैज</string>
   <string name="ManageDonationsFragment__subscription_faq">सब्सक्रिप्शन के अक्सर पूछे जाने वाले प्रश्न</string>
   <string name="ManageDonationsFragment__error_getting_subscription">सब्सक्रिप्शन पाने में एरर</string>
+  <!--Preference heading for other ways to donate-->
+  <!--Preference label to launch badge gifting-->
   <string name="BoostFragment__give_signal_a_boost">सिग्नल को बूस्ट दें</string>
   <!--Description text in boost sheet-->
   <string name="Boost__enter_custom_amount">कस्टम राशि दर्ज करें</string>
@@ -3444,6 +3445,10 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="DonationsErrors__your_payment">आपकी पेमेंट प्रोसेस नहीं की जा सकी और आपसे शुल्क नहीं लिया गया है. कृपया फिर से कोशिश करें.</string>
   <string name="DonationsErrors__still_processing">अभी भी प्रोसेस कर रहे</string>
   <string name="DonationsErrors__couldnt_add_badge">बैज नहीं शामिल कर सके</string>
+  <!--Displayed when badge credential couldn\'t be verified-->
+  <!--Displayed when badge credential couldn\'t be verified-->
+  <!--Displayed as title when some generic error happens during gift badge sending-->
+  <!--Displayed as message when some generic error happens during gift badge sending-->
   <string name="DonationsErrors__your_badge_could_not">आपका बैज आपके अकाउंट में नहीं शामिल किया जा सका, लेकिन हो सकता है कि आपसे शुल्क लिया गया हो. कृपया सपोर्ट से संपर्क करें.</string>
   <string name="DonationsErrors__your_payment_is_still">आपकी पेमेंट अभी भी प्रोसेस की जा रही है. आपके कनेक्शन के आधार पर इसमें कुछ मिनट लग सकते हैं.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay अनुपलब्ध</string>
@@ -3453,6 +3458,13 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">आपका डिवाइस Google Pay का समर्थन नहीं करता है, इसलिए आप बैज कमाने के लिए सब्सक्राइब नहीं कर सकते. आप अभी भी हमारी वेबसाइट पर दान करके Signal का समर्थन कर सकते हैं.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">नेटवर्क एरर. अपने कनेक्शन को चेक करें और फिर से कोशिश करें.</string>
   <string name="NetworkFailure__retry">दोबारा कोशिश करें</string>
+  <!--Gift message view title-->
+  <!--Gift message view expiry information-->
+  <!--Gift badge redeem action label-->
+  <!--Gift badge view action label-->
+  <string name="GiftMessageView__view">देखना</string>
+  <!--Gift badge redeeming action label-->
+  <!--Gift badge redeemed label-->
   <!--Stripe decline code generic_failure-->
   <!--Stripe decline code verify on Google Pay and try again-->
   <!--Stripe decline code learn more action label-->
@@ -3555,11 +3567,6 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="NotificationProfileSelection__until_s">%1$s तक</string>
   <!--Option to view profile details-->
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
-  <!--Title for notification profile megaphone-->
-  <!--Description for notification profile megaphone-->
-  <!--Call to action button to create a profile from megaphone-->
-  <!--Button to dismiss notification profile megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">अभी नहीं</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">पिकर ओपेन करने में असफ़ल.</string>
   <!--Description shown for the Signal Release Notes channel-->
@@ -3569,6 +3576,7 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="DonationReceiptListFragment__all">सब</string>
   <!--Donation receipts recurring tab label-->
   <!--Donation receipts one-time tab label-->
+  <!--Donation receipts gift tab label-->
   <!--Donation receipts boost row label-->
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">माहिती</string>
@@ -3636,6 +3644,7 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="StoryGroupReplyItem__delete">डिलीट करें</string>
   <!--Story settings page title-->
   <!--Story settings private stories heading-->
+  <!--Note at bottom of story settings regarding who can see private stories.-->
   <!--Option label for creating a new private story-->
   <!--Page title for My Story options-->
   <!--Section heading for story visibility-->
@@ -3718,6 +3727,8 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <!--Toasted when the user externally shares to a text story successfully-->
   <!--Toasted when the user external share to a text story fails-->
+  <!--Displayed in a dialog to let the user select a given users story-->
+  <!--Displayed in a dialog to let the user select a given users profile photo-->
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -3729,5 +3740,36 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <!--Tagline for gift row items-->
+  <!--Headline text on start fragment for gifting a badge-->
+  <!--Description text on start fragment for gifting a badge-->
+  <!--Action button label for start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__next">अगला</string>
+  <!--Title text on choose recipient page for badge gifting-->
+  <!--Title text on confirm gift page-->
+  <!--Heading text specifying who the gift will be sent to-->
+  <string name="GiftFlowConfirmationFragment__send_to">को भेजें</string>
+  <!--Text explaining that gift will be sent to the chosen recipient-->
+  <!--Text explaining that this gift is a one time donation-->
+  <!--Hint for add message input-->
+  <string name="GiftFlowConfirmationFragment__add_a_message">एक मेसेज को शामिल करें</string>
+  <!--Title for sheet shown when opening a redeemed gift-->
+  <!--Title for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__thanks_for_your_support">आपके समर्थन के लिए शुक्रिया!</string>
+  <!--Description for sheet shown when opening a redeemed gift-->
+  <!--Description for sheet shown when opening a sent gift-->
+  <!--Primary action for pending gift sheet to redeem badge now-->
+  <!--Primary action for pending gift sheet to redeem badge later-->
+  <string name="ViewReceivedGiftSheet__not_now">अभी नहीं</string>
+  <!--Dialog text while redeeming a gift-->
+  <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <!--Description text in gift thanks sheet-->
+  <!--Expired gift sheet title-->
+  <!--Expired gift sheet top description text-->
+  <!--Expired gift sheet bottom description text-->
+  <string name="ExpiredGiftSheetConfiguration__to_continue">आपके लिए बनाई गई तकनीक का समर्थन जारी रखने के लिए, कृपया एक मासिक सस्टेनर बनने पर विचार करें.</string>
+  <!--Expired gift sheet make a monthly donation button-->
+  <!--Expired gift sheet not now button-->
+  <string name="ExpiredGiftSheetConfiguration__not_now">अभी नहीं</string>
   <!--EOF-->
 </resources>

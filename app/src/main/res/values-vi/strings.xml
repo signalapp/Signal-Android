@@ -1074,9 +1074,8 @@
   <plurals name="MessageRequestProfileView_members">
     <item quantity="other">%1$d thành viên</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="other">%1$d thành viên (+%2$d đã được mời)</item>
-  </plurals>
+  <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="other">%d nhóm khác</item>
   </plurals>
@@ -1990,9 +1989,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences__help">Hỗ trợ</string>
   <string name="preferences__advanced">Nâng cao</string>
   <string name="preferences__donate_to_signal">Ủng hộ Signal</string>
-  <!--Preference label when someone is already a subscriber-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Đăng ký</string> -->
-  <!--Preference label for making a monthly donation to Signal-->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">Riêng tư</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
@@ -3323,12 +3319,18 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Khi bạn có nhiều hơn một huy hiệu. bạn có thể chọn huy hiệu mặc định mà mọi người sẽ nhìn thấy trên hồ sơ của bạn.</string>
   <string name="BecomeASustainerFragment__get_badges">Hãy thu thập nhiều huy hiệu đính trên hồ sơ của bạn bằng cách hổ trở cho Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal là một ứng dụng phi lợi nhuận, không có quảng cao cũng như nhà đầu tư nào. Nó chỉ được duy trì và phát triển bỡi hàng triệu người dùng như bạn mà thôi.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">Hổ trợ của tôi</string> -->
+  <!--Button label for creating a monthly donation-->
+  <!--Heading for more area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__more">Thêm</string>
+  <!--Heading for receipts area of manage subscriptions page-->
+  <!--Heading for my subscription area of manage subscriptions page-->
   <string name="ManageDonationsFragment__manage_subscription">Quản lý Quyên góp</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">Huy hiệu</string>
   <string name="ManageDonationsFragment__subscription_faq">FAQ Quyên góp</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Lỗi nhận quyên góp.</string>
+  <!--Preference heading for other ways to donate-->
+  <!--Preference label to launch badge gifting-->
   <string name="BoostFragment__give_signal_a_boost">Quyên góp cho Signal</string>
   <!--Description text in boost sheet-->
   <string name="Boost__enter_custom_amount">Nhập vào Số tiền Tuỳ chọn</string>
@@ -3364,6 +3366,10 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="DonationsErrors__your_payment">Thanh toán của bạn đã không thành công và bạn vẫn chưa bị tính phí. Vui lòng thử lại.</string>
   <string name="DonationsErrors__still_processing">Vẫn đang xữ lý</string>
   <string name="DonationsErrors__couldnt_add_badge">Không thể thêm huy hiệu</string>
+  <!--Displayed when badge credential couldn\'t be verified-->
+  <!--Displayed when badge credential couldn\'t be verified-->
+  <!--Displayed as title when some generic error happens during gift badge sending-->
+  <!--Displayed as message when some generic error happens during gift badge sending-->
   <string name="DonationsErrors__your_badge_could_not">Huy hiệu của bạn không thể thêm vào tài khoản, nhưng bạn vẫn có thể bị tính phí. Xin vui lòng liên hệ với chúng tôi để được hổ trợ.</string>
   <string name="DonationsErrors__your_payment_is_still">Thanh toán của bán đang được xử lý. Việc này có thể mất vài phút tùy vào kết nối của bạn.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay không dùng được</string>
@@ -3373,6 +3379,13 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Thiết bị của bạn không hổ trợ Google Pay, vì vậy bạn không thể đăng ký quyên góp và nhận huy hiệu trên thiết bị này. Bạn vẫn có thể đống góp cho Signal trên trang Web của chúng tôi.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Lỗi kết nối: Hãy kiểm tra kết nối của bạn và thử lại.</string>
   <string name="NetworkFailure__retry">Thử lại</string>
+  <!--Gift message view title-->
+  <!--Gift message view expiry information-->
+  <!--Gift badge redeem action label-->
+  <!--Gift badge view action label-->
+  <string name="GiftMessageView__view">Xem</string>
+  <!--Gift badge redeeming action label-->
+  <!--Gift badge redeemed label-->
   <!--Stripe decline code generic_failure-->
   <!--Stripe decline code verify on Google Pay and try again-->
   <!--Stripe decline code learn more action label-->
@@ -3518,14 +3531,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="NotificationProfileSelection__view_settings">Hiển thị các cài đặt</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">Bật cho đến khi %1$s</string>
-  <!--Title for notification profile megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">Cấu hình thông báo</string> -->
-  <!--Description for notification profile megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Chỉ nhận thông báo từ những người và nhóm bạn chọn.</string> -->
-  <!--Call to action button to create a profile from megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">Tạo một cấu hình</string> -->
-  <!--Button to dismiss notification profile megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Để sau</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Không mở được bộ chọn.</string>
   <!--Description shown for the Signal Release Notes channel-->
@@ -3535,6 +3540,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="DonationReceiptListFragment__all">Tất cả</string>
   <!--Donation receipts recurring tab label-->
   <!--Donation receipts one-time tab label-->
+  <!--Donation receipts gift tab label-->
   <!--Donation receipts boost row label-->
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Chi tiết</string>
@@ -3602,6 +3608,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="StoryGroupReplyItem__delete">Xóa</string>
   <!--Story settings page title-->
   <!--Story settings private stories heading-->
+  <!--Note at bottom of story settings regarding who can see private stories.-->
   <!--Option label for creating a new private story-->
   <!--Page title for My Story options-->
   <!--Section heading for story visibility-->
@@ -3684,6 +3691,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <!--Toasted when the user externally shares to a text story successfully-->
   <!--Toasted when the user external share to a text story fails-->
+  <!--Displayed in a dialog to let the user select a given users story-->
+  <!--Displayed in a dialog to let the user select a given users profile photo-->
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -3695,5 +3704,36 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <!--Tagline for gift row items-->
+  <!--Headline text on start fragment for gifting a badge-->
+  <!--Description text on start fragment for gifting a badge-->
+  <!--Action button label for start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__next">Tiếp</string>
+  <!--Title text on choose recipient page for badge gifting-->
+  <!--Title text on confirm gift page-->
+  <!--Heading text specifying who the gift will be sent to-->
+  <string name="GiftFlowConfirmationFragment__send_to">Gửi đến</string>
+  <!--Text explaining that gift will be sent to the chosen recipient-->
+  <!--Text explaining that this gift is a one time donation-->
+  <!--Hint for add message input-->
+  <string name="GiftFlowConfirmationFragment__add_a_message">Thêm vào một tin nhắn</string>
+  <!--Title for sheet shown when opening a redeemed gift-->
+  <!--Title for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Cảm ơn bạn đã đống góp!</string>
+  <!--Description for sheet shown when opening a redeemed gift-->
+  <!--Description for sheet shown when opening a sent gift-->
+  <!--Primary action for pending gift sheet to redeem badge now-->
+  <!--Primary action for pending gift sheet to redeem badge later-->
+  <string name="ViewReceivedGiftSheet__not_now">Để sau</string>
+  <!--Dialog text while redeeming a gift-->
+  <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <!--Description text in gift thanks sheet-->
+  <!--Expired gift sheet title-->
+  <!--Expired gift sheet top description text-->
+  <!--Expired gift sheet bottom description text-->
+  <string name="ExpiredGiftSheetConfiguration__to_continue">Để tiếp tục ủng hộ chúng tôi, ứng dụng sinh ra để dành cho bạn, hãy trở thành người ủng hộ thường xuyên hàng tháng của chúng tôi.</string>
+  <!--Expired gift sheet make a monthly donation button-->
+  <!--Expired gift sheet not now button-->
+  <string name="ExpiredGiftSheetConfiguration__not_now">Để sau</string>
   <!--EOF-->
 </resources>

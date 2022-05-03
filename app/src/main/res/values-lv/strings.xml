@@ -1214,11 +1214,8 @@
     <item quantity="one">%1$d dalībnieks</item>
     <item quantity="other">%1$d dalībnieki</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="zero">%1$d dalībnieks (+%2$d uzaicināti)</item>
-    <item quantity="one">%1$d dalībnieks (+%2$d uzaicināts)</item>
-    <item quantity="other">%1$d dalībnieki (+%2$d uzaicināti)</item>
-  </plurals>
+  <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="zero">%d cita grupa</item>
     <item quantity="one">%d cita grupa</item>
@@ -2200,10 +2197,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="preferences__help">Palīdzība</string>
   <string name="preferences__advanced">Papildu</string>
   <string name="preferences__donate_to_signal">Ziedot Signal</string>
-  <!--Preference label when someone is already a subscriber-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Abonements</string> -->
-  <!--Preference label for making a monthly donation to Signal-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__monthly_donation">Ikmēneša ziedojums</string> -->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Vienreizējs ziedojums</string>
   <string name="preferences__privacy">Privātums</string>
@@ -3583,16 +3576,21 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kad Jums ir vairāk kā viena nozīmīte, jūs varat izvēlēties vienu, kuru izcelt un ļaut citiem apskatīt jūsu profilā.</string>
   <string name="BecomeASustainerFragment__get_badges">Iegūstiet nozīmītes jūsu profilam atbalstot Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal irr bezpeļņas organizācija bez reklāmdevējiem vai investoriem, kuru uztur tikai cilvēki kā jūs.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">Mans atbalsts</string> -->
+  <!--Button label for creating a monthly donation-->
+  <!--Heading for more area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__more">Vēl</string>
+  <!--Heading for receipts area of manage subscriptions page-->
+  <!--Heading for my subscription area of manage subscriptions page-->
   <string name="ManageDonationsFragment__manage_subscription">Pārvaldīt abonementu</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Ziedojumu kvītis</string>
   <string name="ManageDonationsFragment__badges">Nozīmītes</string>
   <string name="ManageDonationsFragment__subscription_faq">Abonementu BUJ</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Kļūda saņemot abonementu.</string>
+  <!--Preference heading for other ways to donate-->
+  <!--Preference label to launch badge gifting-->
   <string name="BoostFragment__give_signal_a_boost">Atbalsti Signal</string>
   <!--Description text in boost sheet-->
-  <string name="BoostFragment__make_a_one_time">Veiciet vienreizēju ziedojumu, un iegūstiet Atbalsta nozīmīti uz %1$d dienām.</string>
   <string name="Boost__enter_custom_amount">Ievadīt pielāgotu summu</string>
   <string name="Boost__one_time_contribution">Vienreizējs ziedojums</string>
   <string name="MySupportPreference__add_a_signal_boost">Pievienot Signal Atbalstu</string>
@@ -3635,6 +3633,10 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="DonationsErrors__your_payment">Jūsu maksājumu neizdevās apstrādāt, un no Jums nekas netika iekasēts. Lūdzu, mēģiniet vēlreiz.</string>
   <string name="DonationsErrors__still_processing">Vēl apstrādā</string>
   <string name="DonationsErrors__couldnt_add_badge">Nevarēja pievienot nozīmīti</string>
+  <!--Displayed when badge credential couldn\'t be verified-->
+  <!--Displayed when badge credential couldn\'t be verified-->
+  <!--Displayed as title when some generic error happens during gift badge sending-->
+  <!--Displayed as message when some generic error happens during gift badge sending-->
   <string name="DonationsErrors__your_badge_could_not">Jūsu nozīmīti nevarēja pievienot jūsu kontam, tomēr iespējams, ka no jums tika iekasēta maksa. Lūdzu, sazinieties ar tehnisko atbalstu.</string>
   <string name="DonationsErrors__your_payment_is_still">Jūsu maksājums vēl tiek apstrādāts. Atkarībā no jūsu savienojuma, tas var aizņemt dažas minūtes.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay nav pieejams</string>
@@ -3644,6 +3646,13 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Jūsu ierīce neatbalsta Google Pay, tāpēc jūs nevarat pieteikties abonementam, lai iegūtu nozīmīti. Jūs vēl arvien varat atbalstīt Signal, ziedojot mūsu mājaslapā.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Tīkla kļūda. Pārbaudiet savienojumu un mēģiniet vēlreiz.</string>
   <string name="NetworkFailure__retry">Mēģināt vēlreiz</string>
+  <!--Gift message view title-->
+  <!--Gift message view expiry information-->
+  <!--Gift badge redeem action label-->
+  <!--Gift badge view action label-->
+  <string name="GiftMessageView__view">Skatīt</string>
+  <!--Gift badge redeeming action label-->
+  <!--Gift badge redeemed label-->
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Mēģiniet citu maksājuma veidu vai sazinieties ar savu banku, lai iegūtu vairāk informācijas.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3802,14 +3811,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="NotificationProfileSelection__view_settings">Skatīt iestatījumus</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">Ieslēgts līdz %1$s</string>
-  <!--Title for notification profile megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">Paziņojumu profili</string> -->
-  <!--Description for notification profile megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Saņemiet paziņojumus tikai no cilvēkiem un grupām, no kuriem to vēlaties.</string> -->
-  <!--Call to action button to create a profile from megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">Izveidot profilu</string> -->
-  <!--Button to dismiss notification profile megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Ne tagad</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Neizdevās atvērt atlasītāju.</string>
   <!--Description shown for the Signal Release Notes channel-->
@@ -3822,6 +3823,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="DonationReceiptListFragment__recurring">Regulārs</string>
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">Vienreizējs</string>
+  <!--Donation receipts gift tab label-->
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Atbalsts</string>
   <!--Donation receipts details title-->
@@ -3941,6 +3943,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="StorySettingsFragment__story_settings">Stāsta iestatījumi</string>
   <!--Story settings private stories heading-->
   <string name="StorySettingsFragment__private_stories">Privātie stāsti</string>
+  <!--Note at bottom of story settings regarding who can see private stories.-->
   <!--Option label for creating a new private story-->
   <string name="StorySettingsFragment__new_private_story">Jauns privātais stāsts</string>
   <!--Page title for My Story options-->
@@ -4087,6 +4090,8 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="TextStoryPostCreationFragment__sent_story">Stāsts nosūtīts</string>
   <!--Toasted when the user external share to a text story fails-->
   <string name="TextStoryPostCreationFragment__failed_to_send_story">Neizdevās nosūtīt stāstu</string>
+  <!--Displayed in a dialog to let the user select a given users story-->
+  <!--Displayed in a dialog to let the user select a given users profile photo-->
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Atslēgt cenzūras apiešanu?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -4105,5 +4110,35 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Skatīt vairāk</string>
   <string name="StoriesLinkPopup__visit_link">Apmeklēt saiti</string>
+  <!--Tagline for gift row items-->
+  <!--Headline text on start fragment for gifting a badge-->
+  <!--Description text on start fragment for gifting a badge-->
+  <!--Action button label for start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__next">Tālāk</string>
+  <!--Title text on choose recipient page for badge gifting-->
+  <!--Title text on confirm gift page-->
+  <!--Heading text specifying who the gift will be sent to-->
+  <string name="GiftFlowConfirmationFragment__send_to">Sūtīt</string>
+  <!--Text explaining that gift will be sent to the chosen recipient-->
+  <!--Text explaining that this gift is a one time donation-->
+  <!--Hint for add message input-->
+  <string name="GiftFlowConfirmationFragment__add_a_message">Pievienojiet ziņu</string>
+  <!--Title for sheet shown when opening a redeemed gift-->
+  <!--Title for sheet shown when opening a sent gift-->
+  <!--Description for sheet shown when opening a redeemed gift-->
+  <!--Description for sheet shown when opening a sent gift-->
+  <!--Primary action for pending gift sheet to redeem badge now-->
+  <!--Primary action for pending gift sheet to redeem badge later-->
+  <string name="ViewReceivedGiftSheet__not_now">Ne tagad</string>
+  <!--Dialog text while redeeming a gift-->
+  <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <!--Description text in gift thanks sheet-->
+  <!--Expired gift sheet title-->
+  <!--Expired gift sheet top description text-->
+  <!--Expired gift sheet bottom description text-->
+  <string name="ExpiredGiftSheetConfiguration__to_continue">Lai turpinātu atbalstīt tehnoloģiju, kas izveidota Jums, lūdzu apsveriet kļūšanu par ikmēneša Uzturētāju.</string>
+  <!--Expired gift sheet make a monthly donation button-->
+  <!--Expired gift sheet not now button-->
+  <string name="ExpiredGiftSheetConfiguration__not_now">Ne tagad</string>
   <!--EOF-->
 </resources>

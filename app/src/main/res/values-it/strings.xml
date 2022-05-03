@@ -1158,10 +1158,8 @@
     <item quantity="one">%1$d membro</item>
     <item quantity="other">%1$d membri</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="one">%1$d membro (+%2$d invitato/i)</item>
-    <item quantity="other">%1$d membri (+%2$d invitato/i)</item>
-  </plurals>
+  <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d altro gruppo</item>
     <item quantity="other">altri %d gruppi</item>
@@ -2126,10 +2124,6 @@
   <string name="preferences__help">Aiuto</string>
   <string name="preferences__advanced">Avanzate</string>
   <string name="preferences__donate_to_signal">Dona a Signal</string>
-  <!--Preference label when someone is already a subscriber-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Contributo</string> -->
-  <!--Preference label for making a monthly donation to Signal-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__monthly_donation">Donazione mensile</string> -->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Donazione unica</string>
   <string name="preferences__privacy">Privacy</string>
@@ -3492,16 +3486,22 @@
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Quando hai più di un badge, puoi sceglierne uno da mostrare agli altri sul tuo profilo.</string>
   <string name="BecomeASustainerFragment__get_badges">Ottieni i badge per il tuo profilo supportando Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal è una non-profit senza inserzionisti o investitori, sostenuta solo da persone come te.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">Il mio supporto</string> -->
+  <!--Button label for creating a monthly donation-->
+  <!--Heading for more area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__more">Altro</string>
+  <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">Ricevute</string>
+  <!--Heading for my subscription area of manage subscriptions page-->
   <string name="ManageDonationsFragment__manage_subscription">Gestisci contributo</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Ricevute donazioni</string>
   <string name="ManageDonationsFragment__badges">Badge</string>
   <string name="ManageDonationsFragment__subscription_faq">Domande frequenti sul contributo</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Errore durante il recupero del contributo.</string>
+  <!--Preference heading for other ways to donate-->
+  <!--Preference label to launch badge gifting-->
   <string name="BoostFragment__give_signal_a_boost">Dai a Signal un Boost</string>
   <!--Description text in boost sheet-->
-  <string name="BoostFragment__make_a_one_time">Fai una donazione unica e guadagna un badge Boost per %1$d giorni.</string>
   <string name="Boost__enter_custom_amount">Inserisci un importo personalizzato</string>
   <string name="Boost__one_time_contribution">Contributo unico</string>
   <string name="MySupportPreference__add_a_signal_boost">Aggiungi un Boost di Signal</string>
@@ -3544,6 +3544,10 @@
   <string name="DonationsErrors__your_payment">Il tuo pagamento non ha potuto essere elaborato e non ti è stato addebitato. Si prega di riprovare.</string>
   <string name="DonationsErrors__still_processing">Ancora in fase di elaborazione</string>
   <string name="DonationsErrors__couldnt_add_badge">Non è stato possibile aggiungere il badge</string>
+  <!--Displayed when badge credential couldn\'t be verified-->
+  <!--Displayed when badge credential couldn\'t be verified-->
+  <!--Displayed as title when some generic error happens during gift badge sending-->
+  <!--Displayed as message when some generic error happens during gift badge sending-->
   <string name="DonationsErrors__your_badge_could_not">Il tuo badge non può essere aggiunto al tuo account, ma potrebbe esserti stato addebitato. Contatta l\'assistenza.</string>
   <string name="DonationsErrors__your_payment_is_still">Il tuo pagamento è ancora in fase di elaborazione. Questo può richiedere alcuni minuti a seconda della tua connessione.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay non disponibile</string>
@@ -3553,6 +3557,13 @@
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Il tuo dispositivo non supporta Google Pay, quindi non puoi contribuire per guadagnare un badge. Puoi comunque sostenere Signal facendo una donazione sul nostro sito web.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Errore di rete. Controlla la tua connessione e riprova.</string>
   <string name="NetworkFailure__retry">Riprova</string>
+  <!--Gift message view title-->
+  <!--Gift message view expiry information-->
+  <!--Gift badge redeem action label-->
+  <!--Gift badge view action label-->
+  <string name="GiftMessageView__view">Mostra</string>
+  <!--Gift badge redeeming action label-->
+  <!--Gift badge redeemed label-->
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Prova un altro metodo di pagamento o contatta la tua banca per maggiori informazioni.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3711,14 +3722,6 @@
   <string name="NotificationProfileSelection__view_settings">Visualizza impostazioni</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">Attivo fino a %1$s</string>
-  <!--Title for notification profile megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">Profili di notifica</string> -->
-  <!--Description for notification profile megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Ricevi notifiche solo dalle persone e dai gruppi da te scelti.</string> -->
-  <!--Call to action button to create a profile from megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">Crea un profilo</string> -->
-  <!--Button to dismiss notification profile megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Non ora</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Impossibile aprire il menu di selezione.</string>
   <!--Description shown for the Signal Release Notes channel-->
@@ -3731,6 +3734,7 @@
   <string name="DonationReceiptListFragment__recurring">Ricorrente</string>
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">Una volta</string>
+  <!--Donation receipts gift tab label-->
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Boost</string>
   <!--Donation receipts details title-->
@@ -3847,6 +3851,7 @@
   <string name="StorySettingsFragment__story_settings">Impostazioni storia</string>
   <!--Story settings private stories heading-->
   <string name="StorySettingsFragment__private_stories">Storie private</string>
+  <!--Note at bottom of story settings regarding who can see private stories.-->
   <!--Option label for creating a new private story-->
   <string name="StorySettingsFragment__new_private_story">Nuova storia privata</string>
   <!--Page title for My Story options-->
@@ -3991,6 +3996,8 @@
   <string name="TextStoryPostCreationFragment__sent_story">Storia inviata</string>
   <!--Toasted when the user external share to a text story fails-->
   <string name="TextStoryPostCreationFragment__failed_to_send_story">Invio della storia fallito</string>
+  <!--Displayed in a dialog to let the user select a given users story-->
+  <!--Displayed in a dialog to let the user select a given users profile photo-->
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Disattivare il raggiro della censura?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -4009,5 +4016,37 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Visualizza altro</string>
   <string name="StoriesLinkPopup__visit_link">Visita link</string>
+  <!--Tagline for gift row items-->
+  <!--Headline text on start fragment for gifting a badge-->
+  <!--Description text on start fragment for gifting a badge-->
+  <!--Action button label for start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__next">Avanti</string>
+  <!--Title text on choose recipient page for badge gifting-->
+  <!--Title text on confirm gift page-->
+  <!--Heading text specifying who the gift will be sent to-->
+  <string name="GiftFlowConfirmationFragment__send_to">Inviato a</string>
+  <!--Text explaining that gift will be sent to the chosen recipient-->
+  <!--Text explaining that this gift is a one time donation-->
+  <string name="GiftFlowConfirmationFragment__one_time_donation">Donazione unica</string>
+  <!--Hint for add message input-->
+  <string name="GiftFlowConfirmationFragment__add_a_message">Aggiungi un messaggio</string>
+  <!--Title for sheet shown when opening a redeemed gift-->
+  <!--Title for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Grazie per il tuo supporto!</string>
+  <!--Description for sheet shown when opening a redeemed gift-->
+  <!--Description for sheet shown when opening a sent gift-->
+  <!--Primary action for pending gift sheet to redeem badge now-->
+  <!--Primary action for pending gift sheet to redeem badge later-->
+  <string name="ViewReceivedGiftSheet__not_now">Non ora</string>
+  <!--Dialog text while redeeming a gift-->
+  <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <!--Description text in gift thanks sheet-->
+  <!--Expired gift sheet title-->
+  <!--Expired gift sheet top description text-->
+  <!--Expired gift sheet bottom description text-->
+  <string name="ExpiredGiftSheetConfiguration__to_continue">Per continuare a sostenere la tecnologia che è costruita per te, considera di diventare un contributore mensile.</string>
+  <!--Expired gift sheet make a monthly donation button-->
+  <!--Expired gift sheet not now button-->
+  <string name="ExpiredGiftSheetConfiguration__not_now">Non ora</string>
   <!--EOF-->
 </resources>

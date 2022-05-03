@@ -1142,10 +1142,8 @@
     <item quantity="one">%1$d lid</item>
     <item quantity="other">%1$d leden</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="one">%1$d lid (+%2$d útnûge)</item>
-    <item quantity="other">%1$d leden (+%2$d útnûge)</item>
-  </plurals>
+  <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d ekstra groep</item>
     <item quantity="other">%d ekstra groepen</item>
@@ -2093,9 +2091,6 @@
   <string name="preferences__help">Help</string>
   <string name="preferences__advanced">Avansearre</string>
   <string name="preferences__donate_to_signal">Oan Signal donearje</string>
-  <!--Preference label when someone is already a subscriber-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Moanlikse donaasje</string> -->
-  <!--Preference label for making a monthly donation to Signal-->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__privacy">Privacy</string>
   <string name="preferences__mms_user_agent">Mms-brûkersagent</string>
@@ -3447,12 +3442,18 @@
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Asto meardere badges hast, dan kinsto der ien kieze om foar oaren op dyn profyl wer te jaan.</string>
   <string name="BecomeASustainerFragment__get_badges">Troch Signal te stypjen fertsjinnesto badges om op dyn profyl wer te jaan.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal is in organisaasje sûnder winsteachmerk, sûnder advertinsjes en sûnder ynvestearders. Signal wurdt útslutend mooglik makke troch donaasjes fan minsken lykas do.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">Myn bydrage</string> -->
+  <!--Button label for creating a monthly donation-->
+  <!--Heading for more area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__more">Mear opsjes</string>
+  <!--Heading for receipts area of manage subscriptions page-->
+  <!--Heading for my subscription area of manage subscriptions page-->
   <string name="ManageDonationsFragment__manage_subscription">Moanlikse donaasje beheare</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__badges">Badges</string>
   <string name="ManageDonationsFragment__subscription_faq">Ynformaasje oer moanlikse donaasjes</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Flater by it opheljen fan ynformaasje oer moanlikse donaasjes.</string>
+  <!--Preference heading for other ways to donate-->
+  <!--Preference label to launch badge gifting-->
   <string name="BoostFragment__give_signal_a_boost">Help Signal mei in ienmalige bydrage</string>
   <!--Description text in boost sheet-->
   <string name="Boost__enter_custom_amount">Folje in sels keazen bedrach yn</string>
@@ -3491,6 +3492,10 @@
   <string name="DonationsErrors__your_payment">Dyn oerskriuwing koe net ferwurke wurde, dêrom is der gjin jild oermakke. Probearje it opnij.</string>
   <string name="DonationsErrors__still_processing">Wurdt noch ferwurke</string>
   <string name="DonationsErrors__couldnt_add_badge">Kin badge net tafoegje</string>
+  <!--Displayed when badge credential couldn\'t be verified-->
+  <!--Displayed when badge credential couldn\'t be verified-->
+  <!--Displayed as title when some generic error happens during gift badge sending-->
+  <!--Displayed as message when some generic error happens during gift badge sending-->
   <string name="DonationsErrors__your_badge_could_not">It is net slagge om de badge ta te foegjen oan dyn profyl, mar do hast miskien al wol betelle. Nim kontakt op mei stipe.</string>
   <string name="DonationsErrors__your_payment_is_still">Dy oerskriuwing wurdt noch ferwurke. Dit kin in pear minuten duorje ôfhinklik fan dyn ynternetferbining.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay is net beskikber</string>
@@ -3500,6 +3505,13 @@
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Dyn apparaat biedt gjin stipe foar Google Play, dêrom kinsto fia de app gjin moanlikse donaasje meitsje en kinsto gjin badge fertsjinje. Do kinst noch wel donearje fia de Signal-website.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Netwurkflater. Kontrolearje dat dyn apparaat mei it ynternet ferbûn is en probearje it opnij.</string>
   <string name="NetworkFailure__retry">Opnij probearje</string>
+  <!--Gift message view title-->
+  <!--Gift message view expiry information-->
+  <!--Gift badge redeem action label-->
+  <!--Gift badge view action label-->
+  <string name="GiftMessageView__view">Werjaan</string>
+  <!--Gift badge redeeming action label-->
+  <!--Gift badge redeemed label-->
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Probearje it fia in oare betellingsmetoade of nim kontakt op mei dyn bank om harren om mear ynformaasje te freegjen.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3658,14 +3670,6 @@
   <string name="NotificationProfileSelection__view_settings">Ynstellingen werjaan</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">Ynskeakele oant %1$s</string>
-  <!--Title for notification profile megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">Meldingsprofilen</string> -->
-  <!--Description for notification profile megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Untfang allinnich meldingen fan persoanen en groepen fan wa’tsto dat wolst, wannear’tsto dat wolst.</string> -->
-  <!--Call to action button to create a profile from megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">Meldingsprofyl oanmeitsje</string> -->
-  <!--Button to dismiss notification profile megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">No net</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">It iepenjen fan it bellûd-karmenu is mislearre.</string>
   <!--Description shown for the Signal Release Notes channel-->
@@ -3676,6 +3680,7 @@
   <string name="DonationReceiptListFragment__all">Alles</string>
   <!--Donation receipts recurring tab label-->
   <!--Donation receipts one-time tab label-->
+  <!--Donation receipts gift tab label-->
   <!--Donation receipts boost row label-->
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Details</string>
@@ -3743,6 +3748,7 @@
   <string name="StoryGroupReplyItem__delete">Fuortsmite</string>
   <!--Story settings page title-->
   <!--Story settings private stories heading-->
+  <!--Note at bottom of story settings regarding who can see private stories.-->
   <!--Option label for creating a new private story-->
   <!--Page title for My Story options-->
   <!--Section heading for story visibility-->
@@ -3824,6 +3830,8 @@
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <!--Toasted when the user externally shares to a text story successfully-->
   <!--Toasted when the user external share to a text story fails-->
+  <!--Displayed in a dialog to let the user select a given users story-->
+  <!--Displayed in a dialog to let the user select a given users profile photo-->
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Sensueromlieding útskeakelje?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -3837,5 +3845,35 @@
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <!--Tagline for gift row items-->
+  <!--Headline text on start fragment for gifting a badge-->
+  <!--Description text on start fragment for gifting a badge-->
+  <!--Action button label for start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__next">Folgjende</string>
+  <!--Title text on choose recipient page for badge gifting-->
+  <!--Title text on confirm gift page-->
+  <!--Heading text specifying who the gift will be sent to-->
+  <string name="GiftFlowConfirmationFragment__send_to">Ferstjoerd oan</string>
+  <!--Text explaining that gift will be sent to the chosen recipient-->
+  <!--Text explaining that this gift is a one time donation-->
+  <!--Hint for add message input-->
+  <string name="GiftFlowConfirmationFragment__add_a_message">In berjocht tafoegje</string>
+  <!--Title for sheet shown when opening a redeemed gift-->
+  <!--Title for sheet shown when opening a sent gift-->
+  <!--Description for sheet shown when opening a redeemed gift-->
+  <!--Description for sheet shown when opening a sent gift-->
+  <!--Primary action for pending gift sheet to redeem badge now-->
+  <!--Primary action for pending gift sheet to redeem badge later-->
+  <string name="ViewReceivedGiftSheet__not_now">No net</string>
+  <!--Dialog text while redeeming a gift-->
+  <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <!--Description text in gift thanks sheet-->
+  <!--Expired gift sheet title-->
+  <!--Expired gift sheet top description text-->
+  <!--Expired gift sheet bottom description text-->
+  <string name="ExpiredGiftSheetConfiguration__to_continue">Oerweagje moanlikse donaasjes yn te stellen om technology dy’t makke is foar dy yn stee fan foar it sammeljen fan gegevens stypje te bliuwen.</string>
+  <!--Expired gift sheet make a monthly donation button-->
+  <!--Expired gift sheet not now button-->
+  <string name="ExpiredGiftSheetConfiguration__not_now">No net</string>
   <!--EOF-->
 </resources>

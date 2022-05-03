@@ -1219,10 +1219,17 @@
     <item quantity="few">%1$d člana</item>
     <item quantity="other">%1$d članova</item>
   </plurals>
+  <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
   <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="one">%1$d član (+%2$d pozvano)</item>
-    <item quantity="few">%1$d člana (+%2$d pozvano)</item>
-    <item quantity="other">%1$d članova (+%2$d pozvano)</item>
+    <item quantity="one">%1$d član (%2$s)</item>
+    <item quantity="few">%1$d člana (%2$s)</item>
+    <item quantity="other">%1$d članova (%2$s)</item>
+  </plurals>
+  <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="one">+%1$d pozvan</item>
+    <item quantity="few">+%1$d pozvana</item>
+    <item quantity="other">+%1$d pozvano</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d dodatna grupa</item>
@@ -2211,10 +2218,6 @@
   <string name="preferences__help">Pomoć</string>
   <string name="preferences__advanced">Napredno</string>
   <string name="preferences__donate_to_signal">Donirajte za Signal</string>
-  <!--Preference label when someone is already a subscriber-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__subscription">Pretplata</string> -->
-  <!--Preference label for making a monthly donation to Signal-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__monthly_donation">Mjesečna donacija</string> -->
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Jednokratna donacija</string>
   <string name="preferences__privacy">Privatnost</string>
@@ -3211,6 +3214,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Kvalitet fotografije</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">Pozovite prijatelje</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">Pretplatnički broj kopiran u međuspremnik</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Račun</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Bit ćete podsjećani sve rjeđe i rjeđe</string>
@@ -3599,13 +3603,24 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kad posjedujete više od jedne značke, možete birati koju od njih želite prezentovati drugima na svom profilu.</string>
   <string name="BecomeASustainerFragment__get_badges">Nabavite značke za svoj profil podržavši Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal je neprofitna organizacija iza koje ne stoje oglašivači i investitori već je održavaju ljudi poput Vas.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__my_support">Moja podrška</string> -->
+  <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">Dajte mjesečnu donaciju</string>
+  <!--Heading for more area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__more">Više</string>
+  <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">Potvrde</string>
+  <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">Moja pretplata</string>
   <string name="ManageDonationsFragment__manage_subscription">Upravljaj pretplatom</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Priznanice za donaciju</string>
   <string name="ManageDonationsFragment__badges">Značke</string>
   <string name="ManageDonationsFragment__subscription_faq">Česta pitanja o pretplati</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Greška u obradi pretplate.</string>
+  <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">Drugi načini davanja</string>
+  <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">Poklonite značku</string>
   <string name="BoostFragment__give_signal_a_boost">Pojačajte Signal</string>
   <!--Description text in boost sheet-->
   <string name="BoostFragment__make_a_one_time">Uplatite jednokratnu donaciju i zaslužite značku Pojačivač na %1$d dana.</string>
@@ -3651,6 +3666,14 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="DonationsErrors__your_payment">Vašu uplatu nije bilo moguće obraditi i iznos nije naplaćen. Molimo, pokušajte ponovo.</string>
   <string name="DonationsErrors__still_processing">Još uvijek obrađujem</string>
   <string name="DonationsErrors__couldnt_add_badge">Nije bilo moguće dodati značku</string>
+  <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__failed_to_validate_badge">Neuspjela potvrda značke</string>
+  <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__could_not_validate">Potvrđivanje odgovora servera nije uspjelo. Molimo, kontaktirajte podršku.</string>
+  <!--Displayed as title when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__failed_to_send_gift_badge">Neuspjelo slanje značke kao poklona</string>
+  <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__could_not_send_gift_badge">Slanje značke kao poklona nije uspjelo. Molimo, kontaktirajte podršku.</string>
   <string name="DonationsErrors__your_badge_could_not">Vašu značku nije bilo moguće dodati na Vaš račun, ali je moguće da je uplata prošla. Molimo, kontaktirajte podršku.</string>
   <string name="DonationsErrors__your_payment_is_still">Vaša se uplata još obrađuje. To može potrajati nekoliko minuta, zavisno od kvaliteta Vaše konekcije.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay nedostupan</string>
@@ -3660,6 +3683,24 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Vaš uređaj ne podržava Google Pay i zato se ne možete pretplatiti i zaslužiti značku. I dalje možete podržati Signal kroz donaciju na našoj internet-stranici.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Mrežna greška. Provjerite svoju internet-konekciju i pokušajte ponovo.</string>
   <string name="NetworkFailure__retry">Pokušaj</string>
+  <string name="DonationsErrors__recipient_verification_failed">Ovjera primaoca nije uspjela.</string>
+  <string name="DonationsErrors__target_does_not_support_gifting">Cilj ne podržava poklanjanje.</string>
+  <!--Gift message view title-->
+  <string name="GiftMessageView__gift_badge">Značka poklon</string>
+  <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="one">Važi %1$d mjesec</item>
+    <item quantity="few">Važi %1$d mjeseca</item>
+    <item quantity="other">Važi %1$d mjeseci</item>
+  </plurals>
+  <!--Gift badge redeem action label-->
+  <string name="GiftMessageView__redeem">Prihvati</string>
+  <!--Gift badge view action label-->
+  <string name="GiftMessageView__view">Pregled</string>
+  <!--Gift badge redeeming action label-->
+  <string name="GiftMessageView__redeeming">Prihvaćam…</string>
+  <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">Prihvaćeno</string>
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Pokušajte koristiti drugi metod plaćanja ili kontaktirajte svoju banku za više informacija.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3818,14 +3859,6 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="NotificationProfileSelection__view_settings">Vidi podešavanja</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">Uključen do %1$s</string>
-  <!--Title for notification profile megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__notification_profiles">Profili obavještenja</string> -->
-  <!--Description for notification profile megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Primajte obavještenja samo od osoba i grupa od kojih želite.</string> -->
-  <!--Call to action button to create a profile from megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__create_a_profile">Kreirajte profil</string> -->
-  <!--Button to dismiss notification profile megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfilesMegaphone__not_now">Ne sada</string> -->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Neuspjelo otvaranje birača.</string>
   <!--Description shown for the Signal Release Notes channel-->
@@ -3838,6 +3871,8 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="DonationReceiptListFragment__recurring">Ponavljajuća</string>
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">Jednom</string>
+  <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">Poklon</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Pojačavajuća</string>
   <!--Donation receipts details title-->
@@ -3957,6 +3992,8 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="StorySettingsFragment__story_settings">Podešavanja priče</string>
   <!--Story settings private stories heading-->
   <string name="StorySettingsFragment__private_stories">Privatne priče</string>
+  <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Privatne priče mogu vidjeti samo osobe kojima ih dodijelite. Samo Vi možete vidjeti naziv priče.</string>
   <!--Option label for creating a new private story-->
   <string name="StorySettingsFragment__new_private_story">Nova privatna priča</string>
   <!--Page title for My Story options-->
@@ -4103,6 +4140,10 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="TextStoryPostCreationFragment__sent_story">Poslana priča</string>
   <!--Toasted when the user external share to a text story fails-->
   <string name="TextStoryPostCreationFragment__failed_to_send_story">Slanje priče nije uspjelo</string>
+  <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">Vidi priču</string>
+  <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">Vidi sliku profila</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Isključiti zaobilazak cenzure?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -4121,5 +4162,53 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Više</string>
   <string name="StoriesLinkPopup__visit_link">Posjeti link</string>
+  <!--Tagline for gift row items-->
+  <string name="GiftRowItem__send_a_gift_badge">Pošalji značku kao poklon</string>
+  <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">Poklonite značku</string>
+  <!--Description text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">Poklonite nekom značku uplativši donaciju za Signal u njegovo ili njeno ime. Oni će dobiti značku koju mogu prikazati na svojoj slici profila.</string>
+  <!--Action button label for start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__next">Dalje</string>
+  <!--Title text on choose recipient page for badge gifting-->
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Odaberi primaoca</string>
+  <!--Title text on confirm gift page-->
+  <string name="GiftFlowConfirmationFragment__confirm_gift">Potvrdite poklon</string>
+  <!--Heading text specifying who the gift will be sent to-->
+  <string name="GiftFlowConfirmationFragment__send_to">Pošalji za</string>
+  <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Vaš poklon bit će poslan primaocu kroz privatnu poruku. Napišite svoju poruku ispod.</string>
+  <!--Text explaining that this gift is a one time donation-->
+  <string name="GiftFlowConfirmationFragment__one_time_donation">Jednokratna donacija</string>
+  <!--Hint for add message input-->
+  <string name="GiftFlowConfirmationFragment__add_a_message">Napiši poruku</string>
+  <!--Title for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s poslao/la Vam je poklon</string>
+  <!--Title for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Hvala Vam za Vašu podršku!</string>
+  <!--Description for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Primili ste na poklon značku od %1$s! Pomozite u širenju svijesti o Signalu prikazavši ovu značku na svom profilu.</string>
+  <!--Description for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Poslali ste značku na poklon za %1$s. Kad je prihvati, moći će izabrati hoće li prikazati ili sakriti svoju značku.</string>
+  <!--Primary action for pending gift sheet to redeem badge now-->
+  <string name="ViewReceivedGiftSheet__redeem">Prihvati</string>
+  <!--Primary action for pending gift sheet to redeem badge later-->
+  <string name="ViewReceivedGiftSheet__not_now">Ne sada</string>
+  <!--Dialog text while redeeming a gift-->
+  <string name="ViewReceivedGiftSheet__redeeming_gift">Prihvatam poklon…</string>
+  <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <string name="ConversationFragment__you_can_redeem_your_badge_later">Svoju značku možete prihvatiti kasnije.</string>
+  <!--Description text in gift thanks sheet-->
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Poslali ste značku na poklon za %1$s. Kad je prihvati, moći će izabrati hoće li prikazati ili sakriti svoju značku.</string>
+  <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Značka koju ste primili na poklon istekla je</string>
+  <!--Expired gift sheet top description text-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Značka koju ste primili na poklon istekla je i više nije vidljiva za druge na Vašem profilu.</string>
+  <!--Expired gift sheet bottom description text-->
+  <string name="ExpiredGiftSheetConfiguration__to_continue">Da nastavite podržavati tehnologiju koja je kreirana radi Vas, razmislite o tome da postanete mjesečni pokrovitelj.</string>
+  <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Dajte mjesečnu donaciju</string>
+  <!--Expired gift sheet not now button-->
+  <string name="ExpiredGiftSheetConfiguration__not_now">Ne sada</string>
   <!--EOF-->
 </resources>
