@@ -828,7 +828,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     if (menuState.shouldShowDeleteAction()) {
       items.add(new ActionItem(R.drawable.ic_delete_tinted_24, getResources().getString(R.string.conversation_selection__menu_delete), () -> {
         handleDeleteMessages(selectedParts);
-        actionMode.finish();
       }));
     }
 
@@ -1004,6 +1003,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     builder.setCancelable(true);
 
     builder.setPositiveButton(R.string.ConversationFragment_delete_for_me, (dialog, which) -> {
+      closeActionModeIfOpen();
       new ProgressDialogAsyncTask<Void, Void, Void>(getActivity(),
                                                     R.string.ConversationFragment_deleting,
                                                     R.string.ConversationFragment_deleting_messages)
@@ -1033,7 +1033,10 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     });
 
     if (RemoteDeleteUtil.isValidSend(messageRecords, System.currentTimeMillis())) {
-      builder.setNeutralButton(R.string.ConversationFragment_delete_for_everyone, (dialog, which) -> handleDeleteForEveryone(messageRecords));
+      builder.setNeutralButton(R.string.ConversationFragment_delete_for_everyone, (dialog, which) -> {
+        closeActionModeIfOpen();
+        handleDeleteForEveryone(messageRecords);
+      });
     }
 
     builder.setNegativeButton(android.R.string.cancel, null);
