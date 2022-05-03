@@ -177,7 +177,6 @@ public class ConversationTitleView extends RelativeLayout {
     this.title.setText(displayName);
     this.subtitle.setText(null);
     updateSubtitleVisibility();
-    updateVerifiedSubtitleVisibility();
   }
 
   private void updateVerifiedSubtitleVisibility() {
