@@ -507,9 +507,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   public void onNewIntent() {
     Log.d(TAG, "[onNewIntent]");
 
-    if (actionMode != null) {
-      actionMode.finish();
-    }
+    closeActionModeIfOpen();
 
     long oldThreadId = threadId;
 
@@ -1131,6 +1129,12 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
                    Toast.LENGTH_LONG).show();
   }
 
+  private void closeActionModeIfOpen() {
+    if (actionMode != null) {
+      actionMode.finish();
+    }
+  }
+
   public long stageOutgoingMessage(OutgoingMediaMessage message) {
     MessageRecord messageRecord = MmsDatabase.readerFor(message, threadId).getCurrent();
 
@@ -1368,9 +1372,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
   @Override
   public void onFinishForwardAction() {
-    if (actionMode != null) {
-      actionMode.finish();
-    }
+    closeActionModeIfOpen();
   }
 
   @Override
