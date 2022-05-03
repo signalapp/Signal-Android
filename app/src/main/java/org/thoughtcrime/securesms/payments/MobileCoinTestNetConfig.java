@@ -39,7 +39,7 @@ final class MobileCoinTestNetConfig extends MobileCoinConfig {
 
   @Override
   @NonNull Uri getFogUri() {
-    return Uri.parse("fog://fog-rpt-stg.namda.net");
+    return Uri.parse("fog://service.fog.mob.staging.namda.net");
   }
 
   @Override
