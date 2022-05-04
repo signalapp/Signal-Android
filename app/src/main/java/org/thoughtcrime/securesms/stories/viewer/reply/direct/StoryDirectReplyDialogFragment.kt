@@ -74,7 +74,7 @@ class StoryDirectReplyDialogFragment :
         lifecycleDisposable += viewModel.sendReply(composer.consumeInput().first)
           .observeOn(AndroidSchedulers.mainThread())
           .subscribe {
-            Toast.makeText(requireContext(), R.string.StoryDirectReplyDialogFragment__reply_sent, Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), R.string.StoryDirectReplyDialogFragment__sending_reply, Toast.LENGTH_LONG).show()
             dismissAllowingStateLoss()
           }
       }
@@ -195,7 +195,6 @@ class StoryDirectReplyDialogFragment :
             putString(REQUEST_EMOJI, emoji)
           }
         )
-        Toast.makeText(requireContext(), R.string.StoryDirectReplyDialogFragment__reaction_sent, Toast.LENGTH_LONG).show()
         dismissAllowingStateLoss()
       }
   }

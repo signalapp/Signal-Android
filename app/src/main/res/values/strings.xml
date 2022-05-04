@@ -4689,9 +4689,7 @@
     <!-- Displayed in story caption when content is longer than 5 lines -->
     <string name="StoryViewerPageFragment__see_more">… See More</string>
     <!-- Displayed in toast after sending a direct reply -->
-    <string name="StoryDirectReplyDialogFragment__reply_sent">Reply sent</string>
-    <!-- Displayed in toast after sending a direct reaction -->
-    <string name="StoryDirectReplyDialogFragment__reaction_sent">Reaction sent</string>
+    <string name="StoryDirectReplyDialogFragment__sending_reply">Sending reply…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
     <string name="StorySlateView__this_story_is_no_longer_available">This story is no longer available.</string>
     <!-- Displayed in the viewer when the network is not available -->
