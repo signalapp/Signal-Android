@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.badges.gifts.viewgift.sent
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.gifts.viewgift.ViewGiftRepository
@@ -55,7 +56,7 @@ class ViewSentGiftBottomSheet : DSLSettingsBottomSheetFragment() {
     BadgeDisplay112.register(adapter)
 
     lifecycleDisposable.bindTo(viewLifecycleOwner)
-    lifecycleDisposable += viewModel.state.subscribe { state ->
+    lifecycleDisposable += viewModel.state.observeOn(AndroidSchedulers.mainThread()).subscribe { state ->
       adapter.submitList(getConfiguration(state).toMappingModelList())
     }
   }

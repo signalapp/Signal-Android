@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.badges.gifts.thanks
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.models.Badge
@@ -49,7 +50,7 @@ class GiftThanksSheet : DSLSettingsBottomSheetFragment() {
     BadgePreview.register(adapter)
 
     lifecycleDisposable.bindTo(viewLifecycleOwner)
-    lifecycleDisposable += Recipient.observable(recipientId).subscribe {
+    lifecycleDisposable += Recipient.observable(recipientId).observeOn(AndroidSchedulers.mainThread()).subscribe {
       adapter.submitList(getConfiguration(it).toMappingModelList())
     }
   }

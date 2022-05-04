@@ -104,7 +104,7 @@ class ViewReceivedGiftBottomSheet : DSLSettingsBottomSheetFragment() {
         onRedemptionError(donationError)
       }
 
-    lifecycleDisposable += viewModel.state.subscribe { state ->
+    lifecycleDisposable += viewModel.state.observeOn(AndroidSchedulers.mainThread()).subscribe { state ->
       adapter.submitList(getConfiguration(state).toMappingModelList())
     }
   }

@@ -24,6 +24,7 @@ import org.whispersystems.signalservice.internal.EmptyResponse;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -179,6 +180,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
                                                              markedMessageInfo.getSyncMessageId().getRecipientId(),
                                                              markedMessageInfo.getSyncMessageId().getTimetamp(),
                                                              markedMessageInfo.getMessageId()));
+        MultiDeviceViewedUpdateJob.enqueue(Collections.singletonList(markedMessageInfo.getSyncMessageId()));
       }
     }
   }
