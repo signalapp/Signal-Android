@@ -444,6 +444,9 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
       return
     }
 
+    val recipientId = getRecipientId(distributionListId)!!
+    SignalDatabase.recipients.updateStorageId(recipientId, update.new.id.raw)
+
     if (update.new.deletedAtTimestamp > 0L) {
       if (distributionId.asUuid().equals(DistributionId.MY_STORY.asUuid())) {
         Log.w(TAG, "Refusing to delete My Story.")
