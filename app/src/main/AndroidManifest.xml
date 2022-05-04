@@ -403,6 +403,7 @@
 
     <activity
         android:name=".stories.viewer.StoryViewerActivity"
+        android:screenOrientation="portrait"
         android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
         android:theme="@style/TextSecure.DarkNoActionBar.StoryViewer"
         android:windowSoftInputMode="stateAlwaysHidden|adjustNothing" />
