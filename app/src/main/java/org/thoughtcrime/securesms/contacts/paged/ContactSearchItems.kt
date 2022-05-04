@@ -93,7 +93,13 @@ object ContactSearchItems {
         model.story.viewerCount
       }
 
-      number.text = context.resources.getQuantityString(R.plurals.SelectViewersFragment__d_viewers, count, count)
+      val pluralId = when {
+        model.story.recipient.isGroup -> R.plurals.ContactSearchItems__group_story_d_viewers
+        model.story.recipient.isMyStory -> R.plurals.SelectViewersFragment__d_viewers
+        else -> R.plurals.ContactSearchItems__private_story_d_viewers
+      }
+
+      number.text = context.resources.getQuantityString(pluralId, count, count)
     }
   }
 
@@ -159,8 +165,15 @@ object ContactSearchItems {
     protected open fun bindNumberField(model: T) {
       number.visible = getRecipient(model).isGroup
       if (getRecipient(model).isGroup) {
-        val members = getRecipient(model).participants.size
-        number.text = context.resources.getQuantityString(R.plurals.ContactSelectionListFragment_d_members, members, members)
+        number.text = getRecipient(model).participants
+          .take(10)
+          .sortedWith(IsSelfComparator()).joinToString(", ") {
+            if (it.isSelf) {
+              context.getString(R.string.ConversationTitleView_you)
+            } else {
+              it.getShortDisplayName(context)
+            }
+          }
       }
     }
 
@@ -244,6 +257,15 @@ object ContactSearchItems {
   private class ExpandViewHolder(itemView: View, private val expandListener: (ContactSearchData.Expand) -> Unit) : MappingViewHolder<ExpandModel>(itemView) {
     override fun bind(model: ExpandModel) {
       itemView.setOnClickListener { expandListener.invoke(model.expand) }
+    }
+  }
+
+  private class IsSelfComparator : Comparator<Recipient> {
+    override fun compare(lhs: Recipient?, rhs: Recipient?): Int {
+      val isLeftSelf = lhs?.isSelf == true
+      val isRightSelf = rhs?.isSelf == true
+
+      return if (isLeftSelf == isRightSelf) 0 else if (isLeftSelf) 1 else -1
     }
   }
 }

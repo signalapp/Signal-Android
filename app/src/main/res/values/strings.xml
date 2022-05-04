@@ -4774,6 +4774,16 @@
     <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Make a monthly donation</string>
     <!-- Expired gift sheet not now button -->
     <string name="ExpiredGiftSheetConfiguration__not_now">Not now</string>
+    <!-- Label under name for private stories -->
+    <plurals name="ContactSearchItems__private_story_d_viewers">
+        <item quantity="one">Private Story · %1$d viewer</item>
+        <item quantity="other">Private Story · %1$d viewers</item>
+    </plurals>
+    <!-- Label under name for group stories -->
+    <plurals name="ContactSearchItems__group_story_d_viewers">
+        <item quantity="one">Group Story · %1$d viewer</item>
+        <item quantity="other">Group Story · %1$d viewers</item>
+    </plurals>
 
     <!-- EOF -->
 

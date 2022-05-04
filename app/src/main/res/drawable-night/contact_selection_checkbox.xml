@@ -16,7 +16,6 @@
             <item>
                 <shape android:shape="oval">
                     <solid android:color="@color/core_ultramarine" />
-                    <stroke android:width="2dp" android:color="@color/signal_background_primary" />
                 </shape>
             </item>
             <item android:drawable="@drawable/ic_check_outline_22" />
