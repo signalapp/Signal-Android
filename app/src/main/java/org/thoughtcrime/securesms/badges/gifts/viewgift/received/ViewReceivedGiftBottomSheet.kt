@@ -6,7 +6,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -105,7 +104,7 @@ class ViewReceivedGiftBottomSheet : DSLSettingsBottomSheetFragment() {
         onRedemptionError(donationError)
       }
 
-    LiveDataReactiveStreams.fromPublisher(viewModel.state).observe(viewLifecycleOwner) { state ->
+    lifecycleDisposable += viewModel.state.subscribe { state ->
       adapter.submitList(getConfiguration(state).toMappingModelList())
     }
   }

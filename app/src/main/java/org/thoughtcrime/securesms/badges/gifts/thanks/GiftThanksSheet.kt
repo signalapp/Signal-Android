@@ -48,6 +48,7 @@ class GiftThanksSheet : DSLSettingsBottomSheetFragment() {
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
     BadgePreview.register(adapter)
 
+    lifecycleDisposable.bindTo(viewLifecycleOwner)
     lifecycleDisposable += Recipient.observable(recipientId).subscribe {
       adapter.submitList(getConfiguration(it).toMappingModelList())
     }

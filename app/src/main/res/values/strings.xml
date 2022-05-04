@@ -1769,6 +1769,12 @@
     <string name="ThreadRecord_file">File</string>
     <string name="ThreadRecord_video">Video</string>
     <string name="ThreadRecord_chat_session_refreshed">Chat session refreshed</string>
+    <!-- Displayed in the notification when the user is sent a gift -->
+    <string name="ThreadRecord__you_received_a_gift">You received a gift</string>
+    <!-- Displayed in the notification when the user sends a gift -->
+    <string name="ThreadRecord__you_sent_a_gift">You sent a gift</string>
+    <!-- Displayed in the notification when the user has opened a received gift -->
+    <string name="ThreadRecord__you_redeemed_a_gift_badge">You redeemed a gift badge</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal update</string>

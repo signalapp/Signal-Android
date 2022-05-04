@@ -44,6 +44,7 @@ data class GiftBadgeModel(val giftBadge: GiftBadge) : Key {
   }
 
   override fun updateDiskCacheKey(messageDigest: MessageDigest) {
+    messageDigest.update(giftBadge.toByteArray())
   }
 
   class Fetcher(
