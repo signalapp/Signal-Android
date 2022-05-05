@@ -42,7 +42,6 @@ import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationViewMod
 import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendRepository
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.Stories
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.visible
 
@@ -209,7 +208,6 @@ class MediaSelectionActivity :
 
   private fun canDisplayStorySwitch(): Boolean {
     return Stories.isFeatureEnabled() &&
-      FeatureFlags.storiesTextPosts() &&
       isCameraFirst() &&
       !viewModel.hasSelectedMedia() &&
       destination == MediaSelectionDestination.ChooseAfterMediaSelection

@@ -89,7 +89,6 @@ public final class FeatureFlags {
   private static final String CDSH                              = "android.cdsh";
   private static final String STORIES                           = "android.stories.2";
   private static final String STORIES_TEXT_FUNCTIONS            = "android.stories.text.functions";
-  private static final String STORIES_TEXT_POSTS                = "android.stories.text.posts.2";
   private static final String HARDWARE_AEC_BLOCKLIST_MODELS     = "android.calling.hardwareAecBlockList";
   private static final String SOFTWARE_AEC_BLOCKLIST_MODELS     = "android.calling.softwareAecBlockList";
   private static final String USE_HARDWARE_AEC_IF_OLD           = "android.calling.useHardwareAecIfOlderThanApi29";
@@ -141,7 +140,6 @@ public final class FeatureFlags {
       DONOR_BADGES_DISPLAY,
       STORIES,
       STORIES_TEXT_FUNCTIONS,
-      STORIES_TEXT_POSTS,
       HARDWARE_AEC_BLOCKLIST_MODELS,
       SOFTWARE_AEC_BLOCKLIST_MODELS,
       USE_HARDWARE_AEC_IF_OLD,
@@ -462,15 +460,6 @@ public final class FeatureFlags {
    */
   public static boolean storiesTextFunctions() {
     return getBoolean(STORIES_TEXT_FUNCTIONS, false);
-  }
-
-  /**
-   * Whether the user supports sending Story text posts
-   *
-   * NOTE: This feature is still under ongoing development, do not enable.
-   */
-  public static boolean storiesTextPosts() {
-    return getBoolean(STORIES_TEXT_POSTS, false);
   }
 
   /**

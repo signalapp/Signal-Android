@@ -260,7 +260,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     View                   toggleSpacer           = requireView().findViewById(R.id.toggle_spacer);
 
     if (toggleSpacer != null) {
-      if ( Stories.isFeatureEnabled() && FeatureFlags.storiesTextPosts()) {
+      if ( Stories.isFeatureEnabled()) {
         StoryDisplay storyDisplay = StoryDisplay.Companion.getStoryDisplay(getResources().getDisplayMetrics().widthPixels, getResources().getDisplayMetrics().heightPixels);
         if (storyDisplay == StoryDisplay.SMALL) {
           toggleSpacer.setVisibility(View.VISIBLE);
