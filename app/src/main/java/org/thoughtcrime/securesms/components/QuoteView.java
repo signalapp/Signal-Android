@@ -301,7 +301,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
       mediaDescriptionText.setText(R.string.QuoteView_no_longer_available);
       if (storyReaction != null) {
         missingStoryReaction.setVisibility(View.VISIBLE);
-        missingStoryReaction.setImageEmoji(body);
+        missingStoryReaction.setImageEmoji(storyReaction);
       } else {
         missingStoryReaction.setVisibility(View.GONE);
       }
