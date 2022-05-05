@@ -54,7 +54,7 @@ dependencyResolutionManagement {
 
             // Google
             alias('google-protobuf-javalite').to('com.google.protobuf:protobuf-javalite:3.11.4')
-            alias('google-libphonenumber').to('com.googlecode.libphonenumber:libphonenumber:8.12.42')
+            alias('google-libphonenumber').to('com.googlecode.libphonenumber:libphonenumber:8.12.48')
             alias('google-play-services-maps').to('com.google.android.gms:play-services-maps:16.1.0')
             alias('google-play-services-auth').to('com.google.android.gms:play-services-auth:16.0.1')
             alias('google-play-services-wallet').to('com.google.android.gms:play-services-wallet:18.1.3')
