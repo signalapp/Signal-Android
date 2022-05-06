@@ -6,9 +6,12 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
+import android.graphics.drawable.Drawable
 import android.provider.Settings
 import android.view.animation.AccelerateDecelerateInterpolator
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.toRect
 import androidx.core.graphics.withSave
 import androidx.core.graphics.withTranslation
 import androidx.core.view.children
@@ -33,17 +36,21 @@ class OpenableGiftItemDecoration(context: Context) : RecyclerView.ItemDecoration
   private val animationState = mutableMapOf<Long, GiftAnimationState>()
 
   private val rect = RectF()
-  private val lineWidth = DimensionUnit.DP.toPixels(24f).toInt()
+  private val lineWidth = DimensionUnit.DP.toPixels(16f).toInt()
 
   private val boxPaint = Paint().apply {
     isAntiAlias = true
     color = ContextCompat.getColor(context, R.color.core_ultramarine)
   }
 
-  private val ribbonPaint = Paint().apply {
+  private val bowPaint = Paint().apply {
     isAntiAlias = true
     color = Color.WHITE
   }
+
+  private val bowWidth = DimensionUnit.DP.toPixels(80f)
+  private val bowHeight = DimensionUnit.DP.toPixels(60f)
+  private val bowDrawable: Drawable = AppCompatResources.getDrawable(context, R.drawable.ic_gift_bow)!!
 
   override fun onDestroy(owner: LifecycleOwner) {
     super.onDestroy(owner)
@@ -124,7 +131,7 @@ class OpenableGiftItemDecoration(context: Context) : RecyclerView.ItemDecoration
       projection.y + projection.height
     )
 
-    canvas.drawRect(rect, ribbonPaint)
+    canvas.drawRect(rect, bowPaint)
 
     rect.set(
       projection.x,
@@ -133,18 +140,23 @@ class OpenableGiftItemDecoration(context: Context) : RecyclerView.ItemDecoration
       projection.y + (projection.height / 2) + lineWidth / 2
     )
 
-    canvas.drawRect(rect, ribbonPaint)
+    canvas.drawRect(rect, bowPaint)
   }
 
   private fun drawGiftBow(canvas: Canvas, projection: Projection) {
     rect.set(
-      projection.x + (projection.width / 2) - lineWidth,
-      projection.y + (projection.height / 2) - lineWidth,
-      projection.x + (projection.width / 2) + lineWidth,
-      projection.y + (projection.height / 2) + lineWidth
+      projection.x + (projection.width / 2) - (bowWidth / 2),
+      projection.y,
+      projection.x + (projection.width / 2) + (bowWidth / 2),
+      projection.y + bowHeight
     )
 
-    canvas.drawRect(rect, ribbonPaint)
+    val padTop = (projection.height - rect.height()) * (48f / 89f)
+
+    bowDrawable.bounds = rect.toRect()
+    canvas.withTranslation(y = padTop) {
+      bowDrawable.draw(canvas)
+    }
   }
 
   private fun startShakeAnimation(child: OpenableGift) {
