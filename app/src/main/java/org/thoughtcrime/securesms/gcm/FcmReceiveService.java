@@ -1,12 +1,10 @@
 package org.thoughtcrime.securesms.gcm;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -18,6 +16,7 @@ import org.thoughtcrime.securesms.jobs.SubmitRateLimitPushChallengeJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.registration.PushChallengeRequest;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.NetworkUtil;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -31,11 +30,12 @@ public class FcmReceiveService extends FirebaseMessagingService {
   @Override
   public void onMessageReceived(RemoteMessage remoteMessage) {
     Log.i(TAG, String.format(Locale.US,
-                             "onMessageReceived() ID: %s, Delay: %d, Priority: %d, Original Priority: %d",
+                             "onMessageReceived() ID: %s, Delay: %d, Priority: %d, Original Priority: %d, Network: %s",
                              remoteMessage.getMessageId(),
                              (System.currentTimeMillis() - remoteMessage.getSentTime()),
                              remoteMessage.getPriority(),
-                             remoteMessage.getOriginalPriority()));
+                             remoteMessage.getOriginalPriority(),
+                             NetworkUtil.getNetworkStatus(this)));
 
     String registrationChallenge = remoteMessage.getData().get("challenge");
     String rateLimitChallenge    = remoteMessage.getData().get("rateLimitChallenge");

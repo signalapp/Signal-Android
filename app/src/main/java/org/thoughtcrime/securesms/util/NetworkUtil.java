@@ -2,7 +2,10 @@ package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.telephony.TelephonyManager;
 
 import androidx.annotation.NonNull;
@@ -38,7 +41,7 @@ public final class NetworkUtil {
     if (SignalStore.internalValues().callingBandwidthMode() != CallManager.BandwidthMode.NORMAL) {
       return SignalStore.internalValues().callingBandwidthMode();
     }
-    
+
     return useLowBandwidthCalling(context, networkAdapter) ? CallManager.BandwidthMode.LOW : CallManager.BandwidthMode.NORMAL;
   }
 
@@ -75,6 +78,22 @@ public final class NetworkUtil {
       }
     } else {
       return "UNKNOWN";
+    }
+  }
+
+  public static @NonNull NetworkStatus getNetworkStatus(@NonNull Context context) {
+    ConnectivityManager connectivityManager = ServiceUtil.getConnectivityManager(context);
+
+    if (Build.VERSION.SDK_INT >= 23) {
+      Network             network      = connectivityManager.getActiveNetwork();
+      NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(network);
+
+      boolean onVpn        = capabilities != null && capabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN);
+      boolean isNotMetered = capabilities == null || capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_METERED);
+
+      return new NetworkStatus(onVpn, !isNotMetered);
+    } else {
+      return new NetworkStatus(false, false);
     }
   }
 
