@@ -141,9 +141,9 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
             findNavController().safeNavigate(R.id.action_appSettingsFragment_to_paymentsActivity)
           }
         )
-      }
 
-      dividerPref()
+        dividerPref()
+      }
 
       clickPref(
         title = DSLSettingsText.from(R.string.preferences__help),
