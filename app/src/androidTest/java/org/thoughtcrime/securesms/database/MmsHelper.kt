@@ -39,12 +39,13 @@ object MmsHelper {
       emptyList(),
       emptyList(),
       emptySet(),
-      emptySet()
+      emptySet(),
+      null
     )
 
     return insert(
       message = message,
-      threadId = threadId,
+      threadId = threadId
     )
   }
 
