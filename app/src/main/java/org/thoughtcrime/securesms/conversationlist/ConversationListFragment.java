@@ -269,9 +269,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       cameraFab = view.findViewById(R.id.camera_fab_old);
     }
 
-    Toolbar toolbar = getToolbar(view);
-    toolbar.setVisibility(View.VISIBLE);
-
     fab.show();
     cameraFab.show();
 

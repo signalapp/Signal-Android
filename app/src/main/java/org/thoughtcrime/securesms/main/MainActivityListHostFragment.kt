@@ -39,6 +39,8 @@ import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.TopToastPopup
 import org.thoughtcrime.securesms.util.TopToastPopup.Companion.show
 import org.thoughtcrime.securesms.util.Util
+import org.thoughtcrime.securesms.util.runHideAnimation
+import org.thoughtcrime.securesms.util.runRevealAnimation
 import org.thoughtcrime.securesms.util.views.Stub
 import org.thoughtcrime.securesms.util.visible
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
@@ -147,16 +149,20 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
   }
 
   private fun presentToolbarForConversationListFragment() {
+    if (_basicToolbar.resolved() && _basicToolbar.get().visible) {
+      _toolbar.runRevealAnimation(R.anim.slide_to_end)
+    }
+
     _toolbar.visible = true
     _searchAction.visible = true
     if (_basicToolbar.resolved()) {
-      _basicToolbar.get().visible = false
+      _basicToolbar.get().runHideAnimation(R.anim.slide_from_start)
     }
   }
 
   private fun presentToolbarForConversationListArchiveFragment() {
-    _toolbar.visible = false
-    _basicToolbar.get().visible = true
+    _toolbar.runHideAnimation(R.anim.slide_to_start)
+    _basicToolbar.get().runRevealAnimation(R.anim.slide_from_end)
   }
 
   private fun presentToolbarForStoriesLandingFragment() {
