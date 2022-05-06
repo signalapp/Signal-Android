@@ -164,7 +164,9 @@
   <string name="ContactsCursorLoader_phone_number_search">Sykje op telefoannûmer</string>
   <string name="ContactsCursorLoader_username_search">Sykje op brûkersnamme</string>
   <!--Label for my stories when selecting who to send media to-->
+  <string name="ContactsCursorLoader_my_stories">Myn ferhalen</string>
   <!--Action for creating a new story-->
+  <string name="ContactsCursorLoader_new_story">Nij ferhaal</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Berjocht stjoere nei %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-oprop %s</string>
@@ -317,8 +319,11 @@
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s ynskeakele</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">Fersiken blokkearje?</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s sil net langer fia de groepsferwizing lid wurde kinne fan dizze groep en ek net in fersyk dwaan kinne om lid te wurden fan de groep. Dyjinge kin dan noch wol lid wurde fia in útnûging.</string>
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">Fersiken blokkearje</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">Annulearje</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -421,8 +426,11 @@
   <string name="RestoreBackupFragment__choose_folder">Map kieze</string>
   <string name="RestoreBackupFragment__not_now">No net</string>
   <!--Couldn\'t find the selected backup-->
+  <string name="RestoreBackupFragment__backup_not_found">Reservekopy net fûn.</string>
   <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">Reservekopy koe net lêzen wurde.</string>
   <!--Backup has an unsupported file extension-->
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">Reservekopy hat ferkearde ekstinsje.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Reservekopyen meitsje</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Reservekopyen wurde fersifere mei in wachtwurd en wurde allinnich offline op dyn eigen apparaat bewarre. Asto it meitsjen fan reservekopyen ynskeakelest makket Signal automatysk elke dei in nije reservekopy fan al dyn petearen en media. Allinnich de twa meast resinte slagge reservekopyen bliuwe bewarre, âldere reservekopyen wurde oerskreaun.</string>
@@ -756,9 +764,13 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Der is in netwurkflater bard.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Dizze groepskeppeling is net aktyf</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Kin net lid wurde fan de groep</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Do kinst net mei in groepsferwizing lid wurde fan dizze groep, omdatsto troch in behearder út dizze groep fuortsmiten bist. </string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Dizze groepsferwizing is net langer jildich.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">Flater by groepsferwizing</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Wolsto lid wurde fan dizze groep en dyn namme en foto mei de oare leden diele?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">In behearder fan dizze groep moat earst dyn fersyk om lid te wurden goedkarre eardatsto lid wurde kinst fan dizze groep. Wannear\'tsto fersikest om lid te wurden sille dyn profylnamme, -foto en -omskriuwing daliks sichtber wêze foar de groepsleden.</string>
@@ -1746,6 +1758,7 @@
   <string name="ConversationUpdateItem_enable_call_notifications">Opropmeldingen ynskeakelje</string>
   <string name="ConversationUpdateItem_update_contact">Kontaktpersoan bywurkje</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">Fersiken blokkearje</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Do hast mei dizze persoan gjin mienskiplike groep: tink goed nei oer dit petearfersyk.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Der is yn dizze groep gjin lid mei wa’tsto al in petear fierst: tink goed nei oer dizze útnûging.</string>
   <string name="ConversationUpdateItem_view">Werjaan</string>
@@ -3692,27 +3705,37 @@
   <!--Donation receipts amount title-->
   <!--Donation receipts thanks-->
   <!--Donation receipt type-->
+  <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Petearen</string>
   <!--Label for Stories tab in home app screen-->
+  <string name="ConversationListTabs__stories">Ferhalen</string>
   <!--String for counts above 99 in conversation list tabs-->
+  <string name="ConversationListTabs__99p">99+</string>
   <!--Title for "My Stories" row item in Stories landing page-->
+  <string name="StoriesLandingFragment__my_stories">Myn ferhalen</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
+  <string name="StoriesLandingFragment__add_a_story">In ferhaal tafoegje</string>
   <!--Displayed when there are no stories to display-->
   <!--Context menu option to hide a story-->
   <!--Context menu option to unhide a story-->
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">Trochstjoere</string>
   <!--Context menu option to share a story-->
+  <string name="StoriesLandingItem__share">Trochstjoere…</string>
   <!--Context menu option to go to story chat-->
+  <string name="StoriesLandingItem__go_to_chat">Petear iepenje</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Dwaande mei ferstjoeren…</string>
   <!--Label when multiple stories are pending sending-->
+  <string name="StoriesLandingItem__sending_d">%1$d oplade…</string>
   <!--Label when a story fails to send-->
   <string name="StoriesLandingItem__send_failed">Ferstjoeren is mislearre</string>
   <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">Tik om opnij te probearjen</string>
   <!--Title of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__hide_story">Ferhaal ferstopje?</string>
   <!--Message of dialog confirming decision to hide a story-->
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">Ferstopje</string>
@@ -3778,6 +3801,7 @@
   <string name="EditPrivateStoryNameFragment__save">Net fersifere bewarje</string>
   <!--Displayed in text post creator before user enters text-->
   <!--Button label for changing font when creating a text post-->
+  <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
   <!--Displayed in text post creator when prompting user to enter text-->
   <!--Content description for \'done\' button when adding text to a story post-->
   <!--Text label for media selection toggle-->
@@ -3804,9 +3828,14 @@
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">Folgjende</string>
   <!--New story viewer selection screen title as recipients are selected-->
+  <plurals name="SelectViewersFragment__d_viewers">
+    <item quantity="one">%1$d persoan</item>
+    <item quantity="other">%1$d persoanen</item>
+  </plurals>
   <!--Name story screen title-->
   <!--Name story screen label hint-->
   <!--Name story screen viewers subheading-->
+  <string name="CreateStoryWithViewersFragment__viewers">Persoanen</string>
   <!--Name story screen create button label-->
   <string name="CreateStoryWithViewersFragment__create">Oanmeitsje</string>
   <!--Name story screen error when save attempted with no label-->

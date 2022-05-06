@@ -1164,7 +1164,15 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
     <item quantity="other">%1$d medlemmar</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d medlem (%2$s)</item>
+    <item quantity="other">%1$d medlemmar (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="one">+%1$d invitert</item>
+    <item quantity="other">+%1$d inviterte</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d gruppe til</item>
     <item quantity="other">%d grupper til</item>
@@ -3112,6 +3120,7 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Bildekvalitet</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">Inviter vennane dine</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">Kopierte abonnent-id-en til utklippstavla.</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Konto</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Du blir spurd sjeldnare over tid</string>
@@ -3503,10 +3512,13 @@ Sjekkar igjen no …</string>
   <string name="BecomeASustainerFragment__get_badges">Få merke på profilen din ved å støtta Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal er ein ideell organisasjon utan reklamefinansiering eller investorar, berre støtta av slike som deg.</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">Gi ein månadleg donasjon</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">Meir</string>
   <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">Kvitteringar</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">Mitt abonnement</string>
   <string name="ManageDonationsFragment__manage_subscription">Handter abonnement</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Donasjonskvitteringar</string>
@@ -3514,9 +3526,12 @@ Sjekkar igjen no …</string>
   <string name="ManageDonationsFragment__subscription_faq">Ofte spurde spørsmål om abonnement</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Klarte ikkje henta abonnement</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">Andre måtar å gi på</string>
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">Gje eit merke i gåve</string>
   <string name="BoostFragment__give_signal_a_boost">Gi Signal ein auke</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Gje ein enkeltdonasjon og få Auke-merket i %1$d dagar.</string>
   <string name="Boost__enter_custom_amount">Vel beløp sjølv</string>
   <string name="Boost__one_time_contribution">Enkeltbidrag</string>
   <string name="MySupportPreference__add_a_signal_boost">Få ein Signal-auke</string>
@@ -3560,9 +3575,13 @@ Sjekkar igjen no …</string>
   <string name="DonationsErrors__still_processing">Behandlar enno</string>
   <string name="DonationsErrors__couldnt_add_badge">Klarte ikkje legga til merke</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__failed_to_validate_badge">Klarte ikkje stadfesta merket</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__could_not_validate">Klarte ikkje stadfesta svaret frå tenaren. Ta kontakt med support.</string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__failed_to_send_gift_badge">Klarte ikkje å senda gåvemerket</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__could_not_send_gift_badge">Klarte ikkje å senda gåvemerket. Ta kontakt med support.</string>
   <string name="DonationsErrors__your_badge_could_not">Klarte ikkje legga til merket på kontoen din, men beløpet kan ha bli trukke. Ta kontakt med brukarstøtte.</string>
   <string name="DonationsErrors__your_payment_is_still">Me behandlar betalinga di. Dette kan ta nokre minutt avhengig av tilkoplinga di.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay er utilgjengeleg</string>
@@ -3572,13 +3591,23 @@ Sjekkar igjen no …</string>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Eininga di støttar ikkje Google Pay, så du kan ikkje abonnera for å få eit merke. Du kan likevel støtta Signal ved å donera via nettsidene våre.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Nettverksfeil. Sjekk tilkoplinga di og prøv igjen.</string>
   <string name="NetworkFailure__retry">Prøv igjen</string>
+  <string name="DonationsErrors__recipient_verification_failed">Klarte ikkje stadfesta mottakaren.</string>
+  <string name="DonationsErrors__target_does_not_support_gifting">Mottakaren har ikkje støtte for gåver.</string>
   <!--Gift message view title-->
+  <string name="GiftMessageView__gift_badge">Gåvemerke</string>
   <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="one">Varer i %1$d månad</item>
+    <item quantity="other">Varer i %1$d månader</item>
+  </plurals>
   <!--Gift badge redeem action label-->
+  <string name="GiftMessageView__redeem">Løys inn</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">Vis</string>
   <!--Gift badge redeeming action label-->
+  <string name="GiftMessageView__redeeming">Løyser inn …</string>
   <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">Løyst inn</string>
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Prøv ein annan betalingsmetode eller ta kontakt med banken din for meir informasjon.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3750,6 +3779,7 @@ Sjekkar igjen no …</string>
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">Éin gong</string>
   <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">Gåve</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Auke</string>
   <!--Donation receipts details title-->
@@ -3867,6 +3897,7 @@ Sjekkar igjen no …</string>
   <!--Story settings private stories heading-->
   <string name="StorySettingsFragment__private_stories">Private historier</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Private historier er berre synlege for dei du har lagt til på dei. Berre du kan sjå namnet på historia.</string>
   <!--Option label for creating a new private story-->
   <string name="StorySettingsFragment__new_private_story">Ny privat historie</string>
   <!--Page title for My Story options-->
@@ -4012,7 +4043,9 @@ Sjekkar igjen no …</string>
   <!--Toasted when the user external share to a text story fails-->
   <string name="TextStoryPostCreationFragment__failed_to_send_story">Klarte ikkje senda historia</string>
   <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">Sjå historia</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">Sjå profilbildet</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Skru av omgåing av sensur?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -4032,33 +4065,51 @@ Sjekkar igjen no …</string>
   <string name="ExpandModel__view_more">Vis meir</string>
   <string name="StoriesLinkPopup__visit_link">Følgj lenka</string>
   <!--Tagline for gift row items-->
+  <string name="GiftRowItem__send_a_gift_badge">Send eit gåvemerke</string>
   <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">Gje bort eit merke</string>
   <!--Description text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">Gje eit merke til nokon ved å donera til Signal i deira namn. Dei får eit merke dei kan visa på profilbildet sitt.</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Neste</string>
   <!--Title text on choose recipient page for badge gifting-->
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Vel mottakar</string>
   <!--Title text on confirm gift page-->
+  <string name="GiftFlowConfirmationFragment__confirm_gift">Stadfest gåve</string>
   <!--Heading text specifying who the gift will be sent to-->
   <string name="GiftFlowConfirmationFragment__send_to">Send til</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Gåva di blir sendt som ei privat melding til mottakaren. Legg til di eiga melding nedanfor.</string>
   <!--Text explaining that this gift is a one time donation-->
+  <string name="GiftFlowConfirmationFragment__one_time_donation">Enkeltdonasjon</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Legg til melding</string>
   <!--Title for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s sende deg ei gåve</string>
   <!--Title for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Takk for støtta!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Du fekk eit gåvemerke frå %1$s! Hjelp Signal med å spreia merksemd om det ved å visa merket på profilen din.</string>
   <!--Description for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Du har gitt eit merke til %1$s. Etter dei har godkjent kan dei velja å visa eller skjula merket.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
+  <string name="ViewReceivedGiftSheet__redeem">Løys inn</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">Ikkje no</string>
   <!--Dialog text while redeeming a gift-->
+  <string name="ViewReceivedGiftSheet__redeeming_gift">Løyser inn gåva …</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <string name="ConversationFragment__you_can_redeem_your_badge_later">Du kan løysa inn merket ditt seinare.</string>
   <!--Description text in gift thanks sheet-->
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Du har gitt eit merke til %1$s. Etter dei har godkjent kan dei velja å visa eller skjula merket.</string>
   <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Gåvemerket ditt er utgått</string>
   <!--Expired gift sheet top description text-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Gåvemerket ditt er utløpt, og er ikkje lenger synleg for andre på profilen din.</string>
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">Vurder å bli ein månadleg bidragsytar for å fortsetja å støtta teknologi som er bygd for deg.</string>
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Gi ein månadleg donasjon</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ikkje no</string>
   <!--EOF-->

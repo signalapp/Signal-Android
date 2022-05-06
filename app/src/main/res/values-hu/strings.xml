@@ -3455,7 +3455,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">A Signal egy nonprofit, hirdetők és befektetők nélküli, kizárólag felhasználók és rajongók által fenntartott alkalmazás. </string>
   <!--Button label for creating a monthly donation-->
   <!--Heading for more area of manage subscriptions page-->
-  <string name="ManageDonationsFragment__more">Továbbiak</string>
+  <string name="ManageDonationsFragment__more">Tovább</string>
   <!--Heading for receipts area of manage subscriptions page-->
   <string name="ManageDonationsFragment__receipts">Nyugta</string>
   <!--Heading for my subscription area of manage subscriptions page-->

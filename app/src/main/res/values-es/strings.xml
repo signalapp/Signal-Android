@@ -1159,7 +1159,15 @@
     <item quantity="other">%1$d participantes</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d participante (%2$s)</item>
+    <item quantity="other">%1$d participantes (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="one">+%1$d invitación</item>
+    <item quantity="other">+%1$d invitaciones</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d chat en grupo adicional</item>
     <item quantity="other">%d grupos adicionales</item>
@@ -3104,6 +3112,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Calidad de la foto</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">¡Invita a tus amistades!</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">Id de usiari@ copiada al portapapeles</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Cuenta</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Te lo solicitaremos menos a menudo con el pasar del tiempo</string>
@@ -3487,10 +3496,13 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="BecomeASustainerFragment__get_badges">conseguir distintivos para tu perfil al sostener Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal es una asociación sin ánimo de lucro sin anuncios ni fondos de inversión, sostenida por gente como tú.</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">Haz una donación mensual</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">Más</string>
   <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">Justificantes</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">Mi suscripción</string>
   <string name="ManageDonationsFragment__manage_subscription">Gestionar suscripción</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Justificantes de donación</string>
@@ -3498,9 +3510,12 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ManageDonationsFragment__subscription_faq">Preguntas y respuestas sobre la suscripción</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Fallo al comprobar la suscripción.</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">Otras formas de aportar</string>
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">Regala un distintivo</string>
   <string name="BoostFragment__give_signal_a_boost">Da un Impulso a Signal</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Haz una donación puntual y consigue el distintivo de «Impulso» por %1$d días.</string>
   <string name="Boost__enter_custom_amount">Introduce una cantidad personalizada</string>
   <string name="Boost__one_time_contribution">Contribuir sólo una vez</string>
   <string name="MySupportPreference__add_a_signal_boost">Dale un Impulso a Signal</string>
@@ -3544,9 +3559,13 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="DonationsErrors__still_processing">En proceso …</string>
   <string name="DonationsErrors__couldnt_add_badge">Fallo al añadir distintivo.</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__failed_to_validate_badge">Fallo al validar el distintivo</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__could_not_validate">Fallo al validar la respuesta del servidor. Por favor, contacta con el soporte.</string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__failed_to_send_gift_badge">Fallo al enviar el distintivo de regalo</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__could_not_send_gift_badge">No se puede enviar el distintivo de regalo. Por favor, contacta con el soporte.</string>
   <string name="DonationsErrors__your_badge_could_not">No se ha podido añadir el distintivo a tu perfil, pero puede haberse tramitado tu pago. Por favor, contacta con el soporte.</string>
   <string name="DonationsErrors__your_payment_is_still">Todavía se está procesando tu pago. Puede tomar unos minutos dependiendo de tu conexión.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay no disponible</string>
@@ -3556,13 +3575,23 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Tu dispositivo no tiene Google Pay activado, por lo que no puedes crear una suscripción y conseguir un distintivo. También puedes contribuir a Signal al hacer una donación en la página web de Signal.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Fallo en la red. Comprueba tu conexión e inténtalo de nuevo.</string>
   <string name="NetworkFailure__retry">Reintentar</string>
+  <string name="DonationsErrors__recipient_verification_failed">Fallo en la verificación del destinatario.</string>
+  <string name="DonationsErrors__target_does_not_support_gifting">Esta persona no admite regalos.</string>
   <!--Gift message view title-->
+  <string name="GiftMessageView__gift_badge">Distintivo de regalo</string>
   <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="one">Tiene una duración de %1$d mes</item>
+    <item quantity="other">Tiene una duración de %1$d meses</item>
+  </plurals>
   <!--Gift badge redeem action label-->
+  <string name="GiftMessageView__redeem">Redimir</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">Ver</string>
   <!--Gift badge redeeming action label-->
+  <string name="GiftMessageView__redeeming">Redimiendo …</string>
   <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">Redimido</string>
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Selecciona otro método de pago o contacta con tu banco para más información.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3734,6 +3763,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">Puntual</string>
   <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">Regalo</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Impulso (puntual)</string>
   <!--Donation receipts details title-->
@@ -3851,6 +3881,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Story settings private stories heading-->
   <string name="StorySettingsFragment__private_stories">Historias privadas</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Las historias privadas solo son visibles por las personas que has añadido. Solo tú puedes ver el título de la historia.</string>
   <!--Option label for creating a new private story-->
   <string name="StorySettingsFragment__new_private_story">Nueva historia privada</string>
   <!--Page title for My Story options-->
@@ -3962,7 +3993,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Name story screen error when save attempted with no label-->
   <string name="CreateStoryWithViewersFragment__this_field_is_required">Este campo es necesario.</string>
   <!--Name story screen error when save attempted but label is duplicate-->
-  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">Ya existe una historia con ese título.</string>
+  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">Ya tienes una historia con ese título.</string>
   <!--Text for select all action when editing recipients for a story-->
   <string name="BaseStoryRecipientSelectionFragment__select_all">Seleccionar todo</string>
   <!--Choose story type bottom sheet title-->
@@ -3996,7 +4027,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Toasted when the user external share to a text story fails-->
   <string name="TextStoryPostCreationFragment__failed_to_send_story">Fallo al enviar historia</string>
   <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">Ver historia</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">Ver foto de perfil</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">¿Desactivar la opción para evitar la censura?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -4016,34 +4049,51 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ExpandModel__view_more">Ver más</string>
   <string name="StoriesLinkPopup__visit_link">Visitar enlace</string>
   <!--Tagline for gift row items-->
+  <string name="GiftRowItem__send_a_gift_badge">Enviar un distintivo de regalo</string>
   <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">Regalar un distintivo</string>
   <!--Description text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">Regala un distintivo a alguien haciendo una donación a Signal en su nombre. Obtendrá un distintivo para mostrar en su foto de perfil.</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Siguiente</string>
   <!--Title text on choose recipient page for badge gifting-->
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Seleccionar persona</string>
   <!--Title text on confirm gift page-->
+  <string name="GiftFlowConfirmationFragment__confirm_gift">Confirmar regalo</string>
   <!--Heading text specifying who the gift will be sent to-->
   <string name="GiftFlowConfirmationFragment__send_to">Enviar a</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Tu regalo se enviará a la persona en un chat privado. Añade un mensaje personalizado debajo.</string>
   <!--Text explaining that this gift is a one time donation-->
+  <string name="GiftFlowConfirmationFragment__one_time_donation">Donación puntual</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Añadir mensaje</string>
   <!--Title for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s te envió un regalo</string>
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">¡Gracias por tu apoyo!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">¡Has recibido un distintivo de regalo de %1$s! Contribuye a difundir la ayuda que Signal necesita mostrando el distintivo en tu perfil.</string>
   <!--Description for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Has regalado un distintivo a %1$s. Cuando lo acepte, podrá seleccionar entre mostrarlo u ocultarlo.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
+  <string name="ViewReceivedGiftSheet__redeem">Redimir</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">Ahora no</string>
   <!--Dialog text while redeeming a gift-->
+  <string name="ViewReceivedGiftSheet__redeeming_gift">Redimiendo regalo …</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <string name="ConversationFragment__you_can_redeem_your_badge_later">Puedes redimir tu distintivo más tarde.</string>
   <!--Description text in gift thanks sheet-->
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Has regalado un distintivo a %1$s. Cuando lo acepte, podrá selecionar entre mostrarlo u ocultarlo.</string>
   <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Tu distintivo de regalo ha caducado</string>
   <!--Expired gift sheet top description text-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Tu distintivo de regalo ha caducado, y ya no se muestra a otras personas en tu perfil.</string>
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">Para continuar apoyando la tecnología desarrollada para ti, considera una suscripción mensual.</string>
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Haz una donación mensual</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ahora no</string>
   <!--EOF-->

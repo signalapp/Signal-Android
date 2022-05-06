@@ -1281,7 +1281,19 @@
     <item quantity="other">%1$d členov</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d člen (%2$s)</item>
+    <item quantity="few">%1$d členovia (%2$s)</item>
+    <item quantity="many">%1$d členov (%2$s)</item>
+    <item quantity="other">%1$d členov (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="one">+%1$d pozvaný</item>
+    <item quantity="few">+%1$d pozvaní</item>
+    <item quantity="many">+%1$d pozvaných</item>
+    <item quantity="other">+%1$d pozvaných</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d ďalšia skupina</item>
     <item quantity="few">%d ďalšie skupiny</item>
@@ -3293,6 +3305,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Kvalita fotografie</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">Pozvite vašich priateľov</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">ID predplatiteľa bolo skopírované do schránky</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Účet</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Postupom času sa vás budeme pýtať menej často</string>
@@ -3688,11 +3701,13 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="BecomeASustainerFragment__get_badges">Podporou Signal získate odznaky pre svoj profil.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal je nezisková organizácia bez inzerentov a investorov, ktorú podporujú iba ľudia ako vy.</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">Poskytnite mesačný dar</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">Viac</string>
   <!--Heading for receipts area of manage subscriptions page-->
   <string name="ManageDonationsFragment__receipts">Účtenky</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">Moje predplatné</string>
   <string name="ManageDonationsFragment__manage_subscription">Spravovať prispievanie</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Potvrdenia o daroch</string>
@@ -3700,9 +3715,12 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ManageDonationsFragment__subscription_faq">Časté otázky o prispievaním</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Chyba pri získavaní prispievania.</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">Iné spôsoby, ako dať</string>
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">Darujte odznak</string>
   <string name="BoostFragment__give_signal_a_boost">Začať podporovať Signal</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Prispejte jednorazovým darom a získajte odznak Boost na %1$d dní.</string>
   <string name="Boost__enter_custom_amount">Zadajte vlastnú čiastku</string>
   <string name="Boost__one_time_contribution">Jednorazový príspevok</string>
   <string name="MySupportPreference__add_a_signal_boost">Pridať podporu Signal.</string>
@@ -3746,9 +3764,13 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="DonationsErrors__still_processing">Stále sa spracováva</string>
   <string name="DonationsErrors__couldnt_add_badge">Odznak sa nepodarilo pridať</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__failed_to_validate_badge">Nepodarilo sa overiť odznak</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__could_not_validate">Nepodarilo sa overiť odpoveď servera. Kontaktujte podporu.</string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__failed_to_send_gift_badge">Darčekový odznak sa nepodarilo odoslať</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__could_not_send_gift_badge">Darčekový odznak sa nepodarilo odoslať. Kontaktujte podporu.</string>
   <string name="DonationsErrors__your_badge_could_not">Váš odznak nebolo možné pridať do vášho účtu, ale možno vám boli účtované poplatky. Kontaktujte podporu.</string>
   <string name="DonationsErrors__your_payment_is_still">Vaša platba sa stále spracováva. V závislosti od vášho pripojenia to môže trvať niekoľko minút.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay je nedostupný</string>
@@ -3758,13 +3780,25 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Vaše zariadenie nepodporuje Google Pay, takže sa nemôžete prihlásiť na odber a získať odznak. Signal môžete stále podporiť príspevkom na našej webovej stránke.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Chyba siete. Skontrolujte pripojenie a skúste to znova.</string>
   <string name="NetworkFailure__retry">Skúsiť znovu</string>
+  <string name="DonationsErrors__recipient_verification_failed">Overenie príjemcu zlyhalo.</string>
+  <string name="DonationsErrors__target_does_not_support_gifting">Prijímací subjekt nepodporuje darovanie.</string>
   <!--Gift message view title-->
+  <string name="GiftMessageView__gift_badge">Darčekový odznak</string>
   <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="one">Trvá %1$d mesiac</item>
+    <item quantity="few">Trvá %1$d mesiace</item>
+    <item quantity="many">Trvá %1$d mesiacov</item>
+    <item quantity="other">Trvá %1$d mesiacov</item>
+  </plurals>
   <!--Gift badge redeem action label-->
+  <string name="GiftMessageView__redeem">Uplatniť</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">Zobraziť</string>
   <!--Gift badge redeeming action label-->
+  <string name="GiftMessageView__redeeming">Uplatňuje sa…</string>
   <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">Uplatnené</string>
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Skúste iný spôsob platby, alebo kontaktujte svoju banku a požiadajte o viac informácií.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3936,6 +3970,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">Raz</string>
   <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">Dar</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Podpora</string>
   <!--Donation receipts details title-->
@@ -4059,6 +4094,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Story settings private stories heading-->
   <string name="StorySettingsFragment__private_stories">Súkromné ​​príbehy</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Súkromné ​​príbehy môžu zobraziť iba ľudia, ktorých si do nich pridáte. Názov príbehu vidíte iba vy.</string>
   <!--Option label for creating a new private story-->
   <string name="StorySettingsFragment__new_private_story">Nový súkromný príbeh</string>
   <!--Page title for My Story options-->
@@ -4208,7 +4244,9 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Toasted when the user external share to a text story fails-->
   <string name="TextStoryPostCreationFragment__failed_to_send_story">Príbeh sa nepodarilo odoslať</string>
   <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">Zobraziť príbeh</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">Zobraziť profilovú fotku</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Vypnúť obchádzanie cenzúry?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -4228,35 +4266,51 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ExpandModel__view_more">Vidieť viac</string>
   <string name="StoriesLinkPopup__visit_link">Navštívte odkaz</string>
   <!--Tagline for gift row items-->
+  <string name="GiftRowItem__send_a_gift_badge">Pošlite darčekový odznak</string>
   <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">Darujte odznak</string>
   <!--Description text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">Darujte niekomu odznak tak, že v jeho mene prispejete organizácii Signal. Dostane odznak, ktorý sa zobrazí na jeho profilovej fotke.</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Ďalší</string>
   <!--Title text on choose recipient page for badge gifting-->
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Vyberte príjemcu</string>
   <!--Title text on confirm gift page-->
+  <string name="GiftFlowConfirmationFragment__confirm_gift">Potvrďte darček</string>
   <!--Heading text specifying who the gift will be sent to-->
   <string name="GiftFlowConfirmationFragment__send_to">Poslať</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Váš darček bude odoslaný príjemcovi v správe 1 na 1. Pridajte svoju vlastnú správu nižšie.</string>
   <!--Text explaining that this gift is a one time donation-->
   <string name="GiftFlowConfirmationFragment__one_time_donation">Jednorazový dar</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Pridajte správu</string>
   <!--Title for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s vám poslal darček</string>
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Ďakujem za tvoju podporu!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Dostali ste darčekový odznak od %1$s! Zobrazením tohto odznaku vo svojom profile pomôžte vybudovať povedomie o podpore Signal-u.</string>
   <!--Description for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Darovali ste odznak používateľovi %1$s. Keď to príme, dostane na výber, či svoj odznak ukáže alebo skryje.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
+  <string name="ViewReceivedGiftSheet__redeem">Uplatniť</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">Teraz nie</string>
   <!--Dialog text while redeeming a gift-->
+  <string name="ViewReceivedGiftSheet__redeeming_gift">Darček sa uplatňuje…</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <string name="ConversationFragment__you_can_redeem_your_badge_later">Svoj odznak si môžete uplatniť neskôr.</string>
   <!--Description text in gift thanks sheet-->
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Darovali ste odznak používateľovi %1$s. Keď to príme, dostane na výber, či svoj odznak ukáže alebo skryje.</string>
   <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Platnosť vášho darčekového odznaku vypršala</string>
   <!--Expired gift sheet top description text-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Your gift badge has expired, and is no longer visible to others on your profile.</string>
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">Ak chcete pokračovať v podpore technológie, ktorá je vytvorená pre vás, zvážte, či sa nestanete mesačným podporovateľom.</string>
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Poskytnite mesačný dar</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Teraz nie</string>
   <!--EOF-->

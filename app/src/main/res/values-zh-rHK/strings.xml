@@ -1098,7 +1098,13 @@
     <item quantity="other">%1$d 個成員</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="other">%1$d 個成員 (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="other">+%1$d 個邀請</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="other">另 %d 個群組</item>
   </plurals>
@@ -3008,6 +3014,7 @@
   <string name="QualitySelectorBottomSheetDialog__photo_quality">相片品質</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">邀請您的好友</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">訂閱者識別碼已複製至剪貼簿</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">帳戶</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">隨著時間過去，詢問您的次數會減少</string>
@@ -3385,10 +3392,13 @@
   <string name="BecomeASustainerFragment__get_badges">撐起 Signal 並在您的個人資料中獲贈徽章。</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal 是非牟利機構，並無廣告商或投資者，純粹仰賴像您這樣的人撐起。</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">每月捐款</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">更多</string>
   <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">收據</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">我的訂閱</string>
   <string name="ManageDonationsFragment__manage_subscription">管理訂閱</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">捐款收據</string>
@@ -3396,9 +3406,12 @@
   <string name="ManageDonationsFragment__subscription_faq">訂閱常見問答</string>
   <string name="ManageDonationsFragment__error_getting_subscription">取得訂閱時發生錯誤。</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">其他方式捐贈</string>
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">饋贈徽章</string>
   <string name="BoostFragment__give_signal_a_boost">齊集氣，為 Signal 加加油</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">單次捐款即獲贈為期 %1$d 天的「集氣」徽章，以謝善舉。</string>
   <string name="Boost__enter_custom_amount">請輸入自訂金額</string>
   <string name="Boost__one_time_contribution">單次捐款</string>
   <string name="MySupportPreference__add_a_signal_boost">新增 Signal 集氣</string>
@@ -3457,10 +3470,13 @@
   <!--Gift message view title-->
   <!--Gift message view expiry information-->
   <!--Gift badge redeem action label-->
+  <string name="GiftMessageView__redeem">換領</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">檢視</string>
   <!--Gift badge redeeming action label-->
+  <string name="GiftMessageView__redeeming">正在換領…</string>
   <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">已換領</string>
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">試試換另一個付款方法，又或者聯絡您的銀行取得更多資訊。</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3889,7 +3905,9 @@
   <!--Toasted when the user external share to a text story fails-->
   <string name="TextStoryPostCreationFragment__failed_to_send_story">限時動態傳送失敗</string>
   <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">檢視限時動態</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">檢視個人資料照片</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">要關閉審查規避嗎？</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -3910,6 +3928,7 @@
   <string name="StoriesLinkPopup__visit_link">造訪連結</string>
   <!--Tagline for gift row items-->
   <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">饋贈徽章</string>
   <!--Description text on start fragment for gifting a badge-->
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">下一步</string>
@@ -3919,6 +3938,7 @@
   <string name="GiftFlowConfirmationFragment__send_to">傳送給</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
   <!--Text explaining that this gift is a one time donation-->
+  <string name="GiftFlowConfirmationFragment__one_time_donation">單次捐款</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">新增訊息</string>
   <!--Title for sheet shown when opening a redeemed gift-->
@@ -3927,6 +3947,7 @@
   <!--Description for sheet shown when opening a redeemed gift-->
   <!--Description for sheet shown when opening a sent gift-->
   <!--Primary action for pending gift sheet to redeem badge now-->
+  <string name="ViewReceivedGiftSheet__redeem">換領</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">現在不要</string>
   <!--Dialog text while redeeming a gift-->
@@ -3937,6 +3958,7 @@
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">如欲繼續支持為您而設的科技，請考慮成為月供延續人。</string>
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">每月捐款</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">現在不要</string>
   <!--EOF-->

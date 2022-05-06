@@ -161,7 +161,9 @@
   <string name="ContactsCursorLoader_phone_number_search">Pencarian nomor telepon</string>
   <string name="ContactsCursorLoader_username_search">Pencarian nama pengguna</string>
   <!--Label for my stories when selecting who to send media to-->
+  <string name="ContactsCursorLoader_my_stories">Cerita saya</string>
   <!--Action for creating a new story-->
+  <string name="ContactsCursorLoader_new_story">Cerita baru</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Pesan %s</string>
   <string name="ContactsDatabase_signal_call_s">Panggilan Signal %s</string>
@@ -308,8 +310,11 @@
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s nyala</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">Blokir permintaan?</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s tidak akan bisa bergabung atau meminta untuk bergabung dengan grup ini melalui tautan grup. Mereka tetap bisa ditambahkan ke grup secara manual.</string>
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">Blokir permintaan</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">Batal</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -398,8 +403,11 @@
   <string name="RestoreBackupFragment__choose_folder">Pilih folder</string>
   <string name="RestoreBackupFragment__not_now">Nanti saja</string>
   <!--Couldn\'t find the selected backup-->
+  <string name="RestoreBackupFragment__backup_not_found">Cadangan tidak ditemukan.</string>
   <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">Cadangan tidak dapat dibaca.</string>
   <!--Backup has an unsupported file extension-->
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">Cadangan memiliki ekstensi yang buruk.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Cadangan obrolan</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Cadangan dienkripsi dengan frasa sandi dan disimpan pada perangkat Anda.</string>
@@ -712,11 +720,13 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Terjadi galat jaringan.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Tautan grup ini tidak aktif</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Tidak dapat bergabung dengan grup</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
   <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Anda tidak dapat bergabung dengan grup ini melalui tautan grup karena seorang admin mengeluarkan Anda.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Tautan grup ini tidak lagi valid.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">Kesalahan tautan</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
   <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Bergabung melalui tautan gagal. Coba lagi nanti.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Apakah Anda ingin bergabung dengan grup ini dan membagikan nama dan foto Anda dengan anggota grup?</string>
@@ -743,6 +753,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">Tambah \"%1$s\" ke dalam grup?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Tolak permintaan dari \"%1$s\"?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Tolak permintaan dari \"%1$s\"? Mereka tidak akan bisa meminta bergabung dengan grup melewati tautan grup lagi.</string>
   <string name="RequestConfirmationDialog_add">Tambahkan</string>
   <string name="RequestConfirmationDialog_deny">Tolak</string>
   <!--ImageEditorHud-->
@@ -1018,6 +1029,9 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Anda mengirimkan permintaan untuk bergabung ke grup.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s meminta untuk bergabung melalui tautan grup.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="other">%1$s meminta dan membatalkan %2$d permintaan untuk bergabung melewati tautan grup.</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s menerima permintaan Anda untuk bergabung kedalam grup.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s menerima permintaan bergabung ke grup dari %2$s.</string>
@@ -1084,7 +1098,13 @@
     <item quantity="other">%1$d anggota</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="other">%1$d anggota (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="other">+%1$d diundang</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="other">%d grup tambahan</item>
   </plurals>
@@ -1174,6 +1194,7 @@
   <!--Recipient-->
   <string name="Recipient_you">Anda</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">Cerita saya</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blokir</string>
   <string name="RecipientPreferenceActivity_unblock">Buka blokir</string>
@@ -1346,6 +1367,12 @@ isikan (%s) tidak valid.
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Selanjutnya</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN berhasil diverifikasi. Kami akan mengingatkan Anda kembali nanti.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN berhasil diverifikasi. Kami akan mengingatkan Anda kembali besok.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN berhasil diverifikasi. Kami akan mengingatkan Anda kembali dalam beberapa hari.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN berhasil diverifikasi. Kami akan mengingatkan Anda kembali dalam seminggu.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN berhasil diverifikasi. Kami akan mengingatkan Anda kembali dalam beberapa minggu.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN berhasil diverifikasi. Kami akan mengingatkan Anda kembali dalam sebulan.</string>
   <!--Slide-->
   <string name="Slide_image">Gambar</string>
   <string name="Slide_sticker">Stiker</string>
@@ -1495,7 +1522,9 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Aksi ini akan menghapus pesan secara permanen.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s hingga %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Anda ke %1$s</string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s ke Anda</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Media tidak tersedia.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Tidak dapat menemukan aplikasi untuk berbagi media ini.</string>
   <!--MessageNotifier-->
@@ -1632,6 +1661,9 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
     <item quantity="other">%1$d anggota</item>
   </plurals>
   <!--Displays number of viewers for a story-->
+  <plurals name="contact_selection_list_item__number_of_viewers">
+    <item quantity="other">%1$d penonton</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Pesan Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS tanpa enkripsi</string>
@@ -1670,6 +1702,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ConversationUpdateItem_enable_call_notifications">Aktifkan Notifikasi Panggilan</string>
   <string name="ConversationUpdateItem_update_contact">Perbarui kontak</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">Blokir permintaan</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Tidak ada grup yang sama. Periksa permintaan secara hati-hati.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Tidak ada kontak di grup ini. Periksa permintaan secara hati-hati.</string>
   <string name="ConversationUpdateItem_view">Lihat</string>
@@ -1691,8 +1724,11 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="QuoteView_you">Anda</string>
   <string name="QuoteView_original_missing">Pesan asli tidak ditemukan</string>
   <!--Author formatting for group stories-->
+  <string name="QuoteView_s_story">%1$s · Cerita</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Anda · Cerita</string>
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Tidak lagi tersedia</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Gulir ke bawah</string>
   <!--BubbleOptOutTooltip-->
@@ -1792,7 +1828,9 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="message_recipients_list_item__view">LIHAT</string>
   <string name="message_recipients_list_item__resend">KIRIM ULANG</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
+  <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Timestamp dikirim disalin ke papan klip.</string>
   <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Pembaruan ke cerita Anda akan muncul di sini.</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s bergabung dengan grup</item>
@@ -2009,6 +2047,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__advanced">Lanjutan</string>
   <string name="preferences__donate_to_signal">Berdonasi ke Signal</string>
   <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">Donasi satu kali</string>
   <string name="preferences__privacy">Privasi</string>
   <string name="preferences__mms_user_agent">User Agent MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Pengaturan Manual MMS</string>
@@ -2728,6 +2767,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" akan dapat mengubah grup ini beserta anggotanya.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">Hapus %1$s dari grup?</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Hapus %1$s dari grup? Mereka tidak akan bisa bergabung ulang melalui tautan grup.</string>
   <string name="RecipientBottomSheet_remove">Hapus</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Disalin ke papan klip</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
@@ -2816,6 +2856,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">Menghapus akun…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
+  <string name="DeleteAccountFragment__canceling_your_subscription">Membatalkan langganan Anda…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Tergantung dari berapa jumlah grup yang Anda ikuti, ini mungkin memakan waktu beberapa menit</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
@@ -2974,6 +3015,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Kualitas foto</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">Undang teman Anda</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">Id pelanggan disalin ke papan klip</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Akun</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Anda akan ditanya lebih jarang seiring waktu</string>
@@ -3143,6 +3185,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Menjadi Penyokong</string>
   <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal didukung oleh orang seperti Anda. Donasi dan dapatkan sebuah lencana.</string>
   <string name="BecomeASustainerMegaphone__not_now">Nanti saja</string>
   <string name="BecomeASustainerMegaphone__donate">Donasi</string>
   <!--KeyboardPagerFragment-->
@@ -3316,6 +3359,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal didukung oleh orang-orang seperti Anda.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Dukung teknologi yang dibangun untuk Anda—bukan untuk data Anda—dengan bergabung ke komunitas yang menyokongnya.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Dukung teknologi yang dibangun untuk Anda, bukan data Anda, dengan bergabung dengan komunitas yang menyokong Signal.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Buat donasi bulanan yang berulang ke Signal untuk mendukung teknologi yang dibangun untuk Anda, buka data Anda.</string>
   <string name="SubscribeFragment__currency">Kurensi</string>
   <string name="SubscribeFragment__more_payment_options">Pilihan Pembayaran Lainnya</string>
   <string name="SubscribeFragment__cancel_subscription">Batalkan Langganan</string>
@@ -3332,10 +3376,14 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/bulan. Perbarui %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/bulan · Berakhir %2$s</string>
   <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal adalah perusahaan nonprofit tanpa pengiklan atau investor, disokong hanya dengan mereka yang menggunakan dan menghargainya. Buat donasi bulanan berulang dan dapatkan lencana profil untuk membagikan dukungan Anda.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Mengapa Berdonasi?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal berkomitmen untuk mengembangkan teknologi privasi bersumber terbuka yang melindungi kebebasan berekspresi dan memungkinkan komunikasi global yang aman.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Donasi Anda mendukung gerakan ini dan membiayai pengembangan dan operasi dari aplikais yang digunakan jutaan orang untuk komunikasi privat. Tanpa iklan. Tanpa pelacak. Tidak bercanda.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Terima kasih untuk Dukungan Anda!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Terima kasih untuk Penguatnya!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Anda mendapatkan %s lencana! Tampilkan lencana ini pada profil Anda untuk membangun kesadaran untuk berdonasi ke Signal. </string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Anda mendapatkan lencana Boost! Tampilkan lencana ini pada profil Anda untuk membangun kesadaran untuk berdonasi ke Signal.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Anda juga dapat</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">menjadi Penyokong bulanan.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Tampilkan di Profil</string>
@@ -3345,19 +3393,26 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="BecomeASustainerFragment__get_badges">Dapatkan lencana pada profil Anda dengan mendukung Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal adalah lembaga nirlaba tanpa pengiklan dan investor, didukung hanya oleh orang seperti Anda.</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">Buat donasi bulanan</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">Selanjutnya</string>
   <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">Resi</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">Langganan saya</string>
   <string name="ManageDonationsFragment__manage_subscription">Kelola langganan</string>
   <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__donation_receipts">Resi donasi</string>
   <string name="ManageDonationsFragment__badges">Lencana</string>
   <string name="ManageDonationsFragment__subscription_faq">Pertanyaan Populer Langganan</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Eror mengambil langganan.</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">Cara lain untuk memberi</string>
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">Hadiahkan sebuah lencana</string>
   <string name="BoostFragment__give_signal_a_boost">Beri Penguat untuk Signal</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Buat donasi satu kali dan dapatkan lencana Boost untuk %1$d hari.</string>
   <string name="Boost__enter_custom_amount">Masukkan Jumlah Kustom</string>
   <string name="Boost__one_time_contribution">Kontribusi sekali saja</string>
   <string name="MySupportPreference__add_a_signal_boost">Tambahkan Penguat Signal</string>
@@ -3368,8 +3423,11 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MySupportPreference__couldnt_add_badge_s">Tidak dapat menambahkan lencana. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Mohon hubungi bantuan.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Lencana Boost kadaluwarsa</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Donasi bulanan dibatalkan</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Lencana Boost Anda telah kadaluwarsa dan tidak lagi terlihat pada profil Anda.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Anda dapat mengaktifkan kembali lencana Penguat Anda untuk 30 hari dengan kontribusi satu-kali.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Menjadi Penyokong</string>
@@ -3601,6 +3659,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ConversationListTabs__stories">Cerita</string>
   <!--String for counts above 99 in conversation list tabs-->
   <!--Title for "My Stories" row item in Stories landing page-->
+  <string name="StoriesLandingFragment__my_stories">Cerita saya</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <!--Displayed when there are no stories to display-->
   <!--Context menu option to hide a story-->
@@ -3654,6 +3713,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Note at bottom of story settings regarding who can see private stories.-->
   <!--Option label for creating a new private story-->
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">Cerita saya</string>
   <!--Section heading for story visibility-->
   <!--Clickable option for selecting people to hide your story from-->
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
@@ -3781,6 +3841,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">Untuk melanjutkan dukungan atas teknologi yang dibuat untuk Anda, mohon mempertimbangkan untuk menjadi Penyokong bulanan.</string>
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Buat donasi bulanan</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Nanti saja</string>
   <!--EOF-->

@@ -737,6 +737,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Poveznica grupe nije aktivna</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Ne možete se pridružiti ovoj grupi putem veze grupe jer vas je administrator uklonio.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Poveznica grupe je nevažeća.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
@@ -793,6 +794,7 @@
   <string name="InviteActivity_no_app_to_share_to">Izgleda da nemate nijednu aplikaciju za dijeljenje.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Saznajte više</string>
+  <string name="SpanUtil__read_more">Pročitaj više</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Neuspješno pronalaženje poruke</string>
   <string name="LongMessageActivity_message_from_s">Poruka od %1$s</string>
@@ -1709,6 +1711,7 @@ broj telefona</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Više nije dostupno</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Pomaknite se na dno</string>
   <!--BubbleOptOutTooltip-->
@@ -3127,6 +3130,7 @@ broj telefona</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Postanite pretplatnik</string>
   <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal podržavaju ljudi poput Vas. Donirajte i osvojite svoju značku.</string>
   <string name="BecomeASustainerMegaphone__not_now">Ne sada</string>
   <string name="BecomeASustainerMegaphone__donate">Doniraj</string>
   <!--KeyboardPagerFragment-->
@@ -3257,6 +3261,7 @@ broj telefona</string>
   <string name="BadgesOverviewFragment__display_badges_on_profile">Prikažite bedževe na svom profilu</string>
   <string name="SelectFeaturedBadgeFragment__preview">Pregled</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal napajaju ljudi poput vas.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Donirajte mjesečno kako bi podržali Signal i njegovu tehnologiju koja je napravljena za Vas, a ne za Vaše podatke.</string>
   <string name="SubscribeFragment__more_payment_options">Više opcija plaćanja</string>
   <string name="SubscribeFragment__cancel_subscription">Otkažite pretplatu</string>
   <string name="SubscribeFragment__confirm_cancellation">Potvrditi otkazivanje?</string>
@@ -3265,6 +3270,7 @@ broj telefona</string>
   <string name="SubscribeFragment__confirm">Potvrdi</string>
   <string name="SubscribeFragment__update">Ažuriraj</string>
   <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal je neprofitna organizacija bez oglasa i investitora koju podržavaju samo ljudi koji ga koriste i cijene. Donirajte na mjesečnoj bazi kako biste dobili svoj bedž profila u znak vaše potpore projektu.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Zašto donirati?</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Hvala vam na uplati!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Prikaži bedž na svom profilu</string>
@@ -3274,8 +3280,10 @@ broj telefona</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">Više</string>
   <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">Računi</string>
   <!--Heading for my subscription area of manage subscriptions page-->
   <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__donation_receipts">Potvrde o donacijama</string>
   <string name="ManageDonationsFragment__badges">Bedževi</string>
   <string name="ManageDonationsFragment__subscription_faq">Najčešća pitanja</string>
   <!--Preference heading for other ways to donate-->
@@ -3305,6 +3313,7 @@ broj telefona</string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
   <!--Displayed as message when some generic error happens during gift badge sending-->
   <string name="DonationsErrors__your_payment_is_still">Vaša se uplata još uvijek obrađuje. To može potrajati nekoliko minuta ovisno o vašoj vezi.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Pogreška mreže. Provjerite vezu i pokušajte ponovno.</string>
   <string name="NetworkFailure__retry">Pokušajte ponovno</string>
   <!--Gift message view title-->
   <!--Gift message view expiry information-->
@@ -3433,6 +3442,7 @@ broj telefona</string>
   <string name="DonationReceiptDetailsFragment__date_paid">Datum plaćanja</string>
   <!--Donation receipts share PNG-->
   <!--Donation receipts list end note-->
+  <string name="DonationReceiptListFragment__if_you_have">Ako ste ponovno instalirali Signal, potvrde o prijašnjim donacijama neće biti dostupne.</string>
   <!--Donation receipts document title-->
   <string name="DonationReceiptDetailsFragment__donation_receipt">Potvrda o donaciji</string>
   <!--Donation receipts amount title-->
@@ -3443,6 +3453,7 @@ broj telefona</string>
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Razgovori</string>
   <!--Label for Stories tab in home app screen-->
+  <string name="ConversationListTabs__stories">Priče</string>
   <!--String for counts above 99 in conversation list tabs-->
   <!--Title for "My Stories" row item in Stories landing page-->
   <!--Subtitle for "My Stories" row item when user has not added stories-->
@@ -3483,7 +3494,9 @@ broj telefona</string>
   <string name="StoryViewerPageFragment__reply">Odgovori</string>
   <!--Displayed when a story has no views-->
   <!--Displayed when a story has no replies yet-->
+  <string name="StoryGroupReplyFragment__no_replies_yet">Još nema odgovora</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
+  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Reakcija na priču</string>
   <!--Label for story views tab-->
   <!--Label for story replies tab-->
   <!--Description of action for reaction button-->
@@ -3587,9 +3600,11 @@ broj telefona</string>
   <string name="TurnOffCircumventionMegaphone_turn_off">Isključi</string>
   <!--Conversation Item label for when you react to someone else\'s story-->
   <!--Conversation Item label for reactions to your story-->
+  <string name="ConversationItem__reacted_to_your_story">Reagirala je na vašu priču</string>
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="StoriesLinkPopup__visit_link">Posjetite link</string>
   <!--Tagline for gift row items-->
   <!--Headline text on start fragment for gifting a badge-->
   <!--Description text on start fragment for gifting a badge-->

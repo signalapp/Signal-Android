@@ -4263,31 +4263,43 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--Headline text on start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__gift_a_badge">Podaruj odznakę</string>
   <!--Description text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">Podaruj komuś odznakę, dokonując datku na Signal w imieniu odbiorcy. Otrzyma on odznakę do wyświetlenia na zdjęciu profilowym.</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Dalej</string>
   <!--Title text on choose recipient page for badge gifting-->
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Wybierz odbiorcę</string>
   <!--Title text on confirm gift page-->
+  <string name="GiftFlowConfirmationFragment__confirm_gift">Potwierdź prezent</string>
   <!--Heading text specifying who the gift will be sent to-->
   <string name="GiftFlowConfirmationFragment__send_to">Wyślij do</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Twój prezent zostanie wysłany odbiorcy w wiadomości indywidualnej. Poniżej możesz dodać własną wiadomość.</string>
   <!--Text explaining that this gift is a one time donation-->
   <string name="GiftFlowConfirmationFragment__one_time_donation">Datek jednorazowy</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Dodaj wiadomość</string>
   <!--Title for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s wysłał(a) Ci prezent</string>
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Dziękujemy za Twoje wsparcie!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Otrzymałeś(aś) odznakę w prezencie od %1$s! Pomóż Signal zbudować świadomość, wyświetlając ją na swoim profilu.</string>
   <!--Description for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Wysłałeś(aś) odznakę do %1$s. Gdy odbiorca ją przyjmie, będzie mieć możliwość wyświetlić lub ukryć swoją odznakę.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
   <string name="ViewReceivedGiftSheet__redeem">Odbierz</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">Nie teraz</string>
   <!--Dialog text while redeeming a gift-->
+  <string name="ViewReceivedGiftSheet__redeeming_gift">Odbieranie prezentu…</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <string name="ConversationFragment__you_can_redeem_your_badge_later">Możesz odebrać swoją odznakę później.</string>
   <!--Description text in gift thanks sheet-->
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Wysłałeś odznakę do %1$s. Gdy odbiorca ją przyjmie, będzie mieć możliwość wyświetlić lub ukryć swoją odznakę.</string>
   <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Twoja podarowana odznaka wygasła</string>
   <!--Expired gift sheet top description text-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Twoja podarowana odznaka wygasła i inni nie będą jej już widzieć w Twoim profilu.</string>
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">Aby nadal wspierać technologię stworzoną dla Ciebie, nie dla zdobycia Twoich danych, rozważ miesięczną subskrypcję.</string>
   <!--Expired gift sheet make a monthly donation button-->

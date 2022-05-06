@@ -126,6 +126,7 @@
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Sansür atlatma kapatılsın mı?</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Daha iyi bir deneyim için artık doğrudan Signal hizmetine bağlanabilirsiniz.</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">Kapat</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
@@ -318,6 +319,7 @@
   <!--Dialog title for block group link join requests-->
   <string name="ConversationFragment__block_request">İstek engellensin mi?</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s, grup bağlantısı aracılığıyla bu gruba katılamaz veya katılma talebinde bulunamaz. Yine de gruba manuel olarak eklenebilir.</string>
   <!--Dialog confirm block request button-->
   <string name="ConversationFragment__block_request_button">İsteği engelle</string>
   <!--Dialog cancel block request button-->
@@ -424,7 +426,9 @@
   <!--Couldn\'t find the selected backup-->
   <string name="RestoreBackupFragment__backup_not_found">Yedek bulunamadı.</string>
   <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">Yedek okunamadı.</string>
   <!--Backup has an unsupported file extension-->
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">Yedek kötü bir uzantıya sahip.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Konuşma yedekleri</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Yedekler bir parolayla şifrelenip aygıtınızda saklanmaktadır.</string>
@@ -758,7 +762,9 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Bir ağ hatası ile karşılaşıldı.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Grup bağlantısı etkin değil</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Gruba katılınamadı</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Yönetici tarafından kaldırıldığınız için bu gruba, grup bağlantısı ile katılamazsınız.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Bu grup bağlantısı artık geçerli değil.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
@@ -790,6 +796,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">\"%1$s\" gruba eklensin mi?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">\"%1$s\" kişisinin isteği reddedilsin mi?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">\"%1$s\"den gelen istek reddedilsin mi? Grup bağlantısı üzerinden tekrar katılma talebinde bulunamayacaktır.</string>
   <string name="RequestConfirmationDialog_add">Ekle</string>
   <string name="RequestConfirmationDialog_deny">Reddet</string>
   <!--ImageEditorHud-->
@@ -1079,6 +1086,10 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Gruba katılmak için bir istek gönderdiniz.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s grup bağlantısı aracılığıyla gruba katılma isteği gönderdi.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="one">%1$s, grup bağlantısı aracılığıyla katılma isteği talep etti ve iptal etti</item>
+    <item quantity="other">%1$s, grup bağlantısı aracılığıyla %2$dkatılma isteği talep etti ve iptal etti.</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s gruba katılma isteğini onayladı.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s, %2$s kişisinin gruba katılma isteğini onayladı.</string>
@@ -1098,7 +1109,9 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s ile olan güvenlik numaranızı doğrulanmamış olarak işaretlediniz.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s ile olan güvenlik numaranızı başka bir cihazdan doğrulanmamış olarak işaretlediniz. </string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s tarafından gelen bir ileti teslim edilemedi</string>
+  <string name="MessageRecord_s_changed_their_phone_number">%1$s telefon numarasını değiştirdi.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Bu yeni özelliği beğendin mi? Teşekkür etmek için Öne Çıkar.</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal, sizin gibi insanlar tarafından desteklenmektedir. Bugün bir destekleyici olun.</string>
   <!--Group Calling update messages-->
@@ -1145,7 +1158,15 @@
     <item quantity="other">%1$d üye</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d üye (%2$s)</item>
+    <item quantity="other">%1$d üye (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="one">+%1$d davetli</item>
+    <item quantity="other">+%1$d davetli</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d diğer grup</item>
     <item quantity="other">%d diğer grup</item>
@@ -3458,17 +3479,23 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="BecomeASustainerFragment__get_badges">Signal\'ı destekleyerek profilin için rozet kazan.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal reklam almaz, sponsoru yoktur ve kâr amacı gütmez; sadece senin gibi gönüllüler tarafından destekleniyor.</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">Aylık bağış yap</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">Daha fazla</string>
   <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">Makbuzlar</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">Aboneliğim</string>
   <string name="ManageDonationsFragment__manage_subscription">Aboneliği yönet</string>
   <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__donation_receipts">Bağış Makbuzları</string>
   <string name="ManageDonationsFragment__badges">Rozetler</string>
   <string name="ManageDonationsFragment__subscription_faq">Abonelik SSS</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Abonelik alınamadı</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">Vermenin diğer yolları</string>
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">Bir rozet hediye et</string>
   <string name="BoostFragment__give_signal_a_boost">Signal\'i Arttırın</string>
   <!--Description text in boost sheet-->
   <string name="Boost__enter_custom_amount">Farklı Miktar Gir</string>
@@ -3482,6 +3509,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MySupportPreference__please_contact_support">Lütfen destek ekibiyle iletişime geç.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Aylık Bağış İptal Edildi</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Bir seferlik bir katkıyla Boost rozetini ilave 30 gün için yeniden etkinleştirebilirsin.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
@@ -3519,12 +3547,16 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Ağ hatası. Bağlantınızı kontrol edip tekrar deneyin.</string>
   <string name="NetworkFailure__retry">Tekrar dene</string>
   <!--Gift message view title-->
+  <string name="GiftMessageView__gift_badge">Hediye rozeti</string>
   <!--Gift message view expiry information-->
   <!--Gift badge redeem action label-->
+  <string name="GiftMessageView__redeem">Ödeme</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">Görüntüle</string>
   <!--Gift badge redeeming action label-->
+  <string name="GiftMessageView__redeeming">Ödeniyor…</string>
   <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">Ödendi</string>
   <!--Stripe decline code generic_failure-->
   <!--Stripe decline code verify on Google Pay and try again-->
   <!--Stripe decline code learn more action label-->
@@ -3687,19 +3719,25 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">Tek Seferlik</string>
   <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">Hediye</string>
   <!--Donation receipts boost row label-->
+  <string name="DonationReceiptListFragment__boost">Öne Çıkar</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Detaylar</string>
   <!--Donation receipts donation type heading-->
   <string name="DonationReceiptDetailsFragment__donation_type">Bağış türü</string>
   <!--Donation receipts date paid heading-->
   <!--Donation receipts share PNG-->
+  <string name="DonationReceiptDetailsFragment__share_receipt">Makbuzu paylaş</string>
   <!--Donation receipts list end note-->
   <!--Donation receipts document title-->
+  <string name="DonationReceiptDetailsFragment__donation_receipt">Bağış makbuzu</string>
   <!--Donation receipts amount title-->
   <string name="DonationReceiptDetailsFragment__amount">Tutar</string>
   <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Signal\'i desteklediğiniz için teşekkür ederiz. Katkınız, ifade özgürlüğünü koruyan ve dünya çapında milyonlarca kişi için güvenli küresel iletişim sağlayan açık kaynaklı gizlilik teknolojisi geliştirme misyonunu desteklemeye yardımcı olur. Amerika Birleşik Devletleri\'nde ikamet ediyorsanız, lütfen bu makbuzu vergi kayıtlarınız için saklayın. Signal Technology Foundation, Amerika Birleşik Devletleri\'nde İç Gelir Yasası\'nın 501c3 bölümü kapsamında vergiden muaf, kâr amacı gütmeyen bir kuruluştur. Federal Vergi Kimliğimiz 82–4506840\'tır.</string>
   <!--Donation receipt type-->
+  <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Konuşmalar</string>
@@ -3746,6 +3784,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">Yönlendir</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
+  <string name="MyStories__ss_story">%1$s\'nin Hikayesi</string>
   <!--Title of dialog to confirm deletion of story-->
   <string name="MyStories__delete_story">Hikaye silinsin mi?</string>
   <!--Message of dialog to confirm deletion of story-->
@@ -3772,6 +3811,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Henüz yanıt yok</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
+  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Hikayeye tepki verildi</string>
   <!--Label for story views tab-->
   <string name="StoryViewsAndRepliesDialogFragment__views">Görülmeler</string>
   <!--Label for story replies tab-->
@@ -3780,6 +3820,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="StoryReplyComposer__react_to_this_story">Bu hikayeye tepki ver</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
   <!--Context menu item to privately reply to a story response-->
+  <string name="StoryGroupReplyItem__private_reply">Özel Yanıt</string>
   <!--Context menu item to copy a story response-->
   <string name="StoryGroupReplyItem__copy">Kopyala</string>
   <!--Context menu item to delete a story response-->
@@ -3787,13 +3828,16 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Story settings page title-->
   <string name="StorySettingsFragment__story_settings">Hikaye ayarları</string>
   <!--Story settings private stories heading-->
+  <string name="StorySettingsFragment__private_stories">Özel hikayeler</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
   <!--Option label for creating a new private story-->
+  <string name="StorySettingsFragment__new_private_story">Yeni özel hikaye</string>
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Hikayem</string>
   <!--Section heading for story visibility-->
   <string name="MyStorySettingsFragment__who_can_see_this_story">Bu hikayeyi kim görebilir</string>
   <!--Clickable option for selecting people to hide your story from-->
+  <string name="MyStorySettingsFragment__hide_story_from">Hikayeyi gizle</string>
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d kişi</item>
@@ -3804,19 +3848,25 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
   <!--Note about default sharing-->
   <!--Signal connections linked text that opens the Signal Connections sheet-->
+  <string name="MyStorySettingsFragment__signal_connections">Signal konuşmaları.</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
   <!--Signal connections sheet bullet point 1-->
   <!--Signal connections sheet bullet point 2-->
   <!--Signal connections sheet bullet point 3-->
   <!--Note at the bottom of the Signal connections sheet-->
   <!--Clickable option to add a viewer to a private story-->
+  <string name="PrivateStorySettingsFragment__add_viewer">Görüntüleyen ekle</string>
   <!--Clickable option to delete a custom story-->
+  <string name="PrivateStorySettingsFragment__delete_private_story">Özel hikayeyi sil</string>
   <!--Dialog title when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__remove_s">%1$s\'yi kaldır?</string>
   <!--Dialog message when attempting to remove someone from a private story-->
   <!--Positive action label when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__remove">Kaldır</string>
   <!--Dialog title when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__are_you_sure">Emin misiniz?</string>
   <!--Dialog message when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__this_action_cannot">Bu eylem geri alınamaz.</string>
   <!--Page title for editing a private story name-->
   <string name="EditPrivateStoryNameFragment__edit_story_name">Hikaye adını düzenle</string>
   <!--Input field hint when editing a private story name-->
@@ -3830,33 +3880,48 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Displayed in text post creator when prompting user to enter text-->
   <string name="TextStoryPostTextEntryFragment__add_text">Metin ekle</string>
   <!--Content description for \'done\' button when adding text to a story post-->
+  <string name="TextStoryPostTextEntryFragment__done_adding_text">Metin eklemeyi tamamla</string>
   <!--Text label for media selection toggle-->
   <string name="MediaSelectionActivity__text">Yazı</string>
   <!--Camera label for media selection toggle-->
   <string name="MediaSelectionActivity__camera">Kamera</string>
   <!--Hint for entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Yaz veya bir URL yapıştır</string>
   <!--Displayed prior to the user entering a URL for a text post-->
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Konuşmada Ara</string>
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
+  <string name="HideStoryFromFragment__hide_story_from">Hikayeyi gizle…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Tamam</string>
   <!--Dialog title for first time adding something to a story-->
+  <string name="StoryDialogs__add_to_story_q">Hikayeye ekle?</string>
   <!--Dialog message for first time adding something to a story-->
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
+  <string name="StoryDialogs__add_to_story">Hikayeye ekle</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <string name="StoryDialogs__edit_viewers">Görüntüleyenleri düzenle</string>
   <!--Error message shown when a failure occurs during story send-->
   <!--Error message dialog button to resend a previously failed story send-->
   <string name="StoryDialogs__send">Gönder</string>
   <!--Privacy Settings toggle title for stories-->
+  <string name="PrivacySettingsFragment__share_and_view_stories">Paylaş &amp; Hikayeleri Görüntüle</string>
   <!--Privacy Settings toggle summary for stories-->
   <!--New story viewer selection screen title-->
+  <string name="CreateStoryViewerSelectionFragment__choose_viewers">Görüntüleyenleri seç</string>
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">İleri</string>
   <!--New story viewer selection screen title as recipients are selected-->
+  <plurals name="SelectViewersFragment__d_viewers">
+    <item quantity="one">%1$d görüntüleyen</item>
+    <item quantity="other">%1$d görüntüleyen</item>
+  </plurals>
   <!--Name story screen title-->
+  <string name="CreateStoryWithViewersFragment__name_story">Hikayeye ad ver</string>
   <!--Name story screen label hint-->
+  <string name="CreateStoryWithViewersFragment__story_name_required">Hikaye adı (gerekli)</string>
   <!--Name story screen viewers subheading-->
+  <string name="CreateStoryWithViewersFragment__viewers">Görüntüleyenler</string>
   <!--Name story screen create button label-->
   <string name="CreateStoryWithViewersFragment__create">Oluştur</string>
   <!--Name story screen error when save attempted with no label-->
@@ -3866,64 +3931,90 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="BaseStoryRecipientSelectionFragment__select_all">Hepsini seç</string>
   <!--Choose story type bottom sheet title-->
   <!--Choose story type bottom sheet new story row title-->
+  <string name="ChooseStoryTypeBottomSheet__new_private_story">Yeni özel hikaye</string>
   <!--Choose story type bottom sheet new story row summary-->
   <!--Choose story type bottom sheet group story title-->
+  <string name="ChooseStoryTypeBottomSheet__group_story">Grup hikayesi</string>
   <!--Choose story type bottom sheet group story summary-->
   <!--Choose groups bottom sheet title-->
+  <string name="ChooseGroupStoryBottomSheet__choose_groups">Grupları seç</string>
   <!--Displayed when copying group story reply text to clipboard-->
   <string name="StoryGroupReplyFragment__copied_to_clipboard">Panoya kopyalandı</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
+  <string name="StoryViewerPageFragment__see_more">… Daha Fazlasını Gör</string>
   <!--Displayed in toast after sending a direct reply-->
+  <string name="StoryDirectReplyDialogFragment__reply_sent">Yanıt gönderildi</string>
   <!--Displayed in toast after sending a direct reaction-->
+  <string name="StoryDirectReplyDialogFragment__reaction_sent">İfade gönderildi</string>
   <!--Displayed in the viewer when a story is no longer available-->
   <!--Displayed in the viewer when the network is not available-->
+  <string name="StorySlateView__no_internet_connection">İnternet Bağlantısı Yok</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <string name="StorySlateView__couldnt_load_content">İçerik Yüklenemedi</string>
   <!--Toasted when the user externally shares to a text story successfully-->
   <!--Toasted when the user external share to a text story fails-->
   <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">Hikayeyi görüntüle</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">Profil fotoğrafını görüntüle</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Sansür atlatma kapatılsın mı?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">Daha iyi bir deneyim için artık doğrudan Signal hizmetine bağlanabilirsiniz.</string>
   <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_no_thanks">Hayır teşekkürler</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Kapat</string>
   <!--Conversation Item label for when you react to someone else\'s story-->
+  <string name="ConversationItem__you_reacted_to_s_story">%1$s\'nin hikayesine tepki verdin</string>
   <!--Conversation Item label for reactions to your story-->
+  <string name="ConversationItem__reacted_to_your_story">Hikayene tepki verildi</string>
   <!--Conversation Item label for reactions to an unavailable story-->
+  <string name="ConversationItem__reacted_to_a_story">Bir hikayeye tepki verildi</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="ExpandModel__view_more">Daha fazlasını gör</string>
   <string name="StoriesLinkPopup__visit_link">Bağlantıyı ziyaret et</string>
   <!--Tagline for gift row items-->
+  <string name="GiftRowItem__send_a_gift_badge">Bir hediye rozeti gönder</string>
   <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">Bir Rozet Hediye Et</string>
   <!--Description text on start fragment for gifting a badge-->
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">İleri</string>
   <!--Title text on choose recipient page for badge gifting-->
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Alıcı seç</string>
   <!--Title text on confirm gift page-->
+  <string name="GiftFlowConfirmationFragment__confirm_gift">Hediyeyi doğrula</string>
   <!--Heading text specifying who the gift will be sent to-->
   <string name="GiftFlowConfirmationFragment__send_to">Gönderilecek</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
   <!--Text explaining that this gift is a one time donation-->
+  <string name="GiftFlowConfirmationFragment__one_time_donation">Tek seferlik bağış</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">İleti ekle</string>
   <!--Title for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s sana bir hediye gönderdi</string>
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Desteğin için teşekkürler!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
   <!--Description for sheet shown when opening a sent gift-->
   <!--Primary action for pending gift sheet to redeem badge now-->
+  <string name="ViewReceivedGiftSheet__redeem">Ödeme</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">Şimdi değil</string>
   <!--Dialog text while redeeming a gift-->
+  <string name="ViewReceivedGiftSheet__redeeming_gift">Hediye ödeniyor…</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <string name="ConversationFragment__you_can_redeem_your_badge_later">Rozetinizi daha sonra ödeyebilirsiniz.</string>
   <!--Description text in gift thanks sheet-->
   <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Hediye rozetinizin süresi doldu.</string>
   <!--Expired gift sheet top description text-->
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">Senin için geliştirilen teknolojiyi desteklemeye devam etmek için, lütfen aylık Destekçi olmayı düşün.</string>
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Aylık bağış yap</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Şimdi değil</string>
   <!--EOF-->

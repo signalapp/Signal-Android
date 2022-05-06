@@ -1159,7 +1159,15 @@
     <item quantity="other">%1$d μέλη</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d μέλος (%2$s)</item>
+    <item quantity="other">%1$d μέλη (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="one">+%1$d προσκεκλημένος</item>
+    <item quantity="other">+%1$d προσκεκλημένοι</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d επιπλέον ομάδα</item>
     <item quantity="other">%d επιπλέον ομάδες</item>
@@ -2120,6 +2128,7 @@
   <string name="preferences__advanced">Για προχωρημένους</string>
   <string name="preferences__donate_to_signal">Κάνε μια δωρεά στο Signal</string>
   <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">Δωρεά μια φορά</string>
   <string name="preferences__privacy">Ιδιωτικότητα</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Ρυθμίσεις MMS</string>
@@ -3098,6 +3107,7 @@
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Ποιότητα φωτογραφίας</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">Προσκάλεσε τους φίλους σου</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">Το id συνδρομητή αντιγράφτηκε στο πρόχειρο</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Λογαριασμός</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Θα στο ζητάμε όχι τόσο συχνά όσο περνάει ο καιρός</string>
@@ -3269,6 +3279,7 @@
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Γίνε υποστηρικτής/τρια</string>
   <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Το Signal βασίζεται σε άτομα σαν κι εσένα. Με τη δωρεά σου λαμβάνεις ένα έμβλημα.</string>
   <string name="BecomeASustainerMegaphone__not_now">Όχι τώρα</string>
   <string name="BecomeASustainerMegaphone__donate">Δωρεά</string>
   <!--KeyboardPagerFragment-->
@@ -3446,6 +3457,7 @@
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Το Signal στηρίζεται σε άτομα σαν κι εσένα.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Στήριξε τεχνολογίες που έχουν φτιαχτεί για εσένα - όχι για τα δεδομένα σου. Έλα στη κοινότητα ανθρώπων που το στηρίζουν.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Στήριξε τεχνολογίες που έχουν φτιαχτεί για εσένα, όχι για τα δεδομένα σου. Έλα στη κοινότητα ανθρώπων που το στηρίζουν το Signal.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Κάνε μια επαναλαμβανόμενη μηνιαία δωρεά στο Signal, για να υποστηρίξεις τη τεχνολογία που φτιάχνεται για σένα, όχι για τα δεδομένα σου.</string>
   <string name="SubscribeFragment__currency">Νόμισμα</string>
   <string name="SubscribeFragment__more_payment_options">Περισσότεροι τρόποι πληρωμής</string>
   <string name="SubscribeFragment__cancel_subscription">Ακύρωση συνδρομής</string>
@@ -3462,10 +3474,14 @@
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/μήνα · Ανανεώνεται %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/μήνα · Λήγει %2$s</string>
   <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Το Signal είναι μια ΜΚΟ χωρις διαφημίσεις και επενδυτές, που συντηρείται μόνο από τα άτομα που το χρησιμοποιούν και το θεωρούν σημαντικό. Με μια επαναλαμβανόμενη μηνιαία δωρεά παίρνεις ένα έμβλημα για το προφίλ σου, για να δείξεις την υποστήριξή σου.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Γιατί να κάνω δωρεά;</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Το Signal δεσμεύεται να αναπτύσσει τεχνολογία ιδιωτικότητας ανοικτού κώδικα, που προστατεύει την ελεύθερη έκφραση και επιτρέπει την ασφαλή επικοινωνία παγκοσμίως.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Η δωρεά σου ενισχύει αυτό το στόχο και πληρώνει για την ανάπτυξη και τη λειτουργία μιας εφαρμογής που χρησιμοποιείται από εκατομμύρια άτομα για ιδιωτικές επικοινωνίες. Χωρίς διαφημίσεις, χωρίς παρακολούθηση.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Ευχαριστούμε για την υποστήριξη!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Ευχαριστούμε για την ενίσχυση!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Κέρδισες ένα έμβλημα %s! Δείξε το έμβλημα στο προφίλ σου για να διαδώσεις τις δωρεές στο Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Κέρδισες ένα έμβλημα Ενίσχυσης! Δείξε το έμβλημα στο προφίλ σου για να διαδώσεις τις δωρεές στο Signal.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Μπορείς επίσης</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">Να γίνεις μηνιαίος υποστηρικτής/τρια.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Εμφάνιση στο προφίλ</string>
@@ -3475,10 +3491,13 @@
   <string name="BecomeASustainerFragment__get_badges">Στηρίζοντας το Signal παίρνεις εμβλήματα για το προφίλ σου. </string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Το Signal είναι μια μη κερδοσκοπική οργάνωση, χωρίς διαφημιστές και επενδυτές, που υποστηρίζεται από άτομα σαν κι εσένα.</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">Κάνε μηνιαία δωρεά</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">Περισσότερα</string>
   <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">Αποδείξεις</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">Η συνδρομή μου</string>
   <string name="ManageDonationsFragment__manage_subscription">Διαχείριση συνδρομής</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Αποδείξεις δωρεών</string>
@@ -3486,9 +3505,12 @@
   <string name="ManageDonationsFragment__subscription_faq">Συχνές ερωτήσεις συνδρομών</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Σφάλμα λήψης συνδρομής</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">Άλλοι τρόποι δωρεάς</string>
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">Κάνε δώρο ένα έμβλημα</string>
   <string name="BoostFragment__give_signal_a_boost">Δώσε Ενίσχυση στο Signal</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Κάνε μια μοναδική δωρεά και κέρδισε το έμβλημα Eνίσχυσης για %1$d ημέρες.</string>
   <string name="Boost__enter_custom_amount">Εισαγωγή προσαρμοσμένου ποσού</string>
   <string name="Boost__one_time_contribution">Υποστήριξη μια φορά</string>
   <string name="MySupportPreference__add_a_signal_boost">Προσθήκη Ενίσχυσης Signal</string>
@@ -3499,15 +3521,21 @@
   <string name="MySupportPreference__couldnt_add_badge_s">Αδυναμία προσθήκης εμβλήματος. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Παρακαλώ επικοινώνησε με την υποστήριξη.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Το έμβλημα Ενίσχυσης έληξε</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Η μηνιαία δωρεά ακυρώθηκε</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Το έμβλημα Ενίσχυσης έληξε και δεν θα εμφανίζεται πλέον στο προφίλ σου.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Μπορείς να επανενεργοποιήσεις το έμβλημα Ενίσχυσης για ακόμα 30 ημέρες, με μια μεμονωμένη συνεισφορά.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Μπορείς να συνεχίσεις να χρησιμοποιείς το Signal, αλλά για να υποστηρίξεις τη τεχνολογία που φτιάχνεται για σένα, σκέψου να γίνεις υποστηρικτής, κάνοντας μια μηνιαία δωρεά.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Γίνε υποστηρικτής/τρια</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Προσθήκη Ενίσχυσης</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Όχι τώρα</string>
   <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Η επαναλαμβανόμενη μηνιαία δωρεά σου ακυρώθηκε αυτόματα επειδή ήσουν ανενεργός/ή για πολύ καιρό. Το έμβλημα %1$s σου δεν είναι πλέον ορατό στο προφίλ σου.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Η επαναλαμβανόμενη μηνιαία δωρεά σου ακυρώθηκε επειδή δεν μπορέσαμε να εκτελέσουμε τη πληρωμή σου. Το έμβλημα δεν είναι πλέον ορατό στο προφίλ σου.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Μπορείς να συνεχίσεις να χρησιμοποιείς το Signal αλλά για να υποστηρίξεις την εφαρμογή και να επανενεργοποιήσεις το έμβλημά σου, ανανέωσε τώρα.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Ανανέωση συνδρομής</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Αδυναμία εκτέλεσης πληρωμής συνδρομής</string>
@@ -3526,9 +3554,13 @@
   <string name="DonationsErrors__still_processing">Ακόμα επεξεργάζεται</string>
   <string name="DonationsErrors__couldnt_add_badge">Αδυναμία προσθήκης εμβλήματος</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__failed_to_validate_badge">Αποτυχία επικύρωσης εμβλήματος</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__could_not_validate">Δεν μπορέσαμε να επικυρώσουμε την απάντηση του διακομιστή. Παρακαλώ επικοινώνησε με την υποστήριξη.</string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__failed_to_send_gift_badge">Αποτυχία αποστολής του εμβλήματος δώρου</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__could_not_send_gift_badge">Δεν μπορέσαμε να στείλουμε το έμβλημα δώρο. Παρακαλώ επικοινώνησε με την υποστήριξη.</string>
   <string name="DonationsErrors__your_badge_could_not">Το έμβλημά σου δεν μπόρεσε να προστεθεί στο λογαριασμό σου, αλλά ενδέχεται να έχεις χρεωθεί. Παρακαλώ επικοινώνησε με την υποστήριξη.</string>
   <string name="DonationsErrors__your_payment_is_still">Η πληρωμή σου βρίσκεται ακόμα σε επεξεργασία. Μπορεί να πάρει ακόμα μερικά λεπτά, ανάλογα με τη σύνδεσή σου.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay μη διαθέσιμο</string>
@@ -3538,13 +3570,23 @@
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Η συσκευή σου δεν υποστηρίζει το Google Pay, οπότε δεν μπορείς να γίνεις συνδρομητής για να λάβεις έμβλημα. Μπορείς όμως να υποστηρίξεις το Signal κάνοντας μια δωρεά στην ιστοσελίδα μας.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Σφάλμα δικτύου. Έλεγξε τη σύνδεσή σου και ξαναπροσπάθησε.</string>
   <string name="NetworkFailure__retry">Επανάληψη</string>
+  <string name="DonationsErrors__recipient_verification_failed">Αποτυχία επιβεβαίωσης παραλήπτη</string>
+  <string name="DonationsErrors__target_does_not_support_gifting">Ο στόχος δεν υποστηρίζει τα δώρα.</string>
   <!--Gift message view title-->
+  <string name="GiftMessageView__gift_badge">Έμβλημα δώρο</string>
   <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="one">Ισχύει για %1$d μήνα</item>
+    <item quantity="other">Ισχύει για %1$d μήνες</item>
+  </plurals>
   <!--Gift badge redeem action label-->
+  <string name="GiftMessageView__redeem">Εξαργύρωση</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">Εμφάνιση</string>
   <!--Gift badge redeeming action label-->
+  <string name="GiftMessageView__redeeming">Εξαργυρώνεται…</string>
   <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">Εξαργυρώθηκε</string>
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Δοκίμασε άλλο τρόπο πληρωμής ή επικοινώνησε με την τράπεζά σου για περισσότερες πληροφορίες.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3714,7 +3756,9 @@
   <!--Donation receipts recurring tab label-->
   <string name="DonationReceiptListFragment__recurring">Επαναλαμβανόμενη</string>
   <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">Μια φορά</string>
   <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">Δώρο</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Ενίσχυση</string>
   <!--Donation receipts details title-->
@@ -3764,6 +3808,7 @@
   <!--Label when a story fails to send-->
   <string name="StoriesLandingItem__send_failed">Αποτυχία αποστολής</string>
   <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">Πάτα για επανάληψη</string>
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Απόκρυψη ιστορίας;</string>
   <!--Message of dialog confirming decision to hide a story-->
@@ -3830,6 +3875,7 @@
   <!--Story settings private stories heading-->
   <string name="StorySettingsFragment__private_stories">Ιδιωτικές ιστορίες</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Οι ιδιωτικές ιστορίες μπορούν να προβληθούν μόνο από τα άτομα που προσθέσεις σε αυτές. Μόνο εσύ μπορείς να δεις το όνομα της ιστορίας.</string>
   <!--Option label for creating a new private story-->
   <string name="StorySettingsFragment__new_private_story">Νέα ιδιωτική ιστορία</string>
   <!--Page title for My Story options-->
@@ -3914,6 +3960,7 @@
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <string name="StoryDialogs__edit_viewers">Επεξεργασία θεατών</string>
   <!--Error message shown when a failure occurs during story send-->
+  <string name="StoryDialogs__story_could_not_be_sent">Η ιστορία δεν μπόρεσε να σταλθεί. Έλεγξε τη σύνδεσή σου και προσπάθησε ξανά.</string>
   <!--Error message dialog button to resend a previously failed story send-->
   <string name="StoryDialogs__send">Αποστολή</string>
   <!--Privacy Settings toggle title for stories-->
@@ -3970,9 +4017,13 @@
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <string name="StorySlateView__couldnt_load_content">Αποτυχία φόρτωσης περιεχομένου</string>
   <!--Toasted when the user externally shares to a text story successfully-->
+  <string name="TextStoryPostCreationFragment__sent_story">Η ιστορία στάλθηκε</string>
   <!--Toasted when the user external share to a text story fails-->
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">Αποτυχία αποστολής ιστορίας</string>
   <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">Προβολή ιστορίας</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">Προβολή φωτογραφίας προφίλ</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Απενεργοποίηση της παράκαμψης λογοκρισίας;</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -3992,34 +4043,51 @@
   <string name="ExpandModel__view_more">Προβολή περισσότερων</string>
   <string name="StoriesLinkPopup__visit_link">Επίσκεψη συνδέσμου</string>
   <!--Tagline for gift row items-->
+  <string name="GiftRowItem__send_a_gift_badge">Αποστολή εμβλήματος δώρου</string>
   <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">Κάνε δώρο ένα έμβλημα</string>
   <!--Description text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">Κάνε δώρο ένα έμβλημα σε κάποιον/α, κάνοντας μια δωρεά στο Signal στο όνομά του/της. Θα λάβει το έμβλημα για να το δείξει στην εικόνα προφίλ του/της.</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Επόμενο</string>
   <!--Title text on choose recipient page for badge gifting-->
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Επιλογή παραλήπτη</string>
   <!--Title text on confirm gift page-->
+  <string name="GiftFlowConfirmationFragment__confirm_gift">Επιβεβαίωση δώρου</string>
   <!--Heading text specifying who the gift will be sent to-->
   <string name="GiftFlowConfirmationFragment__send_to">Αποστολή σε</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Το δώρο σου θα σταλθεί σε προσωπικό μήνυμα στον παραλήπτη. Πρόσθεσε το μήνυμά σου παρακάτω.</string>
   <!--Text explaining that this gift is a one time donation-->
+  <string name="GiftFlowConfirmationFragment__one_time_donation">Δωρεά μια φορά</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Προσθήκη μηνύματος</string>
   <!--Title for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">Ο/Η %1$s σου έστειλε ένα δώρο</string>
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Ευχαριστούμε για την υποστήριξη!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Έλαβες ένα έμβλημα δώρο από τον/την %1$s! Βοήθησε με την ευαισθητοποίηση για το Signal, επιδεικνύοντας το έμβλημα στο προφίλ σου.</string>
   <!--Description for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Δώρισες ένα έμβλημα στον/στην %1$s. Όταν το αποδεχτεί, θα έχει την επιλογή να δείξει ή να αποκρύψει το έμβλημα.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
+  <string name="ViewReceivedGiftSheet__redeem">Εξαργύρωση</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">Όχι τώρα</string>
   <!--Dialog text while redeeming a gift-->
+  <string name="ViewReceivedGiftSheet__redeeming_gift">Το δώρο εξαργυρώνεται…</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <string name="ConversationFragment__you_can_redeem_your_badge_later">Μπορείς να εξαργυρώσεις το έμβλημά σου αργότερα.</string>
   <!--Description text in gift thanks sheet-->
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Δώρισες ένα έμβλημα στον/στην %1$s. Όταν το αποδεχτεί, θα έχει την επιλογή να δείξει ή να αποκρύψει το έμβλημα.</string>
   <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Το έμβλημα δώρο σου έληξε</string>
   <!--Expired gift sheet top description text-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Το έμβλημα δώρο σου έληξε, και δεν εμφανίζεται πλέον σε άλλα άτομα στο προφίλ σου.</string>
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">Για να συνεχίσεις να υποστηρίζεις τη τεχνολογία που έχει φτιαχτεί για εσένα, παρακαλούμε σκέψου να γίνεις μηνιαίος υποστηρικτής/τρια.</string>
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Κάνε μηνιαία δωρεά</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Όχι τώρα</string>
   <!--EOF-->

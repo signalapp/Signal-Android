@@ -2098,7 +2098,7 @@ nummer (%s) er ugyldigt</string>
   <string name="preferences__enable_passphrase">Aktiver skærmlås med adgangssætning</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lås skærm og notifikationer med adgangssætning</string>
   <string name="preferences__screen_security">Skærmsikkerhed</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokér skærmbilleder i listen over \"Seneste apps\" og inde i Signal</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokér skærmbilleder i oversigten over seneste app og inde i Signal på din egen enhed</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lås automatisk Signal efter et bestemt tidsrum med inaktivitet</string>
   <string name="preferences__inactivity_timeout_passphrase">Adgangssætning for timeout ved inaktivitet</string>
   <string name="preferences__inactivity_timeout_interval">Timeout-interval for inaktivitet</string>
@@ -3194,7 +3194,7 @@ nummer (%s) er ugyldigt</string>
   <string name="PrivacySettingsFragment__messaging">Beskeder</string>
   <string name="PrivacySettingsFragment__disappearing_messages">Forsvindende beskeder</string>
   <string name="PrivacySettingsFragment__app_security">App-sikkerhed</string>
-  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokér skærmbilleder i listen \"Seneste apps\" og inde i Signal</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokér skærmbilleder i oversigten over seneste app og inde i Signal på din egen enhed</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-beskeder og opkald, videresend altid opkald og forseglet afsender</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standardudløbstid for nye samtaler</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Indstil en udløbstid for forsvindende beskeder, der skal gælde som standard for alle nye samtaler startet af dig.</string>

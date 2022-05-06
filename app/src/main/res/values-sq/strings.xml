@@ -1160,7 +1160,15 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
     <item quantity="other">%1$d anëtarë</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d anëtar (%2$s)</item>
+    <item quantity="other">%1$d anëtarë (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="one">+%1$d të ftuar</item>
+    <item quantity="other">+%1$d të ftuar</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d grup shtesë</item>
     <item quantity="other">%d grupe shtesë</item>
@@ -3109,6 +3117,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Cilësi fotografie</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">Ftoni shokët tuaj</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">ID-ja e pajtimtarit u kopjua në të papastër</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Llogari</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Me kalimin e kohës, do të pyeteni më rrallë</string>
@@ -3481,6 +3490,8 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Dhurimi juaj i shërben kësaj kauze dhe paguan për zhvillimin dhe operacioneve të lidhura me një aplikacion të përdorur nga miliona vetë për komunikim privat. Pa reklama. Pa gjurmues. Pa shaka.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Faleminderit për Përkrahjen tuaj!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Faleminderit për Fuqizimin!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Fituat stemën %s! Shfaqeni këtë stemë në profilin tuaj, që të shtohet ndërgjegjësimi mbi dhurimet për Signal-in.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Fituat një stemë Përforcimi. Shpaloseni këtë stemë në profilin tuaj, që të shtohet ndërgjegjësimi për dhurim te Signal-i.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Mundeni edhe të</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">bëheni një Mbështetës mujor.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Shfaqe në Profil</string>
@@ -3490,10 +3501,13 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="BecomeASustainerFragment__get_badges">Merrni stema për profilin tuaj, duke përkrahur Signal-in.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal-i është një ent jofitimprurës pa rrjete reklamash dhe investues, i përkrahur vetëm nga njerëz si ju.</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">Bëni një dhurim të përmuajshëm</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">Më tepër</string>
   <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">Fatura</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">Pajtimi im</string>
   <string name="ManageDonationsFragment__manage_subscription">Administroni pajtim</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Dëftesa Dhurimesh</string>
@@ -3501,9 +3515,12 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ManageDonationsFragment__subscription_faq">PBR pajtimesh</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Gabim në marrje pajtimi.</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">Rrugë të tjera për të dhuruar</string>
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">Dhuroni një stemë</string>
   <string name="BoostFragment__give_signal_a_boost">Jepini Sinjalit Pak Fuqizim</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Bëni një dhurim një here dhe fitoni një stemë Përforcimi për %1$d ditë.</string>
   <string name="Boost__enter_custom_amount">Jepni Sasi Vetjake</string>
   <string name="Boost__one_time_contribution">Kontribut një herë</string>
   <string name="MySupportPreference__add_a_signal_boost">Shtoni një fuqizim Signal-i</string>
@@ -3514,16 +3531,21 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="MySupportPreference__couldnt_add_badge_s">S\’u shtua dot stemë. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Ju lutemi, lidhuni me ata të asistencës.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Stema e Përforcimit Ka Skaduar</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Dhurim i Përmuajshëm i Anuluar</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Stema juaj e Përforcimit ka skaduar dhe s\’është më e dukshme për të tjerët në profilin tuaj.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Stemën tua Përforcim mund ta riaktivizoni për 30 ditë të tjera përmes një kontributi një herësh.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Mund të vazhdoni të përdorni Signal-in, por që të përkrahni teknologjinë që është ndërtuar për ju, shihni mundësinë e bërjes një përkrahës, duke bërë një dhurim të përmuajshëm.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bëhuni një Mbështetës</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Shtoni një Përforcim</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Jo tani</string>
   <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Dhurimi juaj ripërsëritës u anulua automatikisht, ngaqë qetë jo aktiv për një kohë të gjatë. Stema juaj %1$s s\’është më e dukshme te profili juaj.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Dhurimi juaj i përmuajshëm u anulua, ngaqë s\’përpunuam dot pagesën tuaj. Stema juaj s\’është më e dukshme te profili juaj.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Mund të vazhdoni ta përdorni Signal-in, por që të përkrahni aplikacionin dhe të riaktivizoni stemën, rinovojeni tani.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Rinovoni pajtimin</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">S’bëhet dot kryerja e pagesës</string>
@@ -3542,9 +3564,13 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="DonationsErrors__still_processing">Ende në përpunim</string>
   <string name="DonationsErrors__couldnt_add_badge">S\’u shtua dot stemë</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__failed_to_validate_badge">S\’u arrit të vleftësohej stema</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__could_not_validate">S\’u vleftësua dot përgjigja e shërbyesit. Ju lutemi, lidhuni me asistencën.</string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__failed_to_send_gift_badge">S\’u arrit të dërgohej një stemë dhuratë</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__could_not_send_gift_badge">S\’u dërgua dot stemë dhuratë. Ju lutemi, lidhuni me asistencën.</string>
   <string name="DonationsErrors__your_badge_could_not">Stema juaj s\’u shtua dot te llogaria juaj, por mund t\’ju jetë faturuar vlera e dhurimit. Ju lutemi, lidhuni me asistencën.</string>
   <string name="DonationsErrors__your_payment_is_still">Pagesa juaj ende po përpunohet. Kjo mund të zërë ca minuta, varet nga lidhja juaj.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay i Pakapshëm</string>
@@ -3554,8 +3580,15 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Pajisja juaj nuk mbulon Google Pay, ndaj s\’mund të kontribuoni për të fituar një stemë. Mundeni ende të përkrahni Signal-in duke bërë një dhurim te sajti ynë.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Gabim rrjeti. Ju lutemi, kontrolloni lidhjen tuaj me rrjetin dhe riprovoni.</string>
   <string name="NetworkFailure__retry">Riprovo</string>
+  <string name="DonationsErrors__recipient_verification_failed">Dështoi verifikimi i marrësit.</string>
+  <string name="DonationsErrors__target_does_not_support_gifting">Marrësi i synuar nuk mbulon dhurime.</string>
   <!--Gift message view title-->
+  <string name="GiftMessageView__gift_badge">Dhuroni stemë</string>
   <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="one">Vlen për %1$d muaj</item>
+    <item quantity="other">Vlen për %1$d muaj</item>
+  </plurals>
   <!--Gift badge redeem action label-->
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">Shihni</string>
@@ -3732,6 +3765,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">Një herë</string>
   <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">Dhuratë</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Përforcojeni</string>
   <!--Donation receipts details title-->
@@ -3763,6 +3797,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Shtoni një histori</string>
   <!--Displayed when there are no stories to display-->
+  <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Hëpërhë s’ka dhurime për t’u shfaqur. Prekni + që të shtoni historinë tuaj.</string>
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Fshihe historinë</string>
   <!--Context menu option to unhide a story-->
@@ -3776,9 +3811,11 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Po dërgohet…</string>
   <!--Label when multiple stories are pending sending-->
+  <string name="StoriesLandingItem__sending_d">Po dërgohen %1$d…</string>
   <!--Label when a story fails to send-->
   <string name="StoriesLandingItem__send_failed">Dërgimi dështoi</string>
   <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">Prekeni që të riprovohet</string>
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Të fshihet historia?</string>
   <!--Message of dialog confirming decision to hide a story-->
@@ -3845,6 +3882,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Story settings private stories heading-->
   <string name="StorySettingsFragment__private_stories">Histori private</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Historitë private mund të shihen vetëm nga persona që shtoni në to. Emrin e historisë mund ta shihni vetëm ju.</string>
   <!--Option label for creating a new private story-->
   <string name="StorySettingsFragment__new_private_story">Histori e re private</string>
   <!--Page title for My Story options-->
@@ -3929,6 +3967,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <string name="StoryDialogs__edit_viewers">Përpunoni shikues</string>
   <!--Error message shown when a failure occurs during story send-->
+  <string name="StoryDialogs__story_could_not_be_sent">S\’u dërgua dot histori. Kontrolloni lidhjen tuaj në internet dhe riprovoni. </string>
   <!--Error message dialog button to resend a previously failed story send-->
   <string name="StoryDialogs__send">Dërgoje</string>
   <!--Privacy Settings toggle title for stories-->
@@ -3985,9 +4024,13 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <string name="StorySlateView__couldnt_load_content">S’u Ngarkuan Dot Lëndë</string>
   <!--Toasted when the user externally shares to a text story successfully-->
+  <string name="TextStoryPostCreationFragment__sent_story">Historia u dërgua</string>
   <!--Toasted when the user external share to a text story fails-->
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">S’u arrit të dërgohet histori</string>
   <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">Shihni historinë</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">Shihni foto profili</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Të çaktivizohet anashkalimi i censurimit?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -3997,6 +4040,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Çaktivizoje</string>
   <!--Conversation Item label for when you react to someone else\'s story-->
+  <string name="ConversationItem__you_reacted_to_s_story">Reaguat ndaj historisë nga %1$s</string>
   <!--Conversation Item label for reactions to your story-->
   <string name="ConversationItem__reacted_to_your_story">Reagoi ndaj historisë tuaj</string>
   <!--Conversation Item label for reactions to an unavailable story-->
@@ -4006,34 +4050,48 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ExpandModel__view_more">Shihni më tepër</string>
   <string name="StoriesLinkPopup__visit_link">Vizitoni lidhjen</string>
   <!--Tagline for gift row items-->
+  <string name="GiftRowItem__send_a_gift_badge">Dërgoni një stemë dhuratë</string>
   <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">Dhuroni një Stemë</string>
   <!--Description text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">Dhurojini dikujt një stemë, duke bërë një dhurim për Signal-ni në emër të tyre. Do të marrin një stemë për ta shfaqur në foton e tyre të profilit.</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Pasuesi</string>
   <!--Title text on choose recipient page for badge gifting-->
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Zgjidhni marrës</string>
   <!--Title text on confirm gift page-->
+  <string name="GiftFlowConfirmationFragment__confirm_gift">Ripohoni dhuratën</string>
   <!--Heading text specifying who the gift will be sent to-->
   <string name="GiftFlowConfirmationFragment__send_to">Dërgoja</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Dhurata juaj do të dërgohet si një mesazh tek për tek me marrësin. Shtoni më poshtë mesazhin tuaj.</string>
   <!--Text explaining that this gift is a one time donation-->
+  <string name="GiftFlowConfirmationFragment__one_time_donation">Dhurim një herë</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Shtoni një mesazh</string>
   <!--Title for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s ju dërgoi një dhuratë</string>
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Faleminderit për përkrahjen tuaj!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Morët një stemë dhuratë nga %1$s! Ndihmoni Signal-in të shtojë ndërgjegjësimin, duke e shfaqur këtë stemë në profilin tuaj.</string>
   <!--Description for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">I dhuruat %1$s një stemë. Kur ta pranojë, do t’u jepet mundësia për ta shfaqur, ose për ta fshehur.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">Jo tani</string>
   <!--Dialog text while redeeming a gift-->
   <!--Snackbar text when user presses "not now" on redemption sheet-->
   <!--Description text in gift thanks sheet-->
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">I dhuruat %1$s një stemë. Kur ta pranojë, do t’u jepet mundësia për ta shfaqur, ose për ta fshehur.</string>
   <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Stema juaj dhuratë ka skaduar</string>
   <!--Expired gift sheet top description text-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Stema juaj dhuratë ka skaduar dhe s’është më e dukshme për të tjerët te profili juaj.</string>
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">Që të vazhdoni të përkrahni teknologji që është krijuar për ju, ju lutemi, shihni mundësinë e bërjes një Mbështetës mujor.</string>
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Bëni një dhurim të përmuajshëm</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Jo tani</string>
   <!--EOF-->

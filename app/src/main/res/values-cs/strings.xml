@@ -3293,6 +3293,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Kvalita fotografie</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">Pozvěte své přátele</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">Číslo předplatitele zkopírováno do schránky</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Účet</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Časem se vás budeme ptál méně často.</string>
@@ -3688,11 +3689,13 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="BecomeASustainerFragment__get_badges">Získejte odznaky pro svůj profil za podporu Signalu.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal je nezisková organizace fungující bez reklam a investorů, kterou podporují pouze lidé jako vy.</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">Poskytnout měsíční příspěvek</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">Víc</string>
   <!--Heading for receipts area of manage subscriptions page-->
   <string name="ManageDonationsFragment__receipts">Doklady</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">Mé předplatné</string>
   <string name="ManageDonationsFragment__manage_subscription">Spravovat předplatné</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Doklady o příspěvku</string>
@@ -3700,7 +3703,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ManageDonationsFragment__subscription_faq">Často kladené dotazy k předplatnému</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Chyba při získávání předplatného.</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">Jiné možnosti podpory</string>
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">Darujte odznak</string>
   <string name="BoostFragment__give_signal_a_boost">Dejte Signalu Boost</string>
   <!--Description text in boost sheet-->
   <string name="Boost__enter_custom_amount">Zadat vlastní výši</string>
@@ -3746,9 +3751,13 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="DonationsErrors__still_processing">Stále zpracovávám</string>
   <string name="DonationsErrors__couldnt_add_badge">Nezdařilo se přidat odznak</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__failed_to_validate_badge">Nepodařilo se ověřit odznak</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__could_not_validate">Nepodařilo se ověřit odpověď serveru. Kontaktujte prosím podporu.</string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__failed_to_send_gift_badge">Nepodařilo se odeslat dárkový odznak</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__could_not_send_gift_badge">Nelze odeslat dárkový odznak. Kontaktujte prosím podporu.</string>
   <string name="DonationsErrors__your_badge_could_not">Váš odznak se nepodařilo přidat k vašemu účtu, ale platba pravděpodobně proběhla. Kontaktujte prosím podporu.</string>
   <string name="DonationsErrors__your_payment_is_still">Vaše platba se stále zpracovává. To může trvat několik minut v závislosti na vašem připojení.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay není dostupné</string>
@@ -3758,7 +3767,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Vaše zařízení nepodporuje službu Google Pay, takže se nemůžete přihlásit k odběru a získat odznak. Přesto můžete Signal podpořit příspěvkem na našich webových stránkách.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Chyba sítě. Zkontrolujte připojení a zkuste to znovu.</string>
   <string name="NetworkFailure__retry">Zkusit znovu</string>
+  <string name="DonationsErrors__recipient_verification_failed">Ověření příjemce selhalo.</string>
   <!--Gift message view title-->
+  <string name="GiftMessageView__gift_badge">Dárkový odznak</string>
   <!--Gift message view expiry information-->
   <!--Gift badge redeem action label-->
   <!--Gift badge view action label-->
@@ -4059,6 +4070,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Story settings private stories heading-->
   <string name="StorySettingsFragment__private_stories">Soukromé příběhy</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Soukromé příběhy si mohou prohlížet pouze lidé, které do nich přidáte. Název příběhu můžete vidět pouze vy.</string>
   <!--Option label for creating a new private story-->
   <string name="StorySettingsFragment__new_private_story">Nový soukromý příběh</string>
   <!--Page title for My Story options-->
@@ -4208,7 +4220,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Toasted when the user external share to a text story fails-->
   <string name="TextStoryPostCreationFragment__failed_to_send_story">Nepodařilo se odeslat příběh</string>
   <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">Zobrazit příběh</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">Zobrazit profilovou fotku</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Zapnout obcházení cenzury?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -4228,15 +4242,21 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ExpandModel__view_more">Zobrazit více</string>
   <string name="StoriesLinkPopup__visit_link">Navštívit odkaz</string>
   <!--Tagline for gift row items-->
+  <string name="GiftRowItem__send_a_gift_badge">Odeslání dárkového odznaku</string>
   <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">Darujte odznak</string>
   <!--Description text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">Darujte někomu odznak tím, že jeho jménem přispějete na organizaci Signal. Dostane odznak, který se zobrazí na jeho profilové fotografii.</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Další</string>
   <!--Title text on choose recipient page for badge gifting-->
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Zvolte příjemce</string>
   <!--Title text on confirm gift page-->
+  <string name="GiftFlowConfirmationFragment__confirm_gift">Potvrdit dárek</string>
   <!--Heading text specifying who the gift will be sent to-->
   <string name="GiftFlowConfirmationFragment__send_to">Odeslat</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Váš dárek bude příjemci zaslán ve zprávě. Níže můžete přidat vlastní vzkaz.</string>
   <!--Text explaining that this gift is a one time donation-->
   <string name="GiftFlowConfirmationFragment__one_time_donation">Jednorázový příspěvek</string>
   <!--Hint for add message input-->
@@ -4251,12 +4271,16 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ViewReceivedGiftSheet__not_now">Teď ne</string>
   <!--Dialog text while redeeming a gift-->
   <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <string name="ConversationFragment__you_can_redeem_your_badge_later">Odznak můžete uplatnit později.</string>
   <!--Description text in gift thanks sheet-->
   <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Platnost vašeho dárkového odznaku vypršela</string>
   <!--Expired gift sheet top description text-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Platnost vašeho dárkového odznaku vypršela a na vašem profilu již není pro ostatní viditelný.</string>
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">Chcete-li i nadále podporovat technologii, která je vytvořena pro vás, zvažte možnost stát se měsíčním podporovatelem.</string>
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Poskytnout měsíční příspěvek</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Teď ne</string>
   <!--EOF-->

@@ -1159,7 +1159,15 @@
     <item quantity="other">%1$d membres</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d membre (%2$s)</item>
+    <item quantity="other">%1$d membres (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="one">+%1$d convidat</item>
+    <item quantity="other">+%1$d convidats</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d grup addicional</item>
     <item quantity="other">%d grups addicionals</item>
@@ -3098,6 +3106,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Qualitat de la fotografia</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">Convideu-hi amistats</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">S\'ha copiat l\'identificador del subscriptor al porta-retalls.</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Compte</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Amb el temps se us demanarà amb menys freqüència</string>
@@ -3481,11 +3490,13 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="BecomeASustainerFragment__get_badges">Aconseguiu insígnies per al perfil donant suport al Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">El Signal és una organització sense ànim de lucre sense anunciants ni inversors, amb el suport només de persones com vós.</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">Feu una donació mensual</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">Més</string>
   <!--Heading for receipts area of manage subscriptions page-->
   <string name="ManageDonationsFragment__receipts">Rebuts</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">La meva subscripció</string>
   <string name="ManageDonationsFragment__manage_subscription">Gestioneu la subscripció</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Rebuts de donació</string>
@@ -3493,9 +3504,12 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ManageDonationsFragment__subscription_faq">PMF de la subscripció</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Error en obtenir una subscripció</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">Altres maneres de fer-hi una donació</string>
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">Regaleu una insígnia</string>
   <string name="BoostFragment__give_signal_a_boost">Doneu una empenta al Signal</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Feu una donació única i guanyeu una insígnia d\'empenta durant %1$d dies.</string>
   <string name="Boost__enter_custom_amount">Introduïu la quantitat personalitzada</string>
   <string name="Boost__one_time_contribution">Contribució d\'un cop</string>
   <string name="MySupportPreference__add_a_signal_boost">Afegiu una empenta al Signal</string>
@@ -3539,9 +3553,13 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="DonationsErrors__still_processing">Encara en procés</string>
   <string name="DonationsErrors__couldnt_add_badge">No s\'ha pogut afegir la insígnia.</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__failed_to_validate_badge">No s\'ha pogut validar la insígnia.</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__could_not_validate">No s\'ha pogut validar la resposta del servidor. Poseu-vos en contacte amb el servei d\'assistència.</string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__failed_to_send_gift_badge">No s\'ha pogut enviar la insígnia de regal.</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__could_not_send_gift_badge">No s\'ha pogut enviar la insígnia de regal. Poseu-vos en contacte amb el servei d\'assistència.</string>
   <string name="DonationsErrors__your_badge_could_not">La insígnia no s\'ha pogut afegir al compte, però és possible que se us hagi cobrat. Poseu-vos en contacte amb l\'assistència.</string>
   <string name="DonationsErrors__your_payment_is_still">El pagament encara s\'està processant. Això pot trigar uns quants minuts segons la connexió.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay no disponible</string>
@@ -3551,13 +3569,23 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">El vostre dispositiu no és compatible amb Google Pay, de manera que no us hi podeu subscriure per guanyar una insígnia. Podeu donar suport al Signal fent una donació al nostre lloc web.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Error de connexió. Comproveu la connexió i torneu-ho a provar.</string>
   <string name="NetworkFailure__retry">Torneu a provar-ho</string>
+  <string name="DonationsErrors__recipient_verification_failed">La verificació del destinatari ha fallat.</string>
+  <string name="DonationsErrors__target_does_not_support_gifting">La destinació no admet regals.</string>
   <!--Gift message view title-->
+  <string name="GiftMessageView__gift_badge">Insígnia de regal</string>
   <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="one">Dura %1$d mes</item>
+    <item quantity="other">Dura %1$d mesos</item>
+  </plurals>
   <!--Gift badge redeem action label-->
+  <string name="GiftMessageView__redeem">Bescanvia</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">Vista</string>
   <!--Gift badge redeeming action label-->
+  <string name="GiftMessageView__redeeming">Es bescanvia…</string>
   <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">Bescanviat</string>
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Proveu un altre mètode de pagament o poseu-vos en contacte amb el banc per obtenir-ne més informació.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3569,7 +3597,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--Stripe decline code purchase not supported-->
   <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">La targeta no admet aquest tipus de compra. Proveu una altra forma de pagament.</string>
   <!--Stripe decline code your card has expired-->
-  <string name="DeclineCode__your_card_has_expired">La targeta ha caducat. Actualitzeu la forma de pagament a Google Pay i torneu-ho a provar.</string>
+  <string name="DeclineCode__your_card_has_expired">La targeta ha vençut. Actualitzeu la forma de pagament a Google Pay i torneu-ho a provar.</string>
   <!--Stripe decline code go to google pay action label-->
   <string name="DeclineCode__go_to_google_pay">Ves a Google Pay</string>
   <!--Stripe decline code incorrect card number-->
@@ -3579,9 +3607,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--Stripe decline code insufficient funds-->
   <string name="DeclineCode__your_card_does_not_have_sufficient_funds">La targeta no té prou fons per completar aquesta compra. Proveu una altra forma de pagament.</string>
   <!--Stripe decline code incorrect expiration month-->
-  <string name="DeclineCode__the_expiration_month">El mes de caducitat de la forma de pagament és incorrecte. Actualitzeu-lo a Google Pay i torneu-ho a provar.</string>
+  <string name="DeclineCode__the_expiration_month">El mes de venciment de la forma de pagament és incorrecte. Actualitzeu-lo a Google Pay i torneu-ho a provar.</string>
   <!--Stripe decline code incorrect expiration year-->
-  <string name="DeclineCode__the_expiration_year">L\'any de caducitat del mètode de pagament és incorrecte. Actualitzeu-lo a Google Pay i torneu-lo a provar.</string>
+  <string name="DeclineCode__the_expiration_year">L\'any de venciment del mètode de pagament és incorrecte. Actualitzeu-lo a Google Pay i torneu-lo a provar.</string>
   <!--Stripe decline code issuer not available-->
   <string name="DeclineCode__try_completing_the_payment_again">Proveu de tornar a completar el pagament o poseu-vos en contacte amb el banc per obtenir-ne més informació.</string>
   <!--Stripe decline code processing error-->
@@ -3729,6 +3757,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">Única</string>
   <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">Regal</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Empenta</string>
   <!--Donation receipts details title-->
@@ -3846,6 +3875,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--Story settings private stories heading-->
   <string name="StorySettingsFragment__private_stories">Històries privades</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Les històries privades només les poden veure les persones que hi afegiu. Només vós podeu veure el nom de la història.</string>
   <!--Option label for creating a new private story-->
   <string name="StorySettingsFragment__new_private_story">Història privada nova</string>
   <!--Page title for My Story options-->
@@ -3991,7 +4021,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--Toasted when the user external share to a text story fails-->
   <string name="TextStoryPostCreationFragment__failed_to_send_story">Ha fallat enviar la història.</string>
   <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">Mostra la història</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">Mostra la fotografia del perfil</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Voleu desactivar l\'elusió de la censura?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -4011,35 +4043,51 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ExpandModel__view_more">Mostra\'n més</string>
   <string name="StoriesLinkPopup__visit_link">Obre l\'enllaç</string>
   <!--Tagline for gift row items-->
+  <string name="GiftRowItem__send_a_gift_badge">Envia una insígnia de regal</string>
   <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">Regaleu una insígnia</string>
   <!--Description text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">Regaleu una insígnia a algú fent una donació al Signal al seu nom. Rebran una insígnia per mostrar a la seva fotografia del perfil.</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Següent</string>
   <!--Title text on choose recipient page for badge gifting-->
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Trieu-ne el destinatari</string>
   <!--Title text on confirm gift page-->
+  <string name="GiftFlowConfirmationFragment__confirm_gift">Confirmeu el regal</string>
   <!--Heading text specifying who the gift will be sent to-->
   <string name="GiftFlowConfirmationFragment__send_to">Envia a</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">El regal s\'enviarà en un missatge d\'1 a 1 al destinatari. Afegiu el missatge propi a continuació.</string>
   <!--Text explaining that this gift is a one time donation-->
   <string name="GiftFlowConfirmationFragment__one_time_donation">Donació única</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Afegiu-hi un missatge</string>
   <!--Title for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s us ha enviat un regal</string>
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Gràcies pel vostre suport!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Heu rebut una insígnia de regal de %1$s! Ajudeu el Signal a crear consciència mostrant aquesta insígnia al perfil.</string>
   <!--Description for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Heu regalat una insígnia a %1$s. Quan l\'accepti, tindrà l\'opció de mostrar-la o amagar-la.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
+  <string name="ViewReceivedGiftSheet__redeem">Bescanvia</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">Ara no</string>
   <!--Dialog text while redeeming a gift-->
+  <string name="ViewReceivedGiftSheet__redeeming_gift">Es bescanvia el regal…</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <string name="ConversationFragment__you_can_redeem_your_badge_later">Podeu bescanviar la insígnia més tard.</string>
   <!--Description text in gift thanks sheet-->
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Heu regalat una insígnia a %1$s. Quan l\'accepti, tindrà l\'opció de mostrar-la o amagar-la.</string>
   <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">La insígnia de regal ha vençut.</string>
   <!--Expired gift sheet top description text-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">La insígnia de regal ha vençut i ja no és visible per als altres al perfil.</string>
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">Per continuar donant suport a la tecnologia creada per a vós, considereu convertir-vos en un sostenidor mensual.</string>
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Feu una donació mensual</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ara no</string>
   <!--EOF-->

@@ -1282,7 +1282,19 @@
     <item quantity="other">%1$d учасники</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d учасник (%2$s)</item>
+    <item quantity="few">%1$d учасників (%2$s)</item>
+    <item quantity="many">%1$d учасників (%2$s)</item>
+    <item quantity="other">%1$d учасників (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="one">+%1$d запрошено</item>
+    <item quantity="few">+%1$d запрошено</item>
+    <item quantity="many">+%1$d запрошено</item>
+    <item quantity="other">+%1$d запрошено</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d додаткова група</item>
     <item quantity="few">%d додаткова група</item>
@@ -2293,6 +2305,7 @@
   <string name="preferences__advanced">Розширені</string>
   <string name="preferences__donate_to_signal">Підтримати Signal</string>
   <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">Разовий внесок</string>
   <string name="preferences__privacy">Приватність</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Власні налаштування MMS</string>
@@ -3295,6 +3308,7 @@
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Якість фото</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">Запросити ваших друзів</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">ID підписника скопійовано до буфера обміну</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Обліковий запис</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">З часом питання буде з\'являтися все рідше</string>
@@ -3676,6 +3690,7 @@
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal — некомерційний, без рекламодавців чи інвесторів, підтримуваний лише людьми, які ним користуються та цінують. Зробіть регулярний щомісячний внесок та отримайте відзнаку профілю, повідомляючи про свою підтримку.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Навіщо робити внески?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal прагне розвивати технологію конфіденційності з відкритим вихідним кодом, яка захищає свободу слова і забезпечує безпечне глобальне спілкування.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Ваш внесок сприяє цій справі й оплачує розробку й роботу застосунку, який використовується мільйонами для приватного спілкування. Без реклами. Без трекерів. Без жартів.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Дякуємо за вашу підтримку!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Дякуємо за пришвидшення!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Ви також можете</string>
@@ -3687,11 +3702,13 @@
   <string name="BecomeASustainerFragment__get_badges">Отримайте емблеми для свого облікового запису підтримуючи Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal — неприбутковий, без рекламодавців чи інвесторів, що підтримується лише такими людьми, як ви.</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">Зробити щомісячний внесок</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">Більше</string>
   <!--Heading for receipts area of manage subscriptions page-->
   <string name="ManageDonationsFragment__receipts">Квитанції</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">Моя підписка</string>
   <string name="ManageDonationsFragment__manage_subscription">Керувати передплатою</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Квитанція внеску</string>
@@ -3699,7 +3716,9 @@
   <string name="ManageDonationsFragment__subscription_faq">Підписка ЧАП</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Помилка отримання передплати.</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">Інші типи внесків</string>
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">Подарувати емблему</string>
   <string name="BoostFragment__give_signal_a_boost">Пришвидшити Signal</string>
   <!--Description text in boost sheet-->
   <string name="Boost__enter_custom_amount">Власна сума</string>
@@ -4246,6 +4265,7 @@
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">Щоб продовжувати підтримувати технологію, створену для вас, будь ласка, обміркуйте можливість стати щомісячним Прихильником.</string>
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Зробити щомісячний внесок</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Не зараз</string>
   <!--EOF-->
