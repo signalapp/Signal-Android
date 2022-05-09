@@ -224,7 +224,7 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
     Log.i(TAG, "threads: ${state.threadCount} messages: ${state.messageCount}")
 
     if (Build.VERSION.SDK_INT >= 24) {
-      val ids = state.notificationIds + stickyThreads.map { (_, stickyThread) -> stickyThread.notificationId }
+      val ids = state.conversations.filter { it.threadId != visibleThread }.map { it.notificationId } + stickyThreads.map { (_, stickyThread) -> stickyThread.notificationId }
       val notShown = ids - ServiceUtil.getNotificationManager(context).getDisplayedNotificationIds().getOrDefault(emptySet())
       if (notShown.isNotEmpty()) {
         Log.e(TAG, "Notifications should be showing but are not for ${notShown.size} threads")
