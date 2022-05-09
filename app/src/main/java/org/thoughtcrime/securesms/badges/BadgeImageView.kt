@@ -87,8 +87,6 @@ class BadgeImageView @JvmOverloads constructor(
         .downsample(DownsampleStrategy.NONE)
         .transform(BadgeSpriteTransformation(BadgeSpriteTransformation.Size.fromInteger(badgeSize), ScreenDensity.getBestDensityBucketForDevice(), ThemeUtil.isDarkTheme(context)))
         .into(this)
-
-      isClickable = true
     } else {
       glideRequests
         .clear(this)

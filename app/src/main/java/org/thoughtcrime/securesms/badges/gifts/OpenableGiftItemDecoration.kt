@@ -9,6 +9,7 @@ import android.graphics.RectF
 import android.graphics.drawable.Drawable
 import android.provider.Settings
 import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.AnticipateInterpolator
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.toRect
@@ -167,14 +168,14 @@ class OpenableGiftItemDecoration(context: Context) : RecyclerView.ItemDecoration
     animationState[child.getGiftId()] = GiftAnimationState.OpenAnimationState(child, System.currentTimeMillis())
   }
 
-  sealed class GiftAnimationState(val openableGift: OpenableGift, val startTime: Long) {
+  sealed class GiftAnimationState(val openableGift: OpenableGift, val startTime: Long, val duration: Long) {
 
     /**
      * Shakes the gift box to the left and right, slightly revealing the contents underneath.
      * Uses a lag value to keep the bow one "frame" behind the box, to give it the effect of
      * following behind.
      */
-    class ShakeAnimationState(openableGift: OpenableGift, startTime: Long) : GiftAnimationState(openableGift, startTime) {
+    class ShakeAnimationState(openableGift: OpenableGift, startTime: Long) : GiftAnimationState(openableGift, startTime, SHAKE_DURATION_MILLIS) {
       override fun update(canvas: Canvas, projection: Projection, progress: Float, lastFrameProgress: Float, drawBox: (Canvas, Projection) -> Unit, drawBow: (Canvas, Projection) -> Unit) {
         canvas.withTranslation(x = getTranslation(progress).toFloat()) {
           drawBox(canvas, projection)
@@ -193,12 +194,15 @@ class OpenableGiftItemDecoration(context: Context) : RecyclerView.ItemDecoration
       }
     }
 
-    class OpenAnimationState(openableGift: OpenableGift, startTime: Long) : GiftAnimationState(openableGift, startTime) {
+    class OpenAnimationState(openableGift: OpenableGift, startTime: Long) : GiftAnimationState(openableGift, startTime, OPEN_DURATION_MILLIS) {
       override fun update(canvas: Canvas, projection: Projection, progress: Float, lastFrameProgress: Float, drawBox: (Canvas, Projection) -> Unit, drawBow: (Canvas, Projection) -> Unit) {
         val interpolatedProgress = INTERPOLATOR.getInterpolation(progress)
-        val evaluatedValue = EVALUATOR.evaluate(interpolatedProgress, 0f, DimensionUnit.DP.toPixels(300f))
+        val evaluatedValue = EVALUATOR.evaluate(interpolatedProgress, 0f, DimensionUnit.DP.toPixels(161f))
 
-        canvas.translate(evaluatedValue, -evaluatedValue)
+        val interpolatedY = TRANSLATION_Y_INTERPOLATOR.getInterpolation(progress)
+        val evaluatedY = EVALUATOR.evaluate(interpolatedY, 0f, DimensionUnit.DP.toPixels(355f))
+
+        canvas.translate(evaluatedValue, evaluatedY)
 
         drawBox(canvas, projection)
         drawBow(canvas, projection)
@@ -215,8 +219,8 @@ class OpenableGiftItemDecoration(context: Context) : RecyclerView.ItemDecoration
       }
 
       val currentFrameTime = System.currentTimeMillis()
-      val lastFrameProgress = max(0f, (currentFrameTime - startTime - ONE_FRAME_RELATIVE_TO_30_FPS_MILLIS) / (DURATION_MILLIS.toFloat() * animatorDurationScale))
-      val progress = (currentFrameTime - startTime) / (DURATION_MILLIS.toFloat() * animatorDurationScale)
+      val lastFrameProgress = max(0f, (currentFrameTime - startTime - ONE_FRAME_RELATIVE_TO_30_FPS_MILLIS) / (duration.toFloat() * animatorDurationScale))
+      val progress = (currentFrameTime - startTime) / (duration.toFloat() * animatorDurationScale)
 
       if (progress > 1f) {
         update(canvas, projection, 1f, 1f, drawBox, drawBow)
@@ -240,10 +244,12 @@ class OpenableGiftItemDecoration(context: Context) : RecyclerView.ItemDecoration
   }
 
   companion object {
+    private val TRANSLATION_Y_INTERPOLATOR = AnticipateInterpolator(3f)
     private val INTERPOLATOR = AccelerateDecelerateInterpolator()
     private val EVALUATOR = FloatEvaluator()
 
-    private const val DURATION_MILLIS = 1000
+    private const val SHAKE_DURATION_MILLIS = 1000L
+    private const val OPEN_DURATION_MILLIS = 700L
     private const val ONE_FRAME_RELATIVE_TO_30_FPS_MILLIS = 33
   }
 }
