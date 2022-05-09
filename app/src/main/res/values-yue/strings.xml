@@ -685,7 +685,7 @@
   <string name="CustomNotificationsDialogFragment__custom_notifications">自訂通知</string>
   <string name="CustomNotificationsDialogFragment__messages">訊息</string>
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">使用自訂通知</string>
-  <string name="CustomNotificationsDialogFragment__notification_sound">通知聲音</string>
+  <string name="CustomNotificationsDialogFragment__notification_sound">通知響聲</string>
   <string name="CustomNotificationsDialogFragment__vibrate">震動</string>
   <string name="CustomNotificationsDialogFragment__call_settings">通話設定</string>
   <string name="CustomNotificationsDialogFragment__ringtone">鈴聲</string>
@@ -1098,7 +1098,13 @@
     <item quantity="other">%1$d 位成員</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="other">%1$d 位成員 (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="other">+%1$d 位獲邀</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="other">其餘 %d 個谷</item>
   </plurals>
@@ -2015,7 +2021,7 @@
   <string name="preferences__led_color">LED 顏色</string>
   <string name="preferences__led_color_unknown">未知</string>
   <string name="preferences__pref_led_blink_title">LED 眨燈規律</string>
-  <string name="preferences__sound">聲音</string>
+  <string name="preferences__sound">響聲</string>
   <string name="preferences__silent">靜音</string>
   <string name="preferences__default">預設</string>
   <string name="preferences__repeat_alerts">重複提示</string>
@@ -2130,13 +2136,13 @@
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">網絡差嘅時候慳啲用數據，或者有助改善通話質素</string>
   <string name="preferences_notifications__messages">訊息</string>
   <string name="preferences_notifications__events">事件</string>
-  <string name="preferences_notifications__in_chat_sounds">傾偈時嘅聲音</string>
+  <string name="preferences_notifications__in_chat_sounds">開住傾偈嘅時候照響聲</string>
   <string name="preferences_notifications__show">顯示</string>
   <string name="preferences_notifications__calls">通話</string>
   <string name="preferences_notifications__ringtone">鈴聲</string>
   <string name="preferences_chats__show_invitation_prompts">提示發邀請</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">若遇見有聯絡人未用 Signal，提示您邀請佢哋轉會</string>
-  <string name="preferences_chats__message_text_size">訊息嘅字體大小</string>
+  <string name="preferences_chats__message_text_size">訊息字體大細</string>
   <string name="preferences_events__contact_joined_signal">聯絡人開咗 Signal</string>
   <string name="preferences_notifications__priority">優次</string>
   <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
@@ -2546,7 +2552,7 @@
   <string name="registration_activity__skip">飛過</string>
   <string name="preferences_chats__chat_backups">傾偈備份</string>
   <string name="preferences_chats__backup_chats_to_external_storage">將傾過嘅偈備份去外置儲存裝置</string>
-  <string name="preferences_chats__transfer_account">轉移帳戶</string>
+  <string name="preferences_chats__transfer_account">過帳戶落新機</string>
   <string name="preferences_chats__transfer_account_to_a_new_android_device">將帳戶轉移去一部新嘅 Android 機度</string>
   <string name="RegistrationActivity_enter_backup_passphrase">輸入備份密碼</string>
   <string name="RegistrationActivity_restore">還原</string>
@@ -3009,6 +3015,7 @@
   <string name="QualitySelectorBottomSheetDialog__photo_quality">相片畫質</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">邀請您嘅好友</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">複製咗訂閱者號碼去剪貼簿</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">帳戶</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">慢慢就唔會問得您咁密㗎喇</string>
@@ -3210,7 +3217,7 @@
   <string name="ConversationSettingsFragment__muted">已避靜</string>
   <string name="ConversationSettingsFragment__search">搜尋</string>
   <string name="ConversationSettingsFragment__disappearing_messages">過眼雲煙訊息</string>
-  <string name="ConversationSettingsFragment__sounds_and_notifications">聲音同通知</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">響聲同通知</string>
   <string name="ConversationSettingsFragment__contact_details">聯絡人詳情</string>
   <string name="ConversationSettingsFragment__view_safety_number">睇下安全碼</string>
   <string name="ConversationSettingsFragment__block">封鎖</string>
@@ -3384,10 +3391,13 @@
   <string name="BecomeASustainerFragment__get_badges">擔當 Signal 後援，為您嘅個人資料添一枚襟章。</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal 係非牟利組織，背後冇廣告商或投資者大條水喉照住，卻有位位「您」做團伙照耀，「燃亮最光的星斗」，至能夠廢鉄到足金。</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">每月捐款</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">更多</string>
   <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">收據</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">我嘅課金計劃</string>
   <string name="ManageDonationsFragment__manage_subscription">管理課金計劃</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">捐款收據</string>
@@ -3398,6 +3408,7 @@
   <!--Preference label to launch badge gifting-->
   <string name="BoostFragment__give_signal_a_boost">Signal 賣旗籌款</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">單次捐款奉送「集氣」襟章一枚，為期 %1$d 日，聊作心意。</string>
   <string name="Boost__enter_custom_amount">輸入自訂金額</string>
   <string name="Boost__one_time_contribution">單次捐款</string>
   <string name="MySupportPreference__add_a_signal_boost">幫 Signal 買多支旗</string>
@@ -3453,6 +3464,9 @@
   <string name="NetworkFailure__retry">再試一次</string>
   <!--Gift message view title-->
   <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="other">為期 %1$d 個月</item>
+  </plurals>
   <!--Gift badge redeem action label-->
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">睇下</string>
@@ -3886,7 +3900,9 @@
   <!--Toasted when the user external share to a text story fails-->
   <string name="TextStoryPostCreationFragment__failed_to_send_story">是日花生傳送唔到</string>
   <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">睇下是日花生</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">睇下個人資料幅相</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">封網迴避使唔使閂咗佢？</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -3934,6 +3950,7 @@
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">如果您想繼續力撐為您而設嘅科技，請考慮做我哋月供課金計劃嘅後援金主。</string>
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">每月捐款</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">遲啲先啦</string>
   <!--EOF-->

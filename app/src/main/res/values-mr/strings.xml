@@ -3092,6 +3092,7 @@
   <string name="QualitySelectorBottomSheetDialog__photo_quality">फोटो दर्जा</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">आपल्या मित्रांना आमंत्रित करा</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">सबस्क्राइबर आयडी क्लिपबोर्डवर कॉपी केला</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">खाते</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">वेळेनुसार आपल्याला कमी वारंवार विचारले जाईल</string>
@@ -3473,9 +3474,11 @@
   <string name="BecomeASustainerFragment__get_badges">Signal ला सपोर्ट करून आपल्या प्रोफाइलसाठी बॅज मिळवा.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal ही जाहिरातदार किंवा गुंतवणूकदार नसलेली विना-नफा संस्था आहे, केवळ आपल्यासारख्या लोकांकडून समर्थित आहे.</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">मासिक देणगी द्या</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">अधिक</string>
   <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">पावत्या</string>
   <!--Heading for my subscription area of manage subscriptions page-->
   <string name="ManageDonationsFragment__manage_subscription">सब्स्क्रिप्शन व्यवस्थापित करा</string>
   <!--Label for Donation Receipts button-->
@@ -3484,9 +3487,12 @@
   <string name="ManageDonationsFragment__subscription_faq">सब्स्क्रिप्शन बद्दल वारंवार विचारले जाणारे प्रश्न</string>
   <string name="ManageDonationsFragment__error_getting_subscription">सब्स्क्रिप्शन मिळविण्यात त्रुटी.</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">देणगी देण्याचे इतर मार्ग</string>
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">एक बॅज भेट द्या</string>
   <string name="BoostFragment__give_signal_a_boost">Signal ला बूस्ट करा</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">एक-वेळ देणगी द्या आणि %1$d दिवसांसाठी बूस्ट बॅज मिळवा.</string>
   <string name="Boost__enter_custom_amount">कस्टम रक्कम प्रविष्ट करा</string>
   <string name="Boost__one_time_contribution">एक वेळचे योगदान</string>
   <string name="MySupportPreference__add_a_signal_boost">Signal बूस्ट जोडा</string>
@@ -3497,7 +3503,9 @@
   <string name="MySupportPreference__couldnt_add_badge_s">बॅज जोडता आला नाही. %1$s</string>
   <string name="MySupportPreference__please_contact_support">कृपया सपोर्टला संपर्क साधा</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">बूस्ट बॅज कालबाह्य झाला</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">मासिक देणगी रद्द</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">आपला बूस्ट बॅज कालबाह्य झाला आहे आणि तो यापुढे आपल्या प्रोफाइलवर दिसणार नाही.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">आपण आपला बूस्ट बॅज आणखी ३० दिवसांसाठी एक-वेळच्या योगदानासह पुन्हा सक्रिय करू शकता.</string>
@@ -3951,6 +3959,7 @@
   <string name="GiftFlowConfirmationFragment__send_to">यांना पाठवा</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
   <!--Text explaining that this gift is a one time donation-->
+  <string name="GiftFlowConfirmationFragment__one_time_donation"> एक-वेळ देणगी</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">संदेश जोडा</string>
   <!--Title for sheet shown when opening a redeemed gift-->
@@ -3969,6 +3978,7 @@
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">तुमच्यासाठी तयार केलेल्या तंत्रज्ञानाचे समर्थन करणे सुरू ठेवण्यासाठी, कृपया मासिक सस्टेनर बनण्याचा विचार करा.</string>
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">मासिक देणगी द्या</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">आता नाही</string>
   <!--EOF-->

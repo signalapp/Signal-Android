@@ -3469,6 +3469,9 @@
   <string name="NetworkFailure__retry">重試</string>
   <!--Gift message view title-->
   <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="other">為期 %1$d 個月</item>
+  </plurals>
   <!--Gift badge redeem action label-->
   <string name="GiftMessageView__redeem">換領</string>
   <!--Gift badge view action label-->

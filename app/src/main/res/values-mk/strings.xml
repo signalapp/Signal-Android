@@ -3487,11 +3487,13 @@
   <string name="BecomeASustainerFragment__get_badges">Добијте беџ за Вашиот профил со поддршка на Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal е непрофитна организација без реклами и инвеститори, поддржана само од луѓе како Вас.</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">Донирајте месечно</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">Повеќе</string>
   <!--Heading for receipts area of manage subscriptions page-->
   <string name="ManageDonationsFragment__receipts">Потврди</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">Претплата</string>
   <string name="ManageDonationsFragment__manage_subscription">Управување со претплатата</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Потврди за донации</string>
@@ -3499,10 +3501,12 @@
   <string name="ManageDonationsFragment__subscription_faq">ЧПП за претплата</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Грешка при добивање на претплата.</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">Други начини да помогнете</string>
   <!--Preference label to launch badge gifting-->
   <string name="ManageDonationsFragment__gift_a_badge">Подари беџ</string>
   <string name="BoostFragment__give_signal_a_boost">Дајте му поттик на Signal</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Донирајте еднап и добијте беџ на%1$d дена.</string>
   <string name="Boost__enter_custom_amount">Внесете износ</string>
   <string name="Boost__one_time_contribution">Еднократен придонес</string>
   <string name="MySupportPreference__add_a_signal_boost">Додај поттик за Signal</string>
@@ -4024,6 +4028,7 @@
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Следно</string>
   <!--Title text on choose recipient page for badge gifting-->
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Изберете примач</string>
   <!--Title text on confirm gift page-->
   <!--Heading text specifying who the gift will be sent to-->
   <string name="GiftFlowConfirmationFragment__send_to">Испрати на</string>
@@ -4045,10 +4050,12 @@
   <!--Snackbar text when user presses "not now" on redemption sheet-->
   <!--Description text in gift thanks sheet-->
   <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Вашиот беџ подарок истече</string>
   <!--Expired gift sheet top description text-->
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">За да продолжите да ја поддржувате технологијата што е создадена за Вас, размислете да станете месечен поддржувач.</string>
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Донирајте месечно</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Не сега</string>
   <!--EOF-->
