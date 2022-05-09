@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -69,6 +70,7 @@ public class BlockedUsersActivity extends PassphraseRequiredActivity implements 
         contactFilterView.focusAndShowKeyboard();
       } else {
         contactFilterView.setVisibility(View.GONE);
+        ViewUtil.hideKeyboard(this, contactFilterView);
       }
     });
 

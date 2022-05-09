@@ -541,6 +541,7 @@
 
     <activity android:name=".blocked.BlockedUsersActivity"
               android:theme="@style/TextSecure.LightTheme"
+              android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".scribbles.ImageEditorStickerSelectActivity"
