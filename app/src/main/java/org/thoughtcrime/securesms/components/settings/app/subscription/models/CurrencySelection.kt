@@ -36,6 +36,7 @@ object CurrencySelection {
 
     override fun bind(model: Model) {
       spinner.text = model.selectedCurrency.currencyCode
+      spinner.isEnabled = model.isEnabled
 
       itemView.setOnClickListener { model.onClick() }
 
