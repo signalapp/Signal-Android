@@ -135,13 +135,7 @@ public class BackupUtil {
   }
 
   @RequiresApi(29)
-  private static List<BackupInfo> getAllBackupsNewestFirstApi29() {
-    Uri backupDirectoryUri = SignalStore.settings().getSignalBackupDirectory();
-    if (backupDirectoryUri == null) {
-      Log.i(TAG, "Backup directory is not set. Returning an empty list.");
-      return Collections.emptyList();
-    }
-
+  public static List<BackupInfo> getAllBackupsNewestFirstFromDirectoryApi29(Uri backupDirectoryUri) {
     DocumentFile backupDirectory = DocumentFile.fromTreeUri(ApplicationDependencies.getApplication(), backupDirectoryUri);
     if (backupDirectory == null || !backupDirectory.exists() || !backupDirectory.canRead()) {
       Log.w(TAG, "Backup directory is inaccessible. Returning an empty list.");
@@ -164,6 +158,24 @@ public class BackupUtil {
     Collections.sort(backups, (a, b) -> Long.compare(b.timestamp, a.timestamp));
 
     return backups;
+  }
+
+  @RequiresApi(29)
+  public static void deleteAllBackupsInDirectory(Uri backupDirectoryUri) {
+    List<BackupInfo> backups = getAllBackupsNewestFirstFromDirectoryApi29(backupDirectoryUri);
+    for (BackupInfo backupInfo : backups) {
+      backupInfo.delete();
+    }
+  }
+
+  @RequiresApi(29)
+  private static List<BackupInfo> getAllBackupsNewestFirstApi29() {
+    Uri backupDirectoryUri = SignalStore.settings().getSignalBackupDirectory();
+    if (backupDirectoryUri == null) {
+      Log.i(TAG, "Backup directory is not set. Returning an empty list.");
+      return Collections.emptyList();
+    }
+    return getAllBackupsNewestFirstFromDirectoryApi29(backupDirectoryUri);
   }
 
   public static @Nullable BackupInfo getBackupInfoFromSingleUri(@NonNull Context context, @NonNull Uri singleUri) throws BackupFileException {

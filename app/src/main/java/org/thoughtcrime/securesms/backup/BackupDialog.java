@@ -157,6 +157,7 @@ public class BackupDialog {
 
           TextSecurePreferences.setNextBackupTime(context, 0);
           LocalBackupListener.schedule(context);
+          BackupUtil.deleteAllBackupsInDirectory(oldBackupDirectoryUri);
           contentResolver.releasePersistableUriPermission(oldBackupDirectoryUri, takeFlags);
           runnable.run();
           created.dismiss();
