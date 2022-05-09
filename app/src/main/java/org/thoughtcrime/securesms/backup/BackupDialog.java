@@ -4,6 +4,7 @@ package org.thoughtcrime.securesms.backup;
 import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -34,6 +35,8 @@ import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
+
+import java.util.Objects;
 
 public class BackupDialog {
 
@@ -147,12 +150,14 @@ public class BackupDialog {
           Uri backupDirectoryUri = backupDirectorySelectionIntent.getData();
           int takeFlags          = Intent.FLAG_GRANT_READ_URI_PERMISSION |
                                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
-
+          ContentResolver contentResolver = context.getContentResolver();
+          Uri oldBackupDirectoryUri = Objects.requireNonNull(SignalStore.settings().getSignalBackupDirectory());
           SignalStore.settings().setSignalBackupDirectory(backupDirectoryUri);
-          context.getContentResolver()
-                 .takePersistableUriPermission(backupDirectoryUri, takeFlags);
+          contentResolver.takePersistableUriPermission(backupDirectoryUri, takeFlags);
+
           TextSecurePreferences.setNextBackupTime(context, 0);
           LocalBackupListener.schedule(context);
+          contentResolver.releasePersistableUriPermission(oldBackupDirectoryUri, takeFlags);
           runnable.run();
           created.dismiss();
         }
