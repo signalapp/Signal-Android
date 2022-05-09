@@ -17,12 +17,14 @@
 package org.thoughtcrime.securesms.conversationlist;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
 import android.util.AttributeSet;
+import android.view.TouchDelegate;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -94,6 +96,9 @@ public final class ConversationListItem extends ConstraintLayout
   private final static Typeface  BOLD_TYPEFACE  = Typeface.create("sans-serif-medium", Typeface.NORMAL);
   private final static Typeface  LIGHT_TYPEFACE = Typeface.create("sans-serif", Typeface.NORMAL);
 
+  private final Rect conversationAvatarTouchDelegateBounds    = new Rect();
+  private final Rect newConversationAvatarTouchDelegateBounds = new Rect();
+
   private Set<Long>           typingThreads;
   private LiveRecipient       recipient;
   private long                threadId;
@@ -151,6 +156,28 @@ public final class ConversationListItem extends ConstraintLayout
     this.thumbTarget             = new GlideLiveDataTarget(thumbSize, thumbSize);
 
     getLayoutTransition().setDuration(150);
+  }
+
+  /**
+   *
+   */
+  @SuppressWarnings("DrawAllocation")
+  @Override
+  protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+    super.onLayout(changed, left, top, right, bottom);
+
+    contactPhotoImage.getHitRect(newConversationAvatarTouchDelegateBounds);
+    newConversationAvatarTouchDelegateBounds.left = left;
+    newConversationAvatarTouchDelegateBounds.top = top;
+    newConversationAvatarTouchDelegateBounds.bottom = bottom;
+
+    TouchDelegate currentDelegate = getTouchDelegate();
+
+    if (currentDelegate == null || !newConversationAvatarTouchDelegateBounds.equals(conversationAvatarTouchDelegateBounds)) {
+      conversationAvatarTouchDelegateBounds.set(newConversationAvatarTouchDelegateBounds);
+      TouchDelegate conversationAvatarTouchDelegate = new TouchDelegate(conversationAvatarTouchDelegateBounds, contactPhotoImage);
+      setTouchDelegate(conversationAvatarTouchDelegate);
+    }
   }
 
   @Override
