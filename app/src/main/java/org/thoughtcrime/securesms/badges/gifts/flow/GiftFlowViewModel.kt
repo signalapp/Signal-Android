@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.wallet.PaymentData
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -128,9 +129,20 @@ class GiftFlowViewModel(
   fun requestTokenFromGooglePay(label: String) {
     val giftLevel = store.state.giftLevel ?: return
     val giftPrice = store.state.giftPrices[store.state.currency] ?: return
+    val giftRecipient = store.state.recipient?.id ?: return
 
     this.giftToPurchase = Gift(giftLevel, giftPrice)
-    donationPaymentRepository.requestTokenFromGooglePay(giftToPurchase!!.price, label, Gifts.GOOGLE_PAY_REQUEST_CODE)
+
+    store.update { it.copy(stage = GiftFlowState.Stage.RECIPIENT_VERIFICATION) }
+    disposables += donationPaymentRepository.verifyRecipientIsAllowedToReceiveAGift(giftRecipient)
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy(
+        onComplete = {
+          store.update { it.copy(stage = GiftFlowState.Stage.TOKEN_REQUEST) }
+          donationPaymentRepository.requestTokenFromGooglePay(giftToPurchase!!.price, label, Gifts.GOOGLE_PAY_REQUEST_CODE)
+        },
+        onError = this::onPaymentFlowError
+      )
   }
 
   fun onActivityResult(
@@ -153,16 +165,7 @@ class GiftFlowViewModel(
             store.update { it.copy(stage = GiftFlowState.Stage.PAYMENT_PIPELINE) }
 
             donationPaymentRepository.continuePayment(gift.price, paymentData, recipient, store.state.additionalMessage?.toString(), gift.level).subscribeBy(
-              onError = { throwable ->
-                store.update { it.copy(stage = GiftFlowState.Stage.READY) }
-                val donationError: DonationError = if (throwable is DonationError) {
-                  throwable
-                } else {
-                  Log.w(TAG, "Failed to complete payment or redemption", throwable, true)
-                  DonationError.genericBadgeRedemptionFailure(DonationErrorSource.GIFT)
-                }
-                DonationError.routeDonationError(ApplicationDependencies.getApplication(), donationError)
-              },
+              onError = this@GiftFlowViewModel::onPaymentFlowError,
               onComplete = {
                 store.update { it.copy(stage = GiftFlowState.Stage.READY) }
                 eventPublisher.onNext(DonationEvent.PaymentConfirmationSuccess(store.state.giftBadge!!))
@@ -183,6 +186,17 @@ class GiftFlowViewModel(
         }
       }
     )
+  }
+
+  private fun onPaymentFlowError(throwable: Throwable) {
+    store.update { it.copy(stage = GiftFlowState.Stage.READY) }
+    val donationError: DonationError = if (throwable is DonationError) {
+      throwable
+    } else {
+      Log.w(TAG, "Failed to complete payment or redemption", throwable, true)
+      DonationError.genericBadgeRedemptionFailure(DonationErrorSource.GIFT)
+    }
+    DonationError.routeDonationError(ApplicationDependencies.getApplication(), donationError)
   }
 
   private fun getLoadState(
