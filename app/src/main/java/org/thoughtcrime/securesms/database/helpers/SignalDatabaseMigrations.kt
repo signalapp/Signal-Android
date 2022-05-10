@@ -197,8 +197,9 @@ object SignalDatabaseMigrations {
   private const val GROUP_SERVICE_ID = 141
   private const val QUOTE_TYPE = 142
   private const val STORY_SYNCS = 143
+  private const val GROUP_STORY_NOTIFICATIONS = 144
 
-  const val DATABASE_VERSION = 143
+  const val DATABASE_VERSION = 144
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -2566,6 +2567,10 @@ object SignalDatabaseMigrations {
 
       db.execSQL("ALTER TABLE story_sends_tmp RENAME TO story_sends")
       db.execSQL("CREATE INDEX story_sends_recipient_id_sent_timestamp_allows_replies_index ON story_sends (recipient_id, sent_timestamp, allows_replies)")
+    }
+
+    if (oldVersion < GROUP_STORY_NOTIFICATIONS) {
+      db.execSQL("UPDATE mms SET read = 1 WHERE parent_story_id > 0")
     }
   }
 

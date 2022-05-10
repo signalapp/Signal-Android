@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.emoji.EmojiFiles
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
 import org.thoughtcrime.securesms.jobs.CreateReleaseChannelJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.notifications.v2.NotificationThread
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.releasechannel.ReleaseChannel
 
@@ -53,7 +54,7 @@ class InternalSettingsRepository(context: Context) {
         SignalDatabase.attachments.getAttachmentsForMessage(insertResult.messageId)
           .forEach { ApplicationDependencies.getJobManager().add(AttachmentDownloadJob(insertResult.messageId, it.attachmentId, false)) }
 
-        ApplicationDependencies.getMessageNotifier().updateNotification(context, insertResult.threadId)
+        ApplicationDependencies.getMessageNotifier().updateNotification(context, NotificationThread.forConversation(insertResult.threadId))
       }
     }
   }

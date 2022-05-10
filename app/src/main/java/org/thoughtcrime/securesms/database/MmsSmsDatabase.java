@@ -259,18 +259,27 @@ public class MmsSmsDatabase extends Database {
       }
       stickyQuery.append("(")
                  .append(MmsSmsColumns.THREAD_ID + " = ")
-                 .append(stickyThread.getThreadId())
+                 .append(stickyThread.getNotificationThread().getThreadId())
                  .append(" AND ")
                  .append(MmsSmsColumns.NORMALIZED_DATE_RECEIVED)
                  .append(" >= ")
                  .append(stickyThread.getEarliestTimestamp())
+                 .append(getStickyWherePartForParentStoryId(stickyThread.getNotificationThread().getGroupStoryId()))
                  .append(")");
     }
 
     String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
-    String selection = MmsSmsColumns.NOTIFIED + " = 0 AND " + MmsDatabase.STORY_TYPE + " = 0 AND " + MmsDatabase.PARENT_STORY_ID + " <= 0 AND (" + MmsSmsColumns.READ + " = 0 OR " + MmsSmsColumns.REACTIONS_UNREAD + " = 1" + (stickyQuery.length() > 0 ? " OR (" + stickyQuery.toString() + ")" : "") + ")";
+    String selection = MmsSmsColumns.NOTIFIED + " = 0 AND " + MmsDatabase.STORY_TYPE + " = 0 AND (" + MmsSmsColumns.READ + " = 0 OR " + MmsSmsColumns.REACTIONS_UNREAD + " = 1" + (stickyQuery.length() > 0 ? " OR (" + stickyQuery + ")" : "") + ")";
 
     return queryTables(PROJECTION, selection, order, null, true);
+  }
+
+  private @NonNull String getStickyWherePartForParentStoryId(@Nullable Long parentStoryId) {
+    if (parentStoryId == null) {
+      return " AND " + MmsDatabase.PARENT_STORY_ID + " <= 0";
+    }
+
+    return " AND " + MmsDatabase.PARENT_STORY_ID + " = " + parentStoryId;
   }
 
   public int getUnreadCount(long threadId) {

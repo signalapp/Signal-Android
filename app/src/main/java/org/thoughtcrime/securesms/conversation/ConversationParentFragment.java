@@ -240,6 +240,7 @@ import org.thoughtcrime.securesms.mms.SlideFactory.MediaType;
 import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.notifications.v2.NotificationThread;
 import org.thoughtcrime.securesms.payments.CanNotSendPaymentDialog;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewBannerView;
@@ -884,7 +885,7 @@ public class ConversationParentFragment extends Fragment
   private void setVisibleThread(long threadId) {
     if (!isInBubble()) {
       // TODO [alex] LargeScreenSupport -- Inform MainActivityViewModel that the conversation was opened.
-      ApplicationDependencies.getMessageNotifier().setVisibleThread(threadId);
+      ApplicationDependencies.getMessageNotifier().setVisibleThread(NotificationThread.forConversation(threadId));
     }
   }
 

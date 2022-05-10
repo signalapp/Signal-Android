@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
+import org.thoughtcrime.securesms.notifications.v2.NotificationThread
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.profiles.ProfileName
@@ -214,7 +215,7 @@ object ContactDiscovery {
       .forEach { result ->
         val hour = Calendar.getInstance()[Calendar.HOUR_OF_DAY]
         if (hour in 9..22) {
-          ApplicationDependencies.getMessageNotifier().updateNotification(context, result.threadId, true)
+          ApplicationDependencies.getMessageNotifier().updateNotification(context, NotificationThread.forConversation(result.threadId), true)
         } else {
           Log.i(TAG, "Not notifying of a new user due to the time of day. (Hour: $hour)")
         }

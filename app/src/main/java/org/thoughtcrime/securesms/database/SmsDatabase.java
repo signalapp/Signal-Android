@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.GroupCallUpdateDetailsUtil;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.ParentStoryId;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.StoryResult;
 import org.thoughtcrime.securesms.database.model.StoryViewState;
@@ -1468,6 +1469,11 @@ public class SmsDatabase extends MessageDatabase {
 
   @Override
   public @NonNull MessageDatabase.Reader getUnreadStories(@NonNull RecipientId recipientId, int limit) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public @Nullable ParentStoryId.GroupReply getParentStoryIdForGroupReply(long messageId) {
     throw new UnsupportedOperationException();
   }
 

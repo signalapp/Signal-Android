@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.notifications.v2.NotificationThread
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.releasechannel.ReleaseChannel
 import org.thoughtcrime.securesms.s3.S3
@@ -187,7 +188,7 @@ class RetrieveReleaseChannelJob private constructor(private val force: Boolean, 
             SignalDatabase.attachments.getAttachmentsForMessage(insertResult.messageId)
               .forEach { ApplicationDependencies.getJobManager().add(AttachmentDownloadJob(insertResult.messageId, it.attachmentId, false)) }
 
-            ApplicationDependencies.getMessageNotifier().updateNotification(context, insertResult.threadId)
+            ApplicationDependencies.getMessageNotifier().updateNotification(context, NotificationThread.forConversation(insertResult.threadId))
             TrimThreadJob.enqueueAsync(insertResult.threadId)
 
             highestVersion = max(highestVersion, note.releaseNote.androidMinVersion!!.toInt())

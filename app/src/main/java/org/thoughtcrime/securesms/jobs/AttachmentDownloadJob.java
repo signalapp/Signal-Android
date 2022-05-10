@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobLogger;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.mms.MmsException;
+import org.thoughtcrime.securesms.notifications.v2.NotificationThread;
 import org.thoughtcrime.securesms.releasechannel.ReleaseChannel;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
@@ -119,7 +120,7 @@ public final class AttachmentDownloadJob extends BaseJob {
     doWork();
 
     if (!SignalDatabase.mms().isStory(messageId)) {
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, 0);
+      ApplicationDependencies.getMessageNotifier().updateNotification(context, NotificationThread.forConversation(0));
     }
   }
 

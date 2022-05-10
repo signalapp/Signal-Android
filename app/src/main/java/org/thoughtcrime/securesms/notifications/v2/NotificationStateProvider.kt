@@ -21,7 +21,7 @@ object NotificationStateProvider {
   private val TAG = Log.tag(NotificationStateProvider::class.java)
 
   @WorkerThread
-  fun constructNotificationState(stickyThreads: Map<Long, MessageNotifierV2.StickyThread>, notificationProfile: NotificationProfile?): NotificationStateV2 {
+  fun constructNotificationState(stickyThreads: Map<NotificationThread, MessageNotifierV2.StickyThread>, notificationProfile: NotificationProfile?): NotificationStateV2 {
     val messages: MutableList<NotificationMessage> = mutableListOf()
 
     SignalDatabase.mmsSms.getMessagesForNotificationState(stickyThreads.values).use { unreadMessages ->
@@ -40,8 +40,8 @@ object NotificationStateProvider {
               messageRecord = record,
               reactions = if (hasUnreadReactions) SignalDatabase.reactions.getReactions(MessageId(record.id, record.isMms)) else emptyList(),
               threadRecipient = threadRecipient,
-              threadId = record.threadId,
-              stickyThread = stickyThreads.containsKey(record.threadId),
+              thread = NotificationThread.fromMessageRecord(record),
+              stickyThread = stickyThreads.containsKey(NotificationThread.fromMessageRecord(record)),
               isUnreadMessage = CursorUtil.requireInt(unreadMessages, MmsSmsColumns.READ) == 0,
               hasUnreadReactions = hasUnreadReactions,
               lastReactionRead = CursorUtil.requireLong(unreadMessages, MmsSmsColumns.REACTIONS_LAST_SEEN)
@@ -62,8 +62,8 @@ object NotificationStateProvider {
     val muteFilteredMessages: MutableList<NotificationStateV2.FilteredMessage> = mutableListOf()
     val profileFilteredMessages: MutableList<NotificationStateV2.FilteredMessage> = mutableListOf()
 
-    messages.groupBy { it.threadId }
-      .forEach { (threadId, threadMessages) ->
+    messages.groupBy { it.thread }
+      .forEach { (thread, threadMessages) ->
         var notificationItems: MutableList<NotificationItemV2> = mutableListOf()
 
         for (notification: NotificationMessage in threadMessages) {
@@ -87,13 +87,13 @@ object NotificationStateProvider {
         }
 
         notificationItems.sort()
-        if (notificationItems.isNotEmpty() && stickyThreads.containsKey(threadId) && !notificationItems.last().individualRecipient.isSelf) {
+        if (notificationItems.isNotEmpty() && stickyThreads.containsKey(thread) && !notificationItems.last().individualRecipient.isSelf) {
           val indexOfOldestNonSelfMessage: Int = notificationItems.indexOfLast { it.individualRecipient.isSelf } + 1
           notificationItems = notificationItems.slice(indexOfOldestNonSelfMessage..notificationItems.lastIndex).toMutableList()
         }
 
         if (notificationItems.isNotEmpty()) {
-          conversations += NotificationConversation(notificationItems[0].threadRecipient, threadId, notificationItems)
+          conversations += NotificationConversation(notificationItems[0].threadRecipient, thread, notificationItems)
         }
       }
 
@@ -104,7 +104,7 @@ object NotificationStateProvider {
     val messageRecord: MessageRecord,
     val reactions: List<ReactionRecord>,
     val threadRecipient: Recipient,
-    val threadId: Long,
+    val thread: NotificationThread,
     val stickyThread: Boolean,
     val isUnreadMessage: Boolean,
     val hasUnreadReactions: Boolean,

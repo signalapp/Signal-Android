@@ -615,6 +615,25 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public @Nullable ParentStoryId.GroupReply getParentStoryIdForGroupReply(long messageId) {
+    String[] projection = SqlUtil.buildArgs(PARENT_STORY_ID);
+    String[] args       = SqlUtil.buildArgs(messageId);
+
+    try (Cursor cursor = getReadableDatabase().query(TABLE_NAME, projection, ID_WHERE, args, null, null, null)) {
+      if (cursor != null && cursor.moveToFirst()) {
+        ParentStoryId parentStoryId = ParentStoryId.deserialize(CursorUtil.requireLong(cursor, PARENT_STORY_ID));
+        if (parentStoryId != null && parentStoryId.isGroupReply()) {
+          return (ParentStoryId.GroupReply) parentStoryId;
+        } else {
+          return null;
+        }
+      }
+    }
+
+    return null;
+  }
+
+  @Override
   public @NonNull StoryViewState getStoryViewState(@NonNull RecipientId recipientId) {
     if (!Stories.isFeatureEnabled()) {
       return StoryViewState.NONE;
