@@ -188,6 +188,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   public abstract boolean isStory(long messageId);
   public abstract @NonNull Reader getOutgoingStoriesTo(@NonNull RecipientId recipientId);
   public abstract @NonNull Reader getAllOutgoingStories(boolean reverse);
+  public abstract @NonNull Reader getAllOutgoingStoriesAt(long sentTimestamp);
   public abstract @NonNull List<StoryResult> getOrderedStoryRecipientsAndIds();
   public abstract @NonNull Reader getAllStoriesFor(@NonNull RecipientId recipientId);
   public abstract @NonNull MessageId getStoryId(@NonNull RecipientId authorId, long sentTimestamp) throws NoSuchMessageException;

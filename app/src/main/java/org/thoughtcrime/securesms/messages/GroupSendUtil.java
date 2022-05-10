@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.crypto.SenderKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.database.MessageSendLogDatabase;
+import org.thoughtcrime.securesms.database.SentStorySyncManifest;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.DistributionListId;
 import org.thoughtcrime.securesms.database.model.MessageId;
@@ -38,6 +39,7 @@ import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessage;
+import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessageRecipient;
 import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
 import org.whispersystems.signalservice.api.push.DistributionId;
@@ -49,6 +51,7 @@ import org.whispersystems.signalservice.internal.push.http.PartialSendCompleteLi
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -157,7 +160,8 @@ public final class GroupSendUtil {
                                                          boolean isRecipientUpdate,
                                                          @NonNull MessageId messageId,
                                                          long sentTimestamp,
-                                                         @NonNull SignalServiceStoryMessage message)
+                                                         @NonNull SignalServiceStoryMessage message,
+                                                         @NonNull Set<SignalServiceStoryMessageRecipient> manifest)
       throws IOException, UntrustedIdentityException
   {
     return sendMessage(
@@ -167,7 +171,7 @@ public final class GroupSendUtil {
         messageId,
         allTargets,
         isRecipientUpdate,
-        new StorySendOperation(messageId, null, sentTimestamp, message),
+        new StorySendOperation(messageId, null, sentTimestamp, message, manifest),
         null);
   }
 
@@ -193,7 +197,7 @@ public final class GroupSendUtil {
         messageId,
         allTargets,
         isRecipientUpdate,
-        new StorySendOperation(messageId, groupId, sentTimestamp, message),
+        new StorySendOperation(messageId, groupId, sentTimestamp, message, Collections.emptySet()),
         null);
   }
 
@@ -605,16 +609,23 @@ public final class GroupSendUtil {
 
   public static class StorySendOperation implements SendOperation {
 
-    private final MessageId                 relatedMessageId;
-    private final GroupId                   groupId;
-    private final long                      sentTimestamp;
-    private final SignalServiceStoryMessage message;
+    private final MessageId                               relatedMessageId;
+    private final GroupId                                 groupId;
+    private final long                                    sentTimestamp;
+    private final SignalServiceStoryMessage               message;
+    private final Set<SignalServiceStoryMessageRecipient> manifest;
 
-    public StorySendOperation(@NonNull MessageId relatedMessageId, @Nullable GroupId groupId, long sentTimestamp, @NonNull SignalServiceStoryMessage message) {
+    public StorySendOperation(@NonNull MessageId relatedMessageId,
+                              @Nullable GroupId groupId,
+                              long sentTimestamp,
+                              @NonNull SignalServiceStoryMessage message,
+                              @NonNull Set<SignalServiceStoryMessageRecipient> manifest)
+    {
       this.relatedMessageId = relatedMessageId;
       this.groupId          = groupId;
       this.sentTimestamp    = sentTimestamp;
       this.message          = message;
+      this.manifest         = manifest;
     }
 
     @Override
@@ -625,7 +636,7 @@ public final class GroupSendUtil {
                                                               boolean isRecipientUpdate)
         throws NoSessionException, UntrustedIdentityException, InvalidKeyException, IOException, InvalidRegistrationIdException
     {
-      return messageSender.sendGroupStory(distributionId, Optional.ofNullable(groupId).map(GroupId::getDecodedId), targets, access, message, getSentTimestamp());
+      return messageSender.sendGroupStory(distributionId, Optional.ofNullable(groupId).map(GroupId::getDecodedId), targets, access, message, getSentTimestamp(), manifest);
     }
 
     @Override
@@ -637,7 +648,7 @@ public final class GroupSendUtil {
                                                        @Nullable CancelationSignal cancelationSignal)
         throws IOException, UntrustedIdentityException
     {
-      return messageSender.sendStory(targets, access, message, getSentTimestamp());
+      return messageSender.sendStory(targets, access, message, getSentTimestamp(), manifest);
     }
 
     @Override

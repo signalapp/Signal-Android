@@ -10,6 +10,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
+import org.signal.core.util.select
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.DistributionListPartialRecord
 import org.thoughtcrime.securesms.database.model.DistributionListRecord
@@ -21,7 +22,6 @@ import org.thoughtcrime.securesms.util.Base64
 import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.storage.SignalStoryDistributionListRecord
 import org.whispersystems.signalservice.api.util.UuidUtil
-import java.lang.AssertionError
 import java.util.UUID
 
 /**
@@ -36,6 +36,8 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
     val CREATE_TABLE: Array<String> = arrayOf(ListTable.CREATE_TABLE, MembershipTable.CREATE_TABLE)
 
     const val RECIPIENT_ID = ListTable.RECIPIENT_ID
+    const val DISTRIBUTION_ID = ListTable.DISTRIBUTION_ID
+    const val LIST_TABLE_NAME = ListTable.TABLE_NAME
 
     fun insertInitialDistributionListAtCreationTime(db: net.zetetic.database.sqlcipher.SQLiteDatabase) {
       val recipientId = db.insert(
@@ -68,6 +70,7 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
     const val RECIPIENT_ID = "recipient_id"
     const val ALLOWS_REPLIES = "allows_replies"
     const val DELETION_TIMESTAMP = "deletion_timestamp"
+    const val IS_UNKNOWN = "is_unknown"
 
     const val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (
@@ -76,7 +79,8 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
         $DISTRIBUTION_ID TEXT UNIQUE NOT NULL,
         $RECIPIENT_ID INTEGER UNIQUE REFERENCES ${RecipientDatabase.TABLE_NAME} (${RecipientDatabase.ID}),
         $ALLOWS_REPLIES INTEGER DEFAULT 1,
-        $DELETION_TIMESTAMP INTEGER DEFAULT 0
+        $DELETION_TIMESTAMP INTEGER DEFAULT 0,
+        $IS_UNKNOWN INTEGER DEFAULT 0
       )
     """
 
@@ -124,7 +128,8 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
             id = DistributionListId.from(CursorUtil.requireLong(it, ListTable.ID)),
             name = CursorUtil.requireString(it, ListTable.NAME),
             allowsReplies = CursorUtil.requireBoolean(it, ListTable.ALLOWS_REPLIES),
-            recipientId = RecipientId.from(CursorUtil.requireLong(it, ListTable.RECIPIENT_ID))
+            recipientId = RecipientId.from(CursorUtil.requireLong(it, ListTable.RECIPIENT_ID)),
+            isUnknown = CursorUtil.requireBoolean(it, ListTable.IS_UNKNOWN)
           )
         )
       }
@@ -135,13 +140,13 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
 
   fun getAllListsForContactSelectionUiCursor(query: String?, includeMyStory: Boolean): Cursor? {
     val db = readableDatabase
-    val projection = arrayOf(ListTable.ID, ListTable.NAME, ListTable.RECIPIENT_ID, ListTable.ALLOWS_REPLIES)
+    val projection = arrayOf(ListTable.ID, ListTable.NAME, ListTable.RECIPIENT_ID, ListTable.ALLOWS_REPLIES, ListTable.IS_UNKNOWN)
 
     val where = when {
       query.isNullOrEmpty() && includeMyStory -> ListTable.IS_NOT_DELETED
       query.isNullOrEmpty() -> "${ListTable.ID} != ? AND ${ListTable.IS_NOT_DELETED}"
-      includeMyStory -> "(${ListTable.NAME} GLOB ? OR ${ListTable.ID} == ?) AND ${ListTable.IS_NOT_DELETED}"
-      else -> "${ListTable.NAME} GLOB ? AND ${ListTable.ID} != ? AND ${ListTable.IS_NOT_DELETED}"
+      includeMyStory -> "(${ListTable.NAME} GLOB ? OR ${ListTable.ID} == ?) AND ${ListTable.IS_NOT_DELETED} AND NOT ${ListTable.IS_UNKNOWN}"
+      else -> "${ListTable.NAME} GLOB ? AND ${ListTable.ID} != ? AND ${ListTable.IS_NOT_DELETED} AND NOT ${ListTable.IS_UNKNOWN}"
     }
 
     val whereArgs = when {
@@ -155,7 +160,7 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
 
   fun getCustomListsForUi(): List<DistributionListPartialRecord> {
     val db = readableDatabase
-    val projection = SqlUtil.buildArgs(ListTable.ID, ListTable.NAME, ListTable.RECIPIENT_ID, ListTable.ALLOWS_REPLIES)
+    val projection = SqlUtil.buildArgs(ListTable.ID, ListTable.NAME, ListTable.RECIPIENT_ID, ListTable.ALLOWS_REPLIES, ListTable.IS_UNKNOWN)
     val selection = "${ListTable.ID} != ${DistributionListId.MY_STORY_ID} AND ${ListTable.IS_NOT_DELETED}"
 
     return db.query(ListTable.TABLE_NAME, projection, selection, null, null, null, null)?.use {
@@ -166,13 +171,58 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
             id = DistributionListId.from(CursorUtil.requireLong(it, ListTable.ID)),
             name = CursorUtil.requireString(it, ListTable.NAME),
             allowsReplies = CursorUtil.requireBoolean(it, ListTable.ALLOWS_REPLIES),
-            recipientId = RecipientId.from(CursorUtil.requireLong(it, ListTable.RECIPIENT_ID))
+            recipientId = RecipientId.from(CursorUtil.requireLong(it, ListTable.RECIPIENT_ID)),
+            isUnknown = CursorUtil.requireBoolean(it, ListTable.IS_UNKNOWN)
           )
         )
       }
 
       results
     } ?: emptyList()
+  }
+
+  /**
+   * Gets or creates a distribution list for the given id.
+   *
+   * If the list does not exist, then a new list is created with a randomized name and populated with the members
+   * in the manifest.
+   *
+   * @return the recipient id of the list
+   */
+  fun getOrCreateByDistributionId(distributionId: DistributionId, manifest: SentStorySyncManifest): RecipientId {
+    writableDatabase.beginTransaction()
+    try {
+      val distributionRecipientId = getRecipientIdByDistributionId(distributionId)
+      if (distributionRecipientId == null) {
+        val members: List<RecipientId> = manifest.entries
+          .filter { it.distributionLists.contains(distributionId) }
+          .map { it.recipientId }
+
+        val distributionListId = createList(
+          name = createUniqueNameForUnknownDistributionId(),
+          members = members,
+          distributionId = distributionId,
+          isUnknown = true
+        )
+
+        if (distributionListId == null) {
+          throw AssertionError("Failed to create distribution list for unknown id.")
+        } else {
+          val recipient = getRecipientId(distributionListId)
+          if (recipient == null) {
+            throw AssertionError("Failed to retrieve recipient for newly created list")
+          } else {
+            writableDatabase.setTransactionSuccessful()
+            return recipient
+          }
+        }
+      }
+
+      writableDatabase.setTransactionSuccessful()
+      return distributionRecipientId
+    } finally {
+      writableDatabase.endTransaction()
+    }
   }
 
   /**
@@ -184,7 +234,8 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
     distributionId: DistributionId = DistributionId.from(UUID.randomUUID()),
     allowsReplies: Boolean = true,
     deletionTimestamp: Long = 0L,
-    storageId: ByteArray? = null
+    storageId: ByteArray? = null,
+    isUnknown: Boolean = false
   ): DistributionListId? {
     val db = writableDatabase
 
@@ -196,6 +247,7 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
         put(ListTable.ALLOWS_REPLIES, if (deletionTimestamp == 0L) allowsReplies else false)
         putNull(ListTable.RECIPIENT_ID)
         put(ListTable.DELETION_TIMESTAMP, deletionTimestamp)
+        put(ListTable.IS_UNKNOWN, isUnknown)
       }
 
       val id = writableDatabase.insert(ListTable.TABLE_NAME, null, values)
@@ -220,6 +272,21 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
     } finally {
       db.endTransaction()
     }
+  }
+
+  fun getRecipientIdByDistributionId(distributionId: DistributionId): RecipientId? {
+    return readableDatabase
+      .select(ListTable.RECIPIENT_ID)
+      .from(ListTable.TABLE_NAME)
+      .where("${ListTable.DISTRIBUTION_ID} = ?", distributionId.toString())
+      .run()
+      .use { cursor ->
+        if (cursor.moveToFirst()) {
+          RecipientId.from(CursorUtil.requireLong(cursor, ListTable.RECIPIENT_ID))
+        } else {
+          null
+        }
+      }
   }
 
   fun getStoryType(listId: DistributionListId): StoryType {
@@ -251,7 +318,8 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
           distributionId = DistributionId.from(cursor.requireNonNullString(ListTable.DISTRIBUTION_ID)),
           allowsReplies = CursorUtil.requireBoolean(cursor, ListTable.ALLOWS_REPLIES),
           members = getMembers(id),
-          deletedAtTimestamp = 0L
+          deletedAtTimestamp = 0L,
+          isUnknown = CursorUtil.requireBoolean(cursor, ListTable.IS_UNKNOWN)
         )
       } else {
         null
@@ -270,7 +338,8 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
           distributionId = DistributionId.from(cursor.requireNonNullString(ListTable.DISTRIBUTION_ID)),
           allowsReplies = CursorUtil.requireBoolean(cursor, ListTable.ALLOWS_REPLIES),
           members = getRawMembers(id),
-          deletedAtTimestamp = cursor.requireLong(ListTable.DELETION_TIMESTAMP)
+          deletedAtTimestamp = cursor.requireLong(ListTable.DELETION_TIMESTAMP),
+          isUnknown = CursorUtil.requireBoolean(cursor, ListTable.IS_UNKNOWN)
         )
       } else {
         null
@@ -461,7 +530,8 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
     try {
       val listTableValues = contentValuesOf(
         ListTable.ALLOWS_REPLIES to update.new.allowsReplies(),
-        ListTable.NAME to update.new.name
+        ListTable.NAME to update.new.name,
+        ListTable.IS_UNKNOWN to false
       )
 
       writableDatabase.update(
@@ -491,6 +561,10 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
   }
 
   private fun createUniqueNameForDeletedStory(): String {
+    return "DELETED-${UUID.randomUUID()}"
+  }
+
+  private fun createUniqueNameForUnknownDistributionId(): String {
     return "DELETED-${UUID.randomUUID()}"
   }
 }

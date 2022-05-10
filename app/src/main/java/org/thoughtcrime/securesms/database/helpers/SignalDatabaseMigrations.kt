@@ -196,8 +196,9 @@ object SignalDatabaseMigrations {
   private const val CDS_V2 = 140
   private const val GROUP_SERVICE_ID = 141
   private const val QUOTE_TYPE = 142
+  private const val STORY_SYNCS = 143
 
-  const val DATABASE_VERSION = 142
+  const val DATABASE_VERSION = 143
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -2532,6 +2533,39 @@ object SignalDatabaseMigrations {
 
     if (oldVersion < QUOTE_TYPE) {
       db.execSQL("ALTER TABLE mms ADD COLUMN quote_type INTEGER DEFAULT 0")
+    }
+
+    if (oldVersion < STORY_SYNCS) {
+      db.execSQL("ALTER TABLE distribution_list ADD COLUMN is_unknown INTEGER DEFAULT 0")
+
+      db.execSQL(
+        """
+          CREATE TABLE story_sends_tmp (
+            _id INTEGER PRIMARY KEY,
+            message_id INTEGER NOT NULL REFERENCES mms (_id) ON DELETE CASCADE,
+            recipient_id INTEGER NOT NULL REFERENCES recipient (_id) ON DELETE CASCADE,
+            sent_timestamp INTEGER NOT NULL,
+            allows_replies INTEGER NOT NULL,
+            distribution_id TEXT NOT NULL REFERENCES distribution_list (distribution_id) ON DELETE CASCADE
+          )
+        """.trimIndent()
+      )
+
+      db.execSQL(
+        """
+          INSERT INTO story_sends_tmp (_id, message_id, recipient_id, sent_timestamp, allows_replies, distribution_id)
+              SELECT story_sends._id, story_sends.message_id, story_sends.recipient_id, story_sends.sent_timestamp, story_sends.allows_replies, distribution_list.distribution_id
+              FROM story_sends
+              INNER JOIN mms ON story_sends.message_id = mms._id
+              INNER JOIN distribution_list ON distribution_list.recipient_id = mms.address
+        """.trimIndent()
+      )
+
+      db.execSQL("DROP TABLE story_sends")
+      db.execSQL("DROP INDEX IF EXISTS story_sends_recipient_id_sent_timestamp_allows_replies_index")
+
+      db.execSQL("ALTER TABLE story_sends_tmp RENAME TO story_sends")
+      db.execSQL("CREATE INDEX story_sends_recipient_id_sent_timestamp_allows_replies_index ON story_sends (recipient_id, sent_timestamp, allows_replies)")
     }
   }
 

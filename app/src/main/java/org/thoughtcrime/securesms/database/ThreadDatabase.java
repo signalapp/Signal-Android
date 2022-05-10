@@ -1300,19 +1300,23 @@ public class ThreadDatabase extends Database {
   private boolean update(long threadId, boolean unarchive, boolean allowDeletion, boolean notifyListeners) {
     MmsSmsDatabase mmsSmsDatabase     = SignalDatabase.mmsSms();
     boolean        meaningfulMessages = mmsSmsDatabase.hasMeaningfulMessage(threadId);
+    boolean        isPinned           = getPinnedThreadIds().contains(threadId);
+    boolean        shouldDelete       = allowDeletion && !isPinned && !SignalDatabase.mms().containsStories(threadId);
 
     if (!meaningfulMessages) {
-      if (allowDeletion) {
+      if (shouldDelete) {
         deleteConversation(threadId);
+        return true;
+      } else if (!isPinned) {
+        return false;
       }
-      return true;
     }
 
     MessageRecord record;
     try {
       record = mmsSmsDatabase.getConversationSnippet(threadId);
     } catch (NoSuchMessageException e) {
-      if (allowDeletion && !SignalDatabase.mms().containsStories(threadId)) {
+      if (shouldDelete) {
         deleteConversation(threadId);
       }
       return true;

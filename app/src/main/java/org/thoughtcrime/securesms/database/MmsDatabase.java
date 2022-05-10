@@ -585,6 +585,15 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public @NonNull MessageDatabase.Reader getAllOutgoingStoriesAt(long sentTimestamp) {
+    String   where      = IS_STORY_CLAUSE + " AND " + DATE_SENT + " = ? AND (" + getOutgoingTypeClause() + ")";
+    String[] whereArgs  = SqlUtil.buildArgs(sentTimestamp);
+    Cursor   cursor     = rawQuery(where, whereArgs, false, -1L);
+
+    return new Reader(cursor);
+  }
+
+  @Override
   public @NonNull MessageDatabase.Reader getAllStoriesFor(@NonNull RecipientId recipientId) {
     long     threadId  = SignalDatabase.threads().getThreadIdIfExistsFor(recipientId);
     String   where     = IS_STORY_CLAUSE + " AND " + THREAD_ID_WHERE;
@@ -932,7 +941,7 @@ public class MmsDatabase extends MessageDatabase {
   public boolean hasMeaningfulMessage(long threadId) {
     SQLiteDatabase db = databaseHelper.getSignalReadableDatabase();
 
-    try (Cursor cursor = db.query(TABLE_NAME, new String[] { "1" }, THREAD_ID_WHERE, SqlUtil.buildArgs(threadId), null, null, null, "1")) {
+    try (Cursor cursor = db.query(TABLE_NAME, new String[] { "1" }, THREAD_ID + " = ? AND " + STORY_TYPE + " = ? AND " + PARENT_STORY_ID + " <= ?", SqlUtil.buildArgs(threadId, 0, 0), null, null, null, "1")) {
       return cursor != null && cursor.moveToFirst();
     }
   }

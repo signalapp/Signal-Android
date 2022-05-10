@@ -27,10 +27,8 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.database.model.DistributionListPartialRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
-import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.UsernameUtil;
 
@@ -57,7 +55,6 @@ public class ContactsCursorLoader extends AbstractContactsCursorLoader {
     public static final int FLAG_HIDE_NEW              = 1 << 6;
     public static final int FLAG_HIDE_RECENT_HEADER    = 1 << 7;
     public static final int FLAG_GROUPS_AFTER_CONTACTS = 1 << 8;
-    public static final int FLAG_STORIES               = 1 << 9;
     public static final int FLAG_ALL                   = FLAG_PUSH | FLAG_SMS | FLAG_ACTIVE_GROUPS | FLAG_INACTIVE_GROUPS | FLAG_SELF;
   }
 
@@ -88,7 +85,6 @@ public class ContactsCursorLoader extends AbstractContactsCursorLoader {
       addRecentGroupsSection(cursorList);
       addGroupsSection(cursorList);
     } else {
-      addStoriesSection(cursorList);
       addRecentsSection(cursorList);
       addContactsSection(cursorList);
       if (addGroupsAfterContacts(mode)) {
@@ -167,19 +163,6 @@ public class ContactsCursorLoader extends AbstractContactsCursorLoader {
     }
   }
 
-  private void addStoriesSection(@NonNull List<Cursor> cursorList) {
-    if (!Stories.isFeatureEnabled() ||!storiesEnabled(mode)) {
-      return;
-    }
-
-    Cursor stories = getStoriesCursor();
-
-    if (stories.getCount() > 0) {
-      cursorList.add(ContactsCursorRows.forStoriesHeader(getContext()));
-      cursorList.add(stories);
-    }
-  }
-
   private void addNewNumberSection(@NonNull List<Cursor> cursorList) {
     if (FeatureFlags.usernames() && NumberUtil.isVisuallyValidNumberOrEmail(getFilter())) {
       cursorList.add(ContactsCursorRows.forPhoneNumberSearchHeader(getContext()));
@@ -238,16 +221,6 @@ public class ContactsCursorLoader extends AbstractContactsCursorLoader {
       }
     }
     return groupContacts;
-  }
-
-  private Cursor getStoriesCursor() {
-    MatrixCursor                        distributionListsCursor = ContactsCursorRows.createMatrixCursor();
-    List<DistributionListPartialRecord> distributionLists       = SignalDatabase.distributionLists().getAllListsForContactSelectionUi(null, true);
-    for (final DistributionListPartialRecord distributionList : distributionLists) {
-      distributionListsCursor.addRow(ContactsCursorRows.forDistributionList(distributionList));
-    }
-
-    return distributionListsCursor;
   }
 
   private Cursor getNewNumberCursor() {
@@ -318,10 +291,6 @@ public class ContactsCursorLoader extends AbstractContactsCursorLoader {
 
   private static boolean addGroupsAfterContacts(int mode) {
     return flagSet(mode, DisplayMode.FLAG_GROUPS_AFTER_CONTACTS);
-  }
-
-  private static boolean storiesEnabled(int mode) {
-    return flagSet(mode, DisplayMode.FLAG_STORIES);
   }
 
   private static boolean flagSet(int mode, int flag) {

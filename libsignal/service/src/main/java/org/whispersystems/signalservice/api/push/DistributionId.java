@@ -2,6 +2,7 @@ package org.whispersystems.signalservice.api.push;
 
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -39,5 +40,18 @@ public final class DistributionId {
   @Override
   public String toString() {
     return uuid.toString();
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    final DistributionId that = (DistributionId) o;
+    return Objects.equals(uuid, that.uuid);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(uuid);
   }
 }

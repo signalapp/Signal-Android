@@ -251,7 +251,7 @@ public final class LiveRecipient {
 
     // TODO [stories] We'll have to see what the perf is like for very large distribution lists. We may not be able to support fetching all the members.
     if (groupRecord != null) {
-      String          title    = groupRecord.getName();
+      String          title    = groupRecord.isUnknown() ? null : groupRecord.getName();
       List<Recipient> members  = Stream.of(groupRecord.getMembers()).filterNot(RecipientId::isUnknown).map(this::fetchAndCacheRecipientFromDisk).toList();
 
       return RecipientDetails.forDistributionList(title, members, record);

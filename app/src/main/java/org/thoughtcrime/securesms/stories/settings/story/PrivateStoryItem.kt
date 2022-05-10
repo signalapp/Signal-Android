@@ -118,7 +118,7 @@ object PrivateStoryItem {
 
     override fun bind(model: PartialModel) {
       itemView.setOnClickListener { model.onClick(model) }
-      label.text = model.privateStoryItemData.name
+      label.text = if (model.privateStoryItemData.isUnknown) context.getString(R.string.MessageRecord_unknown) else model.privateStoryItemData.name
     }
   }
 }
