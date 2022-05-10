@@ -1,24 +1,29 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.receipts.list
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
+import org.thoughtcrime.securesms.util.livedata.Store
 
 class DonationReceiptListPageViewModel(type: DonationReceiptRecord.Type?, repository: DonationReceiptListPageRepository) : ViewModel() {
 
   private val disposables = CompositeDisposable()
-  private val internalState = MutableLiveData<List<DonationReceiptRecord>>()
+  private val store = Store(DonationReceiptListPageState())
 
-  val state: LiveData<List<DonationReceiptRecord>> = internalState
+  val state: LiveData<DonationReceiptListPageState> = store.stateLiveData
 
   init {
     disposables += repository.getRecords(type)
       .subscribe { records ->
-        internalState.postValue(records)
+        store.update {
+          it.copy(
+            records = records,
+            isLoaded = true
+          )
+        }
       }
   }
 

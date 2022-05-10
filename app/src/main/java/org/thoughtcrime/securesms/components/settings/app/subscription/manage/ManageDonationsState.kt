@@ -8,7 +8,6 @@ data class ManageDonationsState(
   val featuredBadge: Badge? = null,
   val transactionState: TransactionState = TransactionState.Init,
   val availableSubscriptions: List<Subscription> = emptyList(),
-  val hasReceipts: Boolean = false,
   private val subscriptionRedemptionState: SubscriptionRedemptionState = SubscriptionRedemptionState.NONE
 ) {
 

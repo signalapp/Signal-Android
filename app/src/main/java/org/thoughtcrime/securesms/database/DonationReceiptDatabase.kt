@@ -6,7 +6,6 @@ import androidx.core.content.contentValuesOf
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.money.FiatMoney
-import org.signal.core.util.select
 import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
 import java.math.BigDecimal
 import java.util.Currency
@@ -38,15 +37,6 @@ class DonationReceiptDatabase(context: Context, databaseHelper: SignalDatabase) 
       "CREATE INDEX IF NOT EXISTS donation_receipt_type_index ON $TABLE_NAME ($TYPE)",
       "CREATE INDEX IF NOT EXISTS donation_receipt_date_index ON $TABLE_NAME ($DATE)"
     )
-  }
-
-  fun hasReceipts(): Boolean {
-    return readableDatabase.select("1")
-      .from(TABLE_NAME)
-      .where("")
-      .limit(1)
-      .run()
-      .use { it.moveToFirst() }
   }
 
   fun addReceipt(record: DonationReceiptRecord) {

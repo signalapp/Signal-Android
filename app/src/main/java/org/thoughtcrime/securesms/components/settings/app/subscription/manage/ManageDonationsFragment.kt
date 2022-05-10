@@ -98,31 +98,31 @@ class ManageDonationsFragment : DSLSettingsFragment(), ExpiredGiftSheet.Callback
         if (activeSubscription != null) {
           val subscription: Subscription? = state.availableSubscriptions.firstOrNull { activeSubscription.level == it.level }
           if (subscription != null) {
-            presentSubscriptionSettings(state.hasReceipts, activeSubscription, subscription, state.getRedemptionState())
+            presentSubscriptionSettings(activeSubscription, subscription, state.getRedemptionState())
           } else {
             customPref(IndeterminateLoadingCircle)
           }
         } else {
-          presentNoSubscriptionSettings(state.hasReceipts)
+          presentNoSubscriptionSettings()
         }
       } else if (state.transactionState == ManageDonationsState.TransactionState.NetworkFailure) {
-        presentNetworkFailureSettings(state.hasReceipts, state.getRedemptionState())
+        presentNetworkFailureSettings(state.getRedemptionState())
       } else {
         customPref(IndeterminateLoadingCircle)
       }
     }
   }
 
-  private fun DSLConfiguration.presentNetworkFailureSettings(hasReceipts: Boolean, redemptionState: ManageDonationsState.SubscriptionRedemptionState) {
+  private fun DSLConfiguration.presentNetworkFailureSettings(redemptionState: ManageDonationsState.SubscriptionRedemptionState) {
     if (SignalStore.donationsValues().isLikelyASustainer()) {
-      presentSubscriptionSettingsWithNetworkError(hasReceipts, redemptionState)
+      presentSubscriptionSettingsWithNetworkError(redemptionState)
     } else {
-      presentNoSubscriptionSettings(hasReceipts)
+      presentNoSubscriptionSettings()
     }
   }
 
-  private fun DSLConfiguration.presentSubscriptionSettingsWithNetworkError(hasReceipts: Boolean, redemptionState: ManageDonationsState.SubscriptionRedemptionState) {
-    presentSubscriptionSettingsWithState(hasReceipts, redemptionState) {
+  private fun DSLConfiguration.presentSubscriptionSettingsWithNetworkError(redemptionState: ManageDonationsState.SubscriptionRedemptionState) {
+    presentSubscriptionSettingsWithState(redemptionState) {
       customPref(
         NetworkFailure.Model(
           onRetryClick = {
@@ -134,12 +134,11 @@ class ManageDonationsFragment : DSLSettingsFragment(), ExpiredGiftSheet.Callback
   }
 
   private fun DSLConfiguration.presentSubscriptionSettings(
-    hasReceipts: Boolean,
     activeSubscription: ActiveSubscription.Subscription,
     subscription: Subscription,
     redemptionState: ManageDonationsState.SubscriptionRedemptionState
   ) {
-    presentSubscriptionSettingsWithState(hasReceipts, redemptionState) {
+    presentSubscriptionSettingsWithState(redemptionState) {
       val activeCurrency = Currency.getInstance(activeSubscription.currency)
       val activeAmount = activeSubscription.amount.movePointLeft(activeCurrency.defaultFractionDigits)
 
@@ -160,7 +159,6 @@ class ManageDonationsFragment : DSLSettingsFragment(), ExpiredGiftSheet.Callback
   }
 
   private fun DSLConfiguration.presentSubscriptionSettingsWithState(
-    hasReceipts: Boolean,
     redemptionState: ManageDonationsState.SubscriptionRedemptionState,
     subscriptionBlock: DSLConfiguration.() -> Unit
   ) {
@@ -198,9 +196,7 @@ class ManageDonationsFragment : DSLSettingsFragment(), ExpiredGiftSheet.Callback
 
     sectionHeaderPref(R.string.ManageDonationsFragment__more)
 
-    if (hasReceipts) {
-      presentDonationReceipts()
-    }
+    presentDonationReceipts()
 
     externalLinkPref(
       title = DSLSettingsText.from(R.string.ManageDonationsFragment__subscription_faq),
@@ -209,7 +205,7 @@ class ManageDonationsFragment : DSLSettingsFragment(), ExpiredGiftSheet.Callback
     )
   }
 
-  private fun DSLConfiguration.presentNoSubscriptionSettings(hasReceipts: Boolean) {
+  private fun DSLConfiguration.presentNoSubscriptionSettings() {
     space(DimensionUnit.DP.toPixels(16f).toInt())
 
     noPadTextPref(
@@ -227,11 +223,9 @@ class ManageDonationsFragment : DSLSettingsFragment(), ExpiredGiftSheet.Callback
 
     presentOtherWaysToGive()
 
-    if (hasReceipts) {
-      sectionHeaderPref(R.string.ManageDonationsFragment__receipts)
+    sectionHeaderPref(R.string.ManageDonationsFragment__receipts)
 
-      presentDonationReceipts()
-    }
+    presentDonationReceipts()
   }
 
   private fun DSLConfiguration.presentOtherWaysToGive() {

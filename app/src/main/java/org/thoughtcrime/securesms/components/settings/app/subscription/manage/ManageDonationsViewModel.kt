@@ -9,10 +9,8 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
-import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
-import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.subscription.LevelUpdate
@@ -107,14 +105,6 @@ class ManageDonationsViewModel(
         Log.w(TAG, "Error retrieving subscriptions data", it)
       }
     )
-
-    disposables += Single.fromCallable { SignalDatabase.donationReceipts.hasReceipts() }
-      .subscribeOn(Schedulers.io())
-      .subscribe { hasReceipts ->
-        store.update {
-          it.copy(hasReceipts = hasReceipts)
-        }
-      }
   }
 
   class Factory(

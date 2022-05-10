@@ -1,7 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/recycler"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <TextView
+        android:id="@+id/empty_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:paddingHorizontal="32dp"
+        android:text="@string/DonationReceiptListFragment__no_receipts"
+        android:textAppearance="@style/Signal.Text.Body"
+        android:textColor="@color/signal_text_secondary"
+        app:layout_constraintBottom_toTopOf="@id/empty_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/empty_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="32dp"
+        android:text="@string/DonationReceiptListFragment__if_you_have"
+        android:textAppearance="@style/TextAppearance.Signal.Subtitle"
+        android:textColor="@color/signal_text_secondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/empty_title" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/empty_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="empty_title,empty_description" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
