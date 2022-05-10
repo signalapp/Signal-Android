@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.mms.GlideApp
+import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.visible
 
@@ -106,7 +107,8 @@ class StoryReplyComposer @JvmOverloads constructor(
       false,
       messageRecord.slideDeck,
       null,
-      null
+      null,
+      QuoteModel.Type.NORMAL
     )
 
     quoteView.visible = true

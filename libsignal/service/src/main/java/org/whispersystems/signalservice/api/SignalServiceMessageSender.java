@@ -846,7 +846,8 @@ public class SignalServiceMessageSender {
       DataMessage.Quote.Builder quoteBuilder = DataMessage.Quote.newBuilder()
                                                                 .setId(message.getQuote().get().getId())
                                                                 .setText(message.getQuote().get().getText())
-                                                                .setAuthorUuid(message.getQuote().get().getAuthor().getServiceId().toString());
+                                                                .setAuthorUuid(message.getQuote().get().getAuthor().getServiceId().toString())
+                                                                .setType(message.getQuote().get().getType().getProtoType());
 
       if (!message.getQuote().get().getMentions().isEmpty()) {
         for (SignalServiceDataMessage.Mention mention : message.getQuote().get().getMentions()) {

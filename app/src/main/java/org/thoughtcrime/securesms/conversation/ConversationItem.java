@@ -1471,7 +1471,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
                          quote.isOriginalMissing(),
                          quote.getAttachment(),
                          chatColors,
-                         isStoryReaction(current) ? current.getBody() : null);
+                         isStoryReaction(current) ? current.getBody() : null,
+                         quote.getQuoteType());
 
       quoteView.setVisibility(View.VISIBLE);
       quoteView.setTextSize(TypedValue.COMPLEX_UNIT_SP, SignalStore.settings().getMessageFontSize());

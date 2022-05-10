@@ -1565,7 +1565,7 @@ public final class MessageContentProcessor {
           }
 
           parentStoryId   = new ParentStoryId.DirectReply(storyMessageId.getId());
-          quoteModel      = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, displayText, false, story.getSlideDeck().asAttachments(), Collections.emptyList());
+          quoteModel      = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, displayText, false, story.getSlideDeck().asAttachments(), Collections.emptyList(), QuoteModel.Type.NORMAL);
           expiresInMillis = TimeUnit.SECONDS.toMillis(message.getExpiresInSeconds());
         } else {
           warn(content.getTimestamp(), "Story has reactions disabled. Dropping reaction.");
@@ -1656,7 +1656,7 @@ public final class MessageContentProcessor {
             displayText = story.getBody();
           }
 
-          quoteModel      = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, displayText, false, story.getSlideDeck().asAttachments(), Collections.emptyList());
+          quoteModel      = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, displayText, false, story.getSlideDeck().asAttachments(), Collections.emptyList(), QuoteModel.Type.NORMAL);
           expiresInMillis = TimeUnit.SECONDS.toMillis(message.getExpiresInSeconds());
         } else {
           warn(content.getTimestamp(), "Story has replies disabled. Dropping reply.");
@@ -1929,7 +1929,7 @@ public final class MessageContentProcessor {
           quoteBody = story.getBody();
         }
 
-        quoteModel      = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, quoteBody, false, story.getSlideDeck().asAttachments(), Collections.emptyList());
+        quoteModel      = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, quoteBody, false, story.getSlideDeck().asAttachments(), Collections.emptyList(), QuoteModel.Type.NORMAL);
         expiresInMillis = TimeUnit.SECONDS.toMillis(message.getExpirationStartTimestamp());
       } else {
         warn(envelopeTimestamp, "Story has replies disabled. Dropping reply.");
@@ -2722,7 +2722,7 @@ public final class MessageContentProcessor {
         }
       }
 
-      return Optional.of(new QuoteModel(quote.get().getId(), author, message.getBody(), false, attachments, mentions));
+      return Optional.of(new QuoteModel(quote.get().getId(), author, message.getBody(), false, attachments, mentions, QuoteModel.Type.fromDataMessageType(quote.get().getType())));
     } else if (message != null) {
       warn("Found the target for the quote, but it's flagged as remotely deleted.");
     }
@@ -2730,11 +2730,12 @@ public final class MessageContentProcessor {
     warn("Didn't find matching message record...");
 
     return Optional.of(new QuoteModel(quote.get().getId(),
-        author,
-        quote.get().getText(),
-        true,
-        PointerAttachment.forPointers(quote.get().getAttachments()),
-        getMentions(quote.get().getMentions())));
+                                      author,
+                                      quote.get().getText(),
+                                      true,
+                                      PointerAttachment.forPointers(quote.get().getAttachments()),
+                                      getMentions(quote.get().getMentions()),
+                                      QuoteModel.Type.fromDataMessageType(quote.get().getType())));
   }
 
   private Optional<Attachment> getStickerAttachment(Optional<SignalServiceDataMessage.Sticker> sticker) {

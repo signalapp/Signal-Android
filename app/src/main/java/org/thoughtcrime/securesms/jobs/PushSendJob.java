@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -303,6 +304,7 @@ public abstract class PushSendJob extends SendJob {
     String                                                quoteBody           = message.getOutgoingQuote().getText();
     RecipientId                                           quoteAuthor         = message.getOutgoingQuote().getAuthor();
     List<SignalServiceDataMessage.Mention>                quoteMentions       = getMentionsFor(message.getOutgoingQuote().getMentions());
+    QuoteModel.Type                                       quoteType           = message.getOutgoingQuote().getType();
     List<SignalServiceDataMessage.Quote.QuotedAttachment> quoteAttachments    = new LinkedList<>();
     List<Attachment>                                      filteredAttachments = Stream.of(message.getOutgoingQuote().getAttachments())
                                                                                       .filterNot(a -> MediaUtil.isViewOnceType(a.getContentType()))
@@ -351,7 +353,7 @@ public abstract class PushSendJob extends SendJob {
 
     if (quoteAuthorRecipient.isMaybeRegistered()) {
       SignalServiceAddress quoteAddress = RecipientUtil.toSignalServiceAddress(context, quoteAuthorRecipient);
-      return Optional.of(new SignalServiceDataMessage.Quote(quoteId, quoteAddress, quoteBody, quoteAttachments, quoteMentions));
+      return Optional.of(new SignalServiceDataMessage.Quote(quoteId, quoteAddress, quoteBody, quoteAttachments, quoteMentions, quoteType.getDataMessageType()));
     } else {
       return Optional.empty();
     }

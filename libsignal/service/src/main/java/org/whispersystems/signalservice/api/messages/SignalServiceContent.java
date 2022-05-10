@@ -1021,7 +1021,8 @@ public final class SignalServiceContent {
                                                 address,
                                                 content.getQuote().getText(),
                                                 attachments,
-                                                createMentions(content.getQuote().getBodyRangesList(), content.getQuote().getText(), isGroupV2));
+                                                createMentions(content.getQuote().getBodyRangesList(), content.getQuote().getText(), isGroupV2),
+                                                SignalServiceDataMessage.Quote.Type.fromProto(content.getQuote().getType()));
     } else {
       Log.w(TAG, "Quote was missing an author! Returning null.");
       return null;

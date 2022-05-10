@@ -281,6 +281,7 @@ import org.thoughtcrime.securesms.util.FullscreenHelper;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.MessageUtil;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -3876,7 +3877,8 @@ public class ConversationParentFragment extends Fragment
                           messageRecord.getDateSent(),
                           author,
                           body,
-                          slideDeck);
+                          slideDeck,
+                          MessageRecordUtil.getRecordQuoteType(messageRecord));
 
     } else if (messageRecord.isMms() && !((MmsMessageRecord) messageRecord).getLinkPreviews().isEmpty()) {
       LinkPreview linkPreview = ((MmsMessageRecord) messageRecord).getLinkPreviews().get(0);
@@ -3890,7 +3892,8 @@ public class ConversationParentFragment extends Fragment
                           messageRecord.getDateSent(),
                           author,
                           conversationMessage.getDisplayBody(requireContext()),
-                          slideDeck);
+                          slideDeck,
+                          MessageRecordUtil.getRecordQuoteType(messageRecord));
     } else {
       SlideDeck slideDeck = messageRecord.isMms() ? ((MmsMessageRecord) messageRecord).getSlideDeck() : new SlideDeck();
 
@@ -3904,7 +3907,8 @@ public class ConversationParentFragment extends Fragment
                           messageRecord.getDateSent(),
                           author,
                           conversationMessage.getDisplayBody(requireContext()),
-                          slideDeck);
+                          slideDeck,
+                          MessageRecordUtil.getRecordQuoteType(messageRecord));
     }
 
     inputPanel.clickOnComposeInput();

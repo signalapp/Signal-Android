@@ -99,6 +99,7 @@ public class MmsSmsDatabase extends Database {
                                               MmsDatabase.QUOTE_BODY,
                                               MmsDatabase.QUOTE_MISSING,
                                               MmsDatabase.QUOTE_ATTACHMENT,
+                                              MmsDatabase.QUOTE_TYPE,
                                               MmsDatabase.QUOTE_MENTIONS,
                                               MmsDatabase.SHARED_CONTACTS,
                                               MmsDatabase.LINK_PREVIEWS,
@@ -777,6 +778,7 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.QUOTE_BODY,
                               MmsDatabase.QUOTE_MISSING,
                               MmsDatabase.QUOTE_ATTACHMENT,
+                              MmsDatabase.QUOTE_TYPE,
                               MmsDatabase.QUOTE_MENTIONS,
                               MmsDatabase.SHARED_CONTACTS,
                               MmsDatabase.LINK_PREVIEWS,
@@ -813,6 +815,7 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.QUOTE_BODY,
                               MmsDatabase.QUOTE_MISSING,
                               MmsDatabase.QUOTE_ATTACHMENT,
+                              MmsDatabase.QUOTE_TYPE,
                               MmsDatabase.QUOTE_MENTIONS,
                               MmsDatabase.SHARED_CONTACTS,
                               MmsDatabase.LINK_PREVIEWS,
@@ -878,6 +881,7 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(MmsDatabase.QUOTE_BODY);
     mmsColumnsPresent.add(MmsDatabase.QUOTE_MISSING);
     mmsColumnsPresent.add(MmsDatabase.QUOTE_ATTACHMENT);
+    mmsColumnsPresent.add(MmsDatabase.QUOTE_TYPE);
     mmsColumnsPresent.add(MmsDatabase.QUOTE_MENTIONS);
     mmsColumnsPresent.add(MmsDatabase.SHARED_CONTACTS);
     mmsColumnsPresent.add(MmsDatabase.LINK_PREVIEWS);

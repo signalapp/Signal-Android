@@ -138,6 +138,11 @@ message DataMessage {
   }
 
   message Quote {
+    enum Type {
+      NORMAL     = 0;
+      GIFT_BADGE = 1;
+    }
+
     message QuotedAttachment {
       optional string            contentType = 1;
       optional string            fileName    = 2;
@@ -150,6 +155,7 @@ message DataMessage {
     optional string           text        = 3;
     repeated QuotedAttachment attachments = 4;
     repeated BodyRange        bodyRanges  = 6;
+    optional Type             type        = 7;
   }
 
   message Contact {

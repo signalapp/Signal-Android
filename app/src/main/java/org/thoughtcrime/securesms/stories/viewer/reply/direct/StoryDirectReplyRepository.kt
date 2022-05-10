@@ -55,7 +55,7 @@ class StoryDirectReplyRepository(context: Context) {
           StoryType.NONE,
           ParentStoryId.DirectReply(storyId),
           isReaction,
-          QuoteModel(message.dateSent, quoteAuthor.id, message.body, false, message.slideDeck.asAttachments(), null),
+          QuoteModel(message.dateSent, quoteAuthor.id, message.body, false, message.slideDeck.asAttachments(), null, QuoteModel.Type.NORMAL),
           emptyList(),
           emptyList(),
           emptyList(),

@@ -179,9 +179,10 @@ public class InputPanel extends LinearLayout
                        long id,
                        @NonNull Recipient author,
                        @NonNull CharSequence body,
-                       @NonNull SlideDeck attachments)
+                       @NonNull SlideDeck attachments,
+                       @NonNull QuoteModel.Type quoteType)
   {
-    this.quoteView.setQuote(glideRequests, id, author, body, false, attachments, null, null);
+    this.quoteView.setQuote(glideRequests, id, author, body, false, attachments, null, null, quoteType);
 
     int originalHeight = this.quoteView.getVisibility() == VISIBLE ? this.quoteView.getMeasuredHeight()
                                                                    : 0;
@@ -256,7 +257,7 @@ public class InputPanel extends LinearLayout
 
   public Optional<QuoteModel> getQuote() {
     if (quoteView.getQuoteId() > 0 && quoteView.getVisibility() == View.VISIBLE) {
-      return Optional.of(new QuoteModel(quoteView.getQuoteId(), quoteView.getAuthor().getId(), quoteView.getBody().toString(), false, quoteView.getAttachments(), quoteView.getMentions()));
+      return Optional.of(new QuoteModel(quoteView.getQuoteId(), quoteView.getAuthor().getId(), quoteView.getBody().toString(), false, quoteView.getAttachments(), quoteView.getMentions(), quoteView.getQuoteType()));
     } else {
       return Optional.empty();
     }

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -30,6 +31,7 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequests;
+import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
@@ -87,16 +89,17 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
   private EmojiImageView missingStoryReaction;
   private EmojiImageView storyReactionEmoji;
 
-  private long          id;
-  private LiveRecipient author;
-  private CharSequence  body;
-  private TextView      mediaDescriptionText;
-  private TextView      missingLinkText;
-  private SlideDeck     attachments;
-  private MessageType   messageType;
-  private int           largeCornerRadius;
-  private int           smallCornerRadius;
-  private CornerMask    cornerMask;
+  private long            id;
+  private LiveRecipient   author;
+  private CharSequence    body;
+  private TextView        mediaDescriptionText;
+  private TextView        missingLinkText;
+  private SlideDeck       attachments;
+  private MessageType     messageType;
+  private int             largeCornerRadius;
+  private int             smallCornerRadius;
+  private CornerMask      cornerMask;
+  private QuoteModel.Type quoteType;
 
   private int thumbHeight;
   private int thumbWidth;
@@ -206,7 +209,8 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
                        boolean originalMissing,
                        @NonNull SlideDeck attachments,
                        @Nullable ChatColors chatColors,
-                       @Nullable String storyReaction)
+                       @Nullable String storyReaction,
+                       @NonNull QuoteModel.Type quoteType)
   {
     if (this.author != null) this.author.removeForeverObserver(this);
 
@@ -214,10 +218,11 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     this.author      = author.live();
     this.body        = body;
     this.attachments = attachments;
+    this.quoteType   = quoteType;
 
     this.author.observeForever(this);
     setQuoteAuthor(author);
-    setQuoteText(body, attachments, originalMissing, storyReaction);
+    setQuoteText(resolveBody(body, quoteType), attachments, originalMissing, storyReaction);
     setQuoteAttachment(glideRequests, body, attachments, originalMissing);
     setQuoteMissingFooter(originalMissing);
 
@@ -226,6 +231,10 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     } else {
       this.setBackground(null);
     }
+  }
+
+  private @Nullable CharSequence resolveBody(@Nullable CharSequence body, @NonNull QuoteModel.Type quoteType) {
+    return quoteType == QuoteModel.Type.GIFT_BADGE ? getContext().getString(R.string.QuoteView__gift) : body;
   }
 
   public void setTopCornerSizes(boolean topLeftLarge, boolean topRightLarge) {
@@ -386,6 +395,18 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
       return;
     }
 
+    if (quoteType == QuoteModel.Type.GIFT_BADGE) {
+      attachmentVideoOverlayView.setVisibility(GONE);
+      attachmentContainerView.setVisibility(GONE);
+      thumbnailView.setVisibility(VISIBLE);
+      glideRequests.load(R.drawable.ic_gift_thumbnail)
+                   .centerCrop()
+                   .override(thumbWidth, thumbHeight)
+                   .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                   .into(thumbnailView);
+      return;
+    }
+
     Slide imageVideoSlide = slideDeck.getSlides().stream().filter(s -> s.hasImage() || s.hasVideo() || s.hasSticker()).findFirst().orElse(null);
     Slide documentSlide   = slideDeck.getSlides().stream().filter(Slide::hasDocument).findFirst().orElse(null);
     Slide viewOnceSlide   = slideDeck.getSlides().stream().filter(Slide::hasViewOnce).findFirst().orElse(null);
@@ -457,6 +478,10 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
 
   public List<Attachment> getAttachments() {
     return attachments.asAttachments();
+  }
+
+  public @NonNull QuoteModel.Type getQuoteType() {
+    return quoteType;
   }
 
   public @NonNull List<Mention> getMentions() {
