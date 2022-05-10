@@ -184,7 +184,7 @@ public final class EnableCallNotificationSettingsDialog extends DialogFragment {
   }
 
   private void showNotificationChannelSettings() {
-    NotificationChannels.openChannelSettings(requireContext(), NotificationChannels.CALLS);
+    NotificationChannels.openChannelSettings(requireContext(), NotificationChannels.CALLS, null);
   }
 
   private void showAppSettings() {

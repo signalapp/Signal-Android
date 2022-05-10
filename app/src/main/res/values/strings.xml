@@ -845,6 +845,9 @@
     <string name="CustomNotificationsDialogFragment__use_custom_notifications">Use custom notifications</string>
     <string name="CustomNotificationsDialogFragment__notification_sound">Notification sound</string>
     <string name="CustomNotificationsDialogFragment__vibrate">Vibrate</string>
+    <!-- Button text for customizing notification options -->
+    <string name="CustomNotificationsDialogFragment__customize">Customize</string>
+    <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Change sound and vibration</string>
     <string name="CustomNotificationsDialogFragment__call_settings">Call settings</string>
     <string name="CustomNotificationsDialogFragment__ringtone">Ringtone</string>
     <string name="CustomNotificationsDialogFragment__enabled">Enabled</string>
@@ -2478,6 +2481,8 @@
     <string name="preferences__led_color">LED color</string>
     <string name="preferences__led_color_unknown">Unknown</string>
     <string name="preferences__pref_led_blink_title">LED blink pattern</string>
+    <string name="preferences__customize">Customize</string>
+    <string name="preferences__change_sound_and_vibration">Change sound and vibration</string>
     <string name="preferences__sound">Sound</string>
     <string name="preferences__silent">Silent</string>
     <string name="preferences__default">Default</string>

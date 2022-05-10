@@ -25,6 +25,7 @@ class CustomNotificationsSettingsViewModel(
     store.update(Recipient.live(recipientId).liveData) { recipient, state ->
       val recipientHasCustomNotifications = NotificationChannels.supported() && recipient.notificationChannel != null
       state.copy(
+        recipient = recipient,
         hasCustomNotifications = recipientHasCustomNotifications,
         controlsEnabled = (!NotificationChannels.supported() || recipientHasCustomNotifications) && state.isInitialLoadComplete,
         messageSound = recipient.messageRingtone,
