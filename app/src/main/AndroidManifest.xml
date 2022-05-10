@@ -706,7 +706,9 @@
 
     <service android:name=".service.GenericForegroundService"/>
 
-    <service android:name=".gcm.FcmFetchService" />
+    <service android:name=".gcm.FcmFetchBackgroundService" />
+
+    <service android:name=".gcm.FcmFetchForegroundService" />
 
     <service android:name=".gcm.FcmReceiveService">
         <intent-filter>

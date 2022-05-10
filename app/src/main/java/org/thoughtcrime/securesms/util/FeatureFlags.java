@@ -95,7 +95,7 @@ public final class FeatureFlags {
   private static final String USE_AEC3                          = "android.calling.useAec3";
   private static final String PAYMENTS_COUNTRY_BLOCKLIST        = "android.payments.blocklist";
   private static final String PNP_CDS                           = "android.pnp.cds";
-  private static final String USE_FCM_FOREGROUND_SERVICE        = "android.useFcmForegroundService.2";
+  private static final String USE_FCM_FOREGROUND_SERVICE        = "android.useFcmForegroundService.3";
   private static final String STORIES_AUTO_DOWNLOAD_MAXIMUM     = "android.stories.autoDownloadMaximum";
   private static final String GIFT_BADGES                       = "android.giftBadges";
 

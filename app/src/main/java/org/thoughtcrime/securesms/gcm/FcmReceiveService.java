@@ -80,15 +80,17 @@ public class FcmReceiveService extends FirebaseMessagingService {
   private static void handleReceivedNotification(Context context, @Nullable RemoteMessage remoteMessage) {
     try {
       long timeSinceLastRefresh = System.currentTimeMillis() - SignalStore.misc().getLastFcmForegroundServiceTime();
+      Log.d(TAG, String.format(Locale.US, "[handleReceivedNotification] API: %s, FeatureFlag: %s, RemoteMessagePriority: %s, TimeSinceLastRefresh: %s ms", Build.VERSION.SDK_INT, FeatureFlags.useFcmForegroundService(), remoteMessage != null ? remoteMessage.getPriority() : "n/a", timeSinceLastRefresh));
+
       if (FeatureFlags.useFcmForegroundService() && Build.VERSION.SDK_INT >= 31 && remoteMessage != null && remoteMessage.getPriority() == RemoteMessage.PRIORITY_HIGH && timeSinceLastRefresh > FCM_FOREGROUND_INTERVAL) {
-        context.startService(FcmFetchService.buildIntent(context, true));
+        FcmFetchManager.enqueue(context, true);
         SignalStore.misc().setLastFcmForegroundServiceTime(System.currentTimeMillis());
       } else {
-        context.startService(FcmFetchService.buildIntent(context, false));
+        FcmFetchManager.enqueue(context, false);
       }
     } catch (Exception e) {
       Log.w(TAG, "Failed to start service. Falling back to legacy approach.", e);
-      FcmFetchService.retrieveMessages(context);
+      FcmFetchManager.retrieveMessages(context);
     }
   }
 
