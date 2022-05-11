@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms
 
 import android.content.ContentValues
 import android.os.Build
+import android.os.StrictMode
+import android.os.StrictMode.ThreadPolicy
 import leakcanary.LeakCanary
 import org.signal.spinner.Spinner
 import org.signal.spinner.Spinner.DatabaseConfig
@@ -27,6 +29,14 @@ import java.util.Locale
 class SpinnerApplicationContext : ApplicationContext() {
   override fun onCreate() {
     super.onCreate()
+
+    StrictMode.setThreadPolicy(
+      ThreadPolicy.Builder()
+        .detectDiskReads()
+        .detectDiskWrites()
+        .penaltyLog()
+        .build()
+    )
 
     Spinner.init(
       this,
