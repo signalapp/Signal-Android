@@ -3870,6 +3870,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="GiftFlowConfirmationFragment__send_to">Kirim ke</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
   <!--Text explaining that this gift is a one time donation-->
+  <string name="GiftFlowConfirmationFragment__one_time_donation">Donasi satu-kali</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Tambah pesan</string>
   <!--Title for sheet shown when opening a redeemed gift-->

@@ -1215,7 +1215,17 @@
     <item quantity="other">%1$d dalībnieki</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="zero">%1$d dalībnieki (%2$s)</item>
+    <item quantity="one">%1$d dalībnieks (%2$s)</item>
+    <item quantity="other">%1$d dalībnieki (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="zero">+%1$d ielūgti</item>
+    <item quantity="one">+%1$d ielūgts</item>
+    <item quantity="other">+%1$d ielūgti</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="zero">%d cita grupa</item>
     <item quantity="one">%d cita grupa</item>
@@ -3188,6 +3198,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Fotoattēla kvalitāte</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">Uzaiciniet draugus</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">Abonenta ID nokopēts starpliktuvē</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Konts</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Laika gaitā jums tiks jautāts retāk</string>
@@ -3577,10 +3588,13 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="BecomeASustainerFragment__get_badges">Iegūstiet nozīmītes jūsu profilam atbalstot Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal irr bezpeļņas organizācija bez reklāmdevējiem vai investoriem, kuru uztur tikai cilvēki kā jūs.</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">Veiciet ikmnēneša ziedojumu</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">Vēl</string>
   <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">Kvītis</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">Mans abonements</string>
   <string name="ManageDonationsFragment__manage_subscription">Pārvaldīt abonementu</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Ziedojumu kvītis</string>
@@ -3588,11 +3602,14 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ManageDonationsFragment__subscription_faq">Abonementu BUJ</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Kļūda saņemot abonementu.</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">Citi veidi kā ziedot</string>
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">Uzdāviniet nozīmīti</string>
   <string name="BoostFragment__give_signal_a_boost">Atbalsti Signal</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Veiciet vienreizēju ziedojumu, un iegūstiet Atbalsta nozīmīti uz %1$d dienām.</string>
   <string name="Boost__enter_custom_amount">Ievadīt pielāgotu summu</string>
-  <string name="Boost__one_time_contribution">Vienreizējs ziedojums</string>
+  <string name="Boost__one_time_contribution">Vienreizēja ieguldījums</string>
   <string name="MySupportPreference__add_a_signal_boost">Pievienot Signal Atbalstu</string>
   <string name="MySupportPreference__s_per_month">%1$s/mēnesī</string>
   <string name="MySupportPreference__renews_s">Atjaunojas %1$s</string>
@@ -3634,9 +3651,13 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="DonationsErrors__still_processing">Vēl apstrādā</string>
   <string name="DonationsErrors__couldnt_add_badge">Nevarēja pievienot nozīmīti</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__failed_to_validate_badge">Nevarēja pārbaudīt nozīmīti</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__could_not_validate">Nevarēja pārbaudīt servera atbildi. Lūdzu, sazinieties ar tehnisko atbalstu.</string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__failed_to_send_gift_badge">Neizdevās nosūtīt dāvanas nozīmīti</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__could_not_send_gift_badge"> Neizdevās nosūtīt dāvanas nozīmīti. Lūdzu, sazinieties ar tehnisko atbalstu.</string>
   <string name="DonationsErrors__your_badge_could_not">Jūsu nozīmīti nevarēja pievienot jūsu kontam, tomēr iespējams, ka no jums tika iekasēta maksa. Lūdzu, sazinieties ar tehnisko atbalstu.</string>
   <string name="DonationsErrors__your_payment_is_still">Jūsu maksājums vēl tiek apstrādāts. Atkarībā no jūsu savienojuma, tas var aizņemt dažas minūtes.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay nav pieejams</string>
@@ -3646,13 +3667,24 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Jūsu ierīce neatbalsta Google Pay, tāpēc jūs nevarat pieteikties abonementam, lai iegūtu nozīmīti. Jūs vēl arvien varat atbalstīt Signal, ziedojot mūsu mājaslapā.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Tīkla kļūda. Pārbaudiet savienojumu un mēģiniet vēlreiz.</string>
   <string name="NetworkFailure__retry">Mēģināt vēlreiz</string>
+  <string name="DonationsErrors__recipient_verification_failed">Saņēmēja pārbaude neizdevās.</string>
+  <string name="DonationsErrors__target_does_not_support_gifting">Mērķis neatbalsta dāvināšanu.</string>
   <!--Gift message view title-->
+  <string name="GiftMessageView__gift_badge">Dāvināt nozīmīti</string>
   <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="zero">Ilgst %1$d mēnešus</item>
+    <item quantity="one">Ilgst %1$d mēnesi</item>
+    <item quantity="other">Ilgst %1$d mēnešus</item>
+  </plurals>
   <!--Gift badge redeem action label-->
+  <string name="GiftMessageView__redeem">Izpirkt</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">Skatīt</string>
   <!--Gift badge redeeming action label-->
+  <string name="GiftMessageView__redeeming">Izpērk…</string>
   <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">Izpirkts</string>
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Mēģiniet citu maksājuma veidu vai sazinieties ar savu banku, lai iegūtu vairāk informācijas.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3824,6 +3856,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">Vienreizējs</string>
   <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">Dāvana</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Atbalsts</string>
   <!--Donation receipts details title-->
@@ -3944,6 +3977,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Story settings private stories heading-->
   <string name="StorySettingsFragment__private_stories">Privātie stāsti</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Privātus stāstus var apskatīt tikai cilvēki, kurus jūs tiem pievienojat. Tikai jūs varat redzēt stāsta nosaukumu.</string>
   <!--Option label for creating a new private story-->
   <string name="StorySettingsFragment__new_private_story">Jauns privātais stāsts</string>
   <!--Page title for My Story options-->
@@ -4091,7 +4125,9 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Toasted when the user external share to a text story fails-->
   <string name="TextStoryPostCreationFragment__failed_to_send_story">Neizdevās nosūtīt stāstu</string>
   <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">Apskatīt stāstu</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">Apskatīt profila attēlu</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Atslēgt cenzūras apiešanu?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -4111,33 +4147,51 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ExpandModel__view_more">Skatīt vairāk</string>
   <string name="StoriesLinkPopup__visit_link">Apmeklēt saiti</string>
   <!--Tagline for gift row items-->
+  <string name="GiftRowItem__send_a_gift_badge">Nosūtīt dāvanas nozīmīti</string>
   <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">Dāvināt nozīmīti</string>
   <!--Description text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">Uzdāviniet kādam nozīmīti veicot ziedojumu Signal viņu vārdā. Viņi saņems nozīmiti, kuru varēs pievienot savam profila attēlam.</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Tālāk</string>
   <!--Title text on choose recipient page for badge gifting-->
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Izvēlēties saņēmēju</string>
   <!--Title text on confirm gift page-->
+  <string name="GiftFlowConfirmationFragment__confirm_gift">Apstiprināt dāvanu</string>
   <!--Heading text specifying who the gift will be sent to-->
   <string name="GiftFlowConfirmationFragment__send_to">Sūtīt</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Jūsu dāvana tiks nosūtīta saņēmējam 1 pret 1 ziņojumā. Pievienojiet savu ziņojumu zemāk.</string>
   <!--Text explaining that this gift is a one time donation-->
+  <string name="GiftFlowConfirmationFragment__one_time_donation">Vienreizējs ziedojums</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Pievienojiet ziņu</string>
   <!--Title for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s nosūtīja jums dāvanu</string>
   <!--Title for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Paldies par jūsu atbalstu!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Jūs saņēmāt dāvanu nozīmīti no %1$s! Palīdziet Signal vairot izpratni, pievienojot šo nozīmīti jūsu profilam.</string>
   <!--Description for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Jūs uzdāvinājāt nozīmīti %1$s. Kad viņi to akceptēs, viņi varēs izvēlēties, rādīt vai paslēpt viņu nozīmīti.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
+  <string name="ViewReceivedGiftSheet__redeem">Izpirkt</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">Ne tagad</string>
   <!--Dialog text while redeeming a gift-->
+  <string name="ViewReceivedGiftSheet__redeeming_gift">Izpērk dāvanu…</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <string name="ConversationFragment__you_can_redeem_your_badge_later">Jūs varat izpirkt savu nozīmīti vēlāk.</string>
   <!--Description text in gift thanks sheet-->
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Jūs uzdāvinājāt nozīmīti %1$s. Kad viņi to akceptēs, viņi varēs izvēlēties, rādīt vai paslēpt viņu nozīmīti.</string>
   <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Jūsu dāvanu nozīmītei beidzies termiņš</string>
   <!--Expired gift sheet top description text-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Jūsu dāvanu nozīmītei ir beidzies termiņš, un tā vairs nav redzama citiem jūsu profilā.</string>
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">Lai turpinātu atbalstīt tehnoloģiju, kas izveidota Jums, lūdzu apsveriet kļūšanu par ikmēneša Uzturētāju.</string>
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Veiciet ikmnēneša ziedojumu</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ne tagad</string>
   <!--EOF-->

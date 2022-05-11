@@ -1468,7 +1468,7 @@ nummer (%s) er ugyldigt</string>
   <!--StickerManagementAdapter-->
   <string name="StickerManagementAdapter_installed_stickers">Installerede klistermærker</string>
   <string name="StickerManagementAdapter_stickers_you_received">Klistermærker du har modtaget</string>
-  <string name="StickerManagementAdapter_signal_artist_series">Signal Artist serie</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Signal-kunstnerserie</string>
   <string name="StickerManagementAdapter_no_stickers_installed">Ingen klistermærker installeret</string>
   <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Klistermærker fra modtagede beskeder vises her</string>
   <string name="StickerManagementAdapter_untitled">Ingen titel</string>

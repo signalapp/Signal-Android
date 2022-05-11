@@ -3708,6 +3708,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ManageDonationsFragment__gift_a_badge">Darujte odznak</string>
   <string name="BoostFragment__give_signal_a_boost">Dejte Signalu Boost</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Přispějte jednorázově a získejte odznak Boost na %1$d dní.</string>
   <string name="Boost__enter_custom_amount">Zadat vlastní výši</string>
   <string name="Boost__one_time_contribution">Jednorázový příspěvek</string>
   <string name="MySupportPreference__add_a_signal_boost">Přidat Signal Boost</string>
@@ -3768,14 +3769,18 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Chyba sítě. Zkontrolujte připojení a zkuste to znovu.</string>
   <string name="NetworkFailure__retry">Zkusit znovu</string>
   <string name="DonationsErrors__recipient_verification_failed">Ověření příjemce selhalo.</string>
+  <string name="DonationsErrors__target_does_not_support_gifting">Příjemce nepodporuje dárkování.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Dárkový odznak</string>
   <!--Gift message view expiry information-->
   <!--Gift badge redeem action label-->
+  <string name="GiftMessageView__redeem">Uplatnit</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">Zobrazit</string>
   <!--Gift badge redeeming action label-->
+  <string name="GiftMessageView__redeeming">Uplatňuji…</string>
   <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">Uplatněno</string>
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Zkuste jiný způsob platby nebo se obraťte na svou banku a požádejte o další informace.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3947,6 +3952,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">Jednorázově</string>
   <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">Dárek</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Boost</string>
   <!--Donation receipts details title-->
@@ -4262,17 +4268,23 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Přidat zprávu</string>
   <!--Title for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s vám poslal(a) dárek</string>
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Díky za vaši podporu!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Obdrželi jste dárkový odznak od %1$s! Pomozte společnosti Signal budovat povědomí tím, že si tento odznak zobrazíte na svém profilu.</string>
   <!--Description for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Darovali jste odznak uživateli %1$s. Když jej přijme, dostane na výběr, zda si chce odznak zobrazit nebo skrýt.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
+  <string name="ViewReceivedGiftSheet__redeem">Uplatnit</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">Teď ne</string>
   <!--Dialog text while redeeming a gift-->
+  <string name="ViewReceivedGiftSheet__redeeming_gift">Uplatňují dárek…</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
   <string name="ConversationFragment__you_can_redeem_your_badge_later">Odznak můžete uplatnit později.</string>
   <!--Description text in gift thanks sheet-->
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Darovali jste odznak uživateli %1$s. Když jej přijme, dostane na výběr, zda si chce odznak zobrazit nebo skrýt.</string>
   <!--Expired gift sheet title-->
   <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Platnost vašeho dárkového odznaku vypršela</string>
   <!--Expired gift sheet top description text-->
