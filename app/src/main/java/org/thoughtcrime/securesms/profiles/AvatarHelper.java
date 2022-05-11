@@ -35,8 +35,17 @@ public class AvatarHelper {
 
   private static final String AVATAR_DIRECTORY = "avatars";
 
+  private static File avatarDirectory;
+
+  private static File getAvatarDirectory(@NonNull Context context) {
+    if (avatarDirectory == null) {
+      avatarDirectory = context.getDir(AVATAR_DIRECTORY, Context.MODE_PRIVATE);
+    }
+    return avatarDirectory;
+  }
+
   public static long getAvatarCount(@NonNull Context context) {
-    File     avatarDirectory = context.getDir(AVATAR_DIRECTORY, Context.MODE_PRIVATE);
+    File     avatarDirectory = getAvatarDirectory(context);
     String[] results         = avatarDirectory.list();
 
     return results == null ? 0 : results.length;
@@ -46,7 +55,7 @@ public class AvatarHelper {
    * Retrieves an iterable set of avatars. Only intended to be used during backup.
    */
   public static Iterable<Avatar> getAvatars(@NonNull Context context) {
-    File   avatarDirectory = context.getDir(AVATAR_DIRECTORY, Context.MODE_PRIVATE);
+    File   avatarDirectory = getAvatarDirectory(context);
     File[] results         = avatarDirectory.listFiles();
 
     if (results == null) {
@@ -215,8 +224,7 @@ public class AvatarHelper {
   }
 
   private static @NonNull File getAvatarFile(@NonNull Context context, @NonNull RecipientId recipientId, boolean isSyncAvatar) {
-    File directory = context.getDir(AVATAR_DIRECTORY, Context.MODE_PRIVATE);
-    return new File(directory, recipientId.serialize() + (isSyncAvatar ? "-sync" : ""));
+    return new File(getAvatarDirectory(context), recipientId.serialize() + (isSyncAvatar ? "-sync" : ""));
   }
 
   public static class Avatar {

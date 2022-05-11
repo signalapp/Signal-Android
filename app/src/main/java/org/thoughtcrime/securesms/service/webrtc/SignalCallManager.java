@@ -59,8 +59,6 @@ import org.thoughtcrime.securesms.util.rx.RxStore;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.webrtc.PeerConnection;
-import org.whispersystems.signalservice.api.SignalServiceAccountManager;
-import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.calls.CallingResponse;
@@ -108,8 +106,6 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   @Nullable private final CallManager callManager;
 
   private final Context                     context;
-  private final SignalServiceMessageSender  messageSender;
-  private final SignalServiceAccountManager accountManager;
   private final ExecutorService             serviceExecutor;
   private final Executor                    networkExecutor;
   private final LockManager                 lockManager;
@@ -120,8 +116,6 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   public SignalCallManager(@NonNull Application application) {
     this.context             = application.getApplicationContext();
-    this.messageSender       = ApplicationDependencies.getSignalServiceMessageSender();
-    this.accountManager      = ApplicationDependencies.getSignalServiceAccountManager();
     this.lockManager         = new LockManager(this.context);
     this.serviceExecutor     = Executors.newSingleThreadExecutor();
     this.networkExecutor     = Executors.newSingleThreadExecutor();
@@ -646,9 +640,10 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
         return;
       }
       try {
-        messageSender.sendCallMessage(RecipientUtil.toSignalServiceAddress(context, recipient),
-                                      recipient.isSelf() ? Optional.empty() : UnidentifiedAccessUtil.getAccessFor(context, recipient),
-                                      callMessage);
+        ApplicationDependencies.getSignalServiceMessageSender()
+                               .sendCallMessage(RecipientUtil.toSignalServiceAddress(context, recipient),
+                                                recipient.isSelf() ? Optional.empty() : UnidentifiedAccessUtil.getAccessFor(context, recipient),
+                                                callMessage);
       } catch (UntrustedIdentityException e) {
         Log.i(TAG, "sendOpaqueCallMessage onFailure: ", e);
         RetrieveProfileJob.enqueue(recipient.getId());
@@ -716,7 +711,8 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
         headerPairs = Collections.emptyList();
       }
 
-      CallingResponse response = messageSender.makeCallingRequest(requestId, url, httpMethod.name(), headerPairs, body);
+      CallingResponse response = ApplicationDependencies.getSignalServiceMessageSender()
+                                                        .makeCallingRequest(requestId, url, httpMethod.name(), headerPairs, body);
 
       try {
         if (response instanceof CallingResponse.Success) {
@@ -849,7 +845,7 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
   public void retrieveTurnServers(@NonNull RemotePeer remotePeer) {
     networkExecutor.execute(() -> {
       try {
-        TurnServerInfo turnServerInfo = accountManager.getTurnServerInfo();
+        TurnServerInfo turnServerInfo = ApplicationDependencies.getSignalServiceAccountManager().getTurnServerInfo();
 
         List<PeerConnection.IceServer> iceServers = new LinkedList<>();
         iceServers.add(PeerConnection.IceServer.builder("stun:stun1.l.google.com:19302").createIceServer());
@@ -904,9 +900,10 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
       }
 
       try {
-        messageSender.sendCallMessage(RecipientUtil.toSignalServiceAddress(context, recipient),
-                                      UnidentifiedAccessUtil.getAccessFor(context, recipient),
-                                      callMessage);
+        ApplicationDependencies.getSignalServiceMessageSender()
+                               .sendCallMessage(RecipientUtil.toSignalServiceAddress(context, recipient),
+                                                UnidentifiedAccessUtil.getAccessFor(context, recipient),
+                                                callMessage);
         process((s, p) -> p.handleMessageSentSuccess(s, remotePeer.getCallId()));
       } catch (UntrustedIdentityException e) {
         RetrieveProfileJob.enqueue(remotePeer.getId());
