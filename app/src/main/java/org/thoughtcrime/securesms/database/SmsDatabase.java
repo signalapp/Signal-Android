@@ -1478,6 +1478,11 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public void deleteGroupStoryReplies(long parentStoryId) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   public MessageRecord getMessageRecord(long messageId) throws NoSuchMessageException {
     return getSmsMessage(messageId);
   }

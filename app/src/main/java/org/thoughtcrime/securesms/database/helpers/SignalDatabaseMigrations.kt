@@ -198,8 +198,9 @@ object SignalDatabaseMigrations {
   private const val QUOTE_TYPE = 142
   private const val STORY_SYNCS = 143
   private const val GROUP_STORY_NOTIFICATIONS = 144
+  private const val GROUP_STORY_REPLY_CLEANUP = 145
 
-  const val DATABASE_VERSION = 144
+  const val DATABASE_VERSION = 145
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -2571,6 +2572,17 @@ object SignalDatabaseMigrations {
 
     if (oldVersion < GROUP_STORY_NOTIFICATIONS) {
       db.execSQL("UPDATE mms SET read = 1 WHERE parent_story_id > 0")
+    }
+
+    if (oldVersion < GROUP_STORY_REPLY_CLEANUP) {
+      db.execSQL(
+        """
+        DELETE FROM mms
+        WHERE 
+          parent_story_id > 0 AND
+          parent_story_id NOT IN (SELECT _id FROM mms WHERE remote_deleted = 0) 
+        """.trimIndent()
+      )
     }
   }
 

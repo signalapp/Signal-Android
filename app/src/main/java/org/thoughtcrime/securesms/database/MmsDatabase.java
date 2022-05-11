@@ -838,6 +838,14 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public void deleteGroupStoryReplies(long parentStoryId) {
+    SQLiteDatabase db   = databaseHelper.getSignalWritableDatabase();
+    String[]       args = SqlUtil.buildArgs(parentStoryId);
+
+    db.delete(TABLE_NAME, PARENT_STORY_ID + " = ?", args);
+  }
+
+  @Override
   public int deleteStoriesOlderThan(long timestamp) {
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
 
@@ -1256,6 +1264,7 @@ public class MmsDatabase extends MessageDatabase {
       SignalDatabase.mentions().deleteMentionsForMessage(messageId);
       SignalDatabase.messageLog().deleteAllRelatedToMessage(messageId, true);
       SignalDatabase.reactions().deleteReactions(new MessageId(messageId, true));
+      deleteGroupStoryReplies(messageId);
 
       threadId = getThreadIdForMessage(messageId);
       SignalDatabase.threads().update(threadId, false);
