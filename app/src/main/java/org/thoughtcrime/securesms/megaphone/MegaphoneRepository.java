@@ -49,7 +49,6 @@ public class MegaphoneRepository {
   @AnyThread
   public void onFirstEverAppLaunch() {
     executor.execute(() -> {
-      database.markFinished(Event.CHAT_COLORS);
       database.markFinished(Event.ADD_A_PROFILE_PHOTO);
       resetDatabaseCache();
     });

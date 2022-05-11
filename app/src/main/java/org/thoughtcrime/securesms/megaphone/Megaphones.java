@@ -109,7 +109,6 @@ public final class Megaphones {
       put(Event.PIN_REMINDER, new SignalPinReminderSchedule());
 
       // Feature-introduction megaphones should *probably* be added below this divider
-      put(Event.CHAT_COLORS, ALWAYS);
       put(Event.ADD_A_PROFILE_PHOTO, shouldShowAddAProfilePhotoMegaphone(context) ? ALWAYS : NEVER);
     }};
   }
@@ -126,8 +125,6 @@ public final class Megaphones {
         return buildOnboardingMegaphone();
       case NOTIFICATIONS:
         return buildNotificationsMegaphone(context);
-      case CHAT_COLORS:
-        return buildChatColorsMegaphone(context);
       case ADD_A_PROFILE_PHOTO:
         return buildAddAProfilePhotoMegaphone(context);
       case BECOME_A_SUSTAINER:
@@ -230,21 +227,6 @@ public final class Megaphones {
                           }
                         })
                         .setSecondaryButton(R.string.NotificationsMegaphone_not_now, (megaphone, controller) -> controller.onMegaphoneSnooze(Event.NOTIFICATIONS))
-                        .build();
-  }
-
-  private static @NonNull Megaphone buildChatColorsMegaphone(@NonNull Context context) {
-    return new Megaphone.Builder(Event.CHAT_COLORS, Megaphone.Style.BASIC)
-                        .setTitle(R.string.ChatColorsMegaphone__new_chat_colors)
-                        .setBody(R.string.ChatColorsMegaphone__we_switched_up_chat_colors)
-                        .setLottie(R.raw.color_bubble_64)
-                        .setActionButton(R.string.ChatColorsMegaphone__appearance, (megaphone, listener) -> {
-                          listener.onMegaphoneNavigationRequested(ChatWallpaperActivity.createIntent(context));
-                          listener.onMegaphoneCompleted(Event.CHAT_COLORS);
-                        })
-                        .setSecondaryButton(R.string.ChatColorsMegaphone__not_now, (megaphone, listener) -> {
-                          listener.onMegaphoneCompleted(Event.CHAT_COLORS);
-                        })
                         .build();
   }
 
@@ -373,7 +355,6 @@ public final class Megaphones {
     CLIENT_DEPRECATED("client_deprecated"),
     ONBOARDING("onboarding"),
     NOTIFICATIONS("notifications"),
-    CHAT_COLORS("chat_colors"),
     ADD_A_PROFILE_PHOTO("add_a_profile_photo"),
     BECOME_A_SUSTAINER("become_a_sustainer"),
     VALENTINES_DONATIONS_2022("valentines_donations_2022"),
