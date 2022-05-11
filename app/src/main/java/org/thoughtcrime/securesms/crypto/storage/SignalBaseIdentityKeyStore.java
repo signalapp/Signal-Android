@@ -29,6 +29,7 @@ import org.whispersystems.signalservice.api.push.ServiceId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -76,7 +77,11 @@ public class SignalBaseIdentityKeyStore {
         return SaveResult.NEW;
       }
 
-      if (!identityRecord.getIdentityKey().equals(identityKey)) {
+      boolean identityKeyChanged = !identityRecord.getIdentityKey().equals(identityKey);
+      
+      if (identityKeyChanged && Recipient.self().getId().equals(recipientId) && Objects.equals(SignalStore.account().getAci(), ServiceId.parseOrNull(address.getName()))) {
+        Log.w(TAG, "Received different identity key for self, ignoring" + " | Existing: " + identityRecord.getIdentityKey().hashCode() + ", New: " + identityKey.hashCode());
+      } else if (identityKeyChanged) {
         Log.i(TAG, "Replacing existing identity for " + address + " | Existing: " + identityRecord.getIdentityKey().hashCode() + ", New: " + identityKey.hashCode());
         VerifiedStatus verifiedStatus;
 
