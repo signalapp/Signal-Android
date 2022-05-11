@@ -168,6 +168,7 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
     val localSubscriber = SignalStore.donationsValues().requireSubscriber()
     return ApplicationDependencies.getDonationsService()
       .cancelSubscription(localSubscriber.subscriberId)
+      .subscribeOn(Schedulers.io())
       .flatMap(ServiceResponse<EmptyResponse>::flattenResult)
       .ignoreElement()
       .doOnComplete { Log.d(TAG, "Cancelled active subscription.", true) }
@@ -179,6 +180,7 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
     return ApplicationDependencies
       .getDonationsService()
       .putSubscription(subscriberId)
+      .subscribeOn(Schedulers.io())
       .flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement()
       .doOnComplete {
         Log.d(TAG, "Successfully set SubscriberId exists on Signal service.", true)
