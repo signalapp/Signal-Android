@@ -433,6 +433,22 @@ public class GroupDatabase extends Database {
   }
 
   @WorkerThread
+  public @NonNull List<RecipientId> getGroupMemberIds(@NonNull GroupId groupId, @NonNull MemberSet memberSet) {
+    if (groupId.isV2()) {
+      return getGroup(groupId).map(g -> g.requireV2GroupProperties().getMemberRecipientIds(memberSet))
+                              .orElse(Collections.emptyList());
+    } else {
+      List<RecipientId> currentMembers = getCurrentMembers(groupId);
+
+      if (!memberSet.includeSelf) {
+        currentMembers.remove(Recipient.self().getId());
+      }
+
+      return currentMembers;
+    }
+  }
+
+  @WorkerThread
   public @NonNull List<Recipient> getGroupMembers(@NonNull GroupId groupId, @NonNull MemberSet memberSet) {
     if (groupId.isV2()) {
       return getGroup(groupId).map(g -> g.requireV2GroupProperties().getMemberRecipients(memberSet))

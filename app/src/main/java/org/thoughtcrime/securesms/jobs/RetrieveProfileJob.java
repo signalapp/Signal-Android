@@ -84,7 +84,7 @@ public class RetrieveProfileJob extends BaseJob {
    * Identical to {@link #enqueue(Set)})}, but run on a background thread for convenience.
    */
   public static void enqueueAsync(@NonNull RecipientId recipientId) {
-    SignalExecutors.BOUNDED.execute(() -> ApplicationDependencies.getJobManager().add(forRecipient(recipientId)));
+    SignalExecutors.BOUNDED_IO.execute(() -> ApplicationDependencies.getJobManager().add(forRecipient(recipientId)));
   }
 
   /**
@@ -121,10 +121,9 @@ public class RetrieveProfileJob extends BaseJob {
     if (recipient.isSelf()) {
       return new RefreshOwnProfileJob();
     } else if (recipient.isGroup()) {
-      Context         context    = ApplicationDependencies.getApplication();
-      List<Recipient> recipients = SignalDatabase.groups().getGroupMembers(recipient.requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
+      List<RecipientId> recipients = SignalDatabase.groups().getGroupMemberIds(recipient.requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
 
-      return new RetrieveProfileJob(Stream.of(recipients).map(Recipient::getId).collect(Collectors.toSet()));
+      return new RetrieveProfileJob(new HashSet<>(recipients));
     } else {
       return new RetrieveProfileJob(Collections.singleton(recipientId));
     }

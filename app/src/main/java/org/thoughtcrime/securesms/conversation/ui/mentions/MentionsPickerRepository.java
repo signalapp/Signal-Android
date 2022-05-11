@@ -1,12 +1,8 @@
 package org.thoughtcrime.securesms.conversation.ui.mentions;
 
-import android.content.Context;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
-
-import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
@@ -22,7 +18,7 @@ final class MentionsPickerRepository {
   private final RecipientDatabase recipientDatabase;
   private final GroupDatabase     groupDatabase;
 
-  MentionsPickerRepository(@NonNull Context context) {
+  MentionsPickerRepository() {
     recipientDatabase = SignalDatabase.recipients();
     groupDatabase     = SignalDatabase.groups();
   }
@@ -33,9 +29,7 @@ final class MentionsPickerRepository {
       return Collections.emptyList();
     }
 
-    return Stream.of(groupDatabase.getGroupMembers(recipient.requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF))
-                 .map(Recipient::getId)
-                 .toList();
+    return groupDatabase.getGroupMemberIds(recipient.requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
   }
 
   @WorkerThread
