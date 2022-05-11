@@ -34,6 +34,7 @@ class SpinnerApplicationContext : ApplicationContext() {
       ThreadPolicy.Builder()
         .detectDiskReads()
         .detectDiskWrites()
+        .detectNetwork()
         .penaltyLog()
         .build()
     )

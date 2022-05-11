@@ -11,6 +11,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.util.EncryptedStreamUtils
 import org.thoughtcrime.securesms.util.JsonUtils
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.websocket.DefaultErrorMapper
 import org.whispersystems.signalservice.internal.websocket.DefaultResponseMapper
@@ -30,7 +31,31 @@ import java.util.regex.Pattern
 object S3 {
   private val TAG = Log.tag(S3::class.java)
 
-  private val okHttpClient = ApplicationDependencies.getOkHttpClient()
+  private val okHttpClient = ApplicationDependencies.getSignalOkHttpClient()
+
+  private const val S3_BASE = "https://updates2.signal.org"
+  const val DYNAMIC_PATH = "/dynamic"
+  const val STATIC_PATH = "/static"
+
+  /**
+   * Fetches the content at the given endpoint and attempts to return it as a string.
+   *
+   * @param endpoint The endpoint at which to get the long
+   * @return the string value of the body
+   * @throws IOException if the call fails or the response body cannot be parsed
+   */
+  @WorkerThread
+  @JvmStatic
+  @Throws(IOException::class)
+  fun getString(endpoint: String): String {
+    getObject(endpoint).use { response ->
+      if (!response.isSuccessful) {
+        throw NonSuccessfulResponseCodeException(response.code())
+      }
+
+      return response.body()?.string()?.trim() ?: throw IOException()
+    }
+  }
 
   /**
    * Fetches the content at the given endpoint and attempts to convert it into a long.
@@ -40,23 +65,14 @@ object S3 {
    * @throws IOException if the call fails or the response body cannot be parsed as a long
    */
   @WorkerThread
+  @Throws(IOException::class)
   fun getLong(endpoint: String): Long {
-    val request = Request.Builder()
-      .get()
-      .url(endpoint)
-      .build()
-
-    try {
-      okHttpClient.newCall(request).execute().use { response ->
-        if (!response.isSuccessful) {
-          throw IOException()
-        }
-
-        return response.body()?.bytes()?.let { String(it).trim().toLongOrNull() } ?: throw IOException()
-      }
-    } catch (e: IOException) {
-      Log.w(TAG, "Failed to retreive long value from S3")
-      throw e
+    val result = getString(endpoint).toLongOrNull()
+    return if (result == null) {
+      Log.w(TAG, "Failed to retrieve long value from S3")
+      throw IOException("Unable to parse")
+    } else {
+      result
     }
   }
 
@@ -64,10 +80,12 @@ object S3 {
    * Retrieves an S3 object from the given endpoint.
    */
   @WorkerThread
+  @JvmStatic
+  @Throws(IOException::class)
   fun getObject(endpoint: String): Response {
     val request = Request.Builder()
       .get()
-      .url(endpoint)
+      .url("$S3_BASE$endpoint")
       .build()
 
     return okHttpClient.newCall(request).execute()
@@ -178,7 +196,7 @@ object S3 {
   fun getObjectMD5(endpoint: String): ByteArray? {
     val request = Request.Builder()
       .head()
-      .url(endpoint)
+      .url("$S3_BASE$endpoint")
       .build()
 
     try {
