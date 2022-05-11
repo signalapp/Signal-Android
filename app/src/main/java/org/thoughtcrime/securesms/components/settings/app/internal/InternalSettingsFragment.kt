@@ -28,7 +28,7 @@ import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
-import org.thoughtcrime.securesms.jobs.RetrieveReleaseChannelJob
+import org.thoughtcrime.securesms.jobs.RetrieveRemoteAnnouncementsJob
 import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob
 import org.thoughtcrime.securesms.jobs.StorageForcePushJob
 import org.thoughtcrime.securesms.jobs.SubscriptionReceiptRequestResponseJob
@@ -418,7 +418,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from(R.string.preferences__internal_fetch_release_channel),
         onClick = {
           SignalStore.releaseChannelValues().previousManifestMd5 = ByteArray(0)
-          RetrieveReleaseChannelJob.enqueue(force = true)
+          RetrieveRemoteAnnouncementsJob.enqueue(force = true)
         }
       )
 

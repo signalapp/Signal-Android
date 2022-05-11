@@ -9,6 +9,7 @@ internal class ReleaseChannelValues(store: KeyValueStore) : SignalStoreValues(st
     private const val KEY_NEXT_SCHEDULED_CHECK = "releasechannel.next_scheduled_check"
     private const val KEY_PREVIOUS_MANIFEST_MD5 = "releasechannel.previous_manifest_md5"
     private const val KEY_HIGHEST_VERSION_NOTE_RECEIVED = "releasechannel.highest_version_note_received"
+    private const val KEY_MET_CONVERSATION_REQUIREMENT = "releasechannel.met_conversation_requirement"
   }
 
   override fun onFirstEverAppLaunch() = Unit
@@ -34,4 +35,5 @@ internal class ReleaseChannelValues(store: KeyValueStore) : SignalStoreValues(st
   var nextScheduledCheck by longValue(KEY_NEXT_SCHEDULED_CHECK, 0)
   var previousManifestMd5 by blobValue(KEY_PREVIOUS_MANIFEST_MD5, ByteArray(0))
   var highestVersionNoteReceived by integerValue(KEY_HIGHEST_VERSION_NOTE_RECEIVED, 0)
+  var hasMetConversationRequirement by booleanValue(KEY_MET_CONVERSATION_REQUIREMENT, false)
 }

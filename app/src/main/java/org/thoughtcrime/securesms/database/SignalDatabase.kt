@@ -72,6 +72,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
   val distributionListDatabase: DistributionListDatabase = DistributionListDatabase(context, this)
   val storySendsDatabase: StorySendsDatabase = StorySendsDatabase(context, this)
   val cdsDatabase: CdsDatabase = CdsDatabase(context, this)
+  val remoteMegaphoneDatabase: RemoteMegaphoneDatabase = RemoteMegaphoneDatabase(context, this)
 
   override fun onOpen(db: net.zetetic.database.sqlcipher.SQLiteDatabase) {
     db.enableWriteAheadLogging()
@@ -107,6 +108,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     db.execSQL(DonationReceiptDatabase.CREATE_TABLE)
     db.execSQL(StorySendsDatabase.CREATE_TABLE)
     db.execSQL(CdsDatabase.CREATE_TABLE)
+    db.execSQL(RemoteMegaphoneDatabase.CREATE_TABLE)
     executeStatements(db, SearchDatabase.CREATE_TABLE)
     executeStatements(db, RemappedRecordsDatabase.CREATE_TABLE)
     executeStatements(db, MessageSendLogDatabase.CREATE_TABLE)
@@ -495,5 +497,10 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     @get:JvmName("unknownStorageIds")
     val unknownStorageIds: UnknownStorageIdDatabase
       get() = instance!!.storageIdDatabase
+
+    @get:JvmStatic
+    @get:JvmName("remoteMegaphones")
+    val remoteMegaphones: RemoteMegaphoneDatabase
+      get() = instance!!.remoteMegaphoneDatabase
   }
 }

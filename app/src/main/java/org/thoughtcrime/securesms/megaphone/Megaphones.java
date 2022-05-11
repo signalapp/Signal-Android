@@ -11,12 +11,14 @@ import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.SetUtil;
 import org.signal.core.util.TranslationDetection;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.database.model.MegaphoneRecord;
+import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -24,6 +26,7 @@ import org.thoughtcrime.securesms.lock.SignalPinReminderDialog;
 import org.thoughtcrime.securesms.lock.SignalPinReminders;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
 import org.thoughtcrime.securesms.lock.v2.KbsMigrationActivity;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.manage.ManageProfileActivity;
@@ -31,7 +34,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.LocaleFeatureFlags;
 import org.thoughtcrime.securesms.util.PlayServicesUtil;
-import org.signal.core.util.SetUtil;
 import org.thoughtcrime.securesms.util.VersionTracker;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperActivity;
@@ -106,6 +108,7 @@ public final class Megaphones {
       put(Event.ONBOARDING, shouldShowOnboardingMegaphone(context) ? ALWAYS : NEVER);
       put(Event.TURN_OFF_CENSORSHIP_CIRCUMVENTION, shouldShowTurnOffCircumventionMegaphone() ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(7)) : NEVER);
       put(Event.DONATE_Q2_2022, shouldShowDonateMegaphone(context, Event.DONATE_Q2_2022, records) ? ShowForDurationSchedule.showForDays(7) : NEVER);
+      put(Event.REMOTE_MEGAPHONE, shouldShowRemoteMegaphone(records) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(3)) : NEVER);
       put(Event.PIN_REMINDER, new SignalPinReminderSchedule());
 
       // Feature-introduction megaphones should *probably* be added below this divider
@@ -133,6 +136,8 @@ public final class Megaphones {
         return buildDonateQ2Megaphone(context);
       case TURN_OFF_CENSORSHIP_CIRCUMVENTION:
         return buildTurnOffCircumventionMegaphone(context);
+      case REMOTE_MEGAPHONE:
+        return buildRemoteMegaphone(context);
       default:
         throw new IllegalArgumentException("Event not handled!");
     }
@@ -292,6 +297,44 @@ public final class Megaphones {
         .build();
   }
 
+  private static @NonNull Megaphone buildRemoteMegaphone(@NonNull Context context) {
+    RemoteMegaphoneRecord record = RemoteMegaphoneRepository.getRemoteMegaphoneToShow();
+
+    if (record != null) {
+      Megaphone.Builder builder = new Megaphone.Builder(Event.REMOTE_MEGAPHONE, Megaphone.Style.BASIC)
+          .setTitle(record.getTitle())
+          .setBody(record.getBody());
+
+      if (record.getImageUri() != null) {
+        builder.setImageRequest(GlideApp.with(context).asDrawable().load(record.getImageUri()));
+      }
+
+      if (record.hasPrimaryAction()) {
+        //noinspection ConstantConditions
+        builder.setActionButton(record.getPrimaryActionText(), (megaphone, controller) -> {
+          RemoteMegaphoneRepository.getAction(Objects.requireNonNull(record.getPrimaryActionId()))
+                                   .run(context, controller, record);
+        });
+      }
+
+      if (record.hasSecondaryAction()) {
+        //noinspection ConstantConditions
+        builder.setSecondaryButton(record.getSecondaryActionText(), (megaphone, controller) -> {
+          RemoteMegaphoneRepository.getAction(Objects.requireNonNull(record.getSecondaryActionId()))
+                                   .run(context, controller, record);
+        });
+      }
+
+      builder.setOnVisibleListener((megaphone, controller) -> {
+        RemoteMegaphoneRepository.markShown(record.getUuid());
+      });
+
+      return builder.build();
+    } else {
+      throw new IllegalStateException("No record to show");
+    }
+  }
+
   private static boolean shouldShowDonateMegaphone(@NonNull Context context, @NonNull Event event, @NonNull Map<Event, MegaphoneRecord> records) {
     long timeSinceLastDonatePrompt = timeSinceLastDonatePrompt(event, records);
 
@@ -349,6 +392,12 @@ public final class Megaphones {
     return true;
   }
 
+  @WorkerThread
+  private static boolean shouldShowRemoteMegaphone(@NonNull Map<Event, MegaphoneRecord> records) {
+    boolean canShowLocalDonate = timeSinceLastDonatePrompt(Event.REMOTE_MEGAPHONE, records) > MIN_TIME_BETWEEN_DONATE_MEGAPHONES;
+    return RemoteMegaphoneRepository.hasRemoteMegaphoneToShow(canShowLocalDonate);
+  }
+
   /**
    * Unfortunately lastSeen is only set today upon snoozing, which never happens to donate prompts.
    * So we use firstVisible as a proxy.
@@ -376,7 +425,8 @@ public final class Megaphones {
     ADD_A_PROFILE_PHOTO("add_a_profile_photo"),
     BECOME_A_SUSTAINER("become_a_sustainer"),
     DONATE_Q2_2022("donate_q2_2022"),
-    TURN_OFF_CENSORSHIP_CIRCUMVENTION("turn_off_censorship_circumvention");
+    TURN_OFF_CENSORSHIP_CIRCUMVENTION("turn_off_censorship_circumvention"),
+    REMOTE_MEGAPHONE("remote_megaphone");
 
     private final String key;
 

@@ -55,4 +55,14 @@ fun Cursor.isNull(column: String): Boolean {
   return CursorUtil.isNull(this, column)
 }
 
+inline fun <T> Cursor.readToList(mapper: (Cursor) -> T): List<T> {
+  val list = mutableListOf<T>()
+  use {
+    while (moveToNext()) {
+      list += mapper(this)
+    }
+  }
+  return list
+}
+
 fun Boolean.toInt(): Int = if (this) 1 else 0

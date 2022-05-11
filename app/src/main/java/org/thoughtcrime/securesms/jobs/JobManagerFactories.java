@@ -93,6 +93,7 @@ public final class JobManagerFactories {
       put(DownloadLatestEmojiDataJob.KEY,            new DownloadLatestEmojiDataJob.Factory());
       put(EmojiSearchIndexDownloadJob.KEY,           new EmojiSearchIndexDownloadJob.Factory());
       put(FcmRefreshJob.KEY,                         new FcmRefreshJob.Factory());
+      put(FetchRemoteMegaphoneImageJob.KEY,          new FetchRemoteMegaphoneImageJob.Factory());
       put(FontDownloaderJob.KEY,                     new FontDownloaderJob.Factory());
       put(GiftSendJob.KEY,                           new GiftSendJob.Factory());
       put(GroupV1MigrationJob.KEY,                   new GroupV1MigrationJob.Factory());
@@ -161,7 +162,7 @@ public final class JobManagerFactories {
       put(RequestGroupV2InfoJob.KEY,                 new RequestGroupV2InfoJob.Factory());
       put(RetrieveProfileAvatarJob.KEY,              new RetrieveProfileAvatarJob.Factory());
       put(RetrieveProfileJob.KEY,                    new RetrieveProfileJob.Factory());
-      put(RetrieveReleaseChannelJob.KEY,             new RetrieveReleaseChannelJob.Factory());
+      put(RetrieveRemoteAnnouncementsJob.KEY,        new RetrieveRemoteAnnouncementsJob.Factory());
       put(RotateCertificateJob.KEY,                  new RotateCertificateJob.Factory());
       put(RotateProfileKeyJob.KEY,                   new RotateProfileKeyJob.Factory());
       put(RotateSignedPreKeyJob.KEY,                 new RotateSignedPreKeyJob.Factory());

@@ -199,8 +199,9 @@ object SignalDatabaseMigrations {
   private const val STORY_SYNCS = 143
   private const val GROUP_STORY_NOTIFICATIONS = 144
   private const val GROUP_STORY_REPLY_CLEANUP = 145
+  private const val REMOTE_MEGAPHONE = 146
 
-  const val DATABASE_VERSION = 145
+  const val DATABASE_VERSION = 146
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -2582,6 +2583,34 @@ object SignalDatabaseMigrations {
           parent_story_id > 0 AND
           parent_story_id NOT IN (SELECT _id FROM mms WHERE remote_deleted = 0) 
         """.trimIndent()
+      )
+    }
+
+    if (oldVersion < REMOTE_MEGAPHONE) {
+      db.execSQL(
+        """
+          CREATE TABLE remote_megaphone (
+            _id INTEGER PRIMARY KEY,
+            uuid TEXT UNIQUE NOT NULL,
+            priority INTEGER NOT NULL,
+            countries TEXT,
+            minimum_version INTEGER NOT NULL,
+            dont_show_before INTEGER NOT NULL,
+            dont_show_after INTEGER NOT NULL,
+            show_for_days INTEGER NOT NULL,
+            conditional_id TEXT,
+            primary_action_id TEXT,
+            secondary_action_id TEXT,
+            image_url TEXT,
+            image_uri TEXT DEFAULT NULL,
+            title TEXT NOT NULL,
+            body TEXT NOT NULL,
+            primary_action_text TEXT,
+            secondary_action_text TEXT,
+            shown_at INTEGER DEFAULT 0,
+            finished_at INTEGER DEFAULT 0
+          )
+        """
       )
     }
   }

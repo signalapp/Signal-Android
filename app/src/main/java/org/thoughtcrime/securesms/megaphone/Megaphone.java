@@ -20,15 +20,15 @@ public class Megaphone {
   private final Event                  event;
   private final Style                  style;
   private final boolean                canSnooze;
-  private final int                    titleRes;
-  private final int                    bodyRes;
+  private final MegaphoneText          titleText;
+  private final MegaphoneText          bodyText;
   private final int                    imageRes;
   private final int                    lottieRes;
   private final GlideRequest<Drawable> imageRequest;
-  private final int                    buttonTextRes;
+  private final MegaphoneText          buttonText;
   private final EventListener          buttonListener;
   private final EventListener          snoozeListener;
-  private final int                    secondaryButtonTextRes;
+  private final MegaphoneText          secondaryButtonText;
   private final EventListener          secondaryButtonListener;
   private final EventListener          onVisibleListener;
 
@@ -36,15 +36,15 @@ public class Megaphone {
     this.event                   = builder.event;
     this.style                   = builder.style;
     this.canSnooze               = builder.canSnooze;
-    this.titleRes                = builder.titleRes;
-    this.bodyRes                 = builder.bodyRes;
+    this.titleText               = builder.titleText;
+    this.bodyText                = builder.bodyText;
     this.imageRes                = builder.imageRes;
     this.lottieRes               = builder.lottieRes;
     this.imageRequest            = builder.imageRequest;
-    this.buttonTextRes           = builder.buttonTextRes;
+    this.buttonText              = builder.buttonText;
     this.buttonListener          = builder.buttonListener;
     this.snoozeListener          = builder.snoozeListener;
-    this.secondaryButtonTextRes  = builder.secondaryButtonTextRes;
+    this.secondaryButtonText     = builder.secondaryButtonText;
     this.secondaryButtonListener = builder.secondaryButtonListener;
     this.onVisibleListener       = builder.onVisibleListener;
   }
@@ -61,12 +61,12 @@ public class Megaphone {
     return style;
   }
 
-  public @StringRes int getTitle() {
-    return titleRes;
+  public @NonNull MegaphoneText getTitle() {
+    return titleText;
   }
 
-  public @StringRes int getBody() {
-    return bodyRes;
+  public @NonNull MegaphoneText getBody() {
+    return bodyText;
   }
 
   public @RawRes int getLottieRes() {
@@ -81,12 +81,12 @@ public class Megaphone {
     return imageRequest;
   }
 
-  public @StringRes int getButtonText() {
-    return buttonTextRes;
+  public @Nullable MegaphoneText getButtonText() {
+    return buttonText;
   }
 
   public boolean hasButton() {
-    return buttonTextRes != 0;
+    return buttonText != null && buttonText.hasText();
   }
 
   public @Nullable EventListener getButtonClickListener() {
@@ -97,12 +97,12 @@ public class Megaphone {
     return snoozeListener;
   }
 
-  public @StringRes int getSecondaryButtonText() {
-    return secondaryButtonTextRes;
+  public @Nullable MegaphoneText getSecondaryButtonText() {
+    return secondaryButtonText;
   }
 
   public boolean hasSecondaryButton() {
-    return secondaryButtonTextRes != 0;
+    return secondaryButtonText != null && secondaryButtonText.hasText();
   }
 
   public @Nullable EventListener getSecondaryButtonClickListener() {
@@ -119,18 +119,17 @@ public class Megaphone {
     private final Style style;
 
     private boolean                canSnooze;
-    private int                    titleRes;
-    private int                    bodyRes;
+    private MegaphoneText          titleText;
+    private MegaphoneText          bodyText;
     private int                    imageRes;
     private int                    lottieRes;
     private GlideRequest<Drawable> imageRequest;
-    private int                    buttonTextRes;
+    private MegaphoneText          buttonText;
     private EventListener          buttonListener;
     private EventListener          snoozeListener;
-    private int                    secondaryButtonTextRes;
+    private MegaphoneText          secondaryButtonText;
     private EventListener          secondaryButtonListener;
     private EventListener          onVisibleListener;
-
 
     public Builder(@NonNull Event event, @NonNull Style style) {
       this.event = event;
@@ -144,18 +143,28 @@ public class Megaphone {
     }
 
     public @NonNull Builder disableSnooze() {
-      this.canSnooze = false;
+      this.canSnooze      = false;
       this.snoozeListener = null;
       return this;
     }
 
     public @NonNull Builder setTitle(@StringRes int titleRes) {
-      this.titleRes = titleRes;
+      this.titleText = MegaphoneText.from(titleRes);
+      return this;
+    }
+
+    public @NonNull Builder setTitle(@Nullable String title) {
+      this.titleText = MegaphoneText.from(title);
       return this;
     }
 
     public @NonNull Builder setBody(@StringRes int bodyRes) {
-      this.bodyRes = bodyRes;
+      this.bodyText = MegaphoneText.from(bodyRes);
+      return this;
+    }
+
+    public @NonNull Builder setBody(String body) {
+      this.bodyText = MegaphoneText.from(body);
       return this;
     }
 
@@ -175,13 +184,25 @@ public class Megaphone {
     }
 
     public @NonNull Builder setActionButton(@StringRes int buttonTextRes, @NonNull EventListener listener) {
-      this.buttonTextRes  = buttonTextRes;
+      this.buttonText     = MegaphoneText.from(buttonTextRes);
+      this.buttonListener = listener;
+      return this;
+    }
+
+    public @NonNull Builder setActionButton(@NonNull String buttonText, @NonNull EventListener listener) {
+      this.buttonText     = MegaphoneText.from(buttonText);
       this.buttonListener = listener;
       return this;
     }
 
     public @NonNull Builder setSecondaryButton(@StringRes int secondaryButtonTextRes, @NonNull EventListener listener) {
-      this.secondaryButtonTextRes  = secondaryButtonTextRes;
+      this.secondaryButtonText     = MegaphoneText.from(secondaryButtonTextRes);
+      this.secondaryButtonListener = listener;
+      return this;
+    }
+
+    public @NonNull Builder setSecondaryButton(@NonNull String secondaryButtonText, @NonNull EventListener listener) {
+      this.secondaryButtonText     = MegaphoneText.from(secondaryButtonText);
       this.secondaryButtonListener = listener;
       return this;
     }
@@ -197,10 +218,14 @@ public class Megaphone {
   }
 
   enum Style {
-    /** Specialized style for onboarding. */
+    /**
+     * Specialized style for onboarding.
+     */
     ONBOARDING,
 
-    /** Basic bottom of the screen megaphone with optional snooze and action buttons. */
+    /**
+     * Basic bottom of the screen megaphone with optional snooze and action buttons.
+     */
     BASIC,
 
     /**

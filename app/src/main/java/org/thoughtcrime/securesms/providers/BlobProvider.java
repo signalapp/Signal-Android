@@ -482,7 +482,6 @@ public class BlobProvider {
      * Create a blob that will exist for multiple app sessions. It is the caller's responsibility to
      * eventually call {@link BlobProvider#delete(Context, Uri)} when the blob is no longer in use.
      */
-    @Deprecated
     @WorkerThread
     public Uri createForMultipleSessionsOnDisk(@NonNull Context context) throws IOException {
       return writeBlobSpecToDisk(context, buildBlobSpec(StorageType.MULTI_SESSION_DISK));
