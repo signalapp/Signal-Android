@@ -66,8 +66,8 @@ object FcmFetchManager {
 
       if (activeCount <= 0) {
         Log.i(TAG, "No more active. Stopping.")
-        context.stopService(Intent(context, FcmFetchForegroundService::class.java))
         context.stopService(Intent(context, FcmFetchBackgroundService::class.java))
+        context.startService(FcmFetchForegroundService.buildStopIntent(context))
       }
     }
   }
