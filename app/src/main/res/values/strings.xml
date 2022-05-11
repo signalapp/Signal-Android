@@ -3890,6 +3890,15 @@
     <string name="ChatColorGradientTool_top_edge_selector">Top edge selector</string>
     <string name="ChatColorGradientTool_bottom_edge_selector">Bottom edge selector</string>
 
+    <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
+    <string name="Donate2022Q2Megaphone_donate_to_signal">Donate to Signal</string>
+    <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
+    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal is powered by people like you. Donate monthly and receive a badge.</string>
+    <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
+    <string name="Donate2022Q2Megaphone_donate">Donate</string>
+    <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
+    <string name="Donate2022Q2Megaphone_not_now">Not now</string>
+
     <!-- EditReactionsFragment -->
     <string name="EditReactionsFragment__customize_reactions">Customize reactions</string>
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">Tap to replace an emoji</string>
