@@ -6,7 +6,12 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageFragment
 
-class StoryViewerPagerAdapter(fragment: Fragment, private val initialStoryId: Long) : FragmentStateAdapter(fragment) {
+class StoryViewerPagerAdapter(
+  fragment: Fragment,
+  private val initialStoryId: Long,
+  private val isFromNotification: Boolean,
+  private val groupReplyStartPosition: Int
+) : FragmentStateAdapter(fragment) {
 
   private var pages: List<RecipientId> = emptyList()
 
@@ -21,7 +26,7 @@ class StoryViewerPagerAdapter(fragment: Fragment, private val initialStoryId: Lo
   override fun getItemCount(): Int = pages.size
 
   override fun createFragment(position: Int): Fragment {
-    return StoryViewerPageFragment.create(pages[position], initialStoryId)
+    return StoryViewerPageFragment.create(pages[position], initialStoryId, isFromNotification, groupReplyStartPosition)
   }
 
   private class Callback(

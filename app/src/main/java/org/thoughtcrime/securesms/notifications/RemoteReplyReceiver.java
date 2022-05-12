@@ -33,7 +33,7 @@ import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.notifications.v2.MessageNotifierV2;
-import org.thoughtcrime.securesms.notifications.v2.NotificationThread;
+import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -120,7 +120,7 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
         }
 
         ApplicationDependencies.getMessageNotifier()
-                               .addStickyThread(new NotificationThread(threadId, groupStoryId != Long.MIN_VALUE ? groupStoryId : null),
+                               .addStickyThread(new ConversationId(threadId, groupStoryId != Long.MIN_VALUE ? groupStoryId : null),
                                                 intent.getLongExtra(EARLIEST_TIMESTAMP, System.currentTimeMillis()));
 
         List<MarkedMessageInfo> messageIds = SignalDatabase.threads().setRead(threadId, true);

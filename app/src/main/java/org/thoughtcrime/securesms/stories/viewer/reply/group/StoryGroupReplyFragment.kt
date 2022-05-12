@@ -22,16 +22,19 @@ import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.conversation.MarkReadHelper
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerFragment
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerViewModel
 import org.thoughtcrime.securesms.database.model.Mention
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyboard.KeyboardPage
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardCallback
 import org.thoughtcrime.securesms.mediasend.v2.UntrustedRecords
+import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -44,7 +47,7 @@ import org.thoughtcrime.securesms.util.DeleteDialog
 import org.thoughtcrime.securesms.util.FragmentDialogs.displayInDialogAboveAnchor
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.ServiceUtil
-import org.thoughtcrime.securesms.util.SnapToTopDataObserver
+import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter
 import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -97,10 +100,19 @@ class StoryGroupReplyFragment :
   private val groupRecipientId: RecipientId
     get() = requireArguments().getParcelable(ARG_GROUP_RECIPIENT_ID)!!
 
+  private val isFromNotification: Boolean
+    get() = requireArguments().getBoolean(ARG_IS_FROM_NOTIFICATION, false)
+
+  private val groupReplyStartPosition: Int
+    get() = requireArguments().getInt(ARG_GROUP_REPLY_START_POSITION, -1)
+
   private lateinit var recyclerView: RecyclerView
   private lateinit var adapter: PagingMappingAdapter<StoryGroupReplyItemData.Key>
-  private lateinit var snapToTopDataObserver: SnapToTopDataObserver
+  private lateinit var dataObserver: RecyclerView.AdapterDataObserver
   private lateinit var composer: StoryReplyComposer
+
+  private var markReadHelper: MarkReadHelper? = null
+
   private var currentChild: StoryViewsAndRepliesPagerParent.Child? = null
 
   private var resendBody: CharSequence? = null
@@ -120,7 +132,7 @@ class StoryGroupReplyFragment :
     val emptyNotice: View = requireView().findViewById(R.id.empty_notice)
 
     adapter = PagingMappingAdapter<StoryGroupReplyItemData.Key>()
-    val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, true)
+    val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
     recyclerView.layoutManager = layoutManager
     recyclerView.adapter = adapter
     recyclerView.itemAnimator = null
@@ -131,6 +143,18 @@ class StoryGroupReplyFragment :
     onPageSelected(findListener<StoryViewsAndRepliesPagerParent>()?.selectedChild ?: StoryViewsAndRepliesPagerParent.Child.REPLIES)
 
     viewModel.state.observe(viewLifecycleOwner) { state ->
+      if (markReadHelper == null && state.threadId > 0L) {
+        if (isResumed) {
+          ApplicationDependencies.getMessageNotifier().setVisibleThread(ConversationId(state.threadId, storyId))
+        }
+
+        markReadHelper = MarkReadHelper(ConversationId(state.threadId, storyId), requireContext(), viewLifecycleOwner)
+
+        if (isFromNotification) {
+          markReadHelper?.onViewsRevealed(System.currentTimeMillis())
+        }
+      }
+
       emptyNotice.visible = state.noReplies && state.loadState == StoryGroupReplyState.LoadState.READY
       colorizer.onNameColorsChanged(state.nameColors)
     }
@@ -139,26 +163,39 @@ class StoryGroupReplyFragment :
       adapter.setPagingController(controller)
     }
 
+    var consumed = false
     viewModel.pageData.observe(viewLifecycleOwner) { pageData ->
-      adapter.submitList(getConfiguration(pageData).toMappingModelList())
+      adapter.submitList(getConfiguration(pageData).toMappingModelList()) {
+        if (!consumed && groupReplyStartPosition >= 0 && adapter.hasItem(groupReplyStartPosition)) {
+          consumed = true
+          recyclerView.post { recyclerView.scrollToPosition(groupReplyStartPosition) }
+        }
+      }
     }
 
-    snapToTopDataObserver = SnapToTopDataObserver(
-      recyclerView,
-      object : SnapToTopDataObserver.ScrollRequestValidator {
-        override fun isPositionStillValid(position: Int): Boolean {
-          return position >= 0 && position < adapter.itemCount
-        }
-
-        override fun isItemAtPositionLoaded(position: Int): Boolean {
-          return adapter.hasItem(position)
-        }
-      },
-      null
-    )
-    adapter.registerAdapterDataObserver(snapToTopDataObserver)
+    dataObserver = GroupDataObserver()
+    adapter.registerAdapterDataObserver(dataObserver)
 
     initializeMentions()
+
+    if (savedInstanceState == null && isFromNotification) {
+      ViewUtil.focusAndShowKeyboard(composer)
+    }
+
+    recyclerView.addOnScrollListener(GroupReplyScrollObserver())
+  }
+
+  override fun onResume() {
+    super.onResume()
+    val threadId = viewModel.stateSnapshot.threadId
+    if (threadId != 0L) {
+      ApplicationDependencies.getMessageNotifier().setVisibleThread(ConversationId(threadId, storyId))
+    }
+  }
+
+  override fun onPause() {
+    super.onPause()
+    ApplicationDependencies.getMessageNotifier().setVisibleThread(null)
   }
 
   override fun onDestroyView() {
@@ -168,9 +205,23 @@ class StoryGroupReplyFragment :
     composer.input.setMentionValidator(null)
   }
 
+  private fun postMarkAsReadRequest() {
+    if (adapter.itemCount == 0 || markReadHelper == null) {
+      return
+    }
+
+    val lastVisibleItem = (recyclerView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+    val adapterItem = adapter.getItem(lastVisibleItem)
+    if (adapterItem == null || adapterItem !is StoryGroupReplyItem.DataWrapper) {
+      return
+    }
+
+    markReadHelper?.onViewsRevealed(adapterItem.storyGroupReplyItemData.sentAtMillis)
+  }
+
   private fun getConfiguration(pageData: List<StoryGroupReplyItemData>): DSLConfiguration {
     return configure {
-      pageData.filterNotNull().forEach {
+      pageData.forEach {
         when (it.replyBody) {
           is StoryGroupReplyItemData.ReplyBody.Text -> {
             customPref(
@@ -294,9 +345,6 @@ class StoryGroupReplyFragment :
               Toast.makeText(context, R.string.message_details_recipient__failed_to_send, Toast.LENGTH_SHORT).show()
             }
           }
-        },
-        onComplete = {
-          snapToTopDataObserver.requestScrollPosition(0)
         }
       )
   }
@@ -379,17 +427,47 @@ class StoryGroupReplyFragment :
     }
   }
 
+  private inner class GroupReplyScrollObserver : RecyclerView.OnScrollListener() {
+    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+      postMarkAsReadRequest()
+    }
+
+    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+      postMarkAsReadRequest()
+    }
+  }
+
+  private inner class GroupDataObserver : RecyclerView.AdapterDataObserver() {
+    override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+      if (itemCount == 0) {
+        return
+      }
+
+      val item = adapter.getItem(positionStart)
+      if (positionStart == adapter.itemCount - 1 && item is StoryGroupReplyItem.DataWrapper) {
+        val isOutgoing = item.storyGroupReplyItemData.sender == Recipient.self()
+        if (isOutgoing || (!isOutgoing && !recyclerView.canScrollVertically(1))) {
+          recyclerView.post { recyclerView.scrollToPosition(positionStart) }
+        }
+      }
+    }
+  }
+
   companion object {
     private val TAG = Log.tag(StoryGroupReplyFragment::class.java)
 
     private const val ARG_STORY_ID = "arg.story.id"
     private const val ARG_GROUP_RECIPIENT_ID = "arg.group.recipient.id"
+    private const val ARG_IS_FROM_NOTIFICATION = "is_from_notification"
+    private const val ARG_GROUP_REPLY_START_POSITION = "group_reply_start_position"
 
-    fun create(storyId: Long, groupRecipientId: RecipientId): Fragment {
+    fun create(storyId: Long, groupRecipientId: RecipientId, isFromNotification: Boolean, groupReplyStartPosition: Int): Fragment {
       return StoryGroupReplyFragment().apply {
         arguments = Bundle().apply {
           putLong(ARG_STORY_ID, storyId)
           putParcelable(ARG_GROUP_RECIPIENT_ID, groupRecipientId)
+          putBoolean(ARG_IS_FROM_NOTIFICATION, isFromNotification)
+          putInt(ARG_GROUP_REPLY_START_POSITION, groupReplyStartPosition)
         }
       }
     }
@@ -412,9 +490,6 @@ class StoryGroupReplyFragment :
               Toast.makeText(context, R.string.message_details_recipient__failed_to_send, Toast.LENGTH_SHORT).show()
             }
           }
-        },
-        onComplete = {
-          snapToTopDataObserver.requestScrollPosition(0)
         }
       )
   }

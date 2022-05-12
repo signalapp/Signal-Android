@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.text.SpannableStringBuilder
 import androidx.core.app.TaskStackBuilder
+import org.signal.core.util.PendingIntentFlags
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.TurnOffContactJoinedNotificationsActivity
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto
@@ -22,6 +23,7 @@ import org.thoughtcrime.securesms.notifications.ReplyMethod
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.KeyCachingService
+import org.thoughtcrime.securesms.stories.StoryViewerArgs
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.Util
 
@@ -31,7 +33,7 @@ import org.thoughtcrime.securesms.util.Util
  */
 data class NotificationConversation(
   val recipient: Recipient,
-  val thread: NotificationThread,
+  val thread: ConversationId,
   val notificationItems: List<NotificationItemV2>
 ) {
   val mostRecentNotification: NotificationItemV2 = notificationItems.last()
@@ -43,7 +45,7 @@ data class NotificationConversation(
 
   fun getContentTitle(context: Context): CharSequence {
     return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact) {
-      recipient.getDisplayName(context)
+      getDisplayName(context)
     } else {
       context.getString(R.string.SingleRecipientNotificationBuilder_signal)
     }
@@ -82,7 +84,7 @@ data class NotificationConversation(
 
   fun getConversationTitle(context: Context): CharSequence? {
     if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact) {
-      return if (isGroup) recipient.getDisplayName(context) else null
+      return if (isGroup) getDisplayName(context) else null
     }
     return context.getString(R.string.SingleRecipientNotificationBuilder_signal)
   }
@@ -113,13 +115,21 @@ data class NotificationConversation(
 
   fun getPendingIntent(context: Context): PendingIntent {
     val intent: Intent = if (thread.groupStoryId != null) {
-      StoryViewerActivity.createIntent(context, recipient.id, thread.groupStoryId, recipient.shouldHideStory())
+      StoryViewerActivity.createIntent(
+        context,
+        StoryViewerArgs(
+          recipientId = recipient.id,
+          storyId = thread.groupStoryId,
+          isInHiddenStoryMode = recipient.shouldHideStory(),
+          isFromNotification = true,
+          groupReplyStartPosition = mostRecentNotification.getStartingPosition(context)
+        )
+      )
     } else {
       ConversationIntents.createBuilder(context, recipient.id, thread.threadId)
         .withStartingPosition(mostRecentNotification.getStartingPosition(context))
         .build()
-        .makeUniqueToPreventMerging()
-    }
+    }.makeUniqueToPreventMerging()
 
     return TaskStackBuilder.create(context)
       .addNextIntentWithParentStack(intent)
@@ -141,7 +151,7 @@ data class NotificationConversation(
       .putParcelableArrayListExtra(DeleteNotificationReceiver.EXTRA_THREADS, arrayListOf(thread))
       .makeUniqueToPreventMerging()
 
-    return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    return PendingIntent.getBroadcast(context, 0, intent, PendingIntentFlags.updateCurrent())
   }
 
   fun getMarkAsReadIntent(context: Context): PendingIntent {
@@ -151,7 +161,7 @@ data class NotificationConversation(
       .putExtra(MarkReadReceiver.NOTIFICATION_ID_EXTRA, notificationId)
       .makeUniqueToPreventMerging()
 
-    return PendingIntent.getBroadcast(context, (thread.threadId * 2).toInt(), intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    return PendingIntent.getBroadcast(context, (thread.threadId * 2).toInt(), intent, PendingIntentFlags.updateCurrent())
   }
 
   fun getQuickReplyIntent(context: Context): PendingIntent {
@@ -159,7 +169,7 @@ data class NotificationConversation(
       .build()
       .makeUniqueToPreventMerging()
 
-    return PendingIntent.getActivity(context, (thread.threadId * 2).toInt() + 1, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    return PendingIntent.getActivity(context, (thread.threadId * 2).toInt() + 1, intent, PendingIntentFlags.updateCurrent())
   }
 
   fun getRemoteReplyIntent(context: Context, replyMethod: ReplyMethod): PendingIntent {
@@ -171,7 +181,7 @@ data class NotificationConversation(
       .putExtra(RemoteReplyReceiver.GROUP_STORY_ID_EXTRA, notificationItems.first().thread.groupStoryId ?: Long.MIN_VALUE)
       .makeUniqueToPreventMerging()
 
-    return PendingIntent.getBroadcast(context, (thread.threadId * 2).toInt() + 1, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    return PendingIntent.getBroadcast(context, (thread.threadId * 2).toInt() + 1, intent, PendingIntentFlags.updateCurrent())
   }
 
   fun getTurnOffJoinedNotificationsIntent(context: Context): PendingIntent {
@@ -179,8 +189,16 @@ data class NotificationConversation(
       context,
       0,
       TurnOffContactJoinedNotificationsActivity.newIntent(context, thread.threadId),
-      PendingIntent.FLAG_UPDATE_CURRENT
+      PendingIntentFlags.updateCurrent()
     )
+  }
+
+  private fun getDisplayName(context: Context): String {
+    return if (thread.groupStoryId != null) {
+      context.getString(R.string.SingleRecipientNotificationBuilder__s_dot_story, recipient.getDisplayName(context))
+    } else {
+      recipient.getDisplayName(context)
+    }
   }
 
   override fun toString(): String {

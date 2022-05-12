@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
+import org.thoughtcrime.securesms.stories.StoryViewerArgs
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
 import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
 import org.thoughtcrime.securesms.stories.my.MyStoriesActivity
@@ -209,13 +210,15 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
           startActivityIfAble(
             StoryViewerActivity.createIntent(
               context = requireContext(),
-              recipientId = model.data.storyRecipient.id,
-              storyId = -1L,
-              onlyIncludeHiddenStories = model.data.isHidden,
-              storyThumbTextModel = text,
-              storyThumbUri = image,
-              storyThumbBlur = blur,
-              recipientIds = viewModel.getRecipientIds(model.data.isHidden)
+              storyViewerArgs = StoryViewerArgs(
+                recipientId = model.data.storyRecipient.id,
+                storyId = -1L,
+                isInHiddenStoryMode = model.data.isHidden,
+                storyThumbTextModel = text,
+                storyThumbUri = image,
+                storyThumbBlur = blur,
+                recipientIds = viewModel.getRecipientIds(model.data.isHidden)
+              )
             ),
             options.toBundle()
           )

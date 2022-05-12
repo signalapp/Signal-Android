@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
-import org.thoughtcrime.securesms.notifications.v2.NotificationThread;
+import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 
@@ -41,11 +41,11 @@ public class MarkReadReceiver extends BroadcastReceiver {
     if (!CLEAR_ACTION.equals(intent.getAction()))
       return;
 
-    final ArrayList<NotificationThread> threads = intent.getParcelableArrayListExtra(THREADS_EXTRA);
+    final ArrayList<ConversationId> threads = intent.getParcelableArrayListExtra(THREADS_EXTRA);
 
     if (threads != null) {
       MessageNotifier notifier = ApplicationDependencies.getMessageNotifier();
-      for (NotificationThread thread : threads) {
+      for (ConversationId thread : threads) {
         notifier.removeStickyThread(thread);
       }
 
@@ -55,9 +55,9 @@ public class MarkReadReceiver extends BroadcastReceiver {
       SignalExecutors.BOUNDED.execute(() -> {
         List<MarkedMessageInfo> messageIdsCollection = new LinkedList<>();
 
-        for (NotificationThread thread : threads) {
+        for (ConversationId thread : threads) {
           Log.i(TAG, "Marking as read: " + thread);
-          List<MarkedMessageInfo> messageIds = SignalDatabase.threads().setRead(thread.getThreadId(), true);
+          List<MarkedMessageInfo> messageIds = SignalDatabase.threads().setRead(thread, true);
           messageIdsCollection.addAll(messageIds);
         }
 

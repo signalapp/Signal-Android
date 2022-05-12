@@ -15,7 +15,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.notifications.v2.MessageNotifierV2;
-import org.thoughtcrime.securesms.notifications.v2.NotificationThread;
+import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.BubbleUtil;
 import org.thoughtcrime.securesms.util.ConversationUtil;
@@ -185,10 +185,10 @@ public final class NotificationCancellationHelper {
       return true;
     }
 
-    Long                         threadId            = SignalDatabase.threads().getThreadIdFor(recipientId);
-    Optional<NotificationThread> focusedThread       = ApplicationDependencies.getMessageNotifier().getVisibleThread();
-    Long                         focusedThreadId     = focusedThread.map(NotificationThread::getThreadId).orElse(null);
-    Long                         focusedGroupStoryId = focusedThread.map(NotificationThread::getGroupStoryId).orElse(null);
+    Long                     threadId            = SignalDatabase.threads().getThreadIdFor(recipientId);
+    Optional<ConversationId> focusedThread       = ApplicationDependencies.getMessageNotifier().getVisibleThread();
+    Long                     focusedThreadId     = focusedThread.map(ConversationId::getThreadId).orElse(null);
+    Long                     focusedGroupStoryId = focusedThread.map(ConversationId::getGroupStoryId).orElse(null);
 
     if (Objects.equals(threadId, focusedThreadId) && focusedGroupStoryId == null) {
       Log.d(TAG, "isCancellable: user entered full screen thread.");

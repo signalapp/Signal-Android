@@ -43,13 +43,13 @@ object StoryGroupReplyItem {
   }
 
   class TextModel(
-    val storyGroupReplyItemData: StoryGroupReplyItemData,
+    override val storyGroupReplyItemData: StoryGroupReplyItemData,
     val text: StoryGroupReplyItemData.ReplyBody.Text,
     @ColorInt val nameColor: Int,
     val onCopyClick: (TextModel) -> Unit,
     val onDeleteClick: (TextModel) -> Unit,
     val onMentionClick: (RecipientId) -> Unit
-  ) : PreferenceModel<TextModel>() {
+  ) : PreferenceModel<TextModel>(), DataWrapper {
     override fun areItemsTheSame(newItem: TextModel): Boolean {
       return storyGroupReplyItemData.sender == newItem.storyGroupReplyItemData.sender &&
         storyGroupReplyItemData.sentAtMillis == newItem.storyGroupReplyItemData.sentAtMillis
@@ -76,11 +76,11 @@ object StoryGroupReplyItem {
   }
 
   class RemoteDeleteModel(
-    val storyGroupReplyItemData: StoryGroupReplyItemData,
+    override val storyGroupReplyItemData: StoryGroupReplyItemData,
     val remoteDelete: StoryGroupReplyItemData.ReplyBody.RemoteDelete,
     val onDeleteClick: (RemoteDeleteModel) -> Unit,
     @ColorInt val nameColor: Int
-  ) : MappingModel<RemoteDeleteModel> {
+  ) : MappingModel<RemoteDeleteModel>, DataWrapper {
     override fun areItemsTheSame(newItem: RemoteDeleteModel): Boolean {
       return storyGroupReplyItemData.sender == newItem.storyGroupReplyItemData.sender &&
         storyGroupReplyItemData.sentAtMillis == newItem.storyGroupReplyItemData.sentAtMillis
@@ -105,10 +105,10 @@ object StoryGroupReplyItem {
   }
 
   class ReactionModel(
-    val storyGroupReplyItemData: StoryGroupReplyItemData,
+    override val storyGroupReplyItemData: StoryGroupReplyItemData,
     val reaction: StoryGroupReplyItemData.ReplyBody.Reaction,
     @ColorInt val nameColor: Int
-  ) : PreferenceModel<ReactionModel>() {
+  ) : PreferenceModel<ReactionModel>(), DataWrapper {
     override fun areItemsTheSame(newItem: ReactionModel): Boolean {
       return storyGroupReplyItemData.sender == newItem.storyGroupReplyItemData.sender &&
         storyGroupReplyItemData.sentAtMillis == newItem.storyGroupReplyItemData.sentAtMillis
@@ -132,6 +132,10 @@ object StoryGroupReplyItem {
         null
       }
     }
+  }
+
+  interface DataWrapper {
+    val storyGroupReplyItemData: StoryGroupReplyItemData
   }
 
   private abstract class BaseViewHolder<T>(itemView: View) : MappingViewHolder<T>(itemView) {

@@ -31,6 +31,8 @@ import com.annimon.stream.Stream;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.jsoup.helper.StringUtil;
+import org.signal.core.util.CursorUtil;
+import org.signal.core.util.SqlUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
@@ -46,15 +48,14 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.StickerSlide;
+import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientDetails;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.ConversationUtil;
-import org.signal.core.util.CursorUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
-import org.signal.core.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.push.ServiceId;
@@ -402,12 +403,32 @@ public class ThreadDatabase extends Database {
     return setReadSince(Collections.singletonMap(threadId, -1L), lastSeen);
   }
 
+  public List<MarkedMessageInfo> setRead(@NonNull ConversationId conversationId, boolean lastSeen) {
+    if (conversationId.getGroupStoryId() == null) {
+      return setRead(conversationId.getThreadId(), lastSeen);
+    } else {
+      return setGroupStoryReadSince(conversationId.getThreadId(), conversationId.getGroupStoryId(), System.currentTimeMillis());
+    }
+  }
+
+  public List<MarkedMessageInfo> setReadSince(@NonNull ConversationId conversationId, boolean lastSeen, long sinceTimestamp) {
+    if (conversationId.getGroupStoryId() != null) {
+      return setGroupStoryReadSince(conversationId.getThreadId(), conversationId.getGroupStoryId(), sinceTimestamp);
+    } else {
+      return setReadSince(conversationId.getThreadId(), lastSeen, sinceTimestamp);
+    }
+  }
+
   public List<MarkedMessageInfo> setReadSince(long threadId, boolean lastSeen, long sinceTimestamp) {
     return setReadSince(Collections.singletonMap(threadId, sinceTimestamp), lastSeen);
   }
 
   public List<MarkedMessageInfo> setRead(Collection<Long> threadIds, boolean lastSeen) {
     return setReadSince(Stream.of(threadIds).collect(Collectors.toMap(t -> t, t -> -1L)), lastSeen);
+  }
+
+  public List<MarkedMessageInfo> setGroupStoryReadSince(long threadId, long groupStoryId, long sinceTimestamp) {
+    return SignalDatabase.mms().setGroupStoryMessagesReadSince(threadId, groupStoryId, sinceTimestamp);
   }
 
   public List<MarkedMessageInfo> setReadSince(Map<Long, Long> threadIdToSinceTimestamp, boolean lastSeen) {
@@ -1252,7 +1273,7 @@ public class ThreadDatabase extends Database {
 
         pinnedPosition++;
       }
-      
+
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();

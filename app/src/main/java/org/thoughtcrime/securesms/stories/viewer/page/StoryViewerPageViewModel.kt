@@ -49,8 +49,10 @@ class StoryViewerPageViewModel(
     disposables.clear()
     disposables += repository.getStoryPostsFor(recipientId).subscribe { posts ->
       store.update { state ->
+        var isDisplayingInitialState = false
         val startIndex = if (state.posts.isEmpty() && initialStoryId > 0) {
           val initialIndex = posts.indexOfFirst { it.id == initialStoryId }
+          isDisplayingInitialState = initialIndex > -1
           initialIndex.takeIf { it > -1 } ?: state.selectedPostIndex
         } else if (state.posts.isEmpty()) {
           val initialPost = getNextUnreadPost(posts)
@@ -63,7 +65,8 @@ class StoryViewerPageViewModel(
         state.copy(
           posts = posts,
           replyState = resolveSwipeToReplyState(state, startIndex),
-          selectedPostIndex = startIndex
+          selectedPostIndex = startIndex,
+          isDisplayingInitialState = isDisplayingInitialState
         )
       }
     }

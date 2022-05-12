@@ -40,7 +40,7 @@ private const val MAX_DISPLAY_LENGTH = 500
 sealed class NotificationItemV2(val threadRecipient: Recipient, protected val record: MessageRecord) : Comparable<NotificationItemV2> {
 
   val id: Long = record.id
-  val thread = NotificationThread.fromMessageRecord(record)
+  val thread = ConversationId.fromMessageRecord(record)
   val isMms: Boolean = record.isMms
   val slideDeck: SlideDeck? = if (record.isViewOnce) null else (record as? MmsMessageRecord)?.slideDeck
   val isJoined: Boolean = record.isJoined
@@ -201,7 +201,11 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : N
   }
 
   override fun getStartingPosition(context: Context): Int {
-    return -1
+    return if (thread.groupStoryId != null) {
+      SignalDatabase.mmsSms.getMessagePositionInConversation(thread.threadId, thread.groupStoryId, record.dateReceived)
+    } else {
+      -1
+    }
   }
 
   override fun getLargeIconUri(): Uri? {
@@ -304,7 +308,7 @@ class ReactionNotification(threadRecipient: Recipient, record: MessageRecord, va
   }
 
   override fun getStartingPosition(context: Context): Int {
-    return SignalDatabase.mmsSms.getMessagePositionInConversation(thread.threadId, record.dateReceived)
+    return SignalDatabase.mmsSms.getMessagePositionInConversation(thread.threadId, thread.groupStoryId ?: 0L, record.dateReceived)
   }
 
   override fun getLargeIconUri(): Uri? = null

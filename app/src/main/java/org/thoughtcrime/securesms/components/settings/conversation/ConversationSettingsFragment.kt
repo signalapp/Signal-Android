@@ -76,6 +76,7 @@ import org.thoughtcrime.securesms.recipients.RecipientExporter
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
 import org.thoughtcrime.securesms.stories.Stories
+import org.thoughtcrime.securesms.stories.StoryViewerArgs
 import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.CommunicationActions
@@ -275,7 +276,13 @@ class ConversationSettingsFragment : DSLSettingsFragment(
             val viewAvatarTransitionBundle = AvatarPreviewActivity.createTransitionBundle(requireActivity(), avatar)
 
             if (Stories.isFeatureEnabled() && avatar.hasStory()) {
-              val viewStoryIntent = StoryViewerActivity.createIntent(requireContext(), state.recipient.id)
+              val viewStoryIntent = StoryViewerActivity.createIntent(
+                requireContext(),
+                StoryViewerArgs(
+                  recipientId = state.recipient.id,
+                  isInHiddenStoryMode = state.recipient.shouldHideStory()
+                )
+              )
               StoryDialogs.displayStoryOrProfileImage(
                 context = requireContext(),
                 onViewStory = { startActivity(viewStoryIntent) },

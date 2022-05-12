@@ -112,7 +112,7 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.notifications.v2.NotificationThread;
+import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.payments.MobileCoinPublicAddress;
 import org.thoughtcrime.securesms.ratelimit.RateLimitUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -411,7 +411,7 @@ public final class MessageContentProcessor {
 
       if (threadId != null) {
         ThreadDatabase.ConversationMetadata metadata      = SignalDatabase.threads().getConversationMetadata(threadId);
-        long                                visibleThread = ApplicationDependencies.getMessageNotifier().getVisibleThread().map(NotificationThread::getThreadId).orElse(-1L);
+        long                                visibleThread = ApplicationDependencies.getMessageNotifier().getVisibleThread().map(ConversationId::getThreadId).orElse(-1L);
 
         if (threadId != visibleThread && metadata.getLastSeen() > 0 && metadata.getLastSeen() < pending.getReceivedTimestamp()) {
           receivedTime = pending.getReceivedTimestamp();
@@ -754,7 +754,7 @@ public final class MessageContentProcessor {
       ApplicationDependencies.getProtocolStore().aci().deleteAllSessions(content.getSender().getIdentifier());
 
       SecurityEvent.broadcastSecurityUpdateEvent(context);
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, NotificationThread.forConversation(insertResult.get().getThreadId()));
+      ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.get().getThreadId()));
 
       return new MessageId(insertResult.get().getMessageId(), true);
     } else {
@@ -982,7 +982,7 @@ public final class MessageContentProcessor {
     } else {
       ReactionRecord reactionRecord = new ReactionRecord(reaction.getEmoji(), senderRecipient.getId(), message.getTimestamp(), System.currentTimeMillis());
       SignalDatabase.reactions().addReaction(targetMessageId, reactionRecord);
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, NotificationThread.fromMessageRecord(targetMessage), false);
+      ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.fromMessageRecord(targetMessage), false);
     }
 
     return new MessageId(targetMessage.getId(), targetMessage.isMms());
@@ -998,7 +998,7 @@ public final class MessageContentProcessor {
     if (targetMessage != null && RemoteDeleteUtil.isValidReceive(targetMessage, senderRecipient, content.getServerReceivedTimestamp())) {
       MessageDatabase db = targetMessage.isMms() ? SignalDatabase.mms() : SignalDatabase.sms();
       db.markAsRemoteDelete(targetMessage.getId());
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, NotificationThread.fromMessageRecord(targetMessage), false);
+      ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.fromMessageRecord(targetMessage), false);
       return new MessageId(targetMessage.getId(), targetMessage.isMms());
     } else if (targetMessage == null) {
       warn(String.valueOf(content.getTimestamp()), "[handleRemoteDelete] Could not find matching message! timestamp: " + delete.getTargetSentTimestamp() + "  author: " + senderRecipient.getId());
@@ -1613,6 +1613,14 @@ public final class MessageContentProcessor {
 
       if (insertResult.isPresent()) {
         database.setTransactionSuccessful();
+
+        if (parentStoryId.isGroupReply()) {
+          ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.fromThreadAndReply(insertResult.get().getThreadId(), (ParentStoryId.GroupReply) parentStoryId));
+        } else {
+          ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.get().getThreadId()));
+          TrimThreadJob.enqueueAsync(insertResult.get().getThreadId());
+        }
+
         if (parentStoryId.isDirectReply()) {
           return MessageId.fromNullable(insertResult.get().getMessageId(), true);
         } else {
@@ -1704,6 +1712,14 @@ public final class MessageContentProcessor {
 
       if (insertResult.isPresent()) {
         database.setTransactionSuccessful();
+
+        if (parentStoryId.isGroupReply()) {
+          ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.fromThreadAndReply(insertResult.get().getThreadId(), (ParentStoryId.GroupReply) parentStoryId));
+        } else {
+          ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.get().getThreadId()));
+          TrimThreadJob.enqueueAsync(insertResult.get().getThreadId());
+        }
+
         if (parentStoryId.isDirectReply()) {
           return MessageId.fromNullable(insertResult.get().getMessageId(), true);
         } else {
@@ -1776,7 +1792,7 @@ public final class MessageContentProcessor {
     }
 
     if (insertResult.isPresent()) {
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, NotificationThread.forConversation(insertResult.get().getThreadId()));
+      ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.get().getThreadId()));
       TrimThreadJob.enqueueAsync(insertResult.get().getThreadId());
 
       return new MessageId(insertResult.get().getMessageId(), true);
@@ -1860,7 +1876,7 @@ public final class MessageContentProcessor {
         ApplicationDependencies.getJobManager().add(new AttachmentDownloadJob(insertResult.get().getMessageId(), attachment.getAttachmentId(), false));
       }
 
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, NotificationThread.forConversation(insertResult.get().getThreadId()));
+      ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.get().getThreadId()));
       TrimThreadJob.enqueueAsync(insertResult.get().getThreadId());
 
       if (message.isViewOnce()) {
@@ -2329,7 +2345,7 @@ public final class MessageContentProcessor {
     }
 
     if (insertResult.isPresent()) {
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, NotificationThread.forConversation(insertResult.get().getThreadId()));
+      ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.get().getThreadId()));
       return new MessageId(insertResult.get().getMessageId(), false);
     } else {
       return null;
@@ -2416,7 +2432,7 @@ public final class MessageContentProcessor {
 
       if (insertResult.isPresent()) {
         smsDatabase.markAsInvalidVersionKeyExchange(insertResult.get().getMessageId());
-        ApplicationDependencies.getMessageNotifier().updateNotification(context, NotificationThread.forConversation(insertResult.get().getThreadId()));
+        ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.get().getThreadId()));
       }
     } else {
       smsDatabase.markAsInvalidVersionKeyExchange(smsMessageId.get());
@@ -2435,7 +2451,7 @@ public final class MessageContentProcessor {
 
       if (insertResult.isPresent()) {
         smsDatabase.markAsDecryptFailed(insertResult.get().getMessageId());
-        ApplicationDependencies.getMessageNotifier().updateNotification(context, NotificationThread.forConversation(insertResult.get().getThreadId()));
+        ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.get().getThreadId()));
       }
     } else {
       smsDatabase.markAsDecryptFailed(smsMessageId.get());
@@ -2457,7 +2473,7 @@ public final class MessageContentProcessor {
 
       if (insertResult.isPresent()) {
         smsDatabase.markAsUnsupportedProtocolVersion(insertResult.get().getMessageId());
-        ApplicationDependencies.getMessageNotifier().updateNotification(context, NotificationThread.forConversation(insertResult.get().getThreadId()));
+        ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.get().getThreadId()));
       }
     } else {
       smsDatabase.markAsNoSession(smsMessageId.get());
@@ -2479,7 +2495,7 @@ public final class MessageContentProcessor {
 
       if (insertResult.isPresent()) {
         smsDatabase.markAsInvalidMessage(insertResult.get().getMessageId());
-        ApplicationDependencies.getMessageNotifier().updateNotification(context, NotificationThread.forConversation(insertResult.get().getThreadId()));
+        ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.get().getThreadId()));
       }
     } else {
       smsDatabase.markAsNoSession(smsMessageId.get());
@@ -2498,7 +2514,7 @@ public final class MessageContentProcessor {
 
       if (insertResult.isPresent()) {
         smsDatabase.markAsLegacyVersion(insertResult.get().getMessageId());
-        ApplicationDependencies.getMessageNotifier().updateNotification(context, NotificationThread.forConversation(insertResult.get().getThreadId()));
+        ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.get().getThreadId()));
       }
     } else {
       smsDatabase.markAsLegacyVersion(smsMessageId.get());

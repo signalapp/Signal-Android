@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.notifications;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.notifications.v2.NotificationThread;
+import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 
 public final class NotificationIds {
 
@@ -25,19 +25,19 @@ public final class NotificationIds {
 
   private NotificationIds() { }
 
-  public static int getNotificationIdForThread(@NonNull NotificationThread notificationThread) {
-    if (notificationThread.getGroupStoryId() != null) {
-      return STORY_THREAD + notificationThread.getGroupStoryId().intValue();
+  public static int getNotificationIdForThread(@NonNull ConversationId conversationId) {
+    if (conversationId.getGroupStoryId() != null) {
+      return STORY_THREAD + conversationId.getGroupStoryId().intValue();
     } else {
-      return THREAD + (int) notificationThread.getThreadId();
+      return THREAD + (int) conversationId.getThreadId();
     }
   }
 
-  public static int getNotificationIdForMessageDeliveryFailed(@NonNull NotificationThread notificationThread) {
-    if (notificationThread.getGroupStoryId() != null) {
-      return STORY_MESSAGE_DELIVERY_FAILURE + notificationThread.getGroupStoryId().intValue();
+  public static int getNotificationIdForMessageDeliveryFailed(@NonNull ConversationId conversationId) {
+    if (conversationId.getGroupStoryId() != null) {
+      return STORY_MESSAGE_DELIVERY_FAILURE + conversationId.getGroupStoryId().intValue();
     } else {
-      return MESSAGE_DELIVERY_FAILURE + (int) notificationThread.getThreadId();
+      return MESSAGE_DELIVERY_FAILURE + (int) conversationId.getThreadId();
     }
   }
 }

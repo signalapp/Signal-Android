@@ -32,12 +32,12 @@ import org.thoughtcrime.securesms.groups.ui.addtogroup.AddToGroupsActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
+import org.thoughtcrime.securesms.stories.StoryViewerArgs;
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
 
-import java.util.Collections;
 import java.util.Objects;
 
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -141,7 +141,10 @@ final class RecipientDialogViewModel extends ViewModel {
     if (storyViewState.getValue() == null || storyViewState.getValue() == StoryViewState.NONE) {
       onMessageClicked(activity);
     } else {
-      activity.startActivity(StoryViewerActivity.createIntent(activity, recipientDialogRepository.getRecipientId(), -1L, recipient.getValue().shouldHideStory(), null, null, null, Collections.emptyList()));
+      activity.startActivity(StoryViewerActivity.createIntent(
+          activity,
+          new StoryViewerArgs.Builder(recipientDialogRepository.getRecipientId(), recipient.getValue().shouldHideStory())
+                             .build()));
     }
   }
 
@@ -177,7 +180,10 @@ final class RecipientDialogViewModel extends ViewModel {
     if (storyViewState.getValue() == null || storyViewState.getValue() == StoryViewState.NONE) {
       activity.startActivity(ConversationSettingsActivity.forRecipient(activity, recipientDialogRepository.getRecipientId()));
     } else {
-      activity.startActivity(StoryViewerActivity.createIntent(activity, recipientDialogRepository.getRecipientId(), -1L, recipient.getValue().shouldHideStory(), null, null, null, Collections.emptyList()));
+      activity.startActivity(StoryViewerActivity.createIntent(
+          activity,
+          new StoryViewerArgs.Builder(recipientDialogRepository.getRecipientId(), recipient.getValue().shouldHideStory())
+                             .build()));
     }
   }
 

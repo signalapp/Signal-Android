@@ -32,7 +32,7 @@ import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.MmsRadioException;
 import org.thoughtcrime.securesms.mms.PartParser;
-import org.thoughtcrime.securesms.notifications.v2.NotificationThread;
+import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -175,7 +175,7 @@ public class MmsDownloadJob extends BaseJob {
 
     if (automatic) {
       database.markIncomingNotificationReceived(threadId);
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, NotificationThread.forConversation(threadId));
+      ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(threadId));
     }
   }
 
@@ -255,7 +255,7 @@ public class MmsDownloadJob extends BaseJob {
 
     if (insertResult.isPresent()) {
       database.deleteMessage(messageId);
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, NotificationThread.forConversation(insertResult.get().getThreadId()));
+      ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.get().getThreadId()));
     }
   }
 
@@ -267,7 +267,7 @@ public class MmsDownloadJob extends BaseJob {
 
     if (automatic) {
       db.markIncomingNotificationReceived(threadId);
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, NotificationThread.forConversation(threadId));
+      ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(threadId));
     }
   }
 

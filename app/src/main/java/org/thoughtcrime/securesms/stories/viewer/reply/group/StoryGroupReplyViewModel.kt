@@ -21,6 +21,7 @@ class StoryGroupReplyViewModel(storyId: Long, repository: StoryGroupReplyReposit
   private val store = Store(StoryGroupReplyState())
   private val disposables = CompositeDisposable()
 
+  val stateSnapshot: StoryGroupReplyState = store.state
   val state: LiveData<StoryGroupReplyState> = store.stateLiveData
 
   private val pagedData: MutableLiveData<LivePagedData<StoryGroupReplyItemData.Key, StoryGroupReplyItemData>> = MutableLiveData()
@@ -29,6 +30,10 @@ class StoryGroupReplyViewModel(storyId: Long, repository: StoryGroupReplyReposit
   val pageData: LiveData<List<StoryGroupReplyItemData>>
 
   init {
+    disposables += repository.getThreadId(storyId).subscribe { threadId ->
+      store.update { it.copy(threadId = threadId) }
+    }
+
     disposables += repository.getPagedReplies(storyId).subscribe {
       pagedData.postValue(it)
     }

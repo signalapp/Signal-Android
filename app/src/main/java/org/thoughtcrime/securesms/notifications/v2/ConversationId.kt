@@ -10,27 +10,27 @@ import org.thoughtcrime.securesms.database.model.ParentStoryId
  * Represents a "thread" that a notification can belong to.
  */
 @Parcelize
-data class NotificationThread(
+data class ConversationId(
   val threadId: Long,
   val groupStoryId: Long?
 ) : Parcelable {
   companion object {
     @JvmStatic
-    fun forConversation(threadId: Long): NotificationThread {
-      return NotificationThread(
+    fun forConversation(threadId: Long): ConversationId {
+      return ConversationId(
         threadId = threadId,
         groupStoryId = null
       )
     }
 
     @JvmStatic
-    fun fromMessageRecord(record: MessageRecord): NotificationThread {
-      return NotificationThread(record.threadId, ((record as? MmsMessageRecord)?.parentStoryId as? ParentStoryId.GroupReply)?.serialize())
+    fun fromMessageRecord(record: MessageRecord): ConversationId {
+      return ConversationId(record.threadId, ((record as? MmsMessageRecord)?.parentStoryId as? ParentStoryId.GroupReply)?.serialize())
     }
 
     @JvmStatic
-    fun fromThreadAndReply(threadId: Long, groupReply: ParentStoryId.GroupReply?): NotificationThread {
-      return NotificationThread(threadId, groupReply?.serialize())
+    fun fromThreadAndReply(threadId: Long, groupReply: ParentStoryId.GroupReply?): ConversationId {
+      return ConversationId(threadId, groupReply?.serialize())
     }
   }
 }

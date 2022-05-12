@@ -13,6 +13,12 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 
 class StoryGroupReplyRepository {
 
+  fun getThreadId(storyId: Long): Single<Long> {
+    return Single.fromCallable {
+      SignalDatabase.mms.getThreadIdForMessage(storyId)
+    }.subscribeOn(Schedulers.io())
+  }
+
   fun getPagedReplies(parentStoryId: Long): Observable<LivePagedData<StoryGroupReplyItemData.Key, StoryGroupReplyItemData>> {
     return Observable.create<LivePagedData<StoryGroupReplyItemData.Key, StoryGroupReplyItemData>> { emitter ->
       fun refresh() {

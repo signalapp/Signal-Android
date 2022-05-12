@@ -33,7 +33,7 @@ public class PagingMappingAdapter<Key> extends MappingAdapter {
   }
 
   @Override
-  protected @Nullable MappingModel<?> getItem(int position) {
+  public @Nullable MappingModel<?> getItem(int position) {
     if (pagingController != null) {
       pagingController.onDataNeededAroundIndex(position);
     }

@@ -39,18 +39,18 @@ data class NotificationStateV2(val conversations: List<NotificationConversation>
   val mostRecentSender: Recipient?
     get() = mostRecentNotification?.individualRecipient
 
-  fun getNonVisibleConversation(visibleThread: NotificationThread?): List<NotificationConversation> {
+  fun getNonVisibleConversation(visibleThread: ConversationId?): List<NotificationConversation> {
     return conversations.filterNot { it.thread == visibleThread }
   }
 
-  fun getConversation(notificationThread: NotificationThread): NotificationConversation? {
-    return conversations.firstOrNull { it.thread == notificationThread }
+  fun getConversation(conversationId: ConversationId): NotificationConversation? {
+    return conversations.firstOrNull { it.thread == conversationId }
   }
 
   fun getDeleteIntent(context: Context): PendingIntent? {
     val ids = LongArray(messageCount)
     val mms = BooleanArray(ids.size)
-    val threads: MutableList<NotificationThread> = mutableListOf()
+    val threads: MutableList<ConversationId> = mutableListOf()
 
     conversations.forEach { conversation ->
       threads += conversation.thread
@@ -79,7 +79,7 @@ data class NotificationStateV2(val conversations: List<NotificationConversation>
     return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
   }
 
-  fun getThreadsWithMostRecentNotificationFromSelf(): Set<NotificationThread> {
+  fun getThreadsWithMostRecentNotificationFromSelf(): Set<ConversationId> {
     return conversations.filter { it.mostRecentNotification.individualRecipient.isSelf }
       .map { it.thread }
       .toSet()

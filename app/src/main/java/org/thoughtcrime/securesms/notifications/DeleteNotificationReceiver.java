@@ -8,7 +8,7 @@ import android.content.Intent;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.notifications.v2.NotificationThread;
+import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 
 import java.util.ArrayList;
 
@@ -27,11 +27,11 @@ public class DeleteNotificationReceiver extends BroadcastReceiver {
       notifier.clearReminder(context);
 
       final long[]                        ids     = intent.getLongArrayExtra(EXTRA_IDS);
-      final boolean[]                     mms     = intent.getBooleanArrayExtra(EXTRA_MMS);
-      final ArrayList<NotificationThread> threads = intent.getParcelableArrayListExtra(EXTRA_THREADS);
+      final boolean[]                 mms     = intent.getBooleanArrayExtra(EXTRA_MMS);
+      final ArrayList<ConversationId> threads = intent.getParcelableArrayListExtra(EXTRA_THREADS);
 
       if (threads != null) {
-        for (NotificationThread thread : threads) {
+        for (ConversationId thread : threads) {
           notifier.removeStickyThread(thread);
         }
       }

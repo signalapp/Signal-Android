@@ -44,6 +44,12 @@ class StoryViewsAndRepliesDialogFragment : FixedRoundedCornerBottomSheetDialogFr
   private val startPageIndex: Int
     get() = requireArguments().getInt(ARG_START_PAGE)
 
+  private val isFromNotification: Boolean
+    get() = requireArguments().getBoolean(ARG_IS_FROM_NOTIFICATION, false)
+
+  private val groupReplyStartPosition: Int
+    get() = requireArguments().getInt(ARG_GROUP_REPLY_START_POSITION, -1)
+
   override val peekHeightPercentage: Float = 1f
 
   private lateinit var pager: ViewPager2
@@ -84,7 +90,7 @@ class StoryViewsAndRepliesDialogFragment : FixedRoundedCornerBottomSheetDialogFr
     val tabs: TabLayout = view.findViewById(R.id.tab_layout)
 
     ViewCompat.setNestedScrollingEnabled(tabs, false)
-    pager.adapter = StoryViewsAndRepliesPagerAdapter(this, storyId, groupRecipientId)
+    pager.adapter = StoryViewsAndRepliesPagerAdapter(this, storyId, groupRecipientId, isFromNotification, groupReplyStartPosition)
     pager.setCurrentItem(startPageIndex, false)
 
     TabLayoutMediator(tabs, pager) { tab, position ->
@@ -168,13 +174,17 @@ class StoryViewsAndRepliesDialogFragment : FixedRoundedCornerBottomSheetDialogFr
     private const val ARG_STORY_ID = "arg.story.id"
     private const val ARG_START_PAGE = "arg.start.page"
     private const val ARG_GROUP_RECIPIENT_ID = "arg.group.recipient.id"
+    private const val ARG_IS_FROM_NOTIFICATION = "is_from_notification"
+    private const val ARG_GROUP_REPLY_START_POSITION = "group_reply_start_position"
 
-    fun create(storyId: Long, groupRecipientId: RecipientId, startPage: StartPage): DialogFragment {
+    fun create(storyId: Long, groupRecipientId: RecipientId, startPage: StartPage, isFromNotification: Boolean, groupReplyStartPosition: Int): DialogFragment {
       return StoryViewsAndRepliesDialogFragment().apply {
         arguments = Bundle().apply {
           putLong(ARG_STORY_ID, storyId)
           putInt(ARG_START_PAGE, startPage.index)
           putParcelable(ARG_GROUP_RECIPIENT_ID, groupRecipientId)
+          putBoolean(ARG_IS_FROM_NOTIFICATION, isFromNotification)
+          putInt(ARG_GROUP_REPLY_START_POSITION, groupReplyStartPosition)
         }
       }
     }

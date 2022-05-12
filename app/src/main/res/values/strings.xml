@@ -1952,6 +1952,8 @@
     <string name="SingleRecipientNotificationBuilder_new_message">New message</string>
     <string name="SingleRecipientNotificationBuilder_message_request">Message request</string>
     <string name="SingleRecipientNotificationBuilder_you">You</string>
+    <!-- Notification subtext for group stories -->
+    <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s &#8226; Story</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Play video</string>

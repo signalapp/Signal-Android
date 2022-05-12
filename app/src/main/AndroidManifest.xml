@@ -406,7 +406,14 @@
         android:screenOrientation="portrait"
         android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
         android:theme="@style/TextSecure.DarkNoActionBar.StoryViewer"
-        android:windowSoftInputMode="stateAlwaysHidden|adjustNothing" />
+        android:launchMode="singleTask"
+        android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"
+        android:parentActivityName=".MainActivity">
+
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="org.thoughtcrime.securesms.MainActivity" />
+    </activity>
 
         <activity android:name=".components.settings.app.changenumber.ChangeNumberLockActivity"
             android:theme="@style/Signal.DayNight.NoActionBar"

@@ -1447,6 +1447,11 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public boolean hasSelfReplyInGroupStory(long parentStoryId) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   public @NonNull Cursor getStoryReplies(long parentStoryId) {
     throw new UnsupportedOperationException();
   }
@@ -1478,6 +1483,11 @@ public class SmsDatabase extends MessageDatabase {
 
   @Override
   public @Nullable ParentStoryId.GroupReply getParentStoryIdForGroupReply(long messageId) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public @NonNull List<MarkedMessageInfo> setGroupStoryMessagesReadSince(long threadId, long groupStoryId, long sinceTimestamp) {
     throw new UnsupportedOperationException();
   }
 

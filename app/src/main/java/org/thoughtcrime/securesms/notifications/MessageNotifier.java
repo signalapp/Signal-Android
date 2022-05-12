@@ -9,28 +9,28 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.notifications.v2.NotificationThread;
+import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BubbleUtil;
 
 import java.util.Optional;
 
 public interface MessageNotifier {
-  void setVisibleThread(@Nullable NotificationThread notificationThread);
-  @NonNull Optional<NotificationThread> getVisibleThread();
+  void setVisibleThread(@Nullable ConversationId conversationId);
+  @NonNull Optional<ConversationId> getVisibleThread();
   void clearVisibleThread();
   void setLastDesktopActivityTimestamp(long timestamp);
-  void notifyMessageDeliveryFailed(@NonNull Context context, @NonNull Recipient recipient, @NonNull NotificationThread notificationThread);
-  void notifyProofRequired(@NonNull Context context, @NonNull Recipient recipient, @NonNull NotificationThread notificationThread);
+  void notifyMessageDeliveryFailed(@NonNull Context context, @NonNull Recipient recipient, @NonNull ConversationId conversationId);
+  void notifyProofRequired(@NonNull Context context, @NonNull Recipient recipient, @NonNull ConversationId conversationId);
   void cancelDelayedNotifications();
   void updateNotification(@NonNull Context context);
-  void updateNotification(@NonNull Context context, @NonNull NotificationThread notificationThread);
-  void updateNotification(@NonNull Context context, @NonNull NotificationThread notificationThread, @NonNull BubbleUtil.BubbleState defaultBubbleState);
-  void updateNotification(@NonNull Context context, @NonNull NotificationThread notificationThread, boolean signal);
-  void updateNotification(@NonNull Context context, @Nullable NotificationThread notificationThread, boolean signal, int reminderCount, @NonNull BubbleUtil.BubbleState defaultBubbleState);
+  void updateNotification(@NonNull Context context, @NonNull ConversationId conversationId);
+  void updateNotification(@NonNull Context context, @NonNull ConversationId conversationId, @NonNull BubbleUtil.BubbleState defaultBubbleState);
+  void updateNotification(@NonNull Context context, @NonNull ConversationId conversationId, boolean signal);
+  void updateNotification(@NonNull Context context, @Nullable ConversationId conversationId, boolean signal, int reminderCount, @NonNull BubbleUtil.BubbleState defaultBubbleState);
   void clearReminder(@NonNull Context context);
-  void addStickyThread(@NonNull NotificationThread notificationThread, long earliestTimestamp);
-  void removeStickyThread(@NonNull NotificationThread notificationThread);
+  void addStickyThread(@NonNull ConversationId conversationId, long earliestTimestamp);
+  void removeStickyThread(@NonNull ConversationId conversationId);
 
 
   class ReminderReceiver extends BroadcastReceiver {

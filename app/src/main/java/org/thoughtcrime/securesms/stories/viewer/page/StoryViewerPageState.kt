@@ -4,7 +4,8 @@ data class StoryViewerPageState(
   val posts: List<StoryPost> = emptyList(),
   val selectedPostIndex: Int = 0,
   val replyState: ReplyState = ReplyState.NONE,
-  val isFirstPage: Boolean = false
+  val isFirstPage: Boolean = false,
+  val isDisplayingInitialState: Boolean = false
 ) {
   /**
    * Indicates which Reply method is available when the user swipes on the dialog

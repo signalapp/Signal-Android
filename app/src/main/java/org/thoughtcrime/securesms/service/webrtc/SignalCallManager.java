@@ -40,7 +40,7 @@ import org.thoughtcrime.securesms.jobs.GroupCallUpdateSendJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
-import org.thoughtcrime.securesms.notifications.v2.NotificationThread;
+import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -351,7 +351,7 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
                                                    peekInfo.getJoinedMembers(),
                                                    WebRtcUtil.isCallFull(peekInfo));
 
-            ApplicationDependencies.getMessageNotifier().updateNotification(context, NotificationThread.forConversation(threadId), true, 0, BubbleUtil.BubbleState.HIDDEN);
+            ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(threadId), true, 0, BubbleUtil.BubbleState.HIDDEN);
 
             EventBus.getDefault().postSticky(new GroupCallPeekEvent(id, peekInfo.getEraId(), peekInfo.getDeviceCount(), peekInfo.getMaxDevices()));
           }
@@ -836,14 +836,14 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
     Pair<Long, Long> messageAndThreadId = SignalDatabase.sms().insertMissedCall(remotePeer.getId(), timestamp, isVideoOffer);
 
     ApplicationDependencies.getMessageNotifier()
-                           .updateNotification(context, NotificationThread.forConversation(messageAndThreadId.second()), signal);
+                           .updateNotification(context, ConversationId.forConversation(messageAndThreadId.second()), signal);
   }
 
   public void insertReceivedCall(@NonNull RemotePeer remotePeer, boolean signal, boolean isVideoOffer) {
     Pair<Long, Long> messageAndThreadId = SignalDatabase.sms().insertReceivedCall(remotePeer.getId(), isVideoOffer);
 
     ApplicationDependencies.getMessageNotifier()
-                           .updateNotification(context, NotificationThread.forConversation(messageAndThreadId.second()), signal);
+                           .updateNotification(context, ConversationId.forConversation(messageAndThreadId.second()), signal);
   }
 
   public void retrieveTurnServers(@NonNull RemotePeer remotePeer) {
