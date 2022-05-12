@@ -87,7 +87,9 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">您將無法再接收來自此群組的訊息或更新，而且成員也無法再把您加入此群組。</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">群組成員將無法再把您加入此群組。</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">群組成員將能夠再把您加入此群組。</string>
+  <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">您將能夠再互相傳送訊息和通話，您的名稱和照片也會與對方分享。</string>
+  <!--Text that is shown when unblocking an SMS contact-->
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">已封鎖的人將無法撥打或傳送訊息給您。</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">封鎖收取 Signal 更新資訊及最新消息。</string>
@@ -687,6 +689,7 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">使用自訂通知</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">通知聲效</string>
   <string name="CustomNotificationsDialogFragment__vibrate">震動</string>
+  <!--Button text for customizing notification options-->
   <string name="CustomNotificationsDialogFragment__call_settings">通話設定</string>
   <string name="CustomNotificationsDialogFragment__ringtone">鈴聲</string>
   <string name="CustomNotificationsDialogFragment__enabled">已啟用</string>
@@ -1081,7 +1084,9 @@
   <string name="MessageRequestBottomView_block">封鎖</string>
   <string name="MessageRequestBottomView_unblock">解除封鎖</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">要讓 %1$s 傳訊給您，並向對方分享您的名稱和照片嗎？在您接受之前，對方不會知道您看過其訊息。</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">要讓 %1$s 傳訊給您，並向對方分享您的名稱和照片嗎？在您解除封鎖之前，您不會收到對方任何訊息。</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">要收取 %1$s 的更新資訊及最新消息嗎？在您解除封鎖之前，您不會收到任何近況。</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">要繼續與此群組的對話，並與其成員分享您的名稱和照片嗎？</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">升級此群組以啟用新功能，諸如 @提及 和管理員。此群組中未有分享名稱或照片的成員將會獲邀加入。</string>
@@ -1457,6 +1462,9 @@
   <string name="ThreadRecord_file">檔案</string>
   <string name="ThreadRecord_video">影片</string>
   <string name="ThreadRecord_chat_session_refreshed">聊天工作階段已重新整理</string>
+  <!--Displayed in the notification when the user is sent a gift-->
+  <!--Displayed in the notification when the user sends a gift-->
+  <!--Displayed in the notification when the user has opened a received gift-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">新版本的 Signal 現已可用，輕觸以更新</string>
@@ -1728,6 +1736,7 @@
   <string name="QuoteView_your_story">您 · 限時動態</string>
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">不再可用</string>
+  <!--Label for quoted gift-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">捲動到最底</string>
   <!--BubbleOptOutTooltip-->
@@ -3164,6 +3173,13 @@
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">頂端邊緣選擇工具</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">底端邊緣選擇工具</string>
+  <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate_to_signal">捐款給 Signal</string>
+  <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate">捐款</string>
+  <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_not_now">現在不要</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">自訂心情</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">輕觸以替換表情符號</string>
@@ -3171,11 +3187,6 @@
   <string name="EditReactionsFragment_save">儲存</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">自動按背景配選色彩</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">拖曳以變更漸層的方向</string>
-  <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">新增聊天色彩</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">聊天色彩駕到，給您更多選項，同時讓您更容易閱讀對話。</string>
-  <string name="ChatColorsMegaphone__appearance">外觀</string>
-  <string name="ChatColorsMegaphone__not_now">現在不要</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">新增個人資料照片</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">選擇外觀與色彩，又或自訂您的縮寫。</string>
@@ -3467,6 +3478,10 @@
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">您的裝置不支援 Google Pay，故抱歉未能讓您訂閱並贈予徽章。您仍可在我們的網站上捐款以支持 Signal。</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">網絡錯誤。請檢查您的連線，然後再試一次。</string>
   <string name="NetworkFailure__retry">重試</string>
+  <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <!--Gift message view title-->
   <!--Gift message view expiry information-->
   <plurals name="GiftMessageView__lasts_for_d_months">
@@ -3671,6 +3686,7 @@
   <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">感謝您支持 Signal。您的捐款驅動我們的使命，致力開發開放原始碼的私隱技術，保護自由表達並讓全球通訊變得安全，讓世界各地數以百萬計「惜爐」使用者，共星光中作私密通訊。若您是美國居民，請保留此收據作為您的稅務紀錄。Signal Technology Foundation 是在美國依據《國稅法規》(IRC) 第 501c3 條的免稅非盈利組織。我們的聯邦稅識別號碼為 82–4506840。</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
+  <!--Donation reciepts screen empty state title-->
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">聊天</string>
@@ -3894,9 +3910,6 @@
   <!--Displayed in story caption when content is longer than 5 lines-->
   <string name="StoryViewerPageFragment__see_more">… 查看更多</string>
   <!--Displayed in toast after sending a direct reply-->
-  <string name="StoryDirectReplyDialogFragment__reply_sent">回覆已傳送</string>
-  <!--Displayed in toast after sending a direct reaction-->
-  <string name="StoryDirectReplyDialogFragment__reaction_sent">心情已傳送</string>
   <!--Displayed in the viewer when a story is no longer available-->
   <string name="StorySlateView__this_story_is_no_longer_available">限時動態不再可用。</string>
   <!--Displayed in the viewer when the network is not available-->
@@ -3944,6 +3957,7 @@
   <string name="GiftFlowConfirmationFragment__one_time_donation">單次捐款</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">新增訊息</string>
+  <!--Displayed in the dialog while verifying the chosen recipient-->
   <!--Title for sheet shown when opening a redeemed gift-->
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">感謝您力撐支持！</string>
@@ -3964,5 +3978,7 @@
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">每月捐款</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">現在不要</string>
+  <!--Label under name for private stories-->
+  <!--Label under name for group stories-->
   <!--EOF-->
 </resources>

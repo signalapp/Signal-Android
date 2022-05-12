@@ -2958,10 +2958,10 @@
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Автоматично избира подходящ цвят спрямо фона</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Плъзнете, за да промените посоката на градиента</string>
   <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">Нови цветове на чата</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Разнообразихме цветовете на чатовете, за да ви дадем повече опции и да направим чатовете по-лесни за четене.</string>
-  <string name="ChatColorsMegaphone__appearance">Облик</string>
-  <string name="ChatColorsMegaphone__not_now">Не сега</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatColorsMegaphone__new_chat_colors">Нови цветове на чата</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Разнообразихме цветовете на чатовете, за да ви дадем повече опции и да направим чатовете по-лесни за четене.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatColorsMegaphone__appearance">Облик</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatColorsMegaphone__not_now">Не сега</string> -->
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Добави профилна снимка</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Не сега</string>

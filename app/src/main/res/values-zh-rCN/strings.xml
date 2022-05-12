@@ -87,7 +87,9 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">您将不再收到来自此群组的信息或更新，同时成员将无法再将您加入此群组。</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">群组成员将无法再次将您添加到此群组。</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">组成员将能够再次将您添加到此组。</string>
+  <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">您将能与之通话和发消息，同时分享您的昵称和头像。</string>
+  <!--Text that is shown when unblocking an SMS contact-->
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">被屏蔽的用户无法向你发起通话或给你发送消息。</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -633,6 +635,7 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">使用自定义通知</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">通知声音</string>
   <string name="CustomNotificationsDialogFragment__vibrate">振动</string>
+  <!--Button text for customizing notification options-->
   <string name="CustomNotificationsDialogFragment__call_settings">通话设置</string>
   <string name="CustomNotificationsDialogFragment__ringtone">铃声</string>
   <string name="CustomNotificationsDialogFragment__enabled">已启用</string>
@@ -999,7 +1002,9 @@
   <string name="MessageRequestBottomView_block">屏蔽</string>
   <string name="MessageRequestBottomView_unblock">取消屏蔽</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">是否允许 %1$s 给您发消息并查看您的昵称头像？您同意前对方无法知晓您是否查看了其消息。</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">是否允许 %1$s 给您发消息并查看您的昵称头像？取消屏蔽前您将不会收到其发来的消息。</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">是否继续该群组对话并与其成员分享你的名称和图片？</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">升级此群组来激活@提及和管理员新功能，将邀请未在此群分享名称和头像的成员入群。</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">由于人数太多，此旧版群组已无法使用。人数上限为%1$d。</string>
@@ -1328,6 +1333,9 @@
   <string name="ThreadRecord_file">文件</string>
   <string name="ThreadRecord_video">视频</string>
   <string name="ThreadRecord_chat_session_refreshed">聊天会话已刷新</string>
+  <!--Displayed in the notification when the user is sent a gift-->
+  <!--Displayed in the notification when the user sends a gift-->
+  <!--Displayed in the notification when the user has opened a received gift-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal 新版本可用，点击升级</string>
@@ -1584,6 +1592,7 @@
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
   <!--Label indicating that the story being replied to no longer exists-->
+  <!--Label for quoted gift-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">滚动到底部</string>
   <!--BubbleOptOutTooltip-->
@@ -2947,6 +2956,13 @@
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">上边缘选择器</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">下边缘选择器</string>
+  <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate_to_signal">捐赠 Signal</string>
+  <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate">捐赠</string>
+  <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_not_now">稍后再说</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">自定义反应</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">点击替换表情符号</string>
@@ -2954,11 +2970,6 @@
   <string name="EditReactionsFragment_save">保存</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">颜色自动匹配墙纸</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">拖动更改渐变方向</string>
-  <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">新聊天颜色</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">升级聊天颜色，提供更多选项，令聊天更易阅读。</string>
-  <string name="ChatColorsMegaphone__appearance">外观</string>
-  <string name="ChatColorsMegaphone__not_now">稍后再说</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__not_now">稍后再说</string>
   <!--BecomeASustainerMegaphone-->
@@ -3106,6 +3117,10 @@
   <!--Displayed as title when some generic error happens during gift badge sending-->
   <!--Displayed as message when some generic error happens during gift badge sending-->
   <string name="NetworkFailure__retry">重试</string>
+  <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <!--Gift message view title-->
   <!--Gift message view expiry information-->
   <!--Gift badge redeem action label-->
@@ -3235,6 +3250,7 @@
   <!--Donation receipts amount title-->
   <!--Donation receipts thanks-->
   <!--Donation receipt type-->
+  <!--Donation reciepts screen empty state title-->
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">聊天</string>
@@ -3367,7 +3383,6 @@
   <string name="StoryGroupReplyFragment__copied_to_clipboard">已复制到剪切板</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
   <!--Displayed in toast after sending a direct reply-->
-  <!--Displayed in toast after sending a direct reaction-->
   <!--Displayed in the viewer when a story is no longer available-->
   <!--Displayed in the viewer when the network is not available-->
   <string name="StorySlateView__no_internet_connection">无可用的互联网连接</string>
@@ -3398,6 +3413,7 @@
   <!--Text explaining that gift will be sent to the chosen recipient-->
   <!--Text explaining that this gift is a one time donation-->
   <!--Hint for add message input-->
+  <!--Displayed in the dialog while verifying the chosen recipient-->
   <!--Title for sheet shown when opening a redeemed gift-->
   <!--Title for sheet shown when opening a sent gift-->
   <!--Description for sheet shown when opening a redeemed gift-->
@@ -3414,5 +3430,7 @@
   <!--Expired gift sheet make a monthly donation button-->
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">稍后再说</string>
+  <!--Label under name for private stories-->
+  <!--Label under name for group stories-->
   <!--EOF-->
 </resources>

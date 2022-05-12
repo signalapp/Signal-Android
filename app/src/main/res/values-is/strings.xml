@@ -88,7 +88,9 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Þú munt ekki lengur fá skilaboð eða uppfærslur frá þessum hópi, og meðlimir hópsins munu ekki geta bætt þér í hópinn aftur.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Hópmeðlimir munu ekki geta bætt þér í þennan hóp aftur.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Hópmeðlimir geta bætt þér í þennan hóp aftur.</string>
+  <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Þið munuð geta sent hverju/m/ri öðru skilaboð og hringt, og nafn og mynd þín mun vera deild með þessum aðila.</string>
+  <!--Text that is shown when unblocking an SMS contact-->
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Útilokaðir einstaklingar munu ekki geta hringt í þig eða sent þér skilaboð.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Loka á uppfærslur og fréttir frá Signal</string>
@@ -728,6 +730,7 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">Nota sérsniðnar tilkynningar</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Hljóð með tilkynningu</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Titra</string>
+  <!--Button text for customizing notification options-->
   <string name="CustomNotificationsDialogFragment__call_settings">Hringistillingar</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Hringitónn</string>
   <string name="CustomNotificationsDialogFragment__enabled">Virkt</string>
@@ -1141,7 +1144,9 @@
   <string name="MessageRequestBottomView_block">Loka á</string>
   <string name="MessageRequestBottomView_unblock">Opna á</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Viltu leyfa %1$s að senda þér skilaboð og deila nafninu þínu og mynd með honum? Hann mun ekki vita hvort þú hafir séð skilaboðin hans fyrr en þú samþykkir þetta.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Viltu leyfa %1$s að senda þér skilaboð og deila nafninu þínu og mynd með viðkomandi notanda? Hann mun ekki vita hvort þú hafir séð skilaboðin hans fyrr en þú opnar á hann.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Fá uppfærslur og fréttir frá %1$s? Þú færð engar uppfærslur fyrr en þú aflæsir þeim.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Viltu halda áfram samtalinu við þennan hóp og deila nafninu þínu og mynd með meðlimum hans?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Uppfærðu þennan hóp til að virkja nýja eiginleika á borð við @mentions og hópstjóra. Meðlimir sem ekki hafa deilt nafninu sínu eða mynd í hópnum fá boð um að taka þátt.</string>
@@ -1530,6 +1535,9 @@
   <string name="ThreadRecord_file">Skrá</string>
   <string name="ThreadRecord_video">Myndskeið</string>
   <string name="ThreadRecord_chat_session_refreshed">Spjallseta endurlesin</string>
+  <!--Displayed in the notification when the user is sent a gift-->
+  <!--Displayed in the notification when the user sends a gift-->
+  <!--Displayed in the notification when the user has opened a received gift-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Uppfærsla á Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Það er nýrri útgáfa af Signal tiltæk, ýttu til að uppfæra</string>
@@ -1806,6 +1814,8 @@
   <string name="QuoteView_your_story">Þú · Saga</string>
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">Ekki lengur tiltækt</string>
+  <!--Label for quoted gift-->
+  <string name="QuoteView__gift">Gjöf</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Skruna neðst</string>
   <!--BubbleOptOutTooltip-->
@@ -3266,6 +3276,13 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Veljari við efri brún</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Veljari við neðri brún</string>
+  <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate_to_signal">Gefa til Signal</string>
+  <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate">Styrkja</string>
+  <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_not_now">Ekki núna</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">Sérsníða viðbrögð</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Ýttu til að skipta út tákni</string>
@@ -3273,11 +3290,6 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="EditReactionsFragment_save">Vista</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Lætur litinn samsvara sjálfkrafa bakgrunnsmyndinni</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Dragðu til að breyta stefnu litstigulsins</string>
-  <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">Nýir litir spjalls</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Við bættum við fleiri möguleikum á að sýsla með liti í spjallrásum, sem gerir auðveldara að lesa spjall.</string>
-  <string name="ChatColorsMegaphone__appearance">Útlit</string>
-  <string name="ChatColorsMegaphone__not_now">Ekki núna</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Bæta við auðkennismynd</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Veldu útlit og lit eða sérsníddu upphafsstafina þína.</string>
@@ -3578,8 +3590,12 @@ hegðun þína.</string>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Tækið þitt styður ekki Google Pay, þannig að þú getur ekki orðið áskrifandi og unnið þér inn merki. Þú getur samt stutt Signal með styrk í gegnum vefsvæðið okkar.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Villa í netkerfi. Athugaðu nettenginguna þína og prófaðu svo aftur.</string>
   <string name="NetworkFailure__retry">Reyna aftur</string>
+  <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__recipient_verification_failed">Staðfesting viðtakanda mistókst.</string>
+  <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">Kerfi viðtakanda styður ekki gjafir.</string>
+  <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Gjafamerki</string>
   <!--Gift message view expiry information-->
@@ -3787,6 +3803,7 @@ hegðun þína.</string>
   <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Takk fyrir stuðninginn við Signal. Framlag þitt hjálpar okkur að standa við markmið okkar við að þróa opna og frjálsa tækni til verndunar einkaupplýsinga sem styður við tjáningarfrelsi og tryggir örygg samskipti fyrir milljónir manna víðsvegar um heiminn. Ef þú býrð í Bandaríkjum Norður-Ameríku, geturðu haldið upp á þessa kvittun fyrir skattframtalið þitt. Signal Technology Foundation eru skattfrjáls bandarísk samtök án hagnaðarmarkmiða sem falla undir grein 501c3 í Internal Revenue Code reglugerðinni. Federal Tax ID auðkennið okkar er 82–4506840.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
+  <!--Donation reciepts screen empty state title-->
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Spjall</string>
@@ -4016,9 +4033,6 @@ hegðun þína.</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
   <string name="StoryViewerPageFragment__see_more">… sjá meira</string>
   <!--Displayed in toast after sending a direct reply-->
-  <string name="StoryDirectReplyDialogFragment__reply_sent">Svar sent</string>
-  <!--Displayed in toast after sending a direct reaction-->
-  <string name="StoryDirectReplyDialogFragment__reaction_sent">Viðbrögð send</string>
   <!--Displayed in the viewer when a story is no longer available-->
   <string name="StorySlateView__this_story_is_no_longer_available">Þessi saga er ekki lengur tiltæk.</string>
   <!--Displayed in the viewer when the network is not available-->
@@ -4071,6 +4085,7 @@ hegðun þína.</string>
   <string name="GiftFlowConfirmationFragment__one_time_donation">Eins-skiptis styrkur</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Bæta við skilaboðum</string>
+  <!--Displayed in the dialog while verifying the chosen recipient-->
   <!--Title for sheet shown when opening a redeemed gift-->
   <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s sendi þér gjöf</string>
   <!--Title for sheet shown when opening a sent gift-->
@@ -4099,5 +4114,7 @@ hegðun þína.</string>
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Veita mánaðarlegan styrk</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ekki núna</string>
+  <!--Label under name for private stories-->
+  <!--Label under name for group stories-->
   <!--EOF-->
 </resources>

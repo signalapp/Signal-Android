@@ -88,7 +88,9 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">شما دیگر از این گروه پیام و به‌روزرسانی دریافت نخواهید کرد و اعضا قادر نخواهند بود دوباره شما را به این گروه اضافه کنند.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">اعضای گروه قادر نخواهند بود دوباره شما را به این گروه اضافه کنند.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">اعضای گروه می‌توانند دوباره شما را به این گروه اضافه کنند.</string>
+  <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">شما می‌توانید به دیگران پیام دهید و با آن‌ها تماس بگیرید و نام و عکس شما با آن‌ها به اشتراک گذاشته خواهد شد.</string>
+  <!--Text that is shown when unblocking an SMS contact-->
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">افراد مسدود شده قادر به برقراری تماس با شما یا ارسال پیام به شما نخواهند بود.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">دریافت به‌روزرسانی‌ها و اخبار سیگنال را مسدود کنید.</string>
@@ -726,6 +728,7 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">استفاده از اعلان‌ها‌ی سفارشی</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">صدای اعلان</string>
   <string name="CustomNotificationsDialogFragment__vibrate">لرزش</string>
+  <!--Button text for customizing notification options-->
   <string name="CustomNotificationsDialogFragment__call_settings">تنظیمات تماس</string>
   <string name="CustomNotificationsDialogFragment__ringtone">صدای زنگ</string>
   <string name="CustomNotificationsDialogFragment__enabled">فعال</string>
@@ -1130,7 +1133,9 @@
   <string name="MessageRequestBottomView_block">مسدود کردن</string>
   <string name="MessageRequestBottomView_unblock">رفع مسدودیت</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">آیا به %1$s اجازه می‌دهید که به شما پیام دهد و نام و عکس خود را با او به اشتراک می‌گذارید؟ تا زمانی که نپذیرید او متوجه نمی‌شود که پیامش را خوانده‌اید.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">آیا به %1$s اجازه می‌دهید که به شما پیام دهد و نام و عکس خود را با او به اشتراک می‌گذارید؟ تا زمانی که او را رفع مسدودیت نکنید هیچ پیامی دریافت نخواهید کرد.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">دریافت به‌روزرسانی‌ها و اخبار از %1$s؟ تا مسدودیت آن‌ها را رفع نکنید هیچ به‌روزرسانی‌ای دریافت نخواهید کرد.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">آیا به مکالمهٔ خود این گروه ادامه می‌دهید و نام و عکس خود را با اعضای آن به اشتراک می‌گذارید؟</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">این گروه را برای فعال کردن قابلیت‌ها‌ی جدید همانند اشاره‌ها@ و مدیران ارتقا دهید. اعضایی که که نام یا عکس خود را در این گروه به اشتراک نگذاشته‌اند برای پیوستن دعوت خواهند شد.</string>
@@ -1503,6 +1508,9 @@
   <string name="ThreadRecord_file">فایل</string>
   <string name="ThreadRecord_video">ویدئو</string>
   <string name="ThreadRecord_chat_session_refreshed">نشست گفتگو تازه‌سازی شد</string>
+  <!--Displayed in the notification when the user is sent a gift-->
+  <!--Displayed in the notification when the user sends a gift-->
+  <!--Displayed in the notification when the user has opened a received gift-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">به‌روزرسانی سیگنال</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">یک نسخهٔ جدید از سیگنال موجود است، برای به‌روزرسانی ضربه بزنید</string>
@@ -1770,6 +1778,7 @@
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
   <!--Label indicating that the story being replied to no longer exists-->
+  <!--Label for quoted gift-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">رفتن به پایین</string>
   <!--BubbleOptOutTooltip-->
@@ -3221,6 +3230,13 @@
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">لبهٔ گزینش‌گر بالایی</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">لبهٔ گزینش‌گر پایینی</string>
+  <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate_to_signal">حمایت از سیگنال</string>
+  <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate">حمایت کنید</string>
+  <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_not_now">حالا نه</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">سفارشی‌سازی واکنش‌ها</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">برای جایگزینی ایموجی ضربه بزنید</string>
@@ -3228,11 +3244,6 @@
   <string name="EditReactionsFragment_save">ذخیره</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">خودکار رنگ کاغذدیواری را تطبیق می‌دهد</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">بکشید تا جهت گرادیان را تغییر دهید</string>
-  <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">رنگ‌های جدید گفتگو‌</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">ما رنگ‌های گفتگو را تغییر دادیم تا به شما گزینه‌ها‌ی بیشتری بدهیم و خواندن گفتگوها را آسان‌تر کنیم.</string>
-  <string name="ChatColorsMegaphone__appearance">ظاهر برنامه</string>
-  <string name="ChatColorsMegaphone__not_now">حالا نه</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">یک عکس پروفایل اضافه کنید</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">برای حروف اول خود یک ظاهر و رنگ جدید انتخاب کنید.</string>
@@ -3509,6 +3520,10 @@
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">دستگاه شما از Google Pay پشتیبانی نمی‌کند، پس شما نمی‌توانید برای بدست آوردن یک نشان برای اشتراک ثبت‌نام کنید. شما هنوز می‌توانید از طریق کمک‌های اهدایی در وب‌سایت ما از سیگنال پشتیبانی کنید.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">خطای شبکه. اتصال خود را بررسی و دوباره امتحان کنید.</string>
   <string name="NetworkFailure__retry">تلاش مجدد</string>
+  <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <!--Gift message view title-->
   <!--Gift message view expiry information-->
   <!--Gift badge redeem action label-->
@@ -3696,6 +3711,7 @@
   <!--Donation receipts amount title-->
   <!--Donation receipts thanks-->
   <!--Donation receipt type-->
+  <!--Donation reciepts screen empty state title-->
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">گفتگوها</string>
@@ -3830,7 +3846,6 @@
   <string name="StoryGroupReplyFragment__copied_to_clipboard">روی کلیپ‌بورد کپی شد</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
   <!--Displayed in toast after sending a direct reply-->
-  <!--Displayed in toast after sending a direct reaction-->
   <!--Displayed in the viewer when a story is no longer available-->
   <!--Displayed in the viewer when the network is not available-->
   <string name="StorySlateView__no_internet_connection">اتصال با اینترنت برقرار نیست.</string>
@@ -3865,6 +3880,7 @@
   <!--Text explaining that this gift is a one time donation-->
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">افزودن یک پیام</string>
+  <!--Displayed in the dialog while verifying the chosen recipient-->
   <!--Title for sheet shown when opening a redeemed gift-->
   <!--Title for sheet shown when opening a sent gift-->
   <!--Description for sheet shown when opening a redeemed gift-->
@@ -3882,5 +3898,7 @@
   <!--Expired gift sheet make a monthly donation button-->
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">حالا نه</string>
+  <!--Label under name for private stories-->
+  <!--Label under name for group stories-->
   <!--EOF-->
 </resources>

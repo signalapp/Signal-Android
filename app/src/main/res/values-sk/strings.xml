@@ -90,8 +90,12 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Od tejto skupiny už nebudete dostávať správy ani aktualizácie a členovia vás nebudú môcť znovu pridať.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Členovia skupiny vás nebudú môcť znovu do tejto skupiny pridať.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Členovia skupiny vás budú môcť do tejto skupiny znovu pridať.</string>
+  <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Budete si môcť navzájom písať a volať a budú vidieť vaše meno a fotku.</string>
+  <!--Text that is shown when unblocking an SMS contact-->
+  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Budete si môcť navzájom posielať správy.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Zablokované osoby vám nebudú môcť volať ani posielať správy.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Zablokovaní ľudia vám nebudú môcť posielať správy.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blokovať prijímanie aktualizácií a noviniek Signal.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -810,6 +814,9 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">Použiť vlastné upozornenia</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Zvuk upozornenia</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Vibrácie</string>
+  <!--Button text for customizing notification options-->
+  <string name="CustomNotificationsDialogFragment__customize">Prispôsobiť</string>
+  <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Zmeniť zvuk a vibrovanie</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Nastavenia hovoru</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Zvonenie</string>
   <string name="CustomNotificationsDialogFragment__enabled">Povolené</string>
@@ -1261,7 +1268,10 @@
   <string name="MessageRequestBottomView_block">Blokovať</string>
   <string name="MessageRequestBottomView_unblock">Odblokovať</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Povoliť používateľovi %1$s, aby vám posielal správy a zdieľať s ním vaše meno a fotku? Kým s tým nebudete súhlasiť, nebude vedieť, že ste jeho správu videli.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Povoliť používateľovi %1$s, aby vám posielal správy a zdieľať s ním vaše meno a fotku? Kým ho neodblokujete, nepríjmete od neho žiadne správy.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Chcete povoliť používateľovi %1$s, aby vám poslal správu? Kým ich neodblokujete, nebudete dostávať žiadne správy.</string>
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Chcete dostávať aktualizácie a novinky od %1$s? Nebudete dostávať žiadne aktualizácie, kým ich neodblokujete.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Pokračovať v chate v tejto skupine a zdieľať vaše meno a fotku s jej členmi?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Modernizovaním tejto skupiny aktivujete nové funkcie ako @spomenutia a administrátori. Členovia, ktorí nezdieľali svoje meno alebo fotku, budú do tejto skupiny pozvaní.</string>
@@ -1676,6 +1686,12 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ThreadRecord_file">Súbor</string>
   <string name="ThreadRecord_video">Video</string>
   <string name="ThreadRecord_chat_session_refreshed">Chatové stretnutie obnovené</string>
+  <!--Displayed in the notification when the user is sent a gift-->
+  <string name="ThreadRecord__you_received_a_gift">Dostali ste darček</string>
+  <!--Displayed in the notification when the user sends a gift-->
+  <string name="ThreadRecord__you_sent_a_gift">Poslali ste darček</string>
+  <!--Displayed in the notification when the user has opened a received gift-->
+  <string name="ThreadRecord__you_redeemed_a_gift_badge">Uplatnili ste darčekový odznak</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Aktualizácia Signalu</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">K dispozícii je nová verzia Signalu, ťuknutím aktualizujte</string>
@@ -1962,6 +1978,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="QuoteView_your_story">Vy · Príbeh</string>
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">Už nie je k dispozícii</string>
+  <!--Label for quoted gift-->
+  <string name="QuoteView__gift">Dar</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Na koniec</string>
   <!--BubbleOptOutTooltip-->
@@ -2278,6 +2296,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__led_color">LED farba</string>
   <string name="preferences__led_color_unknown">Neznáma</string>
   <string name="preferences__pref_led_blink_title">Sekvencia blikania LED</string>
+  <string name="preferences__customize">Prispôsobiť</string>
+  <string name="preferences__change_sound_and_vibration">Zmeniť zvuk a vibrovanie</string>
   <string name="preferences__sound">Zvuk</string>
   <string name="preferences__silent">Ticho</string>
   <string name="preferences__default">Predvolená</string>
@@ -3461,6 +3481,14 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Volič horného okraja</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Volič spodného okraja</string>
+  <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate_to_signal">Prispieť na Signal</string>
+  <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal poháňajú ľudia ako vy. Prispievajte mesačne a získajte odznak.</string>
+  <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate">Prispieť</string>
+  <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_not_now">Teraz nie</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">Prispôsobte reakcie</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Ťuknutím nahradíte emotikon</string>
@@ -3468,11 +3496,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="EditReactionsFragment_save">Uložiť</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Automaticky nájde vhodnú farbu k pozadiu</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Potiahnite pre zmenu smeru farebného prechodu</string>
-  <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">Nové farby konverzácie</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Prepli sme farby konverzácie, aby sme vám poskytli viac možností a uľahčili čítanie konverzácií.</string>
-  <string name="ChatColorsMegaphone__appearance">Vzhľad</string>
-  <string name="ChatColorsMegaphone__not_now">Teraz nie</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Pridajte profilovú fotografiu</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Vyberte vzhľad a farbu, alebo prispôsobte svoje iniciály.</string>
@@ -3780,8 +3803,14 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Vaše zariadenie nepodporuje Google Pay, takže sa nemôžete prihlásiť na odber a získať odznak. Signal môžete stále podporiť príspevkom na našej webovej stránke.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Chyba siete. Skontrolujte pripojenie a skúste to znova.</string>
   <string name="NetworkFailure__retry">Skúsiť znovu</string>
+  <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__recipient_verification_failed">Overenie príjemcu zlyhalo.</string>
+  <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">Prijímací subjekt nepodporuje darovanie.</string>
+  <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__could_not_verify_recipient">Nepodarilo sa overiť príjemcu.</string>
+  <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Skontrolujte pripojenie k sieti a skúste to znova.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Darčekový odznak</string>
   <!--Gift message view expiry information-->
@@ -3991,6 +4020,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Ďakujeme, že podporujete Signal. Váš príspevok pomáha podporiť misiu vývoja technológie ochrany súkromia s otvoreným zdrojom, ktorá chráni slobodu prejavu a umožňuje bezpečnú globálnu komunikáciu pre milióny ľudí na celom svete. Ak ste rezidentom Spojených štátov, uchovajte si toto potvrdenie pre svoje daňové záznamy. Signal Technology Foundation je nezisková organizácia v Spojených štátoch oslobodená od daní podľa oddielu 501c3 zákona o vnútorných výnosoch. Naše federálne daňové identifikačné číslo je 82–4506840.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
+  <!--Donation reciepts screen empty state title-->
+  <string name="DonationReceiptListFragment__no_receipts">Žiadne účtenky</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Konverzácie</string>
@@ -4230,9 +4261,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Displayed in story caption when content is longer than 5 lines-->
   <string name="StoryViewerPageFragment__see_more">… Pozrieť viac</string>
   <!--Displayed in toast after sending a direct reply-->
-  <string name="StoryDirectReplyDialogFragment__reply_sent">Odpoveď bola odoslaná</string>
-  <!--Displayed in toast after sending a direct reaction-->
-  <string name="StoryDirectReplyDialogFragment__reaction_sent">Reakcia odoslaná</string>
+  <string name="StoryDirectReplyDialogFragment__sending_reply">Odosiela sa odpoveď…</string>
   <!--Displayed in the viewer when a story is no longer available-->
   <string name="StorySlateView__this_story_is_no_longer_available">Tento príbeh už nie je dostupný.</string>
   <!--Displayed in the viewer when the network is not available-->
@@ -4285,6 +4314,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="GiftFlowConfirmationFragment__one_time_donation">Jednorazový dar</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Pridajte správu</string>
+  <!--Displayed in the dialog while verifying the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__verifying_recipient">Overuje sa príjemca…</string>
   <!--Title for sheet shown when opening a redeemed gift-->
   <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s vám poslal darček</string>
   <!--Title for sheet shown when opening a sent gift-->
@@ -4313,5 +4344,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Poskytnite mesačný dar</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Teraz nie</string>
+  <!--Label under name for private stories-->
+  <!--Label under name for group stories-->
   <!--EOF-->
 </resources>

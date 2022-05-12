@@ -2962,8 +2962,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Auto-tilpasser fargen til bakgrunnen</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Dra for å endre retning på graderingen</string>
   <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__appearance">Utseende</string>
-  <string name="ChatColorsMegaphone__not_now">Ikke nå</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatColorsMegaphone__appearance">Utseende</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatColorsMegaphone__not_now">Ikke nå</string> -->
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__not_now">Ikke nå</string>
   <!--BecomeASustainerMegaphone-->

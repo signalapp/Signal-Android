@@ -88,7 +88,9 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">ನೀವು ಇನ್ನು ಮುಂದೆ ಈ ಗುಂಪಿನಿಂದ ಸಂದೇಶಗಳು ಅಥವಾ ನವೀಕರಣಗಳನ್ನು ಸ್ವೀಕರಿಸುವುದಿಲ್ಲ, ಮತ್ತು ಸದಸ್ಯರು ನಿಮ್ಮನ್ನು ಮತ್ತೆ ಈ ಗುಂಪಿಗೆ ಸೇರಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">ಗುಂಪು ಸದಸ್ಯರಿಗೆ ನಿಮ್ಮನ್ನು ಮತ್ತೆ ಈ ಗುಂಪಿಗೆ ಸೇರಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">ಗುಂಪಿನ ಸದಸ್ಯರು ನಿಮ್ಮನ್ನು ಪುನಃ ಈ ಗುಂಪಿಗೆ ಸೇರಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string>
+  <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">ನೀವು ಪರಸ್ಪರ ಸಂದೇಶ ಕಳುಹಿಸಲು ಮತ್ತು ಕರೆ ಮಾಡಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ ಮತ್ತು ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಫೋಟೋವನ್ನು ಅವರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ.</string>
+  <!--Text that is shown when unblocking an SMS contact-->
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">ನಿರ್ಬಂಧಿಸಿದ ಜನರಿಗೆ ನಿಮಗೆ ಕರೆ ಮಾಡಲು ಅಥವಾ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -671,6 +673,7 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">ಕಸ್ಟಮ್ ಅಧಿಸೂಚನೆಗಳನ್ನು ಬಳಸಿ</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">ಅಧಿಸೂಚನೆ ಧ್ವನಿ</string>
   <string name="CustomNotificationsDialogFragment__vibrate">ವೈಬ್ರೇಟ್ ಮಾಡು</string>
+  <!--Button text for customizing notification options-->
   <string name="CustomNotificationsDialogFragment__call_settings">ಕರೆ ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
   <string name="CustomNotificationsDialogFragment__ringtone">ರಿಂಗ್ಟೋನ್</string>
   <string name="CustomNotificationsDialogFragment__enabled">ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
@@ -1056,7 +1059,9 @@
   <string name="MessageRequestBottomView_block">ನಿರ್ಬಂಧಿಸಿ</string>
   <string name="MessageRequestBottomView_unblock">ನಿರ್ಬಂಧ ತೆಗೆಯಿರಿ</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept"> %1$s ಅವರು ನಿಮಗೆ ಮೆಸೇಜ್ ಮಾಡಲು ಮತ್ತು ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಫೋಟೋವನ್ನು ಅವರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಲು ಅನುಮತಿಸುತ್ತೀರಾ? ನೀವು ಸಮ್ಮತಿಸುವವರೆಗೆ ಸಂದೇಶವನ್ನು ಓದಿದ್ದೀರಿ ಎಂದು ಅವರು ತಿಳಿಯುವುದಿಲ್ಲ.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s ಅವರು ನಿಮಗೆ ಮೆಸೇಜ್ ಮಾಡಲು ಮತ್ತು ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಫೋಟೋವನ್ನು ಅವರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಲು ಅನುಮತಿಸುತ್ತೀರಾ? ನೀವು ಅವರನ್ನು ಅನ್‌ಬ್ಲಾಕ್ ಮಾಡುವವರೆಗೆ ಯಾವುದೇ ಸಂದೇಶ ನಿಮಗೆ ಬರುವುದಿಲ್ಲ.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">ಈ ಗುಂಪಿನೊಂದಿಗೆ ನಿಮ್ಮ ಚಾಟ್ ಅನ್ನು ಮುಂದುವರಿಸುವುದೇ ಹಾಗೂ ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಫೋಟೋವನ್ನು ಇದರ ಸದಸ್ಯರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳುವುದೇ?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">@ಮೆನ್ಷನ್‌ಗಳು ಮತ್ತು ಅಡ್ಮಿನ್‌ಗಳಂತಹ ಹೊಸ ಫೀಚರ್‌ಗಳನ್ನು ಆಕ್ಟಿವೇಟ್ ಮಾಡಲು ಈ ಗ್ರೂಪ್‌ ಅನ್ನು ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಿ. ಈ ಗುಂಪಿನಲ್ಲಿ ತಮ್ಮ ಹೆಸರು ಅಥವಾ ಫೋಟೋವನ್ನು ಹಂಚಿಕೊಳ್ಳದ ಸದಸ್ಯರಿಗೆ ಸೇರುವಂತೆ ಆಹ್ವಾನಿಸಲಾಗುತ್ತದೆ.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">ಈ ಲೆಗಸಿ ಗ್ರೂಪ್ ಅನ್ನು ಇನ್ನು ಬಳಸಲಾಗದು. ಯಾಕೆಂದರೆ, ಇದು ತುಂಬಾ ದೊಡ್ಡದಾಗಿದೆ. ಗರಿಷ್ಠ ಗ್ರೂಪ್ ಗಾತ್ರವು %1$d.</string>
@@ -1387,6 +1392,9 @@
   <string name="ThreadRecord_file">ಫೈಲ್</string>
   <string name="ThreadRecord_video">ವೀಡಿಯೊ</string>
   <string name="ThreadRecord_chat_session_refreshed">ಚಾಟ್ ಸೆಷನ್ ರಿಫ್ರೆಶ್ ಮಾಡಲಾಗಿದೆ</string>
+  <!--Displayed in the notification when the user is sent a gift-->
+  <!--Displayed in the notification when the user sends a gift-->
+  <!--Displayed in the notification when the user has opened a received gift-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal ನವೀಕರಿಸಿ</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">ಹೊಸ ಆವೃತ್ತಿ Signal ಲಭ್ಯವಿದೆ, ನವೀಕರಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
@@ -1647,6 +1655,7 @@
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
   <!--Label indicating that the story being replied to no longer exists-->
+  <!--Label for quoted gift-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">ಕೆಳಗಡೆಗೆ ಸ್ಕ್ರಾಲ್ ಮಾಡಿ</string>
   <!--BubbleOptOutTooltip-->
@@ -3026,6 +3035,13 @@
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">ಟಾಪ್ ಎಡ್ಜ್ ಸೆಲೆಕ್ಟರ್</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">ಬಾಟಮ್ ಎಡ್ಜ್‌ ಸೆಲೆಕ್ಟರ್</string>
+  <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate_to_signal">Signal ಗೆ ದಾನ ಮಾಡಿ</string>
+  <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate">ದಾನ ಮಾಡಿ</string>
+  <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_not_now">ಈಗಲ್ಲ</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">ಪ್ರತಿಸ್ಪಂದನೆಗಳನ್ನು ಕಸ್ಟಮೈಸ್ ಮಾಡಿ</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">ಎಮೋಜಿ ಬದಲಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
@@ -3033,11 +3049,6 @@
   <string name="EditReactionsFragment_save">ಉಳಿಸಿ</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">ವಾಲ್‌ಪೇಪರ್‌ಗೆ ಬಣ್ಣ ಸ್ವಯಂ ಹೊಂದಿಕೆಯಾಗುತ್ತದೆ</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">ಗ್ರೇಡಿಯಂಟ್‌ ದಿಕ್ಕು ಬದಲಿಸಲು ಎಳೆಯಿರಿ</string>
-  <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">ಹೊಸ ಚಾಟ್ ಬಣ್ಣಗಳು</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">ನಿಮಗೆ ಹೆಚ್ಚು ಆಯ್ಕೆಗಳನ್ನು ನೀಡಲು ನಾವು ಚಾಟ್ ಬಣ್ಣಗಳನ್ನು ಮೇಲಕ್ಕೆ ಬದಲಿಸಿದ್ದೇವೆ ಮತ್ತು ಚಾಟ್‌ಗಳನ್ನು ಓದಲು ಸುಲಭವಾಗಿಸಿದ್ದೇವೆ.</string>
-  <string name="ChatColorsMegaphone__appearance">ಲಕ್ಷಣ</string>
-  <string name="ChatColorsMegaphone__not_now">ಈಗಲ್ಲ</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">ಪ್ರೊಫೈಲ್ ಫೋಟೋ ಸೇರಿಸಿ</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">ನೀವು ಹೇಗೆ ಕಾಣುವಿರಿ ಎಂದು ನೋಡಲು ರೂಪ ಮತ್ತು ಬಣ್ಣವನ್ನು ಆಯ್ಕೆಮಾಡಿ </string>
@@ -3201,6 +3212,10 @@
   <!--Displayed as title when some generic error happens during gift badge sending-->
   <!--Displayed as message when some generic error happens during gift badge sending-->
   <string name="NetworkFailure__retry">ಮರುಪ್ರಯತ್ನಿಸಿ</string>
+  <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <!--Gift message view title-->
   <!--Gift message view expiry information-->
   <!--Gift badge redeem action label-->
@@ -3328,6 +3343,7 @@
   <!--Donation receipts amount title-->
   <!--Donation receipts thanks-->
   <!--Donation receipt type-->
+  <!--Donation reciepts screen empty state title-->
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">ಚಾಟ್‌‌ ಗಳು</string>
@@ -3460,7 +3476,6 @@
   <string name="StoryGroupReplyFragment__copied_to_clipboard">ಕ್ಲಿಪ್‌‌ಬೋರ್ಡಿಗೆ ನಕಲು ಮಾಡಲಾಗಿದೆ</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
   <!--Displayed in toast after sending a direct reply-->
-  <!--Displayed in toast after sending a direct reaction-->
   <!--Displayed in the viewer when a story is no longer available-->
   <!--Displayed in the viewer when the network is not available-->
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
@@ -3490,6 +3505,7 @@
   <!--Text explaining that gift will be sent to the chosen recipient-->
   <!--Text explaining that this gift is a one time donation-->
   <!--Hint for add message input-->
+  <!--Displayed in the dialog while verifying the chosen recipient-->
   <!--Title for sheet shown when opening a redeemed gift-->
   <!--Title for sheet shown when opening a sent gift-->
   <!--Description for sheet shown when opening a redeemed gift-->
@@ -3506,5 +3522,7 @@
   <!--Expired gift sheet make a monthly donation button-->
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">ಈಗಲ್ಲ</string>
+  <!--Label under name for private stories-->
+  <!--Label under name for group stories-->
   <!--EOF-->
 </resources>

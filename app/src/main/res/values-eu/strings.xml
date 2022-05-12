@@ -2569,8 +2569,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="EditReactionsFragment__reset">Berrabiarazi</string>
   <string name="EditReactionsFragment_save">Gorde</string>
   <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__appearance">Itxura</string>
-  <string name="ChatColorsMegaphone__not_now">Orain ez</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatColorsMegaphone__appearance">Itxura</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatColorsMegaphone__not_now">Orain ez</string> -->
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__not_now">Orain ez</string>
   <!--KeyboardPagerFragment-->

@@ -2782,10 +2782,10 @@
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Segue automáticamente a cor do fondo</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Arrastra para cambiar a dirección do gradiente</string>
   <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">Novas cores para o chat</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Melloramos as cores para o chat para darche máis opcións e facilitar a lectura dos chats.</string>
-  <string name="ChatColorsMegaphone__appearance">Aparencia</string>
-  <string name="ChatColorsMegaphone__not_now">Agora non</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatColorsMegaphone__new_chat_colors">Novas cores para o chat</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Melloramos as cores para o chat para darche máis opcións e facilitar a lectura dos chats.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatColorsMegaphone__appearance">Aparencia</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatColorsMegaphone__not_now">Agora non</string> -->
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Engadir unha foto de perfil</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Elixe o aspecto e cor ou personaliza as túas iniciais.</string>

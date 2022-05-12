@@ -88,8 +88,12 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">S\’do të merrni më mesazhe apo përditësime nga ky grup, dhe anëtarët e tij s\’do të jenë në gjendje t\’ju shtojnë sërish te ky grup.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Anëtarët e grupit s\’do të jenë në gjendje t\’ju rishtojnë te ky grup.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Anëtarë të grupit do të jenë në gjendje t\’ju rishtojnë te ky grup.</string>
+  <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Do të jeni në gjendje t\’i dërgoni mesazhe dhe t\’i bëni thirrje njëri-tjetrit, dhe emri juaj dhe fotoja do të jenë të dukshëm për të.</string>
+  <!--Text that is shown when unblocking an SMS contact-->
+  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Do të jeni në gjendje të shkëmbeni mesazhe me njëri-tjetrin.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Personat e bllokuar s\’do të jenë në gjendje t\’ju bëjnë thirrje apo t\’ju dërgojnë mesazhe.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Personat e bllokuar s’do të jenë në gjendje t’ju dërgojnë mesazhe.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blloko marrje përditësimesh dhe lajmesh mbi Signal-in.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -729,6 +733,9 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">Përdor njoftime vetjake</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Tingull njoftimesh</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Dridhu</string>
+  <!--Button text for customizing notification options-->
+  <string name="CustomNotificationsDialogFragment__customize">Përshtateni</string>
+  <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Ndryshoni tingull dhe dridhje</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Rregullime thirrjeje</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Zile</string>
   <string name="CustomNotificationsDialogFragment__enabled">E aktivizuar</string>
@@ -1142,7 +1149,10 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="MessageRequestBottomView_block">Bllokoje</string>
   <string name="MessageRequestBottomView_unblock">Zhbllokoje</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Të lejohet %1$s t\’ju dërgojë mesazh dhe të ndajë emrin dhe foton tuaj me të tjerë? S\’do ta dijë se e keni parë mesazhin e tij, para se të pranoni këtë.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Të lejohet %1$s t\’ju dërgojë mesazh dhe të ndajë emrin dhe foton tuaj me të tjerë? S\’do të merrni ndonjë mesazh, para se ta zhbllokoni.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Të lejohet %1$s t’ju dërgojë mesazh? S’do të merrni ndonjë mesazh, para se ta zhbllokoni.</string>
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Merrni përditësime dhe lajme nga 1%1$s? S’do të merrni ndonjë përditësim, para se t’i zhbllokoni.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Të vazhdohet biseda juaj me këtë grup dhe t\’u jepet emri dhe fotoja juaj anëtarëve të tij?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Përmirësojeni këtë grup, që të aktivizohen veçori të reja, të tilla si @përmendje dhe përgjegjës. Anëtarët që nuk kanë dhënë emrin ose foton e tyre te ky grup, do të ftohen të bëhen pjesë.</string>
@@ -1532,6 +1542,11 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="ThreadRecord_file">Kartelë</string>
   <string name="ThreadRecord_video">Video</string>
   <string name="ThreadRecord_chat_session_refreshed">Sesioni i fjalosjes u rifreskua</string>
+  <!--Displayed in the notification when the user is sent a gift-->
+  <string name="ThreadRecord__you_received_a_gift">Morët një dhuratë</string>
+  <!--Displayed in the notification when the user sends a gift-->
+  <string name="ThreadRecord__you_sent_a_gift">Dërguat një dhuratë</string>
+  <!--Displayed in the notification when the user has opened a received gift-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Përditësim i Signal-it</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Është gati një version i ri i Signal-it, prekeni që të përditësohet</string>
@@ -1808,6 +1823,8 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="QuoteView_your_story">Ju · Histori</string>
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">S’mund të kihet më</string>
+  <!--Label for quoted gift-->
+  <string name="QuoteView__gift">Dhuratë</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rrëshqit drejt fundit</string>
   <!--BubbleOptOutTooltip-->
@@ -2108,6 +2125,8 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="preferences__led_color">Ngjyrë LED-i</string>
   <string name="preferences__led_color_unknown">E panjohur</string>
   <string name="preferences__pref_led_blink_title">Rregullsi xixëllimi LED-i</string>
+  <string name="preferences__customize">Përshtateni</string>
+  <string name="preferences__change_sound_and_vibration">Ndryshoni tingull dhe dridhje</string>
   <string name="preferences__sound">Tingull</string>
   <string name="preferences__silent">Heshtazi</string>
   <string name="preferences__default">Parazgjedhje</string>
@@ -3269,6 +3288,14 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Përzgjedhësi i skajit të epërm</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Përzgjedhës i skajit të poshtëm</string>
+  <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate_to_signal">Dhuroni për Signal-in</string>
+  <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal-i bazohet në njerëz si ju. Bëni një dhurim të përmuajshëm dhe merrni një stemë.</string>
+  <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate">Dhuroni</string>
+  <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_not_now">Jo tani</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">Përshtatni reagime</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Prekeni që të zëvendësoni një emoxhi</string>
@@ -3276,11 +3303,6 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="EditReactionsFragment_save">Ruaje</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Përputhje e automatizuar e ngjyrës me sfondin</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Tërhiqeni që të ndryshohet drejtimi i gradientit</string>
-  <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">Ngjyra të Reja Fjalosjeje</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Kemi këmbyer ngjyrat e fjalosjes, për t\’ju dhënë më tepër mundësi dhe për t\’i bërë fjalosjet të lexohen më kollaj.</string>
-  <string name="ChatColorsMegaphone__appearance">Dukje</string>
-  <string name="ChatColorsMegaphone__not_now">Jo tani</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Shtoni një foto profili</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Zgjidhni një pamje dhe ngjyrë, ose përshtatni inicialet tuaja.</string>
@@ -3580,8 +3602,14 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Pajisja juaj nuk mbulon Google Pay, ndaj s\’mund të kontribuoni për të fituar një stemë. Mundeni ende të përkrahni Signal-in duke bërë një dhurim te sajti ynë.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Gabim rrjeti. Ju lutemi, kontrolloni lidhjen tuaj me rrjetin dhe riprovoni.</string>
   <string name="NetworkFailure__retry">Riprovo</string>
+  <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__recipient_verification_failed">Dështoi verifikimi i marrësit.</string>
+  <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">Marrësi i synuar nuk mbulon dhurime.</string>
+  <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__could_not_verify_recipient">S’u verifikua dot marrësi.</string>
+  <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Ju lutemi, kontrolloni lidhjen tuaj në rrjet dhe riprovoni.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Dhuroni stemë</string>
   <!--Gift message view expiry information-->
@@ -3785,6 +3813,8 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Faleminderit për përkrahjen e Signal-it. Kontributi juaj ndihmon të ushqehet misioni i zhvillimit me burim të hapët i teknologjisë së privatësisë që mbron shprehjen e lirë dhe bën të mundur komunikim global për miliona vetë anembanë botës. Nëse jeni një banues në ShBA, ju lutemi, mbajeni këtë dëftesë për deklarimin e taksave. Signal Technology Foundation është një ent jofitimprurës i përjashtuar nga taksat në ShBA, sipas ndarjes 501c3 të Kodit Mbi të Ardhurat e Brendshme. ID-ja jonë Federale e Taksave është 82–4506840.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
+  <!--Donation reciepts screen empty state title-->
+  <string name="DonationReceiptListFragment__no_receipts">S’ka dëftesa</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Fjalosje</string>
@@ -4014,9 +4044,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Displayed in story caption when content is longer than 5 lines-->
   <string name="StoryViewerPageFragment__see_more">… Shihni Më Tepër</string>
   <!--Displayed in toast after sending a direct reply-->
-  <string name="StoryDirectReplyDialogFragment__reply_sent">Përgjigja u dërgua</string>
-  <!--Displayed in toast after sending a direct reaction-->
-  <string name="StoryDirectReplyDialogFragment__reaction_sent">Reagimi u dërgua</string>
+  <string name="StoryDirectReplyDialogFragment__sending_reply">Po dërgohet përgjigje…</string>
   <!--Displayed in the viewer when a story is no longer available-->
   <string name="StorySlateView__this_story_is_no_longer_available">Kjo histori s’gjenden më.</string>
   <!--Displayed in the viewer when the network is not available-->
@@ -4069,6 +4097,8 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="GiftFlowConfirmationFragment__one_time_donation">Dhurim një herë</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Shtoni një mesazh</string>
+  <!--Displayed in the dialog while verifying the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__verifying_recipient">Po verifikohet marrësi…</string>
   <!--Title for sheet shown when opening a redeemed gift-->
   <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s ju dërgoi një dhuratë</string>
   <!--Title for sheet shown when opening a sent gift-->
@@ -4094,5 +4124,15 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Bëni një dhurim të përmuajshëm</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Jo tani</string>
+  <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Histori Private · %1$d parës</item>
+    <item quantity="other">Histori Private · %1$d parës</item>
+  </plurals>
+  <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Histori Grupi · %1$d parës</item>
+    <item quantity="other">Histori Grupi · %1$d parës</item>
+  </plurals>
   <!--EOF-->
 </resources>

@@ -88,8 +88,12 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Vous ne recevrez plus ni message ni mise à jour de ce groupe et les membres ne pourront plus vous rajouter à ce groupe.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Les membres du groupe ne pourront plus vous rajouter à ce groupe.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Les membres du groupe pourront vous rajouter à ce groupe.</string>
+  <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Vous pourrez échanger des messages et des appels, et vos nom et photo seront partagés avec eux.</string>
+  <!--Text that is shown when unblocking an SMS contact-->
+  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Vous pourrez vous envoyer des messages.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Les personnes bloquées ne pourront ni vous appeler ni vous envoyer de messages.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Les personnes bloquées ne pourront pas vous envoyer de messages.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Bloquer la réception des mises à jour et des actualités de Signal.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -728,6 +732,8 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">Utiliser des notifications personnalisées</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Son de notification</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Vibrer</string>
+  <!--Button text for customizing notification options-->
+  <string name="CustomNotificationsDialogFragment__customize">Personnaliser</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Paramètres des appels</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Sonnerie</string>
   <string name="CustomNotificationsDialogFragment__enabled">Activé</string>
@@ -1141,7 +1147,10 @@
   <string name="MessageRequestBottomView_block">Bloquer</string>
   <string name="MessageRequestBottomView_unblock">Débloquer</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Autoriser %1$s à échanger des messages et partager votre nom et votre photo avec ce contact ? Ce contact ne saura pas que vous avez vu ses messages tant que vous n’aurez pas accepté.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Autoriser %1$s à échanger des messages et partager votre nom et votre photo avec ce contact ? Vous ne recevrez aucun message tant que vous ne l’aurez pas débloqué.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Autoriser %1$s à vous écrire ? Vous ne recevrez aucun message tant que vous ne l’aurez pas débloqué.</string>
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Recevoir voir des mises à jour et des nouvelles de%1$s ? Vous ne recevrez aucune mise à jour tant que vous ne l’aurez pas débloqué.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Poursuivre votre conversation avec ce groupe et partager vos nom et photo avec ses membres ?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Convertissez ce groupe pour activer de nouvelles fonctions telles que les @mentions et l’administration. Les membres qui n’ont pas partagé leur nom ou leur photo dans ce groupe seront invités à s’y joindre.</string>
@@ -1522,6 +1531,11 @@
   <string name="ThreadRecord_file">Fichier</string>
   <string name="ThreadRecord_video">Vidéo</string>
   <string name="ThreadRecord_chat_session_refreshed">La session de dialogue en ligne a été actualisée</string>
+  <!--Displayed in the notification when the user is sent a gift-->
+  <string name="ThreadRecord__you_received_a_gift">Vous avez reçu un cadeau</string>
+  <!--Displayed in the notification when the user sends a gift-->
+  <string name="ThreadRecord__you_sent_a_gift">Vous avez envoyé un cadeau</string>
+  <!--Displayed in the notification when the user has opened a received gift-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Mise à jour de Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Une nouvelle version de Signal est proposée, touchez pour lancer la mise à jour</string>
@@ -1798,6 +1812,8 @@
   <string name="QuoteView_your_story">Vous · Histoire</string>
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">N’est plus proposée</string>
+  <!--Label for quoted gift-->
+  <string name="QuoteView__gift">Cadeau</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Faire défiler vers le bas</string>
   <!--BubbleOptOutTooltip-->
@@ -2098,6 +2114,7 @@
   <string name="preferences__led_color">Couleur de la DEL</string>
   <string name="preferences__led_color_unknown">Inconnue</string>
   <string name="preferences__pref_led_blink_title">Rythme de clignotement de la DEL</string>
+  <string name="preferences__customize">Personnaliser</string>
   <string name="preferences__sound">Son</string>
   <string name="preferences__silent">Silencieux</string>
   <string name="preferences__default">Valeur par défaut</string>
@@ -3258,6 +3275,14 @@ Nouvelle tentative…</string>
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Sélecteur de bord supérieur</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Sélecteur de bord inférieur</string>
+  <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate_to_signal">Faire un don à Signal</string>
+  <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal est propulsé par des gens comme vous. Faites un don mensuel et recevez un macaron.</string>
+  <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate">Faire un don</string>
+  <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_not_now">Pas maintenant</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">Personnaliser les réactions</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Touchez pour remplacer un émoji</string>
@@ -3265,11 +3290,6 @@ Nouvelle tentative…</string>
   <string name="EditReactionsFragment_save">Enregistrer</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Adapter automatiquement la couleur au fond d’écran</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Faites glisser pour modifier la direction du dégradé</string>
-  <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">Nouvelles couleurs de conversation</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Nous avons modifié les choix de couleurs des conversations pour vous offrir plus d’options et les rendre plus faciles à lire.</string>
-  <string name="ChatColorsMegaphone__appearance">Apparence</string>
-  <string name="ChatColorsMegaphone__not_now">Pas maintenant</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Ajouter une photo de profil</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Choisissez une apparence et une couleur ou personnalisez vos initiales.</string>
@@ -3490,6 +3510,7 @@ Nouvelle tentative…</string>
   <string name="BecomeASustainerFragment__get_badges">Obtenez des macarons pour votre profil en soutenant Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal est un organisme sans but lucratif, sans annonceurs ni investisseurs, soutenu uniquement par des personnes comme vous.</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">Faire un don mensuel</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">Plus</string>
   <!--Heading for receipts area of manage subscriptions page-->
@@ -3508,6 +3529,7 @@ Nouvelle tentative…</string>
   <string name="ManageDonationsFragment__gift_a_badge">Offrir un macaron</string>
   <string name="BoostFragment__give_signal_a_boost">Donnez un Coup de pouce à Signal</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Faites un don ponctuel et obtenez un macaron Coup de pouce pour %1$d jours.</string>
   <string name="Boost__enter_custom_amount">Saisissez un montant personnalisé</string>
   <string name="Boost__one_time_contribution">Contribution unique</string>
   <string name="MySupportPreference__add_a_signal_boost">Donner un Coup de pouce à Signal</string>
@@ -3563,6 +3585,10 @@ Nouvelle tentative…</string>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Votre appareil ne prend pas en charge Google Pay, vous ne pouvez donc pas vous abonner pour gagner un macaron. Vous pouvez toujours soutenir Signal en faisant un don sur notre site Web.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Erreur réseau. Vérifiez votre connexion et réessayez.</string>
   <string name="NetworkFailure__retry">Réessayer</string>
+  <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <!--Gift message view title-->
   <!--Gift message view expiry information-->
   <!--Gift badge redeem action label-->
@@ -3741,6 +3767,7 @@ Nouvelle tentative…</string>
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">Une fois</string>
   <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">Cadeau</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Coup de pouce</string>
   <!--Donation receipts details title-->
@@ -3761,6 +3788,7 @@ Nouvelle tentative…</string>
   <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Nous vous remercions de votre soutien à Signal. Votre contribution aide à alimenter la mission de développement d’une technologie ouverte de protection de la vie privée et des données personnelles, qui protège la liberté d’expression et permet à des millions de personnes une communication sécurisée à l’échelle planétaire. Si vous êtes résident des États-Unis d\'Amérique, veuillez conserver ce reçu pour vos dossiers fiscaux. La Fondation de la technologie Signal (Signal Technology Foundation) est un organisme exempt de taxes aux États-Unis d’Amérique conformément à la section 501c du code des taxes intérieures des É.-U.. Notre ID fiscal fédéral est 82-4506840.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
+  <!--Donation reciepts screen empty state title-->
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Conversations</string>
@@ -3989,9 +4017,6 @@ Nouvelle tentative…</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
   <string name="StoryViewerPageFragment__see_more">… En afficher plus</string>
   <!--Displayed in toast after sending a direct reply-->
-  <string name="StoryDirectReplyDialogFragment__reply_sent">Réponse envoyée</string>
-  <!--Displayed in toast after sending a direct reaction-->
-  <string name="StoryDirectReplyDialogFragment__reaction_sent">Réaction envoyée</string>
   <!--Displayed in the viewer when a story is no longer available-->
   <string name="StorySlateView__this_story_is_no_longer_available">Cette histoire n’est plus disponible.</string>
   <!--Displayed in the viewer when the network is not available-->
@@ -4033,8 +4058,10 @@ Nouvelle tentative…</string>
   <string name="GiftFlowConfirmationFragment__send_to">Envoyer à</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
   <!--Text explaining that this gift is a one time donation-->
+  <string name="GiftFlowConfirmationFragment__one_time_donation">Don ponctuel</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Ajouter un message</string>
+  <!--Displayed in the dialog while verifying the chosen recipient-->
   <!--Title for sheet shown when opening a redeemed gift-->
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Merci pour votre soutien !</string>
@@ -4051,7 +4078,10 @@ Nouvelle tentative…</string>
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">Pour continuer à soutenir une technologie conçue pour vous, veuillez envisager de devenir donateur mensuel.</string>
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Faire un don mensuel</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Pas maintenant</string>
+  <!--Label under name for private stories-->
+  <!--Label under name for group stories-->
   <!--EOF-->
 </resources>

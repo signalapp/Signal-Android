@@ -2832,8 +2832,8 @@
   <string name="EditReactionsFragment__reset">ရီဆက်ချမည်</string>
   <string name="EditReactionsFragment_save">သိမ်းမယ်</string>
   <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__appearance">ပုံပန်းသဏ္ဌာန်</string>
-  <string name="ChatColorsMegaphone__not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatColorsMegaphone__appearance">ပုံပန်းသဏ္ဌာန်</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatColorsMegaphone__not_now">ယခု မလုပ်ဆောင်သေးပါ။</string> -->
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
   <!--BecomeASustainerMegaphone-->

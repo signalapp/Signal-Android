@@ -88,7 +88,9 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">ਤੁਹਾਨੂੰ ਇਸ ਗਰੁੱਪ ਤੋਂ ਹੁਣ ਕੋਈ ਸੁਨੇਹੇ ਜਾਂ ਅੱਪਡੇਟ ਨਹੀਂ ਆਉਣਗੇ, ਅਤੇ ਗਰੁੱਪ ਮੈਂਬਰ ਤੁਹਾਨੂੰ ਦੁਬਾਰਾ ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਨਹੀਂ ਕਰ ਸਕਣਗੇ।</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">ਗਰੁੱਪ ਦੇ ਮੈਂਬਰ ਤੁਹਾਨੂੰ ਦੁਬਾਰਾ ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਨਹੀਂ ਕਰ ਸਕਣਗੇ।</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">ਗਰੁੱਪ ਦੇ ਮੈਂਬਰ ਤੁਹਾਨੂੰ ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਦੁਬਾਰਾ ਸ਼ਾਮਲ ਕਰਨ ਦੇ ਸਮਰੱਥ ਹੋਣਗੇ।</string>
+  <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">ਤੁਸੀਂ ਇਕ ਦੂਜੇ ਨੂੰ ਸੁਨੇਹਾ ਭੇਜਣ ਅਤੇ ਕਾਲ ਕਰਨ ਦੇ ਯੋਗ ਹੋਵੋਗੇ ਅਤੇ ਤੁਹਾਡਾ ਨਾਂ ਅਤੇ ਫੋਟੋ ਉਨ੍ਹਾਂ ਨਾਲ ਸਾਂਝੀ ਕੀਤੀ ਜਾਏਗੀ।</string>
+  <!--Text that is shown when unblocking an SMS contact-->
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">ਪਾਬੰਦੀਸ਼ੁਦਾ ਲੋਕ ਤੁਹਾਨੂੰ ਕਾਲ ਨਹੀਂ ਕਰ ਸਕਣਗੇ ਜਾਂ ਸੁਨੇਹੇ ਨਹੀਂ ਭੇਜ ਸਕਣਗੇ।</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal ਅੱਪਡੇਟ ਤੇ ਖ਼ਬਰਾਂ ਲੈਣ ਤੋਂ ਪਾਬੰਦੀ ਲਾਓ।</string>
@@ -718,6 +720,7 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">ਪਸੰਦੀਦਾ ਸੂਚਨਾਵਾਂ ਵਰਤੋ</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">ਸੂਚਨਾ ਦੀ ਆਵਾਜ਼</string>
   <string name="CustomNotificationsDialogFragment__vibrate">ਥਰਕਣਾ</string>
+  <!--Button text for customizing notification options-->
   <string name="CustomNotificationsDialogFragment__call_settings">ਕਾਲ ਸੈਟਿੰਗਾਂ</string>
   <string name="CustomNotificationsDialogFragment__ringtone">ਰਿੰਗਟੋਨ</string>
   <string name="CustomNotificationsDialogFragment__enabled">ਸਮਰੱਥ ਕੀਤਾ</string>
@@ -1120,7 +1123,9 @@
   <string name="MessageRequestBottomView_block">ਪਾਬੰਦੀ ਲਾਓ</string>
   <string name="MessageRequestBottomView_unblock">ਪਾਬੰਦੀ ਹਟਾਓ</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s ਨੂੰ ਤੁਹਾਨੂੰ ਸੁਨੇਹਾ ਭੇਜਣ ਅਤੇ ਉਹਨਾਂ ਨਾਲ ਤੁਹਾਡਾ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋ ਸਾਂਝੀ ਕਰਨ ਦੀ ਆਗਿਆ ਦੇਣੀ ਹੈ? ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਮਨਜ਼ੂਰ ਨਹੀਂ ਕਰ ਲੈਂਦੇ ਉਦੋਂ ਤੱਕ ਉਹਨਾਂ ਨੂੰ ਇਹ ਪਤਾ ਨਹੀਂ ਲੱਗੇਗਾ ਕਿ ਤੁਸੀਂ ਉਹਨਾਂ ਦਾ ਸੁਨੇਹਾ ਦੇਖ ਲਿਆ ਹੈ।</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s ਨੂੰ ਤੁਹਾਨੂੰ ਸੁਨੇਹਾ ਭੇਜਣ ਅਤੇ ਤੁਹਾਡਾ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋ ਸਾਂਝੀ ਕਰਨ ਦੀ ਆਗਿਆ ਦੇਣੀ ਹੈ? ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਉਹਨਾਂ ਤੋਂ ਪਾਬੰਦੀ ਹਟਾ ਨਹੀਂ ਦਿੰਦੇ ਉਦੋਂ ਤੱਕ ਤੁਹਾਨੂੰ ਕੋਈ ਵੀ ਸੁਨੇਹੇ ਪ੍ਰਾਪਤ ਨਹੀਂ ਹੋਣਗੇ।</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਆਪਣੀ ਗੱਲਬਾਤ ਅਤੇ ਇਸਦੇ ਮੈਂਬਰਾਂ ਨਾਲ ਆਪਣਾ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋ ਸਾਂਝੀ ਕਰਨੀ ਜਾਰੀ ਰੱਖਣੀ ਹੈ?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">@mentions ਅਤੇ ਐਡਮਿਨ ਵਰਗੀਆਂ ਨਵੀਆਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਨੂੰ ਕਿਰਿਆਸ਼ੀਲ ਕਰਨ ਲਈ ਇਸ ਗਰੁੱਪ ਨੂੰ ਅੱਪਗ੍ਰੇਡ ਕਰੋ। ਜਿਹਨਾਂ ਮੈਂਬਰਾਂ ਨੇ ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਆਪਣਾ ਨਾਂ ਜਾਂ ਫ਼ੋਟੋ ਸਾਂਝੀ ਨਹੀਂ ਕੀਤੀ ਹੈ, ਉਹਨਾਂ ਨੂੰ ਸ਼ਾਮਲ ਹੋਣ ਲਈ ਸੱਦਾ ਭੇਜਿਆ ਜਾਵੇਗਾ।</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">ਇਸ ਲੈਗਸੀ ਗਰੁੱਪ ਨੂੰ ਹੁਣ ਹੋਰ ਨਹੀਂ ਵਰਤਿਆ ਜਾ ਸਕਦਾ ਕਿਉਂਕਿ ਇਹ ਬਹੁਤ ਵੱਡਾ ਹੈ। ਗਰੁੱਪ ਦਾ ਵੱਧ ਤੋਂ ਵੱਧ ਆਕਾਰ %1$d ਹੈ। </string>
@@ -1480,6 +1485,9 @@
   <string name="ThreadRecord_file">ਫ਼ਾਈਲ</string>
   <string name="ThreadRecord_video">ਵੀਡੀਓ</string>
   <string name="ThreadRecord_chat_session_refreshed">ਚੈਟ ਸੈਸ਼ਨ ਤਾਜ਼ਾ ਕੀਤਾ ਗਿਆ</string>
+  <!--Displayed in the notification when the user is sent a gift-->
+  <!--Displayed in the notification when the user sends a gift-->
+  <!--Displayed in the notification when the user has opened a received gift-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal ਅੱਪਡੇਟ</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal ਦਾ ਨਵਾਂ ਵਰਜ਼ਨ ਉਪਲਬਧ ਹੈ, ਅੱਪਡੇਟ ਕਰਨ ਲਈ ਛੂਹੋ</string>
@@ -1755,6 +1763,7 @@
   <string name="QuoteView_your_story">ਤੁਹਾਡੀ ਕਹਾਣੀ</string>
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">ਹੁਣ ਮੌਜੂਦ ਨਹੀਂ ਹੈ</string>
+  <!--Label for quoted gift-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">ਥੱਲੇ ਤਕ ਸਕ੍ਰੌਲ ਕਰੋ</string>
   <!--BubbleOptOutTooltip-->
@@ -3201,6 +3210,13 @@
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">ਸਿਖਰਲੇ ਕਿਨਾਰੇ ਵਾਲਾ ਚੋਣਕਾਰ</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">ਹੇਠਲੇ ਕਿਨਾਰੇ ਵਾਲਾ ਚੋਣਕਾਰ</string>
+  <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate_to_signal">Signal ਨੂੰ ਦਾਨ ਕਰੋ</string>
+  <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate">خیرات کرو</string>
+  <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_not_now">ਹੁਣੇ ਨਹੀਂ</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">ਪ੍ਰਤਿਕਿਰਿਆਵਾਂ ਨੂੰ ਪਸੰਦ ਅਨੁਸਾਰ ਬਣਾਓ</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">ਕਿਸੇ ਇਮੋਜੀ ਨੂੰ ਬਦਲਣ ਲਈ ਟੈਪ ਕਰੋ</string>
@@ -3208,11 +3224,6 @@
   <string name="EditReactionsFragment_save">ਸੰਭਾਲੋ</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">ਵਾਲਪੇਪਰ ਨਾਲ ਆਪਣੇ-ਆਪ ਰੰਗ ਮਿਲਾਇਆ ਜਾਂਦਾ ਹੈ</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">ਗਰੇਡੀਐਂਟ ਦੀ ਦਿਸ਼ਾ ਬਦਲਣ ਲਈ ਡ੍ਰੈਗ ਕਰੋ</string>
-  <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">ਚੈਟ ਦੇ ਨਵੇਂ ਰੰਗ</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">ਅਸੀਂ ਤੁਹਾਨੂੰ ਹੋਰ ਵਿਕਲਪ ਦੇਣ ਅਤੇ ਚੈਟਾਂ ਨੂੰ ਪੜ੍ਹਨ ਵਿੱਚ ਵਧੇਰੇ ਅਸਾਨ ਬਣਾਉਣ ਲਈ ਚੈਟ ਦੇ ਰੰਗਾਂ ਵਿੱਚ ਅਦਲਾ-ਬਦਲੀ ਕਰ ਦਿੱਤੀ।</string>
-  <string name="ChatColorsMegaphone__appearance">ਦਿਖਾਵਟ</string>
-  <string name="ChatColorsMegaphone__not_now">ਹਾਲੇ ਨਹੀਂ</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">ਪ੍ਰੋਫ਼ਾਈਲ ਫ਼ੋਟੋ ਜੋੜੋ</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">ਕੋਈ ਦਿੱਖ ਅਤੇ ਰੰਗ ਚੁਣੋ ਜਾਂ ਆਪਣੇ ਛੋਟੇ ਦਸਤਖਤਾਂ ਨੂੰ ਪਸੰਦ ਅਨੁਸਾਰ ਬਣਾਓ</string>
@@ -3480,6 +3491,10 @@
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">ਤੁਹਾਡਾ ਡਿਵਾਈਸ Google Pay ਲਈ ਸਹਾਇਕ ਨਹੀਂ ਹੈ, ਇਸਕਰਕੇ ਤੁਹਾਨੂੰ ਬਿੱਲਾ ਨਹੀਂ ਮਿਲ ਸਕਦਾ ਹੈ। ਫੇਰ ਵੀ ਤੁਸੀਂ ਸਾਡੀ ਵੈੱਬਸਾਈਟ ਉੱਤੇ ਦਾਨ ਕਰਕੇ Signal ਨੂੰ ਸਹਿਯੋਗ ਕਰ ਸਕਦੇ ਹੋ।</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">ਨੈੱਟਵਰਕ ਗਲਤੀ। ਆਪਣੇ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰਕੇ ਫੇਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
   <string name="NetworkFailure__retry">ਮੁੜ-ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
+  <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <!--Gift message view title-->
   <!--Gift message view expiry information-->
   <!--Gift badge redeem action label-->
@@ -3655,6 +3670,7 @@
   <!--Donation receipts thanks-->
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
+  <!--Donation reciepts screen empty state title-->
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">ਚੈਟਾਂ</string>
@@ -3792,8 +3808,6 @@
   <string name="StoryGroupReplyFragment__copied_to_clipboard">ਕਲਿਪਬੋਰਡ ਤੇ ਕਾਪੀ ਕੀਤਾ ਗਿਆ</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
   <!--Displayed in toast after sending a direct reply-->
-  <string name="StoryDirectReplyDialogFragment__reply_sent">ਜਵਾਬ ਭੇਜੋ</string>
-  <!--Displayed in toast after sending a direct reaction-->
   <!--Displayed in the viewer when a story is no longer available-->
   <!--Displayed in the viewer when the network is not available-->
   <string name="StorySlateView__no_internet_connection">ਇੰਟਰਨੈੱਟ ਕਨੈਕਸ਼ਨ ਨਹੀਂ ਹੈ</string>
@@ -3828,6 +3842,7 @@
   <!--Text explaining that this gift is a one time donation-->
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">ਸੁਨੇਹਾ ਜੋੜੋ</string>
+  <!--Displayed in the dialog while verifying the chosen recipient-->
   <!--Title for sheet shown when opening a redeemed gift-->
   <!--Title for sheet shown when opening a sent gift-->
   <!--Description for sheet shown when opening a redeemed gift-->
@@ -3845,5 +3860,7 @@
   <!--Expired gift sheet make a monthly donation button-->
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">ਹੁਣੇ ਨਹੀਂ</string>
+  <!--Label under name for private stories-->
+  <!--Label under name for group stories-->
   <!--EOF-->
 </resources>

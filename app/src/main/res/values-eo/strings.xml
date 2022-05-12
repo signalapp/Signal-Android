@@ -88,7 +88,9 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Vi ne plu ricevos mesaĝojn kaj ĝisdatigojn el tiu ĉi grupo kaj grupanoj ne plu povos realdoni vin al ĉi tiu grupo.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Grupanoj ne plu povos realdoni vin al tiu ĉi grupo.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Grupanoj povos denove aldoni vin al tiu ĉi grupo.</string>
+  <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Vi povos mesaĝi kaj alvoki unu la alian. Via nomo kaj foto estos videblaj.</string>
+  <!--Text that is shown when unblocking an SMS contact-->
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokitaj kontaktoj ne eblos sendi al vi mesaĝojn aŭ alvoki vin.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Ne plu ricevi ĝisdatigojn kaj novaĵojn de Signal.</string>
@@ -728,6 +730,7 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">Uzi proprajn sciigojn</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Sciiga sono</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Vibri</string>
+  <!--Button text for customizing notification options-->
   <string name="CustomNotificationsDialogFragment__call_settings">Agordo pri alvoko</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Sonoro</string>
   <string name="CustomNotificationsDialogFragment__enabled">Ŝaltita</string>
@@ -1142,7 +1145,9 @@
   <string name="MessageRequestBottomView_block">Bloki</string>
   <string name="MessageRequestBottomView_unblock">Malbloki</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ĉu vi volas, ke %1$s mesaĝu al vi, kaj ke ŝi aŭ li vidu vian nomon kaj foton? Ŝi aŭ li ne scios, ke vi vidis ŝian aŭ lian mesaĝojn ĝis via akcepto.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Ĉu vi volas, ke %1$s mesaĝu al vi, kaj ke ŝi aŭ li vidu vian nomon kaj foton? Vi ricevos neniun mesaĝon, se vi ne malblokas ŝin aŭ lin.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Ĉu vi volas ricevi ĝisdatigojn kaj novaĵojn pri %1$s? Vi ricevos neniun, krom se vi malblokas tiun homon.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Ĉu plu interparoli al tiu grupo kaj kunhavigi vian nomon kaj foton kun la anoj?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Ĝisdatigu tiun grupon por uzi novajn funkciojn kiel @menciojn kaj administranton. Anoj, kiuj ne kunhavis ilian nomon aŭ foton kun la grupo estos invititaj anigi.</string>
@@ -1523,6 +1528,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ThreadRecord_file">Dosiero</string>
   <string name="ThreadRecord_video">Videaĵo</string>
   <string name="ThreadRecord_chat_session_refreshed">Interparola seanco aktualigita</string>
+  <!--Displayed in the notification when the user is sent a gift-->
+  <!--Displayed in the notification when the user sends a gift-->
+  <!--Displayed in the notification when the user has opened a received gift-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Ĝisdatigo de Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Nova versio de Signal disponeblas, tuŝetu por ĝisdatigi</string>
@@ -1799,6 +1807,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="QuoteView_your_story">Vi · Rakonto</string>
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">Ne plu disponebla</string>
+  <!--Label for quoted gift-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rulumi malsupren</string>
   <!--BubbleOptOutTooltip-->
@@ -3255,6 +3264,13 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Supra eĝelektilo</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Malsupra eĝelektilo</string>
+  <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate_to_signal">Donaci al Signal</string>
+  <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate">Donaci</string>
+  <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_not_now">Ne nun</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">Aldoni proprajn reagojn</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Tuŝetu por anstataŭigi emoĝion</string>
@@ -3262,11 +3278,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="EditReactionsFragment_save">Konservi</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Aŭto(mate) kongruigas la koloron kun el ekranfono</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Ŝovu por ŝanĝi la direkton de la kolortransiro</string>
-  <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">Novaj koloroj por interparoloj</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Ni plibonigis la kolorojn de la interparoloj por doni al vi pli da opcioj, kaj faciligi ilian legadon.</string>
-  <string name="ChatColorsMegaphone__appearance">Aspekto</string>
-  <string name="ChatColorsMegaphone__not_now">Ne nun</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Aldoni profilfoton</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Elekti stilon kaj koloron aŭ agordu viajn komencajn literojn.</string>
@@ -3556,6 +3567,10 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Via aparato ne povas uzi „Google Pay“: vi do ne povas aboniĝi por gajni insignon. Vi tamen povas subteni Signal-on per donaco niareteje.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Eraro de retkonekto. Kontrolu vian konekton kaj reprovu.</string>
   <string name="NetworkFailure__retry">Reprovi</string>
+  <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <!--Gift message view title-->
   <!--Gift message view expiry information-->
   <!--Gift badge redeem action label-->
@@ -3754,6 +3769,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Dankon pro via subteno al Signal. Via donaco vivtenas la mision disvolvi priprivatecan malfermitkodan teĥnologion, kiu protektas liberan esprimon, kaj ebligas mondan sekuran komunikadon por milionoj ĉirkaŭ la mondo. Se vi loĝas en Usono, konservu tiun impostan kvitanco por via impostdeklaro. „Signal Technology Foundation“ estas usona neprofitcela organizaĵo laŭ paragrafo 501(c)(3) de la Impostkodo. Nia federacia impost-identigilo estas 82-4506840.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s — %2$s</string>
+  <!--Donation reciepts screen empty state title-->
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Interparoloj</string>
@@ -3982,9 +3998,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Displayed in story caption when content is longer than 5 lines-->
   <string name="StoryViewerPageFragment__see_more">… Vidi pli</string>
   <!--Displayed in toast after sending a direct reply-->
-  <string name="StoryDirectReplyDialogFragment__reply_sent">Respondo sendita</string>
-  <!--Displayed in toast after sending a direct reaction-->
-  <string name="StoryDirectReplyDialogFragment__reaction_sent">Reago sendita</string>
   <!--Displayed in the viewer when a story is no longer available-->
   <string name="StorySlateView__this_story_is_no_longer_available">Tiu rakonto ne plu disponeblas.</string>
   <!--Displayed in the viewer when the network is not available-->
@@ -4028,6 +4041,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Text explaining that this gift is a one time donation-->
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Aldoni mesaĝon</string>
+  <!--Displayed in the dialog while verifying the chosen recipient-->
   <!--Title for sheet shown when opening a redeemed gift-->
   <!--Title for sheet shown when opening a sent gift-->
   <!--Description for sheet shown when opening a redeemed gift-->
@@ -4045,5 +4059,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Expired gift sheet make a monthly donation button-->
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ne nun</string>
+  <!--Label under name for private stories-->
+  <!--Label under name for group stories-->
   <!--EOF-->
 </resources>

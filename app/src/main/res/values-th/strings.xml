@@ -87,7 +87,9 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">คุณจะไม่ได้รับข้อความหรือข่าวสารจากกลุ่มนี้อีกต่อไป และสมาชิกจะไม่สามารถเพิ่มคุณกลับเข้ามาในกลุ่มนี้อีก</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">สมาชิกจะไม่สามารถเพิ่มคุณกลับเข้ามาในกลุ่มนี้อีก</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">สมาชิกจะสามารถเพิ่มคุณกลับเข้ามาในกลุ่มนี้อีก</string>
+  <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">คุณจะสามารถส่งข้อความและโทรหากันได้ และชื่อกับรูปถ่ายของคุณจะถูกแบ่งปันกับพวกเขา</string>
+  <!--Text that is shown when unblocking an SMS contact-->
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">คนที่ถูกปิดกั้นจะไม่สามารถโทรหรือส่งข้อความหาคุณได้</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -638,6 +640,7 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">ใช้การแจ้งเตือนที่กำหนดเอง</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">เสียงแจ้งเตือน</string>
   <string name="CustomNotificationsDialogFragment__vibrate">สั่น</string>
+  <!--Button text for customizing notification options-->
   <string name="CustomNotificationsDialogFragment__call_settings">ตั้งค่าการโทร</string>
   <string name="CustomNotificationsDialogFragment__ringtone">เสียงเรียกเข้า</string>
   <string name="CustomNotificationsDialogFragment__enabled">เปิดใช้</string>
@@ -1007,7 +1010,9 @@
   <string name="MessageRequestBottomView_block">ปิดกั้น</string>
   <string name="MessageRequestBottomView_unblock">เลิกปิดกั้น</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">อนุญาตให้ %1$s ส่งข้อความและเห็นชื่อกับรูปภาพของคุณหรือไม่? พวกเขาจะไม่รู้ว่าคุณได้เห็นข้อความของพวกเขาแล้วจนกว่าคุณจะตอบรับ</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">อนุญาตให้ %1$s ส่งข้อความและเห็นชื่อกับรูปภาพของคุณหรือไม่? คุณจะไม่ได้รับข้อความใดจนกว่าคุณจะเลิกปิดกั้นพวกเขา</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">ต้องการสนทนาภายในกลุ่มนี้ต่อไปและเปิดเผยชื่อกับรูปภาพให้สมาชิกในกลุ่มเห็นหรือไม่?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">ปรับรุ่นกลุ่มนี้เพื่อเปิดใช้ความสามารถใหม่ เช่น @กล่าวถึง และระบบผู้ดูแล สมาชิกที่ไม่ได้เปิดเผยชื่อหรือรูปภาพในกลุ่มนี้จะได้รับคำเชิญให้เข้าร่วม</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">กลุ่มแบบเก่านี้ไม่สามารถใช้งานได้อีกต่อไป เนื่องจากมีขนาดใหญ่เกินไป ขนาดที่ใหญ่ที่สุดของกลุ่มคือ %1$d</string>
@@ -1336,6 +1341,9 @@
   <string name="ThreadRecord_file">แฟ้ม</string>
   <string name="ThreadRecord_video">วิดีโอ</string>
   <string name="ThreadRecord_chat_session_refreshed">ข้อมูลสนทนาถูกเรียกขึ้นใหม่</string>
+  <!--Displayed in the notification when the user is sent a gift-->
+  <!--Displayed in the notification when the user sends a gift-->
+  <!--Displayed in the notification when the user has opened a received gift-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">ปรับรุ่น Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal รุ่นใหม่มาแล้ว แตะเพื่อปรับรุ่น</string>
@@ -1592,6 +1600,7 @@
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
   <!--Label indicating that the story being replied to no longer exists-->
+  <!--Label for quoted gift-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">เลื่อนลงล่างสุด</string>
   <!--BubbleOptOutTooltip-->
@@ -2953,6 +2962,13 @@
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">ตัวเลือกขอบบน</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">ตัวเลือกขอบล่าง</string>
+  <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate_to_signal">บริจาคให้ Signal</string>
+  <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate">บริจาค</string>
+  <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_not_now">ไม่ใช่ตอนนี้</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">ปรับแต่งการตอบสนอง</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">แตะเพื่อเปลี่ยนอีโมจิ</string>
@@ -2960,11 +2976,6 @@
   <string name="EditReactionsFragment_save">บันทึก</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">จับคู่สีกับวอลล์เปเปอร์โดยอัตโนมัติ</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">ลากเพื่อเปลี่ยนทิศทางของการไล่สี</string>
-  <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">สีแชตใหม่</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">เราสลับเปลี่ยนสีแชตเพื่อให้คุณมีตัวเลือกมากขึ้น และทำให้แชตอ่านง่ายขึ้น</string>
-  <string name="ChatColorsMegaphone__appearance">หน้าตา</string>
-  <string name="ChatColorsMegaphone__not_now">ไม่ใช่ตอนนี้</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">เพิ่มภาพโปรไฟล์</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">เลือกหน้าตาและสีหรือปรับแต่งหน้าตาเริ่มต้นของคุณ</string>
@@ -3128,6 +3139,10 @@
   <!--Displayed as title when some generic error happens during gift badge sending-->
   <!--Displayed as message when some generic error happens during gift badge sending-->
   <string name="NetworkFailure__retry">ลองใหม่</string>
+  <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <!--Gift message view title-->
   <!--Gift message view expiry information-->
   <!--Gift badge redeem action label-->
@@ -3255,6 +3270,7 @@
   <!--Donation receipts amount title-->
   <!--Donation receipts thanks-->
   <!--Donation receipt type-->
+  <!--Donation reciepts screen empty state title-->
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">การสนทนา</string>
@@ -3387,7 +3403,6 @@
   <string name="StoryGroupReplyFragment__copied_to_clipboard">คัดลอกไปคลิปบอร์ดแล้ว</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
   <!--Displayed in toast after sending a direct reply-->
-  <!--Displayed in toast after sending a direct reaction-->
   <!--Displayed in the viewer when a story is no longer available-->
   <!--Displayed in the viewer when the network is not available-->
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
@@ -3417,6 +3432,7 @@
   <!--Text explaining that gift will be sent to the chosen recipient-->
   <!--Text explaining that this gift is a one time donation-->
   <!--Hint for add message input-->
+  <!--Displayed in the dialog while verifying the chosen recipient-->
   <!--Title for sheet shown when opening a redeemed gift-->
   <!--Title for sheet shown when opening a sent gift-->
   <!--Description for sheet shown when opening a redeemed gift-->
@@ -3433,5 +3449,7 @@
   <!--Expired gift sheet make a monthly donation button-->
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">ไม่ใช่ตอนนี้</string>
+  <!--Label under name for private stories-->
+  <!--Label under name for group stories-->
   <!--EOF-->
 </resources>

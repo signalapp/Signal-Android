@@ -88,7 +88,9 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Ja no rebreu cap més missatge ni novetat d\'aquest grup i els membres no us hi podran tornar a afegir.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Els membres del grup no us hi podran tornar a afegir.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Els membres del grup us podran afegir a aquest grup un altre cop.</string>
+  <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Us podreu enviar missatges i fer trucades, i compartireu el nom i la fotografia.</string>
+  <!--Text that is shown when unblocking an SMS contact-->
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Les persones blocades no us podran trucar ni enviar missatges.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Bloca rebre actualitzacions i notícies del Signal.</string>
@@ -728,6 +730,7 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">Usa notificacions personalitzades</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">So de notificació</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Vibra</string>
+  <!--Button text for customizing notification options-->
   <string name="CustomNotificationsDialogFragment__call_settings">Configuració de les trucades</string>
   <string name="CustomNotificationsDialogFragment__ringtone">To de trucada</string>
   <string name="CustomNotificationsDialogFragment__enabled">Activat</string>
@@ -1141,7 +1144,9 @@
   <string name="MessageRequestBottomView_block">Bloca</string>
   <string name="MessageRequestBottomView_unblock">Desbloca</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Voleu permetre que %1$s us envii missatges i compartir-hi el nom i la fotografia? No sabran que heu vist el missatge fins que no ho accepteu.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Voleu permetre que %1$s us envii missatges i compartir-hi el nom i la fotografia? No rebreu cap missatge fins que no el desbloqueu.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Voleu rebre actualitzacions i notícies de %1$s? No en rebreu cap actualització fins que no les desbloqueu.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Voleu continuar la conversa amb aquest grup i compartir-hi el nom i la fotografia?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Actualitzeu aquest grup i activeu-ne les funcions noves com ara les @mencions i els administradors. Els membres que no hi han compartit el nom o la fotografia es convidaran a afegir-s\'hi.</string>
@@ -1525,6 +1530,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ThreadRecord_file">Fitxer</string>
   <string name="ThreadRecord_video">Vídeo</string>
   <string name="ThreadRecord_chat_session_refreshed">S\'ha refrescat la sessió.</string>
+  <!--Displayed in the notification when the user is sent a gift-->
+  <!--Displayed in the notification when the user sends a gift-->
+  <!--Displayed in the notification when the user has opened a received gift-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Actualització del Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Hi ha disponible una versió nova del Signal. Toqueu per actualitzar-lo</string>
@@ -1801,6 +1809,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="QuoteView_your_story">Vós · Història</string>
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">Ja no està disponible</string>
+  <!--Label for quoted gift-->
+  <string name="QuoteView__gift">Regal</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Desplaça al final</string>
   <!--BubbleOptOutTooltip-->
@@ -3258,6 +3268,13 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Selector de la vora de dalt</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Selector de la vora de baix</string>
+  <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate_to_signal">Feu una donació a Signal</string>
+  <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate">Feu una donació</string>
+  <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_not_now">Ara no</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">Personalització de reaccions</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Feu un toc per substituir l\'emoticona</string>
@@ -3265,11 +3282,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="EditReactionsFragment_save">Desa</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Coincidència automàtica del color amb el fons</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Arrossegueu-ho per canviar la direcció del gradient.</string>
-  <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">Colors nous de converses</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Hem canviat els colors de les converses per oferir-vos més opcions i facilitar-ne la lectura.</string>
-  <string name="ChatColorsMegaphone__appearance">Aparença</string>
-  <string name="ChatColorsMegaphone__not_now">Ara no</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Afegiu una fotografia de perfil</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Trieu un aspecte i un color o personalitzeu les vostres inicials.</string>
@@ -3569,8 +3581,12 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">El vostre dispositiu no és compatible amb Google Pay, de manera que no us hi podeu subscriure per guanyar una insígnia. Podeu donar suport al Signal fent una donació al nostre lloc web.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Error de connexió. Comproveu la connexió i torneu-ho a provar.</string>
   <string name="NetworkFailure__retry">Torneu a provar-ho</string>
+  <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__recipient_verification_failed">La verificació del destinatari ha fallat.</string>
+  <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">La destinació no admet regals.</string>
+  <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Insígnia de regal</string>
   <!--Gift message view expiry information-->
@@ -3778,6 +3794,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Gràcies per donar suport al Signal. La vostra contribució ajuda a impulsar la missió de desenvolupar una tecnologia de privadesa de codi obert que protegeix la llibertat d\'expressió i permet una comunicació global segura per a milions de persones a tot el món. Si sou resident als Estats Units, conserveu aquest rebut per als registres fiscals. Signal Technology Foundation és una organització sense ànim de lucre exempta d\'impostos als Estats Units segons la secció 501c3 de l\'Internal Revenue Code. El nostre número d\'identificació fiscal federal és el 82–4506840.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
+  <!--Donation reciepts screen empty state title-->
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Converses</string>
@@ -4007,9 +4024,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--Displayed in story caption when content is longer than 5 lines-->
   <string name="StoryViewerPageFragment__see_more">Més…</string>
   <!--Displayed in toast after sending a direct reply-->
-  <string name="StoryDirectReplyDialogFragment__reply_sent">Resposta enviada</string>
-  <!--Displayed in toast after sending a direct reaction-->
-  <string name="StoryDirectReplyDialogFragment__reaction_sent">Reacció enviada</string>
   <!--Displayed in the viewer when a story is no longer available-->
   <string name="StorySlateView__this_story_is_no_longer_available">Aquesta història ja no està disponible.</string>
   <!--Displayed in the viewer when the network is not available-->
@@ -4062,6 +4076,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="GiftFlowConfirmationFragment__one_time_donation">Donació única</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Afegiu-hi un missatge</string>
+  <!--Displayed in the dialog while verifying the chosen recipient-->
   <!--Title for sheet shown when opening a redeemed gift-->
   <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s us ha enviat un regal</string>
   <!--Title for sheet shown when opening a sent gift-->
@@ -4090,5 +4105,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Feu una donació mensual</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ara no</string>
+  <!--Label under name for private stories-->
+  <!--Label under name for group stories-->
   <!--EOF-->
 </resources>

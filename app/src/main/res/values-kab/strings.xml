@@ -2689,8 +2689,8 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="EditReactionsFragment__reset">Wennez</string>
   <string name="EditReactionsFragment_save">Sekles</string>
   <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__appearance">Askan</string>
-  <string name="ChatColorsMegaphone__not_now">Mačči tura</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatColorsMegaphone__appearance">Askan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatColorsMegaphone__not_now">Mačči tura</string> -->
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__not_now">Mačči tura</string>
   <!--KeyboardPagerFragment-->

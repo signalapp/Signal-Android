@@ -2673,8 +2673,8 @@
   <string name="EditReactionsFragment__reset">ରିସେଟ୍ କରନ୍ତୁ</string>
   <string name="EditReactionsFragment_save">ସଞ୍ଚୟ କରନ୍ତୁ</string>
   <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__appearance">ରୂପ</string>
-  <string name="ChatColorsMegaphone__not_now">ଏବେ ନୁହେଁ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatColorsMegaphone__appearance">ରୂପ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatColorsMegaphone__not_now">ଏବେ ନୁହେଁ</string> -->
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__not_now">ଏବେ ନୁହେଁ</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">ଫଟୋ ଯୋଡ଼ନ୍ତୁ</string>

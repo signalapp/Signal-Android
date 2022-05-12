@@ -88,7 +88,9 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Повеќе нема да добивате пораки од оваа група и членовите нема да можат да Ве додадат во оваа група повторно.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Членовите на групата нема да можат повторно да Ве додадат во оваа група.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Членовите на групата ќе можат повторно да Ве додадат во оваа група.</string>
+  <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Ќе можете да испраќате пораки и да се јавувате и Вашето име и слика ќе бидат споделени со нив.</string>
+  <!--Text that is shown when unblocking an SMS contact-->
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Блокираните луѓе нема да можат да Ви се јават и да Ви испраќаат пораки.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Блокирај вести од Signal.</string>
@@ -728,6 +730,7 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">Користи прилагодени известувања</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Звук за известувања</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Вибрации</string>
+  <!--Button text for customizing notification options-->
   <string name="CustomNotificationsDialogFragment__call_settings">Поставувања за повици</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Звук за ѕвонење</string>
   <string name="CustomNotificationsDialogFragment__enabled">Овозможено</string>
@@ -1141,7 +1144,9 @@
   <string name="MessageRequestBottomView_block">Блокирај</string>
   <string name="MessageRequestBottomView_unblock">Одблокирај</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Дали дозволувате %1$s да Ви испраќа пораки и да го гледа Вашето име и слика? Контактот нема да знае дека ја имате видено оваа порака додека не прифатите.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Дали дозволувате %1$s да Ви испраќа пораки и да го гледа Вашето име и слика? Нема да примате пораки додека не го/ја одблокирате.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Дали сакате да добивате ажурирања и новости од %1$s? Нема да примате пораки додека не го/ја одблокирате.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Дали сакате да го продолжите разговорот во оваа група и да го споделите Вашето име и слика со нејзините членови?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Надградете ја оваа група за да активирате нови опции како @спомнувања и администратори. Членови кои не го споделиле нивното име и слика со оваа група, ќе бидат поканети да се приклучат.</string>
@@ -1528,6 +1533,9 @@
   <string name="ThreadRecord_file">Датотека</string>
   <string name="ThreadRecord_video">Видео</string>
   <string name="ThreadRecord_chat_session_refreshed">Сесијата со разговорот е освежена</string>
+  <!--Displayed in the notification when the user is sent a gift-->
+  <!--Displayed in the notification when the user sends a gift-->
+  <!--Displayed in the notification when the user has opened a received gift-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal ажурирање</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Достапна е нова верзија на Signal, допрете за ажурирање</string>
@@ -1804,6 +1812,8 @@
   <string name="QuoteView_your_story">Вие · Приказна</string>
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">Повеќе не е достапна</string>
+  <!--Label for quoted gift-->
+  <string name="QuoteView__gift">Подарок</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Оди до дното</string>
   <!--BubbleOptOutTooltip-->
@@ -3260,6 +3270,13 @@
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Избирач на горниот раб</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Избирач на долниот раб</string>
+  <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate_to_signal">Донирај на Signal</string>
+  <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate">Донирај</string>
+  <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_not_now">Не сега</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">Прилагоди реакции</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Допрете за замена на емоџи</string>
@@ -3267,11 +3284,6 @@
   <string name="EditReactionsFragment_save">Зачувај</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Автоматско совпаѓање со бојата на позадината</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Повлечете за да ја смените насоката на градиентот</string>
-  <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">Нови бои за разговори</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Ги сменивме боите на разговорот за да Ви дадеме повеќе опции и да ги направиме разговорите полесни за читање.</string>
-  <string name="ChatColorsMegaphone__appearance">Изглед</string>
-  <string name="ChatColorsMegaphone__not_now">Не сега</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Додајте слика на профилот</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Изберете изглед и боја или прилагодете ги Вашите иницијали.</string>
@@ -3559,6 +3571,10 @@
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Вашиот уред не поддржува Google Pay, затоа не можете да се претплатите за да добиете беџ. Сѐ уште можете да го поддржите Signal преку донација на нашиот веб сајт.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Грешка во мрежата. Проверете ја Вашата интернет врска и обидете се повторно.</string>
   <string name="NetworkFailure__retry">Обидете се повторно</string>
+  <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <!--Gift message view title-->
   <!--Gift message view expiry information-->
   <!--Gift badge redeem action label-->
@@ -3758,6 +3774,7 @@
   <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Ви благодариме што го поддржувате Signal. Вашиот придонес помага за развивање на технологија за приватност со отворен код која го штити слободното изразување и овозможува безбедна глобална комуникација за милиони луѓе низ целиот свет. Ако сте жител на Соединетите Американски Држави, Ве молиме чувајте ја оваа потврда за Вашата даночна евиденција. Signal Technology Foundation е непрофитна организација која е ослободена од данок во Соединетите Американски Држави според член 501c3 од законот за внатрешни приходи (Internal Revenue Code). Нашата федерална даночна идентификација е 82–4506840.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
+  <!--Donation reciepts screen empty state title-->
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Разговори</string>
@@ -3986,9 +4003,6 @@
   <!--Displayed in story caption when content is longer than 5 lines-->
   <string name="StoryViewerPageFragment__see_more">… Види повеќе</string>
   <!--Displayed in toast after sending a direct reply-->
-  <string name="StoryDirectReplyDialogFragment__reply_sent">Одговорот е испратен</string>
-  <!--Displayed in toast after sending a direct reaction-->
-  <string name="StoryDirectReplyDialogFragment__reaction_sent">Реакцијата е испратена</string>
   <!--Displayed in the viewer when a story is no longer available-->
   <string name="StorySlateView__this_story_is_no_longer_available">Оваа приказна повеќе не е достапна.</string>
   <!--Displayed in the viewer when the network is not available-->
@@ -4037,6 +4051,7 @@
   <string name="GiftFlowConfirmationFragment__one_time_donation">Еднократна донација</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Додај порака</string>
+  <!--Displayed in the dialog while verifying the chosen recipient-->
   <!--Title for sheet shown when opening a redeemed gift-->
   <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s Ви испрати подарок</string>
   <!--Title for sheet shown when opening a sent gift-->
@@ -4058,5 +4073,7 @@
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Донирајте месечно</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Не сега</string>
+  <!--Label under name for private stories-->
+  <!--Label under name for group stories-->
   <!--EOF-->
 </resources>

@@ -87,7 +87,9 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Bạn sẽ không còn nhận tin nhắn hay cập nhật từ nhóm này, và thành viên nhóm sẽ không thể thêm lại bạn vào nhóm.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Thành viên nhóm sẽ không thể thêm lại bạn vào nhóm.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Các thành viên trong nhóm có thể thêm lại bạn vào nhóm.</string>
+  <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Các bạn sẽ có thể nhắn tin và gọi cho nhau, đồng thời có thể thấy tên và ảnh đại diện của nhau.</string>
+  <!--Text that is shown when unblocking an SMS contact-->
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Người dùng bị chặn sẽ không thể gọi hoặc gửi tin nhắn cho bạn.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -675,6 +677,7 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">Sử dụng thông báo tùy chỉnh</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Âm báo</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Rung</string>
+  <!--Button text for customizing notification options-->
   <string name="CustomNotificationsDialogFragment__call_settings">Cài đặt cuộc gọi</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Nhạc chuông</string>
   <string name="CustomNotificationsDialogFragment__enabled">Đã bật</string>
@@ -1059,7 +1062,9 @@
   <string name="MessageRequestBottomView_block">Chặn</string>
   <string name="MessageRequestBottomView_unblock">Bỏ chặn</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Cho phép %1$s nhắn tin với bạn, đồng thời chia sẻ tên và ảnh đại diện của bạn với họ? Họ sẽ không biết là bạn đã đọc tin nhắn cho tới khi bạn chấp nhận.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Cho phép %1$s nhắn tin với bạn, đồng thời chia sẻ tên và ảnh đại diện của bạn với họ? Bạn sẽ không nhận thêm tin nhắn mới nếu bạn cho tới khi bạn bỏ chặn họ.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Tiếp tục cuộc trò chuyện với nhóm này và chia sẻ tên và ảnh đại diện của bạn với các thành viên?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Nâng cấp nhóm này để kích hoạt các tính năng mới như @nhắc tên và quản trị viên. Các thành viên chưa chia sẻ tên hoặc ảnh đại diện trong nhóm này sẽ được mời tham gia. </string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Nhóm Cũ này không thể được sử dụng vì nhóm quá lớn. Kích cỡ tối đa của nhóm là %1$d.</string>
@@ -1414,6 +1419,9 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ThreadRecord_file">Tệp</string>
   <string name="ThreadRecord_video">Video</string>
   <string name="ThreadRecord_chat_session_refreshed">Đã làm mới phiên trò chuyện</string>
+  <!--Displayed in the notification when the user is sent a gift-->
+  <!--Displayed in the notification when the user sends a gift-->
+  <!--Displayed in the notification when the user has opened a received gift-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Cập nhật Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Đã có phiên bản mới của Signal, nhấn để cập nhật</string>
@@ -1674,6 +1682,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
   <!--Label indicating that the story being replied to no longer exists-->
+  <!--Label for quoted gift-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Kéo xuống dưới cùng</string>
   <!--BubbleOptOutTooltip-->
@@ -3098,6 +3107,13 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Bảng chọn cạnh trên cùng</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Bảng chọn cạnh dưới cùng</string>
+  <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate_to_signal">Ủng hộ Signal</string>
+  <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate">Ủng hộ</string>
+  <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_not_now">Để sau</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">Tuỳ chỉnh phản ứng</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Nhấn để thay thế emoji</string>
@@ -3105,11 +3121,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="EditReactionsFragment_save">Lưu</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Tự động tương thích màu với màn hình nền</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Kéo để thay đổi chiều hướng của nhiệt độ màu</string>
-  <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">Màu Cuộc trò chuyện Mới</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Chúng tôi đã thay đổi màu cuộc trò chuyện để cho bạn nhiều lựa chọn hơn và giúp tin nhắn dễ đọc hơn.</string>
-  <string name="ChatColorsMegaphone__appearance">Diện mạo</string>
-  <string name="ChatColorsMegaphone__not_now">Để sau</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Thêm ảnh đại diện</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Chọn định dạng và màu sắc hoặc tùy chỉnh chữ ký của bạn.</string>
@@ -3379,6 +3390,10 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Thiết bị của bạn không hổ trợ Google Pay, vì vậy bạn không thể đăng ký quyên góp và nhận huy hiệu trên thiết bị này. Bạn vẫn có thể đống góp cho Signal trên trang Web của chúng tôi.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Lỗi kết nối: Hãy kiểm tra kết nối của bạn và thử lại.</string>
   <string name="NetworkFailure__retry">Thử lại</string>
+  <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <!--Gift message view title-->
   <!--Gift message view expiry information-->
   <!--Gift badge redeem action label-->
@@ -3552,6 +3567,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--Donation receipts amount title-->
   <!--Donation receipts thanks-->
   <!--Donation receipt type-->
+  <!--Donation reciepts screen empty state title-->
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Trò chuyện</string>
@@ -3685,7 +3701,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="StoryGroupReplyFragment__copied_to_clipboard">Đã sao chép vào clipboard</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
   <!--Displayed in toast after sending a direct reply-->
-  <!--Displayed in toast after sending a direct reaction-->
   <!--Displayed in the viewer when a story is no longer available-->
   <!--Displayed in the viewer when the network is not available-->
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
@@ -3717,6 +3732,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--Text explaining that this gift is a one time donation-->
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Thêm vào một tin nhắn</string>
+  <!--Displayed in the dialog while verifying the chosen recipient-->
   <!--Title for sheet shown when opening a redeemed gift-->
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Cảm ơn bạn đã đống góp!</string>
@@ -3735,5 +3751,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--Expired gift sheet make a monthly donation button-->
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Để sau</string>
+  <!--Label under name for private stories-->
+  <!--Label under name for group stories-->
   <!--EOF-->
 </resources>

@@ -88,7 +88,9 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">سىز ئەمدى بۇ گۇرۇپپىدىن كەلگەن ئۇچۇر ياكى يېڭىلانمىلارنى تاپشۇرۇۋالمايسىز، ھەمدە ئەزالارمۇ سىزنى بۇ گۇرۇپپىغا ئەمدى قايتا قوشالمايدۇ.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">گۇرۇپپا ئەزالىرى سىزنى بۇ گۇرۇپپىغا ئەمدى قايتا قوشالمايدۇ.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">گۇرۇپپا ئەزالىرى سىزنى بۇ گۇرۇپپىغا قايتا قوشالايدۇ.</string>
+  <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">ئۇچۇر يوللىيالايسىز ۋە بىر-بىرىڭلارغا تېلېفون قىلالايسىز، ئىسمىڭىز ۋە سۈرىتىڭىز ئۇلار بىلەن ھەمبەھىرلىنىدۇ.</string>
+  <!--Text that is shown when unblocking an SMS contact-->
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">چەكلەنگەن كىشىلەر سىزگە تېلېفون قىلالمايدۇ ياكى ئۇچۇر ئەۋەتەلمەيدۇ.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal يېڭىلاش ۋە خەۋەرلىرىنى توسىدۇ.</string>
@@ -674,6 +676,7 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">ئىختىيارىي ئۇقتۇرۇش ئىشلىتىدۇ</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">ئۇقتۇرۇش ئاۋازى</string>
   <string name="CustomNotificationsDialogFragment__vibrate">تىترەت</string>
+  <!--Button text for customizing notification options-->
   <string name="CustomNotificationsDialogFragment__call_settings">چاقىرىش تەڭشىكى</string>
   <string name="CustomNotificationsDialogFragment__ringtone">قوڭغۇراق ئاۋازى</string>
   <string name="CustomNotificationsDialogFragment__enabled">ئوچۇق</string>
@@ -1063,7 +1066,9 @@
   <string name="MessageRequestBottomView_block">چەكلەش</string>
   <string name="MessageRequestBottomView_unblock">قالدۇرۇش</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s نىڭ سىزگە ئۇچۇر يوللاپ ھەمدە ئات ۋە سۈرەتلىرىڭىزنى ھەمبەھىرلەشكە يول قويامسىز؟ سىز قوشۇلۇشتىن ئىلگىرى ئۇلار سىزنىڭ ئۇچۇرنى كۆرگىنىڭىزنى بىلمەيدۇ.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s نىڭ سىزگە ئۇچۇر يوللاپ ھەمدە ئات ۋە سۈرەتلىرىڭىزنى ھەمبەھىرلەشكە يول قويامسىز؟ سىز ئۇلارنى چەكلىۋېتىشتىن ئىلگىرى ھېچقانداق ئۇچۇر تاپشۇرۇۋالمايسىز.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">بۇ گۇرۇپپا بىلەن بولغان سۆھبىتىڭىزنى داۋاملاشتۇرامسىز ھەمدە ئىسمىڭىز ۋە سۈرىتىڭىزنى گۇرۇپپا ئەزالىرى بىلەن ھەمبەھىرلەمسىز؟</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">يېڭى ئىقتىدارلاردىن @ئاتاش ۋە باشقۇرۇشنى ئاكتىپلاش ئۈچۈن بۇ گۇرۇپپىنى يۈكسەلتىڭ. بۇ گۇرۇپپىدا ئات ۋە سۈرەتنى ھەمبەھىرلىمىگەن ئەزالارغا گۇرۇپپىغا قوشۇلۇش تەكلىپى يوللىنىدۇ.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">كونا گۇرۇپپىدا ئادەم بەك كۆپ بولغانلىقتىن ئىشلەتكىلى بولمايدۇ. گۇرۇپپىدىكى ئەزا سانىنىڭ چېكى %1$d.</string>
@@ -1427,6 +1432,9 @@
   <string name="ThreadRecord_file">ھۆججەت</string>
   <string name="ThreadRecord_video">سىن</string>
   <string name="ThreadRecord_chat_session_refreshed">سۆھبەت يېڭىلاندى</string>
+  <!--Displayed in the notification when the user is sent a gift-->
+  <!--Displayed in the notification when the user sends a gift-->
+  <!--Displayed in the notification when the user has opened a received gift-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal يېڭىلاش</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal نىڭ يېڭى نەشرى باركەن، چېكىپ يېڭىلاڭ</string>
@@ -1689,6 +1697,7 @@
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
   <!--Label indicating that the story being replied to no longer exists-->
+  <!--Label for quoted gift-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">ئەڭ ئاستىغا سىيرى</string>
   <!--BubbleOptOutTooltip-->
@@ -3104,6 +3113,13 @@
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">ئۈستى قىر تاللىغۇچ</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">ئاستى قىر تاللىغۇچ</string>
+  <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate_to_signal">‫Signal غا ئىئانە قىلىڭ</string>
+  <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate">ئىئانە قىلىڭ</string>
+  <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_not_now">ھازىر ئەمەس</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">ئىختىيارىچە ئىنكاس</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">چېكىلسە چىراي بەلگىنى ئالماشتۇرىدۇ</string>
@@ -3111,11 +3127,6 @@
   <string name="EditReactionsFragment_save">ساقلا</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">تام قەغەز رەڭگىگە ئۆزلۈكىدىن ماسلىشىدۇ</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">گىرادۇس يۆنىلىشىنى ئۆزگەرتىش ئۈچۈن سۆرەڭ</string>
-  <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">يېڭى سۆھبەت رەڭگى</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">سۆھبەت رەڭگىنى ئۆزگەرتىش ئۈچۈن سىزگە تېخىمۇ كۆپ تاللاش بېرىپ ھەمدە سۆھبەت ئوقۇشنى تېخىمۇ قۇلايلاشتۇردۇق.</string>
-  <string name="ChatColorsMegaphone__appearance">كۆرۈنۈش</string>
-  <string name="ChatColorsMegaphone__not_now">ھازىر ئەمەس</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">تەرجىمھال باش سۈرىتى قوش</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">كۆرۈنۈش ۋە رەڭنى تاللاڭ ياكى قىسقارتىلمىسىنى ئىختىيارىلاشتۇرۇڭ</string>
@@ -3328,6 +3339,10 @@
   <!--Displayed as title when some generic error happens during gift badge sending-->
   <!--Displayed as message when some generic error happens during gift badge sending-->
   <string name="NetworkFailure__retry">قايتا سىنا</string>
+  <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <!--Gift message view title-->
   <!--Gift message view expiry information-->
   <!--Gift badge redeem action label-->
@@ -3455,6 +3470,7 @@
   <!--Donation receipts amount title-->
   <!--Donation receipts thanks-->
   <!--Donation receipt type-->
+  <!--Donation reciepts screen empty state title-->
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">سۆھبەتلەر</string>
@@ -3587,7 +3603,6 @@
   <string name="StoryGroupReplyFragment__copied_to_clipboard">چاپلاش تاختىسىغا كۆچۈردى</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
   <!--Displayed in toast after sending a direct reply-->
-  <!--Displayed in toast after sending a direct reaction-->
   <!--Displayed in the viewer when a story is no longer available-->
   <!--Displayed in the viewer when the network is not available-->
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
@@ -3620,6 +3635,7 @@
   <!--Text explaining that this gift is a one time donation-->
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">بىز ئۇچۇر قوش</string>
+  <!--Displayed in the dialog while verifying the chosen recipient-->
   <!--Title for sheet shown when opening a redeemed gift-->
   <!--Title for sheet shown when opening a sent gift-->
   <!--Description for sheet shown when opening a redeemed gift-->
@@ -3636,5 +3652,7 @@
   <!--Expired gift sheet make a monthly donation button-->
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">ھازىر ئەمەس</string>
+  <!--Label under name for private stories-->
+  <!--Label under name for group stories-->
   <!--EOF-->
 </resources>

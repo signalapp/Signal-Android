@@ -89,8 +89,12 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Nećete više primati poruke i obavještenja iz ove grupe, niti će Vas njeni članovi moći ponovo u grupu dodati.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Članovi grupe neće Vas moći ponovo uvrstiti u grupu.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Članovi grupe moći će Vas ponovo uvrstiti u grupu.</string>
+  <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Moći ćete razmjenjivati poruke i pozive, a sa sagovornikom će biti podijeljeni i Vaše ime i slika.</string>
+  <!--Text that is shown when unblocking an SMS contact-->
+  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Moći ćete razmjenjivati poruke.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokirane osobe neće Vas više moći zvati niti Vam slati poruke.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Blokirane osobe više neće moći slati Vam poruke.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blokiraj primanje ažuriranja Signala i novosti.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -769,6 +773,9 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">Koristi ručno podešena obavještenja</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Zvuk obavještenja</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Vibracija</string>
+  <!--Button text for customizing notification options-->
+  <string name="CustomNotificationsDialogFragment__customize">Prilagodi</string>
+  <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Promijeni zvuk i vibraciju</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Pozivi</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Zvono</string>
   <string name="CustomNotificationsDialogFragment__enabled">Omogućeno</string>
@@ -1201,7 +1208,10 @@
   <string name="MessageRequestBottomView_block">Blokiraj</string>
   <string name="MessageRequestBottomView_unblock">Deblokiraj</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Dopustiti da Vam %1$s šalje poruke i vidi Vaše ime i sliku? On ili ona neće znati da ste vidjeli njihove poruke dok ne prihvatite.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Dopustiti da Vam %1$s šalje poruke i vidi Vaše ime i sliku? Nećete primati poruke od njega ili nje dok ih ne prestanete blokirati.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Dopustiti da Vam %1$s šalje poruke? Nećete primati poruke od njega ili nje dok ih ne prestanete blokirati.</string>
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Primati ažuriranja i novosti od %1$s? Nećete primati nikakve novosti dok ovu osobu ne deblokirate.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Nastaviti konverzaciju s ovom grupom i dopustiti njenim članovima da vide Vaše ime i sliku?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Nadogradite ovu grupu da biste aktivirali mogućnosti poput @spomena i administracije grupe. Članovi koji nisu podijelili svoje ime ili sliku s grupom bit će pozvani da se pridruže.</string>
@@ -1604,6 +1614,12 @@
   <string name="ThreadRecord_file">Datoteka</string>
   <string name="ThreadRecord_video">Video</string>
   <string name="ThreadRecord_chat_session_refreshed">Konverzacija je osvježena</string>
+  <!--Displayed in the notification when the user is sent a gift-->
+  <string name="ThreadRecord__you_received_a_gift">Dobili ste poklon</string>
+  <!--Displayed in the notification when the user sends a gift-->
+  <string name="ThreadRecord__you_sent_a_gift">Poslali ste poklon</string>
+  <!--Displayed in the notification when the user has opened a received gift-->
+  <string name="ThreadRecord__you_redeemed_a_gift_badge">Prihvatili ste značku na poklon</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Nova verzija Signala</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Dostupna je nova verzija Signala, pritisnite da ažurirate</string>
@@ -1885,6 +1901,8 @@
   <string name="QuoteView_your_story">Vi · Priča</string>
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">Više nije dostupno</string>
+  <!--Label for quoted gift-->
+  <string name="QuoteView__gift">Poklon</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Spusti do dna</string>
   <!--BubbleOptOutTooltip-->
@@ -2193,6 +2211,8 @@
   <string name="preferences__led_color">LED boja</string>
   <string name="preferences__led_color_unknown">Nepoznato</string>
   <string name="preferences__pref_led_blink_title">LED treptanja</string>
+  <string name="preferences__customize">Prilagodi</string>
+  <string name="preferences__change_sound_and_vibration">Promijeni zvuk i vibraciju</string>
   <string name="preferences__sound">Zvuk</string>
   <string name="preferences__silent">Stišan</string>
   <string name="preferences__default">Standardno</string>
@@ -3368,6 +3388,14 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Birač za vrh</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Birač za dno</string>
+  <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate_to_signal">Donirajte za Signal</string>
+  <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal postoji zahvaljujući osobama poput Vas. Donirajte mjesečno i primite značku.</string>
+  <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate">Doniraj</string>
+  <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_not_now">Ne sada</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">Prilagodi reakcije</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Pritisnite da biste zamijenili emoji-sličicu</string>
@@ -3375,11 +3403,6 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="EditReactionsFragment_save">Pohrani</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Automatski se slaže s bojom pozadine</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Prevucite da biste promijenili pravac prijelaza boje</string>
-  <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">Nove boje poruka</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Zamijenili smo pozicije boja u porukama da bismo Vam dali više mogućnosti i tekst učinili lakšim za čitanje.</string>
-  <string name="ChatColorsMegaphone__appearance">Izgled</string>
-  <string name="ChatColorsMegaphone__not_now">Ne sada</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Postavite fotografiju profila</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Izaberite izgled i boju ili izmijenite svoje inicijale.</string>
@@ -3683,8 +3706,14 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Vaš uređaj ne podržava Google Pay i zato se ne možete pretplatiti i zaslužiti značku. I dalje možete podržati Signal kroz donaciju na našoj internet-stranici.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Mrežna greška. Provjerite svoju internet-konekciju i pokušajte ponovo.</string>
   <string name="NetworkFailure__retry">Pokušaj</string>
+  <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__recipient_verification_failed">Ovjera primaoca nije uspjela.</string>
+  <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">Cilj ne podržava poklanjanje.</string>
+  <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__could_not_verify_recipient">Neuspjela provjera primaoca.</string>
+  <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Molimo provjerite svoju internet-konekciju i pokušajte ponovo.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Značka poklon</string>
   <!--Gift message view expiry information-->
@@ -3893,6 +3922,8 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Hvala Vam za podršku Signalu. Vaš doprinos pomaže u održavanju misije kreiranja tehnologije otvorenog kōda za zaštitu privatnosti i slobode izražavanja, i omogućava sigurnu komunikaciju na globalnom nivou za milione ljudi širom svijeta. Ako živite u Sjedinjenim Američkim Državama, sačuvajte ovu priznanicu za svoju poresku prijavu. Signal Technology Foundation je oslobođena poreza i registrovana je kao neprofitna organizacija u Sjedinjenim Američkim Državama pod stavkom 501c3 zakon o oporezivanju (Internal Revenue Code). Naš federalni poreski broj glasi: 82–4506840.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s – %2$s</string>
+  <!--Donation reciepts screen empty state title-->
+  <string name="DonationReceiptListFragment__no_receipts">Nema potvrda</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Poruke</string>
@@ -4127,9 +4158,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
   <string name="StoryViewerPageFragment__see_more">… Više</string>
   <!--Displayed in toast after sending a direct reply-->
-  <string name="StoryDirectReplyDialogFragment__reply_sent">Odgovor poslan</string>
-  <!--Displayed in toast after sending a direct reaction-->
-  <string name="StoryDirectReplyDialogFragment__reaction_sent">Reakcija poslana</string>
+  <string name="StoryDirectReplyDialogFragment__sending_reply">Šaljem odgovor…</string>
   <!--Displayed in the viewer when a story is no longer available-->
   <string name="StorySlateView__this_story_is_no_longer_available">Ova priča više nije dostupna.</string>
   <!--Displayed in the viewer when the network is not available-->
@@ -4182,6 +4211,8 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="GiftFlowConfirmationFragment__one_time_donation">Jednokratna donacija</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Napiši poruku</string>
+  <!--Displayed in the dialog while verifying the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__verifying_recipient">Provjeravam primaoca…</string>
   <!--Title for sheet shown when opening a redeemed gift-->
   <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s poslao/la Vam je poklon</string>
   <!--Title for sheet shown when opening a sent gift-->
@@ -4210,5 +4241,17 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Dajte mjesečnu donaciju</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ne sada</string>
+  <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Privatna priča · %1$d posmatrač</item>
+    <item quantity="few">Privatna priča · %1$d posmatrača</item>
+    <item quantity="other">Privatna priča · %1$d posmatrača</item>
+  </plurals>
+  <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Grupna priča · %1$d posmatrač</item>
+    <item quantity="few">Grupna priča · %1$d posmatrača</item>
+    <item quantity="other">Grupna priča · %1$d posmatrača</item>
+  </plurals>
   <!--EOF-->
 </resources>

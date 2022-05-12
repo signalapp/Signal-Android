@@ -2679,8 +2679,8 @@
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">వాల్‌పేపర్‌కు రంగును స్వయంచాలకంగా సరిపోల్చుతుంది</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">ప్రవణత దిశను మార్చడానికి లాగండి</string>
   <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__appearance">స్వరూపం</string>
-  <string name="ChatColorsMegaphone__not_now">ఇప్పుడు కాదు</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatColorsMegaphone__appearance">స్వరూపం</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatColorsMegaphone__not_now">ఇప్పుడు కాదు</string> -->
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__not_now">ఇప్పుడు కాదు</string>
   <!--KeyboardPagerFragment-->

@@ -90,7 +90,9 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Do silst net langer berjochten of meldingen fan dizze groep ûntfange, en de leden kinne dy net opnij oan de groep tafoegje.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Groepsleden sille dy net langer oan dizze groep tafoegje kinne.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Groepsleden sille dy wer oan dizze groep tafoegje kinne.</string>
+  <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Jimme sille wer berjochten nei inoar ferstjoere kinne, belje kinne, en dyn profylnamme, -foto en -omskriuwing sille foar de oar wer bywurke wurde.</string>
+  <!--Text that is shown when unblocking an SMS contact-->
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokkearre persoanen kinne net sjen dat se blokkearre binne: it liket foar harren as oft dyn telefoan oer giet en as oft berjochten ôflevere wurde. Dy aktuele profylnamme en -foto bliuwe foar blokkearre persoanen sichtber, mar wurde net bywurke asto in nije foto of namme ynstelst.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal-fernijingen en -nijs blokkearje.</string>
@@ -730,6 +732,7 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">Oanpaste meldingen brûke</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Meldingslûd</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Trille</string>
+  <!--Button text for customizing notification options-->
   <string name="CustomNotificationsDialogFragment__call_settings">Opropynstellingen</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Oproplûd</string>
   <string name="CustomNotificationsDialogFragment__enabled">Ynskeakele</string>
@@ -1137,7 +1140,9 @@
   <string name="MessageRequestBottomView_block">Blokkearje</string>
   <string name="MessageRequestBottomView_unblock">Deblokkearje</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Wolsto berjochten fan %1$s ûntfange, en stiesto ta dat dyn profylnamme, -foto en -omskriuwing te sjen is? Asto lêsbefêstigingen ynskeakele hast kin de oar dy noch net sjen oant datsto de útnûging akseptearre hast.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Wolsto berjochten fan %1$s ûntfange, en stiesto ta dat dyn profylnamme, -foto en -omskriuwing te sjen is? Do silst gjin berjochten ûntfange en dyn profyl sil foar dyjinge net mear bywurke wurde oant datsto dyjinge deblokkearre hast.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Fernijingen en nijs ûntfange fan %1$s? Do silst gjin fernijingen krije oant do se deblokkearrest.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Wolsto dyn profylnamme, -foto en -omskriuwing foar dizze groep sichtber meitsje om dyn petear mei de groep trochsette te kinnen?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Set dizze groep om om nije funksjonaliteiten brûke te kinnen, lykas  @fermeldingen en behearders. Groepsleden dy’t harren profylnamme, -foto en -omskriuwing net foar dizze groep sichtber makke hawwe, sille útnûge wurde om ta dizze groep ta te treden.</string>
@@ -1515,6 +1520,9 @@
   <string name="ThreadRecord_file">Bestân</string>
   <string name="ThreadRecord_video">Fideo</string>
   <string name="ThreadRecord_chat_session_refreshed">Petearsesje fernijd</string>
+  <!--Displayed in the notification when the user is sent a gift-->
+  <!--Displayed in the notification when the user sends a gift-->
+  <!--Displayed in the notification when the user has opened a received gift-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Nije ferzje fan Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Der is in nije ferzje fan Signal beskikber. Tik hjir om by te wurkjen</string>
@@ -1782,6 +1790,7 @@
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
   <!--Label indicating that the story being replied to no longer exists-->
+  <!--Label for quoted gift-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Skow nei ûnderen ta</string>
   <!--BubbleOptOutTooltip-->
@@ -3232,6 +3241,12 @@
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Skowknop foar de bopperâne</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Skowknop foar de ûnderrâne</string>
+  <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate_to_signal">Oan Signal donearje</string>
+  <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
+  <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_not_now">No net</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">Reaksje-balke personalisearje</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Tik op in emoji om dy te ferfangen</string>
@@ -3239,11 +3254,6 @@
   <string name="EditReactionsFragment_save">Opslaan</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">‘Auto’ betsjut dat der automatysk in kleur keazen wurdt dy’t past by de eftergrûn</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Sleep om de rjochting fan it ferrin te wizigjen</string>
-  <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">Nije petearkleuren</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Wy hawwe de kleuren fan berjochtebubbels omwiksele, sadatsto mear mooglikheden hast om sels kleuren te kiezen en sadat petearen makliker te lêzen binne.</string>
-  <string name="ChatColorsMegaphone__appearance">Uterlik</string>
-  <string name="ChatColorsMegaphone__not_now">No net</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Profylfoto tafoegje</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Meitsje dysels werkenber troch in profylfoto yn te stellen of pas de kleur of tekst oan.</string>
@@ -3518,6 +3528,10 @@
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Dyn apparaat biedt gjin stipe foar Google Play, dêrom kinsto fia de app gjin moanlikse donaasje meitsje en kinsto gjin badge fertsjinje. Do kinst noch wel donearje fia de Signal-website.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Netwurkflater. Kontrolearje dat dyn apparaat mei it ynternet ferbûn is en probearje it opnij.</string>
   <string name="NetworkFailure__retry">Opnij probearje</string>
+  <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <!--Gift message view title-->
   <!--Gift message view expiry information-->
   <!--Gift badge redeem action label-->
@@ -3706,6 +3720,7 @@
   <!--Donation receipts thanks-->
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
+  <!--Donation reciepts screen empty state title-->
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Petearen</string>
@@ -3853,7 +3868,6 @@
   <string name="StoryGroupReplyFragment__copied_to_clipboard">Kopiearre nei klamboerd</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
   <!--Displayed in toast after sending a direct reply-->
-  <!--Displayed in toast after sending a direct reaction-->
   <!--Displayed in the viewer when a story is no longer available-->
   <!--Displayed in the viewer when the network is not available-->
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
@@ -3887,6 +3901,7 @@
   <!--Text explaining that this gift is a one time donation-->
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">In berjocht tafoegje</string>
+  <!--Displayed in the dialog while verifying the chosen recipient-->
   <!--Title for sheet shown when opening a redeemed gift-->
   <!--Title for sheet shown when opening a sent gift-->
   <!--Description for sheet shown when opening a redeemed gift-->
@@ -3904,5 +3919,7 @@
   <!--Expired gift sheet make a monthly donation button-->
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">No net</string>
+  <!--Label under name for private stories-->
+  <!--Label under name for group stories-->
   <!--EOF-->
 </resources>

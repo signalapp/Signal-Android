@@ -90,7 +90,9 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Jūs daugiau nebegausite žinučių ar atnaujinimų iš šios grupės, o nariai nebegalės vėl pridėti jūsų į šią grupę.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Grupės nariai nebegalės vėl pridėti jūsų į šią grupę.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Grupės nariai galės ir vėl jus pridėti į šią grupę.</string>
+  <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Galėsite vieni kitiems rašyti žinutes bei skambinti, o jūsų vardas ir nuotrauka bus bendrinami su naudotoju.</string>
+  <!--Text that is shown when unblocking an SMS contact-->
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Užblokuoti žmonės negalės jums skambinti ar siųsti žinučių.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blokuoti ir nebegauti Signal atnaujinimų bei naujienų.</string>
@@ -530,10 +532,10 @@
   <string name="ExpiredBuildReminder_update_now">Atnaujinti dabar</string>
   <!--PendingGroupJoinRequestsReminder-->
   <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
-    <item quantity="one">%d laukiantis narių prašymas.</item>
-    <item quantity="few">%d laukiantys narių prašymai.</item>
-    <item quantity="many">%d laukiančių narių prašymų.</item>
-    <item quantity="other">%d laukiantis narių prašymas.</item>
+    <item quantity="one">%d laukiantis prašymas tapti nariu.</item>
+    <item quantity="few">%d laukiantys prašymai tapti nariais.</item>
+    <item quantity="many">%d laukiančių prašymų tapti nariais.</item>
+    <item quantity="other">%d laukiantis prašymas tapti nariais.</item>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Rodyti</string>
   <!--GcmRefreshJob-->
@@ -810,6 +812,7 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">Naudoti tinkintus pranešimus</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Pranešimų garsas</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Vibruoti</string>
+  <!--Button text for customizing notification options-->
   <string name="CustomNotificationsDialogFragment__call_settings">Skambučių nustatymai</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Skambučio melodija</string>
   <string name="CustomNotificationsDialogFragment__enabled">Įjungta</string>
@@ -1106,10 +1109,10 @@
   <string name="MessageRecord_you_invited_s_to_the_group">Jūs pakvietėte %1$s į grupę.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s pakvietė jus į grupę.</string>
   <plurals name="MessageRecord_s_invited_members">
-    <item quantity="one">%1$s pakvietė 1 žmogų į grupę.</item>
-    <item quantity="few">%1$s pakvietė %2$d žmones į grupę.</item>
-    <item quantity="many">%1$s pakvietė %2$d žmonių į grupę.</item>
-    <item quantity="other">%1$s pakvietė %2$d žmogų į grupę.</item>
+    <item quantity="one">%1$s pakvietė į grupę 1 žmogų.</item>
+    <item quantity="few">%1$s pakvietė į grupę %2$d žmones.</item>
+    <item quantity="many">%1$s pakvietė į grupę %2$d žmonių.</item>
+    <item quantity="other">%1$s pakvietė į grupę %2$d žmogų.</item>
   </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">Jūs buvote pakviesti į grupę.</string>
   <plurals name="MessageRecord_d_people_were_invited_to_the_group">
@@ -1261,7 +1264,9 @@
   <string name="MessageRequestBottomView_block">Užblokuoti</string>
   <string name="MessageRequestBottomView_unblock">Atblokuoti</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ar norite leisti, kad %1$s rašytų jums žinutes, ir bendrinti savo vardą bei nuotrauką su šiuo naudotoju? Naudotojas nežinos, kad matėte jo žinutę tol, kol nesutiksite.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Ar norite leisti, kad %1$s rašytų jums žinutes, ir bendrinti savo vardą bei nuotrauką su šiuo naudotoju? Jūs negausite jokių žinučių tol, kol neatblokuosite šio naudotojo.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Ar gauti atnaujinimus ir naujienas iš %1$s? Jūs nebegausite jokių atnaujinimų tol, kol jų neatblokuosite.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Tęsti jūsų pokalbį su šia grupe ir bendrinti jūsų vardą ir nuotrauką su jos nariais?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Naujinkite šią grupę, norėdami aktyvuoti tokias naujas ypatybes kaip @paminėjimai ir administratoriai. Nariai, kurie šioje grupėje nebendrino savo vardo ar nuotraukos, bus pakviesti prie jos prisijungti.</string>
@@ -1281,7 +1286,19 @@
     <item quantity="other">%1$d narys</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d narys (%2$s)</item>
+    <item quantity="few">%1$d nariai (%2$s)</item>
+    <item quantity="many">%1$d narių (%2$s)</item>
+    <item quantity="other">%1$d narys (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="one">+%1$d pakviestas</item>
+    <item quantity="few">+%1$d pakviesti</item>
+    <item quantity="many">+%1$d pakviestų</item>
+    <item quantity="other">+%1$d pakviestas</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d papildoma grupė</item>
     <item quantity="few">%d papildomos grupės</item>
@@ -1457,13 +1474,13 @@
   <string name="WebRtcCallView__no_one_else_is_here">Čia daugiau nieko nėra</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s yra šiame skambutyje</string>
   <string name="WebRtcCallView__s_are_in_this_call">%1$s esate šiame skambutyje</string>
-  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s ir %2$s yra šiame skambutyje</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">Šiame skambutyje yra %1$s ir %2$s</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s pristatinėja</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
-    <item quantity="one">%1$s, %2$s ir dar %3$d žmogus yra šiame skambutyje</item>
-    <item quantity="few">%1$s, %2$s ir dar %3$d žmonės yra šiame skambutyje</item>
-    <item quantity="many">%1$s, %2$s ir dar %3$d žmonių yra šiame skambutyje</item>
-    <item quantity="other">%1$s, %2$s ir dar %3$d žmogus yra šiame skambutyje</item>
+    <item quantity="one">Šiame skambutyje yra %1$s, %2$s ir dar %3$d žmogus</item>
+    <item quantity="few">Šiame skambutyje yra %1$s, %2$s ir dar %3$d žmonės</item>
+    <item quantity="many">Šiame skambutyje yra %1$s, %2$s ir dar %3$d žmonių</item>
+    <item quantity="other">Šiame skambutyje yra %1$s, %2$s ir dar %3$d žmogus</item>
   </plurals>
   <string name="WebRtcCallView__flip">Apversti</string>
   <string name="WebRtcCallView__speaker">Garsiai</string>
@@ -1665,6 +1682,9 @@
   <string name="ThreadRecord_file">Failas</string>
   <string name="ThreadRecord_video">Vaizdo įrašai</string>
   <string name="ThreadRecord_chat_session_refreshed">Pokalbio seansas atnaujintas</string>
+  <!--Displayed in the notification when the user is sent a gift-->
+  <!--Displayed in the notification when the user sends a gift-->
+  <!--Displayed in the notification when the user has opened a received gift-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal atnaujinimas</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Yra prieinama nauja Signal versija, bakstelėkite norėdami atnaujinti</string>
@@ -1951,6 +1971,7 @@
   <string name="QuoteView_your_story">Jūs · Istorija</string>
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">Daugiau nebeprieinama</string>
+  <!--Label for quoted gift-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Slinkti į apačią</string>
   <!--BubbleOptOutTooltip-->
@@ -3294,6 +3315,7 @@
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Nuotraukų kokybė</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">Pakvieskite savo draugus</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">Prenumeratoriaus id nukopijuotas į iškarpinę</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Paskyra</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Bėgant laikui, jūsų bus klausiama vis rečiau</string>
@@ -3449,6 +3471,13 @@
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Viršutinio krašto parinkiklis</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Apatinio krašto parinkiklis</string>
+  <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate_to_signal">Paaukokite Signal programėlei</string>
+  <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate">Paaukokite</string>
+  <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_not_now">Ne dabar</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">Tinkinti reakcijas</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Bakstelėkite, norėdami pakeisti šypsenėlę</string>
@@ -3456,11 +3485,6 @@
   <string name="EditReactionsFragment_save">Įrašyti</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Auto priderina spalvą prie fono</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Tempkite, norėdami keisti gradiento kryptį</string>
-  <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">Naujos pokalbių spalvos</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Mes perjungėme pokalbių spalvas, kad suteiktume jums daugiau parinkčių ir palengvintume pokalbių skaitymą.</string>
-  <string name="ChatColorsMegaphone__appearance">Išvaizda</string>
-  <string name="ChatColorsMegaphone__not_now">Ne dabar</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Pridėkite profilio nuotrauką</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Pasirinkite išvaizdą ir spalvą arba tinkinkite savo inicialus.</string>
@@ -3688,7 +3712,9 @@
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">Daugiau</string>
   <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">Kvitai</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">Mano prenumerata</string>
   <string name="ManageDonationsFragment__manage_subscription">Tvarkyti prenumeratą</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Paaukojimo kvitai</string>
@@ -3709,6 +3735,7 @@
   <string name="MySupportPreference__couldnt_add_badge_s">Nepavyko pridėti ženkliuko. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Susisiekite su palaikymu.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Paskatinimo ženkliukas nebegalioja</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
   <!--Displayed in the bottom sheet when a boost badge expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Jūsų paskatinimo ženkliukas nebegalioja ir daugiau nebėra matomas jūsų profilyje.</string>
@@ -3749,12 +3776,18 @@
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Jūsų įrenginys nepalaiko „Google Pay“, todėl negalite prenumeruoti, kad gautumėte ženkliuką. Kita vertus, vis tiek galite palaikyti Signal, paaukodami mūsų internetinėje svetainėje.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Tinklo klaida. Patikrinkite interneto ryšį ir bandykite dar kartą.</string>
   <string name="NetworkFailure__retry">Bandyti dar kartą</string>
+  <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <!--Gift message view title-->
   <!--Gift message view expiry information-->
   <!--Gift badge redeem action label-->
+  <string name="GiftMessageView__redeem">Atsiimti</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">Rodyti</string>
   <!--Gift badge redeeming action label-->
+  <string name="GiftMessageView__redeeming">Atsiimama…</string>
   <!--Gift badge redeemed label-->
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Pabandykite naudoti kitą mokėjimo būdą arba susisiekite su savo banku dėl išsamesnės informacijos.</string>
@@ -3947,6 +3980,7 @@
   <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Dėkojame, kad remiate Signal. Jūsų įnašas padės skatinti misiją kurti atvirojo kodo privatumo technologiją, kuri apsaugo žodžio laisvę ir įgalina saugų bendravimą milijonams žmonių visame pasaulyje. Jei gyvenate Jungtinėse Valstijose, išsaugokite šį kvitą, kad turėtumėte jį savo mokestinių duomenų reikmėms. Signal technologijų fondas yra Jungtinėse Valstijose įsteigta, pagal vidaus mokesčių kodekso 501c3 sekciją neapmokestinama, pelno nesiekianti organizacija. Mūsų federalinis mokesčių ID yra 82–4506840.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
+  <!--Donation reciepts screen empty state title-->
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Pokalbiai</string>
@@ -4185,9 +4219,6 @@
   <!--Displayed in story caption when content is longer than 5 lines-->
   <string name="StoryViewerPageFragment__see_more">… Rodyti daugiau</string>
   <!--Displayed in toast after sending a direct reply-->
-  <string name="StoryDirectReplyDialogFragment__reply_sent">Atsakymas išsiųstas</string>
-  <!--Displayed in toast after sending a direct reaction-->
-  <string name="StoryDirectReplyDialogFragment__reaction_sent">Reakcija išsiųsta</string>
   <!--Displayed in the viewer when a story is no longer available-->
   <string name="StorySlateView__this_story_is_no_longer_available">Ši istorija daugiau nebeprieinama.</string>
   <!--Displayed in the viewer when the network is not available-->
@@ -4231,15 +4262,18 @@
   <!--Text explaining that this gift is a one time donation-->
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Pridėti žinutę</string>
+  <!--Displayed in the dialog while verifying the chosen recipient-->
   <!--Title for sheet shown when opening a redeemed gift-->
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Ačiū už jūsų palaikymą!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
   <!--Description for sheet shown when opening a sent gift-->
   <!--Primary action for pending gift sheet to redeem badge now-->
+  <string name="ViewReceivedGiftSheet__redeem">Atsiimti</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">Ne dabar</string>
   <!--Dialog text while redeeming a gift-->
+  <string name="ViewReceivedGiftSheet__redeeming_gift">Atsiimama dovana…</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
   <!--Description text in gift thanks sheet-->
   <!--Expired gift sheet title-->
@@ -4249,5 +4283,7 @@
   <!--Expired gift sheet make a monthly donation button-->
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ne dabar</string>
+  <!--Label under name for private stories-->
+  <!--Label under name for group stories-->
   <!--EOF-->
 </resources>
