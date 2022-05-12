@@ -175,11 +175,6 @@ public class DonationReceiptRedemptionJob extends BaseJob {
       MessageDatabase.MarkedMessageInfo markedMessageInfo = SignalDatabase.mms().setIncomingMessageViewed(giftMessageId);
       if (markedMessageInfo != null) {
         Log.d(TAG, "Marked gift message viewed for " + giftMessageId);
-        ApplicationDependencies.getJobManager()
-                               .add(new SendViewedReceiptJob(markedMessageInfo.getThreadId(),
-                                                             markedMessageInfo.getSyncMessageId().getRecipientId(),
-                                                             markedMessageInfo.getSyncMessageId().getTimetamp(),
-                                                             markedMessageInfo.getMessageId()));
         MultiDeviceViewedUpdateJob.enqueue(Collections.singletonList(markedMessageInfo.getSyncMessageId()));
       }
     }
