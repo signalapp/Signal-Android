@@ -1,7 +1,6 @@
-package org.thoughtcrime.securesms.sharing.v2
+package org.thoughtcrime.securesms.sharing
 
 import android.net.Uri
-import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import java.lang.UnsupportedOperationException
 
 sealed class ResolvedShareData {

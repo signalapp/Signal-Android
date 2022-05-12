@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.sharing.v2
+package org.thoughtcrime.securesms.sharing
 
 import android.Manifest
 import android.content.Context
