@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadin
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.SpanUtil
@@ -241,7 +242,7 @@ class ManageDonationsFragment : DSLSettingsFragment(), ExpiredGiftSheet.Callback
       }
     )
 
-    if (FeatureFlags.giftBadges()) {
+    if (FeatureFlags.giftBadges() && Recipient.self().giftBadgesCapability == Recipient.Capability.SUPPORTED) {
       clickPref(
         title = DSLSettingsText.from(R.string.ManageDonationsFragment__gift_a_badge),
         icon = DSLSettingsIcon.from(R.drawable.ic_gift_24),
