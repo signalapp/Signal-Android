@@ -257,6 +257,7 @@ class StoryViewerPageFragment :
           progressBar.setPosition(viewModel.getRestartIndex())
           videoControlsDelegate.restart()
         }
+        viewModel.setIsFirstPage(parentState.page == 0)
         viewModel.setIsSelectedPage(true)
         when (parentState.crossfadeSource) {
           is StoryViewerState.CrossfadeSource.TextModel -> storyCrossfader.setSourceView(parentState.crossfadeSource.storyTextPostModel)

@@ -39,6 +39,46 @@ class StoryViewerPageViewModelTest {
   }
 
   @Test
+  fun `Given first page and first post, when I goToPreviousPost, then I expect storyIndex to be 0`() {
+    // GIVEN
+    val storyPosts = createStoryPosts(3) { true }
+    whenever(repository.getStoryPostsFor(any())).thenReturn(Observable.just(storyPosts))
+    val testSubject = createTestSubject()
+    testSubject.setIsFirstPage(true)
+    testScheduler.triggerActions()
+
+    // WHEN
+    testSubject.goToPreviousPost()
+    testScheduler.triggerActions()
+
+    // THEN
+    val testSubscriber = testSubject.state.test()
+
+    testSubscriber.assertValueAt(0) { it.selectedPostIndex == 0 }
+  }
+
+  @Test
+  fun `Given first page and second post, when I goToPreviousPost, then I expect storyIndex to be 0`() {
+    // GIVEN
+    val storyPosts = createStoryPosts(3) { true }
+    whenever(repository.getStoryPostsFor(any())).thenReturn(Observable.just(storyPosts))
+    val testSubject = createTestSubject()
+    testSubject.setIsFirstPage(true)
+    testScheduler.triggerActions()
+    testSubject.goToNextPost()
+    testScheduler.triggerActions()
+
+    // WHEN
+    testSubject.goToPreviousPost()
+    testScheduler.triggerActions()
+
+    // THEN
+    val testSubscriber = testSubject.state.test()
+
+    testSubscriber.assertValueAt(0) { it.selectedPostIndex == 0 }
+  }
+
+  @Test
   fun `Given no initial story and 3 records all viewed, when I initialize, then I expect storyIndex to be 0`() {
     // GIVEN
     val storyPosts = createStoryPosts(3) { true }

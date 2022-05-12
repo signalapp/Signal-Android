@@ -116,7 +116,9 @@ class StoryViewerPageViewModel(
     }
 
     val postIndex = store.state.selectedPostIndex
-    setSelectedPostIndex(max(-1, postIndex - 1))
+    val minIndex = if (store.state.isFirstPage) 0 else -1
+
+    setSelectedPostIndex(max(minIndex, postIndex - 1))
   }
 
   fun getRestartIndex(): Int {
@@ -153,6 +155,10 @@ class StoryViewerPageViewModel(
 
   fun setIsDisplayingSlate(isDisplayingSlate: Boolean) {
     storyViewerPlaybackStore.update { it.copy(isDisplayingSlate = isDisplayingSlate) }
+  }
+
+  fun setIsFirstPage(isFirstPage: Boolean) {
+    store.update { it.copy(isFirstPage = isFirstPage) }
   }
 
   fun setIsSelectedPage(isSelectedPage: Boolean) {
