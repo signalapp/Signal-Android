@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:background="@drawable/rounded_rectangle_secondary_18"
+        android:background="@drawable/rounded_outline_secondary_18"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
