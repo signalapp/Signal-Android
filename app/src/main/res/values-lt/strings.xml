@@ -93,7 +93,9 @@
   <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Galėsite vieni kitiems rašyti žinutes bei skambinti, o jūsų vardas ir nuotrauka bus bendrinami su naudotoju.</string>
   <!--Text that is shown when unblocking an SMS contact-->
+  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Galėsite vienas kitam siųsti žinutes.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Užblokuoti žmonės negalės jums skambinti ar siųsti žinučių.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Užblokuoti žmonės negalės siųsti jums žinučių.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blokuoti ir nebegauti Signal atnaujinimų bei naujienų.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -813,6 +815,8 @@
   <string name="CustomNotificationsDialogFragment__notification_sound">Pranešimų garsas</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Vibruoti</string>
   <!--Button text for customizing notification options-->
+  <string name="CustomNotificationsDialogFragment__customize">Tinkinti</string>
+  <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Keisti garsą ir vibraciją</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Skambučių nustatymai</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Skambučio melodija</string>
   <string name="CustomNotificationsDialogFragment__enabled">Įjungta</string>
@@ -1267,6 +1271,7 @@
   <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Ar norite leisti, kad %1$s rašytų jums žinutes, ir bendrinti savo vardą bei nuotrauką su šiuo naudotoju? Jūs negausite jokių žinučių tol, kol neatblokuosite šio naudotojo.</string>
   <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Ar norite leisti, kad %1$s siųstų jums žinutes? Jūs negausite jokių žinučių tol, kol neatblokuosite šio žmogaus.</string>
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Ar gauti atnaujinimus ir naujienas iš %1$s? Jūs nebegausite jokių atnaujinimų tol, kol jų neatblokuosite.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Tęsti jūsų pokalbį su šia grupe ir bendrinti jūsų vardą ir nuotrauką su jos nariais?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Naujinkite šią grupę, norėdami aktyvuoti tokias naujas ypatybes kaip @paminėjimai ir administratoriai. Nariai, kurie šioje grupėje nebendrino savo vardo ar nuotraukos, bus pakviesti prie jos prisijungti.</string>
@@ -1683,8 +1688,11 @@
   <string name="ThreadRecord_video">Vaizdo įrašai</string>
   <string name="ThreadRecord_chat_session_refreshed">Pokalbio seansas atnaujintas</string>
   <!--Displayed in the notification when the user is sent a gift-->
+  <string name="ThreadRecord__you_received_a_gift">Jūs gavote dovaną</string>
   <!--Displayed in the notification when the user sends a gift-->
+  <string name="ThreadRecord__you_sent_a_gift">Jūs išsiuntėte dovaną</string>
   <!--Displayed in the notification when the user has opened a received gift-->
+  <string name="ThreadRecord__you_redeemed_a_gift_badge">Jūs atsiėmėte dovanos ženkliuką</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal atnaujinimas</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Yra prieinama nauja Signal versija, bakstelėkite norėdami atnaujinti</string>
@@ -1972,6 +1980,7 @@
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">Daugiau nebeprieinama</string>
   <!--Label for quoted gift-->
+  <string name="QuoteView__gift">Dovana</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Slinkti į apačią</string>
   <!--BubbleOptOutTooltip-->
@@ -2288,6 +2297,8 @@
   <string name="preferences__led_color">Šviesos diodo spalva</string>
   <string name="preferences__led_color_unknown">Nežinoma</string>
   <string name="preferences__pref_led_blink_title">Šviesos diodo mirksėjimo šablonas</string>
+  <string name="preferences__customize">Tinkinti</string>
+  <string name="preferences__change_sound_and_vibration">Keisti garsą ir vibraciją</string>
   <string name="preferences__sound">Garsas</string>
   <string name="preferences__silent">Tyliai</string>
   <string name="preferences__default">Numatytoji</string>
@@ -3700,6 +3711,8 @@
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Jūsų paaukojimas paremia šį tikslą ir apmoka visame pasaulyje milijonų žmonių privačiam bendravimui naudojamos programėlės plėtojimą ir veiklą. Jokių reklamų. Jokių stebėjimo priemonių. Jokių trukdžių.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Dėkojame už jūsų palaikymą!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Dėkojame už paskatinimą!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Jūs pelnėte %s ženkliuką! Padėkite ugdyti supratimą aukoti Signal programėlei, atvaizduodami šį ženkliuką savo profilyje.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Jūs pelnėte paskatinimo ženkliuką! Padėkite ugdyti supratimą aukoti Signal programėlei, atvaizduodami šį ženkliuką savo profilyje.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Be to, galite</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">tapti rėmėju ir remti kas mėnesį.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Rodyti profilyje</string>
@@ -3723,6 +3736,7 @@
   <string name="ManageDonationsFragment__error_getting_subscription">Klaida gaunant prenumeratą.</string>
   <!--Preference heading for other ways to donate-->
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">Dovanoti ženkliuką</string>
   <string name="BoostFragment__give_signal_a_boost">Suteikite Signal paskatinimą</string>
   <!--Description text in boost sheet-->
   <string name="Boost__enter_custom_amount">Įveskite tinkintą sumą</string>
@@ -3741,6 +3755,7 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Jūsų paskatinimo ženkliukas nebegalioja ir daugiau nebėra matomas jūsų profilyje.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Paaukodami, galite dar 30-čiai dienų iš naujo aktyvuoti paskatinimo ženkliuką.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Galite ir toliau naudoti Signal, bet norėdami palaikyti jums kuriamą technologiją, apsvarstykite galimybę tapti rėmėju ir aukoti kas mėnesį.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Tapti rėmėju</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Pridėti paskatinimą</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne dabar</string>
@@ -3764,9 +3779,13 @@
   <string name="DonationsErrors__still_processing">Vis dar apdorojama</string>
   <string name="DonationsErrors__couldnt_add_badge">Nepavyko pridėti ženkliuko</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__failed_to_validate_badge">Nepavyko patikrinti ženkliuko</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__could_not_validate">Nepavyko patikrinti serverio atsakymo. Susisiekite su palaikymu.</string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__failed_to_send_gift_badge">Nepavyko išsiųsti dovanos ženkliuko</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__could_not_send_gift_badge">Nepavyko išsiųsti dovanos ženkliuko. Susisiekite su palaikymu.</string>
   <string name="DonationsErrors__your_badge_could_not">Nepavyko pridėti ženkliuko prie jūsų paskyros, bet gali būti, kad buvote apmokestinti. Susisiekite su palaikymu.</string>
   <string name="DonationsErrors__your_payment_is_still">Jūsų mokėjimas yra vis dar apdorojamas. Tai gali užimti kelias minutes, priklausomai nuo jūsų interneto ryšio.</string>
   <string name="DonationsErrors__google_pay_unavailable">„Google Pay“ neprieinama</string>
@@ -3777,11 +3796,22 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Tinklo klaida. Patikrinkite interneto ryšį ir bandykite dar kartą.</string>
   <string name="NetworkFailure__retry">Bandyti dar kartą</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__recipient_verification_failed">Gavėjo patikrinimas patyrė nesėkmę.</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">Tikslinis gavėjas nepalaiko dovanojimo.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__could_not_verify_recipient">Nepavyko patikrinti gavėjo.</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Patikrinkite tinklo ryšį ir bandykite dar kartą.</string>
   <!--Gift message view title-->
+  <string name="GiftMessageView__gift_badge">Dovanos ženkliukas</string>
   <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="one">Trunka %1$d mėnesį</item>
+    <item quantity="few">Trunka %1$d mėnesius</item>
+    <item quantity="many">Trunka %1$d mėnesių</item>
+    <item quantity="other">Trunka %1$d mėnesį</item>
+  </plurals>
   <!--Gift badge redeem action label-->
   <string name="GiftMessageView__redeem">Atsiimti</string>
   <!--Gift badge view action label-->
@@ -3789,6 +3819,7 @@
   <!--Gift badge redeeming action label-->
   <string name="GiftMessageView__redeeming">Atsiimama…</string>
   <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">Atsiimtas</string>
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Pabandykite naudoti kitą mokėjimo būdą arba susisiekite su savo banku dėl išsamesnės informacijos.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3960,6 +3991,7 @@
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">Vienkartiniai</string>
   <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">Dovana</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Paskatinimas</string>
   <!--Donation receipts details title-->
@@ -3981,6 +4013,7 @@
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--Donation reciepts screen empty state title-->
+  <string name="DonationReceiptListFragment__no_receipts">Nėra kvitų</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Pokalbiai</string>
@@ -4084,6 +4117,7 @@
   <!--Story settings private stories heading-->
   <string name="StorySettingsFragment__private_stories">Privačios istorijos</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Privačias istorijas gali peržiūrėti tik žmonės, kuriuos pridėsite į istoriją. Istorijos pavadinimą galite matyti tik jūs.</string>
   <!--Option label for creating a new private story-->
   <string name="StorySettingsFragment__new_private_story">Nauja privati istorija</string>
   <!--Page title for My Story options-->
@@ -4219,6 +4253,7 @@
   <!--Displayed in story caption when content is longer than 5 lines-->
   <string name="StoryViewerPageFragment__see_more">… Rodyti daugiau</string>
   <!--Displayed in toast after sending a direct reply-->
+  <string name="StoryDirectReplyDialogFragment__sending_reply">Siunčiamas atsakymas…</string>
   <!--Displayed in the viewer when a story is no longer available-->
   <string name="StorySlateView__this_story_is_no_longer_available">Ši istorija daugiau nebeprieinama.</string>
   <!--Displayed in the viewer when the network is not available-->
@@ -4230,7 +4265,9 @@
   <!--Toasted when the user external share to a text story fails-->
   <string name="TextStoryPostCreationFragment__failed_to_send_story">Nepavyko išsiųsti istorijos</string>
   <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">Rodyti istoriją</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">Rodyti profilio nuotrauką</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Išjungti cenzūravimo apėjimą?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -4250,20 +4287,28 @@
   <string name="ExpandModel__view_more">Rodyti daugiau</string>
   <string name="StoriesLinkPopup__visit_link">Aplankyti tinklalapį</string>
   <!--Tagline for gift row items-->
+  <string name="GiftRowItem__send_a_gift_badge">Siųsti dovanos ženkliuką</string>
   <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">Dovanoti ženkliuką</string>
   <!--Description text on start fragment for gifting a badge-->
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Kitas</string>
   <!--Title text on choose recipient page for badge gifting-->
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Pasirinkite gavėją</string>
   <!--Title text on confirm gift page-->
+  <string name="GiftFlowConfirmationFragment__confirm_gift">Patvirtinti dovaną</string>
   <!--Heading text specifying who the gift will be sent to-->
   <string name="GiftFlowConfirmationFragment__send_to">Kam siųsti</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Jūsų dovana bus išsiųsta gavėjui asmeninėje žinutėje. Žemiau pridėkite savo atskiros žinutės tekstą.</string>
   <!--Text explaining that this gift is a one time donation-->
+  <string name="GiftFlowConfirmationFragment__one_time_donation">Vienkartinis paaukojimas</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Pridėti žinutę</string>
   <!--Displayed in the dialog while verifying the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__verifying_recipient">Tikrinamas gavėjas…</string>
   <!--Title for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s atsiuntė jums dovaną</string>
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Ačiū už jūsų palaikymą!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
@@ -4275,15 +4320,30 @@
   <!--Dialog text while redeeming a gift-->
   <string name="ViewReceivedGiftSheet__redeeming_gift">Atsiimama dovana…</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <string name="ConversationFragment__you_can_redeem_your_badge_later">Savo ženkliuką galite atsiimti vėliau.</string>
   <!--Description text in gift thanks sheet-->
   <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Jūsų dovanos ženkliukas nebegalioja</string>
   <!--Expired gift sheet top description text-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Jūsų dovanos ženkliukas nebegalioja ir daugiau nebėra matomas jūsų profilyje kitiems žmonėms.</string>
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">Norėdami palaikyti jums kuriamą technologiją, apsvarstykite galimybę tapti rėmėju ir remti kas mėnesį.</string>
   <!--Expired gift sheet make a monthly donation button-->
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ne dabar</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Privati istorija · %1$d žiūrovas</item>
+    <item quantity="few">Privati istorija · %1$d žiūrovai</item>
+    <item quantity="many">Privati istorija · %1$d žiūrovų</item>
+    <item quantity="other">Privati istorija · %1$d žiūrovas</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Grupės istorija · %1$d žiūrovas</item>
+    <item quantity="few">Grupės istorija · %1$d žiūrovai</item>
+    <item quantity="many">Grupės istorija · %1$d žiūrovų</item>
+    <item quantity="other">Grupės istorija · %1$d žiūrovas</item>
+  </plurals>
   <!--EOF-->
 </resources>

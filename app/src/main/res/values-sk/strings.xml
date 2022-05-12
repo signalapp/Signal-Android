@@ -4345,6 +4345,18 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Teraz nie</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Súkromný príbeh · %1$d sledujúci</item>
+    <item quantity="few">Súkromný príbeh · %1$d sledujúci</item>
+    <item quantity="many">Súkromný príbeh · %1$d sledujúcich</item>
+    <item quantity="other">Súkromný príbeh · %1$d sledujúcich</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Príbeh skupiny · %1$d sledujúci</item>
+    <item quantity="few">Príbeh skupiny · %1$d sledujúci</item>
+    <item quantity="many">Príbeh skupiny · %1$d sledujúcich</item>
+    <item quantity="other">Príbeh skupiny · %1$d sledujúcich</item>
+  </plurals>
   <!--EOF-->
 </resources>

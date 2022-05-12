@@ -93,7 +93,9 @@
   <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Lahko si bosta pošiljala sporočila, se klicala in si delila ime in fotografijo.</string>
   <!--Text that is shown when unblocking an SMS contact-->
+  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Lahko si bosta pošiljala sporočila.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokirani uporabniki_ce vas ne bodo mogli klicati ali vam pošiljati sporočil.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Blokirani ljudje vam ne bodo mogli pošiljati sporočil.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blokiraj prejem Signalovih novic in novosti.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -813,6 +815,8 @@
   <string name="CustomNotificationsDialogFragment__notification_sound">Zvok obvestila</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Vibriranje</string>
   <!--Button text for customizing notification options-->
+  <string name="CustomNotificationsDialogFragment__customize">Prilagodi</string>
+  <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Spremenite zvok in vibriranje</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Nastavitve klicev</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Zvonjenje</string>
   <string name="CustomNotificationsDialogFragment__enabled">Izklopljena</string>
@@ -1267,6 +1271,7 @@
   <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Želite omogočiti uporabniku_ci %1$s da vam pošilja sporočila in z njim_njo deliti svoje ime in fotografijo? Dokler ga_je ne odblokirate, od njega_nje ne boste prejemali sporočil.</string>
   <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Bi želeli omogočiti uporabniku_ci %1$s, da vam pošilja sporočila? Dokler ga/je ne odblokirate, ne boste prejemali njegovih/njenih sporočil.</string>
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Prejemate novice in novosti od %1$s? Dokler jih ponovno ne dovolite, ne boste prejemali nobenih novosti.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Želite še naprej sodelovati v pogovoru s to skupino in z njenimi člani_cami deliti svoje ime in fotografijo?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Nadgradite to skupino, da boste lahko uporabljali napredne funkcije, kot so @omembe in skrbniki_ce skupine. Člani_ce, ki s skupino niso delili_e svojega imena in fotografije, bodo povabljeni_e, da se pridružijo.</string>
@@ -1674,8 +1679,11 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ThreadRecord_video">Video</string>
   <string name="ThreadRecord_chat_session_refreshed">Seja pogovora je bila osvežena</string>
   <!--Displayed in the notification when the user is sent a gift-->
+  <string name="ThreadRecord__you_received_a_gift">Prejeli ste darilo</string>
   <!--Displayed in the notification when the user sends a gift-->
+  <string name="ThreadRecord__you_sent_a_gift">Poslali ste darilo</string>
   <!--Displayed in the notification when the user has opened a received gift-->
+  <string name="ThreadRecord__you_redeemed_a_gift_badge">Vnovčili ste darilni bedž</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Nadgradnja aplikacije Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Na voljo je nova različica aplikacije Signal. Tapnite za nadgradnjo.</string>
@@ -2280,6 +2288,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__led_color">Barva LED</string>
   <string name="preferences__led_color_unknown">Neznano</string>
   <string name="preferences__pref_led_blink_title">Utripanje LED</string>
+  <string name="preferences__customize">Prilagodi</string>
+  <string name="preferences__change_sound_and_vibration">Spremenite zvok in vibriranje</string>
   <string name="preferences__sound">Zvok</string>
   <string name="preferences__silent">Tiho</string>
   <string name="preferences__default">Privzeto</string>
@@ -3466,6 +3476,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
   <string name="Donate2022Q2Megaphone_donate_to_signal">Podprite Signal</string>
   <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal podpirajo ljudje, kot ste vi. Prispevajte vsak mesec in prejmite značko podpornika.</string>
   <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
   <string name="Donate2022Q2Megaphone_donate">Podpri Signal!</string>
   <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
@@ -3789,7 +3800,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">Prejemnik ne podpira darilnih bedžev.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__could_not_verify_recipient">Ne moremo potrditi prejemnika.</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Preverite svojo omrežno povezavo in poskusite znova.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Darilni bedž</string>
   <!--Gift message view expiry information-->
@@ -4000,6 +4013,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--Donation reciepts screen empty state title-->
+  <string name="DonationReceiptListFragment__no_receipts">Ni prejemnikov</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Pogovori</string>
@@ -4239,6 +4253,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Displayed in story caption when content is longer than 5 lines-->
   <string name="StoryViewerPageFragment__see_more">… Več</string>
   <!--Displayed in toast after sending a direct reply-->
+  <string name="StoryDirectReplyDialogFragment__sending_reply">Pošiljanje odgovora …</string>
   <!--Displayed in the viewer when a story is no longer available-->
   <string name="StorySlateView__this_story_is_no_longer_available">Ta zgodba ni več na voljo.</string>
   <!--Displayed in the viewer when the network is not available-->
@@ -4292,6 +4307,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Dodaj sporočilo</string>
   <!--Displayed in the dialog while verifying the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__verifying_recipient">Preverjanje prejemnika …</string>
   <!--Title for sheet shown when opening a redeemed gift-->
   <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s vam je poslal_a darilo</string>
   <!--Title for sheet shown when opening a sent gift-->
@@ -4321,6 +4337,18 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ne zdaj</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Zasebna zgodba · %1$d gledalec_ka</item>
+    <item quantity="two">Zasebna zgodba · %1$d gledalca_ki</item>
+    <item quantity="few">Zasebna zgodba · %1$d gledalci_ke</item>
+    <item quantity="other">Zasebna zgodba · %1$d gledalcev_k</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Skupinska zgodba · %1$d gledalec_ka</item>
+    <item quantity="two">Skupinska zgodba · %1$d gledalca_ki</item>
+    <item quantity="few">Skupinska zgodba · %1$d gledalci_ke</item>
+    <item quantity="other">Skupinska zgodba · %1$d gledalcev_k</item>
+  </plurals>
   <!--EOF-->
 </resources>

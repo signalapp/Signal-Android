@@ -3475,7 +3475,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ChatColorGradientTool_top_edge_selector">Górny selektor</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Dolny selektor</string>
   <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
-  <string name="Donate2022Q2Megaphone_donate_to_signal">Podaruj Signal</string>
+  <string name="Donate2022Q2Megaphone_donate_to_signal">Datek na Signal</string>
   <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
   <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal funkcjonuje dzięki ludziom takim, jak Ty. Przekaż comiesięczny datek i otrzymaj odznakę.</string>
   <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->

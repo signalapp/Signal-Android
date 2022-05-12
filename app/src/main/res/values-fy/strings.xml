@@ -733,6 +733,8 @@
   <string name="CustomNotificationsDialogFragment__notification_sound">Meldingslûd</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Trille</string>
   <!--Button text for customizing notification options-->
+  <string name="CustomNotificationsDialogFragment__customize">Oanpasse</string>
+  <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Lûd en trillen wizigje</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Opropynstellingen</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Oproplûd</string>
   <string name="CustomNotificationsDialogFragment__enabled">Ynskeakele</string>
@@ -775,6 +777,7 @@
   <!--Title shown when there was an unknown issue getting group information from a group link-->
   <string name="GroupJoinBottomSheetDialogFragment_link_error">Flater by groepsferwizing</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
+  <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Lid wurde fia dizze ferwizing is mislearre. Probearje it letter opnij.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Wolsto lid wurde fan dizze groep en dyn namme en foto mei de oare leden diele?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">In behearder fan dizze groep moat earst dyn fersyk om lid te wurden goedkarre eardatsto lid wurde kinst fan dizze groep. Wannear\'tsto fersikest om lid te wurden sille dyn profylnamme, -foto en -omskriuwing daliks sichtber wêze foar de groepsleden.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
@@ -800,6 +803,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">‘%1$s’ oan de groep tafoegje?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Fersyk fan ‘%1$s’ ôfwize?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Wolsto it lidmaatskipsfersyk fan ‘%1$s’ ôfwize? Asto dit dochst dan kin dyjinge net opnij fia de groepsferwizing fersykje om lid te wurden fan de groep.</string>
   <string name="RequestConfirmationDialog_add">Tafoegje</string>
   <string name="RequestConfirmationDialog_deny">Ofwize</string>
   <!--ImageEditorHud-->
@@ -1089,6 +1093,10 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Do hast in fersyk ferstjoerd om lid te wurden fan de groep.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s hat fia de groepskeppeling fersocht lid te wurden.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="one">%1$s hat fersocht om lid te wurden fan de groep en hat dat fersyk wer ynlutsen.</item>
+    <item quantity="other">%1$s hat %2$d kear fersocht om lid te wurden fan de groep en dy fersiken wer ynlutsen.</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s hat dyn fersyk om lid te wurden fan de groep goedkard.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s hat it fersyk fan %2$s om lid te wurden fan de groep goedkard.</string>
@@ -1160,7 +1168,15 @@
     <item quantity="other">%1$d leden</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d lid (%2$s)</item>
+    <item quantity="other">%1$d leden (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="one">+%1$d útnûge</item>
+    <item quantity="other">+%1$d útnûgen</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d ekstra groep</item>
     <item quantity="other">%d ekstra groepen</item>
@@ -1253,6 +1269,7 @@
   <!--Recipient-->
   <string name="Recipient_you">Do</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">Myn ferhaal</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blokkearje</string>
   <string name="RecipientPreferenceActivity_unblock">Deblokkearje</string>
@@ -1435,6 +1452,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Mear opsjes</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">Pinkoade mei sukses ferifiearre. Signal sil it letter opnij freegje.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Pinkoade mei sukses ferifiearre. Signal sil it moarn opnij freegje.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Pinkoade mei sukses ferifiearre. Signal sil it oer in pear dagen opnij freegje.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Pinkoade mei sukses ferifiearre. Signal sil it oer in wike opnij freegje.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Pinkoade mei sukses ferifiearre. Signal sil it oer in pear wiken opnij freegje.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Pinkoade mei sukses ferifiearre. Signal sil it oer in moanne opnij freegje.</string>
   <!--Slide-->
   <string name="Slide_image">Ofbylding</string>
   <string name="Slide_sticker">Stikker</string>
@@ -1521,7 +1544,9 @@
   <string name="ThreadRecord_video">Fideo</string>
   <string name="ThreadRecord_chat_session_refreshed">Petearsesje fernijd</string>
   <!--Displayed in the notification when the user is sent a gift-->
+  <string name="ThreadRecord__you_received_a_gift">Do hast in kado ûntfongen</string>
   <!--Displayed in the notification when the user sends a gift-->
+  <string name="ThreadRecord__you_sent_a_gift">Do hast in kado ferstjoerd</string>
   <!--Displayed in the notification when the user has opened a received gift-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Nije ferzje fan Signal</string>
@@ -1588,7 +1613,9 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Dit berjocht sil allinnich foar dy ûnûntkomber wiske wurde, mar dus net foar dyn petearpartner(s).</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s nei %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Do nei %1$s</string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s oan dy</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Media net langer beskikber.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Gjin app fûn wêrmei’t dit bestân mei oaren dield wurde kin.</string>
   <!--MessageNotifier-->
@@ -1728,6 +1755,10 @@
     <item quantity="other">%1$d persoanen</item>
   </plurals>
   <!--Displays number of viewers for a story-->
+  <plurals name="contact_selection_list_item__number_of_viewers">
+    <item quantity="one">Troch %1$d persoan sjoen</item>
+    <item quantity="other">Troch %1$d persoanen sjoen</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal-berjocht</string>
   <string name="conversation_activity__type_message_sms_insecure">Unbefeilige sms</string>
@@ -1788,9 +1819,13 @@
   <string name="QuoteView_you">Do</string>
   <string name="QuoteView_original_missing">Oarspronklik berjocht net fûn</string>
   <!--Author formatting for group stories-->
+  <string name="QuoteView_s_story">Ferhaal fan %1$s</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Dyn ferhaal</string>
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Net langer beskikber</string>
   <!--Label for quoted gift-->
+  <string name="QuoteView__gift">Kado</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Skow nei ûnderen ta</string>
   <!--BubbleOptOutTooltip-->
@@ -2088,6 +2123,8 @@
   <string name="preferences__led_color">Melding-LED-kleur</string>
   <string name="preferences__led_color_unknown">Unbekend</string>
   <string name="preferences__pref_led_blink_title">Melding-LED-knipperpatroan</string>
+  <string name="preferences__customize">Oanpasse</string>
+  <string name="preferences__change_sound_and_vibration">Lûd en trillen wizigje</string>
   <string name="preferences__sound">Berjochtlûd</string>
   <string name="preferences__silent">Stil</string>
   <string name="preferences__default">Systeemstandert</string>
@@ -3708,6 +3745,7 @@
   <!--Donation receipts recurring tab label-->
   <!--Donation receipts one-time tab label-->
   <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">Kado</string>
   <!--Donation receipts boost row label-->
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Details</string>
@@ -3789,6 +3827,7 @@
   <!--Note at bottom of story settings regarding who can see private stories.-->
   <!--Option label for creating a new private story-->
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">Myn ferhaal</string>
   <!--Section heading for story visibility-->
   <!--Clickable option for selecting people to hide your story from-->
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
