@@ -13,8 +13,8 @@
             app:destination="@id/conversationListArchiveFragment"
             app:enterAnim="@anim/slide_from_end"
             app:exitAnim="@anim/slide_to_start"
-            app:popEnterAnim="@anim/slide_to_end"
-            app:popExitAnim="@anim/slide_from_start" />
+            app:popEnterAnim="@anim/slide_from_start"
+            app:popExitAnim="@anim/slide_to_end" />
         <action
             android:id="@+id/action_conversationListFragment_to_storiesLandingFragment"
             app:destination="@id/storiesLandingFragment" />

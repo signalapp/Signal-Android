@@ -150,13 +150,14 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
 
   private fun presentToolbarForConversationListFragment() {
     if (_basicToolbar.resolved() && _basicToolbar.get().visible) {
-      _toolbar.runRevealAnimation(R.anim.slide_to_end)
+      _toolbar.runRevealAnimation(R.anim.slide_from_start)
     }
 
     _toolbar.visible = true
     _searchAction.visible = true
-    if (_basicToolbar.resolved()) {
-      _basicToolbar.get().runHideAnimation(R.anim.slide_from_start)
+
+    if (_basicToolbar.resolved() && _basicToolbar.get().visible) {
+      _basicToolbar.get().runHideAnimation(R.anim.slide_to_end)
     }
   }
 
