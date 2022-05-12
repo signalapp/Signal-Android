@@ -166,7 +166,7 @@ class StoryGroupReplyFragment :
     var consumed = false
     viewModel.pageData.observe(viewLifecycleOwner) { pageData ->
       adapter.submitList(getConfiguration(pageData).toMappingModelList()) {
-        if (!consumed && groupReplyStartPosition >= 0 && adapter.hasItem(groupReplyStartPosition)) {
+        if (!consumed && (groupReplyStartPosition >= 0 && adapter.hasItem(groupReplyStartPosition))) {
           consumed = true
           recyclerView.post { recyclerView.scrollToPosition(groupReplyStartPosition) }
         }
@@ -178,7 +178,7 @@ class StoryGroupReplyFragment :
 
     initializeMentions()
 
-    if (savedInstanceState == null && isFromNotification) {
+    if (savedInstanceState == null) {
       ViewUtil.focusAndShowKeyboard(composer)
     }
 
