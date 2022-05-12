@@ -3286,13 +3286,10 @@ public class ConversationParentFragment extends Fragment
   @Override
   public void onEmojiToggle() {
     if (!emojiDrawerStub.resolved()) {
-      Boolean stickersAvailable = stickerViewModel.getStickersAvailability().getValue();
-
       initializeMediaKeyboardProviders();
-
-      inputPanel.setMediaKeyboard(emojiDrawerStub.get());
     }
 
+    inputPanel.setMediaKeyboard(emojiDrawerStub.get());
     emojiDrawerStub.get().setFragmentManager(getChildFragmentManager());
 
     if (container.getCurrentInput() == emojiDrawerStub.get()) {
