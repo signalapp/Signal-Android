@@ -72,7 +72,7 @@ final class GroupsV2UpdateMessageProducer {
    */
   UpdateDescription describeNewGroup(@NonNull DecryptedGroup group, @NonNull DecryptedGroupChange decryptedGroupChange) {
     Optional<DecryptedPendingMember> selfPending = DecryptedGroupUtil.findPendingByUuid(group.getPendingMembersList(), selfIds.getAci().uuid());
-    if (!selfPending.isPresent()) {
+    if (!selfPending.isPresent() && selfIds.getPni() != null) {
       selfPending = DecryptedGroupUtil.findPendingByUuid(group.getPendingMembersList(), selfIds.getPni().uuid());
     }
 
@@ -89,7 +89,9 @@ final class GroupsV2UpdateMessageProducer {
       }
     }
 
-    if (DecryptedGroupUtil.findMemberByUuid(group.getMembersList(), selfIds.getAci().uuid()).isPresent() || DecryptedGroupUtil.findMemberByUuid(group.getMembersList(), selfIds.getPni().uuid()).isPresent()) {
+    if (DecryptedGroupUtil.findMemberByUuid(group.getMembersList(), selfIds.getAci().uuid()).isPresent() ||
+        (selfIds.getPni() != null && DecryptedGroupUtil.findMemberByUuid(group.getMembersList(), selfIds.getPni().uuid()).isPresent())
+    ) {
       return updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group), R.drawable.ic_update_group_add_16);
     } else {
       return updateDescription(context.getString(R.string.MessageRecord_group_updated), R.drawable.ic_update_group_16);
