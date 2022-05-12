@@ -191,4 +191,51 @@ class MmsDatabaseTest_stories {
 
     assertEquals(unviewedIds.reversed() + interspersedIds.reversed(), resultOrderedIds)
   }
+
+  @Test
+  fun givenNoStories_whenICheckIsOutgoingStoryAlreadyInDatabase_thenIExpectFalse() {
+    // WHEN
+    val result = mms.isOutgoingStoryAlreadyInDatabase(recipients[0], 200)
+
+    // THEN
+    assertFalse(result)
+  }
+
+  @Test
+  fun givenNoOutgoingStories_whenICheckIsOutgoingStoryAlreadyInDatabase_thenIExpectFalse() {
+    // GIVEN
+    MmsHelper.insert(
+      IncomingMediaMessage(
+        from = recipients[0],
+        sentTimeMillis = 200,
+        serverTimeMillis = 2,
+        receivedTimeMillis = 2,
+        storyType = StoryType.STORY_WITH_REPLIES,
+      ),
+      -1L
+    )
+
+    // WHEN
+    val result = mms.isOutgoingStoryAlreadyInDatabase(recipients[0], 200)
+
+    // THEN
+    assertFalse(result)
+  }
+
+  @Test
+  fun givenOutgoingStoryExistsForRecipientAndTime_whenICheckIsOutgoingStoryAlreadyInDatabase_thenIExpectTrue() {
+    // GIVEN
+    MmsHelper.insert(
+      recipient = myStory,
+      sentTimeMillis = 200,
+      storyType = StoryType.STORY_WITH_REPLIES,
+      threadId = -1L
+    )
+
+    // WHEN
+    val result = mms.isOutgoingStoryAlreadyInDatabase(myStory.id, 200)
+
+    // THEN
+    assertTrue(result)
+  }
 }

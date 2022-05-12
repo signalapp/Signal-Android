@@ -1417,6 +1417,10 @@ public class SmsDatabase extends MessageDatabase {
     throw new UnsupportedOperationException();
   }
 
+  public boolean isOutgoingStoryAlreadyInDatabase(@NonNull RecipientId recipientId, long sentTimestamp) {
+    throw new UnsupportedOperationException();
+  }
+
   @Override
   public @NonNull MessageId getStoryId(@NonNull RecipientId authorId, long sentTimestamp) throws NoSuchMessageException {
     throw new UnsupportedOperationException();

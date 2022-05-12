@@ -696,6 +696,22 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public boolean isOutgoingStoryAlreadyInDatabase(@NonNull RecipientId recipientId, long sentTimestamp) {
+    SQLiteDatabase database   = databaseHelper.getSignalReadableDatabase();
+    String[]       projection = new String[]{"COUNT(*)"};
+    String         where      = RECIPIENT_ID + " = ? AND " + STORY_TYPE + " > 0 AND " + DATE_SENT + " = ? AND (" + getOutgoingTypeClause() + ")";
+    String[]       whereArgs  = SqlUtil.buildArgs(recipientId, sentTimestamp);
+
+    try (Cursor cursor = database.query(TABLE_NAME, projection, where, whereArgs, null, null, null, "1")) {
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getInt(0) > 0;
+      }
+    }
+
+    return false;
+  }
+
+  @Override
   public @NonNull MessageId getStoryId(@NonNull RecipientId authorId, long sentTimestamp) throws NoSuchMessageException {
     SQLiteDatabase database   = databaseHelper.getSignalReadableDatabase();
     String[]       projection = new String[]{ID, RECIPIENT_ID};

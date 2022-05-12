@@ -203,6 +203,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   public abstract @NonNull MessageDatabase.Reader getUnreadStories(@NonNull RecipientId recipientId, int limit);
   public abstract @Nullable ParentStoryId.GroupReply getParentStoryIdForGroupReply(long messageId);
   public abstract void deleteGroupStoryReplies(long parentStoryId);
+  public abstract boolean isOutgoingStoryAlreadyInDatabase(@NonNull RecipientId recipientId, long sentTimestamp);
 
   public abstract @NonNull StoryViewState getStoryViewState(@NonNull RecipientId recipientId);
   public abstract void updateViewedStories(@NonNull Set<SyncMessageId> syncMessageIds);

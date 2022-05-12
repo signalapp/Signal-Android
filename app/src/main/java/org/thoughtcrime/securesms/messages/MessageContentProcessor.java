@@ -49,7 +49,6 @@ import org.thoughtcrime.securesms.database.SentStorySyncManifest;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.database.model.DistributionListId;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageLogEntry;
@@ -2062,6 +2061,11 @@ public final class MessageContentProcessor {
                                       @NonNull List<LinkPreview> linkPreviews)
       throws MmsException
   {
+    if (SignalDatabase.mms().isOutgoingStoryAlreadyInDatabase(recipient.getId(), sentAtTimestamp)) {
+      warn(sentAtTimestamp, "Already inserted this story.");
+      return;
+    }
+
     OutgoingMediaMessage mediaMessage = new OutgoingMediaMessage(recipient,
                                                                  textStoryBody,
                                                                  pendingAttachments,
