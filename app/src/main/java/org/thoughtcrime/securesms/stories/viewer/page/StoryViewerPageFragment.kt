@@ -24,6 +24,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveDataReactiveStreams
+import com.google.android.material.button.MaterialButton
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import org.signal.core.util.DimensionUnit
@@ -82,7 +83,7 @@ class StoryViewerPageFragment :
 
   private lateinit var progressBar: SegmentedProgressBar
   private lateinit var storySlate: StorySlateView
-  private lateinit var viewsAndReplies: TextView
+  private lateinit var viewsAndReplies: MaterialButton
   private lateinit var storyCrossfader: StoriesSharedElementCrossFaderView
   private lateinit var blurContainer: ImageView
   private lateinit var storyCaptionContainer: FrameLayout
@@ -714,14 +715,25 @@ class StoryViewerPageFragment :
 
     if (Recipient.self() == post.sender) {
       if (post.replyCount == 0) {
+        viewsAndReplies.setIconResource(R.drawable.ic_chevron_end_24)
+        viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_END
         viewsAndReplies.text = views
       } else {
+        viewsAndReplies.setIconResource(R.drawable.ic_chevron_end_24)
+        viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_END
         viewsAndReplies.text = getString(R.string.StoryViewerFragment__s_s, views, replies)
       }
     } else if (post.replyCount > 0) {
+      viewsAndReplies.setIconResource(R.drawable.ic_chevron_end_24)
+      viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_END
       viewsAndReplies.text = replies
+    } else if (post.group != null) {
+      viewsAndReplies.setIconResource(R.drawable.ic_reply_24_outline)
+      viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_START
+      viewsAndReplies.setText(R.string.StoryViewerPageFragment__reply_to_group)
     } else {
-
+      viewsAndReplies.setIconResource(R.drawable.ic_reply_24_outline)
+      viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_START
       viewsAndReplies.setText(R.string.StoryViewerPageFragment__reply)
     }
   }

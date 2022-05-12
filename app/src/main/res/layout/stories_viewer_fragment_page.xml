@@ -70,18 +70,23 @@
         </androidx.cardview.widget.CardView>
     </org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout>
 
-    <TextView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/views_and_replies_bar"
         android:layout_width="match_parent"
         android:layout_height="48sp"
         android:background="?selectableItemBackground"
         android:gravity="center"
         android:textAppearance="@style/Signal.Text.Body"
+        android:textColor="@color/signal_text_primary"
+        app:iconGravity="textStart"
+        app:iconSize="20dp"
+        app:iconTint="@color/signal_text_primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/story_content_card_touch_interceptor"
         app:layout_constraintVertical_bias="0"
+        tools:icon="@drawable/ic_reply_24_outline"
         tools:text="6 views 4 replies" />
 
     <androidx.constraintlayout.widget.Barrier

@@ -4565,6 +4565,8 @@
     <string name="StoryViewerPageFragment__s_to_s">%1$s to %2$s</string>
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Reply</string>
+    <!-- Displayed when viewing a group post from another user with no replies -->
+    <string name="StoryViewerPageFragment__reply_to_group">Reply to group</string>
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">No views yet</string>
     <!-- Displayed when a story has no replies yet -->

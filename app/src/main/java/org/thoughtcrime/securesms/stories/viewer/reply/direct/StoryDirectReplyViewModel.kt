@@ -24,7 +24,7 @@ class StoryDirectReplyViewModel(
   init {
     if (groupDirectReplyRecipientId != null) {
       store.update(Recipient.live(groupDirectReplyRecipientId).liveDataResolved) { recipient, state ->
-        state.copy(recipient = recipient)
+        state.copy(groupDirectReplyRecipient = recipient)
       }
     }
 
