@@ -3185,6 +3185,7 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
   <string name="Donate2022Q2Megaphone_donate_to_signal">Signal  को दान करें</string>
   <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal आप जैसे लोगों द्वारा संचालित है। हर महीने दान करें और एक बैज पाएं।</string>
   <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
   <string name="Donate2022Q2Megaphone_donate">दान करें</string>
   <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->

@@ -91,7 +91,9 @@
   <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Lehetőségetek lesz üzenetet küldeni egymásnak és felhívni egymást, valamint a neved és a fotód is megosztásra kerül velük.</string>
   <!--Text that is shown when unblocking an SMS contact-->
+  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Újra üzenetet küldhettek egymásnak.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">A letiltott személyek nem fognak tudni sem felhívni, sem pedig üzenetet küldeni neked.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">A blokkolt személyek nem küldhetnek üzeneteket számodra.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal újdonságok és hírek blokkolása.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -166,6 +168,7 @@
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Történeteim</string>
   <!--Action for creating a new story-->
+  <string name="ContactsCursorLoader_new_story">Új történet</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Üzenet %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal hívás %s</string>
@@ -320,6 +323,7 @@
   <!--Dialog title for block group link join requests-->
   <string name="ConversationFragment__block_request">Elutasítod az kérést?</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s nem használhatja a csoportlinket a csatlakozáshoz, vagy a csatlakozás kérvényezéséhez. Kézzel továbbra is felvehető a csoport tagjai közé.</string>
   <!--Dialog confirm block request button-->
   <string name="ConversationFragment__block_request_button">Csatlakozási igény</string>
   <!--Dialog cancel block request button-->
@@ -424,8 +428,11 @@
   <string name="RestoreBackupFragment__choose_folder">Mappa kiválasztása</string>
   <string name="RestoreBackupFragment__not_now">Most nem</string>
   <!--Couldn\'t find the selected backup-->
+  <string name="RestoreBackupFragment__backup_not_found">A biztonsági mentés nem található.</string>
   <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">A biztonsági mentés nem olvasható.</string>
   <!--Backup has an unsupported file extension-->
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">A biztonsági mentés kiterjesztése nem megfelelő.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Beszélgetések biztonsági mentése</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">A biztonsági mentések egy jelszóval titkosítva vannak, és a saját eszközöd tárolja őket.</string>
@@ -726,6 +733,8 @@
   <string name="CustomNotificationsDialogFragment__notification_sound">Értesítés hangja</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Rezgés</string>
   <!--Button text for customizing notification options-->
+  <string name="CustomNotificationsDialogFragment__customize">Testreszabás</string>
+  <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Hangjelzés és rezgés megváltoztatása</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Hívás beállításai</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Csengőhang</string>
   <string name="CustomNotificationsDialogFragment__enabled">Engedélyezve</string>
@@ -760,11 +769,13 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Hálózati hiba történt.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Ez a csoporthivatkozás nem aktív</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Nem sikerült belépni a csoportba</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
   <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Egy admin eltávolított ebből a csoportból, így már nem tudsz csoporthivatkozás használatával csatlakozni ehhez a csoporthoz.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Ez a csoporthivatkozás már nem érvényes.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">Hivatkozás-hiba</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
   <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Sikertelen belépési kísérlet a hivatkozás használatával. Próbáld újra később!</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Szeretnél csatlakozni a csoporthoz? Ezzel profilod láthatóvá is válik.</string>
@@ -792,6 +803,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">\"%1$s\" hozzáadása a csoporthoz?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">\"%1$s\" kérésének elutasítása?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Megtagadod a kérést \"%1$s\" felhasználótól? A jövőben nem lesz képes csatlakozási kérést küldeni a csoporthivatkozás segítségével.</string>
   <string name="RequestConfirmationDialog_add">Hozzáadás</string>
   <string name="RequestConfirmationDialog_deny">Elutasítás</string>
   <!--ImageEditorHud-->
@@ -1081,6 +1093,10 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Elküldted csatlakozási igényedet a csoportnak.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s csatlakozni szeretne a csoporthivatkozás használatával.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="one">%1$s jelezte majd visszavonta csatlakozási igényét a csoporthivatkozás használatával.</item>
+    <item quantity="other">%1$s %2$d alkalommal jelezte majd visszavonta csatlakozási igényét a csoporthivatkozás használatával.</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s jóváhagyta csatlakozási igényedet a csoporthoz.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s jóváhagyott egy csatlakozási igényt tőle: %2$s.</string>
@@ -1135,6 +1151,7 @@
   <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Engedélyezed, hogy %1$s üzenetet küldjön számodra, és lássa nevedet, valamint profilképedet? Nem fogsz üzenetet kapni tőle, amíg fel nem oldod a tiltást.</string>
   <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Engedélyezed, hogy %1$s üzenetet küldjön számodra? Amíg nem oldod fel a tiltást, nem kapsz tőle üzeneteket.</string>
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Szeretnél híreket és újdonságokat kapni %1$s felhasználótól? Addig nem kapsz értesítéseket tőle, míg fel nem oldod a blokkolását.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Folytatod a csoporton belüli csevegést, és megosztod nevedet, valamint profilképed a tagokkal?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Frissítsd a csoportot, hogy elérd az új funkciókat, mint az @említés és az admin szerepkör. Azok a tagok, akik nem osztották meg a nevüket vagy képüket, meghívásra kerülnek.</string>
@@ -1152,7 +1169,15 @@
     <item quantity="other">%1$d tag</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d tag (%2$s)</item>
+    <item quantity="other">%1$d tag (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="one">+%1$d meghívott</item>
+    <item quantity="other">+%1$d meghívott</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d további csoport</item>
     <item quantity="other">%d további csoport</item>
@@ -1246,6 +1271,7 @@ Kérlek telepítsd újra a Google Play Szolgáltatásokat, majd próbáld újra!
   <!--Recipient-->
   <string name="Recipient_you">Te</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">Történetem</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blokkolás</string>
   <string name="RecipientPreferenceActivity_unblock">Feloldás</string>
@@ -1425,6 +1451,12 @@ szám (%s) érvénytelen.
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Továbbiak</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">A PIN megerősítése sikerült. Később újra emlékeztetni fogunk.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">A PIN megerősítése sikerült. Holnap újra emlékeztetni fogunk.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">A PIN megerősítése sikerült. Néhány nap múlva újra emlékeztetni fogunk.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">A PIN megerősítése sikerült. Egy hét múlva újra emlékeztetni fogunk.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">A PIN megerősítése sikerült. Néhány hét múlva újra emlékeztetni fogunk.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">A PIN megerősítése sikerült. Egy hónap múlva újra emlékeztetni fogunk.</string>
   <!--Slide-->
   <string name="Slide_image">Kép</string>
   <string name="Slide_sticker">Matrica</string>
@@ -1511,8 +1543,11 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ThreadRecord_video">Videó</string>
   <string name="ThreadRecord_chat_session_refreshed">A munkamenet alaphelyzetbe állt</string>
   <!--Displayed in the notification when the user is sent a gift-->
+  <string name="ThreadRecord__you_received_a_gift">Ajándékot kaptál</string>
   <!--Displayed in the notification when the user sends a gift-->
+  <string name="ThreadRecord__you_sent_a_gift">Ajándék elküldve</string>
   <!--Displayed in the notification when the user has opened a received gift-->
+  <string name="ThreadRecord__you_redeemed_a_gift_badge">Beváltottál egy ajándék jelvényt</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal frissítés</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">A Signal egy új verziója érhető el, koppints a frissítéshez</string>
@@ -1578,7 +1613,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Ez véglegesen törölni fogja ezt az üzenetet.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s (címzett: %2$s)</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Tőled neki: %1$s</string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">Feladó: %1$s</string>
   <string name="MediaPreviewActivity_media_no_longer_available">A médiafájl már nem érhető el</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nem található alkalmazás ezen médiafájl megnyitásához.</string>
   <!--MessageNotifier-->
@@ -1718,6 +1755,10 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
     <item quantity="other">%1$d tag</item>
   </plurals>
   <!--Displays number of viewers for a story-->
+  <plurals name="contact_selection_list_item__number_of_viewers">
+    <item quantity="one">%1$d megtekintés</item>
+    <item quantity="other">%1$d megtekintés</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal üzenet</string>
   <string name="conversation_activity__type_message_sms_insecure">Titkosítatlan SMS</string>
@@ -1778,10 +1819,13 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="QuoteView_you">Te</string>
   <string name="QuoteView_original_missing">Az eredeti üzenet nem található</string>
   <!--Author formatting for group stories-->
+  <string name="QuoteView_s_story">%1$s · Történet</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Te · Story</string>
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">Nem elérhető</string>
   <!--Label for quoted gift-->
+  <string name="QuoteView__gift">Ajándék</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Görgetés az aljára</string>
   <!--BubbleOptOutTooltip-->
@@ -1826,7 +1870,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="device_list_fragment__no_devices_linked">Nincs társított eszköz</string>
   <string name="device_list_fragment__link_new_device">Új eszköz társítása</string>
   <!--expiration-->
-  <string name="expiration_off">kikapcsolva</string>
+  <string name="expiration_off">ki</string>
   <plurals name="expiration_seconds">
     <item quantity="one">%d másodperc</item>
     <item quantity="other">%d másodperc</item>
@@ -1887,7 +1931,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="message_recipients_list_item__view">MEGTEKINTÉS</string>
   <string name="message_recipients_list_item__resend">ÚJRAKÜLDÉS</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
+  <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Küldés ideje vágólapra másolva</string>
   <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">A történeteid itt fognak megjelenni</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s csatlakozott a csoporthoz.</item>
@@ -2080,6 +2126,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__led_color">LED színe</string>
   <string name="preferences__led_color_unknown">Ismeretlen</string>
   <string name="preferences__pref_led_blink_title">LED villogás mintázata</string>
+  <string name="preferences__customize">Testreszabás</string>
+  <string name="preferences__change_sound_and_vibration">Hangjelzés és rezgés megváltoztatása</string>
   <string name="preferences__sound">Dallam</string>
   <string name="preferences__silent">Csendes</string>
   <string name="preferences__default">Alapértelmezett</string>
@@ -2834,6 +2882,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" szerkesztheti a csoportot és annak tagjait</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">Eltávolítod %1$s-t a csoportból?</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Eltávolítod %1$s felhasználót a csoportból? A jövőben nem lesz képes csatlakozni a csoporthivatkozás segítségével sem.</string>
   <string name="RecipientBottomSheet_remove">Eltávolítás</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Vágólapra másolva</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
@@ -2924,6 +2973,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">Fiók törlése…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
+  <string name="DeleteAccountFragment__canceling_your_subscription">Előfizetés megszüntetése…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Csoportjaid számától függően ez eltarthat pár percig.</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
@@ -3083,6 +3133,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Fotóminőség</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">Hívd meg barátaidat!</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">Előfizető azonosítója a vágólapra másolva</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Fiók</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Idővel egyre ritkábban kérünk meg rá</string>
@@ -3237,6 +3288,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
   <string name="Donate2022Q2Megaphone_donate_to_signal">Adomány a Signal számára</string>
   <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">A Signalt az olyan emberek tartják működésben, mint Te. Küldj havi támogatást, amiért cserébe egy kitűzőt adunk!</string>
   <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
   <string name="Donate2022Q2Megaphone_donate">Támogatás</string>
   <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
@@ -3454,8 +3506,11 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">A Signal egy nonprofit, hirdetők és befektetők nélküli, kizárólag felhasználók és rajongók által fenntartott alkalmazás. Indíts havi, rendszeres támogatást, és cserébe kitűzőt kapsz profilképedre, amivel láthatóvá teheted támogatásodat.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Miért támogassam?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">A Signal csapata elkötelezett, hogy nyílt forrású fejlesztéseivel előmozdítsa a privát technológiák térnyerését, amelyek a szólásszabadságot és a biztonságos globális kommunikáció elterjedését biztosítják.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Adományoddal nem csak az ügyet segíted, hanem egy olyan app fejlesztésére és üzemeltetésére fordítjuk, amelyet mára milliók használnak titkosított kommunikációra. Nincs reklám. Nincs követés. Nincs trükk.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Köszönjük a támogatásodat!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Köszönet a Löketért!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Elnyerted a %s kitűzőt. Ha kitűzöd a jelvényt profilképedre, azzal felhívod más felhasználók figyelmét arra, hogy ők is adományozhatnak.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Elnyerted a Löket kitűzőt. Ha kitűzöd a jelvényt profilképedre, azzal felhívod más felhasználók figyelmét arra, hogy ők is adományozhatnak.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">De ezen kívül</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">havi Fenntartóvá is válhatsz.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Megjelenítés profilképen</string>
@@ -3465,11 +3520,13 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="BecomeASustainerFragment__get_badges">Szerezz kitűzőket profilképedre a Signal anyagi támogatásával.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">A Signal egy nonprofit, hirdetők és befektetők nélküli, kizárólag felhasználók és rajongók által fenntartott alkalmazás. </string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">Adományozás havonta</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">Tovább</string>
   <!--Heading for receipts area of manage subscriptions page-->
   <string name="ManageDonationsFragment__receipts">Nyugta</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">Előfizetésem</string>
   <string name="ManageDonationsFragment__manage_subscription">Előfizetés kezelése</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Adomány nyugták</string>
@@ -3477,9 +3534,12 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ManageDonationsFragment__subscription_faq">Előfizetés GYIK</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Előfizetés lekérdezése sikertelen</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">Az adományozás egyéb módjai</string>
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">Kitűző ajándékozása</string>
   <string name="BoostFragment__give_signal_a_boost">Adj egy Lökést a Signalnak!</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Egy egyszeri támogatásért cserébe %1$d napig érvényes Löket kitűzőt kapsz.</string>
   <string name="Boost__enter_custom_amount">Egyedi összeg</string>
   <string name="Boost__one_time_contribution">Egyszeri hozzájárulás</string>
   <string name="MySupportPreference__add_a_signal_boost">Új Signal Löket</string>
@@ -3490,16 +3550,21 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MySupportPreference__couldnt_add_badge_s">Kitűző hozzáadása sikertelen. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Kérjük vedd fel a kapcsolatot a Támogatási Központtal!</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">A Lőket kitűző érvényessége lejárt</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Havi támogatás visszavonva</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">A Löket kitűződ érvényessége lejárt, így már nem jelenik meg a profilodon.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Egy egyszeri hozzájárulással újraaktiválhatod a \"Löket\" kitűzőt újabb 30 napra.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Továbbra is használhatod a Signalt, de ha hosszabb távon is szívesen támogatnál egy kifejezetten számodra fejlesztett technológiát, akkor kérjük fontold meg a havi rendszerességgel történő támogatást.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Válj Fenntartóvá</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Új Löket</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Később</string>
   <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">A havi adományaidra vonatkozó megállapodást automatikusan töröltük, mert túl sokáig voltál inaktív. A %1$s kitűző már nem látható profilodon.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">A havi adományaidra vonatkozó megállapodást automatikusan töröltük, mert nem tudtuk végrehajtani a fizetési tranzakciót. A kitűző már nem látható profilodon.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Természetesen továbbra is használhatod a Signalt, de az alkalmazás támogatásához és jelvényed újraaktiválásához el kell végezned az előfizetés megújítását.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Előfizetés megújítása</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Nem sikerült feldolgozni a fizetési tranzakciót</string>
@@ -3518,9 +3583,13 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="DonationsErrors__still_processing">Még dolgozunk</string>
   <string name="DonationsErrors__couldnt_add_badge">Kitűző hozzáadása sikertelen.</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__failed_to_validate_badge">Nem sikerült ellenőrizni a kitűzőhöz való jogosultságodat.</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__could_not_validate">Nem sikerült meggyőződni a kiszolgáló válaszának hitelességéről. Kérlek vedd fel a kapcsolatot a támogatással!</string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__failed_to_send_gift_badge">Nem sikerült elküldeni az ajándék kitűzőt</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__could_not_send_gift_badge">Nem sikerült elküldeni az ajándék kitűzőt. Kérlek vedd fel a kapcsolatot a támogatással!</string>
   <string name="DonationsErrors__your_badge_could_not">Nem tudtuk a kitűződet a fiókodhoz rendelni, miközben lehet, hogy fizettél. Kérjük vedd fel a kapcsolatot a Támogatási Központtal.</string>
   <string name="DonationsErrors__your_payment_is_still">A fizetés feldolgozása folyamatban. Ez a kapcsolatod sebességétől függően eltarthat egy ideig.</string>
   <string name="DonationsErrors__google_pay_unavailable">A Google Pay nem érhető el</string>
@@ -3531,16 +3600,28 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Hálózati hiba. Ellenőrizd a hálózati kapcsolatot és próbáld újra!</string>
   <string name="NetworkFailure__retry">Újra</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__recipient_verification_failed">Nem sikerült hitelesíteni a címzettet.</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">A címzett nem támogatja az ajándékozást.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__could_not_verify_recipient">Nem sikerült hitelesíteni a címzettet.</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Kérlek ellenőrizd a hálózati kapcsolatot és próbáld újra!</string>
   <!--Gift message view title-->
+  <string name="GiftMessageView__gift_badge">Ajándék kitűző</string>
   <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="one">%1$d hónapig érvényes</item>
+    <item quantity="other">%1$d hónapig érvényes</item>
+  </plurals>
   <!--Gift badge redeem action label-->
+  <string name="GiftMessageView__redeem">Beváltás</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">Megtekintés</string>
   <!--Gift badge redeeming action label-->
+  <string name="GiftMessageView__redeeming">Beváltás…</string>
   <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">Beváltva</string>
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Próbáld újra egy másik fizetési eszközzel, vagy keresd fel bankodat további információért!</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3712,13 +3793,17 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">Egyszeri</string>
   <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">Ajándék</string>
   <!--Donation receipts boost row label-->
+  <string name="DonationReceiptListFragment__boost">Lökés</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Részletek</string>
   <!--Donation receipts donation type heading-->
+  <string name="DonationReceiptDetailsFragment__donation_type">Adomány típusa</string>
   <!--Donation receipts date paid heading-->
   <string name="DonationReceiptDetailsFragment__date_paid">Fizetés dátuma</string>
   <!--Donation receipts share PNG-->
+  <string name="DonationReceiptDetailsFragment__share_receipt">Nyugta megosztása</string>
   <!--Donation receipts list end note-->
   <string name="DonationReceiptListFragment__if_you_have">Ha újratelepítetted a Signalt, korábbi adományaid nyugtái nem lesznek elérhetőek.</string>
   <!--Donation receipts document title-->
@@ -3726,48 +3811,75 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Donation receipts amount title-->
   <string name="DonationReceiptDetailsFragment__amount">Összeg</string>
   <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Köszönjük, hogy támogatod a Signalt! Adományoddal hozzájárulsz a szabad véleménynyilvánítást és milliók számára biztonságos kommunikációt lehetővé tévő, nyílt forrású, magánéletet védő technológiák fejlesztéséhez. Ha az Egyesült Államokban adózol, kérünk, őrizd meg ezt a nyugtát adóbevallásodhoz. A Signal Technology Foundation egy adómentes, non-profit szervezet, amely az USA területén az 501c3 Internal Revenue Code hatálya alá tartozik. Szövetségi adóazonosító: 82-4506840.</string>
   <!--Donation receipt type-->
+  <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--Donation reciepts screen empty state title-->
+  <string name="DonationReceiptListFragment__no_receipts">Nincsenek nyugták</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Beszélgetések</string>
   <!--Label for Stories tab in home app screen-->
   <string name="ConversationListTabs__stories">Történetek</string>
   <!--String for counts above 99 in conversation list tabs-->
+  <string name="ConversationListTabs__99p">99+</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Történeteim</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Történet hozzáadása</string>
   <!--Displayed when there are no stories to display-->
+  <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Nem történt mostanában semmi újdonság. Kattints a + gombra új történet hozzáadásához!</string>
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Történet elrejtése</string>
   <!--Context menu option to unhide a story-->
+  <string name="StoriesLandingItem__unhide_story">Történet megjelenítése</string>
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">Továbbítás</string>
   <!--Context menu option to share a story-->
+  <string name="StoriesLandingItem__share">Megosztás…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Ugrás a beszélgetéshez</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Küldés…</string>
   <!--Label when multiple stories are pending sending-->
+  <string name="StoriesLandingItem__sending_d">%1$d küldése…</string>
   <!--Label when a story fails to send-->
   <string name="StoriesLandingItem__send_failed">Küldés sikertelen</string>
   <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">Koppints az újrapróbálkozáshoz!</string>
   <!--Title of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__hide_story">Elrejted a történetet?</string>
   <!--Message of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__new_story_updates">A %1$s felhasználótól származó történetek a jövőben nem fognak a lista tetejére kerülni.</string>
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">Elrejtés</string>
   <!--Displayed in Snackbar after story is hidden-->
+  <string name="StoriesLandingFragment__story_hidden">Történet elrejtve</string>
   <!--Section header for hidden stories-->
   <string name="StoriesLandingFragment__hidden_stories">Elrejtett történetek</string>
   <!--Displayed on each sent story under My Stories-->
+  <plurals name="MyStories__d_views">
+    <item quantity="one">%1$d megtekintés</item>
+    <item quantity="other">%1$d megtekintés</item>
+  </plurals>
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">Továbbítás</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
+  <string name="MyStories__ss_story">%1$s története</string>
   <!--Title of dialog to confirm deletion of story-->
+  <string name="MyStories__delete_story">Törlöd a történetet?</string>
   <!--Message of dialog to confirm deletion of story-->
+  <string name="MyStories__this_story_will_be_deleted">A történet nálad és az összes címzettnél törlésre kerül.</string>
   <!--Displayed at bottom of story viewer when current item has views-->
+  <plurals name="StoryViewerFragment__d_views">
+    <item quantity="one">%1$d view</item>
+    <item quantity="other">%1$d megtekintés</item>
+  </plurals>
   <!--Displayed at bottom of story viewer when current item has replies-->
+  <plurals name="StoryViewerFragment__d_replies">
+    <item quantity="one">%1$d válasz</item>
+    <item quantity="other">%1$d válasz</item>
+  </plurals>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3777,6 +3889,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Válasz</string>
   <!--Displayed when a story has no views-->
+  <string name="StoryViewsFragment__no_views_yet">Még nem látta senki</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Még nem érkeztek reakciók</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -3786,7 +3899,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Label for story replies tab-->
   <string name="StoryViewsAndRepliesDialogFragment__replies">Válaszok</string>
   <!--Description of action for reaction button-->
+  <string name="StoryReplyComposer__react_to_this_story">Reagálás a történetre</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
+  <string name="StoryReplyComposer__replying_privately_to_s">Privát válasz küldése %1$s részére</string>
   <!--Context menu item to privately reply to a story response-->
   <string name="StoryGroupReplyItem__private_reply">Válasz privátban</string>
   <!--Context menu item to copy a story response-->
@@ -3794,92 +3909,157 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Törlés</string>
   <!--Story settings page title-->
+  <string name="StorySettingsFragment__story_settings">Történet beállításai</string>
   <!--Story settings private stories heading-->
+  <string name="StorySettingsFragment__private_stories">Privát történetek</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">A privát történeteket csak azok tekinthetik meg, akiket előzetesen a listához adtál. A történet nevét csak te láthatod.</string>
   <!--Option label for creating a new private story-->
+  <string name="StorySettingsFragment__new_private_story">Új privát történet</string>
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">Történetem</string>
   <!--Section heading for story visibility-->
+  <string name="MyStorySettingsFragment__who_can_see_this_story">Ki tekintheti meg ezt a történetet?</string>
   <!--Clickable option for selecting people to hide your story from-->
+  <string name="MyStorySettingsFragment__hide_story_from">Történet elrejtése előlük:</string>
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <plurals name="MyStorySettingsFragment__d_people">
+    <item quantity="one">%1$d személy</item>
+    <item quantity="other">%1$d személy</item>
+  </plurals>
   <!--Section header for options related to replies and reactions-->
+  <string name="MyStorySettingsFragment__replies_amp_reactions">Válaszok és reakciók</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
+  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Válaszok és reakciók engedélyezése</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
+  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Reakciók és válaszok engedése azok számára, akik megtekinthetik a történetet</string>
   <!--Note about default sharing-->
+  <string name="MyStorySettingsFragment__hide_your_story_from">A történeteket elrejtheted egyes személyek elől. Alapértelmezetten történeteidet a következők tekinthetik meg: %1$s</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
+  <string name="MyStorySettingsFragment__signal_connections">Signal kapcsolataid.</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">A <strong>Signal kapcsolataid</strong> azok a személyek, akikben megbíztál a következők valamelyike alapján:</string>
   <!--Signal connections sheet bullet point 1-->
+  <string name="SignalConnectionsBottomSheet__starting_a_conversation">Beszélgetést kezdeményeztél velük</string>
   <!--Signal connections sheet bullet point 2-->
+  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Elfogadtál tőlük egy felkérést</string>
   <!--Signal connections sheet bullet point 3-->
+  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Szerepelnek a telefonkönyvedben</string>
   <!--Note at the bottom of the Signal connections sheet-->
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Kapcsolataid megtekinthetik neved, profilképedet, valamint a \"Történeteim\" szekcióba posztoltakat, kivéve ha kifejezetten elrejtetted azokat előlük.</string>
   <!--Clickable option to add a viewer to a private story-->
+  <string name="PrivateStorySettingsFragment__add_viewer">Megtekintő hozzáadása</string>
   <!--Clickable option to delete a custom story-->
+  <string name="PrivateStorySettingsFragment__delete_private_story">Privát történet eltávolítása</string>
   <!--Dialog title when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__remove_s">Eltávolítod %1$s felhasználót?</string>
   <!--Dialog message when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__this_person_will_no_longer">A felhasználó mostantól nem tudja megtekinteni a történedet.</string>
   <!--Positive action label when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__remove">Eltávolítás</string>
   <!--Dialog title when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__are_you_sure">Biztos vagy benne?</string>
   <!--Dialog message when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__this_action_cannot">Ez a művelet nem vonható vissza</string>
   <!--Page title for editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__edit_story_name">Történet címének megváltoztatása</string>
   <!--Input field hint when editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__story_name">Történet címe</string>
   <!--Save button label when editing a private story name-->
   <string name="EditPrivateStoryNameFragment__save">Mentés</string>
   <!--Displayed in text post creator before user enters text-->
+  <string name="TextStoryPostCreationFragment__tap_to_add_text">Koppints szöveg hozzáadásához</string>
   <!--Button label for changing font when creating a text post-->
+  <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
   <!--Displayed in text post creator when prompting user to enter text-->
   <string name="TextStoryPostTextEntryFragment__add_text">Szöveg hozzáadása</string>
   <!--Content description for \'done\' button when adding text to a story post-->
+  <string name="TextStoryPostTextEntryFragment__done_adding_text">Szöveg hozzáadásának befejezése</string>
   <!--Text label for media selection toggle-->
   <string name="MediaSelectionActivity__text">Szöveg</string>
   <!--Camera label for media selection toggle-->
   <string name="MediaSelectionActivity__camera">Kamera</string>
   <!--Hint for entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Gépelj vagy másolj be egy URL-t</string>
   <!--Displayed prior to the user entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Hivatkozás megosztása a történet megtekintői számára</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Keresés</string>
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
+  <string name="HideStoryFromFragment__hide_story_from">Történet elrejtése előlük…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Befejezés</string>
   <!--Dialog title for first time adding something to a story-->
+  <string name="StoryDialogs__add_to_story_q">Hozzáadod a történethez?</string>
   <!--Dialog message for first time adding something to a story-->
+  <string name="StoryDialogs__adding_content">Ha hozzáadsz egy tartalmat a történetedhez, akkor Signal kapcsolataid 24 órán keresztül megtekinthetik azt. A Beállítások használatával testre szabhatod, hogy pontosan ki férhet hozzá történeteidhez.</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
+  <string name="StoryDialogs__add_to_story">Hozzáadás a történethez</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <string name="StoryDialogs__edit_viewers">Megtekintők módosítása</string>
   <!--Error message shown when a failure occurs during story send-->
+  <string name="StoryDialogs__story_could_not_be_sent">A történetet nem sikerült elküldeni. Ellenőrizd a hálózati kapcsolatot és próbáld újra!</string>
   <!--Error message dialog button to resend a previously failed story send-->
   <string name="StoryDialogs__send">Küldés</string>
   <!--Privacy Settings toggle title for stories-->
+  <string name="PrivacySettingsFragment__share_and_view_stories">Történetek megosztása és megtekintése</string>
   <!--Privacy Settings toggle summary for stories-->
+  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Ha letiltod ezt a funkciót, akkor nem fogsz tudni új történeteket hozzáadni vagy másokét megtekinteni.</string>
   <!--New story viewer selection screen title-->
+  <string name="CreateStoryViewerSelectionFragment__choose_viewers">Megtekintők kiválasztása</string>
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">Tovább</string>
   <!--New story viewer selection screen title as recipients are selected-->
+  <plurals name="SelectViewersFragment__d_viewers">
+    <item quantity="one">%1$d megtekintő</item>
+    <item quantity="other">%1$d megtekintő</item>
+  </plurals>
   <!--Name story screen title-->
+  <string name="CreateStoryWithViewersFragment__name_story">Történet címe</string>
   <!--Name story screen label hint-->
+  <string name="CreateStoryWithViewersFragment__story_name_required">Történet címe (kötelező)</string>
   <!--Name story screen viewers subheading-->
+  <string name="CreateStoryWithViewersFragment__viewers">Megtekintők</string>
   <!--Name story screen create button label-->
   <string name="CreateStoryWithViewersFragment__create">Létrehozás</string>
   <!--Name story screen error when save attempted with no label-->
   <string name="CreateStoryWithViewersFragment__this_field_is_required">A mező kitöltése kötelező.</string>
   <!--Name story screen error when save attempted but label is duplicate-->
+  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">Már létezik egy történet azonos címmel</string>
   <!--Text for select all action when editing recipients for a story-->
   <string name="BaseStoryRecipientSelectionFragment__select_all">Összes kiválasztása</string>
   <!--Choose story type bottom sheet title-->
+  <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Válaszd ki a történet típusát</string>
   <!--Choose story type bottom sheet new story row title-->
+  <string name="ChooseStoryTypeBottomSheet__new_private_story">Új privát történet</string>
   <!--Choose story type bottom sheet new story row summary-->
+  <string name="ChooseStoryTypeBottomSheet__visible_only_to">Csak bizonyos személyek számára látható</string>
   <!--Choose story type bottom sheet group story title-->
+  <string name="ChooseStoryTypeBottomSheet__group_story">Csoport-történet</string>
   <!--Choose story type bottom sheet group story summary-->
+  <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Megosztás egy meglévő csoporttal</string>
   <!--Choose groups bottom sheet title-->
+  <string name="ChooseGroupStoryBottomSheet__choose_groups">Csoportok kiválasztása</string>
   <!--Displayed when copying group story reply text to clipboard-->
   <string name="StoryGroupReplyFragment__copied_to_clipboard">Vágólapra másolva</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
+  <string name="StoryViewerPageFragment__see_more">… Tovább</string>
   <!--Displayed in toast after sending a direct reply-->
+  <string name="StoryDirectReplyDialogFragment__sending_reply">Válasz küldése…</string>
   <!--Displayed in the viewer when a story is no longer available-->
+  <string name="StorySlateView__this_story_is_no_longer_available">A történet már nem érhető el.</string>
   <!--Displayed in the viewer when the network is not available-->
   <string name="StorySlateView__no_internet_connection">Nincs internet kapcsolat</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <string name="StorySlateView__couldnt_load_content">Nem sikerült betölteni a tartalmat.</string>
   <!--Toasted when the user externally shares to a text story successfully-->
+  <string name="TextStoryPostCreationFragment__sent_story">Történet elküldve</string>
   <!--Toasted when the user external share to a text story fails-->
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">Nem sikerült elküldeni a történetet</string>
   <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">Történet megtekintése</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">Profilkép megtekintése</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Kikapcsolod a cenzúramegkerülést?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -3889,46 +4069,74 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Kikapcsolás</string>
   <!--Conversation Item label for when you react to someone else\'s story-->
+  <string name="ConversationItem__you_reacted_to_s_story">Reagáltál %1$s történetére</string>
   <!--Conversation Item label for reactions to your story-->
   <string name="ConversationItem__reacted_to_your_story">Válasz a történetedre</string>
   <!--Conversation Item label for reactions to an unavailable story-->
+  <string name="ConversationItem__reacted_to_a_story">Reagált egy történetre</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="ExpandModel__view_more">Tovább</string>
   <string name="StoriesLinkPopup__visit_link">Hivatkozás megnyitása</string>
   <!--Tagline for gift row items-->
+  <string name="GiftRowItem__send_a_gift_badge">Ajándék kitűző küldése</string>
   <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">Kitűző ajándékozása</string>
   <!--Description text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">Ajándékozz egy kitűzőt valakinek úgy, hogy a nevükben adományozol a Signal részére. Az adományért cserébe egy kitűzőt kapnak, amit a profilképükre tűzhetnek ki.</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Tovább</string>
   <!--Title text on choose recipient page for badge gifting-->
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Címzett kiválasztása</string>
   <!--Title text on confirm gift page-->
+  <string name="GiftFlowConfirmationFragment__confirm_gift">Ajándék megerősítése</string>
   <!--Heading text specifying who the gift will be sent to-->
   <string name="GiftFlowConfirmationFragment__send_to">Címzett</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Az ajándékot közvetlen üzenetben adhatod át a címzett részére. Egészítsd ki saját üzeneteddel!</string>
   <!--Text explaining that this gift is a one time donation-->
   <string name="GiftFlowConfirmationFragment__one_time_donation">Egyszeri adomány</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Szöveg hozzáadása</string>
   <!--Displayed in the dialog while verifying the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__verifying_recipient">Címzett megerősítése…</string>
   <!--Title for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s ajándékot küldött neked</string>
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Köszönjük a támogatásodat!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Ajándék kitűzőt kaptál %1$s felhasználótól. Segíts a Signalnak azzal, hogy kitűzöd az ajándékot profilképedre!</string>
   <!--Description for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Kitűzőt ajándékoztál %1$s részére. Amikor elfogadja, lehetősége lesz kitűzni vagy elrejteni azt.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
+  <string name="ViewReceivedGiftSheet__redeem">Beváltás</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">Később</string>
   <!--Dialog text while redeeming a gift-->
+  <string name="ViewReceivedGiftSheet__redeeming_gift">Ajándék beváltása…</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <string name="ConversationFragment__you_can_redeem_your_badge_later">A kitűzőt később is beválthatod.</string>
   <!--Description text in gift thanks sheet-->
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Kitűzőt ajándékoztál %1$s részére. Amikor elfogadja, lehetősége lesz kitűzni vagy elrejteni azt.</string>
   <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Az ajándék kitűződ érvényessége lejárt</string>
   <!--Expired gift sheet top description text-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Az ajándék kitűződ érvényessége lejárt, így már nem jelenik meg a profilképeden.</string>
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">Ha továbbra is támogatnád ezt a technológiát, amelyet számodra fejlesztettünk, kérjük fontold meg a havi Fenntartóvá válást.</string>
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Adományozás havonta</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Később</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Privát történet · %1$d megtekintés</item>
+    <item quantity="other">Privát történet · %1$d megtekintés</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Csoporttörténet · %1$d megtekintés</item>
+    <item quantity="other">Csoporttörténet · %1$d megtekintés</item>
+  </plurals>
   <!--EOF-->
 </resources>

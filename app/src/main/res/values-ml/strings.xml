@@ -3235,6 +3235,7 @@
   <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
   <string name="Donate2022Q2Megaphone_donate_to_signal">Signal-ന് സംഭാവന ചെയ്യുക</string>
   <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">നിങ്ങളെ പോലുള്ള ആളുകളിലൂടെയാണ് Signal പ്രവർത്തിക്കുന്നത്. പ്രതിമാസ ഡൊണേഷനിലൂടെ ഒരു ബാഡ്‌ജ് സ്വന്തമാക്കൂ.</string>
   <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
   <string name="Donate2022Q2Megaphone_donate">സംഭാവനചെയ്യുക</string>
   <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->

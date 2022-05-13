@@ -4132,5 +4132,9 @@
     <item quantity="other">História privada · %1$d visualizadores</item>
   </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">História de grupo · %1$d visualizador</item>
+    <item quantity="other">História de grupo · %1$d visualizadores</item>
+  </plurals>
   <!--EOF-->
 </resources>

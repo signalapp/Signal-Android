@@ -91,7 +91,9 @@
   <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">आपण एकमेकांना संदेश पाठविण्यात आणि कॉल करण्यात सक्षम असाल आणि आपले नाव आणि फोटो त्यांच्यासह सामायिक केला जाईल.</string>
   <!--Text that is shown when unblocking an SMS contact-->
+  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">आपण एकमेकांना मेसेज करू शकाल.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">अवरोधित लोक आपल्याला कॉल करण्यास किंवा संदेश पाठविण्यास सक्षम असणार नाहीत.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">अवरोधित केलेले लोक आपल्याला संदेश पाठवू शकणार नाहीत.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal अपडेट्स आणि बातम्या मिळवणे ब्लॉक करा.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -430,6 +432,7 @@
   <!--Couldn\'t read the selected backup-->
   <string name="RestoreBackupFragment__backup_could_not_be_read">बॅकअप वाचता आला नाही.</string>
   <!--Backup has an unsupported file extension-->
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">बॅकअपमध्ये खराब विस्तार आहे.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">चॅट बॅकअप</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">बॅकअप आपल्या सांकेतिक वाक्यांशासह कूटबद्ध केले जातात आणि आपल्या डिव्हाइसवर संग्रहित केले जातात.</string>
@@ -730,6 +733,8 @@
   <string name="CustomNotificationsDialogFragment__notification_sound">सूचना ध्वनी</string>
   <string name="CustomNotificationsDialogFragment__vibrate">कंपन</string>
   <!--Button text for customizing notification options-->
+  <string name="CustomNotificationsDialogFragment__customize">सानुकूलित करा</string>
+  <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">आवाज आणि कंपन बदला</string>
   <string name="CustomNotificationsDialogFragment__call_settings">कॉल सेटिंग</string>
   <string name="CustomNotificationsDialogFragment__ringtone">रिंगटोन</string>
   <string name="CustomNotificationsDialogFragment__enabled">सक्षम केले</string>
@@ -1146,6 +1151,7 @@
   <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s ला आपल्याला संदेश देऊ द्या आणि आपले नाव आणि फोटो त्यांच्यासह सामायिक करू द्या? आपण त्यांना अनब्लॉक करेपर्यंत आपल्याला कोणतेही संदेश प्राप्त होणार नाहीत.</string>
   <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s ला आपल्याला संदेश देऊ द्याचे ? जोपर्यंत आपण त्यांना अनब्लॉक करत नाही तोपर्यंत आपल्याला  कोणतेही संदेश प्राप्त होणार नाहीत.</string>
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s कडून अद्यतने आणि बातम्या मिळवायच्या ? आपण त्यांना अनब्लॉक करेपर्यंत आपल्याला कोणत्याही अपडेट्स मिळणार नाहीत.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">आपले या गटासोबतचे संभाषण आणि आपले नाव आणि फोटो त्याच्या सदस्यांसह सामायिक करणे सुरू ठेवायचे?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">@उल्लेख आणि अॅडमिन सारखे नवीन वैशिष्ट्ये सक्रिय करण्यासाठी गट श्रेणीसुधारित करा. ज्या सदस्यांनी त्यांचे नाव किंवा फोटो या गटात शेअर केलेले नाही त्यांना सामील होण्याचे आमंत्रण दिले जाईल.</string>
@@ -1525,8 +1531,11 @@
   <string name="ThreadRecord_video">व्हिडिओ</string>
   <string name="ThreadRecord_chat_session_refreshed">चॅट सत्र ताजेतवाने झाले</string>
   <!--Displayed in the notification when the user is sent a gift-->
+  <string name="ThreadRecord__you_received_a_gift">आपल्याला एक भेट मिळाली</string>
   <!--Displayed in the notification when the user sends a gift-->
+  <string name="ThreadRecord__you_sent_a_gift">आपण एक भेट पाठवली</string>
   <!--Displayed in the notification when the user has opened a received gift-->
+  <string name="ThreadRecord__you_redeemed_a_gift_badge">आपण एक भेट बॅज रिडीम केला</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal अद्यतन</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal ची एक नवीन आवृत्ती उपलब्ध आहे, अद्ययावत करण्यासाठी टॅप करा</string>
@@ -1798,6 +1807,7 @@
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">आता उपलब्ध नाही</string>
   <!--Label for quoted gift-->
+  <string name="QuoteView__gift">भेट</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">खालपर्यंत स्क्रोल करा</string>
   <!--BubbleOptOutTooltip-->
@@ -1905,6 +1915,7 @@
   <!--Displayed in a toast when user long presses an item in MyStories-->
   <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">क्लिपबोर्डवर पाठवलेला टाइमस्टॅम्प कॉपी केला.</string>
   <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">आपल्या स्टोरीचे अपडेट्स येथे दाखवले जातील.</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s गटात सामील झाले</item>
@@ -2097,6 +2108,8 @@
   <string name="preferences__led_color">LED रंग</string>
   <string name="preferences__led_color_unknown">अज्ञात</string>
   <string name="preferences__pref_led_blink_title">LED ब्लिंक पद्धत</string>
+  <string name="preferences__customize">सानुकूलित करा</string>
+  <string name="preferences__change_sound_and_vibration">आवाज आणि कंपन बदला</string>
   <string name="preferences__sound">ध्वनी</string>
   <string name="preferences__silent">शांत</string>
   <string name="preferences__default">पूर्वनिर्धारित</string>
@@ -2851,6 +2864,7 @@
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" हा गट आणि त्याचे सदस्य संपादित करू शकतील.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s ला गटातून काढायचे?</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">%1$s ला गटातून काढून टाकायचे? ते ग्रुप लिंकद्वारे पुन्हा सामील होऊ शकणार नाहीत.</string>
   <string name="RecipientBottomSheet_remove">काढा</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">क्लिपबोर्ड वर कॉपी केले</string>
   <string name="GroupRecipientListItem_admin">प्रशासक</string>
@@ -3256,6 +3270,7 @@
   <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
   <string name="Donate2022Q2Megaphone_donate_to_signal">Signal ला देणगी द्या</string>
   <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal तुमच्यासारख्या लोकांच्या मदतीने चालते. दर महिन्याला दान करा आणि एक बॅज मिळवा.</string>
   <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
   <string name="Donate2022Q2Megaphone_donate">दान करा</string>
   <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
@@ -3476,6 +3491,8 @@
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">आपली देणगी या कारणाला चालना देते आणि खाजगी संचारासाठी लाखो लोक वापरत असलेल्या अॅपच्या विकासासाठी आणि कार्यासाठी पैसे देतात. जाहिराती नाहीत. ट्रॅकर्स नाहीत. चेष्टा नाही.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">आपल्या समर्थनासाठी धन्यवाद !</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">बूस्ट साठी धन्यवाद !</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">आपण %s  बॅज मिळवला आहे! Signal ला देणगी देण्याची जागरूकता निर्माण करण्यासाठी हा बॅज आपल्या प्रोफाइलवर प्रदर्शित करा.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">आपण बूस्ट बॅज मिळवला आहे! Signal ला देणगी देण्याची जागरूकता निर्माण करण्यासाठी हा बॅज आपल्या प्रोफाइलवर प्रदर्शित करा.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">आपण सुद्धा</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">मासिक सस्टेनर व्हा</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">प्रोफाइलवर दाखवा</string>
@@ -3491,6 +3508,7 @@
   <!--Heading for receipts area of manage subscriptions page-->
   <string name="ManageDonationsFragment__receipts">पावत्या</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">माझे सब्स्क्रिप्शन</string>
   <string name="ManageDonationsFragment__manage_subscription">सब्स्क्रिप्शन व्यवस्थापित करा</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">देणगी पावत्या </string>
@@ -3521,11 +3539,14 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">आपला बूस्ट बॅज कालबाह्य झाला आहे आणि तो यापुढे आपल्या प्रोफाइलवर दिसणार नाही.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">आपण आपला बूस्ट बॅज आणखी ३० दिवसांसाठी एक-वेळच्या योगदानासह पुन्हा सक्रिय करू शकता.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">आपण  Signal वापरणे सुरू ठेवू शकता परंतु आपल्यासाठी तयार केलेल्या तंत्रज्ञानाचे समर्थन करण्यासाठी, मासिक देणगी देऊन सस्टेनर होण्याचा विचार करा.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">सस्टेनर बना</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">बूस्ट जोडा</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">आता नाही</string>
   <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">आपले आवर्ती मासिक देणगी आपोआप रद्द झाले कारण आपण खूप काळ निष्क्रिय होता. आपला %1$s बॅज यापुढे आपल्या प्रोफाईलवर दिसणार नाही.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">आपली आवर्ती मासिक देणगी रद्द करण्यात आली कारण आम्ही आपल्या पेमेंटवर प्रक्रिया करू शकलो नाही. आपला  बॅज यापुढे आपल्या प्रोफाईलवर दिसणार नाही.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">आपण Signal वापरणे सुरू ठेवू शकता परंतु अॅपला समर्थन देण्यासाठी आणि तुमचा बॅज पुन्हा सक्रिय करण्यासाठी, आता नूतनीकरण करा.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription"> सब्स्क्रिप्शन नूतनीकरण करा</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">सब्स्क्रिप्शन पेमेंटवर प्रक्रिया करू शकत नाही</string>
@@ -3544,9 +3565,13 @@
   <string name="DonationsErrors__still_processing">अजूनही प्रक्रिया करत आहे</string>
   <string name="DonationsErrors__couldnt_add_badge">बॅज जोडता आला नाही</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__failed_to_validate_badge">बॅज प्रमाणित करण्यात अयशस्वी</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__could_not_validate">सर्व्हर प्रतिसाद प्रमाणित करू शकलो नाही. कृपया सपोर्टशी संपर्क साधा.</string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__failed_to_send_gift_badge">भेट बॅज पाठवण्यात अयशस्वी</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__could_not_send_gift_badge">भेट बॅज पाठवू शकलो नाही. कृपया सपोर्टशी संपर्क साधा.</string>
   <string name="DonationsErrors__your_badge_could_not">तुमचा बॅज तुमच्या खात्यात जोडला जाऊ शकला नाही, परंतु तुमच्याकडून शुल्क आकारले गेले असेल. कृपया सपोर्टशी संपर्क साधा.</string>
   <string name="DonationsErrors__your_payment_is_still">आपली पेमेंट प्रक्रिया अजूनही चालू आहे. आपल्या कनेक्शन नुसार यास काही मिनिटे लागू शकतात.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay अनुपलब्ध</string>
@@ -3557,16 +3582,28 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">नेटवर्क त्रुटी. आपले कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
   <string name="NetworkFailure__retry">पुन्हा प्रयत्न करा</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__recipient_verification_failed">प्राप्तकर्त्याची पडताळणी अयशस्वी.</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">संपर्क भेट देण्यास समर्थ नाही.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__could_not_verify_recipient">प्राप्तकर्त्याची पडताळणी करू शकलो नाही.</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">कृपया आपले नेटवर्क कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
   <!--Gift message view title-->
+  <string name="GiftMessageView__gift_badge">भेट बॅज</string>
   <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="one">%1$d महिना राहील</item>
+    <item quantity="other">%1$d महिने राहील</item>
+  </plurals>
   <!--Gift badge redeem action label-->
+  <string name="GiftMessageView__redeem">रिडीम करा</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">बघा</string>
   <!--Gift badge redeeming action label-->
+  <string name="GiftMessageView__redeeming">रिडीम करत आहे…</string>
   <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">रिडीम केले</string>
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">दुसरी पेमेंट पद्धत वापरून पहा किंवा अधिक माहितीसाठी आपल्या बँकेशी संपर्क साधा.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3738,6 +3775,7 @@
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">एक-वेळ </string>
   <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">भेट</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">बूस्ट</string>
   <!--Donation receipts details title-->
@@ -3759,6 +3797,7 @@
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--Donation reciepts screen empty state title-->
+  <string name="DonationReceiptListFragment__no_receipts">पावत्या नाहीत</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">चॅट</string>
@@ -3771,6 +3810,7 @@
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">स्टोरी जोडा</string>
   <!--Displayed when there are no stories to display-->
+  <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">अत्ता दर्शविण्यासाठी कोणतीही अलीकडील अपडेट्स नाहीत. आपल्या स्टोरीमध्ये जोडण्यासाठी + टॅप करा.</string>
   <!--Context menu option to hide a story-->
   <!--Context menu option to unhide a story-->
   <!--Context menu option to forward a story-->
@@ -3778,12 +3818,15 @@
   <!--Context menu option to share a story-->
   <string name="StoriesLandingItem__share">शेअर करा…</string>
   <!--Context menu option to go to story chat-->
+  <string name="StoriesLandingItem__go_to_chat">चॅटवर जा</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">पाठवत आहे…</string>
   <!--Label when multiple stories are pending sending-->
+  <string name="StoriesLandingItem__sending_d">%1$d पाठवत आहे…</string>
   <!--Label when a story fails to send-->
   <string name="StoriesLandingItem__send_failed">पाठविणे अयशस्वी</string>
   <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">पुन्हा प्रयत्न करण्यासाठी टॅप करा</string>
   <!--Title of dialog confirming decision to hide a story-->
   <!--Message of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__new_story_updates">%1$s कडील नवीन स्टोरी अपडेट्स यापुढे सूचीच्या शीर्षस्थानी दिसणार नाहीत.</string>
@@ -3811,6 +3854,7 @@
   <string name="StoryViewerPageFragment__reply">प्रत्युत्तर द्या</string>
   <!--Displayed when a story has no views-->
   <!--Displayed when a story has no replies yet-->
+  <string name="StoryGroupReplyFragment__no_replies_yet">अद्याप कोणतीही प्रत्युत्तरे नाहीत</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
   <string name="StoryGroupReactionReplyItem__reacted_to_the_story">स्टोरीला प्रतिक्रिया दिली</string>
   <!--Label for story views tab-->
@@ -3859,6 +3903,7 @@
   <!--Clickable option to delete a custom story-->
   <string name="PrivateStorySettingsFragment__delete_private_story">खाजगी स्टोरी हटवा</string>
   <!--Dialog title when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__remove_s">%1$s ला काढायचे ?</string>
   <!--Dialog message when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__this_person_will_no_longer">ही व्यक्ती यापुढे आपली स्टोरी पाहू शकणार नाही.</string>
   <!--Positive action label when attempting to remove someone from a private story-->
@@ -3866,6 +3911,7 @@
   <!--Dialog title when deleting a private story-->
   <string name="PrivateStorySettingsFragment__are_you_sure">तुम्हाला खात्री आहे ?</string>
   <!--Dialog message when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__this_action_cannot">ही क्रिया पूर्ववत केली जाऊ शकत नाही.</string>
   <!--Page title for editing a private story name-->
   <string name="EditPrivateStoryNameFragment__edit_story_name">स्टोरीचे नाव संपादित करा</string>
   <!--Input field hint when editing a private story name-->
@@ -3894,15 +3940,19 @@
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">ठीक</string>
   <!--Dialog title for first time adding something to a story-->
+  <string name="StoryDialogs__add_to_story_q">स्टोरीत जोडायचे?</string>
   <!--Dialog message for first time adding something to a story-->
   <string name="StoryDialogs__adding_content">आपल्या स्टोरी मध्‍ये काही जोडल्‍याने आपल्या Signal कनेक्‍शन्सला २४ तास ते पाहण्‍याची अनुमती मिळते. आपली स्टोरी कोण पाहू शकते हे आपण सेटिंग्जमध्ये बदलू शकता.</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
+  <string name="StoryDialogs__add_to_story">स्टोरीत जोडा</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <!--Error message shown when a failure occurs during story send-->
+  <string name="StoryDialogs__story_could_not_be_sent">स्टोरी पाठवता आली नाही. आपले कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
   <!--Error message dialog button to resend a previously failed story send-->
   <string name="StoryDialogs__send">पाठवा</string>
   <!--Privacy Settings toggle title for stories-->
   <!--Privacy Settings toggle summary for stories-->
+  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">हा पर्याय बंद असताना आपण यापुढे स्टोरीज शेअर करू किंवा पाहू शकणार नाही.</string>
   <!--New story viewer selection screen title-->
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">पुढे</string>
@@ -3927,6 +3977,7 @@
   <!--Choose story type bottom sheet new story row summary-->
   <string name="ChooseStoryTypeBottomSheet__visible_only_to">केवळ विशिष्ट लोकांसाठी दृश्यमान</string>
   <!--Choose story type bottom sheet group story title-->
+  <string name="ChooseStoryTypeBottomSheet__group_story">गट स्टोरी</string>
   <!--Choose story type bottom sheet group story summary-->
   <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">विद्यमान गटामध्ये शेअर करा</string>
   <!--Choose groups bottom sheet title-->
@@ -3936,15 +3987,21 @@
   <!--Displayed in story caption when content is longer than 5 lines-->
   <string name="StoryViewerPageFragment__see_more">… अजून पहा</string>
   <!--Displayed in toast after sending a direct reply-->
+  <string name="StoryDirectReplyDialogFragment__sending_reply">उत्तर पाठवत आहे…</string>
   <!--Displayed in the viewer when a story is no longer available-->
   <string name="StorySlateView__this_story_is_no_longer_available">ही स्टोरी आता उपलब्ध नाही.</string>
   <!--Displayed in the viewer when the network is not available-->
   <string name="StorySlateView__no_internet_connection">इंटरनेट कनेक्शन नाही</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <string name="StorySlateView__couldnt_load_content">कन्टेन्ट लोड करू शकलो नाही</string>
   <!--Toasted when the user externally shares to a text story successfully-->
+  <string name="TextStoryPostCreationFragment__sent_story">स्टोरी पाठवली</string>
   <!--Toasted when the user external share to a text story fails-->
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">स्टोरी पाठवण्यात अयशस्वी</string>
   <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">स्टोरी पहा</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">प्रोफाइल फोटो पहा</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">सेंसॉरशिप सर्कंवेंशन बंद करायचे ?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -3962,33 +4019,49 @@
   <string name="ExpandModel__view_more">अधिक पहा</string>
   <string name="StoriesLinkPopup__visit_link">लिंकला भेट द्या</string>
   <!--Tagline for gift row items-->
+  <string name="GiftRowItem__send_a_gift_badge">भेट बॅज पाठवा</string>
   <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">एक बॅज भेट करा </string>
   <!--Description text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">एखाद्याला आपण त्यांच्या नावाने Signal ला देणगी देऊन बॅज भेट द्या . त्यांना त्यांच्या प्रोफाइल फोटोवर प्रदर्शित करण्यासाठी एक बॅज मिळेल.</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">पुढे</string>
   <!--Title text on choose recipient page for badge gifting-->
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">प्राप्तकर्ता निवडा</string>
   <!--Title text on confirm gift page-->
+  <string name="GiftFlowConfirmationFragment__confirm_gift">भेट पुष्टी करा</string>
   <!--Heading text specifying who the gift will be sent to-->
   <string name="GiftFlowConfirmationFragment__send_to">यांना पाठवा</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">आपली भेट प्राप्तकर्त्याला १-१ संदेशात पाठवली जाईल. खाली आपला स्वतःचा संदेश जोडा.</string>
   <!--Text explaining that this gift is a one time donation-->
   <string name="GiftFlowConfirmationFragment__one_time_donation"> एक-वेळ देणगी</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">संदेश जोडा</string>
   <!--Displayed in the dialog while verifying the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__verifying_recipient">प्राप्तकर्त्याची पडताळणी करत आहे…</string>
   <!--Title for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s ने एक भेट पाठवली</string>
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">आपल्या समर्थनासाठी धन्यवाद !</string>
   <!--Description for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">%1$s कडून आपल्याला एक भेट बॅज मिळाला आहे ! आपल्या प्रोफाइलवर हा बॅज प्रदर्शित करून जागरूकता निर्माण करण्यासाठी Signal ला मदत करा.</string>
   <!--Description for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">आपण %1$s ला एक बॅज भेट दिला आहे. तो स्वीकारल्यावर, त्यांना त्यांचा बॅज दाखवण्याचा किंवा न दाखवण्याचा पर्याय दिला जाईल.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
+  <string name="ViewReceivedGiftSheet__redeem">रिडीम करा</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">आता नाही</string>
   <!--Dialog text while redeeming a gift-->
+  <string name="ViewReceivedGiftSheet__redeeming_gift">भेट रिडीम करत आहे…</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <string name="ConversationFragment__you_can_redeem_your_badge_later">आपण आपला बॅज नंतर रिडीम करू शकता.</string>
   <!--Description text in gift thanks sheet-->
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">आपण %1$s ला एक बॅज भेट दिला आहे. तो स्वीकारल्यावर, त्यांना त्यांचा बॅज दाखवण्याचा किंवा न दाखवण्याचा पर्याय दिला जाईल.</string>
   <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">आपला भेट बॅज कालबाह्य झाला आहे</string>
   <!--Expired gift sheet top description text-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">आपला भेट बॅज कालबाह्य झाला आहे आणि तो यापुढे आपल्या प्रोफाइलवर इतरांना दिसणार नाही.</string>
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">तुमच्यासाठी तयार केलेल्या तंत्रज्ञानाचे समर्थन करणे सुरू ठेवण्यासाठी, कृपया मासिक सस्टेनर बनण्याचा विचार करा.</string>
   <!--Expired gift sheet make a monthly donation button-->

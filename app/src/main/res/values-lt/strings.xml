@@ -1855,7 +1855,7 @@
   <string name="WebRtcCallScreen_swipe_up_to_change_views">Perbraukite aukštyn, norėdami keisti rodinius</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">Atmesti</string>
-  <string name="WebRtcCallScreen__answer">Atsakyti</string>
+  <string name="WebRtcCallScreen__answer">Atsiliepti</string>
   <string name="WebRtcCallScreen__answer_without_video">Atsiliepti be vaizdo</string>
   <!--WebRtcAudioOutputToggle-->
   <string name="WebRtcAudioOutputToggle__audio_output">Garso išvestis</string>
@@ -3485,6 +3485,7 @@
   <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
   <string name="Donate2022Q2Megaphone_donate_to_signal">Paaukokite Signal programėlei</string>
   <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">„Signal“ varomoji jėga – tai tokie žmonės kaip ir jūs. Aukokite kas mėnesį ir gaukite ženklelį.</string>
   <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
   <string name="Donate2022Q2Megaphone_donate">Paaukokite</string>
   <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->

@@ -1546,6 +1546,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Displayed in the notification when the user sends a gift-->
   <string name="ThreadRecord__you_sent_a_gift">Has enviado un regalo</string>
   <!--Displayed in the notification when the user has opened a received gift-->
+  <string name="ThreadRecord__you_redeemed_a_gift_badge">Has recogido un distintivo de regalo</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Actualizar Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Una nueva versión de Signal está disponible. Toca para actualizar.</string>
@@ -3602,7 +3603,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">Esta persona no admite regalos.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__could_not_verify_recipient">Fallo al verificar la persona de destino.</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Por favor, comprueba tu conexión y vuélvelo a intentar.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Distintivo de regalo</string>
   <!--Gift message view expiry information-->
@@ -3811,6 +3814,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--Donation reciepts screen empty state title-->
+  <string name="DonationReceiptListFragment__no_receipts">No hay justificantes</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Chats</string>
@@ -4040,6 +4044,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Displayed in story caption when content is longer than 5 lines-->
   <string name="StoryViewerPageFragment__see_more">… Ver más</string>
   <!--Displayed in toast after sending a direct reply-->
+  <string name="StoryDirectReplyDialogFragment__sending_reply">Enviando respuesta …</string>
   <!--Displayed in the viewer when a story is no longer available-->
   <string name="StorySlateView__this_story_is_no_longer_available">Esta historia ya no está disponible.</string>
   <!--Displayed in the viewer when the network is not available-->
@@ -4093,6 +4098,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Añadir mensaje</string>
   <!--Displayed in the dialog while verifying the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__verifying_recipient">Verificando persona …</string>
   <!--Title for sheet shown when opening a redeemed gift-->
   <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s te envió un regalo</string>
   <!--Title for sheet shown when opening a sent gift-->
@@ -4122,6 +4128,14 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ahora no</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Historia privada · %1$d vista</item>
+    <item quantity="other">Historia privada · %1$d vistas</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Historia de grupo ·  %1$d vista</item>
+    <item quantity="other">Historia de grupo · %1$d vistas</item>
+  </plurals>
   <!--EOF-->
 </resources>

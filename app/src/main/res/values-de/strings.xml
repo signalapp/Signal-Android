@@ -3474,7 +3474,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal existiert dank Menschen wie dir.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Unterstütze Technologie, die für dich — und nicht für deine Daten — entwickelt wurde, und schließe dich der Gemeinschaft an, die Signal aufrechterhält.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Unterstütze Technologie, die für dich — und nicht für deine Daten — entwickelt wurde, und schließe dich der Gemeinschaft an, die Signal aufrechterhält.</string>
-  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Mit einer monatlichen Spende an Signal unterstützt du eine Technologie, die für dich und nicht für deine Daten entwickelt wurde.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Mit einer wiederkehrenden monatlichen Spende an Signal unterstützt du eine Technologie, die für dich und nicht für deine Daten entwickelt wurde.</string>
   <string name="SubscribeFragment__currency">Währung</string>
   <string name="SubscribeFragment__more_payment_options">Weitere Zahlungsoptionen</string>
   <string name="SubscribeFragment__cancel_subscription">Regelmäßige Spende kündigen</string>
@@ -3508,7 +3508,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="BecomeASustainerFragment__get_badges">Unterstütze Signal und erhalte Abzeichen für dein Profil.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal ist eine gemeinnützige Organisation ohne Werbekunden oder Investoren, die nur von Menschen wie dir unterstützt wird.</string>
   <!--Button label for creating a monthly donation-->
-  <string name="ManageDonationsFragment__make_a_monthly_donation">Eine monatliche Spende tätigen</string>
+  <string name="ManageDonationsFragment__make_a_monthly_donation">Monatlich spenden</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">Mehr</string>
   <!--Heading for receipts area of manage subscriptions page-->
@@ -3793,7 +3793,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Donation receipts share PNG-->
   <string name="DonationReceiptDetailsFragment__share_receipt">Bescheinigung teilen</string>
   <!--Donation receipts list end note-->
-  <string name="DonationReceiptListFragment__if_you_have">Falls du Signal erneut installierst hast, sind Bescheinigungen früherer Spenden nicht verfügbar.</string>
+  <string name="DonationReceiptListFragment__if_you_have">Falls du Signal erneut installiert hast, sind Bescheinigungen früherer Spenden nicht verfügbar.</string>
   <!--Donation receipts document title-->
   <string name="DonationReceiptDetailsFragment__donation_receipt">Spendenbescheinigung</string>
   <!--Donation receipts amount title-->
@@ -4113,7 +4113,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">Um auch weiterhin eine Technologie zu unterstützen, die für dich entwickelt wird, zieh bitte eine monatliche Spende in Betracht.</string>
   <!--Expired gift sheet make a monthly donation button-->
-  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Eine monatliche Spende tätigen</string>
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Monatlich spenden</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Jetzt nicht</string>
   <!--Label under name for private stories-->

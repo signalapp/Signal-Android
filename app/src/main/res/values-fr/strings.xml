@@ -3765,7 +3765,7 @@ Nouvelle tentative…</string>
   <!--Donation receipts recurring tab label-->
   <string name="DonationReceiptListFragment__recurring">Périodique</string>
   <!--Donation receipts one-time tab label-->
-  <string name="DonationReceiptListFragment__one_time">Une fois</string>
+  <string name="DonationReceiptListFragment__one_time">Ponctuel</string>
   <!--Donation receipts gift tab label-->
   <string name="DonationReceiptListFragment__gift">Cadeau</string>
   <!--Donation receipts boost row label-->

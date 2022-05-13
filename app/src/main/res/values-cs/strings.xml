@@ -1291,7 +1291,19 @@
     <item quantity="other">%1$d členů</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d člen (%2$s)</item>
+    <item quantity="few">%1$d členové (%2$s)</item>
+    <item quantity="many">%1$d členů (%2$s)</item>
+    <item quantity="other">%1$d členů (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="one">+%1$d pozván</item>
+    <item quantity="few">+%1$d pozváni</item>
+    <item quantity="many">+%1$d pozváno</item>
+    <item quantity="other">+%1$d pozváno</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d další skupina</item>
     <item quantity="few">%d další skupiny</item>
@@ -3802,6 +3814,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Dárkový odznak</string>
   <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="one">K dispozici %1$d měsíc</item>
+    <item quantity="few">K dispozici %1$d měsíce</item>
+    <item quantity="many">K dispozici %1$d měsíců</item>
+    <item quantity="other">K dispozici %1$d měsíců</item>
+  </plurals>
   <!--Gift badge redeem action label-->
   <string name="GiftMessageView__redeem">Uplatnit</string>
   <!--Gift badge view action label-->
@@ -4327,6 +4345,18 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Teď ne</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Soukromý příběh · %1$d zobrazení</item>
+    <item quantity="few">Soukromý příběh · %1$d zobrazení</item>
+    <item quantity="many">Soukromý příběh · %1$d zobrazení</item>
+    <item quantity="other">Soukromý příběh · %1$d zobrazení</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Skupinový příběh · %1$d zobrazení</item>
+    <item quantity="few">Skupinový příběh · %1$d zobrazení</item>
+    <item quantity="many">Skupinový příběh · %1$d zobrazení</item>
+    <item quantity="other">Skupinový příběh · %1$d zobrazení</item>
+  </plurals>
   <!--EOF-->
 </resources>

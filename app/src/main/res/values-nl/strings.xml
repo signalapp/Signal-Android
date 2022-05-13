@@ -3608,7 +3608,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">De bedoelde persoon ondersteunt het ontvangen van cadeau-badges niet.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">Kan cadeau niet verzenden.</string>
+  <string name="DonationsErrors__could_not_verify_recipient">Kan de ontvanger niet nagaan.</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">Ga na dat je apparaat met het internet is verbonden en probeer het opnieuw.</string>
   <!--Gift message view title-->
@@ -4103,7 +4103,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Berichttekst toevoegen</string>
   <!--Displayed in the dialog while verifying the chosen recipient-->
-  <string name="GiftFlowConfirmationFragment__verifying_recipient">Cadeau wordt verzonden …</string>
+  <string name="GiftFlowConfirmationFragment__verifying_recipient">Ontvanger aan het nagaan …</string>
   <!--Title for sheet shown when opening a redeemed gift-->
   <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s heeft je een cadeau toegestuurd.</string>
   <!--Title for sheet shown when opening a sent gift-->
