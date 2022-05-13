@@ -309,6 +309,10 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
     process((s, p) -> p.handleAudioDeviceChanged(s, activeDevice, availableDevices));
   }
 
+  public void onBluetoothPermissionDenied() {
+    process((s, p) -> p.handleBluetoothPermissionDenied(s));
+  }
+
   public void selectAudioDevice(@NonNull SignalAudioManager.AudioDevice desiredDevice) {
     process((s, p) -> p.handleSetUserAudioDevice(s, desiredDevice));
   }

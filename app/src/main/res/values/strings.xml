@@ -1499,6 +1499,14 @@
     <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Group is too large to ring the participants.</string>
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
     <string name="WebRtcCallActivity__reconnecting">Reconnecting…</string>
+    <!-- Title for dialog warning about lacking bluetooth permissions during a call -->
+    <string name="WebRtcCallActivity__bluetooth_permission_denied">Bluetooth permission denied</string>
+    <!-- Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name -->
+    <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Please enable the \"Nearby devices\" permission to use bluetooth during a call.</string>
+    <!-- Positive action for bluetooth warning dialog to open settings -->
+    <string name="WebRtcCallActivity__open_settings">Open settings</string>
+    <!-- Negative aciton for bluetooth warning dialog to dismiss dialog -->
+    <string name="WebRtcCallActivity__not_now">Not now</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal Call</string>

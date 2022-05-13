@@ -267,6 +267,11 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
     callManager.onAudioDeviceChanged(activeDevice, availableDevices);
   }
 
+  @Override
+  public void onBluetoothPermissionDenied() {
+    callManager.onBluetoothPermissionDenied();
+  }
+
   private class HangUpRtcOnPstnCallAnsweredListener extends PhoneStateListener {
     @Override
     public void onCallStateChanged(int state, @NonNull String phoneNumber) {

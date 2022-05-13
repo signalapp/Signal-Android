@@ -457,6 +457,13 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
+  public @NonNull WebRtcServiceState handleBluetoothPermissionDenied(@NonNull WebRtcServiceState currentState) {
+    return currentState.builder()
+                       .changeLocalDeviceState()
+                       .setBluetoothPermissionDenied(true)
+                       .build();
+  }
+
   protected @NonNull WebRtcServiceState handleSetUserAudioDevice(@NonNull WebRtcServiceState currentState, @NonNull SignalAudioManager.AudioDevice userDevice) {
     Log.i(tag, "handleSetUserAudioDevice not processed");
     return currentState;

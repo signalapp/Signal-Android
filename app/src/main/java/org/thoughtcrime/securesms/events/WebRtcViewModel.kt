@@ -96,6 +96,7 @@ class WebRtcViewModel(state: WebRtcServiceState) {
   val ringerRecipient: Recipient = state.getCallSetupState(state.callInfoState.activePeer?.callId).ringerRecipient
   val activeDevice: SignalAudioManager.AudioDevice = state.localDeviceState.activeDevice
   val availableDevices: Set<SignalAudioManager.AudioDevice> = state.localDeviceState.availableDevices
+  val bluetoothPermissionDenied: Boolean = state.localDeviceState.bluetoothPermissionDenied
 
   val localParticipant: CallParticipant = createLocal(
     state.localDeviceState.cameraState,
@@ -124,6 +125,7 @@ class WebRtcViewModel(state: WebRtcServiceState) {
        participantLimit=$participantLimit,
        activeDevice=$activeDevice,
        availableDevices=$availableDevices,
+       bluetoothPermissionDenied=$bluetoothPermissionDenied,
        ringGroup=$ringGroup
       }
     """.trimIndent()

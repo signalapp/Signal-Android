@@ -98,6 +98,7 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
   interface EventListener {
     @JvmSuppressWildcards
     fun onAudioDeviceChanged(activeDevice: AudioDevice, devices: Set<AudioDevice>)
+    fun onBluetoothPermissionDenied()
   }
 }
 
@@ -121,6 +122,7 @@ class FullSignalAudioManager(context: Context, eventListener: EventListener?) : 
   private var audioDevices: MutableSet<AudioDevice> = mutableSetOf()
   private var defaultAudioDevice: AudioDevice = AudioDevice.EARPIECE
   private var userSelectedAudioDevice: AudioDevice = AudioDevice.NONE
+  private var previousBluetoothState: SignalBluetoothManager.State? = null
 
   private var savedAudioMode = AudioManager.MODE_INVALID
   private var savedIsSpeakerPhoneOn = false
@@ -293,6 +295,11 @@ class FullSignalAudioManager(context: Context, eventListener: EventListener?) : 
       userSelectedAudioDevice = AudioDevice.BLUETOOTH
       autoSwitchToBluetooth = false
     }
+
+    if (previousBluetoothState != null && previousBluetoothState != SignalBluetoothManager.State.PERMISSION_DENIED && signalBluetoothManager.state == SignalBluetoothManager.State.PERMISSION_DENIED) {
+      eventListener?.onBluetoothPermissionDenied()
+    }
+    previousBluetoothState = signalBluetoothManager.state
 
     val newAudioDevice: AudioDevice = when {
       audioDevices.contains(userSelectedAudioDevice) -> userSelectedAudioDevice
