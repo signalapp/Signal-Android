@@ -112,8 +112,12 @@ public class MessageRequestsBottomView extends ConstraintLayout {
         gv1Continue.setVisibility(GONE);
         break;
       case GROUP_V1:
-      case GROUP_V2_INVITE:
         question.setText(R.string.MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept);
+        setActiveInactiveGroups(normalButtons, blockedButtons, gv1MigrationButtons);
+        accept.setText(R.string.MessageRequestBottomView_accept);
+        break;
+      case GROUP_V2_INVITE:
+        question.setText(R.string.MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages);
         setActiveInactiveGroups(normalButtons, blockedButtons, gv1MigrationButtons);
         accept.setText(R.string.MessageRequestBottomView_accept);
         break;
