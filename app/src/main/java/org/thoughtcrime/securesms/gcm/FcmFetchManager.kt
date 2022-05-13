@@ -36,12 +36,16 @@ object FcmFetchManager {
   @Volatile
   private var activeCount = 0
 
+  @Volatile
+  private var startedForeground = false
+
   @JvmStatic
   fun enqueue(context: Context, foreground: Boolean) {
     synchronized(this) {
       if (foreground) {
         Log.i(TAG, "Starting in the foreground.")
         ContextCompat.startForegroundService(context, Intent(context, FcmFetchForegroundService::class.java))
+        startedForeground = true
       } else {
         Log.i(TAG, "Starting in the background.")
         context.startService(Intent(context, FcmFetchBackgroundService::class.java))
@@ -67,7 +71,11 @@ object FcmFetchManager {
       if (activeCount <= 0) {
         Log.i(TAG, "No more active. Stopping.")
         context.stopService(Intent(context, FcmFetchBackgroundService::class.java))
-        context.startService(FcmFetchForegroundService.buildStopIntent(context))
+
+        if (startedForeground) {
+          context.startService(FcmFetchForegroundService.buildStopIntent(context))
+          startedForeground = false
+        }
       }
     }
   }
