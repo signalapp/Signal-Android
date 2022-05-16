@@ -45,7 +45,8 @@ open class ContactSearchPagedDataSourceRepository(
       section.mode == ContactSearchConfiguration.Section.Recents.Mode.INDIVIDUALS,
       section.mode == ContactSearchConfiguration.Section.Recents.Mode.GROUPS,
       !section.includeGroupsV1,
-      !section.includeSms
+      !section.includeSms,
+      !section.includeSelf
     )
   }
 

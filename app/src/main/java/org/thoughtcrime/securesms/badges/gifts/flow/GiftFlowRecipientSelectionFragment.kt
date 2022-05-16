@@ -55,6 +55,7 @@ class GiftFlowRecipientSelectionFragment : Fragment(R.layout.gift_flow_recipient
       if (query.isNullOrEmpty()) {
         addSection(
           ContactSearchConfiguration.Section.Recents(
+            includeSelf = false,
             includeHeader = true,
             mode = ContactSearchConfiguration.Section.Recents.Mode.INDIVIDUALS
           )

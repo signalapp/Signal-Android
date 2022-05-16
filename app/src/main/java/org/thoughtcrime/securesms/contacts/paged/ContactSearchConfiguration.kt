@@ -34,6 +34,7 @@ class ContactSearchConfiguration private constructor(
       val includeInactiveGroups: Boolean = false,
       val includeGroupsV1: Boolean = false,
       val includeSms: Boolean = false,
+      val includeSelf: Boolean = false,
       override val includeHeader: Boolean,
       override val expandConfig: ExpandConfig? = null
     ) : Section(SectionKey.RECENTS) {
