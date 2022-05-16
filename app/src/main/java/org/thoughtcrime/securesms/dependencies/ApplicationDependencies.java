@@ -8,6 +8,7 @@ import androidx.annotation.VisibleForTesting;
 
 import org.signal.core.util.Hex;
 import org.signal.core.util.concurrent.DeadlockDetector;
+import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations;
 import org.thoughtcrime.securesms.KbsEnclave;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
@@ -53,6 +54,7 @@ import org.whispersystems.signalservice.api.SignalWebSocket;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 import org.whispersystems.signalservice.api.push.TrustStore;
 import org.whispersystems.signalservice.api.services.DonationsService;
+import org.whispersystems.signalservice.api.services.ProfileService;
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
 import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager;
 import org.whispersystems.signalservice.internal.util.Util;
@@ -120,6 +122,7 @@ public class ApplicationDependencies {
   private static volatile SimpleExoPlayerPool          exoPlayerPool;
   private static volatile AudioManagerCompat           audioManagerCompat;
   private static volatile DonationsService             donationsService;
+  private static volatile ProfileService               profileService;
   private static volatile DeadlockDetector             deadlockDetector;
   private static volatile ClientZkReceiptOperations    clientZkReceiptOperations;
 
@@ -632,6 +635,19 @@ public class ApplicationDependencies {
     return donationsService;
   }
 
+  public static @NonNull ProfileService getProfileService() {
+    if (profileService == null) {
+      synchronized (LOCK) {
+        if (profileService == null) {
+          profileService = provider.provideProfileService(ApplicationDependencies.getGroupsV2Operations().getProfileOperations(),
+                                                          ApplicationDependencies.getSignalServiceMessageReceiver(),
+                                                          ApplicationDependencies.getSignalWebSocket());
+        }
+      }
+    }
+    return profileService;
+  }
+
   public static @NonNull ClientZkReceiptOperations getClientZkReceiptOperations() {
     if (clientZkReceiptOperations == null) {
       synchronized (LOCK) {
@@ -688,6 +704,7 @@ public class ApplicationDependencies {
     @NonNull SimpleExoPlayerPool provideExoPlayerPool();
     @NonNull AudioManagerCompat provideAndroidCallAudioManager();
     @NonNull DonationsService provideDonationsService();
+    @NonNull ProfileService provideProfileService(@NonNull ClientZkProfileOperations profileOperations, @NonNull SignalServiceMessageReceiver signalServiceMessageReceiver, @NonNull SignalWebSocket signalWebSocket);
     @NonNull DeadlockDetector provideDeadlockDetector();
     @NonNull ClientZkReceiptOperations provideClientZkReceiptOperations();
   }

@@ -102,28 +102,23 @@ public final class ProfileUtil {
                                                                   boolean allowUnidentifiedAccess)
       throws IOException
   {
-    ProfileService profileService = new ProfileService(ApplicationDependencies.getGroupsV2Operations().getProfileOperations(),
-                                                       ApplicationDependencies.getSignalServiceMessageReceiver(),
-                                                       ApplicationDependencies.getSignalWebSocket());
-
-    Pair<Recipient, ServiceResponse<ProfileAndCredential>> response = retrieveProfile(context, recipient, requestType, profileService, allowUnidentifiedAccess).blockingGet();
+    Pair<Recipient, ServiceResponse<ProfileAndCredential>> response = retrieveProfile(context, recipient, requestType, allowUnidentifiedAccess).blockingGet();
     return new ProfileService.ProfileResponseProcessor(response.second()).getResultOrThrow();
   }
 
   public static Single<Pair<Recipient, ServiceResponse<ProfileAndCredential>>> retrieveProfile(@NonNull Context context,
                                                                                                @NonNull Recipient recipient,
-                                                                                               @NonNull SignalServiceProfile.RequestType requestType,
-                                                                                               @NonNull ProfileService profileService)
+                                                                                               @NonNull SignalServiceProfile.RequestType requestType)
   {
-    return retrieveProfile(context, recipient, requestType, profileService, true);
+    return retrieveProfile(context, recipient, requestType, true);
   }
 
   private static Single<Pair<Recipient, ServiceResponse<ProfileAndCredential>>> retrieveProfile(@NonNull Context context,
                                                                                                 @NonNull Recipient recipient,
                                                                                                 @NonNull SignalServiceProfile.RequestType requestType,
-                                                                                                @NonNull ProfileService profileService,
                                                                                                 boolean allowUnidentifiedAccess)
   {
+    ProfileService               profileService     = ApplicationDependencies.getProfileService();
     Optional<UnidentifiedAccess> unidentifiedAccess = allowUnidentifiedAccess ? getUnidentifiedAccess(context, recipient) : Optional.empty();
     Optional<ProfileKey>         profileKey         = ProfileKeyUtil.profileKeyOptional(recipient.getProfileKey());
 

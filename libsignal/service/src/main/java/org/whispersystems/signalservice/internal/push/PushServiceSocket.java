@@ -22,6 +22,7 @@ import org.signal.libsignal.protocol.state.SignedPreKeyRecord;
 import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
+import org.signal.libsignal.zkgroup.profiles.PniCredential;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredential;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialRequest;
@@ -803,6 +804,20 @@ public class PushServiceSocket {
     String                   version  = profileKeyIdentifier.serialize();
     String                   subPath  = String.format("%s/%s", target, version);
     ListenableFuture<String> response = submitServiceRequest(String.format(PROFILE_PATH, subPath), "GET", null, AcceptLanguagesUtil.getHeadersWithAcceptLanguage(locale), unidentifiedAccess);
+
+    return FutureTransformers.map(response, body -> {
+      try {
+        return JsonUtil.fromJson(body, SignalServiceProfile.class);
+      } catch (IOException e) {
+        Log.w(TAG, e);
+        throw new MalformedResponseException("Unable to parse entity", e);
+      }
+    });
+  }
+
+  public ListenableFuture<SignalServiceProfile> retrievePniCredential(UUID target, String version, String credentialRequest, Locale locale) {
+    String                   subPath  = String.format("%s/%s/%s?credentialType=pni", target, version, credentialRequest);
+    ListenableFuture<String> response = submitServiceRequest(String.format(PROFILE_PATH, subPath), "GET", null, AcceptLanguagesUtil.getHeadersWithAcceptLanguage(locale), Optional.empty());
 
     return FutureTransformers.map(response, body -> {
       try {

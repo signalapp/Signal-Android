@@ -9,6 +9,7 @@ import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.ecc.Curve
 import org.signal.libsignal.protocol.util.Medium
+import org.signal.libsignal.zkgroup.profiles.PniCredential
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.MasterCipher
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
@@ -53,6 +54,7 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
     private const val KEY_PNI_ACTIVE_SIGNED_PREKEY_ID = "account.pni_active_signed_prekey_id"
     private const val KEY_PNI_SIGNED_PREKEY_FAILURE_COUNT = "account.pni_signed_prekey_failure_count"
     private const val KEY_PNI_NEXT_ONE_TIME_PREKEY_ID = "account.pni_next_one_time_prekey_id"
+    private const val KEY_PNI_CREDENTIAL = "account.pni_credential"
 
     @VisibleForTesting
     const val KEY_E164 = "account.e164"
@@ -304,6 +306,10 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
 
   val isLinkedDevice: Boolean
     get() = !isPrimaryDevice
+
+  var pniCredential: PniCredential?
+    set(value) = putBlob(KEY_PNI_CREDENTIAL, value?.serialize())
+    get() = getBlob(KEY_PNI_CREDENTIAL, null)?.let { PniCredential(it) }
 
   private fun clearLocalCredentials(context: Context) {
     putString(KEY_SERVICE_PASSWORD, Util.getSecret(18))

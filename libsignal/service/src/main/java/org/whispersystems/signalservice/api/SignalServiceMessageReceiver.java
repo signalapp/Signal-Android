@@ -19,6 +19,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifest;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException;
@@ -108,6 +109,10 @@ public class SignalServiceMessageReceiver {
                                         Optional.empty());
       });
     }
+  }
+
+  public ListenableFuture<SignalServiceProfile> retrievePniProfile(ACI aci, String version, String credentialRequest, Locale locale) {
+    return socket.retrievePniCredential(aci.uuid(), version, credentialRequest, locale);
   }
 
   public SignalServiceProfile retrieveProfileByUsername(String username, Optional<UnidentifiedAccess> unidentifiedAccess, Locale locale)

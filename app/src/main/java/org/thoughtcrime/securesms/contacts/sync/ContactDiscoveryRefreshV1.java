@@ -184,12 +184,8 @@ class ContactDiscoveryRefreshV1 {
                                              .filter(ContactDiscoveryRefreshV1::hasCommunicatedWith)
                                              .toList();
 
-    ProfileService profileService = new ProfileService(ApplicationDependencies.getGroupsV2Operations().getProfileOperations(),
-                                                       ApplicationDependencies.getSignalServiceMessageReceiver(),
-                                                       ApplicationDependencies.getSignalWebSocket());
-
     List<Observable<Pair<Recipient, ServiceResponse<ProfileAndCredential>>>> requests = Stream.of(possiblyUnlisted)
-                                                                                              .map(r -> ProfileUtil.retrieveProfile(context, r, SignalServiceProfile.RequestType.PROFILE, profileService)
+                                                                                              .map(r -> ProfileUtil.retrieveProfile(context, r, SignalServiceProfile.RequestType.PROFILE)
                                                                                                                    .toObservable()
                                                                                                                    .timeout(5, TimeUnit.SECONDS)
                                                                                                                    .onErrorReturn(t -> new Pair<>(r, ServiceResponse.forUnknownError(t))))

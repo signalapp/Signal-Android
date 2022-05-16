@@ -253,13 +253,9 @@ public class RetrieveProfileJob extends BaseJob {
     List<Recipient> recipients = Recipient.resolvedList(recipientIds);
     stopwatch.split("resolve-ensure");
 
-    ProfileService profileService = new ProfileService(ApplicationDependencies.getGroupsV2Operations().getProfileOperations(),
-                                                       ApplicationDependencies.getSignalServiceMessageReceiver(),
-                                                       ApplicationDependencies.getSignalWebSocket());
-
     List<Observable<Pair<Recipient, ServiceResponse<ProfileAndCredential>>>> requests = Stream.of(recipients)
                                                                                               .filter(Recipient::hasServiceId)
-                                                                                              .map(r -> ProfileUtil.retrieveProfile(context, r, getRequestType(r), profileService).toObservable())
+                                                                                              .map(r -> ProfileUtil.retrieveProfile(context, r, getRequestType(r)).toObservable())
                                                                                               .toList();
     stopwatch.split("requests");
 
