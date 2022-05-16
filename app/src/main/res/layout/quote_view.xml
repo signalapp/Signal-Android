@@ -119,10 +119,11 @@
                     tools:visibility="visible" />
 
                 <FrameLayout
+                    android:background="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent">
 
-                    <ImageView
+                    <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/quote_thumbnail"
                         android:layout_width="@dimen/quote_thumb_size"
                         android:layout_height="match_parent"

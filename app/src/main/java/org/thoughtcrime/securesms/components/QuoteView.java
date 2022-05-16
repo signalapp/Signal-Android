@@ -17,11 +17,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.android.material.imageview.ShapeableImageView;
+import com.google.android.material.shape.CornerFamily;
+import com.google.android.material.shape.ShapeAppearanceModel;
 
+import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -76,18 +79,18 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     }
   }
 
-  private ViewGroup      mainView;
-  private ViewGroup      footerView;
-  private TextView       authorView;
-  private TextView       bodyView;
-  private View           quoteBarView;
-  private ImageView      thumbnailView;
-  private View           attachmentVideoOverlayView;
-  private ViewGroup      attachmentContainerView;
-  private TextView       attachmentNameView;
-  private ImageView      dismissView;
-  private EmojiImageView missingStoryReaction;
-  private EmojiImageView storyReactionEmoji;
+  private ViewGroup          mainView;
+  private ViewGroup          footerView;
+  private TextView           authorView;
+  private TextView           bodyView;
+  private View               quoteBarView;
+  private ShapeableImageView thumbnailView;
+  private View               attachmentVideoOverlayView;
+  private ViewGroup          attachmentContainerView;
+  private TextView           attachmentNameView;
+  private ImageView          dismissView;
+  private EmojiImageView     missingStoryReaction;
+  private EmojiImageView     storyReactionEmoji;
 
   private long            id;
   private LiveRecipient   author;
@@ -380,7 +383,11 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
   }
 
   private void setQuoteAttachment(@NonNull GlideRequests glideRequests, @NonNull CharSequence body, @NonNull SlideDeck slideDeck, boolean originalMissing) {
+    boolean outgoing = messageType != MessageType.INCOMING && messageType != MessageType.STORY_REPLY_INCOMING;
+    boolean preview  = messageType == MessageType.PREVIEW || messageType == MessageType.STORY_REPLY_PREVIEW;
+
     mainView.setMinimumHeight(isStoryReply() && originalMissing ? 0 : thumbHeight);
+    thumbnailView.setPadding(0, 0, 0, 0);
 
     if (!attachments.containsMediaSlide() && isStoryReply()) {
       StoryTextPostModel model = getStoryTextPost(body);
@@ -396,6 +403,12 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     }
 
     if (quoteType == QuoteModel.Type.GIFT_BADGE) {
+      if (outgoing && !preview) {
+        int oneDp = (int) DimensionUnit.DP.toPixels(1);
+        thumbnailView.setPadding(oneDp, oneDp, oneDp, oneDp);
+        thumbnailView.setShapeAppearanceModel(buildShapeAppearanceForLayoutDirection());
+      }
+
       attachmentVideoOverlayView.setVisibility(GONE);
       attachmentContainerView.setVisibility(GONE);
       thumbnailView.setVisibility(VISIBLE);
@@ -486,5 +499,20 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
 
   public @NonNull List<Mention> getMentions() {
     return MentionAnnotation.getMentionsFromAnnotations(body);
+  }
+
+  private @NonNull ShapeAppearanceModel buildShapeAppearanceForLayoutDirection() {
+    int fourDp = (int) DimensionUnit.DP.toPixels(4);
+    if (getLayoutDirection() == LAYOUT_DIRECTION_LTR) {
+      return ShapeAppearanceModel.builder()
+                                 .setTopRightCorner(CornerFamily.ROUNDED, fourDp)
+                                 .setBottomRightCorner(CornerFamily.ROUNDED, fourDp)
+                                 .build();
+    } else {
+      return ShapeAppearanceModel.builder()
+                                 .setTopLeftCorner(CornerFamily.ROUNDED, fourDp)
+                                 .setBottomLeftCorner(CornerFamily.ROUNDED, fourDp)
+                                 .build();
+    }
   }
 }
