@@ -21,7 +21,11 @@
         </action>
         <action
             android:id="@+id/action_giftFlowStartFragment_to_giftFlowRecipientSelectionFragment"
-            app:destination="@id/giftFlowRecipientSelectionFragment" />
+            app:destination="@id/giftFlowRecipientSelectionFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
 
     <dialog
@@ -32,10 +36,14 @@
     <fragment
         android:id="@+id/giftFlowRecipientSelectionFragment"
         android:name="org.thoughtcrime.securesms.badges.gifts.flow.GiftFlowRecipientSelectionFragment"
-        android:label="GiftFlowRecipientSelectionFragment" >
+        android:label="GiftFlowRecipientSelectionFragment">
         <action
             android:id="@+id/action_giftFlowRecipientSelectionFragment_to_giftFlowConfirmationFragment"
-            app:destination="@id/giftFlowConfirmationFragment" />
+            app:destination="@id/giftFlowConfirmationFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
     <fragment
         android:id="@+id/giftFlowConfirmationFragment"
