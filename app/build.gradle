@@ -541,6 +541,9 @@ dependencies {
 
     androidTestImplementation testLibs.androidx.test.ext.junit
     androidTestImplementation testLibs.espresso.core
+    androidTestImplementation testLibs.androidx.test.core
+    androidTestImplementation testLibs.androidx.test.core.ktx
+    androidTestImplementation testLibs.androidx.test.ext.junit.ktx
 
     testImplementation testLibs.espresso.core
 

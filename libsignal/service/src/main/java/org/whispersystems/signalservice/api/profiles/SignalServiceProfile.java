@@ -206,6 +206,16 @@ public class SignalServiceProfile {
     @JsonCreator
     public Capabilities() {}
 
+    public Capabilities(boolean storage, boolean gv1Migration, boolean senderKey, boolean announcementGroup, boolean changeNumber, boolean stories, boolean giftBadges) {
+      this.storage           = storage;
+      this.gv1Migration      = gv1Migration;
+      this.senderKey         = senderKey;
+      this.announcementGroup = announcementGroup;
+      this.changeNumber      = changeNumber;
+      this.stories           = stories;
+      this.giftBadges        = giftBadges;
+    }
+
     public boolean isStorage() {
       return storage;
     }
