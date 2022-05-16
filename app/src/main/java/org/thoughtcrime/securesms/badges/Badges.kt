@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.util.ScreenDensity
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
 import java.math.BigDecimal
 import java.sql.Timestamp
+import java.util.concurrent.TimeUnit
 
 object Badges {
 
@@ -93,7 +94,8 @@ object Badges {
       Uri.parse(badge.imageUrl),
       badge.imageDensity,
       badge.expiration,
-      badge.visible
+      badge.visible,
+      0L
     )
   }
 
@@ -122,7 +124,8 @@ object Badges {
       uriAndDensity.first(),
       uriAndDensity.second(),
       serviceBadge.expiration?.let { getTimestamp(it) } ?: 0,
-      serviceBadge.isVisible
+      serviceBadge.isVisible,
+      TimeUnit.SECONDS.toMillis(serviceBadge.duration)
     )
   }
 }

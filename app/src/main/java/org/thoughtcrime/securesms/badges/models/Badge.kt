@@ -35,6 +35,7 @@ data class Badge(
   val imageDensity: String,
   val expirationTimestamp: Long,
   val visible: Boolean,
+  val duration: Long
 ) : Parcelable, Key {
 
   fun isExpired(): Boolean = expirationTimestamp < System.currentTimeMillis() && expirationTimestamp > 0
