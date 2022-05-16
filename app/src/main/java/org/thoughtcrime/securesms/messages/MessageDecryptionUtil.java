@@ -81,7 +81,7 @@ public final class MessageDecryptionUtil {
     ServiceId pni = SignalStore.account().requirePni();
 
     ServiceId destination;
-    if (!FeatureFlags.usePnpCds()) {
+    if (!FeatureFlags.phoneNumberPrivacy()) {
       destination = aci;
     } else if (envelope.hasDestinationUuid()) {
       destination = ServiceId.parseOrThrow(envelope.getDestinationUuid());

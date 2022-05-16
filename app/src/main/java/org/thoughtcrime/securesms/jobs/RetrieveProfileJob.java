@@ -307,7 +307,7 @@ public class RetrieveProfileJob extends BaseJob {
 
     recipientDatabase.markProfilesFetched(success, System.currentTimeMillis());
     // XXX The service hasn't implemented profiles for PNIs yet, so if using PNP CDS we don't want to mark users without profiles as unregistered.
-    if ((operationState.unregistered.size() > 0 || newlyRegistered.size() > 0) && !FeatureFlags.usePnpCds()) {
+    if ((operationState.unregistered.size() > 0 || newlyRegistered.size() > 0) && !FeatureFlags.phoneNumberPrivacy()) {
       Log.i(TAG, "Marking " + newlyRegistered.size() + " users as registered and " + operationState.unregistered.size() + " users as unregistered.");
       recipientDatabase.bulkUpdatedRegisteredStatus(newlyRegistered, operationState.unregistered);
     }

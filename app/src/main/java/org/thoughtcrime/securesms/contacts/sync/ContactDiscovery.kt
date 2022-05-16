@@ -74,7 +74,7 @@ object ContactDiscovery {
       context = context,
       descriptor = "refresh-all",
       refresh = {
-        if (FeatureFlags.usePnpCds()) {
+        if (FeatureFlags.phoneNumberPrivacy()) {
           ContactDiscoveryRefreshV2.refreshAll(context)
         } else {
           ContactDiscoveryRefreshV1.refreshAll(context)
@@ -95,7 +95,7 @@ object ContactDiscovery {
       context = context,
       descriptor = "refresh-multiple",
       refresh = {
-        if (FeatureFlags.usePnpCds()) {
+        if (FeatureFlags.phoneNumberPrivacy()) {
           ContactDiscoveryRefreshV2.refresh(context, recipients)
         } else {
           ContactDiscoveryRefreshV1.refresh(context, recipients)
@@ -114,7 +114,7 @@ object ContactDiscovery {
       context = context,
       descriptor = "refresh-single",
       refresh = {
-        if (FeatureFlags.usePnpCds()) {
+        if (FeatureFlags.phoneNumberPrivacy()) {
           ContactDiscoveryRefreshV2.refresh(context, listOf(recipient))
         } else {
           ContactDiscoveryRefreshV1.refresh(context, listOf(recipient))
