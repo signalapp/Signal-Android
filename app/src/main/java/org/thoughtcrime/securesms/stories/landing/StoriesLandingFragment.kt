@@ -16,6 +16,7 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.core.app.SharedElementCallback
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.BaseTransientBottomBar
@@ -43,6 +44,7 @@ import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
 import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
 import org.thoughtcrime.securesms.stories.my.MyStoriesActivity
 import org.thoughtcrime.securesms.stories.settings.StorySettingsActivity
+import org.thoughtcrime.securesms.stories.tabs.ConversationListTab
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.LifecycleDisposable
@@ -53,6 +55,10 @@ import java.util.concurrent.TimeUnit
  * The "landing page" for Stories.
  */
 class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_landing_fragment) {
+
+  companion object {
+    private const val LIST_SMOOTH_SCROLL_TO_TOP_THRESHOLD = 25
+  }
 
   private lateinit var emptyNotice: View
   private lateinit var cameraFab: FloatingActionButton
@@ -137,6 +143,17 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
         }
       }
     )
+
+    lifecycleDisposable += tabsViewModel.tabClickEvents
+      .filter { it == ConversationListTab.STORIES }
+      .subscribeBy(onNext = {
+        val layoutManager = recyclerView?.layoutManager as? LinearLayoutManager ?: return@subscribeBy
+        if (layoutManager.findFirstVisibleItemPosition() <= LIST_SMOOTH_SCROLL_TO_TOP_THRESHOLD) {
+          recyclerView?.smoothScrollToPosition(0)
+        } else {
+          recyclerView?.scrollToPosition(0)
+        }
+      })
   }
 
   private fun getConfiguration(state: StoriesLandingState): DSLConfiguration {

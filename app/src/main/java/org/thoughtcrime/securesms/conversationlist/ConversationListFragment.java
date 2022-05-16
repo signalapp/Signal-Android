@@ -137,11 +137,14 @@ import org.thoughtcrime.securesms.search.SearchResult;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
+import org.thoughtcrime.securesms.stories.tabs.ConversationListTab;
+import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
@@ -185,6 +188,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   public static final short MESSAGE_REQUESTS_REQUEST_CODE_CREATE_NAME = 32562;
   public static final short SMS_ROLE_REQUEST_CODE                     = 32563;
 
+  private static final int LIST_SMOOTH_SCROLL_TO_TOP_THRESHOLD = 25;
+
   private static final String TAG = Log.tag(ConversationListFragment.class);
 
   private static final int MAXIMUM_PINNED_CONVERSATIONS = 4;
@@ -213,10 +218,12 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private VoiceNotePlayerView            voiceNotePlayerView;
   private SignalBottomActionBar          bottomActionBar;
   private SignalContextMenu              activeContextMenu;
+  private LifecycleDisposable            lifecycleDisposable;
 
   protected ConversationListArchiveItemDecoration archiveDecoration;
   protected ConversationListItemAnimator          itemAnimator;
   private   Stopwatch                             startupStopwatch;
+  private   ConversationListTabsViewModel         conversationListTabsViewModel;
 
   public static ConversationListFragment newInstance() {
     return new ConversationListFragment();
@@ -317,6 +324,21 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         }
       }
     });
+
+    lifecycleDisposable           = new LifecycleDisposable();
+    conversationListTabsViewModel = new ViewModelProvider(requireActivity()).get(ConversationListTabsViewModel.class);
+
+    lifecycleDisposable.bindTo(getViewLifecycleOwner());
+    lifecycleDisposable.add(conversationListTabsViewModel.getTabClickEvents().filter(tab -> tab == ConversationListTab.CHATS)
+                                                         .subscribe(unused -> {
+                                                           LinearLayoutManager layoutManager = (LinearLayoutManager) list.getLayoutManager();
+                                                           int firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
+                                                           if (firstVisibleItemPosition <= LIST_SMOOTH_SCROLL_TO_TOP_THRESHOLD) {
+                                                             list.smoothScrollToPosition(0);
+                                                           } else {
+                                                             list.scrollToPosition(0);
+                                                           }
+                                                         }));
   }
 
   @Override
