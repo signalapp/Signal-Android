@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.sharing
+package org.thoughtcrime.securesms.sharing.v2
 
 import android.app.Activity
 import android.content.Intent
@@ -21,6 +21,8 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity.Companion.share
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.sharing.MultiShareDialogs
+import org.thoughtcrime.securesms.sharing.MultiShareSender
 import org.thoughtcrime.securesms.sharing.MultiShareSender.MultiShareSendResultCollection
 import org.thoughtcrime.securesms.sharing.interstitial.ShareInterstitialActivity
 import org.thoughtcrime.securesms.util.ConversationUtil

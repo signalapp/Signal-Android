@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.sharing
+package org.thoughtcrime.securesms.sharing.v2
 
 data class ShareState(
   val loadState: ShareDataLoadState = ShareDataLoadState.Init
