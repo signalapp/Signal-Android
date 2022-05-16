@@ -9,17 +9,21 @@ import androidx.annotation.WorkerThread;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobs.MultiDeviceViewedUpdateJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.BubbleUtil;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 class ConversationRepository {
 
@@ -97,5 +101,18 @@ class ConversationRepository {
     }
 
     return new ConversationData(threadId, lastSeen, lastSeenPosition, lastScrolledPosition, jumpToPosition, threadSize, messageRequestData, showUniversalExpireTimerUpdate);
+  }
+
+  void markGiftBadgeRevealed(long messageId) {
+    SignalExecutors.BOUNDED_IO.execute(() -> {
+      List<MessageDatabase.MarkedMessageInfo> markedMessageInfo = SignalDatabase.mms().setOutgoingGiftsRevealed(Collections.singletonList(messageId));
+      if (!markedMessageInfo.isEmpty()) {
+        Log.d(TAG, "Marked gift badge revealed. Sending view sync message.");
+        MultiDeviceViewedUpdateJob.enqueue(
+            markedMessageInfo.stream()
+                             .map(MessageDatabase.MarkedMessageInfo::getSyncMessageId)
+                             .collect(Collectors.toList()));
+      }
+    });
   }
 }

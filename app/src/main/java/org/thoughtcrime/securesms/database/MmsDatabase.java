@@ -450,6 +450,44 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public @NonNull List<MarkedMessageInfo>
+  setOutgoingGiftsRevealed(@NonNull List<Long> messageIds) {
+    String[]                projection = SqlUtil.buildArgs(ID, RECIPIENT_ID, DATE_SENT, THREAD_ID);
+    String                  where      = ID + " IN (" + Util.join(messageIds, ",") + ") AND (" + getOutgoingTypeClause() + ") AND (" + getTypeField() + " & " + Types.SPECIAL_TYPES_MASK + " = " + Types.SPECIAL_TYPE_GIFT_BADGE + ") AND " + VIEWED_RECEIPT_COUNT + " = 0";
+    List<MarkedMessageInfo> results    = new LinkedList<>();
+
+    getWritableDatabase().beginTransaction();
+    try (Cursor cursor = getWritableDatabase().query(TABLE_NAME, projection, where, null, null, null, null)) {
+      while (cursor.moveToNext()) {
+        long          messageId     = CursorUtil.requireLong(cursor, ID);
+        long          threadId      = CursorUtil.requireLong(cursor, THREAD_ID);
+        RecipientId   recipientId   = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID));
+        long          dateSent      = CursorUtil.requireLong(cursor, DATE_SENT);
+        SyncMessageId syncMessageId = new SyncMessageId(recipientId, dateSent);
+
+        results.add(new MarkedMessageInfo(threadId, syncMessageId, new MessageId(messageId, true), null));
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(VIEWED_RECEIPT_COUNT, 1);
+        contentValues.put(RECEIPT_TIMESTAMP, System.currentTimeMillis());
+
+        getWritableDatabase().update(TABLE_NAME, contentValues, ID_WHERE, SqlUtil.buildArgs(messageId));
+      }
+      getWritableDatabase().setTransactionSuccessful();
+    } finally {
+      getWritableDatabase().endTransaction();
+    }
+
+    Set<Long> threadsUpdated = Stream.of(results)
+                                     .map(MarkedMessageInfo::getThreadId)
+                                     .collect(Collectors.toSet());
+
+    notifyConversationListeners(threadsUpdated);
+
+    return results;
+  }
+
+  @Override
   public @NonNull Pair<Long, Long> insertReceivedCall(@NonNull RecipientId address, boolean isVideoOffer) {
     throw new UnsupportedOperationException();
   }

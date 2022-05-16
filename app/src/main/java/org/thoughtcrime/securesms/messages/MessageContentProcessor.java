@@ -1379,6 +1379,7 @@ public final class MessageContentProcessor {
                                     .toList();
 
     SignalDatabase.mms().setIncomingMessagesViewed(toMarkViewed);
+    SignalDatabase.mms().setOutgoingGiftsRevealed(toMarkViewed);
 
     MessageNotifier messageNotifier = ApplicationDependencies.getMessageNotifier();
     messageNotifier.setLastDesktopActivityTimestamp(envelopeTimestamp);

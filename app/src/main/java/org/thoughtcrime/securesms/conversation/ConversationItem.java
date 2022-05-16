@@ -2041,9 +2041,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   @Override
-  public @Nullable Projection getOpenableGiftProjection() {
-    boolean isViewedAndIncoming = !messageRecord.isOutgoing() && messageRecord.getViewedReceiptCount() > 0;
-    if (!isGiftMessage(messageRecord) || messageRecord.isRemoteDelete() || isViewedAndIncoming) {
+  public @Nullable Projection getOpenableGiftProjection(boolean isAnimating) {
+    if (!isGiftMessage(messageRecord) || messageRecord.isRemoteDelete() || (messageRecord.getViewedReceiptCount() > 0 && !isAnimating)) {
       return null;
     }
 
@@ -2061,7 +2060,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   @Override
   public void setOpenGiftCallback(@NonNull Function1<? super OpenableGift, Unit> openGift) {
     if (giftViewStub.resolved()) {
-      bodyBubble.setOnClickListener(unused -> openGift.invoke(this));
+      bodyBubble.setOnClickListener(unused -> {
+        openGift.invoke(this);
+        eventListener.onGiftBadgeRevealed(messageRecord);
+      });
       giftViewStub.get().onGiftNotOpened();
     }
   }

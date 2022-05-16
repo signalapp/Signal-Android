@@ -1977,6 +1977,13 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
         ViewReceivedGiftBottomSheet.show(getChildFragmentManager(), (MmsMessageRecord) messageRecord);
       }
     }
+
+    @Override
+    public void onGiftBadgeRevealed(@NonNull MessageRecord messageRecord) {
+      if (messageRecord.isOutgoing() && MessageRecordUtil.hasGiftBadge(messageRecord)) {
+        conversationViewModel.markGiftBadgeRevealed(messageRecord.getId());
+      }
+    }
   }
 
   public void refreshList() {

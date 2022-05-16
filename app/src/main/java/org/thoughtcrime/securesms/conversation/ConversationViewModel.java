@@ -276,6 +276,10 @@ public class ConversationViewModel extends ViewModel {
     searchQuery.setValue(query);
   }
 
+  void markGiftBadgeRevealed(long messageId) {
+    conversationRepository.markGiftBadgeRevealed(messageId);
+  }
+
   @NonNull LiveData<String> getSearchQuery() {
     return searchQuery;
   }

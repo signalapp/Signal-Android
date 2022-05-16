@@ -658,6 +658,11 @@ public class SmsDatabase extends MessageDatabase {
     return Collections.emptyList();
   }
 
+  @Override
+  public @NonNull List<MarkedMessageInfo> setOutgoingGiftsRevealed(@NonNull List<Long> messageIds) {
+    throw new UnsupportedOperationException();
+  }
+
   private InsertResult updateMessageBodyAndType(long messageId, String body, long maskOff, long maskOn) {
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
     db.execSQL("UPDATE " + TABLE_NAME + " SET " + BODY + " = ?, " +

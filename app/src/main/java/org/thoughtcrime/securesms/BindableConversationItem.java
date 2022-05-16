@@ -105,5 +105,6 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
     boolean onUrlClicked(@NonNull String url);
 
     void onViewGiftBadgeClicked(@NonNull MessageRecord messageRecord);
+    void onGiftBadgeRevealed(@NonNull MessageRecord messageRecord);
   }
 }
