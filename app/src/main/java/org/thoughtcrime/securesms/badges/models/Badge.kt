@@ -40,6 +40,8 @@ data class Badge(
 
   fun isExpired(): Boolean = expirationTimestamp < System.currentTimeMillis() && expirationTimestamp > 0
   fun isBoost(): Boolean = id == BOOST_BADGE_ID
+  fun isGift(): Boolean = id == GIFT_BADGE_ID
+  fun isSubscription(): Boolean = !isBoost() && !isGift()
 
   override fun updateDiskCacheKey(messageDigest: MessageDigest) {
     messageDigest.update(id.toByteArray(Key.CHARSET))

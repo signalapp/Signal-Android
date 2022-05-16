@@ -299,6 +299,10 @@ public class RefreshOwnProfileJob extends BaseJob {
               Log.d(TAG, "Unexpected expiry due to payment failure.", true);
               isDueToPaymentFailure = true;
             }
+
+            if (activeSubscription.getChargeFailure() != null) {
+              Log.d(TAG, "Active payment contains a charge failure: " + activeSubscription.getChargeFailure().getCode(), true);
+            }
           }
         }
 
@@ -320,6 +324,16 @@ public class RefreshOwnProfileJob extends BaseJob {
 
       Log.d(TAG, "Marking boost badge as expired, should notify next time the conversation list is open.", true);
       SignalStore.donationsValues().setExpiredBadge(mostRecentExpiration);
+    } else {
+      Badge badge = SignalStore.donationsValues().getExpiredBadge();
+
+      if (badge != null && badge.isSubscription() && remoteHasSubscriptionBadges) {
+        Log.d(TAG, "Remote has subscription badges. Clearing local expired subscription badge.", true);
+        SignalStore.donationsValues().setExpiredBadge(null);
+      } else if (badge != null && badge.isBoost() && remoteHasBoostBadges) {
+        Log.d(TAG, "Remote has boost badges. Clearing local expired boost badge.", true);
+        SignalStore.donationsValues().setExpiredBadge(null);
+      }
     }
 
     if (!remoteHasGiftBadges && localHasGiftBadges) {
@@ -333,6 +347,9 @@ public class RefreshOwnProfileJob extends BaseJob {
 
       Log.d(TAG, "Marking gift badge as expired, should notify next time the manage donations screen is open.", true);
       SignalStore.donationsValues().setExpiredGiftBadge(mostRecentExpiration);
+    } else if (remoteHasGiftBadges) {
+      Log.d(TAG, "We have remote gift badges. Clearing local expired gift badge.", true);
+      SignalStore.donationsValues().setExpiredGiftBadge(null);
     }
 
     boolean userHasVisibleBadges   = badges.stream().anyMatch(SignalServiceProfile.Badge::isVisible);

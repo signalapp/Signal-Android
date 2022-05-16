@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
 import org.thoughtcrime.securesms.jobs.RetrieveRemoteAnnouncementsJob
 import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob
 import org.thoughtcrime.securesms.jobs.StorageForcePushJob
+import org.thoughtcrime.securesms.jobs.SubscriptionKeepAliveJob
 import org.thoughtcrime.securesms.jobs.SubscriptionReceiptRequestResponseJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.payments.DataExportUtil
@@ -401,6 +402,13 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
             enqueueSubscriptionRedemption()
           }
         )
+
+        clickPref(
+          title = DSLSettingsText.from(R.string.preferences__internal_badges_enqueue_keep_alive),
+          onClick = {
+            enqueueSubscriptionKeepAlive()
+          }
+        )
       }
 
       dividerPref()
@@ -571,6 +579,10 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
   private fun enqueueSubscriptionRedemption() {
     SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain().enqueue()
+  }
+
+  private fun enqueueSubscriptionKeepAlive() {
+    SubscriptionKeepAliveJob.enqueueAndTrackTime(System.currentTimeMillis())
   }
 
   private fun clearCdsHistory() {

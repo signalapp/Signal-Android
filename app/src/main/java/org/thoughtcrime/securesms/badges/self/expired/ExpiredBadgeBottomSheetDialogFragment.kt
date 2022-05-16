@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.Un
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.BottomSheetUtil
+import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 
 /**
  * Bottom sheet displaying a fading badge with a notice and action for becoming a subscriber again.
@@ -30,7 +31,8 @@ class ExpiredBadgeBottomSheetDialogFragment : DSLSettingsBottomSheetFragment(
   private fun getConfiguration(): DSLConfiguration {
     val args = ExpiredBadgeBottomSheetDialogFragmentArgs.fromBundle(requireArguments())
     val badge: Badge = args.badge
-    val cancellationReason: UnexpectedSubscriptionCancellation? = UnexpectedSubscriptionCancellation.fromStatus(args.cancelationReason)
+    val cancellationReason = UnexpectedSubscriptionCancellation.fromStatus(args.cancelationReason)
+    val chargeFailure: ActiveSubscription.ChargeFailure? = SignalStore.donationsValues().getUnexpectedSubscriptionCancelationChargeFailure()
     val isLikelyASustainer = SignalStore.donationsValues().isLikelyASustainer()
 
     val inactive = cancellationReason == UnexpectedSubscriptionCancellation.INACTIVE

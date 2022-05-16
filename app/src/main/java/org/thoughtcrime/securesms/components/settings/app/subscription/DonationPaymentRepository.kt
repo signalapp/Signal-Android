@@ -277,9 +277,8 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
         ).flatMapCompletable {
           if (it.status == 200 || it.status == 204) {
             Log.d(TAG, "Successfully set user subscription to level $subscriptionLevel with response code ${it.status}", true)
-            SignalStore.donationsValues().clearUserManuallyCancelled()
+            SignalStore.donationsValues().updateLocalStateForLocalSubscribe()
             scheduleSyncForAccountRecordChange()
-            SignalStore.donationsValues().clearLevelOperations()
             LevelUpdate.updateProcessingState(false)
             Completable.complete()
           } else {
