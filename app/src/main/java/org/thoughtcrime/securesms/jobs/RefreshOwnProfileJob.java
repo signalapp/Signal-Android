@@ -234,7 +234,7 @@ public class RefreshOwnProfileJob extends BaseJob {
     }
   }
 
-  private void setProfileBadges(@Nullable List<SignalServiceProfile.Badge> badges) {
+  private void setProfileBadges(@Nullable List<SignalServiceProfile.Badge> badges) throws IOException {
     if (badges == null) {
       return;
     }
@@ -334,7 +334,8 @@ public class RefreshOwnProfileJob extends BaseJob {
                  " visible.", true);
 
       BadgeRepository badgeRepository = new BadgeRepository(context);
-      badgeRepository.setVisibilityForAllBadges(displayBadgesOnProfile, appBadges).blockingSubscribe();
+      List<Badge> updatedBadges = badgeRepository.setVisibilityForAllBadgesSync(displayBadgesOnProfile, appBadges);
+      SignalDatabase.recipients().setBadges(Recipient.self().getId(), updatedBadges);
     } else {
       SignalDatabase.recipients().setBadges(Recipient.self().getId(), appBadges);
     }
