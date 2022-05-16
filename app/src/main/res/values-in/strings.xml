@@ -90,7 +90,9 @@
   <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Anda akan bisa memberi pesan dan saling menelepon dan Anda akan membagikan nama dan foto dengan mereka.</string>
   <!--Text that is shown when unblocking an SMS contact-->
+  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Anda akan bisa mengirim pesan satu sama lain.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Orang yang Anda blokir tidak akan dapat menelepon atau mengirim pesan pada Anda</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Orang yang diblokir tidak akan bisa mengirimi Anda pesan.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Berhenti mendapat pembaruan dan berita Signal</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -690,6 +692,8 @@
   <string name="CustomNotificationsDialogFragment__notification_sound">Suara pemberitahuan</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Bergetar</string>
   <!--Button text for customizing notification options-->
+  <string name="CustomNotificationsDialogFragment__customize">Kustomisasi</string>
+  <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Ubah suara dan getaran</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Pengaturan panggilan</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Nada dering</string>
   <string name="CustomNotificationsDialogFragment__enabled">Diaktifkan</string>
@@ -1087,6 +1091,7 @@
   <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Izinkan %1$s mengirimkan Anda pesan dan bagikan nama dan foto Anda dengan mereka? Anda tidak akan menerima pesan apapun sampai Anda membuka blokir mereka.</string>
   <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Bolehkan %1$s mengirim pesan ke Anda? Anda tidak akan mendapatkan pesan baru sampai Anda membuka blokir mereka.</string>
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Dapatkan pembaruan dan berita dari %1$s? Anda tidak akan menerima pembaruan apapun sampai Anda membuka blokir mereka.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Lanjutkan percakapan Anda dengan grup ini dan bagikan nama dan foto Anda dengan anggotanya?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Perbarui grup ini untuk mengaktifkan fitur-fitur baru seperti @penyebutan dan admin. Anggota yang tidak membagikan nama atau fotonya di grup ini akan diundang untuk bergabung.</string>
@@ -1464,8 +1469,11 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ThreadRecord_video">Video</string>
   <string name="ThreadRecord_chat_session_refreshed">Sesi percakapan diperbarui</string>
   <!--Displayed in the notification when the user is sent a gift-->
+  <string name="ThreadRecord__you_received_a_gift">Anda mendapatkan hadiah</string>
   <!--Displayed in the notification when the user sends a gift-->
+  <string name="ThreadRecord__you_sent_a_gift">Anda telah mengirim hadiah</string>
   <!--Displayed in the notification when the user has opened a received gift-->
+  <string name="ThreadRecord__you_redeemed_a_gift_badge">Anda telah menebus lencana hadiah</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Pembaharuan Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Versi baru Signal tersedia, ketuk untuk memperbarui</string>
@@ -2031,6 +2039,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__led_color">Warna LED</string>
   <string name="preferences__led_color_unknown">Tidak dikenal</string>
   <string name="preferences__pref_led_blink_title">Pola kedip LED</string>
+  <string name="preferences__customize">KustomisasiKustomisasi</string>
+  <string name="preferences__change_sound_and_vibration">Ubah suara dan getaran</string>
   <string name="preferences__sound">Bunyi</string>
   <string name="preferences__silent">Diam</string>
   <string name="preferences__default">Standar</string>
@@ -3490,7 +3500,9 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">Target tidak mendukung pemberian hadiah</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__could_not_verify_recipient">Tidak dapat memverifikasi penerima.</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Mohon untuk mengecek koneksi internet Anda dan coba lagi</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Lencana hadiah</string>
   <!--Gift message view expiry information-->
@@ -3698,6 +3710,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--Donation reciepts screen empty state title-->
+  <string name="DonationReceiptListFragment__no_receipts">Tidak ada resi</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Percakapan</string>
@@ -3752,7 +3765,13 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Message of dialog to confirm deletion of story-->
   <string name="MyStories__this_story_will_be_deleted">Cerita ini akan dihapus untuk Anda dan untuk semuanya yang menerimanya.</string>
   <!--Displayed at bottom of story viewer when current item has views-->
+  <plurals name="StoryViewerFragment__d_views">
+    <item quantity="other">%1$d penonton</item>
+  </plurals>
   <!--Displayed at bottom of story viewer when current item has replies-->
+  <plurals name="StoryViewerFragment__d_replies">
+    <item quantity="other">%1$d balasan</item>
+  </plurals>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3762,38 +3781,67 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Balas</string>
   <!--Displayed when a story has no views-->
+  <string name="StoryViewsFragment__no_views_yet">Belum ada penonton</string>
   <!--Displayed when a story has no replies yet-->
+  <string name="StoryGroupReplyFragment__no_replies_yet">Belum ada balasan</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
+  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Bereaksi terhadap cerita</string>
   <!--Label for story views tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__views">Dilihat</string>
   <!--Label for story replies tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__replies">Balasan</string>
   <!--Description of action for reaction button-->
+  <string name="StoryReplyComposer__react_to_this_story">Bereaksi terhadap cerita ini</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
+  <string name="StoryReplyComposer__replying_privately_to_s">Membalas secara privat ke %1$s</string>
   <!--Context menu item to privately reply to a story response-->
+  <string name="StoryGroupReplyItem__private_reply">Balas secara privat</string>
   <!--Context menu item to copy a story response-->
   <string name="StoryGroupReplyItem__copy">Salin</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Hapus</string>
   <!--Story settings page title-->
+  <string name="StorySettingsFragment__story_settings">Pengaturan cerita</string>
   <!--Story settings private stories heading-->
+  <string name="StorySettingsFragment__private_stories">Cerita privat</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Cerita privat hanya bisa dilihat oleh orang yang Anda tambahkan ke cerita Anda. Hanya Anda yang dapat melihat nama cerita.</string>
   <!--Option label for creating a new private story-->
+  <string name="StorySettingsFragment__new_private_story">Cerita privat baru</string>
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Cerita saya</string>
   <!--Section heading for story visibility-->
+  <string name="MyStorySettingsFragment__who_can_see_this_story">Siapa yang bisa melihat cerita ini</string>
   <!--Clickable option for selecting people to hide your story from-->
+  <string name="MyStorySettingsFragment__hide_story_from">Sembunyikan serita dari</string>
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <plurals name="MyStorySettingsFragment__d_people">
+    <item quantity="other">%1$d orang</item>
+  </plurals>
   <!--Section header for options related to replies and reactions-->
+  <string name="MyStorySettingsFragment__replies_amp_reactions">Balasan &amp; reaksi</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
+  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Biarkan balasan &amp; reaksi</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
+  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Biarkan orang yang bisa melihat cerita Anda bereaksi dan membalas</string>
   <!--Note about default sharing-->
+  <string name="MyStorySettingsFragment__hide_your_story_from">Sembunyikan cerita Anda dari orang-orang spesifik. Secara default, cerita Anda dibagikan dengan %1$s Anda</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
+  <string name="MyStorySettingsFragment__signal_connections">Koneksi Signal</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Koneksi Signal</strong> adalah orang yang Anda percayai, baik oleh: </string>
   <!--Signal connections sheet bullet point 1-->
+  <string name="SignalConnectionsBottomSheet__starting_a_conversation">Memulai percakapan</string>
   <!--Signal connections sheet bullet point 2-->
+  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Menerima permintaan pesan</string>
   <!--Signal connections sheet bullet point 3-->
+  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Memiliki mereka di dalam kontak sistem Anda</string>
   <!--Note at the bottom of the Signal connections sheet-->
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Koneksi Anda bisa melihat nama Anda dan foto, dan bisa melihat post ke \"Cerita Saya\" kecuali Anda menyembunyikannya dari mereka.</string>
   <!--Clickable option to add a viewer to a private story-->
+  <string name="PrivateStorySettingsFragment__add_viewer">Tambah penonton</string>
   <!--Clickable option to delete a custom story-->
+  <string name="PrivateStorySettingsFragment__delete_private_story">Hapus cerita privat</string>
   <!--Dialog title when attempting to remove someone from a private story-->
   <!--Dialog message when attempting to remove someone from a private story-->
   <!--Positive action label when attempting to remove someone from a private story-->
@@ -3846,6 +3894,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="BaseStoryRecipientSelectionFragment__select_all">Pilih semua</string>
   <!--Choose story type bottom sheet title-->
   <!--Choose story type bottom sheet new story row title-->
+  <string name="ChooseStoryTypeBottomSheet__new_private_story">Cerita privat baru</string>
   <!--Choose story type bottom sheet new story row summary-->
   <!--Choose story type bottom sheet group story title-->
   <!--Choose story type bottom sheet group story summary-->

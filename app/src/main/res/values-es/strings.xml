@@ -1417,7 +1417,7 @@ número de teléfono
   <string name="RegistrationActivity_enter_your_phone_number">Introduce tu número de teléfono</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Recibirás un código de verificación SMS. Se aplican las tarifas de tu operador.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduce el código que hemos enviado a %s</string>
-  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Asegúrate que tu teléfono tiene cobertura para recibir SMS o llamadas</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Asegúrate que tu celular/móvil tiene cobertura para recibir SMS o llamadas</string>
   <string name="RegistrationActivity_phone_number_description">Número de teléfono</string>
   <string name="RegistrationActivity_country_code_description">Código de país</string>
   <string name="RegistrationActivity_call">Llamada</string>
@@ -1709,7 +1709,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="WebRtcCallScreen__answer_without_video">Atender sin vídeo</string>
   <!--WebRtcAudioOutputToggle-->
   <string name="WebRtcAudioOutputToggle__audio_output">Salida de audio</string>
-  <string name="WebRtcAudioOutputToggle__phone_earpiece">Auricular del teléfono</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">Auricular del celular/móvil</string>
   <string name="WebRtcAudioOutputToggle__speaker">Altavoz del dispositivo</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <string name="WebRtcCallControls_answer_call_description">Atender llamada</string>
@@ -1982,7 +1982,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Introducir nombre o número</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Para verificar la seguridad del cifrado con %s, compara las cifras arriba con las del dispositivo de esa persona. También puedes escanear el código en su teléfono. <a href="https://signal.org/redirect/safety-numbers">Más detalles.</a>]]></string>
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Para verificar la seguridad del cifrado con %s, compara las cifras arriba con las del dispositivo de esa persona. También puedes escanear el código en su celular/móvil. <a href="https://signal.org/redirect/safety-numbers">Más detalles.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Toca para escanear</string>
   <string name="verify_display_fragment__successful_match">Las cifras coinciden</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">Fallo al verificar las cifras de seguridad</string>
@@ -2518,7 +2518,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Comparar con el portapapeles</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_import_title">Importar SMS del sistema</string>
-  <string name="reminder_header_sms_import_text">Toca para copiar los mensajes SMS de tu teléfono a la base de datos cifrada de Signal.</string>
+  <string name="reminder_header_sms_import_text">Toca para copiar los mensajes SMS de tu celular/móvil a la base de datos cifrada de Signal.</string>
   <string name="reminder_header_push_title">Activa mensajes y llamadas de Signal</string>
   <string name="reminder_header_push_text">Mejora tu experiencia al comunicarte.</string>
   <string name="reminder_header_service_outage_text">Signal está experimentando dificultades técnicas. Estamos trabajando duro para restablecer el servicio lo antes posible.</string>

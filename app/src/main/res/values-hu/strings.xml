@@ -321,7 +321,7 @@
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s bekapcsolva</string>
   <!--Dialog title for block group link join requests-->
-  <string name="ConversationFragment__block_request">Elutasítod az kérést?</string>
+  <string name="ConversationFragment__block_request">Elutasítod a kérést?</string>
   <!--Dialog message for block group link join requests-->
   <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s nem használhatja a csoportlinket a csatlakozáshoz, vagy a csatlakozás kérvényezéséhez. Kézzel továbbra is felvehető a csoport tagjai közé.</string>
   <!--Dialog confirm block request button-->
@@ -1821,7 +1821,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Author formatting for group stories-->
   <string name="QuoteView_s_story">%1$s · Történet</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Te · Story</string>
+  <string name="QuoteView_your_story">Te · Történet</string>
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">Nem elérhető</string>
   <!--Label for quoted gift-->
@@ -3486,7 +3486,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">A Signalt hozzád hasonló emberek működtetik.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Csatlakozz Te is a támogatói közösséghez, hogy te is hozzájárulhass a technológiánk sikeréhez, amit érted, nem pedig adataid megszerzéséért építettünk!</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Csatlakozz Te is a támogatói közösséghez, hogy te is hozzájárulhass a technológiánk sikeréhez, amit érted, nem pedig adataid megszerzéséért építettünk!</string>
-  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Havi támogatással segítheted a technológiát, ami számodra, nem pedig adataid megszerzéséért készült.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">A Signal havi támogatásával segíthetsz egy olyan technológiát, amely számodra, nem pedig adataid megszerzéséért készült.</string>
   <string name="SubscribeFragment__currency">Pénznem</string>
   <string name="SubscribeFragment__more_payment_options">További fizetési lehetőség</string>
   <string name="SubscribeFragment__cancel_subscription">Előfizetés megszüntetése</string>

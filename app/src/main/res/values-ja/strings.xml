@@ -90,7 +90,9 @@
   <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">お互いにメッセージや通話ができるようになります。あなたの名前とプロフィール写真が相手と共有されます。</string>
   <!--Text that is shown when unblocking an SMS contact-->
+  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">お互いにメッセージをやりとりできるようになります。</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">ブロックされた相手は、あなたへのメッセージ送信や通話発信ができなくなります。</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">ブロックされた相手は、あなたへメッセージを送信できなくなります。</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signalのアップデート情報やニュースを受信しません。</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -690,6 +692,7 @@
   <string name="CustomNotificationsDialogFragment__notification_sound">通知音</string>
   <string name="CustomNotificationsDialogFragment__vibrate">バイブレーション</string>
   <!--Button text for customizing notification options-->
+  <string name="CustomNotificationsDialogFragment__customize">カスタマイズ</string>
   <string name="CustomNotificationsDialogFragment__call_settings">通話設定</string>
   <string name="CustomNotificationsDialogFragment__ringtone">着信音</string>
   <string name="CustomNotificationsDialogFragment__enabled">有効</string>
@@ -1087,6 +1090,7 @@
   <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s にあなたへのメッセージ送信や、名前とプロフィール画像の共有を許可しますか？ブロックを解除するまでメッセージは届きません。</string>
   <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s からメッセージを受け取りますか？ブロックを解除するまでは受け取りません。</string>
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s から更新情報やニュースを受け取りますか？ブロックを解除するまでは受け取りません。</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">このグループとのチャットを継続して、あなたの名前と画像をそのメンバーと共有しますか？</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">@メンションや管理者などの機能を有効にするため、グループをアップグレードしてください。名前や写真を共有していないグループメンバーは、改めて招待されます。</string>
@@ -1103,7 +1107,13 @@
     <item quantity="other">メンバー %1$d人</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="other">メンバー %1$d人 (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="other">+%1$d人招待中</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="other">ほか%dグループ</item>
   </plurals>
@@ -1448,7 +1458,9 @@
   <string name="ThreadRecord_video">動画</string>
   <string name="ThreadRecord_chat_session_refreshed">セッションが更新されました</string>
   <!--Displayed in the notification when the user is sent a gift-->
+  <string name="ThreadRecord__you_received_a_gift">ギフトを受け取りました</string>
   <!--Displayed in the notification when the user sends a gift-->
+  <string name="ThreadRecord__you_sent_a_gift">ギフトを贈りました</string>
   <!--Displayed in the notification when the user has opened a received gift-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signalアップデート</string>
@@ -1722,6 +1734,7 @@
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">削除済み</string>
   <!--Label for quoted gift-->
+  <string name="QuoteView__gift">ギフト</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">一番下までスクロール</string>
   <!--BubbleOptOutTooltip-->
@@ -2014,6 +2027,7 @@
   <string name="preferences__led_color">LED色</string>
   <string name="preferences__led_color_unknown">不明</string>
   <string name="preferences__pref_led_blink_title">LED点滅パターン</string>
+  <string name="preferences__customize">カスタマイズ</string>
   <string name="preferences__sound">着信音</string>
   <string name="preferences__silent">無音</string>
   <string name="preferences__default">既定</string>
@@ -3377,6 +3391,7 @@
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signalは、表現の自由を守り、安全なグローバルコミュニケーションを可能にする、オープンソースのプライバシー保護技術の開発に取り組んでいます。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ご支援をありがとうございます！</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">ブーストをありがとうございます！</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">ブーストバッジを獲得しました！このバッジをプロフィールに表示して、Signalへの寄付を知ってもらいましょう。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">また、</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">月次サポーターになることもできます。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">プロフィールに表示する</string>
@@ -3389,7 +3404,9 @@
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">その他</string>
   <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">受領書</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">サブスクリプション</string>
   <string name="ManageDonationsFragment__manage_subscription">サブスクリプションの管理</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">寄付の領収書</string>
@@ -3398,8 +3415,10 @@
   <string name="ManageDonationsFragment__error_getting_subscription">サブスクリプションを取得できませんでした。</string>
   <!--Preference heading for other ways to donate-->
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">バッジを贈る</string>
   <string name="BoostFragment__give_signal_a_boost">Signalをブーストしましょう</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">1度のご寄付で、%1$d日間のブーストバッジを獲得しましょう。 </string>
   <string name="Boost__enter_custom_amount">金額を入力してください</string>
   <string name="Boost__one_time_contribution">1回限りの寄付</string>
   <string name="MySupportPreference__add_a_signal_boost">Signalブーストを追加</string>
@@ -3410,11 +3429,14 @@
   <string name="MySupportPreference__couldnt_add_badge_s">バッジを追加できませんでした。%1$s</string>
   <string name="MySupportPreference__please_contact_support">サポートにお問い合わせください。</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">ブーストバッジが失効しました</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">月々の寄付をキャンセル</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">あなたのブーストバッジは有効期限が切れたため、プロフィールには表示されません。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">1回の寄付で、ブーストバッジをさらに30日間有効にすることができます。</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Signalを使い続けることはできますが、あなたのために作られたテクノロジーを支援するため、毎月寄付するサポーターになることを検討してください。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">サポーターになりませんか</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">ブーストを追加</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">あとで</string>
@@ -3632,6 +3654,7 @@
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">都度</string>
   <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">ギフト</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">ブースト</string>
   <!--Donation receipts details title-->
@@ -3678,9 +3701,11 @@
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">送信しています…</string>
   <!--Label when multiple stories are pending sending-->
+  <string name="StoriesLandingItem__sending_d">%1$d件送信しています…</string>
   <!--Label when a story fails to send-->
   <string name="StoriesLandingItem__send_failed">送信に失敗しました。</string>
   <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">タップしてリトライ</string>
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">ストーリーを非表示にしますか？</string>
   <!--Message of dialog confirming decision to hide a story-->
@@ -3762,6 +3787,7 @@
   <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">あなたのストーリーを閲覧可能なユーザーに返信とリアクションを許可します</string>
   <!--Note about default sharing-->
   <!--Signal connections linked text that opens the Signal Connections sheet-->
+  <string name="MyStorySettingsFragment__signal_connections">Signalコネクション</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">チャットを開始</string>
@@ -3917,13 +3943,21 @@
   <!--Snackbar text when user presses "not now" on redemption sheet-->
   <!--Description text in gift thanks sheet-->
   <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">ギフトバッジが失効しました</string>
   <!--Expired gift sheet top description text-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">あなたのギフトバッジは有効期限が切れたため、プロフィールには表示されません。</string>
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">あなたのために作られた技術を継続的にサポートするため、月次サポーターへの登録をご検討ください。</string>
   <!--Expired gift sheet make a monthly donation button-->
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">今はしない</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="other">プライベートストーリー · 閲覧 %1$d人</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="other">グループストーリー · 閲覧 %1$d人</item>
+  </plurals>
   <!--EOF-->
 </resources>

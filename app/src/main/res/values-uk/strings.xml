@@ -1683,8 +1683,10 @@
   <string name="ThreadRecord_video">Відео</string>
   <string name="ThreadRecord_chat_session_refreshed">Сесію чату оновлено</string>
   <!--Displayed in the notification when the user is sent a gift-->
+  <string name="ThreadRecord__you_received_a_gift">Ви отримали подарунок</string>
   <!--Displayed in the notification when the user sends a gift-->
   <!--Displayed in the notification when the user has opened a received gift-->
+  <string name="ThreadRecord__you_redeemed_a_gift_badge">Ви придбали емблему у подарунок</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Оновлення Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Нова версія Signal доступна, натисніть для оновлення</string>
@@ -1972,6 +1974,7 @@
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">Більше недоступна</string>
   <!--Label for quoted gift-->
+  <string name="QuoteView__gift">Подарунок</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Прокрутить до самого низу</string>
   <!--BubbleOptOutTooltip-->
@@ -3794,6 +3797,7 @@
   <string name="GiftMessageView__view">Переглянути</string>
   <!--Gift badge redeeming action label-->
   <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">Придбано</string>
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Спробуйте інший спосіб платежу, або зв\'яжіться зі своїм банком для додаткової інформації.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3965,6 +3969,7 @@
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">Одноразово</string>
   <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">Подарунок</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Boost</string>
   <!--Donation receipts details title-->

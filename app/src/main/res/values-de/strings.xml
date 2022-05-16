@@ -3469,7 +3469,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SelectFeaturedBadgeFragment__select_a_badge">Wähle ein Abzeichen</string>
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Du musst ein Abzeichen auswählen</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Profil konnte nicht aktualisiert werden</string>
-  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Werde Unterstützer</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Unterstützer werden</string>
   <string name="ImageView__badge">Abzeichen</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal existiert dank Menschen wie dir.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Unterstütze Technologie, die für dich — und nicht für deine Daten — entwickelt wurde, und schließe dich der Gemeinschaft an, die Signal aufrechterhält.</string>
@@ -3777,7 +3777,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">Alle</string>
   <!--Donation receipts recurring tab label-->
-  <string name="DonationReceiptListFragment__recurring">Wiederkehrend</string>
+  <string name="DonationReceiptListFragment__recurring">Wieder­kehrend</string>
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">Einmalig</string>
   <!--Donation receipts gift tab label-->

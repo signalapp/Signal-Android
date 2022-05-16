@@ -91,7 +91,9 @@
   <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Þið munuð geta sent hverju/m/ri öðru skilaboð og hringt, og nafn og mynd þín mun vera deild með þessum aðila.</string>
   <!--Text that is shown when unblocking an SMS contact-->
+  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Þið munuð geta sent hverju öðru skilaboð.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Útilokaðir einstaklingar munu ekki geta hringt í þig eða sent þér skilaboð.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Útilokaðir einstaklingar munu ekki geta sent þér skilaboð.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Loka á uppfærslur og fréttir frá Signal</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -731,6 +733,7 @@
   <string name="CustomNotificationsDialogFragment__notification_sound">Hljóð með tilkynningu</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Titra</string>
   <!--Button text for customizing notification options-->
+  <string name="CustomNotificationsDialogFragment__customize">Sérsníða</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Hringistillingar</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Hringitónn</string>
   <string name="CustomNotificationsDialogFragment__enabled">Virkt</string>
@@ -1536,8 +1539,11 @@
   <string name="ThreadRecord_video">Myndskeið</string>
   <string name="ThreadRecord_chat_session_refreshed">Spjallseta endurlesin</string>
   <!--Displayed in the notification when the user is sent a gift-->
+  <string name="ThreadRecord__you_received_a_gift">Þú fékkst gjöf</string>
   <!--Displayed in the notification when the user sends a gift-->
+  <string name="ThreadRecord__you_sent_a_gift">Þú sendir gjöf</string>
   <!--Displayed in the notification when the user has opened a received gift-->
+  <string name="ThreadRecord__you_redeemed_a_gift_badge">Þú tókst út gjafamerki</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Uppfærsla á Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Það er nýrri útgáfa af Signal tiltæk, ýttu til að uppfæra</string>
@@ -2116,6 +2122,7 @@
   <string name="preferences__led_color">Litur LED-ljósa</string>
   <string name="preferences__led_color_unknown">Óþekkt</string>
   <string name="preferences__pref_led_blink_title">Blikkmynstur LED-ljósa</string>
+  <string name="preferences__customize">Sérsníða</string>
   <string name="preferences__sound">Hljóð</string>
   <string name="preferences__silent">Þögn</string>
   <string name="preferences__default">Sjálfgefið</string>
@@ -4033,6 +4040,7 @@ hegðun þína.</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
   <string name="StoryViewerPageFragment__see_more">… sjá meira</string>
   <!--Displayed in toast after sending a direct reply-->
+  <string name="StoryDirectReplyDialogFragment__sending_reply">Sendi svar…</string>
   <!--Displayed in the viewer when a story is no longer available-->
   <string name="StorySlateView__this_story_is_no_longer_available">Þessi saga er ekki lengur tiltæk.</string>
   <!--Displayed in the viewer when the network is not available-->

@@ -20,7 +20,7 @@
   <string name="ApplicationPreferencesActivity_unregistering">등록 해제</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal 메시지 및 전화 서비스 등록 해제 중…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal 메시지와 전화를 비활성화하시겠습니까?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">서버에서 등록 해제하여 Signal 메시지와 전화를 비활성화합니다. 다시 사용하려면 전화번호를 입력하여 다시 등록해야 합니다.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">서버에서 등록을 해제하여 Signal을 사용한 메시지 전송과 전화가 불가능해집니다. 다시 사용하고 싶을 때 전화번호를 재등록 하십시오.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">서버에 연결할 수 없습니다!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS 활성화됨</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">기본 SMS 앱을 변경하려면 터치</string>
@@ -91,8 +91,11 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">서로 메시지를 보내고 전화를 걸 수 있으며 이름과 사진이 공유됩니다.</string>
   <!--Text that is shown when unblocking an SMS contact-->
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">차단당한 사람들은 당신에게 전화를 걸거나 메세지를 보낼 수 없습니다.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">차단된 사람들은 당신에게 메시지를 보낼 수 없습니다.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal의 업데이트와 새로운 소식을 받지 않기</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signal의 업데이트와 새로운 소식을 다시 받기</string>
   <string name="BlockUnblockDialog_unblock_s">%1$s를 차단 해제할까요?</string>
   <string name="BlockUnblockDialog_block">차단</string>
   <string name="BlockUnblockDialog_block_and_leave">그룹 나가고 차단하기</string>
@@ -123,7 +126,9 @@
   <string name="CameraContacts__menu_search">검색</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">검열 우회를 끄시겠어요?</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">이제 더 나은 사용을 위해 Signal 서비스에 바로 연결 할 수 있습니다.</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">끄기</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
@@ -147,7 +152,7 @@
   <string name="CommunicationActions_cancel">취소</string>
   <string name="CommunicationActions_call">전화</string>
   <string name="CommunicationActions_insecure_call">안전하지 않은 통화</string>
-  <string name="CommunicationActions_carrier_charges_may_apply">통신사 요금이 부과될 수 있습니다. 당신이 전화하는 번호는 Signal에 등록되지 않았습니다. 이 전화는 인터넷이 아닌 당신의 모바일 통신사로 연결될 겁니다.</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">통신사 요금이 부과될 수 있습니다. 당신이 전화하려는 번호는 Signal에 등록되지 않았습니다. 이 전화는 인터넷이 아닌 당신의 모바일 통신사를 통해 연결될 겁니다.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s 님의 안전 번호가 변경되었습니다. 누군가가 연결을 가로채려고 하거나 단순히 %2$s 님이 Signal을 다시 설치한 것일 수도 있습니다.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">해당 연락처 님과의 안전 번호를 인증하는 것을 추천해 드립니다.</string>
@@ -159,7 +164,9 @@
   <string name="ContactsCursorLoader_phone_number_search">전화번호 검색</string>
   <string name="ContactsCursorLoader_username_search">사용자 이름 검색</string>
   <!--Label for my stories when selecting who to send media to-->
+  <string name="ContactsCursorLoader_my_stories">내 스토리</string>
   <!--Action for creating a new story-->
+  <string name="ContactsCursorLoader_new_story">새 스토리</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%s에 메시지 보내기</string>
   <string name="ContactsDatabase_signal_call_s">%s에 Signal 전화</string>
@@ -176,8 +183,8 @@
   <string name="ContactShareEditActivity_type_missing">기타</string>
   <string name="ContactShareEditActivity_invalid_contact">선택한 연락처가 잘못됨</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_sent_tap_for_details">메시지가 보내지지 않았습니다. 탭하여 자세히 확인하세요.</string>
-  <string name="ConversationItem_error_partially_not_delivered">일부만 송신됨, 탭하여 확인</string>
+  <string name="ConversationItem_error_not_sent_tap_for_details">메시지가 보내지지 않았습니다. 탭하여 세부정보를 확인하세요.</string>
+  <string name="ConversationItem_error_partially_not_delivered">일부만 전송됨, 탭하여 확인</string>
   <string name="ConversationItem_error_network_not_delivered">보내기 실패</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">핵심 교환 메시지를 받았습니다. 탭하여 처리하세요.</string>
   <string name="ConversationItem_group_action_left">%1$s 님이 그룹에서 탈퇴했습니다.</string>
@@ -216,14 +223,14 @@
   <string name="ConversationActivity_unblock">차단 해제</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">첨부 파일이 전송 메시지의 사이즈 제한을 초과합니다.</string>
   <string name="ConversationActivity_unable_to_record_audio">오디오를 녹음할 수 없습니다!</string>
-  <string name="ConversationActivity_you_cant_send_messages_to_this_group">더 이상 그룹 멤버가 아니기 때문에 보내실 수 없습니다.</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">더 이상 이 그룹의 멤버가 아니기 때문에 이 그룹에 메시지를 보내실 수 없습니다.</string>
   <string name="ConversationActivity_only_s_can_send_messages">%1$s만 메시지를 전송할 수 있습니다.</string>
   <string name="ConversationActivity_admins">관리자</string>
   <string name="ConversationActivity_message_an_admin">관리자에게 메시지 전송</string>
   <string name="ConversationActivity_cant_start_group_call">그룹 통화를 시작할 수 없음</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">이 그룹의 관리자만 통화를 시작할 수 있습니다.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">기기 링크를 처리할 수 있는 앱이 없습니다.</string>
-  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">가입 요청이 그룹 관리자에게 전송되었습니다. 작업을 수행하면 알림을 받게 됩니다.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">참가 요청이 그룹 관리자에게 전송되었습니다. 요청이 처리되면 알림을 받게 됩니다.</string>
   <string name="ConversationActivity_cancel_request">요청 취소하기</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">음성 메시지를 보내려면 Signal이 마이크를 사용할 수 있도록 허용해 주세요.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal에서 오디오 메시지를 보내려면 마이크 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'마이크\' 항목을 허용해 주세요.</string>
@@ -249,7 +256,7 @@
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">당신은 그룹을 떠날 것이며, 당신의 모든 기기에서 삭제될 겁니다.</string>
   <string name="ConversationActivity_delete">삭제</string>
   <string name="ConversationActivity_delete_and_leave">삭제 후 나가기</string>
-  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s에게 통화하려면, 시그널에서 마이크 권한이 필요합니다.</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s에게 통화하려면, Signal에서 마이크 권한이 필요합니다.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">더 많은 옵션은 \'그룹 설정\'에서 가능합니다.</string>
   <string name="ConversationActivity_join">참가</string>
   <string name="ConversationActivity_full">최대한도 도달</string>
@@ -293,7 +300,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">메시지를 왼쪽으로 쓸어서 빨리 답장할 수 있습니다.</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">한 번 볼 수 있는 미디어 파일은 전송 후 자동으로 삭제됩니다.</string>
   <string name="ConversationFragment_you_already_viewed_this_message">메시지를 이미 읽었습니다.</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">대화에서 나만의 메모를 추가할 수 있습니다.\n계정에 연결된 기기가 있는 경우 새 메모가 동기화됩니다.</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">이 대화에서는 나만의 메모를 추가할 수 있습니다.\n계정에 연결된 기기가 있는 경우 새 메모가 동기화됩니다.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d명의 그룹 멤버가 이름이 같습니다.</string>
   <string name="ConversationFragment__tap_to_review">탭하여 검토하세요.</string>
   <string name="ConversationFragment__review_requests_carefully">신중하게 요청을 검토하세요.</string>
@@ -304,9 +311,13 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">%s과/와의 안전 번호가 변경됐습니다.</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%s과/와의 안전 번호가 변경됐습니다. 이는 상대방이 Signal을 재설치했거나 사용 기기를 변경했기 때문일 가능성이 높습니다. 새로운 안전 번호를 인증하려면 \"인증\" 버튼을 탭하십시오. 이 절차는 선택적입니다.</string>
   <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$s 켜짐</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">요청을 차단하시겠어요?</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s는 그룹 링크를 통해 그룹에 참가하거나 참가 요청을 보낼 수 없습니다. 하지만 그룹에 추가할 수 있습니다.</string>
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">요청이 차단되었습니다.</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">취소</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -359,8 +370,11 @@
     <item quantity="other">%d개 선택됨</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">알림 프로필</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">여기서 알림 프로필을 켜거나 끄세요.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s 켜짐</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">핵심 교환 메시지</string>
   <!--ConversationListItemAction-->
@@ -377,7 +391,7 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">프로필 사진 설정 중 오류 발생</string>
   <string name="CreateProfileActivity_problem_setting_profile">프로필 설정 중 오류 발생</string>
   <string name="CreateProfileActivity_set_up_your_profile">프로필을 설정하세요.</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">프로필은 엔드 투 엔드 암호화됩니다. 프로필 및 변경 사항은 새 대화를 시작하거나 수락할 때, 새 그룹에 가입할 때 연락처에 표시됩니다.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">프로필은 종단간 암호화됩니다. 프로필 및 변경 사항은 새 대화를 시작하거나 수락할 때, 새 그룹에 가입할 때 연락처에 표시됩니다.</string>
   <string name="CreateProfileActivity_set_avatar_description">아바타 설정</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">백업으로 복원하시겠습니까?</string>
@@ -392,8 +406,11 @@
   <string name="RestoreBackupFragment__choose_folder">폴더 선택</string>
   <string name="RestoreBackupFragment__not_now">나중에</string>
   <!--Couldn\'t find the selected backup-->
+  <string name="RestoreBackupFragment__backup_not_found">백업을 찾을 수 없습니다.</string>
   <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">백업을 읽을 수 없습니다.</string>
   <!--Backup has an unsupported file extension-->
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">백업의 확장자가 올바르지 않습니다.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">대화 백업</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">백업된 파일들은 암호화되어서 기기에 저장됩니다.</string>
@@ -407,7 +424,7 @@
   <string name="BackupsPreferenceFragment__to_restore_a_backup">백업을 복원하려면 Signal의 새 사본을 설치하세요. 앱을 열고 \'백업 복원\'을 탭한 후 백업 파일을 찾으세요. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">더 알아보기</string>
   <string name="BackupsPreferenceFragment__in_progress">진행 중…</string>
-  <string name="BackupsPreferenceFragment__d_so_far">지금까지 %1$d명…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">지금까지 %1$d…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal에서 백업을 저장하려면 저장 공간 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'저장 공간\' 항목을 허용해 주세요.</string>
   <!--CustomDefaultPreference-->
@@ -428,7 +445,7 @@
   <string name="DateUtils_yesterday">어제</string>
   <!--DecryptionFailedDialog-->
   <string name="DecryptionFailedDialog_chat_session_refreshed">챗 세션 새로고침됨</string>
-  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal은 단대단 암호화를 사용하면 귀하의 대화 세션을 때때로 새로 고침해야 할  수 있습니다. 이는 대화의 보안에 영향을 미치지 않으나, 이로 인해 연락처로부터의 메시지를 수신하지 못하는 경우도 발생할 수 있습니다. 이와 같은 경우, 상대방에게 메시지 재발송을 요청할 수 있습니다.</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal은 종단간 암호화를 사용하면 귀하의 대화 세션을 때때로 새로 고침해야 할  수 있습니다. 이는 대화의 보안에 영향을 미치지 않으나, 이로 인해 연락처로부터의 메시지를 수신하지 못하는 경우도 발생할 수 있습니다. 이와 같은 경우, 상대방에게 메시지 재발송을 요청할 수 있습니다.</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">\'%s\' 기기를 연결 해제하시겠습니까?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">기기를 연결 해제하면 메시지를 보내거나 받을 수 없습니다.</string>
@@ -448,7 +465,7 @@
   <string name="DozeReminder_optimize_for_missing_play_services">누락된 Play Services에 최적화</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">기기에서는 Play Services를 지원하지 않습니다. 탭하여 시스템 배터리 최적화 기능을 사용하지 않을 수 있습니다. 해당 기능은 Signal이 비활성화된 동안에 메시지를 검색하지 못하게 합니다.</string>
   <!--ExpiredBuildReminder-->
-  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signal 버전이 만료되었습니다. 메시지를 주고 받기 위해서 지금 업데이트 하십시오.</string>
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signal 버전이 만료되었습니다. 메시지를 송수신 하기 위해 지금 업데이트 하십시오.</string>
   <string name="ExpiredBuildReminder_update_now">지금 업데이트하세요.</string>
   <!--PendingGroupJoinRequestsReminder-->
   <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -610,10 +627,10 @@
   <string name="ManageGroupActivity_block_group">그룹 차단하기</string>
   <string name="ManageGroupActivity_unblock_group">그룹 차단 해제하기</string>
   <string name="ManageGroupActivity_leave_group">그룹 탈퇴</string>
-  <string name="ManageGroupActivity_mute_notifications">대화 알림 끄기</string>
-  <string name="ManageGroupActivity_custom_notifications">맞춤형 알림</string>
-  <string name="ManageGroupActivity_mentions">언급</string>
-  <string name="ManageGroupActivity_chat_color_and_wallpaper">채팅 색상 &amp; 벽지</string>
+  <string name="ManageGroupActivity_mute_notifications">알림 끄기</string>
+  <string name="ManageGroupActivity_custom_notifications">사용자 지정 알림</string>
+  <string name="ManageGroupActivity_mentions">멘션</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">채팅 색상 &amp; 배경</string>
   <string name="ManageGroupActivity_until_s">%1$s까지</string>
   <string name="ManageGroupActivity_always">항상</string>
   <string name="ManageGroupActivity_off">꺼짐</string>
@@ -645,7 +662,7 @@
   <string name="ManageGroupActivity_add_group_description">그룹 설명 추가하기…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">멘션 알림</string>
-  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">알림을 끈 대화에서 언급되면 알림을 받으시겠습니까?</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">알림을 끈 대화에서 멘션되면 알림을 받으시겠습니까?</string>
   <string name="GroupMentionSettingDialog_always_notify_me">항상 알림받기</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">알림 받지않기</string>
   <!--ManageProfileFragment-->
@@ -657,6 +674,7 @@
   <string name="ManageProfileFragment_your_username">당신의 사용자 이름</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">아바타 설정을 실패했습니다.</string>
   <string name="ManageProfileFragment_badges">배지</string>
+  <string name="ManageProfileFragment__edit_photo">프로필 사진 수정하기</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">공통 그룹 없음</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -672,6 +690,8 @@
   <string name="CustomNotificationsDialogFragment__notification_sound">알림 벨소리</string>
   <string name="CustomNotificationsDialogFragment__vibrate">진동</string>
   <!--Button text for customizing notification options-->
+  <string name="CustomNotificationsDialogFragment__customize">사용자 정의</string>
+  <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">소리와 진동 변경하기</string>
   <string name="CustomNotificationsDialogFragment__call_settings">전화 설정</string>
   <string name="CustomNotificationsDialogFragment__ringtone">벨소리</string>
   <string name="CustomNotificationsDialogFragment__enabled">활성화됨</string>
@@ -691,24 +711,27 @@
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR 코드</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">이 코드를 스캔한 사람들이 내 그룹에 참가할 수 있게 됩니다. 이 설정을 켠 경우 관리자는 멤버 참가를 일일이 승인해야 합니다.</string>
-  <string name="GroupLinkShareQrDialogFragment__share_code">공유 코드</string>
+  <string name="GroupLinkShareQrDialogFragment__share_code">코드 공유</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">%1$s 님에게 보낸 초대를 취소하시겠습니까?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
     <item quantity="other">%1$s 님이 보낸 %2$d개의 초대를 취소하시겠습니까?</item>
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
-  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">그룹 멤버입니다.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">이미 이 그룹의 멤버입니다.</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">참가하기</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">참가 요청하기</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">그룹에 참가가 불가능합니다. 나중에 다시 시도해 주세요.</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">네트워크 오류가 발생했습니다.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">이 그룹 링크가 비활성화 되었습니다.</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">그룹에 참가할 수 없습니다.</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">관리자가 당신을 그룹링크를 통한 참가를 차단했기 때문에 그룹 링크를 통해 그룹에 참가할 수 없습니다.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">그룹 링크가 더 이상 유효하지 않습니다.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">링크 오류</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
   <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">해당 링크를 통한 그룹 참여에 실패했습니다. 나중에 다시 시도해보십시오.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">그룹에 참가하고 그룹 멤버에게 내 이름과 사진을 공유하시겠습니까?</string>
@@ -735,6 +758,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">“%1$s”를 그룹에 추가하시겠습니까?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">%1$s의 요청을 거부하시겠습니까?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">%1$s의 요청을 거절하시겠습니까? 그러면 더이상 그룹링크를 통해 참가 요청을 할 수 없게 됩니다.</string>
   <string name="RequestConfirmationDialog_add">추가</string>
   <string name="RequestConfirmationDialog_deny">거부하기</string>
   <!--ImageEditorHud-->
@@ -760,6 +784,7 @@
   <string name="InviteActivity_no_app_to_share_to">공유하기 위해 사용할 수 있는 앱이 없습니다.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">더 알아보기</string>
+  <string name="SpanUtil__read_more">더 읽기</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">메시지를 찾을 수 없음</string>
   <string name="LongMessageActivity_message_from_s">%1$s에게서 온 메시지</string>
@@ -817,13 +842,13 @@
   <string name="Megaphones_new_group">새 그룹</string>
   <string name="Megaphones_invite_friends">친구 초대</string>
   <string name="Megaphones_use_sms">SMS 사용하기</string>
-  <string name="Megaphones_appearance">모양</string>
+  <string name="Megaphones_appearance">디스플레이</string>
   <string name="Megaphones_add_photo">사진 추가</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal 전화 중</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal 전화 연결 중</string>
   <string name="NotificationBarManager__incoming_signal_call">수신 Signal 전화</string>
-  <string name="NotificationBarManager__incoming_signal_group_call">수신 Signal 단체 통화</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Signal 단체 통화 수신</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal 통화 서비스 중지</string>
   <string name="NotificationBarManager__decline_call">전화 거절</string>
   <string name="NotificationBarManager__answer_call">전화 수락</string>
@@ -862,7 +887,7 @@
   <string name="MediaRepository_all_media">모든 미디어</string>
   <string name="MediaRepository__camera">카메라</string>
   <!--MessageDecryptionUtil-->
-  <string name="MessageDecryptionUtil_failed_to_decrypt_message">메시지를 해독하지 못함</string>
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">메시지를 복호화하지 못함</string>
   <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">디버그 로그를 보내려면 탭하세요.</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">알 수 없음</string>
@@ -1624,6 +1649,7 @@
   <string name="ConversationUpdateItem_enable_call_notifications">통화 알림 활성화</string>
   <string name="ConversationUpdateItem_update_contact">연락처 업데이트</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">요청이 차단되었습니다.</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">공통된 그룹이 없습니다. 요청을 주의 깊게 검토하세요.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">이 그룹에 연락처가 없습니다. 요청을 주의 깊게 검토하세요.</string>
   <string name="ConversationUpdateItem_view">보기</string>
@@ -1917,6 +1943,8 @@
   <string name="preferences__led_color">LED 색상</string>
   <string name="preferences__led_color_unknown">알 수 없음</string>
   <string name="preferences__pref_led_blink_title">LED 반복 패턴</string>
+  <string name="preferences__customize">사용자 정의</string>
+  <string name="preferences__change_sound_and_vibration">소리와 진동 변경하기</string>
   <string name="preferences__sound">소리</string>
   <string name="preferences__silent">무음</string>
   <string name="preferences__default">기본값</string>
@@ -3317,6 +3345,7 @@
   <!--Label for Stories tab in home app screen-->
   <!--String for counts above 99 in conversation list tabs-->
   <!--Title for "My Stories" row item in Stories landing page-->
+  <string name="StoriesLandingFragment__my_stories">내 스토리</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <!--Displayed when there are no stories to display-->
   <!--Context menu option to hide a story-->
@@ -3451,7 +3480,9 @@
   <!--Displayed in a dialog to let the user select a given users story-->
   <!--Displayed in a dialog to let the user select a given users profile photo-->
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">검열 우회를 끄시겠어요?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">이제 더 나은 사용을 위해 Signal 서비스에 바로 연결 할 수 있습니다.</string>
   <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_no_thanks">괜찮습니다</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->

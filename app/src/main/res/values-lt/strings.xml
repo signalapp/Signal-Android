@@ -3691,6 +3691,7 @@
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal veikia dėka tokių žmonių kaip jūs.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Palaikykite technologiją, kuri yra sukurta jums – o ne jūsų duomenims – prisijungdami prie ją remiančių žmonių bendruomenės.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Palaikykite technologiją, kuri yra sukurta jums, o ne jūsų duomenims, ir prisijunkite prie Signal remiančios bendruomenės.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Atlikite mėnesinį paaukojimą Signal programėlei, kad palaikytumėte technologiją, kuri sukurta jums, o ne jūsų duomenims.</string>
   <string name="SubscribeFragment__currency">Valiuta</string>
   <string name="SubscribeFragment__more_payment_options">Daugiau mokėjimo parinkčių</string>
   <string name="SubscribeFragment__cancel_subscription">Nutraukti prenumeratą</string>
@@ -3707,6 +3708,7 @@
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/mėnesį · Atsinaujina %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/mėn · Baigia galioti %2$s</string>
   <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal yra pelno nesiekianti organizacija, kuri neturi reklamuotojų ar investuotojų ir, kurią remia tik Signal programėle besinaudojantys ir ją vertinantys žmonės. Atlikite mėnesinį paaukojimą ir gaukite profilio ženkliuką, kad dalintumėtės savo palaikymu.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Kodėl aukoti?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal yra pasišventusi kurti atvirojo kodo privatumo technologiją, kuri apsaugo žodžio laisvę ir įgalina saugų bendravimą visame pasaulyje.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Jūsų paaukojimas paremia šį tikslą ir apmoka visame pasaulyje milijonų žmonių privačiam bendravimui naudojamos programėlės plėtojimą ir veiklą. Jokių reklamų. Jokių stebėjimo priemonių. Jokių trukdžių.</string>
@@ -3723,6 +3725,7 @@
   <string name="BecomeASustainerFragment__get_badges">Palaikydami Signal, gaukite ženkliukus savo profiliui.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal yra pelno nesiekianti organizacija, kuri neturi reklamuotojų ar investuotojų ir, kuri yra palaikoma tik tokių žmonių, kaip jūs.</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">Atlikti mėnesinį paaukojimą</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">Daugiau</string>
   <!--Heading for receipts area of manage subscriptions page-->
@@ -3736,10 +3739,12 @@
   <string name="ManageDonationsFragment__subscription_faq">DUK apie prenumeratą</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Klaida gaunant prenumeratą.</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">Kiti aukojimo būdai</string>
   <!--Preference label to launch badge gifting-->
   <string name="ManageDonationsFragment__gift_a_badge">Dovanoti ženkliuką</string>
   <string name="BoostFragment__give_signal_a_boost">Suteikite Signal paskatinimą</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Atlikite vienkartinį paaukojimą ir %1$d dienų pelnykite paskatinimo ženkliuką.</string>
   <string name="Boost__enter_custom_amount">Įveskite tinkintą sumą</string>
   <string name="Boost__one_time_contribution">Vienkartinis įnašas</string>
   <string name="MySupportPreference__add_a_signal_boost">Pridėti Signal paskatinimą</string>
@@ -3752,6 +3757,7 @@
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Paskatinimo ženkliukas nebegalioja</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Mėnesinis paaukojimas nutrauktas</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Jūsų paskatinimo ženkliukas nebegalioja ir daugiau nebėra matomas jūsų profilyje.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Paaukodami, galite dar 30-čiai dienų iš naujo aktyvuoti paskatinimo ženkliuką.</string>
@@ -3761,7 +3767,9 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Pridėti paskatinimą</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne dabar</string>
   <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Jūsų pasikartojantis mėnesinis paaukojimas buvo automatiškai nutrauktas, nes pernelyg ilgą laiką buvote neaktyvūs. Jūsų %1$s ženkliukas yra daugiau nebematomas jūsų profilyje.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Jūsų pasikartojantis mėnesinis paaukojimas buvo nutrauktas, nes nepavyko apdoroti jūsų mokėjimo. Jūsų ženkliukas yra daugiau nebematomas jūsų profilyje.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Galite ir toliau naudotis Signal programėle, bet norėdami ją paremti ir iš naujo aktyvuoti ženkliuką, atnaujinkite prenumeratą dabar.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Atnaujinti prenumeratą</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Nepavyksta apdoroti prenumeratos mokėjimo</string>
@@ -4292,6 +4300,7 @@
   <!--Headline text on start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__gift_a_badge">Dovanoti ženkliuką</string>
   <!--Description text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">Padovanokite kam nors ženkliuką paaukodami Signal programėlei tam tikro asmens vardu. Žmogus gaus ženkliuką, kuris galės būti rodomas jo profilio nuotraukoje.</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Kitas</string>
   <!--Title text on choose recipient page for badge gifting-->
@@ -4313,7 +4322,9 @@
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Ačiū už jūsų palaikymą!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Jūs gavote ženkliuką, kurį atsiuntė %1$s! Padėkite Signal ugdyti supratimą, atvaizduodami šį ženkliuką savo profilyje.</string>
   <!--Description for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Jūs padovanojote ženkliuką naudotojui %1$s. Kai naudotojas jį priims, jam bus leista pasirinkti ar rodyti, ar slėpti ženkliuką.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
   <string name="ViewReceivedGiftSheet__redeem">Atsiimti</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
@@ -4323,6 +4334,7 @@
   <!--Snackbar text when user presses "not now" on redemption sheet-->
   <string name="ConversationFragment__you_can_redeem_your_badge_later">Savo ženkliuką galite atsiimti vėliau.</string>
   <!--Description text in gift thanks sheet-->
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Jūs padovanojote ženkliuką naudotojui %1$s. Kai naudotojas jį priims, jam bus leista pasirinkti ar rodyti, ar slėpti ženkliuką.</string>
   <!--Expired gift sheet title-->
   <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Jūsų dovanos ženkliukas nebegalioja</string>
   <!--Expired gift sheet top description text-->
@@ -4330,6 +4342,7 @@
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">Norėdami palaikyti jums kuriamą technologiją, apsvarstykite galimybę tapti rėmėju ir remti kas mėnesį.</string>
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Atlikti mėnesinį paaukojimą</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ne dabar</string>
   <!--Label under name for private stories-->
