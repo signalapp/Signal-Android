@@ -90,15 +90,17 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
   }
 
   public static JobManager.Chain createSubscriptionContinuationJobChain(boolean isForKeepAlive) {
-    Subscriber                            subscriber           = SignalStore.donationsValues().requireSubscriber();
-    SubscriptionReceiptRequestResponseJob requestReceiptJob    = createJob(subscriber.getSubscriberId(), isForKeepAlive);
-    DonationReceiptRedemptionJob          redeemReceiptJob     = DonationReceiptRedemptionJob.createJobForSubscription(requestReceiptJob.getErrorSource());
-    RefreshOwnProfileJob                  refreshOwnProfileJob = RefreshOwnProfileJob.forSubscription();
+    Subscriber                            subscriber                         = SignalStore.donationsValues().requireSubscriber();
+    SubscriptionReceiptRequestResponseJob requestReceiptJob                  = createJob(subscriber.getSubscriberId(), isForKeepAlive);
+    DonationReceiptRedemptionJob          redeemReceiptJob                   = DonationReceiptRedemptionJob.createJobForSubscription(requestReceiptJob.getErrorSource());
+    RefreshOwnProfileJob                  refreshOwnProfileJob               = RefreshOwnProfileJob.forSubscription();
+    MultiDeviceProfileContentUpdateJob    multiDeviceProfileContentUpdateJob = new MultiDeviceProfileContentUpdateJob();
 
     return ApplicationDependencies.getJobManager()
                                   .startChain(requestReceiptJob)
                                   .then(redeemReceiptJob)
-                                  .then(refreshOwnProfileJob);
+                                  .then(refreshOwnProfileJob)
+                                  .then(multiDeviceProfileContentUpdateJob);
   }
 
   private SubscriptionReceiptRequestResponseJob(@NonNull Parameters parameters,
