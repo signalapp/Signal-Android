@@ -72,17 +72,17 @@ class OpenableGiftItemDecoration(context: Context) : RecyclerView.ItemDecoration
     notAnimated.filterNot { messageIdsOpenedThisSession.contains(it.getGiftId()) }.forEach { child ->
       val projection = child.getOpenableGiftProjection(false)
       if (projection != null) {
-        if (messageIdsShakenThisSession.contains(child.getGiftId())) {
-          child.setOpenGiftCallback {
-            child.clearOpenGiftCallback()
-            val proj = it.getOpenableGiftProjection(true)
-            if (proj != null) {
-              messageIdsOpenedThisSession.add(it.getGiftId())
-              startOpenAnimation(it)
-              parent.invalidate()
-            }
+        child.setOpenGiftCallback {
+          child.clearOpenGiftCallback()
+          val proj = it.getOpenableGiftProjection(true)
+          if (proj != null) {
+            messageIdsOpenedThisSession.add(it.getGiftId())
+            startOpenAnimation(it)
+            parent.invalidate()
           }
+        }
 
+        if (messageIdsShakenThisSession.contains(child.getGiftId())) {
           drawGiftBox(c, projection)
           drawGiftBow(c, projection)
         } else {
