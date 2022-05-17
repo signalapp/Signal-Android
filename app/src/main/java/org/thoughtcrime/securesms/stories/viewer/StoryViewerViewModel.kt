@@ -108,7 +108,7 @@ class StoryViewerViewModel(
 
   fun onGoToNext(recipientId: RecipientId) {
     store.update {
-      if (it.pages[it.page] == recipientId) {
+      if (it.page in it.pages.indices && it.pages[it.page] == recipientId) {
         updatePages(it, it.page + 1)
       } else {
         it
@@ -118,7 +118,7 @@ class StoryViewerViewModel(
 
   fun onGoToPrevious(recipientId: RecipientId) {
     store.update {
-      if (it.pages[it.page] == recipientId) {
+      if (it.page in it.pages.indices && it.pages[it.page] == recipientId) {
         updatePages(it, max(0, it.page - 1))
       } else {
         it
