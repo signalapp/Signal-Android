@@ -157,27 +157,19 @@ public final class PartProvider extends BaseContentProvider {
     ParcelFileDescriptor[] reliablePipe = ParcelFileDescriptor.createReliablePipe();
 
     SignalExecutors.BOUNDED_IO.execute(() -> {
-      Throwable error = null;
       try (OutputStream out = new FileOutputStream(reliablePipe[1].getFileDescriptor())) {
-        try (InputStream in = SignalDatabase.attachments().getAttachmentStream(attachmentId, 0)) {
+        try(InputStream in = SignalDatabase.attachments().getAttachmentStream(attachmentId, 0)) {
           StreamUtil.copy(in, out);
         } catch (IOException e) {
           Log.w(TAG, "Error providing file", e);
-          error = e;
+          try {
+            reliablePipe[1].closeWithError(e.getMessage());
+          } catch (IOException e2) {
+            Log.w(TAG, "Error closing pipe with error", e2);
+          }
         }
       } catch (IOException e) {
         Log.w(TAG, "Error opening pipe for writing", e);
-        error = e;
-      } finally {
-        try {
-          if (error != null) {
-            reliablePipe[1].closeWithError("Error writing file: " + error.getMessage());
-          } else {
-            reliablePipe[1].close();
-          }
-        } catch (IOException e2) {
-          Log.w(TAG, "Error closing pipe", e2);
-        }
       }
     });
 
