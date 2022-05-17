@@ -1044,10 +1044,6 @@
     <item quantity="one">%1$d ସଦସ୍ୟ</item>
     <item quantity="other">%1$dଜଣ ସଦସ୍ୟ</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="one">%1$d ସଦସ୍ୟ (+%2$d ଆମନ୍ତ୍ରିତ)</item>
-    <item quantity="other">%1$d ସଦସ୍ୟ (+%2$d ଆମନ୍ତ୍ରିତ)</item>
-  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d ଅତିରିକ୍ତ ଗୋଷ୍ଠୀ</item>
     <item quantity="other">%d ଅତିରିକ୍ତ ଗୋଷ୍ଠୀ</item>

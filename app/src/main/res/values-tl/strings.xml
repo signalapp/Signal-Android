@@ -600,10 +600,6 @@
     <item quantity="one">%1$d na kasapi</item>
     <item quantity="other">%1$d na mga kasapi</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="one">%1$d na kasapi (+%2$d na inimbitahan)</item>
-    <item quantity="other">%1$d na mga kasapi (+%2$d na inimbitahan)</item>
-  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Hindi tugma ang mga passphrase!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Lumang passphrase!</string>

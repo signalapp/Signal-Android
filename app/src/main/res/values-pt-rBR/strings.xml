@@ -3132,6 +3132,7 @@
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Qualidade da foto</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">Convide seus amigos</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">Copiada a ID do assinante ao clipboard</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Conta</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Você será questionado com menos frequência ao longo do tempo</string>
@@ -4127,6 +4128,14 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Agora não</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Story privado · %1$d visualização</item>
+    <item quantity="other">Story privado · %1$d visualizações</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Story do grupo · %1$d visualização</item>
+    <item quantity="other">Story do grupo · %1$d visualizações</item>
+  </plurals>
   <!--EOF-->
 </resources>

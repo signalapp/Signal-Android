@@ -1040,10 +1040,6 @@
     <item quantity="one">%1$d n uɛeggal</item>
     <item quantity="other">%1$d n iɛeggalen</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="one">%1$d uεeggal (+%2$d yettwancad)</item>
-    <item quantity="other">%1$d yiεeggalen (+%2$d ttwancaden)</item>
-  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d ugraw-nniḍen</item>
     <item quantity="other">%d yigrawen-nniḍen</item>

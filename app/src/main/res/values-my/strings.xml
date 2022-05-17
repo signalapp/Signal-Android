@@ -997,9 +997,6 @@
   <plurals name="MessageRequestProfileView_members">
     <item quantity="other">အဖွဲ့ဝင် %1$d ဦး</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="other">အဖွဲ့ဝင် %1$d ဦး (+%2$d ဦးကို ဖိတ်ခေါ်ထားပြီး) </item>
-  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="other">%d နောက်ထပ်အဖွဲ့များ</item>
   </plurals>

@@ -1041,10 +1041,6 @@
     <item quantity="one">partaide %1$d</item>
     <item quantity="other">%1$d partaide</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="one">Partaide %1$d (+%2$d gonbidatu)</item>
-    <item quantity="other">%1$d partaide (+ %2$d gonbidatu)</item>
-  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">talde %d gehiago</item>
     <item quantity="other">%d talde gehiago</item>
