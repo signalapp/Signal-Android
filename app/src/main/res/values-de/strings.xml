@@ -3474,7 +3474,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal existiert dank Menschen wie dir.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Unterstütze Technologie, die für dich — und nicht für deine Daten — entwickelt wurde, und schließe dich der Gemeinschaft an, die Signal aufrechterhält.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Unterstütze Technologie, die für dich — und nicht für deine Daten — entwickelt wurde, und schließe dich der Gemeinschaft an, die Signal aufrechterhält.</string>
-  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Mit einer wiederkehrenden monatlichen Spende an Signal unterstützt du eine Technologie, die für dich und nicht für deine Daten entwickelt wurde.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Mit einer regelmäßigen monatlichen Spende an Signal unterstützt du eine Technologie, die für dich und nicht für deine Daten entwickelt wurde.</string>
   <string name="SubscribeFragment__currency">Währung</string>
   <string name="SubscribeFragment__more_payment_options">Weitere Zahlungsoptionen</string>
   <string name="SubscribeFragment__cancel_subscription">Regelmäßige Spende kündigen</string>
@@ -3491,7 +3491,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/Monat · Verlängert sich am %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/Monat · Läuft ab am %2$s</string>
   <!--First small text blurb on learn more sheet-->
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal ist eine gemeinnützige Organisation ohne Werbekunden oder Investoren, die nur von Menschen getragen wird, die es nutzen und schätzen. Leiste eine wiederkehrende monatliche Spende und erhalte ein Profil-Abzeichen, das deine Unterstützung zeigt.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal ist eine gemeinnützige Organisation ohne Werbekunden oder Investoren, die nur von Menschen getragen wird, die es nutzen und schätzen. Leiste eine regelmäßige monatliche Spende und erhalte ein Profil-Abzeichen, das deine Unterstützung zeigt.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Warum spenden?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal setzt sich für die Entwicklung einer quelloffenen Datenschutztechnologie ein, die die freie Meinungsäußerung schützt und eine sichere globale Kommunikation ermöglicht.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Mit deiner Spende finanzierst du die Entwicklung und den Betrieb einer App, die von Millionen Menschen für die private Kommunikation genutzt wird. Keine Werbung. Keine Tracker. Kein Scherz.</string>
@@ -3550,9 +3550,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Boost hinzufügen</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Jetzt nicht</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Deine wiederkehrende monatliche Spende wurde automatisch gekündigt, da du längere Zeit inaktiv warst. Dein %1$s-Abzeichen ist nicht mehr in deinem Profil sichtbar.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Deine regelmäßige monatliche Spende wurde automatisch gekündigt, da du längere Zeit inaktiv warst. Dein %1$s-Abzeichen ist nicht mehr in deinem Profil sichtbar.</string>
   <!--Copy displayed when badge expires after payment failure-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Deine wiederkehrende monatliche Spende wurde gekündigt, da wir deine Zahlung nicht verarbeiten konnten. Dein Abzeichen ist nicht mehr in deinem Profil sichtbar.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Deine regelmäßige monatliche Spende wurde gekündigt, da wir deine Zahlung nicht verarbeiten konnten. Dein Abzeichen ist nicht mehr in deinem Profil sichtbar.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kannst Signal weiterhin nutzen, aber um die App zu unterstützen und dein Abzeichen zu reaktivieren, solltest du deine Spende verlängern.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Regelmäßige Spende verlängern</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Zahlung für regelmäßige Spende kann nicht verarbeitet werden</string>
@@ -3560,7 +3560,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Nicht mehr anzeigen</string>
   <string name="Subscription__please_contact_support_for_more_information">Bitte kontaktiere für weitere Informationen den Support.</string>
   <string name="Subscription__contact_support">Support kontaktieren</string>
-  <string name="Subscription__earn_a_s_badge">Erhalte ein %1$s-Abzeichen</string>
+  <string name="Subscription__earn_a_s_badge">Erhalte das Abzeichen »%1$s«</string>
   <string name="SubscribeFragment__processing_payment">Zahlung wird verarbeitet …</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Fehler beim Verarbeiten der Zahlung</string>
@@ -3777,7 +3777,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">Alle</string>
   <!--Donation receipts recurring tab label-->
-  <string name="DonationReceiptListFragment__recurring">Wieder­kehrend</string>
+  <string name="DonationReceiptListFragment__recurring">Regelmäßig</string>
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">Einmalig</string>
   <!--Donation receipts gift tab label-->

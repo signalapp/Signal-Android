@@ -90,6 +90,7 @@
   <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">서로 메시지를 보내고 전화를 걸 수 있으며 이름과 사진이 공유됩니다.</string>
   <!--Text that is shown when unblocking an SMS contact-->
+  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">이제 서로 메시지를 할 수 있습니다.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">차단당한 사람들은 당신에게 전화를 걸거나 메세지를 보낼 수 없습니다.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">차단된 사람들은 당신에게 메시지를 보낼 수 없습니다.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
@@ -1050,7 +1051,9 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s 님과의 안전 번호를 인증되지 않음 상태로 표시했습니다.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s 님과의 안전 번호를 다른 기기에서 인증되지 않음 상태로 표시했습니다.</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s 님의 메시지를 전달할 수 없습니다.</string>
+  <string name="MessageRecord_s_changed_their_phone_number">%1$s가 자신의 전화번호를 변경하였습니다.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">새로운 기능이 마음에 드시나요? Boost로 고마움을 전하세요.</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s 님이 그룹 통화를 시작했습니다(%2$s).</string>
@@ -1080,6 +1083,8 @@
   <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s 님에게 메시지를 보내고 이름과 사진을 공유할 수 있도록 하시겠습니까? 차단을 해제할 때까지 메시지를 받지 않습니다.</string>
   <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s가 당신에게 메시지를 보낼 수 있도록 하시겠어요? 차단을 해제하기 전 까지 어떤 메시지도 받을 수 없습니다.</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s로부터 업데이트와 새로운 소식을 받으시겠어요? 차단을 해제하기 전 까지 어떤 업데이트도 받을 수 없습니다.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">이 그룹에서 계속 대화하고 멤버들과 이름과 사진을 공유하시겠습니까?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">@멘션 및 관리자와 같은 새로운 기능을 활성화하려면 그룹을 업그레이드하세요. 그룹에서 이름이나 사진을 공유하지 않은 멤버는 가입하도록 초대됩니다.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">이 구형 그룹의 규모가 너무 커서 더 이상 사용할 수 없습니다. 최대 그룹 규모는 %1$d입니다.</string>
@@ -1819,9 +1824,11 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>이름 또는 전화번호 입력</small></string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ %s와/과 종단간 암호화의 보안을 검증하기 위해, 상대의 기기와의 코드를 비교하세요. 또는 상대의 폰의 코드를 스캔 할 수 있습니다. <a href="https://signal.org/redirect/safety-numbers">더 알아보기</a>]]> </string>
   <string name="verify_display_fragment__tap_to_scan">탭하여 스캔</string>
   <string name="verify_display_fragment__loading">로드 중…</string>
   <string name="verify_display_fragment__mark_as_verified">검증으로 표시</string>
+  <string name="verify_display_fragment__clear_verification">인증하기</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">안전 번호 공유</string>
   <!--verity_scan_fragment-->
@@ -2069,7 +2076,9 @@
   <string name="preferences_events__contact_joined_signal">연락처가 Signal에 등록함</string>
   <string name="preferences_notifications__priority">우선순위</string>
   <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">검열 우회</string>
   <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">검열 우회</string>
   <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">이 기능을 켠다면 Signal이 검열 우회를 시도합니다. Signal이 검열된 곳이 아니라면 이 기능을 켜지 마십시오.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
   <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">검열 우회가 계정의 휴대전화에서 활성화되습니다.</string>
@@ -2643,7 +2652,7 @@
   <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">이전 절차를 완료하려면 등록을 계속해야 합니다.</string>
   <string name="NewDeviceTransferComplete__continue_registration">계속 등록</string>
   <!--DeviceToDeviceTransferService-->
-  <string name="DeviceToDeviceTransferService_content_title">계좌이체</string>
+  <string name="DeviceToDeviceTransferService_content_title">계정 이전</string>
   <string name="DeviceToDeviceTransferService_status_ready">다른 Android 장치에 연결할 준비 중…</string>
   <string name="DeviceToDeviceTransferService_status_starting_up">다른 Android 장치에 연결할 준비 중…</string>
   <string name="DeviceToDeviceTransferService_status_discovery">다른 Android 장치를 검색하는 중…</string>
@@ -2923,7 +2932,9 @@
   <string name="AccountSettingsFragment__account">계정</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">시간이 지남에 따라 질문 빈도가 줄어듭니다.</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Signal에 전화번호를 다시 등록하려면 Signal PIN이 필요합니다.</string>
+  <string name="AccountSettingsFragment__change_phone_number">전화번호 변경</string>
   <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">현재 전화번호를 새 전화번호로 바꾸려면 이 기능을 사용하세요. 이 작업은 되돌릴 수 없습니다.\n\n변경하기 잔에, 새 전화번호로 SMS나 전화를 받을 수 있는지 확인하세요.</string>
   <string name="ChangeNumberFragment__continue">계속</string>
   <!--Message shown on dialog after your number has been changed successfully.-->
   <!--Confirmation button to dismiss number changed dialog-->
@@ -3004,6 +3015,9 @@
   <string name="HelpFragment__copyright_signal_messenger">Signal Messenger 저작권</string>
   <string name="HelpFragment__licenced_under_the_gplv3">GPLv3에 따라 라이선스가 부여됨</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">미디어 품질</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">전송 미디어 품질</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">고품질 미디어는 더 많은 모바일 데이터를 사용할 수 있습니다.</string>
   <string name="DataAndStorageSettingsFragment__high">높음</string>
   <string name="DataAndStorageSettingsFragment__standard">기본</string>
   <string name="DataAndStorageSettingsFragment__calls">전화</string>
@@ -3261,6 +3275,7 @@
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
   <!--Header shown above list of all notification profiles-->
   <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">새 프로필</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
   <string name="NotificationProfilesFragment__on">켜짐</string>
   <!--Button use to permanently delete a notification profile-->
@@ -3313,6 +3328,7 @@
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <string name="NotificationProfileSelection__new_profile">새 프로필</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">%1$s까지</string>

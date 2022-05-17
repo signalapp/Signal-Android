@@ -91,7 +91,9 @@
   <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Voitte jatkossa lähettää viestejä ja soittaa toisillenne, ja nimesi ja kuvasi jaetaan heidän kanssaan.</string>
   <!--Text that is shown when unblocking an SMS contact-->
+  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Voitte lähettää viestejä toisillenne.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Estetyt henkilöt eivät voi soittaa sinulle tai lähettää sinulle viestejä.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Estetyt ihmiset eivät voi lähettää sinulle viestejä.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Estä Signalin päivitysten ja uutisten vastaanotto.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -731,6 +733,8 @@
   <string name="CustomNotificationsDialogFragment__notification_sound">Ilmoitusääni</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Värinä</string>
   <!--Button text for customizing notification options-->
+  <string name="CustomNotificationsDialogFragment__customize">Mukauta</string>
+  <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Muuta ääni- ja värinäasetuksia</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Puheluasetukset</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Ilmoitusääni</string>
   <string name="CustomNotificationsDialogFragment__enabled">Päällä</string>
@@ -1147,6 +1151,7 @@
   <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Sallitaanko henkilön %1$s lähettää sinulle viestejä ja nähdä nimesi ja profiilikuvasi? Et saa viestejä ennen eston poistamista.</string>
   <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Annetaanko käyttäjän %1$s lähettää sinulle viestejä? Et saa häneltä ollenkaan viestejä, ennen kuin annat luvan.</string>
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Haluatko päivityksiä ja uutisia lähteestä %1$s? Et saa mitään päivityksiä ennen kuin sallit heidät.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Jatketaanko keskustelua tämän ryhmän kanssa ja näytetäänkö nimesi ja kuvasi sen jäsenille?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Päivitä tämä ryhmä ottaaksesi käyttöön uudet ominaisuudet kuten @maininnat ja ylläpitäjät. Jäsenille jotka eivät ole jakaneet nimeään tai kuvaansa tässä ryhmässä lähetetään kutsu.</string>
@@ -1531,8 +1536,11 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ThreadRecord_video">Video</string>
   <string name="ThreadRecord_chat_session_refreshed">Keskustelutuokio on virkistetty</string>
   <!--Displayed in the notification when the user is sent a gift-->
+  <string name="ThreadRecord__you_received_a_gift">Olet saanut lahjan</string>
   <!--Displayed in the notification when the user sends a gift-->
+  <string name="ThreadRecord__you_sent_a_gift">Lähetit lahjan</string>
   <!--Displayed in the notification when the user has opened a received gift-->
+  <string name="ThreadRecord__you_redeemed_a_gift_badge">Lunastit lahjakunniamerkin</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal-päivitys</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uusi versio Signalista on saatavilla. Päivitä napauttamalla.</string>
@@ -2111,6 +2119,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__led_color">LED:in väri</string>
   <string name="preferences__led_color_unknown">Tuntematon</string>
   <string name="preferences__pref_led_blink_title">LED:in vilkkumistahti</string>
+  <string name="preferences__customize">Mukauta</string>
+  <string name="preferences__change_sound_and_vibration">Muuta ääni- ja värinäasetuksia</string>
   <string name="preferences__sound">Ääni</string>
   <string name="preferences__silent">Ei ääntä</string>
   <string name="preferences__default">Oletus</string>
@@ -3587,7 +3597,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">Kohde ei tue lahjoittamista.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__could_not_verify_recipient">Lähettäjän varmentaminen ei onnistunut.</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Tarkista verkkoyhteytesi ja yritä uudelleen.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Lahjamerkki</string>
   <!--Gift message view expiry information-->
@@ -3796,6 +3808,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--Donation reciepts screen empty state title-->
+  <string name="DonationReceiptListFragment__no_receipts">Ei kuitteja</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Keskustelut</string>
@@ -4025,6 +4038,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Displayed in story caption when content is longer than 5 lines-->
   <string name="StoryViewerPageFragment__see_more">… Näytä lisää</string>
   <!--Displayed in toast after sending a direct reply-->
+  <string name="StoryDirectReplyDialogFragment__sending_reply">Lähetetään vastaus…</string>
   <!--Displayed in the viewer when a story is no longer available-->
   <string name="StorySlateView__this_story_is_no_longer_available">Tämä tarina ei ole enää saatavilla.</string>
   <!--Displayed in the viewer when the network is not available-->
@@ -4078,6 +4092,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Lisää viesti</string>
   <!--Displayed in the dialog while verifying the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__verifying_recipient">Varmennetaan lähettäjää…</string>
   <!--Title for sheet shown when opening a redeemed gift-->
   <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s lähetti sinulle lahjan</string>
   <!--Title for sheet shown when opening a sent gift-->
@@ -4107,6 +4122,14 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ei nyt</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Yksityinen tarina · %1$d katsoja</item>
+    <item quantity="other">Yksityinen tarina · %1$d katsojaa</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Ryhmätarina · %1$d katsoja</item>
+    <item quantity="other">Ryhmätarina · %1$d katsojaa</item>
+  </plurals>
   <!--EOF-->
 </resources>

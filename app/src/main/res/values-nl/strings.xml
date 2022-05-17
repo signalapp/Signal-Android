@@ -1951,7 +1951,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Om media- en groepsberichten te verzenden tik je op ‘Oké’ en voer je de gevraagde gegevens in. De mms-instellingen voor je provider kunnen meestal gevonden worden door on-line te zoeken naar ‘naam-van-je-provider APN’. Dit hoef je maar één keer te doen.</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">Afleveringsprobleem</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Een bericht, media, sticker, emoji-reactie, of een bevestiging dat een bericht gelezen is van %s kan niet aan jou worden afgeleverd. Het kan zijn dat hij of zij iets probeerde naar je te verzenden in een één-op-één gesprek of in een groepsgesprek.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Een bericht, media, sticker, emoji-reactie, of een bevestiging dat een bericht gelezen is van %s kan niet aan jou worden afgeleverd. Het kan zijn dat hij of zij iets probeerde naar je te verzenden in een één-op-één-gesprek of in een groepsgesprek.</string>
   <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Een bericht, media, sticker, emoji-reactie, of een bevestiging dat een bericht gelezen is van %s kan niet aan jou worden afgeleverd. </string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Voornaam (vereist)</string>
@@ -2111,8 +2111,8 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Signal gebruiken voor alle inkomende multimediaberichten</string>
   <string name="preferences__pref_enter_sends_title">Enter-toets verzendt</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Gebruik de Enter-toets voor het verzenden van tekstberichten</string>
-  <string name="preferences__pref_use_address_book_photos">Profielfoto uit systeemadresboek</string>
-  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Geef indien beschikbaar de profielfoto uit je eigen systeemadresboek weer, in plaats van de profielfoto welke anderen voor henzelf hebben ingesteld.</string>
+  <string name="preferences__pref_use_address_book_photos">Profielfoto uit systeemcontactenlijst gebruiken</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Geef indien beschikbaar de profielfoto uit je eigen systeemcontactenlijst weer, in plaats van de profielfoto welke anderen voor henzelf hebben ingesteld.</string>
   <string name="preferences__generate_link_previews">Voorbeeldafbeeldingen genereren</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Sta Signal toe om voor elke verwijzing naar een website die je verzendt een voorbeeldafbeelding genereren en aan je bericht bij te voegen. Echter, als je dit inschakelt zouden websites kunnen detecteren dat je hen in je bericht vermeldt en ook welke pagina je vermeldt.</string>
   <string name="preferences__choose_identity">Identiteit kiezen</string>
@@ -3202,7 +3202,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="NotificationsSettingsFragment__messages">Berichten</string>
   <string name="NotificationsSettingsFragment__calls">Oproepen</string>
   <string name="NotificationsSettingsFragment__notify_when">Geef me een melding wanneer …</string>
-  <string name="NotificationsSettingsFragment__contact_joins_signal">Een contactpersoon uit mijn systeemcontactenlijst sinds kort via Signal bereikbaar is</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">Een contactpersoon die in mijn systeemcontactenlijst staat sinds kort via Signal bereikbaar is</string>
   <!--Notification preference header-->
   <string name="NotificationsSettingsFragment__notification_profiles">Meldingsprofielen</string>
   <!--Notification preference option header-->
@@ -3345,7 +3345,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="ConversationSettingsFragment__search">Zoeken</string>
   <string name="ConversationSettingsFragment__disappearing_messages">Verlopende berichten</string>
   <string name="ConversationSettingsFragment__sounds_and_notifications">Geluiden &amp; meldingen</string>
-  <string name="ConversationSettingsFragment__contact_details">Details over deze contactpersoon</string>
+  <string name="ConversationSettingsFragment__contact_details">In systeemcontactenlijst weergeven</string>
   <string name="ConversationSettingsFragment__view_safety_number">Veiligheidsnummer weergeven</string>
   <string name="ConversationSettingsFragment__block">Blokkeren</string>
   <string name="ConversationSettingsFragment__block_group">Groep blokkeren en verlaten</string>
@@ -3905,9 +3905,9 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--Description of action for reaction button-->
   <string name="StoryReplyComposer__react_to_this_story">Op dit verhaal reageren</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
-  <string name="StoryReplyComposer__replying_privately_to_s">Privéreactie aan het schrijven naar %1$s</string>
+  <string name="StoryReplyComposer__replying_privately_to_s">Één-op-één-reactie aan het schrijven naar %1$s</string>
   <!--Context menu item to privately reply to a story response-->
-  <string name="StoryGroupReplyItem__private_reply">Privéreactie</string>
+  <string name="StoryGroupReplyItem__private_reply">Één-op-één-reactie</string>
   <!--Context menu item to copy a story response-->
   <string name="StoryGroupReplyItem__copy">Tekst kopiëren</string>
   <!--Context menu item to delete a story response-->
@@ -3944,7 +3944,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
   <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Signal-kennissen</strong> zijn personen van wie je in het verleden aangaf ze te vertrouwen. Dat deed je door:</string>
   <!--Signal connections sheet bullet point 1-->
-  <string name="SignalConnectionsBottomSheet__starting_a_conversation">Zelf een één-op-één gesprek met hem of haar te beginnen</string>
+  <string name="SignalConnectionsBottomSheet__starting_a_conversation">Zelf een één-op-één-gesprek met hem of haar te beginnen</string>
   <!--Signal connections sheet bullet point 2-->
   <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Een één-op-één-gespreksverzoek van hem of haar te accepteren</string>
   <!--Signal connections sheet bullet point 3-->
