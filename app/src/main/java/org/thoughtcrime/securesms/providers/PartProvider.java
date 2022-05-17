@@ -102,7 +102,7 @@ public final class PartProvider extends BaseContentProvider {
   public String getType(@NonNull Uri uri) {
     Log.i(TAG, "getType() called: " + uri);
 
-    if (uriMatcher.match(uri) == SINGLE_ROW && SignalDatabase.getInstance() != null) {
+    if (uriMatcher.match(uri) == SINGLE_ROW) {
       PartUriParser      partUriParser = new PartUriParser(uri);
       DatabaseAttachment attachment    = SignalDatabase.attachments().getAttachment(partUriParser.getPartId());
 
@@ -157,20 +157,9 @@ public final class PartProvider extends BaseContentProvider {
     ParcelFileDescriptor[] reliablePipe = ParcelFileDescriptor.createReliablePipe();
 
     SignalExecutors.BOUNDED_IO.execute(() -> {
-      SignalDatabase signalDatabase = SignalDatabase.getInstance();
-      if (signalDatabase == null) {
-        Log.w(TAG, "Database is not available");
-        try {
-          reliablePipe[1].closeWithError("Unable to access database");
-        } catch (IOException e) {
-          Log.w(TAG, "Unable to close pipe after no database", e);
-        }
-        return;
-      }
-
       Throwable error = null;
       try (OutputStream out = new FileOutputStream(reliablePipe[1].getFileDescriptor())) {
-        try (InputStream in = signalDatabase.getAttachments().getAttachmentStream(attachmentId, 0)) {
+        try (InputStream in = SignalDatabase.attachments().getAttachmentStream(attachmentId, 0)) {
           StreamUtil.copy(in, out);
         } catch (IOException e) {
           Log.w(TAG, "Error providing file", e);
