@@ -21,13 +21,13 @@ import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.MemoryFile;
 import android.os.ParcelFileDescriptor;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.StreamUtil;
-import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
@@ -35,9 +35,10 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.MemoryFileUtil;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -154,25 +155,16 @@ public final class PartProvider extends BaseContentProvider {
   }
 
   private ParcelFileDescriptor getParcelStreamForAttachment(AttachmentId attachmentId) throws IOException {
-    ParcelFileDescriptor[] reliablePipe = ParcelFileDescriptor.createReliablePipe();
+    long       plaintextLength = StreamUtil.getStreamLength(SignalDatabase.attachments().getAttachmentStream(attachmentId, 0));
+    MemoryFile memoryFile      = new MemoryFile(attachmentId.toString(), Util.toIntExact(plaintextLength));
 
-    SignalExecutors.BOUNDED_IO.execute(() -> {
-      try (OutputStream out = new FileOutputStream(reliablePipe[1].getFileDescriptor())) {
-        try(InputStream in = SignalDatabase.attachments().getAttachmentStream(attachmentId, 0)) {
-          StreamUtil.copy(in, out);
-        } catch (IOException e) {
-          Log.w(TAG, "Error providing file", e);
-          try {
-            reliablePipe[1].closeWithError(e.getMessage());
-          } catch (IOException e2) {
-            Log.w(TAG, "Error closing pipe with error", e2);
-          }
-        }
-      } catch (IOException e) {
-        Log.w(TAG, "Error opening pipe for writing", e);
-      }
-    });
+    InputStream  in  = SignalDatabase.attachments().getAttachmentStream(attachmentId, 0);
+    OutputStream out = memoryFile.getOutputStream();
 
-    return reliablePipe[0];
+    StreamUtil.copy(in, out);
+    StreamUtil.close(out);
+    StreamUtil.close(in);
+
+    return MemoryFileUtil.getParcelFileDescriptor(memoryFile);
   }
 }
