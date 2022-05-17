@@ -110,6 +110,7 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+    requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
 
     cameraPreview     = view.findViewById(R.id.camera_preview);
     controlsContainer = view.findViewById(R.id.camera_controls_container);
@@ -162,7 +163,7 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
     });
 
     orderEnforcer.run(Stage.CAMERA_PROPERTIES_AVAILABLE, this::updatePreviewScale);
-    requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+    requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
   }
 
   @Override
@@ -170,6 +171,11 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
     super.onPause();
     camera.release();
     orderEnforcer.reset();
+  }
+
+  @Override public void onDestroy() {
+    super.onDestroy();
+    requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
   }
 
   @Override
