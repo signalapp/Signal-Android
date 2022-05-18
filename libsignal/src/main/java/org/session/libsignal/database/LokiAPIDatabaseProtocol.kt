@@ -1,8 +1,9 @@
 package org.session.libsignal.database
 
 import org.session.libsignal.crypto.ecc.ECKeyPair
+import org.session.libsignal.utilities.ForkInfo
 import org.session.libsignal.utilities.Snode
-import java.util.*
+import java.util.Date
 
 interface LokiAPIDatabaseProtocol {
 
@@ -13,10 +14,10 @@ interface LokiAPIDatabaseProtocol {
     fun setOnionRequestPaths(newValue: List<List<Snode>>)
     fun getSwarm(publicKey: String): Set<Snode>?
     fun setSwarm(publicKey: String, newValue: Set<Snode>)
-    fun getLastMessageHashValue(snode: Snode, publicKey: String): String?
-    fun setLastMessageHashValue(snode: Snode, publicKey: String, newValue: String)
-    fun getReceivedMessageHashValues(publicKey: String): Set<String>?
-    fun setReceivedMessageHashValues(publicKey: String, newValue: Set<String>)
+    fun getLastMessageHashValue(snode: Snode, publicKey: String, namespace: Int): String?
+    fun setLastMessageHashValue(snode: Snode, publicKey: String, newValue: String, namespace: Int)
+    fun getReceivedMessageHashValues(publicKey: String, namespace: Int): Set<String>?
+    fun setReceivedMessageHashValues(publicKey: String, newValue: Set<String>, namespace: Int)
     fun getAuthToken(server: String): String?
     fun setAuthToken(server: String, newValue: String?)
     fun setUserCount(group: Long, server: String, newValue: Int)
@@ -33,4 +34,7 @@ interface LokiAPIDatabaseProtocol {
     fun getClosedGroupEncryptionKeyPairs(groupPublicKey: String): List<ECKeyPair>
     fun getLatestClosedGroupEncryptionKeyPair(groupPublicKey: String): ECKeyPair?
     fun isClosedGroup(groupPublicKey: String): Boolean
+    fun getForkInfo(): ForkInfo
+    fun setForkInfo(forkInfo: ForkInfo)
+
 }

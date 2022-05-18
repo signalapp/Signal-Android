@@ -1,7 +1,5 @@
 package org.session.libsession.snode
 
-import org.session.libsignal.utilities.removing05PrefixIfNeeded
-
 data class SnodeMessage(
     /**
      * The hex encoded public key of the recipient.
@@ -25,11 +23,10 @@ data class SnodeMessage(
 
     internal fun toJSON(): Map<String, String> {
         return mapOf(
-            "pubKey" to if (SnodeAPI.useTestnet) recipient.removing05PrefixIfNeeded() else recipient,
+            "pubKey" to recipient,
             "data" to data,
             "ttl" to ttl.toString(),
             "timestamp" to timestamp.toString(),
-            "nonce" to ""
         )
     }
 }

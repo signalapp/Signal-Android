@@ -7,28 +7,24 @@ import org.session.libsignal.crypto.ecc.DjbECPrivateKey
 import org.session.libsignal.crypto.ecc.DjbECPublicKey
 import org.session.libsignal.crypto.ecc.ECKeyPair
 import org.session.libsignal.database.LokiAPIDatabaseProtocol
-import org.session.libsignal.utilities.*
+import org.session.libsignal.utilities.ForkInfo
+import org.session.libsignal.utilities.Hex
+import org.session.libsignal.utilities.Log
+import org.session.libsignal.utilities.PublicKeyValidation
+import org.session.libsignal.utilities.Snode
+import org.session.libsignal.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.utilities.toHexString
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
-import org.thoughtcrime.securesms.database.*
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
-import org.thoughtcrime.securesms.util.*
-import java.util.*
-import kotlin.Array
-import kotlin.Boolean
-import kotlin.Int
-import kotlin.Long
-import kotlin.Pair
-import kotlin.String
-import kotlin.arrayOf
-import kotlin.to
+import java.util.Date
 
 class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiAPIDatabaseProtocol {
 
     companion object {
         // Shared
-        private val publicKey = "public_key"
-        private val timestamp = "timestamp"
-        private val snode = "snode"
+        private const val publicKey = "public_key"
+        private const val timestamp = "timestamp"
+        private const val snode = "snode"
         // Snode pool
         public val snodePoolTable = "loki_snode_pool_cache"
         private val dummyKey = "dummy_key"
@@ -44,15 +40,19 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val swarm = "swarm"
         @JvmStatic val createSwarmTableCommand = "CREATE TABLE $swarmTable ($swarmPublicKey TEXT PRIMARY KEY, $swarm TEXT);"
         // Last message hash values
-        private val lastMessageHashValueTable2 = "last_message_hash_value_table"
-        private val lastMessageHashValue = "last_message_hash_value"
+        private const val legacyLastMessageHashValueTable2 = "last_message_hash_value_table"
+        private const val lastMessageHashValueTable2 = "session_last_message_hash_value_table"
+        private const val lastMessageHashValue = "last_message_hash_value"
+        private const val lastMessageHashNamespace = "last_message_namespace"
         @JvmStatic val createLastMessageHashValueTable2Command
-            = "CREATE TABLE $lastMessageHashValueTable2 ($snode TEXT, $publicKey TEXT, $lastMessageHashValue TEXT, PRIMARY KEY ($snode, $publicKey));"
+            = "CREATE TABLE $legacyLastMessageHashValueTable2 ($snode TEXT, $publicKey TEXT, $lastMessageHashValue TEXT, PRIMARY KEY ($snode, $publicKey));"
         // Received message hash values
-        private val receivedMessageHashValuesTable3 = "received_message_hash_values_table_3"
-        private val receivedMessageHashValues = "received_message_hash_values"
+        private const val legacyReceivedMessageHashValuesTable3 = "received_message_hash_values_table_3"
+        private const val receivedMessageHashValuesTable = "session_received_message_hash_values_table"
+        private const val receivedMessageHashValues = "received_message_hash_values"
+        private const val receivedMessageHashNamespace = "received_message_namespace"
         @JvmStatic val createReceivedMessageHashValuesTable3Command
-            = "CREATE TABLE $receivedMessageHashValuesTable3 ($publicKey STRING PRIMARY KEY, $receivedMessageHashValues TEXT);"
+            = "CREATE TABLE $legacyReceivedMessageHashValuesTable3 ($publicKey STRING PRIMARY KEY, $receivedMessageHashValues TEXT);"
         // Open group auth tokens
         private val openGroupAuthTokenTable = "loki_api_group_chat_auth_token_database"
         private val server = "server"
@@ -97,6 +97,31 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         public val groupPublicKey = "group_public_key"
         @JvmStatic
         val createClosedGroupPublicKeysTable = "CREATE TABLE $closedGroupPublicKeysTable ($groupPublicKey STRING PRIMARY KEY)"
+        // Hard fork service node info
+        const val FORK_INFO_TABLE = "fork_info"
+        const val DUMMY_KEY = "dummy_key"
+        const val DUMMY_VALUE = "1"
+        const val HF_VALUE = "hf_value"
+        const val SF_VALUE = "sf_value"
+        const val CREATE_FORK_INFO_TABLE_COMMAND = "CREATE TABLE $FORK_INFO_TABLE ($DUMMY_KEY INTEGER PRIMARY KEY, $HF_VALUE INTEGER, $SF_VALUE INTEGER);"
+        const val CREATE_DEFAULT_FORK_INFO_COMMAND = "INSERT INTO $FORK_INFO_TABLE ($DUMMY_KEY, $HF_VALUE, $SF_VALUE) VALUES ($DUMMY_VALUE, 18, 1);"
+
+        const val UPDATE_HASHES_INCLUDE_NAMESPACE_COMMAND = """
+            CREATE TABLE IF NOT EXISTS $lastMessageHashValueTable2(
+                $snode TEXT, $publicKey TEXT, $lastMessageHashValue TEXT, $lastMessageHashNamespace INTEGER DEFAULT 0, PRIMARY KEY ($snode, $publicKey, $lastMessageHashNamespace)
+            );
+            INSERT INTO $lastMessageHashValueTable2($snode, $publicKey, $lastMessageHashValue) SELECT $snode, $publicKey, $lastMessageHashValue FROM $legacyLastMessageHashValueTable2);
+            DROP TABLE $legacyLastMessageHashValueTable2;
+        """
+        const val UPDATE_RECEIVED_INCLUDE_NAMESPACE_COMMAND = """
+            CREATE TABLE IF NOT EXISTS $receivedMessageHashValuesTable(
+                $publicKey STRING, $receivedMessageHashValues TEXT, $receivedMessageHashNamespace INTEGER DEFAULT 0, PRIMARY KEY ($publicKey, $receivedMessageHashNamespace)
+            );
+            
+            INSERT INTO $receivedMessageHashValuesTable($publicKey, $receivedMessageHashValues) SELECT $publicKey, $receivedMessageHashValues FROM $legacyReceivedMessageHashValuesTable3;
+            
+            DROP TABLE $legacyReceivedMessageHashValuesTable3;
+        """
 
         // region Deprecated
         private val deviceLinkCache = "loki_pairing_authorisation_cache"
@@ -232,36 +257,45 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         database.insertOrUpdate(swarmTable, row, "${Companion.swarmPublicKey} = ?", wrap(publicKey))
     }
 
-    override fun getLastMessageHashValue(snode: Snode, publicKey: String): String? {
+    override fun getLastMessageHashValue(snode: Snode, publicKey: String, namespace: Int): String? {
         val database = databaseHelper.readableDatabase
-        val query = "${Companion.snode} = ? AND ${Companion.publicKey} = ?"
-        return database.get(lastMessageHashValueTable2, query, arrayOf( snode.toString(), publicKey )) { cursor ->
+        val query = "${Companion.snode} = ? AND ${Companion.publicKey} = ? AND $lastMessageHashNamespace = ?"
+        return database.get(lastMessageHashValueTable2, query, arrayOf( snode.toString(), publicKey, namespace.toString() )) { cursor ->
             cursor.getString(cursor.getColumnIndexOrThrow(lastMessageHashValue))
         }
     }
 
-    override fun setLastMessageHashValue(snode: Snode, publicKey: String, newValue: String) {
+    override fun setLastMessageHashValue(snode: Snode, publicKey: String, newValue: String, namespace: Int) {
         val database = databaseHelper.writableDatabase
-        val row = wrap(mapOf( Companion.snode to snode.toString(), Companion.publicKey to publicKey, lastMessageHashValue to newValue ))
-        val query = "${Companion.snode} = ? AND ${Companion.publicKey} = ?"
-        database.insertOrUpdate(lastMessageHashValueTable2, row, query, arrayOf( snode.toString(), publicKey ))
+        val row = wrap(mapOf(
+            Companion.snode to snode.toString(),
+            Companion.publicKey to publicKey,
+            lastMessageHashValue to newValue,
+            lastMessageHashNamespace to namespace.toString()
+        ))
+        val query = "${Companion.snode} = ? AND ${Companion.publicKey} = ? AND $lastMessageHashNamespace = ?"
+        database.insertOrUpdate(lastMessageHashValueTable2, row, query, arrayOf( snode.toString(), publicKey, namespace.toString() ))
     }
 
-    override fun getReceivedMessageHashValues(publicKey: String): Set<String>? {
+    override fun getReceivedMessageHashValues(publicKey: String, namespace: Int): Set<String>? {
         val database = databaseHelper.readableDatabase
-        val query = "${Companion.publicKey} = ?"
-        return database.get(receivedMessageHashValuesTable3, query, arrayOf( publicKey )) { cursor ->
+        val query = "${Companion.publicKey} = ? AND ${Companion.receivedMessageHashNamespace} = ?"
+        return database.get(receivedMessageHashValuesTable, query, arrayOf( publicKey, namespace.toString() )) { cursor ->
             val receivedMessageHashValuesAsString = cursor.getString(cursor.getColumnIndexOrThrow(Companion.receivedMessageHashValues))
             receivedMessageHashValuesAsString.split("-").toSet()
         }
     }
 
-    override fun setReceivedMessageHashValues(publicKey: String, newValue: Set<String>) {
+    override fun setReceivedMessageHashValues(publicKey: String, newValue: Set<String>, namespace: Int) {
         val database = databaseHelper.writableDatabase
         val receivedMessageHashValuesAsString = newValue.joinToString("-")
-        val row = wrap(mapOf( Companion.publicKey to publicKey, Companion.receivedMessageHashValues to receivedMessageHashValuesAsString ))
-        val query = "${Companion.publicKey} = ?"
-        database.insertOrUpdate(receivedMessageHashValuesTable3, row, query, arrayOf( publicKey ))
+        val row = wrap(mapOf(
+            Companion.publicKey to publicKey,
+            Companion.receivedMessageHashValues to receivedMessageHashValuesAsString,
+            Companion.receivedMessageHashNamespace to namespace.toString()
+        ))
+        val query = "${Companion.publicKey} = ? AND $receivedMessageHashNamespace = ?"
+        database.insertOrUpdate(receivedMessageHashValuesTable, row, query, arrayOf( publicKey, namespace.toString() ))
     }
 
     override fun getAuthToken(server: String): String? {
@@ -440,6 +474,29 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
     fun removeClosedGroupPublicKey(groupPublicKey: String) {
         val database = databaseHelper.writableDatabase
         database.delete(closedGroupPublicKeysTable, "${Companion.groupPublicKey} = ?", wrap(groupPublicKey))
+    }
+
+    override fun getForkInfo(): ForkInfo {
+        val database = databaseHelper.readableDatabase
+        val queryCursor = database.query(FORK_INFO_TABLE, arrayOf(HF_VALUE, SF_VALUE), "$DUMMY_KEY = $DUMMY_VALUE", null, null, null, null)
+        val forkInfo = queryCursor.use { cursor ->
+            if (!cursor.moveToNext()) {
+                ForkInfo(18, 1) // no HF info, none set will at least be the version
+            } else {
+                ForkInfo(cursor.getInt(0), cursor.getInt(1))
+            }
+        }
+        return forkInfo
+    }
+
+    override fun setForkInfo(forkInfo: ForkInfo) {
+        val database = databaseHelper.writableDatabase
+        val query = "$DUMMY_KEY = $DUMMY_VALUE"
+        val contentValues = ContentValues(3)
+        contentValues.put(DUMMY_KEY, DUMMY_VALUE)
+        contentValues.put(HF_VALUE, forkInfo.hf)
+        contentValues.put(SF_VALUE, forkInfo.sf)
+        database.insertOrUpdate(FORK_INFO_TABLE, contentValues, query, emptyArray())
     }
 }
 

@@ -8,20 +8,24 @@ import nl.komponents.kovenant.functional.map
 import okhttp3.Request
 import org.session.libsession.messaging.file_server.FileServerAPIV2
 import org.session.libsession.utilities.AESGCM
-import org.session.libsignal.utilities.Log
-import org.session.libsignal.utilities.Base64
-import org.session.libsignal.utilities.*
-import org.session.libsignal.utilities.Snode
 import org.session.libsession.utilities.AESGCM.EncryptionResult
 import org.session.libsession.utilities.getBodyForOnionRequest
 import org.session.libsession.utilities.getHeadersForOnionRequest
 import org.session.libsignal.crypto.getRandomElement
 import org.session.libsignal.crypto.getRandomElementOrNull
-import org.session.libsignal.utilities.Broadcaster
-import org.session.libsignal.utilities.HTTP
 import org.session.libsignal.database.LokiAPIDatabaseProtocol
-import java.util.*
-import kotlin.math.abs
+import org.session.libsignal.utilities.Base64
+import org.session.libsignal.utilities.Broadcaster
+import org.session.libsignal.utilities.ForkInfo
+import org.session.libsignal.utilities.HTTP
+import org.session.libsignal.utilities.JsonUtil
+import org.session.libsignal.utilities.Log
+import org.session.libsignal.utilities.Snode
+import org.session.libsignal.utilities.ThreadUtils
+import org.session.libsignal.utilities.recover
+import org.session.libsignal.utilities.toHexString
+import java.util.Date
+import kotlin.collections.set
 
 private typealias Path = List<Snode>
 
@@ -355,6 +359,22 @@ object OnionRequestAPI {
                                     val timestamp = body["t"] as Long
                                     val offset = timestamp - Date().time
                                     SnodeAPI.clockOffset = offset
+                                }
+                                if (body.containsKey("hf")) {
+                                    @Suppress("UNCHECKED_CAST")
+                                    val currentHf = body["hf"] as List<Int>
+                                    if (currentHf.size < 2) {
+                                        Log.e("Loki", "Response contains fork information but doesn't have a hard and soft number")
+                                    } else {
+                                        val hf = currentHf[0]
+                                        val sf = currentHf[1]
+                                        val newForkInfo = ForkInfo(hf, sf)
+                                        if (newForkInfo > SnodeAPI.forkInfo) {
+                                            SnodeAPI.forkInfo = ForkInfo(hf,sf)
+                                        } else if (newForkInfo < SnodeAPI.forkInfo) {
+                                            Log.w("Loki", "Got a new snode info fork version that was $newForkInfo, less than current known ${SnodeAPI.forkInfo}")
+                                        }
+                                    }
                                 }
                                 if (statusCode != 200) {
                                     val exception = HTTPRequestFailedAtDestinationException(statusCode, body, destination.description)
