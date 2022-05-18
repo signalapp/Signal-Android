@@ -819,7 +819,7 @@
   <string name="InviteActivity_cancel">Откажи</string>
   <string name="InviteActivity_sending">Се испраќа…</string>
   <string name="InviteActivity_invitations_sent">Поканите се испратени!</string>
-  <string name="InviteActivity_invite_to_signal">Поканете на Signal</string>
+  <string name="InviteActivity_invite_to_signal">Покани на Signal</string>
   <string name="InviteActivity_send_sms">Испрати SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Испрати %d SMS покана?</item>
@@ -1436,12 +1436,12 @@
   <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Додај во контакти</string>
-  <string name="SharedContactDetailsActivity_invite_to_signal">Испратете покана за Signal</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Испрати покана за Signal</string>
   <string name="SharedContactDetailsActivity_signal_message">Signal порака</string>
   <string name="SharedContactDetailsActivity_signal_call">Signal повик</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">Додај во контакти</string>
-  <string name="SharedContactView_invite_to_signal">Поканете на Signal</string>
+  <string name="SharedContactView_invite_to_signal">Покани на Signal</string>
   <string name="SharedContactView_message">Signal порака</string>
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Повеќе</string>
@@ -1715,7 +1715,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">Повторете нова лозинка</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Внесете име или број</string>
-  <string name="contact_selection_activity__invite_to_signal">Поканете на Signal</string>
+  <string name="contact_selection_activity__invite_to_signal">Испрати покана за Signal</string>
   <string name="contact_selection_activity__new_group">Нова група</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Исчисти го внесениот текст</string>
@@ -2545,7 +2545,7 @@
   <string name="InsightsModalFragment__title">Ви претставуваме „Согледувања“</string>
   <string name="InsightsModalFragment__description">Дознајте колку од Вашите пораки се испратени безбедно и потоа брзо поканете нови контакти за да го зајакнете процентот во Signal.</string>
   <string name="InsightsModalFragment__view_insights">Провери согледувања</string>
-  <string name="FirstInviteReminder__title">Поканете на Signal</string>
+  <string name="FirstInviteReminder__title">Покани на Signal</string>
   <string name="FirstInviteReminder__description">Можете да го зголемите бројот на шифрираните пораки што ги испраќате на %1$d%%</string>
   <string name="SecondInviteReminder__title">Зајакнете го Вашиот Signal</string>
   <string name="SecondInviteReminder__description">Покани %1$s</string>
