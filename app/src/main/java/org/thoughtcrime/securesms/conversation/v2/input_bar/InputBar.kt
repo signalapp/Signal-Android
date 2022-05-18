@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.conversation.v2.input_bar
 
 import android.content.Context
 import android.content.res.Resources
+import android.graphics.PointF
 import android.net.Uri
 import android.text.InputType
 import android.text.TextWatcher
@@ -22,6 +23,7 @@ import org.thoughtcrime.securesms.conversation.v2.messages.QuoteViewDelegate
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.mms.GlideRequests
+import org.thoughtcrime.securesms.util.contains
 import org.thoughtcrime.securesms.util.toDp
 import org.thoughtcrime.securesms.util.toPx
 
@@ -77,7 +79,11 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
         binding.microphoneOrSendButtonContainer.addView(sendButton)
         sendButton.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
         sendButton.isVisible = false
-        sendButton.onUp = { delegate?.sendMessage() }
+        sendButton.onUp = { e ->
+            if (sendButton.contains(PointF(e.x, e.y))) {
+                delegate?.sendMessage()
+            }
+        }
         // Edit text
         val incognitoFlag = if (TextSecurePreferences.isIncognitoKeyboardEnabled(context)) 16777216 else 0
         binding.inputBarEditText.imeOptions = binding.inputBarEditText.imeOptions or incognitoFlag // Always use incognito keyboard if setting enabled
