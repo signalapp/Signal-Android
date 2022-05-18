@@ -2,8 +2,8 @@ package org.whispersystems.signalservice.api.services;
 
 import com.google.protobuf.ByteString;
 
-import org.signal.cds.ClientRequest;
-import org.signal.cds.ClientResponse;
+import org.signal.cdsi.proto.ClientRequest;
+import org.signal.cdsi.proto.ClientResponse;
 import org.signal.libsignal.protocol.util.ByteUtil;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
@@ -25,45 +25,40 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.core.Single;
 
 /**
- * Handles network interactions with CDSHv2, the HSM-backed CDS service.
+ * Handles network interactions with CDSI, the SGX-backed version of the CDSv2 API.
  */
-public final class CdshV2Service {
+public final class CdsiV2Service {
 
-  private static final String TAG = CdshV2Service.class.getSimpleName();
+  private static final String TAG = CdsiV2Service.class.getSimpleName();
 
   private static final UUID EMPTY_UUID         = new UUID(0, 0);
   private static final int  RESPONSE_ITEM_SIZE = 8 + 16 + 16; // 1 uint64 + 2 UUIDs
 
-  private final CdshSocket cdshSocket;
+  private final CdsiSocket cdshSocket;
 
-  public CdshV2Service(SignalServiceConfiguration configuration, String hexPublicKey, String hexCodeHash) {
-    this.cdshSocket = new CdshSocket(configuration, hexPublicKey, hexCodeHash, CdshSocket.Version.V2);
+  public CdsiV2Service(SignalServiceConfiguration configuration, String mrEnclave) {
+    this.cdshSocket = new CdsiSocket(configuration, mrEnclave);
   }
 
-  public Single<ServiceResponse<Response>> getRegisteredUsers(String username, String password, Request request) {
+  public Single<ServiceResponse<Response>> getRegisteredUsers(String username, String password, Request request, Consumer<byte[]> tokenSaver) {
     return cdshSocket
-        .connect(username, password, buildClientRequests(request))
-        .map(CdshV2Service::parseEntries)
+        .connect(username, password, buildClientRequest(request), tokenSaver)
+        .map(CdsiV2Service::parseEntries)
         .collect(Collectors.toList())
         .flatMap(pages -> {
-          byte[]                    token = null;
           Map<String, ResponseItem> all   = new HashMap<>();
 
           for (Response page : pages) {
             all.putAll(page.getResults());
-            token = token == null ? page.getToken() : token;
           }
 
-          if (token == null) {
-            throw new IOException("No token found in response!");
-          }
-
-          return Single.just(new Response(all, token));
+          return Single.just(new Response(all));
         })
         .map(result -> ServiceResponse.forResult(result, 200, null))
         .onErrorReturn(error -> {
@@ -77,7 +72,6 @@ public final class CdshV2Service {
   }
 
   private static Response parseEntries(ClientResponse clientResponse) {
-    byte[]                    token   = !clientResponse.getToken().isEmpty() ? clientResponse.getToken().toByteArray() : null;
     Map<String, ResponseItem> results = new HashMap<>();
     ByteBuffer                parser  = clientResponse.getE164PniAciTriples().asReadOnlyByteBuffer();
 
@@ -93,22 +87,25 @@ public final class CdshV2Service {
       }
     }
 
-    return new Response(results, token);
+    return new Response(results);
   }
 
-  private static List<ClientRequest> buildClientRequests(Request request) {
+  private static ClientRequest buildClientRequest(Request request) {
     List<Long> previousE164s = parseAndSortE164Strings(request.previousE164s);
     List<Long> newE164s      = parseAndSortE164Strings(request.newE164s);
     List<Long> removedE164s  = parseAndSortE164Strings(request.removedE164s);
 
-    return Collections.singletonList(ClientRequest.newBuilder()
-                                                  .setPrevE164S(toByteString(previousE164s))
-                                                  .setNewE164S(toByteString(newE164s))
-                                                  .setDiscardE164S(toByteString(removedE164s))
-                                                  .setAciUakPairs(toByteString(request.serviceIds))
-                                                  .setToken(ByteString.copyFrom(request.token))
-                                                  .setHasMore(false)
-                                                  .build());
+    ClientRequest.Builder builder = ClientRequest.newBuilder()
+                                                 .setPrevE164S(toByteString(previousE164s))
+                                                 .setNewE164S(toByteString(newE164s))
+                                                 .setDiscardE164S(toByteString(removedE164s))
+                                                 .setAciUakPairs(toByteString(request.serviceIds));
+
+    if (request.token != null) {
+      builder.setToken(ByteString.copyFrom(request.token));
+    }
+
+    return builder.build();
   }
 
   private static ByteString toByteString(List<Long> numbers) {
@@ -158,11 +155,15 @@ public final class CdshV2Service {
     private final byte[] token;
 
     public Request(Set<String> previousE164s, Set<String> newE164s, Map<ServiceId, ProfileKey> serviceIds, Optional<byte[]> token) {
+      if (previousE164s.size() > 0 && !token.isPresent()) {
+        throw new IllegalArgumentException("You must have a token if you have previousE164s!");
+      }
+
       this.previousE164s = previousE164s;
       this.newE164s      = newE164s;
       this.removedE164s  = Collections.emptySet();
       this.serviceIds    = serviceIds;
-      this.token         = token.isPresent() ? token.get() : new byte[32];
+      this.token         = token.orElse(null);
     }
 
     public int totalE164s() {
@@ -176,19 +177,13 @@ public final class CdshV2Service {
 
   public static final class Response {
     private final Map<String, ResponseItem> results;
-    private final byte[]                    token;
 
-    public Response(Map<String, ResponseItem> results, byte[] token) {
+    public Response(Map<String, ResponseItem> results) {
       this.results = results;
-      this.token   = token;
     }
 
     public Map<String, ResponseItem> getResults() {
       return results;
-    }
-
-    public byte[] getToken() {
-      return token;
     }
   }
 

@@ -1,10 +1,9 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "org.signal.cds";
-option java_outer_classname = "Cds";
+option java_package = "org.signal.cdsi.proto";
 
-package org.signal.cds;
+package org.signal.cdsi;
 
 message ClientRequest {
   // Each ACI/UAK pair is a 32-byte buffer, containing the 16-byte ACI followed
@@ -16,14 +15,16 @@ message ClientRequest {
   bytes new_e164s = 3;
   bytes discard_e164s = 4;
 
-  // If true, the client has more pairs or e164s to send.  If false or unset,
-  // this is the client's last request, and processing should commence.
-  bool has_more = 5;
+  reserved /*bool has_more*/ 5;
 
   // If set, a token which allows rate limiting to discount the e164s in
   // the request's prev_e164s, only counting new_e164s.  If not set, then
   // rate limiting considers both prev_e164s' and new_e164s' size.
   bytes token = 6;
+
+  // After receiving a new token from the server, send back a message just
+  // containing a token_ack.
+  bool token_ack = 7;
 }
 
 message ClientResponse {
@@ -52,4 +53,30 @@ message ClientResponse {
   // e164s sent up in this request, only counting those in the next
   // request's new_e164s.
   bytes token = 3;
+}
+
+message EnclaveLoad {
+  // If set, before loading any tuples entirely clear the current map,
+  // zero'ing out all current data.
+  bool clear_all = 1;
+
+  // Each tuple is an 8-byte e164, a 16-byte PNI, a 16-byte ACI, and a
+  // 16-byte UAK.  These should be loaded as a 48-byte value (PNI,ACI,UAK)
+  // associated with an 8-byte key (e164).
+  // ACI/PNI/UAK may all be zeros, in which case this is a delete of the e164.
+  bytes e164_aci_pni_uak_tuples = 2;
+
+  // If non-empty, overwrite the shared token secret with this value.
+  bytes shared_token_secret = 3;
+}
+
+message ClientHandshakeStart {
+  // Public key associated with this server's enclave
+  bytes pubkey = 1;
+
+  // Remote-attestation evidence associated with the public key
+  bytes evidence = 2;
+
+  // Endorsements of remote-attestation evidence.
+  bytes endorsement = 3;
 }

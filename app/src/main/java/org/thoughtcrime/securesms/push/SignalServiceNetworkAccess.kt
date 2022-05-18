@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.util.Base64
 import org.whispersystems.signalservice.api.push.TrustStore
 import org.whispersystems.signalservice.internal.configuration.SignalCdnUrl
-import org.whispersystems.signalservice.internal.configuration.SignalCdshUrl
+import org.whispersystems.signalservice.internal.configuration.SignalCdsiUrl
 import org.whispersystems.signalservice.internal.configuration.SignalContactDiscoveryUrl
 import org.whispersystems.signalservice.internal.configuration.SignalKeyBackupServiceUrl
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
@@ -169,7 +169,7 @@ class SignalServiceNetworkAccess(context: Context) {
     fUrls.map { SignalContactDiscoveryUrl(it, F_DIRECTORY_HOST, fTrustStore, APP_CONNECTION_SPEC) }.toTypedArray(),
     fUrls.map { SignalKeyBackupServiceUrl(it, F_KBS_HOST, fTrustStore, APP_CONNECTION_SPEC) }.toTypedArray(),
     fUrls.map { SignalStorageUrl(it, F_STORAGE_HOST, fTrustStore, APP_CONNECTION_SPEC) }.toTypedArray(),
-    arrayOf(SignalCdshUrl(BuildConfig.SIGNAL_CDSH_URL, serviceTrustStore)),
+    arrayOf(SignalCdsiUrl(BuildConfig.SIGNAL_CDSI_URL, serviceTrustStore)),
     interceptors,
     Optional.of(DNS),
     Optional.empty(),
@@ -220,7 +220,7 @@ class SignalServiceNetworkAccess(context: Context) {
     arrayOf(SignalContactDiscoveryUrl(BuildConfig.SIGNAL_CONTACT_DISCOVERY_URL, serviceTrustStore)),
     arrayOf(SignalKeyBackupServiceUrl(BuildConfig.SIGNAL_KEY_BACKUP_URL, serviceTrustStore)),
     arrayOf(SignalStorageUrl(BuildConfig.STORAGE_URL, serviceTrustStore)),
-    arrayOf(SignalCdshUrl(BuildConfig.SIGNAL_CDSH_URL, serviceTrustStore)),
+    arrayOf(SignalCdsiUrl(BuildConfig.SIGNAL_CDSI_URL, serviceTrustStore)),
     interceptors,
     Optional.of(DNS),
     if (SignalStore.proxy().isProxyEnabled) Optional.ofNullable(SignalStore.proxy().proxy) else Optional.empty(),
@@ -276,7 +276,7 @@ class SignalServiceNetworkAccess(context: Context) {
     val cdsUrls: Array<SignalContactDiscoveryUrl> = hostConfigs.map { SignalContactDiscoveryUrl("${it.baseUrl}/directory", it.host, gTrustStore, it.connectionSpec) }.toTypedArray()
     val kbsUrls: Array<SignalKeyBackupServiceUrl> = hostConfigs.map { SignalKeyBackupServiceUrl("${it.baseUrl}/backup", it.host, gTrustStore, it.connectionSpec) }.toTypedArray()
     val storageUrls: Array<SignalStorageUrl> = hostConfigs.map { SignalStorageUrl("${it.baseUrl}/storage", it.host, gTrustStore, it.connectionSpec) }.toTypedArray()
-    val cdshUrls: Array<SignalCdshUrl> = listOf(SignalCdshUrl(BuildConfig.SIGNAL_CDSH_URL, serviceTrustStore)).toTypedArray()
+    val cdsiUrls: Array<SignalCdsiUrl> = listOf(SignalCdsiUrl(BuildConfig.SIGNAL_CDSI_URL, serviceTrustStore)).toTypedArray()
 
     return SignalServiceConfiguration(
       serviceUrls,
@@ -287,7 +287,7 @@ class SignalServiceNetworkAccess(context: Context) {
       cdsUrls,
       kbsUrls,
       storageUrls,
-      cdshUrls,
+      cdsiUrls,
       interceptors,
       Optional.of(DNS),
       Optional.empty(),

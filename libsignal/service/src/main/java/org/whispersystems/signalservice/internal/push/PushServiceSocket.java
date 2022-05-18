@@ -22,7 +22,6 @@ import org.signal.libsignal.protocol.state.SignedPreKeyRecord;
 import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
-import org.signal.libsignal.zkgroup.profiles.PniCredential;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredential;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialRequest;
@@ -259,7 +258,7 @@ public class PushServiceSocket {
   private static final String BOOST_RECEIPT_CREDENTIALS           = "/v1/subscription/boost/receipt_credentials";
   private static final String BOOST_BADGES                        = "/v1/subscription/boost/badges";
 
-  private static final String CDSH_AUTH = "/v2/directory/auth";
+  private static final String CDSI_AUTH = "/v2/directory/auth";
 
   private static final String REPORT_SPAM = "/v1/messages/report/%s/%s";
 
@@ -343,9 +342,9 @@ public class PushServiceSocket {
     }
   }
 
-  public CdshAuthResponse getCdshAuth() throws IOException {
-    String body = makeServiceRequest(CDSH_AUTH, "GET", null);
-    return JsonUtil.fromJsonResponse(body, CdshAuthResponse.class);
+  public CdsiAuthResponse getCdsiAuth() throws IOException {
+    String body = makeServiceRequest(CDSI_AUTH, "GET", null);
+    return JsonUtil.fromJsonResponse(body, CdsiAuthResponse.class);
   }
 
   public VerifyAccountResponse verifyAccountCode(String verificationCode, String signalingKey, int registrationId, boolean fetchesMessages,

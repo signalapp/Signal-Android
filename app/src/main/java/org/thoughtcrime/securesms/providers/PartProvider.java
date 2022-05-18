@@ -79,6 +79,7 @@ public final class PartProvider extends BaseContentProvider {
       return null;
     }
 
+
     if (uriMatcher.match(uri) == SINGLE_ROW) {
       Log.i(TAG, "Parting out a single row...");
       try {

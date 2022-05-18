@@ -2,7 +2,7 @@ package org.whispersystems.signalservice.internal.push;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CdshAuthResponse {
+public class CdsiAuthResponse {
 
   @JsonProperty
   private String username;
