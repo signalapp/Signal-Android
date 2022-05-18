@@ -134,7 +134,7 @@ object ContactSearchItems {
   /**
    * Base Recipient View Holder
    */
-  private abstract class BaseRecipientViewHolder<T, D : ContactSearchData>(itemView: View, private val displayCheckBox: Boolean, val onClick: (D, Boolean) -> Unit) : MappingViewHolder<T>(itemView) {
+  private abstract class BaseRecipientViewHolder<T : MappingModel<T>, D : ContactSearchData>(itemView: View, private val displayCheckBox: Boolean, val onClick: (D, Boolean) -> Unit) : MappingViewHolder<T>(itemView) {
 
     protected val avatar: AvatarImageView = itemView.findViewById(R.id.contact_photo_image)
     protected val badge: BadgeImageView = itemView.findViewById(R.id.contact_badge)

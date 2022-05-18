@@ -115,7 +115,7 @@ class NotificationsSettingsViewModel(private val sharedPreferences: SharedPrefer
   )
 
   class Factory(private val sharedPreferences: SharedPreferences) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return requireNotNull(modelClass.cast(NotificationsSettingsViewModel(sharedPreferences)))
     }
   }

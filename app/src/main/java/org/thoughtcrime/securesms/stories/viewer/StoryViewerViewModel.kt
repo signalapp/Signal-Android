@@ -165,7 +165,7 @@ class StoryViewerViewModel(
     private val storyViewerArgs: StoryViewerArgs,
     private val repository: StoryViewerRepository
   ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(
         StoryViewerViewModel(
           storyViewerArgs,

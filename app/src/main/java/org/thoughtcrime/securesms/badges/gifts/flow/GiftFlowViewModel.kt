@@ -239,7 +239,7 @@ class GiftFlowViewModel(
     private val repository: GiftFlowRepository,
     private val donationPaymentRepository: DonationPaymentRepository
   ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(
         GiftFlowViewModel(
           repository,

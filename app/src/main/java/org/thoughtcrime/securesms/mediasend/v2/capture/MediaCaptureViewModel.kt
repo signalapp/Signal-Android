@@ -47,7 +47,7 @@ class MediaCaptureViewModel(private val repository: MediaCaptureRepository) : Vi
   }
 
   class Factory(private val repository: MediaCaptureRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return requireNotNull(modelClass.cast(MediaCaptureViewModel(repository)))
     }
   }

@@ -22,13 +22,8 @@ object DonationErrorDialogs {
 
     val params = DonationErrorParams.create(context, throwable, callback)
 
-    if (params.title != null) {
-      builder.setTitle(params.title)
-    }
-
-    if (params.message != null) {
-      builder.setMessage(params.message)
-    }
+    builder.setTitle(params.title)
+      .setMessage(params.message)
 
     if (params.positiveAction != null) {
       builder.setPositiveButton(params.positiveAction.label) { _, _ -> params.positiveAction.action() }

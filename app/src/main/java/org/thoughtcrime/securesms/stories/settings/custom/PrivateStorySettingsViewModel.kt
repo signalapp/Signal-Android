@@ -56,7 +56,7 @@ class PrivateStorySettingsViewModel(private val distributionListId: Distribution
   }
 
   class Factory(private val privateStoryItemData: DistributionListId, private val repository: PrivateStorySettingsRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(PrivateStorySettingsViewModel(privateStoryItemData, repository)) as T
     }
   }

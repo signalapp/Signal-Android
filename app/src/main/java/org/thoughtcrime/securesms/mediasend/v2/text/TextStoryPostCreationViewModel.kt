@@ -132,7 +132,7 @@ class TextStoryPostCreationViewModel(private val repository: TextStoryPostSendRe
   }
 
   class Factory(private val repository: TextStoryPostSendRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(TextStoryPostCreationViewModel(repository)) as T
     }
   }

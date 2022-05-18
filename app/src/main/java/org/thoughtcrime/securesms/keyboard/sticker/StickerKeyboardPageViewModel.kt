@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.keyboard.sticker
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -56,10 +55,10 @@ class StickerKeyboardPageViewModel(private val repository: StickerKeyboardReposi
     repository.getStickerPacks { keyboardStickerPacks.postValue(it) }
   }
 
-  class Factory(context: Context) : ViewModelProvider.Factory {
+  class Factory : ViewModelProvider.Factory {
     private val repository = StickerKeyboardRepository(SignalDatabase.stickers)
 
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return requireNotNull(modelClass.cast(StickerKeyboardPageViewModel(repository)))
     }
   }

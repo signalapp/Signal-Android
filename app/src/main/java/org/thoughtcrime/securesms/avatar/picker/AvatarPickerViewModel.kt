@@ -183,7 +183,7 @@ sealed class AvatarPickerViewModel(private val repository: AvatarPickerRepositor
     private val isNewGroup: Boolean,
     private val groupAvatarMedia: Media?
   ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       val viewModel = if (groupId == null && !isNewGroup) {
         SelfAvatarPickerViewModel(repository)
       } else if (groupId == null) {

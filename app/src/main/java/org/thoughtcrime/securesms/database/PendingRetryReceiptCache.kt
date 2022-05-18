@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.database
 
-import android.content.Context
 import androidx.annotation.VisibleForTesting
 import org.thoughtcrime.securesms.database.model.PendingRetryReceiptModel
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -15,9 +14,8 @@ import org.thoughtcrime.securesms.util.FeatureFlags
  * future reads can happen in memory.
  */
 class PendingRetryReceiptCache @VisibleForTesting constructor(
-  private val database: PendingRetryReceiptDatabase
+  private val database: PendingRetryReceiptDatabase = SignalDatabase.pendingRetryReceipts
 ) {
-  constructor(context: Context) : this(SignalDatabase.pendingRetryReceipts)
 
   private val pendingRetries: MutableMap<RemoteMessageId, PendingRetryReceiptModel> = HashMap()
   private var populated: Boolean = false

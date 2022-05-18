@@ -84,7 +84,7 @@ class MultiselectForwardFragment :
   private var handler: Handler? = null
 
   private fun createViewModelFactory(): MultiselectForwardViewModel.Factory {
-    return MultiselectForwardViewModel.Factory(getMultiShareArgs(), isSelectionOnly, MultiselectForwardRepository(requireContext()))
+    return MultiselectForwardViewModel.Factory(getMultiShareArgs(), isSelectionOnly, MultiselectForwardRepository())
   }
 
   private fun getMultiShareArgs(): ArrayList<MultiShareArgs> = requireNotNull(requireArguments().getParcelableArrayList(ARG_MULTISHARE_ARGS))

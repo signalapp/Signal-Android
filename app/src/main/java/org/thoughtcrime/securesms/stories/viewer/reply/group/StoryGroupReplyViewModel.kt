@@ -59,7 +59,7 @@ class StoryGroupReplyViewModel(storyId: Long, repository: StoryGroupReplyReposit
   }
 
   class Factory(private val storyId: Long, private val repository: StoryGroupReplyRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(StoryGroupReplyViewModel(storyId, repository)) as T
     }
   }

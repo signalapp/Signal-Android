@@ -296,7 +296,7 @@ class SubscribeViewModel(
     private val donationPaymentRepository: DonationPaymentRepository,
     private val fetchTokenRequestCode: Int
   ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(SubscribeViewModel(subscriptionsRepository, donationPaymentRepository, fetchTokenRequestCode))!!
     }
   }

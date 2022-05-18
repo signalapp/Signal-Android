@@ -84,7 +84,7 @@ class SetCurrencyViewModel(
   }
 
   class Factory(private val isOneTime: Boolean, private val supportedCurrencyCodes: List<String>) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(SetCurrencyViewModel(isOneTime, supportedCurrencyCodes))!!
     }
   }

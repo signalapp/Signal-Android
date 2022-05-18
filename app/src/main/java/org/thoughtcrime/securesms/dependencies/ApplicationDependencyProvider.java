@@ -271,7 +271,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   @Override
   public @NonNull PendingRetryReceiptCache providePendingRetryReceiptCache() {
-    return new PendingRetryReceiptCache(context);
+    return new PendingRetryReceiptCache();
   }
 
   @Override

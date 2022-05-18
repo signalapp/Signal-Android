@@ -65,7 +65,7 @@ class ConversationListTabsViewModel(repository: ConversationListTabRepository) :
   }
 
   class Factory(private val repository: ConversationListTabRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(ConversationListTabsViewModel(repository)) as T
     }
   }

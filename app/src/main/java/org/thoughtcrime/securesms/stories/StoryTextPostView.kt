@@ -108,7 +108,7 @@ class StoryTextPostView @JvmOverloads constructor(
         context.getString(R.string.TextStoryPostCreationFragment__tap_to_add_text)
       }.let {
         if (state.textFont.isAllCaps) {
-          it.toString().toUpperCase(Locale.getDefault())
+          it.toString().uppercase(Locale.getDefault())
         } else {
           it
         }
@@ -134,7 +134,7 @@ class StoryTextPostView @JvmOverloads constructor(
     setPostBackground(ChatColors.forChatColor(ChatColors.Id.NotSet, storyTextPost.background).chatBubbleMask)
 
     if (font.isAllCaps) {
-      setText(storyTextPost.body.toUpperCase(Locale.getDefault()), false)
+      setText(storyTextPost.body.uppercase(Locale.getDefault()), false)
     } else {
       setText(storyTextPost.body, false)
     }

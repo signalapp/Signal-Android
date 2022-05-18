@@ -213,7 +213,7 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
         DonationReceiptRecord.createForGift(price)
       }
 
-      val donationTypeLabel = donationReceiptRecord.type.code.capitalize(Locale.US)
+      val donationTypeLabel = donationReceiptRecord.type.code.replaceFirstChar { c -> if (c.isLowerCase()) c.titlecase(Locale.US) else c.toString() }
 
       Log.d(TAG, "Confirmed payment intent. Recording $donationTypeLabel receipt and submitting badge reimbursement job chain.", true)
       SignalDatabase.donationReceipts.addReceipt(donationReceiptRecord)

@@ -33,7 +33,7 @@ class StoryViewsViewModel(storyId: Long, repository: StoryViewsRepository) : Vie
     private val storyId: Long,
     private val repository: StoryViewsRepository
   ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(StoryViewsViewModel(storyId, repository)) as T
     }
   }

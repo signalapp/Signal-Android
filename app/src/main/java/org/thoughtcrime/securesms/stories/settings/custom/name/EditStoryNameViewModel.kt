@@ -13,7 +13,7 @@ class EditStoryNameViewModel(private val privateStoryId: DistributionListId, pri
   }
 
   class Factory(private val privateStoryId: DistributionListId, private val repository: EditStoryNameRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(EditStoryNameViewModel(privateStoryId, repository)) as T
     }
   }

@@ -471,7 +471,7 @@ sealed class ConversationSettingsViewModel(
     private val repository: ConversationSettingsRepository,
   ) : ViewModelProvider.Factory {
 
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return requireNotNull(
         modelClass.cast(
           when {

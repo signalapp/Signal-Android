@@ -68,7 +68,7 @@ class BaseStoryRecipientSelectionViewModel(
     private val distributionListId: DistributionListId?,
     private val repository: BaseStoryRecipientSelectionRepository
   ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(BaseStoryRecipientSelectionViewModel(distributionListId, repository)) as T
     }
   }

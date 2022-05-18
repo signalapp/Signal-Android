@@ -53,7 +53,7 @@ class SoundsAndNotificationsSettingsViewModel(
     private val recipientId: RecipientId,
     private val repository: SoundsAndNotificationsSettingsRepository
   ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return requireNotNull(modelClass.cast(SoundsAndNotificationsSettingsViewModel(recipientId, repository)))
     }
   }

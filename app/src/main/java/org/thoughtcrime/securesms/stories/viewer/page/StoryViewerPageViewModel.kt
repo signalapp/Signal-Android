@@ -237,7 +237,7 @@ class StoryViewerPageViewModel(
   }
 
   class Factory(private val recipientId: RecipientId, private val initialStoryId: Long, private val repository: StoryViewerPageRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(StoryViewerPageViewModel(recipientId, initialStoryId, repository)) as T
     }
   }

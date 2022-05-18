@@ -9,7 +9,7 @@ dependencyResolutionManagement {
             version('androidx-camera', '1.0.0-beta11')
             version('androidx-lifecycle', '2.3.1')
             version('mp4parser', '1.9.39')
-            version('kotlin', '1.5.10')
+            version('kotlin', '1.6.21')
 
             // Desugaring
             alias('android-tools-desugar').to('com.android.tools:desugar_jdk_libs:1.1.5')

@@ -51,7 +51,7 @@ class StoriesLandingViewModel(private val storiesLandingRepository: StoriesLandi
   }
 
   class Factory(private val storiesLandingRepository: StoriesLandingRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(StoriesLandingViewModel(storiesLandingRepository)) as T
     }
   }

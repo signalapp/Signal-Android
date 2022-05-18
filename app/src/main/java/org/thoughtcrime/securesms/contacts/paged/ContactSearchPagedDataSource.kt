@@ -14,7 +14,7 @@ class ContactSearchPagedDataSource(
 ) : PagedDataSource<ContactSearchKey, ContactSearchData> {
 
   override fun size(): Int {
-    return contactConfiguration.sections.sumBy {
+    return contactConfiguration.sections.sumOf {
       getSectionSize(it, contactConfiguration.query)
     }
   }

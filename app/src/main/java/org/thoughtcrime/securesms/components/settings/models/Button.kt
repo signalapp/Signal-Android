@@ -13,8 +13,8 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 object Button {
 
   fun register(mappingAdapter: MappingAdapter) {
-    mappingAdapter.registerFactory(Model.Primary::class.java, LayoutFactory({ ViewHolder(it) as MappingViewHolder<Model.Primary> }, R.layout.dsl_button_primary))
-    mappingAdapter.registerFactory(Model.SecondaryNoOutline::class.java, LayoutFactory({ ViewHolder(it) as MappingViewHolder<Model.SecondaryNoOutline> }, R.layout.dsl_button_secondary))
+    mappingAdapter.registerFactory(Model.Primary::class.java, LayoutFactory({ ViewHolder(it) }, R.layout.dsl_button_primary))
+    mappingAdapter.registerFactory(Model.SecondaryNoOutline::class.java, LayoutFactory({ ViewHolder(it) }, R.layout.dsl_button_secondary))
   }
 
   sealed class Model<T : Model<T>>(
@@ -42,11 +42,11 @@ object Button {
     ) : Model<SecondaryNoOutline>(title, icon, isEnabled, onClick)
   }
 
-  class ViewHolder(itemView: View) : MappingViewHolder<Model<*>>(itemView) {
+  class ViewHolder<T : Model<T>>(itemView: View) : MappingViewHolder<T>(itemView) {
 
     private val button: MaterialButton = itemView as MaterialButton
 
-    override fun bind(model: Model<*>) {
+    override fun bind(model: T) {
       button.text = model.title?.resolve(context)
       button.setOnClickListener {
         model.onClick()

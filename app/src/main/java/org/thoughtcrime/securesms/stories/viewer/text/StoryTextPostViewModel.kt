@@ -72,7 +72,7 @@ class StoryTextPostViewModel(recordId: Long, repository: StoryTextPostRepository
   }
 
   class Factory(private val recordId: Long, private val repository: StoryTextPostRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(StoryTextPostViewModel(recordId, repository)) as T
     }
   }

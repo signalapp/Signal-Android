@@ -448,7 +448,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
           fetch.id
         }
         is RecipientFetch.MatchAndReassignE164 -> {
-          removePhoneNumber(fetch.e164Id, db)
+          removePhoneNumber(fetch.e164Id)
           setPhoneNumberOrThrowSilent(fetch.id, fetch.e164)
           recipientsNeedingRefresh = listOf(fetch.id, fetch.e164Id)
           recipientChangedNumber = fetch.changedNumber
@@ -475,7 +475,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
           RecipientId.from(id)
         }
         is RecipientFetch.InsertAndReassignE164 -> {
-          removePhoneNumber(fetch.e164Id, db)
+          removePhoneNumber(fetch.e164Id)
           recipientsNeedingRefresh = listOf(fetch.e164Id)
           val id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(fetch.e164, fetch.serviceId))
           RecipientId.from(id)
@@ -1906,7 +1906,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
   }
 
-  private fun removePhoneNumber(recipientId: RecipientId, db: SQLiteDatabase) {
+  private fun removePhoneNumber(recipientId: RecipientId) {
     val values = ContentValues().apply {
       putNull(PHONE)
       putNull(PNI_COLUMN)
@@ -2047,7 +2047,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   fun markRegisteredOrThrow(id: RecipientId, serviceId: ServiceId) {
     val contentValues = ContentValues(2).apply {
       put(REGISTERED, RegisteredState.REGISTERED.id)
-      put(SERVICE_ID, serviceId.toString().toLowerCase())
+      put(SERVICE_ID, serviceId.toString().lowercase())
     }
     if (update(id, contentValues)) {
       setStorageIdIfNotSet(id)
@@ -2074,7 +2074,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         val values = ContentValues(2).apply {
           put(REGISTERED, RegisteredState.REGISTERED.id)
           if (aci != null) {
-            put(SERVICE_ID, aci.toString().toLowerCase())
+            put(SERVICE_ID, aci.toString().lowercase())
           }
         }
 
@@ -2483,7 +2483,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       .toList()
 
     val blockedUuid = blocked
-      .map { b: SignalServiceAddress -> b.serviceId.toString().toLowerCase() }
+      .map { b: SignalServiceAddress -> b.serviceId.toString().lowercase() }
       .toList()
 
     val db = writableDatabase
@@ -2910,7 +2910,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     val values = ContentValues()
     values.put(PHONE, e164)
     if (serviceId != null) {
-      values.put(SERVICE_ID, serviceId.toString().toLowerCase())
+      values.put(SERVICE_ID, serviceId.toString().lowercase())
       values.put(REGISTERED, RegisteredState.REGISTERED.id)
       values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(StorageSyncHelper.generateKey()))
       values.put(AVATAR_COLOR, AvatarColor.random().serialize())

@@ -51,7 +51,7 @@ class StoryDirectReplyViewModel(
     private val groupDirectReplyRecipientId: RecipientId?,
     private val repository: StoryDirectReplyRepository
   ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(
         StoryDirectReplyViewModel(storyId, groupDirectReplyRecipientId, repository)
       ) as T
