@@ -3,16 +3,20 @@ package org.session.libsession.messaging.sending_receiving.pollers
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
+import nl.komponents.kovenant.task
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.jobs.BatchMessageReceiveJob
 import org.session.libsession.messaging.jobs.JobQueue
-import org.session.libsession.messaging.jobs.MessageReceiveJob
 import org.session.libsession.messaging.jobs.MessageReceiveParameters
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.crypto.getRandomElementOrNull
 import org.session.libsignal.utilities.Log
-import java.util.*
+import org.session.libsignal.utilities.Namespace
+import org.session.libsignal.utilities.defaultRequiresAuth
+import org.session.libsignal.utilities.hasNamespaces
+import java.text.DateFormat
+import java.util.Date
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledFuture
 import java.util.concurrent.TimeUnit
@@ -98,7 +102,26 @@ class ClosedGroupPollerV2 {
         val promise = SnodeAPI.getSwarm(groupPublicKey).bind { swarm ->
             val snode = swarm.getRandomElementOrNull() ?: throw InsufficientSnodesException() // Should be cryptographically secure
             if (!isPolling(groupPublicKey)) { throw PollingCanceledException() }
-            SnodeAPI.getRawMessages(snode, groupPublicKey).map { SnodeAPI.parseRawMessagesResponse(it, snode, groupPublicKey) }
+            val currentForkInfo = SnodeAPI.forkInfo
+            when {
+                currentForkInfo.defaultRequiresAuth() -> SnodeAPI.getRawMessages(snode, groupPublicKey, requiresAuth = false, namespace = Namespace.UNAUTHENTICATED_CLOSED_GROUP)
+                    .map { SnodeAPI.parseRawMessagesResponse(it, snode, groupPublicKey, Namespace.UNAUTHENTICATED_CLOSED_GROUP) }
+                currentForkInfo.hasNamespaces() -> task {
+                    val unAuthed = SnodeAPI.getRawMessages(snode, groupPublicKey, requiresAuth = false, namespace = Namespace.UNAUTHENTICATED_CLOSED_GROUP)
+                        .map { SnodeAPI.parseRawMessagesResponse(it, snode, groupPublicKey, Namespace.UNAUTHENTICATED_CLOSED_GROUP) }
+                    val default = SnodeAPI.getRawMessages(snode, groupPublicKey, requiresAuth = false, namespace = Namespace.DEFAULT)
+                        .map { SnodeAPI.parseRawMessagesResponse(it, snode, groupPublicKey, Namespace.DEFAULT) }
+                    val unAuthedResult = unAuthed.get()
+                    val defaultResult = default.get()
+                    val format = DateFormat.getTimeInstance()
+                    if (unAuthedResult.isNotEmpty() || defaultResult.isNotEmpty()) {
+                        Log.d("Poller", "@${format.format(Date())}Polled ${unAuthedResult.size} from -10, ${defaultResult.size} from 0")
+                    }
+                    unAuthedResult + defaultResult
+                }
+                else -> SnodeAPI.getRawMessages(snode, groupPublicKey, requiresAuth = false, namespace = Namespace.DEFAULT)
+                    .map { SnodeAPI.parseRawMessagesResponse(it, snode, groupPublicKey) }
+            }
         }
         promise.success { envelopes ->
             if (!isPolling(groupPublicKey)) { return@success }

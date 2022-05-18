@@ -64,9 +64,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV30                          = 51;
   private static final int lokiV31                          = 52;
   private static final int lokiV32                          = 53;
+  private static final int lokiV33                          = 54;
 
   // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
-  private static final int    DATABASE_VERSION = lokiV32;
+  private static final int    DATABASE_VERSION = lokiV33;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -143,6 +144,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(RecipientDatabase.getCreateApprovedCommand());
     db.execSQL(RecipientDatabase.getCreateApprovedMeCommand());
     db.execSQL(MmsDatabase.getCreateMessageRequestResponseCommand());
+    db.execSQL(LokiAPIDatabase.CREATE_FORK_INFO_TABLE_COMMAND);
+    db.execSQL(LokiAPIDatabase.CREATE_DEFAULT_FORK_INFO_COMMAND);
+    db.execSQL(LokiAPIDatabase.UPDATE_HASHES_INCLUDE_NAMESPACE_COMMAND);
+    db.execSQL(LokiAPIDatabase.UPDATE_RECEIVED_INCLUDE_NAMESPACE_COMMAND);
 
     executeStatements(db, SmsDatabase.CREATE_INDEXS);
     executeStatements(db, MmsDatabase.CREATE_INDEXS);
@@ -335,6 +340,13 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       if (oldVersion < lokiV32) {
         db.execSQL(RecipientDatabase.getUpdateResetApprovedCommand());
         db.execSQL(RecipientDatabase.getUpdateApprovedSelectConversations());
+      }
+
+      if (oldVersion < lokiV33) {
+        db.execSQL(LokiAPIDatabase.CREATE_FORK_INFO_TABLE_COMMAND);
+        db.execSQL(LokiAPIDatabase.CREATE_DEFAULT_FORK_INFO_COMMAND);
+        db.execSQL(LokiAPIDatabase.UPDATE_HASHES_INCLUDE_NAMESPACE_COMMAND);
+        db.execSQL(LokiAPIDatabase.UPDATE_RECEIVED_INCLUDE_NAMESPACE_COMMAND);
       }
 
       db.setTransactionSuccessful();

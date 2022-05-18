@@ -8,9 +8,17 @@ import org.session.libsession.messaging.jobs.MessageSendJob
 import org.session.libsession.messaging.jobs.NotifyPNServerJob
 import org.session.libsession.messaging.messages.Destination
 import org.session.libsession.messaging.messages.Message
-import org.session.libsession.messaging.messages.control.*
-import org.session.libsession.messaging.messages.visible.*
-import org.session.libsession.messaging.open_groups.*
+import org.session.libsession.messaging.messages.control.CallMessage
+import org.session.libsession.messaging.messages.control.ClosedGroupControlMessage
+import org.session.libsession.messaging.messages.control.ConfigurationMessage
+import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
+import org.session.libsession.messaging.messages.control.UnsendRequest
+import org.session.libsession.messaging.messages.visible.LinkPreview
+import org.session.libsession.messaging.messages.visible.Profile
+import org.session.libsession.messaging.messages.visible.Quote
+import org.session.libsession.messaging.messages.visible.VisibleMessage
+import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
+import org.session.libsession.messaging.open_groups.OpenGroupMessageV2
 import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.snode.RawResponsePromise
 import org.session.libsession.snode.SnodeAPI
@@ -22,8 +30,11 @@ import org.session.libsession.utilities.SSKEnvironment
 import org.session.libsignal.crypto.PushTransportDetails
 import org.session.libsignal.protos.SignalServiceProtos
 import org.session.libsignal.utilities.Base64
-import org.session.libsignal.utilities.Log
+import org.session.libsignal.utilities.Namespace
+import org.session.libsignal.utilities.defaultRequiresAuth
+import org.session.libsignal.utilities.hasNamespaces
 import org.session.libsignal.utilities.hexEncodedPublicKey
+import java.util.concurrent.atomic.AtomicInteger
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment as SignalAttachment
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview as SignalLinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel as SignalQuote
@@ -125,6 +136,15 @@ object MessageSender {
             // Wrap the result
             val kind: SignalServiceProtos.Envelope.Type
             val senderPublicKey: String
+            // TODO: this might change in future for config messages
+            val forkInfo = SnodeAPI.forkInfo
+            val namespaces: List<Int> = when {
+                destination is Destination.ClosedGroup
+                        && forkInfo.defaultRequiresAuth() -> listOf(Namespace.UNAUTHENTICATED_CLOSED_GROUP)
+                destination is Destination.ClosedGroup
+                        && forkInfo.hasNamespaces() -> listOf(Namespace.UNAUTHENTICATED_CLOSED_GROUP, Namespace.DEFAULT)
+                else -> listOf(Namespace.DEFAULT)
+            }
             when (destination) {
                 is Destination.Contact -> {
                     kind = SignalServiceProtos.Envelope.Type.SESSION_MESSAGE
@@ -148,11 +168,11 @@ object MessageSender {
             if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
                 SnodeModule.shared.broadcaster.broadcast("sendingMessage", message.sentTimestamp!!)
             }
-            SnodeAPI.sendMessage(snodeMessage).success { promises: Set<RawResponsePromise> ->
+            namespaces.map { namespace -> SnodeAPI.sendMessage(snodeMessage, requiresAuth = false, namespace = namespace) }.let { promises ->
                 var isSuccess = false
                 val promiseCount = promises.size
-                var errorCount = 0
-                promises.iterator().forEach { promise: RawResponsePromise ->
+                var errorCount = AtomicInteger(0)
+                promises.forEach { promise: RawResponsePromise ->
                     promise.success {
                         if (isSuccess) { return@success } // Succeed as soon as the first promise succeeds
                         isSuccess = true
@@ -162,7 +182,7 @@ object MessageSender {
                         val hash = it["hash"] as? String
                         message.serverHash = hash
                         handleSuccessfulMessageSend(message, destination, isSyncMessage)
-                        var shouldNotify = ((message is VisibleMessage || message is UnsendRequest || message is CallMessage) && !isSyncMessage)
+                        val shouldNotify = ((message is VisibleMessage || message is UnsendRequest || message is CallMessage) && !isSyncMessage)
                         /*
                         if (message is ClosedGroupControlMessage && message.kind is ClosedGroupControlMessage.Kind.New) {
                             shouldNotify = true
@@ -175,14 +195,11 @@ object MessageSender {
                         deferred.resolve(Unit)
                     }
                     promise.fail {
-                        errorCount += 1
-                        if (errorCount != promiseCount) { return@fail } // Only error out if all promises failed
+                        errorCount.getAndIncrement()
+                        if (errorCount.get() != promiseCount) { return@fail } // Only error out if all promises failed
                         handleFailure(it)
                     }
                 }
-            }.fail {
-                Log.d("Loki", "Couldn't send message due to error: $it.")
-                handleFailure(it)
             }
         } catch (exception: Exception) {
             handleFailure(exception)

@@ -98,7 +98,7 @@ class VisibleMessageContentView : LinearLayout {
         linkPreviewLayout.width = if (mediaThumbnailMessage) 0 else ViewGroup.LayoutParams.WRAP_CONTENT
         binding.linkPreviewView.layoutParams = linkPreviewLayout
 
-        binding.untrustedView.isVisible = !contactIsTrusted && message is MmsMessageRecord && message.quote == null
+        binding.untrustedView.isVisible = !contactIsTrusted && message is MmsMessageRecord && message.quote == null && message.linkPreviews.isEmpty()
         binding.voiceMessageView.isVisible = contactIsTrusted && message is MmsMessageRecord && message.slideDeck.audioSlide != null
         binding.documentView.isVisible = contactIsTrusted && message is MmsMessageRecord && message.slideDeck.documentSlide != null
         binding.albumThumbnailView.isVisible = mediaThumbnailMessage
