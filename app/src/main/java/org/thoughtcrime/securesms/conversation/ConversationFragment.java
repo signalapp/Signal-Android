@@ -203,6 +203,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
   private static final int SCROLL_ANIMATION_THRESHOLD = 50;
   private static final int CODE_ADD_EDIT_CONTACT      = 77;
+  private static final int MAX_SCROLL_DELAY_COUNT     = 5;
 
   private final ActionModeCallback  actionModeCallback     = new ActionModeCallback();
   private final ItemClickListener   selectionClickListener = new ConversationFragmentItemClickListener();
@@ -1196,13 +1197,32 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
                            .submit();
     } else if (conversation.getMessageRequestData().isMessageRequestAccepted()) {
       snapToTopDataObserver.buildScrollPosition(conversation.shouldScrollToLastSeen() ? lastSeenPosition : lastScrolledPosition)
-                           .withOnPerformScroll((layoutManager, position) -> layoutManager.scrollToPositionWithOffset(position, list.getHeight() - (conversation.shouldScrollToLastSeen() ? lastSeenScrollOffset : 0)))
+                           .withOnPerformScroll((layoutManager, position) -> scrollToLastSeenIfNecessary(conversation, layoutManager, position, 0))
                            .withOnScrollRequestComplete(afterScroll)
                            .submit();
     } else {
       snapToTopDataObserver.buildScrollPosition(adapter.getItemCount() - 1)
                            .withOnScrollRequestComplete(afterScroll)
                            .submit();
+    }
+  }
+
+  private void scrollToLastSeenIfNecessary(ConversationData conversation, LinearLayoutManager layoutManager, int position, int count) {
+    if (getView() == null) {
+      Log.w(TAG, "[scrollToLastSeenIfNecessary] No view! Skipping.");
+      return;
+    }
+
+    if (count < MAX_SCROLL_DELAY_COUNT && (list.getHeight() == 0 || lastSeenScrollOffset == 0)) {
+      Log.w(TAG, "[scrollToLastSeenIfNecessary] List height or scroll offsets not available yet. Delaying jumping to last seen.");
+      requireView().post(() -> scrollToLastSeenIfNecessary(conversation, layoutManager, position, count + 1));
+    } else {
+      if (count >= MAX_SCROLL_DELAY_COUNT) {
+        Log.w(TAG, "[scrollToLastSeeenIfNecessary] Hit maximum call count! Doing default behavior.");
+      }
+
+      int offset = list.getHeight() - (conversation.shouldScrollToLastSeen() ? lastSeenScrollOffset : 0);
+      layoutManager.scrollToPositionWithOffset(position, offset);
     }
   }
 
