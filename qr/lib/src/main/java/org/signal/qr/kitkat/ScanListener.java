@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.qr;
+package org.signal.qr.kitkat;
 
 import androidx.annotation.NonNull;
 

@@ -1,0 +1,18 @@
+apply from: "$rootProject.projectDir/signalModule.gradle"
+
+dependencies {
+    implementation libs.androidx.camera.core
+    implementation libs.androidx.camera.camera2
+    implementation libs.androidx.camera.lifecycle
+    implementation libs.androidx.camera.view
+    implementation libs.androidx.lifecycle.common.java8
+
+    implementation libs.google.zxing.android.integration
+    implementation libs.google.zxing.core
+
+    implementation libs.rxjava3.rxjava
+
+    // Included to force proper versions for verification and match main app
+    implementation 'androidx.lifecycle:lifecycle-livedata:2.3.1'
+    implementation 'com.google.guava:guava:30.0-android'
+}

@@ -18,6 +18,8 @@ include ':spinner'
 include ':spinner-app'
 include ':contacts'
 include ':contacts-app'
+include ':qr'
+include ':qr-app'
 
 project(':app').name = 'Signal-Android'
 project(':paging').projectDir = file('paging/lib')
@@ -39,6 +41,9 @@ project(':spinner-app').projectDir = file('spinner/app')
 
 project(':contacts').projectDir = file('contacts/lib')
 project(':contacts-app').projectDir = file('contacts/app')
+
+project(':qr').projectDir = file('qr/lib')
+project(':qr-app').projectDir = file('qr/app')
 
 rootProject.name='Signal'
 

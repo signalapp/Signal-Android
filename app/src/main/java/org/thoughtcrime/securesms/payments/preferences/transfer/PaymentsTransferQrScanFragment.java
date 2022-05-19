@@ -13,11 +13,11 @@ import androidx.navigation.Navigation;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
+import org.signal.qr.kitkat.ScanningThread;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.camera.CameraView;
 import org.thoughtcrime.securesms.payments.MobileCoinPublicAddress;
-import org.thoughtcrime.securesms.qr.ScanningThread;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 public final class PaymentsTransferQrScanFragment extends LoggingFragment {

@@ -455,6 +455,7 @@ dependencies {
     implementation project(':image-editor')
     implementation project(':donations')
     implementation project(':contacts')
+    implementation project(':qr')
 
     implementation libs.libsignal.android
     implementation libs.google.protobuf.javalite
