@@ -96,7 +96,7 @@ public final class FeatureFlags {
   private static final String PHONE_NUMBER_PRIVACY              = "android.pnp";
   private static final String USE_FCM_FOREGROUND_SERVICE        = "android.useFcmForegroundService.3";
   private static final String STORIES_AUTO_DOWNLOAD_MAXIMUM     = "android.stories.autoDownloadMaximum";
-  private static final String GIFT_BADGES                       = "android.giftBadges.2";
+  private static final String GIFT_BADGES                       = "android.giftBadges.3";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
