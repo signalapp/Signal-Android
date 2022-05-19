@@ -826,6 +826,9 @@
   <plurals name="MediaOverviewActivity_delete_plural">
     <item quantity="other">삭제</item>
   </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="other">%1$d개 선택됨 (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">파일</string>
   <string name="MediaOverviewActivity_audio">오디오</string>
   <string name="MediaOverviewActivity_video">동영상</string>
@@ -1033,6 +1036,9 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">그룹 참가 요청을 보냈습니다.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s가 그룹 링크로 참가하기를 요청합니다.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="other">%1$s님이 그룹 링크를 통한 %2$d 그룹 가입을 요청하였지만 취소했습니다.</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s 님이 그룹 가입 요청을 승인했습니다.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s 님이 %2$s 님의 그룹 가입 요청을 승인했습니다.</string>
@@ -1241,6 +1247,7 @@
   <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s이 당신과 %2$s, 그리고 %3$s에게 전화를 걸고 있습니다.</string>
   <string name="WebRtcCallView__no_one_else_is_here">아무도 없음</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s 님이 통화 중입니다.</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s이 이 통화에 있습니다</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s 및 %2$s 님이 통화에 참여했습니다.</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s 님이 발표 중입니다.</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1298,6 +1305,7 @@
   <string name="RegistrationActivity_terms_and_privacy">이용 약관 &amp; 개인 정보 보호 정책</string>
   <string name="RegistrationActivity_rate_limited_to_service">이 전화번호를 등록하려고 너무 많이 시도했습니다. 나중에 다시 시도하세요.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">서비스에 연결할 수 없습니다. 네트워크 연결을 확인 후 다시 시도해 주세요.</string>
+  <string name="RegistrationActivity_non_standard_number_format">비표준 전화번호 형식</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">디버그 로그를 보내기까지 %d단계 남았습니다.</item>
   </plurals>
@@ -1342,6 +1350,11 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">더 보기</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN이 성공적으로 인증되었습니다. 나중에 다시 알려드리겠습니다.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN이 성공적으로 인증되었습니다. 내일 다시 알려드리겠습니다. </string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN이 성공적으로 인증되었습니다. 며칠 내에 알려드리겠습니다.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN이 성공적으로 인증되었습니다. 1주 뒤에 알려드리겠습니다. </string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN이 성공적으로 인증되었습니다. 2주 뒤에 알려드리겠습니다.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN이 성공적으로 인증되었습니다. 한 달 후에 다시 알려 드리겠습니다.</string>
   <!--Slide-->
   <string name="Slide_image">이미지</string>
@@ -2961,6 +2974,8 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">당신의 새 전화번호</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">새 전화번호</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">입력한 전화번호가 내 계정과 일치하지 않습니다.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">기존 전화번호의 국가 코드를 입력해야합니다.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">기존 전화번호를 입력해야합니다.</string>
   <!--ChangeNumberVerifyFragment-->
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__edit_number">전화번호 수정</string>
@@ -2991,7 +3006,7 @@
   <!--Notification preference header-->
   <string name="NotificationsSettingsFragment__notification_profiles">알림 프로필</string>
   <!--Notification preference option header-->
-  <string name="NotificationsSettingsFragment__profiles">알림 프로필</string>
+  <string name="NotificationsSettingsFragment__profiles">프로필</string>
   <!--Notification preference summary text-->
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
@@ -3277,6 +3292,7 @@
   <!--Stripe decline code issuer not available-->
   <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">당신의 프로필에 이름을 붙이세요</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">프로필 이름</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
@@ -3303,7 +3319,7 @@
   <string name="SelectRecipientsFragment__add">추가</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
   <!--Header shown above list of all notification profiles-->
-  <string name="NotificationProfilesFragment__profiles">알림 프로필</string>
+  <string name="NotificationProfilesFragment__profiles">프로필</string>
   <!--Button that starts the create new notification profile flow-->
   <string name="NotificationProfilesFragment__new_profile">새 프로필</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
