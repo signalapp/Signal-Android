@@ -153,7 +153,7 @@ public class LogSectionSystemInfo implements LogSection {
   }
 
   private static String getSigningString(@NonNull Context context) {
-    return AppSignatureUtil.getAppSignature(context).orElse("Unknown");
+    return AppSignatureUtil.getAppSignature(context);
   }
 
   private static String getPlayServicesString(@NonNull Context context) {
