@@ -1172,6 +1172,9 @@ public class ConversationParentFragment extends Fragment
     if (emojiDrawerStub.resolved() && emojiDrawerStub.get().isShowing() && !emojiDrawerStub.get().isEmojiSearchMode()) {
       emojiDrawerStub.get().hide(true);
     }
+    if (attachmentKeyboardStub.resolved() && attachmentKeyboardStub.get().isShowing()) {
+      attachmentKeyboardStub.get().hide(true);
+    }
   }
 
   @Subscribe(threadMode = ThreadMode.MAIN)
