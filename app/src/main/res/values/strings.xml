@@ -4569,7 +4569,7 @@
     <string name="StoryViewerPageFragment__s_to_s">%1$s to %2$s</string>
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Reply</string>
-    <!-- Displayed when viewing a group post from another user with no replies -->
+    <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Reply to group</string>
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">No views yet</string>
@@ -4766,7 +4766,9 @@
     <string name="StoriesLinkPopup__visit_link">Visit link</string>
 
     <!-- Duration and price information -->
-    <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d day duration</string>
+    <plurals name="GiftRowItem_s_dot_d_day_duration">
+        <item quantity="other">%1$s · %2$d day duration</item>
+    </plurals>
     <!-- Tagline for gift row items -->
     <string name="GiftRowItem__send_a_gift_badge">Send a gift badge</string>
     <!-- Headline text on start fragment for gifting a badge -->

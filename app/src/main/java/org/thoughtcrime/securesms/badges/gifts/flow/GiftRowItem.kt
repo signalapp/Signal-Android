@@ -52,7 +52,7 @@ object GiftRowItem {
 
       val duration = TimeUnit.MILLISECONDS.toDays(model.giftBadge.duration)
 
-      priceView.text = context.getString(R.string.GiftRowItem__s_dot_d_day_duration, price, duration)
+      priceView.text = context.resources.getQuantityString(R.plurals.GiftRowItem_s_dot_d_day_duration, duration.toInt(), price, duration)
     }
   }
 }
