@@ -49,7 +49,7 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
     videoView = itemView.findViewById(R.id.video_player);
 
     videoView.setWindow(requireActivity().getWindow());
-    videoView.setVideoSource(new VideoSlide(getContext(), uri, size, false), autoPlay);
+    videoView.setVideoSource(new VideoSlide(getContext(), uri, size, false), autoPlay, TAG);
     videoView.setPlayerPositionDiscontinuityCallback((v, r) -> {
       if (events.getVideoControlsDelegate() != null) {
         events.getVideoControlsDelegate().onPlayerPositionDiscontinuity(r);

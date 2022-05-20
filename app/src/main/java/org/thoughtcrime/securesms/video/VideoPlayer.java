@@ -121,9 +121,9 @@ public class VideoPlayer extends FrameLayout {
 
   private MediaItem mediaItem;
 
-  public void setVideoSource(@NonNull VideoSlide videoSource, boolean autoplay) {
+  public void setVideoSource(@NonNull VideoSlide videoSource, boolean autoplay, String poolTag) {
     if (exoPlayer == null) {
-      exoPlayer = ApplicationDependencies.getExoPlayerPool().require();
+      exoPlayer = ApplicationDependencies.getExoPlayerPool().require(poolTag);
       exoPlayer.addListener(exoPlayerListener);
       exoPlayer.addListener(playerListener);
       exoView.setPlayer(exoPlayer);

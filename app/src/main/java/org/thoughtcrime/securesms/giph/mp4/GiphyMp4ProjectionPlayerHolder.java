@@ -54,7 +54,7 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener, De
     this.policyEnforcer = policyEnforcer;
 
     if (player.getExoPlayer() == null) {
-      SimpleExoPlayer fromPool = ApplicationDependencies.getExoPlayerPool().get();
+      SimpleExoPlayer fromPool = ApplicationDependencies.getExoPlayerPool().get(TAG);
 
       if (fromPool == null) {
         Log.i(TAG, "Could not get exoplayer from pool.");
@@ -142,7 +142,7 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener, De
   @Override
   public void onResume(@NonNull LifecycleOwner owner) {
     if (mediaItem != null) {
-      SimpleExoPlayer fromPool = ApplicationDependencies.getExoPlayerPool().get();
+      SimpleExoPlayer fromPool = ApplicationDependencies.getExoPlayerPool().get(TAG);
       if (fromPool != null) {
         ExoPlayerKt.configureForGifPlayback(fromPool);
         fromPool.addListener(this);
