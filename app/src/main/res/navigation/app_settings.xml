@@ -542,7 +542,16 @@
     <fragment
         android:id="@+id/internalSettingsFragment"
         android:name="org.thoughtcrime.securesms.components.settings.app.internal.InternalSettingsFragment"
-        android:label="internal_settings_fragment" />
+        android:label="internal_settings_fragment" >
+        <action
+            android:id="@+id/action_internalSettingsFragment_to_donorErrorConfigurationFragment"
+            app:destination="@id/donorErrorConfigurationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/donorErrorConfigurationFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.internal.donor.DonorErrorConfigurationFragment"
+        android:label="donor_error_configuration_fragment" />
 
     <!-- endregion -->
 

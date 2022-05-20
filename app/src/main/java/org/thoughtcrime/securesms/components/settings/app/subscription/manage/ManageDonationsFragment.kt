@@ -68,7 +68,7 @@ class ManageDonationsFragment : DSLSettingsFragment(), ExpiredGiftSheet.Callback
 
     val expiredGiftBadge = SignalStore.donationsValues().getExpiredGiftBadge()
     if (expiredGiftBadge != null) {
-      SignalStore.donationsValues().setExpiredBadge(null)
+      SignalStore.donationsValues().setExpiredGiftBadge(null)
       ExpiredGiftSheet.show(childFragmentManager, expiredGiftBadge)
     }
 

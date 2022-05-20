@@ -2739,6 +2739,7 @@
     <string name="preferences__internal_badges" translatable="false">Badges</string>
     <string name="preferences__internal_badges_enqueue_redemption" translatable="false">Enqueue redemption.</string>
     <string name="preferences__internal_badges_enqueue_keep_alive" translatable="false">Enqueue keep-alive.</string>
+    <string name="preferences__internal_badges_set_error_state" translatable="false">Set error state.</string>
     <string name="preferences__internal_release_channel" translatable="false">Release channel</string>
     <string name="preferences__internal_fetch_release_channel" translatable="false">Fetch release channel</string>
     <string name="preferences__internal_release_channel_set_last_version" translatable="false">Set last version seen back 10 versions</string>
@@ -2751,6 +2752,11 @@
     <string name="preferences__internal_clear_all_service_ids_description" translatable="false">Clears all known service IDs (except your own). Do not use on your personal device!</string>
     <string name="preferences__internal_clear_all_profile_keys" translatable="false">Clear all profile keys</string>
     <string name="preferences__internal_clear_all_profile_keys_description" translatable="false">Clears all known profile keys (except your own). Do not use on your personal device!</string>
+    <string name="preferences__internal_donor_error_expired_badge" translatable="false">Expired Badge</string>
+    <string name="preferences__internal_donor_error_charge_failure" translatable="false">Charge Failure</string>
+    <string name="preferences__internal_donor_error_cancelation_reason" translatable="false">Cancelation Reason</string>
+    <string name="preferences__internal_donor_error_save_and_finish" translatable="false">Save and Finish</string>
+    <string name="preferences__internal_donor_error_clear" translatable="false">Clear</string>
 
 
     <!-- Payments -->
@@ -4226,8 +4232,12 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Your recurring monthly donation was automatically cancelled because you were inactive for too long. Your %1$s badge is no longer visible on your profile.</string>
     <!-- Copy displayed when badge expires after payment failure -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Your recurring monthly donation was cancelled because we couldn\'t process your payment. Your badge is no longer visible on your profile.</string>
+    <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Your recurring monthly donation was cancelled. %1$s Your %2$s badge is no longer visible on your profile.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">You can keep using Signal but to support the app and reactivate your badge, renew now.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renew subscription</string>
+    <!-- Button label to send user to Google Pay website -->
+    <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Go to Google Pay</string>
 
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Can\'t process subscription payment</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">We\'re having trouble collecting your Signal Sustainer payment. Make sure your payment method is up to date. If it isn\'t, update it in Google Pay. Signal will try to process the payment again in a few days.</string>

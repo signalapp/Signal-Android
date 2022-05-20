@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.AppUtil
 import org.signal.core.util.concurrent.SignalExecutors
@@ -38,6 +39,7 @@ import org.thoughtcrime.securesms.payments.DataExportUtil
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.util.Optional
 import java.util.concurrent.TimeUnit
 import kotlin.math.max
@@ -407,6 +409,13 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
           title = DSLSettingsText.from(R.string.preferences__internal_badges_enqueue_keep_alive),
           onClick = {
             enqueueSubscriptionKeepAlive()
+          }
+        )
+
+        clickPref(
+          title = DSLSettingsText.from(R.string.preferences__internal_badges_set_error_state),
+          onClick = {
+            findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToDonorErrorConfigurationFragment())
           }
         )
       }

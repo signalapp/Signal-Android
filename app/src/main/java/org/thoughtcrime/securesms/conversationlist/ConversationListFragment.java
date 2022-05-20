@@ -396,7 +396,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
       if (expiredBadge.isBoost() || !SignalStore.donationsValues().isUserManuallyCancelled()) {
         Log.w(TAG, "Displaying bottom sheet for an expired badge", true);
-        ExpiredBadgeBottomSheetDialogFragment.show(expiredBadge, unexpectedSubscriptionCancellation, getParentFragmentManager());
+        ExpiredBadgeBottomSheetDialogFragment.show(
+            expiredBadge,
+            unexpectedSubscriptionCancellation,
+            SignalStore.donationsValues().getUnexpectedSubscriptionCancelationChargeFailure(),
+            getParentFragmentManager());
       }
     }
   }

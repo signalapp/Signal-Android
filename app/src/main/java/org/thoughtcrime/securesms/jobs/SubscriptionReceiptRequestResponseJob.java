@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
 import org.signal.core.util.logging.Log;
+import org.signal.donations.StripeDeclineCode;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations;
@@ -152,9 +153,15 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
         Log.w(TAG, "Subscription payment charge failure code: " + chargeFailure.getCode() + ", message: " + chargeFailure.getMessage(), true);
       }
 
-      Log.w(TAG, "Subscription payment failure in active subscription response (status = " + subscription.getStatus() + ").", true);
-      onPaymentFailure(subscription.getStatus(), chargeFailure, subscription.getEndOfCurrentPeriod());
-      throw new Exception("Subscription has a payment failure: " + subscription.getStatus());
+      if (isForKeepAlive) {
+        Log.w(TAG, "Subscription payment failure in active subscription response (status = " + subscription.getStatus() + ").", true);
+        onPaymentFailure(subscription.getStatus(), chargeFailure, subscription.getEndOfCurrentPeriod(), true);
+        throw new Exception("Active subscription hit a payment failure: " + subscription.getStatus());
+      } else {
+        Log.w(TAG, "New subscription has hit a payment failure. (status = " + subscription.getStatus() + ").", true);
+        onPaymentFailure(subscription.getStatus(), chargeFailure, subscription.getEndOfCurrentPeriod(), false);
+        throw new Exception("New subscription has hit a payment failure: " + subscription.getStatus());
+      }
     } else if (!subscription.isActive()) {
       ActiveSubscription.ChargeFailure chargeFailure = activeSubscription.getChargeFailure();
       if (chargeFailure != null) {
@@ -269,15 +276,31 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
     }
   }
 
-  private void onPaymentFailure(@Nullable String status, @Nullable ActiveSubscription.ChargeFailure chargeFailure, long timestamp) {
+  /**
+   * Handles state updates and error routing for a payment failure.
+   *
+   * There are two ways this could go, depending on whether the job was created for a keep-alive chain.
+   *
+   * 1. In the case of a normal chain (new subscription) We simply route the error out to the user. The payment failure would have occurred while trying to
+   *    charge for the first month of their subscription, and are likely still on the "Subscribe" screen, so we can just display a dialog.
+   * 1. In the case of a keep-alive event, we want to book-keep the error to show the user on a subsequent launch, and we want to sync our failure state to
+   *    linked devices.
+   */
+  private void onPaymentFailure(@NonNull String status, @Nullable ActiveSubscription.ChargeFailure chargeFailure, long timestamp, boolean isForKeepAlive) {
     SignalStore.donationsValues().setShouldCancelSubscriptionBeforeNextSubscribeAttempt(true);
-    if (status == null) {
-      DonationError.routeDonationError(context, DonationError.genericPaymentFailure(getErrorSource()));
-    } else {
+    if (isForKeepAlive){
+      Log.d(TAG, "Is for a keep-alive and we have a status. Setting UnexpectedSubscriptionCancelation state...", true);
       SignalStore.donationsValues().setUnexpectedSubscriptionCancelationChargeFailure(chargeFailure);
       SignalStore.donationsValues().setUnexpectedSubscriptionCancelationReason(status);
       SignalStore.donationsValues().setUnexpectedSubscriptionCancelationTimestamp(timestamp);
       MultiDeviceSubscriptionSyncRequestJob.enqueue();
+    } else {
+      Log.d(TAG, "Not for a keep-alive and we have a status. Routing a payment setup error...", true);
+      DonationError.routeDonationError(context, new DonationError.PaymentSetupError.DeclinedError(
+          getErrorSource(),
+          new Exception("Got a failure status from the subscription object."),
+          StripeDeclineCode.Companion.getFromCode(status)
+      ));
     }
   }
 
