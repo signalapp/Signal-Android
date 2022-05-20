@@ -53,6 +53,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase.Companion.identities
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messageLog
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.notificationProfiles
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.reactions
+import org.thoughtcrime.securesms.database.SignalDatabase.Companion.recipients
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.runPostSuccessfulTransaction
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.sessions
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.storySends
@@ -2081,6 +2082,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         try {
           if (update(recipientId, values)) {
             setStorageIdIfNotSet(recipientId)
+            ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(recipientId)
           }
         } catch (e: SQLiteConstraintException) {
           Log.w(TAG, "[bulkUpdateRegisteredStatus] Hit a conflict when trying to update $recipientId. Possibly merging.")
@@ -2095,7 +2097,9 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
           put(REGISTERED, RegisteredState.NOT_REGISTERED.id)
           putNull(STORAGE_SERVICE_ID)
         }
-        update(id, values)
+        if (update(id, values)) {
+          ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
+        }
       }
 
       db.setTransactionSuccessful()
