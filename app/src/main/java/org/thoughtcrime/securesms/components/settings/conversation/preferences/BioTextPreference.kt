@@ -38,7 +38,12 @@ object BioTextPreference {
   ) : BioTextPreferenceModel<RecipientModel>() {
 
     override fun getHeadlineText(context: Context): CharSequence {
-      val name = recipient.getDisplayNameOrUsername(context)
+      val name = if (recipient.isSelf) {
+        context.getString(R.string.note_to_self)
+      } else {
+        recipient.getDisplayNameOrUsername(context)
+      }
+
       return if (recipient.showVerified()) {
         SpannableStringBuilder(name).apply {
           SpanUtil.appendCenteredImageSpan(this, ContextUtil.requireDrawable(context, R.drawable.ic_official_28), 28, 28)
