@@ -1158,6 +1158,7 @@
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Denne forældede gruppe kan ikke bruges længere, da den er for stor. Den maksimale størrelse på grupper er %1$d</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Fortsæt din samtale med %1$s og del dit navn og billede med dem?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Tilmeld dig gruppen og del dit navn og billede med dens medlemmer? De ved ikke, at du har set deres beskeder, før du accepterer.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Tilmeld dig gruppen og del dit navn og billede med dens medlemmer? Du vil ikke se deres beskeder, før du accepterer.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bliv medlem af gruppen? De ved ikke at du har set deres beskeder, før du accepterer</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Fjern blokering af gruppen og del dit navn og billede med dens medlemmer? Du modtager ikke nogen beskeder, før du fjerner blokeringen</string>
   <string name="MessageRequestProfileView_view">Vis</string>
@@ -1299,6 +1300,14 @@
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Gruppe er for stor til at ringe til alle deltagerne.</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Genopretter forbindelse …</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">Bluetooth-tilladelse nægtet</string>
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Aktivér tilladelsen \"Enheder i nærheden\" for at bruge bluetooth under et opkald.</string>
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Åbn indstillinger</string>
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">Ikke nu</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-opkald</string>
   <string name="WebRtcCallView__signal_video_call">Signal-videoopkald</string>
@@ -1681,6 +1690,8 @@ nummer (%s) er ugyldigt</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny besked</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Beskedanmodning</string>
   <string name="SingleRecipientNotificationBuilder_you">Dig</string>
+  <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • Historie</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Afspil video</string>
   <string name="ThumbnailView_Has_a_caption_description">Har en billedtekst</string>
@@ -2116,7 +2127,7 @@ nummer (%s) er ugyldigt</string>
   <string name="preferences__enable_passphrase">Aktiver skærmlås med adgangssætning</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lås skærm og notifikationer med adgangssætning</string>
   <string name="preferences__screen_security">Skærmsikkerhed</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokér skærmbilleder i oversigten over senest anvendte apps og inde i Signal-appen på din egen enhed.</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Forhindr, at der tages skærmbilleder i oversigten over senest anvendte apps og inde i Signal-appen på din egen enhed.</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lås automatisk Signal efter et bestemt tidsrum med inaktivitet</string>
   <string name="preferences__inactivity_timeout_passphrase">Adgangssætning for timeout ved inaktivitet</string>
   <string name="preferences__inactivity_timeout_interval">Timeout-interval for inaktivitet</string>
@@ -2260,7 +2271,7 @@ nummer (%s) er ugyldigt</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
   <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Du har manuelt deaktiveret omgåelse af censur</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
-  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Omgåelse af censur er ikke nødvendigt; du har allerede forbindelse til Signal tjenesten</string>
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Omgåelse af censur er ikke nødvendigt; du har allerede forbindelse til Signal-tjenesten</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
   <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Omgåelse af censur kan kun aktiveres, når den er tilsluttet internettet</string>
   <string name="preferences_communication__category_sealed_sender">Forseglet afsender</string>
@@ -3214,7 +3225,7 @@ nummer (%s) er ugyldigt</string>
   <string name="PrivacySettingsFragment__messaging">Beskeder</string>
   <string name="PrivacySettingsFragment__disappearing_messages">Forsvindende beskeder</string>
   <string name="PrivacySettingsFragment__app_security">App-sikkerhed</string>
-  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokér skærmbilleder i oversigten over senest anvendte apps og inde i Signal-appen på din egen enhed.</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Forhindr, at der tages skærmbilleder i oversigten over senest anvendte apps og inde i Signal-appen på din egen enhed.</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-beskeder og opkald, videresend altid opkald og forseglet afsender.</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standardudløbstid for nye samtaler</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Indstil en udløbstid for forsvindende beskeder, der skal gælde som standard for alle nye samtaler startet af dig.</string>
@@ -3886,6 +3897,8 @@ nummer (%s) er ugyldigt</string>
   <string name="StoryViewerPageFragment__s_to_s">%1$s til %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Besvar</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">Svar til gruppe</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Ingen visninger endnu</string>
   <!--Displayed when a story has no replies yet-->
@@ -4076,6 +4089,8 @@ nummer (%s) er ugyldigt</string>
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Vis mere</string>
   <string name="StoriesLinkPopup__visit_link">Besøg link</string>
+  <!--Duration and price information-->
+  <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d dages varighed</string>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Send et gaveemblem</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4136,5 +4151,22 @@ nummer (%s) er ugyldigt</string>
     <item quantity="one">Gruppehistorie · %1$d seer</item>
     <item quantity="other">Gruppehistorie · %1$d seere</item>
   </plurals>
+  <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">%1$d dag tilbage</item>
+    <item quantity="other">%1$d dage tilbage</item>
+  </plurals>
+  <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">%1$d time tilbage</item>
+    <item quantity="other">%1$d timer tilbage</item>
+  </plurals>
+  <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">%1$d minut tilbage</item>
+    <item quantity="other">%1$d minutter tilbage</item>
+  </plurals>
+  <!--Gift expiry expired-->
+  <string name="Gifts__expired">Udløbet</string>
   <!--EOF-->
 </resources>

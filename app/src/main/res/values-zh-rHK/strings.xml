@@ -1098,6 +1098,7 @@
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">此「舊版群組」現已不再可用，因為人數太多。群組人數上限為 %1$d 人。</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">要繼續與 %1$s 的對話，並與其分享您的名稱和照片嗎？</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">要加入此群組，並向其成員分享您的名稱和照片嗎？在您接受之前，他們不會知道您看過其訊息。</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">要加入此群組，並向其成員分享您的名稱和照片嗎？在您接受之前，您不會看到他們的訊息。</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">要加入此群組嗎？在您接受之前，別人不會知道您已看過其訊息。</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">要解除封鎖此群組，並向其成員分享您的名稱和照片嗎？在您解除封鎖之前，您不會收到他們任何訊息。</string>
   <string name="MessageRequestProfileView_view">檢視</string>
@@ -1233,6 +1234,11 @@
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">群組太大，無法給參與者響鈴。</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">正在重新連線…</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">現在不要</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal 通話</string>
   <string name="WebRtcCallView__signal_video_call">Signal 視像通話</string>
@@ -1604,6 +1610,8 @@
   <string name="SingleRecipientNotificationBuilder_new_message">新訊息</string>
   <string name="SingleRecipientNotificationBuilder_message_request">訊息請求</string>
   <string name="SingleRecipientNotificationBuilder_you">您</string>
+  <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • 限時動態</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">播放影片</string>
   <string name="ThumbnailView_Has_a_caption_description">圖文並茂</string>
@@ -3768,6 +3776,7 @@
   <string name="StoryViewerPageFragment__s_to_s">%1$s 至 %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">回覆</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">未有觀看</string>
   <!--Displayed when a story has no replies yet-->
@@ -3956,6 +3965,8 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">檢視更多</string>
   <string name="StoriesLinkPopup__visit_link">造訪連結</string>
+  <!--Duration and price information-->
+  <string name="GiftRowItem__s_dot_d_day_duration">%1$s · 為期 %2$d 天</string>
   <!--Tagline for gift row items-->
   <!--Headline text on start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__gift_a_badge">饋贈徽章</string>
@@ -4000,5 +4011,19 @@
   <plurals name="ContactSearchItems__group_story_d_viewers">
     <item quantity="other">群組限時動態 · %1$d 個觀看者</item>
   </plurals>
+  <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="other">尚餘 %1$d 天</item>
+  </plurals>
+  <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="other">尚餘 %1$d 小時</item>
+  </plurals>
+  <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="other">尚餘 %1$d 分鐘</item>
+  </plurals>
+  <!--Gift expiry expired-->
+  <string name="Gifts__expired">已過期</string>
   <!--EOF-->
 </resources>

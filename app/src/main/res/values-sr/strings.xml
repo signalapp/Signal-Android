@@ -1365,6 +1365,11 @@
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Група је превелика да би позвала учеснике.</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Обнављање везе…</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">Не сада</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal позив</string>
   <string name="WebRtcCallView__signal_video_call">Signal видео позив</string>
@@ -1754,6 +1759,7 @@
   <string name="SingleRecipientNotificationBuilder_new_message">Нова порука</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Захтев за разговор</string>
   <string name="SingleRecipientNotificationBuilder_you">Ви</string>
+  <!--Notification subtext for group stories-->
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Пусти видео</string>
   <string name="ThumbnailView_Has_a_caption_description">Има натпис</string>
@@ -3989,6 +3995,7 @@
   <string name="StoryViewerPageFragment__s_to_s">%1$s за %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Одговори</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Без прегледа</string>
   <!--Displayed when a story has no replies yet-->
@@ -4181,6 +4188,7 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Види још</string>
   <string name="StoriesLinkPopup__visit_link">Посетите везу</string>
+  <!--Duration and price information-->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Послати поклон значку</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4243,5 +4251,10 @@
     <item quantity="few">Групна прича · %1$d гледалаца</item>
     <item quantity="other">Групна прича · %1$d гледалаца</item>
   </plurals>
+  <!--Gift expiry days remaining-->
+  <!--Gift expiry hours remaining-->
+  <!--Gift expiry minutes remaining-->
+  <!--Gift expiry expired-->
+  <string name="Gifts__expired">Истекло</string>
   <!--EOF-->
 </resources>

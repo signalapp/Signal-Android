@@ -91,6 +91,7 @@
   <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Ќе можете да испраќате пораки и да се јавувате и Вашето име и слика ќе бидат споделени со нив.</string>
   <!--Text that is shown when unblocking an SMS contact-->
+  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Ќе можете да се испраќате пораки.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Блокираните луѓе нема да можат да Ви се јават и да Ви испраќаат пораки.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Блокираните луѓе нема да можат да Ви испраќаат пораки.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
@@ -1298,6 +1299,14 @@
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Групата е преголема за да се јавите на учесниците.</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Повторно поврзување…</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">Дозволата за Bluetooth е одбиена</string>
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Овозможете ја дозволата „Уреди во близина“ за користење Bluetooth за време на повик.</string>
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Отвори поставувања</string>
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">Не сега</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal повик</string>
   <string name="WebRtcCallView__signal_video_call">Signal видео повик</string>
@@ -1542,6 +1551,7 @@
   <!--Displayed in the notification when the user sends a gift-->
   <string name="ThreadRecord__you_sent_a_gift">Испративте подарок</string>
   <!--Displayed in the notification when the user has opened a received gift-->
+  <string name="ThreadRecord__you_redeemed_a_gift_badge">Искористивте подарок беџ.</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal ажурирање</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Достапна е нова верзија на Signal, допрете за ажурирање</string>
@@ -1677,6 +1687,8 @@
   <string name="SingleRecipientNotificationBuilder_new_message">Нова порака</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Барање за порака</string>
   <string name="SingleRecipientNotificationBuilder_you">Вие</string>
+  <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • Приказна</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Пушти видео</string>
   <string name="ThumbnailView_Has_a_caption_description">Има наслов</string>
@@ -3281,7 +3293,7 @@
   <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
   <string name="Donate2022Q2Megaphone_donate_to_signal">Донирај на Signal</string>
   <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
-  <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal функционира благодарение на луѓето како вас. Донирајте секој месец и добијте беџ.</string>
+  <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal функционира благодарение на луѓето како Вас. Донирајте секој месец и добијте беџ.</string>
   <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
   <string name="Donate2022Q2Megaphone_donate">Донирај</string>
   <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
@@ -3301,7 +3313,7 @@
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Станете поддржувач</string>
   <!--Displayed in the Become a Sustainer megaphone-->
-  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal е овозможен од луѓе како тебе. Донирај и добиј беџ.</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal е овозможен од луѓе како Вас. Донирајте и добијте беџ.</string>
   <string name="BecomeASustainerMegaphone__not_now">Не сега</string>
   <string name="BecomeASustainerMegaphone__donate">Донирај</string>
   <!--KeyboardPagerFragment-->
@@ -3857,6 +3869,8 @@
   <string name="StoryViewerPageFragment__s_to_s">%1$s до %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Одговори</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">Одговори на групата</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Сè уште нема прегледи</string>
   <!--Displayed when a story has no replies yet-->
@@ -4046,6 +4060,7 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Види повеќе</string>
   <string name="StoriesLinkPopup__visit_link">Посети го линкот</string>
+  <!--Duration and price information-->
   <!--Tagline for gift row items-->
   <!--Headline text on start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__gift_a_badge">Подари беџ</string>
@@ -4095,5 +4110,10 @@
     <item quantity="one">Групна приказна · %1$d гледач</item>
     <item quantity="other">Групна приказна · %1$d гледачи</item>
   </plurals>
+  <!--Gift expiry days remaining-->
+  <!--Gift expiry hours remaining-->
+  <!--Gift expiry minutes remaining-->
+  <!--Gift expiry expired-->
+  <string name="Gifts__expired">Истечен</string>
   <!--EOF-->
 </resources>

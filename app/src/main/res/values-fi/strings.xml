@@ -1298,6 +1298,11 @@
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Ryhmä on liian suuri soittaaksesi osallistujille.</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Yhdistetään uudelleen…</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">Ei nyt</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal -puhelu</string>
   <string name="WebRtcCallView__signal_video_call">Signal-videopuhelu</string>
@@ -1676,6 +1681,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SingleRecipientNotificationBuilder_new_message">Uusi viesti</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Viestipyyntö</string>
   <string name="SingleRecipientNotificationBuilder_you">Sinä</string>
+  <!--Notification subtext for group stories-->
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Toista video</string>
   <string name="ThumbnailView_Has_a_caption_description">Sisältää kuvatekstin</string>
@@ -3881,6 +3887,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="StoryViewerPageFragment__s_to_s">%1$s henkilölle %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Vastaa</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Ei katselukertoja vielä</string>
   <!--Displayed when a story has no replies yet-->
@@ -4071,6 +4078,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Näytä lisää</string>
   <string name="StoriesLinkPopup__visit_link">Avaa linkki</string>
+  <!--Duration and price information-->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Lähetä lahjamerkki</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4131,5 +4139,10 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
     <item quantity="one">Ryhmätarina · %1$d katsoja</item>
     <item quantity="other">Ryhmätarina · %1$d katsojaa</item>
   </plurals>
+  <!--Gift expiry days remaining-->
+  <!--Gift expiry hours remaining-->
+  <!--Gift expiry minutes remaining-->
+  <!--Gift expiry expired-->
+  <string name="Gifts__expired">Vanhentunut</string>
   <!--EOF-->
 </resources>

@@ -44,6 +44,7 @@
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minute</item>
+    <item quantity="many">%d minutes</item>
     <item quantity="other">%d minutes</item>
   </plurals>
   <!--DraftDatabase-->
@@ -267,29 +268,35 @@
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d message non lu</item>
+    <item quantity="many">%d messages non lus</item>
     <item quantity="other">%d messages non lus</item>
   </plurals>
   <!--ConversationFragment-->
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Supprimer le message sélectionné ?</item>
+    <item quantity="many">Supprimer les messages sélectionnés ?</item>
     <item quantity="other">Supprimer les messages sélectionnés ?</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Enregistrer dans la mémoire ?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">L’enregistrement de ce média dans la mémoire permettra à n’importe quelle autre appli de votre appareil d’y accéder.\n\nPoursuivre ?</item>
+    <item quantity="many">L’enregistrement des %1$d médias dans la mémoire permettra à n’importe quelle autre appli de votre appareil d’y accéder.\n\nPoursuivre ?</item>
     <item quantity="other">L’enregistrement des %1$d médias dans la mémoire permettra à n’importe quelle autre appli de votre appareil d’y accéder.\n\nPoursuivre ?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">Erreur d’enregistrement du fichier joint dans la mémoire.</item>
+    <item quantity="many">Erreur d’enregistrement des fichiers joints dans la mémoire.</item>
     <item quantity="other">Erreur d’enregistrement des fichiers joints dans la mémoire.</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Impossible d’écrire dans la mémoire.</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Enregistrement du fichier joint</item>
+    <item quantity="many">Enregistrement de %1$d fichiers joints</item>
     <item quantity="other">Enregistrement de %1$d fichiers joints</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
     <item quantity="one">Enregistrement du fichier joint dans la mémoire…</item>
+    <item quantity="many">Enregistrement de %1$d fichiers joints dans la mémoire…</item>
     <item quantity="other">Enregistrement de %1$d fichiers joints dans la mémoire…</item>
   </plurals>
   <string name="ConversationFragment_pending">En attente…</string>
@@ -332,63 +339,77 @@
   <string name="ConversationFragment__blocked">Bloqués</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Supprimer la conversation sélectionnée ?</item>
+    <item quantity="many">Supprimer les conversations sélectionnées ?</item>
     <item quantity="other">Supprimer les conversations sélectionnées ?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
     <item quantity="one">La conversation sélectionnée sera irrémédiablement supprimée.</item>
+    <item quantity="many">Les %1$d conversations sélectionnées seront irrémédiablement supprimées.</item>
     <item quantity="other">Les %1$d conversations sélectionnées seront irrémédiablement supprimées.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Suppression</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Suppression des conversations sélectionnées…</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">La conversation a été archivée</item>
+    <item quantity="many">%d conversations ont été archivées</item>
     <item quantity="other">%d conversations ont été archivées</item>
   </plurals>
   <string name="ConversationListFragment_undo">ANNULER</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">La conversation a été déplacée vers la boîte de réception</item>
+    <item quantity="many">%d conversations ont été déplacées vers la boîte de réception</item>
     <item quantity="other">%d conversations ont été déplacées vers la boîte de réception</item>
   </plurals>
   <plurals name="ConversationListFragment_read_plural">
     <item quantity="one">Lue</item>
+    <item quantity="many">Lues</item>
     <item quantity="other">Lues</item>
   </plurals>
   <plurals name="ConversationListFragment_unread_plural">
     <item quantity="one">Non lue</item>
+    <item quantity="many">Non lues</item>
     <item quantity="other">Non lues</item>
   </plurals>
   <plurals name="ConversationListFragment_pin_plural">
     <item quantity="one">Épingler</item>
+    <item quantity="many">Épingler</item>
     <item quantity="other">Épingler</item>
   </plurals>
   <plurals name="ConversationListFragment_unpin_plural">
     <item quantity="one">Désépingler</item>
+    <item quantity="many">Désépingler</item>
     <item quantity="other">Désépingler</item>
   </plurals>
   <plurals name="ConversationListFragment_mute_plural">
     <item quantity="one">Désactiver</item>
+    <item quantity="many">Désactiver</item>
     <item quantity="other">Désactiver</item>
   </plurals>
   <plurals name="ConversationListFragment_unmute_plural">
     <item quantity="one">Réactiver</item>
+    <item quantity="many">Réactiver</item>
     <item quantity="other">Réactiver</item>
   </plurals>
   <string name="ConversationListFragment_select">Sélectionner</string>
   <plurals name="ConversationListFragment_archive_plural">
     <item quantity="one">Archiver</item>
+    <item quantity="many">Archiver</item>
     <item quantity="other">Archiver</item>
   </plurals>
   <plurals name="ConversationListFragment_unarchive_plural">
     <item quantity="one">Désarchiver</item>
+    <item quantity="many">Désarchiver</item>
     <item quantity="other">Désarchiver</item>
   </plurals>
   <plurals name="ConversationListFragment_delete_plural">
     <item quantity="one">Supprimer</item>
+    <item quantity="many">Supprimer</item>
     <item quantity="other">Supprimer</item>
   </plurals>
   <string name="ConversationListFragment_select_all">Tout sélectionner</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d sélectionnée</item>
+    <item quantity="many">%d sélectionnées</item>
     <item quantity="other">%d sélectionnées</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
@@ -493,6 +514,7 @@
   <!--PendingGroupJoinRequestsReminder-->
   <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
     <item quantity="one">%d demande de membre en attente.</item>
+    <item quantity="many">%d demandes de membres en attente.</item>
     <item quantity="other">%d demandes de membres en attente.</item>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Afficher</string>
@@ -527,6 +549,7 @@
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">
     <item quantity="one">L’invitation a été envoyée</item>
+    <item quantity="many">%d invitations ont été envoyées</item>
     <item quantity="other">%d invitations ont été envoyées</item>
   </plurals>
   <string name="GroupManagement_invite_single_user">« %1$s » ne peut pas être ajouté automatiquement par vous à ce groupe.\n\nUne invitation a été envoyée et l’utilisateur ne verra aucun message du groupe tant que l’invitation n’aura pas été acceptée.</string>
@@ -538,10 +561,12 @@
   <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Vous devrez accepter une invitation afin de vous joindre à ce groupe de nouveau et vous ne recevrez aucun message du groupe avant d’en avoir accepté une.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Ce membre devra accepter une invitation afin de se joindre à ce groupe de nouveau et ne recevra aucun message du groupe avant d’en avoir accepté une :</item>
+    <item quantity="many">Ces membres devront accepter une invitation afin de se joindre à ce groupe de nouveau et ne recevront aucun message du groupe avant d’en avoir accepté une :</item>
     <item quantity="other">Ces membres devront accepter une invitation afin de se joindre à ce groupe de nouveau et ne recevront aucun message du groupe avant d’en avoir accepté une :</item>
   </plurals>
   <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
     <item quantity="one">Ce membre a été supprimé du groupe et ne pourra pas s’y joindre de nouveau avant d’avoir effectué une mise à niveau :</item>
+    <item quantity="many">Ces membres ont été supprimés du groupe et ne pourront pas s’y joindre de nouveau avant d’avoir effectué une mise à niveau :</item>
     <item quantity="other">Ces membres ont été supprimés du groupe et ne pourront pas s’y joindre de nouveau avant d’avoir effectué une mise à niveau :</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
@@ -553,41 +578,50 @@
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Échec de conversion</string>
   <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Ce membre devra accepter une invitation afin de se joindre à ce groupe de nouveau et ne recevra aucun message du groupe avant d’en avoir accepté une :</item>
+    <item quantity="many">Ces membres devront accepter une invitation afin de se joindre à ce groupe de nouveau et ne recevront aucun message du groupe avant d’en avoir accepté une :</item>
     <item quantity="other">Ces membres devront accepter une invitation afin de se joindre à ce groupe de nouveau et ne recevront aucun message du groupe avant d’en avoir accepté une :</item>
   </plurals>
   <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="one">Ce membre ne peut pas se joindre aux Nouveaux groupes et sera supprimé du groupe :</item>
+    <item quantity="many">Ces membres ne peuvent pas se joindre aux Nouveaux groupes et seront supprimés du groupe :</item>
     <item quantity="other">Ces membres ne peuvent pas se joindre aux Nouveaux groupes et seront supprimés du groupe :</item>
   </plurals>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d membre n’a pas pu être rajouté au Nouveau groupe. Voulez-vous l’ajouter maintenant ?</item>
+    <item quantity="many">%1$d membres n’ont pas pu être rajoutés au Nouveau groupe. Voulez-vous les ajouter maintenant ?</item>
     <item quantity="other">%1$d membres n’ont pas pu être rajoutés au Nouveau groupe. Voulez-vous les ajouter maintenant ?</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="one">Ajouter un membre</item>
+    <item quantity="many">Ajouter des membres</item>
     <item quantity="other">Ajouter des membres</item>
   </plurals>
   <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Non merci</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Ajouter le membre ?</item>
+    <item quantity="many">Ajouter les membres ?</item>
     <item quantity="other">Ajouter les membres ?</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
     <item quantity="one">Ce membre n’a pas pu être ajouté automatiquement au Nouveau groupe lors de sa conversion :</item>
+    <item quantity="many">Ces membres n’ont pas pu être ajoutés automatiquement au Nouveau groupe lors de sa conversion :</item>
     <item quantity="other">Ces membres n’ont pas pu être ajoutés automatiquement au Nouveau groupe lors de sa conversion :</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
     <item quantity="one">Ajouter un membre</item>
+    <item quantity="many">Ajouter des membres</item>
     <item quantity="other">Ajouter des membres</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
     <item quantity="one">Échec d’ajout du membre. Veuillez réessayer plus tard.</item>
+    <item quantity="many">Échec d’ajout des membres. Veuillez réessayer plus tard.</item>
     <item quantity="other">Échec d’ajout des membres. Veuillez réessayer plus tard.</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
     <item quantity="one">Impossible d’ajouter un membre.</item>
+    <item quantity="many">Impossible d’ajouter des membres.</item>
     <item quantity="other">Impossible d’ajouter des membres.</item>
   </plurals>
   <!--LeaveGroupDialog-->
@@ -604,6 +638,7 @@
   <!--LinkPreviewRepository-->
   <plurals name="LinkPreviewRepository_d_members">
     <item quantity="one">%1$d membre</item>
+    <item quantity="many">%1$d membres</item>
     <item quantity="other">%1$d membres</item>
   </plurals>
   <!--PendingMembersActivity-->
@@ -619,10 +654,12 @@
   <string name="PendingMembersActivity_revoke_invites">Révoquer les invitations</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">
     <item quantity="one">Révoquer l’invitation</item>
+    <item quantity="many">Révoquer %1$d invitations</item>
     <item quantity="other">Révoquer %1$d invitations</item>
   </plurals>
   <plurals name="PendingMembersActivity_error_revoking_invite">
     <item quantity="one">Erreur de révocation de l’invitation</item>
+    <item quantity="many">Erreur de révocation des invitations</item>
     <item quantity="other">Erreur de révocation des invitations</item>
   </plurals>
   <!--RequestingMembersFragment-->
@@ -637,6 +674,7 @@
   <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Cette personne ne peut pas être ajoutée à des groupes de diffusion.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Ajouter « %1$s » à « %2$s » ?</item>
+    <item quantity="many">Ajouter %3$d membres à « %2$s » ?</item>
     <item quantity="other">Ajouter %3$d membres à « %2$s » ?</item>
   </plurals>
   <string name="AddMembersActivity__add">Ajouter</string>
@@ -679,6 +717,7 @@
   <string name="ManageGroupActivity_see_all">Tout afficher</string>
   <plurals name="ManageGroupActivity_added">
     <item quantity="one">%d membre a été ajouté.</item>
+    <item quantity="many">%d membres ont été ajoutés.</item>
     <item quantity="other">%d membres ont été ajoutés.</item>
   </plurals>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Seuls les administrateurs peuvent activer ou désactiver le lien de groupe partageable.</string>
@@ -720,10 +759,12 @@
   <string name="ManageRecipientActivity_no_groups_in_common">Aucun groupe en commun</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d groupe en commun</item>
+    <item quantity="many">%d groupes en commun</item>
     <item quantity="other">%d groupes en commun</item>
   </plurals>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s a invité une personne</item>
+    <item quantity="many">%1$s a invité %2$d personnes</item>
     <item quantity="other">%1$s a invité %2$d personnes</item>
   </plurals>
   <!--CustomNotificationsDialogFragment-->
@@ -734,6 +775,7 @@
   <string name="CustomNotificationsDialogFragment__vibrate">Vibrer</string>
   <!--Button text for customizing notification options-->
   <string name="CustomNotificationsDialogFragment__customize">Personnaliser</string>
+  <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Modifier le son et les vibrations</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Paramètres des appels</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Sonnerie</string>
   <string name="CustomNotificationsDialogFragment__enabled">Activé</string>
@@ -758,6 +800,7 @@
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Voulez-vous révoquer l’invitation envoyée à %1$s ?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
     <item quantity="one">Voulez-vous révoquer l’invitation envoyée par %1$s ?</item>
+    <item quantity="many">Voulez-vous révoquer %2$d invitations envoyées par %1$s ?</item>
     <item quantity="other">Voulez-vous révoquer %2$d invitations envoyées par %1$s ?</item>
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
@@ -781,6 +824,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Un administrateur de ce groupe doit approuver votre demande avant que vous puissiez vous joindre à ce groupe. Si vous demandez à vous joindre, vos nom et photo seront partagés avec ses membres.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Groupe · %1$d membre</item>
+    <item quantity="many">Groupe · %1$d membres</item>
     <item quantity="other">Groupe · %1$d membres</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
@@ -823,6 +867,7 @@
   <string name="InviteActivity_send_sms">Envoyer un texto (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Envoyer %d texto d’invitations ?</item>
+    <item quantity="many">Envoyer %d textos d’invitations ?</item>
     <item quantity="other">Envoyer %d textos d’invitations ?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Passons à Signal : %1$s</string>
@@ -846,10 +891,12 @@
   <string name="MediaOverviewActivity_All">Tout</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
     <item quantity="one">Supprimer l’élément sélectionné ?</item>
+    <item quantity="many">Supprimer les éléments sélectionnés ?</item>
     <item quantity="other">Supprimer les éléments sélectionnés ?</item>
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
     <item quantity="one">Cela supprimera définitivement le fichier sélectionné. Tout texto associé à cet élément sera aussi supprimé.</item>
+    <item quantity="many">Cela supprimera définitivement les %1$d fichiers sélectionnés. Tout texto associé à ces éléments sera aussi supprimé.</item>
     <item quantity="other">Cela supprimera définitivement les %1$d fichiers sélectionnés. Tout texto associé à ces éléments sera aussi supprimé.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Suppression</string>
@@ -867,14 +914,17 @@
   <string name="MediaOverviewActivity_select_all">Tout sélectionner</string>
   <plurals name="MediaOverviewActivity_save_plural">
     <item quantity="one">Enregistrer</item>
+    <item quantity="many">Enregistrer</item>
     <item quantity="other">Enregistrer</item>
   </plurals>
   <plurals name="MediaOverviewActivity_delete_plural">
     <item quantity="one">Supprimer</item>
+    <item quantity="many">Supprimer</item>
     <item quantity="other">Supprimer</item>
   </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d sélectionnée (%2$s)</item>
+    <item quantity="many">%1$d sélectionnées (%2$s)</item>
     <item quantity="other">%1$d sélectionnées (%2$s)</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Fichier</string>
@@ -933,6 +983,7 @@
   <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal a besoin de l’autorisation Contacts afin d’afficher vos contacts, mais elle a été refusée définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Contacts.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Vous ne pouvez pas partager plus d’%d élément.</item>
+    <item quantity="many">Vous ne pouvez pas partager plus de %d éléments.</item>
     <item quantity="other">Vous ne pouvez pas partager plus de %d éléments.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Sélectionner les destinataires</string>
@@ -965,10 +1016,12 @@
   <string name="MessageRecord_chat_session_refreshed">La session de dialogue en ligne a été actualisée</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">Un membre n’a pas pu être ajouté au Nouveau groupe et a été invité à s’y joindre</item>
+    <item quantity="many">%1$s membres n’ont pas pu être ajoutés au Nouveau groupe et ont été invités à s’y joindre.</item>
     <item quantity="other">%1$s membres n’ont pas pu être ajoutés au Nouveau groupe et ont été invités à s’y joindre.</item>
   </plurals>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
     <item quantity="one">Un membre n’a pas pu être ajouté au Nouveau groupe et a été supprimé du groupe.</item>
+    <item quantity="many">%1$s membres n’ont pas pu être ajoutés au Nouveau groupe et ont été supprimé du groupe.</item>
     <item quantity="other">%1$s membres n’ont pas pu être ajoutés au Nouveau groupe et ont été supprimé du groupe.</item>
   </plurals>
   <!--Profile change updates-->
@@ -1009,20 +1062,24 @@
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s vous a invité au groupe.</string>
   <plurals name="MessageRecord_s_invited_members">
     <item quantity="one">%1$s a invité une personne au groupe.</item>
+    <item quantity="many">%1$s a invité %2$d personnes au groupe.</item>
     <item quantity="other">%1$s a invité %2$d personnes au groupe.</item>
   </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">Vous avez été invité au groupe.</string>
   <plurals name="MessageRecord_d_people_were_invited_to_the_group">
     <item quantity="one">Une personne a été invitée au groupe.</item>
+    <item quantity="many">%1$d personnes ont été invitées au groupe.</item>
     <item quantity="other">%1$d personnes ont été invitées au groupe.</item>
   </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">Vous avez révoqué une invitation au groupe.</item>
+    <item quantity="many">Vous avez révoqué %1$d invitations au groupe.</item>
     <item quantity="other">Vous avez révoqué %1$d invitations au groupe.</item>
   </plurals>
   <plurals name="MessageRecord_s_revoked_invites">
     <item quantity="one">%1$s a révoqué une invitation au groupe.</item>
+    <item quantity="many">%1$s a révoqué %2$d invitations au groupe.</item>
     <item quantity="other">%1$s a révoqué %2$d invitations au groupe.</item>
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Quelqu’un a décliné une invitation au groupe.</string>
@@ -1031,6 +1088,7 @@
   <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Un administrateur a révoqué votre invitation au groupe.</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">Une invitation au groupe a été révoquée.</item>
+    <item quantity="many">%1$d invitations au groupe ont été révoquées.</item>
     <item quantity="other">%1$d invitations au groupe ont été révoquées.</item>
   </plurals>
   <!--GV2 invitation acceptance-->
@@ -1094,6 +1152,7 @@
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
   <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
     <item quantity="one">%1$s a demandé et annulé sa demande à se joindre au groupe grâce au lien du groupe.</item>
+    <item quantity="many">%1$s a demandé et annulé %2$d demandes à se joindre au groupe grâce au lien du groupe.</item>
     <item quantity="other">%1$s a demandé et annulé %2$d demandes à se joindre au groupe grâce au lien du groupe.</item>
   </plurals>
   <!--GV2 group link approvals-->
@@ -1119,7 +1178,7 @@
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
   <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Aimez-vous cette nouvelle fonction ? Dites merci avec un Coup de pouce.</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal est propulsé par des personnes comme vous. Devenez un donateur mensuel dès aujourd’hui.</string>
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal est alimenté par des personnes comme vous. Devenez un donateur mensuel dès aujourd’hui.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s a lancé un appel de groupe · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s fait partie de l’appel de groupe · %2$s</string>
@@ -1134,10 +1193,12 @@
   <string name="MessageRecord_you">Vous</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="one">%1$s, %2$s, et %3$d autre personne font partie de l’appel de groupe · %4$s</item>
+    <item quantity="many">%1$s, %2$s, et %3$d autres personnes font partie de l’appel de groupe · %4$s</item>
     <item quantity="other">%1$s, %2$s, et %3$d autres personnes font partie de l’appel de groupe · %4$s</item>
   </plurals>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
     <item quantity="one">%1$s, %2$s, et %3$d autre personne font partie de l’appel de groupe</item>
+    <item quantity="many">%1$s, %2$s, et %3$d autres personnes font partie de l’appel de groupe</item>
     <item quantity="other">%1$s, %2$s, et %3$d autres personnes font partie de l’appel de groupe</item>
   </plurals>
   <!--MessageRequestBottomView-->
@@ -1157,6 +1218,7 @@
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ce groupe hérité ne peut plus être utilisé, car il comporte trop de membres. Le nombre maximal de membres d’un groupe est %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Poursuivre votre conversation avec %1$s et partager vos nom et photo avec cette personne ?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vous joindre à ce groupe et partager votre nom et votre photo avec ses membres ? Ils ne sauront pas que vous avez vu leurs messages tant que vous n’aurez pas accepté.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Vous joindre à ce groupe et partager votre nom et votre photo avec ses membres ? Vous ne verrez pas leurs messages tant que vous n’aurez pas accepté.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vous joindre à ce groupe ? Ses membres ne sauront pas que vous avez lu leurs messages tant que vous n’aurez pas accepté.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Débloquer ce groupe et partager votre nom et votre photo avec ses membres ? Vous ne recevrez aucun message tant que vous ne l’aurez pas débloqué.</string>
   <string name="MessageRequestProfileView_view">Afficher</string>
@@ -1165,20 +1227,24 @@
   <string name="MessageRequestProfileView_member_of_many_groups">Membre de %1$s, de %2$s et de %3$s</string>
   <plurals name="MessageRequestProfileView_members">
     <item quantity="one">%1$d membre</item>
+    <item quantity="many">%1$d membres</item>
     <item quantity="other">%1$d membres</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
   <plurals name="MessageRequestProfileView_members_and_invited">
     <item quantity="one">%1$d membre (%2$s)</item>
+    <item quantity="many">%1$d membres (%2$s)</item>
     <item quantity="other">%1$d membres (%2$s)</item>
   </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
   <plurals name="MessageRequestProfileView_invited">
     <item quantity="one">+ %1$d invité</item>
+    <item quantity="many">+ %1$d invités</item>
     <item quantity="other">+ %1$d invités</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d autre groupe</item>
+    <item quantity="many">%d autres groupes</item>
     <item quantity="other">%d autres groupes</item>
   </plurals>
   <!--PassphraseChangeActivity-->
@@ -1210,6 +1276,7 @@
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Cette version de Signal expirera aujourd’hui. Passez à la version la plus récente.</string>
   <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
     <item quantity="one">Cette version de Signal expirera demain. Passez à la version la plus récente.</item>
+    <item quantity="many">Cette version de Signal expirera dans %d jours. Passez à la version la plus récente.</item>
     <item quantity="other">Cette version de Signal expirera dans %d jours. Passez à la version la plus récente.</item>
   </plurals>
   <!--PassphrasePromptActivity-->
@@ -1237,6 +1304,7 @@
   <string name="PinRestoreEntryFragment_skip">Ignorer</string>
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
     <item quantity="one">Il vous reste %1$d essai. Si vous épuisez le nombre limite d’essais, vous pouvez créer un nouveau NIP. Vous pouvez vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres enregistrés tels que les informations de votre profil.</item>
+    <item quantity="many">Il vous reste %1$d essai. Si vous épuisez le nombre limite d’essais, vous pouvez créer un nouveau NIP. Vous pouvez vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres enregistrés tels que les informations de votre profil.</item>
     <item quantity="other">Il vous reste %1$d essai. Si vous épuisez le nombre limite d’essais, vous pouvez créer un nouveau NIP. Vous pouvez vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres enregistrés tels que les informations de votre profil.</item>
   </plurals>
   <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Inscription à Signal – Besoin d’aide avec le NIP sur Android</string>
@@ -1298,6 +1366,14 @@
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Le groupe est trop grand pour appeler tous les participants.</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Reconnexion…</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">Autorisation Bluetooth refusée</string>
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Veuillez activer l’autorisation « Appareils à proximité » pour utiliser le Bluetooth pendant un appel.</string>
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Ouvrir les paramètres</string>
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">Pas maintenant</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Appel Signal</string>
   <string name="WebRtcCallView__signal_video_call">Appel vidéo Signal</string>
@@ -1314,18 +1390,21 @@
   <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal sonnera chez %1$s et %2$s</string>
   <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
     <item quantity="one">Signal appellera %1$s, %2$s et %3$d autre</item>
+    <item quantity="many">Signal sonnera chez %1$s, %2$s et %3$d autres</item>
     <item quantity="other">Signal sonnera chez %1$s, %2$s et %3$d autres</item>
   </plurals>
   <string name="WebRtcCallView__s_will_be_notified">%1$s sera notifié</string>
   <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s et %2$s seront notifiés</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
     <item quantity="one">%1$s, %2$s et %3$d autre seront notifiés</item>
+    <item quantity="many">%1$s, %2$s et %3$d autres seront notifiés</item>
     <item quantity="other">%1$s, %2$s et %3$d autres seront notifiés</item>
   </plurals>
   <string name="WebRtcCallView__ringing_s">Sonne chez %1$s</string>
   <string name="WebRtcCallView__ringing_s_and_s">Sonne chez %1$s et %2$s</string>
   <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
     <item quantity="one">Sonne chez %1$s, %2$s et %3$d autre</item>
+    <item quantity="many">Sonne chez %1$s, %2$s et %3$d autres</item>
     <item quantity="other">Sonne chez %1$s, %2$s et %3$d autres</item>
   </plurals>
   <string name="WebRtcCallView__s_is_calling_you">%1$s vous appelle</string>
@@ -1333,6 +1412,7 @@
   <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s vous appelle avec %2$s et %3$s</string>
   <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
     <item quantity="one">%1$s vous appelle avec %2$s, %3$s et %4$d autre</item>
+    <item quantity="many">%1$s vous appelle avec %2$s, %3$s et %4$d autres</item>
     <item quantity="other">%1$s vous appelle avec %2$s, %3$s et %4$d autres</item>
   </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Il n’y a personne d’autre ici</string>
@@ -1342,6 +1422,7 @@
   <string name="WebRtcCallView__s_is_presenting">%1$s présente actuellement</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s et %3$d autre personne font partie de cet appel</item>
+    <item quantity="many">%1$s, %2$s et %3$d autres personnes font partie de cet appel</item>
     <item quantity="other">%1$s, %2$s et %3$d autres personnes font partie de cet appel</item>
   </plurals>
   <string name="WebRtcCallView__flip">Basculer</string>
@@ -1354,6 +1435,7 @@
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Dans cet appel · %1$d personne</item>
+    <item quantity="many">Dans cet appel · %1$d personnes</item>
     <item quantity="other">Dans cet appel · %1$d personnes</item>
   </plurals>
   <!--CallParticipantView-->
@@ -1400,6 +1482,7 @@
   <string name="RegistrationActivity_call_requested">Appel demandé</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Vous êtes maintenant à %d étape d’envoyer un journal de débogage.</item>
+    <item quantity="many">Vous êtes maintenant à %d étapes d’envoyer un journal de débogage.</item>
     <item quantity="other">Vous êtes maintenant à %d étapes d’envoyer un journal de débogage.</item>
   </plurals>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Nous devons confirmer que vous êtes un être humain.</string>
@@ -1560,6 +1643,7 @@
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Sur Signal, les noms d’utilisateur sont facultatifs. Si vous choisissez de créer un nom d’utilisateur, les autres utilisateurs de Signal pourront vous trouver avec ce nom d’utilisateur et vous contacter sans connaître votre numéro de téléphone.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d contact est sur Signal</item>
+    <item quantity="many">%d contacts sont sur Signal</item>
     <item quantity="other">%d contacts sont sur Signal</item>
   </plurals>
   <!--VerifyIdentityActivity-->
@@ -1671,12 +1755,15 @@
   <string name="SingleRecipientNotificationBuilder_new_message">Nouveau message</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Demande d’échange de messages</string>
   <string name="SingleRecipientNotificationBuilder_you">Vous</string>
+  <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • Histoire</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Lire la vidéo</string>
   <string name="ThumbnailView_Has_a_caption_description">A une légende.</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%délément</item>
+    <item quantity="many">%déléments</item>
     <item quantity="other">%déléments</item>
   </plurals>
   <!--UnauthorizedReminder-->
@@ -1732,6 +1819,7 @@
   <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Les groupes Signal fonctionnent mieux avec %1$d membres ou moins. Ajouter davantage de membres entraînera des retards d’envoi et de réception des messages.</string>
   <plurals name="ContactSelectionListFragment_d_members">
     <item quantity="one">%1$d membre</item>
+    <item quantity="many">%1$d membres</item>
     <item quantity="other">%1$d membres</item>
   </plurals>
   <!--contact_selection_list_fragment-->
@@ -1740,11 +1828,13 @@
   <!--contact_selection_list_item-->
   <plurals name="contact_selection_list_item__number_of_members">
     <item quantity="one">%1$d membre</item>
+    <item quantity="many">%1$d membres</item>
     <item quantity="other">%1$d membres</item>
   </plurals>
   <!--Displays number of viewers for a story-->
   <plurals name="contact_selection_list_item__number_of_viewers">
     <item quantity="one">%1$d spectateur</item>
+    <item quantity="many">%1$d spectateurs</item>
     <item quantity="other">%1$d spectateurs</item>
   </plurals>
   <!--conversation_activity-->
@@ -1861,26 +1951,31 @@
   <string name="expiration_off">Désactivés</string>
   <plurals name="expiration_seconds">
     <item quantity="one">%d seconde</item>
+    <item quantity="many">%d secondes</item>
     <item quantity="other">%d secondes</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%d s</string>
   <plurals name="expiration_minutes">
     <item quantity="one">%d minute</item>
+    <item quantity="many">%d minutes</item>
     <item quantity="other">%d minutes</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%d min</string>
   <plurals name="expiration_hours">
     <item quantity="one">%d heure</item>
+    <item quantity="many">%d heures</item>
     <item quantity="other">%d heures</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%d h</string>
   <plurals name="expiration_days">
     <item quantity="one">%d jour</item>
+    <item quantity="many">%d jours</item>
     <item quantity="other">%d jours</item>
   </plurals>
   <string name="expiration_days_abbreviated">%d j</string>
   <plurals name="expiration_weeks">
     <item quantity="one">%d semaine</item>
+    <item quantity="many">%d semaines</item>
     <item quantity="other">%d semaines</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d sem.</string>
@@ -1897,6 +1992,7 @@
   <string name="IdentityUtil_untrusted_dialog_many">Vos numéros de sécurité avec %1$s, %2$s et %3$s viennent de changer.</string>
   <plurals name="identity_others">
     <item quantity="one">%d autre</item>
+    <item quantity="many">%d autres</item>
     <item quantity="other">%d autres</item>
   </plurals>
   <!--giphy_activity-->
@@ -1925,6 +2021,7 @@
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s s’est joint au groupe.</item>
+    <item quantity="many">%1$s se sont joints au groupe.</item>
     <item quantity="other">%1$s se sont joints au groupe.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Le nom du groupe est désormais « %1$s ».</string>
@@ -1989,7 +2086,7 @@
   <string name="message_details_header__issues_need_your_attention">Des problèmes demandent votre attention</string>
   <string name="message_details_header__sent">Envoyé :</string>
   <string name="message_details_header__received">Reçu :</string>
-  <string name="message_details_header__disappears">Disparaît :</string>
+  <string name="message_details_header__disappears">Disparaît dans :</string>
   <string name="message_details_header__via">Par :</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">En attente</string>
@@ -2084,6 +2181,7 @@
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d h</item>
+    <item quantity="many">%d h</item>
     <item quantity="other">%d h</item>
   </plurals>
   <!--preferences.xml-->
@@ -2115,6 +2213,7 @@
   <string name="preferences__led_color_unknown">Inconnue</string>
   <string name="preferences__pref_led_blink_title">Rythme de clignotement de la DEL</string>
   <string name="preferences__customize">Personnaliser</string>
+  <string name="preferences__change_sound_and_vibration">Modifier le son et les vibrations</string>
   <string name="preferences__sound">Son</string>
   <string name="preferences__silent">Silencieux</string>
   <string name="preferences__default">Valeur par défaut</string>
@@ -2424,6 +2523,7 @@
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d sélectionné</item>
+    <item quantity="many">%d sélectionnés</item>
     <item quantity="other">%d sélectionnés</item>
   </plurals>
   <!--conversation_context_image-->
@@ -2552,10 +2652,12 @@
   <!--CreateKbsPinFragment-->
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
     <item quantity="one">Votre NIP doit comporter au moins %1$d caractère</item>
+    <item quantity="many">Votre NIP doit comporter au moins %1$d caractères</item>
     <item quantity="other">Votre NIP doit comporter au moins %1$d caractères</item>
   </plurals>
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
     <item quantity="one">Votre NIP doit comporter au moins %1$d chiffre</item>
+    <item quantity="many">Votre NIP doit comporter au moins %1$d chiffres</item>
     <item quantity="other">Votre NIP doit comporter au moins %1$d chiffres</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Créer un nouveau NIP</string>
@@ -2607,22 +2709,27 @@
   <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Inscription à Signal – Besoin d’aide avec le NIP sur Android (NIP v2)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">Pour des raisons de sécurité et de protection de vos données personnelles, votre NIP ne peut pas être récupéré. Si vous avez oublié votre NIP, vous pourrez reconfirmer votre numéro par texto après %1$d jour d’inactivité. Dans ce cas, votre compte sera effacé et toutes ses données supprimées.</item>
+    <item quantity="many">Pour des raisons de sécurité et de protection de vos données personnelles, votre NIP ne peut pas être récupéré. Si vous avez oublié votre NIP, vous pourrez reconfirmer votre numéro par texto après %1$d jours d’inactivité. Dans ce cas, votre compte sera effacé et toutes ses données supprimées.</item>
     <item quantity="other">Pour des raisons de sécurité et de protection de vos données personnelles, votre NIP ne peut pas être récupéré. Si vous avez oublié votre NIP, vous pourrez reconfirmer votre numéro par texto après %1$d jours d’inactivité. Dans ce cas, votre compte sera effacé et toutes ses données supprimées.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
     <item quantity="one">Le NIP est erroné. Il reste %1$d essai.</item>
+    <item quantity="many">Le NIP est erroné. Il reste %1$d essais.</item>
     <item quantity="other">Le NIP est erroné. Il reste %1$d essais.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
     <item quantity="one">Si vous épuisez le nombre d’essais, votre compte sera verrouillé pendant %1$d jour. Après %1$d jour d’inactivité, vous pourrez vous réinscrire sans votre NIP. Votre compte sera effacé et son contenu supprimé.</item>
+    <item quantity="many">Si vous épuisez le nombre d’essais, votre compte sera verrouillé pendant %1$d jours. Après %1$d jours d’inactivité, vous pourrez vous réinscrire sans votre NIP. Votre compte sera effacé et son contenu supprimé.</item>
     <item quantity="other">Si vous épuisez le nombre d’essais, votre compte sera verrouillé pendant %1$d jours. Après %1$d jours d’inactivité, vous pourrez vous réinscrire sans votre NIP. Votre compte sera effacé et son contenu supprimé.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
     <item quantity="one">Il vous reste %1$d essai.</item>
+    <item quantity="many">Il vous reste %1$d essais.</item>
     <item quantity="other">Il vous reste %1$d essais.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__d_attempts_remaining">
     <item quantity="one">Il reste %1$d essai.</item>
+    <item quantity="many">Il reste %1$d essais.</item>
     <item quantity="other">Il reste %1$d essais.</item>
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
@@ -2910,10 +3017,12 @@
   <string name="ReviewCardDialogFragment__no_groups_in_common">Aucun groupe en commun.</string>
   <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
     <item quantity="one">%d groupe en commun</item>
+    <item quantity="many">%d groupes en commun</item>
     <item quantity="other">%d groupes en commun</item>
   </plurals>
   <plurals name="ReviewCardDialogFragment__d_groups_in_common">
     <item quantity="one">%d groupe en commun</item>
+    <item quantity="many">%d groupes en commun</item>
     <item quantity="other">%d groupes en commun</item>
   </plurals>
   <string name="ReviewCardDialogFragment__remove_s_from_group">Supprimer %1$s du groupe ?</string>
@@ -2975,6 +3084,7 @@
   <string name="CreateGroupActivity__skip">Ignorer</string>
   <plurals name="CreateGroupActivity__d_members">
     <item quantity="one">%1$d membre</item>
+    <item quantity="many">%1$d membres</item>
     <item quantity="other">%1$d membres</item>
   </plurals>
   <!--ShareActivity-->
@@ -2988,7 +3098,7 @@
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Fond d’écran de la conversation</string>
   <!--ChatWallpaperFragment-->
-  <string name="ChatWallpaperFragment__chat_color">Couleur de la conversation</string>
+  <string name="ChatWallpaperFragment__chat_color">Couleur des conversations</string>
   <string name="ChatWallpaperFragment__reset_chat_colors">Réinitialiser les couleurs des conversations</string>
   <string name="ChatWallpaperFragment__reset_chat_color">Réinitialiser la couleur de la conversation</string>
   <string name="ChatWallpaperFragment__reset_chat_color_question">Réinitialiser la couleur de la conversation ?</string>
@@ -3257,6 +3367,7 @@ Nouvelle tentative…</string>
   <string name="ChatColorSelectionFragment__delete_color">Supprimer la couleur</string>
   <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
     <item quantity="one">Cette couleur personnalisée est utilisée dans %1$d conversation. Voulez-vous la supprimer pour toutes les conversations ?</item>
+    <item quantity="many">Cette couleur personnalisée est utilisée dans %1$d conversations. Voulez-vous la supprimer pour toutes les conversations ?</item>
     <item quantity="other">Cette couleur personnalisée est utilisée dans %1$d conversations. Voulez-vous la supprimer pour toutes les conversations ?</item>
   </plurals>
   <string name="ChatColorSelectionFragment__delete_chat_color">Supprimer la couleur de la conversation ?</string>
@@ -3270,6 +3381,7 @@ Nouvelle tentative…</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">Modifier la couleur</string>
   <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
     <item quantity="one">Cette couleur est utilisée dans %1$d conversation. Voulez-vous enregistrer les changements pour toutes les conversations ?</item>
+    <item quantity="many">Cette couleur est utilisée dans %1$d conversations. Voulez-vous enregistrer les changements pour toutes les conversations ?</item>
     <item quantity="other">Cette couleur est utilisée dans %1$d conversations. Voulez-vous enregistrer les changements pour toutes les conversations ?</item>
   </plurals>
   <!--ChatColorGradientTool-->
@@ -3278,7 +3390,7 @@ Nouvelle tentative…</string>
   <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
   <string name="Donate2022Q2Megaphone_donate_to_signal">Faire un don à Signal</string>
   <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
-  <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal est propulsé par des gens comme vous. Faites un don mensuel et recevez un macaron.</string>
+  <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal est alimenté par des personnes comme vous. Faites un don mensuel et recevez un macaron.</string>
   <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
   <string name="Donate2022Q2Megaphone_donate">Faire un don</string>
   <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
@@ -3421,18 +3533,22 @@ Nouvelle tentative…</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Les messages transférés sont désormais immédiatement envoyés.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">Envoyer %1$d message</item>
+    <item quantity="many">Envoyer %1$d messages</item>
     <item quantity="other">Envoyer %1$d messages</item>
   </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="one">Message envoyé</item>
+    <item quantity="many">Messages envoyés</item>
     <item quantity="other">Messages envoyés</item>
   </plurals>
   <plurals name="MultiselectForwardFragment_messages_failed_to_send">
     <item quantity="one">Échec de l’envoi du message</item>
+    <item quantity="many">Échec de l’envoi des messages</item>
     <item quantity="other">Échec de l’envoi des messages</item>
   </plurals>
   <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
     <item quantity="one">Impossible de transférer le message car il n’est plus disponible.</item>
+    <item quantity="many">Impossible de transférer les messages car ils ne sont plus disponibles.</item>
     <item quantity="other">Impossible de transférer les messages car ils ne sont plus disponibles.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Limite atteinte</string>
@@ -3573,6 +3689,7 @@ Nouvelle tentative…</string>
   <string name="DonationsErrors__still_processing">En cours de traitement</string>
   <string name="DonationsErrors__couldnt_add_badge">Impossible d\'ajouter le macaron</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__failed_to_validate_badge">Échec de la validation du macaron</string>
   <!--Displayed when badge credential couldn\'t be verified-->
   <!--Displayed as title when some generic error happens during gift badge sending-->
   <!--Displayed as message when some generic error happens during gift badge sending-->
@@ -3591,6 +3708,11 @@ Nouvelle tentative…</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <!--Gift message view title-->
   <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="one">Durée de %1$d mois</item>
+    <item quantity="many">Durée de %1$d mois</item>
+    <item quantity="other">Durée de %1$d mois</item>
+  </plurals>
   <!--Gift badge redeem action label-->
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">Afficher</string>
@@ -3789,6 +3911,7 @@ Nouvelle tentative…</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--Donation reciepts screen empty state title-->
+  <string name="DonationReceiptListFragment__no_receipts">Aucun reçu</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Conversations</string>
@@ -3833,6 +3956,7 @@ Nouvelle tentative…</string>
   <!--Displayed on each sent story under My Stories-->
   <plurals name="MyStories__d_views">
     <item quantity="one">%1$d vue</item>
+    <item quantity="many">%1$d vues</item>
     <item quantity="other">%1$d vues</item>
   </plurals>
   <!--Forward story label, displayed in My Stories context menu-->
@@ -3846,11 +3970,13 @@ Nouvelle tentative…</string>
   <!--Displayed at bottom of story viewer when current item has views-->
   <plurals name="StoryViewerFragment__d_views">
     <item quantity="one">%1$d vue</item>
+    <item quantity="many">%1$d vues</item>
     <item quantity="other">%1$d vues</item>
   </plurals>
   <!--Displayed at bottom of story viewer when current item has replies-->
   <plurals name="StoryViewerFragment__d_replies">
     <item quantity="one">%1$d réponse</item>
+    <item quantity="many">%1$d réponses</item>
     <item quantity="other">%1$d réponses</item>
   </plurals>
   <!--Used to join views and replies when both exist on a story item-->
@@ -3861,6 +3987,8 @@ Nouvelle tentative…</string>
   <string name="StoryViewerPageFragment__s_to_s">%1$s à %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Répondre</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">Répondre au groupe</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Aucune vue pour le moment</string>
   <!--Displayed when a story has no replies yet-->
@@ -3886,6 +4014,7 @@ Nouvelle tentative…</string>
   <!--Story settings private stories heading-->
   <string name="StorySettingsFragment__private_stories">Histoires privées</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Les histoires privées ne peuvent être vues que par les personnes que vous y avez ajoutées. Vous seul pouvez voir le nom de l’histoire.</string>
   <!--Option label for creating a new private story-->
   <string name="StorySettingsFragment__new_private_story">Nouvelle histoire privée</string>
   <!--Page title for My Story options-->
@@ -3897,6 +4026,7 @@ Nouvelle tentative…</string>
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d personne</item>
+    <item quantity="many">%1$d personnes</item>
     <item quantity="other">%1$d personnes</item>
   </plurals>
   <!--Section header for options related to replies and reactions-->
@@ -3984,6 +4114,7 @@ Nouvelle tentative…</string>
   <!--New story viewer selection screen title as recipients are selected-->
   <plurals name="SelectViewersFragment__d_viewers">
     <item quantity="one">%1$d spectateur</item>
+    <item quantity="many">%1$d spectateurs</item>
     <item quantity="other">%1$d spectateurs</item>
   </plurals>
   <!--Name story screen title-->
@@ -4017,6 +4148,7 @@ Nouvelle tentative…</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
   <string name="StoryViewerPageFragment__see_more">… En afficher plus</string>
   <!--Displayed in toast after sending a direct reply-->
+  <string name="StoryDirectReplyDialogFragment__sending_reply">Envoi de la réponse…</string>
   <!--Displayed in the viewer when a story is no longer available-->
   <string name="StorySlateView__this_story_is_no_longer_available">Cette histoire n’est plus disponible.</string>
   <!--Displayed in the viewer when the network is not available-->
@@ -4028,7 +4160,9 @@ Nouvelle tentative…</string>
   <!--Toasted when the user external share to a text story fails-->
   <string name="TextStoryPostCreationFragment__failed_to_send_story">Échec de l\'envoi de l\'histoire</string>
   <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">Afficher l’histoire</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">Afficher la photo de profil</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Désactiver le contournement de la censure ?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -4047,6 +4181,7 @@ Nouvelle tentative…</string>
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">En afficher plus</string>
   <string name="StoriesLinkPopup__visit_link">Visitez le lien</string>
+  <!--Duration and price information-->
   <!--Tagline for gift row items-->
   <!--Headline text on start fragment for gifting a badge-->
   <!--Description text on start fragment for gifting a badge-->
@@ -4062,6 +4197,7 @@ Nouvelle tentative…</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Ajouter un message</string>
   <!--Displayed in the dialog while verifying the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__verifying_recipient">Vérification du destinataire…</string>
   <!--Title for sheet shown when opening a redeemed gift-->
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Merci pour votre soutien !</string>
@@ -4082,6 +4218,36 @@ Nouvelle tentative…</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Pas maintenant</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Histoire privée · %1$d spectateur</item>
+    <item quantity="many">Histoire privée · %1$d spectateurs</item>
+    <item quantity="other">Histoire privée · %1$d spectateurs</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Histoire de groupe · %1$d spectateur</item>
+    <item quantity="many">Histoire de groupe · %1$d spectateurs</item>
+    <item quantity="other">Histoire de groupe · %1$d spectateurs</item>
+  </plurals>
+  <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">%1$d jour restant</item>
+    <item quantity="many">%1$d jours restants </item>
+    <item quantity="other">%1$d jours restants </item>
+  </plurals>
+  <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">%1$d heure restante</item>
+    <item quantity="many">%1$d heures restantes</item>
+    <item quantity="other">%1$d heures restantes</item>
+  </plurals>
+  <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">%1$d minute restante</item>
+    <item quantity="many">%1$d minutes restantes</item>
+    <item quantity="other">%1$d minutes restantes</item>
+  </plurals>
+  <!--Gift expiry expired-->
+  <string name="Gifts__expired">Expiré</string>
   <!--EOF-->
 </resources>

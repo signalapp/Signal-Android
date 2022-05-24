@@ -1278,6 +1278,7 @@
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Te Stare skupine ne morete več uporabljati, ker je prevelika. Največja velikost skupine je %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Želite še naprej sodelovati v pogovoru s skupino %1$s in z njenimi člani_cami deliti svoje ime in fotografijo?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Se želite pridružiti skupini in z njenimi člani_cami deliti svoje ime in fotografijo? Dokler se ne pridružite, ne bodo vedeli_le, da ste videli njihova sporočila.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Se želite pridružiti skupini in z njenimi člani_cami deliti svoje ime in fotografijo? Dokler se ne pridružite, ne boste videli njihovih sporočil.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Se želite pridružiti skupini? Dokler se ne pridružite, skupina ne bo vedela, da ste videli njena sporočila.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Želite omogočiti članom_icam skupine, da vam pošiljajo sporočila in z njimi deliti svoje ime in fotografijo? Dokler jih ne odblokirate, od njih ne boste prejemali sporočil.</string>
   <string name="MessageRequestProfileView_view">Preglej</string>
@@ -1430,6 +1431,14 @@
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Skupina je prevelika za zvonjenje vsem udeležencem.</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Ponovno povezovanje …</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">Dovoljenje uporabe Bluetootha zavrnjeno</string>
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Za uporabo bluetootha med klicom dajte dovoljenje za \"Bližnje naprave\".</string>
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Odpri nastavitve</string>
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">Ne zdaj</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal klic</string>
   <string name="WebRtcCallView__signal_video_call">Video klic Signal</string>
@@ -1821,6 +1830,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SingleRecipientNotificationBuilder_new_message">Novo sporočilo</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Prošnja za pogovor</string>
   <string name="SingleRecipientNotificationBuilder_you">Vi</string>
+  <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • Zgodba</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Predvajaj video</string>
   <string name="ThumbnailView_Has_a_caption_description">Ima besedilo</string>
@@ -4092,6 +4103,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="StoryViewerPageFragment__s_to_s">%1$s do %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Odgovori</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">Odgovori skupini</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Brez ogledov</string>
   <!--Displayed when a story has no replies yet-->
@@ -4286,6 +4299,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Več</string>
   <string name="StoriesLinkPopup__visit_link">Obišči povezavo</string>
+  <!--Duration and price information-->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Pošlji darilni bedž</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4350,5 +4364,28 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
     <item quantity="few">Skupinska zgodba · %1$d gledalci_ke</item>
     <item quantity="other">Skupinska zgodba · %1$d gledalcev_k</item>
   </plurals>
+  <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">še %1$d dan</item>
+    <item quantity="two">še %1$d dneva</item>
+    <item quantity="few">še %1$d dni</item>
+    <item quantity="other">še %1$d dni</item>
+  </plurals>
+  <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">še %1$d uro</item>
+    <item quantity="two">še %1$d uri</item>
+    <item quantity="few">še %1$d ure</item>
+    <item quantity="other">še %1$d ur</item>
+  </plurals>
+  <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">še %1$d minuto</item>
+    <item quantity="two">še %1$d minuti</item>
+    <item quantity="few">še %1$d minute</item>
+    <item quantity="other">še %1$d minut</item>
+  </plurals>
+  <!--Gift expiry expired-->
+  <string name="Gifts__expired">Poteklo</string>
   <!--EOF-->
 </resources>

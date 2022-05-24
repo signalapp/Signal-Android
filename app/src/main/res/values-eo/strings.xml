@@ -91,7 +91,9 @@
   <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Vi povos mesaĝi kaj alvoki unu la alian. Via nomo kaj foto estos videblaj.</string>
   <!--Text that is shown when unblocking an SMS contact-->
+  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Vi povos mesaĝi unu la alian.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokitaj kontaktoj ne eblos sendi al vi mesaĝojn aŭ alvoki vin.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Blokitaj kontaktoj ne eblos sendi al vi mesaĝojn.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Ne plu ricevi ĝisdatigojn kaj novaĵojn de Signal.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -731,6 +733,8 @@
   <string name="CustomNotificationsDialogFragment__notification_sound">Sciiga sono</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Vibri</string>
   <!--Button text for customizing notification options-->
+  <string name="CustomNotificationsDialogFragment__customize">Elekti</string>
+  <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Ŝanĝi sonon kaj vibradon</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Agordo pri alvoko</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Sonoro</string>
   <string name="CustomNotificationsDialogFragment__enabled">Ŝaltita</string>
@@ -1148,12 +1152,14 @@
   <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Ĉu vi volas, ke %1$s mesaĝu al vi, kaj ke ŝi aŭ li vidu vian nomon kaj foton? Vi ricevos neniun mesaĝon, se vi ne malblokas ŝin aŭ lin.</string>
   <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Ĉu vi volas, ke %1$s mesaĝu al vi? Vi ricevos neniun mesaĝon, se vi ne malblokas ŝin aŭ lin.</string>
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Ĉu vi volas ricevi ĝisdatigojn kaj novaĵojn pri %1$s? Vi ricevos neniun, krom se vi malblokas tiun homon.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Ĉu plu interparoli al tiu grupo kaj kunhavigi vian nomon kaj foton kun la anoj?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Ĝisdatigu tiun grupon por uzi novajn funkciojn kiel @menciojn kaj administranton. Anoj, kiuj ne kunhavis ilian nomon aŭ foton kun la grupo estos invititaj anigi.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Jena malnovtipa grupo jam ne povas uziĝi pro troa grandeco. Maksimuma grupgrando estas %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Ĉu plu interparoli al %1$s kaj kunhavigi vian nomon kaj foton kun ŝi aŭ li?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ĉu vi volas aliĝi al tiu grupo kaj kunhavigi vian nomon kaj foton? La grupo ne scios, ke vi vidis ĝiajn mesaĝojn ĝis via akcepto.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Ĉu vi volas aliĝi al tiu grupo kaj kunhavigi vian nomon kaj foton? Vi vidos ĝiajn mesaĝojn, nur se vi akceptas.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ĉu vi volas anigi al tiu ĉi grupo? Ili ne scios, ke vi vidis iliajn mesaĝojn ĝis via akcepto.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Ĉu malbloki tiun grupon kaj kunhavigi vian nomon kaj foton kun la anoj? Vi ne ricevos mesaĝojn, se vi ne malblokas ĝin.</string>
   <string name="MessageRequestProfileView_view">Montri pli</string>
@@ -1165,7 +1171,15 @@
     <item quantity="other">%1$d anoj</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d ano (%2$s)</item>
+    <item quantity="other">%1$d anoj (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="one">+ %1$d invitita</item>
+    <item quantity="other">+ %1$d invititaj</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d plian grupon</item>
     <item quantity="other">%d pliajn grupojn</item>
@@ -1287,6 +1301,14 @@
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">La grupo tro grandas por sonorigi la partoprenantojn.</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Rekonektado…</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">Bludento-permeso rifuzita</string>
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Ŝaltu la permeson pri „Proksimaj aparatoj“ por povi uzi Bludenton dum alvoko.</string>
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Malfermi agordojn</string>
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">Ne nun</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-alvoko</string>
   <string name="WebRtcCallView__signal_video_call">Signal-vidalvoko</string>
@@ -1529,8 +1551,11 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ThreadRecord_video">Videaĵo</string>
   <string name="ThreadRecord_chat_session_refreshed">Interparola seanco aktualigita</string>
   <!--Displayed in the notification when the user is sent a gift-->
+  <string name="ThreadRecord__you_received_a_gift">Vi ricevis donacon</string>
   <!--Displayed in the notification when the user sends a gift-->
+  <string name="ThreadRecord__you_sent_a_gift">Vi sendis donacon</string>
   <!--Displayed in the notification when the user has opened a received gift-->
+  <string name="ThreadRecord__you_redeemed_a_gift_badge">Vi uzis donacan insignon</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Ĝisdatigo de Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Nova versio de Signal disponeblas, tuŝetu por ĝisdatigi</string>
@@ -1666,6 +1691,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="SingleRecipientNotificationBuilder_new_message">Nova mesaĝo</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Mesaĝopeto</string>
   <string name="SingleRecipientNotificationBuilder_you">Vi</string>
+  <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s · Rakonto</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Ludi videaĵon</string>
   <string name="ThumbnailView_Has_a_caption_description">Havas priskribon</string>
@@ -1808,6 +1835,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">Ne plu disponebla</string>
   <!--Label for quoted gift-->
+  <string name="QuoteView__gift">Donaco</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rulumi malsupren</string>
   <!--BubbleOptOutTooltip-->
@@ -2108,6 +2136,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__led_color">LED-a koloro</string>
   <string name="preferences__led_color_unknown">Nekonata</string>
   <string name="preferences__pref_led_blink_title">LED-a pulsa modelo</string>
+  <string name="preferences__customize">Elekti</string>
+  <string name="preferences__change_sound_and_vibration">Ŝanĝi sonon kaj vibradon</string>
   <string name="preferences__sound">Sono</string>
   <string name="preferences__silent">Silento</string>
   <string name="preferences__default">Defaŭlta</string>
@@ -3113,6 +3143,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Bildokvalito</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">Invitu viajn amikojn</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">Identigilo de abonanto kopiita al tondujo</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Konto</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Oni demandos al vi malpli ofte iom post iom.</string>
@@ -3267,6 +3298,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
   <string name="Donate2022Q2Megaphone_donate_to_signal">Donaci al Signal</string>
   <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal ekzistas pro la subteno de homoj kiel vi. Ekdonacu ĉiumonate kaj ricevu insignon.</string>
   <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
   <string name="Donate2022Q2Megaphone_donate">Donaci</string>
   <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
@@ -3498,10 +3530,13 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="BecomeASustainerFragment__get_badges">Havu insignojn en via profilo per subteno de Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal estas neprofitocela organizaĵo sen reklamistoj, sen investistoj, nur subtenata de homoj kiel vi.</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">Donaci ĉiumonate</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">Pli</string>
   <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">Kvitancoj</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">Mia abono</string>
   <string name="ManageDonationsFragment__manage_subscription">Administri la abonon</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Donacaj kvitancoj</string>
@@ -3509,9 +3544,12 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ManageDonationsFragment__subscription_faq">Respondaro pri abono</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Eraro dum ricevo de abono.</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">Aliaj manieroj doni</string>
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">Donaci insignon</string>
   <string name="BoostFragment__give_signal_a_boost">Signal-plikonatigo</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Donacu unufoje kaj gajnu la insignon „Plikonatigo“ dum %1$d tagoj.</string>
   <string name="Boost__enter_custom_amount">Entajpi propran monsumon</string>
   <string name="Boost__one_time_contribution">Unufoja donaco</string>
   <string name="MySupportPreference__add_a_signal_boost">Aldoni Signal-plikonatigo</string>
@@ -3555,9 +3593,13 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="DonationsErrors__still_processing">Traktado ankoraŭ faranta</string>
   <string name="DonationsErrors__couldnt_add_badge">La insigno ne aldoniĝis.</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__failed_to_validate_badge">Malsukcesis validigi insignon</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__could_not_validate">Respondo de la servilo malsukcesis validiĝi. Kontaktu la subtenon.</string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__failed_to_send_gift_badge">Malsukcesa sendo de insigno de donaco</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__could_not_send_gift_badge">Malsukcesa sendo de insigno de donaco. Kontaktu la subtenon.</string>
   <string name="DonationsErrors__your_badge_could_not">Via insigno ne aldoniĝis en via profilo, sed vi eble estis debetita. Kontaktu la helpservon.</string>
   <string name="DonationsErrors__your_payment_is_still">Via pago estas ankoraŭ faranta. Tio povas daŭri kelkajn minutojn depende de via retkonekto.</string>
   <string name="DonationsErrors__google_pay_unavailable">„Google Pay“ ne disponebla</string>
@@ -3568,16 +3610,28 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Eraro de retkonekto. Kontrolu vian konekton kaj reprovu.</string>
   <string name="NetworkFailure__retry">Reprovi</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__recipient_verification_failed">Kontrolo de ricevanto malsukcesis.</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">La ricevanto ne subtenas donacadon.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__could_not_verify_recipient">Problemo kun la ricevanto.</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Kontrolu vian retkonekton kaj reprovu.</string>
   <!--Gift message view title-->
+  <string name="GiftMessageView__gift_badge">Donaci insignon</string>
   <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="one">Daŭras %1$d monaton</item>
+    <item quantity="other">Daŭras %1$d monatojn</item>
+  </plurals>
   <!--Gift badge redeem action label-->
+  <string name="GiftMessageView__redeem">Ricevi</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">Montri pli</string>
   <!--Gift badge redeeming action label-->
+  <string name="GiftMessageView__redeeming">Ricevado…</string>
   <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">Ricevita</string>
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Provi per alia pagmetodo, aŭ kontaktu vian bankon por scii pli.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3749,6 +3803,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">Unufoje</string>
   <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">Donaco</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Plikonatigo</string>
   <!--Donation receipts details title-->
@@ -3770,6 +3825,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s — %2$s</string>
   <!--Donation reciepts screen empty state title-->
+  <string name="DonationReceiptListFragment__no_receipts">Neniu kvitanco</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Interparoloj</string>
@@ -3842,6 +3898,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="StoryViewerPageFragment__s_to_s">%1$s al %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Respondi</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">Respondi al la grupo</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Neniu vido</string>
   <!--Displayed when a story has no replies yet-->
@@ -3867,6 +3925,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Story settings private stories heading-->
   <string name="StorySettingsFragment__private_stories">Privataj rakontoj</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Privataj rakontoj nur videblas de la homoj, kiujn vi aldonis. Nur ili povas vidi la nomon de la rakonto.</string>
   <!--Option label for creating a new private story-->
   <string name="StorySettingsFragment__new_private_story">Nova privata rakonto</string>
   <!--Page title for My Story options-->
@@ -3998,6 +4057,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Displayed in story caption when content is longer than 5 lines-->
   <string name="StoryViewerPageFragment__see_more">… Vidi pli</string>
   <!--Displayed in toast after sending a direct reply-->
+  <string name="StoryDirectReplyDialogFragment__sending_reply">Sendado de respondo…</string>
   <!--Displayed in the viewer when a story is no longer available-->
   <string name="StorySlateView__this_story_is_no_longer_available">Tiu rakonto ne plu disponeblas.</string>
   <!--Displayed in the viewer when the network is not available-->
@@ -4009,7 +4069,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Toasted when the user external share to a text story fails-->
   <string name="TextStoryPostCreationFragment__failed_to_send_story">Malsukcesa sendo de rakonto</string>
   <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">Vidi la rakonton</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">Vidi la profilfoton</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Ĉu malŝati Cenzur-preterpason?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -4028,38 +4090,84 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Vidi pli</string>
   <string name="StoriesLinkPopup__visit_link">Aliri la ligilon</string>
+  <!--Duration and price information-->
+  <string name="GiftRowItem__s_dot_d_day_duration">%1$s · Por %2$d tagoj</string>
   <!--Tagline for gift row items-->
+  <string name="GiftRowItem__send_a_gift_badge">Sendi insignon de donaco</string>
   <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">Donaci insignon</string>
   <!--Description text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">Donaci al iu insignon, donacante al Signal en lia aŭ ŝia nomo. Ŝi aŭ li havos insignon, kiu montriĝos ĉe lia aŭ ŝia profilfoto.</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Sekva</string>
   <!--Title text on choose recipient page for badge gifting-->
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Elekti ricevanton</string>
   <!--Title text on confirm gift page-->
+  <string name="GiftFlowConfirmationFragment__confirm_gift">Konfirmi la donacon</string>
   <!--Heading text specifying who the gift will be sent to-->
   <string name="GiftFlowConfirmationFragment__send_to">Sendi al</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Via donaco sendiĝos pere de rekta mesaĝo al la ricevanto. Aldonu vian propran mesaĝon ĉi-sube.</string>
   <!--Text explaining that this gift is a one time donation-->
+  <string name="GiftFlowConfirmationFragment__one_time_donation">Unufoja donaco</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Aldoni mesaĝon</string>
   <!--Displayed in the dialog while verifying the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__verifying_recipient">Kontrolo de la ricevanto…</string>
   <!--Title for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s sendis al vi donacon</string>
   <!--Title for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Dankon pro via subtenado!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Vi ricevis insignon de donaco el %1$s! Helpu al Signal konatiĝi per la montro de via insigno en via profilo.</string>
   <!--Description for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Vi donacis insignon al %1$s. Kiam tiu homo akceptos ĝin, tiu povos montri aŭ ne tiun insignon.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
+  <string name="ViewReceivedGiftSheet__redeem">Ricevi</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">Ne nun</string>
   <!--Dialog text while redeeming a gift-->
+  <string name="ViewReceivedGiftSheet__redeeming_gift">Ricevado de la donaco…</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <string name="ConversationFragment__you_can_redeem_your_badge_later">Vi povos ricevi vian insignon poste.</string>
   <!--Description text in gift thanks sheet-->
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Vi donacis insignon al %1$s. Kiam tiu homo akceptos ĝin, tiu povos montri aŭ ne tiun insignon.</string>
   <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Via insigno de donaco finiĝis</string>
   <!--Expired gift sheet top description text-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Via insigno de donaco senvalidiĝis kaj ne plu videblas al aliuloj ĉe via profilo.</string>
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">Por plu subteni teĥnologion, kiu estas farita por vi, konsideru donaci monate.</string>
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Donaci ĉiumonate</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ne nun</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Privata rakonto · %1$d vidanto</item>
+    <item quantity="other">Privata rakonto · %1$d vidantoj</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Grupa rakonto · %1$d vidanto</item>
+    <item quantity="other">Grupa rakonto · %1$d vidantoj</item>
+  </plurals>
+  <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">Restas %1$d tago.</item>
+    <item quantity="other">Restas %1$d tagoj.</item>
+  </plurals>
+  <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">Restas %1$d horo.</item>
+    <item quantity="other">Restas %1$d horoj.</item>
+  </plurals>
+  <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">Restas %1$d minutoj.</item>
+    <item quantity="other">Restas %1$d minutoj.</item>
+  </plurals>
+  <!--Gift expiry expired-->
+  <string name="Gifts__expired">Senvalidiĝinta</string>
   <!--EOF-->
 </resources>

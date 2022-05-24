@@ -1098,6 +1098,7 @@
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">此舊版群組太大，因此無法再使用。 最大組大小為%1$d。</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">繼續與%1$s交談，並與他們分享你的名字和照片嗎？</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">加入該群組並與其成員分享你的名字和照片嗎？ 在你接受之前，他們不會知道你已看到他們的訊息。</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">加入此群組並與成員分享你的姓名和照片嗎？ 在你接受之前，你不會看到他們的訊息。</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">要加入這個群組？ 在你接受之前，他們不會知道你已看過他們的訊息。</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">取消封鎖此群組並與其成員分享你的名字和照片？ 除非你取消阻止它們，否則你將不會收到任何訊息。</string>
   <string name="MessageRequestProfileView_view">檢視</string>
@@ -1232,6 +1233,14 @@
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">群組太大，無法給參與者打電話。</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">重新連接中…</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">藍牙權限被拒絕</string>
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">請啟用“鄰近分享”權限以在通話時時候使用藍牙。</string>
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">開啟設定</string>
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">稍後</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal 語音通話</string>
   <string name="WebRtcCallView__signal_video_call">Signal 視訊電話</string>
@@ -1604,6 +1613,8 @@
   <string name="SingleRecipientNotificationBuilder_new_message">新訊息</string>
   <string name="SingleRecipientNotificationBuilder_message_request">訊息要求</string>
   <string name="SingleRecipientNotificationBuilder_you">你</string>
+  <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • 限時動態</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">播放影片</string>
   <string name="ThumbnailView_Has_a_caption_description">有一個標題</string>
@@ -3776,6 +3787,8 @@
   <string name="StoryViewerPageFragment__s_to_s">%1$s 傳送給 %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">回覆</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">回覆給群組</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">尚未觀看</string>
   <!--Displayed when a story has no replies yet-->
@@ -3964,6 +3977,8 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">檢視更多</string>
   <string name="StoriesLinkPopup__visit_link">訪問連結</string>
+  <!--Duration and price information-->
+  <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d 天的期限</string>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">傳送禮品徽章</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4022,5 +4037,19 @@
   <plurals name="ContactSearchItems__group_story_d_viewers">
     <item quantity="other">群組限時動態 · %1$d 個觀眾</item>
   </plurals>
+  <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="other">剩下 %1$d 天</item>
+  </plurals>
+  <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="other">剩下 %1$d 小時</item>
+  </plurals>
+  <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="other">剩下 %1$d 分鐘</item>
+  </plurals>
+  <!--Gift expiry expired-->
+  <string name="Gifts__expired">已過期</string>
   <!--EOF-->
 </resources>

@@ -1433,6 +1433,11 @@ Anfon neges heb ei diogelu?</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Mae\'r grŵp yn rhy fawr i ffonio\'r cyfranogwyr.</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Yn Ailgysylltu…</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">Nid nawr</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Galwad Signal</string>
   <string name="WebRtcCallView__signal_video_call">Galwad Fideo Signal</string>
@@ -1832,6 +1837,7 @@ Anfon neges heb ei diogelu?</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Neges newydd</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Cais am neges</string>
   <string name="SingleRecipientNotificationBuilder_you">Chi</string>
+  <!--Notification subtext for group stories-->
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Chwarae fideo</string>
   <string name="ThumbnailView_Has_a_caption_description">Mae ganddo gapsiwn</string>
@@ -4103,6 +4109,7 @@ Anfon neges heb ei diogelu?</string>
   <string name="StoryViewerPageFragment__s_to_s">%1$s i %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Ymateb</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Neb wedi\'i darllen eto</string>
   <!--Displayed when a story has no replies yet-->
@@ -4297,6 +4304,7 @@ Anfon neges heb ei diogelu?</string>
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Gweld rhagor</string>
   <string name="StoriesLinkPopup__visit_link">Ymweld â\'r ddolen</string>
+  <!--Duration and price information-->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Anfon bathodyn rhodd</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4361,5 +4369,10 @@ Anfon neges heb ei diogelu?</string>
     <item quantity="many">Stori Grŵp · %1$d darllenydd</item>
     <item quantity="other">Stori Grŵp · %1$d darllenydd</item>
   </plurals>
+  <!--Gift expiry days remaining-->
+  <!--Gift expiry hours remaining-->
+  <!--Gift expiry minutes remaining-->
+  <!--Gift expiry expired-->
+  <string name="Gifts__expired">Daeth i Ben</string>
   <!--EOF-->
 </resources>

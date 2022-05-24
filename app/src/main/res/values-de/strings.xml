@@ -1158,6 +1158,7 @@
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Diese Gruppe alten Typs kann nicht mehr verwendet werden. Die maximale Gruppengröße von %1$d Mitgliedern ist überschritten.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Unterhaltung mit %1$s fortsetzen und deinen Namen und dein Foto mit diesem Nutzer teilen?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Möchtest du dieser Gruppe beitreten und deinen Namen und dein Foto mit deren Mitgliedern teilen? Sie wissen nicht, dass du ihre Nachrichten gesehen hast, bis du die Anfrage annimmst.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Möchtest du dieser Gruppe beitreten und deinen Namen und dein Foto mit deren Mitgliedern teilen? Du kannst die Nachrichten nicht sehen, bis du die Anfrage annimmst.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Dieser Gruppe beitreten? Solange du nicht beitrittst, werden die Gruppenmitglieder nicht wissen, dass du ihre Nachrichten gesehen hast.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Möchtest du diese Gruppe freigeben und deinen Namen und dein Foto mit deren Mitgliedern teilen? Du wirst keine Nachrichten erhalten, bis du die Gruppe freigibst.</string>
   <string name="MessageRequestProfileView_view">Anzeigen</string>
@@ -1297,6 +1298,14 @@
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Gruppe ist zu groß, um bei den Teilnehmern zu klingeln.</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Verbindung wird neu hergestellt …</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">Bluetooth Berechtigung abgelehnt</string>
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Bitte aktiviere die Berechtigung »Geräte in der Nähe«, um Bluetooth bei Anrufen zu verwenden.</string>
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Einstellungen öffnen</string>
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">Jetzt nicht</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-Anruf</string>
   <string name="WebRtcCallView__signal_video_call">Signal-Videoanruf</string>
@@ -1671,6 +1680,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SingleRecipientNotificationBuilder_new_message">Neue Nachricht</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Unterhaltungsanfrage</string>
   <string name="SingleRecipientNotificationBuilder_you">Du</string>
+  <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • Story</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Video abspielen</string>
   <string name="ThumbnailView_Has_a_caption_description">Hat eine Beschriftung</string>
@@ -3876,6 +3887,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="StoryViewerPageFragment__s_to_s">%1$s an %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Antworten</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">Gruppe antworten</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Bisher keine Aufrufe</string>
   <!--Displayed when a story has no replies yet-->
@@ -4066,6 +4079,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Mehr anzeigen</string>
   <string name="StoriesLinkPopup__visit_link">Link aufrufen</string>
+  <!--Duration and price information-->
+  <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d Tage</string>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Ein Geschenkabzeichen versenden</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4126,5 +4141,22 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
     <item quantity="one">Gruppen-Story · %1$d Betrachter</item>
     <item quantity="other">Gruppen-Story · %1$d Betrachter</item>
   </plurals>
+  <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">%1$d verbleibender Tag</item>
+    <item quantity="other">%1$d verbleibende Tage</item>
+  </plurals>
+  <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">%1$d verbleibende Stunde</item>
+    <item quantity="other">%1$d verbleibende Stunden</item>
+  </plurals>
+  <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">%1$d verbleibende Minute</item>
+    <item quantity="other">%1$d verbleibende Minuten</item>
+  </plurals>
+  <!--Gift expiry expired-->
+  <string name="Gifts__expired">Abgelaufen</string>
   <!--EOF-->
 </resources>

@@ -1233,6 +1233,11 @@
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">個谷大得滯，冇得逐個人唥鐘。</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">重新連緊線…</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">遲啲先啦</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal 通話</string>
   <string name="WebRtcCallView__signal_video_call">Signal 視像通話</string>
@@ -1605,6 +1610,7 @@
   <string name="SingleRecipientNotificationBuilder_new_message">新訊息</string>
   <string name="SingleRecipientNotificationBuilder_message_request">訊息請求</string>
   <string name="SingleRecipientNotificationBuilder_you">您</string>
+  <!--Notification subtext for group stories-->
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">播片</string>
   <string name="ThumbnailView_Has_a_caption_description">有題字</string>
@@ -3756,6 +3762,7 @@
   <string name="StoryViewerPageFragment__s_to_s">%1$s 放送 %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">回覆</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">未有人遊覽</string>
   <!--Displayed when a story has no replies yet-->
@@ -3942,6 +3949,7 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">睇多啲</string>
   <string name="StoriesLinkPopup__visit_link">打開條拎去睇</string>
+  <!--Duration and price information-->
   <!--Tagline for gift row items-->
   <!--Headline text on start fragment for gifting a badge-->
   <!--Description text on start fragment for gifting a badge-->
@@ -3983,5 +3991,9 @@
   <plurals name="ContactSearchItems__group_story_d_viewers">
     <item quantity="other">成谷放送是日花生 · %1$d 位花生友</item>
   </plurals>
+  <!--Gift expiry days remaining-->
+  <!--Gift expiry hours remaining-->
+  <!--Gift expiry minutes remaining-->
+  <!--Gift expiry expired-->
   <!--EOF-->
 </resources>

@@ -1298,6 +1298,11 @@
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Η ομάδα είναι πολύ μεγάλη ώστε να χρησιμοποιηθεί κουδούνισμα κλήσης για τους συμμετέχοντες.</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Επανασύνδεση…</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">Όχι τώρα</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Κλήση Signal</string>
   <string name="WebRtcCallView__signal_video_call">Βιντεοκλήση Signal</string>
@@ -1677,6 +1682,7 @@
   <string name="SingleRecipientNotificationBuilder_new_message">Νέο μήνυμα</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Αίτημα μηνύματος</string>
   <string name="SingleRecipientNotificationBuilder_you">Εσύ</string>
+  <!--Notification subtext for group stories-->
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Αναπαραγωγή βίντεο</string>
   <string name="ThumbnailView_Has_a_caption_description">Έχει λεζάντα</string>
@@ -3881,6 +3887,7 @@
   <string name="StoryViewerPageFragment__s_to_s">%1$s έως %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Απάντηση</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Καμία προβολή ακόμα</string>
   <!--Displayed when a story has no replies yet-->
@@ -4071,6 +4078,7 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Προβολή περισσότερων</string>
   <string name="StoriesLinkPopup__visit_link">Επίσκεψη συνδέσμου</string>
+  <!--Duration and price information-->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Αποστολή εμβλήματος δώρου</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4131,5 +4139,9 @@
     <item quantity="one">Ιστορία ομάδας · %1$d θεατής</item>
     <item quantity="other">Ιστορία ομάδας · %1$d θεατές</item>
   </plurals>
+  <!--Gift expiry days remaining-->
+  <!--Gift expiry hours remaining-->
+  <!--Gift expiry minutes remaining-->
+  <!--Gift expiry expired-->
   <!--EOF-->
 </resources>

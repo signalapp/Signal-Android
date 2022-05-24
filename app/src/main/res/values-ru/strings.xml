@@ -1278,6 +1278,7 @@
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Эта Старая группа больше не может быть использована, потому что она слишком большая. Максимальный размер группы — %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Продолжить ваш разговор с %1$s и открыть ваше имя и фото этому человеку?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Присоединиться к этой группе и открыть ваше имя и фото её участникам? Они не узнают, что вы видели их сообщения, пока вы не примете запрос.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Присоединиться к этой группе и открыть ваше имя и фото её участникам? Вы не увидите их сообщения, пока не примете запрос.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Присоединиться к этой группе? Её участники не узнают, что вы видели их сообщения, пока вы не примете запрос.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Разблокировать эту группу и открыть ваше имя и фото её участникам? Вы не будете получать сообщений, пока не разблокируете эту группу.</string>
   <string name="MessageRequestProfileView_view">Просмотреть</string>
@@ -1430,6 +1431,14 @@
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Невозможно звонить участникам: группа слишком большая.</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Переподключаемся…</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">Разрешение Bluetooth отключено</string>
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Пожалуйста, включите разрешение «Устройства Bluetooth поблизости», чтобы использовать Bluetooth во время звонка.</string>
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Открыть настройки</string>
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">Не сейчас</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Звонок Signal</string>
   <string name="WebRtcCallView__signal_video_call">Видеозвонок Signal</string>
@@ -1823,6 +1832,8 @@
   <string name="SingleRecipientNotificationBuilder_new_message">Новое сообщение</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Запрос на общение</string>
   <string name="SingleRecipientNotificationBuilder_you">Вы</string>
+  <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • История</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Воспроизвести видео</string>
   <string name="ThumbnailView_Has_a_caption_description">Есть подпись</string>
@@ -4094,6 +4105,8 @@
   <string name="StoryViewerPageFragment__s_to_s">%1$s в %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Ответить</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">Ответить группе</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Ещё нет просмотров</string>
   <!--Displayed when a story has no replies yet-->
@@ -4288,6 +4301,8 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Просмотреть больше</string>
   <string name="StoriesLinkPopup__visit_link">Посетить ссылку</string>
+  <!--Duration and price information-->
+  <string name="GiftRowItem__s_dot_d_day_duration">%1$s · действует %2$d дней</string>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Отправить значок в подарок</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4352,5 +4367,28 @@
     <item quantity="many">История группы · %1$d зрителей</item>
     <item quantity="other">История группы · %1$d зрителя</item>
   </plurals>
+  <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">Остался %1$d день</item>
+    <item quantity="few">Осталось %1$d дня</item>
+    <item quantity="many">Осталось %1$d дней</item>
+    <item quantity="other">Осталось %1$d дня</item>
+  </plurals>
+  <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">Остался %1$d час</item>
+    <item quantity="few">Осталось %1$d часа</item>
+    <item quantity="many">Осталось %1$d часов</item>
+    <item quantity="other">Осталось %1$d часа</item>
+  </plurals>
+  <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">Осталась %1$d минута</item>
+    <item quantity="few">Осталось %1$d минуты</item>
+    <item quantity="many">Осталось %1$d минут</item>
+    <item quantity="other">Осталось %1$d минуты</item>
+  </plurals>
+  <!--Gift expiry expired-->
+  <string name="Gifts__expired">Истёк</string>
   <!--EOF-->
 </resources>

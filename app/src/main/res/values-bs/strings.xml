@@ -1218,6 +1218,7 @@
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ova grupa više se ne može koristiti jer je prevelika. Maksimum za grupu iznosi %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Nastaviti konverzaciju i dopustiti da %1$s vidi Vaše ime i sliku?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Pristupiti ovoj grupi i dopustiti članovima da vide Vaše ime i sliku? Oni neće znati da ste vidjeli njihove poruke dok ne prihvatite.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Pristupiti ovoj grupi i dopustiti članovima da vide Vaše ime i sliku? Nećete vidjeti njihove poruke dok ne prihvatite.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Pristupiti ovoj grupi? Članovi neće znati da ste vidjeli njihove poruke dok ne prihvatite.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Prestati s blokiranjem ove grupe i dopustiti njenim članovima da vide Vaše ime i sliku? Nećete primati poruke dok je ne prestanete blokirati.</string>
   <string name="MessageRequestProfileView_view">Pregled</string>
@@ -1365,6 +1366,14 @@
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grupa je prevelika za zazvoniti učesnicima.</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Povezujem iznova…</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">Odbijen pristup Bluetoothu</string>
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Molimo aktivirajte \"Uređaji u blizini\" dozvolu da biste koristili bluetooth tokom poziva.</string>
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Otvori podešavanja</string>
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">Ne sada</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal poziv</string>
   <string name="WebRtcCallView__signal_video_call">Signal videopoziv</string>
@@ -1756,6 +1765,8 @@
   <string name="SingleRecipientNotificationBuilder_new_message">Nova poruka</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Zahtjev za komunikaciju</string>
   <string name="SingleRecipientNotificationBuilder_you">Vi</string>
+  <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • Priča</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Prikaži video</string>
   <string name="ThumbnailView_Has_a_caption_description">Sadržava opis</string>
@@ -3999,6 +4010,8 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="StoryViewerPageFragment__s_to_s">%1$s do %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Odgovori</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">Odgovori grupi</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Još nema pregleda</string>
   <!--Displayed when a story has no replies yet-->
@@ -4191,6 +4204,8 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Više</string>
   <string name="StoriesLinkPopup__visit_link">Posjeti link</string>
+  <!--Duration and price information-->
+  <string name="GiftRowItem__s_dot_d_day_duration">%1$s · Traje %2$d dana</string>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Pošalji značku kao poklon</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4253,5 +4268,25 @@ prenijeli račun na svoj novi Android uređaj.</string>
     <item quantity="few">Grupna priča · %1$d posmatrača</item>
     <item quantity="other">Grupna priča · %1$d posmatrača</item>
   </plurals>
+  <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">%1$d dan do isteka</item>
+    <item quantity="few">%1$d dana do isteka</item>
+    <item quantity="other">%1$d dana do isteka</item>
+  </plurals>
+  <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">%1$d sat do isteka</item>
+    <item quantity="few">%1$d sata do isteka</item>
+    <item quantity="other">%1$d sati do isteka</item>
+  </plurals>
+  <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">%1$d minuta do isteka</item>
+    <item quantity="few">%1$d minute do isteka</item>
+    <item quantity="other">%1$d minuta do isteka</item>
+  </plurals>
+  <!--Gift expiry expired-->
+  <string name="Gifts__expired">Istekao</string>
   <!--EOF-->
 </resources>

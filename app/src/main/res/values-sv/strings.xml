@@ -1285,6 +1285,11 @@
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Gruppen är för stor för att ringa deltagarna.</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Återansluter…</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">Inte nu</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-samtal</string>
   <string name="WebRtcCallView__signal_video_call">Signal-videosamtal</string>
@@ -1660,6 +1665,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nytt meddelande</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Meddelandeförfrågan</string>
   <string name="SingleRecipientNotificationBuilder_you">Du</string>
+  <!--Notification subtext for group stories-->
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Spela video</string>
   <string name="ThumbnailView_Has_a_caption_description">Har en bildtext</string>
@@ -3837,6 +3843,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="StoryViewerPageFragment__s_to_s">%1$s till %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Svara</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Inga visningar ännu</string>
   <!--Displayed when a story has no replies yet-->
@@ -4023,6 +4030,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Visa mer</string>
   <string name="StoriesLinkPopup__visit_link">Besök länk</string>
+  <!--Duration and price information-->
   <!--Tagline for gift row items-->
   <!--Headline text on start fragment for gifting a badge-->
   <!--Description text on start fragment for gifting a badge-->
@@ -4057,5 +4065,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ExpiredGiftSheetConfiguration__not_now">Inte nu</string>
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
+  <!--Gift expiry days remaining-->
+  <!--Gift expiry hours remaining-->
+  <!--Gift expiry minutes remaining-->
+  <!--Gift expiry expired-->
   <!--EOF-->
 </resources>

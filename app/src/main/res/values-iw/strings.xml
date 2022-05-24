@@ -1278,6 +1278,7 @@
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">קבוצה מיושנת זו אינה יכולה עוד להיות בשימוש מאחר שהיא גדולה מדי. גודל הקבוצה המרבי הוא %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">להמשיך את השיחה שלך עם %1$s ולשתף את השם והתמונה שלך איתו/איתה?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">להצטרף אל קבוצה זו ולשתף את השם והתמונה שלך עם חברי הקבוצה? חברי הקבוצה לא יידעו שראית את ההודעה שלהם עד שלא תאשר.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">להצטרף אל קבוצה זו ולשתף את השם והתמונה שלך עם חברי הקבוצה? לא תראה את ההודעות שלהם עד שלא תאשר.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">להצטרף אל קבוצה זו? הקבוצה לא תידע שראית את ההודעות שלה עד שתאשר.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">לשחרר חסימת קבוצה זו ולשתף את השם והתמונה שלך עם חברי הקבוצה? לא תקבל הודעות כלשהן עד שתשחרר חסימה.</string>
   <string name="MessageRequestProfileView_view">הצג</string>
@@ -1431,6 +1432,14 @@
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">הקבוצה גדולה מדי כדי לצלצל אל המשתתפים.</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">מתחבר מחדש…</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">הרשאת Bluetooth נדחתה</string>
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">אנא אפשר את ההרשאה \"מכשירים בקרבת מקום\" כדי להשתמש ב־Bluetooth במהלך שיחה.</string>
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">פתח הגדרות</string>
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">לא עכשיו</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">שיחת Signal</string>
   <string name="WebRtcCallView__signal_video_call">שיחת וידאו של Signal</string>
@@ -1830,6 +1839,8 @@
   <string name="SingleRecipientNotificationBuilder_new_message">הודעה חדשה</string>
   <string name="SingleRecipientNotificationBuilder_message_request">בקשת הודעה</string>
   <string name="SingleRecipientNotificationBuilder_you">את/ה</string>
+  <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • סיפור</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">נגן סרטון</string>
   <string name="ThumbnailView_Has_a_caption_description">יש כיתוב</string>
@@ -4101,6 +4112,8 @@
   <string name="StoryViewerPageFragment__s_to_s">%1$s אל %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">השב</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">השב אל קבוצה</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">אין צפיות עדין</string>
   <!--Displayed when a story has no replies yet-->
@@ -4295,6 +4308,8 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">הצג עוד</string>
   <string name="StoriesLinkPopup__visit_link">בקר בקישור</string>
+  <!--Duration and price information-->
+  <string name="GiftRowItem__s_dot_d_day_duration">%1$s · משך של %2$d ימים </string>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">שלח תג שי</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4359,5 +4374,28 @@
     <item quantity="many">סיפור קבוצתי · %1$d צופים</item>
     <item quantity="other">סיפור קבוצתי · %1$d צופים</item>
   </plurals>
+  <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">%1$d יום נותר</item>
+    <item quantity="two">%1$d ימים נותרו</item>
+    <item quantity="many">%1$d ימים נותרו</item>
+    <item quantity="other">%1$d ימים נותרו</item>
+  </plurals>
+  <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">%1$d שעה נותרה</item>
+    <item quantity="two">%1$d שעות נותרו</item>
+    <item quantity="many">%1$d שעות נותרו</item>
+    <item quantity="other">%1$d שעות נותרו</item>
+  </plurals>
+  <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">%1$d דקה נותרה</item>
+    <item quantity="two">%1$d דקות נותרו</item>
+    <item quantity="many">%1$d דקות נותרו</item>
+    <item quantity="other">%1$d דקות נותרו</item>
+  </plurals>
+  <!--Gift expiry expired-->
+  <string name="Gifts__expired">פג</string>
   <!--EOF-->
 </resources>

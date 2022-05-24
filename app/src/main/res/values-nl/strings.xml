@@ -74,7 +74,7 @@
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Geblokkeerde personen &amp; groepen</string>
   <string name="BlockedUsersActivity__add_blocked_user">Contactpersoon aan blokkeerlijst toevoegen</string>
-  <string name="BlockedUsersActivity__blocked_users_will">Tik hier om handmatig een persoon toe te voegen aan de lijst van geblokkeerde personen. Geblokkeerde personen kunnen niet zien dat ze geblokkeerd zijn: het lijkt voor hen alsof je telefoon over gaat, en alsof berichten worden afgeleverd. Je huidige profielnaam en -foto blijven voor geblokkeerde personen zichtbaar maar worden niet bijgewerkt als je een nieuwe foto of naam instelt. In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt geblokkeerd.</string>
+  <string name="BlockedUsersActivity__blocked_users_will">Tik hier om handmatig een persoon toe te voegen aan de lijst van geblokkeerde personen. — Geblokkeerde personen kunnen niet zien dat ze geblokkeerd zijn: het lijkt voor hen alsof je telefoon over gaat, en alsof berichten worden afgeleverd. Je huidige profielnaam en -foto blijven voor geblokkeerde personen zichtbaar maar worden niet bijgewerkt als je een nieuwe foto of naam instelt. Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt niet zien.</string>
   <string name="BlockedUsersActivity__no_blocked_users">Je hebt geen personen of groepen geblokkeerd</string>
   <string name="BlockedUsersActivity__block_user">Persoon blokkeren?</string>
   <string name="BlockedUserActivity__s_will_not_be_able_to">“%1$s” kan jou nog steeds bellen of berichten sturen en weet dus niet dat hij of zijn geblokkeerd is, maar je zult die oproepen en berichten niet zien.</string>
@@ -94,7 +94,7 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Jullie zullen weer sms-berichten aan elkaar kunnen verzenden via Signal.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Geblokkeerde personen kunnen niet zien dat ze geblokkeerd zijn: het lijkt voor hen alsof je telefoon over gaat en alsof berichten worden afgeleverd.
 Je huidige profielnaam en -foto blijven voor geblokkeerde personen zichtbaar maar worden ze niet bijgewerkt als je een nieuwe foto of naam instelt.
-In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt geblokkeerd.</string>
+Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt niet zien.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Geblokkeerde personen kunnen niet zien dat ze geblokkeerd zijn: het lijkt voor hen alsof sms-berichten worden afgeleverd.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Nieuwsberichten over Signal blokkeren.</string>
@@ -1160,6 +1160,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Deze verouderde groep kan niet langer gebruikt worden omdat hij teveel leden heeft. Het maximum ledenaantal voor een groep is %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Wil je je profielnaam, -foto en -omschrijving voor %1$s zichtbaar maken om je gesprek voort te kunnen zetten?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Als je leesbevestigingen hebt ingeschakeld kunnen de leden van deze groep die nog niet zien totdat je de uitnodiging hebt aanvaard.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Je kunt hun berichten nog niet zien totdat je de uitnodiging hebt aanvaard.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Je bent door iemand met wie je eerder een gesprek hebt gehad of met wie je in dezelfde groep zat toegevoegd aan deze groep. Wil je lid blijven van deze groep? Als je leesbevestigingen hebt ingeschakeld kunnen de leden van deze groep die nog niet zien totdat je de uitnodiging hebt aanvaard.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Wil je weer berichten van deze groep ontvangen, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Totdat je de groep hebt gedeblokkeerd zul je geen berichten of oproepen ontvangen en kunnen leden van deze groep veranderingen van je profiel niet zien.</string>
   <string name="MessageRequestProfileView_view">Weergeven</string>
@@ -1232,7 +1233,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="PinRestoreEntryFragment_incorrect_pin">Foutieve pincode</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Pincode invoeren overslaan?</string>
   <string name="PinRestoreEntryFragment_need_help">Hulp nodig?</string>
-  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Je pincode is een code welke je zelf hebt aangemaakt en welke bestaat uit %1$d of meer cijfers of een combinatie van cijfers en letters. Als je je je pincode niet kunt herinneren, dan kun je een nieuwe pincode aanmaken. Je kunt Signal dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam, -foto en -omschrijving zullen dan verloren gaan.</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Je pincode is een code welke je zelf hebt aangemaakt en welke bestaat uit %1$d of meer cijfers of een combinatie van cijfers en letters. Als je je je pincode niet kunt herinneren, dan kun je een nieuwe pincode aanmaken. Je kunt Signal dan wel opnieuw registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam, -foto en -omschrijving zullen dan verloren gaan.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Als je je je pincode niet kan herinneren, dan kun je een nieuwe pincode aanmaken. Je kunt Signal dan weer gebruiken, maar sommige instellingen waaronder je profielnaam, -foto en -omschrijving zullen dan niet bewaard blijven.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Nieuwe pincode aanmaken</string>
   <string name="PinRestoreEntryFragment_contact_support">Neem contact op met ondersteuning</string>
@@ -1301,6 +1302,14 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">De groep is te groot om de leden te bellen.</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Opnieuw aan het verbinden …</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">Bluetooth-machtiging is nog niet gegeven</string>
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Als je bluetooth wilt gebruiken tijdens oproepen, dan is het nodig dat je Signal machtigt om ‘Nabije apparaten’ te vinden.</string>
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Instellingen openen</string>
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">Niet nu</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-oproep</string>
   <string name="WebRtcCallView__signal_video_call">Signal video-oproep</string>
@@ -1687,6 +1696,8 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="SingleRecipientNotificationBuilder_new_message">Nieuw bericht</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Gespreksverzoek</string>
   <string name="SingleRecipientNotificationBuilder_you">Jij</string>
+  <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">Verhaal van %1$s</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Video afspelen</string>
   <string name="ThumbnailView_Has_a_caption_description">Heeft een bijschrift</string>
@@ -2113,8 +2124,8 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Gebruik de Enter-toets voor het verzenden van tekstberichten</string>
   <string name="preferences__pref_use_address_book_photos">Profielfoto uit systeemcontactenlijst gebruiken</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">Geef indien beschikbaar de profielfoto uit je eigen systeemcontactenlijst weer, in plaats van de profielfoto welke anderen voor henzelf hebben ingesteld.</string>
-  <string name="preferences__generate_link_previews">Voorbeeldafbeeldingen genereren</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Sta Signal toe om voor elke verwijzing naar een website die je verzendt een voorbeeldafbeelding genereren en aan je bericht bij te voegen. Echter, als je dit inschakelt zouden websites kunnen detecteren dat je hen in je bericht vermeldt en ook welke pagina je vermeldt.</string>
+  <string name="preferences__generate_link_previews">Voorbeeld van website meesturen</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Door dit in te schakelen wordt voor elke verwijzing naar een website die je verzendt een voorbeeldafbeelding gegenereerd en met je bericht meegestuurd. Een nadeel is wel dat als je dit inschakelt websites zouden kunnen detecteren dat je hen in je bericht vermeldt en ook welke pagina je vermeldt.</string>
   <string name="preferences__choose_identity">Identiteit kiezen</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kies je contactgegevens uit de lijst met contactpersonen.</string>
   <string name="preferences__change_passphrase">Wachtwoord wijzigen</string>
@@ -3432,10 +3443,10 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="MultiselectForwardFragment__share_with">Doorsturen naar</string>
   <string name="MultiselectForwardFragment__add_a_message">Berichttekst toevoegen</string>
   <string name="MultiselectForwardFragment__faster_forwards">Sneller doorsturen</string>
-  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Doorgestuurde berichten worden vanaf nu onmiddelijk verzonden.</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Doorgestuurde berichten worden vanaf nu onmiddellijk verzonden.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
-    <item quantity="one">%1$d bericht verzonden</item>
-    <item quantity="other">%1$d berichten verzonden</item>
+    <item quantity="one">%1$d bericht verzenden</item>
+    <item quantity="other">%1$d berichten verzenden</item>
   </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="one">Bericht verzonden</item>
@@ -3892,6 +3903,8 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="StoryViewerPageFragment__s_to_s">%1$s naar %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Reageren</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">Naar de groep reageren</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Nog door niemand gezien</string>
   <!--Displayed when a story has no replies yet-->
@@ -4082,6 +4095,8 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Meer weergeven</string>
   <string name="StoriesLinkPopup__visit_link">Verwijzing volgen</string>
+  <!--Duration and price information-->
+  <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d dagen geldig</string>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Een cadeau-badge verzenden</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4142,5 +4157,22 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
     <item quantity="one">Groepsverhaal · door %1$d persoon gezien</item>
     <item quantity="other">Groepsverhaal · door %1$d personen gezien</item>
   </plurals>
+  <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">%1$d dag resterend</item>
+    <item quantity="other">%1$d dagen resterend</item>
+  </plurals>
+  <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">%1$d uur resterend</item>
+    <item quantity="other">%1$d uur resterend</item>
+  </plurals>
+  <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">%1$d minuut resterend</item>
+    <item quantity="other">%1$d minuten resterend</item>
+  </plurals>
+  <!--Gift expiry expired-->
+  <string name="Gifts__expired">Verlopen</string>
   <!--EOF-->
 </resources>

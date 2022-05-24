@@ -1278,6 +1278,7 @@
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ta Stara grupa nie może być już używana, ponieważ jest zbyt duża. Maksymalny rozmiar grupy to %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Kontynuować konwersację z %1$s i udostępnić swoje imię i zdjęcie temu kontaktowi?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Czy chcesz dołączyć do tej grupy i udostępnić swoje imię i zdjęcie jej członkom? Członkowie grupy nie będą wiedzieć, że przeczytałeś(aś) ich wiadomość, dopóki nie zaakceptujesz.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Czy chcesz dołączyć do tej grupy i udostępnić swoje imię i zdjęcie jej członkom? Nie zobaczysz ich wiadomości, dopóki nie zaakceptujesz.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Czy chcesz dołączyć do tej grupy? Członkowie grupy nie będą wiedzieć, że przeczytałeś(aś) ich wiadomość, dopóki nie zaakceptujesz.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Czy chcesz odblokować tę grupę i udostępnić swoje imię i zdjęcie jej członkom? Nie otrzymasz żadnych wiadomości, dopóki nie odblokujesz.</string>
   <string name="MessageRequestProfileView_view">Zobacz</string>
@@ -1430,6 +1431,14 @@
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grupa jest zbyt duża, aby powiadomić uczestników dzwonkiem.</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Ponowne łączenie…</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">Brak uprawnień do korzystania z Bluetooth.</string>
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Zezwól na dostęp do \"Urządzenia w pobliżu\", aby używać Bluetooth w trakcie połączenia.</string>
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Otwórz ustawienia</string>
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">Nie teraz</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Połączenie audio Signal</string>
   <string name="WebRtcCallView__signal_video_call">Połączenie wideo Signal</string>
@@ -1822,6 +1831,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nowa wiadomość</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Prośba o kontakt</string>
   <string name="SingleRecipientNotificationBuilder_you">Ty</string>
+  <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • Historia</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Odtwórz wideo</string>
   <string name="ThumbnailView_Has_a_caption_description">Posiada opis</string>
@@ -4093,6 +4104,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="StoryViewerPageFragment__s_to_s">%1$s do %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Odpowiedz</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">Odpowiedz grupie</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Brak odsłon</string>
   <!--Displayed when a story has no replies yet-->
@@ -4287,6 +4300,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Pokaż więcej</string>
   <string name="StoriesLinkPopup__visit_link">Odwiedź link</string>
+  <!--Duration and price information-->
+  <string name="GiftRowItem__s_dot_d_day_duration">%1$s · aktywna %2$d dni</string>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Wyślij odznakę w prezencie</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4351,5 +4366,28 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
     <item quantity="many">Historia grupowa · %1$d widzów</item>
     <item quantity="other">Historia grupowa · %1$d widzów</item>
   </plurals>
+  <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">Pozostał %1$d dzień</item>
+    <item quantity="few">Pozostały %1$d dni</item>
+    <item quantity="many">Pozostało %1$d dni</item>
+    <item quantity="other">Pozostały %1$d dni</item>
+  </plurals>
+  <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">Pozostała %1$d godzina</item>
+    <item quantity="few">Pozostały %1$d godziny</item>
+    <item quantity="many">Pozostało %1$d godzin</item>
+    <item quantity="other">Pozostały %1$d godziny</item>
+  </plurals>
+  <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">Pozostała %1$d minuta</item>
+    <item quantity="few">Pozostały %1$d minuty</item>
+    <item quantity="many">Pozostało %1$d minut</item>
+    <item quantity="other">Pozostały %1$d minuty</item>
+  </plurals>
+  <!--Gift expiry expired-->
+  <string name="Gifts__expired">Wygasła</string>
   <!--EOF-->
 </resources>

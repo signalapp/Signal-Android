@@ -1163,6 +1163,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Denne Eldre gruppa kan ikkje lenger brukast sidan ho er for stor. Maksimal gruppestorleik er %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Fortset samtalen din med %1$s og del namnet og bildet ditt med dei?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vil du bli med i denne gruppa og dela namnet og bildet ditt med medlemmane? Dei får ikkje vita at du har sett meldingane deira før du godkjenner.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Vil du bli med i denne gruppa og dela namnet og bildet ditt med medlemmane? Du får ikkje sjå meldingane deira før du godkjenner.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bli med i gruppa? Dei vil ikkje vita at du har sett meldingane deira før du godtek.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Vil du bli avblokkera denne gruppa og dela namnet og bildet ditt med medlemmane? Du får inga meldingar før du avblokkerer dei.</string>
   <string name="MessageRequestProfileView_view">Vis</string>
@@ -1305,6 +1306,14 @@ Viss du ikkje klarer å hugsa PIN-en, kan du oppretta ein ny ein. Du kan registr
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Gruppa er for stor til å ringa alle deltakarane.</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Koplar til på nytt …</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">Bluetooth-tillating nekta</string>
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Gje tillating til einingar i nærleiken for å bruka bluetooth i ein samtale.</string>
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Opna innstillingar</string>
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">Ikkje no</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-anrop</string>
   <string name="WebRtcCallView__signal_video_call">Signal-videosamtale</string>
@@ -1688,6 +1697,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny melding</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Meldingsspørsmål</string>
   <string name="SingleRecipientNotificationBuilder_you">Du</string>
+  <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • Historie</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Snurr film</string>
   <string name="ThumbnailView_Has_a_caption_description">Har bildetekst</string>
@@ -3903,6 +3914,8 @@ Sjekkar igjen no …</string>
   <string name="StoryViewerPageFragment__s_to_s">%1$s til %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Svar</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">Svar til gruppa</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Ikkje vist enno</string>
   <!--Displayed when a story has no replies yet-->
@@ -4093,6 +4106,8 @@ Sjekkar igjen no …</string>
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Vis meir</string>
   <string name="StoriesLinkPopup__visit_link">Følgj lenka</string>
+  <!--Duration and price information-->
+  <string name="GiftRowItem__s_dot_d_day_duration">%1$s · varer %2$d dagar</string>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Send eit gåvemerke</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4153,5 +4168,22 @@ Sjekkar igjen no …</string>
     <item quantity="one">Gruppehistorie · %1$d sjåar</item>
     <item quantity="other">Gruppehistorie · %1$d sjåarar</item>
   </plurals>
+  <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">%1$d dag igjen</item>
+    <item quantity="other">%1$d dagar igjen</item>
+  </plurals>
+  <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">%1$d time igjen</item>
+    <item quantity="other">%1$d timar igjen</item>
+  </plurals>
+  <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">%1$d minutt igjen</item>
+    <item quantity="other">%1$d minutt igjen</item>
+  </plurals>
+  <!--Gift expiry expired-->
+  <string name="Gifts__expired">Utgått</string>
   <!--EOF-->
 </resources>

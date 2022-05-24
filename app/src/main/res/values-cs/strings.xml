@@ -1278,6 +1278,7 @@
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Tuto starší verzi skupiny již nelze používat, protože je příliš velká. Maximální velikost skupiny je %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Pokračovat ve vaší konverzaci s %1$s a sdílet s nimi vaše jméno a fotografii?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Připojit se k této skupině a sdílet vaše jméno a fotografii s jejími členy? Nebudou vědět, že jste viděl jejich zprávy, dokud je nepřijmete.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Přidat se k této skupině a sdílet své jméno a fotografii s jejími členy? Jejich zprávy uvidíte až po přijetí.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Chcete se připojit k této skupině? Dokud tak neučiníte, členové se nedozví, že jste viděli jejich zprávy.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Odblokovat tuto skupinu a sdílet vaše jméno a fotografii s jejími členy? Dokud je neodblokujete, tak žádné zprávy neobdržíte.</string>
   <string name="MessageRequestProfileView_view">Zobrazit</string>
@@ -1430,6 +1431,14 @@
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Skupina je pro volání příliš velká</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Opětovné připojování…</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">Oprávnění Bluetooth odepřeno</string>
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Pokud chcete během hovoru používat Bluetooth, povolte oprávnění \"Zařízení v okolí\".</string>
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Otevřít nastavení</string>
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">Teď ne</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal hovor</string>
   <string name="WebRtcCallView__signal_video_call">Signal video hovor</string>
@@ -1829,6 +1838,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="SingleRecipientNotificationBuilder_new_message">Nová zpráva</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Žádost o zprávu</string>
   <string name="SingleRecipientNotificationBuilder_you">Vy</string>
+  <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • Příběh</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Přehrát video</string>
   <string name="ThumbnailView_Has_a_caption_description">Má popisek</string>
@@ -4100,6 +4111,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="StoryViewerPageFragment__s_to_s">%1$s pro %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Odpověď</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">Odpovědět skupině</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Zatím žádná zobrazení</string>
   <!--Displayed when a story has no replies yet-->
@@ -4294,6 +4307,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Zobrazit více</string>
   <string name="StoriesLinkPopup__visit_link">Navštívit odkaz</string>
+  <!--Duration and price information-->
+  <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d dnů trvání</string>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Odeslání dárkového odznaku</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4358,5 +4373,28 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
     <item quantity="many">Skupinový příběh · %1$d zobrazení</item>
     <item quantity="other">Skupinový příběh · %1$d zobrazení</item>
   </plurals>
+  <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">%1$d den zbývá</item>
+    <item quantity="few">%1$d dny zbávají</item>
+    <item quantity="many">%1$d dnů zbývá</item>
+    <item quantity="other">%1$d dnů zbývá</item>
+  </plurals>
+  <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">%1$d hodina zbývá</item>
+    <item quantity="few">%1$d hodiny zbývají</item>
+    <item quantity="many">%1$d hodin zbývá</item>
+    <item quantity="other">%1$d hodin zbývá</item>
+  </plurals>
+  <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">%1$d minuta zbývá</item>
+    <item quantity="few">%1$d minuty zbývají</item>
+    <item quantity="many">%1$d minut zbývá</item>
+    <item quantity="other">%1$d minut zbývá</item>
+  </plurals>
+  <!--Gift expiry expired-->
+  <string name="Gifts__expired">Vypršel</string>
   <!--EOF-->
 </resources>

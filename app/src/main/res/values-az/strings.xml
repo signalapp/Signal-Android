@@ -1158,6 +1158,7 @@
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Bu Köhnə Qrup çox böyük olduğu üçün istifadə edilə bilmir. Maksimum qrup ölçüsü %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s ilə danışığınıza davam edib adınızı və fotonuzu onunla paylaşmaq istəyirsiniz?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bu qrupa qoşularaq adınızı və fotonuzu üzvlərlə paylaşırsınız? Qəbul edənə qədər onların mesajlarını gördüyünüzü bilməyəcəklər.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Bu qrupa qoşularaq adınızı və fotonuzu üzvlərlə paylaşırsınız? Qəbul edənə qədər onların mesajlarını görməyəcəksiniz.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bu qrupa qoşulursunuz? Qəbul edənə qədər onların mesajlarını gördüyünüzü bilməyəcəklər.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Bu qrupu əngəldən çıxardaraq adınızı və fotonuzu üzvlərlə paylaşırsınız? Əngəldən çıxardana qədər heç bir mesaj almayacaqsınız.</string>
   <string name="MessageRequestProfileView_view">Bax</string>
@@ -1299,6 +1300,14 @@
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Qrup, iştirakçılara zəng etmək üçün çox böyükdür.</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Yenidən bağlantı qurulur…</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">Bluetooth icazəsi rədd edildi</string>
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Zəng zamanı Bluetooth-u istifadə etmək üçün zəhmət olmasa \"Yaxınlıqdakı cihazlar\" icazəsini fəallaşdırın.</string>
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Tənzimləmələri aç</string>
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">İndi yox</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal zəngi</string>
   <string name="WebRtcCallView__signal_video_call">Signal görüntülü zəngi</string>
@@ -1682,6 +1691,8 @@
   <string name="SingleRecipientNotificationBuilder_new_message">Yeni mesaj</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Mesaj tələbi</string>
   <string name="SingleRecipientNotificationBuilder_you">Siz</string>
+  <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • Hekayə</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Videonu oynat</string>
   <string name="ThumbnailView_Has_a_caption_description">Başlığı var</string>
@@ -3887,6 +3898,8 @@
   <string name="StoryViewerPageFragment__s_to_s">%1$s -  %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Cavabla</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">Qrupa cavab ver</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Hələ ki, baxış yoxdur</string>
   <!--Displayed when a story has no replies yet-->
@@ -4077,6 +4090,8 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Daha çoxuna bax</string>
   <string name="StoriesLinkPopup__visit_link">Dəvət bağlantısı</string>
+  <!--Duration and price information-->
+  <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d günlük müddət</string>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Bir hədiyyə nişanı göndər</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4137,5 +4152,22 @@
     <item quantity="one">Qrup hekayəsi · %1$d baxış</item>
     <item quantity="other">Qrup hekayəsi · %1$d baxış</item>
   </plurals>
+  <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">%1$d gün qalıb</item>
+    <item quantity="other">%1$d gün qalıb</item>
+  </plurals>
+  <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">%1$d saat qalıb</item>
+    <item quantity="other">%1$d saat qalıb</item>
+  </plurals>
+  <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">%1$d dəqiqə qalıb</item>
+    <item quantity="other">%1$d dəqiqə qalıb</item>
+  </plurals>
+  <!--Gift expiry expired-->
+  <string name="Gifts__expired">Müddəti bitdi`</string>
   <!--EOF-->
 </resources>

@@ -1299,6 +1299,13 @@
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grup, katılımcıların aranması için çok büyük.</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Yeniden bağlanıyor…</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">Bluetooth izni reddedildi</string>
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Ayarları aç</string>
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">Şimdi değil</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal Araması</string>
   <string name="WebRtcCallView__signal_video_call">Görüntülü Signal Araması</string>
@@ -1680,6 +1687,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Yeni ileti</string>
   <string name="SingleRecipientNotificationBuilder_message_request">İleti isteği</string>
   <string name="SingleRecipientNotificationBuilder_you">Siz</string>
+  <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s · Hikaye</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Videoyu oynat</string>
   <string name="ThumbnailView_Has_a_caption_description">Başlığı var</string>
@@ -3885,6 +3894,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="StoryViewerPageFragment__s_to_s">%1$s --&gt; %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Cevapla</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Henüz görülme yok</string>
   <!--Displayed when a story has no replies yet-->
@@ -4075,6 +4085,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Daha fazlasını gör</string>
   <string name="StoriesLinkPopup__visit_link">Bağlantıyı ziyaret et</string>
+  <!--Duration and price information-->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Bir hediye rozeti gönder</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4135,5 +4146,10 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
     <item quantity="one">Grup Hikayesi · %1$d görüntüleyen</item>
     <item quantity="other">Grup Hikayesi · %1$d görüntüleyen</item>
   </plurals>
+  <!--Gift expiry days remaining-->
+  <!--Gift expiry hours remaining-->
+  <!--Gift expiry minutes remaining-->
+  <!--Gift expiry expired-->
+  <string name="Gifts__expired">Sona erdi</string>
   <!--EOF-->
 </resources>

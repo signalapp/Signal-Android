@@ -1278,6 +1278,7 @@
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Pasenusi grupė daugiau nebegali būti naudojama, nes yra per didelė. Didžiausias grupės dydis yra %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Tęsti jūsų pokalbį su %1$s ir bendrinti jūsų vardą ir nuotrauką su šiuo žmogumi?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Prisijungti prie šios grupės ir bendrinti jūsų vardą bei nuotrauką su grupės nariais? Jie nežinos, kad matėte jų žinutes tol, kol nesutiksite.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Prisijungti prie šios grupės ir bendrinti jūsų vardą bei nuotrauką su grupės nariais? Jūs nematysite jų žinučių tol, kol nesutiksite.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Prisijungti prie šios grupės? Kiti asmenys nežinos, kad matėte jų žinutes tol, kol nesutiksite.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Atblokuoti šią grupę ir bendrinti jūsų vardą bei nuotrauką su grupės nariais? Jūs negausite jokių žinučių tol, kol jų neatblokuosite.</string>
   <string name="MessageRequestProfileView_view">Rodyti</string>
@@ -1431,6 +1432,14 @@
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grupė yra per didelė, kad būtų skambinama dalyviams.</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Jungiamasi iš naujo…</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">Bluetooth leidimas uždraustas</string>
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Norėdami naudoti Bluetooth skambučio metu, įjunkite leidimą „Įrenginiai netoliese“.</string>
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Atverti nustatymus</string>
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">Ne dabar</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">„Signal“ skambutis</string>
   <string name="WebRtcCallView__signal_video_call">Signal vaizdo skambutis</string>
@@ -1830,6 +1839,8 @@
   <string name="SingleRecipientNotificationBuilder_new_message">Nauja žinutė</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Žinutės užklausa</string>
   <string name="SingleRecipientNotificationBuilder_you">Jūs</string>
+  <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • Istorija</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Atkurti vaizdo įrašą</string>
   <string name="ThumbnailView_Has_a_caption_description">Turi paaiškinimą</string>
@@ -4101,6 +4112,8 @@
   <string name="StoryViewerPageFragment__s_to_s">Nuo %1$s iki %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Atsakyti</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">Atsakyti grupei</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Peržiūrų kol kas nėra</string>
   <!--Displayed when a story has no replies yet-->
@@ -4295,6 +4308,8 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Rodyti daugiau</string>
   <string name="StoriesLinkPopup__visit_link">Aplankyti tinklalapį</string>
+  <!--Duration and price information-->
+  <string name="GiftRowItem__s_dot_d_day_duration">%1$s · Trukmė dienomis: %2$d</string>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Siųsti dovanos ženkliuką</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4359,5 +4374,28 @@
     <item quantity="many">Grupės istorija · %1$d žiūrovų</item>
     <item quantity="other">Grupės istorija · %1$d žiūrovas</item>
   </plurals>
+  <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">Liko %1$d diena</item>
+    <item quantity="few">Liko %1$d dienos</item>
+    <item quantity="many">Liko %1$d dienų</item>
+    <item quantity="other">Liko %1$d diena</item>
+  </plurals>
+  <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">Liko %1$d valanda</item>
+    <item quantity="few">Liko %1$d valandos</item>
+    <item quantity="many">Liko %1$d valandų</item>
+    <item quantity="other">Liko %1$d valanda</item>
+  </plurals>
+  <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">Liko %1$d minutė</item>
+    <item quantity="few">Liko %1$d minutės</item>
+    <item quantity="many">Liko %1$d minučių</item>
+    <item quantity="other">Liko %1$d minutė</item>
+  </plurals>
+  <!--Gift expiry expired-->
+  <string name="Gifts__expired">Nebegalioja</string>
   <!--EOF-->
 </resources>
