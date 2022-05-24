@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
@@ -28,20 +29,23 @@ class ConversationListSearchAdapter extends    RecyclerView.Adapter<Conversation
   private static final int TYPE_CONTACTS      = 2;
   private static final int TYPE_MESSAGES      = 3;
 
-  private final GlideRequests glideRequests;
-  private final EventListener eventListener;
-  private final Locale        locale;
+  private final LifecycleOwner lifecycleOwner;
+  private final GlideRequests  glideRequests;
+  private final EventListener  eventListener;
+  private final Locale         locale;
 
   @NonNull
   private SearchResult searchResult = SearchResult.EMPTY;
 
-  ConversationListSearchAdapter(@NonNull GlideRequests glideRequests,
+  ConversationListSearchAdapter(@NonNull LifecycleOwner lifecycleOwner,
+                                @NonNull GlideRequests glideRequests,
                                 @NonNull EventListener eventListener,
                                 @NonNull Locale        locale)
   {
-    this.glideRequests = glideRequests;
-    this.eventListener = eventListener;
-    this.locale        = locale;
+    this.lifecycleOwner = lifecycleOwner;
+    this.glideRequests  = glideRequests;
+    this.eventListener  = eventListener;
+    this.locale         = locale;
   }
 
   @Override
@@ -55,21 +59,21 @@ class ConversationListSearchAdapter extends    RecyclerView.Adapter<Conversation
     ThreadRecord conversationResult = getConversationResult(position);
 
     if (conversationResult != null) {
-      holder.bind(conversationResult, glideRequests, eventListener, locale, searchResult.getQuery());
+      holder.bind(lifecycleOwner, conversationResult, glideRequests, eventListener, locale, searchResult.getQuery());
       return;
     }
 
     Recipient contactResult = getContactResult(position);
 
     if (contactResult != null) {
-      holder.bind(contactResult, glideRequests, eventListener, locale, searchResult.getQuery());
+      holder.bind(lifecycleOwner, contactResult, glideRequests, eventListener, locale, searchResult.getQuery());
       return;
     }
 
     MessageResult messageResult = getMessageResult(position);
 
     if (messageResult != null) {
-      holder.bind(messageResult, glideRequests, eventListener, locale, searchResult.getQuery());
+      holder.bind(lifecycleOwner, messageResult, glideRequests, eventListener, locale, searchResult.getQuery());
     }
   }
 
@@ -157,33 +161,36 @@ class ConversationListSearchAdapter extends    RecyclerView.Adapter<Conversation
       root = (ConversationListItem) itemView;
     }
 
-    void bind(@NonNull  ThreadRecord  conversationResult,
+    void bind(@NonNull LifecycleOwner lifecycleOwner,
+              @NonNull  ThreadRecord  conversationResult,
               @NonNull  GlideRequests glideRequests,
               @NonNull  EventListener eventListener,
               @NonNull  Locale        locale,
               @Nullable String        query)
     {
-      root.bindThread(conversationResult, glideRequests, locale, Collections.emptySet(), new ConversationSet(), query);
+      root.bindThread(lifecycleOwner, conversationResult, glideRequests, locale, Collections.emptySet(), new ConversationSet(), query);
       root.setOnClickListener(view -> eventListener.onConversationClicked(conversationResult));
     }
 
-    void bind(@NonNull  Recipient     contactResult,
+    void bind(@NonNull LifecycleOwner lifecycleOwner,
+              @NonNull  Recipient     contactResult,
               @NonNull  GlideRequests glideRequests,
               @NonNull  EventListener eventListener,
               @NonNull  Locale        locale,
               @Nullable String        query)
     {
-      root.bindContact(contactResult, glideRequests, locale, query);
+      root.bindContact(lifecycleOwner, contactResult, glideRequests, locale, query);
       root.setOnClickListener(view -> eventListener.onContactClicked(contactResult));
     }
 
-    void bind(@NonNull  MessageResult messageResult,
+    void bind(@NonNull LifecycleOwner lifecycleOwner,
+              @NonNull  MessageResult messageResult,
               @NonNull  GlideRequests glideRequests,
               @NonNull  EventListener eventListener,
               @NonNull  Locale        locale,
               @Nullable String        query)
     {
-      root.bindMessage(messageResult, glideRequests, locale, query);
+      root.bindMessage(lifecycleOwner, messageResult, glideRequests, locale, query);
       root.setOnClickListener(view -> eventListener.onMessageClicked(messageResult));
     }
 
