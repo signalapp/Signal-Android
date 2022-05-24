@@ -107,10 +107,10 @@ public class BackupsPreferenceFragment extends Fragment {
 
   @Override
   public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    if (Build.VERSION.SDK_INT >= 29 &&
+    if (Build.VERSION.SDK_INT >= 29                         &&
         requestCode == CHOOSE_BACKUPS_LOCATION_REQUEST_CODE &&
-        resultCode == Activity.RESULT_OK &&
-        data != null &&
+        resultCode == Activity.RESULT_OK                    &&
+        data != null                                        &&
         data.getData() != null)
     {
       BackupDialog.showEnableBackupDialog(requireContext(),

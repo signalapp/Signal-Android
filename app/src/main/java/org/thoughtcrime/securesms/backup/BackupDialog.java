@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.movedocumentfiles.Callback;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 
 import java.util.Objects;
@@ -157,8 +158,12 @@ public class BackupDialog {
 
           TextSecurePreferences.setNextBackupTime(context, 0);
           LocalBackupListener.schedule(context);
-          BackupUtil.deleteAllBackupsInDirectory(oldBackupDirectoryUri);
-          contentResolver.releasePersistableUriPermission(oldBackupDirectoryUri, takeFlags);
+          Callback callback = new Callback() {
+            @Override public void onFinish() {
+              contentResolver.releasePersistableUriPermission(oldBackupDirectoryUri, takeFlags);
+            }
+          };
+          BackupUtil.moveAllBackupsToNewDirectoryAsync(context.getApplicationContext(), oldBackupDirectoryUri, backupDirectoryUri, callback);
           runnable.run();
           created.dismiss();
         }

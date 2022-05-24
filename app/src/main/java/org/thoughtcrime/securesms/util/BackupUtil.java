@@ -5,6 +5,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.permissions.Permissions;
+import org.thoughtcrime.securesms.util.movedocumentfiles.Callback;
 
 import java.io.File;
 import java.security.SecureRandom;
@@ -30,6 +32,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+
+import static org.thoughtcrime.securesms.util.movedocumentfiles.Util.moveDocumentFiles;
 
 public class BackupUtil {
 
@@ -166,6 +170,27 @@ public class BackupUtil {
     for (BackupInfo backupInfo : backups) {
       backupInfo.delete();
     }
+  }
+
+  @RequiresApi(29)
+  public static void moveAllBackupsToNewDirectoryAsync(Context context, Uri oldDirectoryUri, Uri targetDirectoryUri, Callback callback) {
+    new AsyncTask<Void, Void, Void>() {
+      @Override protected Void doInBackground(Void... voids) {
+        moveAllBackupsToNewDirectory(context, oldDirectoryUri, targetDirectoryUri, callback);
+        return null;
+      }
+    }.execute();
+  }
+
+  @RequiresApi(29)
+  public static void moveAllBackupsToNewDirectory(Context context, Uri oldDirectoryUri, Uri targetDirectoryUri, Callback callback) {
+    List<BackupInfo> backups = getAllBackupsNewestFirstFromDirectoryApi29(oldDirectoryUri);
+    DocumentFile[] documentFiles = new DocumentFile[backups.size()];
+    for(int i = 0; i < backups.size(); ++i) {
+      documentFiles[i] = DocumentFile.fromSingleUri(context, backups.get(i).getUri());
+    }
+    DocumentFile targetDirectory = DocumentFile.fromTreeUri(context, targetDirectoryUri);
+    moveDocumentFiles(context.getContentResolver(), documentFiles, targetDirectory, callback);
   }
 
   @RequiresApi(29)
