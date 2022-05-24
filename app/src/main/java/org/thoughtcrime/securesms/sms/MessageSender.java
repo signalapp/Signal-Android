@@ -469,7 +469,7 @@ public class MessageSender {
     }
   }
 
-  public static void sendRemoteDelete(@NonNull Context context, long messageId, boolean isMms) {
+  public static void sendRemoteDelete(long messageId, boolean isMms) {
     MessageDatabase db = isMms ? SignalDatabase.mms() : SignalDatabase.sms();
     db.markAsRemoteDelete(messageId);
     db.markAsSending(messageId);

@@ -8,7 +8,6 @@ import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask
@@ -75,7 +74,7 @@ object DeleteDialog {
   private fun deleteForEveryone(messageRecords: Set<MessageRecord>, emitter: SingleEmitter<Boolean>) {
     SignalExecutors.BOUNDED.execute {
       messageRecords.forEach { message ->
-        MessageSender.sendRemoteDelete(ApplicationDependencies.getApplication(), message.id, message.isMms)
+        MessageSender.sendRemoteDelete(message.id, message.isMms)
       }
 
       emitter.onSuccess(false)

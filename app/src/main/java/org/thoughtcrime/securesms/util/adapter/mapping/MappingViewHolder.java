@@ -21,7 +21,7 @@ public abstract class MappingViewHolder<Model> extends RecyclerView.ViewHolder {
     payload = new LinkedList<>();
   }
 
-  public <T extends View> T findViewById(@IdRes int id) {
+  public final <T extends View> T findViewById(@IdRes int id) {
     return itemView.findViewById(id);
   }
 

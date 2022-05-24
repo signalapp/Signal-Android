@@ -239,8 +239,6 @@ public class PushMediaSendJob extends PushSendJob {
             mediaMessageBuilder.withBody(null);
           }
         } catch (NoSuchMessageException e) {
-          // The story has probably expired
-          // TODO [stories] check what should happen in this case
           throw new UndeliverableMessageException(e);
         }
       } else {

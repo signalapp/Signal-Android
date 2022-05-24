@@ -56,16 +56,6 @@ class PrivateStorySettingsFragment : DSLSettingsFragment(
     }
 
     return configure {
-      customPref(
-        PrivateStoryItem.Model(
-          privateStoryItemData = state.privateStory,
-          onClick = {
-            // TODO [stories] -- is this even clickable?
-          }
-        )
-      )
-
-      dividerPref()
       sectionHeaderPref(R.string.MyStorySettingsFragment__who_can_see_this_story)
       customPref(
         PrivateStoryItem.AddViewerModel(
