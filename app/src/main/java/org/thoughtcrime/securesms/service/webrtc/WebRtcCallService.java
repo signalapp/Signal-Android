@@ -116,6 +116,8 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   public void onCreate() {
     Log.v(TAG, "onCreate");
     super.onCreate();
+    startForegroundCompat(CallNotificationBuilder.getStartingStoppingNotificationId(), CallNotificationBuilder.getStartingNotification(this));
+
     this.callManager                   = ApplicationDependencies.getSignalCallManager();
     this.hangUpRtcOnDeviceCallAnswered = new HangUpRtcOnPstnCallAnsweredListener();
     this.lastNotificationId            = INVALID_NOTIFICATION_ID;
@@ -203,7 +205,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
       startForegroundCompat(lastNotificationId, lastNotification);
     } else {
       Log.w(TAG, "Service running without having called start first, show temp notification and terminate service.");
-      startForegroundCompat(CallNotificationBuilder.getStoppingNotificationId(), CallNotificationBuilder.getStoppingNotification(this));
+      startForegroundCompat(CallNotificationBuilder.getStartingStoppingNotificationId(), CallNotificationBuilder.getStoppingNotification(this));
       stop();
     }
   }
@@ -280,6 +282,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
     callManager.onBluetoothPermissionDenied();
   }
 
+  @SuppressWarnings("deprecation")
   private class HangUpRtcOnPstnCallAnsweredListener extends PhoneStateListener {
     @Override
     public void onCallStateChanged(int state, @NonNull String phoneNumber) {
