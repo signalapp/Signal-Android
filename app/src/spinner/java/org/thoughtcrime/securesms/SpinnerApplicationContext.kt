@@ -39,6 +39,14 @@ class SpinnerApplicationContext : ApplicationContext() {
         .build()
     )
 
+    try {
+      Class.forName("dalvik.system.CloseGuard")
+        .getMethod("setEnabled", Boolean::class.javaPrimitiveType)
+        .invoke(null, true)
+    } catch (e: ReflectiveOperationException) {
+      throw RuntimeException(e)
+    }
+
     Spinner.init(
       this,
       mapOf(
