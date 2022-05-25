@@ -148,13 +148,17 @@ object NotificationFactory {
           threadsThatNewlyAlerted += conversation.thread
         }
 
-        notifyForConversation(
-          context = context,
-          conversation = conversation,
-          targetThread = targetThread,
-          defaultBubbleState = defaultBubbleState,
-          shouldAlert = (conversation.hasNewNotifications() || alertOverrides.contains(conversation.thread)) && !conversation.mostRecentNotification.individualRecipient.isSelf
-        )
+        try {
+          notifyForConversation(
+            context = context,
+            conversation = conversation,
+            targetThread = targetThread,
+            defaultBubbleState = defaultBubbleState,
+            shouldAlert = (conversation.hasNewNotifications() || alertOverrides.contains(conversation.thread)) && !conversation.mostRecentNotification.individualRecipient.isSelf
+          )
+        } catch (e: SecurityException) {
+          Log.w(TAG, "Too many pending intents device quirk", e)
+        }
       }
     }
 
