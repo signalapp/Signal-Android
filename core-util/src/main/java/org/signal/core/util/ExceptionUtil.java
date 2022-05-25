@@ -72,11 +72,17 @@ public final class ExceptionUtil {
 
     System.arraycopy(originalTrace, 0, combinedTrace, 0, originalTrace.length);
 
-    CharSequence message = Scrubber.scrub(original.getMessage() != null ? original.getMessage() : "null");
+    String message = Scrubber.scrub(original.getMessage() != null ? original.getMessage() : "null").toString();
+    if (message.startsWith("Context.startForegroundService")) {
+      try {
+        String service = message.substring(message.lastIndexOf('.') + 1, message.length() - 1);
+        message = service + " did not call startForeground";
+      } catch (Exception ignored) {}
+    }
 
     combinedTrace[originalTrace.length]     = new StackTraceElement("[[ ↑↑ Original Trace ↑↑ ]]", "", "", 0);
     combinedTrace[originalTrace.length + 1] = new StackTraceElement("[[ ↓↓ Exception Message ↓↓ ]]", "", "", 0);
-    combinedTrace[originalTrace.length + 2] = new StackTraceElement(message.toString(), "", "", 0);
+    combinedTrace[originalTrace.length + 2] = new StackTraceElement(message, "", "", 0);
 
     original.setStackTrace(combinedTrace);
     return original;
