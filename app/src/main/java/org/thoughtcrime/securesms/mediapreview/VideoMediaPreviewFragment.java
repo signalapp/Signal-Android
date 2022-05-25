@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.mediapreview;
 
+import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -63,8 +64,9 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
 
       @Override
       public void onPlaying() {
-        if (!isVideoGif && getActivity() instanceof VoiceNoteMediaControllerOwner) {
-          ((VoiceNoteMediaControllerOwner) requireActivity()).getVoiceNoteMediaController().pausePlayback();
+        Activity activity = getActivity();
+        if (!isVideoGif && activity instanceof VoiceNoteMediaControllerOwner) {
+          ((VoiceNoteMediaControllerOwner) activity).getVoiceNoteMediaController().pausePlayback();
         }
       }
 
