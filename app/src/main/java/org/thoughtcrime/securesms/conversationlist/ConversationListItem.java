@@ -167,7 +167,13 @@ public final class ConversationListItem extends ConstraintLayout
     super.onLayout(changed, left, top, right, bottom);
 
     contactPhotoImage.getHitRect(newConversationAvatarTouchDelegateBounds);
-    newConversationAvatarTouchDelegateBounds.left = left;
+
+    if (getLayoutDirection() == LAYOUT_DIRECTION_LTR) {
+      newConversationAvatarTouchDelegateBounds.left = left;
+    } else {
+      newConversationAvatarTouchDelegateBounds.right = right;
+    }
+
     newConversationAvatarTouchDelegateBounds.top = top;
     newConversationAvatarTouchDelegateBounds.bottom = bottom;
 
