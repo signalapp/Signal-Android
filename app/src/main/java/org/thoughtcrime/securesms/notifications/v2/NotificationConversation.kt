@@ -8,6 +8,7 @@ import android.net.Uri
 import android.text.SpannableStringBuilder
 import androidx.core.app.TaskStackBuilder
 import org.signal.core.util.PendingIntentFlags
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.TurnOffContactJoinedNotificationsActivity
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto
@@ -26,6 +27,7 @@ import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.Util
+import java.lang.NullPointerException
 
 /**
  * Encapsulate all the notifications for a given conversation (thread) and the top
@@ -113,7 +115,7 @@ data class NotificationConversation(
     return messageCount == other.messageCount && notificationItems.zip(other.notificationItems).all { (item, otherItem) -> item.hasSameContent(otherItem) }
   }
 
-  fun getPendingIntent(context: Context): PendingIntent {
+  fun getPendingIntent(context: Context): PendingIntent? {
     val intent: Intent = if (thread.groupStoryId != null) {
       StoryViewerActivity.createIntent(
         context,
@@ -131,9 +133,15 @@ data class NotificationConversation(
         .build()
     }.makeUniqueToPreventMerging()
 
-    return TaskStackBuilder.create(context)
-      .addNextIntentWithParentStack(intent)
-      .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)!!
+    return try {
+      TaskStackBuilder.create(context)
+        .addNextIntentWithParentStack(intent)
+        .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
+    } catch (e: NullPointerException) {
+      Log.w(NotificationFactory.TAG, "Vivo device quirk sometimes throws NPE", e)
+      intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+      PendingIntent.getActivity(context, 0, intent, PendingIntentFlags.updateCurrent())
+    }
   }
 
   fun getDeleteIntent(context: Context): PendingIntent? {
