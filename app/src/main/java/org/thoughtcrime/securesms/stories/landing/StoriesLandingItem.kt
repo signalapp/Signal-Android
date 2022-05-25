@@ -214,7 +214,8 @@ object StoriesLandingItem {
         }
       } else if (model.data.failureCount > 0 || (model.data.primaryStory.messageRecord.isOutgoing && model.data.primaryStory.messageRecord.isFailed)) {
         errorIndicator.visible = true
-        date.text = SpanUtil.color(ContextCompat.getColor(context, R.color.signal_alert_primary), context.getString(R.string.StoriesLandingItem__send_failed))
+        val message = if (model.data.primaryStory.messageRecord.isIdentityMismatchFailure) R.string.StoriesLandingItem__partially_sent else R.string.StoriesLandingItem__send_failed
+        date.text = SpanUtil.color(ContextCompat.getColor(context, R.color.signal_alert_primary), context.getString(message))
       } else {
         errorIndicator.visible = false
         date.text = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), model.data.dateInMilliseconds)

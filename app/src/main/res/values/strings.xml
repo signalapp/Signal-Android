@@ -4536,8 +4536,10 @@
     <string name="StoriesLandingItem__sending">Sending…</string>
     <!-- Label when multiple stories are pending sending -->
     <string name="StoriesLandingItem__sending_d">Sending %1$d…</string>
-    <!-- Label when a story fails to send -->
+    <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">Send failed</string>
+    <!-- Label when a story fails to send due to identity mismatch -->
+    <string name="StoriesLandingItem__partially_sent">Partially sent</string>
     <!-- Status label when a story fails to send indicating user action to retry -->
     <string name="StoriesLandingItem__tap_to_retry">Tap to retry</string>
     <!-- Title of dialog confirming decision to hide a story -->
