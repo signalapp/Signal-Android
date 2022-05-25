@@ -1261,6 +1261,11 @@
   <string name="WebRtcCallActivity__calling">ਕਾਲ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">ਮੁੜ ਕਨੈਕਟ ਹੋ ਰਿਹਾ ਹੈ…</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">ਹੁਣੇ ਨਹੀਂ</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal ਕਾਲ </string>
   <string name="WebRtcCallView__signal_video_call">Signal ਵੀਡੀਓ ਕਾਲ</string>
@@ -1622,6 +1627,7 @@
   <string name="SingleRecipientNotificationBuilder_new_message">ਨਵਾਂ ਸੁਨੇਹਾ</string>
   <string name="SingleRecipientNotificationBuilder_message_request">ਸੁਨੇਹਾ ਬੇਨਤੀ</string>
   <string name="SingleRecipientNotificationBuilder_you">ਤੁਸੀਂ</string>
+  <!--Notification subtext for group stories-->
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">ਵੀਡੀਓ ਚਲਾਓ</string>
   <string name="ThumbnailView_Has_a_caption_description">ਇਸਦੀ ਕੈਪਸ਼ਨ ਹੈ</string>
@@ -3717,6 +3723,7 @@
   <string name="StoryViewerPageFragment__s_to_s">%1$s ਤੋਂ %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">ਜਵਾਬ ਦਿਓ</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
   <!--Displayed when a story has no views-->
   <!--Displayed when a story has no replies yet-->
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -3830,6 +3837,7 @@
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">ਹੋਰ ਵੇਖੋ</string>
+  <!--Duration and price information-->
   <!--Tagline for gift row items-->
   <!--Headline text on start fragment for gifting a badge-->
   <!--Description text on start fragment for gifting a badge-->
@@ -3863,5 +3871,9 @@
   <string name="ExpiredGiftSheetConfiguration__not_now">ਹੁਣੇ ਨਹੀਂ</string>
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
+  <!--Gift expiry days remaining-->
+  <!--Gift expiry hours remaining-->
+  <!--Gift expiry minutes remaining-->
+  <!--Gift expiry expired-->
   <!--EOF-->
 </resources>

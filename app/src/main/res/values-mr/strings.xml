@@ -1291,6 +1291,11 @@
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">सहभागींना रिंग करण्यासाठी हा गट खूप मोठा आहे.</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">पुनःकनेक्ट करत आहे…</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">आता नाही</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal कॉल</string>
   <string name="WebRtcCallView__signal_video_call">Signal व्हिडिओ कॉल</string>
@@ -1669,6 +1674,7 @@
   <string name="SingleRecipientNotificationBuilder_new_message">नवीन संदेश</string>
   <string name="SingleRecipientNotificationBuilder_message_request">संदेश विनंती</string>
   <string name="SingleRecipientNotificationBuilder_you">आपण</string>
+  <!--Notification subtext for group stories-->
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">व्हिडिओ प्ले करा</string>
   <string name="ThumbnailView_Has_a_caption_description">यास कॅप्शन आहे</string>
@@ -3852,6 +3858,7 @@
   <string name="StoryViewerPageFragment__s_to_s">%1$s ते %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">प्रत्युत्तर द्या</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
   <!--Displayed when a story has no views-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">अद्याप कोणतीही प्रत्युत्तरे नाहीत</string>
@@ -4018,6 +4025,7 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">अधिक पहा</string>
   <string name="StoriesLinkPopup__visit_link">लिंकला भेट द्या</string>
+  <!--Duration and price information-->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">भेट बॅज पाठवा</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4070,5 +4078,9 @@
   <string name="ExpiredGiftSheetConfiguration__not_now">आता नाही</string>
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
+  <!--Gift expiry days remaining-->
+  <!--Gift expiry hours remaining-->
+  <!--Gift expiry minutes remaining-->
+  <!--Gift expiry expired-->
   <!--EOF-->
 </resources>

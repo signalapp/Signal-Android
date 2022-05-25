@@ -427,6 +427,7 @@
   <string name="BackupsPreferenceFragment__in_progress">진행 중…</string>
   <string name="BackupsPreferenceFragment__d_so_far">지금까지 %1$d…</string>
   <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% 진행중…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal에서 백업을 저장하려면 저장 공간 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'저장 공간\' 항목을 허용해 주세요.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">맞춤형 값 사용: %s</string>
@@ -825,6 +826,9 @@
   <plurals name="MediaOverviewActivity_delete_plural">
     <item quantity="other">삭제</item>
   </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="other">%1$d개 선택됨 (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">파일</string>
   <string name="MediaOverviewActivity_audio">오디오</string>
   <string name="MediaOverviewActivity_video">동영상</string>
@@ -1032,6 +1036,9 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">그룹 참가 요청을 보냈습니다.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s가 그룹 링크로 참가하기를 요청합니다.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="other">%1$s님이 그룹 링크를 통한 %2$d 그룹 가입을 요청하였지만 취소했습니다.</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s 님이 그룹 가입 요청을 승인했습니다.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s 님이 %2$s 님의 그룹 가입 요청을 승인했습니다.</string>
@@ -1055,6 +1062,7 @@
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
   <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">새로운 기능이 마음에 드시나요? Boost로 고마움을 전하세요.</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal은 당신과 같은 사람들에 의해 운영됩니다. 오늘 후원자가 되세요.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s 님이 그룹 통화를 시작했습니다(%2$s).</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 님이 그룹 통화 중입니다(%2$s).</string>
@@ -1190,6 +1198,7 @@
   <!--Recipient-->
   <string name="Recipient_you">나</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">내 스토리</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">차단</string>
   <string name="RecipientPreferenceActivity_unblock">차단 해제</string>
@@ -1208,6 +1217,7 @@
   <!--Valentine\'s Day Megaphone-->
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
   <!--Body text for the Valentine\'s Day donation megaphone.-->
+  <string name="ValentinesDayMegaphone_show_your_affection">Signal의 후원자가 되어 당신의 영향력을 보여주세요.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">비디오를 사용하려면 탭하세요</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s 님에게 전화하려면 Signal에서 카메라 권한이 필요합니다.</string>
@@ -1216,6 +1226,11 @@
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">단체 참여자가 너무 많아 통화를 진행할 수 없습니다.</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">재연결 중…</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">나중에</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal 전화</string>
   <string name="WebRtcCallView__signal_video_call">Signal 영상 통화</string>
@@ -1228,8 +1243,16 @@
   <string name="WebRtcCallView__reconnecting">재연결 중…</string>
   <string name="WebRtcCallView__joining">참가하는 중…</string>
   <string name="WebRtcCallView__disconnected">연결 끊김</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal이 %1$s에게 알릴겁니다.</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal이 %1$s, 그리고 %2$s에게 알릴겁니다.</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="other">Signal이 %1$s, %2$s, 그리고 %3$d명에게 알릴겁니다.</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s님은 알림을 받을겁니다.</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s이 당신과 %2$s, 그리고 %3$s에게 전화를 걸고 있습니다.</string>
   <string name="WebRtcCallView__no_one_else_is_here">아무도 없음</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s 님이 통화 중입니다.</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s이 이 통화에 있습니다</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s 및 %2$s 님이 통화에 참여했습니다.</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s 님이 발표 중입니다.</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1287,6 +1310,7 @@
   <string name="RegistrationActivity_terms_and_privacy">이용 약관 &amp; 개인 정보 보호 정책</string>
   <string name="RegistrationActivity_rate_limited_to_service">이 전화번호를 등록하려고 너무 많이 시도했습니다. 나중에 다시 시도하세요.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">서비스에 연결할 수 없습니다. 네트워크 연결을 확인 후 다시 시도해 주세요.</string>
+  <string name="RegistrationActivity_non_standard_number_format">비표준 전화번호 형식</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">디버그 로그를 보내기까지 %d단계 남았습니다.</item>
   </plurals>
@@ -1331,6 +1355,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">더 보기</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN이 성공적으로 인증되었습니다. 나중에 다시 알려드리겠습니다.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN이 성공적으로 인증되었습니다. 내일 다시 알려드리겠습니다. </string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN이 성공적으로 인증되었습니다. 며칠 내에 알려드리겠습니다.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN이 성공적으로 인증되었습니다. 1주 뒤에 알려드리겠습니다. </string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN이 성공적으로 인증되었습니다. 2주 뒤에 알려드리겠습니다.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN이 성공적으로 인증되었습니다. 한 달 후에 다시 알려 드리겠습니다.</string>
   <!--Slide-->
   <string name="Slide_image">이미지</string>
   <string name="Slide_sticker">스티커</string>
@@ -1548,6 +1578,7 @@
   <string name="SingleRecipientNotificationBuilder_new_message">새 메시지</string>
   <string name="SingleRecipientNotificationBuilder_message_request">메시지 요청</string>
   <string name="SingleRecipientNotificationBuilder_you">나</string>
+  <!--Notification subtext for group stories-->
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">동영상 재생</string>
   <string name="ThumbnailView_Has_a_caption_description">자막 있음</string>
@@ -1661,6 +1692,7 @@
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">메시지가 사라지는 시간은 메시지를 보낼 때 %1$s(으)로 설정됩니다.</string>
   <!--Update item button text to show to boost a feature-->
   <!--Update item button text to show to become a sustainer in the release notes channel-->
+  <string name="ConversationUpdateItem_become_a_sustainer">후원자가 되기</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">재생 … 일시 정지</string>
   <string name="audio_view__download_accessibility_description">다운로드</string>
@@ -1824,11 +1856,11 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>이름 또는 전화번호 입력</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ %s와/과 종단간 암호화의 보안을 검증하기 위해, 상대의 기기와의 코드를 비교하세요. 또는 상대의 폰의 코드를 스캔 할 수 있습니다. <a href="https://signal.org/redirect/safety-numbers">더 알아보기</a>]]> </string>
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ %s 님과의 종단간 암호화의 보안을 검증하기 위해, 상대의 기기와의 코드를 비교하세요. 또는 상대의 폰의 코드를 스캔 할 수 있습니다. <a href="https://signal.org/redirect/safety-numbers">더 알아보기</a>]]> </string>
   <string name="verify_display_fragment__tap_to_scan">탭하여 스캔</string>
   <string name="verify_display_fragment__loading">로드 중…</string>
   <string name="verify_display_fragment__mark_as_verified">검증으로 표시</string>
-  <string name="verify_display_fragment__clear_verification">인증하기</string>
+  <string name="verify_display_fragment__clear_verification">인증 초기화하기</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">안전 번호 공유</string>
   <!--verity_scan_fragment-->
@@ -1978,6 +2010,7 @@
   <string name="preferences__advanced">고급</string>
   <string name="preferences__donate_to_signal">시그널에 기부하기</string>
   <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">1회 후원</string>
   <string name="preferences__privacy">개인 정보</string>
   <string name="preferences__mms_user_agent">MMS 사용자 에이전트</string>
   <string name="preferences__advanced_mms_access_point_names">MMS 수동 설정</string>
@@ -2001,7 +2034,7 @@
   <string name="preferences__appearance">모양</string>
   <string name="preferences__theme">테마</string>
   <string name="preferences__chat_wallpaper">채팅방 배경</string>
-  <string name="preferences__chat_color_and_wallpaper">채팅 색상 &amp; 벽지</string>
+  <string name="preferences__chat_color_and_wallpaper">채팅 색상 &amp; 배경</string>
   <string name="preferences__disable_pin">PIN 비활성화</string>
   <string name="preferences__enable_pin">PIN 사용하기</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">PIN을 비활성화하면 수동으로 백업 및 복원하지 않는 한 Signal을 다시 등록할 때 모든 데이터가 손실됩니다. PIN이 비활성화되어 있는 동안에는 등록 잠금을 켤 수 없습니다.</string>
@@ -2020,7 +2053,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">읽은 메시지 기능이 꺼져 있다면, 다른 사람이 메시지를 읽었는지 확인할 수 없습니다.</string>
   <string name="preferences__typing_indicators">입력 안내</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">입력 안내 기능이 꺼져 있다면, 다른 사람이 메시지를 쓰고 있는지 확인할 수 없습니다.</string>
-  <string name="preferences__request_keyboard_to_disable">사용자 정의 학습을 비활성화하려면 키보드를 요청하세요.</string>
+  <string name="preferences__request_keyboard_to_disable">키보드가 사용자 맞춤 학습을 비활성화하기를 요청합니다.</string>
   <string name="preferences__this_setting_is_not_a_guarantee">이 설정은 보장되지 않으며 키보드에서 무시할 수 있습니다.</string>
   <string name="preferences_app_protection__blocked_users">차단된 사용자</string>
   <string name="preferences_chats__when_using_mobile_data">모바일 데이터 사용 시</string>
@@ -2503,6 +2536,7 @@
   <string name="BackupDialog_verify">확인</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">백업 암호가 성공적으로 입력됨</string>
   <string name="BackupDialog_passphrase_was_not_correct">암호가 올바르지 않음</string>
+  <string name="LocalBackupJob_creating_signal_backup">Signal 백업 만드는 중…</string>
   <string name="LocalBackupJobApi29_backup_failed">백업을 실패했습니다.</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">백업 경로가 삭제되었거나 이동했습니다.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">백업 파일이 너무 커서 이 볼륨에 저장할 수 없습니다.</string>
@@ -2513,6 +2547,7 @@
   <string name="RegistrationActivity_call_me_instead_available_in">전화로 인증\n(%1$02d:%2$02d 이후 이용 가능)</string>
   <string name="RegistrationActivity_contact_signal_support">Signal 지원 팀에 문의</string>
   <string name="RegistrationActivity_code_support_subject">Signal 등록 - 안드로이드용 인증 코드</string>
+  <string name="RegistrationActivity_incorrect_code">올바르지 않은 코드</string>
   <string name="BackupUtil_never">없음</string>
   <string name="BackupUtil_unknown">알 수 없음</string>
   <string name="preferences_app_protection__see_my_phone_number">내 전화번호 보기</string>
@@ -2806,7 +2841,7 @@
   <string name="ChatWallpaperFragment__reset">초기화</string>
   <string name="ChatWallpaperFragment__clear">제거</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">배경 미리보기</string>
-  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">모든 채팅 색상을 무시하시겠습니까?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">모든 채팅 색상을 덮어쓰시겠습니까?</string>
   <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">모든 배경 화면을 덮어쓰시겠습니까?</string>
   <string name="ChatWallpaperFragment__reset_default_colors">기본 색상 재설정</string>
   <string name="ChatWallpaperFragment__reset_all_colors">모든 색상 재설정</string>
@@ -2934,13 +2969,19 @@
   <string name="AccountSettingsFragment__require_your_signal_pin">Signal에 전화번호를 다시 등록하려면 Signal PIN이 필요합니다.</string>
   <string name="AccountSettingsFragment__change_phone_number">전화번호 변경</string>
   <!--ChangeNumberFragment-->
-  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">현재 전화번호를 새 전화번호로 바꾸려면 이 기능을 사용하세요. 이 작업은 되돌릴 수 없습니다.\n\n변경하기 잔에, 새 전화번호로 SMS나 전화를 받을 수 있는지 확인하세요.</string>
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">현재 전화번호를 새 전화번호로 바꾸려면 이 기능을 사용하세요. 이 작업은 되돌릴 수 없습니다.\n\n변경하기 전에, 새 전화번호로 SMS나 전화를 받을 수 있는지 확인하세요.</string>
   <string name="ChangeNumberFragment__continue">계속</string>
   <!--Message shown on dialog after your number has been changed successfully.-->
   <!--Confirmation button to dismiss number changed dialog-->
   <string name="ChangeNumber__okay">확인</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">당신의 기존 전화번호</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">기존 전화번호</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">당신의 새 전화번호</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">새 전화번호</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">입력한 전화번호가 내 계정과 일치하지 않습니다.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">기존 전화번호의 국가 코드를 입력해야합니다.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">기존 전화번호를 입력해야합니다.</string>
   <!--ChangeNumberVerifyFragment-->
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__edit_number">전화번호 수정</string>
@@ -2969,10 +3010,13 @@
   <string name="NotificationsSettingsFragment__notify_when">다음의 경우 알림…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">연락처가 Signal에 합류했습니다.</string>
   <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">알림 프로필</string>
   <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">프로필</string>
   <!--Notification preference summary text-->
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">알림 프로필</string>
   <!--Button text to create a notification profile-->
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">차단함</string>
@@ -2983,7 +3027,7 @@
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">최근 사용 목록/개요 및 앱 내 스크린샷 차단</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">신호 메시지 및 통화, 항상 중계 통화 및 봉인된 발신자</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">새 채팅을 위한 기본 타이머</string>
-  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">내가 시작한 모든 새 채팅에 대해 기본 사라지는 메시지 타이머를 설정합니다.</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">내가 새로 시작한 모든 채팅에 기본적으로 사라지는 메시지 타이머를 적용합니다.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">상태 아이콘 표시하기</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">봉인된 발신자를 사용하여 전달되었을 때 메시지 세부 정보에 아이콘을 표시합니다.</string>
@@ -3016,7 +3060,7 @@
   <string name="HelpFragment__licenced_under_the_gplv3">GPLv3에 따라 라이선스가 부여됨</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__media_quality">미디어 품질</string>
-  <string name="DataAndStorageSettingsFragment__sent_media_quality">전송 미디어 품질</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">미디어 전송 품질</string>
   <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">고품질 미디어는 더 많은 모바일 데이터를 사용할 수 있습니다.</string>
   <string name="DataAndStorageSettingsFragment__high">높음</string>
   <string name="DataAndStorageSettingsFragment__standard">기본</string>
@@ -3068,6 +3112,7 @@
   <string name="AddAProfilePhotoMegaphone__not_now">나중에</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">사진 추가</string>
   <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">후원자가 되세요</string>
   <!--Displayed in the Become a Sustainer megaphone-->
   <string name="BecomeASustainerMegaphone__not_now">나중에</string>
   <string name="BecomeASustainerMegaphone__donate">기부</string>
@@ -3187,13 +3232,16 @@
   <string name="MediaReviewImagePageFragment__discard">파기</string>
   <string name="SelectFeaturedBadgeFragment__preview">미리보기</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal은 귀하와 같은 분들이 만들어나갑니다.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">매달 정기후원으로 Signal이 당신을 위해 기술을 지원하도록 하세요. 당신의 정보가 아니고요.</string>
   <string name="SubscribeFragment__not_now">나중에</string>
   <string name="SubscribeFragment__confirm">확인</string>
   <string name="SubscribeFragment__update">업데이트</string>
+  <string name="Subscription__s_per_month">%s/1개월</string>
   <!--First small text blurb on learn more sheet-->
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">왜 기부해야 합니까?</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">확인</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">매달 정기후원하기</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">더 보기</string>
   <!--Heading for receipts area of manage subscriptions page-->
@@ -3209,6 +3257,7 @@
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
   <!--Displayed in the bottom sheet when a boost badge expires-->
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">후원자가 되세요</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">나중에</string>
   <!--Copy displayed when badge expires after user inactivity-->
   <!--Copy displayed when badge expires after payment failure-->
@@ -3241,6 +3290,7 @@
   <!--Stripe decline code your card has expired-->
   <!--Stripe decline code go to google pay action label-->
   <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">카드 번호가 올바르지 않습니다. Google Pay에서 업데이트 하고 다시 시도해보세요.</string>
   <!--Stripe decline code incorrect cvc-->
   <!--Stripe decline code insufficient funds-->
   <!--Stripe decline code incorrect expiration month-->
@@ -3248,6 +3298,7 @@
   <!--Stripe decline code issuer not available-->
   <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">당신의 프로필에 이름을 붙이세요</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">프로필 이름</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
@@ -3274,6 +3325,7 @@
   <string name="SelectRecipientsFragment__add">추가</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
   <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">프로필</string>
   <!--Button that starts the create new notification profile flow-->
   <string name="NotificationProfilesFragment__new_profile">새 프로필</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
@@ -3283,6 +3335,7 @@
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">실행 취소</string>
   <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">프로필을 영구적으로 삭제 하시겠어요?</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">삭제</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
@@ -3398,6 +3451,7 @@
   <string name="StoryViewerPageFragment__s_to_s">%1$s~%2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">답장</string>
+  <!--Displayed when viewing a group post from another user with no replies-->
   <!--Displayed when a story has no views-->
   <!--Displayed when a story has no replies yet-->
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -3415,6 +3469,7 @@
   <!--Note at bottom of story settings regarding who can see private stories.-->
   <!--Option label for creating a new private story-->
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">내 스토리</string>
   <!--Section heading for story visibility-->
   <!--Clickable option for selecting people to hide your story from-->
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
@@ -3508,6 +3563,7 @@
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <!--Duration and price information-->
   <!--Tagline for gift row items-->
   <!--Headline text on start fragment for gifting a badge-->
   <!--Description text on start fragment for gifting a badge-->
@@ -3534,9 +3590,14 @@
   <!--Expired gift sheet top description text-->
   <!--Expired gift sheet bottom description text-->
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">매달 정기후원하기</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">나중에</string>
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
+  <!--Gift expiry days remaining-->
+  <!--Gift expiry hours remaining-->
+  <!--Gift expiry minutes remaining-->
+  <!--Gift expiry expired-->
   <!--EOF-->
 </resources>
