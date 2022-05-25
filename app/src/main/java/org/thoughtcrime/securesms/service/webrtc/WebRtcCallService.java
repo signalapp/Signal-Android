@@ -6,8 +6,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ServiceInfo;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.IBinder;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -18,8 +20,6 @@ import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraintObserver;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
@@ -200,10 +200,10 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
 
   private void setCallNotification() {
     if (lastNotificationId != INVALID_NOTIFICATION_ID) {
-      startForeground(lastNotificationId, lastNotification);
+      startForegroundCompat(lastNotificationId, lastNotification);
     } else {
       Log.w(TAG, "Service running without having called start first, show temp notification and terminate service.");
-      startForeground(CallNotificationBuilder.getStoppingNotificationId(), CallNotificationBuilder.getStoppingNotification(this));
+      startForegroundCompat(CallNotificationBuilder.getStoppingNotificationId(), CallNotificationBuilder.getStoppingNotification(this));
       stop();
     }
   }
@@ -212,7 +212,15 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
     lastNotificationId = CallNotificationBuilder.getNotificationId(type);
     lastNotification   = CallNotificationBuilder.getCallInProgressNotification(this, type, Recipient.resolved(id));
 
-    startForeground(lastNotificationId, lastNotification);
+    startForegroundCompat(lastNotificationId, lastNotification);
+  }
+
+  private void startForegroundCompat(int notificationId, Notification notification) {
+    if (Build.VERSION.SDK_INT >= 30) {
+      startForeground(notificationId, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA | ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE);
+    } else {
+      startForeground(notificationId, notification);
+    }
   }
 
   private void stop() {
