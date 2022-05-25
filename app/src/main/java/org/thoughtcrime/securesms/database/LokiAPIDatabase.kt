@@ -113,6 +113,9 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
             INSERT INTO $lastMessageHashValueTable2($snode, $publicKey, $lastMessageHashValue) SELECT $snode, $publicKey, $lastMessageHashValue FROM $legacyLastMessageHashValueTable2);
             DROP TABLE $legacyLastMessageHashValueTable2;
         """
+        const val INSERT_LAST_HASH_DATA = "INSERT OR IGNORE INTO $lastMessageHashValueTable2($snode, $publicKey, $lastMessageHashValue) SELECT $snode, $publicKey, $lastMessageHashValue FROM $legacyLastMessageHashValueTable2;"
+        const val DROP_LEGACY_LAST_HASH = "DROP TABLE $legacyLastMessageHashValueTable2;"
+
         const val UPDATE_RECEIVED_INCLUDE_NAMESPACE_COMMAND = """
             CREATE TABLE IF NOT EXISTS $receivedMessageHashValuesTable(
                 $publicKey STRING, $receivedMessageHashValues TEXT, $receivedMessageHashNamespace INTEGER DEFAULT 0, PRIMARY KEY ($publicKey, $receivedMessageHashNamespace)
@@ -122,6 +125,8 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
             
             DROP TABLE $legacyReceivedMessageHashValuesTable3;
         """
+        const val INSERT_RECEIVED_HASHES_DATA = "INSERT OR IGNORE INTO $receivedMessageHashValuesTable($publicKey, $receivedMessageHashValues) SELECT $publicKey, $receivedMessageHashValues FROM $legacyReceivedMessageHashValuesTable3;"
+        const val DROP_LEGACY_RECEIVED_HASHES = "DROP TABLE $legacyReceivedMessageHashValuesTable3;"
 
         // region Deprecated
         private val deviceLinkCache = "loki_pairing_authorisation_cache"
