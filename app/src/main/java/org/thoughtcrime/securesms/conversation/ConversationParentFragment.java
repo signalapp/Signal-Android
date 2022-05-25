@@ -574,6 +574,10 @@ public class ConversationParentFragment extends Fragment
         onBackPressed();
       }
     });
+
+    if (isSearchRequested && savedInstanceState == null) {
+      onCreateOptionsMenu(toolbar.getMenu(), requireActivity().getMenuInflater());
+    }
   }
 
   // TODO [alex] LargeScreenSupport -- This needs to be fed a stream of intents
@@ -1123,32 +1127,53 @@ public class ConversationParentFragment extends Fragment
   }
 
   @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
+  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
     super.onOptionsItemSelected(item);
-    switch (item.getItemId()) {
-    case R.id.menu_call_secure:               handleDial(getRecipient(), true);                  return true;
-    case R.id.menu_video_secure:              handleVideo(getRecipient());                       return true;
-    case R.id.menu_call_insecure:             handleDial(getRecipient(), false);                 return true;
-    case R.id.menu_view_media:                handleViewMedia();                                 return true;
-    case R.id.menu_add_shortcut:              handleAddShortcut();                               return true;
-    case R.id.menu_search:                    handleSearch();                                    return true;
-    case R.id.menu_add_to_contacts:           handleAddToContacts();                             return true;
-    case R.id.menu_group_recipients:          handleDisplayGroupRecipients();                    return true;
-    case R.id.menu_distribution_broadcast:    handleDistributionBroadcastEnabled(item);          return true;
-    case R.id.menu_distribution_conversation: handleDistributionConversationEnabled(item);       return true;
-    case R.id.menu_group_settings:            handleManageGroup();                               return true;
-    case R.id.menu_leave:                     handleLeavePushGroup();                            return true;
-    case R.id.menu_invite:                    handleInviteLink();                                return true;
-    case R.id.menu_mute_notifications:        handleMuteNotifications();                         return true;
-    case R.id.menu_unmute_notifications:      handleUnmuteNotifications();                       return true;
-    case R.id.menu_conversation_settings:     handleConversationSettings();                      return true;
-    case R.id.menu_expiring_messages_off:
-    case R.id.menu_expiring_messages:         handleSelectMessageExpiration();                   return true;
-    case R.id.menu_create_bubble:             handleCreateBubble();                              return true;
-    case android.R.id.home:                   requireActivity().finish();                        return true;
+    int itemId = item.getItemId();
+
+    if (itemId == R.id.menu_call_secure) {
+      handleDial(getRecipient(), true);
+    } else if (itemId == R.id.menu_video_secure) {
+      handleVideo(getRecipient());
+    } else if (itemId == R.id.menu_call_insecure) {
+      handleDial(getRecipient(), false);
+    } else if (itemId == R.id.menu_view_media) {
+      handleViewMedia();
+    } else if (itemId == R.id.menu_add_shortcut) {
+      handleAddShortcut();
+    } else if (itemId == R.id.menu_search) {
+      handleSearch();
+    } else if (itemId == R.id.menu_add_to_contacts) {
+      handleAddToContacts();
+    } else if (itemId == R.id.menu_group_recipients) {
+      handleDisplayGroupRecipients();
+    } else if (itemId == R.id.menu_distribution_broadcast) {
+      handleDistributionBroadcastEnabled(item);
+    } else if (itemId == R.id.menu_distribution_conversation) {
+      handleDistributionConversationEnabled(item);
+    } else if (itemId == R.id.menu_group_settings) {
+      handleManageGroup();
+    } else if (itemId == R.id.menu_leave) {
+      handleLeavePushGroup();
+    } else if (itemId == R.id.menu_invite) {
+      handleInviteLink();
+    } else if (itemId == R.id.menu_mute_notifications) {
+      handleMuteNotifications();
+    } else if (itemId == R.id.menu_unmute_notifications) {
+      handleUnmuteNotifications();
+    } else if (itemId == R.id.menu_conversation_settings) {
+      handleConversationSettings();
+    } else if (itemId == R.id.menu_expiring_messages_off || itemId == R.id.menu_expiring_messages) {
+      handleSelectMessageExpiration();
+    } else if (itemId == R.id.menu_create_bubble) {
+      handleCreateBubble();
+    } else if (itemId == android.R.id.home) {
+      requireActivity().finish();
+    } else {
+      return false;
     }
 
-    return false;
+    return true;
   }
 
   public void onBackPressed() {
