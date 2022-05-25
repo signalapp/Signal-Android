@@ -445,6 +445,7 @@ public class MmsDatabase extends MessageDatabase {
                                      .collect(Collectors.toSet());
 
     notifyConversationListeners(threadsUpdated);
+    notifyConversationListListeners();
 
     return results;
   }

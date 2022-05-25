@@ -13,7 +13,6 @@ import com.bumptech.glide.request.target.Target
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.view.AvatarView
 import org.thoughtcrime.securesms.badges.BadgeImageView
-import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
 import org.thoughtcrime.securesms.mms.GlideApp
@@ -24,6 +23,7 @@ import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
@@ -48,7 +48,7 @@ object StoriesLandingItem {
     val onGoToChat: (Model) -> Unit,
     val onSave: (Model) -> Unit,
     val onDeleteStory: (Model) -> Unit
-  ) : PreferenceModel<Model>() {
+  ) : MappingModel<Model> {
     override fun areItemsTheSame(newItem: Model): Boolean {
       return data.storyRecipient.id == newItem.data.storyRecipient.id
     }
@@ -58,7 +58,7 @@ object StoriesLandingItem {
         data == newItem.data &&
         !hasStatusChange(newItem) &&
         (data.sendingCount == newItem.data.sendingCount && data.failureCount == newItem.data.failureCount) &&
-        super.areContentsTheSame(newItem)
+        data.storyViewState == newItem.data.storyViewState
     }
 
     override fun getChangePayload(newItem: Model): Any? {
