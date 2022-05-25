@@ -4682,6 +4682,8 @@
     <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Share a link with viewers of your story</string>
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">Search</string>
+    <!-- Toast shown when an unexpected error occurs while sending a text story -->
+    <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">An unexpected error occurred</string>
     <!-- Title for screen allowing user to hide "My Story" entries from specific people -->
     <string name="HideStoryFromFragment__hide_story_from">Hide story from…</string>
     <!-- Done button label for hide story from screen -->

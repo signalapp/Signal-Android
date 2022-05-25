@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.mediasend.v2.text.send
 
 import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.ThreadUtil
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadDatabase
@@ -17,6 +18,8 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.Base64
 
+private val TAG = Log.tag(TextStoryPostSendRepository::class.java)
+
 class TextStoryPostSendRepository {
 
   fun send(contactSearchKey: Set<ContactSearchKey>, textStoryPostCreationState: TextStoryPostCreationState, linkPreview: LinkPreview?): Single<TextStoryPostSendResult> {
@@ -27,6 +30,7 @@ class TextStoryPostSendRepository {
         if (it is UntrustedRecords.UntrustedRecordsException) {
           TextStoryPostSendResult.UntrustedRecordsError(it.untrustedRecords)
         } else {
+          Log.w(TAG, "Unexpected error occurred", it)
           TextStoryPostSendResult.Failure
         }
       }

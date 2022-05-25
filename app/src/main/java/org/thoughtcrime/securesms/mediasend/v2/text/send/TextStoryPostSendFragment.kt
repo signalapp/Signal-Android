@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
@@ -151,6 +152,10 @@ class TextStoryPostSendFragment : Fragment(R.layout.stories_send_text_post_fragm
         TextStoryPostSendState.INIT -> shareConfirmButton.isEnabled = selection.isNotEmpty()
         TextStoryPostSendState.SENDING -> shareConfirmButton.isEnabled = false
         TextStoryPostSendState.SENT -> requireActivity().finish()
+        else -> {
+          Toast.makeText(requireContext(), R.string.TextStoryPostSendFragment__an_unexpected_error_occurred_try_again, Toast.LENGTH_SHORT).show()
+          viewModel.onSendCancelled()
+        }
       }
     }
   }

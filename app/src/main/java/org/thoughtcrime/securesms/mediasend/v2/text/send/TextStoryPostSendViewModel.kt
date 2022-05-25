@@ -8,11 +8,14 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.subjects.PublishSubject
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationState
 import org.thoughtcrime.securesms.util.livedata.Store
+
+private val TAG = Log.tag(TextStoryPostSendViewModel::class.java)
 
 class TextStoryPostSendViewModel(private val repository: TextStoryPostSendRepository) : ViewModel() {
 
@@ -54,11 +57,14 @@ class TextStoryPostSendViewModel(private val repository: TextStoryPostSendReposi
             untrustedIdentitySubject.onNext(it.untrustedRecords)
             store.update { TextStoryPostSendState.INIT }
           }
+          is TextStoryPostSendResult.Failure -> {
+            store.update { TextStoryPostSendState.FAILED }
+          }
         }
       },
       onError = {
-        // TODO [stories] -- Error of some sort.
-        store.update { TextStoryPostSendState.INIT }
+        Log.w(TAG, "Unexpected error occurred", it)
+        store.update { TextStoryPostSendState.FAILED }
       }
     )
   }
