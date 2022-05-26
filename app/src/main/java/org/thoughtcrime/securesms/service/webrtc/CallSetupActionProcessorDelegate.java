@@ -63,7 +63,6 @@ public class CallSetupActionProcessorDelegate extends WebRtcActionProcessor {
 
     try {
       CallManager callManager = webRtcInteractor.getCallManager();
-      callManager.setCommunicationMode();
       callManager.setAudioEnable(currentState.getLocalDeviceState().isMicrophoneEnabled());
       callManager.setVideoEnable(currentState.getLocalDeviceState().getCameraState().isEnabled());
     } catch (CallException e) {
