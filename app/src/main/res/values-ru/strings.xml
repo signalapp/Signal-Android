@@ -4302,7 +4302,7 @@
   <string name="ExpandModel__view_more">Просмотреть больше</string>
   <string name="StoriesLinkPopup__visit_link">Посетить ссылку</string>
   <!--Duration and price information-->
-  <string name="GiftRowItem__s_dot_d_day_duration">%1$s · действует %2$d дней</string>
+  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · действует %2$d дней</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Отправить значок в подарок</string>
   <!--Headline text on start fragment for gifting a badge-->

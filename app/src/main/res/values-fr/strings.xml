@@ -1615,9 +1615,7 @@
   <string name="ThreadRecord_video">Vidéo</string>
   <string name="ThreadRecord_chat_session_refreshed">La session de dialogue en ligne a été actualisée</string>
   <!--Displayed in the notification when the user is sent a gift-->
-  <string name="ThreadRecord__you_received_a_gift">Vous avez reçu un cadeau</string>
   <!--Displayed in the notification when the user sends a gift-->
-  <string name="ThreadRecord__you_sent_a_gift">Vous avez envoyé un cadeau</string>
   <!--Displayed in the notification when the user has opened a received gift-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Mise à jour de Signal</string>
@@ -1903,7 +1901,6 @@
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">N’est plus proposée</string>
   <!--Label for quoted gift-->
-  <string name="QuoteView__gift">Cadeau</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Faire défiler vers le bas</string>
   <!--BubbleOptOutTooltip-->
@@ -3642,7 +3639,6 @@ Nouvelle tentative…</string>
   <!--Preference heading for other ways to donate-->
   <string name="ManageDonationsFragment__other_ways_to_give">Autres moyens de donner</string>
   <!--Preference label to launch badge gifting-->
-  <string name="ManageDonationsFragment__gift_a_badge">Offrir un macaron</string>
   <string name="BoostFragment__give_signal_a_boost">Donnez un Coup de pouce à Signal</string>
   <!--Description text in boost sheet-->
   <string name="BoostFragment__make_a_one_time">Faites un don ponctuel et obtenez un macaron Coup de pouce pour %1$d jours.</string>
@@ -3889,7 +3885,6 @@ Nouvelle tentative…</string>
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">Ponctuel</string>
   <!--Donation receipts gift tab label-->
-  <string name="DonationReceiptListFragment__gift">Cadeau</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Coup de pouce</string>
   <!--Donation receipts details title-->

@@ -4200,7 +4200,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ExpandModel__view_more">Ver más</string>
   <string name="StoriesLinkPopup__visit_link">Visitar enlace</string>
   <!--Duration and price information-->
-  <string name="GiftRowItem__s_dot_d_day_duration">%1$s · por %2$d día </string>
+  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · por %2$d día </string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Enviar un distintivo de regalo</string>
   <!--Headline text on start fragment for gifting a badge-->

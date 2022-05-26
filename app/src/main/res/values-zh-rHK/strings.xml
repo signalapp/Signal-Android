@@ -3966,7 +3966,7 @@
   <string name="ExpandModel__view_more">檢視更多</string>
   <string name="StoriesLinkPopup__visit_link">造訪連結</string>
   <!--Duration and price information-->
-  <string name="GiftRowItem__s_dot_d_day_duration">%1$s · 為期 %2$d 天</string>
+  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · 為期 %2$d 天</string> -->
   <!--Tagline for gift row items-->
   <!--Headline text on start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__gift_a_badge">饋贈徽章</string>

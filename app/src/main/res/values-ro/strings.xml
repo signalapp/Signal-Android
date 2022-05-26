@@ -1218,6 +1218,7 @@
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Acest grup vechi nu mai poate fi utilizat deoarece este prea mare. Dimensiunea maximă a grupului este de %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continui conversația ta cu %1$s și îți împărtășești numele și fotografia cu el/ea?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Te alături acestui grup și îți împărtășești numele și fotografia cu membrii săi? Nu vor ști că le-ai văzut mesajele până nu accepți.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Te alături acestui grup și partajezi numele și fotografia ta cu membri grupului? Nu vei vedea mesajele acestora dacă nu accepți.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Te alături acestui grup? Nu vor ști că le-ai văzut mesajele până nu vei accepta.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Deblochezi acest grup și îți împărtășești numele și fotografia cu membrii săi? Nu vei primi niciun mesaj până când nu îi deblochezi.</string>
   <string name="MessageRequestProfileView_view">Vizualizare</string>
@@ -1366,8 +1367,11 @@
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Se reconectează…</string>
   <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">Permisiune Bluetooth refuzată</string>
   <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Te rugăm să activezi permisiunea pentru \"Dispozitive din apropiere\" pentru a utiliza bluetooth în timpul unui apel.</string>
   <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Deschide setările</string>
   <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
   <string name="WebRtcCallActivity__not_now">Nu acum</string>
   <!--WebRtcCallView-->
@@ -1758,6 +1762,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="SingleRecipientNotificationBuilder_message_request">Solicitare mesaj</string>
   <string name="SingleRecipientNotificationBuilder_you">Tu</string>
   <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • Poveste</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Redă video</string>
   <string name="ThumbnailView_Has_a_caption_description">Are un titlu</string>
@@ -3997,6 +4002,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Răspunde</string>
   <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">Răspunde grupului</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Nicio vizualizare încă</string>
   <!--Displayed when a story has no replies yet-->
@@ -4190,6 +4196,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ExpandModel__view_more">Vezi mai multe</string>
   <string name="StoriesLinkPopup__visit_link">Vezi linkul</string>
   <!--Duration and price information-->
+  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d de zile valabilitate</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Trimite o insignă cadou</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4253,8 +4260,24 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
     <item quantity="other">Poveste de grup · %1$d de spectatori</item>
   </plurals>
   <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">A mai rămas %1$d zi</item>
+    <item quantity="few">Au mai rămas %1$d zile</item>
+    <item quantity="other">Au mai rămas %1$d de zile</item>
+  </plurals>
   <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">A mai rămas %1$d oră</item>
+    <item quantity="few">Au mai rămas %1$d ore</item>
+    <item quantity="other">Au mai rămas %1$d de ore</item>
+  </plurals>
   <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">A mai rămas %1$d minut</item>
+    <item quantity="few">Au mai rămas %1$d minute</item>
+    <item quantity="other">Au mai rămas %1$d de minute</item>
+  </plurals>
   <!--Gift expiry expired-->
+  <string name="Gifts__expired">Expirat</string>
   <!--EOF-->
 </resources>

@@ -4091,7 +4091,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ExpandModel__view_more">Vidi pli</string>
   <string name="StoriesLinkPopup__visit_link">Aliri la ligilon</string>
   <!--Duration and price information-->
-  <string name="GiftRowItem__s_dot_d_day_duration">%1$s · Por %2$d tagoj</string>
+  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · Por %2$d tagoj</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Sendi insignon de donaco</string>
   <!--Headline text on start fragment for gifting a badge-->

@@ -4308,7 +4308,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ExpandModel__view_more">Vidieť viac</string>
   <string name="StoriesLinkPopup__visit_link">Navštívte odkaz</string>
   <!--Duration and price information-->
-  <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d trvanie dňa</string>
+  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d trvanie dňa</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Pošlite darčekový odznak</string>
   <!--Headline text on start fragment for gifting a badge-->

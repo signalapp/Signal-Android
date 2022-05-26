@@ -3583,7 +3583,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Je kunt Signal gewoon blijven gebruiken, maar als je Signal wilt ondersteunen en je badge weer wilt weergeven dan kun je nu je donaties vernieuwen.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Maandelijkse donaties vernieuwen</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Signal kan je maandelijkse donatie niet verwerken</string>
-  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Het lukt Signal niet om je maandelijkse donatie af te schrijven. Ga na dat je betalingsmethode nog steeds juist is. Werk je betalingsinformatie bij in Google-pay als dat nodig is. Signal zal je donatie binnen een paar dagen opnieuw proberen af te schrijven.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Het lukt Signal niet om je maandelijkse donatie af te schrijven. Ga na dat je betalingsmethode nog steeds juist is. Werk je betalingsinformatie bij in Google Pay als dat nodig is. Signal zal je donatie binnen een paar dagen opnieuw proberen af te schrijven.</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Dit niet opnieuw weergeven</string>
   <string name="Subscription__please_contact_support_for_more_information">Neem contact op met de ondersteuning voor meer informatie.</string>
   <string name="Subscription__contact_support">Neem contact op</string>
@@ -3607,8 +3607,8 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="DonationsErrors__could_not_send_gift_badge">Kon een cadeau-badge niet verzenden. Neem contact op met ondersteuning.</string>
   <string name="DonationsErrors__your_badge_could_not">Het is niet gelukt om de badge toe te voegen aan je profiel, maar je hebt misschien al wel betaald. Neem contact op met ondersteuning.</string>
   <string name="DonationsErrors__your_payment_is_still">Je overschrijving wordt nog verwerkt. Dit kan een paar minuten duren afhankelijk van je internetverbinding.</string>
-  <string name="DonationsErrors__google_pay_unavailable">Google-pay is niet beschikbaar</string>
-  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Je moet ‘Google-pay’ instellen om vanuit de Signal-app donaties te kunnen doen.</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay is niet beschikbaar</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Je moet ‘Google Pay’ instellen om vanuit de Signal-app donaties te kunnen doen.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Het annuleren van je maandelijkse donaties is mislukt</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Om je maandelijkse donaties te annuleren moet je toegang hebben tot internet.</string>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Je apparaat biedt geen ondersteuning voor Google Play, daarom kun je via de app geen maandelijkse donaties maken en kun je geen badge verdienen. Je kunt nog wel doneren via Signals website.</string>
@@ -3640,7 +3640,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Probeer het via een andere betalingsmethode of neem contact op met je bank om hen om meer informatie te vragen.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
-  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Ga na dat je betalingsmethode nog steeds juist is. Werk je betalingsinformatie bij in Google-pay als dat nodig is. Probeer het daarna opnieuw.</string>
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Ga na dat je betalingsmethode nog steeds juist is. Werk je betalingsinformatie bij in Google Pay als dat nodig is. Probeer het daarna opnieuw.</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">Meer leren hierover</string>
   <!--Stripe decline code contact issuer-->
@@ -4096,7 +4096,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="ExpandModel__view_more">Meer weergeven</string>
   <string name="StoriesLinkPopup__visit_link">Verwijzing volgen</string>
   <!--Duration and price information-->
-  <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d dagen geldig</string>
+  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d dagen geldig</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Een cadeau-badge verzenden</string>
   <!--Headline text on start fragment for gifting a badge-->

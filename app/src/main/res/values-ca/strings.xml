@@ -4085,7 +4085,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ExpandModel__view_more">Mostra\'n més</string>
   <string name="StoriesLinkPopup__visit_link">Obre l\'enllaç</string>
   <!--Duration and price information-->
-  <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d dies de durada</string>
+  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d dies de durada</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Envia una insígnia de regal</string>
   <!--Headline text on start fragment for gifting a badge-->

@@ -2208,7 +2208,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="preferences__enable_passphrase">Iespējot ekrāna bloķēšanu ar paroli</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Aizslēgt ekrānu un paziņojumus ar ieejas frāzi</string>
   <string name="preferences__screen_security">Ekrāna aizsardzība</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Bloķēt ekrānuzņēmumus pēdējo sarakstā un programmā</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Bloķēt ekrānuzņēmumus pēdējo aplikāciju sarakstā un pašā aplikācijā</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Automātiski slēgt Signal pēc noteikta bezdarbības intervāla</string>
   <string name="preferences__inactivity_timeout_passphrase">Bezdarbības noildzes parole</string>
   <string name="preferences__inactivity_timeout_interval">Bezdarbības noildzes intervāls</string>
@@ -3317,7 +3317,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="PrivacySettingsFragment__messaging">Ziņapmaiņa</string>
   <string name="PrivacySettingsFragment__disappearing_messages">Gaistošās ziņas</string>
   <string name="PrivacySettingsFragment__app_security">Lietotnes aizsardzība</string>
-  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloķēt ekrānuzņēmumus pēdējo sarakstā un programmā</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloķēt ekrānuzņēmumus pēdējo aplikāciju sarakstā un pašā aplikācijā</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal ziņas un zvani, pastāvīga zvanu pārsūtīšana un šifrēts sūtītājs</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Noklusējuma taimeris jaunām sarunām</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Iestatiet noklusējuma ziņu dzēšanas taimeri visām jaunajām jūsu sāktajām sarunām.</string>
@@ -4194,7 +4194,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ExpandModel__view_more">Skatīt vairāk</string>
   <string name="StoriesLinkPopup__visit_link">Apmeklēt saiti</string>
   <!--Duration and price information-->
-  <string name="GiftRowItem__s_dot_d_day_duration">%1$s • %2$d dienas ilgums</string>
+  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s • %2$d dienas ilgums</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Nosūtīt dāvanas nozīmīti</string>
   <!--Headline text on start fragment for gifting a badge-->

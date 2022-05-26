@@ -4301,7 +4301,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ExpandModel__view_more">Pokaż więcej</string>
   <string name="StoriesLinkPopup__visit_link">Odwiedź link</string>
   <!--Duration and price information-->
-  <string name="GiftRowItem__s_dot_d_day_duration">%1$s · aktywna %2$d dni</string>
+  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · aktywna %2$d dni</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Wyślij odznakę w prezencie</string>
   <!--Headline text on start fragment for gifting a badge-->

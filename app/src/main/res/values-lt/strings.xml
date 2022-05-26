@@ -4309,7 +4309,7 @@
   <string name="ExpandModel__view_more">Rodyti daugiau</string>
   <string name="StoriesLinkPopup__visit_link">Aplankyti tinklalapį</string>
   <!--Duration and price information-->
-  <string name="GiftRowItem__s_dot_d_day_duration">%1$s · Trukmė dienomis: %2$d</string>
+  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · Trukmė dienomis: %2$d</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Siųsti dovanos ženkliuką</string>
   <!--Headline text on start fragment for gifting a badge-->

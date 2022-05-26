@@ -1218,6 +1218,7 @@
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ова Стара Група не може више да се користи јер је превелика. Максимална величина групе је %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Наставити разговор са %1$s и поделите своје име и слику са њима?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Да ли желите да се придружите овој групи и да са њеним члановима поделите ваше име и слику? Неће знати да сте прочитали поруке док не прихватите.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Придружите се овој групи и поделите своје име и фотографију са њеним члановима? Нећете видети њихове поруке док не прихватите.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Придружите се групи? Неће знати да сте им прочитали поруке док не прихватите.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Да ли желите да одблокирате ову групу и да са њеним члановима поделите ваше име и слику? Нећете добити ни једну поруку док је не одблокирате.</string>
   <string name="MessageRequestProfileView_view">Приказ</string>
@@ -1366,8 +1367,10 @@
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Обнављање везе…</string>
   <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">Bluetooth дозвола одбијена</string>
   <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
   <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Отворити подешавања</string>
   <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
   <string name="WebRtcCallActivity__not_now">Не сада</string>
   <!--WebRtcCallView-->
@@ -1760,6 +1763,7 @@
   <string name="SingleRecipientNotificationBuilder_message_request">Захтев за разговор</string>
   <string name="SingleRecipientNotificationBuilder_you">Ви</string>
   <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • Прича</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Пусти видео</string>
   <string name="ThumbnailView_Has_a_caption_description">Има натпис</string>
@@ -3996,6 +4000,7 @@
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Одговори</string>
   <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">Одговорити групи</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Без прегледа</string>
   <!--Displayed when a story has no replies yet-->
@@ -4189,6 +4194,7 @@
   <string name="ExpandModel__view_more">Види још</string>
   <string name="StoriesLinkPopup__visit_link">Посетите везу</string>
   <!--Duration and price information-->
+  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d дана трјања</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Послати поклон значку</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4252,8 +4258,23 @@
     <item quantity="other">Групна прича · %1$d гледалаца</item>
   </plurals>
   <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">Остало %1$d дан</item>
+    <item quantity="few">Остало %1$d дана</item>
+    <item quantity="other">Остало %1$d дана</item>
+  </plurals>
   <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">Остало %1$d сат</item>
+    <item quantity="few">Остало %1$d сата</item>
+    <item quantity="other">Остало %1$d сата</item>
+  </plurals>
   <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">Остало %1$d минут</item>
+    <item quantity="few">Остало %1$d минута</item>
+    <item quantity="other">Остало %1$d минута</item>
+  </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Истекло</string>
   <!--EOF-->

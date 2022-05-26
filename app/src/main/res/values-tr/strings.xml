@@ -1158,6 +1158,7 @@
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Bu Eski Grup çok büyük olduğu için artık kullanılamaz. Azami grup boyutu %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s ile bu konuşmaya devam etmek ve adınızı ve fotoğrafınızı onunla paylaşmak ister misiniz?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bu gruba katılmak ve adınızla fotonuzu üyeleri ile paylaşmak istiyor musunuz? Kabul edene kadar iletilerini gördüğünüzü bilmeyecekler.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Bu gruba katılıp adınızı ve fotoğrafınızı üyeleriyle paylaşmak ister misiniz? Kabul edene kadar mesajlarını görmezsiniz.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bu gruba katılınsın mı? Kabul edene kadar iletilerini gördüğünüzü bilmeyecekler.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Bu grubun engelini kaldırmak ve adınızla fotonuzu üyeleri ile paylaşmak istiyor musunuz? Engeli kaldırana kadar hiçbir ileti almayacaksınız.</string>
   <string name="MessageRequestProfileView_view">Görüntüle</string>
@@ -1302,6 +1303,7 @@
   <!--Title for dialog warning about lacking bluetooth permissions during a call-->
   <string name="WebRtcCallActivity__bluetooth_permission_denied">Bluetooth izni reddedildi</string>
   <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Lütfen bir arama sırasında bluetooth kullanmak için \"Yakındaki cihazlar\" iznini etkinleştirin.</string>
   <!--Positive action for bluetooth warning dialog to open settings-->
   <string name="WebRtcCallActivity__open_settings">Ayarları aç</string>
   <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
@@ -3895,6 +3897,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Cevapla</string>
   <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">Gruba yanıtla</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Henüz görülme yok</string>
   <!--Displayed when a story has no replies yet-->
@@ -4086,6 +4089,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ExpandModel__view_more">Daha fazlasını gör</string>
   <string name="StoriesLinkPopup__visit_link">Bağlantıyı ziyaret et</string>
   <!--Duration and price information-->
+  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d gün süre</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Bir hediye rozeti gönder</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4147,8 +4151,20 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
     <item quantity="other">Grup Hikayesi · %1$d görüntüleyen</item>
   </plurals>
   <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">%1$d gün kaldı</item>
+    <item quantity="other">%1$d gün kaldı</item>
+  </plurals>
   <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">%1$d saat kaldı</item>
+    <item quantity="other">%1$d saat kaldı</item>
+  </plurals>
   <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">%1$d dakika kaldı</item>
+    <item quantity="other">%1$d dakika kaldı</item>
+  </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Sona erdi</string>
   <!--EOF-->

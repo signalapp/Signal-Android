@@ -4199,7 +4199,7 @@
   <string name="ExpandModel__view_more">Ver mais</string>
   <string name="StoriesLinkPopup__visit_link">Abrir link</string>
   <!--Duration and price information-->
-  <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d duração do dia</string>
+  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d duração do dia</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Enviar um crachá de oferta</string>
   <!--Headline text on start fragment for gifting a badge-->
