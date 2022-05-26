@@ -25,7 +25,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import androidx.annotation.AnyThread;
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.LayoutRes;
@@ -40,7 +39,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.exoplayer2.MediaItem;
 
-import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.paging.PagingController;
 import org.thoughtcrime.securesms.BindableConversationItem;
@@ -65,10 +63,8 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -348,22 +344,22 @@ public class ConversationAdapter
 
     if (type == HEADER_TYPE_POPOVER_DATE) {
       if (hasWallpaper) {
-        viewHolder.setBackgroundRes(R.drawable.wallpaper_bubble_background_8);
+        viewHolder.setBackgroundRes(R.drawable.wallpaper_bubble_background_18);
       } else {
         viewHolder.setBackgroundRes(R.drawable.sticky_date_header_background);
       }
     } else if (type == HEADER_TYPE_INLINE_DATE) {
       if (hasWallpaper) {
-        viewHolder.setBackgroundRes(R.drawable.wallpaper_bubble_background_8);
+        viewHolder.setBackgroundRes(R.drawable.wallpaper_bubble_background_18);
       } else {
         viewHolder.clearBackground();
       }
     }
 
     if (hasWallpaper && ThemeUtil.isDarkTheme(context)) {
-      viewHolder.setTextColor(ContextCompat.getColor(context, R.color.core_grey_15));
+      viewHolder.setTextColor(ContextCompat.getColor(context, R.color.signal_colorNeutralInverse));
     } else {
-      viewHolder.setTextColor(ContextCompat.getColor(context, R.color.signal_text_secondary));
+      viewHolder.setTextColor(ContextCompat.getColor(context, R.color.signal_colorOnSurfaceVariant));
     }
   }
 
@@ -400,7 +396,7 @@ public class ConversationAdapter
     viewHolder.setText(viewHolder.itemView.getContext().getResources().getQuantityString(R.plurals.ConversationAdapter_n_unread_messages, count, count));
 
     if (hasWallpaper) {
-      viewHolder.setBackgroundRes(R.drawable.wallpaper_bubble_background_8);
+      viewHolder.setBackgroundRes(R.drawable.wallpaper_bubble_background_18);
       viewHolder.setDividerColor(viewHolder.itemView.getResources().getColor(R.color.transparent_black_80));
     } else {
       viewHolder.clearBackground();

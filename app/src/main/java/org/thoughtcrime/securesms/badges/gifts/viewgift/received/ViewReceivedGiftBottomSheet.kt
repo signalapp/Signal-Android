@@ -158,7 +158,7 @@ class ViewReceivedGiftBottomSheet : DSLSettingsBottomSheetFragment() {
           noPadTextPref(
             title = DSLSettingsText.from(
               charSequence = requireContext().getString(R.string.ViewReceivedGiftBottomSheet__s_sent_you_a_gift, state.recipient.getShortDisplayName(requireContext())),
-              DSLSettingsText.CenterModifier, DSLSettingsText.Title2BoldModifier
+              DSLSettingsText.CenterModifier, DSLSettingsText.TitleLargeModifier
             )
           )
 

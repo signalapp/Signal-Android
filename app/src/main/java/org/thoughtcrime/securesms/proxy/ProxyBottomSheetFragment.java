@@ -14,14 +14,15 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.dd.CircularProgressButton;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.preferences.EditProxyViewModel;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 
 /**
  * A bottom sheet shown in response to a deep link. Allows a user to set a proxy.
@@ -32,10 +33,10 @@ public final class ProxyBottomSheetFragment extends BottomSheetDialogFragment {
 
   private static final String ARG_PROXY_LINK = "proxy_link";
 
-  private TextView               proxyText;
-  private View                   cancelButton;
-  private CircularProgressButton useProxyButton;
-  private EditProxyViewModel     viewModel;
+  private TextView                       proxyText;
+  private View                           cancelButton;
+  private CircularProgressMaterialButton useProxyButton;
+  private EditProxyViewModel             viewModel;
 
   public static void showForProxy(@NonNull FragmentManager manager, @NonNull String proxyLink) {
     ProxyBottomSheetFragment fragment = new ProxyBottomSheetFragment();
@@ -86,14 +87,10 @@ public final class ProxyBottomSheetFragment extends BottomSheetDialogFragment {
   private void presentSaveState(@NonNull EditProxyViewModel.SaveState state) {
     switch (state) {
       case IDLE:
-        useProxyButton.setClickable(true);
-        useProxyButton.setIndeterminateProgressMode(false);
-        useProxyButton.setProgress(0);
+        useProxyButton.cancelSpinning();
         break;
       case IN_PROGRESS:
-        useProxyButton.setClickable(false);
-        useProxyButton.setIndeterminateProgressMode(true);
-        useProxyButton.setProgress(50);
+        useProxyButton.setSpinning();
         break;
     }
   }
@@ -105,7 +102,7 @@ public final class ProxyBottomSheetFragment extends BottomSheetDialogFragment {
         dismiss();
         break;
       case PROXY_FAILURE:
-        new AlertDialog.Builder(requireContext())
+        new MaterialAlertDialogBuilder(requireContext())
                        .setTitle(R.string.preferences_failed_to_connect)
                        .setMessage(R.string.preferences_couldnt_connect_to_the_proxy)
                        .setPositiveButton(android.R.string.ok, (d, i) -> d.dismiss())

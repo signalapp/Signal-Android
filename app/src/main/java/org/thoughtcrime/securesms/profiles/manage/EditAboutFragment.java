@@ -22,8 +22,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dd.CircularProgressButton;
-
 import org.signal.core.util.BreakIteratorCompat;
 import org.signal.core.util.EditTextUtil;
 import org.thoughtcrime.securesms.R;
@@ -34,6 +32,7 @@ import org.signal.core.util.StringUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.AlwaysChangedDiffUtil;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
+import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 
 import java.util.Arrays;
@@ -60,11 +59,11 @@ public class EditAboutFragment extends Fragment implements ManageProfileActivity
       new AboutPreset("\uD83D\uDE80", R.string.EditAboutFragment_working_on_something_new)
   );
 
-  private ImageView              emojiView;
-  private EditText               bodyView;
-  private TextView               countView;
-  private CircularProgressButton saveButton;
-  private EditAboutViewModel     viewModel;
+  private ImageView                      emojiView;
+  private EditText                       bodyView;
+  private TextView                       countView;
+  private CircularProgressMaterialButton saveButton;
+  private EditAboutViewModel             viewModel;
 
   private String selectedEmoji;
 
@@ -167,14 +166,10 @@ public class EditAboutFragment extends Fragment implements ManageProfileActivity
   private void presentSaveState(@NonNull EditAboutViewModel.SaveState state) {
     switch (state) {
       case IDLE:
-        saveButton.setClickable(true);
-        saveButton.setIndeterminateProgressMode(false);
-        saveButton.setProgress(0);
+        saveButton.cancelSpinning();
         break;
       case IN_PROGRESS:
-        saveButton.setClickable(false);
-        saveButton.setIndeterminateProgressMode(true);
-        saveButton.setProgress(50);
+        saveButton.setSpinning();
         break;
       case DONE:
         saveButton.setClickable(false);

@@ -37,7 +37,7 @@
 
             <org.thoughtcrime.securesms.components.emoji.EmojiTextView
                 android:id="@+id/title"
-                style="@style/TextSecure.TitleTextStyle.Dark"
+                android:textAppearance="@style/Signal.Text.TitleLarge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|start"

@@ -104,14 +104,12 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/vector_avatar_creation_done"
-        style="@style/Signal.Widget.Button.Large.Primary"
+        style="@style/Signal.Widget.Button.Large.Tonal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:minHeight="48dp"
         android:text="@string/TextAvatarCreationFragment__done"
-        app:cornerRadius="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

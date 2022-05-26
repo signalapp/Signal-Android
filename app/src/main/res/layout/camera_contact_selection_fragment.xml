@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="?android:windowBackground">
 
@@ -35,7 +35,8 @@
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/camera_contacts_toolbar">
+        app:layout_constraintTop_toBottomOf="@id/camera_contacts_toolbar"
+        tools:visibility="visible">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -58,13 +59,13 @@
             style="@style/Signal.Text.Body"
             android:text="@string/CameraContacts_you_can_only_use_the_camera_button"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/camera_contacts_invite_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_gravity="center"
-            style="@style/Button.Borderless"
+            style="@style/Signal.Widget.Button.Large.Secondary"
             android:text="@string/CameraContacts_invite_a_contact_to_join_signal" />
 
     </LinearLayout>

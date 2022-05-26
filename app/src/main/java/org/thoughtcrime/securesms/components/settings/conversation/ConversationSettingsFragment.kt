@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.components.settings.conversation
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.graphics.Rect
@@ -24,6 +23,7 @@ import app.cash.exhaustive.Exhaustive
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.AvatarPreviewActivity
 import org.thoughtcrime.securesms.BlockUnblockDialog
 import org.thoughtcrime.securesms.InviteActivity
@@ -38,7 +38,6 @@ import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.badges.view.ViewBadgeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.recyclerview.OnScrollAnimationHelper
-import org.thoughtcrime.securesms.components.recyclerview.ToolbarShadowAnimationHelper
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
@@ -83,7 +82,6 @@ import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.ExpirationUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
-import org.thoughtcrime.securesms.util.ThemeUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
@@ -161,6 +159,8 @@ class ConversationSettingsFragment : DSLSettingsFragment(
     }
 
     super.onViewCreated(view, savedInstanceState)
+
+    recyclerView?.addOnScrollListener(ConversationSettingsOnUserScrolledAnimationHelper(toolbarAvatarContainer, toolbarTitle, toolbarBackground))
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -177,10 +177,6 @@ class ConversationSettingsFragment : DSLSettingsFragment(
       REQUEST_CODE_ADD_CONTACT -> viewModel.refreshRecipient()
       REQUEST_CODE_VIEW_CONTACT -> viewModel.refreshRecipient()
     }
-  }
-
-  override fun getOnScrollAnimationHelper(toolbarShadow: View): OnScrollAnimationHelper {
-    return ConversationSettingsOnUserScrolledAnimationHelper(toolbarAvatarContainer, toolbarTitle, toolbarBackground, toolbarShadow)
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -767,19 +763,18 @@ class ConversationSettingsFragment : DSLSettingsFragment(
       showMembersAdded.membersAddedCount
     )
 
-    Snackbar.make(requireView(), string, Snackbar.LENGTH_SHORT).setTextColor(Color.WHITE).show()
+    Snackbar.make(requireView(), string, Snackbar.LENGTH_SHORT).show()
   }
 
   private class ConversationSettingsOnUserScrolledAnimationHelper(
     private val toolbarAvatar: View,
     private val toolbarTitle: View,
-    private val toolbarBackground: View,
-    toolbarShadow: View
-  ) : ToolbarShadowAnimationHelper(toolbarShadow) {
+    private val toolbarBackground: View
+  ) : OnScrollAnimationHelper() {
 
     override val duration: Long = 200L
 
-    private val actionBarSize = ThemeUtil.getThemedDimen(toolbarShadow.context, R.attr.actionBarSize)
+    private val actionBarSize = DimensionUnit.DP.toPixels(64f)
     private val rect = Rect()
 
     override fun getAnimationState(recyclerView: RecyclerView): AnimationState {
@@ -805,8 +800,6 @@ class ConversationSettingsFragment : DSLSettingsFragment(
     }
 
     override fun show(duration: Long) {
-      super.show(duration)
-
       toolbarAvatar
         .animate()
         .setDuration(duration)
@@ -826,8 +819,6 @@ class ConversationSettingsFragment : DSLSettingsFragment(
     }
 
     override fun hide(duration: Long) {
-      super.hide(duration)
-
       toolbarAvatar
         .animate()
         .setDuration(duration)

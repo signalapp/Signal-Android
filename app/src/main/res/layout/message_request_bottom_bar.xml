@@ -12,15 +12,16 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="11dp"
         android:paddingTop="16dp"
-        android:textAppearance="@style/Signal.Text.MessageRequest.Description"
+        android:gravity="center"
+        android:textAppearance="@style/Signal.Text.BodySmall"
         app:layout_constraintBottom_toTopOf="@id/message_request_button_barrier"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="Do you want to let J. Jonah Jameson message you? They won't know you've seen their message until you accept." />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/message_request_block"
-        style="@style/Signal.MessageRequest.Button.Deny"
+        style="@style/Signal.Widget.Button.Medium.Tonal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -32,11 +33,11 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/message_request_delete"
-        style="@style/Signal.MessageRequest.Button.Deny"
+        style="@style/Signal.Widget.Button.Medium.Tonal"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="@string/MessageRequestBottomView_delete"
         app:layout_constraintBottom_toBottomOf="@id/message_request_block"
@@ -45,11 +46,11 @@
         app:layout_constraintStart_toEndOf="@+id/message_request_block"
         app:layout_constraintTop_toTopOf="@id/message_request_block" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/message_request_accept"
-        style="@style/Signal.MessageRequest.Button.Accept"
+        style="@style/Signal.Widget.Button.Medium.Tonal"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:text="@string/MessageRequestBottomView_accept"
         app:layout_constraintBottom_toBottomOf="@id/message_request_block"
@@ -60,7 +61,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/message_request_gv1_migration"
-        style="@style/Signal.Widget.Button.Large.Primary"
+        style="@style/Signal.Widget.Button.Medium.Tonal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -71,9 +72,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/message_request_big_delete"
-        style="@style/Signal.MessageRequest.Button.Deny"
+        style="@style/Signal.Widget.Button.Medium.Tonal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -84,11 +85,11 @@
         app:layout_constraintEnd_toStartOf="@id/message_request_big_unblock"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/message_request_big_unblock"
-        style="@style/Signal.MessageRequest.Button.Accept"
+        style="@style/Signal.Widget.Button.Medium.Tonal"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:text="@string/MessageRequestBottomView_unblock"
         app:layout_constraintBottom_toBottomOf="@id/message_request_big_delete"
@@ -109,7 +110,7 @@
         android:layout_height="0dp"
         android:visibility="gone"
         app:constraint_referenced_ids="message_request_accept,message_request_delete,message_request_block"
-        tools:visibility="gone"/>
+        tools:visibility="gone" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/message_request_blocked_buttons"

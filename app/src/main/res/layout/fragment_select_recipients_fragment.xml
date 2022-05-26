@@ -31,7 +31,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/contact_filter_edit_text" />
 
-    <com.dd.CircularProgressButton
+    <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
         android:id="@+id/select_recipients_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,16 +40,7 @@
         android:layout_marginBottom="16dp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:text="@string/SelectRecipientsFragment__add"
-        android:textColor="@color/white"
-        android:textAllCaps="false"
-        app:cornerRadius="80dp"
-        app:cpb_colorIndicator="@color/white"
-        app:cpb_colorProgress="?colorAccent"
-        app:cpb_cornerRadius="28dp"
-        app:cpb_selectorIdle="@drawable/progress_button_state"
-        app:cpb_textIdle="@string/SelectRecipientsFragment__add"
-        app:elevation="4dp"
+        app:circularProgressMaterialButton__label="@string/SelectRecipientsFragment__add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

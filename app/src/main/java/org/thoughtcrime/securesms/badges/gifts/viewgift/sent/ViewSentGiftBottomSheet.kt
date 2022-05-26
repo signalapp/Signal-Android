@@ -66,7 +66,7 @@ class ViewSentGiftBottomSheet : DSLSettingsBottomSheetFragment() {
       noPadTextPref(
         title = DSLSettingsText.from(
           stringId = R.string.ViewSentGiftBottomSheet__thanks_for_your_support,
-          DSLSettingsText.CenterModifier, DSLSettingsText.Title2BoldModifier
+          DSLSettingsText.CenterModifier, DSLSettingsText.TitleLargeModifier
         )
       )
 

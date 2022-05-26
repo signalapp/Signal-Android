@@ -16,8 +16,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
-import com.dd.CircularProgressButton;
-
 import org.signal.core.util.EditTextUtil;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.profiles.ProfileName;
@@ -25,6 +23,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.util.StringUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
+import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 
 /**
  * Simple fragment to edit your profile name.
@@ -33,10 +32,10 @@ public class EditProfileNameFragment extends Fragment {
 
   public static final int NAME_MAX_GLYPHS = 26;
 
-  private EditText                 givenName;
-  private EditText                 familyName;
-  private CircularProgressButton   saveButton;
-  private EditProfileNameViewModel viewModel;
+  private EditText                       givenName;
+  private EditText                       familyName;
+  private CircularProgressMaterialButton saveButton;
+  private EditProfileNameViewModel       viewModel;
 
   @Override
   public @NonNull View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -92,17 +91,13 @@ public class EditProfileNameFragment extends Fragment {
         setEditTextEnabled(familyName, true);
         break;
       case IDLE:
-        saveButton.setClickable(true);
-        saveButton.setIndeterminateProgressMode(false);
-        saveButton.setProgress(0);
+        saveButton.cancelSpinning();
         saveButton.setAlpha(1);
         setEditTextEnabled(givenName, true);
         setEditTextEnabled(familyName, true);
         break;
       case IN_PROGRESS:
-        saveButton.setClickable(false);
-        saveButton.setIndeterminateProgressMode(true);
-        saveButton.setProgress(50);
+        saveButton.setSpinning();
         saveButton.setAlpha(1);
         setEditTextEnabled(givenName, false);
         setEditTextEnabled(familyName, false);

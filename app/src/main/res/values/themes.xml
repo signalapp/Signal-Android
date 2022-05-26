@@ -147,31 +147,49 @@
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
 
         <!-- Material 3 -->
+        <item name="colorPrimary">@color/signal_colorPrimary</item>
         <item name="colorPrimaryContainer">@color/signal_colorPrimaryContainer</item>
-        <item name="colorOnPrimaryContainer">@color/signal_colorOnPrimaryContainer</item>
+        <item name="colorSecondary">@color/signal_colorSecondary</item>
         <item name="colorSecondaryContainer">@color/signal_colorSecondaryContainer</item>
+        <item name="colorSurface">@color/signal_colorSurface</item>
+        <item name="colorSurfaceVariant">@color/signal_colorSurfaceVariant</item>
+        <item name="colorOnPrimary">@color/signal_colorOnPrimary</item>
+        <item name="colorOnPrimaryContainer">@color/signal_colorOnPrimaryContainer</item>
+        <item name="colorOnSecondary">@color/signal_colorOnSecondary</item>
         <item name="colorOnSecondaryContainer">@color/signal_colorOnSecondaryContainer</item>
+        <item name="colorOnSurface">@color/signal_colorOnSurface</item>
+        <item name="colorOnSurfaceVariant">@color/signal_colorOnSurfaceVariant</item>
+        <item name="colorOnBackground">@color/signal_colorOnBackground</item>
+        <item name="colorOutline">@color/signal_colorOutline</item>
+        <item name="textAppearanceBodyMedium">@style/Signal.Text.BodyMedium</item>
+        <item name="textAppearanceLabelLarge">@style/Signal.Text.LabelLarge</item>
 
         <item name="search_view_style">@style/Signal.SearchView</item>
 
-        <item name="bottomSheetDialogTheme">@style/Theme.Design.Light.BottomSheetDialog</item>
+        <item name="circularProgressMaterialButtonStyle">@style/Signal.Widget.Button.Large.Tonal</item>
+        <item name="circularProgressIndicatorStyle">@style/Widget.Signal.CircularProgressIndicator.Medium.Indeterminate.Tonal</item>
+
+        <item name="snackbarStyle">@style/Widget.Signal.Snackbar</item>
+        <item name="snackbarTextViewStyle">@style/Widget.Signal.Snackbar.TextView</item>
+        <item name="snackbarButtonStyle">@style/Widget.Signal.Button.TextButton.Snackbar</item>
+
+        <item name="bottomSheetDialogTheme">@style/Theme.Signal.Light.BottomSheetDialog</item>
 
         <item name="contactCheckboxBackground">@drawable/contact_selection_checkbox</item>
         <item name="mediaKeyboardBackgroundColor">@color/signal_background_secondary</item>
 
         <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
-        <item name="actionModeBackground">@color/signal_background_primary</item>
+        <item name="actionModeBackground">@color/transparent</item>
         <item name="actionModeCloseDrawable">@drawable/ic_x_tinted</item>
         <item name="actionModeStyle">@style/TextSecure.ActionModeStyle</item>
         <item name="android:textColor">@color/text_color_light_theme</item>
         <item name="android:textColorSecondary">@color/text_color_secondary_light_theme</item>
-        <item name="colorPrimary">@color/core_ultramarine</item>
         <item name="colorPrimaryDark">@color/core_ultramarine</item>
         <item name="colorAccent">@color/core_ultramarine</item>
         <item name="colorControlActivated">@color/core_ultramarine</item>
         <item name="colorControlHighlight">@color/transparent_black_10</item>
-        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowBackground">@color/signal_colorBackground</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleLight</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleLight</item>
@@ -195,7 +213,7 @@
 
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
 
-        <item name="chipStyle">@style/Signal.Chip.Action.Light</item>
+        <item name="chipStyle">@style/Signal.Chip.Action</item>
 
         <item name="colorControlNormal">@color/core_grey_90</item>
 
@@ -213,19 +231,38 @@
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
 
         <!-- Material 3 -->
+        <item name="colorPrimary">@color/signal_colorPrimary</item>
         <item name="colorPrimaryContainer">@color/signal_colorPrimaryContainer</item>
-        <item name="colorOnPrimaryContainer">@color/signal_colorOnPrimaryContainer</item>
+        <item name="colorSecondary">@color/signal_colorSecondary</item>
         <item name="colorSecondaryContainer">@color/signal_colorSecondaryContainer</item>
+        <item name="colorSurface">@color/signal_colorSurface</item>
+        <item name="colorSurfaceVariant">@color/signal_colorSurfaceVariant</item>
+        <item name="colorOnPrimary">@color/signal_colorOnPrimary</item>
+        <item name="colorOnPrimaryContainer">@color/signal_colorOnPrimaryContainer</item>
+        <item name="colorOnSecondary">@color/signal_colorOnSecondary</item>
         <item name="colorOnSecondaryContainer">@color/signal_colorOnSecondaryContainer</item>
+        <item name="colorOnSurface">@color/signal_colorOnSurface</item>
+        <item name="colorOnSurfaceVariant">@color/signal_colorOnSurfaceVariant</item>
+        <item name="colorOnBackground">@color/signal_colorOnBackground</item>
+        <item name="colorOutline">@color/signal_colorOutline</item>
+        <item name="textAppearanceBodyMedium">@style/Signal.Text.BodyMedium</item>
+        <item name="textAppearanceLabelLarge">@style/Signal.Text.LabelLarge</item>
+
+        <item name="circularProgressMaterialButtonStyle">@style/Signal.Widget.Button.Large.Tonal</item>
+        <item name="circularProgressIndicatorStyle">@style/Widget.Signal.CircularProgressIndicator.Medium.Indeterminate.Tonal</item>
 
         <item name="search_view_style">@style/Signal.SearchView</item>
 
-        <item name="bottomSheetDialogTheme">@style/Theme.Design.BottomSheetDialog</item>
+        <item name="snackbarStyle">@style/Widget.Signal.Snackbar</item>
+        <item name="snackbarTextViewStyle">@style/Widget.Signal.Snackbar.TextView</item>
+        <item name="snackbarButtonStyle">@style/Widget.Signal.Button.TextButton.Snackbar</item>
+
+        <item name="bottomSheetDialogTheme">@style/Theme.Signal.BottomSheetDialog</item>
 
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
-        <item name="actionModeBackground">@color/signal_background_primary</item>
+        <item name="actionModeBackground">@color/transparent</item>
         <item name="actionModeCloseDrawable">@drawable/ic_x_tinted</item>
         <item name="actionModeStyle">@style/TextSecure.ActionModeStyle</item>
         <item name="android:textColor">@color/text_color_dark_theme</item>
@@ -234,7 +271,7 @@
         <item name="colorControlActivated">@color/core_ultramarine_light</item>
         <item name="colorControlHighlight">@color/transparent_white_10</item>
         <item name="android:colorControlHighlight" tools:ignore="NewApi">@color/transparent_white_10</item>
-        <item name="android:windowBackground">@color/core_grey_95</item>
+        <item name="android:windowBackground">@color/signal_colorBackground</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleDark</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleDark</item>
@@ -270,11 +307,11 @@
         <item name="materialTimePickerStyle">@style/Signal.Widget.TimePicker</item>
     </style>
 
-    <style name="Theme.Signal.AlertDialog.Light.Cornered" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <style name="Theme.Signal.AlertDialog.Light.Cornered" parent="MaterialAlertDialog.Material3">
         <item name="android:windowBackground">@drawable/dialog_corners</item>
     </style>
 
-    <style name="Theme.Signal.AlertDialog.Dark.Cornered" parent="Theme.AppCompat.Dialog.Alert">
+    <style name="Theme.Signal.AlertDialog.Dark.Cornered" parent="MaterialAlertDialog.Material3">
         <item name="android:windowBackground">@drawable/dialog_corners</item>
     </style>
 
@@ -364,10 +401,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.Signal.Light.BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+    <style name="Theme.Signal.Light.BottomSheetDialog" parent="Theme.Material3.Light.BottomSheetDialog">
     </style>
 
-    <style name="Theme.Signal.BottomSheetDialog" parent="Theme.Design.BottomSheetDialog">
+    <style name="Theme.Signal.BottomSheetDialog" parent="Theme.Material3.Dark.BottomSheetDialog">
     </style>
 
     <style name="Theme.Signal.Light.BottomSheetDialog.Fixed">
@@ -421,23 +458,24 @@
         <item name="bottomSheetStyle">@style/Widget.Signal.ReactWithAny.BottomSheet</item>
     </style>
 
-    <style name="Widget.Signal.ReactWithAny.BottomSheet" parent="Widget.MaterialComponents.BottomSheet">
+    <style name="Widget.Signal.ReactWithAny.BottomSheet" parent="Widget.Material3.BottomSheet">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
         <item name="backgroundTint">@color/react_with_any_background</item>
     </style>
 
-    <style name="Widget.Signal.FixedRoundedCorners" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+    <style name="Widget.Signal.FixedRoundedCorners" parent="ThemeOverlay.Material3.BottomSheetDialog">
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowSoftInputMode">adjustResize</item>
         <item name="bottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners.BottomSheet</item>
         <item name="contactCheckboxBackground">@drawable/contact_selection_checkbox_dialog</item>
         <item name="android:windowEnterAnimation">@anim/slide_from_bottom</item>
         <item name="android:windowExitAnimation">@anim/slide_to_bottom</item>
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/signal_colorSurface1</item>
     </style>
 
-    <style name="Widget.Signal.FixedRoundedCorners.BottomSheet" parent="Widget.MaterialComponents.BottomSheet">
+    <style name="Widget.Signal.FixedRoundedCorners.BottomSheet" parent="Widget.Material3.BottomSheet">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
-        <item name="backgroundTint">@color/signal_background_dialog</item>
+        <item name="backgroundTint">@color/signal_colorSurface1</item>
     </style>
 
     <style name="Widget.Signal.FixedRoundedCorners.Stories">
@@ -502,38 +540,34 @@
         <item name="cornerSize">50%</item>
     </style>
 
-    <style name="Widget.Signal.BottomSheet.Rounded" parent="Widget.MaterialComponents.BottomSheet">
+    <style name="Widget.Signal.BottomSheet.Rounded" parent="Widget.Material3.BottomSheet">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
-        <item name="backgroundTint">@color/core_grey_75</item>
-    </style>
-
-    <style name="Widget.Signal.BottomSheet.Rounded.Light">
-        <item name="backgroundTint">@color/white</item>
+        <item name="backgroundTint">@color/signal_colorSurface1</item>
     </style>
 
     <style name="Theme.Signal.RoundedBottomSheet.Light">
-        <item name="bottomSheetStyle">@style/Widget.Signal.BottomSheet.Rounded.Light</item>
+        <item name="bottomSheetStyle">@style/Widget.Signal.BottomSheet.Rounded</item>
 
-        <item name="android:textColorPrimary">@color/core_grey_90</item>
+        <item name="android:textColorPrimary">@color/signal_colorOnSurface</item>
 
         <item name="colorAccent">@color/core_ultramarine</item>
 
-        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/white</item>
+        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/signal_colorSurface1</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
 
         <item name="android:colorForeground">@color/black</item>
         <item name="colorSwitchThumbNormal">@color/switch_thumb_material_light</item>
     </style>
 
-    <style name="Theme.Signal.RoundedBottomSheet" parent="Theme.MaterialComponents.BottomSheetDialog">
+    <style name="Theme.Signal.RoundedBottomSheet" parent="ThemeOverlay.Material3.BottomSheetDialog">
         <item name="android:windowIsFloating">false</item>
         <item name="bottomSheetStyle">@style/Widget.Signal.BottomSheet.Rounded</item>
 
-        <item name="android:textColorPrimary">@color/core_grey_05</item>
+        <item name="android:textColorPrimary">@color/signal_colorOnSurface</item>
 
         <item name="colorAccent">@color/core_ultramarine_light</item>
 
-        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/core_grey_75</item>
+        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/signal_colorSurface1</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
         <item name="android:statusBarColor" tools:ignore="NewApi">@color/transparent</item>
     </style>
@@ -553,23 +587,21 @@
     </style>
 
     <style name="Signal.Chip.Action" parent="Widget.MaterialComponents.Chip.Action">
-        <item name="chipIconSize">32dp</item>
+        <item name="chipIconSize">24dp</item>
         <item name="chipStartPadding">0dp</item>
-        <item name="closeIcon">@drawable/ic_x</item>
-        <item name="closeIconSize">12dp</item>
-        <item name="textEndPadding">4dp</item>
+        <item name="closeIconEndPadding">8dp</item>
+        <item name="closeIcon">@drawable/ic_x_24</item>
+        <item name="closeIconSize">18dp</item>
+        <item name="textEndPadding">8dp</item>
         <!-- Negative padding gives us 4dp between icon and text, while allowing 10dp for when no icon -->
-        <item name="iconEndPadding">-6dp</item>
-        <item name="textStartPadding">10dp</item>
-        <item name="android:textColor">@color/core_white</item>
-        <item name="chipBackgroundColor">@color/core_grey_80</item>
-        <item name="closeIconTint">@color/core_grey_15</item>
-    </style>
-
-    <style name="Signal.Chip.Action.Light">
-        <item name="android:textColor">@color/core_grey_90</item>
-        <item name="chipBackgroundColor">@color/core_grey_05</item>
-        <item name="closeIconTint">@color/core_grey_60</item>
+        <item name="iconEndPadding">0dp</item>
+        <item name="iconStartPadding">4dp</item>
+        <item name="textStartPadding">8dp</item>
+        <item name="android:textColor">@color/signal_colorOnSurface</item>
+        <item name="chipBackgroundColor">@color/signal_colorSurfaceVariant</item>
+        <item name="closeIconTint">@color/signal_colorOnSurface</item>
+        <item name="chipCornerRadius">8dp</item>
+        <item name="android:textAppearance">@style/Signal.Text.LabelLarge</item>
     </style>
     
     <style name="ThemeOverlay.Signal.EditProfileInput" parent="ThemeOverlay.MaterialComponents">

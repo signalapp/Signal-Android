@@ -11,9 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/skip_restore_button"
-            style="@style/Button.Borderless.Registration"
+            style="@style/Signal.Widget.Button.Large.Secondary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -23,6 +23,7 @@
             android:paddingEnd="30dp"
             android:paddingBottom="10dp"
             android:text="@string/registration_activity__skip"
+            android:textColor="@color/signal_text_secondary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +74,6 @@
 
         <TextView
             android:id="@+id/verify_header"
-            style="@style/Signal.Text.Headline.Registration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -82,21 +82,21 @@
             android:layout_marginEnd="32dp"
             android:gravity="center"
             android:text="@string/RegistrationActivity_restore_from_backup"
+            android:textAppearance="@style/Signal.Text.HeadlineMedium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.dd.CircularProgressButton
+        <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
             android:id="@+id/restore_button"
-            style="@style/Button.Registration"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            app:cpb_textIdle="@string/registration_activity__restore_backup"
+            app:circularProgressMaterialButton__label="@string/registration_activity__restore_backup"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"

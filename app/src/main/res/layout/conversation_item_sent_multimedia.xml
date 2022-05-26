@@ -80,8 +80,8 @@
             android:layout_marginEnd="6dp"
             android:visibility="gone"
             app:message_type="outgoing"
-            app:quote_colorPrimary="@color/conversation_item_quote_text_color"
-            app:quote_colorSecondary="@color/conversation_item_quote_text_color"
+            app:quote_colorPrimary="@color/conversation_item_quote_text_color_sent"
+            app:quote_colorSecondary="@color/conversation_item_quote_text_color_sent"
             tools:visibility="visible" />
 
         <ViewStub

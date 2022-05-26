@@ -158,13 +158,13 @@
 
             </LinearLayout>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/gv1_learn_more_ok_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:padding="20dp"
-                style="@style/Button.Primary"
+                style="@style/Signal.Widget.Button.Large.Primary"
                 android:text="@android:string/ok" />
 
         </LinearLayout>

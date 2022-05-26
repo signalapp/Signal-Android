@@ -48,9 +48,8 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:textSize="14sp"
+                        android:textAppearance="@style/Signal.Text.LabelLarge"
                         android:textColor="@color/core_black"
-                        android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
                         tools:text="Peter Parker" />
 
                     <LinearLayout
@@ -72,7 +71,7 @@
 
                         <TextView
                             android:id="@+id/quote_attachment_name"
-                            style="@style/Signal.Text.Body"
+                            style="@style/Signal.Text.BodyMedium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
@@ -88,15 +87,16 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:paddingTop="4dp"
-                        android:textSize="14sp"
+                        android:textAppearance="@style/Signal.Text.BodyMedium"
                         android:textColor="@color/core_black"
+                        android:textSize="14sp"
                         android:visibility="gone"
                         tools:text="Photo"
                         tools:visibility="visible" />
 
                     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
                         android:id="@+id/quote_text"
-                        style="@style/Signal.Text.Body"
+                        style="@style/Signal.Text.BodyMedium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
@@ -111,17 +111,17 @@
                     android:id="@+id/quote_missing_story_reaction_emoji"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginStart="12dp"
                     android:layout_marginEnd="8dp"
                     android:visibility="gone"
-                    android:layout_gravity="center_vertical"
                     tools:src="@drawable/ic_emoji"
                     tools:visibility="visible" />
 
                 <FrameLayout
-                    android:background="@color/white"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@color/white">
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/quote_thumbnail"
@@ -144,8 +144,8 @@
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="13dp"
                             android:layout_height="16dp"
-                            android:layout_marginTop="8dp"
                             android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="8dp"
                             android:scaleType="fitXY"
                             android:tint="@color/core_ultramarine"
                             app:srcCompat="@drawable/exo_icon_play" />
@@ -174,7 +174,7 @@
 
                 <TextView
                     android:id="@+id/quote_missing_text"
-                    style="@style/Signal.Text.Caption"
+                    style="@style/Signal.Text.MaterialCaption"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/QuoteView_original_missing"
@@ -190,21 +190,19 @@
         android:id="@+id/quote_story_reaction_emoji"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:visibility="gone"
-        android:layout_marginEnd="@dimen/quote_story_emoji_margin"
         android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/quote_story_emoji_margin"
+        android:visibility="gone"
         tools:src="@drawable/ic_emoji"
         tools:visibility="visible" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/quote_dismiss"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_gravity="top|end"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="6dp"
         android:background="@drawable/dismiss_background"
-        android:src="@drawable/ic_close_white_18dp"
-        android:tint="@color/quote_dismiss_button_tint" />
+        app:srcCompat="@drawable/ic_x_20"
+        app:tint="@color/signal_colorOnSurface" />
 
 </merge>

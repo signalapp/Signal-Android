@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="@string/RegistrationLockFragment__enter_your_pin"
-            android:textAppearance="@style/TextAppearance.Signal.Title1"
+            android:textAppearance="@style/Signal.Text.HeadlineMedium"
             app:layout_constraintBottom_toTopOf="@id/kbs_lock_keyboard_toggle"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.20" />
@@ -31,7 +31,7 @@
             android:gravity="center_horizontal"
             android:minHeight="66dp"
             android:text="@string/RegistrationLockFragment__enter_the_pin_you_created"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            android:textAppearance="@style/Signal.Text.BodyLarge"
             android:textColor="@color/signal_text_secondary"
             app:layout_constraintTop_toBottomOf="@id/kbs_lock_pin_title" />
 
@@ -53,15 +53,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:textAppearance="@style/Signal.Text.BodyMedium"
             android:gravity="center_horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/kbs_lock_pin_input"
             tools:text="@string/RegistrationLockFragment__incorrect_pin_try_again" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/kbs_lock_forgot_pin"
-            style="@style/Button.Borderless"
+            style="@style/Signal.Widget.Button.Large.Secondary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -71,9 +72,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/kbs_lock_pin_input_label" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/kbs_lock_keyboard_toggle"
-            style="@style/Button.Borderless"
+            style="@style/Signal.Widget.Button.Large.Secondary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -83,15 +84,15 @@
             app:layout_constraintVertical_bias="1.0"
             tools:text="Create Alphanumeric Pin" />
 
-        <com.dd.CircularProgressButton
+        <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
             android:id="@+id/kbs_lock_pin_confirm"
-            style="@style/Button.Registration"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="16dp"
-            app:cpb_textIdle="@string/RegistrationActivity_continue"
+            app:materialThemeOverlay="@style/ThemeOverlay.Signal.CircularProgressIndicator.Primary"
+            app:circularProgressMaterialButton__label="@string/RegistrationActivity_continue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

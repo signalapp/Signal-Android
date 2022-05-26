@@ -5,14 +5,14 @@
     android:viewportHeight="32">
   <path
       android:pathData="M16,16m-16,0a16,16 0,1 1,32 0a16,16 0,1 1,-32 0"
-      android:fillColor="@color/core_grey_05"/>
+      android:fillColor="@color/reactions_overlay_any_emoji_background"/>
   <path
       android:pathData="M8,16m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0"
-      android:fillColor="@color/core_grey_45"/>
+      android:fillColor="@color/reactions_overlay_any_emoji_foreground"/>
   <path
       android:pathData="M16,16m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0"
-      android:fillColor="@color/core_grey_45"/>
+      android:fillColor="@color/reactions_overlay_any_emoji_foreground"/>
   <path
       android:pathData="M24,16m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0"
-      android:fillColor="@color/core_grey_45"/>
+      android:fillColor="@color/reactions_overlay_any_emoji_foreground"/>
 </vector>

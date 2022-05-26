@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
-import com.dd.CircularProgressButton;
 
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
@@ -27,6 +26,7 @@ import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 
 import java.util.Objects;
 
@@ -34,10 +34,10 @@ public final class ChooseNewAdminActivity extends PassphraseRequiredActivity {
 
   private static final String EXTRA_GROUP_ID = "group_id";
 
-  private ChooseNewAdminViewModel viewModel;
-  private GroupMemberListView     groupList;
-  private CircularProgressButton  done;
-  private GroupId.V2              groupId;
+  private ChooseNewAdminViewModel        viewModel;
+  private GroupMemberListView            groupList;
+  private CircularProgressMaterialButton done;
+  private GroupId.V2                     groupId;
 
   private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
 
@@ -70,7 +70,6 @@ public final class ChooseNewAdminActivity extends PassphraseRequiredActivity {
 
     groupList = findViewById(R.id.choose_new_admin_group_list);
     done      = findViewById(R.id.choose_new_admin_done);
-    done.setIndeterminateProgressMode(true);
 
     initializeViewModel();
 
@@ -80,8 +79,7 @@ public final class ChooseNewAdminActivity extends PassphraseRequiredActivity {
                                                                                             .collect(Collectors.toSet())));
 
     done.setOnClickListener(v -> {
-      done.setClickable(false);
-      done.setProgress(50);
+      done.setSpinning();
       viewModel.updateAdminsAndLeave(this::handleUpdateAndLeaveResult);
     });
   }
@@ -116,8 +114,7 @@ public final class ChooseNewAdminActivity extends PassphraseRequiredActivity {
       startActivity(MainActivity.clearTop(this));
       finish();
     } else {
-      done.setClickable(true);
-      done.setProgress(0);
+      done.cancelSpinning();
       //noinspection ConstantConditions
       Toast.makeText(this, GroupErrors.getUserDisplayMessage(updateResult.getFailureReason()), Toast.LENGTH_LONG).show();
     }

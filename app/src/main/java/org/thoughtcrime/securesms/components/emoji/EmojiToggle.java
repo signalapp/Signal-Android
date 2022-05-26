@@ -26,17 +26,17 @@ public class EmojiToggle extends AppCompatImageButton implements MediaKeyboard.M
 
   public EmojiToggle(Context context) {
     super(context);
-    initialize(null);
+    initialize();
   }
 
   public EmojiToggle(Context context, AttributeSet attrs) {
     super(context, attrs);
-    initialize(attrs);
+    initialize();
   }
 
   public EmojiToggle(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
-    initialize(attrs);
+    initialize();
   }
 
   public void setToMedia() {
@@ -47,18 +47,11 @@ public class EmojiToggle extends AppCompatImageButton implements MediaKeyboard.M
     setImageDrawable(imeToggle);
   }
 
-  private void initialize(@Nullable AttributeSet attrs) {
-    boolean forceOutline = false;
-    if (attrs != null) {
-      TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.EmojiToggle, 0, 0);
-      forceOutline = typedArray.getBoolean(R.styleable.EmojiToggle_force_outline, false);
-      typedArray.recycle();
-    }
-
-    this.emojiToggle   = ContextUtil.requireDrawable(getContext(), forceOutline ? R.drawable.ic_emoji_outline : R.drawable.ic_emoji);
+  private void initialize() {
+    this.emojiToggle   = ContextUtil.requireDrawable(getContext(), R.drawable.ic_emoji);
     this.stickerToggle = ContextUtil.requireDrawable(getContext(), R.drawable.ic_sticker_24);
     this.gifToggle     = ContextUtil.requireDrawable(getContext(), R.drawable.ic_gif_24);
-    this.imeToggle     = ContextUtil.requireDrawable(getContext(), forceOutline ? R.drawable.ic_keyboard_outline_24 : R.drawable.ic_keyboard_24);
+    this.imeToggle     = ContextUtil.requireDrawable(getContext(), R.drawable.ic_keyboard_24);
     this.mediaToggle   = emojiToggle;
 
     setToMedia();

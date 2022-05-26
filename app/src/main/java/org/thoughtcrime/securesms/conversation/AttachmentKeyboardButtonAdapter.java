@@ -79,8 +79,8 @@ class AttachmentKeyboardButtonAdapter extends RecyclerView.Adapter<AttachmentKey
     public ButtonViewHolder(@NonNull View itemView) {
       super(itemView);
 
-      this.image = itemView.findViewById(R.id.attachment_button_image);
-      this.title = itemView.findViewById(R.id.attachment_button_title);
+      this.image = itemView.findViewById(R.id.icon);
+      this.title = itemView.findViewById(R.id.label);
     }
 
     void bind(@NonNull AttachmentKeyboardButton button, boolean wallpaperEnabled, @NonNull Listener listener) {
@@ -88,12 +88,6 @@ class AttachmentKeyboardButtonAdapter extends RecyclerView.Adapter<AttachmentKey
       title.setText(button.getTitleRes());
 
       itemView.setOnClickListener(v -> listener.onClick(button));
-
-      if (wallpaperEnabled) {
-        itemView.setBackgroundResource(R.drawable.attachment_keyboard_button_wallpaper_background);
-      } else {
-        itemView.setBackgroundResource(R.drawable.attachment_keyboard_button_background);
-      }
     }
 
     void recycle() {

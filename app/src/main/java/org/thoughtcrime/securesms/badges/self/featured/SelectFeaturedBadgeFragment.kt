@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.badges.self.featured
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import org.thoughtcrime.securesms.R
@@ -11,13 +12,12 @@ import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.Badges.displayBadges
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.badges.models.BadgePreview
-import org.thoughtcrime.securesms.components.recyclerview.OnScrollAnimationHelper
-import org.thoughtcrime.securesms.components.recyclerview.ToolbarShadowAnimationHelper
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 
 /**
  * Fragment which allows user to select one of their badges to be their "Featured" badge.
@@ -46,8 +46,8 @@ class SelectFeaturedBadgeFragment : DSLSettingsFragment(
     }
   }
 
-  override fun getOnScrollAnimationHelper(toolbarShadow: View): OnScrollAnimationHelper {
-    return ToolbarShadowAnimationHelper(scrollShadow)
+  override fun getMaterial3OnScrollHelper(toolbar: Toolbar?): Material3OnScrollHelper? {
+    return Material3OnScrollHelper(requireActivity(), scrollShadow)
   }
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {

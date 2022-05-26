@@ -63,7 +63,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/username_subtext" />
 
-    <com.dd.CircularProgressButton
+    <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
         android:id="@+id/username_submit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -71,18 +71,11 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@color/core_ultramarine"
-        android:textAllCaps="true"
-        android:textColor="@color/white"
-        app:cpb_colorIndicator="?colorAccent"
-        app:cpb_colorProgress="@color/transparent"
-        app:cpb_cornerRadius="4dp"
-        app:cpb_selectorIdle="@drawable/progress_button_state"
-        app:cpb_textIdle="@string/save"
+        app:circularProgressMaterialButton__label="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <com.dd.CircularProgressButton
+    <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
         android:id="@+id/username_delete_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -90,15 +83,8 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@color/core_red"
-        android:textAllCaps="true"
-        android:textColor="@color/white"
         android:visibility="gone"
-        app:cpb_colorIndicator="@color/core_red"
-        app:cpb_colorProgress="@color/transparent"
-        app:cpb_cornerRadius="4dp"
-        app:cpb_selectorIdle="@drawable/progress_button_state_red"
-        app:cpb_textIdle="@string/UsernameEditFragment_delete"
+        app:circularProgressMaterialButton__label="@string/UsernameEditFragment_delete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

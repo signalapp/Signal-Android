@@ -21,8 +21,6 @@ import androidx.core.view.ViewCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
-import com.dd.CircularProgressButton;
-
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.MainActivity;
@@ -42,19 +40,20 @@ import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
+import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 
 public class PinRestoreEntryFragment extends LoggingFragment {
   private static final String TAG = Log.tag(PinRestoreActivity.class);
 
   private static final int MINIMUM_PIN_LENGTH = 4;
 
-  private EditText               pinEntry;
-  private View                   helpButton;
-  private View                   skipButton;
-  private CircularProgressButton pinButton;
-  private TextView               errorLabel;
-  private TextView               keyboardToggle;
-  private PinRestoreViewModel    viewModel;
+  private EditText                       pinEntry;
+  private View                           helpButton;
+  private View                           skipButton;
+  private CircularProgressMaterialButton pinButton;
+  private TextView                       errorLabel;
+  private TextView                       keyboardToggle;
+  private PinRestoreViewModel            viewModel;
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -153,18 +152,18 @@ public class PinRestoreEntryFragment extends LoggingFragment {
         break;
       case EMPTY_PIN:
         Toast.makeText(requireContext(), R.string.RegistrationActivity_you_must_enter_your_registration_lock_PIN, Toast.LENGTH_LONG).show();
-        cancelSpinning(pinButton);
+        pinButton.cancelSpinning();
         pinEntry.getText().clear();
         enableAndFocusPinEntry();
         break;
       case PIN_TOO_SHORT:
         Toast.makeText(requireContext(), getString(R.string.RegistrationActivity_your_pin_has_at_least_d_digits_or_characters, MINIMUM_PIN_LENGTH), Toast.LENGTH_LONG).show();
-        cancelSpinning(pinButton);
+        pinButton.cancelSpinning();
         pinEntry.getText().clear();
         enableAndFocusPinEntry();
         break;
       case PIN_INCORRECT:
-        cancelSpinning(pinButton);
+        pinButton.cancelSpinning();
         pinEntry.getText().clear();
         enableAndFocusPinEntry();
         break;
@@ -173,7 +172,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
         break;
       case NETWORK_ERROR:
         Toast.makeText(requireContext(), R.string.RegistrationActivity_error_connecting_to_service, Toast.LENGTH_LONG).show();
-        cancelSpinning(pinButton);
+        pinButton.cancelSpinning();
         pinEntry.setEnabled(true);
         enableAndFocusPinEntry();
         break;
@@ -189,7 +188,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
   private void onPinSubmitted() {
     pinEntry.setEnabled(false);
     viewModel.onPinSubmitted(pinEntry.getText().toString(), getPinEntryKeyboardType());
-    setSpinning(pinButton);
+    pinButton.setSpinning();
   }
 
   private void onNeedHelpClicked() {
@@ -232,7 +231,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
   }
 
   private void handleSuccess() {
-    cancelSpinning(pinButton);
+    pinButton.cancelSpinning();
     SignalStore.onboarding().clearAll();
 
     Activity activity = requireActivity();
@@ -275,22 +274,6 @@ public class PinRestoreEntryFragment extends LoggingFragment {
 
     if (pinEntry.requestFocus()) {
       ServiceUtil.getInputMethodManager(pinEntry.getContext()).showSoftInput(pinEntry, 0);
-    }
-  }
-
-  private static void setSpinning(@Nullable CircularProgressButton button) {
-    if (button != null) {
-      button.setClickable(false);
-      button.setIndeterminateProgressMode(true);
-      button.setProgress(50);
-    }
-  }
-
-  private static void cancelSpinning(@Nullable CircularProgressButton button) {
-    if (button != null) {
-      button.setProgress(0);
-      button.setIndeterminateProgressMode(false);
-      button.setClickable(true);
     }
   }
 }

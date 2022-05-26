@@ -43,7 +43,7 @@
         android:id="@+id/add_message_wrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/signal_background_dialog"
+        android:background="@color/signal_colorSurface1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/selected_list">
 
@@ -54,8 +54,9 @@
             android:layout_marginStart="@dimen/dsl_settings_gutter"
             android:layout_marginEnd="@dimen/dsl_settings_gutter"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/rounded_rectangle_dialog_secondary"
+            android:background="@drawable/rounded_rectangle_surface_variant"
             android:hint="@string/MultiselectForwardFragment__add_a_message"
+            android:textColorHint="@color/signal_colorOnSurfaceVariant"
             android:inputType="textCapSentences"
             android:minHeight="44dp"
             android:paddingStart="16dp"

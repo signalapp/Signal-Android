@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.stories.landing
 
 import android.Manifest
 import android.content.Intent
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.transition.TransitionInflater
@@ -36,6 +35,7 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.stories.tabs.ConversationListTab
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.visible
 import java.util.concurrent.TimeUnit
 
@@ -97,6 +98,8 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
     MyStoriesItem.register(adapter)
     ExpandHeader.register(adapter)
 
+    requireListener<Material3OnScrollHelperBinder>().bindScrollHelper(recyclerView!!)
+
     lifecycleDisposable.bindTo(viewLifecycleOwner)
     emptyNotice = requireView().findViewById(R.id.empty_notice)
     cameraFab = requireView().findViewById(R.id.camera_fab)
@@ -105,7 +108,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
     setEnterSharedElementCallback(object : SharedElementCallback() {
       override fun onSharedElementStart(sharedElementNames: MutableList<String>?, sharedElements: MutableList<View>?, sharedElementSnapshots: MutableList<View>?) {
         if (sharedElementNames?.contains("camera_fab") == true) {
-          cameraFab.setImageResource(R.drawable.ic_compose_24)
+          cameraFab.setImageResource(R.drawable.ic_compose_outline_24)
           lifecycleDisposable += Single.timer(200, TimeUnit.MILLISECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy {
@@ -279,7 +282,6 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
       .setPositiveButton(R.string.StoriesLandingFragment__hide) { _, _ ->
         viewModel.setHideStory(model.data.storyRecipient, true).subscribe {
           Snackbar.make(cameraFab, R.string.StoriesLandingFragment__story_hidden, Snackbar.LENGTH_SHORT)
-            .setTextColor(Color.WHITE)
             .setAnchorView(cameraFab)
             .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_FADE)
             .show()

@@ -183,9 +183,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/help_fragment_debug_info" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/help_fragment_debug_info"
-                style="@style/Button.Borderless"
+                style="@style/Signal.Widget.Button.Large.Secondary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
@@ -205,9 +205,9 @@
 
     </ScrollView>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/help_fragment_faq"
-        style="@style/Button.Borderless"
+        style="@style/Signal.Widget.Button.Large.Secondary"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:gravity="start|center_vertical"
@@ -220,18 +220,13 @@
         app:layout_constraintEnd_toStartOf="@id/help_fragment_next"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <com.dd.CircularProgressButton
+    <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
         android:id="@+id/help_fragment_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:enabled="false"
-        android:textColor="@color/white"
-        app:cpb_colorIndicator="@color/white"
-        app:cpb_colorProgress="@color/core_ultramarine"
-        app:cpb_cornerRadius="4dp"
-        app:cpb_selectorIdle="@color/help_fragment_next"
-        app:cpb_textIdle="@string/HelpFragment__next"
+        app:circularProgressMaterialButton__label="@string/HelpFragment__next"
         app:layout_constraintBottom_toBottomOf="@id/help_fragment_faq"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/help_fragment_faq"

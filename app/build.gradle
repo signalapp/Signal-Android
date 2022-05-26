@@ -11,12 +11,6 @@ apply from: 'static-ips.gradle'
 
 repositories {
     maven {
-        url "https://raw.github.com/signalapp/maven/master/circular-progress-button/releases/"
-        content {
-            includeGroupByRegex "com\\.github\\.dmytrodanylyk\\.circular-progress-button\\.*"
-        }
-    }
-    maven {
         url "https://raw.github.com/signalapp/maven/master/sqlcipher/release/"
         content {
             includeGroupByRegex "org\\.signal.*"
@@ -508,7 +502,6 @@ dependencies {
     implementation libs.lottie
 
     implementation libs.stickyheadergrid
-    implementation libs.circular.progress.button
 
     implementation libs.signal.android.database.sqlcipher
     implementation libs.androidx.sqlite

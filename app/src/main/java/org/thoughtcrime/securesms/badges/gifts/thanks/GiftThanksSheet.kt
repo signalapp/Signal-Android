@@ -58,7 +58,7 @@ class GiftThanksSheet : DSLSettingsBottomSheetFragment() {
   private fun getConfiguration(recipient: Recipient): DSLConfiguration {
     return configure {
       textPref(
-        title = DSLSettingsText.from(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support, DSLSettingsText.Title2BoldModifier, DSLSettingsText.CenterModifier)
+        title = DSLSettingsText.from(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support, DSLSettingsText.TitleLargeModifier, DSLSettingsText.CenterModifier)
       )
 
       noPadTextPref(

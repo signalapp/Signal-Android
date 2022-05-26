@@ -3,9 +3,6 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -42,7 +39,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.BlurTransformation;
-import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -58,24 +54,8 @@ public final class AvatarImageView extends AppCompatImageView {
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(AvatarImageView.class);
 
-  private static final Paint LIGHT_THEME_OUTLINE_PAINT = new Paint();
-  private static final Paint DARK_THEME_OUTLINE_PAINT  = new Paint();
-
-  static {
-    LIGHT_THEME_OUTLINE_PAINT.setColor(Color.argb((int) (255 * 0.2), 0, 0, 0));
-    LIGHT_THEME_OUTLINE_PAINT.setStyle(Paint.Style.STROKE);
-    LIGHT_THEME_OUTLINE_PAINT.setStrokeWidth(1);
-    LIGHT_THEME_OUTLINE_PAINT.setAntiAlias(true);
-
-    DARK_THEME_OUTLINE_PAINT.setColor(Color.argb((int) (255 * 0.2), 255, 255, 255));
-    DARK_THEME_OUTLINE_PAINT.setStyle(Paint.Style.STROKE);
-    DARK_THEME_OUTLINE_PAINT.setStrokeWidth(1);
-    DARK_THEME_OUTLINE_PAINT.setAntiAlias(true);
-  }
-
   private int                             size;
   private boolean                         inverted;
-  private Paint                           outlinePaint;
   private OnClickListener                 listener;
   private Recipient.FallbackPhotoProvider fallbackPhotoProvider;
   private boolean                         blurred;
@@ -105,8 +85,6 @@ public final class AvatarImageView extends AppCompatImageView {
       typedArray.recycle();
     }
 
-    outlinePaint = ThemeUtil.isDarkTheme(context) ? DARK_THEME_OUTLINE_PAINT : LIGHT_THEME_OUTLINE_PAINT;
-
     unknownRecipientDrawable = new ResourceContactPhoto(R.drawable.ic_profile_outline_40, R.drawable.ic_profile_outline_20).asDrawable(context, AvatarColor.UNKNOWN, inverted);
     blurred                  = false;
     chatColors               = null;
@@ -115,20 +93,6 @@ public final class AvatarImageView extends AppCompatImageView {
   @Override
   public void setClipBounds(Rect clipBounds) {
     super.setClipBounds(clipBounds);
-  }
-
-  @Override
-  protected void onDraw(Canvas canvas) {
-    super.onDraw(canvas);
-
-    float width  = getWidth() - getPaddingRight() - getPaddingLeft();
-    float height = getHeight() - getPaddingBottom() - getPaddingTop();
-    float cx     = width / 2f;
-    float cy     = height / 2f;
-    float radius = Math.min(cx, cy) - (outlinePaint.getStrokeWidth() / 2f);
-
-    canvas.translate(getPaddingLeft(), getPaddingTop());
-    canvas.drawCircle(cx, cy, radius, outlinePaint);
   }
 
   @Override

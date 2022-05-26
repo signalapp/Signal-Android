@@ -17,12 +17,12 @@
         style="@style/Signal.Text.Preview"
         android:text="@string/CameraContacts_cant_find_who_youre_looking_for"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/camera_contact_invite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        style="@style/Button.Borderless"
+        style="@style/Signal.Widget.Button.Large.Secondary"
         android:text="@string/CameraContacts_invite_a_contact_to_join_signal" />
 
 </LinearLayout>

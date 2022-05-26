@@ -40,19 +40,14 @@
 
     </LinearLayout>
 
-    <com.dd.CircularProgressButton
+    <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
         android:id="@+id/done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:textColor="@color/white"
-        app:cpb_colorIndicator="@color/white"
-        app:cpb_colorProgress="?colorAccent"
-        app:cpb_cornerRadius="28dp"
-        app:cpb_selectorIdle="@drawable/progress_button_state"
-        app:cpb_textIdle="@string/AddMembersActivity__done"
+        app:circularProgressMaterialButton__label="@string/AddMembersActivity__done"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </FrameLayout>

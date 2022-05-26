@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.annimon.stream.Stream;
-import com.dd.CircularProgressButton;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
@@ -28,6 +27,7 @@ import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
+import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 
 import java.util.Objects;
 
@@ -39,12 +39,12 @@ public class ShareInterstitialActivity extends PassphraseRequiredActivity {
 
   private static final String ARGS = "args";
 
-  private ShareInterstitialViewModel viewModel;
-  private LinkPreviewViewModel       linkPreviewViewModel;
-  private CircularProgressButton     confirm;
-  private RecyclerView               contactsRecycler;
-  private Toolbar                    toolbar;
-  private LinkPreviewView            preview;
+  private ShareInterstitialViewModel     viewModel;
+  private LinkPreviewViewModel           linkPreviewViewModel;
+  private CircularProgressMaterialButton confirm;
+  private RecyclerView                   contactsRecycler;
+  private Toolbar                        toolbar;
+  private LinkPreviewView                preview;
 
   private final DynamicTheme                      dynamicTheme = new DynamicNoActionBarTheme();
   private final ShareInterstitialSelectionAdapter adapter      = new ShareInterstitialSelectionAdapter();
@@ -171,9 +171,7 @@ public class ShareInterstitialActivity extends PassphraseRequiredActivity {
   }
 
   private void onConfirm() {
-    confirm.setClickable(false);
-    confirm.setIndeterminateProgressMode(true);
-    confirm.setProgress(50);
+    confirm.setSpinning();
 
     viewModel.send(results -> {
       MultiShareDialogs.displayResultDialog(this, results, () -> {

@@ -58,9 +58,9 @@ import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
+import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.RecyclerViewFastScroller;
-import org.thoughtcrime.securesms.components.recyclerview.ToolbarShadowAnimationHelper;
 import org.thoughtcrime.securesms.contacts.AbstractContactsCursorLoader;
 import org.thoughtcrime.securesms.contacts.ContactChip;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter;
@@ -85,7 +85,6 @@ import org.thoughtcrime.securesms.util.UsernameUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.FixedViewsAdapter;
 import org.thoughtcrime.securesms.util.adapter.RecyclerViewConcatenateAdapterStickyHeader;
-import org.signal.core.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.io.IOException;
@@ -138,8 +137,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
   private HorizontalScrollView                        chipGroupScrollContainer;
   private OnSelectionLimitReachedListener             onSelectionLimitReachedListener;
   private AbstractContactsCursorLoaderFactoryProvider cursorFactoryProvider;
-  private View                                        shadowView;
-  private ToolbarShadowAnimationHelper                toolbarShadowAnimationHelper;
+
   private HeaderActionProvider                        headerActionProvider;
   private TextView                                    headerActionView;
 
@@ -253,14 +251,10 @@ public final class ContactSelectionListFragment extends LoggingFragment
     chipGroup                = view.findViewById(R.id.chipGroup);
     chipGroupScrollContainer = view.findViewById(R.id.chipGroupScrollContainer);
     constraintLayout         = view.findViewById(R.id.container);
-    shadowView               = view.findViewById(R.id.toolbar_shadow);
     headerActionView         = view.findViewById(R.id.header_action);
-
-    toolbarShadowAnimationHelper = new ToolbarShadowAnimationHelper(shadowView);
 
     final LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
 
-    recyclerView.addOnScrollListener(toolbarShadowAnimationHelper);
     recyclerView.setLayoutManager(layoutManager);
     recyclerView.setItemAnimator(new DefaultItemAnimator() {
       @Override

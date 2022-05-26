@@ -16,7 +16,6 @@ import androidx.annotation.ColorInt
 import com.google.common.base.Objects
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
-import org.signal.core.util.ColorUtil
 import org.thoughtcrime.securesms.components.RotatableGradientDrawable
 import org.thoughtcrime.securesms.database.model.databaseprotos.ChatColor
 import org.thoughtcrime.securesms.util.customizeOnDraw
@@ -77,10 +76,7 @@ class ChatColors(
     }
 
     if (linearGradient != null) {
-      val start = linearGradient.colors.first()
-      val end = linearGradient.colors.last()
-
-      return ColorUtil.blendARGB(start, end, 0.5f)
+      return linearGradient.colors.last()
     }
 
     throw AssertionError()

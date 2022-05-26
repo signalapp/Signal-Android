@@ -107,7 +107,6 @@ class StoryReplyComposer @JvmOverloads constructor(
       false,
       messageRecord.slideDeck,
       null,
-      null,
       QuoteModel.Type.NORMAL
     )
 

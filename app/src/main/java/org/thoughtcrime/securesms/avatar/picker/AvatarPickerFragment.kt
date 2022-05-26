@@ -81,14 +81,7 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
       }
 
       clearButton.visible = state.canClear
-
-      val wasEnabled = saveButton.isEnabled
-      saveButton.isEnabled = state.canSave
-      if (wasEnabled != state.canSave) {
-        val alpha = if (state.canSave) 1f else 0.5f
-        saveButton.animate().cancel()
-        saveButton.animate().alpha(alpha)
-      }
+      saveButton.isClickable = state.canSave
 
       val items = state.selectableAvatars.map { AvatarPickerItem.Model(it, it == state.currentAvatar) }
       val selectedPosition = items.indexOfFirst { it.isSelected }
@@ -104,6 +97,11 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
     photoButton.setOnIconClickedListener { openGallery() }
     textButton.setOnIconClickedListener { openTextEditor(null) }
     saveButton.setOnClickListener { v ->
+      if (!saveButton.isEnabled) {
+        return@setOnClickListener
+      }
+
+      saveButton.isEnabled = false
       viewModel.save(
         {
           setFragmentResult(

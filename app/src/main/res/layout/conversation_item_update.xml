@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:focusable="true"
-    android:paddingStart="26dp"
-    android:paddingEnd="26dp">
+    android:paddingStart="32dp"
+    android:paddingEnd="32dp">
 
     <LinearLayout
         android:id="@+id/conversation_update_background"
@@ -20,13 +20,12 @@
         android:gravity="center"
         android:paddingTop="@dimen/conversation_update_vertical_padding"
         android:paddingBottom="@dimen/conversation_update_vertical_padding"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp">
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/conversation_update_body"
-            style="@style/TextAppearance.Signal.Subtitle"
-            android:textSize="13sp"
+            style="@style/Signal.Text.BodySmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -35,10 +34,10 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/conversation_update_action"
-            style="@style/Signal.Widget.Button.Small.Primary"
+            style="@style/Widget.Signal.Button.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:visibility="gone"
             tools:text="Learn more"
             tools:visibility="visible" />

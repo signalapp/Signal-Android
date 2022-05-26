@@ -7,5 +7,5 @@
     android:layout_marginStart="@dimen/dsl_settings_gutter"
     android:layout_marginEnd="@dimen/dsl_settings_gutter"
     android:textAlignment="viewStart"
-    android:textAppearance="@style/Signal.Text.Body"
+    android:textAppearance="@style/Signal.Text.BodyLarge"
     tools:text="Message font size" />

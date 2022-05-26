@@ -13,8 +13,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ColorStateListInflaterCompat;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
@@ -175,14 +177,6 @@ public final class ConversationUpdateItem extends FrameLayout
       textColor = ContextCompat.getColor(getContext(), R.color.core_grey_15);
     }
 
-    if (!ThemeUtil.isDarkTheme(getContext())) {
-      if (hasWallpaper) {
-        actionButton.setStrokeColor(ColorStateList.valueOf(getResources().getColor(R.color.core_grey_45)));
-      } else {
-        actionButton.setStrokeColor(ColorStateList.valueOf(getResources().getColor(R.color.signal_button_secondary_stroke)));
-      }
-    }
-
     UpdateDescription         updateDescription = Objects.requireNonNull(messageRecord.getUpdateDisplayBody(getContext(), eventListener::onRecipientNameClicked));
     LiveData<SpannableString> liveUpdateMessage = LiveUpdateMessage.fromMessageDescription(getContext(), updateDescription, textColor, true);
     LiveData<SpannableString> spannableMessage  = loading(liveUpdateMessage);
@@ -194,6 +188,8 @@ public final class ConversationUpdateItem extends FrameLayout
     presentBackground(shouldCollapse(messageRecord, previousMessageRecord),
                       shouldCollapse(messageRecord, nextMessageRecord),
                       hasWallpaper);
+
+    presentActionButton(hasWallpaper);
 
     updateSelectedState();
   }
@@ -642,6 +638,16 @@ public final class ConversationUpdateItem extends FrameLayout
       } else {
         background.setBackground(null);
       }
+    }
+  }
+
+  private void presentActionButton(boolean hasWallpaper) {
+    if (hasWallpaper) {
+      actionButton.setBackgroundTintList(AppCompatResources.getColorStateList(getContext(), R.color.conversation_update_item_button_background_wallpaper));
+      actionButton.setTextColor(AppCompatResources.getColorStateList(getContext(), R.color.conversation_update_item_button_text_color_wallpaper));
+    } else {
+      actionButton.setBackgroundTintList(AppCompatResources.getColorStateList(getContext(), R.color.conversation_update_item_button_background_normal));
+      actionButton.setTextColor(AppCompatResources.getColorStateList(getContext(), R.color.conversation_update_item_button_text_color_normal));
     }
   }
 

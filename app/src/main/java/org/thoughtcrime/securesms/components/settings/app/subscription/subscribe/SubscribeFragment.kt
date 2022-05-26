@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.subscribe
 
 import android.content.DialogInterface
-import android.graphics.Color
 import android.text.SpannableStringBuilder
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
@@ -138,7 +137,7 @@ class SubscribeFragment : DSLSettingsFragment(
       sectionHeaderPref(
         title = DSLSettingsText.from(
           R.string.SubscribeFragment__signal_is_powered_by_people_like_you,
-          DSLSettingsText.CenterModifier, DSLSettingsText.Title2BoldModifier
+          DSLSettingsText.CenterModifier, DSLSettingsText.TitleLargeModifier
         )
       )
 
@@ -300,9 +299,7 @@ class SubscribeFragment : DSLSettingsFragment(
   }
 
   private fun onSubscriptionCancelled() {
-    Snackbar.make(requireView(), R.string.SubscribeFragment__your_subscription_has_been_cancelled, Snackbar.LENGTH_LONG)
-      .setTextColor(Color.WHITE)
-      .show()
+    Snackbar.make(requireView(), R.string.SubscribeFragment__your_subscription_has_been_cancelled, Snackbar.LENGTH_LONG).show()
 
     requireActivity().finish()
     requireActivity().startActivity(AppSettingsActivity.home(requireContext()))

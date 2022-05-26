@@ -7,14 +7,14 @@
     android:layout_height="match_parent"
     android:layout_gravity="center_vertical"
     android:gravity="center_vertical"
-    tools:layout_height="?actionBarSize">
+    tools:layout_height="@dimen/signal_m3_toolbar_height">
 
     <RelativeLayout
         android:transitionName="avatar"
         android:id="@+id/contact_photo_container"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginEnd="10dp">
+        android:layout_marginEnd="16dp">
 
         <org.thoughtcrime.securesms.avatar.view.AvatarView
             android:id="@+id/contact_photo_image"
@@ -51,7 +51,7 @@
 
         <org.thoughtcrime.securesms.components.FromTextView
             android:id="@+id/title"
-            style="@style/TextSecure.TitleTextStyle"
+            style="@style/Signal.Text.TitleMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|start"
@@ -83,7 +83,7 @@
 
             <TextView
                 android:id="@+id/verified_subtitle"
-                style="@style/TextSecure.SubtitleTextStyle"
+                style="@style/Signal.Text.BodySmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|start"
@@ -97,7 +97,7 @@
 
             <org.thoughtcrime.securesms.components.emoji.EmojiTextView
                 android:id="@+id/subtitle"
-                style="@style/TextSecure.SubtitleTextStyle"
+                style="@style/Signal.Text.BodySmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|start"

@@ -14,6 +14,7 @@ object Button {
 
   fun register(mappingAdapter: MappingAdapter) {
     mappingAdapter.registerFactory(Model.Primary::class.java, LayoutFactory({ ViewHolder(it) }, R.layout.dsl_button_primary))
+    mappingAdapter.registerFactory(Model.Tonal::class.java, LayoutFactory({ ViewHolder(it) }, R.layout.dsl_button_tonal))
     mappingAdapter.registerFactory(Model.SecondaryNoOutline::class.java, LayoutFactory({ ViewHolder(it) }, R.layout.dsl_button_secondary))
   }
 
@@ -34,6 +35,13 @@ object Button {
       onClick: () -> Unit
     ) : Model<Primary>(title, icon, isEnabled, onClick)
 
+    class Tonal(
+      title: DSLSettingsText?,
+      icon: DSLSettingsIcon?,
+      isEnabled: Boolean,
+      onClick: () -> Unit
+    ) : Model<Tonal>(title, icon, isEnabled, onClick)
+
     class SecondaryNoOutline(
       title: DSLSettingsText?,
       icon: DSLSettingsIcon?,
@@ -44,7 +52,7 @@ object Button {
 
   class ViewHolder<T : Model<T>>(itemView: View) : MappingViewHolder<T>(itemView) {
 
-    private val button: MaterialButton = itemView as MaterialButton
+    private val button: MaterialButton = itemView.findViewById(R.id.button)
 
     override fun bind(model: T) {
       button.text = model.title?.resolve(context)

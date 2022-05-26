@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="signal_m3_toolbar_height">64dp</dimen>
+
     <dimen name="emoji_drawer_size">32sp</dimen>
     <dimen name="min_keyboard_size">60dp</dimen>
     <dimen name="default_custom_keyboard_size">220dp</dimen>
@@ -70,7 +72,7 @@
     <dimen name="thumbnail_default_radius">4dp</dimen>
 
     <dimen name="conversation_bottom_padding">2dp</dimen>
-    <dimen name="conversation_compose_height">40dp</dimen>
+    <dimen name="conversation_compose_height">44dp</dimen>
     <dimen name="conversation_individual_right_gutter">16dp</dimen>
     <dimen name="conversation_individual_left_gutter">16dp</dimen>
     <dimen name="conversation_group_left_gutter">52dp</dimen>
@@ -177,7 +179,7 @@
     <dimen name="review_card_icon_arc_radius">14.5dp</dimen>
 
     <dimen name="conversation_update_vertical_margin">4dp</dimen>
-    <dimen name="conversation_update_vertical_padding">8dp</dimen>
+    <dimen name="conversation_update_vertical_padding">20dp</dimen>
     <dimen name="conversation_update_vertical_padding_collapsed">4dp</dimen>
     <dimen name="conversation_update_horizontal_padding">8dp</dimen>
 
@@ -198,11 +200,7 @@
 
     <dimen name="chat_colors_preview_bubble_max_width">240dp</dimen>
 
-    <dimen name="conversation_settings_button_strip_container_spacing">4dp</dimen>
-    <dimen name="conversation_settings_button_strip_spacing">16dp</dimen>
-    <dimen name="conversation_settings_button_strip_spacing_half">8dp</dimen>
-    <dimen name="conversation_settings_button_strip_button_size">48dp</dimen>
-    <dimen name="conversation_settings_button_strip_button_padding">12dp</dimen>
+    <dimen name="conversation_settings_button_strip_spacing_half">16dp</dimen>
 
     <dimen name="avatar_picker_image_width">100dp</dimen>
 

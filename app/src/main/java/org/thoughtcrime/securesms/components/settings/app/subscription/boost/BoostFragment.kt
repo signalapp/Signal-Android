@@ -160,7 +160,7 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
       sectionHeaderPref(
         title = DSLSettingsText.from(
           R.string.BoostFragment__give_signal_a_boost,
-          DSLSettingsText.CenterModifier, DSLSettingsText.Title2BoldModifier
+          DSLSettingsText.CenterModifier, DSLSettingsText.TitleLargeModifier
         )
       )
 

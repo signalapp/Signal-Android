@@ -6,7 +6,7 @@
         android:id="@+id/background_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_rectangle_secondary"
+        android:background="@drawable/rounded_rectangle_surface_variant_32"
         android:minHeight="44dp"
         android:orientation="horizontal"
         android:paddingStart="16dp"
@@ -31,7 +31,7 @@
                 android:inputType="textPersonName"
                 android:lineSpacingExtra="6sp"
                 android:textAppearance="@style/TextSecure.TitleTextStyle"
-                android:textColorHint="@color/signal_text_secondary"
+                android:textColorHint="@color/signal_colorOnSurfaceVariant"
                 android:textCursorDrawable="@drawable/search_cursor" />
 
             <org.thoughtcrime.securesms.components.AnimatingToggle

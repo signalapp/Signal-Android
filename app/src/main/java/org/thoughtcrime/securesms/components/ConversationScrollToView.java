@@ -7,8 +7,11 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.airbnb.lottie.SimpleColorFilter;
 
 import org.thoughtcrime.securesms.R;
 
@@ -41,6 +44,10 @@ public final class ConversationScrollToView extends FrameLayout {
 
       array.recycle();
     }
+  }
+
+  public void setUnreadCountBackgroundTint(@ColorInt int tint) {
+    unreadCount.getBackground().setColorFilter(new SimpleColorFilter(tint));
   }
 
   @Override

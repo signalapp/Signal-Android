@@ -49,10 +49,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.WindowDecorActionBar;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.ViewKt;
@@ -132,6 +134,7 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.longmessage.LongMessageFragment;
+import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder;
 import org.thoughtcrime.securesms.messagedetails.MessageDetailsFragment;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestViewModel;
@@ -239,7 +242,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private Animation                   mentionButtonOutAnimation;
   private OnScrollListener            conversationScrollListener;
   private int                         lastSeenScrollOffset;
-  private View                        toolbarShadow;
   private Stopwatch                   startupStopwatch;
   private LayoutTransition            layoutTransition;
   private TransitionListener          transitionListener;
@@ -290,7 +292,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     scrollToBottomButton  = view.findViewById(R.id.scroll_to_bottom);
     scrollToMentionButton = view.findViewById(R.id.scroll_to_mention);
     scrollDateHeader      = view.findViewById(R.id.scroll_date_header);
-    toolbarShadow         = requireActivity().findViewById(R.id.conversation_toolbar_shadow);
     reactionsShade        = view.findViewById(R.id.reactions_shade);
     bottomActionBar       = view.findViewById(R.id.conversation_bottom_action_bar);
 
@@ -320,6 +321,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     list.addItemDecoration(openableGiftItemDecoration);
     list.addItemDecoration(multiselectItemDecoration);
     list.setItemAnimator(conversationItemAnimator);
+
+    ((Material3OnScrollHelperBinder) requireParentFragment()).bindScrollHelper(list);
 
     getViewLifecycleOwner().getLifecycle().addObserver(multiselectItemDecoration);
 
@@ -352,7 +355,12 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     this.messageCountsViewModel = new ViewModelProvider(getParentFragment()).get(MessageCountsViewModel.class);
     this.conversationViewModel  = new ViewModelProvider(getParentFragment(), new ConversationViewModel.Factory()).get(ConversationViewModel.class);
 
-    disposables.add(conversationViewModel.getChatColors().subscribe(recyclerViewColorizer::setChatColors));
+    disposables.add(conversationViewModel.getChatColors().subscribe(chatColors -> {
+      recyclerViewColorizer.setChatColors(chatColors);
+      scrollToMentionButton.setUnreadCountBackgroundTint(chatColors.asSingleColor());
+      scrollToBottomButton.setUnreadCountBackgroundTint(chatColors.asSingleColor());
+    }));
+
     disposables.add(conversationViewModel.getMessageData().subscribe(messageData -> {
       SignalLocalMetrics.ConversationOpen.onDataPostedToMain();
 
@@ -428,7 +436,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     getChildFragmentManager().setFragmentResultListener(ViewReceivedGiftBottomSheet.REQUEST_KEY, getViewLifecycleOwner(), (key, bundle) -> {
       if (bundle.getBoolean(ViewReceivedGiftBottomSheet.RESULT_NOT_NOW, false)) {
         Snackbar.make(view.getRootView(), R.string.ConversationFragment__you_can_redeem_your_badge_later, Snackbar.LENGTH_SHORT)
-                .setTextColor(Color.WHITE)
                 .show();
       }
     });
@@ -544,6 +551,13 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   }
 
   public void onWallpaperChanged(@Nullable ChatWallpaper wallpaper) {
+    if (scrollDateHeader != null) {
+      scrollDateHeader.setBackgroundResource(wallpaper != null ? R.drawable.sticky_date_header_background_wallpaper
+                                                               : R.drawable.sticky_date_header_background);
+      scrollDateHeader.setTextColor(ContextCompat.getColor(requireContext(), wallpaper != null ? R.color.sticky_header_foreground_wallpaper
+                                                                                               : R.color.signal_colorOnSurfaceVariant));
+    }
+
     if (list != null) {
       ConversationAdapter adapter = getListAdapter();
 
@@ -686,7 +700,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
     conversationScrollListener = new ConversationScrollListener(requireContext());
     list.addOnScrollListener(conversationScrollListener);
-    list.addOnScrollListener(new ShadowScrollListener());
 
     if (oldThreadId != threadId) {
       ApplicationDependencies.getTypingStatusRepository().getTypists(oldThreadId).removeObservers(getViewLifecycleOwner());
@@ -694,10 +707,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   }
 
   private void initializeListAdapter() {
-    if (threadId == -1) {
-      toolbarShadow.setVisibility(View.GONE);
-    }
-
     if (this.recipient != null) {
       if (getListAdapter() != null && getListAdapter().isForRecipientId(this.recipient.getId())) {
         Log.d(TAG, "List adapter already initialized for " + this.recipient.getId());
@@ -1069,7 +1078,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   }
 
   private void handleDisplayDetails(ConversationMessage message) {
-    MessageDetailsFragment.create(message.getMessageRecord(), recipient.getId()).show(getChildFragmentManager(), null);
+    MessageDetailsFragment.create(message.getMessageRecord(), recipient.getId()).show(getParentFragment().getChildFragmentManager(), null);
   }
 
   private void handleForwardMessageParts(Set<MultiselectPart> multiselectParts) {
@@ -1301,9 +1310,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     if (!TextSecurePreferences.hasSeenSwipeToReplyTooltip(requireContext())) {
       int text = ViewUtil.isLtr(requireContext()) ? R.string.ConversationFragment_you_can_swipe_to_the_right_reply
                                                   : R.string.ConversationFragment_you_can_swipe_to_the_left_reply;
-      Snackbar.make(list, text, Snackbar.LENGTH_LONG)
-              .setTextColor(Color.WHITE)
-              .show();
+      Snackbar.make(list, text, Snackbar.LENGTH_LONG).show();
 
       TextSecurePreferences.setHasSeenSwipeToReplyTooltip(requireContext(), true);
     }
@@ -1409,6 +1416,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     void    setThreadId(long threadId);
     void    handleReplyMessage(ConversationMessage conversationMessage);
     void    onMessageActionToolbarOpened();
+    void    onMessageActionToolbarClosed();
     void    onBottomActionBarVisibilityChanged(int visibility);
     void    onForwardClicked();
     void    onMessageRequest(@NonNull MessageRequestViewModel viewModel);
@@ -1513,7 +1521,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
       if (actionMode != null) return;
 
-      MessageRecord messageRecord = item.getConversationMessage().getMessageRecord();;
+      MessageRecord messageRecord = item.getConversationMessage().getMessageRecord();
 
       if (messageRecord.isSecure()                                        &&
           !messageRecord.isRemoteDelete()                                 &&
@@ -2191,6 +2199,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       list.invalidateItemDecorations();
       setBottomActionBarVisibility(false);
       actionMode = null;
+      listener.onMessageActionToolbarClosed();
     }
 
     @Override
@@ -2239,21 +2248,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
           }
         }
       }, 400);
-    }
-  }
-
-  private class ShadowScrollListener extends RecyclerView.OnScrollListener {
-    @Override
-    public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-      if (recyclerView.canScrollVertically(-1)) {
-        if (toolbarShadow.getVisibility() != View.VISIBLE) {
-          ViewUtil.fadeIn(toolbarShadow, 250);
-        }
-      } else {
-        if (toolbarShadow.getVisibility() != View.GONE) {
-          ViewUtil.fadeOut(toolbarShadow, 250);
-        }
-      }
     }
   }
 

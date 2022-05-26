@@ -96,9 +96,9 @@
         app:barrierDirection="top"
         app:constraint_referenced_ids="card_primary_action_button,card_secondary_action_button" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/card_primary_action_button"
-        style="@style/Button.Borderless"
+        style="@style/Signal.Widget.Button.Large.Secondary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
@@ -112,9 +112,9 @@
         app:layout_constraintVertical_bias="1.0"
         tools:text="@string/ReviewCard__block" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/card_secondary_action_button"
-        style="@style/Button.Borderless"
+        style="@style/Signal.Widget.Button.Large.Secondary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"

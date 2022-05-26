@@ -73,9 +73,9 @@
             app:barrierDirection="bottom"
             app:constraint_referenced_ids="basic_megaphone_image,basic_megaphone_body,basic_megaphone_title" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/basic_megaphone_action"
-            style="@style/Button.Borderless"
+            style="@style/Signal.Widget.Button.Large.Secondary"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -86,9 +86,9 @@
             tools:text="*sigh*"
             tools:visibility="visible" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/basic_megaphone_secondary"
-            style="@style/Button.Borderless"
+            style="@style/Signal.Widget.Button.Large.Secondary"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"

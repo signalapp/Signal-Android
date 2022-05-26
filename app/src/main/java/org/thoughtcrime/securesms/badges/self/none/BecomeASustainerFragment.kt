@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.badges.self.none
 
 import android.content.Intent
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import org.signal.core.util.DimensionUnit
@@ -40,7 +41,7 @@ class BecomeASustainerFragment : DSLSettingsBottomSheetFragment() {
         title = DSLSettingsText.from(
           R.string.BecomeASustainerFragment__get_badges,
           DSLSettingsText.CenterModifier,
-          DSLSettingsText.Title2BoldModifier
+          DSLSettingsText.TitleLargeModifier
         )
       )
 
@@ -49,13 +50,15 @@ class BecomeASustainerFragment : DSLSettingsBottomSheetFragment() {
       noPadTextPref(
         title = DSLSettingsText.from(
           R.string.BecomeASustainerFragment__signal_is_a_non_profit,
-          DSLSettingsText.CenterModifier
+          DSLSettingsText.CenterModifier,
+          DSLSettingsText.TextAppearanceModifier(R.style.Signal_Text_BodyMedium),
+          DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant))
         )
       )
 
-      space(DimensionUnit.DP.toPixels(77f).toInt())
+      space(DimensionUnit.DP.toPixels(32f).toInt())
 
-      primaryButton(
+      tonalButton(
         text = DSLSettingsText.from(
           R.string.BecomeASustainerMegaphone__become_a_sustainer
         ),
@@ -65,7 +68,7 @@ class BecomeASustainerFragment : DSLSettingsBottomSheetFragment() {
         }
       )
 
-      space(DimensionUnit.DP.toPixels(8f).toInt())
+      space(DimensionUnit.DP.toPixels(32f).toInt())
     }
   }
 

@@ -22,17 +22,44 @@ class Colorizer {
 
   @ColorInt
   fun getOutgoingBodyTextColor(context: Context): Int {
-    return ContextCompat.getColor(context, R.color.white)
+    return ContextCompat.getColor(context, R.color.conversation_outgoing_body_color)
   }
 
   @ColorInt
   fun getOutgoingFooterTextColor(context: Context): Int {
-    return ContextCompat.getColor(context, R.color.conversation_item_outgoing_footer_fg)
+    return ContextCompat.getColor(context, R.color.conversation_outgoing_footer_color)
   }
 
   @ColorInt
   fun getOutgoingFooterIconColor(context: Context): Int {
-    return ContextCompat.getColor(context, R.color.conversation_item_outgoing_footer_fg)
+    return ContextCompat.getColor(context, R.color.conversation_outgoing_footer_color)
+  }
+
+  @ColorInt
+  fun getIncomingBodyTextColor(context: Context, hasWallpaper: Boolean): Int {
+    return if (hasWallpaper) {
+      ContextCompat.getColor(context, R.color.signal_colorNeutralInverse)
+    } else {
+      ContextCompat.getColor(context, R.color.signal_colorOnSurface)
+    }
+  }
+
+  @ColorInt
+  fun getIncomingFooterTextColor(context: Context, hasWallpaper: Boolean): Int {
+    return if (hasWallpaper) {
+      ContextCompat.getColor(context, R.color.signal_colorNeutralVariantInverse)
+    } else {
+      ContextCompat.getColor(context, R.color.signal_colorOnSurfaceVariant)
+    }
+  }
+
+  @ColorInt
+  fun getIncomingFooterIconColor(context: Context, hasWallpaper: Boolean): Int {
+    return if (hasWallpaper) {
+      ContextCompat.getColor(context, R.color.signal_colorNeutralVariantInverse)
+    } else {
+      ContextCompat.getColor(context, R.color.signal_colorOnSurfaceVariant)
+    }
   }
 
   @ColorInt

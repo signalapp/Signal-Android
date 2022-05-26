@@ -13,7 +13,7 @@
         android:background="@null"
         android:contentDescription="@string/conversation_activity__quick_attachment_drawer_record_and_send_audio_description"
         android:scaleType="fitCenter"
-        android:tint="@color/signal_icon_tint_primary"
+        android:tint="@color/signal_colorOnSurfaceVariant"
         app:srcCompat="@drawable/ic_mic_24" />
 
     <LinearLayout

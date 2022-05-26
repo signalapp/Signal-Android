@@ -158,6 +158,15 @@ class DSLConfiguration {
     children.add(preference)
   }
 
+  fun tonalButton(
+    text: DSLSettingsText,
+    isEnabled: Boolean = true,
+    onClick: () -> Unit
+  ) {
+    val preference = Button.Model.Tonal(text, null, isEnabled, onClick)
+    children.add(preference)
+  }
+
   fun secondaryButtonNoOutline(
     text: DSLSettingsText,
     icon: DSLSettingsIcon? = null,

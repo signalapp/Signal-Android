@@ -33,12 +33,12 @@
                 android:layout_height="0dp"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
+                app:emoji_forceCustom="true"
+                app:emoji_forceJumbo="true"
                 app:layout_constraintBottom_toBottomOf="@id/avatar_picker_item_image"
                 app:layout_constraintEnd_toEndOf="@id/avatar_picker_item_image"
                 app:layout_constraintStart_toStartOf="@id/avatar_picker_item_image"
                 app:layout_constraintTop_toTopOf="@id/avatar_picker_item_image"
-                app:emoji_forceCustom="true"
-                app:emoji_forceJumbo="true"
                 tools:ignore="SpUsage"
                 tools:text="AF" />
 
@@ -59,9 +59,7 @@
                 android:id="@+id/avatar_picker_photo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
                 app:bsiv_icon="@drawable/ic_photo_24"
                 app:bsiv_icon_contentDescription="@string/AvatarPickerFragment__choose_a_photo"
                 app:bsiv_label="@string/AvatarPickerFragment__photo"
@@ -84,43 +82,30 @@
             <View
                 android:id="@+id/avatar_picker_divider"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="16dp"
-                android:background="@color/signal_inverse_transparent_05"
-                app:layout_constraintTop_toBottomOf="@id/avatar_picker_photo" />
-
-            <TextView
-                android:id="@+id/avatar_picker_select_header"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="56dp"
-                android:paddingStart="@dimen/dsl_settings_gutter"
-                android:paddingTop="24dp"
-                android:paddingEnd="@dimen/dsl_settings_gutter"
-                android:paddingBottom="12dp"
-                android:text="@string/AvatarPickerFragment__select_an_avatar"
-                android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/avatar_picker_divider" />
+                android:layout_height="1.5dp"
+                android:layout_marginTop="16.25dp"
+                android:layout_marginBottom="16.25dp"
+                android:alpha="0.16"
+                android:background="@color/signal_colorOutline"
+                app:layout_constraintTop_toBottomOf="@id/avatar_picker_text" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/avatar_picker_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginStart="@dimen/dsl_settings_gutter"
+                android:layout_marginTop="40dp"
                 android:layout_marginEnd="@dimen/dsl_settings_gutter"
                 android:clipChildren="false"
                 android:clipToPadding="false"
-                android:paddingBottom="80dp"
                 android:overScrollMode="never"
+                android:paddingBottom="80dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_min="160dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/avatar_picker_select_header"
+                app:layout_constraintTop_toBottomOf="@id/avatar_picker_divider"
                 app:spanCount="4"
                 tools:listitem="@layout/avatar_picker_item" />
 
@@ -154,14 +139,11 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/avatar_picker_save"
-        style="@style/Signal.Widget.Button.Large.Primary"
+        style="@style/Signal.Widget.Button.Large.Tonal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:alpha="0.5"
-        android:enabled="false"
-        android:minHeight="48dp"
         android:text="@string/AvatarPickerFragment__save"
         app:cornerRadius="28dp"
         app:layout_constraintBottom_toBottomOf="parent"

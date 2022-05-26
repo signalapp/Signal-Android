@@ -81,21 +81,14 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintBottom_toTopOf="@id/debug_log_submit_button"/>
 
-  <com.dd.CircularProgressButton
+  <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
       android:id="@+id/debug_log_submit_button"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_gravity="center_horizontal"
       android:layout_margin="8dp"
-      android:background="@color/core_ultramarine"
-      android:textAllCaps="true"
-      android:textColor="@color/white"
       android:visibility="gone"
-      app:cpb_colorIndicator="@color/white"
-      app:cpb_colorProgress="@color/core_ultramarine"
-      app:cpb_cornerRadius="4dp"
-      app:cpb_selectorIdle="@drawable/progress_button_state"
-      app:cpb_textIdle="@string/SubmitDebugLogActivity_submit"
+      app:circularProgressMaterialButton__label="@string/SubmitDebugLogActivity_submit"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintBottom_toBottomOf="parent"

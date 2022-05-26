@@ -149,7 +149,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     this.checkContainer          = findViewById(R.id.conversation_list_item_check_container);
     this.uncheckedView           = findViewById(R.id.conversation_list_item_unchecked);
     this.checkedView             = findViewById(R.id.conversation_list_item_checked);
-    this.thumbSize               = (int) DimensionUnit.SP.toPixels(20f);
+    this.thumbSize               = (int) DimensionUnit.SP.toPixels(16f);
     this.thumbTarget             = new GlideLiveDataTarget(thumbSize, thumbSize);
 
     getLayoutTransition().setDuration(150);
@@ -622,7 +622,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
 
       RoundedDrawable drawable = RoundedDrawable.fromBitmap(bitmap);
       drawable.setBounds(0, 0, thumbSize, thumbSize);
-      drawable.setCornerRadius(DimensionUnit.DP.toPixels(4));
+      drawable.setCornerRadius(DimensionUnit.DP.toPixels(2));
       drawable.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 
       CharSequence thumbnailSpan = SpanUtil.buildCenteredImageSpan(drawable);

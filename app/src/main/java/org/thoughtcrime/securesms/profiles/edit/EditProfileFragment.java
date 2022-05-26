@@ -25,7 +25,6 @@ import androidx.navigation.Navigation;
 
 import com.airbnb.lottie.SimpleColorFilter;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.dd.CircularProgressButton;
 
 import org.signal.core.util.EditTextUtil;
 import org.signal.core.util.StreamUtil;
@@ -45,6 +44,7 @@ import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
+import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
 
 import java.io.IOException;
@@ -62,16 +62,16 @@ public class EditProfileFragment extends LoggingFragment {
   private static final int    MAX_DESCRIPTION_GLYPHS     = 480;
   private static final int    MAX_DESCRIPTION_BYTES      = 8192;
 
-  private Toolbar                toolbar;
-  private View                   title;
-  private ImageView              avatar;
-  private CircularProgressButton finishButton;
-  private EditText               givenName;
-  private EditText               familyName;
-  private View                   reveal;
-  private TextView               preview;
-  private ImageView              avatarPreviewBackground;
-  private ImageView              avatarPreview;
+  private Toolbar                        toolbar;
+  private View                           title;
+  private ImageView                      avatar;
+  private CircularProgressMaterialButton finishButton;
+  private EditText                       givenName;
+  private EditText                       familyName;
+  private View                           reveal;
+  private TextView                       preview;
+  private ImageView                      avatarPreviewBackground;
+  private ImageView                      avatarPreview;
 
   private Intent nextIntent;
 
@@ -223,8 +223,7 @@ public class EditProfileFragment extends LoggingFragment {
     }
 
     this.finishButton.setOnClickListener(v -> {
-      this.finishButton.setIndeterminateProgressMode(true);
-      this.finishButton.setProgress(50);
+      this.finishButton.setSpinning();
       handleUpload();
     });
 
@@ -313,7 +312,7 @@ public class EditProfileFragment extends LoggingFragment {
   }
 
   private void handleFinishedLegacy() {
-    finishButton.setProgress(0);
+    finishButton.cancelSpinning();
     if (nextIntent != null) startActivity(nextIntent);
 
     controller.onProfileNameUploadCompleted();
@@ -341,7 +340,7 @@ public class EditProfileFragment extends LoggingFragment {
 
       @Override
       public void onAnimationEnd(Animator animation) {
-        finishButton.setProgress(0);
+        finishButton.cancelSpinning();
         if (nextIntent != null && getActivity() != null) {
           startActivity(nextIntent);
         }

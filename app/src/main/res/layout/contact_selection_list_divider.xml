@@ -9,6 +9,5 @@
     android:paddingTop="16dp"
     android:paddingEnd="@dimen/dsl_settings_gutter"
     android:paddingBottom="12dp"
-    android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
-    android:textStyle="bold"
+    android:textAppearance="@style/Signal.Text.TitleSmall"
     tools:text="@string/CameraContacts_recent_contacts" />

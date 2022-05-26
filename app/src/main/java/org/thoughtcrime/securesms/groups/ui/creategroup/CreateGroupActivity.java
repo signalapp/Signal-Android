@@ -1,17 +1,18 @@
 package org.thoughtcrime.securesms.groups.ui.creategroup;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.ContactSelectionActivity;
 import org.thoughtcrime.securesms.ContactSelectionListFragment;
@@ -25,8 +26,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
-import org.signal.core.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.io.IOException;
@@ -42,9 +41,8 @@ public class CreateGroupActivity extends ContactSelectionActivity {
 
   private static final short REQUEST_CODE_ADD_DETAILS = 17275;
 
-  private ExtendedFloatingActionButton next;
-  private ValueAnimator                padStart;
-  private ValueAnimator                padEnd;
+  private MaterialButton       skip;
+  private FloatingActionButton next;
 
   public static Intent newIntent(@NonNull Context context) {
     Intent intent = new Intent(context, CreateGroupActivity.class);
@@ -67,9 +65,11 @@ public class CreateGroupActivity extends ContactSelectionActivity {
     assert getSupportActionBar() != null;
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+    skip = findViewById(R.id.skip);
     next = findViewById(R.id.next);
     extendSkip();
 
+    skip.setOnClickListener(v -> handleNextPressed());
     next.setOnClickListener(v -> handleNextPressed());
   }
 
@@ -125,33 +125,13 @@ public class CreateGroupActivity extends ContactSelectionActivity {
   }
 
   private void extendSkip() {
-    next.setIconGravity(MaterialButton.ICON_GRAVITY_END);
-    next.extend();
-    animatePadding(24, 18);
+    skip.setVisibility(View.VISIBLE);
+    next.setVisibility(View.GONE);
   }
 
   private void shrinkSkip() {
-    next.setIconGravity(MaterialButton.ICON_GRAVITY_START);
-    next.shrink();
-    animatePadding(16, 16);
-  }
-
-  private void animatePadding(int startDp, int endDp) {
-    if (padStart != null) padStart.cancel();
-
-    padStart = ValueAnimator.ofInt(next.getPaddingStart(), ViewUtil.dpToPx(startDp)).setDuration(200);
-    padStart.addUpdateListener(animation -> {
-      ViewUtil.setPaddingStart(next, (Integer) animation.getAnimatedValue());
-    });
-    padStart.start();
-
-    if (padEnd != null) padEnd.cancel();
-
-    padEnd = ValueAnimator.ofInt(next.getPaddingEnd(), ViewUtil.dpToPx(endDp)).setDuration(200);
-    padEnd.addUpdateListener(animation -> {
-      ViewUtil.setPaddingEnd(next, (Integer) animation.getAnimatedValue());
-    });
-    padEnd.start();
+    skip.setVisibility(View.GONE);
+    next.setVisibility(View.VISIBLE);
   }
 
   private void handleNextPressed() {

@@ -165,21 +165,21 @@
 
             </LinearLayout>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/gv1_migrate_upgrade_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:padding="20dp"
-                style="@style/Button.Primary"
+                style="@style/Signal.Widget.Button.Large.Primary"
                 android:text="@string/GroupsV1MigrationInitiation_upgrade_this_group" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/gv1_migrate_cancel_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
-                style="@style/Button.Borderless"
+                style="@style/Signal.Widget.Button.Large.Secondary"
                 android:text="@android:string/cancel" />
 
         </LinearLayout>

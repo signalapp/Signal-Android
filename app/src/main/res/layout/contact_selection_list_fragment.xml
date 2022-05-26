@@ -61,7 +61,8 @@
         app:layout_constraintTop_toBottomOf="@+id/chipGroupScrollContainer"
         tools:visibility="visible">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
+            style="@style/Signal.Widget.Button.Large.Primary"
             android:id="@+id/show_contacts_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -151,16 +152,6 @@
         </FrameLayout>
     </HorizontalScrollView>
 
-    <View
-        android:id="@+id/toolbar_shadow"
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:alpha="0"
-        android:background="@drawable/toolbar_shadow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/swipe_refresh" />
-
     <TextView
         android:id="@+id/header_action"
         android:layout_width="wrap_content"
@@ -175,7 +166,7 @@
         android:paddingTop="16dp"
         android:paddingEnd="@dimen/dsl_settings_gutter"
         android:paddingBottom="12dp"
-        android:textAppearance="@style/Signal.Text.Body"
+        android:textAppearance="@style/Signal.Text.BodyLarge"
         android:textColor="@color/signal_text_primary"
         android:visibility="gone"
         app:drawableStartCompat="@drawable/ic_plus_20"

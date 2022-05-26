@@ -6,7 +6,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/conversation_activity_unmute_button"
-        style="@style/Signal.Widget.Button.Large.Secondary.NoOutline"
+        style="@style/Signal.Widget.Button.Large.Secondary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="60dp"

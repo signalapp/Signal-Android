@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    tools:parentTag="android.widget.LinearLayout"
-    tools:orientation="vertical">
+    android:layout_height="wrap_content"
+    tools:orientation="vertical"
+    tools:parentTag="android.widget.LinearLayout">
 
     <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/signal_background_primary"/>
-
-    <View android:layout_width="match_parent"
-          android:layout_height="5dp"
-          android:background="@drawable/toolbar_shadow"/>
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/search_toolbar_background"
+        android:paddingTop="0dp"
+        android:paddingHorizontal="8dp" />
 
 </merge>

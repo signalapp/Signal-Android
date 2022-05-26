@@ -23,7 +23,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
         android:textAlignment="center"
-        android:textAppearance="@style/Signal.Text.Body"
+        android:textAppearance="@style/Signal.Text.BodyLarge"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

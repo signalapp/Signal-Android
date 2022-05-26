@@ -27,6 +27,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
+import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -68,6 +69,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.ColorInt;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -81,11 +83,14 @@ import androidx.core.content.pm.ShortcutInfoCompat;
 import androidx.core.content.pm.ShortcutManagerCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.graphics.drawable.IconCompat;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.SimpleColorFilter;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -212,6 +217,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel;
+import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder;
 import org.thoughtcrime.securesms.maps.PlacePickerActivity;
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity;
 import org.thoughtcrime.securesms.mediasend.Media;
@@ -282,6 +288,7 @@ import org.thoughtcrime.securesms.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.FullscreenHelper;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
+import org.thoughtcrime.securesms.util.Material3OnScrollHelper;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.MessageUtil;
@@ -319,6 +326,8 @@ import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import kotlin.Unit;
+
 import static org.thoughtcrime.securesms.TransportOption.Type;
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 
@@ -349,7 +358,9 @@ public class ConversationParentFragment extends Fragment
                GifKeyboardPageFragment.Host,
                EmojiKeyboardPageFragment.Callback,
                EmojiSearchFragment.Callback,
-               StickerKeyboardPageFragment.Callback
+               StickerKeyboardPageFragment.Callback,
+               Material3OnScrollHelperBinder,
+               MessageDetailsFragment.Callback
 {
 
   private static final int SHORTCUT_ICON_SIZE = Build.VERSION.SDK_INT >= 26 ? ViewUtil.dpToPx(72) : ViewUtil.dpToPx(48 + 16 * 2);
@@ -419,6 +430,7 @@ public class ConversationParentFragment extends Fragment
   private   ImageView                wallpaper;
   private   View                     wallpaperDim;
   private   Toolbar                  toolbar;
+  private   View                     toolbarBackground;
   private   BroadcastReceiver        pinnedShortcutReceiver;
 
   private LinkPreviewViewModel         linkPreviewViewModel;
@@ -433,7 +445,7 @@ public class ConversationParentFragment extends Fragment
   private DraftViewModel               draftViewModel;
   private VoiceNoteMediaController     voiceNoteMediaController;
   private VoiceNotePlayerView          voiceNotePlayerView;
-
+  private Material3OnScrollHelper      material3OnScrollHelper;
 
   private LiveRecipient recipient;
   private long          threadId;
@@ -1114,6 +1126,9 @@ public class ConversationParentFragment extends Fragment
     }
 
     super.onCreateOptionsMenu(menu, inflater);
+
+    int toolbarTextAndIconColor = getResources().getColor(wallpaper.getDrawable() != null ? R.color.signal_colorNeutralInverse : R.color.signal_colorOnSurface);
+    setToolbarActionItemTint(toolbar, toolbarTextAndIconColor);
   }
 
   public void invalidateOptionsMenu() {
@@ -1743,7 +1758,10 @@ public class ConversationParentFragment extends Fragment
         }
       }
 
-      noLongerMemberBanner.setVisibility(leftGroup ? View.VISIBLE : View.GONE);
+      if (messageRequestBottomView.getVisibility() == View.GONE) {
+        noLongerMemberBanner.setVisibility(leftGroup ? View.VISIBLE : View.GONE);
+      }
+
       requestingMemberBanner.setVisibility(canCancelRequest ? View.VISIBLE : View.GONE);
 
       if (canCancelRequest) {
@@ -2092,6 +2110,7 @@ public class ConversationParentFragment extends Fragment
 
   private void initializeViews(View view) {
     toolbar                  = view.findViewById(R.id.toolbar);
+    toolbarBackground        = view.findViewById(R.id.toolbar_background);
     titleView                = view.findViewById(R.id.conversation_title_view);
     buttonToggle             = view.findViewById(R.id.button_toggle);
     sendButton               = view.findViewById(R.id.send_button);
@@ -2124,7 +2143,6 @@ public class ConversationParentFragment extends Fragment
     Stub<ConversationReactionOverlay> reactionOverlayStub = ViewUtil.findStubById(view, R.id.conversation_reaction_scrubber_stub);
     reactionDelegate = new ConversationReactionDelegate(reactionOverlayStub);
 
-
     noLongerMemberBanner                = view.findViewById(R.id.conversation_no_longer_member_banner);
     cannotSendInAnnouncementGroupBanner = ViewUtil.findStubById(view, R.id.conversation_cannot_send_announcement_stub);
     requestingMemberBanner              = view.findViewById(R.id.conversation_requesting_banner);
@@ -2156,7 +2174,7 @@ public class ConversationParentFragment extends Fragment
       linkPreviewViewModel.onTransportChanged(newTransport.isSms());
       composeText.setTransport(newTransport);
 
-      buttonToggle.getBackground().setColorFilter(newTransport.getBackgroundColor(), PorterDuff.Mode.MULTIPLY);
+      buttonToggle.getBackground().setColorFilter(getButtonToggleBackgroundColor(newTransport), PorterDuff.Mode.MULTIPLY);
       buttonToggle.getBackground().invalidateSelf();
 
       if (manuallySelected) recordTransportPreference(newTransport);
@@ -2200,6 +2218,18 @@ public class ConversationParentFragment extends Fragment
     });
 
     voiceNoteMediaController.getVoiceNotePlaybackState().observe(getViewLifecycleOwner(), inputPanel.getPlaybackStateObserver());
+
+    material3OnScrollHelper = new Material3OnScrollHelper(Collections.singletonList(toolbarBackground), Collections.emptyList(), this::updateStatusBarColor);
+  }
+
+  private @ColorInt int getButtonToggleBackgroundColor(TransportOption newTransport) {
+    if (newTransport.isSms()) {
+      return newTransport.getBackgroundColor();
+    } else if (recipient != null) {
+      return getRecipient().getChatColors().asSingleColor();
+    } else {
+      return newTransport.getBackgroundColor();
+    }
   }
 
   private @NonNull VoiceNotePlayerView requireVoiceNotePlayerView() {
@@ -2221,12 +2251,12 @@ public class ConversationParentFragment extends Fragment
         attachmentKeyboardStub.get().setWallpaperEnabled(true);
       }
 
-      int toolbarColor = getResources().getColor(R.color.conversation_toolbar_color_wallpaper);
-      toolbar.setBackgroundColor(toolbarColor);
-      // TODO [alex] LargeScreenSupport -- statusBarBox
-      if (Build.VERSION.SDK_INT > 23) {
-        WindowUtil.setStatusBarColor(requireActivity().getWindow(), toolbarColor);
-      }
+      toolbarBackground.setBackgroundResource(R.color.material3_toolbar_background_wallpaper);
+      updateStatusBarColor(toolbarBackground.isActivated());
+      int toolbarTextAndIconColor = getResources().getColor(R.color.signal_colorNeutralInverse);
+      toolbar.setTitleTextColor(toolbarTextAndIconColor);
+      setToolbarActionItemTint(toolbar, toolbarTextAndIconColor);
+
     } else {
       wallpaper.setImageDrawable(null);
       wallpaperDim.setVisibility(View.GONE);
@@ -2235,14 +2265,56 @@ public class ConversationParentFragment extends Fragment
         attachmentKeyboardStub.get().setWallpaperEnabled(false);
       }
 
-      int toolbarColor = getResources().getColor(R.color.conversation_toolbar_color);
-      toolbar.setBackgroundColor(toolbarColor);
-      // TODO [alex] LargeScreenSupport -- statusBarBox
-      if (Build.VERSION.SDK_INT > 23) {
-        WindowUtil.setStatusBarColor(requireActivity().getWindow(), toolbarColor);
-      }
+      toolbarBackground.setBackgroundResource(R.color.material3_toolbar_background);
+      updateStatusBarColor(toolbarBackground.isActivated());
+      int toolbarTextAndIconColor = getResources().getColor(R.color.signal_colorOnSurface);
+      toolbar.setTitleTextColor(toolbarTextAndIconColor);
+      setToolbarActionItemTint(toolbar, toolbarTextAndIconColor);
     }
     fragment.onWallpaperChanged(chatWallpaper);
+    messageRequestBottomView.setWallpaperEnabled(chatWallpaper != null);
+  }
+
+  private Unit updateStatusBarColor(boolean isActive) {
+    // TODO [alex] LargeScreenSupport -- statusBarBox
+    if (Build.VERSION.SDK_INT > 23) {
+      boolean hasWallpaper = wallpaper.getDrawable() != null;
+      int     toolbarColor = isActive ? getActiveToolbarColor(requireContext(), hasWallpaper)
+                                      : getInactiveToolbarColor(requireContext(), hasWallpaper);
+
+      WindowUtil.setStatusBarColor(requireActivity().getWindow(), toolbarColor);
+    }
+
+    return Unit.INSTANCE;
+  }
+
+  private static @ColorInt int getActiveToolbarColor(@NonNull Context context, boolean hasWallpaper) {
+    int colorRes = hasWallpaper ? R.color.conversation_toolbar_color_wallpaper_scrolled
+                                : R.color.signal_colorSurface2;
+
+    return ContextCompat.getColor(context, colorRes);
+  }
+
+  private static @ColorInt int getInactiveToolbarColor(@NonNull Context context, boolean hasWallpaper) {
+    int colorRes = hasWallpaper ? R.color.conversation_toolbar_color_wallpaper
+                                : R.color.signal_colorBackground;
+
+    return ContextCompat.getColor(context, colorRes);
+  }
+
+  private void setToolbarActionItemTint(@NonNull Toolbar toolbar, @ColorInt int tint) {
+    for (int i = 0; i < toolbar.getMenu().size(); i++) {
+      MenuItem menuItem = toolbar.getMenu().getItem(i);
+      MenuItemCompat.setIconTintList(menuItem, ColorStateList.valueOf(tint));
+    }
+
+    if (toolbar.getNavigationIcon() != null) {
+      toolbar.getNavigationIcon().setColorFilter(new SimpleColorFilter(tint));
+    }
+
+    if (toolbar.getOverflowIcon() != null) {
+      toolbar.getOverflowIcon().setColorFilter(new SimpleColorFilter(tint));
+    }
   }
 
   protected void initializeActionBar() {
@@ -3547,6 +3619,16 @@ public class ConversationParentFragment extends Fragment
     StickerSearchDialogFragment.show(getChildFragmentManager());
   }
 
+  @Override
+  public void bindScrollHelper(@NonNull RecyclerView recyclerView) {
+    recyclerView.addOnScrollListener(material3OnScrollHelper);
+  }
+
+  @Override
+  public void onMessageDetailsFragmentDismissed() {
+    updateStatusBarColor(toolbarBackground.isActivated());
+  }
+
   // Listeners
 
   private final class DeleteCanceledVoiceNoteListener implements ListenableFuture.Listener<VoiceNoteDraft> {
@@ -3950,6 +4032,12 @@ public class ConversationParentFragment extends Fragment
   @Override
   public void onMessageActionToolbarOpened() {
     searchViewItem.collapseActionView();
+    toolbar.setVisibility(View.GONE);
+  }
+
+  @Override
+  public void onMessageActionToolbarClosed() {
+    toolbar.setVisibility(View.VISIBLE);
   }
 
   @Override
@@ -4206,18 +4294,23 @@ public class ConversationParentFragment extends Fragment
     {
       Log.d(TAG, "[presentMessageRequestState] Have extra, so ignoring provided state.");
       messageRequestBottomView.setVisibility(View.GONE);
+      inputPanel.setVisibility(View.VISIBLE);
     } else if (isPushGroupV1Conversation() && !isActiveGroup()) {
       Log.d(TAG, "[presentMessageRequestState] Inactive push group V1, so ignoring provided state.");
       messageRequestBottomView.setVisibility(View.GONE);
+      inputPanel.setVisibility(View.VISIBLE);
     } else if (messageData == null) {
       Log.d(TAG, "[presentMessageRequestState] Null messageData. Ignoring.");
     } else if (messageData.getMessageState() == MessageRequestState.NONE) {
       Log.d(TAG, "[presentMessageRequestState] No message request necessary.");
       messageRequestBottomView.setVisibility(View.GONE);
+      inputPanel.setVisibility(View.VISIBLE);
     } else {
       Log.d(TAG, "[presentMessageRequestState] " + messageData.getMessageState());
       messageRequestBottomView.setMessageData(messageData);
       messageRequestBottomView.setVisibility(View.VISIBLE);
+      noLongerMemberBanner.setVisibility(View.GONE);
+      inputPanel.setVisibility(View.GONE);
     }
 
     invalidateOptionsMenu();

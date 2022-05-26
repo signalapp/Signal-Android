@@ -6,16 +6,29 @@
     android:layout_height="match_parent"
     tools:theme="@style/Theme.Signal.RoundedBottomSheet.Light">
 
+    <ImageView
+        android:id="@+id/handle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bottom_sheet_handle" />
+
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/group_join_recipient_avatar"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/handle" />
 
     <ProgressBar
         android:id="@+id/group_join_busy"
@@ -30,10 +43,10 @@
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/group_join_group_name"
-        style="@style/TextAppearance.Signal.Body1.Bold"
+        style="@style/Signal.Text.HeadlineMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:textColor="@color/signal_text_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -43,13 +56,14 @@
 
     <TextView
         android:id="@+id/group_join_group_details"
-        style="@style/Signal.Text.Body"
+        style="@style/Signal.Text.BodyLarge"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="6dp"
         android:layout_marginEnd="16dp"
         android:gravity="center_horizontal"
-        android:textColor="@color/signal_text_secondary"
+        android:textColor="@color/signal_colorOnBackground_60"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,16 +72,16 @@
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/group_join_group_description"
-        style="@style/Signal.Text.Body"
+        style="@style/Signal.Text.BodyLarge"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="6dp"
         android:layout_marginEnd="16dp"
         android:ellipsize="end"
         android:gravity="center_horizontal"
         android:maxLines="2"
-        android:textColor="@color/signal_text_secondary"
+        android:textColor="@color/signal_colorOnBackground_60"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -78,27 +92,27 @@
 
     <TextView
         android:id="@+id/group_join_explain"
-        style="@style/TextAppearance.Signal.Body2"
+        style="@style/Signal.Text.BodyMedium"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="16dp"
-        android:textColor="@color/signal_text_primary"
+        android:layout_marginStart="@dimen/dsl_settings_gutter"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="@dimen/dsl_settings_gutter"
+        android:textColor="@color/signal_colorOnBackground_60"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/group_join_group_description"
         tools:text="@string/GroupJoinBottomSheetDialogFragment_admin_approval_needed" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/group_join_cancel_button"
-        style="@style/Button.Primary"
+        style="@style/Signal.Widget.Button.Large.Tonal"
         android:layout_width="0dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dsl_settings_gutter"
+        android:layout_marginTop="26dp"
+        android:layout_marginBottom="32dp"
         android:text="@android:string/cancel"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -109,15 +123,15 @@
         app:layout_constraintVertical_bias="0"
         tools:visibility="visible" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/group_join_button"
-        style="@style/Button.Primary"
+        style="@style/Signal.Widget.Button.Large.Tonal"
         android:layout_width="0dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="@dimen/dsl_settings_gutter"
+        android:layout_marginBottom="32dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -19,31 +19,33 @@
             android:layout_height="wrap_content"
             tools:context=".registration.fragments.EnterSmsCodeFragment">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/wrong_number"
-                style="@style/Button.Borderless.Registration"
+                style="@style/Signal.Widget.Button.Large.Secondary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxWidth="150dp"
                 android:layout_marginTop="16dp"
                 android:layout_toEndOf="@id/call_me_count_down"
-                android:text="@string/RegistrationActivity_wrong_number"
                 android:hyphenationFrequency="normal"
+                android:maxWidth="150dp"
+                android:text="@string/RegistrationActivity_wrong_number"
+                android:textColor="@color/signal_text_secondary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/call_me_count_down"
                 app:layout_constraintTop_toBottomOf="@+id/code" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/no_code"
-                style="@style/Button.Borderless.Registration"
+                style="@style/Signal.Widget.Button.Large.Secondary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_toEndOf="@id/call_me_count_down"
-                android:text="@string/RegistrationActivity_contact_signal_support"
-                android:visibility="gone"
                 android:hyphenationFrequency="normal"
+                android:text="@string/RegistrationActivity_contact_signal_support"
+                android:textColor="@color/signal_text_secondary"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/call_me_count_down"
@@ -53,7 +55,6 @@
 
             <TextView
                 android:id="@+id/verify_header"
-                style="@style/Signal.Text.Headline.Registration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -61,6 +62,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="32dp"
                 android:gravity="center"
+                android:textAppearance="@style/Signal.Text.HeadlineMedium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -69,12 +71,13 @@
 
             <org.thoughtcrime.securesms.components.registration.CallMeCountDownView
                 android:id="@+id/call_me_count_down"
-                style="@style/Button.Borderless.Registration"
+                style="@style/Signal.Widget.Button.Large.Secondary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/code"
-                android:maxWidth="150dp"
                 android:hyphenationFrequency="normal"
+                android:maxWidth="150dp"
+                android:textColor="@color/signal_text_secondary"
                 app:layout_constraintEnd_toStartOf="@+id/wrong_number"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -122,8 +125,8 @@
                     android:layout_gravity="top"
                     android:layout_margin="2dp"
                     android:importantForAccessibility="no"
-                    app:tint="@color/core_ultramarine"
-                    app:srcCompat="@drawable/ic_error_outline_14" />
+                    app:srcCompat="@drawable/ic_error_outline_14"
+                    app:tint="@color/core_ultramarine" />
 
                 <TextView
                     style="@style/Signal.Text.Body.Registration"

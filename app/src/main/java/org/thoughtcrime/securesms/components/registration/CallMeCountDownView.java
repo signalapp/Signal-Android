@@ -6,11 +6,13 @@ import android.util.AttributeSet;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.material.button.MaterialButton;
+
 import org.thoughtcrime.securesms.R;
 
 import java.util.concurrent.TimeUnit;
 
-public class CallMeCountDownView extends androidx.appcompat.widget.AppCompatButton {
+public class CallMeCountDownView extends MaterialButton {
 
   private long countDownToTime;
   @Nullable

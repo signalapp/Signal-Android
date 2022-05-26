@@ -155,7 +155,6 @@ public class PaymentsHomeFragment extends LoggingFragment {
           return;
         case DEACTIVATED:
           Snackbar.make(requireView(), R.string.PaymentsHomeFragment__payments_deactivated, Snackbar.LENGTH_SHORT)
-                  .setTextColor(Color.WHITE)
                   .show();
           return;
         case DEACTIVATE_WITHOUT_BALANCE:

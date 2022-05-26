@@ -101,7 +101,7 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
 
       clickPref(
         title = DSLSettingsText.from(R.string.preferences_chats__chats),
-        icon = DSLSettingsIcon.from(R.drawable.ic_message_tinted_bitmap_24),
+        icon = DSLSettingsIcon.from(R.drawable.ic_chat_message_24),
         onClick = {
           findNavController().safeNavigate(R.id.action_appSettingsFragment_to_chatsSettingsFragment)
         }

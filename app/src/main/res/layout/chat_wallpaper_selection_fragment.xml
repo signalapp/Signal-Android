@@ -26,7 +26,7 @@
             android:text="@string/ChatWallpaperSelectionFragment__choose_from_photos"
             android:textAppearance="@style/Signal.Text.Body"
             android:textColor="@color/signal_text_primary"
-            app:drawableStartCompat="@drawable/ic_photo_album_24"
+            app:drawableStartCompat="@drawable/ic_gallery_outline_24"
             app:drawableTint="@color/signal_icon_tint_primary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

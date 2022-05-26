@@ -113,7 +113,6 @@ dependencyResolutionManagement {
             alias('colorpicker').to('com.takisoft.fix:colorpicker:0.9.1')
             alias('lottie').to('com.airbnb.android:lottie:3.6.0')
             alias('stickyheadergrid').to('com.codewaves.stickyheadergrid:stickyheadergrid:0.9.4')
-            alias('circular-progress-button').to('com.github.dmytrodanylyk.circular-progress-button:library:1.1.3-S2')
             alias('dnsjava').to('dnsjava:dnsjava:2.1.9')
 
             // Mp4Parser

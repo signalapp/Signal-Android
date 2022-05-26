@@ -107,9 +107,9 @@
                 app:layout_constraintTop_toBottomOf="@id/insights_dashboard_encrypted_messages"
                 tools:text="100% of your outgoing messages in the past 7 days were end-to-end encrypted with Signal Protocol." />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/insights_dashboard_start_a_conversation"
-                style="@style/Button.Borderless"
+                style="@style/Signal.Widget.Button.Large.Secondary"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginStart="16dp"

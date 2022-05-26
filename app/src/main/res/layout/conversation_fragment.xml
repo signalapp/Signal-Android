@@ -38,7 +38,7 @@
 
     <TextView
         android:id="@+id/scroll_date_header"
-        style="@style/Signal.Text.Preview"
+        style="@style/Signal.Text.BodySmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -49,7 +49,7 @@
         android:paddingTop="4dp"
         android:paddingEnd="12dp"
         android:paddingBottom="4dp"
-        android:textColor="@color/signal_text_secondary"
+        android:textColor="@color/signal_colorOnSurfaceVariant"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

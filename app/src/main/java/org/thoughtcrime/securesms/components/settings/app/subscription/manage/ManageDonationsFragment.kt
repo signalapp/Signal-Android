@@ -90,7 +90,7 @@ class ManageDonationsFragment : DSLSettingsFragment(), ExpiredGiftSheet.Callback
       sectionHeaderPref(
         title = DSLSettingsText.from(
           R.string.SubscribeFragment__signal_is_powered_by_people_like_you,
-          DSLSettingsText.CenterModifier, DSLSettingsText.Title2BoldModifier
+          DSLSettingsText.CenterModifier, DSLSettingsText.TitleLargeModifier
         )
       )
 
@@ -215,7 +215,7 @@ class ManageDonationsFragment : DSLSettingsFragment(), ExpiredGiftSheet.Callback
 
     space(DimensionUnit.DP.toPixels(16f).toInt())
 
-    primaryButton(
+    tonalButton(
       text = DSLSettingsText.from(R.string.ManageDonationsFragment__make_a_monthly_donation),
       onClick = {
         findNavController().safeNavigate(R.id.action_manageDonationsFragment_to_subscribeFragment)
