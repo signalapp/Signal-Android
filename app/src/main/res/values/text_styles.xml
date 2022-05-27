@@ -116,16 +116,6 @@
         <item name="android:shadowRadius">0</item>
     </style>
 
-    <style name="Signal.Text.Caption.MessageReceived">
-        <item name="android:textColor">@color/conversation_item_sent_text_secondary_color</item>
-        <item name="android:shadowRadius">0</item>
-        <item name="android:alpha">0.7</item>
-    </style>
-
-    <style name="Signal.Text.Caption.MessageImageOverlay">
-        <item name="android:textColor">@color/core_white</item>
-    </style>
-
     <style name="Signal.Text.Giant" parent="@style/TextAppearance.AppCompat.Display1">
         <item name="android:textSize">48sp</item>
         <item name="android:textColor">@color/signal_text_primary</item>
@@ -263,13 +253,6 @@
     </style>
 
     <style name="Signal.Text.Title.SettingsBio">
-    </style>
-
-    <style name="Signal.Text.Title.BottomSheet" parent="">
-        <item name="android:textSize">16sp</item>
-        <item name="android:lineSpacingExtra">4sp</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:letterSpacing" tools:ignore="NewApi">0.01</item>
     </style>
 
     <!-- endregion -->
