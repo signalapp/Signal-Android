@@ -734,6 +734,7 @@
   <string name="CustomNotificationsDialogFragment__vibrate">Titra</string>
   <!--Button text for customizing notification options-->
   <string name="CustomNotificationsDialogFragment__customize">Sérsníða</string>
+  <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Breyta hljóði og titringi</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Hringistillingar</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Hringitónn</string>
   <string name="CustomNotificationsDialogFragment__enabled">Virkt</string>
@@ -1156,6 +1157,7 @@
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Þennan hóp af eldri gerð er ekki hægt að nota því hann er of stór. Hámarksstærð hópa er %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Viltu halda áfram samtalinu við %1$s og deila nafninu þínu og mynd með viðkomandi?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Viltu ganga í þennan hóp og deila nafninu þínu og mynd með meðlimum hans? Þeir munu ekki vita hvort þú hafir séð skilaboðin þeirra fyrr en þú samþykkir þetta.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Viltu ganga í þennan hóp og deila nafninu þínu og mynd með meðlimum hans? Þú munt ekki sjá skilaboðin þeirra fyrr en þú samþykkir þetta.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Viltu ganga í þennan hóp? Meðlimir hópsins munu ekki vita hvort þú hafir séð skilaboðin þeirra fyrr en þú samþykkir þetta.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Viltu opna á þennan hóp og deila nafninu þínu og mynd með meðlimum hans? Þú munt ekki fá nein skilaboð fyrr en þú aflæsir þessu.</string>
   <string name="MessageRequestProfileView_view">Skoða</string>
@@ -1300,6 +1302,7 @@
   <!--Title for dialog warning about lacking bluetooth permissions during a call-->
   <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
   <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Opna stillingar</string>
   <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
   <string name="WebRtcCallActivity__not_now">Ekki núna</string>
   <!--WebRtcCallView-->
@@ -1685,6 +1688,7 @@
   <string name="SingleRecipientNotificationBuilder_message_request">Beiðni um skilaboð</string>
   <string name="SingleRecipientNotificationBuilder_you">Þú</string>
   <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • Saga</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Spila myndskeið</string>
   <string name="ThumbnailView_Has_a_caption_description">Er með skýringartexta</string>
@@ -2129,6 +2133,7 @@
   <string name="preferences__led_color_unknown">Óþekkt</string>
   <string name="preferences__pref_led_blink_title">Blikkmynstur LED-ljósa</string>
   <string name="preferences__customize">Sérsníða</string>
+  <string name="preferences__change_sound_and_vibration">Breyta hljóði og titringi</string>
   <string name="preferences__sound">Hljóð</string>
   <string name="preferences__silent">Þögn</string>
   <string name="preferences__default">Sjálfgefið</string>
@@ -3609,6 +3614,7 @@ hegðun þína.</string>
   <string name="DonationsErrors__target_does_not_support_gifting">Kerfi viðtakanda styður ekki gjafir.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Athugaðu nettenginguna þína og prófaðu svo aftur.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Gjafamerki</string>
   <!--Gift message view expiry information-->
@@ -3817,6 +3823,7 @@ hegðun þína.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--Donation reciepts screen empty state title-->
+  <string name="DonationReceiptListFragment__no_receipts">Engar kvittanir</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Spjall</string>
@@ -3890,6 +3897,7 @@ hegðun þína.</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Svara</string>
   <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">Svara hópi</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Ennþá engin innlit</string>
   <!--Displayed when a story has no replies yet-->
@@ -4133,8 +4141,20 @@ hegðun þína.</string>
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
   <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">%1$d dagur eftir</item>
+    <item quantity="other">%1$d dagar eftir</item>
+  </plurals>
   <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">%1$d klukkustund eftir</item>
+    <item quantity="other">%1$d klukkustundir eftir</item>
+  </plurals>
   <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">%1$d mínúta eftir</item>
+    <item quantity="other">%1$d mínútur eftir</item>
+  </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Útrunnið</string>
   <!--EOF-->

@@ -1158,6 +1158,7 @@
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Αυτή η ομάδα παλαιού τύπου δεν μπορεί πλέον να χρησιμοποιηθεί επειδή είναι πολύ μεγάλη. Το μέγιστο μέγεθος της ομάδας είναι %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Να συνεχίσεις τη συνομιλία σου με τον/την %1$s και να μοιραστείς το όνομα και τη φωτογραφία σου μαζί του/της;</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Θέλεις να μπεις στην ομάδα και να μοιραστείς το όνομα και τη φωτογραφία σου με τα μέλη της; Δεν θα ξέρουν ότι έχεις δει τα μηνύματά τους μέχρι να δεχτείς.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Θέλεις να μπεις στην ομάδα και να μοιραστείς το όνομα και τη φωτογραφία σου με τα μέλη της; Δεν θα μπορείς να δεις τα μηνύματά τους μέχρι να δεχτείς.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Θέλεις να μπεις σε αυτή την ομάδα; Δεν θα γνωρίζουν οτι έχεις δει τα μηνυματά τους μέχρι να δεχτείς.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Θέλεις να καταργηθεί η φραγή αυτής της ομάδας και να μοιραστεί το όνομα και η φωτογραφία σου με τα μέλη της; Δεν θα λάβεις κανένα μήνυμα μέχρι να καταργήσεις τη φραγή της.</string>
   <string name="MessageRequestProfileView_view">Εμφάνιση</string>
@@ -1299,8 +1300,11 @@
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Επανασύνδεση…</string>
   <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">Δεν δόθηκαν δικαιώματα για bluetooth</string>
   <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Παρακαλούμε ενεργοποίησε τα δικαιώματα \"Κοντινές συσκευές\" για να χρησιμοποιήσεις bluetooth κατά τη διάρκεια μιας κλήσης.</string>
   <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Άνοιγμα ρυθμίσεων</string>
   <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
   <string name="WebRtcCallActivity__not_now">Όχι τώρα</string>
   <!--WebRtcCallView-->
@@ -1683,6 +1687,7 @@
   <string name="SingleRecipientNotificationBuilder_message_request">Αίτημα μηνύματος</string>
   <string name="SingleRecipientNotificationBuilder_you">Εσύ</string>
   <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • Ιστορία</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Αναπαραγωγή βίντεο</string>
   <string name="ThumbnailView_Has_a_caption_description">Έχει λεζάντα</string>
@@ -2168,7 +2173,7 @@
   <string name="preferences__data_and_storage">Δεδομένα και αποθηκευτικός χώρος</string>
   <string name="preferences__storage">Αποθηκευτικός χώρος</string>
   <string name="preferences__payments">Πληρωμές</string>
-  <string name="preferences__payments_beta">Πληρωμή (Beta)</string>
+  <string name="preferences__payments_beta">Πληρωμές (Beta)</string>
   <string name="preferences__conversation_length_limit">Όριο μεγέθους συνομιλίας</string>
   <string name="preferences__keep_messages">Διατήρηση μηνυμάτων</string>
   <string name="preferences__clear_message_history">Εκκαθάριση ιστορικού μηνυμάτων</string>
@@ -2295,7 +2300,7 @@
   <string name="PaymentsAllActivityFragment__all">Όλοι/ες</string>
   <string name="PaymentsAllActivityFragment__sent">Στάλθηκε στις</string>
   <string name="PaymentsAllActivityFragment__received">Ελήφθη</string>
-  <string name="PaymentsHomeFragment__introducing_payments">Παρουσίαση των πληρωμών (Beta)</string>
+  <string name="PaymentsHomeFragment__introducing_payments">Παρουσίαση πληρωμών (Beta)</string>
   <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Χρησιμοποιήστε το Signal για να στείλετε και να λάβετε MobileCoin, ένα νέο ψηφιακό νόμισμα που επικεντρώνεται στο απόρρητο. Ενεργοποιήστε για να ξεκινήσετε.</string>
   <string name="PaymentsHomeFragment__activate_payments">Ενεργοποίηση πληρωμών</string>
   <string name="PaymentsHomeFragment__activating_payments">Ενεργοποίηση πληρωμών…</string>
@@ -3888,6 +3893,7 @@
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Απάντηση</string>
   <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">Απάντηση στην ομάδα</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Καμία προβολή ακόμα</string>
   <!--Displayed when a story has no replies yet-->
@@ -4079,6 +4085,7 @@
   <string name="ExpandModel__view_more">Προβολή περισσότερων</string>
   <string name="StoriesLinkPopup__visit_link">Επίσκεψη συνδέσμου</string>
   <!--Duration and price information-->
+  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · διάρκεια %2$d ημερών</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Αποστολή εμβλήματος δώρου</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4140,8 +4147,21 @@
     <item quantity="other">Ιστορία ομάδας · %1$d θεατές</item>
   </plurals>
   <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">Απομένει %1$d ημέρα</item>
+    <item quantity="other">Απομένουν %1$d ημέρες</item>
+  </plurals>
   <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">Απομένει %1$d ώρα</item>
+    <item quantity="other">Απομένουν %1$d ώρες</item>
+  </plurals>
   <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">Απομένει %1$d λεπτό</item>
+    <item quantity="other">Απομένουν %1$d λεπτά</item>
+  </plurals>
   <!--Gift expiry expired-->
+  <string name="Gifts__expired">Έληξε</string>
   <!--EOF-->
 </resources>

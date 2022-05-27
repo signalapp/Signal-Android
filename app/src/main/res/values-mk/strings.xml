@@ -1386,9 +1386,11 @@
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Изберете држава</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Мора да внесете повикувачки број
-за Вашата држава </string>
+        за Вашата држава
+    </string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Мора да го внесете Вашиот
-телефонски број</string>
+        телефонски број
+    </string>
   <string name="RegistrationActivity_invalid_number">Погрешен број</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Внесениот број
           (%s) е погрешен.</string>
@@ -1794,9 +1796,9 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Слика на контакт</string>
   <!--ConversationUpdateItem-->
-  <string name="ConversationUpdateItem_loading">Вчитувам</string>
+  <string name="ConversationUpdateItem_loading">Се вчитува</string>
   <string name="ConversationUpdateItem_learn_more">Дознајте повеќе</string>
-  <string name="ConversationUpdateItem_join_call">Приклучи сѐ на повик</string>
+  <string name="ConversationUpdateItem_join_call">Приклучи се на повикот</string>
   <string name="ConversationUpdateItem_return_to_call">Врати се на повикот</string>
   <string name="ConversationUpdateItem_call_is_full">Повикот е полн</string>
   <string name="ConversationUpdateItem_invite_friends">Покани пријатели</string>
@@ -1865,7 +1867,7 @@
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">За да примате известувања за повици, допрете на „Поставувања“, вклучете ги известувањата и проверете дали „Звук“ и „Скокачки прозорци“ се вклучени.</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">За да примате известувања за повици, допрете  „Поставувања“ и овозможете активност во заднина во поставувањата за „Батерија“.</string>
   <!--country_selection_fragment-->
-  <string name="country_selection_fragment__loading_countries">Вчитувам земји…</string>
+  <string name="country_selection_fragment__loading_countries">Се вчитуваат држави…</string>
   <string name="country_selection_fragment__search">Барај</string>
   <string name="country_selection_fragment__no_matching_countries">Нема совпаѓања</string>
   <!--device_add_fragment-->
@@ -1930,7 +1932,7 @@
   <string name="database_migration_activity__importing">УВЕЗУВАМ</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Види целосен разговор</string>
-  <string name="load_more_header__loading">Вчитувам</string>
+  <string name="load_more_header__loading">Се вчитува</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Нема медија</string>
   <!--message_recipients_list_item-->
@@ -1993,7 +1995,7 @@
   <string name="verify_display_fragment__tap_to_scan">Допри да скенираш</string>
   <string name="verify_display_fragment__successful_match">Успешно совпаѓање</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">Неуспешна проверка на сигурносниот број</string>
-  <string name="verify_display_fragment__loading">Вчитувам…</string>
+  <string name="verify_display_fragment__loading">Се вчитува…</string>
   <string name="verify_display_fragment__mark_as_verified">Обележи како проверено</string>
   <string name="verify_display_fragment__clear_verification">Отстрани проверка</string>
   <!--verify_identity-->
@@ -2966,7 +2968,7 @@
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Ги избрише информациите за Вашата сметка и профилна слика</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Ги избрише сите Ваши пораки</string>
   <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Избришете %1$s од Вашата сметка за плаќања</string>
-  <string name="DeleteAccountFragment__no_country_code">Не е внесен код на земја</string>
+  <string name="DeleteAccountFragment__no_country_code">Не е внесен повикувачки број на државата</string>
   <string name="DeleteAccountFragment__no_number">Не е внесен број</string>
   <string name="DeleteAccountFragment__the_phone_number">Бројот што го внесовте не се совпаѓа со Вашите сметки.</string>
   <string name="DeleteAccountFragment__are_you_sure">Сигурни сте дека сакате да ја избришете Вашата сметка?</string>
@@ -2989,7 +2991,7 @@
   <!--Message of error dialog shown when a network error occurs during account deletion-->
   <string name="DeleteAccountFragment__there_was_a_problem">Настана проблем при завршувањето на процесот на бришење. Проверете ја Вашата интернет врска и обидете се повторно.</string>
   <!--DeleteAccountCountryPickerFragment-->
-  <string name="DeleteAccountCountryPickerFragment__search_countries">Пребарувај земји</string>
+  <string name="DeleteAccountCountryPickerFragment__search_countries">Пребарај држава</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Прескокни</string>
   <plurals name="CreateGroupActivity__d_members">
@@ -3158,10 +3160,10 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Вашиот нов број</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Нов телефонски број</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Бројот што го внесовте не се совпаѓа со Вашите сметки.</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Мора да наведете повикувачки број на државата за Вашиот стар број</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Мора да го наведете Вашиот стар телефонски број</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Мора да наведете повикувачки број на државата за Вашиот нов број</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Мора да го наведете Вашиот нов телефонски број</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Мора да внесете повикувачки број на државата за Вашиот стар број</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Мора да го внесете Вашиот стар телефонски број</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Мора да внесете повикувачки број на државата за Вашиот нов број</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Мора да го внесете Вашиот нов телефонски број</string>
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">Смени го бројот</string>
   <string name="ChangeNumberVerifyFragment__verifying_s">Проверувам %1$s</string>

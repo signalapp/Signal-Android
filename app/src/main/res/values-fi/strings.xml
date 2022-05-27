@@ -1158,6 +1158,7 @@
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Tätä vanhan tyyppistä ryhmää ei pystytä päivittämään uuden tyyppiseksi koska se on liian suuri. Ryhmässä voi olla enintään  %1$d jäsentä.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Jatketaanko keskustelua käyttäjän %1$s kanssa ja näytetäänkö nimesi ja kuvasi hänelle?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Liitytäänkö tähän ryhmään ja näytetäänkö nimesi ja profiilikuvasi sen jäsenille? He eivät tiedä että olet nähnyt heidän viestinsä ennen hyväksymistä.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Haluatko liittyä ryhmään ja jakaa nimesi ja profiilikuvasi ryhmän jäsenten kanssa? Et näe ryhmän viestejä ennen kuin hyväksyt liittymisen.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Haluatko liittyä tähän ryhmään? He eivät tiedä, että olet nähnyt heidän viestinsä ennen hyväksymistä.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Poistetaanko tämän ryhmän esto ja näytetäänkö nimesi ja profiilikuvasi sen jäsenille? Et saa viestejä ennen eston poistamista.</string>
   <string name="MessageRequestProfileView_view">Näytä</string>
@@ -1299,8 +1300,11 @@
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Yhdistetään uudelleen…</string>
   <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">Bluetooth-käyttöoikeus on estetty</string>
   <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Salli \"Lähellä olevat laitteet\" -asetus käyttääksesi bluetoothia puhelun aikana.</string>
   <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Avaa asetukset</string>
   <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
   <string name="WebRtcCallActivity__not_now">Ei nyt</string>
   <!--WebRtcCallView-->
@@ -1682,6 +1686,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SingleRecipientNotificationBuilder_message_request">Viestipyyntö</string>
   <string name="SingleRecipientNotificationBuilder_you">Sinä</string>
   <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • Tarina</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Toista video</string>
   <string name="ThumbnailView_Has_a_caption_description">Sisältää kuvatekstin</string>
@@ -3888,6 +3893,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Vastaa</string>
   <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">Vastaa ryhmään</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Ei katselukertoja vielä</string>
   <!--Displayed when a story has no replies yet-->
@@ -4079,6 +4085,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ExpandModel__view_more">Näytä lisää</string>
   <string name="StoriesLinkPopup__visit_link">Avaa linkki</string>
   <!--Duration and price information-->
+  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d päivän voimassaolo</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Lähetä lahjamerkki</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4140,8 +4147,20 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
     <item quantity="other">Ryhmätarina · %1$d katsojaa</item>
   </plurals>
   <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">%1$d päivä jäljellä</item>
+    <item quantity="other">%1$d päivää jäljellä</item>
+  </plurals>
   <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">%1$d tunti jäljellä</item>
+    <item quantity="other">%1$d tuntia jäljellä</item>
+  </plurals>
   <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">%1$d minuutti jäljellä</item>
+    <item quantity="other">%1$d minuuttia jäljellä</item>
+  </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Vanhentunut</string>
   <!--EOF-->

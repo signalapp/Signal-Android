@@ -3393,7 +3393,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal didukung oleh orang-orang seperti Anda.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Dukung teknologi yang dibangun untuk Anda—bukan untuk data Anda—dengan bergabung ke komunitas yang menyokongnya.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Dukung teknologi yang dibangun untuk Anda, bukan data Anda, dengan bergabung dengan komunitas yang menyokong Signal.</string>
-  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Buat donasi bulanan yang berulang ke Signal untuk mendukung teknologi yang dibangun untuk Anda, buka data Anda.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Buat donasi bulanan yang berulang ke Signal untuk mendukung teknologi yang dibangun untuk Anda, bukan data Anda.</string>
   <string name="SubscribeFragment__currency">Kurensi</string>
   <string name="SubscribeFragment__more_payment_options">Pilihan Pembayaran Lainnya</string>
   <string name="SubscribeFragment__cancel_subscription">Batalkan Langganan</string>
