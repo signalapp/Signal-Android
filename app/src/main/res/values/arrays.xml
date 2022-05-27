@@ -344,10 +344,17 @@
     </string-array>
 
     <string-array name="pref_message_font_size_values">
-        <item>13</item>
+        <item>14</item>
         <item>16</item>
-        <item>20</item>
-        <item>30</item>
+        <item>22</item>
+        <item>28</item>
+    </string-array>
+
+    <string-array name="pref_message_font_quote_size_values">
+        <item>12</item>
+        <item>14</item>
+        <item>18</item>
+        <item>22</item>
     </string-array>
 
     <string-array name="pref_notification_priority_entries">

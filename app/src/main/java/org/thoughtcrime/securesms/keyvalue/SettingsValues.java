@@ -11,6 +11,7 @@ import androidx.lifecycle.LiveData;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.mms.SentMediaQuality;
@@ -192,6 +193,15 @@ public final class SettingsValues extends SignalStoreValues {
 
   public int getMessageFontSize() {
     return getInteger(MESSAGE_FONT_SIZE, TextSecurePreferences.getMessageBodyTextSize(ApplicationDependencies.getApplication()));
+  }
+
+  public int getMessageQuoteFontSize(@NonNull Context context) {
+    String   messageFontSize = String.valueOf(getMessageFontSize());
+    String[] messageSizes    = context.getResources().getStringArray(R.array.pref_message_font_size_values);
+    String[] quoteSizes      = context.getResources().getStringArray(R.array.pref_message_font_quote_size_values);
+    int      index           = Arrays.binarySearch(messageSizes, messageFontSize);
+
+    return Integer.parseInt(quoteSizes[index]);
   }
 
   public void setMessageFontSize(int messageFontSize) {
@@ -421,10 +431,14 @@ public final class SettingsValues extends SignalStoreValues {
 
     public static CensorshipCircumventionEnabled deserialize(int value) {
       switch (value) {
-        case 0: return DEFAULT;
-        case 1: return ENABLED;
-        case 2: return DISABLED;
-        default: throw new IllegalArgumentException("Bad value: " + value);
+        case 0:
+          return DEFAULT;
+        case 1:
+          return ENABLED;
+        case 2:
+          return DISABLED;
+        default:
+          throw new IllegalArgumentException("Bad value: " + value);
       }
     }
 
@@ -448,10 +462,14 @@ public final class SettingsValues extends SignalStoreValues {
 
     public static @NonNull Theme deserialize(@NonNull String value) {
       switch (value) {
-        case "system": return SYSTEM;
-        case "light":  return LIGHT;
-        case "dark":   return DARK;
-        default:       throw new IllegalArgumentException("Unrecognized value " + value);
+        case "system":
+          return SYSTEM;
+        case "light":
+          return LIGHT;
+        case "dark":
+          return DARK;
+        default:
+          throw new IllegalArgumentException("Unrecognized value " + value);
       }
     }
   }
