@@ -98,8 +98,8 @@
     </style>
 
     <style name="ThemeOverlay.Signal.Button.Tonal" parent="ThemeOverlay.Material3.Button">
-        <item name="colorOnContainer">@color/signal_colorOnSurfaceVariant</item>
-        <item name="colorContainer">@color/signal_colorSurfaceVariant</item>
+        <item name="colorOnContainer">@color/signal_colorOnPrimaryContainer</item>
+        <item name="colorContainer">@color/signal_colorPrimaryContainer</item>
     </style>
 
     <style name="ThemeOverlay.Signal.Button.Small" parent="ThemeOverlay.Material3.Button">
@@ -130,6 +130,7 @@
     <style name="Signal.Widget.Button.Base.Tonal" parent="Widget.Material3.Button.TonalButton">
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Signal.Button.Tonal</item>
     </style>
 
     <style name="Signal.Widget.Button.Large.Tonal" parent="Signal.Widget.Button.Base.Tonal">
@@ -233,7 +234,6 @@
     </style>
 
     <style name="Widget.Signal.CircularProgressIndicator.Medium.Indeterminate.Tonal">
-        <item name="trackColor">@color/transparent</item>
-        <item name="indicatorColor">@color/signal_colorSecondaryContainer</item>
+        <item name="indicatorColor">@color/signal_colorPrimaryContainer</item>
     </style>
 </resources>
