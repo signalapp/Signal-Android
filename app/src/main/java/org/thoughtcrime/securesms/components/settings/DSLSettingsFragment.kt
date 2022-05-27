@@ -36,7 +36,7 @@ abstract class DSLSettingsFragment(
     }
 
     toolbar?.setNavigationOnClickListener {
-      requireActivity().onBackPressed()
+      onToolbarNavigationClicked()
     }
 
     if (menuId != -1) {
@@ -65,6 +65,10 @@ abstract class DSLSettingsFragment(
     }
 
     return Material3OnScrollHelper(requireActivity(), toolbar)
+  }
+
+  open fun onToolbarNavigationClicked() {
+    requireActivity().onBackPressed()
   }
 
   override fun onDestroyView() {

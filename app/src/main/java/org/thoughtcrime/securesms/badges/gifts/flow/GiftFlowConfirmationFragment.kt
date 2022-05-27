@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.badges.gifts.flow
 
 import android.content.DialogInterface
 import android.view.KeyEvent
+import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.activity.OnBackPressedCallback
@@ -109,6 +110,10 @@ class GiftFlowConfirmationFragment :
     textInputViewHolder.onAttachedToWindow()
 
     inputAwareLayout.addOnKeyboardShownListener {
+      if (emojiKeyboard.isEmojiSearchMode) {
+        return@addOnKeyboardShownListener
+      }
+
       inputAwareLayout.hideAttachedInput(true)
       emojiToggle.setImageResource(R.drawable.ic_emoji_smiley_24)
     }
@@ -127,6 +132,25 @@ class GiftFlowConfirmationFragment :
       }
     )
 
+    textInputViewHolder.bind(
+      TextInput.MultilineModel(
+        text = viewModel.snapshot.additionalMessage,
+        hint = DSLSettingsText.from(R.string.GiftFlowConfirmationFragment__add_a_message),
+        onTextChanged = {
+          viewModel.setAdditionalMessage(it)
+        },
+        onEmojiToggleClicked = {
+          if (inputAwareLayout.isKeyboardOpen || (!inputAwareLayout.isKeyboardOpen && !inputAwareLayout.isInputOpen)) {
+            inputAwareLayout.show(it, emojiKeyboard)
+            emojiToggle.setImageResource(R.drawable.ic_keyboard_24)
+          } else {
+            inputAwareLayout.showSoftkey(it)
+            emojiToggle.setImageResource(R.drawable.ic_emoji_smiley_24)
+          }
+        }
+      )
+    )
+
     lifecycleDisposable += viewModel.state.observeOn(AndroidSchedulers.mainThread()).subscribe { state ->
       adapter.submitList(getConfiguration(state).toMappingModelList())
 
@@ -142,25 +166,6 @@ class GiftFlowConfirmationFragment :
       } else {
         processingDonationPaymentDialog.dismiss()
       }
-
-      textInputViewHolder.bind(
-        TextInput.MultilineModel(
-          text = state.additionalMessage,
-          hint = DSLSettingsText.from(R.string.GiftFlowConfirmationFragment__add_a_message),
-          onTextChanged = {
-            viewModel.setAdditionalMessage(it)
-          },
-          onEmojiToggleClicked = {
-            if (inputAwareLayout.isKeyboardOpen || (!inputAwareLayout.isKeyboardOpen && !inputAwareLayout.isInputOpen)) {
-              inputAwareLayout.show(it, emojiKeyboard)
-              emojiToggle.setImageResource(R.drawable.ic_keyboard_24)
-            } else {
-              inputAwareLayout.showSoftkey(it)
-              emojiToggle.setImageResource(R.drawable.ic_emoji_smiley_24)
-            }
-          }
-        )
-      )
     }
 
     lifecycleDisposable.bindTo(viewLifecycleOwner)
@@ -247,6 +252,10 @@ class GiftFlowConfirmationFragment :
         }
       }
     )
+  }
+
+  override fun onToolbarNavigationClicked() {
+    findNavController().popBackStack()
   }
 
   override fun openEmojiSearch() {

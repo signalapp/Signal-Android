@@ -82,6 +82,10 @@ class CircularProgressMaterialButton @JvmOverloads constructor(
   }
 
   private fun transformTo(state: State, animate: Boolean) {
+    if (state == currentState && state == requestedState) {
+      return
+    }
+
     requestedState = state
     if (animator?.isRunning == true) {
       return
