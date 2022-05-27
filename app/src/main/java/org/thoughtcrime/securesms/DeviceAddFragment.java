@@ -14,11 +14,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
 
 import org.signal.qr.QrScannerView;
 import org.signal.qr.kitkat.ScanListener;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.ViewUtil;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 public class DeviceAddFragment extends LoggingFragment {
 
@@ -34,6 +38,7 @@ public class DeviceAddFragment extends LoggingFragment {
     this.overlay      = container.findViewById(R.id.overlay);
     QrScannerView scannerView = container.findViewById(R.id.scanner);
     this.devicesImage = container.findViewById(R.id.devices);
+    ViewCompat.setTransitionName(devicesImage, "devices");
 
     if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
       this.overlay.setOrientation(LinearLayout.HORIZONTAL);
@@ -61,11 +66,18 @@ public class DeviceAddFragment extends LoggingFragment {
     scannerView.start(getViewLifecycleOwner());
 
     lifecycleDisposable.bindTo(getViewLifecycleOwner());
-    lifecycleDisposable.add(scannerView.getQrData().subscribe(qrData -> {
-      if (scanListener != null) {
-        scanListener.onQrDataFound(qrData);
-      }
-    }));
+
+    Disposable qrDisposable = scannerView
+        .getQrData()
+        .distinctUntilChanged()
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(qrData -> {
+          if (scanListener != null) {
+            scanListener.onQrDataFound(qrData);
+          }
+        });
+
+    lifecycleDisposable.add(qrDisposable);
 
     return container;
   }
