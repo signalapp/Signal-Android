@@ -444,40 +444,6 @@
         </attr>
     </declare-styleable>
 
-    <style name="Widget.Signal.Button.TextButton" parent="Widget.AppCompat.Button.Borderless">
-        <item name="android:textAppearance">@style/TextAppearance.Signal.Body2</item>
-    </style>
-
-    <style name="Widget.Signal.Button.TextButton.Drawable">
-        <item name="android:textAlignment">viewStart</item>
-        <item name="android:drawablePadding">20dp</item>
-        <item name="android:background">?attr/selectableItemBackground</item>
-        <item name="android:textAppearance">@style/Signal.Text.Body</item>
-    </style>
-
-    <style name="Widget.Signal.Button.TextButton.Red" >
-        <item name="android:textColor">@color/core_red</item>
-    </style>
-
-    <style name="Widget.Signal.Button.TextButton.Ultramarine" >
-        <item name="android:textColor">@color/ultramarine_text_button</item>
-    </style>
-
-    <style name="Widget.Signal.Button.TextButton.Drawable.Ultramarine" >
-        <item name="android:textColor">@color/ultramarine_text_button</item>
-    </style>
-
-    <style name="Widget.Signal.Button.CalleeDialog" parent="Widget.AppCompat.Button">
-        <item name="android:textColor">@color/core_ultramarine</item>
-        <item name="android:background">@drawable/callee_dialog_button_background</item>
-    </style>
-
-    <style name="Widget.Signal.CardView.PreferenceRow" parent="Widget.MaterialComponents.CardView">
-        <item name="cardCornerRadius">0dp</item>
-        <item name="cardElevation">0dp</item>
-        <item name="cardBackgroundColor">?android:attr/windowBackground</item>
-    </style>
-
     <style name="Widget.Signal.Button.Icon.Circular" parent="Widget.MaterialComponents.Button.Icon">
         <item name="android:layout_width">48dp</item>
         <item name="android:layout_height">48dp</item>

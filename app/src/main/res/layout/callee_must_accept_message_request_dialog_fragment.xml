@@ -26,9 +26,9 @@
         app:lineHeight="22sp"
         tools:text="+1234567890 will get a message request from you. You can call once your message request is accepted." />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/okay"
-        style="@style/Widget.Signal.Button.CalleeDialog"
+        style="@style/Signal.Widget.Button.Large.Tonal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

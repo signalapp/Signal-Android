@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/group_media_card"
-    style="@style/Widget.Signal.CardView.PreferenceRow"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="?android:attr/windowBackground"
+    app:cardCornerRadius="0dp"
+    app:cardElevation="0dp">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -28,8 +30,8 @@
             android:id="@+id/recipient_header_delivery_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:iconColor="@color/signal_inverse_primary"
-            android:layout_gravity="end|center_vertical" />
+            android:layout_gravity="end|center_vertical"
+            app:iconColor="@color/signal_inverse_primary" />
 
     </FrameLayout>
 </androidx.cardview.widget.CardView>
