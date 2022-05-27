@@ -71,11 +71,11 @@
 
                         <TextView
                             android:id="@+id/quote_attachment_name"
-                            style="@style/Signal.Text.BodyMedium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
                             android:maxLines="1"
+                            android:textAppearance="@style/Signal.Text.BodyMedium"
                             android:textColor="@color/core_grey_90"
                             tools:text="The-Amazing-Spider-Man.cba" />
 
@@ -89,18 +89,17 @@
                         android:paddingTop="4dp"
                         android:textAppearance="@style/Signal.Text.BodyMedium"
                         android:textColor="@color/core_black"
-                        android:textSize="14sp"
                         android:visibility="gone"
                         tools:text="Photo"
                         tools:visibility="visible" />
 
                     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
                         android:id="@+id/quote_text"
-                        style="@style/Signal.Text.BodyMedium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:maxLines="2"
+                        android:textAppearance="@style/Signal.Text.BodyMedium"
                         app:emoji_renderMentions="false"
                         tools:text="With great power comes great responsibility."
                         tools:visibility="visible" />
@@ -174,10 +173,10 @@
 
                 <TextView
                     android:id="@+id/quote_missing_text"
-                    style="@style/Signal.Text.MaterialCaption"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/QuoteView_original_missing"
+                    android:textAppearance="@style/Signal.Text.MaterialCaption"
                     android:textColor="@color/core_grey_90" />
 
             </LinearLayout>

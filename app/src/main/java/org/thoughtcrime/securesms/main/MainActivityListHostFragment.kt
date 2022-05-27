@@ -178,6 +178,13 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
     }
   }
 
+  private fun presentToolbarForMultiselect() {
+    _toolbar.visible = false
+    if (_basicToolbar.resolved()) {
+      _basicToolbar.get().visible = false
+    }
+  }
+
   override fun onDestroyView() {
     previousTopToastPopup = null
     super.onDestroyView()
@@ -212,12 +219,16 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
   }
 
   override fun onMultiSelectStarted() {
-    _toolbar.visible = false
+    presentToolbarForMultiselect()
     conversationListTabsViewModel.onMultiSelectStarted()
   }
 
   override fun onMultiSelectFinished() {
-    _toolbar.visible = true
+    val currentDestination: NavDestination? = requireView().findViewById<View>(R.id.fragment_container).findNavController().currentDestination
+    if (currentDestination != null) {
+      presentToolbarForDestination(currentDestination)
+    }
+
     conversationListTabsViewModel.onMultiSelectFinished()
   }
 
@@ -301,22 +312,26 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
     return viewGroup.children.find { it is ActionMenuView }
   }
 
+  private fun presentToolbarForDestination(destination: NavDestination) {
+    when (destination.id) {
+      R.id.conversationListFragment -> {
+        conversationListTabsViewModel.isShowingArchived(false)
+        presentToolbarForConversationListFragment()
+      }
+      R.id.conversationListArchiveFragment -> {
+        conversationListTabsViewModel.isShowingArchived(true)
+        presentToolbarForConversationListArchiveFragment()
+      }
+      R.id.storiesLandingFragment -> {
+        conversationListTabsViewModel.isShowingArchived(false)
+        presentToolbarForStoriesLandingFragment()
+      }
+    }
+  }
+
   private inner class DestinationChangedListener : NavController.OnDestinationChangedListener {
     override fun onDestinationChanged(controller: NavController, destination: NavDestination, arguments: Bundle?) {
-      when (destination.id) {
-        R.id.conversationListFragment -> {
-          conversationListTabsViewModel.isShowingArchived(false)
-          presentToolbarForConversationListFragment()
-        }
-        R.id.conversationListArchiveFragment -> {
-          conversationListTabsViewModel.isShowingArchived(true)
-          presentToolbarForConversationListArchiveFragment()
-        }
-        R.id.storiesLandingFragment -> {
-          conversationListTabsViewModel.isShowingArchived(false)
-          presentToolbarForStoriesLandingFragment()
-        }
-      }
+      presentToolbarForDestination(destination)
     }
   }
 
@@ -325,7 +340,7 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
       Material3OnScrollHelper(
         requireActivity(),
         listOf(_toolbarBackground),
-        listOf(_searchToolbar, _basicToolbar)
+        listOf(_searchToolbar)
       )
     )
   }
