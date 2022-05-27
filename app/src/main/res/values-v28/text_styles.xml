@@ -59,6 +59,7 @@
     </style>
 
     <style name="Signal.Text.LabelMedium" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textSize">13sp</item>
         <item name="android:lineHeight">16sp</item>
         <item name="android:letterSpacing">0.0192</item>
     </style>
