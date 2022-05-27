@@ -2261,8 +2261,8 @@
     <string name="media_overview_activity__no_media">No media</string>
 
     <!-- message_recipients_list_item -->
-    <string name="message_recipients_list_item__view">VIEW</string>
-    <string name="message_recipients_list_item__resend">RESEND</string>
+    <string name="message_recipients_list_item__view">View</string>
+    <string name="message_recipients_list_item__resend">Resend</string>
 
     <!-- Displayed in a toast when user long presses an item in MyStories -->
     <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Copied sent timestamp to clipboard.</string>
