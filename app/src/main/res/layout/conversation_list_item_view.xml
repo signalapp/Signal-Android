@@ -50,6 +50,7 @@
         android:layout_width="@dimen/conversation_list_avatar_size"
         android:layout_height="@dimen/conversation_list_avatar_size"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
         android:contentDescription="@string/conversation_list_item_view__contact_photo_image"
         android:foreground="@drawable/contact_photo_background"
         app:layout_constraintStart_toEndOf="@id/conversation_list_item_check_container"
