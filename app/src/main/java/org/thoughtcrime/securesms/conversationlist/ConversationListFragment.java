@@ -764,6 +764,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     int                 firstVisibleItem = layoutManager != null ? layoutManager.findFirstCompletelyVisibleItemPosition() : -1;
 
     defaultAdapter.submitList(conversations, () -> {
+      if (list == null) {
+        return;
+      }
+
       if (firstVisibleItem == 0) {
         list.scrollToPosition(0);
       }
