@@ -17,7 +17,7 @@
             android:id="@+id/progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:indeterminate="true"></ProgressBar>
+            android:indeterminate="true" />
     </LinearLayout>
 
     <TextView
@@ -47,7 +47,7 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_device"
-        style="@style/Widget.Material3.FloatingActionButton.Large.Primary"
+        style="@style/Widget.Material3.FloatingActionButton.Primary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

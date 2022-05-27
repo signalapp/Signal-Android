@@ -103,7 +103,6 @@ dependencyResolutionManagement {
             alias('roundedimageview').to('com.makeramen:roundedimageview:2.1.0')
             alias('materialish-progress').to('com.pnikosis:materialish-progress:1.5')
             alias('waitingdots').to('pl.tajchert:waitingdots:0.1.0')
-            alias('floatingactionbutton').to('com.melnykov:floatingactionbutton:1.3.0')
             alias('time-duration-picker').to('mobi.upod:time-duration-picker:1.1.3')
             alias('subsampling-scale-image-view').to('com.davemorrissey.labs:subsampling-scale-image-view:3.10.0')
             alias('numberpickerview').to('cn.carbswang.android:NumberPickerView:1.0.9')

@@ -476,7 +476,6 @@ dependencies {
     implementation libs.materialish.progress
     implementation libs.greenrobot.eventbus
     implementation libs.waitingdots
-    implementation libs.floatingactionbutton
     implementation libs.google.zxing.android.integration
     implementation libs.time.duration.picker
     implementation libs.google.zxing.core
