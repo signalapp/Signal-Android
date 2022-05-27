@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.badges.gifts.flow
 
 import android.content.DialogInterface
 import android.view.KeyEvent
-import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.activity.OnBackPressedCallback

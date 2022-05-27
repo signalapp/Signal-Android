@@ -268,14 +268,19 @@ class StoryViewerPageFragment :
         when (parentState.crossfadeSource) {
           is StoryViewerState.CrossfadeSource.TextModel -> storyCrossfader.setSourceView(parentState.crossfadeSource.storyTextPostModel)
           is StoryViewerState.CrossfadeSource.ImageUri -> storyCrossfader.setSourceView(parentState.crossfadeSource.imageUri, parentState.crossfadeSource.imageBlur)
-          else -> onReadyToAnimate()
         }
+
+        onReadyToAnimate()
       } else {
         viewModel.setIsSelectedPage(false)
       }
     }
 
     lifecycleDisposable += viewModel.state.observeOn(AndroidSchedulers.mainThread()).subscribe { state ->
+      if (!state.isReady) {
+        return@subscribe
+      }
+
       if (state.posts.isNotEmpty() && state.selectedPostIndex in state.posts.indices) {
         val post = state.posts[state.selectedPostIndex]
 

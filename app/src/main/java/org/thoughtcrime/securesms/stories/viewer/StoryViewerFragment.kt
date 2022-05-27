@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.viewpager2.widget.ViewPager2
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageFragment
+import org.thoughtcrime.securesms.util.LifecycleDisposable
 
 /**
  * Fragment which manages a vertical pager fragment of stories.
@@ -26,6 +27,8 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
     }
   )
 
+  private val lifecycleDisposable = LifecycleDisposable()
+
   private val storyViewerArgs: StoryViewerArgs by lazy { requireArguments().getParcelable(ARGS)!! }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,7 +41,8 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
       storyPager.isUserInputEnabled = !it
     }
 
-    LiveDataReactiveStreams.fromPublisher(viewModel.state).observe(viewLifecycleOwner) { state ->
+    lifecycleDisposable.bindTo(viewLifecycleOwner)
+    lifecycleDisposable += viewModel.state.observeOn(AndroidSchedulers.mainThread()).subscribe { state ->
       adapter.setPages(state.pages)
       if (state.pages.isNotEmpty() && storyPager.currentItem != state.page) {
         storyPager.setCurrentItem(state.page, state.previousPage > -1)

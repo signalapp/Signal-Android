@@ -7,6 +7,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.NoSuchMessageException
@@ -27,6 +28,10 @@ import org.thoughtcrime.securesms.util.Base64
  * Open for testing.
  */
 open class StoryViewerPageRepository(context: Context) {
+
+  companion object {
+    private val TAG = Log.tag(StoryViewerPageRepository::class.java)
+  }
 
   private val context = context.applicationContext
 
@@ -104,7 +109,11 @@ open class StoryViewerPageRepository(context: Context) {
       }
 
       val conversationObserver = DatabaseObserver.Observer {
-        refresh(SignalDatabase.mms.getMessageRecord(record.id))
+        try {
+          refresh(SignalDatabase.mms.getMessageRecord(record.id))
+        } catch (e: NoSuchMessageException) {
+          Log.w(TAG, "Message deleted during content refresh.", e)
+        }
       }
 
       ApplicationDependencies.getDatabaseObserver().registerConversationObserver(record.threadId, conversationObserver)
