@@ -80,6 +80,7 @@ public class SubmitDebugLogRepository {
     add(new LogSectionNotificationProfiles());
     add(new LogSectionExoPlayerPool());
     add(new LogSectionKeyPreferences());
+    add(new LogSectionSMS());
     add(new LogSectionBadges());
     add(new LogSectionPermissions());
     add(new LogSectionTrace());

@@ -8,7 +8,6 @@ import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 
 final class LogSectionKeyPreferences implements LogSection {
 
@@ -22,8 +21,6 @@ final class LogSectionKeyPreferences implements LogSection {
     return new StringBuilder().append("Screen Lock          : ").append(TextSecurePreferences.isScreenLockEnabled(context)).append("\n")
                               .append("Screen Lock Timeout  : ").append(TextSecurePreferences.getScreenLockTimeout(context)).append("\n")
                               .append("Password Disabled    : ").append(TextSecurePreferences.isPasswordDisabled(context)).append("\n")
-                              .append("WiFi SMS             : ").append(SignalStore.settings().isWifiCallingCompatibilityModeEnabled()).append("\n")
-                              .append("Default SMS          : ").append(Util.isDefaultSmsProvider(context)).append("\n")
                               .append("Prefer Contact Photos: ").append(SignalStore.settings().isPreferSystemContactPhotos()).append("\n")
                               .append("Call Bandwidth Mode  : ").append(SignalStore.settings().getCallBandwidthMode()).append("\n")
                               .append("Client Deprecated    : ").append(SignalStore.misc().isClientDeprecated()).append("\n")
