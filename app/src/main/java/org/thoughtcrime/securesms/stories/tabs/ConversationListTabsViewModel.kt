@@ -8,6 +8,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
+import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.livedata.Store
 
 class ConversationListTabsViewModel(repository: ConversationListTabRepository) : ViewModel() {
@@ -18,7 +19,7 @@ class ConversationListTabsViewModel(repository: ConversationListTabRepository) :
   val disposables = CompositeDisposable()
 
   private val internalTabClickEvents: Subject<ConversationListTab> = PublishSubject.create()
-  val tabClickEvents: Observable<ConversationListTab> = internalTabClickEvents
+  val tabClickEvents: Observable<ConversationListTab> = internalTabClickEvents.filter { Stories.isFeatureEnabled() }
 
   init {
     disposables += repository.getNumberOfUnreadConversations().subscribe { unreadChats ->
