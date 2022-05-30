@@ -18,12 +18,21 @@ class QrProcessor {
 
   private val reader = QRCodeReader()
 
+  private var previousHeight = 0
+  private var previousWidth = 0
+
   fun getScannedData(
     data: ByteArray,
     width: Int,
     height: Int
   ): String? {
     try {
+      if (width != previousWidth || height != previousHeight) {
+        Log.i(TAG, "Processing $width x $height image, data: ${data.size}")
+        previousWidth = width
+        previousHeight = height
+      }
+
       val source = PlanarYUVLuminanceSource(data, width, height, 0, 0, width, height, false)
 
       val bitmap = BinaryBitmap(HybridBinarizer(source))
@@ -33,11 +42,11 @@ class QrProcessor {
         return result.text
       }
     } catch (e: NullPointerException) {
-      Log.w(TAG, e)
+      Log.w(TAG, "Random null", e)
     } catch (e: ChecksumException) {
-      Log.w(TAG, e)
+      Log.w(TAG, "QR code read and decoded, but checksum failed", e)
     } catch (e: FormatException) {
-      Log.w(TAG, e)
+      Log.w(TAG, "Thrown when a barcode was successfully detected, but some aspect of the content did not conform to the barcodes format rules.", e)
     } catch (e: NotFoundException) {
       // Thanks ZXing...
     }

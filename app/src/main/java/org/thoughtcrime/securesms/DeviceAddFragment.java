@@ -28,23 +28,16 @@ public class DeviceAddFragment extends LoggingFragment {
 
   private final LifecycleDisposable lifecycleDisposable = new LifecycleDisposable();
 
-  private LinearLayout  overlay;
   private ImageView     devicesImage;
   private ScanListener  scanListener;
 
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
     ViewGroup container = ViewUtil.inflate(inflater, viewGroup, R.layout.device_add_fragment);
-    this.overlay      = container.findViewById(R.id.overlay);
+
     QrScannerView scannerView = container.findViewById(R.id.scanner);
     this.devicesImage = container.findViewById(R.id.devices);
     ViewCompat.setTransitionName(devicesImage, "devices");
-
-    if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-      this.overlay.setOrientation(LinearLayout.HORIZONTAL);
-    } else {
-      this.overlay.setOrientation(LinearLayout.VERTICAL);
-    }
 
     if (Build.VERSION.SDK_INT >= 21) {
       container.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
@@ -80,17 +73,6 @@ public class DeviceAddFragment extends LoggingFragment {
     lifecycleDisposable.add(qrDisposable);
 
     return container;
-  }
-
-  @Override
-  public void onConfigurationChanged(@NonNull Configuration newConfiguration) {
-    super.onConfigurationChanged(newConfiguration);
-
-    if (newConfiguration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-      overlay.setOrientation(LinearLayout.HORIZONTAL);
-    } else {
-      overlay.setOrientation(LinearLayout.VERTICAL);
-    }
   }
 
   public ImageView getDevicesImage() {

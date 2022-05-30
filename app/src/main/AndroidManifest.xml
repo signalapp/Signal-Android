@@ -471,6 +471,7 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
      <activity android:name=".DeviceActivity"
+               android:screenOrientation="portrait"
                android:label="@string/AndroidManifest__linked_devices"
                android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
