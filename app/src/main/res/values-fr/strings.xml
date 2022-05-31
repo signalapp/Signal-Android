@@ -20,7 +20,7 @@
   <string name="ApplicationPreferencesActivity_unregistering">Annulation de l’inscription</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Annulation de l’inscription aux messages et appels Signal…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Désactiver les messages et appels Signal ?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Désactiver les messages et appels Signal en vous désinscrivant du serveur. Vous devrez réinscrire votre numéro de téléphone pour les utiliser de nouveau à l’avenir.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Désactivez les messages et appels Signal en vous désinscrivant du serveur. Vous devrez réinscrire votre numéro de téléphone pour les réutiliser à l’avenir.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erreur de connexion au serveur.</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Les textos sont activés</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Touchez pour changer votre appli de texto par défaut</string>
@@ -993,7 +993,7 @@
   <string name="MediaRepository__camera">Appareil photo</string>
   <!--MessageDecryptionUtil-->
   <string name="MessageDecryptionUtil_failed_to_decrypt_message">Échec de déchiffrement du message</string>
-  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Touchez pour envoyer un journal de débogage</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Appuyez pour envoyer un journal de débogage</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Inconnu</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vous avez reçu un message chiffré avec une ancienne version de Signal qui n’est plus prise en charge. Veuillez demander à l’expéditeur de mettre Signal à jour vers la version la plus récente et de renvoyer le message.</string>
@@ -1926,11 +1926,11 @@
   <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Activer les notifications d’appels</string>
   <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Activer l’activité d’arrière-plan</string>
   <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Tout semble en ordre maintenant !</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Pour recevoir les notifications d’appel, touchez ici et activez l’option « Afficher les notifications ».</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Pour recevoir les notifications d’appel, appuyez ici et activez l’option « Afficher les notifications ».</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Pour recevoir les notifications d\'appel, touchez ici, activez les notifications et assurez-vous que le son et les fenêtres surgissantes sont activées.</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Pour recevoir les notifications d’appel, touchez ici et activez l’activité d’arrière-plan dans la section « Batterie/Pile » des paramètres.</string>
   <string name="EnableCallNotificationSettingsDialog__settings">Paramètres</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Pour recevoir les notifications d’appel, touchez Réglages et activez l’option « Afficher les notifications ».</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Pour recevoir les notifications d’appel, appuyez sur Réglages et activez l’option « Afficher les notifications ».</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Pour recevoir les notifications d\'appel, touchez Paramètres, activez les notifications et assurez-vous que le son et les fenêtres surgissantes sont activées.</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Pour recevoir les notifications d’appel, touchez Paramètres et activez l’activité d’arrière-plan dans la section « Batterie/Pile » des paramètres.</string>
   <!--country_selection_fragment-->
@@ -2846,11 +2846,11 @@
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Ouvrez Signal sur votre ancien téléphone Android</string>
   <string name="NewDeviceTransferInstructions__continue">Poursuivre</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Touchez votre photo de profil dans le coin supérieur gauche pour ouvrir les paramètres</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Appuyez sur votre photo de profil dans le coin supérieur gauche pour ouvrir les paramètres</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_account">Touchez « Compte »</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">Appuyez sur « Compte »</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Touchez « Transfert de compte » puis « Continuer » sur les deux appareils</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Appuyez sur « Transfert de compte » puis « Poursuivre » sur les deux appareils</string>
   <!--NewDeviceTransferSetupFragment-->
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Préparation de la connexion à votre ancien appareil Android…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Cela prend un moment, mais ça devrait bientôt être prêt</string>
@@ -2879,7 +2879,7 @@
   <string name="DeviceTransferSetup__retry">Réessayer</string>
   <string name="DeviceTransferSetup__submit_debug_logs">Envoyer les journaux de débogage</string>
   <string name="DeviceTransferSetup__verify_code">Code de confirmation</string>
-  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Confirmiez que le code ci-dessous est le même sur chacun de vos appareils. Puis, touchez Continuer.</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Confirmez que le code ci-dessous est le même sur chacun de vos appareils. Puis appuyez sur Poursuivre.</string>
   <string name="DeviceTransferSetup__the_numbers_do_not_match">Les chiffres ne correspondent pas</string>
   <string name="DeviceTransferSetup__continue">Poursuivre</string>
   <string name="DeviceTransferSetup__number_is_not_the_same">Le nombre n’est pas le même</string>
@@ -2898,8 +2898,8 @@
   <string name="DeviceTransferSetup__go_to_support_page">Accédez à la page d’assistance</string>
   <string name="DeviceTransferSetup__try_again">Réessayer</string>
   <string name="DeviceTransferSetup__waiting_for_other_device">En attente d’un autre appareil</string>
-  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Touchez Continuer sur votre autre appareil pour commencer le transfert.</string>
-  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Touchez Continuer sur votre autre appareil…</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Appuyez sur Poursuivre sur votre autre appareil pour commencer le transfert.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Appuyez sur Poursuivre sur votre autre appareil…</string>
   <!--NewDeviceTransferFragment-->
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Impossible de transférer d’une nouvelle version de Signal</string>
   <!--DeviceTransferFragment-->
@@ -2917,13 +2917,13 @@
   <string name="DeviceTransfer__unable_to_transfer">Impossible de transférer</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Transférer le compte</string>
-  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Vous pouvez transférer votre compte Signal lors de la configuration de Signal sur un nouvel appareil Android. Avec de continuer :</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Vous pouvez transférer votre compte Signal lors de la configuration de Signal sur un nouvel appareil Android. Avant de continuer :</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
   <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Téléchargez Signal sur votre nouvel appareil Android</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Touchez « Transférer ou restaurer le compte »</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Appuyez sur « Transférer ou restaurer le compte »</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
-  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Sélectionnez « Transférer depuis un appareil Android » quand vous y êtes invité, puis « Continuer ». Gardez les deux appareils à proximité.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Sélectionnez « Transférer depuis un appareil Android » quand vous y êtes invité, puis « Poursuivre ». Gardez les deux appareils à proximité.</string>
   <string name="OldDeviceTransferInstructions__continue">Poursuivre</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__transfer_complete">Transfert terminé</string>
@@ -3394,7 +3394,7 @@ Nouvelle tentative…</string>
   <string name="Donate2022Q2Megaphone_not_now">Pas maintenant</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">Personnaliser les réactions</string>
-  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Touchez pour remplacer un émoji</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Appuyez pour remplacer un émoji</string>
   <string name="EditReactionsFragment__reset">Réinitialiser</string>
   <string name="EditReactionsFragment_save">Enregistrer</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Adapter automatiquement la couleur au fond d’écran</string>
@@ -3458,7 +3458,7 @@ Nouvelle tentative…</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Conversation en sourdine pour toujours</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Numéro de téléphone copié dans le presse-papier.</string>
   <string name="ConversationSettingsFragment__phone_number">Numéro de téléphone</string>
-  <string name="ConversationSettingsFragment__get_badges">Obtenez des macarons pour votre profil en soutenant Signal. Touchez un macaron pour en savoir plus.</string>
+  <string name="ConversationSettingsFragment__get_badges">Obtenez des macarons pour votre profil en soutenant Signal. Appuyez sur un macaron pour en savoir plus.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Ajouter des membres</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Modifier les informations</string>
@@ -3569,8 +3569,8 @@ Nouvelle tentative…</string>
   <string name="ImageEditorHud__delete">Supprimer</string>
   <string name="ImageEditorHud__toggle_between_text_styles">Basculer entre les styles de texte</string>
   <string name="MediaCountIndicatorButton__send">Envoyer</string>
-  <string name="MediaReviewSelectedItem__tap_to_remove">Touchez pour retirer</string>
-  <string name="MediaReviewSelectedItem__tap_to_select">Touchez pour sélectionner</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Appuyez pour retirer</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Appuyez pour sélectionner</string>
   <string name="MediaReviewImagePageFragment__discard">Abandonner</string>
   <string name="MediaReviewImagePageFragment__discard_changes">Abandonner les changements ?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Vous perdrez toutes les modifications apportées à cette photo.</string>
@@ -3937,7 +3937,7 @@ Nouvelle tentative…</string>
   <!--Label when a story fails to send-->
   <string name="StoriesLandingItem__send_failed">Échec d’envoi</string>
   <!--Status label when a story fails to send indicating user action to retry-->
-  <string name="StoriesLandingItem__tap_to_retry">Touchez pour réessayer</string>
+  <string name="StoriesLandingItem__tap_to_retry">Appuyez pour réessayer</string>
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Cacher l’histoire ?</string>
   <!--Message of dialog confirming decision to hide a story-->

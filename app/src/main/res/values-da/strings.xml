@@ -2119,7 +2119,7 @@ nummer (%s) er ugyldigt</string>
   <string name="preferences__pref_use_address_book_photos">Brug billeder fra adressebog</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">Vis kontaktbilleder fra din adressebog, hvis de er tilgængelige.</string>
   <string name="preferences__generate_link_previews">Generér forhåndsvisninger af links</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hent forhåndsvisninger af links direkte fra websteder til beskeder, som du sender.</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hent forhåndsvisninger direkte fra websteder for links, du sender i beskeder.</string>
   <string name="preferences__choose_identity">Vælg identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vælg din kontakt fra kontaktlisten</string>
   <string name="preferences__change_passphrase">Skift adgangssætning</string>

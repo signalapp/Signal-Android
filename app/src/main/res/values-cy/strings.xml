@@ -1280,6 +1280,7 @@ Anfon neges heb ei diogelu?</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Nid oes modd defnyddio\'r Hen Grŵp hwn mwyach oherwydd ei fod yn rhy fawr. Uchafswm maint y grŵp yw %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Parhewch â\'ch sgwrs gyda %1$s a rhannwch eich enw a\'ch llun gyda nhw?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ymuno â\'r grŵp hwn a rhannu eich enw a llun gyda\'i aelodau? Byddan nhw ddim yn gwybod eich bod wedi gweld eu negeseuon nes eich bod wedi derbyn.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Ymuno â\'r grŵp hwn a rhannu eich enw a\'ch llun gyda\'i aelodau? Fyddwch chi ddim yn gweld eu negeseuon nes i chi dderbyn.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ymuno â\'r grŵp hwn? Ni fyddant yn gwybod eich bod wedi gweld eu negeseuon nes i chi dderbyn.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Dadrwystro\'r grŵp a rhannu eich enw a llun gyda\'i aelodau? Fyddwch chi ddim yn derbyn unrhyw negeseuon nes i chi eu dadrwystro.</string>
   <string name="MessageRequestProfileView_view">Golwg</string>
@@ -1434,8 +1435,11 @@ Anfon neges heb ei diogelu?</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Yn Ailgysylltu…</string>
   <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">Gwrthodwyd caniatâd blueooth</string>
   <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Galluogwch ganiatâ \"Dyfeisiau gerllaw\" i ddefnyddio bluetooth yn ystod galwad.</string>
   <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Agor y gosodiadau</string>
   <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
   <string name="WebRtcCallActivity__not_now">Nid nawr</string>
   <!--WebRtcCallView-->
@@ -1838,6 +1842,7 @@ Anfon neges heb ei diogelu?</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Cais am neges</string>
   <string name="SingleRecipientNotificationBuilder_you">Chi</string>
   <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">Stori • %1$s</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Chwarae fideo</string>
   <string name="ThumbnailView_Has_a_caption_description">Mae ganddo gapsiwn</string>
@@ -4110,6 +4115,7 @@ Anfon neges heb ei diogelu?</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Ymateb</string>
   <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">Ateb i\'r grŵp</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Neb wedi\'i darllen eto</string>
   <!--Displayed when a story has no replies yet-->
@@ -4305,6 +4311,7 @@ Anfon neges heb ei diogelu?</string>
   <string name="ExpandModel__view_more">Gweld rhagor</string>
   <string name="StoriesLinkPopup__visit_link">Ymweld â\'r ddolen</string>
   <!--Duration and price information-->
+  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">Hyd dyddiad %1$s · %2$d</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Anfon bathodyn rhodd</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4370,8 +4377,26 @@ Anfon neges heb ei diogelu?</string>
     <item quantity="other">Stori Grŵp · %1$d darllenydd</item>
   </plurals>
   <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">%1$d diwrnod yn weddill</item>
+    <item quantity="two">%1$d diwrnod yn weddill</item>
+    <item quantity="many">%1$d diwrnod yn weddill</item>
+    <item quantity="other">%1$d diwrnod yn weddill</item>
+  </plurals>
   <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">%1$d awr yn weddill</item>
+    <item quantity="two">%1$d awr yn weddill</item>
+    <item quantity="many">%1$d awr yn weddill</item>
+    <item quantity="other">%1$d awr yn weddill</item>
+  </plurals>
   <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">%1$d munud yn weddill</item>
+    <item quantity="two">%1$d munud yn weddill</item>
+    <item quantity="many">%1$d munud yn weddill</item>
+    <item quantity="other">%1$d munud yn weddill</item>
+  </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Daeth i Ben</string>
   <!--EOF-->

@@ -3957,9 +3957,13 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <string name="StorySlateView__couldnt_load_content">Tidak dapat memuat konten</string>
   <!--Toasted when the user externally shares to a text story successfully-->
+  <string name="TextStoryPostCreationFragment__sent_story">Cerita terkirim</string>
   <!--Toasted when the user external share to a text story fails-->
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">Gagal untuk mengirim cerita</string>
   <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">Tampilkan cerita</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">Perlihatkan profil foto</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Matikan penghindaran sensor?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -3969,41 +3973,61 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Matikan</string>
   <!--Conversation Item label for when you react to someone else\'s story-->
+  <string name="ConversationItem__you_reacted_to_s_story">Anda bereaksi terhadapt cerita %1$s</string>
   <!--Conversation Item label for reactions to your story-->
+  <string name="ConversationItem__reacted_to_your_story">Bereaksi terhadap cerita Anda</string>
   <!--Conversation Item label for reactions to an unavailable story-->
+  <string name="ConversationItem__reacted_to_a_story">Bereaksi terhadap sebuah cerita</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="ExpandModel__view_more">Perlihatkan lebih banyak</string>
   <string name="StoriesLinkPopup__visit_link">Kunjungi tautan</string>
   <!--Duration and price information-->
+  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d durasi hari</string> -->
   <!--Tagline for gift row items-->
+  <string name="GiftRowItem__send_a_gift_badge">Kirim lencana hadiah</string>
   <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">Hadiahkan sebuah lencana</string>
   <!--Description text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">Hadiahkan seseorang lencana dengan membuat donasi ke Signal atas nama mereka. Mereka akan mendapatkan lencana untuk diperlihatkan dalam profil foto mereka.</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Berikutnya</string>
   <!--Title text on choose recipient page for badge gifting-->
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Pilih penerima</string>
   <!--Title text on confirm gift page-->
+  <string name="GiftFlowConfirmationFragment__confirm_gift">Konfirmasi hadiah</string>
   <!--Heading text specifying who the gift will be sent to-->
   <string name="GiftFlowConfirmationFragment__send_to">Kirim ke</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Hadiah Anda akan dikirim dalam pesan 1 dengan 1 ke penerima. Tambahkan pesan Anda di bawah.</string>
   <!--Text explaining that this gift is a one time donation-->
   <string name="GiftFlowConfirmationFragment__one_time_donation">Donasi satu-kali</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Tambah pesan</string>
   <!--Displayed in the dialog while verifying the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__verifying_recipient">Memverifikasi penerima…</string>
   <!--Title for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s mengirim Anda hadiah</string>
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Terima kasih untuk dukungan Anda!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Anda telah mendapatkan lencana hadiah dari %1$s! Bantu Signal membangun kesadaran dengan menampilkan lencana ini pada profil Anda.</string>
   <!--Description for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Anda telah menghadiahi lencana ke %1$s. Saat mereka menerimanya, mereka akan diberikan pilihan untuk memperlihatkan atau menyembunyikan lencana mereka.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
   <string name="ViewReceivedGiftSheet__redeem">Tukarkan</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">Nanti saja</string>
   <!--Dialog text while redeeming a gift-->
+  <string name="ViewReceivedGiftSheet__redeeming_gift">Meredeem hadiah…</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <string name="ConversationFragment__you_can_redeem_your_badge_later">Anda bisa meredeem lencana Anda nanti.</string>
   <!--Description text in gift thanks sheet-->
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Anda telah menghadiahi lencana ke %1$s. Saat mereka menerimanya, mereka akan diberikan pilihan untuk memperlihatkan atau menyembunyikan lencana mereka.</string>
   <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Hadiah Anda telah kadaluwarsa</string>
   <!--Expired gift sheet top description text-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Lencana hadiah Anda telah kadaluwarsa, dan tidak lagi terlihat oleh orang lain pada profil Anda.</string>
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">Untuk melanjutkan dukungan atas teknologi yang dibuat untuk Anda, mohon mempertimbangkan untuk menjadi Penyokong bulanan.</string>
   <!--Expired gift sheet make a monthly donation button-->
@@ -4011,10 +4035,26 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Nanti saja</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="other">Cerita Privat · %1$d penonton</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="other">Cerita Grup · %1$d penonton</item>
+  </plurals>
   <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="other">%1$d hari tersisa</item>
+  </plurals>
   <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="other">%1$d jam tersisa</item>
+  </plurals>
   <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="other">%1$d menit tersisa</item>
+  </plurals>
   <!--Gift expiry expired-->
+  <string name="Gifts__expired">Kadaluwarsa</string>
   <!--EOF-->
 </resources>

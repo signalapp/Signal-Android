@@ -1218,6 +1218,7 @@
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Este Grupo Legado não pode mais ser usado porque é muito grande. O tamanho máximo de grupos é %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continuar sua conversa com %1$s e exibir seu nome e foto para essa pessoa?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Você quer entrar nesse grupo e exibir seu nome e foto para os membros dele? Eles não saberão que você visualizou as mensagens deles até que você aceite.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Participe nesse grupo e compartilhe seu nome e foto com os membros dele? Não poderá ver as mensagens deles até que você aceite.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Entrar nesse grupo? Eles não saberão que você leu as mensagens deles até que você aceite.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Você quer desbloquear esse grupo e compartilhar seu nome e foto com os membros dele? Você não receberá nenhuma mensagem deles até que desbloqueie o grupo.</string>
   <string name="MessageRequestProfileView_view">Exibir</string>
@@ -1366,8 +1367,11 @@
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Reconectando…</string>
   <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">Permissão do Bluetooth negada</string>
   <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Por favor, ative a permissão de \"Dispositivos próximos\" para usar o bluetooth durante uma chamada.</string>
   <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Mostrar configurações</string>
   <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
   <string name="WebRtcCallActivity__not_now">Agora não</string>
   <!--WebRtcCallView-->
@@ -1762,6 +1766,7 @@
   <string name="SingleRecipientNotificationBuilder_message_request">Solicitação de conversa</string>
   <string name="SingleRecipientNotificationBuilder_you">Você</string>
   <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • Story</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Reproduzir vídeo</string>
   <string name="ThumbnailView_Has_a_caption_description">Tem uma legenda</string>
@@ -4001,6 +4006,7 @@
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Responder</string>
   <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">Responder ao grupo</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Ainda não há visualizações</string>
   <!--Displayed when a story has no replies yet-->
@@ -4194,6 +4200,7 @@
   <string name="ExpandModel__view_more">Veja mais</string>
   <string name="StoriesLinkPopup__visit_link">Abrir link</string>
   <!--Duration and price information-->
+  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d dia(s) de duração</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Enviar um selo de presente</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4257,8 +4264,23 @@
     <item quantity="other">Story do grupo · %1$d visualizações</item>
   </plurals>
   <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">%1$d dia restante</item>
+    <item quantity="many">%1$d dias restantes</item>
+    <item quantity="other">%1$d dias restantes</item>
+  </plurals>
   <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">%1$d hora restante</item>
+    <item quantity="many">%1$d horas restantes</item>
+    <item quantity="other">%1$d horas restantes</item>
+  </plurals>
   <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">%1$d minuto restante</item>
+    <item quantity="many">%1$d minutos restantes</item>
+    <item quantity="other">%1$d minutos restantes</item>
+  </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Perdeu a validade</string>
   <!--EOF-->
