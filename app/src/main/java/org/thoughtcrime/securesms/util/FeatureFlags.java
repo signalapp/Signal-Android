@@ -97,6 +97,7 @@ public final class FeatureFlags {
   private static final String USE_FCM_FOREGROUND_SERVICE        = "android.useFcmForegroundService.3";
   private static final String STORIES_AUTO_DOWNLOAD_MAXIMUM     = "android.stories.autoDownloadMaximum";
   private static final String GIFT_BADGES                       = "android.giftBadges.3";
+  private static final String USE_QR_LEGACY_SCAN                = "android.qr.legacy_scan";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -146,7 +147,8 @@ public final class FeatureFlags {
       PAYMENTS_COUNTRY_BLOCKLIST,
       USE_FCM_FOREGROUND_SERVICE,
       STORIES_AUTO_DOWNLOAD_MAXIMUM,
-      GIFT_BADGES
+      GIFT_BADGES,
+      USE_QR_LEGACY_SCAN
   );
 
   @VisibleForTesting
@@ -206,7 +208,8 @@ public final class FeatureFlags {
       USE_HARDWARE_AEC_IF_OLD,
       USE_AEC3,
       PAYMENTS_COUNTRY_BLOCKLIST,
-      USE_FCM_FOREGROUND_SERVICE
+      USE_FCM_FOREGROUND_SERVICE,
+      USE_QR_LEGACY_SCAN
   );
 
   /**
@@ -508,6 +511,10 @@ public final class FeatureFlags {
    */
   public static boolean giftBadges() {
     return getBoolean(GIFT_BADGES, Environment.IS_STAGING);
+  }
+
+  public static boolean useQrLegacyScan() {
+    return getBoolean(USE_QR_LEGACY_SCAN, false);
   }
 
   /** Only for rendering debug info. */
