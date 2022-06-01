@@ -74,12 +74,12 @@ internal class ScannerView21 constructor(
     val preview = Preview.Builder().build()
 
     val imageAnalysis = ImageAnalysis.Builder()
-      .setTargetAspectRatio(AspectRatio.RATIO_16_9)
+      .setTargetAspectRatio(AspectRatio.RATIO_4_3)
       .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
       .build()
 
     imageAnalysis.setAnalyzer(analyzerExecutor) { proxy ->
-      val buffer = proxy.planes[0].buffer
+      val buffer = proxy.planes[0].buffer.apply { rewind() }
       val bytes = ByteArray(buffer.capacity())
       buffer.get(bytes)
 

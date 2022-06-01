@@ -36,7 +36,7 @@ class QrProcessor {
       val source = PlanarYUVLuminanceSource(data, width, height, 0, 0, width, height, false)
 
       val bitmap = BinaryBitmap(HybridBinarizer(source))
-      val result: Result? = reader.decode(bitmap, emptyMap<DecodeHintType, String>())
+      val result: Result? = reader.decode(bitmap, mapOf(DecodeHintType.TRY_HARDER to true, DecodeHintType.CHARACTER_SET to "ISO-8859-1"))
 
       if (result != null) {
         return result.text
