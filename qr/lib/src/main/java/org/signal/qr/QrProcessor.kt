@@ -1,9 +1,11 @@
 package org.signal.qr
 
+import androidx.camera.core.ImageProxy
 import com.google.zxing.BinaryBitmap
 import com.google.zxing.ChecksumException
 import com.google.zxing.DecodeHintType
 import com.google.zxing.FormatException
+import com.google.zxing.LuminanceSource
 import com.google.zxing.NotFoundException
 import com.google.zxing.PlanarYUVLuminanceSource
 import com.google.zxing.Result
@@ -21,19 +23,25 @@ class QrProcessor {
   private var previousHeight = 0
   private var previousWidth = 0
 
+  fun getScannedData(proxy: ImageProxy): String? {
+    return getScannedData(ImageProxyLuminanceSource(proxy))
+  }
+
   fun getScannedData(
     data: ByteArray,
     width: Int,
     height: Int
   ): String? {
-    try {
-      if (width != previousWidth || height != previousHeight) {
-        Log.i(TAG, "Processing $width x $height image, data: ${data.size}")
-        previousWidth = width
-        previousHeight = height
-      }
+    return getScannedData(PlanarYUVLuminanceSource(data, width, height, 0, 0, width, height, false))
+  }
 
-      val source = PlanarYUVLuminanceSource(data, width, height, 0, 0, width, height, false)
+  private fun getScannedData(source: LuminanceSource): String? {
+    try {
+      if (source.width != previousWidth || source.height != previousHeight) {
+        Log.i(TAG, "Processing ${source.width} x ${source.height} image")
+        previousWidth = source.width
+        previousHeight = source.height
+      }
 
       val bitmap = BinaryBitmap(HybridBinarizer(source))
       val result: Result? = reader.decode(bitmap, mapOf(DecodeHintType.TRY_HARDER to true, DecodeHintType.CHARACTER_SET to "ISO-8859-1"))
