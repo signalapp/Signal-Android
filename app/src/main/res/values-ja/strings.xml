@@ -2034,6 +2034,7 @@
   <string name="preferences__led_color_unknown">不明</string>
   <string name="preferences__pref_led_blink_title">LED点滅パターン</string>
   <string name="preferences__customize">カスタマイズ</string>
+  <string name="preferences__change_sound_and_vibration">test</string>
   <string name="preferences__sound">着信音</string>
   <string name="preferences__silent">無音</string>
   <string name="preferences__default">既定</string>

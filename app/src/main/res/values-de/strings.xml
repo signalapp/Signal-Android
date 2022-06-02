@@ -4100,7 +4100,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Text explaining that this gift is a one time donation-->
   <string name="GiftFlowConfirmationFragment__one_time_donation">Einmalspende</string>
   <!--Hint for add message input-->
-  <string name="GiftFlowConfirmationFragment__add_a_message">Füg eine Nachricht hinzu</string>
+  <string name="GiftFlowConfirmationFragment__add_a_message">Füge eine Nachricht hinzu</string>
   <!--Displayed in the dialog while verifying the chosen recipient-->
   <string name="GiftFlowConfirmationFragment__verifying_recipient">Empänger wird verifiziert …</string>
   <!--Title for sheet shown when opening a redeemed gift-->
@@ -4143,18 +4143,18 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   </plurals>
   <!--Gift expiry days remaining-->
   <plurals name="Gifts__d_days_remaining">
-    <item quantity="one">%1$d verbleibender Tag</item>
-    <item quantity="other">%1$d verbleibende Tage</item>
+    <item quantity="one">%1$d Tag verbleibend</item>
+    <item quantity="other">%1$d Tage verbleibend</item>
   </plurals>
   <!--Gift expiry hours remaining-->
   <plurals name="Gifts__d_hours_remaining">
-    <item quantity="one">%1$d verbleibende Stunde</item>
-    <item quantity="other">%1$d verbleibende Stunden</item>
+    <item quantity="one">%1$d Stunde verbleibend</item>
+    <item quantity="other">%1$d Stunden verbleibend</item>
   </plurals>
   <!--Gift expiry minutes remaining-->
   <plurals name="Gifts__d_minutes_remaining">
-    <item quantity="one">%1$d verbleibende Minute</item>
-    <item quantity="other">%1$d verbleibende Minuten</item>
+    <item quantity="one">%1$d Minute verbleibend</item>
+    <item quantity="other">%1$d Minuten verbleibend</item>
   </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Abgelaufen</string>
