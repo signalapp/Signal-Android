@@ -16,9 +16,8 @@ import org.signal.core.util.BreakIteratorCompat;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.TransportOption;
-import org.thoughtcrime.securesms.TransportOptions;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey;
+import org.thoughtcrime.securesms.conversation.MessageSendType;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
@@ -98,13 +97,13 @@ public final class MultiShareSender {
 
       long            threadId           = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
       List<Mention>   mentions           = getValidMentionsForRecipient(recipient, multiShareArgs.getMentions());
-      TransportOption transport          = resolveTransportOption(context, recipient);
-      boolean         forceSms           = recipient.isForceSmsSelection() && transport.isSms();
-      int             subscriptionId     = transport.getSimSubscriptionId().orElse(-1);
+      MessageSendType sendType           = resolveTransportOption(context, recipient);
+      boolean         forceSms           = recipient.isForceSmsSelection() && sendType.usesSmsTransport();
+      int             subscriptionId     = sendType.getSimSubscriptionIdOr(-1);
       long            expiresIn          = TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds());
-      boolean         needsSplit         = !transport.isSms() &&
-                                           message != null    &&
-                                           message.length() > transport.calculateCharacters(message).maxPrimaryMessageSize;
+      boolean         needsSplit         = !sendType.usesSmsTransport() &&
+                                           message != null              &&
+                                           message.length() > sendType.calculateCharacters(message).maxPrimaryMessageSize;
       boolean         hasMmsMedia        = !multiShareArgs.getMedia().isEmpty()                                              ||
                                            (multiShareArgs.getDataUri() != null && multiShareArgs.getDataUri() != Uri.EMPTY) ||
                                            multiShareArgs.getStickerLocator() != null                                        ||
@@ -119,8 +118,8 @@ public final class MultiShareSender {
 
       if ((recipient.isMmsGroup() || recipient.getEmail().isPresent()) && !isMmsEnabled) {
         results.add(new MultiShareSendResult(recipientSearchKey, MultiShareSendResult.Type.MMS_NOT_ENABLED));
-      } else if (hasMmsMedia && transport.isSms() || hasPushMedia && !transport.isSms() || canSendAsTextStory) {
-        sendMediaMessageOrCollectStoryToBatch(context, multiShareArgs, recipient, slideDeck, transport, threadId, forceSms, expiresIn, multiShareArgs.isViewOnce(), subscriptionId, mentions, recipientSearchKey.isStory(), sentTimestamp, canSendAsTextStory, storiesBatch);
+      } else if (hasMmsMedia && sendType.usesSmsTransport() || hasPushMedia && !sendType.usesSmsTransport() || canSendAsTextStory) {
+        sendMediaMessageOrCollectStoryToBatch(context, multiShareArgs, recipient, slideDeck, sendType, threadId, forceSms, expiresIn, multiShareArgs.isViewOnce(), subscriptionId, mentions, recipientSearchKey.isStory(), sentTimestamp, canSendAsTextStory, storiesBatch);
         results.add(new MultiShareSendResult(recipientSearchKey, MultiShareSendResult.Type.SUCCESS));
       } else if (recipientSearchKey.isStory()) {
         results.add(new MultiShareSendResult(recipientSearchKey, MultiShareSendResult.Type.INVALID_SHARE_TO_STORY));
@@ -146,28 +145,26 @@ public final class MultiShareSender {
     return new MultiShareSendResultCollection(results);
   }
 
-  public static @NonNull TransportOption getWorstTransportOption(@NonNull Context context, @NonNull Set<ContactSearchKey.RecipientSearchKey> recipientSearchKeys) {
+  public static @NonNull MessageSendType getWorstTransportOption(@NonNull Context context, @NonNull Set<ContactSearchKey.RecipientSearchKey> recipientSearchKeys) {
     for (ContactSearchKey.RecipientSearchKey recipientSearchKey : recipientSearchKeys) {
-      TransportOption option = resolveTransportOption(context, Recipient.resolved(recipientSearchKey.getRecipientId()).isForceSmsSelection() && !recipientSearchKey.isStory());
-      if (option.isSms()) {
-        return option;
+      MessageSendType type = resolveTransportOption(context, Recipient.resolved(recipientSearchKey.getRecipientId()).isForceSmsSelection() && !recipientSearchKey.isStory());
+      if (type.usesSmsTransport()) {
+        return type;
       }
     }
 
-    return TransportOptions.getPushTransportOption(context);
+    return MessageSendType.SignalMessageSendType.INSTANCE;
   }
 
-  private static @NonNull TransportOption resolveTransportOption(@NonNull Context context, @NonNull Recipient recipient) {
+  private static @NonNull MessageSendType resolveTransportOption(@NonNull Context context, @NonNull Recipient recipient) {
     return resolveTransportOption(context, !recipient.isDistributionList() && (recipient.isForceSmsSelection() || !recipient.isRegistered()));
   }
 
-  public static @NonNull TransportOption resolveTransportOption(@NonNull Context context, boolean forceSms) {
+  public static @NonNull MessageSendType resolveTransportOption(@NonNull Context context, boolean forceSms) {
     if (forceSms) {
-      TransportOptions options = new TransportOptions(context, false);
-      options.setDefaultTransport(TransportOption.Type.SMS);
-      return options.getSelectedTransport();
+      return MessageSendType.getFirstForTransport(context, false, MessageSendType.TransportType.SMS);
     } else {
-      return TransportOptions.getPushTransportOption(context);
+      return MessageSendType.SignalMessageSendType.INSTANCE;
     }
   }
 
@@ -175,7 +172,7 @@ public final class MultiShareSender {
                                                             @NonNull MultiShareArgs multiShareArgs,
                                                             @NonNull Recipient recipient,
                                                             @NonNull SlideDeck slideDeck,
-                                                            @NonNull TransportOption transportOption,
+                                                            @NonNull MessageSendType sendType,
                                                             long threadId,
                                                             boolean forceSms,
                                                             long expiresIn,
@@ -188,8 +185,8 @@ public final class MultiShareSender {
                                                             @NonNull List<OutgoingMediaMessage> storiesToBatchSend)
   {
     String body = multiShareArgs.getDraftText();
-    if (transportOption.isType(TransportOption.Type.TEXTSECURE) && !forceSms && body != null) {
-      MessageUtil.SplitResult splitMessage = MessageUtil.getSplitMessage(context, body, transportOption.calculateCharacters(body).maxPrimaryMessageSize);
+    if (sendType.usesSignalTransport() && !forceSms && body != null) {
+      MessageUtil.SplitResult splitMessage = MessageUtil.getSplitMessage(context, body, sendType.calculateCharacters(body).maxPrimaryMessageSize);
       body = splitMessage.getBody();
 
       if (splitMessage.getTextSlide().isPresent()) {

@@ -11,10 +11,9 @@ import androidx.core.content.ContextCompat
 import androidx.core.util.toKotlinPair
 import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.TransportOption
-import org.thoughtcrime.securesms.TransportOptions
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.UriAttachment
+import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendConstants
 import org.thoughtcrime.securesms.mms.MediaConstraints
@@ -180,9 +179,8 @@ class ShareRepository(context: Context) {
         return false
       }
 
-      val options = TransportOptions(context, true)
-      options.setDefaultTransport(TransportOption.Type.SMS)
-      val mmsConstraints = MediaConstraints.getMmsMediaConstraints(options.selectedTransport.simSubscriptionId.orElse(-1))
+      val sendType: MessageSendType = MessageSendType.getFirstForTransport(context, true, MessageSendType.TransportType.SMS)
+      val mmsConstraints = MediaConstraints.getMmsMediaConstraints(sendType.simSubscriptionId ?: -1)
       return mmsConstraints.isSatisfied(context, attachment) || mmsConstraints.canResize(attachment)
     }
   }

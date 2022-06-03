@@ -115,7 +115,6 @@ import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.PromptMmsActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.ShortcutLauncherActivity;
-import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment;
 import org.thoughtcrime.securesms.audio.AudioRecorder;
@@ -328,7 +327,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import kotlin.Unit;
 
-import static org.thoughtcrime.securesms.TransportOption.Type;
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 
 /**
@@ -590,6 +588,8 @@ public class ConversationParentFragment extends Fragment
     if (isSearchRequested && savedInstanceState == null) {
       onCreateOptionsMenu(toolbar.getMenu(), requireActivity().getMenuInflater());
     }
+
+    sendButton.post(() -> sendButton.triggerSelectedChangedEvent());
   }
 
   // TODO [alex] LargeScreenSupport -- This needs to be fed a stream of intents
@@ -672,7 +672,7 @@ public class ConversationParentFragment extends Fragment
     EventBus.getDefault().register(this);
     initializeMmsEnabledCheck();
     initializeIdentityRecords();
-    composeText.setTransport(sendButton.getSelectedTransport());
+    composeText.setMessageSendType(sendButton.getSelectedSendType());
 
     Recipient recipientSnapshot = recipient.get();
 
@@ -731,7 +731,7 @@ public class ConversationParentFragment extends Fragment
   public void onConfigurationChanged(Configuration newConfig) {
     Log.i(TAG, "onConfigurationChanged(" + newConfig.orientation + ")");
     super.onConfigurationChanged(newConfig);
-    composeText.setTransport(sendButton.getSelectedTransport());
+    composeText.setMessageSendType(sendButton.getSelectedSendType());
 
     if (emojiDrawerStub.resolved() && container.getCurrentInput() == emojiDrawerStub.get()) {
       container.hideAttachedInput(true);
@@ -823,7 +823,7 @@ public class ConversationParentFragment extends Fragment
         return;
       }
 
-      sendButton.setTransport(result.getTransport());
+      sendButton.setSendType(result.getMessageSendType());
 
       if (result.isPushPreUpload()) {
         sendMediaMessage(result);
@@ -831,7 +831,7 @@ public class ConversationParentFragment extends Fragment
       }
 
       long       expiresIn      = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
-      int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().orElse(-1);
+      int        subscriptionId = sendButton.getSelectedSendType().getSimSubscriptionIdOr(-1);
       boolean    initiating     = threadId == -1;
       QuoteModel quote          = result.isViewOnce() ? null : inputPanel.getQuote().orElse(null);
       SlideDeck  slideDeck      = new SlideDeck();
@@ -852,7 +852,7 @@ public class ConversationParentFragment extends Fragment
       final Context context = requireContext().getApplicationContext();
 
       sendMediaMessage(result.getRecipientId(),
-                       result.getTransport().isSms(),
+                       result.getMessageSendType().usesSmsTransport(),
                        result.getBody(),
                        slideDeck,
                        quote,
@@ -1231,7 +1231,7 @@ public class ConversationParentFragment extends Fragment
   @Override
   public void onAttachmentMediaClicked(@NonNull Media media) {
     linkPreviewViewModel.onUserCancel();
-    startActivityForResult(MediaSelectionActivity.editor(requireActivity(), sendButton.getSelectedTransport(), Collections.singletonList(media), recipient.getId(), composeText.getTextTrimmed()), MEDIA_SENDER);
+    startActivityForResult(MediaSelectionActivity.editor(requireActivity(), sendButton.getSelectedSendType(), Collections.singletonList(media), recipient.getId(), composeText.getTextTrimmed()), MEDIA_SENDER);
     container.hideCurrentInput(composeText);
   }
 
@@ -1239,7 +1239,7 @@ public class ConversationParentFragment extends Fragment
   public void onAttachmentSelectorClicked(@NonNull AttachmentKeyboardButton button) {
     switch (button) {
       case GALLERY:
-        AttachmentManager.selectGallery(this, MEDIA_SENDER, recipient.get(), composeText.getTextTrimmed(), sendButton.getSelectedTransport(), inputPanel.getQuote().isPresent());
+        AttachmentManager.selectGallery(this, MEDIA_SENDER, recipient.get(), composeText.getTextTrimmed(), sendButton.getSelectedSendType(), inputPanel.getQuote().isPresent());
         break;
       case FILE:
         AttachmentManager.selectDocument(this, PICK_DOCUMENT);
@@ -1629,21 +1629,21 @@ public class ConversationParentFragment extends Fragment
     boolean smsEnabled = true;
 
     if (recipient.get().isPushGroup() || (!recipient.get().isMmsGroup() && !recipient.get().hasSmsAddress())) {
-      sendButton.disableTransport(Type.SMS);
+      sendButton.disableTransportType(MessageSendType.TransportType.SMS);
       smsEnabled = false;
     }
 
     if (!isSecureText && !isPushGroupConversation() && !recipient.get().isServiceIdOnly() && !recipient.get().isReleaseNotes() && smsEnabled) {
-      sendButton.disableTransport(Type.TEXTSECURE);
+      sendButton.disableTransportType(MessageSendType.TransportType.SIGNAL);
     }
 
     if (!recipient.get().isPushGroup() && recipient.get().isForceSmsSelection() && smsEnabled) {
-      sendButton.setDefaultTransport(Type.SMS);
+      sendButton.setDefaultTransport(MessageSendType.TransportType.SMS);
     } else {
       if (isSecureText || isPushGroupConversation() || recipient.get().isServiceIdOnly() || recipient.get().isReleaseNotes() || !smsEnabled) {
-        sendButton.setDefaultTransport(Type.TEXTSECURE);
+        sendButton.setDefaultTransport(MessageSendType.TransportType.SIGNAL);
       } else {
-        sendButton.setDefaultTransport(Type.SMS);
+        sendButton.setDefaultTransport(MessageSendType.TransportType.SMS);
       }
     }
 
@@ -1680,7 +1680,7 @@ public class ConversationParentFragment extends Fragment
 
     if (!Util.isEmpty(mediaList)) {
       Log.d(TAG, "Handling shared Media.");
-      Intent sendIntent = MediaSelectionActivity.editor(requireContext(), sendButton.getSelectedTransport(), mediaList, recipient.getId(), draftText);
+      Intent sendIntent = MediaSelectionActivity.editor(requireContext(), sendButton.getSelectedSendType(), mediaList, recipient.getId(), draftText);
       startActivityForResult(sendIntent, MEDIA_SENDER);
       return new SettableFuture<>(false);
     }
@@ -2029,7 +2029,7 @@ public class ConversationParentFragment extends Fragment
 
   private void updateDefaultSubscriptionId(Optional<Integer> defaultSubscriptionId) {
     Log.i(TAG, "updateDefaultSubscriptionId(" + defaultSubscriptionId.orElse(null) + ")");
-    sendButton.setDefaultSubscriptionId(defaultSubscriptionId);
+    sendButton.setDefaultSubscriptionId(defaultSubscriptionId.orElse(null));
   }
 
   private void initializeMmsEnabledCheck() {
@@ -2150,6 +2150,8 @@ public class ConversationParentFragment extends Fragment
     releaseChannelUnmute                = ViewUtil.findStubById(view, R.id.conversation_release_notes_unmute_stub);
     joinGroupCallButton                 = view.findViewById(R.id.conversation_group_call_join);
 
+    sendButton.setPopupContainer((ViewGroup) view);
+
     container.setIsBubble(isInBubble());
     container.addOnKeyboardShownListener(this);
     inputPanel.setListener(this);
@@ -2168,16 +2170,16 @@ public class ConversationParentFragment extends Fragment
     attachButton.setOnLongClickListener(new AttachButtonLongClickListener());
     sendButton.setOnClickListener(sendButtonListener);
     sendButton.setEnabled(true);
-    sendButton.addOnTransportChangedListener((newTransport, manuallySelected) -> {
+    sendButton.addOnSelectionChangedListener((newMessageSendType, manuallySelected) -> {
       calculateCharactersRemaining();
       updateLinkPreviewState();
-      linkPreviewViewModel.onTransportChanged(newTransport.isSms());
-      composeText.setTransport(newTransport);
+      linkPreviewViewModel.onTransportChanged(newMessageSendType.usesSmsTransport());
+      composeText.setMessageSendType(newMessageSendType);
 
-      buttonToggle.getBackground().setColorFilter(getButtonToggleBackgroundColor(newTransport), PorterDuff.Mode.MULTIPLY);
+      buttonToggle.getBackground().setColorFilter(getButtonToggleBackgroundColor(newMessageSendType), PorterDuff.Mode.MULTIPLY);
       buttonToggle.getBackground().invalidateSelf();
 
-      if (manuallySelected) recordTransportPreference(newTransport);
+      if (manuallySelected) recordTransportPreference(newMessageSendType);
     });
 
     titleView.setOnStoryRingClickListener(v -> handleStoryRingClick());
@@ -2222,13 +2224,13 @@ public class ConversationParentFragment extends Fragment
     material3OnScrollHelper = new Material3OnScrollHelper(Collections.singletonList(toolbarBackground), Collections.emptyList(), this::updateStatusBarColor);
   }
 
-  private @ColorInt int getButtonToggleBackgroundColor(TransportOption newTransport) {
-    if (newTransport.isSms()) {
-      return newTransport.getBackgroundColor();
+  private @ColorInt int getButtonToggleBackgroundColor(MessageSendType newTransport) {
+    if (newTransport.usesSmsTransport()) {
+      return getResources().getColor(newTransport.getBackgroundColorRes());
     } else if (recipient != null) {
       return getRecipient().getChatColors().asSingleColor();
     } else {
-      return newTransport.getBackgroundColor();
+      return getResources().getColor(newTransport.getBackgroundColorRes());
     }
   }
 
@@ -2728,7 +2730,7 @@ public class ConversationParentFragment extends Fragment
       }
 
       Media media = new Media(uri, mimeType, 0, width, height, 0, 0, borderless, videoGif, Optional.empty(), Optional.empty(), Optional.empty());
-      startActivityForResult(MediaSelectionActivity.editor(requireContext(), sendButton.getSelectedTransport(), Collections.singletonList(media), recipient.getId(), composeText.getTextTrimmed()), MEDIA_SENDER);
+      startActivityForResult(MediaSelectionActivity.editor(requireContext(), sendButton.getSelectedSendType(), Collections.singletonList(media), recipient.getId(), composeText.getTextTrimmed()), MEDIA_SENDER);
       return new SettableFuture<>(false);
     } else {
       return attachmentManager.setMedia(glideRequests, uri, mediaType, getCurrentMediaConstraints(), width, height);
@@ -2749,7 +2751,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void sendSharedContact(List<Contact> contacts) {
-    int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().orElse(-1);
+    int        subscriptionId = sendButton.getSelectedSendType().getSimSubscriptionIdOr(-1);
     long       expiresIn      = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
     boolean    initiating     = threadId == -1;
 
@@ -2909,8 +2911,8 @@ public class ConversationParentFragment extends Fragment
 
   private void calculateCharactersRemaining() {
     String          messageBody     = composeText.getTextTrimmed().toString();
-    TransportOption transportOption = sendButton.getSelectedTransport();
-    CharacterState  characterState  = transportOption.calculateCharacters(messageBody);
+    MessageSendType sendType        = sendButton.getSelectedSendType();
+    CharacterState  characterState  = sendType.calculateCharacters(messageBody);
 
     if (characterState.charactersRemaining <= 15 || characterState.messagesSpent > 1) {
       charactersLeft.setText(String.format(Locale.getDefault(),
@@ -2968,7 +2970,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   private boolean isSmsForced() {
-    return sendButton.isManualSelection() && sendButton.getSelectedTransport().isSms();
+    return sendButton.isManualSelection() && sendButton.getSelectedSendType().usesSmsTransport();
   }
 
   protected Recipient getRecipient() {
@@ -2989,9 +2991,9 @@ public class ConversationParentFragment extends Fragment
   }
 
   private MediaConstraints getCurrentMediaConstraints() {
-    return sendButton.getSelectedTransport().getType() == Type.TEXTSECURE
+    return sendButton.getSelectedSendType().usesSignalTransport()
            ? MediaConstraints.getPushMediaConstraints()
-           : MediaConstraints.getMmsMediaConstraints(sendButton.getSelectedTransport().getSimSubscriptionId().orElse(-1));
+           : MediaConstraints.getMmsMediaConstraints(sendButton.getSelectedSendType().getSimSubscriptionIdOr(-1));
   }
 
   private void markLastSeen() {
@@ -3050,12 +3052,12 @@ public class ConversationParentFragment extends Fragment
       }
 
       String          message        = getMessage();
-      TransportOption transport      = sendButton.getSelectedTransport();
-      boolean         forceSms       = (recipient.isForceSmsSelection() || sendButton.isManualSelection()) && transport.isSms();
-      int             subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().orElse(-1);
+      MessageSendType sendType       = sendButton.getSelectedSendType();
+      boolean         forceSms       = (recipient.isForceSmsSelection() || sendButton.isManualSelection()) && sendType.usesSmsTransport();
+      int             subscriptionId = sendButton.getSelectedSendType().getSimSubscriptionIdOr(-1);
       long            expiresIn      = TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds());
       boolean         initiating     = threadId == -1;
-      boolean         needsSplit     = !transport.isSms() && message.length() > transport.calculateCharacters(message).maxPrimaryMessageSize;
+      boolean         needsSplit     = !sendType.usesSmsTransport() && message.length() > sendType.calculateCharacters(message).maxPrimaryMessageSize;
       boolean         isMediaMessage = attachmentManager.isAttachmentPresent() ||
                                        recipient.isGroup()                     ||
                                        recipient.getEmail().isPresent()        ||
@@ -3160,7 +3162,7 @@ public class ConversationParentFragment extends Fragment
     final long    thread   = this.threadId;
 
     if (sendPush) {
-      MessageUtil.SplitResult splitMessage = MessageUtil.getSplitMessage(requireContext(), body, sendButton.getSelectedTransport().calculateCharacters(body).maxPrimaryMessageSize);
+      MessageUtil.SplitResult splitMessage = MessageUtil.getSplitMessage(requireContext(), body, sendButton.getSelectedSendType().calculateCharacters(body).maxPrimaryMessageSize);
       body = splitMessage.getBody();
 
       if (splitMessage.getTextSlide().isPresent()) {
@@ -3294,7 +3296,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void updateLinkPreviewState() {
-    if (SignalStore.settings().isLinkPreviewsEnabled() && isSecureText && !sendButton.getSelectedTransport().isSms() && !attachmentManager.isAttachmentPresent() && getContext() != null) {
+    if (SignalStore.settings().isLinkPreviewsEnabled() && isSecureText && !sendButton.getSelectedSendType().usesSmsTransport() && !attachmentManager.isAttachmentPresent() && getContext() != null) {
       linkPreviewViewModel.onEnabled();
       linkPreviewViewModel.onTextChanged(requireContext(), composeText.getTextTrimmed().toString(), composeText.getSelectionStart(), composeText.getSelectionEnd());
     } else {
@@ -3302,16 +3304,16 @@ public class ConversationParentFragment extends Fragment
     }
   }
 
-  private void recordTransportPreference(TransportOption transportOption) {
+  private void recordTransportPreference(MessageSendType sendType) {
     new AsyncTask<Void, Void, Void>() {
       @Override
       protected Void doInBackground(Void... params) {
         RecipientDatabase recipientDatabase = SignalDatabase.recipients();
 
-        recipientDatabase.setDefaultSubscriptionId(recipient.getId(), transportOption.getSimSubscriptionId().orElse(-1));
+        recipientDatabase.setDefaultSubscriptionId(recipient.getId(), sendType.getSimSubscriptionIdOr(-1));
 
         if (!recipient.resolve().isPushGroup()) {
-          recipientDatabase.setForceSmsSelection(recipient.getId(), recipient.get().getRegistered() == RegisteredState.REGISTERED && transportOption.isSms());
+          recipientDatabase.setForceSmsSelection(recipient.getId(), recipient.get().getRegistered() == RegisteredState.REGISTERED && sendType.usesSmsTransport());
         }
 
         return null;
@@ -3446,9 +3448,9 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void sendVoiceNote(@NonNull Uri uri, long size) {
-    boolean    forceSms       = sendButton.isManualSelection() && sendButton.getSelectedTransport().isSms();
+    boolean    forceSms       = sendButton.isManualSelection() && sendButton.getSelectedSendType().usesSmsTransport();
     boolean    initiating     = threadId == -1;
-    int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().orElse(-1);
+    int        subscriptionId = sendButton.getSelectedSendType().getSimSubscriptionIdOr(-1);
     long       expiresIn      = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
     AudioSlide audioSlide     = new AudioSlide(requireContext(), uri, size, MediaUtil.AUDIO_AAC, true);
     SlideDeck  slideDeck      = new SlideDeck();
@@ -3487,23 +3489,23 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void sendSticker(@NonNull StickerLocator stickerLocator, @NonNull String contentType, @NonNull Uri uri, long size, boolean clearCompose) {
-    if (sendButton.getSelectedTransport().isSms()) {
+    if (sendButton.getSelectedSendType().usesSmsTransport()) {
       Media  media  = new Media(uri, contentType, System.currentTimeMillis(), StickerSlide.WIDTH, StickerSlide.HEIGHT, size, 0, false, false, Optional.empty(), Optional.empty(), Optional.empty());
-      Intent intent = MediaSelectionActivity.editor(requireContext(), sendButton.getSelectedTransport(), Collections.singletonList(media), recipient.getId(), composeText.getTextTrimmed());
+      Intent intent = MediaSelectionActivity.editor(requireContext(), sendButton.getSelectedSendType(), Collections.singletonList(media), recipient.getId(), composeText.getTextTrimmed());
       startActivityForResult(intent, MEDIA_SENDER);
       return;
     }
 
     long            expiresIn      = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
-    int             subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().orElse(-1);
+    int             subscriptionId = sendButton.getSelectedSendType().getSimSubscriptionIdOr(-1);
     boolean         initiating     = threadId == -1;
-    TransportOption transport      = sendButton.getSelectedTransport();
+    MessageSendType sendType       = sendButton.getSelectedSendType();
     SlideDeck       slideDeck      = new SlideDeck();
     Slide           stickerSlide   = new StickerSlide(requireContext(), uri, size, stickerLocator, contentType);
 
     slideDeck.addSlide(stickerSlide);
 
-    sendMediaMessage(recipient.getId(), transport.isSms(), "", slideDeck, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), expiresIn, false, subscriptionId, initiating, clearCompose, null);
+    sendMediaMessage(recipient.getId(), sendType.usesSmsTransport(), "", slideDeck, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), expiresIn, false, subscriptionId, initiating, clearCompose, null);
   }
 
   private void silentlySetComposeText(String text) {
@@ -3558,7 +3560,7 @@ public class ConversationParentFragment extends Fragment
 
   @Override
   public void openGifSearch() {
-    AttachmentManager.selectGif(this, ConversationParentFragment.PICK_GIF, recipient.getId(), sendButton.getSelectedTransport(), isMms(), composeText.getTextTrimmed());
+    AttachmentManager.selectGif(this, ConversationParentFragment.PICK_GIF, recipient.getId(), sendButton.getSelectedSendType(), isMms(), composeText.getTextTrimmed());
   }
 
   @Override
@@ -3651,7 +3653,7 @@ public class ConversationParentFragment extends Fragment
                  .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video))
                  .onAllGranted(() -> {
                    composeText.clearFocus();
-                   startActivityForResult(MediaSelectionActivity.camera(requireActivity(), sendButton.getSelectedTransport(), recipient.getId(), inputPanel.getQuote().isPresent()), MEDIA_SENDER);
+                   startActivityForResult(MediaSelectionActivity.camera(requireActivity(), sendButton.getSelectedSendType(), recipient.getId(), inputPanel.getQuote().isPresent()), MEDIA_SENDER);
                    requireActivity().overridePendingTransition(R.anim.camera_slide_from_bottom, R.anim.stationary);
                  })
                  .onAnyDenied(() -> Toast.makeText(requireContext(), R.string.ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video, Toast.LENGTH_LONG).show())
@@ -4146,7 +4148,7 @@ public class ConversationParentFragment extends Fragment
     }
 
     long       expiresIn      = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
-    int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().orElse(-1);
+    int        subscriptionId = sendButton.getSelectedSendType().getSimSubscriptionIdOr(-1);
     boolean    initiating     = threadId == -1;
     SlideDeck  slideDeck      = new SlideDeck();
 

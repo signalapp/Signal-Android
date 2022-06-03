@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.mediasend.v2
 
 import android.net.Uri
-import org.thoughtcrime.securesms.TransportOption
+import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendConstants
@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.recipients.Recipient
 
 data class MediaSelectionState(
-  val transportOption: TransportOption,
+  val sendType: MessageSendType,
   val selectedMedia: List<Media> = listOf(),
   val focusedMedia: Media? = null,
   val recipient: Recipient? = null,
@@ -25,7 +25,7 @@ data class MediaSelectionState(
   val isStory: Boolean
 ) {
 
-  val maxSelection = if (transportOption.isSms) {
+  val maxSelection = if (sendType.usesSmsTransport) {
     MediaSendConstants.MAX_SMS
   } else {
     MediaSendConstants.MAX_PUSH

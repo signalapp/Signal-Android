@@ -2,29 +2,21 @@ package org.signal.qr
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.ImageFormat
 import android.util.Size
 import android.widget.FrameLayout
 import androidx.annotation.RequiresApi
-import androidx.camera.core.AspectRatio
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
-import androidx.camera.core.ImageProxy
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
-import androidx.core.math.MathUtils.clamp
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
-import io.reactivex.rxjava3.subjects.PublishSubject
 import org.signal.core.util.logging.Log
 import org.signal.qr.kitkat.ScanListener
-import java.nio.ByteBuffer
 import java.util.concurrent.Executors
-
 
 /**
  * API21+ version of QR scanning view. Uses camerax APIs.

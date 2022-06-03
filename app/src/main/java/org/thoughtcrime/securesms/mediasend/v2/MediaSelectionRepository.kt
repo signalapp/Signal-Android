@@ -11,8 +11,8 @@ import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
 import org.signal.imageeditor.core.model.EditorModel
-import org.thoughtcrime.securesms.TransportOption
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
+import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.database.AttachmentDatabase.TransformProperties
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadDatabase
@@ -76,7 +76,7 @@ class MediaSelectionRepository(context: Context) {
     singleContact: ContactSearchKey.RecipientSearchKey?,
     contacts: List<ContactSearchKey.RecipientSearchKey>,
     mentions: List<Mention>,
-    transport: TransportOption
+    sendType: MessageSendType
   ): Maybe<MediaSendActivityResult> {
     if (isSms && contacts.isNotEmpty()) {
       throw IllegalStateException("Provided recipients to send to, but this is SMS!")
@@ -106,9 +106,9 @@ class MediaSelectionRepository(context: Context) {
 
       if (isSms || MessageSender.isLocalSelfSend(context, singleRecipient, isSms)) {
         Log.i(TAG, "SMS or local self-send. Skipping pre-upload.")
-        emitter.onSuccess(MediaSendActivityResult.forTraditionalSend(singleRecipient!!.id, updatedMedia, trimmedBody, transport, isViewOnce, trimmedMentions, StoryType.NONE))
+        emitter.onSuccess(MediaSendActivityResult.forTraditionalSend(singleRecipient!!.id, updatedMedia, trimmedBody, sendType, isViewOnce, trimmedMentions, StoryType.NONE))
       } else {
-        val splitMessage = MessageUtil.getSplitMessage(context, trimmedBody, transport.calculateCharacters(trimmedBody).maxPrimaryMessageSize)
+        val splitMessage = MessageUtil.getSplitMessage(context, trimmedBody, sendType.calculateCharacters(trimmedBody).maxPrimaryMessageSize)
         val splitBody = splitMessage.body
 
         if (splitMessage.textSlide.isPresent) {
@@ -135,10 +135,10 @@ class MediaSelectionRepository(context: Context) {
             uploadRepository.deleteAbandonedAttachments()
             emitter.onComplete()
           } else if (uploadResults.isNotEmpty()) {
-            emitter.onSuccess(MediaSendActivityResult.forPreUpload(singleRecipient!!.id, uploadResults, splitBody, transport, isViewOnce, trimmedMentions, storyType))
+            emitter.onSuccess(MediaSendActivityResult.forPreUpload(singleRecipient!!.id, uploadResults, splitBody, sendType, isViewOnce, trimmedMentions, storyType))
           } else {
             Log.w(TAG, "Got empty upload results! isSms: $isSms, updatedMedia.size(): ${updatedMedia.size}, isViewOnce: $isViewOnce, target: $singleContact")
-            emitter.onSuccess(MediaSendActivityResult.forTraditionalSend(singleRecipient!!.id, updatedMedia, trimmedBody, transport, isViewOnce, trimmedMentions, storyType))
+            emitter.onSuccess(MediaSendActivityResult.forTraditionalSend(singleRecipient!!.id, updatedMedia, trimmedBody, sendType, isViewOnce, trimmedMentions, storyType))
           }
         }
       }
