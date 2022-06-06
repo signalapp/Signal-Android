@@ -102,7 +102,7 @@
 
     <color name="wallpaper_bubble_color">@color/signal_colorTransparentInverse4</color>
 
-    <color name="conversation_scroll_to_bottom_foreground_color">@color/core_white</color>
+    <color name="conversation_scroll_to_bottom_foreground_color">@color/signal_colorOnSurfaceVariant</color>
 
     <color name="conversation_list_selected_color">@color/signal_colorSurface2</color>
 

@@ -11,7 +11,7 @@
         android:layout_height="32dp"
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="4dp"
-        android:background="@drawable/scroll_to_bottom_background"
+        android:background="@drawable/scroll_to_bottom_background_normal"
         android:contentDescription="@string/conversation_fragment__scroll_to_the_bottom_content_description"
         android:elevation="1dp"
         android:scaleType="center"

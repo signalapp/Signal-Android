@@ -46,6 +46,14 @@ public final class ConversationScrollToView extends FrameLayout {
     }
   }
 
+  public void setWallpaperEnabled(boolean hasWallpaper) {
+    if (hasWallpaper) {
+      scrollButton.setBackgroundResource(R.drawable.scroll_to_bottom_background_wallpaper);
+    } else {
+      scrollButton.setBackgroundResource(R.drawable.scroll_to_bottom_background_normal);
+    }
+  }
+
   public void setUnreadCountBackgroundTint(@ColorInt int tint) {
     unreadCount.getBackground().setColorFilter(new SimpleColorFilter(tint));
   }

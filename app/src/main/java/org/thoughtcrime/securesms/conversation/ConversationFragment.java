@@ -377,7 +377,11 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       presentConversationMetadata(messageData.getMetadata());
     }));
 
-    disposables.add(conversationViewModel.getWallpaper().subscribe(w -> chatWallpaper = w.orElse(null)));
+    disposables.add(conversationViewModel.getWallpaper().subscribe(w -> {
+      chatWallpaper = w.orElse(null);
+      scrollToBottomButton.setWallpaperEnabled(w.isPresent());
+      scrollToMentionButton.setWallpaperEnabled(w.isPresent());
+    }));
 
     conversationViewModel.getShowMentionsButton().observe(getViewLifecycleOwner(), shouldShow -> {
       if (shouldShow) {
