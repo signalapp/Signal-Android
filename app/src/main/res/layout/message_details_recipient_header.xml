@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/dsl_settings_gutter"
-        android:paddingTop="24dp"
+        android:paddingTop="16dp"
         android:paddingEnd="@dimen/dsl_settings_gutter"
         android:paddingBottom="12dp">
 
@@ -22,8 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
-            android:textStyle="bold"
+            android:textAppearance="@style/Signal.Text.TitleSmall"
             tools:text="Read by" />
 
         <org.thoughtcrime.securesms.components.DeliveryStatusView

@@ -2353,10 +2353,10 @@
 
     <!-- message_details_header -->
     <string name="message_details_header__issues_need_your_attention">Some issues need your attention.</string>
-    <string name="message_details_header__sent">Sent:</string>
-    <string name="message_details_header__received">Received:</string>
-    <string name="message_details_header__disappears">Disappears:</string>
-    <string name="message_details_header__via">Via:</string>
+    <string name="message_details_header_sent">Sent</string>
+    <string name="message_details_header_received">Received</string>
+    <string name="message_details_header_disappears">Disappears</string>
+    <string name="message_details_header_via">Via</string>
 
     <!-- message_details_recipient_header -->
     <string name="message_details_recipient_header__pending_send">Pending</string>

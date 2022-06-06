@@ -141,19 +141,19 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
     receivedDate.setOnLongClickListener(null);
 
     if (messageRecord.isPending() || messageRecord.isFailed()) {
-      sentDate.setText(formatBoldString(R.string.message_details_header__sent, "-"));
+      sentDate.setText(formatBoldString(R.string.message_details_header_sent, "-"));
       receivedDate.setVisibility(View.GONE);
     } else {
       Locale dateLocale    = Locale.getDefault();
       SimpleDateFormat dateFormatter = DateUtils.getDetailedDateFormatter(itemView.getContext(), dateLocale);
-      sentDate.setText(formatBoldString(R.string.message_details_header__sent, dateFormatter.format(new Date(messageRecord.getDateSent()))));
+      sentDate.setText(formatBoldString(R.string.message_details_header_sent, dateFormatter.format(new Date(messageRecord.getDateSent()))));
       sentDate.setOnLongClickListener(v -> {
         copyToClipboard(String.valueOf(messageRecord.getDateSent()));
         return true;
       });
 
       if (messageRecord.getDateReceived() != messageRecord.getDateSent() && !messageRecord.isOutgoing()) {
-        receivedDate.setText(formatBoldString(R.string.message_details_header__received, dateFormatter.format(new Date(messageRecord.getDateReceived()))));
+        receivedDate.setText(formatBoldString(R.string.message_details_header_received, dateFormatter.format(new Date(messageRecord.getDateReceived()))));
         receivedDate.setOnLongClickListener(v -> {
           copyToClipboard(String.valueOf(messageRecord.getDateReceived()));
           return true;
@@ -197,7 +197,7 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
       transportText = itemView.getContext().getString(R.string.ConversationFragment_sms);
     }
 
-    transport.setText(formatBoldString(R.string.message_details_header__via, transportText));
+    transport.setText(formatBoldString(R.string.message_details_header_via, transportText));
   }
 
   private CharSequence formatBoldString(int boldTextRes, CharSequence otherText) {
@@ -274,7 +274,7 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
       int    expirationTime = Math.max((int) (remaining / 1000), 1);
       String duration       = ExpirationUtil.getExpirationDisplayValue(itemView.getContext(), expirationTime);
 
-      expiresIn.setText(formatBoldString(R.string.message_details_header__disappears, duration));
+      expiresIn.setText(formatBoldString(R.string.message_details_header_disappears, duration));
 
       if (running && expirationTime > 1) {
         ThreadUtil.runOnMainDelayed(this, 500);
