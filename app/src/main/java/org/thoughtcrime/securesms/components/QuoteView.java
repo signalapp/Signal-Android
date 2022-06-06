@@ -76,6 +76,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     }
   }
 
+  private View               background;
   private ViewGroup          mainView;
   private ViewGroup          footerView;
   private TextView           authorView;
@@ -129,6 +130,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
   private void initialize(@Nullable AttributeSet attrs) {
     inflate(getContext(), R.layout.quote_view, this);
 
+    this.background                   = findViewById(R.id.quote_background);
     this.mainView                     = findViewById(R.id.quote_main);
     this.footerView                   = findViewById(R.id.quote_missing_footer);
     this.authorView                   = findViewById(R.id.quote_author);
@@ -492,7 +494,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     QuoteViewColorTheme quoteViewColorTheme = QuoteViewColorTheme.resolveTheme(isOutgoing, isPreview, isWallpaperEnabled);
 
     quoteBarView.setBackgroundColor(quoteViewColorTheme.getBarColor(getContext()));
-    mainView.setBackgroundColor(quoteViewColorTheme.getBackgroundColor(getContext()));
+    background.setBackgroundColor(quoteViewColorTheme.getBackgroundColor(getContext()));
     authorView.setTextColor(quoteViewColorTheme.getForegroundColor(getContext()));
     bodyView.setTextColor(quoteViewColorTheme.getForegroundColor(getContext()));
     attachmentNameView.setTextColor(quoteViewColorTheme.getForegroundColor(getContext()));

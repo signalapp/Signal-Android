@@ -168,7 +168,7 @@
 
     <color name="settings_ripple_color">@color/transparent_white_10</color>
 
-    <color name="quote_view_background_incoming_wallpaper">@color/signal_colorTransparentInverse2</color>
+    <color name="quote_view_background_incoming_wallpaper">@color/signal_colorTransparent2</color>
     <color name="quote_view_bar_incoming_wallpaper">@color/signal_colorNeutralInverse</color>
     <color name="quote_view_foreground_incoming_wallpaper">@color/signal_colorNeutralInverse</color>
     <color name="quote_view_background_outgoing_wallpaper">@color/signal_colorTransparent4</color>
