@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@color/signal_background_secondary">
+    tools:background="?mediaKeyboardBackgroundColor">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/sticker_keyboard_search_appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/signal_background_secondary"
+        android:background="?mediaKeyboardBackgroundColor"
         app:elevation="0dp"
         app:expanded="false"
         tools:expanded="true">
@@ -44,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/keyboard_toolbar_height"
         android:layout_gravity="bottom"
-        android:background="@color/signal_background_secondary"
+        android:background="?mediaKeyboardBottomBarBackgroundColor"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior">
@@ -58,6 +58,7 @@
             android:padding="11dp"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/ic_search_24"
+            app:backgroundTint="?mediaKeyboardBackgroundColor"
             app:tint="@color/icon_tab_selector" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -82,19 +83,5 @@
             app:tint="@color/icon_tab_selector" />
 
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@drawable/toolbar_shadow"
-        app:app_bar_layout_id="@+id/sticker_keyboard_search_appbar"
-        app:layout_behavior="org.thoughtcrime.securesms.keyboard.TopShadowBehavior" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:background="@drawable/bottom_toolbar_shadow"
-        app:bottom_bar_id="@+id/sticker_keyboard_packs_background"
-        app:layout_behavior="org.thoughtcrime.securesms.keyboard.BottomShadowBehavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

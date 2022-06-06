@@ -4,7 +4,7 @@
         <layer-list>
             <item android:top="6dp" android:left="6dp" android:bottom="6dp" android:right="6dp">
                 <shape android:shape="rectangle">
-                    <solid android:color="@color/signal_inverse_transparent_08" />
+                    <solid android:color="@color/signal_colorPrimaryContainer" />
                     <corners android:radius="8dp" />
                 </shape>
             </item>

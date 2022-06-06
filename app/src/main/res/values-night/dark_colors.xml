@@ -30,8 +30,8 @@
     <color name="signal_icon_tint_secondary">@color/core_grey_25</color>
     <color name="signal_icon_tint_action">@color/signal_icon_tint_primary</color>
 
-    <color name="signal_icon_tint_tab_selected">@color/core_white</color>
-    <color name="signal_icon_tint_tab_unselected">@color/core_grey_25</color>
+    <color name="signal_icon_tint_tab_selected">@color/signal_colorOnSurface</color>
+    <color name="signal_icon_tint_tab_unselected">@color/signal_colorOnSurfaceVariant</color>
 
     <color name="signal_button_primary">@color/core_ultramarine_light</color>
     <color name="signal_button_primary_ripple">@color/transparent_black_15</color>

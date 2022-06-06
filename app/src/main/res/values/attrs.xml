@@ -19,6 +19,7 @@
     <attr name="emoji_category_emoticons" format="reference"/>
 
     <attr name="mediaKeyboardBackgroundColor" format="color" />
+    <attr name="mediaKeyboardBottomBarBackgroundColor" format="color" />
 
     <attr name="settingsToolbarStyle" format="reference" />
 

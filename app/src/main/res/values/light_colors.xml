@@ -32,7 +32,7 @@
     <color name="signal_icon_tint_action">@color/core_black</color>
 
     <color name="signal_icon_tint_tab_selected">@color/signal_colorOnSurface</color>
-    <color name="signal_icon_tint_tab_unselected">@color/core_grey_45</color>
+    <color name="signal_icon_tint_tab_unselected">@color/signal_colorOnSurfaceVariant</color>
 
     <color name="signal_button_primary">@color/core_ultramarine</color>
     <color name="signal_button_primary_ripple">@color/transparent_black_15</color>

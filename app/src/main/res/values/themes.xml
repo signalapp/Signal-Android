@@ -176,7 +176,8 @@
         <item name="bottomSheetDialogTheme">@style/Theme.Signal.Light.BottomSheetDialog</item>
 
         <item name="contactCheckboxBackground">@drawable/contact_selection_checkbox</item>
-        <item name="mediaKeyboardBackgroundColor">@color/signal_background_secondary</item>
+        <item name="mediaKeyboardBackgroundColor">@color/signal_colorSurface2</item>
+        <item name="mediaKeyboardBottomBarBackgroundColor">@color/signal_colorSurface5</item>
 
         <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
@@ -281,7 +282,8 @@
         <item name="settingsToolbarStyle">@style/TextSecure.DarkActionBar.Settings</item>
 
         <item name="contactCheckboxBackground">@drawable/contact_selection_checkbox</item>
-        <item name="mediaKeyboardBackgroundColor">@color/signal_background_secondary</item>
+        <item name="mediaKeyboardBackgroundColor">@color/signal_colorSurface2</item>
+        <item name="mediaKeyboardBottomBarBackgroundColor">@color/signal_colorSurface5</item>
 
         <item name="contact_filter_toolbar_icon_tint">@color/signal_icon_tint_primary</item>
 
@@ -575,7 +577,8 @@
     <style name="Theme.Signal.RoundedBottomSheet.Stories">
         <item name="android:windowIsFloating">false</item>
         <item name="bottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners.BottomSheet.Stories</item>
-        <item name="mediaKeyboardBackgroundColor">@color/signal_background_tertiary</item>
+        <item name="mediaKeyboardBackgroundColor">@color/signal_colorSurface2</item>
+        <item name="mediaKeyboardBottomBarBackgroundColor">@color/signal_colorSurface5</item>
 
         <item name="android:textColorPrimary">@color/core_grey_05</item>
 

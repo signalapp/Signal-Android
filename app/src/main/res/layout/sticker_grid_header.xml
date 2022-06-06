@@ -8,6 +8,6 @@
     android:gravity="center_vertical"
     android:minHeight="36dp"
     android:singleLine="true"
-    android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
-    android:textColor="@color/signal_text_hint"
+    android:textAppearance="@style/Signal.Text.LabelLarge"
+    android:textColor="@color/signal_colorOnSurfaceVariant"
     tools:text="@string/ReactWithAnyEmojiBottomSheetDialogFragment__activities" />
