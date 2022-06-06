@@ -80,7 +80,7 @@ public class ChatWallpaperFragment extends Fragment {
     viewModel.getCurrentWallpaper().observe(getViewLifecycleOwner(), wallpaper -> {
       if (wallpaper.isPresent()) {
         wallpaper.get().loadInto(chatWallpaperPreview);
-        ImageViewCompat.setImageTintList(recvBubble, ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.conversation_item_wallpaper_bubble_color)));
+        ImageViewCompat.setImageTintList(recvBubble, ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.conversation_item_recv_bubble_color_wallpaper)));
       } else {
         chatWallpaperPreview.setImageDrawable(null);
         ImageViewCompat.setImageTintList(recvBubble, ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.signal_background_secondary)));

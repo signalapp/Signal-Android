@@ -140,7 +140,7 @@ class ChatColorPreviewView @JvmOverloads constructor(
     }
 
     val backgroundColor = if (chatWallpaper != null) {
-      R.color.conversation_item_wallpaper_bubble_color
+      R.color.conversation_item_recv_bubble_color_wallpaper
     } else {
       R.color.signal_background_secondary
     }

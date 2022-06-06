@@ -82,7 +82,8 @@
     <color name="conversation_item_update_text_color">@color/signal_colorOnSurfaceVariant</color>
     <color name="conversation_item_recv_icon_color">@color/core_grey_25</color>
     <color name="conversation_item_quote_text_color">@color/core_grey_05</color>
-    <color name="conversation_item_wallpaper_bubble_color">@color/signal_colorBackground</color>
+    <color name="conversation_item_recv_bubble_color_normal">@color/signal_colorSurfaceVariant</color>
+    <color name="conversation_item_recv_bubble_color_wallpaper">@color/signal_colorNeutral</color>
     <color name="conversation_item_outgoing_audio_foreground_tint">@color/signal_colorNeutralInverse</color>
     <color name="conversation_item_incoming_audio_foreground_tint_normal">@color/signal_colorOnSurface</color>
     <color name="conversation_item_incoming_audio_foreground_tint_wallpaper">@color/signal_colorNeutralInverse</color>
@@ -96,6 +97,8 @@
     <color name="conversation_item_sent_view_once_circle_wallpaper">@color/transparent_white_20</color>
     <color name="conversation_item_sent_view_once_unopened">@color/core_grey_05</color>
     <color name="conversation_item_sent_view_once_opened">@color/transparent_white_80</color>
+    <color name="conversation_typing_indicator_foreground_tint_normal">@color/signal_colorOnSurfaceVariant</color>
+    <color name="conversation_typing_indicator_foreground_tint_wallpaper">@color/signal_colorNeutralVariantInverse</color>
 
     <color name="wallpaper_bubble_color">@color/signal_colorTransparentInverse4</color>
 

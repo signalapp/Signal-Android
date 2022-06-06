@@ -22,7 +22,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.Typeface;
@@ -611,8 +610,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private void initializeAttributes() {
-    defaultBubbleColor             = ContextCompat.getColor(context, R.color.signal_colorSurfaceVariant);
-    defaultBubbleColorForWallpaper = ContextCompat.getColor(context, R.color.conversation_item_wallpaper_bubble_color);
+    defaultBubbleColor             = ContextCompat.getColor(context, R.color.conversation_item_recv_bubble_color_normal);
+    defaultBubbleColorForWallpaper = ContextCompat.getColor(context, R.color.conversation_item_recv_bubble_color_wallpaper);
   }
 
   private @ColorInt int getDefaultBubbleColor(boolean hasWallpaper) {

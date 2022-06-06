@@ -68,11 +68,13 @@ public class ConversationTypingView extends ConstraintLayout {
     }
 
     if (hasWallpaper) {
-      bubble.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.conversation_item_wallpaper_bubble_color));
-      typistCount.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.conversation_item_wallpaper_bubble_color), PorterDuff.Mode.SRC_IN);
+      bubble.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.conversation_item_recv_bubble_color_wallpaper));
+      typistCount.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.conversation_item_recv_bubble_color_wallpaper), PorterDuff.Mode.SRC_IN);
+      indicator.setDotTint(ContextCompat.getColor(getContext(), R.color.conversation_typing_indicator_foreground_tint_wallpaper));
     } else {
-      bubble.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.signal_background_secondary));
-      typistCount.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.signal_background_secondary), PorterDuff.Mode.SRC_IN);
+      bubble.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.conversation_item_recv_bubble_color_normal));
+      typistCount.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.conversation_item_recv_bubble_color_normal), PorterDuff.Mode.SRC_IN);
+      indicator.setDotTint(ContextCompat.getColor(getContext(), R.color.conversation_typing_indicator_foreground_tint_normal));
     }
 
     indicator.startAnimation();
