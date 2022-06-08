@@ -5,5 +5,5 @@
 
     <stroke
         android:width="1.5dp"
-        android:color="@color/signal_colorOutline" />
+        android:color="@color/signal_colorOutline_38" />
 </shape>
