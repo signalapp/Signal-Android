@@ -16,8 +16,6 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:circularProgressMaterialButton__label="@string/ExpireTimerSettingsFragment__save" />
