@@ -349,7 +349,7 @@ public class ThumbnailView extends FrameLayout {
 
   private GlideRequest buildThumbnailGlideRequest(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
     GlideRequest request = applySizing(glideRequests.load(new DecryptableUri(slide.getThumbnailUri()))
-                                          .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                                          .diskCacheStrategy(DiskCacheStrategy.NONE)
                                           .transition(withCrossFade()), new CenterCrop());
 
     if (slide.isInProgress()) return request;

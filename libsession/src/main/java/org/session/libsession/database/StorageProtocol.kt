@@ -58,6 +58,8 @@ interface StorageProtocol {
     fun getAllV2OpenGroups(): Map<Long, OpenGroupV2>
     fun getV2OpenGroup(threadId: Long): OpenGroupV2?
     fun addOpenGroup(urlAsString: String)
+    fun onOpenGroupAdded(urlAsString: String)
+    fun hasBackgroundGroupAddJob(groupJoinUrl: String): Boolean
     fun setOpenGroupServerMessageID(messageID: Long, serverID: Long, threadID: Long, isSms: Boolean)
 
     // Open Group Public Keys
@@ -155,7 +157,10 @@ interface StorageProtocol {
     /**
      * Returns the ID of the `TSIncomingMessage` that was constructed.
      */
-    fun persist(message: VisibleMessage, quotes: QuoteModel?, linkPreview: List<LinkPreview?>, groupPublicKey: String?, openGroupID: String?, attachments: List<Attachment>): Long?
+    fun persist(message: VisibleMessage, quotes: QuoteModel?, linkPreview: List<LinkPreview?>, groupPublicKey: String?, openGroupID: String?, attachments: List<Attachment>, runIncrement: Boolean, runThreadUpdate: Boolean): Long?
+    fun markConversationAsRead(threadId: Long, updateLastSeen: Boolean)
+    fun incrementUnread(threadId: Long, amount: Int)
+    fun updateThread(threadId: Long, unarchive: Boolean)
     fun insertDataExtractionNotificationMessage(senderPublicKey: String, message: DataExtractionNotificationInfoMessage, sentTimestamp: Long)
     fun insertMessageRequestResponse(response: MessageRequestResponse)
     fun setRecipientApproved(recipient: Recipient, approved: Boolean)

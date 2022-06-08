@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.math.min
 
 class ClosedGroupPollerV2 {
-    private val executorService = Executors.newScheduledThreadPool(4)
+    private val executorService = Executors.newScheduledThreadPool(1)
     private var isPolling = mutableMapOf<String, Boolean>()
     private var futures = mutableMapOf<String, ScheduledFuture<*>>()
 

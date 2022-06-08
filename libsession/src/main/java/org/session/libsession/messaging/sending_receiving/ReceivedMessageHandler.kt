@@ -3,7 +3,7 @@ package org.session.libsession.messaging.sending_receiving
 import android.text.TextUtils
 import org.session.libsession.avatars.AvatarHelper
 import org.session.libsession.messaging.MessagingModuleConfiguration
-import org.session.libsession.messaging.jobs.AttachmentDownloadJob
+import org.session.libsession.messaging.jobs.BackgroundGroupAddJob
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.control.CallMessage
@@ -61,7 +61,11 @@ fun MessageReceiver.handle(message: Message, proto: SignalServiceProtos.Content,
         is ConfigurationMessage -> handleConfigurationMessage(message)
         is UnsendRequest -> handleUnsendRequest(message)
         is MessageRequestResponse -> handleMessageRequestResponse(message)
-        is VisibleMessage -> handleVisibleMessage(message, proto, openGroupID)
+        is VisibleMessage -> handleVisibleMessage(message, proto, openGroupID,
+            runIncrement = true,
+            runThreadUpdate = true,
+            runProfileUpdate = true
+        )
         is CallMessage -> handleCallMessage(message)
     }
 }
@@ -138,10 +142,13 @@ private fun handleConfigurationMessage(message: ConfigurationMessage) {
 
     TextSecurePreferences.setConfigurationMessageSynced(context, true)
     TextSecurePreferences.setLastProfileUpdateTime(context, message.sentTimestamp!!)
-    if (firstTimeSync) {
-        val allClosedGroupPublicKeys = storage.getAllClosedGroupPublicKeys()
-        for (closedGroup in message.closedGroups) {
-            if (allClosedGroupPublicKeys.contains(closedGroup.publicKey)) continue
+    val allClosedGroupPublicKeys = storage.getAllClosedGroupPublicKeys()
+    for (closedGroup in message.closedGroups) {
+        if (allClosedGroupPublicKeys.contains(closedGroup.publicKey)) {
+            // just handle the closed group encryption key pairs to avoid sync'd devices getting out of sync
+            storage.addClosedGroupEncryptionKeyPair(closedGroup.encryptionKeyPair!!, closedGroup.publicKey)
+        } else if (firstTimeSync) {
+            // only handle new closed group if it's first time sync
             handleNewClosedGroup(message.sender!!, message.sentTimestamp!!, closedGroup.publicKey, closedGroup.name,
                 closedGroup.encryptionKeyPair!!, closedGroup.members, closedGroup.admins, message.sentTimestamp!!, closedGroup.expirationTimer)
         }
@@ -149,7 +156,11 @@ private fun handleConfigurationMessage(message: ConfigurationMessage) {
     val allV2OpenGroups = storage.getAllV2OpenGroups().map { it.value.joinURL }
     for (openGroup in message.openGroups) {
         if (allV2OpenGroups.contains(openGroup)) continue
-        storage.addOpenGroup(openGroup)
+        Log.d("OpenGroup", "All open groups doesn't contain $openGroup")
+        if (!storage.hasBackgroundGroupAddJob(openGroup)) {
+            Log.d("OpenGroup", "Doesn't contain background job for $openGroup, adding")
+            JobQueue.shared.add(BackgroundGroupAddJob(openGroup))
+        }
     }
     val profileManager = SSKEnvironment.shared.profileManager
     val recipient = Recipient.from(context, Address.fromSerialized(userPublicKey), false)
@@ -192,8 +203,12 @@ fun handleMessageRequestResponse(message: MessageRequestResponse) {
 }
 //endregion
 
-// region Visible Messages
-fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalServiceProtos.Content, openGroupID: String?) {
+fun MessageReceiver.handleVisibleMessage(message: VisibleMessage,
+                                         proto: SignalServiceProtos.Content,
+                                         openGroupID: String?,
+                                         runIncrement: Boolean,
+                                         runThreadUpdate: Boolean,
+                                         runProfileUpdate: Boolean): Long? {
     val storage = MessagingModuleConfiguration.shared.storage
     val context = MessagingModuleConfiguration.shared.context
     val userPublicKey = storage.getUserPublicKey()
@@ -209,23 +224,25 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     }
     // Update profile if needed
     val recipient = Recipient.from(context, Address.fromSerialized(messageSender!!), false)
-    val profile = message.profile
-    if (profile != null && userPublicKey != messageSender) {
-        val profileManager = SSKEnvironment.shared.profileManager
-        val name = profile.displayName!!
-        if (name.isNotEmpty()) {
-            profileManager.setName(context, recipient, name)
-        }
-        val newProfileKey = profile.profileKey
+    if (runProfileUpdate) {
+        val profile = message.profile
+        if (profile != null && userPublicKey != messageSender) {
+            val profileManager = SSKEnvironment.shared.profileManager
+            val name = profile.displayName!!
+            if (name.isNotEmpty()) {
+                profileManager.setName(context, recipient, name)
+            }
+            val newProfileKey = profile.profileKey
 
-        val needsProfilePicture = !AvatarHelper.avatarFileExists(context, Address.fromSerialized(messageSender))
-        val profileKeyValid = newProfileKey?.isNotEmpty() == true && (newProfileKey.size == 16 || newProfileKey.size == 32) && profile.profilePictureURL?.isNotEmpty() == true
-        val profileKeyChanged = (recipient.profileKey == null || !MessageDigest.isEqual(recipient.profileKey, newProfileKey))
+            val needsProfilePicture = !AvatarHelper.avatarFileExists(context, Address.fromSerialized(messageSender))
+            val profileKeyValid = newProfileKey?.isNotEmpty() == true && (newProfileKey.size == 16 || newProfileKey.size == 32) && profile.profilePictureURL?.isNotEmpty() == true
+            val profileKeyChanged = (recipient.profileKey == null || !MessageDigest.isEqual(recipient.profileKey, newProfileKey))
 
-        if ((profileKeyValid && profileKeyChanged) || (profileKeyValid && needsProfilePicture)) {
-            profileManager.setProfileKey(context, recipient, newProfileKey!!)
-            profileManager.setUnidentifiedAccessMode(context, recipient, Recipient.UnidentifiedAccessMode.UNKNOWN)
-            profileManager.setProfilePictureURL(context, recipient, profile.profilePictureURL!!)
+            if ((profileKeyValid && profileKeyChanged) || (profileKeyValid && needsProfilePicture)) {
+                profileManager.setProfileKey(context, recipient, newProfileKey!!)
+                profileManager.setUnidentifiedAccessMode(context, recipient, Recipient.UnidentifiedAccessMode.UNKNOWN)
+                profileManager.setProfilePictureURL(context, recipient, profile.profilePictureURL!!)
+            }
         }
     }
     // Parse quote if needed
@@ -259,8 +276,8 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
         }
     }
     // Parse attachments if needed
-    val attachments = proto.dataMessage.attachmentsList.mapNotNull { proto ->
-        val attachment = Attachment.fromProto(proto)
+    val attachments = proto.dataMessage.attachmentsList.mapNotNull { attachmentProto ->
+        val attachment = Attachment.fromProto(attachmentProto)
         if (!attachment.isValid()) {
             return@mapNotNull null
         } else {
@@ -269,15 +286,11 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     }
     // Persist the message
     message.threadID = threadID
-    val messageID = storage.persist(message, quoteModel, linkPreviews, message.groupPublicKey, openGroupID, attachments) ?: throw MessageReceiver.Error.DuplicateMessage
-    // Parse & persist attachments
-    // Start attachment downloads if needed
-    storage.getAttachmentsForMessage(messageID).iterator().forEach { attachment ->
-        attachment.attachmentId?.let { id ->
-            val downloadJob = AttachmentDownloadJob(id.rowId, messageID)
-            JobQueue.shared.add(downloadJob)
-        }
-    }
+    val messageID = storage.persist(
+        message, quoteModel, linkPreviews,
+        message.groupPublicKey, openGroupID,
+        attachments, runIncrement, runThreadUpdate
+    ) ?: return null
     val openGroupServerID = message.openGroupServerMessageID
     if (openGroupServerID != null) {
         val isSms = !(message.isMediaMessage() || attachments.isNotEmpty())
@@ -285,8 +298,7 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     }
     // Cancel any typing indicators if needed
     cancelTypingIndicatorsIfNeeded(message.sender!!)
-    // Notify the user if needed
-    SSKEnvironment.shared.notificationManager.updateNotification(context, threadID)
+    return messageID
 }
 //endregion
 

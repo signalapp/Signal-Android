@@ -18,7 +18,7 @@
     <color name="new_conversation_button_shadow">#4D077C44</color>
     <color name="pn_option_background">#FCFCFC</color>
     <color name="open_group_chip_color">#0D000000</color>
-    <color name="message_selected">#FFFFFF</color>
+    <color name="message_selected">#888888</color>
     <color name="input_bar_background">#FCFCFC</color>
     <color name="input_bar_button_background">#0D000000</color>
     <color name="input_bar_button_background_opaque">#EFEFEF</color>

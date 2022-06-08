@@ -5,18 +5,15 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.database.Cursor
 import android.os.Bundle
 import android.text.SpannableString
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import androidx.loader.app.LoaderManager
-import androidx.loader.content.Loader
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -73,7 +70,6 @@ import org.thoughtcrime.securesms.util.UiModeUtilities
 import org.thoughtcrime.securesms.util.disableClipping
 import org.thoughtcrime.securesms.util.push
 import org.thoughtcrime.securesms.util.show
-
 import java.io.IOException
 import java.util.Locale
 import javax.inject.Inject
@@ -83,7 +79,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
         ConversationClickListener,
         SeedReminderViewDelegate,
         NewConversationButtonSetViewDelegate,
-        LoaderManager.LoaderCallbacks<Cursor>,
         GlobalSearchInputLayout.GlobalSearchInputLayoutListener {
 
     private lateinit var binding: ActivityHomeBinding
@@ -97,12 +92,13 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
     @Inject lateinit var textSecurePreferences: TextSecurePreferences
 
     private val globalSearchViewModel by viewModels<GlobalSearchViewModel>()
+    private val homeViewModel by viewModels<HomeViewModel>()
 
     private val publicKey: String
         get() = textSecurePreferences.getLocalNumber()!!
 
-    private val homeAdapter: HomeAdapter by lazy {
-        HomeAdapter(context = this, cursor = threadDb.approvedConversationList, listener = this)
+    private val homeAdapter: NewHomeAdapter by lazy {
+        NewHomeAdapter(context = this, listener = this)
     }
 
     private val globalSearchAdapter = GlobalSearchAdapter { model ->
@@ -156,8 +152,8 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
         // Set up Glide
         glide = GlideApp.with(this)
         // Set up toolbar buttons
-        binding.profileButton.glide = glide
-        binding.profileButton.setOnClickListener { openSettings() }
+        binding.profileButton.root.glide = glide
+        binding.profileButton.root.setOnClickListener { openSettings() }
         binding.searchViewContainer.setOnClickListener {
             binding.globalSearchInputLayout.requestFocus()
         }
@@ -184,8 +180,20 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
         // Set up empty state view
         binding.createNewPrivateChatButton.setOnClickListener { createNewPrivateChat() }
         IP2Country.configureIfNeeded(this@HomeActivity)
-        // This is a workaround for the fact that CursorRecyclerViewAdapter doesn't actually auto-update (even though it says it will)
-        LoaderManager.getInstance(this).restartLoader(0, null, this)
+        homeViewModel.getObservable(this).observe(this) { newData ->
+            val manager = binding.recyclerView.layoutManager as LinearLayoutManager
+            val firstPos = manager.findFirstCompletelyVisibleItemPosition()
+            val offsetTop = if(firstPos >= 0) {
+                manager.findViewByPosition(firstPos)?.let { view ->
+                    manager.getDecoratedTop(view) - manager.getTopDecorationHeight(view)
+                } ?: 0
+            } else 0
+            homeAdapter.data = newData
+            if(firstPos >= 0) { manager.scrollToPositionWithOffset(firstPos, offsetTop) }
+            setupMessageRequestsBanner()
+            updateEmptyState()
+        }
+        homeViewModel.tryUpdateChannel()
         // Set up new conversation button set
         binding.newConversationButtonSet.delegate = this
         // Observe blocked contacts changed events
@@ -202,23 +210,19 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
                 // Double check that the long poller is up
                 (applicationContext as ApplicationContext).startPollingIfNeeded()
                 // update things based on TextSecurePrefs (profile info etc)
-                // Set up typing observer
-                withContext(Dispatchers.Main) {
-                    ApplicationContext.getInstance(this@HomeActivity).typingStatusRepository.typingThreads.observe(this@HomeActivity, Observer<Set<Long>> { threadIDs ->
-                        val adapter = binding.recyclerView.adapter as HomeAdapter
-                        adapter.typingThreadIDs = threadIDs ?: setOf()
-                    })
-                    updateProfileButton()
-                    TextSecurePreferences.events.filter { it == TextSecurePreferences.PROFILE_NAME_PREF }.collect {
-                        updateProfileButton()
-                    }
-                }
                 // Set up remaining components if needed
                 val application = ApplicationContext.getInstance(this@HomeActivity)
                 application.registerForFCMIfNeeded(false)
                 if (textSecurePreferences.getLocalNumber() != null) {
                     OpenGroupManager.startPolling()
                     JobQueue.shared.resumePendingJobs()
+                }
+                // Set up typing observer
+                withContext(Dispatchers.Main) {
+                    updateProfileButton()
+                    TextSecurePreferences.events.filter { it == TextSecurePreferences.PROFILE_NAME_PREF }.collect {
+                        updateProfileButton()
+                    }
                 }
             }
             // monitor the global search VM query
@@ -293,7 +297,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
         binding.searchToolbar.isVisible = isShown
         binding.sessionToolbar.isVisible = !isShown
         binding.recyclerView.isVisible = !isShown
-        binding.emptyStateContainer.isVisible = (binding.recyclerView.adapter as HomeAdapter).itemCount == 0 && binding.recyclerView.isVisible
+        binding.emptyStateContainer.isVisible = (binding.recyclerView.adapter as NewHomeAdapter).itemCount == 0 && binding.recyclerView.isVisible
         binding.seedReminderView.isVisible = !TextSecurePreferences.getHasViewedSeed(this) && !isShown
         binding.gradientView.isVisible = !isShown
         binding.globalSearchRecycler.isVisible = isShown
@@ -314,26 +318,18 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
                 root.setOnClickListener { showMessageRequests() }
                 root.setOnLongClickListener { hideMessageRequests(); true }
                 root.layoutParams = RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT)
-                homeAdapter.headerView = root
-                homeAdapter.notifyItemChanged(0)
+                val hadHeader = homeAdapter.hasHeaderView()
+                homeAdapter.header = root
+                if (hadHeader) homeAdapter.notifyItemChanged(0)
+                else homeAdapter.notifyItemInserted(0)
             }
         } else {
-            homeAdapter.headerView = null
+            val hadHeader = homeAdapter.hasHeaderView()
+            homeAdapter.header = null
+            if (hadHeader) {
+                homeAdapter.notifyItemRemoved(0)
+            }
         }
-    }
-
-    override fun onCreateLoader(id: Int, bundle: Bundle?): Loader<Cursor> {
-        return HomeLoader(this@HomeActivity)
-    }
-
-    override fun onLoadFinished(loader: Loader<Cursor>, cursor: Cursor?) {
-        homeAdapter.changeCursor(cursor)
-        setupMessageRequestsBanner()
-        updateEmptyState()
-    }
-
-    override fun onLoaderReset(cursor: Loader<Cursor>) {
-        homeAdapter.changeCursor(null)
     }
 
     override fun onResume() {
@@ -341,8 +337,8 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
         ApplicationContext.getInstance(this).messageNotifier.setHomeScreenVisible(true)
         if (textSecurePreferences.getLocalNumber() == null) { return; } // This can be the case after a secondary device is auto-cleared
         IdentityKeyUtil.checkUpdate(this)
-        binding.profileButton.recycle() // clear cached image before update tje profilePictureView
-        binding.profileButton.update()
+        binding.profileButton.root.recycle() // clear cached image before update tje profilePictureView
+        binding.profileButton.root.update()
         if (textSecurePreferences.getHasViewedSeed()) {
             binding.seedReminderView.isVisible = false
         }
@@ -377,7 +373,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
 
     // region Updating
     private fun updateEmptyState() {
-        val threadCount = (binding.recyclerView.adapter as HomeAdapter).itemCount
+        val threadCount = (binding.recyclerView.adapter)!!.itemCount
         binding.emptyStateContainer.isVisible = threadCount == 0 && binding.recyclerView.isVisible
     }
 
@@ -385,14 +381,16 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
     fun onUpdateProfileEvent(event: ProfilePictureModifiedEvent) {
         if (event.recipient.isLocalNumber) {
             updateProfileButton()
+        } else {
+            homeViewModel.tryUpdateChannel()
         }
     }
 
     private fun updateProfileButton() {
-        binding.profileButton.publicKey = publicKey
-        binding.profileButton.displayName = textSecurePreferences.getProfileName()
-        binding.profileButton.recycle()
-        binding.profileButton.update()
+        binding.profileButton.root.publicKey = publicKey
+        binding.profileButton.root.displayName = textSecurePreferences.getProfileName()
+        binding.profileButton.root.recycle()
+        binding.profileButton.root.update()
     }
     // endregion
 
@@ -534,9 +532,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
     private fun setConversationPinned(threadId: Long, pinned: Boolean) {
         lifecycleScope.launch(Dispatchers.IO) {
             threadDb.setPinned(threadId, pinned)
-            withContext(Dispatchers.Main) {
-                LoaderManager.getInstance(this@HomeActivity).restartLoader(0, null, this@HomeActivity)
-            }
+            homeViewModel.tryUpdateChannel()
         }
     }
 
@@ -608,11 +604,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
         show(intent, isForResult = true)
     }
 
-    private fun showPath() {
-        val intent = Intent(this, PathActivity::class.java)
-        show(intent)
-    }
-
     private fun showMessageRequests() {
         val intent = Intent(this, MessageRequestsActivity::class.java)
         push(intent)
@@ -624,7 +615,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
             .setPositiveButton(R.string.yes) { _, _ ->
                 textSecurePreferences.setHasHiddenMessageRequests()
                 setupMessageRequestsBanner()
-                LoaderManager.getInstance(this).restartLoader(0, null, this)
+                homeViewModel.tryUpdateChannel()
             }
             .setNegativeButton(R.string.no) { _, _ ->
                 // Do nothing

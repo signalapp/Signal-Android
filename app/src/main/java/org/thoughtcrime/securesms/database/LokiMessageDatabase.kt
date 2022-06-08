@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.database
 import android.content.ContentValues
 import android.content.Context
 import net.sqlcipher.database.SQLiteDatabase.CONFLICT_REPLACE
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.session.libsignal.database.LokiMessageDatabaseProtocol
+import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 
 class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiMessageDatabaseProtocol {
 
@@ -77,6 +77,9 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
         database.endTransaction()
     }
 
+    /**
+     * @return pair of sms or mms table-specific ID and whether it is in SMS table
+     */
     fun getMessageID(serverID: Long, threadID: Long): Pair<Long, Boolean>? {
         val database = databaseHelper.readableDatabase
         val mappingResult = database.get(messageThreadMappingTable, "${Companion.serverID} = ? AND ${Companion.threadID} = ?",

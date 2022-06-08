@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.session.libsession.utilities.recipients.Recipient
+import org.session.libsignal.utilities.Log
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.repository.ConversationRepository
 import java.util.UUID
@@ -22,8 +23,8 @@ class ConversationViewModel(
     private val _uiState = MutableStateFlow(ConversationUiState())
     val uiState: StateFlow<ConversationUiState> = _uiState
 
-    val recipient: Recipient
-        get() = repository.getRecipientForThreadId(threadId)
+    val recipient: Recipient?
+        get() = repository.maybeGetRecipientForThreadId(threadId)
 
     init {
         _uiState.update {
@@ -44,20 +45,24 @@ class ConversationViewModel(
     }
 
     fun unblock() {
+        val recipient = recipient ?: return Log.w("Loki", "Recipient was null for unblock action")
         if (recipient.isContactRecipient) {
             repository.unblock(recipient)
         }
     }
 
     fun deleteLocally(message: MessageRecord) {
+        val recipient = recipient ?: return Log.w("Loki", "Recipient was null for delete locally action")
         repository.deleteLocally(recipient, message)
     }
 
     fun setRecipientApproved() {
+        val recipient = recipient ?: return Log.w("Loki", "Recipient was null for set approved action")
         repository.setApproved(recipient, true)
     }
 
     fun deleteForEveryone(message: MessageRecord) = viewModelScope.launch {
+        val recipient = recipient ?: return@launch
         repository.deleteForEveryone(threadId, recipient, message)
             .onFailure {
                 showMessage("Couldn't delete message due to error: $it")
@@ -92,6 +97,7 @@ class ConversationViewModel(
     }
 
     fun acceptMessageRequest() = viewModelScope.launch {
+        val recipient = recipient ?: return@launch Log.w("Loki", "Recipient was null for accept message request action")
         repository.acceptMessageRequest(threadId, recipient)
             .onSuccess {
                 _uiState.update {
@@ -104,6 +110,7 @@ class ConversationViewModel(
     }
 
     fun declineMessageRequest() {
+        val recipient = recipient ?: return Log.w("Loki", "Recipient was null for decline message request action")
         repository.declineMessageRequest(threadId, recipient)
     }
 

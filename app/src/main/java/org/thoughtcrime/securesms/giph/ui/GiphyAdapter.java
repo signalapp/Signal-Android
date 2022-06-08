@@ -4,17 +4,14 @@ package org.thoughtcrime.securesms.giph.ui;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
-
-
-
-import org.session.libsignal.utilities.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DataSource;
@@ -26,18 +23,19 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.util.ByteBufferUtil;
 
-import network.loki.messenger.R;
-import org.thoughtcrime.securesms.giph.model.GiphyImage;
-import org.thoughtcrime.securesms.giph.model.ChunkedImageUrl;
-import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.mms.GlideRequests;
-
 import org.session.libsession.utilities.MaterialColor;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.ViewUtil;
+import org.session.libsignal.utilities.Log;
+import org.thoughtcrime.securesms.giph.model.ChunkedImageUrl;
+import org.thoughtcrime.securesms.giph.model.GiphyImage;
+import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+
+import network.loki.messenger.R;
 
 
 class GiphyAdapter extends RecyclerView.Adapter<GiphyAdapter.GiphyViewHolder> {
@@ -154,12 +152,12 @@ class GiphyAdapter extends RecyclerView.Adapter<GiphyAdapter.GiphyViewHolder> {
 
     RequestBuilder<Drawable> thumbnailRequest = GlideApp.with(context)
                                                         .load(new ChunkedImageUrl(image.getStillUrl(), image.getStillSize()))
-                                                        .diskCacheStrategy(DiskCacheStrategy.ALL);
+                                                        .diskCacheStrategy(DiskCacheStrategy.NONE);
 
     if (org.thoughtcrime.securesms.util.Util.isLowMemory(context)) {
       glideRequests.load(new ChunkedImageUrl(image.getStillUrl(), image.getStillSize()))
                    .placeholder(new ColorDrawable(Util.getRandomElement(MaterialColor.values()).toConversationColor(context)))
-                   .diskCacheStrategy(DiskCacheStrategy.ALL)
+                   .diskCacheStrategy(DiskCacheStrategy.NONE)
                    .transition(DrawableTransitionOptions.withCrossFade())
                    .listener(holder)
                    .into(holder.thumbnail);
@@ -169,7 +167,7 @@ class GiphyAdapter extends RecyclerView.Adapter<GiphyAdapter.GiphyViewHolder> {
       glideRequests.load(new ChunkedImageUrl(image.getGifUrl(), image.getGifSize()))
                    .thumbnail(thumbnailRequest)
                    .placeholder(new ColorDrawable(Util.getRandomElement(MaterialColor.values()).toConversationColor(context)))
-                   .diskCacheStrategy(DiskCacheStrategy.ALL)
+                   .diskCacheStrategy(DiskCacheStrategy.NONE)
                    .transition(DrawableTransitionOptions.withCrossFade())
                    .listener(holder)
                    .into(holder.thumbnail);

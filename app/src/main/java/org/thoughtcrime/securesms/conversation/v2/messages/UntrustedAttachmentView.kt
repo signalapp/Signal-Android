@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
@@ -14,7 +13,7 @@ import org.thoughtcrime.securesms.util.ActivityDispatcher
 import java.util.Locale
 
 class UntrustedAttachmentView: LinearLayout {
-    private lateinit var binding: ViewUntrustedAttachmentBinding
+    private val binding: ViewUntrustedAttachmentBinding by lazy { ViewUntrustedAttachmentBinding.bind(this) }
     enum class AttachmentType {
         AUDIO,
         DOCUMENT,
@@ -22,13 +21,10 @@ class UntrustedAttachmentView: LinearLayout {
     }
 
     // region Lifecycle
-    constructor(context: Context) : super(context) { initialize() }
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { initialize() }
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { initialize() }
+    constructor(context: Context) : super(context)
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
-    private fun initialize() {
-        binding = ViewUntrustedAttachmentBinding.inflate(LayoutInflater.from(context), this, true)
-    }
     // endregion
 
     // region Updating

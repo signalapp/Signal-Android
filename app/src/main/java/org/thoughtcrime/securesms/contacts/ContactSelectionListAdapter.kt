@@ -35,6 +35,13 @@ class ContactSelectionListAdapter(private val context: Context, private val mult
         return items.size
     }
 
+    override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
+        super.onViewRecycled(holder)
+        if (holder is UserViewHolder) {
+            holder.view.unbind()
+        }
+    }
+
     override fun getItemViewType(position: Int): Int {
         return when (items[position]) {
             is ContactSelectionListItem.Header -> ViewType.Divider

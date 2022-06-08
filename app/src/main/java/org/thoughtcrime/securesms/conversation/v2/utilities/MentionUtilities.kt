@@ -20,14 +20,26 @@ object MentionUtilities {
 
     @JvmStatic
     fun highlightMentions(text: CharSequence, threadID: Long, context: Context): String {
-        return highlightMentions(text, false, threadID, context).toString() // isOutgoingMessage is irrelevant
+        val threadDB = DatabaseComponent.get(context).threadDatabase()
+        val isOpenGroup = threadDB.getRecipientForThreadId(threadID)?.isOpenGroupRecipient ?: false
+        return highlightMentions(text, false, isOpenGroup, context).toString() // isOutgoingMessage is irrelevant
+    }
+
+    @JvmStatic
+    fun highlightMentions(text:CharSequence, isOpenGroup: Boolean, context: Context): String {
+        return highlightMentions(text, false, isOpenGroup, context).toString()
     }
 
     @JvmStatic
     fun highlightMentions(text: CharSequence, isOutgoingMessage: Boolean, threadID: Long, context: Context): SpannableString {
-        @Suppress("NAME_SHADOWING") var text = text
         val threadDB = DatabaseComponent.get(context).threadDatabase()
         val isOpenGroup = threadDB.getRecipientForThreadId(threadID)?.isOpenGroupRecipient ?: false
+        return highlightMentions(text, isOutgoingMessage, isOpenGroup, context) // isOutgoingMessage is irrelevant
+    }
+
+    @JvmStatic
+    fun highlightMentions(text: CharSequence, isOutgoingMessage: Boolean, isOpenGroup: Boolean, context: Context): SpannableString {
+        @Suppress("NAME_SHADOWING") var text = text
         val pattern = Pattern.compile("@[0-9a-fA-F]*")
         var matcher = pattern.matcher(text)
         val mentions = mutableListOf<Tuple2<Range<Int>, String>>()

@@ -2,10 +2,19 @@ package org.session.libsession.messaging.sending_receiving
 
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.messages.Message
-import org.session.libsession.messaging.messages.control.*
+import org.session.libsession.messaging.messages.control.CallMessage
+import org.session.libsession.messaging.messages.control.ClosedGroupControlMessage
+import org.session.libsession.messaging.messages.control.ConfigurationMessage
+import org.session.libsession.messaging.messages.control.DataExtractionNotification
+import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
+import org.session.libsession.messaging.messages.control.MessageRequestResponse
+import org.session.libsession.messaging.messages.control.ReadReceipt
+import org.session.libsession.messaging.messages.control.TypingIndicator
+import org.session.libsession.messaging.messages.control.UnsendRequest
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsignal.crypto.PushTransportDetails
 import org.session.libsignal.protos.SignalServiceProtos
+import org.session.libsignal.utilities.Log
 
 object MessageReceiver {
 
@@ -38,7 +47,9 @@ object MessageReceiver {
         // Parse the envelope
         val envelope = SignalServiceProtos.Envelope.parseFrom(data)
         // Decrypt the contents
-        val ciphertext = envelope.content ?: throw Error.NoData
+        val ciphertext = envelope.content ?: run {
+            throw Error.NoData
+        }
         var plaintext: ByteArray? = null
         var sender: String? = null
         var groupPublicKey: String? = null
@@ -59,7 +70,9 @@ object MessageReceiver {
                         throw Error.InvalidGroupPublicKey
                     }
                     val encryptionKeyPairs = MessagingModuleConfiguration.shared.storage.getClosedGroupEncryptionKeyPairs(hexEncodedGroupPublicKey)
-                    if (encryptionKeyPairs.isEmpty()) { throw Error.NoGroupKeyPair }
+                    if (encryptionKeyPairs.isEmpty()) {
+                        throw Error.NoGroupKeyPair
+                    }
                     // Loop through all known group key pairs in reverse order (i.e. try the latest key pair first (which'll more than
                     // likely be the one we want) but try older ones in case that didn't work)
                     var encryptionKeyPair = encryptionKeyPairs.removeLast()
@@ -73,6 +86,7 @@ object MessageReceiver {
                                 encryptionKeyPair = encryptionKeyPairs.removeLast()
                                 decrypt()
                             } else {
+                                Log.e("Loki", "Failed to decrypt group message", e)
                                 throw e
                             }
                         }
@@ -80,11 +94,15 @@ object MessageReceiver {
                     groupPublicKey = envelope.source
                     decrypt()
                 }
-                else -> throw Error.UnknownEnvelopeType
+                else -> {
+                    throw Error.UnknownEnvelopeType
+                }
             }
         }
         // Don't process the envelope any further if the sender is blocked
-        if (isBlocked(sender!!)) throw Error.SenderBlocked
+        if (isBlocked(sender!!)) {
+            throw Error.SenderBlocked
+        }
         // Parse the proto
         val proto = SignalServiceProtos.Content.parseFrom(PushTransportDetails.getStrippedPaddingMessageBody(plaintext))
         // Parse the message
@@ -97,11 +115,17 @@ object MessageReceiver {
             UnsendRequest.fromProto(proto) ?:
             MessageRequestResponse.fromProto(proto) ?:
             CallMessage.fromProto(proto) ?:
-            VisibleMessage.fromProto(proto) ?: throw Error.UnknownMessage
+            VisibleMessage.fromProto(proto) ?: run {
+            throw Error.UnknownMessage
+        }
         // Ignore self send if needed
-        if (!message.isSelfSendValid && sender == userPublicKey) throw Error.SelfSend
+        if (!message.isSelfSendValid && sender == userPublicKey) {
+            throw Error.SelfSend
+        }
         // Guard against control messages in open groups
-        if (isOpenGroupMessage && message !is VisibleMessage) throw Error.InvalidMessage
+        if (isOpenGroupMessage && message !is VisibleMessage) {
+            throw Error.InvalidMessage
+        }
         // Finish parsing
         message.sender = sender
         message.recipient = userPublicKey
@@ -112,7 +136,9 @@ object MessageReceiver {
         // Validate
         var isValid = message.isValid()
         if (message is VisibleMessage && !isValid && proto.dataMessage.attachmentsCount != 0) { isValid = true }
-        if (!isValid) { throw Error.InvalidMessage }
+        if (!isValid) {
+            throw Error.InvalidMessage
+        }
         // If the message failed to process the first time around we retry it later (if the error is retryable). In this case the timestamp
         // will already be in the database but we don't want to treat the message as a duplicate. The isRetry flag is a simple workaround
         // for this issue.

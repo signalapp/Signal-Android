@@ -2,12 +2,11 @@ package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.text.StaticLayout
 import android.util.AttributeSet
-import android.view.LayoutInflater
-import android.widget.LinearLayout
 import androidx.annotation.ColorInt
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.content.res.use
 import androidx.core.text.toSpannable
 import androidx.core.view.isVisible
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,17 +15,13 @@ import network.loki.messenger.databinding.ViewQuoteBinding
 import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities
-import org.thoughtcrime.securesms.conversation.v2.utilities.TextUtilities
 import org.thoughtcrime.securesms.database.SessionContactDatabase
-import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.UiModeUtilities
 import org.thoughtcrime.securesms.util.toPx
 import javax.inject.Inject
-import kotlin.math.max
-import kotlin.math.min
 
 // There's quite some calculation going on here. It's a bit complex so don't make changes
 // if you don't need to. If you do then test:
@@ -35,27 +30,29 @@ import kotlin.math.min
 // • Quoted voice messages and documents in both private chats and group chats
 // • All of the above in both dark mode and light mode
 @AndroidEntryPoint
-class QuoteView : LinearLayout {
+class QuoteView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : ConstraintLayout(context, attrs) {
 
     @Inject lateinit var contactDb: SessionContactDatabase
 
-    private lateinit var binding: ViewQuoteBinding
-    private lateinit var mode: Mode
+    private val binding: ViewQuoteBinding by lazy { ViewQuoteBinding.bind(this) }
     private val vPadding by lazy { toPx(6, resources) }
     var delegate: QuoteViewDelegate? = null
+    private val mode: Mode
 
     enum class Mode { Regular, Draft }
 
-    // region Lifecycle
-    constructor(context: Context) : this(context, Mode.Regular)
-    constructor(context: Context, attrs: AttributeSet) : this(context,  Mode.Regular, attrs)
+    init {
+        mode = attrs?.let { attrSet ->
+            context.obtainStyledAttributes(attrSet, R.styleable.QuoteView).use { typedArray ->
+                val modeIndex = typedArray.getInt(R.styleable.QuoteView_quote_mode,  0)
+                Mode.values()[modeIndex]
+            }
+        } ?: Mode.Regular
+    }
 
-    constructor(context: Context, mode: Mode, attrs: AttributeSet? = null) : super(context, attrs) {
-        this.mode = mode
-        binding = ViewQuoteBinding.inflate(LayoutInflater.from(context), this, true)
-        // Add padding here (not on binding.mainQuoteViewContainer) to get a bit of a top inset while avoiding
-        // the clipping issue described in getIntrinsicHeight(maxContentWidth:).
-        setPadding(0, toPx(6, resources), 0, 0)
+    // region Lifecycle
+    override fun onFinishInflate() {
+        super.onFinishInflate()
         when (mode) {
             Mode.Draft -> binding.quoteViewCancelButton.setOnClickListener { delegate?.cancelQuoteDraft() }
             Mode.Regular -> {
@@ -63,44 +60,6 @@ class QuoteView : LinearLayout {
                 binding.mainQuoteViewContainer.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.transparent, context.theme))
             }
         }
-    }
-    // endregion
-
-    // region General
-    fun getIntrinsicContentHeight(maxContentWidth: Int): Int {
-        // If we're showing an attachment thumbnail, just constrain to the height of that
-        if (binding.quoteViewAttachmentPreviewContainer.isVisible) { return toPx(40, resources) }
-        var result = 0
-        val authorTextViewIntrinsicHeight: Int
-        if (binding.quoteViewAuthorTextView.isVisible) {
-            val author = binding.quoteViewAuthorTextView.text
-            authorTextViewIntrinsicHeight = TextUtilities.getIntrinsicHeight(author, binding.quoteViewAuthorTextView.paint, maxContentWidth)
-            result += authorTextViewIntrinsicHeight
-        }
-        val body = binding.quoteViewBodyTextView.text
-        val bodyTextViewIntrinsicHeight = TextUtilities.getIntrinsicHeight(body, binding.quoteViewBodyTextView.paint, maxContentWidth)
-        val staticLayout = TextUtilities.getIntrinsicLayout(body, binding.quoteViewBodyTextView.paint, maxContentWidth)
-        result += bodyTextViewIntrinsicHeight
-        if (!binding.quoteViewAuthorTextView.isVisible) {
-            // We want to at least be as high as the cancel button 36DP, and no higher than 3 lines of text.
-            // Height from intrinsic layout is the height of the text before truncation so we shorten
-            // proportionally to our max lines setting.
-            return max(toPx(32, resources) ,min((result / staticLayout.lineCount) * 3, result))
-        } else {
-            // Because we're showing the author text view, we should have a height of at least 32 DP
-            // anyway, so there's no need to constrain to that. We constrain to a max height of 56 DP
-            // because that's approximately the height of the author text view + 2 lines of the body
-            // text view.
-            return min(result, toPx(56, resources))
-        }
-    }
-
-    fun getIntrinsicHeight(maxContentWidth: Int): Int {
-        // The way all this works is that we just calculate the total height the quote view should be
-        // and then center everything inside vertically. This effectively means we're applying padding.
-        // Applying padding the regular way results in a clipping issue though due to a bug in
-        // RelativeLayout.
-        return getIntrinsicContentHeight(maxContentWidth)  + (2 * vPadding )
     }
     // endregion
 
@@ -115,7 +74,7 @@ class QuoteView : LinearLayout {
         // Author
         if (thread.isGroupRecipient) {
             val author = contactDb.getContactWithSessionID(authorPublicKey)
-            val authorDisplayName = author?.displayName(Contact.contextForRecipient(thread)) ?: authorPublicKey
+            val authorDisplayName = author?.displayName(Contact.contextForRecipient(thread)) ?: "${authorPublicKey.take(4)}...${authorPublicKey.takeLast(4)}"
             binding.quoteViewAuthorTextView.text = authorDisplayName
             binding.quoteViewAuthorTextView.setTextColor(getTextColor(isOutgoingMessage))
         }
@@ -190,30 +149,6 @@ class QuoteView : LinearLayout {
         }
     }
 
-    fun calculateWidth(quote: Quote, bodyWidth: Int, maxContentWidth: Int, thread: Recipient): Int {
-        binding.quoteViewAuthorTextView.isVisible = thread.isGroupRecipient
-        var paddingWidth = resources.getDimensionPixelSize(R.dimen.medium_spacing) * 5 // initial horizontal padding
-        with (binding) {
-            if (quoteViewAttachmentPreviewContainer.isVisible) {
-                paddingWidth += toPx(40, resources)
-            }
-            if (quoteViewAccentLine.isVisible) {
-                paddingWidth += resources.getDimensionPixelSize(R.dimen.accent_line_thickness)
-            }
-        }
-        val quoteBodyWidth = StaticLayout.getDesiredWidth(binding.quoteViewBodyTextView.text, binding.quoteViewBodyTextView.paint).toInt() + paddingWidth
-
-        val quoteAuthorWidth = if (thread.isGroupRecipient) {
-            val authorPublicKey = quote.author.serialize()
-            val author = contactDb.getContactWithSessionID(authorPublicKey)
-            val authorDisplayName = author?.displayName(Contact.contextForRecipient(thread)) ?: authorPublicKey
-            StaticLayout.getDesiredWidth(authorDisplayName, binding.quoteViewBodyTextView.paint).toInt() + paddingWidth
-        } else 0
-
-        val quoteWidth = max(quoteBodyWidth, quoteAuthorWidth)
-        val usedWidth = max(quoteWidth, bodyWidth)
-        return min(maxContentWidth, usedWidth)
-    }
     // endregion
 }
 

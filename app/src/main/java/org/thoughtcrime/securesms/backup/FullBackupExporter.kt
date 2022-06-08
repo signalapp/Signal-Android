@@ -10,29 +10,51 @@ import com.annimon.stream.function.Predicate
 import com.google.protobuf.ByteString
 import net.sqlcipher.database.SQLiteDatabase
 import org.greenrobot.eventbus.EventBus
-
-import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
 import org.session.libsession.avatars.AvatarHelper
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
 import org.session.libsession.utilities.Conversions
-
-import org.thoughtcrime.securesms.backup.BackupProtos.*
-import org.thoughtcrime.securesms.crypto.AttachmentSecret
-import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream
-import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream
-import org.thoughtcrime.securesms.database.*
-import org.session.libsignal.utilities.Log
-import org.thoughtcrime.securesms.database.LokiBackupFilesDatabase
-import org.thoughtcrime.securesms.util.BackupUtil
 import org.session.libsession.utilities.Util
 import org.session.libsignal.crypto.kdf.HKDFv3
 import org.session.libsignal.utilities.ByteUtil
-import java.io.*
-import java.lang.Exception
+import org.session.libsignal.utilities.Log
+import org.thoughtcrime.securesms.backup.BackupProtos.Attachment
+import org.thoughtcrime.securesms.backup.BackupProtos.Avatar
+import org.thoughtcrime.securesms.backup.BackupProtos.BackupFrame
+import org.thoughtcrime.securesms.backup.BackupProtos.DatabaseVersion
+import org.thoughtcrime.securesms.backup.BackupProtos.Header
+import org.thoughtcrime.securesms.backup.BackupProtos.SharedPreference
+import org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement
+import org.thoughtcrime.securesms.backup.BackupProtos.Sticker
+import org.thoughtcrime.securesms.crypto.AttachmentSecret
+import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream
+import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream
+import org.thoughtcrime.securesms.database.AttachmentDatabase
+import org.thoughtcrime.securesms.database.GroupReceiptDatabase
+import org.thoughtcrime.securesms.database.JobDatabase
+import org.thoughtcrime.securesms.database.LokiAPIDatabase
+import org.thoughtcrime.securesms.database.LokiBackupFilesDatabase
+import org.thoughtcrime.securesms.database.MmsDatabase
+import org.thoughtcrime.securesms.database.MmsSmsColumns
+import org.thoughtcrime.securesms.database.PushDatabase
+import org.thoughtcrime.securesms.database.SearchDatabase
+import org.thoughtcrime.securesms.database.SmsDatabase
+import org.thoughtcrime.securesms.util.BackupUtil
+import java.io.Closeable
+import java.io.File
+import java.io.FileInputStream
+import java.io.Flushable
+import java.io.IOException
+import java.io.InputStream
+import java.io.OutputStream
 import java.security.InvalidAlgorithmParameterException
 import java.security.InvalidKeyException
 import java.security.NoSuchAlgorithmException
-import java.util.*
-import javax.crypto.*
+import java.util.LinkedList
+import javax.crypto.BadPaddingException
+import javax.crypto.Cipher
+import javax.crypto.IllegalBlockSizeException
+import javax.crypto.Mac
+import javax.crypto.NoSuchPaddingException
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
@@ -245,8 +267,8 @@ object FullBackupExporter {
     }
 
     private fun isForNonExpiringMessage(db: SQLiteDatabase, mmsId: Long): Boolean {
-        val columns = arrayOf(MmsDatabase.EXPIRES_IN)
-        val where = MmsDatabase.ID + " = ?"
+        val columns = arrayOf(MmsSmsColumns.EXPIRES_IN)
+        val where = MmsSmsColumns.ID + " = ?"
         val args = arrayOf(mmsId.toString())
         db.query(MmsDatabase.TABLE_NAME, columns, where, args, null, null, null).use { mmsCursor ->
             if (mmsCursor != null && mmsCursor.moveToFirst()) {

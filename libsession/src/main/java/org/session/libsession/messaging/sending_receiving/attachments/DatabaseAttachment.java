@@ -33,7 +33,7 @@ public class DatabaseAttachment extends Attachment {
   @Nullable
   public Uri getDataUri() {
     if (hasData) {
-      return MessagingModuleConfiguration.shared.getStorage().getAttachmentDataUri(attachmentId);
+      return MessagingModuleConfiguration.getShared().getStorage().getAttachmentDataUri(attachmentId);
     } else {
       return null;
     }
@@ -43,7 +43,7 @@ public class DatabaseAttachment extends Attachment {
   @Nullable
   public Uri getThumbnailUri() {
     if (hasThumbnail) {
-      return MessagingModuleConfiguration.shared.getStorage().getAttachmentThumbnailUri(attachmentId);
+      return MessagingModuleConfiguration.getShared().getStorage().getAttachmentThumbnailUri(attachmentId);
     } else {
       return null;
     }

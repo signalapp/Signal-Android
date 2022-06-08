@@ -122,9 +122,12 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
         linkPreview = null
         linkPreviewDraftView = null
         binding.inputBarAdditionalContentContainer.removeAllViews()
-        val quoteView = QuoteView(context, QuoteView.Mode.Draft)
+
+        // inflate quoteview with typed array here
+        val layout = LayoutInflater.from(context).inflate(R.layout.view_quote_draft, binding.inputBarAdditionalContentContainer, false)
+        val quoteView = layout.findViewById<QuoteView>(R.id.mainQuoteViewContainer)
         quoteView.delegate = this
-        binding.inputBarAdditionalContentContainer.addView(quoteView)
+        binding.inputBarAdditionalContentContainer.addView(layout)
         val attachments = (message as? MmsMessageRecord)?.slideDeck
         val sender = if (message.isOutgoing) TextSecurePreferences.getLocalNumber(context)!! else message.individualRecipient.address.serialize()
         quoteView.bind(sender, message.body, attachments,

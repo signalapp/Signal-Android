@@ -11,8 +11,10 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import org.session.libsession.BuildConfig
 import org.session.libsession.R
 import org.session.libsession.utilities.TextSecurePreferences.Companion.CALL_NOTIFICATIONS_ENABLED
+import org.session.libsession.utilities.TextSecurePreferences.Companion.LAST_VACUUM_TIME
 import org.session.libsession.utilities.TextSecurePreferences.Companion.SHOWN_CALL_NOTIFICATION
 import org.session.libsession.utilities.TextSecurePreferences.Companion.SHOWN_CALL_WARNING
 import org.session.libsignal.utilities.Log
@@ -159,6 +161,8 @@ interface TextSecurePreferences {
     fun setShownCallWarning(): Boolean
     fun setShownCallNotification(): Boolean
     fun isCallNotificationsEnabled(): Boolean
+    fun getLastVacuum(): Long
+    fun setLastVacuumNow()
     fun clearAll()
 
     companion object {
@@ -239,6 +243,7 @@ interface TextSecurePreferences {
         const val CALL_NOTIFICATIONS_ENABLED = "pref_call_notifications_enabled"
         const val SHOWN_CALL_WARNING = "pref_shown_call_warning" // call warning is user-facing warning of enabling calls
         const val SHOWN_CALL_NOTIFICATION = "pref_shown_call_notification" // call notification is a promp to check privacy settings
+        const val LAST_VACUUM_TIME = "pref_last_vacuum_time"
 
         @JvmStatic
         fun getLastConfigurationSyncTime(context: Context): Long {
@@ -608,7 +613,7 @@ interface TextSecurePreferences {
 
         @JvmStatic
         fun isScreenSecurityEnabled(context: Context): Boolean {
-            return getBooleanPreference(context, SCREEN_SECURITY_PREF, true)
+            return getBooleanPreference(context, SCREEN_SECURITY_PREF, !BuildConfig.DEBUG)
         }
 
         fun getLastVersionCode(context: Context): Int {
@@ -906,6 +911,16 @@ interface TextSecurePreferences {
             val setValue = true
             setBooleanPreference(context, SHOWN_CALL_WARNING, setValue)
             return previousValue != setValue
+        }
+
+        @JvmStatic
+        fun getLastVacuumTime(context: Context): Long {
+            return getLongPreference(context, LAST_VACUUM_TIME, 0)
+        }
+
+        @JvmStatic
+        fun setLastVacuumNow(context: Context) {
+            setLongPreference(context, LAST_VACUUM_TIME, System.currentTimeMillis())
         }
 
         @JvmStatic
@@ -1466,6 +1481,14 @@ class AppTextSecurePreferences @Inject constructor(
 
     override fun isCallNotificationsEnabled(): Boolean {
         return getBooleanPreference(CALL_NOTIFICATIONS_ENABLED, false)
+    }
+
+    override fun getLastVacuum(): Long {
+        return getLongPreference(LAST_VACUUM_TIME, 0)
+    }
+
+    override fun setLastVacuumNow() {
+        setLongPreference(LAST_VACUUM_TIME, System.currentTimeMillis())
     }
 
     override fun setShownCallNotification(): Boolean {

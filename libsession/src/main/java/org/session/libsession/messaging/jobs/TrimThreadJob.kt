@@ -4,7 +4,7 @@ import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.utilities.Data
 import org.session.libsession.utilities.TextSecurePreferences
 
-class TrimThreadJob(val threadId: Long) : Job {
+class TrimThreadJob(val threadId: Long, val openGroupId: String?) : Job {
     override var delegate: JobDelegate? = null
     override var id: String? = null
     override var failureCount: Int = 0
@@ -14,6 +14,7 @@ class TrimThreadJob(val threadId: Long) : Job {
     companion object {
         const val KEY: String = "TrimThreadJob"
         const val THREAD_ID = "thread_id"
+        const val OPEN_GROUP_ID = "open_group"
     }
 
     override fun execute() {
@@ -27,9 +28,12 @@ class TrimThreadJob(val threadId: Long) : Job {
     }
 
     override fun serialize(): Data {
-        return Data.Builder()
+        val builder = Data.Builder()
             .putLong(THREAD_ID, threadId)
-            .build()
+        if (!openGroupId.isNullOrEmpty()) {
+            builder.putString(OPEN_GROUP_ID, openGroupId)
+        }
+        return builder.build()
     }
 
     override fun getFactoryKey(): String = "TrimThreadJob"
@@ -37,7 +41,7 @@ class TrimThreadJob(val threadId: Long) : Job {
     class Factory : Job.Factory<TrimThreadJob> {
 
         override fun create(data: Data): TrimThreadJob {
-            return TrimThreadJob(data.getLong(THREAD_ID))
+            return TrimThreadJob(data.getLong(THREAD_ID), data.getStringOrDefault(OPEN_GROUP_ID, null))
         }
     }
 

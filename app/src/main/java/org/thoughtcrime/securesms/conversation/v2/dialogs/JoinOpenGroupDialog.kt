@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import network.loki.messenger.R
 import network.loki.messenger.databinding.DialogJoinOpenGroupBinding
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.utilities.OpenGroupUrlParser
 import org.session.libsignal.utilities.ThreadUtils
 import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
@@ -37,6 +38,7 @@ class JoinOpenGroupDialog(private val name: String, private val url: String) : B
         val activity = requireContext() as AppCompatActivity
         ThreadUtils.queue {
             OpenGroupManager.add(openGroup.server, openGroup.room, openGroup.serverPublicKey, activity)
+            MessagingModuleConfiguration.shared.storage.onOpenGroupAdded(url)
             ConfigurationMessageUtilities.forceSyncConfigurationNowIfNeeded(activity)
         }
         dismiss()

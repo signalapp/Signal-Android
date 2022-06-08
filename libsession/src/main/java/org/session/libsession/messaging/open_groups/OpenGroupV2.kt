@@ -1,8 +1,9 @@
 package org.session.libsession.messaging.open_groups
 
+import okhttp3.HttpUrl
 import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.utilities.Log
-import java.util.*
+import java.util.Locale
 
 data class OpenGroupV2(
     val server: String,
@@ -37,6 +38,15 @@ data class OpenGroupV2(
             }
         }
 
+        fun getServer(urlAsString: String): HttpUrl? {
+            val url = HttpUrl.parse(urlAsString) ?: return null
+            val builder = HttpUrl.Builder().scheme(url.scheme()).host(url.host())
+            if (url.port() != 80 || url.port() != 443) {
+                // Non-standard port; add to server
+                builder.port(url.port())
+            }
+            return builder.build()
+        }
     }
 
     fun toJson(): Map<String,String> = mapOf(

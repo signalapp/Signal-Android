@@ -23,6 +23,7 @@
         tools:visibility="visible" />
 
     <ImageView
+        tools:visibility="visible"
         android:src="@drawable/ic_download_circle_filled_48"
         android:id="@+id/thumbnail_download_icon"
         android:layout_width="@dimen/medium_button_height"
