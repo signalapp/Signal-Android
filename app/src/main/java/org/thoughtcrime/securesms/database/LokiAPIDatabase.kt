@@ -265,7 +265,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
     override fun getLastMessageHashValue(snode: Snode, publicKey: String, namespace: Int): String? {
         val database = databaseHelper.readableDatabase
         val query = "${Companion.snode} = ? AND ${Companion.publicKey} = ? AND $lastMessageHashNamespace = ?"
-        return database.get(lastMessageHashValueTable2, query, arrayOf( snode.toString(), publicKey, namespace.toString() )) { cursor ->
+        return database.get(lastMessageHashValueTable2, query, arrayOf(snode.toString(), publicKey, namespace.toString())) { cursor ->
             cursor.getString(cursor.getColumnIndexOrThrow(lastMessageHashValue))
         }
     }
@@ -279,7 +279,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
             lastMessageHashNamespace to namespace.toString()
         ))
         val query = "${Companion.snode} = ? AND ${Companion.publicKey} = ? AND $lastMessageHashNamespace = ?"
-        database.insertOrUpdate(lastMessageHashValueTable2, row, query, arrayOf( snode.toString(), publicKey, namespace.toString() ))
+        val lastHash = database.insertOrUpdate(lastMessageHashValueTable2, row, query, arrayOf( snode.toString(), publicKey, namespace.toString() ))
     }
 
     override fun getReceivedMessageHashValues(publicKey: String, namespace: Int): Set<String>? {

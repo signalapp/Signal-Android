@@ -13,13 +13,17 @@ class MessagingModuleConfiguration(
 ) {
 
     companion object {
-        lateinit var shared: MessagingModuleConfiguration
+        @JvmStatic
+        val shared: MessagingModuleConfiguration
+        get() = context.getSystemService(MESSAGING_MODULE_SERVICE) as MessagingModuleConfiguration
 
-        fun configure(context: Context, storage: StorageProtocol,
-            messageDataProvider: MessageDataProvider, keyPairProvider: () -> KeyPair?
-        ) {
-            if (Companion::shared.isInitialized) { return }
-            shared = MessagingModuleConfiguration(context, storage, messageDataProvider, keyPairProvider)
+        const val MESSAGING_MODULE_SERVICE: String = "MessagingModuleConfiguration_MESSAGING_MODULE_SERVICE"
+
+        private lateinit var context: Context
+
+        @JvmStatic
+        fun configure(context: Context) {
+            this.context = context
         }
     }
 }

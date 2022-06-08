@@ -7,16 +7,15 @@ import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.open_groups.OpenGroupV2
 import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPollerV2
-import org.session.libsession.utilities.Util
 import org.session.libsignal.utilities.ThreadUtils
 import org.thoughtcrime.securesms.dependencies.DatabaseComponent
-import org.thoughtcrime.securesms.util.BitmapUtil
 import java.util.concurrent.Executors
 
 object OpenGroupManager {
     private val executorService = Executors.newScheduledThreadPool(4)
     private var pollers = mutableMapOf<String, OpenGroupPollerV2>() // One for each server
     private var isPolling = false
+    private val pollUpdaterLock = Any()
 
     val isAllCaughtUp: Boolean
         get() {
@@ -49,8 +48,11 @@ object OpenGroupManager {
     }
 
     fun stopPolling() {
-        pollers.forEach { it.value.stop() }
-        pollers.clear()
+        synchronized(pollUpdaterLock) {
+            pollers.forEach { it.value.stop() }
+            pollers.clear()
+            isPolling = false
+        }
     }
 
     @WorkerThread
@@ -67,7 +69,7 @@ object OpenGroupManager {
         storage.removeLastMessageServerID(room, server)
         // Store the public key
         storage.setOpenGroupPublicKey(server,publicKey)
-        // Get an auth token
+        // Get group info
         OpenGroupAPIV2.getAuthToken(room, server).get()
         // Get group info
         val info = OpenGroupAPIV2.getInfo(room, server).get()
@@ -77,11 +79,17 @@ object OpenGroupManager {
         }
         val openGroup = OpenGroupV2(server, room, info.name, publicKey)
         threadDB.setOpenGroupChat(openGroup, threadID)
+    }
+
+    fun restartPollerForServer(server: String) {
         // Start the poller if needed
-        pollers[server]?.startIfNeeded() ?: run {
-            val poller = OpenGroupPollerV2(server, executorService)
-            Util.runOnMain { poller.startIfNeeded() }
-            pollers[server] = poller
+        synchronized(pollUpdaterLock) {
+            pollers[server]?.stop()
+            pollers[server]?.startIfNeeded() ?: run {
+                val poller = OpenGroupPollerV2(server, executorService)
+                pollers[server] = poller
+                poller.startIfNeeded()
+            }
         }
     }
 
@@ -91,13 +99,16 @@ object OpenGroupManager {
         val openGroupID = "$server.$room"
         val threadID = GroupManager.getOpenGroupThreadID(openGroupID, context)
         val recipient = threadDB.getRecipientForThreadId(threadID) ?: return
+        threadDB.setThreadArchived(threadID)
         val groupID = recipient.address.serialize()
         // Stop the poller if needed
         val openGroups = storage.getAllV2OpenGroups().filter { it.value.server == server }
         if (openGroups.count() == 1) {
-            val poller = pollers[server]
-            poller?.stop()
-            pollers.remove(server)
+            synchronized(pollUpdaterLock) {
+                val poller = pollers[server]
+                poller?.stop()
+                pollers.remove(server)
+            }
         }
         // Delete
         storage.removeLastDeletionServerID(room, server)
@@ -112,12 +123,7 @@ object OpenGroupManager {
 
     fun addOpenGroup(urlAsString: String, context: Context) {
         val url = HttpUrl.parse(urlAsString) ?: return
-        val builder = HttpUrl.Builder().scheme(url.scheme()).host(url.host())
-        if (url.port() != 80 || url.port() != 443) {
-            // Non-standard port; add to server
-            builder.port(url.port())
-        }
-        val server = builder.build()
+        val server = OpenGroupV2.getServer(urlAsString)
         val room = url.pathSegments().firstOrNull() ?: return
         val publicKey = url.queryParameter("public_key") ?: return
         add(server.toString().removeSuffix("/"), room, publicKey, context)

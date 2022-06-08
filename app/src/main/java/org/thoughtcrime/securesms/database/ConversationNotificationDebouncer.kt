@@ -2,15 +2,13 @@ package org.thoughtcrime.securesms.database
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Handler
-import android.os.Looper
 import org.session.libsession.utilities.Debouncer
 import org.thoughtcrime.securesms.ApplicationContext
 
 class ConversationNotificationDebouncer(private val context: Context) {
     private val threadIDs = mutableSetOf<Long>()
-    private val handler = Handler(Looper.getMainLooper())
-    private val debouncer = Debouncer(handler, 250);
+    private val handler = (context.applicationContext as ApplicationContext).conversationListNotificationHandler
+    private val debouncer = Debouncer(handler, 1000)
 
     companion object {
         @SuppressLint("StaticFieldLeak")
@@ -29,7 +27,7 @@ class ConversationNotificationDebouncer(private val context: Context) {
     }
 
     private fun publish() {
-        for (threadID in threadIDs) {
+        for (threadID in threadIDs.toList()) {
             context.contentResolver.notifyChange(DatabaseContentProviders.Conversation.getUriForThread(threadID), null)
         }
         threadIDs.clear()

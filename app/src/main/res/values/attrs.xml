@@ -240,13 +240,10 @@
     </declare-styleable>
 
     <declare-styleable name="QuoteView">
-        <attr name="message_type" format="enum">
-            <enum name="preview" value="0" />
-            <enum name="outgoing" value="1" />
-            <enum name="incoming" value="2" />
+        <attr name="quote_mode" format="enum">
+            <enum name="regular" value="0"/>
+            <enum name="draft" value="1"/>
         </attr>
-        <attr name="quote_colorPrimary" format="color" />
-        <attr name="quote_colorSecondary" format="color" />
     </declare-styleable>
 
     <declare-styleable name="LinkPreviewView">

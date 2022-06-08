@@ -3,22 +3,17 @@ package org.thoughtcrime.securesms.conversation.v2.messages
 import android.content.Context
 import android.content.res.ColorStateList
 import android.util.AttributeSet
-import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.annotation.ColorInt
 import network.loki.messenger.databinding.ViewDocumentBinding
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 
 class DocumentView : LinearLayout {
-    private lateinit var binding: ViewDocumentBinding
+    private val binding: ViewDocumentBinding by lazy { ViewDocumentBinding.bind(this) }
     // region Lifecycle
-    constructor(context: Context) : super(context) { initialize() }
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { initialize() }
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { initialize() }
-
-    private fun initialize() {
-        binding = ViewDocumentBinding.inflate(LayoutInflater.from(context), this, true)
-    }
+    constructor(context: Context) : super(context)
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
     // endregion
 
     // region Updating

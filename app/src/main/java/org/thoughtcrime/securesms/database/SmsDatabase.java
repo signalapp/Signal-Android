@@ -362,7 +362,7 @@ public class SmsDatabase extends MessagingDatabase {
     return new Pair<>(messageId, threadId);
   }
 
-  protected Optional<InsertResult> insertMessageInbox(IncomingTextMessage message, long type, long serverTimestamp) {
+  protected Optional<InsertResult> insertMessageInbox(IncomingTextMessage message, long type, long serverTimestamp, boolean runIncrement, boolean runThreadUpdate) {
     if (message.isSecureMessage()) {
       type |= Types.SECURE_MESSAGE_BIT;
     } else if (message.isGroup()) {
@@ -440,11 +440,13 @@ public class SmsDatabase extends MessagingDatabase {
       SQLiteDatabase db        = databaseHelper.getWritableDatabase();
       long           messageId = db.insert(TABLE_NAME, null, values);
 
-      if (unread) {
+      if (unread && runIncrement) {
         DatabaseComponent.get(context).threadDatabase().incrementUnread(threadId, 1);
       }
 
-      DatabaseComponent.get(context).threadDatabase().update(threadId, true);
+      if (runThreadUpdate) {
+        DatabaseComponent.get(context).threadDatabase().update(threadId, true);
+      }
 
       if (message.getSubscriptionId() != -1) {
         DatabaseComponent.get(context).recipientDatabase().setDefaultSubscriptionId(recipient, message.getSubscriptionId());
@@ -456,23 +458,23 @@ public class SmsDatabase extends MessagingDatabase {
     }
   }
 
-  public Optional<InsertResult> insertMessageInbox(IncomingTextMessage message) {
-    return insertMessageInbox(message, Types.BASE_INBOX_TYPE, 0);
+  public Optional<InsertResult> insertMessageInbox(IncomingTextMessage message, boolean runIncrement, boolean runThreadUpdate) {
+    return insertMessageInbox(message, Types.BASE_INBOX_TYPE, 0, runIncrement, runThreadUpdate);
   }
 
   public Optional<InsertResult> insertCallMessage(IncomingTextMessage message) {
-    return insertMessageInbox(message, 0, 0);
+    return insertMessageInbox(message, 0, 0, true, true);
   }
 
-  public Optional<InsertResult> insertMessageInbox(IncomingTextMessage message, long serverTimestamp) {
-    return insertMessageInbox(message, Types.BASE_INBOX_TYPE, serverTimestamp);
+  public Optional<InsertResult> insertMessageInbox(IncomingTextMessage message, long serverTimestamp, boolean runIncrement, boolean runThreadUpdate) {
+    return insertMessageInbox(message, Types.BASE_INBOX_TYPE, serverTimestamp, runIncrement, runThreadUpdate);
   }
 
-  public Optional<InsertResult> insertMessageOutbox(long threadId, OutgoingTextMessage message, long serverTimestamp) {
+  public Optional<InsertResult> insertMessageOutbox(long threadId, OutgoingTextMessage message, long serverTimestamp, boolean runThreadUpdate) {
     if (threadId == -1) {
       threadId = DatabaseComponent.get(context).threadDatabase().getOrCreateThreadIdFor(message.getRecipient());
     }
-    long messageId = insertMessageOutbox(threadId, message, false, serverTimestamp, null);
+    long messageId = insertMessageOutbox(threadId, message, false, serverTimestamp, null, runThreadUpdate);
     if (messageId == -1) {
       return Optional.absent();
     }
@@ -481,7 +483,8 @@ public class SmsDatabase extends MessagingDatabase {
   }
 
   public long insertMessageOutbox(long threadId, OutgoingTextMessage message,
-                                  boolean forceSms, long date, InsertListener insertListener)
+                                  boolean forceSms, long date, InsertListener insertListener,
+                                  boolean runThreadUpdate)
   {
     long type = Types.BASE_SENDING_TYPE;
 
@@ -517,7 +520,9 @@ public class SmsDatabase extends MessagingDatabase {
       insertListener.onComplete();
     }
 
-    DatabaseComponent.get(context).threadDatabase().update(threadId, true);
+    if (runThreadUpdate) {
+      DatabaseComponent.get(context).threadDatabase().update(threadId, true);
+    }
     DatabaseComponent.get(context).threadDatabase().setLastSeen(threadId);
 
     DatabaseComponent.get(context).threadDatabase().setHasSent(threadId, true);

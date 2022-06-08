@@ -18,7 +18,7 @@
         android:id="@+id/search_result_profile_picture_parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <org.thoughtcrime.securesms.components.ProfilePictureView
+        <include layout="@layout/view_profile_picture"
             android:visibility="gone"
             android:id="@+id/search_result_profile_picture"
             android:layout_width="@dimen/medium_profile_picture_size"

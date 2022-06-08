@@ -302,7 +302,7 @@ public class Recipient implements RecipientModifiedListener {
   }
 
   public synchronized @Nullable String getName() {
-    StorageProtocol storage = MessagingModuleConfiguration.shared.getStorage();
+    StorageProtocol storage = MessagingModuleConfiguration.getShared().getStorage();
     String sessionID = this.address.toString();
     if (isGroupRecipient()) {
       if (this.name == null) {

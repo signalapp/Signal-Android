@@ -15,19 +15,39 @@ import org.session.libsession.utilities.Util
 import org.session.libsignal.crypto.kdf.HKDFv3
 import org.session.libsignal.utilities.ByteUtil
 import org.session.libsignal.utilities.Log
-import org.thoughtcrime.securesms.backup.BackupProtos.*
+import org.thoughtcrime.securesms.backup.BackupProtos.Attachment
+import org.thoughtcrime.securesms.backup.BackupProtos.Avatar
+import org.thoughtcrime.securesms.backup.BackupProtos.BackupFrame
+import org.thoughtcrime.securesms.backup.BackupProtos.DatabaseVersion
+import org.thoughtcrime.securesms.backup.BackupProtos.SharedPreference
+import org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement
 import org.thoughtcrime.securesms.crypto.AttachmentSecret
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream
-import org.thoughtcrime.securesms.database.*
+import org.thoughtcrime.securesms.database.AttachmentDatabase
+import org.thoughtcrime.securesms.database.GroupReceiptDatabase
+import org.thoughtcrime.securesms.database.MmsDatabase
+import org.thoughtcrime.securesms.database.MmsSmsColumns
+import org.thoughtcrime.securesms.database.SearchDatabase
+import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 import org.thoughtcrime.securesms.util.BackupUtil
-import java.io.*
+import java.io.Closeable
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.InputStream
+import java.io.OutputStream
 import java.security.InvalidAlgorithmParameterException
 import java.security.InvalidKeyException
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
-import java.util.*
-import javax.crypto.*
+import java.util.LinkedList
+import java.util.Locale
+import javax.crypto.BadPaddingException
+import javax.crypto.Cipher
+import javax.crypto.IllegalBlockSizeException
+import javax.crypto.Mac
+import javax.crypto.NoSuchPaddingException
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
@@ -172,7 +192,7 @@ object FullBackupImporter {
     }
 
     private fun trimEntriesForExpiredMessages(context: Context, db: SQLiteDatabase) {
-        val trimmedCondition = " NOT IN (SELECT ${MmsDatabase.ID} FROM ${MmsDatabase.TABLE_NAME})"
+        val trimmedCondition = " NOT IN (SELECT ${MmsSmsColumns.ID} FROM ${MmsDatabase.TABLE_NAME})"
         db.delete(GroupReceiptDatabase.TABLE_NAME, GroupReceiptDatabase.MMS_ID + trimmedCondition, null)
         val columns = arrayOf(AttachmentDatabase.ROW_ID, AttachmentDatabase.UNIQUE_ID)
         val where = AttachmentDatabase.MMS_ID + trimmedCondition

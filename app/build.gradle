@@ -110,6 +110,7 @@ dependencies {
     implementation "com.google.protobuf:protobuf-java:$protobufVersion"
     implementation "com.fasterxml.jackson.core:jackson-databind:$jacksonDatabindVersion"
     implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    implementation 'app.cash.copper:copper-flow:1.0.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
     implementation "nl.komponents.kovenant:kovenant:$kovenantVersion"
@@ -158,8 +159,8 @@ dependencies {
     testImplementation 'org.robolectric:shadows-multidex:4.4'
 }
 
-def canonicalVersionCode = 279
-def canonicalVersionName = "1.13.1"
+def canonicalVersionCode = 282
+def canonicalVersionName = "1.13.4"
 
 def postFixSize = 10
 def abiPostFix = ['armeabi-v7a' : 1,

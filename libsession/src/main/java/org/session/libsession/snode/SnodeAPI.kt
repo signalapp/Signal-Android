@@ -41,7 +41,7 @@ import kotlin.properties.Delegates.observable
 
 object SnodeAPI {
     private val sodium by lazy { LazySodiumAndroid(SodiumAndroid()) }
-    private val database: LokiAPIDatabaseProtocol
+    internal val database: LokiAPIDatabaseProtocol
         get() = SnodeModule.shared.storage
     private val broadcaster: Broadcaster
         get() = SnodeModule.shared.broadcaster
@@ -292,7 +292,6 @@ object SnodeAPI {
     }
 
     fun getRawMessages(snode: Snode, publicKey: String, requiresAuth: Boolean = true, namespace: Int = 0): RawResponsePromise {
-        val userED25519KeyPair = MessagingModuleConfiguration.shared.getUserED25519KeyPair() ?: return Promise.ofFail(Error.NoKeyPair)
         // Get last message hash
         val lastHashValue = database.getLastMessageHashValue(snode, publicKey, namespace) ?: ""
         val parameters = mutableMapOf<String,Any>(
@@ -301,6 +300,12 @@ object SnodeAPI {
         )
         // Construct signature
         if (requiresAuth) {
+            val userED25519KeyPair = try {
+                MessagingModuleConfiguration.shared.getUserED25519KeyPair() ?: return Promise.ofFail(Error.NoKeyPair)
+            } catch (e: Exception) {
+                Log.e("Loki", "Error getting KeyPair", e)
+                return Promise.ofFail(Error.NoKeyPair)
+            }
             val timestamp = Date().time + SnodeAPI.clockOffset
             val ed25519PublicKey = userED25519KeyPair.publicKey.asHexString
             val signature = ByteArray(Sign.BYTES)
@@ -477,7 +482,7 @@ object SnodeAPI {
         return if (messages != null) {
             updateLastMessageHashValueIfPossible(snode, publicKey, messages, namespace)
             val newRawMessages = removeDuplicates(publicKey, messages, namespace)
-            return parseEnvelopes(newRawMessages);
+            return parseEnvelopes(newRawMessages)
         } else {
             listOf()
         }
@@ -494,7 +499,8 @@ object SnodeAPI {
     }
 
     private fun removeDuplicates(publicKey: String, rawMessages: List<*>, namespace: Int): List<*> {
-        val receivedMessageHashValues = database.getReceivedMessageHashValues(publicKey, namespace)?.toMutableSet() ?: mutableSetOf()
+        val originalMessageHashValues = database.getReceivedMessageHashValues(publicKey, namespace)?.toMutableSet() ?: mutableSetOf()
+        val receivedMessageHashValues = originalMessageHashValues.toMutableSet()
         val result = rawMessages.filter { rawMessage ->
             val rawMessageAsJSON = rawMessage as? Map<*, *>
             val hashValue = rawMessageAsJSON?.get("hash") as? String
@@ -507,7 +513,9 @@ object SnodeAPI {
                 false
             }
         }
-        database.setReceivedMessageHashValues(publicKey, receivedMessageHashValues, namespace)
+        if (originalMessageHashValues != receivedMessageHashValues) {
+            database.setReceivedMessageHashValues(publicKey, receivedMessageHashValues, namespace)
+        }
         return result
     }
 

@@ -1,7 +1,11 @@
 package org.session.libsession.messaging.sending_receiving.pollers
 
-import nl.komponents.kovenant.*
+import nl.komponents.kovenant.Deferred
+import nl.komponents.kovenant.Promise
+import nl.komponents.kovenant.deferred
 import nl.komponents.kovenant.functional.bind
+import nl.komponents.kovenant.resolve
+import nl.komponents.kovenant.task
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.jobs.BatchMessageReceiveJob
 import org.session.libsession.messaging.jobs.JobQueue
@@ -11,7 +15,8 @@ import org.session.libsession.snode.SnodeModule
 import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.Snode
 import java.security.SecureRandom
-import java.util.*
+import java.util.Timer
+import java.util.TimerTask
 
 private class PromiseCanceledException : Exception("Promise canceled.")
 
@@ -23,7 +28,8 @@ class Poller {
 
     // region Settings
     companion object {
-        private val retryInterval: Long = 1 * 1000
+        private const val retryInterval: Long = 2 * 1000
+        private const val maxInterval: Long = 15 * 1000
     }
     // endregion
 
@@ -32,7 +38,7 @@ class Poller {
         if (hasStarted) { return }
         Log.d("Loki", "Started polling.")
         hasStarted = true
-        setUpPolling()
+        setUpPolling(retryInterval)
     }
 
     fun stopIfNeeded() {
@@ -43,7 +49,7 @@ class Poller {
     // endregion
 
     // region Private API
-    private fun setUpPolling() {
+    private fun setUpPolling(delay: Long) {
         if (!hasStarted) { return; }
         val thread = Thread.currentThread()
         SnodeAPI.getSwarm(userPublicKey).bind {
@@ -51,13 +57,20 @@ class Poller {
             val deferred = deferred<Unit, Exception>()
             pollNextSnode(deferred)
             deferred.promise
-        }.always {
+        }.success {
+            val nextDelay = if (isCaughtUp) retryInterval else 0
             Timer().schedule(object : TimerTask() {
-
                 override fun run() {
-                    thread.run { setUpPolling() }
+                    thread.run { setUpPolling(retryInterval) }
                 }
-            }, retryInterval)
+            }, nextDelay)
+        }.fail {
+            val nextDelay = minOf(maxInterval, (delay * 1.2).toLong())
+            Timer().schedule(object : TimerTask() {
+                override fun run() {
+                    thread.run { setUpPolling(nextDelay) }
+                }
+            }, nextDelay)
         }
     }
 

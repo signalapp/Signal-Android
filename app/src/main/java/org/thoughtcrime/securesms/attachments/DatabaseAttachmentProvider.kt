@@ -5,7 +5,14 @@ import android.text.TextUtils
 import com.google.protobuf.ByteString
 import org.greenrobot.eventbus.EventBus
 import org.session.libsession.database.MessageDataProvider
-import org.session.libsession.messaging.sending_receiving.attachments.*
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentState
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachmentAudioExtras
+import org.session.libsession.messaging.sending_receiving.attachments.PointerAttachment
+import org.session.libsession.messaging.sending_receiving.attachments.SessionServiceAttachmentPointer
+import org.session.libsession.messaging.sending_receiving.attachments.SessionServiceAttachmentStream
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.UploadResult
 import org.session.libsession.utilities.Util
@@ -126,7 +133,7 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
         val mmsDb = DatabaseComponent.get(context).mmsDatabase()
         return mmsDb.getMessage(mmsMessageId).use { cursor ->
             mmsDb.readerFor(cursor).next
-        }.isOutgoing
+        }?.isOutgoing ?: false
     }
 
     override fun isOutgoingMessage(timestamp: Long): Boolean {

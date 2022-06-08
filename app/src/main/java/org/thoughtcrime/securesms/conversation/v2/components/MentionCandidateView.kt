@@ -28,11 +28,11 @@ class MentionCandidateView : LinearLayout {
 
     private fun update() = with(binding) {
         mentionCandidateNameTextView.text = mentionCandidate.displayName
-        profilePictureView.publicKey = mentionCandidate.publicKey
-        profilePictureView.displayName = mentionCandidate.displayName
-        profilePictureView.additionalPublicKey = null
-        profilePictureView.glide = glide!!
-        profilePictureView.update()
+        profilePictureView.root.publicKey = mentionCandidate.publicKey
+        profilePictureView.root.displayName = mentionCandidate.displayName
+        profilePictureView.root.additionalPublicKey = null
+        profilePictureView.root.glide = glide!!
+        profilePictureView.root.update()
         if (openGroupServer != null && openGroupRoom != null) {
             val isUserModerator = OpenGroupAPIV2.isUserModerator(mentionCandidate.publicKey, openGroupRoom!!, openGroupServer!!)
             moderatorIconImageView.visibility = if (isUserModerator) View.VISIBLE else View.GONE

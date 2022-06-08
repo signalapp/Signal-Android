@@ -25,6 +25,7 @@ import network.loki.messenger.R
 import network.loki.messenger.databinding.ActivityJoinPublicChatBinding
 import network.loki.messenger.databinding.FragmentEnterChatUrlBinding
 import okhttp3.HttpUrl
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2.DefaultGroup
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.GroupUtil
@@ -101,6 +102,7 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
                     val sanitizedServer = server.toString().removeSuffix("/")
                     val openGroupID = "$sanitizedServer.${room!!}"
                     OpenGroupManager.add(sanitizedServer, room, publicKey!!, this@JoinPublicChatActivity)
+                    MessagingModuleConfiguration.shared.storage.onOpenGroupAdded(stringWithExplicitScheme)
                     val threadID = GroupManager.getOpenGroupThreadID(openGroupID, this@JoinPublicChatActivity)
                     val groupID = GroupUtil.getEncodedOpenGroupID(openGroupID.toByteArray())
                     threadID to groupID

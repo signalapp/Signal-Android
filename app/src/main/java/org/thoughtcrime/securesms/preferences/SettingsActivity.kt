@@ -77,12 +77,12 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         val displayName = TextSecurePreferences.getProfileName(this) ?: hexEncodedPublicKey
         glide = GlideApp.with(this)
         with(binding) {
-            profilePictureView.glide = glide
-            profilePictureView.publicKey = hexEncodedPublicKey
-            profilePictureView.displayName = displayName
-            profilePictureView.isLarge = true
-            profilePictureView.update()
-            profilePictureView.setOnClickListener { showEditProfilePictureUI() }
+            profilePictureView.root.glide = glide
+            profilePictureView.root.publicKey = hexEncodedPublicKey
+            profilePictureView.root.displayName = displayName
+            profilePictureView.root.isLarge = true
+            profilePictureView.root.update()
+            profilePictureView.root.setOnClickListener { showEditProfilePictureUI() }
             ctnGroupNameSection.setOnClickListener { startActionMode(DisplayNameEditActionModeCallback()) }
             btnGroupNameDisplay.text = displayName
             publicKeyTextView.text = hexEncodedPublicKey
@@ -214,8 +214,8 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
                 binding.btnGroupNameDisplay.text = displayName
             }
             if (isUpdatingProfilePicture && profilePicture != null) {
-                binding.profilePictureView.recycle() // Clear the cached image before updating
-                binding.profilePictureView.update()
+                binding.profilePictureView.root.recycle() // Clear the cached image before updating
+                binding.profilePictureView.root.update()
             }
             displayNameToBeUploaded = null
             profilePictureToBeUploaded = null

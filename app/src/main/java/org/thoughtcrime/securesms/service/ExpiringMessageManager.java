@@ -119,7 +119,7 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
               Optional.absent(),
               Optional.absent());
       //insert the timer update message
-      database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
+      database.insertSecureDecryptedMessageInbox(mediaMessage, -1, true, true);
 
       //set the timer to the conversation
       DatabaseComponent.get(context).recipientDatabase().setExpireMessages(recipient, duration);
@@ -141,7 +141,7 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
 
     try {
       OutgoingExpirationUpdateMessage timerUpdateMessage = new OutgoingExpirationUpdateMessage(recipient, sentTimestamp, duration * 1000L, groupId);
-      database.insertSecureDecryptedMessageOutbox(timerUpdateMessage, -1, sentTimestamp);
+      database.insertSecureDecryptedMessageOutbox(timerUpdateMessage, -1, sentTimestamp, true);
 
       if (groupId != null) {
         // we need the group ID as recipient for setExpireMessages below

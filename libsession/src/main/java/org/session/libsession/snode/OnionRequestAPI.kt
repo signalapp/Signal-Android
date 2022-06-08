@@ -140,13 +140,7 @@ object OnionRequestAPI {
                     testSnode(candidate).success {
                         deferred.resolve(candidate)
                     }.fail {
-                        getGuardSnode().success {
-                            deferred.resolve(candidate)
-                        }.fail { exception ->
-                            if (exception is InsufficientSnodesException) {
-                                deferred.reject(exception)
-                            }
-                        }
+                        deferred.reject(it)
                     }
                     return deferred.promise
                 }

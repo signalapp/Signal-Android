@@ -3,9 +3,7 @@ package org.thoughtcrime.securesms.home.search
 import android.graphics.Typeface
 import android.text.Spannable
 import android.text.SpannableStringBuilder
-import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
-import android.util.TypedValue
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import network.loki.messenger.R
@@ -86,12 +84,12 @@ private fun getHighlight(query: String?, toSearch: String): Spannable? {
 }
 
 fun ContentView.bindModel(query: String?, model: GroupConversation) {
-    binding.searchResultProfilePicture.isVisible = true
+    binding.searchResultProfilePicture.root.isVisible = true
     binding.searchResultSavedMessages.isVisible = false
     binding.searchResultSubtitle.isVisible = model.groupRecord.isClosedGroup
     binding.searchResultTimestamp.isVisible = false
     val threadRecipient = Recipient.from(binding.root.context, Address.fromSerialized(model.groupRecord.encodedId), false)
-    binding.searchResultProfilePicture.update(threadRecipient)
+    binding.searchResultProfilePicture.root.update(threadRecipient)
     val nameString = model.groupRecord.title
     binding.searchResultTitle.text = getHighlight(query, nameString)
 
@@ -107,14 +105,14 @@ fun ContentView.bindModel(query: String?, model: GroupConversation) {
 }
 
 fun ContentView.bindModel(query: String?, model: ContactModel) {
-    binding.searchResultProfilePicture.isVisible = true
+    binding.searchResultProfilePicture.root.isVisible = true
     binding.searchResultSavedMessages.isVisible = false
     binding.searchResultSubtitle.isVisible = false
     binding.searchResultTimestamp.isVisible = false
     binding.searchResultSubtitle.text = null
     val recipient =
         Recipient.from(binding.root.context, Address.fromSerialized(model.contact.sessionID), false)
-    binding.searchResultProfilePicture.update(recipient)
+    binding.searchResultProfilePicture.root.update(recipient)
     val nameString = model.contact.getSearchName()
     binding.searchResultTitle.text = getHighlight(query, nameString)
 }
@@ -123,12 +121,12 @@ fun ContentView.bindModel(model: SavedMessages) {
     binding.searchResultSubtitle.isVisible = false
     binding.searchResultTimestamp.isVisible = false
     binding.searchResultTitle.setText(R.string.note_to_self)
-    binding.searchResultProfilePicture.isVisible = false
+    binding.searchResultProfilePicture.root.isVisible = false
     binding.searchResultSavedMessages.isVisible = true
 }
 
 fun ContentView.bindModel(query: String?, model: Message) {
-    binding.searchResultProfilePicture.isVisible = true
+    binding.searchResultProfilePicture.root.isVisible = true
     binding.searchResultSavedMessages.isVisible = false
     binding.searchResultTimestamp.isVisible = true
 //    val hasUnreads = model.unread > 0
@@ -137,7 +135,7 @@ fun ContentView.bindModel(query: String?, model: Message) {
 //        binding.unreadCountTextView.text = model.unread.toString()
 //    }
     binding.searchResultTimestamp.text = DateUtils.getDisplayFormattedTimeSpanString(binding.root.context, Locale.getDefault(), model.messageResult.receivedTimestampMs)
-    binding.searchResultProfilePicture.update(model.messageResult.conversationRecipient)
+    binding.searchResultProfilePicture.root.update(model.messageResult.conversationRecipient)
     val textSpannable = SpannableStringBuilder()
     if (model.messageResult.conversationRecipient != model.messageResult.messageRecipient) {
         // group chat, bind

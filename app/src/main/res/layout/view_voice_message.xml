@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<org.thoughtcrime.securesms.conversation.v2.messages.VoiceMessageView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mainVoiceMessageViewContainer"
@@ -67,4 +67,4 @@
         android:background="@drawable/view_voice_message_duration_text_view_background"
         android:backgroundTint="@color/white" />
 
-</RelativeLayout>
+</org.thoughtcrime.securesms.conversation.v2.messages.VoiceMessageView>

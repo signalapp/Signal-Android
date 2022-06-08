@@ -15,7 +15,8 @@ import network.loki.messenger.R
 import network.loki.messenger.databinding.ViewConversationBinding
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities.highlightMentions
-import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.RecipientDatabase.NOTIFY_TYPE_ALL
+import org.thoughtcrime.securesms.database.RecipientDatabase.NOTIFY_TYPE_NONE
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.DateUtils
@@ -47,7 +48,7 @@ class ConversationView : LinearLayout {
             binding.conversationViewDisplayNameTextView.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0)
             ContextCompat.getDrawable(context, R.drawable.conversation_view_background)
         }
-        binding.profilePictureView.glide = glide
+        binding.profilePictureView.root.glide = glide
         val unreadCount = thread.unreadCount
         if (thread.recipient.isBlocked) {
             binding.accentView.setBackgroundResource(R.color.destructive)
@@ -73,15 +74,15 @@ class ConversationView : LinearLayout {
         binding.conversationViewDisplayNameTextView.text = senderDisplayName
         binding.timestampTextView.text = DateUtils.getDisplayFormattedTimeSpanString(context, Locale.getDefault(), thread.date)
         val recipient = thread.recipient
-        binding.muteIndicatorImageView.isVisible = recipient.isMuted || recipient.notifyType != RecipientDatabase.NOTIFY_TYPE_ALL
-        val drawableRes = if (recipient.isMuted || recipient.notifyType == RecipientDatabase.NOTIFY_TYPE_NONE) {
+        binding.muteIndicatorImageView.isVisible = recipient.isMuted || recipient.notifyType != NOTIFY_TYPE_ALL
+        val drawableRes = if (recipient.isMuted || recipient.notifyType == NOTIFY_TYPE_NONE) {
             R.drawable.ic_outline_notifications_off_24
         } else {
             R.drawable.ic_notifications_mentions
         }
         binding.muteIndicatorImageView.setImageResource(drawableRes)
         val rawSnippet = thread.getDisplayBody(context)
-        val snippet = highlightMentions(rawSnippet, thread.threadId, context)
+        val snippet = highlightMentions(rawSnippet, recipient.isOpenGroupRecipient, context)
         binding.snippetTextView.text = snippet
         binding.snippetTextView.typeface = if (unreadCount > 0 && !thread.isRead) Typeface.DEFAULT_BOLD else Typeface.DEFAULT
         binding.snippetTextView.visibility = if (isTyping) View.GONE else View.VISIBLE
@@ -103,13 +104,11 @@ class ConversationView : LinearLayout {
             thread.isRead -> binding.statusIndicatorImageView.setImageResource(R.drawable.ic_filled_circle_check)
             else -> binding.statusIndicatorImageView.setImageResource(R.drawable.ic_circle_check)
         }
-        post {
-            binding.profilePictureView.update(thread.recipient)
-        }
+        binding.profilePictureView.root.update(thread.recipient)
     }
 
     fun recycle() {
-        binding.profilePictureView.recycle()
+        binding.profilePictureView.root.recycle()
     }
 
     private fun getUserDisplayName(recipient: Recipient): String? {

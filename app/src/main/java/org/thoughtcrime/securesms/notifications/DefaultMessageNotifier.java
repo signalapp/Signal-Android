@@ -229,7 +229,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
     ThreadDatabase threads    = DatabaseComponent.get(context).threadDatabase();
     Recipient      recipient = threads.getRecipientForThreadId(threadId);
 
-    if (!recipient.isGroupRecipient() && threads.getMessageCount(threadId) == 1 &&
+    if (recipient != null && !recipient.isGroupRecipient() && threads.getMessageCount(threadId) == 1 &&
             !(recipient.isApproved() || threads.getLastSeenAndHasSent(threadId).second())) {
       TextSecurePreferences.removeHasHiddenMessageRequests(context);
     }
@@ -278,10 +278,10 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
       try {
         if (notificationState.hasMultipleThreads()) {
+          sendMultipleThreadNotification(context, notificationState, signal);
           for (long threadId : notificationState.getThreads()) {
             sendSingleThreadNotification(context, new NotificationState(notificationState.getNotificationsForThread(threadId)), false, true);
           }
-          sendMultipleThreadNotification(context, notificationState, signal);
         } else if (notificationState.getMessageCount() > 0){
           sendSingleThreadNotification(context, notificationState, signal, false);
         } else {

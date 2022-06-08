@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import net.sqlcipher.Cursor
 import org.session.libsession.messaging.jobs.AttachmentUploadJob
+import org.session.libsession.messaging.jobs.BackgroundGroupAddJob
 import org.session.libsession.messaging.jobs.GroupAvatarDownloadJob
 import org.session.libsession.messaging.jobs.Job
 import org.session.libsession.messaging.jobs.MessageReceiveJob
@@ -134,6 +135,13 @@ class SessionJobDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         job.id = cursor.getString(jobID)
         job.failureCount = cursor.getInt(failureCount)
         return job
+    }
+
+    fun hasBackgroundGroupAddJob(groupJoinUrl: String): Boolean {
+        val database = databaseHelper.readableDatabase
+        return database.getAll(sessionJobTable, "$jobType = ?", arrayOf(BackgroundGroupAddJob.KEY)) { cursor ->
+            jobFromCursor(cursor) as? BackgroundGroupAddJob
+        }.filterNotNull().any { it.joinUrl == groupJoinUrl }
     }
 }
 

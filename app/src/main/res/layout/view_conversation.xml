@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:background="@color/accent" />
 
-    <org.thoughtcrime.securesms.components.ProfilePictureView
+    <include layout="@layout/view_profile_picture"
         android:id="@+id/profilePictureView"
         android:layout_width="@dimen/medium_profile_picture_size"
         android:layout_height="@dimen/medium_profile_picture_size"

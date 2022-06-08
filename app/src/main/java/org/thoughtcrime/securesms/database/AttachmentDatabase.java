@@ -52,6 +52,7 @@ import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.database.model.MmsAttachmentInfo;
 import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -67,6 +68,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -266,6 +268,33 @@ public class AttachmentDatabase extends Database {
     return attachments;
   }
 
+  void deleteAttachmentsForMessages(String[] messageIds) {
+    StringBuilder queryBuilder = new StringBuilder();
+    for (int i = 0; i < messageIds.length; i++) {
+      queryBuilder.append(MMS_ID+" = ").append(messageIds[i]);
+      if (i+1 < messageIds.length) {
+        queryBuilder.append(" OR ");
+      }
+    }
+    String idsAsString = queryBuilder.toString();
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    Cursor cursor = null;
+    List<MmsAttachmentInfo> attachmentInfos = new ArrayList<>();
+    try {
+      cursor = database.query(TABLE_NAME, new String[] { DATA, THUMBNAIL, CONTENT_TYPE}, idsAsString, null, null, null, null);
+      while (cursor != null && cursor.moveToNext()) {
+        attachmentInfos.add(new MmsAttachmentInfo(cursor.getString(0), cursor.getString(1), cursor.getString(2)));
+      }
+    } finally {
+      if (cursor != null) {
+        cursor.close();
+      }
+    }
+    deleteAttachmentsOnDisk(attachmentInfos);
+    database.delete(TABLE_NAME, idsAsString, null);
+    notifyAttachmentListeners();
+  }
+
   @SuppressWarnings("ResultOfMethodCallIgnored")
   void deleteAttachmentsForMessage(long mmsId) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
@@ -325,6 +354,30 @@ public class AttachmentDatabase extends Database {
     }
 
     notifyAttachmentListeners();
+  }
+
+  private void deleteAttachmentsOnDisk(List<MmsAttachmentInfo> mmsAttachmentInfos) {
+    for (MmsAttachmentInfo info : mmsAttachmentInfos) {
+      if (info.getDataFile() != null && !TextUtils.isEmpty(info.getDataFile())) {
+        File data = new File(info.getDataFile());
+        if (data.exists()) {
+          data.delete();
+        }
+      }
+      if (info.getThumbnailFile() != null && !TextUtils.isEmpty(info.getThumbnailFile())) {
+        File thumbnail = new File(info.getThumbnailFile());
+        if (thumbnail.exists()) {
+          thumbnail.delete();
+        }
+      }
+    }
+
+    boolean anyImageType = MmsAttachmentInfo.anyImages(mmsAttachmentInfos);
+    boolean anyThumbnail = MmsAttachmentInfo.anyThumbnailNonNull(mmsAttachmentInfos);
+
+    if (anyImageType || anyThumbnail) {
+      Glide.get(context).clearDiskCache();
+    }
   }
 
   @SuppressWarnings("ResultOfMethodCallIgnored")

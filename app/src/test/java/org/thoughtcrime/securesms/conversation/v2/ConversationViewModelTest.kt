@@ -34,7 +34,7 @@ class ConversationViewModelTest: BaseViewModelTest() {
     fun setUp() {
         recipient = mock(Recipient::class.java)
         whenever(repository.isOxenHostedOpenGroup(anyLong())).thenReturn(true)
-        whenever(repository.getRecipientForThreadId(anyLong())).thenReturn(recipient)
+        whenever(repository.maybeGetRecipientForThreadId(anyLong())).thenReturn(recipient)
     }
 
     @Test

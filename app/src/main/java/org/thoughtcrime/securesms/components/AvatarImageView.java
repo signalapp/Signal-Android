@@ -8,28 +8,26 @@ import android.graphics.Outline;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
+
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
-
-
-import org.thoughtcrime.securesms.util.AvatarPlaceholderGenerator;
-import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.mms.GlideRequests;
 
 import org.session.libsession.avatars.ContactColors;
 import org.session.libsession.avatars.ContactPhoto;
 import org.session.libsession.avatars.ResourceContactPhoto;
 import org.session.libsession.utilities.Address;
+import org.session.libsession.utilities.ThemeUtil;
 import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.recipients.RecipientExporter;
-import org.session.libsession.utilities.ThemeUtil;
+import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.mms.GlideRequests;
+import org.thoughtcrime.securesms.util.AvatarPlaceholderGenerator;
 
 import java.util.Objects;
 
@@ -139,7 +137,7 @@ public class AvatarImageView extends AppCompatImageView {
             requestManager.load(photo.contactPhoto)
                           .fallback(photoPlaceholderDrawable)
                           .error(photoPlaceholderDrawable)
-                          .diskCacheStrategy(DiskCacheStrategy.ALL)
+                          .diskCacheStrategy(DiskCacheStrategy.NONE)
                           .circleCrop()
                           .into(this);
           } else {

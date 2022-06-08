@@ -48,7 +48,8 @@ public class RetrieveProfileAvatarJob extends BaseJob {
             .setQueue("RetrieveProfileAvatarJob" + recipient.getAddress().serialize())
             .addConstraint(NetworkConstraint.KEY)
             .setLifespan(TimeUnit.HOURS.toMillis(1))
-            .setMaxAttempts(10)
+            .setMaxAttempts(2)
+            .setMaxInstances(1)
             .build(),
         recipient,
         profileAvatar);

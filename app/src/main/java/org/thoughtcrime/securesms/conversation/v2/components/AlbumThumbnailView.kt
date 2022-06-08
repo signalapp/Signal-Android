@@ -118,7 +118,7 @@ class AlbumThumbnailView : FrameLayout {
             this.slideSize = slides.size
         }
         // iterate binding
-        slides.take(5).forEachIndexed { position, slide ->
+        slides.take(MAX_ALBUM_DISPLAY_SIZE).forEachIndexed { position, slide ->
             val thumbnailView = getThumbnailView(position)
             thumbnailView.setImageResource(glideRequests, slide, isPreview = false, mms = message)
         }

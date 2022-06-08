@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<org.thoughtcrime.securesms.conversation.v2.messages.OpenGroupInvitationView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -66,4 +66,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</org.thoughtcrime.securesms.conversation.v2.messages.OpenGroupInvitationView>

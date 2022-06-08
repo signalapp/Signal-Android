@@ -33,7 +33,7 @@ import kotlin.coroutines.suspendCoroutine
 
 interface ConversationRepository {
     fun isOxenHostedOpenGroup(threadId: Long): Boolean
-    fun getRecipientForThreadId(threadId: Long): Recipient
+    fun maybeGetRecipientForThreadId(threadId: Long): Recipient?
     fun saveDraft(threadId: Long, text: String)
     fun getDraft(threadId: Long): String?
     fun inviteContacts(threadId: Long, contacts: List<Recipient>)
@@ -86,12 +86,11 @@ class DefaultConversationRepository @Inject constructor(
 
     override fun isOxenHostedOpenGroup(threadId: Long): Boolean {
         val openGroup = lokiThreadDb.getOpenGroupChat(threadId)
-        return openGroup?.room == "session" || openGroup?.room == "oxen"
-                || openGroup?.room == "lokinet" || openGroup?.room == "crypto"
+        return openGroup?.publicKey == OpenGroupAPIV2.defaultServerPublicKey
     }
 
-    override fun getRecipientForThreadId(threadId: Long): Recipient {
-        return threadDb.getRecipientForThreadId(threadId)!!
+    override fun maybeGetRecipientForThreadId(threadId: Long): Recipient? {
+        return threadDb.getRecipientForThreadId(threadId)
     }
 
     override fun saveDraft(threadId: Long, text: String) {
@@ -121,7 +120,7 @@ class DefaultConversationRepository @Inject constructor(
                 contact,
                 message.sentTimestamp
             )
-            smsDb.insertMessageOutbox(-1, outgoingTextMessage, message.sentTimestamp!!)
+            smsDb.insertMessageOutbox(-1, outgoingTextMessage, message.sentTimestamp!!, true)
             MessageSender.send(message, contact.address)
         }
     }

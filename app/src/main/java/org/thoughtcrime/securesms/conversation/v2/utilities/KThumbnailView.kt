@@ -140,7 +140,7 @@ open class KThumbnailView: FrameLayout {
         val dimens = dimensDelegate.resourceSize()
 
         val request = glide.load(DecryptableUri(slide.thumbnailUri!!))
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .let { request ->
                     if (dimens[WIDTH] == 0 || dimens[HEIGHT] == 0) {
                         request.override(getDefaultWidth(), getDefaultHeight())

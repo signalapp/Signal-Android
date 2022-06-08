@@ -22,8 +22,10 @@ import network.loki.messenger.BuildConfig
 import network.loki.messenger.R
 import network.loki.messenger.databinding.DialogShareLogsBinding
 import org.session.libsignal.utilities.ExternalStorageUtil
+import org.session.libsignal.utilities.Log
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
+import org.thoughtcrime.securesms.util.FileProviderUtil
 import org.thoughtcrime.securesms.util.StreamUtil
 import java.io.File
 import java.io.FileOutputStream
@@ -84,18 +86,26 @@ class ShareLogsDialog : BaseDialog() {
                     requireContext().contentResolver.update(mediaUri, updateValues, null, null)
                 }
 
-                val shareIntent = Intent().apply {
-                    action = Intent.ACTION_SEND
-                    putExtra(Intent.EXTRA_STREAM, mediaUri)
-                    data = mediaUri
-                    type = "text/plain"
+                val shareUri = if (mediaUri.scheme == ContentResolver.SCHEME_FILE) {
+                    FileProviderUtil.getUriFor(context, File(mediaUri.path!!))
+                } else {
+                    mediaUri
+                }
+
+                withContext(Main) {
+                    val shareIntent = Intent().apply {
+                        action = Intent.ACTION_SEND
+                        putExtra(Intent.EXTRA_STREAM, shareUri)
+                        type = "text/plain"
+                        addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                    }
+                    startActivity(Intent.createChooser(shareIntent, getString(R.string.share)))
                 }
 
                 dismiss()
-
-                startActivity(Intent.createChooser(shareIntent, getString(R.string.share)))
             } catch (e: Exception) {
                 withContext(Main) {
+                    Log.e("Loki", "Error saving logs", e)
                     Toast.makeText(context,"Error saving logs", Toast.LENGTH_LONG).show()
                 }
                 dismiss()

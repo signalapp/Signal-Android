@@ -11,7 +11,6 @@ import org.session.libsession.messaging.jobs.Job
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageReceiveJob
 import org.session.libsession.messaging.jobs.MessageSendJob
-import org.session.libsession.messaging.jobs.TrimThreadJob
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.control.MessageRequestResponse
 import org.session.libsession.messaging.messages.signal.IncomingEncryptedMessage
@@ -102,7 +101,29 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return database.getAttachmentsForMessage(messageID)
     }
 
-    override fun persist(message: VisibleMessage, quotes: QuoteModel?, linkPreview: List<LinkPreview?>, groupPublicKey: String?, openGroupID: String?, attachments: List<Attachment>): Long? {
+    override fun markConversationAsRead(threadId: Long, updateLastSeen: Boolean) {
+        val threadDb = DatabaseComponent.get(context).threadDatabase()
+        threadDb.setRead(threadId, updateLastSeen)
+    }
+
+    override fun incrementUnread(threadId: Long, amount: Int) {
+        val threadDb = DatabaseComponent.get(context).threadDatabase()
+        threadDb.incrementUnread(threadId, amount)
+    }
+
+    override fun updateThread(threadId: Long, unarchive: Boolean) {
+        val threadDb = DatabaseComponent.get(context).threadDatabase()
+        threadDb.update(threadId, unarchive)
+    }
+
+    override fun persist(message: VisibleMessage,
+                         quotes: QuoteModel?,
+                         linkPreview: List<LinkPreview?>,
+                         groupPublicKey: String?,
+                         openGroupID: String?,
+                         attachments: List<Attachment>,
+                         runIncrement: Boolean,
+                         runThreadUpdate: Boolean): Long? {
         var messageID: Long? = null
         val senderAddress = Address.fromSerialized(message.sender!!)
         val isUserSender = (message.sender!! == getUserPublicKey())
@@ -139,14 +160,14 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             val mmsDatabase = DatabaseComponent.get(context).mmsDatabase()
             val insertResult = if (message.sender == getUserPublicKey()) {
                 val mediaMessage = OutgoingMediaMessage.from(message, targetRecipient, pointers, quote.orNull(), linkPreviews.orNull()?.firstOrNull())
-                mmsDatabase.insertSecureDecryptedMessageOutbox(mediaMessage, message.threadID ?: -1, message.sentTimestamp!!)
+                mmsDatabase.insertSecureDecryptedMessageOutbox(mediaMessage, message.threadID ?: -1, message.sentTimestamp!!, runThreadUpdate)
             } else {
                 // It seems like we have replaced SignalServiceAttachment with SessionServiceAttachment
                 val signalServiceAttachments = attachments.mapNotNull {
                     it.toSignalPointer()
                 }
                 val mediaMessage = IncomingMediaMessage.from(message, senderAddress, targetRecipient.expireMessages * 1000L, group, signalServiceAttachments, quote, linkPreviews)
-                mmsDatabase.insertSecureDecryptedMessageInbox(mediaMessage, message.threadID ?: -1, message.receivedTimestamp ?: 0)
+                mmsDatabase.insertSecureDecryptedMessageInbox(mediaMessage, message.threadID ?: -1, message.receivedTimestamp ?: 0, runIncrement, runThreadUpdate)
             }
             if (insertResult.isPresent) {
                 messageID = insertResult.get().messageId
@@ -158,12 +179,12 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             val insertResult = if (message.sender == getUserPublicKey()) {
                 val textMessage = if (isOpenGroupInvitation) OutgoingTextMessage.fromOpenGroupInvitation(message.openGroupInvitation, targetRecipient, message.sentTimestamp)
                 else OutgoingTextMessage.from(message, targetRecipient)
-                smsDatabase.insertMessageOutbox(message.threadID ?: -1, textMessage, message.sentTimestamp!!)
+                smsDatabase.insertMessageOutbox(message.threadID ?: -1, textMessage, message.sentTimestamp!!, runThreadUpdate)
             } else {
                 val textMessage = if (isOpenGroupInvitation) IncomingTextMessage.fromOpenGroupInvitation(message.openGroupInvitation, senderAddress, message.sentTimestamp)
                 else IncomingTextMessage.from(message, senderAddress, group, targetRecipient.expireMessages * 1000L)
                 val encrypted = IncomingEncryptedMessage(textMessage, textMessage.messageBody)
-                smsDatabase.insertMessageInbox(encrypted, message.receivedTimestamp ?: 0)
+                smsDatabase.insertMessageInbox(encrypted, message.receivedTimestamp ?: 0, runIncrement, runThreadUpdate)
             }
             insertResult.orNull()?.let { result ->
                 messageID = result.messageId
@@ -171,8 +192,8 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         }
         val threadID = message.threadID
         // open group trim thread job is scheduled after processing in OpenGroupPollerV2
-        if (openGroupID.isNullOrEmpty() && threadID != null && threadID >= 0) {
-            JobQueue.shared.add(TrimThreadJob(threadID))
+        if (openGroupID.isNullOrEmpty() && threadID != null && threadID >= 0 && TextSecurePreferences.isThreadLengthTrimmingEnabled(context)) {
+            JobQueue.shared.queueThreadForTrim(threadID)
         }
         message.serverHash?.let { serverHash ->
             messageID?.let { id ->
@@ -436,7 +457,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         val updateData = UpdateMessageData.buildGroupUpdate(type, name, members)?.toJSON()
         val infoMessage = IncomingGroupMessage(m, groupID, updateData, true)
         val smsDB = DatabaseComponent.get(context).smsDatabase()
-        smsDB.insertMessageInbox(infoMessage)
+        smsDB.insertMessageInbox(infoMessage, true, true)
     }
 
     override fun insertOutgoingInfoMessage(context: Context, groupID: String, type: SignalServiceGroup.Type, name: String, members: Collection<String>, admins: Collection<String>, threadID: Long, sentTimestamp: Long) {
@@ -448,7 +469,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         val mmsDB = DatabaseComponent.get(context).mmsDatabase()
         val mmsSmsDB = DatabaseComponent.get(context).mmsSmsDatabase()
         if (mmsSmsDB.getMessageFor(sentTimestamp, userPublicKey) != null) return
-        val infoMessageID = mmsDB.insertMessageOutbox(infoMessage, threadID, false, null)
+        val infoMessageID = mmsDB.insertMessageOutbox(infoMessage, threadID, false, null, runThreadUpdate = true)
         mmsDB.markAsSent(infoMessageID, true)
     }
 
@@ -517,6 +538,16 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
 
     override fun addOpenGroup(urlAsString: String) {
         OpenGroupManager.addOpenGroup(urlAsString, context)
+    }
+
+    override fun onOpenGroupAdded(urlAsString: String) {
+        val server = OpenGroupV2.getServer(urlAsString)
+        OpenGroupManager.restartPollerForServer(server.toString().removeSuffix("/"))
+    }
+
+    override fun hasBackgroundGroupAddJob(groupJoinUrl: String): Boolean {
+        val jobDb = DatabaseComponent.get(context).sessionJobDatabase()
+        return jobDb.hasBackgroundGroupAddJob(groupJoinUrl)
     }
 
     override fun setProfileSharing(address: Address, value: Boolean) {
@@ -667,7 +698,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             Optional.of(message)
         )
 
-        database.insertSecureDecryptedMessageInbox(mediaMessage, -1)
+        database.insertSecureDecryptedMessageInbox(mediaMessage, -1, runIncrement = true, runThreadUpdate = true)
     }
 
     override fun insertMessageRequestResponse(response: MessageRequestResponse) {
@@ -705,7 +736,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
                 Optional.absent()
             )
             val threadId = getOrCreateThreadIdFor(senderAddress)
-            mmsDb.insertSecureDecryptedMessageInbox(message, threadId)
+            mmsDb.insertSecureDecryptedMessageInbox(message, threadId, runIncrement = true, runThreadUpdate = true)
         }
     }
 

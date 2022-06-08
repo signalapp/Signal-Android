@@ -36,11 +36,12 @@ fun <T> SQLiteDatabase.getAll(table: String, query: String?, arguments: Array<St
     return listOf()
 }
 
-fun SQLiteDatabase.insertOrUpdate(table: String, values: ContentValues, query: String, arguments: Array<String>) {
+fun SQLiteDatabase.insertOrUpdate(table: String, values: ContentValues, query: String, arguments: Array<String>): Int {
     val id = insertWithOnConflict(table, null, values, SQLiteDatabase.CONFLICT_IGNORE).toInt()
     if (id == -1) {
-        update(table, values, query, arguments)
+        return update(table, values, query, arguments)
     }
+    return id
 }
 
 fun Cursor.getInt(columnName: String): Int {

@@ -24,7 +24,7 @@
     <color name="pn_option_border">#212121</color>
     <color name="paths_building">#FFCE3A</color>
     <color name="open_group_chip_color">#0DFFFFFF</color>
-    <color name="message_selected">#000000</color>
+    <color name="message_selected">#888888</color>
     <color name="input_bar_background">#171717</color>
     <color name="input_bar_button_background">#0DFFFFFF</color>
     <color name="input_bar_button_background_opaque">#232323</color>

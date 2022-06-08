@@ -20,7 +20,7 @@
             android:orientation="vertical"
             android:gravity="center_horizontal">
 
-            <org.thoughtcrime.securesms.components.ProfilePictureView
+            <include layout="@layout/view_profile_picture"
                 android:id="@+id/profilePictureView"
                 android:layout_width="@dimen/large_profile_picture_size"
                 android:layout_height="@dimen/large_profile_picture_size"
