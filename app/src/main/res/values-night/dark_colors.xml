@@ -77,6 +77,9 @@
     <color name="insight_body_2">@color/core_grey_25</color>
     <color name="insight_progress_background">@color/core_grey_60</color>
 
+    <color name="qr_card_color">@color/signal_light_colorOnPrimary</color>
+    <color name="qr_card_text_color">@color/signal_colorSurfaceVariant</color>
+
     <color name="conversation_item_sent_text_primary_color">@color/transparent_white_90</color>
     <color name="conversation_item_sent_text_secondary_color">@color/transparent_white_60</color>
     <color name="conversation_item_update_text_color">@color/signal_colorOnSurfaceVariant</color>
