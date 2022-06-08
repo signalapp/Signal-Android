@@ -51,4 +51,7 @@
     <color name="signal_colorOnBackground_60">#991B1D1D</color>
     <color name="signal_colorOutline_38">#61808389</color>
 
+    <!-- Core color alpha variants without alpha channel -->
+    <color name="signal_colorOnSurfaceVariant_16_no_alpha">#D5D8DE</color>
+    <color name="signal_colorOnSurfaceVariant_32_no_alpha">#B8BCC5</color>
 </resources>
