@@ -18,6 +18,7 @@ import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey;
 import org.thoughtcrime.securesms.conversation.MessageSendType;
+import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
@@ -73,12 +74,13 @@ public final class MultiShareSender {
 
   @WorkerThread
   public static MultiShareSendResultCollection sendSync(@NonNull MultiShareArgs multiShareArgs) {
-    List<MultiShareSendResult> results      = new ArrayList<>(multiShareArgs.getContactSearchKeys().size());
-    Context                    context      = ApplicationDependencies.getApplication();
-    boolean                    isMmsEnabled = Util.isMmsCapable(context);
-    String                     message      = multiShareArgs.getDraftText();
+    List<MultiShareSendResult> results                           = new ArrayList<>(multiShareArgs.getContactSearchKeys().size());
+    Context                    context                           = ApplicationDependencies.getApplication();
+    boolean                    isMmsEnabled                      = Util.isMmsCapable(context);
+    String                     message                           = multiShareArgs.getDraftText();
     SlideDeck                  slideDeck;
-    List<OutgoingMediaMessage> storiesBatch      = new LinkedList<>();
+    List<OutgoingMediaMessage> storiesBatch                      = new LinkedList<>();
+    ChatColors                 generatedTextStoryBackgroundColor = TextStoryBackgroundColors.getRandomBackgroundColor();
 
     try {
       slideDeck = buildSlideDeck(context, multiShareArgs);
@@ -119,7 +121,22 @@ public final class MultiShareSender {
       if ((recipient.isMmsGroup() || recipient.getEmail().isPresent()) && !isMmsEnabled) {
         results.add(new MultiShareSendResult(recipientSearchKey, MultiShareSendResult.Type.MMS_NOT_ENABLED));
       } else if (hasMmsMedia && sendType.usesSmsTransport() || hasPushMedia && !sendType.usesSmsTransport() || canSendAsTextStory) {
-        sendMediaMessageOrCollectStoryToBatch(context, multiShareArgs, recipient, slideDeck, sendType, threadId, forceSms, expiresIn, multiShareArgs.isViewOnce(), subscriptionId, mentions, recipientSearchKey.isStory(), sentTimestamp, canSendAsTextStory, storiesBatch);
+        sendMediaMessageOrCollectStoryToBatch(context,
+                                              multiShareArgs,
+                                              recipient,
+                                              slideDeck,
+                                              sendType,
+                                              threadId,
+                                              forceSms,
+                                              expiresIn,
+                                              multiShareArgs.isViewOnce(),
+                                              subscriptionId,
+                                              mentions,
+                                              recipientSearchKey.isStory(),
+                                              sentTimestamp,
+                                              canSendAsTextStory,
+                                              storiesBatch,
+                                              generatedTextStoryBackgroundColor);
         results.add(new MultiShareSendResult(recipientSearchKey, MultiShareSendResult.Type.SUCCESS));
       } else if (recipientSearchKey.isStory()) {
         results.add(new MultiShareSendResult(recipientSearchKey, MultiShareSendResult.Type.INVALID_SHARE_TO_STORY));
@@ -182,7 +199,8 @@ public final class MultiShareSender {
                                                             boolean isStory,
                                                             long sentTimestamp,
                                                             boolean canSendAsTextStory,
-                                                            @NonNull List<OutgoingMediaMessage> storiesToBatchSend)
+                                                            @NonNull List<OutgoingMediaMessage> storiesToBatchSend,
+                                                            @NonNull ChatColors generatedTextStoryBackgroundColor)
   {
     String body = multiShareArgs.getDraftText();
     if (sendType.usesSignalTransport() && !forceSms && body != null) {
@@ -229,7 +247,7 @@ public final class MultiShareSender {
 
         outgoingMessages.add(outgoingMediaMessage);
       } else if (canSendAsTextStory) {
-        outgoingMessages.add(generateTextStory(recipient, multiShareArgs, sentTimestamp, storyType));
+        outgoingMessages.add(generateTextStory(recipient, multiShareArgs, sentTimestamp, storyType, generatedTextStoryBackgroundColor));
       } else {
         List<Slide> storySupportedSlides = slideDeck.getSlides()
                                                     .stream()
@@ -317,14 +335,15 @@ public final class MultiShareSender {
   private static @NonNull OutgoingMediaMessage generateTextStory(@NonNull Recipient recipient,
                                                                  @NonNull MultiShareArgs multiShareArgs,
                                                                  long sentTimestamp,
-                                                                 @NonNull StoryType storyType)
+                                                                 @NonNull StoryType storyType,
+                                                                 @NonNull ChatColors background)
   {
     return new OutgoingMediaMessage(
         recipient,
         Base64.encodeBytes(StoryTextPost.newBuilder()
                                         .setBody(getBodyForTextStory(multiShareArgs.getDraftText(), multiShareArgs.getLinkPreview()))
                                         .setStyle(StoryTextPost.Style.DEFAULT)
-                                        .setBackground(TextStoryBackgroundColors.getRandomBackgroundColor().serialize())
+                                        .setBackground(background.serialize())
                                         .setTextBackgroundColor(0)
                                         .setTextForegroundColor(Color.WHITE)
                                         .build()
