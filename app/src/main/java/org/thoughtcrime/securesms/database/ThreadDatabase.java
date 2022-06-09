@@ -519,7 +519,7 @@ public class ThreadDatabase extends Database {
   public long getUnreadThreadCount() {
     SQLiteDatabase db         = databaseHelper.getSignalReadableDatabase();
     String[]       projection = SqlUtil.buildArgs("COUNT(*)");
-    String         where      = READ + " != 1";
+    String         where      = READ + " != " + ReadStatus.READ.serialize() + " AND " + ARCHIVED + " = 0 AND " + MEANINGFUL_MESSAGES + " != 0";
 
     try (Cursor cursor = db.query(TABLE_NAME, projection, where, null, null, null, null)) {
       if (cursor != null && cursor.moveToFirst()) {
