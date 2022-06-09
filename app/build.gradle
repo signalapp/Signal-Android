@@ -151,6 +151,8 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/NOTICE'
         exclude 'META-INF/proguard/androidx-annotations.pro'
+        exclude 'libsignal_jni.dylib'
+        exclude 'signal_jni.dll'
     }
 
 
