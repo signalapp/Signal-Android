@@ -336,12 +336,10 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
   }
 
   override fun bindScrollHelper(recyclerView: RecyclerView) {
-    recyclerView.addOnScrollListener(
-      Material3OnScrollHelper(
-        requireActivity(),
-        listOf(_toolbarBackground),
-        listOf(_searchToolbar)
-      )
-    )
+    Material3OnScrollHelper(
+      requireActivity(),
+      listOf(_toolbarBackground),
+      listOf(_searchToolbar)
+    ).attach(recyclerView)
   }
 }

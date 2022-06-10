@@ -52,7 +52,7 @@ abstract class DSLSettingsFragment(
       adapter = settingsAdapter
 
       getMaterial3OnScrollHelper(toolbar)?.let {
-        addOnScrollListener(it)
+        it.attach(this)
       }
     }
 

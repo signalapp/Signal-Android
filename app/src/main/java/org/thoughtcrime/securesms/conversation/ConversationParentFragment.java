@@ -70,6 +70,7 @@ import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.ColorInt;
+import androidx.annotation.ColorRes;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -324,8 +325,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import kotlin.Unit;
 
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 
@@ -718,6 +717,7 @@ public class ConversationParentFragment extends Fragment
     fragment.setLastSeen(System.currentTimeMillis());
     markLastSeen();
     EventBus.getDefault().unregister(this);
+    material3OnScrollHelper.setColorImmediate();
   }
 
   @Override
@@ -2221,7 +2221,17 @@ public class ConversationParentFragment extends Fragment
 
     voiceNoteMediaController.getVoiceNotePlaybackState().observe(getViewLifecycleOwner(), inputPanel.getPlaybackStateObserver());
 
-    material3OnScrollHelper = new Material3OnScrollHelper(Collections.singletonList(toolbarBackground), Collections.emptyList(), this::updateStatusBarColor);
+    material3OnScrollHelper = new Material3OnScrollHelper(requireActivity(), Collections.singletonList(toolbarBackground), Collections.emptyList()) {
+      @Override
+      public int getActiveColorRes() {
+        return getActiveToolbarColor(wallpaper.getDrawable() != null);
+      }
+
+      @Override
+      public int getInactiveColorRes() {
+        return getInactiveToolbarColor(wallpaper.getDrawable() != null);
+      }
+    };
   }
 
   private @ColorInt int getButtonToggleBackgroundColor(MessageSendType newTransport) {
@@ -2253,8 +2263,7 @@ public class ConversationParentFragment extends Fragment
         attachmentKeyboardStub.get().setWallpaperEnabled(true);
       }
 
-      toolbarBackground.setBackgroundResource(R.color.material3_toolbar_background_wallpaper);
-      updateStatusBarColor(toolbarBackground.isActivated());
+      material3OnScrollHelper.setColorImmediate();
       int toolbarTextAndIconColor = getResources().getColor(R.color.signal_colorNeutralInverse);
       toolbar.setTitleTextColor(toolbarTextAndIconColor);
       setToolbarActionItemTint(toolbar, toolbarTextAndIconColor);
@@ -2267,8 +2276,7 @@ public class ConversationParentFragment extends Fragment
         attachmentKeyboardStub.get().setWallpaperEnabled(false);
       }
 
-      toolbarBackground.setBackgroundResource(R.color.material3_toolbar_background);
-      updateStatusBarColor(toolbarBackground.isActivated());
+      material3OnScrollHelper.setColorImmediate();
       int toolbarTextAndIconColor = getResources().getColor(R.color.signal_colorOnSurface);
       toolbar.setTitleTextColor(toolbarTextAndIconColor);
       setToolbarActionItemTint(toolbar, toolbarTextAndIconColor);
@@ -2277,31 +2285,14 @@ public class ConversationParentFragment extends Fragment
     messageRequestBottomView.setWallpaperEnabled(chatWallpaper != null);
   }
 
-  private Unit updateStatusBarColor(boolean isActive) {
-    // TODO [alex] LargeScreenSupport -- statusBarBox
-    if (Build.VERSION.SDK_INT > 23) {
-      boolean hasWallpaper = wallpaper.getDrawable() != null;
-      int     toolbarColor = isActive ? getActiveToolbarColor(requireContext(), hasWallpaper)
-                                      : getInactiveToolbarColor(requireContext(), hasWallpaper);
-
-      WindowUtil.setStatusBarColor(requireActivity().getWindow(), toolbarColor);
-    }
-
-    return Unit.INSTANCE;
+  private static @ColorRes int getActiveToolbarColor(boolean hasWallpaper) {
+    return hasWallpaper ? R.color.conversation_toolbar_color_wallpaper_scrolled
+                        : R.color.signal_colorSurface2;
   }
 
-  private static @ColorInt int getActiveToolbarColor(@NonNull Context context, boolean hasWallpaper) {
-    int colorRes = hasWallpaper ? R.color.conversation_toolbar_color_wallpaper_scrolled
-                                : R.color.signal_colorSurface2;
-
-    return ContextCompat.getColor(context, colorRes);
-  }
-
-  private static @ColorInt int getInactiveToolbarColor(@NonNull Context context, boolean hasWallpaper) {
-    int colorRes = hasWallpaper ? R.color.conversation_toolbar_color_wallpaper
-                                : R.color.signal_colorBackground;
-
-    return ContextCompat.getColor(context, colorRes);
+  private static @ColorRes int getInactiveToolbarColor(boolean hasWallpaper) {
+    return hasWallpaper ? R.color.conversation_toolbar_color_wallpaper
+                        : R.color.signal_colorBackground;
   }
 
   private void setToolbarActionItemTint(@NonNull Toolbar toolbar, @ColorInt int tint) {
@@ -3623,12 +3614,12 @@ public class ConversationParentFragment extends Fragment
 
   @Override
   public void bindScrollHelper(@NonNull RecyclerView recyclerView) {
-    recyclerView.addOnScrollListener(material3OnScrollHelper);
+    material3OnScrollHelper.attach(recyclerView);
   }
 
   @Override
   public void onMessageDetailsFragmentDismissed() {
-    updateStatusBarColor(toolbarBackground.isActivated());
+    material3OnScrollHelper.setColorImmediate();
   }
 
   // Listeners

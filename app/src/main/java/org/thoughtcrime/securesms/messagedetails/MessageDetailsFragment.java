@@ -109,7 +109,7 @@ public final class MessageDetailsFragment extends FullScreenDialogFragment {
 
     list.setAdapter(adapter);
     list.setItemAnimator(null);
-    list.addOnScrollListener(new Material3OnScrollHelper(requireActivity(), toolbarShadow));
+    new Material3OnScrollHelper(requireActivity(), toolbarShadow).attach(list);
   }
 
   private void initializeViewModel() {

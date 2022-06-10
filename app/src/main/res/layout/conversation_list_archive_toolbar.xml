@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/signal_m3_toolbar_height"
-    android:background="@color/material3_toolbar_background"
+    android:background="@color/signal_colorBackground"
     android:minHeight="@dimen/signal_m3_toolbar_height"
     android:theme="?attr/actionBarStyle"
     android:visibility="gone"
