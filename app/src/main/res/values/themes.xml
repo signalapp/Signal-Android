@@ -426,16 +426,6 @@
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
-    <style name="Theme.Signal.Light.BottomSheetDialog.Fixed.ReactWithAny">
-        <item name="bottomSheetStyle">@style/Widget.Signal.BottomSheet.ReactWithAny.Light</item>
-        <item name="android:backgroundDimEnabled">true</item>
-        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
-    </style>
-
-    <style name="Theme.Signal.Light.BottomSheetDialog.Fixed.ReactWithAny.Shadowless">
-        <item name="android:backgroundDimEnabled">false</item>
-    </style>
-
     <style name="Signal.DayNight.Dialog.Animated" parent="Signal.DayNight">
         <item name="android:windowAnimationStyle">@style/FadeScale</item>
     </style>
@@ -444,14 +434,10 @@
         <item name="android:windowAnimationStyle">@style/FakeBottomSheet</item>
     </style>
 
-    <style name="Widget.Signal.BottomSheet.ReactWithAny" parent="Widget.MaterialComponents.BottomSheet">
-        <item name="backgroundTint">@color/core_grey_75</item>
+    <style name="Widget.Signal.BottomSheet.ReactWithAny" parent="Widget.Material3.BottomSheet">
+        <item name="backgroundTint">@color/signal_colorSurface1</item>
         <item name="behavior_peekHeight">@dimen/react_with_any_emoji_bottom_sheet_dialog_fragment_min_height</item>
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
-    </style>
-
-    <style name="Widget.Signal.BottomSheet.ReactWithAny.Light">
-        <item name="backgroundTint">@color/white</item>
     </style>
 
     <style name="Widget.Signal.ReactWithAny" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">

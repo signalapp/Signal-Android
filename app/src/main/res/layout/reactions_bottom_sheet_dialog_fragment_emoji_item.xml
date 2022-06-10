@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="36dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/reactions_bottom_sheet_tab_indicator"
     android:gravity="center"
-    android:orientation="horizontal">
+    android:minHeight="32dp"
+    android:orientation="horizontal"
+    android:paddingStart="8dp"
+    android:paddingTop="6dp"
+    android:paddingEnd="8dp"
+    android:paddingBottom="6dp">
 
     <org.thoughtcrime.securesms.components.emoji.EmojiImageView
         android:id="@+id/reactions_bottom_view_emoji_item_emoji"
@@ -24,10 +30,8 @@
         android:layout_marginEnd="2dp"
         android:gravity="center"
         android:includeFontPadding="true"
+        android:textAppearance="@style/Signal.Text.LabelLarge"
         android:textColor="@color/signal_text_primary"
-        android:textSize="14dp"
-        android:textStyle="bold"
-        android:textAllCaps="true"
         tools:ignore="SpUsage"
         tools:text="24" />
 </LinearLayout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true">
+        <shape>
+            <solid android:color="@color/signal_colorPrimaryContainer" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+    <item>
+        <shape />
+    </item>
+</selector>
