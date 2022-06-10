@@ -1,10 +1,10 @@
 package org.thoughtcrime.securesms.crypto
 
 import android.content.Context
-import android.content.pm.PackageManager
 import android.os.Build
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.Util
 import java.security.KeyPairGenerator
 import java.security.KeyStore
@@ -39,9 +39,6 @@ class BiometricSecretProvider {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             builder.setUnlockedDeviceRequired(true)
-            if (context.packageManager.hasSystemFeature(PackageManager.FEATURE_STRONGBOX_KEYSTORE)) {
-                builder.setIsStrongBoxBacked(true)
-            }
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -54,8 +51,12 @@ class BiometricSecretProvider {
     fun getOrCreateBiometricSignature(context: Context): Signature {
         val ks = KeyStore.getInstance(ANDROID_KEYSTORE)
         ks.load(null)
-        if (!ks.containsAlias(BIOMETRIC_ASYM_KEY_ALIAS)) {
+        if (!ks.containsAlias(BIOMETRIC_ASYM_KEY_ALIAS)
+            || !ks.entryInstanceOf(BIOMETRIC_ASYM_KEY_ALIAS, KeyStore.PrivateKeyEntry::class.java)
+            || !TextSecurePreferences.getFingerprintKeyGenerated(context)
+        ) {
             createAsymmetricKey(context)
+            TextSecurePreferences.setFingerprintKeyGenerated(context)
         }
         val key = ks.getKey(BIOMETRIC_ASYM_KEY_ALIAS, null) as PrivateKey
         val signature = Signature.getInstance(SIGNATURE_ALGORITHM)

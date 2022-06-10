@@ -163,6 +163,8 @@ interface TextSecurePreferences {
     fun isCallNotificationsEnabled(): Boolean
     fun getLastVacuum(): Long
     fun setLastVacuumNow()
+    fun getFingerprintKeyGenerated(): Boolean
+    fun setFingerprintKeyGenerated()
     fun clearAll()
 
     companion object {
@@ -244,6 +246,7 @@ interface TextSecurePreferences {
         const val SHOWN_CALL_WARNING = "pref_shown_call_warning" // call warning is user-facing warning of enabling calls
         const val SHOWN_CALL_NOTIFICATION = "pref_shown_call_notification" // call notification is a promp to check privacy settings
         const val LAST_VACUUM_TIME = "pref_last_vacuum_time"
+        const val FINGERPRINT_KEY_GENERATED = "fingerprint_key_generated"
 
         @JvmStatic
         fun getLastConfigurationSyncTime(context: Context): Long {
@@ -924,9 +927,20 @@ interface TextSecurePreferences {
         }
 
         @JvmStatic
+        fun getFingerprintKeyGenerated(context: Context): Boolean {
+            return getBooleanPreference(context, FINGERPRINT_KEY_GENERATED, false)
+        }
+
+        @JvmStatic
+        fun setFingerprintKeyGenerated(context: Context) {
+            setBooleanPreference(context, FINGERPRINT_KEY_GENERATED, true)
+        }
+
+        @JvmStatic
         fun clearAll(context: Context) {
             getDefaultSharedPreferences(context).edit().clear().commit()
         }
+
     }
 }
 
@@ -1521,6 +1535,15 @@ class AppTextSecurePreferences @Inject constructor(
     override fun setHasHiddenMessageRequests() {
         setBooleanPreference(TextSecurePreferences.HAS_HIDDEN_MESSAGE_REQUESTS, true)
     }
+
+    override fun getFingerprintKeyGenerated(): Boolean {
+        return getBooleanPreference(TextSecurePreferences.FINGERPRINT_KEY_GENERATED, false)
+    }
+
+    override fun setFingerprintKeyGenerated() {
+        setBooleanPreference(TextSecurePreferences.FINGERPRINT_KEY_GENERATED, true)
+    }
+
 
     override fun clearAll() {
         getDefaultSharedPreferences(context).edit().clear().commit()
