@@ -158,12 +158,8 @@
     </style>
 
     <style name="Signal.Widget.Button.Dialog" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
-        <item name="android:textAppearance">@style/Signal.TextAppearance.Button.Dialog</item>
+        <item name="android:textAppearance">@style/Signal.Text.LabelLarge</item>
         <item name="android:textColor">@color/signal_button_secondary_text_selector</item>
-    </style>
-
-    <style name="Signal.TextAppearance.Button.Dialog" parent="TextAppearance.MaterialComponents.Button">
-        <item name="android:textAllCaps">false</item>
     </style>
 
     <style name="Signal.ShapeOverlay.Rounded" parent="ShapeAppearance.MaterialComponents.MediumComponent">
@@ -183,6 +179,12 @@
         <item name="shapeAppearance">@style/Signal.ShapeOverlay.Rounded</item>
     </style>
 
+    <style name="Signal.MaterialAlertDialog.Wide" parent="MaterialAlertDialog.MaterialComponents">
+        <item name="shapeAppearance">@style/Signal.ShapeOverlay.Rounded</item>
+        <item name="backgroundInsetStart">0dp</item>
+        <item name="backgroundInsetEnd">0dp</item>
+    </style>
+
     <style name="Signal.DayNight.Popup" parent="@style/ThemeOverlay.AppCompat.Light" />
 
     <style name="Signal.DayNight.Toolbar.Overflow" parent="@style/Signal.Toolbar.Overflow.Light" />
@@ -197,15 +199,39 @@
         <item name="android:windowAnimationStyle">@style/TextSecure.Animation.AddMessageDialog</item>
     </style>
 
-    <style name="Signal.ThemeOverlay.Dialog.Rounded" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+    <style name="ThemeOverlay.Signal.MaterialAlertDialog" parent="@style/ThemeOverlay.Material3.MaterialAlertDialog">
         <item name="alertDialogStyle">@style/Signal.MaterialAlertDialog</item>
-        <item name="android:background">@color/signal_background_dialog</item>
-        <item name="materialAlertDialogTitleTextStyle">@style/TextAppearance.Signal.Title2.MaterialDialog</item>
-        <item name="materialAlertDialogBodyTextStyle">@style/TextAppearance.Signal.Body1</item>
+        <item name="android:background">@color/signal_colorSurface1</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/MaterialAlertDialog.Signal.Title.Text</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/MaterialAlertDialog.Signal.Body.Text</item>
         <item name="buttonBarPositiveButtonStyle">@style/Signal.Widget.Button.Dialog</item>
         <item name="buttonBarNeutralButtonStyle">@style/Signal.Widget.Button.Dialog</item>
         <item name="buttonBarNegativeButtonStyle">@style/Signal.Widget.Button.Dialog</item>
-        <item name="textColorAlertDialogListItem">@color/signal_text_secondary</item>
+        <item name="textColorAlertDialogListItem">@color/signal_colorOnSurfaceVariant</item>
+        <item name="android:checkedTextViewStyle">@style/Widget.Signal.CheckedTextView</item>
+    </style>
+    
+    <style name="ThemeOverlay.Signal.MaterialAlertDialog.Wide">
+        <item name="alertDialogStyle">@style/Signal.MaterialAlertDialog.Wide</item>
+    </style>
+
+    <style name="Widget.Signal.CheckedTextView" parent="Widget.Material3.CheckedTextView">
+        <item name="android:textAppearance">@style/Signal.Text.BodyLarge</item>
+        <item name="android:textColor">@color/signal_colorOnSurfaceVariant</item>
+        <item name="drawableTint">@color/signal_selection_control_button_tint</item>
+        <item name="android:drawableTint" tools:ignore="NewApi">@color/signal_selection_control_button_tint</item>
+    </style>
+
+    <style name="MaterialAlertDialog.Signal.Title.Text" parent="MaterialAlertDialog.Material3.Title.Text">
+        <item name="android:textAppearance">@style/Signal.Text.TitleLarge</item>
+    </style>
+
+    <style name="MaterialAlertDialog.Signal.Body.Text" parent="MaterialAlertDialog.Material3.Body.Text">
+        <item name="android:textAppearance">@style/Signal.Text.BodyMedium</item>
+    </style>
+
+    <style name="Widget.Signal.Dialog.Body" parent="Signal.Text.BodyMedium">
+        <item name="android:textColor">@color/signal_colorOnSurfaceVariant</item>
     </style>
 
     <style name="Signal.Widget.TimePicker" parent="Widget.MaterialComponents.TimePicker">

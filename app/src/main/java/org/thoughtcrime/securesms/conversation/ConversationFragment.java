@@ -1941,7 +1941,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     public void onInMemoryMessageClicked(@NonNull InMemoryMessageRecord messageRecord) {
       if (messageRecord instanceof InMemoryMessageRecord.NoGroupsInCommon) {
         boolean isGroup = ((InMemoryMessageRecord.NoGroupsInCommon) messageRecord).isGroup();
-        new MaterialAlertDialogBuilder(requireContext(), R.style.Signal_ThemeOverlay_Dialog_Rounded)
+        new MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_Signal_MaterialAlertDialog)
             .setMessage(isGroup ? R.string.GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group
                                 : R.string.GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person)
             .setNeutralButton(R.string.GroupsInCommonMessageRequest__about_message_requests, (d, w) -> CommunicationActions.openBrowserLink(requireContext(), getString(R.string.GroupsInCommonMessageRequest__support_article)))

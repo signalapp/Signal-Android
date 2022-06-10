@@ -276,7 +276,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
   }
 
   private fun handleHideStory(model: StoriesLandingItem.Model) {
-    MaterialAlertDialogBuilder(requireContext(), R.style.Signal_ThemeOverlay_Dialog_Rounded)
+    MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_Signal_MaterialAlertDialog)
       .setTitle(R.string.StoriesLandingFragment__hide_story)
       .setMessage(getString(R.string.StoriesLandingFragment__new_story_updates, model.data.storyRecipient.getShortDisplayName(requireContext())))
       .setPositiveButton(R.string.StoriesLandingFragment__hide) { _, _ ->

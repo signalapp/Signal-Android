@@ -69,7 +69,7 @@ public final class GroupDescriptionDialog extends DialogFragment {
     descriptionText = dialogView.findViewById(R.id.group_description_dialog_text);
     descriptionText.setMovementMethod(LongClickMovementMethod.getInstance(requireContext()));
 
-    MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext(), R.style.Signal_ThemeOverlay_Dialog_Rounded);
+    MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_Signal_MaterialAlertDialog);
     Dialog dialog = builder.setTitle(TextUtils.isEmpty(argumentTitle) ? getString(R.string.GroupDescriptionDialog__group_description) : argumentTitle)
                            .setView(dialogView)
                            .setPositiveButton(android.R.string.ok, null)

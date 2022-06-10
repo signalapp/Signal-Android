@@ -16,6 +16,9 @@
         <item name="android:textAppearance">@style/Signal.Text.BodyLarge</item>
     </style>
 
+    <style name="Widget.Signal.Button.TextButton" parent="Widget.Material3.Button.TextButton">
+    </style>
+
     <style name="NoAnimation.Theme.BlackScreen" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowBackground">@android:color/black</item>
@@ -35,23 +38,23 @@
     </style>
 
     <style name="AppCompatAlertDialogStyleLight" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="colorAccent">@color/core_ultramarine</item>
+        <item name="colorAccent">@color/signal_colorPrimary</item>
         <item name="android:textColor">@null</item>
     </style>
 
     <style name="AppCompatAlertDialogStyleDark" parent="Theme.AppCompat.Dialog.Alert">
-        <item name="colorAccent">@color/core_ultramarine_light</item>
+        <item name="colorAccent">@color/signal_colorPrimary</item>
         <item name="android:textColor">@null</item>
     </style>
 
     <style name="AppCompatDialogStyleLight" parent="Theme.AppCompat.Light.Dialog">
-        <item name="colorAccent">@color/core_ultramarine</item>
+        <item name="colorAccent">@color/signal_colorPrimary</item>
         <item name="android:textColor">@null</item>
         <item name="android:windowBackground">@drawable/dialog_background</item>
     </style>
 
     <style name="AppCompatDialogStyleDark" parent="Theme.AppCompat.Dialog">
-        <item name="colorAccent">@color/core_ultramarine_light</item>
+        <item name="colorAccent">@color/signal_colorPrimary</item>
         <item name="android:windowBackground">@drawable/dialog_background</item>
         <item name="android:textColor">@null</item>
     </style>

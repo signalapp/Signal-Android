@@ -186,9 +186,9 @@
         <item name="actionModeStyle">@style/TextSecure.ActionModeStyle</item>
         <item name="android:textColor">@color/text_color_light_theme</item>
         <item name="android:textColorSecondary">@color/text_color_secondary_light_theme</item>
-        <item name="colorPrimaryDark">@color/core_ultramarine</item>
-        <item name="colorAccent">@color/core_ultramarine</item>
-        <item name="colorControlActivated">@color/core_ultramarine</item>
+        <item name="colorPrimaryDark">@color/signal_colorPrimary</item>
+        <item name="colorAccent">@color/signal_colorPrimary</item>
+        <item name="colorControlActivated">@color/signal_colorPrimary</item>
         <item name="colorControlHighlight">@color/transparent_black_10</item>
         <item name="android:windowBackground">@color/signal_colorBackground</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -218,7 +218,7 @@
 
         <item name="colorControlNormal">@color/core_grey_90</item>
 
-        <item name="materialAlertDialogTheme">@style/Signal.ThemeOverlay.Dialog.Rounded</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.Signal.MaterialAlertDialog</item>
         <item name="materialTimePickerTheme">@style/Signal.ThemeOverlay.TimePicker</item>
         <item name="materialTimePickerStyle">@style/Signal.Widget.TimePicker</item>
     </style>
@@ -268,8 +268,8 @@
         <item name="actionModeStyle">@style/TextSecure.ActionModeStyle</item>
         <item name="android:textColor">@color/text_color_dark_theme</item>
         <item name="android:textColorSecondary">@color/text_color_secondary_dark_theme</item>
-        <item name="colorAccent">@color/core_ultramarine_light</item>
-        <item name="colorControlActivated">@color/core_ultramarine_light</item>
+        <item name="colorAccent">@color/signal_colorPrimary</item>
+        <item name="colorControlActivated">@color/signal_colorPrimary</item>
         <item name="colorControlHighlight">@color/transparent_white_10</item>
         <item name="android:colorControlHighlight" tools:ignore="NewApi">@color/transparent_white_10</item>
         <item name="android:windowBackground">@color/signal_colorBackground</item>
@@ -304,7 +304,7 @@
 
         <item name="colorControlNormal">@color/core_white</item>
 
-        <item name="materialAlertDialogTheme">@style/Signal.ThemeOverlay.Dialog.Rounded</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.Signal.MaterialAlertDialog</item>
         <item name="materialTimePickerTheme">@style/Signal.ThemeOverlay.TimePicker</item>
         <item name="materialTimePickerStyle">@style/Signal.Widget.TimePicker</item>
     </style>

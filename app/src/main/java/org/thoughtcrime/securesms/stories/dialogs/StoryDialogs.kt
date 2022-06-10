@@ -27,7 +27,7 @@ object StoryDialogs {
       onAddToStory()
     } else {
       SignalStore.storyValues().userHasBeenNotifiedAboutStories = true
-      MaterialAlertDialogBuilder(context, R.style.Signal_ThemeOverlay_Dialog_Rounded)
+      MaterialAlertDialogBuilder(context, R.style.ThemeOverlay_Signal_MaterialAlertDialog)
         .setTitle(R.string.StoryDialogs__add_to_story_q)
         .setMessage(R.string.StoryDialogs__adding_content)
         .setPositiveButton(R.string.StoryDialogs__add_to_story) { _, _ ->
