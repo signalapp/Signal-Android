@@ -141,7 +141,7 @@
     <color name="reactions_screen_dark_shade_color">@color/transparent_black_70</color>
     <color name="reactions_screen_light_shade_color">@color/transparent_white_87</color>
     <color name="reactions_status_bar_shade">#4d4d4d</color>
-    <color name="reactions_overlay_any_emoji_background">@color/signal_colorOnSurfaceVariant_16_no_alpha</color>
+    <color name="reactions_overlay_any_emoji_background">@color/signal_colorSurfaceVariant_16_no_alpha</color>
     <color name="reactions_overlay_any_emoji_foreground">@color/signal_colorOnSurfaceVariant</color>
 
     <color name="recipient_contact_button_color">@color/core_grey_02</color>
