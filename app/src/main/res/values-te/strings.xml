@@ -1065,10 +1065,6 @@
     <item quantity="one">%1$dసభ్యుడు</item>
     <item quantity="other">%1$d సభ్యులు</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="one"> %1$d సభ్యుడు (%2$d ఆహ్వానింపబడినవారు)</item>
-    <item quantity="other">%1$d సభ్యులు (+%2$d ఆహ్వానింపబడినవారు)</item>
-  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d అదనపు సమూహం</item>
     <item quantity="other">%d అదనపు సమూహాలు</item>
