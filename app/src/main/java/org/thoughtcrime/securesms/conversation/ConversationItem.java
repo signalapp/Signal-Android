@@ -2007,8 +2007,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         }
 
         colorizerProjections.add(
-            bodyBubbleToRoot.insetTop(mediaThumb.getHeight())
-                            .scale(bodyBubble.getScaleX())
+            bodyBubbleToRoot.scale(bodyBubble.getScaleX())
+                            .insetTop((int) (mediaThumb.getHeight() * bodyBubble.getScaleX()))
                             .translateX(translationX)
                             .translateY(translationY)
         );
