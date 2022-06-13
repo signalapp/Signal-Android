@@ -87,7 +87,7 @@ public class FcmRefreshJob extends BaseJob {
     if (result != ConnectionResult.SUCCESS) {
       notifyFcmFailure();
     } else {
-      Optional<String> token = FcmUtil.getToken();
+      Optional<String> token = FcmUtil.getToken(context);
 
       if (token.isPresent()) {
         String oldToken = SignalStore.account().getFcmToken();
