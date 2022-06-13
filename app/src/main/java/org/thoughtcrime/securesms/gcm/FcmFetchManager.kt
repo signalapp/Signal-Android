@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob
 import org.thoughtcrime.securesms.messages.RestStrategy
 import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor
+import java.lang.IllegalStateException
 
 /**
  * Our goals with FCM processing are as follows:
@@ -42,22 +43,26 @@ object FcmFetchManager {
   @JvmStatic
   fun enqueue(context: Context, foreground: Boolean) {
     synchronized(this) {
-      if (foreground) {
-        Log.i(TAG, "Starting in the foreground.")
-        ContextCompat.startForegroundService(context, Intent(context, FcmFetchForegroundService::class.java))
-        startedForeground = true
-      } else {
-        Log.i(TAG, "Starting in the background.")
-        context.startService(Intent(context, FcmFetchBackgroundService::class.java))
-      }
+      try {
+        if (foreground) {
+          Log.i(TAG, "Starting in the foreground.")
+          ContextCompat.startForegroundService(context, Intent(context, FcmFetchForegroundService::class.java))
+          startedForeground = true
+        } else {
+          Log.i(TAG, "Starting in the background.")
+          context.startService(Intent(context, FcmFetchBackgroundService::class.java))
+        }
 
-      val performedReplace = EXECUTOR.enqueue { fetch(context) }
+        val performedReplace = EXECUTOR.enqueue { fetch(context) }
 
-      if (performedReplace) {
-        Log.i(TAG, "Already have one running and one enqueued. Ignoring.")
-      } else {
-        activeCount++
-        Log.i(TAG, "Incrementing active count to $activeCount")
+        if (performedReplace) {
+          Log.i(TAG, "Already have one running and one enqueued. Ignoring.")
+        } else {
+          activeCount++
+          Log.i(TAG, "Incrementing active count to $activeCount")
+        }
+      } catch (e: IllegalStateException) {
+        Log.w(TAG, "Failed to start service!", e)
       }
     }
   }
