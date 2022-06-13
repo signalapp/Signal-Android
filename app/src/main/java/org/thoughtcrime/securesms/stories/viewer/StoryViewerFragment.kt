@@ -52,7 +52,7 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
         }
       }
 
-      if (state.loadState.isReady()) {
+      if (state.loadState.isCrossfaderReady) {
         requireActivity().supportStartPostponedEnterTransition()
       }
     }
