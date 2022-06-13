@@ -1993,6 +1993,19 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
         colorizerProjections.addAll(projections);
       } else if (hasThumbnail(messageRecord) && mediaThumb != null) {
+        if (hasQuote(messageRecord) && quoteView != null) {
+          Projection quote        = Projection.relativeToParent(coordinateRoot, bodyBubble, bodyBubbleCorners).translateX(bodyBubble.getTranslationX());
+          int        quoteViewTop = (int) quote.getY();
+          int        mediaTop     = (int) mediaThumb.getY();
+
+          colorizerProjections.add(
+              quote.insetBottom(quote.getHeight() - (mediaTop - quoteViewTop))
+                   .scale(bodyBubble.getScaleX())
+                   .translateX(translationX)
+                   .translateY(translationY)
+          );
+        }
+
         colorizerProjections.add(
             bodyBubbleToRoot.insetTop(mediaThumb.getHeight())
                             .scale(bodyBubble.getScaleX())
