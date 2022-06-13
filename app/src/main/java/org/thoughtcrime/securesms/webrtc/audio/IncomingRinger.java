@@ -134,21 +134,19 @@ public class IncomingRinger {
       MediaPlayer mediaPlayer = new MediaPlayer();
       mediaPlayer.setDataSource(context, ringtoneUri);
       return mediaPlayer;
-    } catch (SecurityException e) {
+    } catch (IOException | SecurityException e) {
       Log.w(TAG, "Failed to create player with ringtone the normal way", e);
     }
 
-    if (ringtoneUri.equals(Settings.System.DEFAULT_RINGTONE_URI)) {
-      try {
-        Uri defaultRingtoneUri = RingtoneUtil.getActualDefaultRingtoneUri(context);
-        if (defaultRingtoneUri != null) {
-          MediaPlayer mediaPlayer = new MediaPlayer();
-          mediaPlayer.setDataSource(context, defaultRingtoneUri);
-          return mediaPlayer;
-        }
-      } catch (SecurityException e) {
-        Log.w(TAG, "Failed to set default ringtone with fallback approach", e);
+    try {
+      Uri defaultRingtoneUri = RingtoneUtil.getActualDefaultRingtoneUri(context);
+      if (defaultRingtoneUri != null) {
+        MediaPlayer mediaPlayer = new MediaPlayer();
+        mediaPlayer.setDataSource(context, defaultRingtoneUri);
+        return mediaPlayer;
       }
+    } catch (SecurityException e) {
+      Log.w(TAG, "Failed to set default ringtone with fallback approach", e);
     }
 
     return null;
