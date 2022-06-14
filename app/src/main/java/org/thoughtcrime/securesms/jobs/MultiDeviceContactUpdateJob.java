@@ -156,7 +156,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
 
       out.write(new DeviceContact(RecipientUtil.toSignalServiceAddress(context, recipient),
                                   Optional.ofNullable(recipient.isGroup() || recipient.isSystemContact() ? recipient.getDisplayName(context) : null),
-                                  getAvatar(recipient.getId(), recipient.getContactUri()),
+                                  getSystemAvatar(recipient.getContactUri()),
                                   Optional.of(ChatColorsMapper.getMaterialColor(recipient.getChatColors()).serialize()),
                                   verifiedMessage,
                                   ProfileKeyUtil.profileKeyOptional(recipient.getProfileKey()),
@@ -218,7 +218,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
 
         out.write(new DeviceContact(RecipientUtil.toSignalServiceAddress(context, recipient),
                                     name,
-                                    getAvatar(recipient.getId(), recipient.getContactUri()),
+                                    getSystemAvatar(recipient.getContactUri()),
                                     Optional.of(ChatColorsMapper.getMaterialColor(recipient.getChatColors()).serialize()),
                                     verified,
                                     profileKey,
@@ -291,44 +291,6 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
     } else {
       Log.w(TAG, "Nothing to write!");
     }
-  }
-
-  private Optional<SignalServiceAttachmentStream> getAvatar(@NonNull RecipientId recipientId, @Nullable Uri uri) {
-    Optional<SignalServiceAttachmentStream> stream;
-
-    if (SignalStore.settings().isPreferSystemContactPhotos()) {
-      stream = getSystemAvatar(uri);
-
-      if (!stream.isPresent()) {
-        stream = getProfileAvatar(recipientId);
-      }
-    } else {
-      stream = getProfileAvatar(recipientId);
-
-      if (!stream.isPresent()) {
-        stream = getSystemAvatar(uri);
-      }
-    }
-
-    return stream;
-  }
-
-  private Optional<SignalServiceAttachmentStream> getProfileAvatar(@NonNull RecipientId recipientId) {
-    if (AvatarHelper.hasAvatar(context, recipientId)) {
-      try {
-        long length = AvatarHelper.getAvatarLength(context, recipientId);
-        return Optional.of(SignalServiceAttachmentStream.newStreamBuilder()
-                                                        .withStream(AvatarHelper.getAvatar(context, recipientId))
-                                                        .withContentType("image/*")
-                                                        .withLength(length)
-                                                        .build());
-      } catch (IOException e) {
-        Log.w(TAG, "Failed to read profile avatar!", e);
-        return Optional.empty();
-      }
-    }
-
-    return Optional.empty();
   }
 
   private Optional<SignalServiceAttachmentStream> getSystemAvatar(@Nullable Uri uri) {
