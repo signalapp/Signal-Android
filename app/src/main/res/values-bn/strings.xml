@@ -633,8 +633,8 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">এই ঘরটি পূরণ বাঞ্ছনীয়</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">গ্রুপ তৈরিকরণ ব্যার্থ হয়েছে</string>
   <string name="AddGroupDetailsFragment__try_again_later">পরবর্তীতে পুনরায় চেষ্টা করুন।</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">আপনি এমন একটি কন্টাক্ট নির্বাচন করেছেন যা Signal গ্রুপ সহায়ক না। তাই এটি এমএমএস গ্রুপ হবে।</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">কাস্টম এমএমএস গ্রুপের নাম এবং ছবিগুলি কেবল আপনার কাছে দৃশ্যমান হবে।</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">আপনি এমন একটি কন্টাক্ট নির্বাচন করেছেন যা Signal গ্রুপ সহায়ক না। তাই এটি এমএমএস গ্রুপ হবে।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">কাস্টম এমএমএস গ্রুপের নাম এবং ছবিগুলি কেবল আপনার কাছে দৃশ্যমান হবে।</string> -->
   <string name="AddGroupDetailsFragment__remove">সরান</string>
   <string name="AddGroupDetailsFragment__sms_contact">এসএমএস কন্টাক্ট</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s কে এই গ্রুপ থেকে বের করে দিবেন?</string>
@@ -1926,10 +1926,10 @@
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">প্রত্যাখ্যান করতে নীচে সোয়াইপ করুন</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">কিছু বিষয়ে আপনার মনোযোগ প্রয়োজন।</string>
-  <string name="message_details_header__sent">পাঠানো:</string>
-  <string name="message_details_header__received">প্রাপ্ত:</string>
-  <string name="message_details_header__disappears">অদৃশ্য হওয়া:</string>
-  <string name="message_details_header__via">মাধ্যমে:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">পাঠানো:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">প্রাপ্ত:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">অদৃশ্য হওয়া:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">মাধ্যমে:</string> -->
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">পেন্ডিং</string>
   <string name="message_details_recipient_header__sent_to">একে পাঠানো হয়েছে</string>

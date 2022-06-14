@@ -13,9 +13,9 @@
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal wordt nu bijgewerkt …</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Momenteel: %s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Je hebt nog geen wachtwoord ingesteld!</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Je hebt nog geen wachtwoord ingesteld.</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Wachtwoord uitschakelen?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dit zal Signal en berichtmeldingen ontgrendelen en ontgrendeld houden.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Hierdoor zullen de Signal-app en berichtmeldingen zullen niet langer vergrendeld worden</string>
   <string name="ApplicationPreferencesActivity_disable">Uitschakelen</string>
   <string name="ApplicationPreferencesActivity_unregistering">Aan het uitschrijven</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Je telefoonnummer wordt afgemeld voor Signal-berichten en -oproepen …</string>
@@ -63,7 +63,7 @@
   <string name="AttachmentKeyboard_payment">Overschrijving</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Er is geen app gevonden waarmee je media zou kunnen selecteren.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal heeft toegang nodig tot de externe opslagruimte om afbeeldingen, video\'s of audio te kunnen verzenden, maar deze toestemming is permanent geweigerd. Ga naar de instellingen, tik op  ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal heeft toegang nodig tot de externe opslagruimte om afbeeldingen, video\'s of audio te kunnen verzenden, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, tik op ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal heeft toegang nodig tot de contacten om contactinformatie in Signal weer te geven, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, tik op ‘Toestemmingen’ en schakel ‘Contacten’ in.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal heeft toegang nodig tot de locatie om locaties te kunnen verzenden aan je gesprekspartners, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, tik op ‘Toestemmingen’ en schakel ‘Locatie’ in.</string>
   <!--AttachmentUploadJob-->
@@ -123,7 +123,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="CameraContacts_signal_groups">Signal-groepen</string>
   <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Je kunt dit delen met maximaal %d gesprekken.</string>
   <string name="CameraContacts_select_signal_recipients">Selecteer Signal-ontvangers</string>
-  <string name="CameraContacts_no_signal_contacts">Geen Signal-gebuikers</string>
+  <string name="CameraContacts_no_signal_contacts">Geen Signal-gebruikers</string>
   <string name="CameraContacts_you_can_only_use_the_camera_button">Je kunt de cameraknop alleen gebruiken om foto\'s te verzenden aan Signal-gebruikers.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Kun je de persoon die je zoekt niet vinden?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Nodig een contactpersoon uit om ook Signal te gebruiken</string>
@@ -151,12 +151,12 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Geen webbrowser gevonden.</string>
   <string name="CommunicationActions_send_email">E-mail verzenden</string>
-  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Er is al een telefoongesprek gaande.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Er is al een telefoonoproep gaande.</string>
   <string name="CommunicationActions_start_voice_call">Spraak-oproep beginnen?</string>
   <string name="CommunicationActions_cancel">Annuleren</string>
   <string name="CommunicationActions_call">Bellen</string>
   <string name="CommunicationActions_insecure_call">Onbeveiligde oproep</string>
-  <string name="CommunicationActions_carrier_charges_may_apply">Je mobielentelefonie-aanbieder brengt misschien extra kosten in rekening. Het nummer wat je op het punt staat te bellen is niet geregistreerd bij Signal. Dit gesprek zal via het telefonienetwerk lopen, niet over internet.</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Je mobielentelefonie-aanbieder brengt misschien extra kosten in rekening. Het nummer wat je op het punt staat te bellen is niet geregistreerd bij Signal. Deze oproep zal via het telefonienetwerk lopen, niet over internet.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %1$s is veranderd. Dit kan betekenen dat iemand je communicatie probeert te onderscheppen, of gewoon dat %2$s Signal opnieuw heeft geïnstalleerd.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Je wilt misschien je veiligheidsnummer bij deze contactpersoon verifiëren.</string>
@@ -282,17 +282,17 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
     <item quantity="other">Als je deze %1$d bestanden opslaat op de telefoonopslag worden ze onversleuteld opgeslagen waardoor alle apps op je apparaat toegang krijgen tot deze bestanden.\n\nToch doorgaan?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
-    <item quantity="one">Fout tijdens het opslaan van de bijlage op de telefoonopslag!</item>
-    <item quantity="other">Fout tijdens het opslaan van de bijlagen op de telefoonopslag!</item>
+    <item quantity="one">Fout tijdens het opslaan van de bijlage op de telefoonopslag.</item>
+    <item quantity="other">Fout tijdens het opslaan van de bijlagen op de telefoonopslag.</item>
   </plurals>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kan niet schrijven naar opslag!</string>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kan niet schrijven naar opslag.</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Bijlage aan het opslaan</item>
     <item quantity="other">%1$d bijlagen aan het opslaan</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">Bijlage aan het opslaan naar telefoonopslag …</item>
-    <item quantity="other">%1$d bijlagen aan het opslaan naar telefoonopslag …</item>
+    <item quantity="one">Bijlage aan het opslaan naar de telefoonopslag …</item>
+    <item quantity="other">%1$d bijlagen aan het opslaan naar de telefoonopslag …</item>
   </plurals>
   <string name="ConversationFragment_pending">In afwachting …</string>
   <string name="ConversationFragment_push">Internet (versleuteld met Signal-protocol)</string>
@@ -310,7 +310,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Je kunt elk bericht naar links vegen om snel een reactie te schijven</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Uitgaande eenmaligeweergave-media worden onmiddellijk gewist zodra ze zijn verzonden. Je kunt je eigen media dus niet terugzien. — Gebruik eenmaligeweergave-berichten niet ter beveiliging, want Signal kan niet garanderen dat een bericht op het apparaat van een ander daadwerkelijk wordt gewist.</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Je hebt dit eenmaligeweergave-bericht al weergegeven</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Je kunt in dit speciale gesprek notities voor jezelf achterlaten.\nEn als je gebruik maakt van gekoppelde apparaten, dan zullen noties vanaf het moment van koppelen worden gesynchroniseerd. Je kunt dus notities toevoegen en teruglezen vanaf al je gekoppelde apparaten.</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Je kunt in dit speciale gesprek notities voor jezelf achterlaten.\nJe kunt notities toevoegen en teruglezen vanaf al je gekoppelde apparaten, want noties die zijn verzonden na het moment van koppelen worden gesynchroniseerd.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d groepsleden hebben dezelfde naam.</string>
   <string name="ConversationFragment__tap_to_review">Tik hier om ze te vergelijken</string>
   <string name="ConversationFragment__review_requests_carefully">Overweeg dit gespreksverzoek zorgvuldig:</string>
@@ -415,11 +415,11 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="CreateProfileActivity_error_setting_profile_photo">Fout bij instellen van profielfoto</string>
   <string name="CreateProfileActivity_problem_setting_profile">Probleem bij instellen van profiel</string>
   <string name="CreateProfileActivity_set_up_your_profile">Stel je profiel op</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Je profielnaam, -foto en -omschrijving zijn alleen zichtbaar voor personen die zijn opgeslagen in jouw contactenlijst, personen naar wie je zelf een nieuw gesprek initieert, personen van wie je een gespreksverzoek aanvaardt en alle leden van een groep waarvan jij lid bent. Signal-profielen worden net als berichten eind-tot-eind-versleuteld uitgewisseld, daarom kunnen zelfs Signals ontwikkelaars je profielnaam, -foto en -omschrijving nooit zien.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">In Signal worden profielen, net als berichten en oproepen, eind-tot-eind-versleuteld uitgewisseld. Je profielnaam, -foto en -omschrijving zijn alleen zichtbaar voor personen die zijn opgeslagen in jouw contactenlijst, personen naar wie je zelf een nieuw gesprek initieert, personen van wie je een gespreksverzoek aanvaard en alle leden van groepen waarvan jij lid bent. Niemand anders kan jouw profiel zien, zelfs Signal niet.</string>
   <string name="CreateProfileActivity_set_avatar_description">Profielfoto instellen</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Back-upgegevens terugzetten?</string>
-  <string name="ChooseBackupFragment__restore_your_messages_and_media">Je hebt nu de gelegenheid om berichten en media uit een back-upbestand terug te zetten. Let op: Herstellen vanuit een back-upbestand kan alleen tijdens de installatie van de Signal-app. Als je deze stap overslaat kun je dit niet op een later moment alsnog doen.</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Je hebt nu de gelegenheid om berichten en media uit een back-upbestand terug te zetten. Let op: Herstellen vanuit een back-upbestand kan alleen tijdens de installatie van de Signal-app. Als je deze stap overslaat kun je dit op een later moment niet alsnog doen.</string>
   <string name="ChooseBackupFragment__icon_content_description">Back-upgegevens terugzetten pictogram</string>
   <string name="ChooseBackupFragment__choose_backup">Back-upbestand kiezen</string>
   <string name="ChooseBackupFragment__learn_more">Meer leren hierover</string>
@@ -434,7 +434,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--Couldn\'t read the selected backup-->
   <string name="RestoreBackupFragment__backup_could_not_be_read">Back-upbestand kon niet worden gelezen.</string>
   <!--Backup has an unsupported file extension-->
-  <string name="RestoreBackupFragment__backup_has_a_bad_extension">Back-upbestand heeft verkeerde extentie.</string>
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">Back-upbestand heeft verkeerde extensie.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Back-upbestanden maken</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Back-upbestanden worden versleuteld met een wachtwoord en worden alleen offline op je eigen apparaat opgeslagen. Als je het maken van back-upbestanden inschakelt maakt Signal automatisch elke dag een nieuw back-upbestand van al je gesprekken en media. Alleen de twee meest recente geslaagde back-upbestanden blijven bewaard, oudere back-upbestanden worden overschreven.</string>
@@ -451,7 +451,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="BackupsPreferenceFragment__d_so_far">Tot nu toe %1$d …</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% tot nu toe …</string>
-  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal heeft toegang nodig tot de opslagruimte om back-upbestanden te kunnen maken, maar deze is permanent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal heeft toegang nodig tot de opslagruimte om back-upbestanden te kunnen maken, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Zelf ingesteld: %s</string>
   <string name="CustomDefaultPreference_using_default">Standaard in gebruik: %s</string>
@@ -462,7 +462,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Kiezen vanuit galerij</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Foto verwijderen</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Het maken van een foto vereist toestemming om de camera te gebruiken.</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Om je gallerij weer te kunnen geven is toestemming om de opslag te gebruiken nodig.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Om je galerij weer te kunnen geven is toestemming om de opslag te gebruiken nodig.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Nu</string>
   <string name="DateUtils_minutes_ago">%d min</string>
@@ -539,8 +539,8 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Alle gespreksgeschiedenis en media van voor het omzetten zijn behouden gebleven.</string>
   <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Om weer lid te worden van deze groep zul je een uitnodiging moeten aanvaarden. Je zult geen berichten van deze groep ontvangen zolang je dat nog niet hebt gedaan.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
-    <item quantity="one">Dit groepslid zal opnieuw een uitnodiging om tot de groep toe te treden moeten accepteren en zal geen berichten krijgen zolang dit geaccepteerd is:</item>
-    <item quantity="other">Deze groepsleden zullen opnieuw een uitnodiging om tot de groep toe te treden moeten accepteren en zullen geen berichten krijgen zolang ze dit geaccepteerd hebben:</item>
+    <item quantity="one">Dit groepslid zal opnieuw een uitnodiging om tot de groep toe te treden moeten accepteren en zal geen berichten krijgen zolang dit is geaccepteerd:</item>
+    <item quantity="other">Deze groepsleden zullen opnieuw een uitnodiging om tot de groep toe te treden moeten accepteren en zullen geen berichten krijgen zolang ze dit hebben geaccepteerd:</item>
   </plurals>
   <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
     <item quantity="one">Dit groepslid is verwijderd uit de groep en kan niet opnieuw toetreden totdat hij Signal heeft bijgewerkt:</item>
@@ -654,8 +654,8 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="AddGroupDetailsFragment__this_field_is_required">Dit veld is vereist.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Nieuw groepsgesprek aanmaken is mislukt</string>
   <string name="AddGroupDetailsFragment__try_again_later">Probeer het later opnieuw.</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Je hebt een contactpersoon geselecteerd die geen Signal-groepen ondersteunt, dus deze groep zal gebruikmaken van mms.</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Zelf ingestelde mms-groepsnamen en groepsafbeeldingen zullen alleen zichtbaar zijn voor jou.</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Je hebt een contactpersoon geselecteerd die geen Signal-groepen ondersteunt, dus deze groep zal gebruikmaken van mms.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Zelf ingestelde mms-groepsnamen en groepsafbeeldingen zullen alleen zichtbaar zijn voor jou.</string> -->
   <string name="AddGroupDetailsFragment__remove">Verwijderen</string>
   <string name="AddGroupDetailsFragment__sms_contact">Sms-contactpersoon</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s van deze groep verwijderen?</string>
@@ -696,7 +696,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="ManageGroupActivity_edit_name_and_picture">Naam en afbeelding aanpassen</string>
   <string name="ManageGroupActivity_legacy_group">Verouderde groep</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Dit is een verouderde groep. Om nieuwe functionaliteiten zoals groepsbeheer te kunnen gebruiken moet je een nieuwe groep aanmaken.</string>
-  <string name="ManageGroupActivity_legacy_group_upgrade">Dit is een verouderde groep; om nieuwe functionaliteiten te kunnen gebruiken zoals @vermeldigen en beheerders,</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">Dit is een verouderde groep; om nieuwe functionaliteiten te kunnen gebruiken zoals @vermeldingen en beheerders,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Deze verouderde groep kan niet worden omgezet naar een nieuwe-stijl groep omdat het teveel leden bevat. Het maximum ledenaantal voor een groep is %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">moet je deze groep omzetten.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dit is een onbeveiligde mms-groep. Om beveiligde berichten uit te wisselen en om functionaliteiten te kunnen gebruiken zoals groepsnamen en groepsbeheer, moet je je contactpersonen uitnodigen om Signal berichtenapp te gebruiken.</string>
@@ -799,7 +799,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Groepsverwijzing delen</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Kan de groepsverwijzing niet inschakelen, probeer het later opnieuw.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Er is een netwerkfout opgetreden.</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Je hebt geen recht om groepsverwijzingen in te schakelen, vraag dit aan een beheerder.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Je hebt geen toestemming om een groepsverwijzing in te schakelen. Vraag een beheerder om dit te doen.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Je bent momenteel geen lid van deze groep.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">“%1$s” toevoegen aan de groep?</string>
@@ -1197,7 +1197,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
         • Al je berichten lezen
         \n• Berichten uit jouw naam verzenden
     </string>
-  <string name="DeviceProvisioningActivity_content_progress_title">Apparaat wordt gekoppeld</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Apparaat aan het koppelen</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Nieuw apparaat wordt gekoppeld …</string>
   <string name="DeviceProvisioningActivity_content_progress_success">Succesvol toestemming verleend aan apparaat.</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Geen apparaat gevonden.</string>
@@ -1228,7 +1228,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="PlacePickerActivity_drop_pin">Aanwijzer</string>
   <string name="PlacePickerActivity_accept_address">Adres aanvaarden</string>
   <!--PlayServicesProblemFragment-->
-  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">De versie van Google Play Services die je in gebruik hebt werkt niet zoals het hoort. Installeer Google Play Services opnieuw en probeer het nog eens.</string>
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">De versie van Google Play Services die je in gebruik hebt werkt niet zoals het hoort. Installeer Google Play Services opnieuw en probeer het opnieuw.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Foutieve pincode</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Pincode invoeren overslaan?</string>
@@ -1291,7 +1291,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="RedPhone_got_it">Begrepen</string>
   <!--Valentine\'s Day Megaphone-->
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
-  <string name="ValentinesDayMegaphone_happy_heart_day">Fijne 💜 valentijnsdag!</string>
+  <string name="ValentinesDayMegaphone_happy_heart_day">Fijne 💜 Valentijnsdag!</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
   <string name="ValentinesDayMegaphone_show_your_affection">Geef Signal ook wat liefde door te helpen Signal mogelijk te maken.</string>
   <!--WebRtcCallActivity-->
@@ -1347,14 +1347,14 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
     <item quantity="one">%1$s belt jou, %2$s, %3$s en %4$d ander</item>
     <item quantity="other">%1$s belt jou, %2$s, %3$s en %4$d anderen</item>
   </plurals>
-  <string name="WebRtcCallView__no_one_else_is_here">Er is niemand behalve jij in dit gesprek</string>
-  <string name="WebRtcCallView__s_is_in_this_call">Gesprek met %1$s</string>
+  <string name="WebRtcCallView__no_one_else_is_here">Er is niemand behalve jij in deze oproep</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s is in deze oproep aanwezig</string>
   <string name="WebRtcCallView__s_are_in_this_call">%1$s zijn in deze oproep aanwezig</string>
-  <string name="WebRtcCallView__s_and_s_are_in_this_call">Gesprek met %1$s en %2$s</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s en %2$s zijn in deze oproep aanwezig</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s laat zijn of haar scherm zien</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
-    <item quantity="one">In dit gesprek zijn %1$s, %2$s en %3$d andere aanwezig</item>
-    <item quantity="other">In dit gesprek zijn %1$s, %2$s en %3$d anderen aanwezig</item>
+    <item quantity="one">%1$s, %2$s en %3$d ander zijn in deze groepsoproep aanwezig</item>
+    <item quantity="other">%1$s, %2$s en %3$d anderen zijn in deze groepsoproep aanwezig</item>
   </plurals>
   <string name="WebRtcCallView__flip">Omdraaien</string>
   <string name="WebRtcCallView__speaker">Luid­spreker</string>
@@ -1382,16 +1382,16 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="ProxyBottomSheetFragment_proxy_address">Proxyadres</string>
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Wil je dit proxyadres gebruiken?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Proxy gebruiken</string>
-  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Sucesvol verbonden met de proxy.</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Succesvol verbonden met de proxy.</string>
   <!--RecaptchaProofActivity-->
   <string name="RecaptchaProofActivity_failed_to_submit">Indienen is mislukt</string>
   <string name="RecaptchaProofActivity_complete_verification">Verificatie voltooien</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Selecteer je land</string>
-  <string name="RegistrationActivity_you_must_specify_your_country_code">Je moet jouw
+  <string name="RegistrationActivity_you_must_specify_your_country_code">Je moet je
         landcode invoeren
     </string>
-  <string name="RegistrationActivity_you_must_specify_your_phone_number">Je moet jouw
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">Je moet je
         telefoonnummer invoeren
     </string>
   <string name="RegistrationActivity_invalid_number">Ongeldig nummer</string>
@@ -1405,8 +1405,8 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="RegistrationActivity_missing_google_play_services">De Google Play Services zijn niet aanwezig</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Dit apparaat bevat geen Google Play Services. Je kunt Signal nog steeds gebruiken, maar deze configuratie kan de betrouwbaarheid en prestaties verslechteren.\n\nAls je geen gevorderde gebruiker bent, geen aangepaste ROM gebruikt of denkt dat dit bericht onterecht wordt weergegeven, neem dan contact op met support@signal.org voor hulp met probleemoplossen.</string>
   <string name="RegistrationActivity_i_understand">Ik begrijp het</string>
-  <string name="RegistrationActivity_play_services_error">Google Play Services fout</string>
-  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">De Google Play Services is momenteel aan het updaten of is tijdelijk niet beschikbaar. Probeer het nog eens.</string>
+  <string name="RegistrationActivity_play_services_error">Google Play Services-fout</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">De Google Play Services wordt momenteel bijgewerkt of is tijdelijk niet beschikbaar. Probeer het nog eens.</string>
   <string name="RegistrationActivity_terms_and_privacy">Gebruiksvoorwaarden &amp; privacybeleid</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal zal een aantal toestemmingen vragen:
 1. Je contactenlijst lezen om personen weer te geven naar wie je berichten kunt verzenden. Je contactenlijst blijft altijd onleesbaar voor Signals servers.
@@ -1477,7 +1477,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Beschadigd sleuteluitwisselingsbericht
-        ontvangen!
+        ontvangen.
     </string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
         Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocolversie.
@@ -1487,7 +1487,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="SmsMessageRecord_secure_session_reset_s">%s heeft de beveiligde sessie opnieuw ingesteld.</string>
   <string name="SmsMessageRecord_duplicate_message">Gedupliceerd bericht.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Dit bericht kon niet worden verwerkt omdat het is verzonden vanuit een nieuwere versie van Signal. Je kunt je gesprekspartner vragen om dit bericht opnieuw te verzenden nadat je jouw Signal-app hebt bijgewerkt naar een nieuwere versie.</string>
-  <string name="SmsMessageRecord_error_handling_incoming_message">Fout bij verwerken van inkomend bericht.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Fout bij verwerken van een inkomend bericht.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Stickers</string>
   <!--StickerManagementAdapter-->
@@ -1510,7 +1510,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="SubmitDebugLogActivity_done">Klaar</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Tip op een regel om die te wissen</string>
   <string name="SubmitDebugLogActivity_submit">Uploaden</string>
-  <string name="SubmitDebugLogActivity_failed_to_submit_logs">Uploaden van foutlogs is mislukt</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">Uploaden van foutopsporingslogs is mislukt</string>
   <string name="SubmitDebugLogActivity_success">Succesvol geüpload!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopieer deze verwijzing (door deze aan te tikken en vast te houden) en voeg die toe aan je foutrapport op GitHub of aan een e-mail naar ondersteuning:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Doorsturen via andere app</string>
@@ -1578,7 +1578,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="UsernameEditFragment_encountered_a_network_error">Er is een netwerkfout opgetreden.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Deze gebruikersnaam is al in gebruik.</string>
   <string name="UsernameEditFragment_this_username_is_available">Deze gebruikersnaam is nog beschikbaar.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">Gebruikersnamen mogen alleen de karakters a–Z, 0–9 en onderstreep gebruiken.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">Gebruikersnamen mogen alleen uit de karakters a-Z, 0-9 en _ bestaan.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Gebruikersnamen mogen niet met een cijfer beginnen.</string>
   <string name="UsernameEditFragment_username_is_invalid">Gebruikersnaam is ongeldig.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Gebruikersnamen moeten uit ten minste %1$d en maximaal %2$d karakters bestaan.</string>
@@ -1596,7 +1596,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="VerifyIdentityActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt waarmee je je veiligheidsnummer kunt doorsturen.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Geen veiligheidsnummer gevonden op het klembord</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal heeft toegang tot de camera nodig om een QR-code te scannen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Camera’ in.</string>
-  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Kan QR-code niet scannen zonder toegang tot camera</string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Kan QR-codes niet scannen zonder toegang tot de camera</string>
   <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Om het veiligheidsnummer van %1$s te kunnen weergeven moet je eerst berichten met hem of haar uitwisselen.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
@@ -1620,7 +1620,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="MediaPreviewActivity_you">Door jou verzonden</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Niet-ondersteund mediatype</string>
   <string name="MediaPreviewActivity_draft">Concept</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal heeft toegang tot externe opslag nodig om iets op te slaan op de externe opslag, maar deze is permanent geweigerd. Ga naar de instellingen voor deze app, tik op ‘App-machtigingen’ en schakel ‘Opslagruimte’ in.</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal heeft toegang tot opslagruimte nodig om iets op te slaan, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘App-machtigingen’ en schakel ‘Opslagruimte’ in.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan niet opslaan naar externe opslag zonder machtiging</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Bericht wissen?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Dit bericht zal onherroepelijk van je eigen apparaat worden gewist. Het bericht wordt niet gewist voor je gesprekspartner(s).</string>
@@ -1681,7 +1681,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="NotificationChannel_call_status">Oproepstatus</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Snel reageren niet beschikbaar wanneer Signal vergrendeld is!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Snel reageren niet beschikbaar wanneer Signal is vergrendeld.</string>
   <string name="QuickResponseService_problem_sending_message">Fout bij verzenden van bericht!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">Opgeslagen naar %s</string>
@@ -1958,7 +1958,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Ontgrendelen</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal heeft mms-instellingen nodig om mediaberichten te kunnen versturen via je telefoonprovider. Je apparaat maakt deze informatie niet beschikbaar. Dit komt vaker voor bij gelockte apparaten en andere beperkende configuraties.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal heeft mms-instellingen nodig om via je telefoonabonnement media te kunnen verzenden. Je apparaat biedt deze informatie niet aan Signal aan, wat wel vaker voorkomt bij apparaten met abonnementsvergrendeling en andere beperkende configuraties.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Om media- en groepsberichten te verzenden tik je op ‘Oké’ en voer je de gevraagde gegevens in. De mms-instellingen voor je provider kunnen meestal gevonden worden door on-line te zoeken naar ‘naam-van-je-provider APN’. Dit hoef je maar één keer te doen.</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">Afleveringsprobleem</string>
@@ -2014,10 +2014,10 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Veeg omlaag om te weigeren</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Enkele dingen vergen je aandacht.</string>
-  <string name="message_details_header__sent">Verzonden:</string>
-  <string name="message_details_header__received">Ontvangen:</string>
-  <string name="message_details_header__disappears">Verloopt over:</string>
-  <string name="message_details_header__via">Via:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">Verzonden:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">Ontvangen:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">Verloopt over:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">Via:</string> -->
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">In afwachting</string>
   <string name="message_details_recipient_header__sent_to">Verzonden aan</string>
@@ -2271,7 +2271,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="preferences_communication__category_censorship_circumvention">Censuuromzeiling</string>
   <!--Title of the \'censorship circumvention\' toggle switch-->
   <string name="preferences_communication__censorship_circumvention">Censuuromzeiling</string>
-  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Indien ingeschakeld zal Signal proberen censuur te omzeilen. Schakel deze functie niet in tenzij je je op een locatie bevindt waar Signal gecensureerd wordt.</string>
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Indien ingeschakeld zal Signal proberen censuur te omzeilen. Schakel deze functie niet in tenzij je je op een locatie bevindt waar Signal wordt gecensureerd.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
   <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Omdat je telefoonnummer bij een risicoregio hoort is censuuromzeiling automatisch ingeschakeld.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
@@ -2330,7 +2330,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="PaymentsHomeFragment__help">Hulp</string>
   <string name="PaymentsHomeFragment__coin_cleanup_fee">Samenvoegingskosten</string>
   <string name="PaymentsHomeFragment__sent_payment">Verzonden overschrijving</string>
-  <string name="PaymentsHomeFragment__received_payment">Ontvangen overschijving</string>
+  <string name="PaymentsHomeFragment__received_payment">Ontvangen overschrijving</string>
   <string name="PaymentsHomeFragment__processing_payment">Overschrijving aan het verwerken</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__currency_conversion_not_available">Omrekenen van valuta is niet beschikbaar</string>
@@ -2380,7 +2380,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__transfer">Overschrijven</string>
   <string name="PaymentsTransferFragment__scan_qr_code">QR-code scannen</string>
-  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Naar: Scan de QR-code of voer het portomonnee-adres in</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Naar: Scan de QR-code of voer het portemonnee-adres in</string>
   <string name="PaymentsTransferFragment__you_can_transfer">Je kunt MobileCoin overschrijven door een deel van je krediet te sturen naar het adres van de portemonnee die je via de beurs hebt gekregen. Dat adres bestaat uit nummers en letters en je vindt het meestal onder de QR-code.</string>
   <string name="PaymentsTransferFragment__next">Volgende</string>
   <string name="PaymentsTransferFragment__invalid_address">Adres ongeldig</string>
@@ -2558,7 +2558,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="InsightsDashboardFragment__not_enough_data">Niet genoeg gegevens om een inzicht te geven</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Je inzichten-percentage wordt berekend op basis van berichten die niet zijn verlopen en niet handmatig zijn gewist en die je in de afgelopen %1$d dagen hebt verzonden.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Begin een gesprek</string>
-  <string name="InsightsDashboardFragment__invite_your_contacts">Communiceer voortaan beveiligd en maak nieuwe functies mogelijk welke verder gaan dan de limitaties van onversleutelde sms-berichten, door meer van je contactpersonen uit te nodigen om Signal te gebruiken.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Communiceer voortaan beveiligd en maak gebruik van functionaliteiten die bij onversleutelde sms-berichten niet mogelijk zijn, door meer van je contactpersonen uit te nodigen om Signal te gebruiken.</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Deze statistiek is lokaal gegenereerd op jouw apparaat en kan alleen door jou gezien worden. Ze wordt nooit geüpload.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Versleutelde berichten</string>
   <string name="InsightsDashboardFragment__cancel">Annuleren</string>
@@ -2623,7 +2623,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="AccountLockedFragment__learn_more">Meer lezen</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Voer je pincode in</string>
-  <string name="RegistrationLockFragment__enter_the_pin_you_created">Voer de pincode in welke je eerder hebt aangemaakt om informatie versleuteld op te slaan op Signals servers. Dit is niet dezelfde code als de telefoonnummer verificatie code die je per sms of telefoonoproep hebt ontvangen.</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">Voer de pincode in welke je eerder hebt aangemaakt om informatie versleuteld op te slaan op Signals servers. Dit is niet dezelfde code als de telefoonnummerverificatie-code die je per sms of telefoonoproep hebt ontvangen.</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">Een alfanumerieke pincode invoeren</string>
   <string name="RegistrationLockFragment__enter_numeric_pin">Een numerieke pincode invoeren</string>
   <string name="RegistrationLockFragment__incorrect_pin_try_again">Foutieve pincode, probeer het opnieuw.</string>
@@ -2684,7 +2684,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="preferences_chats__backup_chats_to_external_storage">Laat Signal versleutelde back-upbestanden maken van gesprekken en media</string>
   <string name="preferences_chats__transfer_account">Alle Signalgegevens overzetten</string>
   <string name="preferences_chats__transfer_account_to_a_new_android_device">Alle Signalgegevens overzetten naar een nieuw Android-apparaat</string>
-  <string name="RegistrationActivity_enter_backup_passphrase">Voer back-upwachtwoord in</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Voer het back-upwachtwoord in</string>
   <string name="RegistrationActivity_restore">Herstellen</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Kan geen back-upbestanden importeren welke gemaakt zijn door nieuwere versies van Signal</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Verkeerd back-upwachtwoord</string>
@@ -2698,7 +2698,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="BackupDialog_enable_backups">Back-upbestanden inschakelen</string>
   <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Verklaar dat je het begrijpt door het selectievakje aan te vinken.</string>
   <string name="BackupDialog_delete_backups">Alle back-upbestanden wissen?</string>
-  <string name="BackupDialog_disable_and_delete_all_local_backups">Als je het maken van back-upbestanden uitschakeld, dan zal Signal ook alle bestaande back-upbestanden uit de back-uplocatie wissen, om er zeker van te zijn dat er geen oude gesprekken op je apparaat achterblijven.</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Als je het maken van back-upbestanden uitschakelt, dan zal Signal ook alle bestaande back-upbestanden uit de back-uplocatie wissen, om er zeker van te zijn dat er geen oude gesprekken op je apparaat achterblijven.</string>
   <string name="BackupDialog_delete_backups_statement">Back-upbestanden wissen</string>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Kies een opslaglocatie om het maken van back-upbestanden te kunnen inschakelen.</string>
   <string name="BackupDialog_choose_folder">Kies een map</string>
@@ -3036,7 +3036,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="ChatWallpaperFragment__reset_wallpaper">Achtergrond verwijderen</string>
   <string name="ChatWallpaperFragment__reset_wallpaper_question">Achtergrond verwijderen?</string>
   <!--ChatWallpaperSelectionFragment-->
-  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Afbeelding uit galerij kiezen</string>
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Afbeelding kiezen uit galerij</string>
   <string name="ChatWallpaperSelectionFragment__presets">Reeds beschikbare achtergronden</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Voorbeeld</string>
@@ -3044,7 +3044,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Veeg om meer achtergronden weer te geven.</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Je staat op het punt om deze standaard achtergrond in te stellen voor al je gesprekken.</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Deze standaard achtergrond instellen voor %1$s.</string>
-  <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Om je gallerij te bekijken is toestemming nodig om de opslag te gebruiken.</string>
+  <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Om je galerij te bekijken is toestemming nodig om de opslag te gebruiken.</string>
   <!--WallpaperImageSelectionActivity-->
   <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Een achtergrond kiezen</string>
   <!--WallpaperCropActivity-->
@@ -3233,14 +3233,14 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="PrivacySettingsFragment__app_security">App-beveiliging</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Verberg Signal in de lijst van recent geopende apps en blokkeer schermafdrukken op je eigen apparaat, om je gesprekken te beschermen tegen stiekeme schermopnames vanuit spionerende apps.</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-berichten en -oproepen, alle omroepen omleiden en verzegelde afzender</string>
-  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standaard-tijdspanne voor alle nieuwe gesprekken</string>
-  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel in dat berichten in alle nieuwe gesprekken die jij zelf begint een bepaalde tijd nadat ze gezien zijn voor zowel jou als je gesprekspartner vanzelf worden gewist.</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standaard-tijdspanne voor toekomstige gesprekken</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel in dat berichten in alle toekomstige gesprekken die jij zelf begint een bepaalde tijd nadat ze gezien zijn voor zowel jou als je gesprekspartner vanzelf worden gewist.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Pictogram weergeven</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Laat in de berichtdetails een pictogram zien bij berichten die zijn afgeleverd met een verzegelde afzender</string>
   <!--ExpireTimerSettingsFragment-->
-  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Voor alle nieuwe gesprekken die jij zelf begint zullen berichten voor iedereen worden gewist nadat de ingestelde tijd is verlopen. De tijdspanne begint voor iedere persoon individueel pas te lopen vanaf het moment dat hij of zij het bericht heeft gezien. — Gebruik dit niet ter beveiliging, want Signal kan niet garanderen dat berichten op het apparaat van een ander ook daadwerkelijk worden gewist.</string>
-  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Nieuwe berichten in dit gesprek zullen voor iedereen worden gewist nadat de ingestelde tijdspanne is verlopen. De tijdspanne begint voor iedere persoon individueel pas te lopen vanaf het moment dat hij of zij het bericht heeft gezien. — Gebruik dit niet ter beveiliging, want Signal kan niet garanderen dat berichten op het apparaat van een ander ook daadwerkelijk worden gewist.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Hiermee stel je voor alle toekomstige gesprekken die jij zelf begint in dat berichten voor iedereen worden gewist nadat de ingestelde tijdspanne is verlopen. De tijdspanne begint voor iedere persoon individueel pas te lopen vanaf het moment dat hij of zij het bericht heeft gezien. — Gebruik verlopende berichten niet ter beveiliging, want Signal kan niet garanderen dat berichten op het apparaat van een ander ook daadwerkelijk worden gewist.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Nieuwe berichten in dit gesprek zullen voor iedereen worden gewist nadat de ingestelde tijdspanne is verlopen. De tijdspanne begint voor iedere persoon individueel pas te lopen vanaf het moment dat hij of zij het bericht heeft gezien. — Gebruik verlopende berichten niet ter beveiliging, want Signal kan niet garanderen dat berichten op het apparaat van een ander ook daadwerkelijk worden gewist.</string>
   <string name="ExpireTimerSettingsFragment__off">Uit</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 weken</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 week</string>
@@ -3417,7 +3417,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="AvatarPickerFragment__camera">Camera</string>
   <string name="AvatarPickerFragment__take_a_picture">Neem een foto</string>
   <string name="AvatarPickerFragment__choose_a_photo">Kies een afbeelding</string>
-  <string name="AvatarPickerFragment__photo">Gallerij</string>
+  <string name="AvatarPickerFragment__photo">Galerij</string>
   <string name="AvatarPickerFragment__text">Tekst</string>
   <string name="AvatarPickerFragment__save">Opslaan</string>
   <string name="AvatarPickerFragment__select_an_avatar">Reeds beschikbare afbeeldingen</string>
@@ -3951,7 +3951,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--Summary for switchable option allowing replies and reactions on your story-->
   <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Sta personen die je verhaal mogen zien ook toe om te reageren</string>
   <!--Note about default sharing-->
-  <string name="MyStorySettingsFragment__hide_your_story_from">Met deze optie kun je je verhaal voor spesifieke personen verbergen. Je verhaal is standaard zichtbaar voor al je %1$s</string>
+  <string name="MyStorySettingsFragment__hide_your_story_from">Met deze optie kun je je verhaal voor specifieke personen verbergen. Je verhaal is standaard zichtbaar voor al je %1$s</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
   <string name="MyStorySettingsFragment__signal_connections">Signal-kennissen.</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
@@ -3963,7 +3963,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--Signal connections sheet bullet point 3-->
   <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Hem of haar in je systeemcontactenlijst te hebben staan</string>
   <!--Note at the bottom of the Signal connections sheet-->
-  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Je Signal-kennissen kunnen jouw profielnaam en -foto zien en kunnen je “Mijn verhaal”-plaatsingen zien tenzij je die spesifiek voor hem of haar verbergt.</string>
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Je Signal-kennissen kunnen jouw profielnaam en -foto zien en kunnen je “Mijn verhaal”-plaatsingen zien tenzij je die specifiek voor hem of haar verbergt.</string>
   <!--Clickable option to add a viewer to a private story-->
   <string name="PrivateStorySettingsFragment__add_viewer">Persoon toevoegen</string>
   <!--Clickable option to delete a custom story-->
@@ -4009,13 +4009,13 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--Dialog title for first time adding something to a story-->
   <string name="StoryDialogs__add_to_story_q">Toevoegen aan verhaal?</string>
   <!--Dialog message for first time adding something to a story-->
-  <string name="StoryDialogs__adding_content">Wanneer je een nieuw deel aan je verhaal toevoegd dan kunnen je Signal-kennissen dat deel van je verhaal voor de komende 24 uur bekijken. Je kunt in de instellingen aanpassen welke personen je verhaal kunnen bekijken.</string>
+  <string name="StoryDialogs__adding_content">Wanneer je een nieuw deel aan je verhaal toevoegt dan kunnen je Signal-kennissen dat deel van je verhaal voor de komende 24 uur bekijken. Je kunt in de instellingen aanpassen welke personen je verhaal kunnen bekijken.</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <string name="StoryDialogs__add_to_story">Een verhaal toevoegen</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <string name="StoryDialogs__edit_viewers">Wijzigen wie dit kan bekijken</string>
   <!--Error message shown when a failure occurs during story send-->
-  <string name="StoryDialogs__story_could_not_be_sent">Je verhaal kan niet worden geupload. Ga na dat je apparaat met het internet is verbonden en probeer het opnieuw.</string>
+  <string name="StoryDialogs__story_could_not_be_sent">Je verhaal kan niet worden geüpload. Ga na dat je apparaat met het internet is verbonden en probeer het opnieuw.</string>
   <!--Error message dialog button to resend a previously failed story send-->
   <string name="StoryDialogs__send">Uploaden</string>
   <!--Privacy Settings toggle title for stories-->
@@ -4050,7 +4050,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--Choose story type bottom sheet new story row title-->
   <string name="ChooseStoryTypeBottomSheet__new_private_story">Nieuw privéverhaal</string>
   <!--Choose story type bottom sheet new story row summary-->
-  <string name="ChooseStoryTypeBottomSheet__visible_only_to">Alleen zichtbaar voor spesifieke personen</string>
+  <string name="ChooseStoryTypeBottomSheet__visible_only_to">Alleen zichtbaar voor specifieke personen</string>
   <!--Choose story type bottom sheet group story title-->
   <string name="ChooseStoryTypeBottomSheet__group_story">Groepsverhaal</string>
   <!--Choose story type bottom sheet group story summary-->
@@ -4070,7 +4070,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <string name="StorySlateView__couldnt_load_content">Kon de inhoud niet laden</string>
   <!--Toasted when the user externally shares to a text story successfully-->
-  <string name="TextStoryPostCreationFragment__sent_story">Verhaal is geupload</string>
+  <string name="TextStoryPostCreationFragment__sent_story">Verhaal is geüpload</string>
   <!--Toasted when the user external share to a text story fails-->
   <string name="TextStoryPostCreationFragment__failed_to_send_story">Verhaal uploaden is mislukt</string>
   <!--Displayed in a dialog to let the user select a given users story-->

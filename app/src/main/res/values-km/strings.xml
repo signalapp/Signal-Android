@@ -604,8 +604,8 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">វាលនេះ គឺចាំបាច់។</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">ការបង្កើតក្រុមបរាជ័យ។</string>
   <string name="AddGroupDetailsFragment__try_again_later">ព្យាយាមម្តងទៀតពេលក្រោយ។</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">អ្នកបានជ្រើសរើសបញ្ជីទំនាក់ទំនងដែលមិនគាំទ្រក្រុម Signal ដូចនេះក្រុមនេះ នឹងជា MMS។</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">ឈ្មោះក្រុម MMS ដែលប្តូរ និងរូបភាព នឹងបង្ហាញទៅអ្នកតែប៉ុណ្ណោះ។</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">អ្នកបានជ្រើសរើសបញ្ជីទំនាក់ទំនងដែលមិនគាំទ្រក្រុម Signal ដូចនេះក្រុមនេះ នឹងជា MMS។</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">ឈ្មោះក្រុម MMS ដែលប្តូរ និងរូបភាព នឹងបង្ហាញទៅអ្នកតែប៉ុណ្ណោះ។</string> -->
   <string name="AddGroupDetailsFragment__remove">លុបចេញ</string>
   <string name="AddGroupDetailsFragment__sms_contact">បញ្ជីទំនាក់ទំនង SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">លុប%1$s ចេញពីក្រុមនេះ?</string>
@@ -1864,10 +1864,10 @@
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">អូសចុះក្រោម ដើម្បីច្រានចោល</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">បញ្ហាមួយចំនួនត្រូវការ ការយកចិត្តទុកដាក់របស់អ្នក។</string>
-  <string name="message_details_header__sent">បានផ្ញើ៖</string>
-  <string name="message_details_header__received">បានទទួល៖</string>
-  <string name="message_details_header__disappears">បាត់ទៅវិញ៖</string>
-  <string name="message_details_header__via">តាមរយៈ៖</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">បានផ្ញើ៖</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">បានទទួល៖</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">បាត់ទៅវិញ៖</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">តាមរយៈ៖</string> -->
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">មិនទាន់សម្រេច</string>
   <string name="message_details_recipient_header__sent_to">បានផ្ញើទៅ</string>

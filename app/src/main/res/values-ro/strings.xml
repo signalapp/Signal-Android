@@ -690,8 +690,8 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">Acest câmp este obligatoriu.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Crearea grupului a eșuat.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Încearcă mai târziu.</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Ai selectat un contact care nu suportă grupuri Signal, astfel acest grup va fi de tip MMS.</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Numele și fotografiile personalizate ale grupurilor MMS vor fi vizibile numai pentru tine.</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Ai selectat un contact care nu suportă grupuri Signal, astfel acest grup va fi de tip MMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Numele și fotografiile personalizate ale grupurilor MMS vor fi vizibile numai pentru tine.</string> -->
   <string name="AddGroupDetailsFragment__remove">Elimină</string>
   <string name="AddGroupDetailsFragment__sms_contact">Contact SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Elimină pe %1$s din acest grup?</string>
@@ -2090,10 +2090,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Glisează în jos pentru a respinge</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Anumite probleme au nevoie de atenția ta.</string>
-  <string name="message_details_header__sent">Trimis:</string>
-  <string name="message_details_header__received">Primit:</string>
-  <string name="message_details_header__disappears">Dispare:</string>
-  <string name="message_details_header__via">Prin:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">Trimis:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">Primit:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">Dispare:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">Prin:</string> -->
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">În curs</string>
   <string name="message_details_recipient_header__sent_to">Trimis la</string>

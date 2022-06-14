@@ -868,10 +868,10 @@ a shonrú</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Sleamhnaigh do mhéar síos chun diúltú dó </string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Is gá fadhbanna áirithe a réiteach.</string>
-  <string name="message_details_header__sent">Seolta</string>
-  <string name="message_details_header__received">Faighte</string>
-  <string name="message_details_header__disappears">Imíonn as amharc</string>
-  <string name="message_details_header__via">Trí</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">Seolta</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">Faighte</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">Imíonn as amharc</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">Trí</string> -->
   <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Chuig:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Ó:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Le:</string> -->

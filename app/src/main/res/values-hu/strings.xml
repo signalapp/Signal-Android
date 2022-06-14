@@ -652,8 +652,8 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">A mező kitöltése kötelező.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">A csoport létrehozása nem sikerült.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Próbáld újra később!</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Olyan kontaktot választottál ki, aki nem támogatja a Signal csoportokat, így ez a csoport MMS lesz.</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Az egyéni MMS csoportnevek és -fotók csak számodra lesznek láthatóak.</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Olyan kontaktot választottál ki, aki nem támogatja a Signal csoportokat, így ez a csoport MMS lesz.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Az egyéni MMS csoportnevek és -fotók csak számodra lesznek láthatóak.</string> -->
   <string name="AddGroupDetailsFragment__remove">Eltávolítás</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS kontakt</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Eltávolítod %1$s-t ebből a csoportból?</string>
@@ -2010,10 +2010,10 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Elutasítás lefelé húzással</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Néhány probléma a figyelmedet igényli.</string>
-  <string name="message_details_header__sent">Elküldve:</string>
-  <string name="message_details_header__received">Kézbesítve:</string>
-  <string name="message_details_header__disappears">Eltűnik:</string>
-  <string name="message_details_header__via">Csatorna:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">Elküldve:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">Kézbesítve:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">Eltűnik:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">Csatorna:</string> -->
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Folyamatban</string>
   <string name="message_details_recipient_header__sent_to">Címzett</string>

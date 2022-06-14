@@ -728,8 +728,8 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">Toto pole je povinné.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Vytvoření skupiny selhalo.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Zkuste to později znovu.</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Vybrali jste kontakt, který nepodporuje Signal, takže tato skupina bude MMS.</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Názvy a fotografie vlastních skupin MMS se zobrazí pouze vám.</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Vybrali jste kontakt, který nepodporuje Signal, takže tato skupina bude MMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Názvy a fotografie vlastních skupin MMS se zobrazí pouze vám.</string> -->
   <string name="AddGroupDetailsFragment__remove">Odebrat</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS kontakt</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Odebrat %1$s z této skupiny?</string>
@@ -2178,10 +2178,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Pro odmítnutí přejeďte prstem dolů</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Některé problémy vyžadují vaši pozornost</string>
-  <string name="message_details_header__sent">Odesláno:</string>
-  <string name="message_details_header__received">Přijato:</string>
-  <string name="message_details_header__disappears">Zmizí:</string>
-  <string name="message_details_header__via">Kanál:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">Odesláno:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">Přijato:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">Zmizí:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">Kanál:</string> -->
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Probíhá</string>
   <string name="message_details_recipient_header__sent_to">Odesláno pro</string>

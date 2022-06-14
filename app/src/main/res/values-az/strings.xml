@@ -652,8 +652,8 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">Bu sahə doldurulmalıdır.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Qrup yaradılmadı.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Daha sonra yenidən sınayın.</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Signal qruplarını dəstəkləməyən bir üzv seçdiniz, ona görə də bu qrup MMS olacaq.</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Özəl MMS qrup adları və fotoları, yalnız sizə görünən olacaq.</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Signal qruplarını dəstəkləməyən bir üzv seçdiniz, ona görə də bu qrup MMS olacaq.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Özəl MMS qrup adları və fotoları, yalnız sizə görünən olacaq.</string> -->
   <string name="AddGroupDetailsFragment__remove">Çıxart</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS əlaqəsi</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s qrupdan çıxarılsın?</string>
@@ -2009,10 +2009,10 @@
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Rədd etmək üçün aşağı sürüşdürün</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Bəzi problemlər diqqətinizi tələb edir.</string>
-  <string name="message_details_header__sent">Göndərildi:</string>
-  <string name="message_details_header__received">Alındı:</string>
-  <string name="message_details_header__disappears">Yox olacaq:</string>
-  <string name="message_details_header__via">Vasitəsilə:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">Göndərildi:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">Alındı:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">Yox olacaq:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">Vasitəsilə:</string> -->
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Gözləyir</string>
   <string name="message_details_recipient_header__sent_to">Göndərildi</string>

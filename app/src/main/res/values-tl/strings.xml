@@ -1235,10 +1235,10 @@
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">I-swipe pababa upang tanggihan</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">May ilang isyu na nangangailangan ng iyong atensyon.</string>
-  <string name="message_details_header__sent">Naipadala na</string>
-  <string name="message_details_header__received">Natanggap na</string>
-  <string name="message_details_header__disappears">Naglalaho</string>
-  <string name="message_details_header__via">Sa pamamagitan ng</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">Naipadala na</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">Natanggap na</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">Naglalaho</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">Sa pamamagitan ng</string> -->
   <!--message_details_recipient_header-->
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Nabigong ipadala</string>

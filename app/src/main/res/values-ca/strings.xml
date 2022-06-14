@@ -652,8 +652,8 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">Aquest camp és necessari.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Ha fallat la creació del grup.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Torneu-ho a provar més tard.</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Heu seleccionat un contacte que no admet grups del Signal, per tant aquest grup serà per MMS.</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Els noms i les fotos del grup MMS personalitzat només seran visibles per a vós.</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Heu seleccionat un contacte que no admet grups del Signal, per tant aquest grup serà per MMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Els noms i les fotos del grup MMS personalitzat només seran visibles per a vós.</string> -->
   <string name="AddGroupDetailsFragment__remove">Suprimeix</string>
   <string name="AddGroupDetailsFragment__sms_contact">Contacte d\'SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Voleu suprimir %1$s d\'aquest grup?</string>
@@ -2003,10 +2003,10 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Llisqueu avall per rebutjar-la</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Certs problemes necessiten la vostra atenció.</string>
-  <string name="message_details_header__sent">Enviat:</string>
-  <string name="message_details_header__received">Rebut:</string>
-  <string name="message_details_header__disappears">Desapareix:</string>
-  <string name="message_details_header__via">Mitjà:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">Enviat:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">Rebut:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">Desapareix:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">Mitjà:</string> -->
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Pendent</string>
   <string name="message_details_recipient_header__sent_to">Enviat a</string>

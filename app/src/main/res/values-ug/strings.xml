@@ -597,8 +597,8 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">بۇ رايون تەلەپ قىلىنىدۇ.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">گۇرۇپپا قۇرۇش مەغلۇپ بولدى.</string>
   <string name="AddGroupDetailsFragment__try_again_later">سەل تۇرۇپ قايتا سىناڭ.</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">سىز Signal گۇرۇپپىسىنى قوللىمايدىغان ئالاقەداشنى تاللىدىڭىز، شۇڭا بۇ گۇرۇپپا MMS بولىدۇ.</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">ئىختىيارى MMS گۇرۇپپا ئىسمى ۋە رەسىملىرى سىزگىلا كۆرۈنىدۇ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">سىز Signal گۇرۇپپىسىنى قوللىمايدىغان ئالاقەداشنى تاللىدىڭىز، شۇڭا بۇ گۇرۇپپا MMS بولىدۇ.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">ئىختىيارى MMS گۇرۇپپا ئىسمى ۋە رەسىملىرى سىزگىلا كۆرۈنىدۇ.</string> -->
   <string name="AddGroupDetailsFragment__remove">چىقىرىش</string>
   <string name="AddGroupDetailsFragment__sms_contact">قىسقا ئۇچۇر ئالاقەداشى</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">بۇ گۇرۇپپىدىن %1$sنى چىقىرىۋېتەمدۇ؟</string>
@@ -1874,10 +1874,10 @@
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">ئاستىغا سۈرۈلسە رەت قىلىدۇ</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">كاشىلا كۆرۈلدى دىققەت قىلىڭ.</string>
-  <string name="message_details_header__sent">يوللانغان:</string>
-  <string name="message_details_header__received">تاپشۇرۇۋېلىنغان:</string>
-  <string name="message_details_header__disappears">غايىب:</string>
-  <string name="message_details_header__via">يولى:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">يوللانغان:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">تاپشۇرۇۋېلىنغان:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">غايىب:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">يولى:</string> -->
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">كۈتۈۋاتىدۇ…</string>
   <string name="message_details_recipient_header__sent_to">يوللانغۇچى</string>

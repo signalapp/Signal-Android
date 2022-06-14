@@ -569,8 +569,8 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">ଏହି କ୍ଷେତ୍ରଟି ଆବଶ୍ୟକୀୟ ଅଟେ।</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">ଗୋଷ୍ଠୀ ସୃଷ୍ଟି ବିଫଳ।</string>
   <string name="AddGroupDetailsFragment__try_again_later">କିଛି ସମୟ ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">ଆପଣ ଏକ ସମ୍ପର୍କ ଚୟନ କରିଛନ୍ତି ଯାହା Signal ଗୋଷ୍ଠୀକୁ ସମର୍ଥନ କରେ ନାହିଁ, ତେଣୁ ଏହି ଗୋଷ୍ଠୀଟି MMS ହେବ</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">କଷ୍ଟମ୍ MMS ଗୋଷ୍ଠୀ ନାମ ଏବଂ ଛବି କେବଳ ଆପଣଙ୍କୁ ଦୃଶ୍ୟମାନ ହେବ</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">ଆପଣ ଏକ ସମ୍ପର୍କ ଚୟନ କରିଛନ୍ତି ଯାହା Signal ଗୋଷ୍ଠୀକୁ ସମର୍ଥନ କରେ ନାହିଁ, ତେଣୁ ଏହି ଗୋଷ୍ଠୀଟି MMS ହେବ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">କଷ୍ଟମ୍ MMS ଗୋଷ୍ଠୀ ନାମ ଏବଂ ଛବି କେବଳ ଆପଣଙ୍କୁ ଦୃଶ୍ୟମାନ ହେବ</string> -->
   <string name="AddGroupDetailsFragment__remove">ଅପସାରଣ କରନ୍ତୁ</string>
   <string name="AddGroupDetailsFragment__sms_contact">ଯୋଗାଯୋଗକୁ ଏସ୍ଏମ୍ଏସ୍ କରନ୍ତୁ</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">ଏହି ଗୋଷ୍ଠୀରୁ %1$sକୁ ହଟାନ୍ତୁ ?</string>

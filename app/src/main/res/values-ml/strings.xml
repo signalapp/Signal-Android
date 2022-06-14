@@ -649,8 +649,8 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">ഈ ഫീൽഡ് പൂരിപ്പിക്കേണ്ടതുണ്ട്.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">ഗ്രൂപ്പ് സൃഷ്ടിക്കൽ പരാജയപ്പെട്ടു.</string>
   <string name="AddGroupDetailsFragment__try_again_later">പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Signal ഗ്രൂപ്പുകളെ പിന്തുണയ്‌ക്കാത്ത ഒരു കോൺ‌ടാക്റ്റ് നിങ്ങൾ തിരഞ്ഞെടുത്തു, അതിനാൽ ഈ ഗ്രൂപ്പ് MMS ആയിരിക്കും.</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">ഇഷ്‌ടാനുസൃത MMS (എംഎംഎസ് ) ഗ്രൂപ്പ് പേരുകളും ഫോട്ടോകളും നിങ്ങൾക്ക് മാത്രമേ ദൃശ്യമാകൂ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Signal ഗ്രൂപ്പുകളെ പിന്തുണയ്‌ക്കാത്ത ഒരു കോൺ‌ടാക്റ്റ് നിങ്ങൾ തിരഞ്ഞെടുത്തു, അതിനാൽ ഈ ഗ്രൂപ്പ് MMS ആയിരിക്കും.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">ഇഷ്‌ടാനുസൃത MMS (എംഎംഎസ് ) ഗ്രൂപ്പ് പേരുകളും ഫോട്ടോകളും നിങ്ങൾക്ക് മാത്രമേ ദൃശ്യമാകൂ.</string> -->
   <string name="AddGroupDetailsFragment__remove">നീക്കംചെയ്യൂ</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS കോൺടാക്റ്റ്</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">ഈ ഗ്രൂപ്പിൽ നിന്ന് %1$s-നെ നീക്കംചെയ്യണോ?</string>
@@ -1957,10 +1957,10 @@
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">നിരസിക്കാൻ താഴേക്ക് സ്വൈപ്പുചെയ്യുക</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">ചില പ്രശ്‌നങ്ങൾക്ക് നിങ്ങളുടെ ശ്രദ്ധ ആവശ്യമാണ്.</string>
-  <string name="message_details_header__sent">അയച്ചത്:</string>
-  <string name="message_details_header__received">സ്വീകരിച്ചത്:</string>
-  <string name="message_details_header__disappears">അപ്രത്യക്ഷമാകുന്നത്:</string>
-  <string name="message_details_header__via">വഴി:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">അയച്ചത്:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">സ്വീകരിച്ചത്:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">അപ്രത്യക്ഷമാകുന്നത്:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">വഴി:</string> -->
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">ശേഷിക്കുന്നു</string>
   <string name="message_details_recipient_header__sent_to">അയച്ചത്</string>

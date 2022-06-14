@@ -652,8 +652,8 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">Ова поле е задолжително.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Создавањето на групата е неуспешно.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Обидете се повторно подоцна.</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Избравте контакт кој што нема поддршка за Signal групи, па затоа оваа група ќе биде MMS.</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Сопствените имиња на MMS групите и сликите ќе Ви бидат видливи само на Вас.</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Избравте контакт кој што нема поддршка за Signal групи, па затоа оваа група ќе биде MMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Сопствените имиња на MMS групите и сликите ќе Ви бидат видливи само на Вас.</string> -->
   <string name="AddGroupDetailsFragment__remove">Отстрани</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS контакт</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Да го/ја отстранам %1$s од оваа група?</string>
@@ -1964,9 +1964,9 @@
   <string name="CreateProfileActivity__username">Корисничко име</string>
   <string name="CreateProfileActivity__create_a_username">Создади корисничко име</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Сопствените имиња на MMS групите и сликите ќе Ви бидат достапни само на Вас.</string>
-  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Описот на групата ќе им биде видлив на членовите на оваа група и луѓето кои што се поканети.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Описот на групата ќе биде видлив на членовите на оваа група и луѓето кои се поканети.</string>
   <!--EditAboutFragment-->
-  <string name="EditAboutFragment_about">За</string>
+  <string name="EditAboutFragment_about">Опис</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Напишете неколку зборови за себе…</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Тука сум, кажи</string>
@@ -1979,7 +1979,7 @@
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group">Уреди група</string>
   <string name="EditProfileFragment__group_name">Име на група</string>
-  <string name="EditProfileFragment__group_description">Опис на групата</string>
+  <string name="EditProfileFragment__group_description">Опис на група</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Вашето име</string>
   <string name="EditProfileNameFragment_first_name">Име</string>
@@ -1991,7 +1991,7 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Внесете име или број</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[За да ја потврдите безбедноста на Вашето шифрирање од-крај-до-крај со %s, споредете ги горенаведените броеви со нивниот уред. Можете исто така да го скенирате кодот на нивниот телефон. <a href="https://signal.org/redirect/safety-numbers">Дознајте повеќе.</a>]]></string>
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[За да ја потврдите безбедноста на Вашето шифрирање од-крај-до-крај со %s, споредете ги горенаведените броеви прикажани на уредот на соговорникот. Можете исто така да го скенирате кодот прикажан на телефонот на соговорникот. <a href="https://signal.org/redirect/safety-numbers">Дознајте повеќе.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Допри да скенираш</string>
   <string name="verify_display_fragment__successful_match">Успешно совпаѓање</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">Неуспешна проверка на сигурносниот број</string>
@@ -2007,10 +2007,10 @@
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Повлечете надолу за одбивање</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Некои проблеми бараат Ваше внимание.</string>
-  <string name="message_details_header__sent">Испратено:</string>
-  <string name="message_details_header__received">Примено:</string>
-  <string name="message_details_header__disappears">Исчезнува за:</string>
-  <string name="message_details_header__via">Преку:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">Испратено:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">Примено:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">Исчезнува за:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">Преку:</string> -->
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">На чекање</string>
   <string name="message_details_recipient_header__sent_to">Испратено на</string>
@@ -2025,8 +2025,8 @@
   <string name="message_details_recipient__new_safety_number">Нов сигурносен број</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Создај лозинка</string>
-  <string name="AndroidManifest__select_contacts">Изберете контакти</string>
-  <string name="AndroidManifest__change_passphrase">Променете лозинка</string>
+  <string name="AndroidManifest__select_contacts">Избери контакти</string>
+  <string name="AndroidManifest__change_passphrase">Промена на лозинка</string>
   <string name="AndroidManifest__verify_safety_number">Проверка на сигурносен број</string>
   <string name="AndroidManifest__log_submit">Испрати запис за отстранување грешки</string>
   <string name="AndroidManifest__media_preview">Преглед на медија</string>
@@ -2037,7 +2037,7 @@
   <string name="AndroidManifest_remove_photo">Отстрани слика</string>
   <!--Message Requests Megaphone-->
   <string name="MessageRequestsMegaphone__message_requests">Барања за разговор</string>
-  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Корисниците можат да изберат да прифатат нов разговор. Профилните имиња им дозволуваат на луѓето да дознаат кој им испраќа порака.</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Корисниците сега можат да изберат дали да прифатат нов разговор. Профилните имиња им овозможуваат на луѓето да знаат кој им испраќа порака.</string>
   <string name="MessageRequestsMegaphone__add_profile_name">Додај име на профил</string>
   <!--HelpFragment-->
   <string name="HelpFragment__have_you_read_our_faq_yet">Дали веќе сте ги прочитале нашите ЧПП?</string>
@@ -2077,13 +2077,13 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Емотикони</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Не се пронајдени резултати</string>
   <!--arrays.xml-->
-  <string name="arrays__use_default">Користете стандардно</string>
+  <string name="arrays__use_default">Користи стандардно</string>
   <string name="arrays__use_custom">Користи прилагодено</string>
   <string name="arrays__mute_for_one_hour">Исклучи на 1 час</string>
   <string name="arrays__mute_for_eight_hours">Исклучи на 8 часа</string>
   <string name="arrays__mute_for_one_day">Исклучи на 1 ден</string>
   <string name="arrays__mute_for_seven_days">Исклучи на 7 дена</string>
-  <string name="arrays__always">Секогаш</string>
+  <string name="arrays__always">Засекогаш</string>
   <string name="arrays__settings_default">Стандардни поставувања</string>
   <string name="arrays__enabled">Вклучено</string>
   <string name="arrays__disabled">Исклучено</string>
@@ -2091,34 +2091,34 @@
   <string name="arrays__name_only">Само име</string>
   <string name="arrays__no_name_or_message">Без име и порака</string>
   <string name="arrays__images">Слики</string>
-  <string name="arrays__audio">Звук</string>
+  <string name="arrays__audio">Аудио</string>
   <string name="arrays__video">Видео</string>
   <string name="arrays__documents">Документи</string>
   <string name="arrays__small">Мала</string>
   <string name="arrays__normal">Нормална</string>
   <string name="arrays__large">Голема</string>
-  <string name="arrays__extra_large">Екстра голема</string>
+  <string name="arrays__extra_large">Многу голема</string>
   <string name="arrays__default">Стандардно </string>
   <string name="arrays__high">Високо</string>
   <string name="arrays__max">Максимално</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
-    <item quantity="one">%dh</item>
+    <item quantity="one">%dч</item>
     <item quantity="other">%dч</item>
   </plurals>
   <!--preferences.xml-->
   <string name="preferences_beta">Бета</string>
   <string name="preferences__sms_mms">SMS и MMS</string>
-  <string name="preferences__pref_all_sms_title">Примај ги сите SMS-и</string>
-  <string name="preferences__pref_all_mms_title">Примај ги сите MMS-и</string>
+  <string name="preferences__pref_all_sms_title">Примај ги сите SMS пораки</string>
+  <string name="preferences__pref_all_mms_title">Примај ги сите MMS пораки</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Користи го Signal за сите дојдовни пораки</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Користи го Signal за доаѓачки мултимедијални пораки</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Користи го Signal за сите дојдовни мултимедијални пораки</string>
   <string name="preferences__pref_enter_sends_title">Enter испраќа пораки</string>
-  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Пораките се испраќаат со притискање на Enter</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Со притискање на Enter пораките се испраќаат</string>
   <string name="preferences__pref_use_address_book_photos">Користи слики од именик</string>
-  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Прикажи слики од именик ако се достапни</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Прикажи слики на контакти од именик ако се достапни</string>
   <string name="preferences__generate_link_previews">Генерирај прегледи за линкови</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Преземај прегледи на линкови директно од веб страниците за испратените пораки.</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Преземај прегледи за линкови директно од веб страниците за пораките што ги испраќате.</string>
   <string name="preferences__choose_identity">Изберете идентитет</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Изберете контакт од Вашата листа на контакти.</string>
   <string name="preferences__change_passphrase">Промена на лозинка</string>
@@ -2127,13 +2127,13 @@
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Заклучи ги екранот и известувањата со лозинка</string>
   <string name="preferences__screen_security">Безбедност на екранот</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Блокирај слики од екранот во листата на последни апликации и во самата апликација</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Автоматски заклучи го Signal по одредено време</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Автоматски заклучи го Signal по одредено време на неактивност</string>
   <string name="preferences__inactivity_timeout_passphrase">Лозинка за тајмаут на неактивност</string>
   <string name="preferences__inactivity_timeout_interval">Интервал за тајмаут на неактивност</string>
   <string name="preferences__notifications">Известувања</string>
   <string name="preferences__led_color">LED боја</string>
   <string name="preferences__led_color_unknown">Непознато</string>
-  <string name="preferences__pref_led_blink_title">LED шема на трепкање</string>
+  <string name="preferences__pref_led_blink_title">LED шема за трепкање</string>
   <string name="preferences__customize">Прилагоди</string>
   <string name="preferences__change_sound_and_vibration">Промена на звук и вибрација</string>
   <string name="preferences__sound">Звук</string>

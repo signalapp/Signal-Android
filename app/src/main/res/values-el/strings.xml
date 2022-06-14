@@ -300,7 +300,7 @@
   <string name="ConversationFragment_deleting_messages">Διαγραφή μηνυμάτων…</string>
   <string name="ConversationFragment_delete_for_me">Διαγραφή για εμένα</string>
   <string name="ConversationFragment_delete_for_everyone">Διαγραφή για όλους</string>
-  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Αυτό το μήνυμα θα διαγραφεί για όλους/ες σε αυτή  τη συνομιλία, αν έχουν μια πρόσφατη έκδοση του Signal. Θα μπορούν να δούν ότι διέγραψες ένα μήνυμα.</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Αυτό το μήνυμα θα διαγραφεί για όλους/ες σε αυτή τη συνομιλία, αν έχουν μια πρόσφατη έκδοση του Signal. Θα μπορούν να δούν ότι διέγραψες ένα μήνυμα.</string>
   <string name="ConversationFragment_quoted_message_not_found">Το αρχικό μήνυμα δε βρέθηκε</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Το αρχικό μήνυμα δεν είναι πια διαθέσιμο</string>
   <string name="ConversationFragment_failed_to_open_message">Αποτυχία ανοίγματος μηνύματος</string>
@@ -529,7 +529,7 @@
     <item quantity="one">Η πρόσκληση στάλθηκε</item>
     <item quantity="other">Στάλθηκαν %d προσκλήσεις</item>
   </plurals>
-  <string name="GroupManagement_invite_single_user">Δεν μπορείς να προσθέσεις τον/την \"%1$s\"  αυτόματα στην ομάδα.\n\nΈχει λάβει πρόσκληση, και δεν θα βλέπει τα μηνύματα της ομάδας μέχρι να την αποδεχτεί.</string>
+  <string name="GroupManagement_invite_single_user">Δεν μπορείς να προσθέσεις τον/την \"%1$s\" αυτόματα στην ομάδα.\n\nΈχει λάβει πρόσκληση, και δεν θα βλέπει τα μηνύματα της ομάδας μέχρι να την αποδεχτεί.</string>
   <string name="GroupManagement_invite_multiple_users">Δεν μπορείς να προσθέσεις αυτόματα αυτούς τους χρήστες στην ομάδα.\n\nΈχουν λάβει πρ΄σκληση, και δεν θα βλέπουν τα μηνύματα της ομάδας μέχρι να την αποδεχτούν.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Τι είναι οι Ομάδες νέου τύπου;</string>
@@ -652,8 +652,8 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">Αυτό το πεδίο απαιτείται.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Η δημιουργία της ομάδας απέτυχε.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Ξαναδοκίμασε αργότερα.</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Επέλεξες μια επαφή που δεν υποστηρίζει τις ομάδες του Signal, οπότε αυτή η ομάδα θα είναι με MMS.</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Τα προσαρμοσμένα ονόματα και φωτογραφίες των ομαδών MMS θα είναι ορατά μόνο σε εσένα.</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Επέλεξες μια επαφή που δεν υποστηρίζει τις ομάδες του Signal, οπότε αυτή η ομάδα θα είναι με MMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Τα προσαρμοσμένα ονόματα και φωτογραφίες των ομαδών MMS θα είναι ορατά μόνο σε εσένα.</string> -->
   <string name="AddGroupDetailsFragment__remove">Αφαίρεση</string>
   <string name="AddGroupDetailsFragment__sms_contact">Επαφή SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Αφαίρεση του/της %1$s από την ομάδα;</string>
@@ -2004,10 +2004,10 @@
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Σύρε προς τα κάτω για απόρριψη</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Ορισμένα ζητήματα χρειάζονται την προσοχή σου.</string>
-  <string name="message_details_header__sent">Στάλθηκε:</string>
-  <string name="message_details_header__received">Ελήφθη:</string>
-  <string name="message_details_header__disappears">Εξαφανίζεται:</string>
-  <string name="message_details_header__via">Μέσω:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">Στάλθηκε:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">Ελήφθη:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">Εξαφανίζεται:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">Μέσω:</string> -->
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Εκκρεμεί</string>
   <string name="message_details_recipient_header__sent_to">Στάλθηκε σε</string>
@@ -2859,7 +2859,7 @@
   <string name="DeviceToDeviceTransferService_status_service_connected">Μεταφέρουμε τον λογαριασμό…</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Ολοκλήρωσε την εγγραφή στη νέα σου συσκευή</string>
-  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Ο λογαριασμός Signal σου έχουν μεταφερθεί στη νέα σου συσκευή, αλλά  πρέπει να συνεχίσεις την εγγραφή εκεί για να συνεχίσεις. Το Signal θα είναι ανενεργό σε αυτή τη συσκευή.</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Ο λογαριασμός Signal σου έχουν μεταφερθεί στη νέα σου συσκευή, αλλά πρέπει να συνεχίσεις την εγγραφή εκεί για να συνεχίσεις. Το Signal θα είναι ανενεργό σε αυτή τη συσκευή.</string>
   <string name="OldDeviceTransferLockedDialog__done">Τέλος</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Ακύρωση και ενεργοποίηση αυτής της συσκευής</string>
   <!--AdvancedPreferenceFragment-->

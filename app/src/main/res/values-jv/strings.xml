@@ -1165,10 +1165,10 @@
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Geser dhateng ngandhap kangge nolak</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Enten masalah ingkang betah sampeyan priksa.</string>
-  <string name="message_details_header__sent">Dipunkirimaken</string>
-  <string name="message_details_header__received">Dipuntampi</string>
-  <string name="message_details_header__disappears">Ngical</string>
-  <string name="message_details_header__via">Langkung</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">Dipunkirimaken</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">Dipuntampi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">Ngical</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">Langkung</string> -->
   <!--message_details_recipient_header-->
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Gagal ngirimaken</string>

@@ -728,8 +728,8 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">Це обов\'язкове поле.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Не вдалось створити групу.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Спробуйте знову пізніше.</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Ви вибрали контакт, який не підтримує групи Signal, тому ця група буде перетворена в MMS.</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Імена та фото MMS-груп будуть видні тільки вам. </string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Ви вибрали контакт, який не підтримує групи Signal, тому ця група буде перетворена в MMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Імена та фото MMS-груп будуть видні тільки вам. </string> -->
   <string name="AddGroupDetailsFragment__remove">Вилучити</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS контакт</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Видалити %1$s з цієї групи?</string>
@@ -2177,10 +2177,10 @@
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Потягніть вниз для відхилення</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Є деякі проблеми, що потребують вашої уваги.</string>
-  <string name="message_details_header__sent">Надіслано:</string>
-  <string name="message_details_header__received">Отримано:</string>
-  <string name="message_details_header__disappears">Зникне:</string>
-  <string name="message_details_header__via">Через:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">Надіслано:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">Отримано:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">Зникне:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">Через:</string> -->
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Очікування</string>
   <string name="message_details_recipient_header__sent_to">Надіслано до</string>
@@ -3793,6 +3793,7 @@
   <!--Displayed when badge credential couldn\'t be verified-->
   <!--Displayed when badge credential couldn\'t be verified-->
   <!--Displayed as title when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__failed_to_send_gift_badge">Не вдалось відправити емблему у подарунок</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
   <string name="DonationsErrors__your_badge_could_not">Емблему не вдалося додати до вашого облікового запису, але, можливо, з вас було стягнуто плату. Зверніться до служби підтримки.</string>
   <string name="DonationsErrors__your_payment_is_still">Ваш платіж ще обробляється. Це може зайняти декілька хвилин в залежності від швидкості інтернету.</string>
@@ -4285,6 +4286,7 @@
   <!--Heading text specifying who the gift will be sent to-->
   <string name="GiftFlowConfirmationFragment__send_to">Надіслати</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Ваш подарунок надсилатиметься отримувачу в особистому повідомленні. Додайте текст повідомлення нижче.</string>
   <!--Text explaining that this gift is a one time donation-->
   <string name="GiftFlowConfirmationFragment__one_time_donation">Зробити один внесок</string>
   <!--Hint for add message input-->

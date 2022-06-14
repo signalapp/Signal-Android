@@ -93,7 +93,9 @@
   <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Jimme sille wer berjochten nei inoar ferstjoere kinne, belje kinne, en dyn profylnamme, -foto en -omskriuwing sille foar de oar wer bywurke wurde.</string>
   <!--Text that is shown when unblocking an SMS contact-->
+  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Jimme sille wer sms-berjochten oan inoar ferstjoere kinne fia Signal.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokkearre persoanen kinne net sjen dat se blokkearre binne: it liket foar harren as oft dyn telefoan oer giet en as oft berjochten ôflevere wurde. Dy aktuele profylnamme en -foto bliuwe foar blokkearre persoanen sichtber, mar wurde net bywurke asto in nije foto of namme ynstelst.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Blokkearre persoanen kinne net sjen dat se blokkearre binne: it liket foar harren as oft sms-berjochten ôflevere wurde.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal-fernijingen en -nijs blokkearje.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -652,8 +654,8 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">Dit fjild is fereaske.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Nij groepspetear oanmeitsjen is mislearre</string>
   <string name="AddGroupDetailsFragment__try_again_later">Probearje it letter opnij.</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Do hast in kontaktpersoan selektearre dy’t gjin Signal-groepen stipet, dus dizze groep sil gebrûk meitsje fan mms.</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Sels ynstelde mms-groepsnammen en groepsôfbyldingen sille allinnich sichtber wêze foar dy.</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Do hast in kontaktpersoan selektearre dy’t gjin Signal-groepen stipet, dus dizze groep sil gebrûk meitsje fan mms.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Sels ynstelde mms-groepsnammen en groepsôfbyldingen sille allinnich sichtber wêze foar dy.</string> -->
   <string name="AddGroupDetailsFragment__remove">Furt helje</string>
   <string name="AddGroupDetailsFragment__sms_contact">Sms-kontaktpersoan</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s út dizze groep fuortsmite?</string>
@@ -1151,12 +1153,14 @@
   <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Wolsto berjochten fan %1$s ûntfange, en stiesto ta dat dyn profylnamme, -foto en -omskriuwing te sjen is? Do silst gjin berjochten ûntfange en dyn profyl sil foar dyjinge net mear bywurke wurde oant datsto dyjinge deblokkearre hast.</string>
   <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Wolsto berjochten fan %1$s ûntfange? Oant datsto dyjinge deblokkearre hast silsto gjin sms-berjochten ûntfange.</string>
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Fernijingen en nijs ûntfange fan %1$s? Do silst gjin fernijingen krije oant do se deblokkearrest.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Wolsto dyn profylnamme, -foto en -omskriuwing foar dizze groep sichtber meitsje om dyn petear mei de groep trochsette te kinnen?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Set dizze groep om om nije funksjonaliteiten brûke te kinnen, lykas  @fermeldingen en behearders. Groepsleden dy’t harren profylnamme, -foto en -omskriuwing net foar dizze groep sichtber makke hawwe, sille útnûge wurde om ta dizze groep ta te treden.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Dizze ferâldere groep kin net langer brûkt wurde, omdat dy tefolle leden hat. It maksimum ledenoantal foar in groep is %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Wolsto dyn profylnamme, -foto en -omskriuwing foar %1$s sichtber meitsje om dyn petear trochsette te kinnen?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Wolsto lid wurde fan dizze groep, en stiesto ta dat alle leden fan de groep dyn profylnamme, -foto en -omskriuwing sjen kinne? Asto lêsbefêstigingen ynskeakele hast, kinne oare groepsleden dy noch net sjen oant datsto de útnûging akseptearre hast.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Wolsto lid wurde fan dizze groep, en stiesto ta dat alle leden fan de groep dyn profylnamme, -foto en -omskriuwing sjen kinne? Do kinst harren berjochten noch net sjen oant datsto de útnûging akseptearre hast.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Do bist troch ien mei wa’tsto earder in petear mei hân hast of mei wa’tsto yn deselde groep tafoege wiest tafoege oan dizze groep. Wolsto lid bliuwe fan dizze groep? Asto lêsbefêstigingen ynskeakele hast, kinne oare groepsleden dy noch net sjen oant datsto de útnûging akseptearre hast.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Wolsto wer berjochten fan dizze groep ûntfange, en stiesto ta dat alle leden fan de groep dyn profylnamme, -foto en -omskriuwing sjen kinne? Do silst gjin berjochten ûntfange en dyn profyl sil foar de leden fan dizze groep net bywurke wurde oant datsto de groep deblokkearre hast.</string>
   <string name="MessageRequestProfileView_view">Werjaan</string>
@@ -1299,8 +1303,11 @@
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Opnij oan it ferbinen…</string>
   <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">Bluetooth-machtiging is noch net jûn</string>
   <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Asto bluetooth brûke wolst wylst oproppen, dan is it nedich datsto Signal machtiging joust om ‘Nabije apparaten’ te finen.</string>
   <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Ynstellingen iepenje</string>
   <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
   <string name="WebRtcCallActivity__not_now">No net</string>
   <!--WebRtcCallView-->
@@ -1553,6 +1560,7 @@
   <!--Displayed in the notification when the user sends a gift-->
   <string name="ThreadRecord__you_sent_a_gift">Do hast in kado ferstjoerd</string>
   <!--Displayed in the notification when the user has opened a received gift-->
+  <string name="ThreadRecord__you_redeemed_a_gift_badge">Do hast in kado-badge yn ûntfangst nommen</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Nije ferzje fan Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Der is in nije ferzje fan Signal beskikber. Tik hjir om by te wurkjen</string>
@@ -1689,6 +1697,7 @@
   <string name="SingleRecipientNotificationBuilder_message_request">Petearfersyk</string>
   <string name="SingleRecipientNotificationBuilder_you">Do</string>
   <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">Ferhaal fan %1$s</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Fideo ôfspylje</string>
   <string name="ThumbnailView_Has_a_caption_description">Hat in byskrift</string>
@@ -1937,7 +1946,9 @@
   <string name="message_recipients_list_item__view">WERJAAN</string>
   <string name="message_recipients_list_item__resend">OPNIJ FERSTJOERE</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
+  <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Ferstjoertiid nei klamboerd kopiearre.</string>
   <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Nije dielen fan dyn ferhaal sille hjir werjûn wurde.</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s is tafoege oan de groep.</item>
@@ -2003,10 +2014,10 @@
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Fei omleech om te wegerjen</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Inkelde dingen freegje dyn oandacht.</string>
-  <string name="message_details_header__sent">Ferstjoerd:</string>
-  <string name="message_details_header__received">Untfongen:</string>
-  <string name="message_details_header__disappears">Ferrint oer:</string>
-  <string name="message_details_header__via">Fia:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">Ferstjoerd:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">Untfongen:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">Ferrint oer:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">Fia:</string> -->
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Yn ôfwachting</string>
   <string name="message_details_recipient_header__sent_to">Ferstjoerd oan</string>
@@ -2015,6 +2026,7 @@
   <string name="message_details_recipient_header__read_by">Lêzen troch</string>
   <string name="message_details_recipient_header__not_sent">Net ferstjoerd</string>
   <string name="message_details_recipient_header__viewed">Sjoen troch</string>
+  <string name="message_details_recipient_header__skipped">Oerslaggen</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Ferstjoeren mislearre</string>
   <string name="message_details_recipient__new_safety_number">Nij feilichheidsnûmer</string>
@@ -2157,6 +2169,7 @@
   <string name="preferences__advanced">Avansearre</string>
   <string name="preferences__donate_to_signal">Oan Signal donearje</string>
   <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">Ienmalige donaasje</string>
   <string name="preferences__privacy">Privacy</string>
   <string name="preferences__mms_user_agent">Mms-brûkersagent</string>
   <string name="preferences__advanced_mms_access_point_names">Hânmjittige mms-ynstellingen</string>
@@ -2884,6 +2897,7 @@
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">‘%1$s’ sil de groepsynformaasje en groepslidmaatskip oanpasse kinne.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s út dizze groep fuortsmite?</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Wolsto ‘%1$s’ fan de groep fuortsmite? Asto dit dochst dan kin dyjinge net opnij fia de groepsferwizing fersykje om opnij lid te wurden fan de groep.</string>
   <string name="RecipientBottomSheet_remove">Furt helje</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopiearre nei it klamboerd</string>
   <string name="GroupRecipientListItem_admin">Behearder</string>
@@ -2974,6 +2988,7 @@
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">Gegevens oan it wiskjen…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
+  <string name="DeleteAccountFragment__canceling_your_subscription">Moanlikse donaasje oan it annulearjen…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Ofhinklik fan it oantal groepen wêrfan\'tsto lid bist kin dit in oantal minuten duorje</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
@@ -3133,6 +3148,7 @@
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Ofbyldingskwaliteit</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">Kennissen útnûgje</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">Abonnemints-ID nei klamboerd kopiearre</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Dyn account</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Omtinkens helpe dy om dyn Signal-pinkoade te ûnthâlden. Dit is wichtich, omdatsto dy pinkoade letter net wizigje of weromlêze kinst en omdatsto de pinkoade nedich hawwe silst om dyn gegevens te werstellen wannear’tsto dyn telefoannûmer opnij registrearrest. Neidatsto dyn pinkoade in oantal kear krekt ynfierst, silsto minder faak omtinkens te sjen krije.</string>
@@ -3287,7 +3303,9 @@
   <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
   <string name="Donate2022Q2Megaphone_donate_to_signal">Oan Signal donearje</string>
   <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal wurdt finansiere troch donaasjes fan brûkers. Tink ris nei oer in moanlikse donaasje.</string>
   <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate">Donearje</string>
   <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
   <string name="Donate2022Q2Megaphone_not_now">No net</string>
   <!--EditReactionsFragment-->
@@ -3305,7 +3323,9 @@
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Wurdt in stiper</string>
   <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal wurdt ûnder oare finansiere troch donaasjes fan minsken as do. Asto oan ús donearrest dan krigest do de mooglikheid om op dyn profylôfbylding in badge te toanen.</string>
   <string name="BecomeASustainerMegaphone__not_now">No net</string>
+  <string name="BecomeASustainerMegaphone__donate">Donearje</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Emoji sykje</string>
@@ -3481,6 +3501,7 @@
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal wurdt ûnder oare finansiere troch donaasjes fan minsken lykas do.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Stypje technology dy’t makke is foar dy — net foar it sammeljen fan dyn gegevens — troch mei te dwaan mei de mienskip dy’t it mooglik makket.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Stypje technology dy’t makke is foar dy, net foar it sammeljen fan dyn gegevens, troch ien fan de donateurs te wurden dy’t Signal mooglik meitsje.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Donearje moanliks oan Signal om technology te stypjen dy’t makke is foar dy, yn stee fan foar it sammeljen fan gegevens.</string>
   <string name="SubscribeFragment__currency">Faluta</string>
   <string name="SubscribeFragment__more_payment_options">Mear oerskriuwingsopsjes (Let op: do kinst de badge allinnich krije asto fia Google Pay donearrest)</string>
   <string name="SubscribeFragment__cancel_subscription">Moanlikse donaasje annulearje</string>
@@ -3497,9 +3518,14 @@
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/moanne · Wurdt %2$s fernijd</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/moanne · Ferrint %2$s</string>
   <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal is in organisaasje sûnder winsteachmerk sûnder advertearders en sûnder ynvestearders, útslutend mooglik makke troch minsken dy’t de app brûke en dy’t der wearde oan hechtsje. Jou in moanlikse donaasje en ûntfang in profylbadge dy’tsto — asto dat wolst — werjaan kinst op dyn profyl om sjen te litten datsto Signal stipest.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Wêrom soe ik donearje?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Wy ûntwikkelje iepen-boarnekoade privacytechnologyen wêrmei frijheid fan mieningsutering beskerme wurdt en wêrmei op in befeilige manier oer de hiele wrâld kommunisearre wurde kin.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Mei troch dyn bydrage wurdt dizze misje mooglik makke en wurdt betelle foar de ûntwikkeling en it yn wurking hâlden fan apps wêrtroch miljoenen minsken wrâldwiid yn frijheid petearen fiere kinne. Gjin advertinsjes, gjin folgers, gjin grapke.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Tank foar dyn stipe!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Tank foar dyn bydrage!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Do hast in ‘%s’-badge fertsjinne. Asto dizze sjen litst op dyn profyl, dan leare fia dy oare minsken dat Signal ôfhinklik is fan donaasjes.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Do hast in ‘ienmalige donateur’-badge fertsjinne. Asto dizze sjen litst op dyn profyl, dan leare fia dy oare minsken dat Signal ôfhinklik is fan donaasjes.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Do kinst ek</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">moanliks donearje.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Op profyl werjaan</string>
@@ -3509,19 +3535,26 @@
   <string name="BecomeASustainerFragment__get_badges">Troch Signal te stypjen fertsjinnesto badges om op dyn profyl wer te jaan.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal is in organisaasje sûnder winsteachmerk, sûnder advertinsjes en sûnder ynvestearders. Signal wurdt útslutend mooglik makke troch donaasjes fan minsken lykas do.</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">Moanliks donearje</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">Mear opsjes</string>
   <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">Ofskriften</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">Myn moanlikse donaasjes</string>
   <string name="ManageDonationsFragment__manage_subscription">Moanlikse donaasje beheare</string>
   <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__donation_receipts">Donaasje-ôfskriften</string>
   <string name="ManageDonationsFragment__badges">Badges</string>
   <string name="ManageDonationsFragment__subscription_faq">Ynformaasje oer moanlikse donaasjes</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Flater by it opheljen fan ynformaasje oer moanlikse donaasjes.</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">Oare manieren om by te dragen</string>
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">In badge kado jaan</string>
   <string name="BoostFragment__give_signal_a_boost">Help Signal mei in ienmalige bydrage</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Donearje ien kear en fertsjinje de ‘Ienmalige donateur’-badge foar %1$d dagen.</string>
   <string name="Boost__enter_custom_amount">Folje in sels keazen bedrach yn</string>
   <string name="Boost__one_time_contribution">Ienmalige bydrage</string>
   <string name="MySupportPreference__add_a_signal_boost">Jou Signal in oppepper</string>
@@ -3532,15 +3565,21 @@
   <string name="MySupportPreference__couldnt_add_badge_s">Kin badge net tafoegje. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Nim kontakt op mei stipe.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Dyn ‘ienmalige donateur’-badge is ferrûn</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Dyn moanlikse donaasje is annulearre</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Dyn ‘ienmalige donateur’-badge is ferrûn en is dêrom net langer sichtber op dyn profyl</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Do kinst dyn ‘Ienmalige donateur’-badge opnij foar 30 dagen aktivearje mei in nije ienmalige donaasje.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Do kinst Signal brûke bliuwe, mar asto Signal stypje bliuwe wolst oerweagje dan om in moanlikse donateur te wurden.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Wurdt in stiper</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Nochris ienmalich donearje</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">No net</string>
   <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Dyn moanlikse donaasjes binne automatysk annulearre, omdatsto te lang ynaktyf west bist. Dyn ‘%1$s’-badge is net langer foar oaren te sjen op dyn profyl.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Dyn moanlikse donaasjes binne stopset, omdat Signal dyn betelling net ferwurkje koe. Dyn badge is net langer op dyn profyl sichtber.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Do kinst Signal gewoan brûke bliuwe, mar asto Signal stypje wolst en dyn badge wer werjaan wolst, dan kinsto no dyn donaasjes fernije.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Moanlikse donaasjes fernije</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Signal kin dyn moanlikse donaasje net ferwurkje</string>
@@ -3559,9 +3598,13 @@
   <string name="DonationsErrors__still_processing">Wurdt noch ferwurke</string>
   <string name="DonationsErrors__couldnt_add_badge">Kin badge net tafoegje</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__failed_to_validate_badge">Koe badge-echtheid net kontrolearje</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__could_not_validate">Koe de reaksje-echtheid fan de server net kontrolearje. Nim kontakt op mei stipe. </string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__failed_to_send_gift_badge">It ferstjoeren fan in kado-badge is mislearre</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__could_not_send_gift_badge">Koe in kado-badge net ferstjoere. Nim kontakt op mei stipe.</string>
   <string name="DonationsErrors__your_badge_could_not">It is net slagge om de badge ta te foegjen oan dyn profyl, mar do hast miskien al wol betelle. Nim kontakt op mei stipe.</string>
   <string name="DonationsErrors__your_payment_is_still">Dy oerskriuwing wurdt noch ferwurke. Dit kin in pear minuten duorje ôfhinklik fan dyn ynternetferbining.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay is net beskikber</string>
@@ -3572,16 +3615,28 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Netwurkflater. Kontrolearje dat dyn apparaat mei it ynternet ferbûn is en probearje it opnij.</string>
   <string name="NetworkFailure__retry">Opnij probearje</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__recipient_verification_failed">Ferifikaasje ûntfanger is mislearre</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">De bedoelde persoan stipet it ûntfangen fan kado-badges net.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__could_not_verify_recipient">Kin de ûntfanger net ferifiearje.</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Kontrolearje dyn netwurkferbining en probearje opnij.</string>
   <!--Gift message view title-->
+  <string name="GiftMessageView__gift_badge">Kado-badge</string>
   <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="one">Jildich foar %1$d moanne</item>
+    <item quantity="other">Jildich foar %1$d moannen</item>
+  </plurals>
   <!--Gift badge redeem action label-->
+  <string name="GiftMessageView__redeem">Yn ûntfangst nimme</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">Werjaan</string>
   <!--Gift badge redeeming action label-->
+  <string name="GiftMessageView__redeeming">Yn ûntfangst oan it nimmen…</string>
   <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">Yn ûntfangst nommen</string>
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Probearje it fia in oare betellingsmetoade of nim kontakt op mei dyn bank om harren om mear ynformaasje te freegjen.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3749,22 +3804,32 @@
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">Alles</string>
   <!--Donation receipts recurring tab label-->
+  <string name="DonationReceiptListFragment__recurring">Moanliks</string>
   <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">Ien kear</string>
   <!--Donation receipts gift tab label-->
   <string name="DonationReceiptListFragment__gift">Kado</string>
   <!--Donation receipts boost row label-->
+  <string name="DonationReceiptListFragment__boost">Ien kear</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Details</string>
   <!--Donation receipts donation type heading-->
+  <string name="DonationReceiptDetailsFragment__donation_type">Donaasjetype</string>
   <!--Donation receipts date paid heading-->
+  <string name="DonationReceiptDetailsFragment__date_paid">Datum fan oerskriuwing</string>
   <!--Donation receipts share PNG-->
+  <string name="DonationReceiptDetailsFragment__share_receipt">Ofskrift trochstjoere</string>
   <!--Donation receipts list end note-->
+  <string name="DonationReceiptListFragment__if_you_have">Asto de Signal-app opnij ynstallearre hast dan binne ôfskriften fan eardere donaasjes net beskikber.</string>
   <!--Donation receipts document title-->
+  <string name="DonationReceiptDetailsFragment__donation_receipt">Donaasje-ôfskrift</string>
   <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">Hoemannichte</string>
   <!--Donation receipts thanks-->
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--Donation reciepts screen empty state title-->
+  <string name="DonationReceiptListFragment__no_receipts">Gjin ôfskriften</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Petearen</string>
@@ -3778,7 +3843,9 @@
   <string name="StoriesLandingFragment__add_a_story">In ferhaal tafoegje</string>
   <!--Displayed when there are no stories to display-->
   <!--Context menu option to hide a story-->
+  <string name="StoriesLandingItem__hide_story">Ferhaal ferstopje</string>
   <!--Context menu option to unhide a story-->
+  <string name="StoriesLandingItem__unhide_story">Ferhaal net langer ferstopje</string>
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">Trochstjoere</string>
   <!--Context menu option to share a story-->
@@ -3799,15 +3866,32 @@
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">Ferstopje</string>
   <!--Displayed in Snackbar after story is hidden-->
+  <string name="StoriesLandingFragment__story_hidden">Ferhaal ferstoppe</string>
   <!--Section header for hidden stories-->
+  <string name="StoriesLandingFragment__hidden_stories">Ferburgen ferhalen</string>
   <!--Displayed on each sent story under My Stories-->
+  <plurals name="MyStories__d_views">
+    <item quantity="one">Troch %1$d persoanen sjoen</item>
+    <item quantity="other">Troch %1$d persoanen sjoen</item>
+  </plurals>
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">Trochstjoere</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
+  <string name="MyStories__ss_story">Ferhaal fan %1$s</string>
   <!--Title of dialog to confirm deletion of story-->
+  <string name="MyStories__delete_story">Ferhaal wiskje?</string>
   <!--Message of dialog to confirm deletion of story-->
+  <string name="MyStories__this_story_will_be_deleted">Dit ferhaal sil foar dy en foar elkenien dy’t it ûntfongen hat wiske wurde.</string>
   <!--Displayed at bottom of story viewer when current item has views-->
+  <plurals name="StoryViewerFragment__d_views">
+    <item quantity="one">Troch %1$d persoanen sjoen</item>
+    <item quantity="other">Troch %1$d persoanen sjoen</item>
+  </plurals>
   <!--Displayed at bottom of story viewer when current item has replies-->
+  <plurals name="StoryViewerFragment__d_replies">
+    <item quantity="one">%1$d reaksje</item>
+    <item quantity="other">%1$d reaksjes</item>
+  </plurals>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3817,29 +3901,49 @@
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Reagearje</string>
   <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">Nei de groep reagearje</string>
   <!--Displayed when a story has no views-->
+  <string name="StoryViewsFragment__no_views_yet">Noch troch net ien sjoen</string>
   <!--Displayed when a story has no replies yet-->
+  <string name="StoryGroupReplyFragment__no_replies_yet">Noch gjin reaksjes</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
+  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Reagearre op dit ferhaal</string>
   <!--Label for story views tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__views">Oantal werjeften</string>
   <!--Label for story replies tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__replies">Reaksjes</string>
   <!--Description of action for reaction button-->
+  <string name="StoryReplyComposer__react_to_this_story">Op dit ferhaal reagearje</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
+  <string name="StoryReplyComposer__replying_privately_to_s">Priveereaksje oan it skriuwen nei %1$s</string>
   <!--Context menu item to privately reply to a story response-->
+  <string name="StoryGroupReplyItem__private_reply">Priveereaksje</string>
   <!--Context menu item to copy a story response-->
   <string name="StoryGroupReplyItem__copy">Kopiearje</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Fuortsmite</string>
   <!--Story settings page title-->
+  <string name="StorySettingsFragment__story_settings">Ferhaalynstellingen</string>
   <!--Story settings private stories heading-->
+  <string name="StorySettingsFragment__private_stories">Priveeferhalen</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
   <!--Option label for creating a new private story-->
+  <string name="StorySettingsFragment__new_private_story">Nij priveeferhaal</string>
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Myn ferhaal</string>
   <!--Section heading for story visibility-->
+  <string name="MyStorySettingsFragment__who_can_see_this_story">Wa meie dit ferhaal sjen</string>
   <!--Clickable option for selecting people to hide your story from-->
+  <string name="MyStorySettingsFragment__hide_story_from">Ferstopje dit ferhaal fan</string>
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <plurals name="MyStorySettingsFragment__d_people">
+    <item quantity="one">%1$d persoan</item>
+    <item quantity="other">%1$d persoanen</item>
+  </plurals>
   <!--Section header for options related to replies and reactions-->
+  <string name="MyStorySettingsFragment__replies_amp_reactions">Reaksjes</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
+  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Reaksjes tastean</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
   <!--Note about default sharing-->
   <!--Signal connections linked text that opens the Signal Connections sheet-->
@@ -3906,6 +4010,7 @@
   <string name="BaseStoryRecipientSelectionFragment__select_all">Alles selektearje</string>
   <!--Choose story type bottom sheet title-->
   <!--Choose story type bottom sheet new story row title-->
+  <string name="ChooseStoryTypeBottomSheet__new_private_story">Nij priveeferhaal</string>
   <!--Choose story type bottom sheet new story row summary-->
   <!--Choose story type bottom sheet group story title-->
   <!--Choose story type bottom sheet group story summary-->
@@ -3954,9 +4059,11 @@
   <!--Description for sheet shown when opening a redeemed gift-->
   <!--Description for sheet shown when opening a sent gift-->
   <!--Primary action for pending gift sheet to redeem badge now-->
+  <string name="ViewReceivedGiftSheet__redeem">Yn ûntfangst nimme</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">No net</string>
   <!--Dialog text while redeeming a gift-->
+  <string name="ViewReceivedGiftSheet__redeeming_gift">Kado yn ûntfangst oan it nimmen…</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
   <!--Description text in gift thanks sheet-->
   <!--Expired gift sheet title-->
@@ -3964,6 +4071,7 @@
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">Oerweagje moanlikse donaasjes yn te stellen om technology dy’t makke is foar dy yn stee fan foar it sammeljen fan gegevens stypje te bliuwen.</string>
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Moanliks donearje</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">No net</string>
   <!--Label under name for private stories-->
