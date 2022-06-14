@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.webrtc.CallBandwidthMode;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @SuppressWarnings("deprecation")
@@ -196,12 +197,31 @@ public final class SettingsValues extends SignalStoreValues {
   }
 
   public int getMessageQuoteFontSize(@NonNull Context context) {
-    String   messageFontSize = String.valueOf(getMessageFontSize());
-    String[] messageSizes    = context.getResources().getStringArray(R.array.pref_message_font_size_values);
-    String[] quoteSizes      = context.getResources().getStringArray(R.array.pref_message_font_quote_size_values);
-    int      index           = Arrays.binarySearch(messageSizes, messageFontSize);
+    int   currentMessageSize   = getMessageFontSize();
+    int[] possibleMessageSizes = context.getResources().getIntArray(R.array.pref_message_font_size_values);
+    int[] possibleQuoteSizes   = context.getResources().getIntArray(R.array.pref_message_font_quote_size_values);
+    int   sizeIndex            = Arrays.binarySearch(possibleMessageSizes, currentMessageSize);
 
-    return Integer.parseInt(quoteSizes[index]);
+    if (sizeIndex < 0) {
+      int closestSizeIndex = 0;
+      int closestSizeDiff  = Integer.MAX_VALUE;
+
+      for (int i = 0; i < possibleMessageSizes.length; i++) {
+        int diff = Math.abs(possibleMessageSizes[i] - currentMessageSize);
+        if (diff < closestSizeDiff) {
+          closestSizeIndex = i;
+          closestSizeDiff  = diff;
+        }
+      }
+
+      int newSize = possibleMessageSizes[closestSizeIndex];
+      Log.w(TAG, "Using non-standard font size of " + currentMessageSize + ". Closest match was " + newSize + ". Updating.");
+
+      setMessageFontSize(newSize);
+      sizeIndex = Arrays.binarySearch(possibleMessageSizes, newSize);
+    }
+
+    return possibleQuoteSizes[sizeIndex];
   }
 
   public void setMessageFontSize(int messageFontSize) {
