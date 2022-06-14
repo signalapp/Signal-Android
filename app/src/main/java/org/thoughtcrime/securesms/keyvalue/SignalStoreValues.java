@@ -2,7 +2,13 @@ package org.thoughtcrime.securesms.keyvalue;
 
 import androidx.annotation.NonNull;
 
+import com.google.protobuf.InvalidProtocolBufferException;
+
+import org.thoughtcrime.securesms.database.model.databaseprotos.SignalStoreList;
+
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 abstract class SignalStoreValues {
 
@@ -44,6 +50,25 @@ abstract class SignalStoreValues {
     return store.getBlob(key, defaultValue);
   }
 
+  <T> List<T> getList(@NonNull String key, @NonNull Serializer<T> serializer) {
+    byte[] blob = getBlob(key, null);
+    if (blob == null) {
+      return Collections.emptyList();
+    }
+
+    try {
+      SignalStoreList signalStoreList = SignalStoreList.parseFrom(blob);
+
+      return signalStoreList.getContentsList()
+                            .stream()
+                            .map(serializer::deserialize)
+                            .collect(Collectors.toList());
+
+    } catch (InvalidProtocolBufferException e) {
+      throw new IllegalArgumentException(e);
+    }
+  }
+
   void putBlob(@NonNull String key, byte[] value) {
     store.beginWrite().putBlob(key, value).apply();
   }
@@ -68,7 +93,21 @@ abstract class SignalStoreValues {
     store.beginWrite().putString(key, value).apply();
   }
 
+  <T> void putList(@NonNull String key, @NonNull List<T> values, @NonNull Serializer<T> serializer) {
+    putBlob(key, SignalStoreList.newBuilder()
+                                .addAllContents(values.stream()
+                                                      .map(serializer::serialize)
+                                                      .collect(Collectors.toList()))
+                                .build()
+                                .toByteArray());
+  }
+
   void remove(@NonNull String key) {
     store.beginWrite().remove(key).apply();
+  }
+
+  interface Serializer<T> {
+    @NonNull String serialize(@NonNull T data);
+    T deserialize(@NonNull String data);
   }
 }

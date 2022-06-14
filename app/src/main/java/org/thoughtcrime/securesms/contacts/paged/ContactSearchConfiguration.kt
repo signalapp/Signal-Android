@@ -83,7 +83,7 @@ class ContactSearchConfiguration private constructor(
    */
   data class ExpandConfig(
     val isExpanded: Boolean,
-    val maxCountWhenNotExpanded: Int = 2
+    val maxCountWhenNotExpanded: (ActiveContactCount) -> Int = { 2 }
   )
 
   /**

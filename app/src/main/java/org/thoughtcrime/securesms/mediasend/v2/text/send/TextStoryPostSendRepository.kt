@@ -9,6 +9,8 @@ import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.fonts.TextFont
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.StorySend
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.mediasend.v2.UntrustedRecords
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationState
@@ -52,8 +54,12 @@ class TextStoryPostSendRepository {
         val recipient = Recipient.resolved(contact.requireShareContact().recipientId.get())
         val isStory = contact is ContactSearchKey.RecipientSearchKey.Story || recipient.isDistributionList
 
-        if (isStory && recipient.isActiveGroup) {
+        if (isStory && recipient.isActiveGroup && recipient.isGroup) {
           SignalDatabase.groups.markDisplayAsStory(recipient.requireGroupId())
+        }
+
+        if (isStory && !recipient.isMyStory) {
+          SignalStore.storyValues().setLatestStorySend(StorySend.newSend(recipient))
         }
 
         val storyType: StoryType = when {

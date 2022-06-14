@@ -354,7 +354,8 @@ class MultiselectForwardFragment :
       if (Stories.isFeatureEnabled() && isSelectedMediaValidForStories()) {
         val expandedConfig: ContactSearchConfiguration.ExpandConfig? = if (isSelectedMediaValidForNonStories()) {
           ContactSearchConfiguration.ExpandConfig(
-            isExpanded = contactSearchState.expandedSections.contains(ContactSearchConfiguration.SectionKey.STORIES)
+            isExpanded = contactSearchState.expandedSections.contains(ContactSearchConfiguration.SectionKey.STORIES),
+            maxCountWhenNotExpanded = { it + 1 }
           )
         } else {
           null

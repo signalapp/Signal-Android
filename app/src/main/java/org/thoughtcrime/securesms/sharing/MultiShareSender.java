@@ -25,6 +25,8 @@ import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.keyvalue.StorySend;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryBackgroundColors;
@@ -222,8 +224,12 @@ public final class MultiShareSender {
         storyType = StoryType.STORY_WITH_REPLIES;
       }
 
-      if (recipient.isActiveGroup()) {
+      if (recipient.isActiveGroup() && recipient.isGroup()) {
         SignalDatabase.groups().markDisplayAsStory(recipient.requireGroupId());
+      }
+
+      if (!recipient.isMyStory()) {
+        SignalStore.storyValues().setLatestStorySend(StorySend.newSend(recipient));
       }
 
       if (multiShareArgs.isTextStory()) {

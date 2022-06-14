@@ -35,6 +35,15 @@ public final class DistributionListId implements DatabaseId, Parcelable {
     }
   }
 
+  public static @NonNull DistributionListId from(@NonNull String serializedId) {
+    try {
+      long id = Long.parseLong(serializedId);
+      return from(id);
+    } catch (NumberFormatException e) {
+      throw new IllegalArgumentException(e);
+    }
+  }
+
   private DistributionListId(long id) {
     this.id = id;
   }

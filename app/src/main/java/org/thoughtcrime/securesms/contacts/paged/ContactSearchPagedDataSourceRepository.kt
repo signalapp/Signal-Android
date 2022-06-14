@@ -9,6 +9,8 @@ import org.thoughtcrime.securesms.database.DistributionListDatabase
 import org.thoughtcrime.securesms.database.GroupDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadDatabase
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.StorySend
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 
@@ -21,6 +23,11 @@ open class ContactSearchPagedDataSourceRepository(
 ) {
 
   private val contactRepository = ContactRepository(context, context.getString(R.string.note_to_self))
+
+  open fun getLatestStorySends(activeStoryCutoffDuration: Long): List<StorySend> {
+    return SignalStore.storyValues()
+      .getLatestActiveStorySendTimestamps(System.currentTimeMillis() - activeStoryCutoffDuration)
+  }
 
   open fun querySignalContacts(query: String?, includeSelf: Boolean): Cursor? {
     return contactRepository.querySignalContacts(query ?: "", includeSelf)

@@ -18,6 +18,8 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.StoryType
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.StorySend
 import org.thoughtcrime.securesms.mediasend.CompositeMediaTransform
 import org.thoughtcrime.securesms.mediasend.ImageEditorModelRenderMediaTransform
 import org.thoughtcrime.securesms.mediasend.Media
@@ -217,8 +219,12 @@ class MediaSelectionRepository(context: Context) {
       val recipient = Recipient.resolved(contact.recipientId)
       val isStory = contact.isStory || recipient.isDistributionList
 
-      if (isStory && recipient.isActiveGroup) {
+      if (isStory && recipient.isActiveGroup && recipient.isGroup) {
         SignalDatabase.groups.markDisplayAsStory(recipient.requireGroupId())
+      }
+
+      if (isStory && !recipient.isMyStory) {
+        SignalStore.storyValues().setLatestStorySend(StorySend.newSend(recipient))
       }
 
       val storyType: StoryType = when {
