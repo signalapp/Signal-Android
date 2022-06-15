@@ -82,6 +82,7 @@ import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.ExpirationUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
@@ -188,6 +189,15 @@ class ConversationSettingsFragment : DSLSettingsFragment(
       true
     } else {
       super.onOptionsItemSelected(item)
+    }
+  }
+
+  override fun getMaterial3OnScrollHelper(toolbar: Toolbar?): Material3OnScrollHelper {
+    return object : Material3OnScrollHelper(requireActivity(), toolbar!!) {
+      override val inactiveColorSet = ColorSet(
+        toolbarColorRes = R.color.transparent,
+        statusBarColorRes = R.color.signal_colorBackground
+      )
     }
   }
 

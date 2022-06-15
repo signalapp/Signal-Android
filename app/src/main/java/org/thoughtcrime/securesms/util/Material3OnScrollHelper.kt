@@ -4,6 +4,7 @@ import android.animation.ValueAnimator
 import android.app.Activity
 import android.view.View
 import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.animation.ArgbEvaluatorCompat
@@ -21,8 +22,18 @@ open class Material3OnScrollHelper(
   private val viewStubs: List<Stub<out View>> = emptyList()
 ) {
 
-  open val activeColorRes: Int = R.color.signal_colorSurface2
-  open val inactiveColorRes: Int = R.color.signal_colorBackground
+  /**
+   * A pair of colors tied to a specific state.
+   */
+  data class ColorSet(
+    @ColorRes val toolbarColorRes: Int,
+    @ColorRes val statusBarColorRes: Int
+  ) {
+    constructor(@ColorRes color: Int) : this(color, color)
+  }
+
+  open val activeColorSet: ColorSet = ColorSet(R.color.signal_colorSurface2)
+  open val inactiveColorSet: ColorSet = ColorSet(R.color.signal_colorBackground)
 
   constructor(activity: Activity, view: View) : this(activity, listOf(view), emptyList())
 
@@ -44,7 +55,9 @@ open class Material3OnScrollHelper(
     }
 
     animator?.cancel()
-    setColor(ContextCompat.getColor(activity, if (active == true) activeColorRes else inactiveColorRes))
+    val colorSet = if (active == true) activeColorSet else inactiveColorSet
+    setToolbarColor(ContextCompat.getColor(activity, colorSet.toolbarColorRes))
+    setStatusBarColor(ContextCompat.getColor(activity, colorSet.statusBarColorRes))
   }
 
   private fun updateActiveState(isActive: Boolean) {
@@ -61,27 +74,37 @@ open class Material3OnScrollHelper(
     if (animator?.isRunning == true) {
       animator?.reverse()
     } else {
-      val startColor = ContextCompat.getColor(activity, if (isActive) inactiveColorRes else activeColorRes)
-      val endColor = ContextCompat.getColor(activity, if (isActive) activeColorRes else inactiveColorRes)
+      val startColorSet = if (isActive) inactiveColorSet else activeColorSet
+      val endColorSet = if (isActive) activeColorSet else inactiveColorSet
 
       if (hadActiveState) {
-        animator = ValueAnimator.ofObject(ArgbEvaluatorCompat(), startColor, endColor).apply {
+        val startToolbarColor = ContextCompat.getColor(activity, startColorSet.toolbarColorRes)
+        val endToolbarColor = ContextCompat.getColor(activity, endColorSet.toolbarColorRes)
+        val startStatusBarColor = ContextCompat.getColor(activity, startColorSet.statusBarColorRes)
+        val endStatusBarColor = ContextCompat.getColor(activity, endColorSet.statusBarColorRes)
+
+        animator = ValueAnimator.ofFloat(0f, 1f).apply {
           duration = 200
-          addUpdateListener { animator ->
-            setColor(animator.animatedValue as Int)
+          addUpdateListener {
+            setToolbarColor(ArgbEvaluatorCompat.getInstance().evaluate(it.animatedFraction, startToolbarColor, endToolbarColor))
+            setStatusBarColor(ArgbEvaluatorCompat.getInstance().evaluate(it.animatedFraction, startStatusBarColor, endStatusBarColor))
           }
           start()
         }
+
       } else {
         setColorImmediate()
       }
     }
   }
 
-  private fun setColor(@ColorInt color: Int) {
-    WindowUtil.setStatusBarColor(activity.window, color)
+  private fun setToolbarColor(@ColorInt color: Int) {
     views.forEach { it.setBackgroundColor(color) }
     viewStubs.filter { it.resolved() }.forEach { it.get().setBackgroundColor(color) }
+  }
+
+  private fun setStatusBarColor(@ColorInt color: Int) {
+    WindowUtil.setStatusBarColor(activity.window, color)
   }
 
   private inner class OnScrollListener : RecyclerView.OnScrollListener() {

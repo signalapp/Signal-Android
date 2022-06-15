@@ -2223,13 +2223,13 @@ public class ConversationParentFragment extends Fragment
 
     material3OnScrollHelper = new Material3OnScrollHelper(requireActivity(), Collections.singletonList(toolbarBackground), Collections.emptyList()) {
       @Override
-      public int getActiveColorRes() {
-        return getActiveToolbarColor(wallpaper.getDrawable() != null);
+      public @NonNull ColorSet getActiveColorSet() {
+        return new ColorSet(getActiveToolbarColor(wallpaper.getDrawable() != null));
       }
 
       @Override
-      public int getInactiveColorRes() {
-        return getInactiveToolbarColor(wallpaper.getDrawable() != null);
+      public @NonNull ColorSet getInactiveColorSet() {
+        return new ColorSet(getInactiveToolbarColor(wallpaper.getDrawable() != null));
       }
     };
   }
