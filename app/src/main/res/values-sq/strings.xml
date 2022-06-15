@@ -3,7 +3,7 @@
   <string name="yes">Po</string>
   <string name="no">Jo</string>
   <string name="delete">Fshije</string>
-  <string name="please_wait">Ju lutemi, pritni…</string>
+  <string name="please_wait">Ju lutemi, prisni…</string>
   <string name="save">Ruaje</string>
   <string name="note_to_self">Shënim për Veten</string>
   <!--AbstractNotificationBuilder-->
@@ -13,7 +13,7 @@
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal-i po përditësohet…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">I tanishmi: %s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">S\’keni caktuar ende frazëkalim!</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nuk keni caktuar ende një frazëkalimi!</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Të çaktivizohet frazëkalimi?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Kjo do të shkyçë në mënyrë të përhershme njoftime Signal-i dhe mesazhesh.</string>
   <string name="ApplicationPreferencesActivity_disable">Çaktivizoje</string>

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="yes">അതെ</string>
-  <string name="no">അല്ല</string>
+  <string name="yes">അതെ/ഉവ്വ്</string>
+  <string name="no">അല്ല/ഇല്ല</string>
   <string name="delete">ഇല്ലാതാക്കൂ</string>
   <string name="please_wait">കാത്തിരിക്കൂ…</string>
   <string name="save">സംരക്ഷിക്കൂ</string>
@@ -15,12 +15,12 @@
   <string name="ApplicationPreferencesActivity_currently_s">ഇപ്പോൾ:%s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">നിങ്ങൾ ഒരു രഹസ്യവാചകം ഇതു വരെ ക്രമീകരിച്ചിട്ടില്ല!</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">രഹസ്യവാചകം പ്രവർത്തനരഹിതമാക്കണോ?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">ഇത്  Signal സന്ദേശ അറിയിപ്പുകളെ എന്നന്നേയ്ക്കുമായി അൺലോക്കുചെയ്യും.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">ഇത്  Signal, സന്ദേശ അറിയിപ്പുകളെ അൺലോക്ക് ചെയ്യും.</string>
   <string name="ApplicationPreferencesActivity_disable">പ്രവർത്തനരഹിതമാക്കുക</string>
-  <string name="ApplicationPreferencesActivity_unregistering">അൺരെജിസ്റ്റർ ചെയ്യുന്നു</string>
+  <string name="ApplicationPreferencesActivity_unregistering">അൺരജിസ്റ്റർ ചെയ്യുന്നു</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal സന്ദേശങ്ങളിൽ നിന്നും കോളുകളിൽ നിന്നും അൺരജിസ്റ്റർ ചെയ്യുന്നു…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal സന്ദേശങ്ങളും കോളുകളും പ്രവർത്തനരഹിതമാക്കണോ?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">സെർവറിൽ നിന്ന് അൺരജിസ്റ്റർ ചെയ്ത് Signal സന്ദേശങ്ങളും കോളുകളും അപ്രാപ്തമാക്കുക. ഭാവിയിൽ നിങ്ങളുടെ ഫോൺ നമ്പർ വീണ്ടും ഉപയോഗിക്കുന്നതിന് നിങ്ങൾ വീണ്ടും രജിസ്റ്റർ ചെയ്യേണ്ടതുണ്ട്.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">സെർവറിൽ നിന്ന് അൺരജിസ്റ്റർ ചെയ്ത് Signal സന്ദേശങ്ങളും കോളുകളും പ്രവർത്തനരഹിതമാക്കുക. ഭാവിയിൽ നിങ്ങളുടെ ഫോൺ നമ്പർ വീണ്ടും ഉപയോഗിക്കുന്നതിന് നിങ്ങൾ വീണ്ടും രജിസ്റ്റർ ചെയ്യേണ്ടതുണ്ട്.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">സെർവറിലേക്ക് കണക്റ്റുചെയ്യുന്നതിൽ പിശക്!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS പ്രവർത്തനക്ഷമമാക്കി</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">നിങ്ങളുടെ സ്ഥിരം SMS അപ്ലിക്കേഷൻ മാറ്റാൻ തൊടുക</string>

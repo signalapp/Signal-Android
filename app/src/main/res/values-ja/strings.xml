@@ -15,9 +15,9 @@
   <string name="ApplicationPreferencesActivity_currently_s">現在: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">パスフレーズが設定されていません！</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">パスフレーズを無効にしますか？</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signalとメッセージ通知のロックを恒久的に解除します。</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">これにより、Signalとメッセージ通知のロックが完全に解除されます。</string>
   <string name="ApplicationPreferencesActivity_disable">無効</string>
-  <string name="ApplicationPreferencesActivity_unregistering">登録を解除しています</string>
+  <string name="ApplicationPreferencesActivity_unregistering">登録解除</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signalメッセージと通話の登録を解除しています…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signalでのメッセージや通話を無効にしますか？</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">サーバから登録を削除することで、Signalでのメッセージや通話を無効にします。再びSignalを使用するには、電話番号を再登録する必要があります。</string>

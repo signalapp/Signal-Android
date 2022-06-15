@@ -15,7 +15,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">ขณะนี้: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">คุณยังไม่ได้ตั้งวลีรหัสผ่าน</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">ปิดใช้งานวลีรหัสผ่านหรือไม่?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">นี่จะปลดล็อก Signal และการแจ้งเตือนข้อความอย่างถาวร</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signal และการแจ้งเตือนข้อความจะถูกปลดล็อกอย่างถาวร</string>
   <string name="ApplicationPreferencesActivity_disable">ปิดใช้งาน</string>
   <string name="ApplicationPreferencesActivity_unregistering">ยกเลิกการลงทะเบียน</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">กำลังยกเลิกการลงทะเบียนการใช้งานข้อความ Signal และการโทร…</string>
