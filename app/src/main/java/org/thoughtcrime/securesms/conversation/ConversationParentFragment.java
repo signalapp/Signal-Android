@@ -2176,8 +2176,7 @@ public class ConversationParentFragment extends Fragment
       linkPreviewViewModel.onTransportChanged(newMessageSendType.usesSmsTransport());
       composeText.setMessageSendType(newMessageSendType);
 
-      buttonToggle.getBackground().setColorFilter(getButtonToggleBackgroundColor(newMessageSendType), PorterDuff.Mode.MULTIPLY);
-      buttonToggle.getBackground().invalidateSelf();
+      updateSendButtonColor(newMessageSendType);
 
       if (manuallySelected) recordTransportPreference(newMessageSendType);
     });
@@ -2234,7 +2233,12 @@ public class ConversationParentFragment extends Fragment
     };
   }
 
-  private @ColorInt int getButtonToggleBackgroundColor(MessageSendType newTransport) {
+  private void updateSendButtonColor(MessageSendType newMessageSendType) {
+    buttonToggle.getBackground().setColorFilter(getSendButtonColor(newMessageSendType), PorterDuff.Mode.MULTIPLY);
+    buttonToggle.getBackground().invalidateSelf();
+  }
+
+  private @ColorInt int getSendButtonColor(MessageSendType newTransport) {
     if (newTransport.usesSmsTransport()) {
       return getResources().getColor(newTransport.getBackgroundColorRes());
     } else if (recipient != null) {
@@ -2626,6 +2630,7 @@ public class ConversationParentFragment extends Fragment
     updateReminders();
     updateDefaultSubscriptionId(recipient.getDefaultSubscriptionId());
     updatePaymentsAvailable();
+    updateSendButtonColor(sendButton.getSelectedSendType());
     initializeSecurity(isSecureText, isDefaultSms);
 
     if (searchViewItem == null || !searchViewItem.isActionViewExpanded()) {
