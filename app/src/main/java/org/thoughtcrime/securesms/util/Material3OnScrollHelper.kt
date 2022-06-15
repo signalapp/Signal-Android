@@ -91,7 +91,6 @@ open class Material3OnScrollHelper(
           }
           start()
         }
-
       } else {
         setColorImmediate()
       }

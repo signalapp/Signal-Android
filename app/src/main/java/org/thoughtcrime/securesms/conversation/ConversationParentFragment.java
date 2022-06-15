@@ -4287,23 +4287,23 @@ public class ConversationParentFragment extends Fragment
     {
       Log.d(TAG, "[presentMessageRequestState] Have extra, so ignoring provided state.");
       messageRequestBottomView.setVisibility(View.GONE);
-      inputPanel.setVisibility(View.VISIBLE);
+      inputPanel.setHideForMessageRequestState(false);
     } else if (isPushGroupV1Conversation() && !isActiveGroup()) {
       Log.d(TAG, "[presentMessageRequestState] Inactive push group V1, so ignoring provided state.");
       messageRequestBottomView.setVisibility(View.GONE);
-      inputPanel.setVisibility(View.VISIBLE);
+      inputPanel.setHideForMessageRequestState(false);
     } else if (messageData == null) {
       Log.d(TAG, "[presentMessageRequestState] Null messageData. Ignoring.");
     } else if (messageData.getMessageState() == MessageRequestState.NONE) {
       Log.d(TAG, "[presentMessageRequestState] No message request necessary.");
       messageRequestBottomView.setVisibility(View.GONE);
-      inputPanel.setVisibility(View.VISIBLE);
+      inputPanel.setHideForMessageRequestState(false);
     } else {
       Log.d(TAG, "[presentMessageRequestState] " + messageData.getMessageState());
       messageRequestBottomView.setMessageData(messageData);
       messageRequestBottomView.setVisibility(View.VISIBLE);
       noLongerMemberBanner.setVisibility(View.GONE);
-      inputPanel.setVisibility(View.GONE);
+      inputPanel.setHideForMessageRequestState(true);
     }
 
     invalidateOptionsMenu();

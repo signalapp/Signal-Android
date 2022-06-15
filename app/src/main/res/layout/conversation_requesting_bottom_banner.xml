@@ -17,8 +17,9 @@
         android:text="@string/ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin"
         android:textColor="@color/signal_text_secondary" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/conversation_cancel_request"
+        style="@style/Signal.Widget.Button.Large.Tonal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

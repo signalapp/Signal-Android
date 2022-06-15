@@ -95,6 +95,7 @@ public class InputPanel extends LinearLayout
   private @Nullable Listener listener;
   private           boolean  emojiVisible;
 
+  private boolean hideForMessageRequestState;
   private boolean hideForGroupState;
   private boolean hideForBlockedState;
   private boolean hideForSearch;
@@ -353,6 +354,11 @@ public class InputPanel extends LinearLayout
     quoteView.setWallpaperEnabled(enabled);
   }
 
+  public void setHideForMessageRequestState(boolean hideForMessageRequestState) {
+    this.hideForMessageRequestState = hideForMessageRequestState;
+    updateVisibility();
+  }
+
   public void setHideForGroupState(boolean hideForGroupState) {
     this.hideForGroupState = hideForGroupState;
     updateVisibility();
@@ -550,7 +556,7 @@ public class InputPanel extends LinearLayout
   }
 
   private void updateVisibility() {
-    if (hideForGroupState || hideForBlockedState || hideForSearch || hideForSelection) {
+    if (hideForGroupState || hideForBlockedState || hideForSearch || hideForSelection || hideForMessageRequestState) {
       setVisibility(GONE);
     } else {
       setVisibility(VISIBLE);
