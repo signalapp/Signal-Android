@@ -133,9 +133,9 @@ class BatchMessageReceiveJob(
                             trueUnreadCount -= (unreadFromMine + 1)
                             storage.markConversationAsRead(threadId, false)
                         }
-                        SSKEnvironment.shared.notificationManager.updateNotification(context, threadId)
                         storage.incrementUnread(threadId, trueUnreadCount)
                         storage.updateThread(threadId, true)
+                        SSKEnvironment.shared.notificationManager.updateNotification(context, threadId)
                     }
                 }
 
