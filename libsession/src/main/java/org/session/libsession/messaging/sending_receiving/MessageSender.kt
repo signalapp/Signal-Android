@@ -79,6 +79,9 @@ object MessageSender {
         if (message.sentTimestamp == null) {
             message.sentTimestamp = System.currentTimeMillis() // Visible messages will already have their sent timestamp set
         }
+
+        val messageSendTime = System.currentTimeMillis()
+
         message.sender = userPublicKey
         val isSelfSend = (message.recipient == userPublicKey)
         // Set the failure handler (need it here already for precondition failure handling)
@@ -159,14 +162,14 @@ object MessageSender {
             val wrappedMessage = MessageWrapper.wrap(kind, message.sentTimestamp!!, senderPublicKey, ciphertext)
             // Send the result
             if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
-                SnodeModule.shared.broadcaster.broadcast("calculatingPoW", message.sentTimestamp!!)
+                SnodeModule.shared.broadcaster.broadcast("calculatingPoW", messageSendTime)
             }
             val base64EncodedData = Base64.encodeBytes(wrappedMessage)
             // Send the result
-            val timestamp = message.sentTimestamp!! + SnodeAPI.clockOffset
+            val timestamp = messageSendTime + SnodeAPI.clockOffset
             val snodeMessage = SnodeMessage(message.recipient!!, base64EncodedData, message.ttl, timestamp)
             if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
-                SnodeModule.shared.broadcaster.broadcast("sendingMessage", message.sentTimestamp!!)
+                SnodeModule.shared.broadcaster.broadcast("sendingMessage", messageSendTime)
             }
             namespaces.map { namespace -> SnodeAPI.sendMessage(snodeMessage, requiresAuth = false, namespace = namespace) }.let { promises ->
                 var isSuccess = false
@@ -177,7 +180,7 @@ object MessageSender {
                         if (isSuccess) { return@success } // Succeed as soon as the first promise succeeds
                         isSuccess = true
                         if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
-                            SnodeModule.shared.broadcaster.broadcast("messageSent", message.sentTimestamp!!)
+                            SnodeModule.shared.broadcaster.broadcast("messageSent", messageSendTime)
                         }
                         val hash = it["hash"] as? String
                         message.serverHash = hash
