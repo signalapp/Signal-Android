@@ -159,12 +159,12 @@ public class BackupDialog {
   public static void showVerifyBackupPassphraseDialog(@NonNull Context context) {
     View        view   = LayoutInflater.from(context).inflate(R.layout.enter_backup_passphrase_dialog, null);
     EditText    prompt = view.findViewById(R.id.restore_passphrase_input);
-    AlertDialog dialog = new AlertDialog.Builder(context)
-                                        .setTitle(R.string.BackupDialog_enter_backup_passphrase_to_verify)
-                                        .setView(view)
-                                        .setPositiveButton(R.string.BackupDialog_verify, null)
-                                        .setNegativeButton(android.R.string.cancel, null)
-                                        .show();
+    AlertDialog dialog = new MaterialAlertDialogBuilder(context)
+                            .setTitle(R.string.BackupDialog_enter_backup_passphrase_to_verify)
+                            .setView(view)
+                            .setPositiveButton(R.string.BackupDialog_verify, null)
+                            .setNegativeButton(android.R.string.cancel, null)
+                            .show();
 
     Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
     positiveButton.setEnabled(false);
