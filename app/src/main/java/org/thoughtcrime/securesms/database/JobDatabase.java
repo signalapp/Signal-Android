@@ -95,6 +95,7 @@ public class JobDatabase extends SQLiteOpenHelper implements SignalDatabaseOpenH
         if (instance == null) {
           SqlCipherLibraryLoader.load();
           instance = new JobDatabase(context, DatabaseSecretProvider.getOrCreateDatabaseSecret(context));
+          instance.setWriteAheadLoggingEnabled(true);
         }
       }
     }
@@ -140,7 +141,6 @@ public class JobDatabase extends SQLiteOpenHelper implements SignalDatabaseOpenH
   public void onOpen(SQLiteDatabase db) {
     Log.i(TAG, "onOpen()");
 
-    db.enableWriteAheadLogging();
     db.setForeignKeyConstraintsEnabled(true);
 
     SignalExecutors.BOUNDED.execute(() -> {
