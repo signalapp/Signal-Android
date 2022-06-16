@@ -66,7 +66,17 @@ class SendButton(context: Context, attributeSet: AttributeSet?) : AppCompatImage
         }
       }
 
-      throw AssertionError("No options of default type!")
+      Log.w(TAG, "No options of default type! Resetting. DefaultTransportType: $defaultTransportType, AllAvailable: ${availableSendTypes.map { it.transportType }}")
+
+      val signalType: MessageSendType? = availableSendTypes.firstOrNull { it.usesSignalTransport }
+      if (signalType != null) {
+        Log.w(TAG, "No options of default type, but Signal type is available. Switching. DefaultTransportType: $defaultTransportType, AllAvailable: ${availableSendTypes.map { it.transportType }}")
+        defaultTransportType = MessageSendType.TransportType.SIGNAL
+        onSelectionChanged(signalType, false)
+        return signalType
+      } else {
+        throw AssertionError("No options of default type! DefaultTransportType: $defaultTransportType, AllAvailable: ${availableSendTypes.map { it.transportType }}")
+      }
     }
 
   fun addOnSelectionChangedListener(listener: SendTypeChangedListener) {
