@@ -3,7 +3,7 @@
   <string name="yes">네</string>
   <string name="no">아니요</string>
   <string name="delete">삭제</string>
-  <string name="please_wait">잠시 기다려 주세요…</string>
+  <string name="please_wait">잠시만 기다려 주세요…</string>
   <string name="save">저장</string>
   <string name="note_to_self">개인 메모</string>
   <!--AbstractNotificationBuilder-->
@@ -13,18 +13,18 @@
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal 업데이트 중…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">현재: %s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">암호가 설정되지 않았습니다!</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">암호를 설정하지 않았습니다!</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">암호 사용을 비활성화하시겠습니까?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signal이 잠금 해제되어 메시지 알림이 표시됩니다.</string>
-  <string name="ApplicationPreferencesActivity_disable">비활성화</string>
-  <string name="ApplicationPreferencesActivity_unregistering">등록 해제</string>
+  <string name="ApplicationPreferencesActivity_disable">사용 안 함</string>
+  <string name="ApplicationPreferencesActivity_unregistering">등록 해제 중</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal 메시지 및 전화 서비스 등록 해제 중…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal 메시지와 전화를 비활성화하시겠습니까?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">서버에서 등록을 해제하여 Signal을 사용한 메시지 전송과 전화가 불가능해집니다. 다시 사용하고 싶을 때 전화번호를 재등록 하십시오.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">서버에 연결할 수 없습니다!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">SMS 활성화됨</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS 사용</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">기본 SMS 앱을 변경하려면 터치</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">SMS 비활성화됨</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS 사용 안 함</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Signal을 기본 SMS 앱으로 설정하려면 터치</string>
   <string name="ApplicationPreferencesActivity_on">켜짐</string>
   <string name="ApplicationPreferencesActivity_On">켜짐</string>
@@ -50,7 +50,7 @@
   <string name="DraftDatabase_Draft_audio_snippet">(오디오)</string>
   <string name="DraftDatabase_Draft_video_snippet">(동영상)</string>
   <string name="DraftDatabase_Draft_location_snippet">(위치)</string>
-  <string name="DraftDatabase_Draft_quote_snippet">(답장)</string>
+  <string name="DraftDatabase_Draft_quote_snippet">(회신)</string>
   <string name="DraftDatabase_Draft_voice_note">(음성 메시지)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">갤러리</string>
@@ -62,9 +62,9 @@
   <string name="AttachmentKeyboard_payment">결제</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">미디어를 선택할 수 있는 앱이 없습니다.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal에서 사진, 동영상 또는 오디오를 첨부하려면 저장 공간 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'저장 공간\' 항목을 허용해 주세요.</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal에서 연락처 정보를 첨부하려면 연락처 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'연락처\' 항목을 허용해 주세요.</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal에서 위치 정보를 첨부하려면 위치 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'위치\' 항목을 허용해 주세요.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal에서 사진, 동영상 또는 오디오를 첨부하려면 저장 공간 접근 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'저장 공간\' 항목을 허용해 주세요.</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal에서 연락처 정보를 첨부하려면 연락처 접근 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'연락처\' 항목을 허용해 주세요.</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal에서 위치 정보를 첨부하려면 위치 접근 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'위치\' 항목을 허용해 주세요.</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">미디어 업로드 중…</string>
   <string name="AttachmentUploadJob_compressing_video_start">동영상 압축 중…</string>
@@ -118,8 +118,8 @@
   <string name="CameraContacts_recent_contacts">최근 연락처</string>
   <string name="CameraContacts_signal_contacts">Signal 연락처</string>
   <string name="CameraContacts_signal_groups">Signal 그룹</string>
-  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">최대 %d개의 대화에서 공유할 수 있습니다.</string>
-  <string name="CameraContacts_select_signal_recipients">Signal 수신자 선택</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">최대 %d개 대화에서 공유할 수 있습니다.</string>
+  <string name="CameraContacts_select_signal_recipients">Signal 받는 사람 선택</string>
   <string name="CameraContacts_no_signal_contacts">Signal 연락처 없음</string>
   <string name="CameraContacts_you_can_only_use_the_camera_button">카메라 버튼은 Signal 연락처에 사진을 보내는 용도로만 사용할 수 있습니다.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">원하는 사람을 찾지 못하셨나요?</string>
@@ -148,15 +148,15 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">웹 브라우저를 찾을 수 없습니다.</string>
   <string name="CommunicationActions_send_email">이메일 보내기</string>
-  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">이미 휴대 전화 통화를 사용하고 있습니다.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">이미 셀룰러 데이터 통화를 사용하고 있습니다.</string>
   <string name="CommunicationActions_start_voice_call">음성 통화를 시작하시겠습니까?</string>
   <string name="CommunicationActions_cancel">취소</string>
   <string name="CommunicationActions_call">전화</string>
   <string name="CommunicationActions_insecure_call">안전하지 않은 통화</string>
   <string name="CommunicationActions_carrier_charges_may_apply">통신사 요금이 부과될 수 있습니다. 당신이 전화하려는 번호는 Signal에 등록되지 않았습니다. 이 전화는 인터넷이 아닌 당신의 모바일 통신사를 통해 연결될 겁니다.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s 님의 안전 번호가 변경되었습니다. 누군가가 연결을 가로채려고 하거나 단순히 %2$s 님이 Signal을 다시 설치한 것일 수도 있습니다.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">해당 연락처 님과의 안전 번호를 인증하는 것을 추천해 드립니다.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s 님의 안전 번호가 변경되었습니다. 연결을 가로채려는 사용자가 있거나, 단순히 %2$s 님이 Signal을 다시 설치하여 이와 같은 현상이 발생했을 수 있습니다.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">해당 연락처와 안전 번호를 인증하는 게 좋습니다.</string>
   <string name="ConfirmIdentityDialog_accept">수락</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">최근 대화</string>

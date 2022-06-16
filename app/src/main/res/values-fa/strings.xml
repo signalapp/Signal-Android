@@ -38,9 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">پین غیرفعال شد.</string>
   <string name="ApplicationPreferencesActivity_hide">پنهان کردن</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">پنهان کردن یادآور؟</string>
-  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">عبارت بازیابی پرداخت‌ها را ذخیره کنید</string>
-  <string name="ApplicationPreferencesActivity_record_phrase">ذخیرهٔ عبارت</string>
-  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">قبل از اینکه قادر به غیرفعال کردن پین خود باشید، باید عبارت بازیابی پرداخت‌های خود را ذخیره کنید تا مطمئن شوید که می‌توانید حساب کاربری پرداخت‌های خود را بازیابی کنید.</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">عبارت بازیابی پرداخت‌ها را ثبت کنید</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">ثبت عبارت</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">قبل از اینکه قادر به غیرفعال کردن پین خود باشید، باید عبارت بازیابی پرداخت‌های خود را ثبت کنید تا مطمئن شوید که می‌توانید حساب کاربری پرداخت‌های خود را بازیابی کنید.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d دقیقه</item>
@@ -58,7 +58,7 @@
   <string name="AttachmentKeyboard_file">فایل</string>
   <string name="AttachmentKeyboard_contact">مخاطب</string>
   <string name="AttachmentKeyboard_location">مکان</string>
-  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">سیگنال به مجوز برای نشان دادن عکس‌ها و ویدئوهای شما احتیاج دارد.</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">سیگنال برای نشان دادن عکس‌ها و ویدئوهای شما به مجوز نیاز دارد.</string>
   <string name="AttachmentKeyboard_give_access">دسترسی داده شود</string>
   <string name="AttachmentKeyboard_payment">پرداخت</string>
   <!--AttachmentManager-->
