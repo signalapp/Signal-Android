@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.wallpaper;
 
 import android.content.res.ColorStateList;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -62,6 +63,7 @@ public class ChatWallpaperFragment extends Fragment {
     ColorizerView      colorizerView        = view.findViewById(R.id.colorizer);
     TextView           resetAllWallpaper    = view.findViewById(R.id.chat_wallpaper_reset_all_wallpapers);
     AppCompatImageView recvBubble           = view.findViewById(R.id.chat_wallpaper_preview_bubble_1);
+    View               sendButton           = view.findViewById(R.id.chat_wallpaper_preview_bottom_bar_plus);
 
     dimInNightMode = view.findViewById(R.id.chat_wallpaper_dark_theme_dims_wallpaper);
 
@@ -184,6 +186,9 @@ public class ChatWallpaperFragment extends Fragment {
       Drawable colorCircle = chatColors.asCircle();
       colorCircle.setBounds(0, 0, ViewUtil.dpToPx(16), ViewUtil.dpToPx(16));
       TextViewCompat.setCompoundDrawablesRelative(setChatColor, null, null, colorCircle, null);
+
+      sendButton.getBackground().setColorFilter(chatColors.asSingleColor(), PorterDuff.Mode.MULTIPLY);
+      sendButton.getBackground().invalidateSelf();
     });
 
     sentBubble.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> viewModel.refreshChatColors());
