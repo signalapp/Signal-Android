@@ -2171,6 +2171,11 @@ public class ConversationParentFragment extends Fragment
     sendButton.setOnClickListener(sendButtonListener);
     sendButton.setEnabled(true);
     sendButton.addOnSelectionChangedListener((newMessageSendType, manuallySelected) -> {
+      if (getContext() == null) {
+        Log.w(TAG, "onSelectionChanged called in detached state. Ignoring.");
+        return;
+      }
+
       calculateCharactersRemaining();
       updateLinkPreviewState();
       linkPreviewViewModel.onTransportChanged(newMessageSendType.usesSmsTransport());

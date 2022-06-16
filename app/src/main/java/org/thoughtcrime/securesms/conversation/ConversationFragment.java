@@ -814,7 +814,9 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       items.add(new ActionItem(R.drawable.ic_reply_24_tinted, getResources().getString(R.string.conversation_selection__menu_reply), () -> {
         maybeShowSwipeToReplyTooltip();
         handleReplyMessage(getSelectedConversationMessage());
-        actionMode.finish();
+        if (actionMode != null) {
+          actionMode.finish();
+        }
       }));
     }
 
@@ -825,28 +827,36 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     if (menuState.shouldShowSaveAttachmentAction()) {
       items.add(new ActionItem(R.drawable.ic_save_24_tinted, getResources().getString(R.string.conversation_selection__menu_save), () -> {
         handleSaveAttachment((MediaMmsMessageRecord) getSelectedConversationMessage().getMessageRecord());
-        actionMode.finish();
+        if (actionMode != null) {
+          actionMode.finish();
+        }
       }));
     }
 
     if (menuState.shouldShowCopyAction()) {
       items.add(new ActionItem(R.drawable.ic_copy_24_tinted, getResources().getString(R.string.conversation_selection__menu_copy), () -> {
         handleCopyMessage(selectedParts);
-        actionMode.finish();
+        if (actionMode != null) {
+          actionMode.finish();
+        }
       }));
     }
 
     if (menuState.shouldShowDetailsAction()) {
       items.add(new ActionItem(R.drawable.ic_info_tinted_24, getResources().getString(R.string.conversation_selection__menu_message_details), () -> {
         handleDisplayDetails(getSelectedConversationMessage());
-        actionMode.finish();
+        if (actionMode != null) {
+          actionMode.finish();
+        }
       }));
     }
 
     if (menuState.shouldShowDeleteAction()) {
       items.add(new ActionItem(R.drawable.ic_delete_tinted_24, getResources().getString(R.string.conversation_selection__menu_delete), () -> {
         handleDeleteMessages(selectedParts);
-        actionMode.finish();
+        if (actionMode != null) {
+          actionMode.finish();
+        }
       }));
     }
 
