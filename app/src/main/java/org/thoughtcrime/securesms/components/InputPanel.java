@@ -329,11 +329,11 @@ public class InputPanel extends LinearLayout
     final int textHintColor;
 
     if (enabled) {
-      iconTint = getContext().getResources().getColor(R.color.signal_colorNeutralInverse);
-      textColor = getContext().getResources().getColor(R.color.signal_colorNeutralInverse);
-      textHintColor = getContext().getResources().getColor(R.color.signal_colorNeutralVariantInverse);
+      iconTint = getContext().getResources().getColor(R.color.signal_colorOnSurface);
+      textColor = getContext().getResources().getColor(R.color.signal_colorOnSurface);
+      textHintColor = getContext().getResources().getColor(R.color.signal_colorOnSurfaceVariant);
 
-      setBackground(new ColorDrawable(getContext().getResources().getColor(R.color.wallpaper_compose_background)));
+      setBackground(null);
       composeContainer.setBackground(Objects.requireNonNull(ContextCompat.getDrawable(getContext(), R.drawable.compose_background_wallpaper)));
       quickAudioToggle.setColorFilter(iconTint);
       quickCameraToggle.setColorFilter(iconTint);
