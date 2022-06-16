@@ -19,7 +19,7 @@ Want to live life on the bleeding edge and help out with testing?
 You can subscribe to Signal Android Beta releases here:
 https://play.google.com/apps/testing/org.thoughtcrime.securesms
  
-If you're interested in a life of peace and tranquility, stick with the standard releases.
+Note: If you dont want to face any difficulties and want to have a smooth and peaceful user experience then in that case we must recommend you to stick with the standard release!!
 
 ## Contributing Translations
 Interested in helping to translate Signal? Contribute here:
@@ -28,17 +28,21 @@ https://www.transifex.com/projects/p/signal-android/
 
 ## Contributing Code
 
-If you're new to the Signal codebase, we recommend going through our issues and picking out a simple bug to fix (check the "easy" label in our issues) in order to get yourself familiar. Also please have a look at the [CONTRIBUTING.md](https://github.com/signalapp/Signal-Android/blob/main/CONTRIBUTING.md), that might answer some of your questions.
+If you're new to the Signal codebase, we recommend going through our issues tab and picking out a simple bug to fix (check the "easy" label in our issues) in order to get yourself familiar. Also please have a look at the [CONTRIBUTING.md](https://github.com/signalapp/Signal-Android/blob/main/CONTRIBUTING.md), that might answer some of your questions.
 
-For larger changes and feature ideas, we ask that you propose it on the [unofficial Community Forum](https://community.signalusers.org) for a high-level discussion with the wider community before implementation.
+For larger changes and feature ideas, we request you to propose it on the [unofficial Community Forum](https://community.signalusers.org) for a high-level discussion with the wider community before implementation.
 
 ## Contributing Ideas
-Have something you want to say about Open Whisper Systems projects or want to be part of the conversation? Get involved in the [community forum](https://community.signalusers.org).
+Have something to say about Open Whisper Systems projects or want to be part of the conversation? Get involved in the [community forum](https://community.signalusers.org).
 
 Help
 ====
 ## Support
-For troubleshooting and questions, please visit our support center!
+For troubleshooting,
+For understanding the basics of Signal on your device,
+For exlporing rich features of private messaging that Signal provides you,
+or for getting your queries resolved,
+Please visit our support center!!
 
 https://support.signal.org/
 
