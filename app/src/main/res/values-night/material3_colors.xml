@@ -50,6 +50,7 @@
     <color name="signal_colorOnSurfaceVariant_60">#99BEBFC5</color>
     <color name="signal_colorOnBackground_60">#99E2E1E5</color>
     <color name="signal_colorOutline_38">#615C5E65</color>
+    <color name="signal_colorBackground_0">#001B1C1F</color>
 
     <!-- Core color alpha variants without alpha channel -->
     <color name="signal_colorSurfaceVariant_16_no_alpha">#3F4249</color>
