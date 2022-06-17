@@ -774,10 +774,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     bodyBubble.setOutliners(outliners);
 
-    if (mediaThumbnailStub.resolved()) {
-      mediaThumbnailStub.require().setPulseOutliner(pulseOutliner);
-    }
-
     if (audioViewStub.resolved()) {
       setAudioViewTint(messageRecord);
     }
