@@ -4,6 +4,8 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.AsyncTask;
@@ -12,10 +14,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -46,6 +50,7 @@ public final class PlacePickerActivity extends AppCompatActivity {
 
   private static final int                   ANIMATION_DURATION     = 250;
   private static final OvershootInterpolator OVERSHOOT_INTERPOLATOR = new OvershootInterpolator();
+  private static final String                KEY_CHAT_COLOR         = "chat_color";
 
   private SingleAddressBottomSheet bottomSheet;
   private Address                  currentAddress;
@@ -54,8 +59,8 @@ public final class PlacePickerActivity extends AppCompatActivity {
   private AddressLookup            addressLookup;
   private GoogleMap                googleMap;
 
-  public static void startActivityForResultAtCurrentLocation(@NonNull Fragment fragment, int requestCode) {
-    fragment.startActivityForResult(new Intent(fragment.requireActivity(), PlacePickerActivity.class), requestCode);
+  public static void startActivityForResultAtCurrentLocation(@NonNull Fragment fragment, int requestCode, @ColorInt int chatColor) {
+    fragment.startActivityForResult(new Intent(fragment.requireActivity(), PlacePickerActivity.class).putExtra(KEY_CHAT_COLOR, chatColor), requestCode);
   }
 
   public static AddressData addressFromData(@NonNull Intent data) {
@@ -71,8 +76,8 @@ public final class PlacePickerActivity extends AppCompatActivity {
     View markerImage = findViewById(R.id.marker_image_view);
     View fab         = findViewById(R.id.place_chosen_button);
 
+    ViewCompat.setBackgroundTintList(fab, ColorStateList.valueOf(getIntent().getIntExtra(KEY_CHAT_COLOR, Color.RED)));
     fab.setOnClickListener(v -> finishWithAddress());
-
 
     if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)   == PackageManager.PERMISSION_GRANTED ||
         ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)

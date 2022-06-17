@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.conversation.mutiselect.forward
 
+import android.content.res.ColorStateList
 import android.graphics.Rect
 import android.os.Bundle
 import android.os.Handler
@@ -13,6 +14,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.PluralsRes
+import androidx.core.view.ViewCompat
 import androidx.core.view.doOnNextLayout
 import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
@@ -95,6 +97,9 @@ class MultiselectForwardFragment :
   private val isSelectionOnly: Boolean
     get() = requireArguments().getBoolean(ARG_FORCE_SELECTION_ONLY, false)
 
+  private val sendButtonTint: Int
+    get() = requireArguments().getInt(ARG_SEND_BUTTON_TINT, -1)
+
   override fun onGetLayoutInflater(savedInstanceState: Bundle?): LayoutInflater {
     return if (parentFragment != null) {
       requireParentFragment().onGetLayoutInflater(savedInstanceState)
@@ -134,6 +139,10 @@ class MultiselectForwardFragment :
     val sendButtonFrame: View = bottomBar.findViewById(R.id.share_confirm_frame)
     val sendButton: View = bottomBar.findViewById(R.id.share_confirm)
     val backgroundHelper: View = bottomBar.findViewById(R.id.background_helper)
+
+    if (sendButtonTint != -1) {
+      ViewCompat.setBackgroundTintList(sendButton, ColorStateList.valueOf(sendButtonTint))
+    }
 
     FullscreenHelper.configureBottomBarLayout(requireActivity(), bottomBarSpacer, bottomBar)
 
@@ -439,6 +448,7 @@ class MultiselectForwardFragment :
     const val ARG_FORCE_DISABLE_ADD_MESSAGE = "multiselect.forward.fragment.force.disable.add.message"
     const val ARG_FORCE_SELECTION_ONLY = "multiselect.forward.fragment.force.disable.add.message"
     const val ARG_SELECT_SINGLE_RECIPIENT = "multiselect.forward.framgent.select.single.recipient"
+    const val ARG_SEND_BUTTON_TINT = "multiselect.forward.fragment.send.button.tint"
     const val RESULT_KEY = "result_key"
     const val RESULT_SELECTION = "result_selection_recipients"
     const val RESULT_SENT = "result_sent"
@@ -478,6 +488,7 @@ class MultiselectForwardFragment :
         putBoolean(ARG_FORCE_DISABLE_ADD_MESSAGE, multiselectForwardFragmentArgs.forceDisableAddMessage)
         putBoolean(ARG_FORCE_SELECTION_ONLY, multiselectForwardFragmentArgs.forceSelectionOnly)
         putBoolean(ARG_SELECT_SINGLE_RECIPIENT, multiselectForwardFragmentArgs.selectSingleRecipient)
+        putInt(ARG_SEND_BUTTON_TINT, multiselectForwardFragmentArgs.sendButtonTint)
       }
     }
   }

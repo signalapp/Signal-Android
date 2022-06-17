@@ -11,7 +11,7 @@
         android:id="@+id/background_helper"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/selected_list"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/selected_list" />
@@ -21,8 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/signal_divider_major"
-        app:layout_constraintBottom_toBottomOf="@id/share_confirm_frame"
-        app:layout_constraintTop_toTopOf="@id/share_confirm_frame" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/selected_list"
@@ -41,45 +40,48 @@
 
     <FrameLayout
         android:id="@+id/add_message_wrapper"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/signal_colorSurface1"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/share_confirm_frame"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/selected_list">
 
         <org.thoughtcrime.securesms.components.emoji.EmojiEditText
             android:id="@+id/add_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dsl_settings_gutter"
-            android:layout_marginEnd="@dimen/dsl_settings_gutter"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/rounded_rectangle_surface_variant"
             android:hint="@string/MultiselectForwardFragment__add_a_message"
-            android:textColorHint="@color/signal_colorOnSurfaceVariant"
             android:inputType="textCapSentences"
             android:minHeight="44dp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
-            android:textAppearance="@style/Signal.Text.Body" />
+            android:textAppearance="@style/Signal.Text.Body"
+            android:textColorHint="@color/signal_colorOnSurfaceVariant" />
     </FrameLayout>
 
     <FrameLayout
         android:id="@+id/share_confirm_frame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="@id/divider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <ImageView
             android:id="@+id/share_confirm"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/circle_tintable"
             android:contentDescription="@string/ShareActivity__share"
+            android:scaleType="centerInside"
             app:backgroundTint="@color/signal_accent_primary"
             app:srcCompat="@drawable/ic_send_24" />
 

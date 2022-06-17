@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/contact_share_edit_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="80dp"
-        android:clipToPadding="false"/>
+        android:clipToPadding="false"
+        android:paddingBottom="80dp" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageView
         android:id="@+id/contact_share_edit_send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_gravity="end|bottom"
-        android:tint="@color/white"
+        android:layout_margin="@dimen/floating_action_button_margin"
+        android:background="@drawable/circle_tintable"
+        android:contentDescription="@string/conversation_activity__send"
+        android:scaleType="centerInside"
+        app:backgroundTint="@color/signal_colorPrimary"
         app:srcCompat="@drawable/ic_send_lock_24"
-        android:layout_margin="@dimen/floating_action_button_margin"/>
+        app:tint="@color/white" />
 
 </FrameLayout>

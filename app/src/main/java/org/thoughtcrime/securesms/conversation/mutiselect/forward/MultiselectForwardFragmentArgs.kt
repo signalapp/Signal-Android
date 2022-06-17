@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.conversation.mutiselect.forward
 
 import android.content.Context
 import android.net.Uri
+import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import androidx.annotation.WorkerThread
 import org.signal.core.util.StreamUtil
@@ -30,14 +31,17 @@ import java.util.function.Consumer
  * @param forceSelectionOnly     Force the fragment to only select recipients, never actually performing the send.
  * @param selectSingleRecipient  Only allow the selection of a single recipient.
  */
-class MultiselectForwardFragmentArgs @JvmOverloads constructor(
+data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
   val canSendToNonPush: Boolean,
   val multiShareArgs: List<MultiShareArgs> = listOf(),
   @StringRes val title: Int = R.string.MultiselectForwardFragment__forward_to,
   val forceDisableAddMessage: Boolean = false,
   val forceSelectionOnly: Boolean = false,
-  val selectSingleRecipient: Boolean = false
+  val selectSingleRecipient: Boolean = false,
+  @ColorInt val sendButtonTint: Int = -1
 ) {
+
+  fun withSendButtonTint(@ColorInt sendButtonTint: Int) = copy(sendButtonTint = sendButtonTint)
 
   companion object {
     @JvmStatic

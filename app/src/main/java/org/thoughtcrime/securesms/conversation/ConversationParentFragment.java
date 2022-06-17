@@ -1249,7 +1249,7 @@ public class ConversationParentFragment extends Fragment
         AttachmentManager.selectContactInfo(this, PICK_CONTACT);
         break;
       case LOCATION:
-        AttachmentManager.selectLocation(this, PICK_LOCATION);
+        AttachmentManager.selectLocation(this, PICK_LOCATION, getSendButtonColor(sendButton.getSelectedSendType()));
         break;
       case PAYMENT:
         if (recipient.get().hasProfileKeyCredential()) {
@@ -2743,7 +2743,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void openContactShareEditor(Uri contactUri) {
-    Intent intent = ContactShareEditActivity.getIntent(requireContext(), Collections.singletonList(contactUri));
+    Intent intent = ContactShareEditActivity.getIntent(requireContext(), Collections.singletonList(contactUri), getSendButtonColor(sendButton.getSelectedSendType()));
     startActivityForResult(intent, GET_CONTACT_DETAILS);
   }
 
@@ -3951,6 +3951,11 @@ public class ConversationParentFragment extends Fragment
             reactionDelegate.hide();
           }
         });
+  }
+
+  @Override
+  public int getSendButtonTint() {
+    return getSendButtonColor(sendButton.getSelectedSendType());
   }
 
   @Override

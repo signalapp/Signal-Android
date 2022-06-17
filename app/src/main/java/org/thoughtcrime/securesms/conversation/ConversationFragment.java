@@ -1100,7 +1100,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
     MultiselectForwardFragmentArgs.create(requireContext(),
                                           multiselectParts,
-                                          args -> MultiselectForwardFragment.showBottomSheet(getChildFragmentManager(), args));
+                                          args -> MultiselectForwardFragment.showBottomSheet(getChildFragmentManager(),
+                                                                                             args.withSendButtonTint(listener.getSendButtonTint())));
   }
 
   private void handleResendMessage(final MessageRecord message) {
@@ -1426,6 +1427,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   }
 
   public interface ConversationFragmentListener extends VoiceNoteMediaControllerOwner {
+    int     getSendButtonTint();
     boolean isKeyboardOpen();
     boolean isAttachmentKeyboardOpen();
     void    openAttachmentKeyboard();

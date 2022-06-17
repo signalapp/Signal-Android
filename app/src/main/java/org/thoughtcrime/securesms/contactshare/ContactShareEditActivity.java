@@ -3,21 +3,24 @@ package org.thoughtcrime.securesms.contactshare;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -31,8 +34,9 @@ import static org.thoughtcrime.securesms.contactshare.ContactShareEditViewModel.
 
 public class ContactShareEditActivity extends PassphraseRequiredActivity implements ContactShareEditAdapter.EventListener {
 
-  public  static final String KEY_CONTACTS     = "contacts";
-  private static final String KEY_CONTACT_URIS = "contact_uris";
+  public  static final String KEY_CONTACTS          = "contacts";
+  private static final String KEY_CONTACT_URIS      = "contact_uris";
+  private static final String KEY_SEND_BUTTON_COLOR = "send_button_color";
   private static final int    CODE_NAME_EDIT   = 55;
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
@@ -40,11 +44,12 @@ public class ContactShareEditActivity extends PassphraseRequiredActivity impleme
 
   private ContactShareEditViewModel viewModel;
 
-  public static Intent getIntent(@NonNull Context context, @NonNull List<Uri> contactUris) {
+  public static Intent getIntent(@NonNull Context context, @NonNull List<Uri> contactUris, @ColorInt int sendButtonColor) {
     ArrayList<Uri> contactUriList = new ArrayList<>(contactUris);
 
     Intent intent = new Intent(context, ContactShareEditActivity.class);
     intent.putParcelableArrayListExtra(KEY_CONTACT_URIS, contactUriList);
+    intent.putExtra(KEY_SEND_BUTTON_COLOR, sendButtonColor);
     return intent;
   }
 
@@ -68,6 +73,7 @@ public class ContactShareEditActivity extends PassphraseRequiredActivity impleme
     }
 
     View sendButton = findViewById(R.id.contact_share_edit_send);
+    ViewCompat.setBackgroundTintList(sendButton, ColorStateList.valueOf(getIntent().getIntExtra(KEY_SEND_BUTTON_COLOR, Color.RED)));
     sendButton.setOnClickListener(v -> onSendClicked(viewModel.getFinalizedContacts()));
 
     RecyclerView contactList = findViewById(R.id.contact_share_edit_list);
