@@ -523,6 +523,14 @@
         <item name="cornerSizeBottomRight">12dp</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.Signal.WallpaperPreview.ChatContainer" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">8dp</item>
+        <item name="cornerSizeTopLeft">8dp</item>
+        <item name="cornerSizeBottomLeft">8dp</item>
+        <item name="cornerSizeBottomRight">8dp</item>
+    </style>
+
     <style name="ShapeAppearanceOverlay.Signal.MediaSelection" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">10dp</item>

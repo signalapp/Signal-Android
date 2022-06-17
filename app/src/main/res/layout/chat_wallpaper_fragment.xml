@@ -27,8 +27,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/chat_wallpaper_preview_background"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.WallpaperPreview.ChatContainer"
                 android:layout_width="156dp"
                 android:layout_height="288dp"
                 android:layout_marginTop="16dp"
@@ -47,7 +48,7 @@
                 android:layout_height="0dp"
                 android:background="@color/black"
                 android:visibility="gone"
-                app:layout_constraintBottom_toTopOf="@id/chat_wallpaper_preview_bottom_bar"
+                app:layout_constraintBottom_toBottomOf="@id/chat_wallpaper_preview_bottom_bar"
                 app:layout_constraintEnd_toEndOf="@id/chat_wallpaper_preview_background"
                 app:layout_constraintStart_toStartOf="@id/chat_wallpaper_preview_background"
                 app:layout_constraintTop_toBottomOf="@id/chat_wallpaper_preview_top_bar"
@@ -135,7 +136,6 @@
                 android:id="@+id/chat_wallpaper_preview_bottom_bar"
                 android:layout_width="156dp"
                 android:layout_height="24dp"
-                android:background="@drawable/chat_wallpaper_preview_bottom_bar"
                 app:layout_constraintBottom_toBottomOf="@id/chat_wallpaper_preview_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
