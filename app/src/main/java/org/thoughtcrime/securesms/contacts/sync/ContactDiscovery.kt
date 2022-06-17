@@ -134,6 +134,11 @@ object ContactDiscovery {
   @JvmStatic
   @WorkerThread
   fun syncRecipientInfoWithSystemContacts(context: Context) {
+    if (!hasContactsPermissions(context)) {
+      Log.w(TAG, "[syncRecipientInfoWithSystemContacts] No contacts permission, skipping.")
+      return
+    }
+
     syncRecipientsWithSystemContacts(
       context = context,
       rewrites = emptyMap(),

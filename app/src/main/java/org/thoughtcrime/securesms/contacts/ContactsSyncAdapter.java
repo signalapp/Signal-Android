@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.util.SetUtil;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
 import java.util.List;
@@ -69,13 +70,19 @@ public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
         Log.w(TAG, e);
       }
     } else if (unknownSystemE164s.size() > 0) {
-      Log.i(TAG, "There are " + unknownSystemE164s.size() + " unknown contacts. Doing an individual sync.");
       List<Recipient> recipients = Stream.of(unknownSystemE164s)
                                          .filter(s -> s.startsWith("+"))
                                          .map(s -> Recipient.external(getContext(), s))
                                          .toList();
+
+      Log.i(TAG, "There are " + unknownSystemE164s.size() + " unknown E164s, which are now " + recipients.size() + " recipients. Only syncing these specific contacts.");
+
       try {
         ContactDiscovery.refresh(context, recipients, true);
+        
+        if (Util.isDefaultSmsProvider(context)) {
+          ContactDiscovery.syncRecipientInfoWithSystemContacts(context);
+        }
       } catch (IOException e) {
         Log.w(TAG, "Failed to refresh! Scheduling for later.", e);
         ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(true));

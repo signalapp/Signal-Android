@@ -96,6 +96,10 @@ class ContactDiscoveryRefreshV1 {
                                 .map(Recipient::requireE164)
                                 .collect(Collectors.toSet());
 
+    if (numbers.size() < recipients.size()) {
+      Log.w(TAG, "We were asked to refresh " + recipients.size() + " numbers, but filtered that down to " + numbers.size());
+    }
+
     return refreshNumbers(context, numbers, numbers);
   }
 
