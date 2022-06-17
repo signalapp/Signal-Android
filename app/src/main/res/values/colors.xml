@@ -5,6 +5,8 @@
 
     <color name="signal_accent_green">#4CAF50</color>
 
+    <color name="effectively_transparent_black">#01000000</color>
+
     <color name="transparent_black_05">#0D000000</color>
     <color name="transparent_black_08">#14000000</color>
     <color name="transparent_black_10">#18000000</color>

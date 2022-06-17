@@ -86,8 +86,9 @@
     <style name="Signal.ConversationSettings.WindowAnimation" parent="android:style/Animation" >
     </style>
 
+    <!-- For some reason, using fully transparent causes issues with the nav bar height calculation. Using *almost* transparent prevents this. -->
     <style name="TextSecure.LightNoActionBar.TransparentNavigationBar">
-        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/effectively_transparent_black</item>
         <item name="android:enforceNavigationBarContrast" tools:ignore="NewApi">false</item>
     </style>
 
