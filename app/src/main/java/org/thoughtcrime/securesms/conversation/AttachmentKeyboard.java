@@ -117,7 +117,7 @@ public class AttachmentKeyboard extends FrameLayout implements InputAwareLayout.
 
   public void setWallpaperEnabled(boolean wallpaperEnabled) {
     if (wallpaperEnabled) {
-      container.setBackgroundColor(getContext().getResources().getColor(R.color.wallpaper_compose_background));
+      container.setBackground(null);
     } else {
       container.setBackgroundColor(getContext().getResources().getColor(R.color.signal_background_primary));
     }
