@@ -74,6 +74,12 @@ class SendButton(context: Context, attributeSet: AttributeSet?) : AppCompatImage
         defaultTransportType = MessageSendType.TransportType.SIGNAL
         onSelectionChanged(signalType, false)
         return signalType
+      } else if (availableSendTypes.isEmpty()) {
+        Log.w(TAG, "No send types available at all! Enabling the Signal transport.")
+        defaultTransportType = MessageSendType.TransportType.SIGNAL
+        availableSendTypes = listOf(MessageSendType.SignalMessageSendType)
+        onSelectionChanged(MessageSendType.SignalMessageSendType, false)
+        return MessageSendType.SignalMessageSendType
       } else {
         throw AssertionError("No options of default type! DefaultTransportType: $defaultTransportType, AllAvailable: ${availableSendTypes.map { it.transportType }}")
       }
