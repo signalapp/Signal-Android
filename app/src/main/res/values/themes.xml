@@ -20,6 +20,14 @@
         <!-- leave empty to allow overriding -->
     </style>
 
+    <style name="TextSecure.LightNoActionBar.TransparentNavigationBar">
+        <!-- leave empty to allow overriding -->
+    </style>
+
+    <style name="TextSecure.DarkNoActionBar.TransparentNavigationBar">
+        <!-- leave empty to allow overriding -->
+    </style>
+
     <style name="TextSecure.BaseLightNoActionBar" parent="@style/TextSecure.LightTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
