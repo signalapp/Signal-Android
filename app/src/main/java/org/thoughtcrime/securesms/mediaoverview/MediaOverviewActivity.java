@@ -213,11 +213,13 @@ public final class MediaOverviewActivity extends PassphraseRequiredActivity {
   public void onEnterMultiSelect() {
     tabLayout.setEnabled(false);
     viewPager.setEnabled(false);
+    toolbar.setVisibility(View.INVISIBLE);
   }
 
   public void onExitMultiSelect() {
     tabLayout.setEnabled(true);
     viewPager.setEnabled(true);
+    toolbar.setVisibility(View.VISIBLE);
   }
 
   private void showSortOrderDialog(View v) {
