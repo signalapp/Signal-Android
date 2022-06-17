@@ -3887,6 +3887,9 @@ public class ConversationParentFragment extends Fragment
     reactionDelegate.setOnActionSelectedListener(onActionSelectedListener);
     reactionDelegate.setOnHideListener(onHideListener);
     reactionDelegate.show(requireActivity(), recipient.get(), conversationMessage, groupViewModel.isNonAdminInAnnouncementGroup(), selectedConversationModel);
+    if (attachmentKeyboardStub.resolved()) {
+      attachmentKeyboardStub.get().hide(true);
+    }
   }
 
   @Override
@@ -3962,6 +3965,16 @@ public class ConversationParentFragment extends Fragment
   @Override
   public boolean isKeyboardOpen() {
     return container.isKeyboardOpen();
+  }
+
+  @Override
+  public boolean isAttachmentKeyboardOpen() {
+    return attachmentKeyboardStub.resolved() && attachmentKeyboardStub.get().isShowing();
+  }
+
+  @Override
+  public void openAttachmentKeyboard() {
+    attachmentKeyboardStub.get().show(container.getKeyboardHeight(), true);
   }
 
   @Override
