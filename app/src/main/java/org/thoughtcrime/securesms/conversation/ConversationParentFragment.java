@@ -406,6 +406,7 @@ public class ConversationParentFragment extends Fragment
   private   MessageRequestsBottomView    messageRequestBottomView;
   private   ConversationReactionDelegate reactionDelegate;
   private   Stub<FrameLayout>            voiceNotePlayerViewStub;
+  private   View                         navigationBarBackground;
 
   private   AttachmentManager        attachmentManager;
   private   AudioRecorder            audioRecorder;
@@ -1197,6 +1198,7 @@ public class ConversationParentFragment extends Fragment
       reactionDelegate.hide();
     } else if (container.isInputOpen()) {
       container.hideCurrentInput(composeText);
+      navigationBarBackground.setVisibility(View.GONE);
     } else if (isSearchRequested) {
       if (searchViewItem != null) {
         searchViewItem.collapseActionView();
@@ -1213,6 +1215,7 @@ public class ConversationParentFragment extends Fragment
       emojiDrawerStub.get().hide(true);
     }
     if (attachmentKeyboardStub.resolved() && attachmentKeyboardStub.get().isShowing()) {
+      navigationBarBackground.setVisibility(View.GONE);
       attachmentKeyboardStub.get().hide(true);
     }
   }
@@ -1550,6 +1553,7 @@ public class ConversationParentFragment extends Fragment
         updatePaymentsAvailable();
 
         container.show(composeText, attachmentKeyboardStub.get());
+        navigationBarBackground.setVisibility(View.VISIBLE);
 
         viewModel.onAttachmentKeyboardOpen();
       }
@@ -2136,6 +2140,7 @@ public class ConversationParentFragment extends Fragment
     wallpaper                = view.findViewById(R.id.conversation_wallpaper);
     wallpaperDim             = view.findViewById(R.id.conversation_wallpaper_dim);
     voiceNotePlayerViewStub  = ViewUtil.findStubById(view, R.id.voice_note_player_stub);
+    navigationBarBackground  = view.findViewById(R.id.navbar_background);
 
     ImageButton quickCameraToggle      = view.findViewById(R.id.quick_camera_toggle);
     ImageButton inlineAttachmentButton = view.findViewById(R.id.inline_attachment_button);
@@ -4057,19 +4062,6 @@ public class ConversationParentFragment extends Fragment
     handleSecurityChange(isSecureText, isDefaultSms);
     updateToggleButtonState();
     updateLinkPreviewState();
-  }
-
-  private int inputAreaHeight() {
-    int height = panelParent.getMeasuredHeight();
-
-    if (attachmentKeyboardStub.resolved()) {
-      View keyboard = attachmentKeyboardStub.get();
-      if (keyboard.getVisibility() == View.VISIBLE) {
-        return height + keyboard.getMeasuredHeight();
-      }
-    }
-
-    return height;
   }
 
   private void onMessageRequestDeleteClicked(@NonNull MessageRequestViewModel requestModel) {

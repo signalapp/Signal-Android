@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.conversation;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,12 +88,6 @@ class AttachmentKeyboardButtonAdapter extends RecyclerView.Adapter<AttachmentKey
     void bind(@NonNull AttachmentKeyboardButton button, boolean wallpaperEnabled, @NonNull Listener listener) {
       image.setImageResource(button.getIconRes());
       title.setText(button.getTitleRes());
-
-      if (wallpaperEnabled) {
-        title.setTextColor(ContextCompat.getColor(itemView.getContext(), R.color.signal_colorOnCustom));
-      } else {
-        title.setTextColor(ContextCompat.getColor(itemView.getContext(), R.color.signal_colorOnBackground));
-      }
 
       itemView.setOnClickListener(v -> listener.onClick(button));
     }

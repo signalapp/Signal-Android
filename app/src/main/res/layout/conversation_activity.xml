@@ -161,6 +161,15 @@
     </org.thoughtcrime.securesms.components.InputAwareLayout>
 
     <View
+        android:id="@+id/navbar_background"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/wallpaper_compose_background"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/navigation_bar_guideline" />
+
+    <View
         android:id="@+id/toolbar_background"
         android:layout_width="match_parent"
         android:layout_height="@dimen/signal_m3_toolbar_height"
