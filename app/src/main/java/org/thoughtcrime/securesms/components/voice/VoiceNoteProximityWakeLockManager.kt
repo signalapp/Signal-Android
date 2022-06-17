@@ -14,6 +14,8 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
+import com.twilio.audioswitch.AudioDevice
+import com.twilio.audioswitch.AudioSwitch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.util.ServiceUtil
 import java.util.concurrent.TimeUnit
@@ -40,6 +42,7 @@ class VoiceNoteProximityWakeLockManager(
 
   private val mediaControllerCallback = MediaControllerCallback()
   private val hardwareSensorEventListener = HardwareSensorEventListener()
+  private val audioSwitch: AudioSwitch? = if (Build.VERSION.SDK_INT < 31) AudioSwitch(activity.applicationContext) else null
 
   private var startTime: Long = -1
 
@@ -50,12 +53,25 @@ class VoiceNoteProximityWakeLockManager(
   }
 
   override fun onResume(owner: LifecycleOwner) {
+    if (audioSwitch == null) {
+      startListening()
+    } else {
+      audioSwitch.start { _, selectedAudioDevice -> onFocusedAudioDeviceChanged(selectedAudioDevice) }
+    }
+  }
+
+  override fun onPause(owner: LifecycleOwner) {
+    audioSwitch?.stop()
+    stopListening()
+  }
+
+  private fun startListening() {
     if (proximitySensor != null) {
       mediaController.registerCallback(mediaControllerCallback)
     }
   }
 
-  override fun onPause(owner: LifecycleOwner) {
+  private fun stopListening() {
     if (proximitySensor != null) {
       unregisterCallbacksAndRelease()
     }
@@ -68,7 +84,16 @@ class VoiceNoteProximityWakeLockManager(
 
   fun unregisterFromLifecycle() {
     if (proximitySensor != null) {
+      stopListening()
       activity.lifecycle.removeObserver(this)
+    }
+  }
+
+  private fun onFocusedAudioDeviceChanged(audioDevice: AudioDevice?) {
+    if (audioDevice is AudioDevice.BluetoothHeadset) {
+      stopListening()
+    } else {
+      startListening()
     }
   }
 

@@ -113,6 +113,7 @@ dependencyResolutionManagement {
             alias('lottie').to('com.airbnb.android:lottie:3.6.0')
             alias('stickyheadergrid').to('com.codewaves.stickyheadergrid:stickyheadergrid:0.9.4')
             alias('dnsjava').to('dnsjava:dnsjava:2.1.9')
+            alias('audioswitch').to('com.twilio:audioswitch:1.1.4')
 
             // Mp4Parser
             alias('mp4parser-isoparser').to('org.mp4parser', 'isoparser').versionRef('mp4parser')
