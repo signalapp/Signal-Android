@@ -12,7 +12,7 @@
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal-i po përditësohet…</string>
   <!--ApplicationPreferencesActivity-->
-  <string name="ApplicationPreferencesActivity_currently_s">I tanishmi: %s</string>
+  <string name="ApplicationPreferencesActivity_currently_s">Momentalisht: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nuk keni caktuar ende një frazëkalimi!</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Të çaktivizohet frazëkalimi?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Kjo do të shkyçë në mënyrë të përhershme njoftime Signal-i dhe mesazhesh.</string>
@@ -26,10 +26,10 @@
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Prekeni që të ndryshoni aplikacionin tuaj parazgjedhje për SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Me SMS të çaktivizuara</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Prekeni për ta bërë Signal-in aplikacionin tuaj parazgjedhje për SMS-të</string>
-  <string name="ApplicationPreferencesActivity_on">on</string>
-  <string name="ApplicationPreferencesActivity_On">On</string>
-  <string name="ApplicationPreferencesActivity_off">off</string>
-  <string name="ApplicationPreferencesActivity_Off">Off</string>
+  <string name="ApplicationPreferencesActivity_on">aktiv</string>
+  <string name="ApplicationPreferencesActivity_On">Aktiv</string>
+  <string name="ApplicationPreferencesActivity_off">çaktivizuar</string>
+  <string name="ApplicationPreferencesActivity_Off">Çaktivizuar</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Kyçje ekrani %1$s, kyçje Regjistrimi %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Temë %1$s, Gjuhë %2$s</string>
@@ -54,76 +54,76 @@
   <string name="DraftDatabase_Draft_quote_snippet">(përgjigju)</string>
   <string name="DraftDatabase_Draft_voice_note">(Mesazh zanor)</string>
   <!--AttachmentKeyboard-->
-  <string name="AttachmentKeyboard_gallery">Galeri</string>
+  <string name="AttachmentKeyboard_gallery">Album</string>
   <string name="AttachmentKeyboard_file">Kartelë</string>
   <string name="AttachmentKeyboard_contact">Kontakt</string>
   <string name="AttachmentKeyboard_location">Vendndodhje</string>
-  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal-i lyp leje të shfaqë fotot dhe videot tuaja.</string>
-  <string name="AttachmentKeyboard_give_access">Lejo Hyrje</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal ka nevojë për leje për të shfaqur fotot dhe videot tuaja.</string>
+  <string name="AttachmentKeyboard_give_access">Lejoni hyrjen</string>
   <string name="AttachmentKeyboard_payment">Pagesë</string>
   <!--AttachmentManager-->
-  <string name="AttachmentManager_cant_open_media_selection">S\’gjendet dot aplikacion për përzgjedhje mediash.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Që të mund të bashkëngjisë foto, video, ose audio, Signal-i lyp leje Depozitimi, por kjo i është mohuar. Ju lutemi, vazhdoni për te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Depozitim\".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Që të mund të bashkëngjisë të dhëna kontakti, Signal-i lyp leje përdorimi Kontaktesh, por kjo i është mohuar. Ju lutemi, vazhdoni për te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kontakte\".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Që të mund të bashkëngjisë një vendndodhje, Signal-i lyp leje përdorimi Vendodhjesh, por kjo i është mohuar. Ju lutemi, vazhdoni për te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Vendndodhje\".</string>
+  <string name="AttachmentManager_cant_open_media_selection">Nuk gjendet një aplikacion për të përzgjedhur median.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal kërkon lejen e Storage për të bashkëngjitur foto, video ose audio, por i është refuzuar përgjithmonë. Ju lutemi, vazhdoni te menyja e cilësimeve të aplikacionit, zgjidhni \"Lejet\" dhe aktivizoni \"Storage\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal kërkon lejen e Kontakteve për të bashkangjitur informacionin e kontaktit, por i është refuzuar përgjithmonë. Ju lutemi, vazhdoni te menyja e cilësimeve të aplikacionit, zgjidhni \"Lejet\" dhe aktivizoni \"Kontaktet\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal kërkon lejen e Vendndodhjes për të bashkangjitur një vendndodhje, por i është refuzuar përgjithmonë. Ju lutemi, vazhdoni te menyja e cilësimeve të aplikacionit, zgjidhni \"Lejet\" dhe aktivizoni \"Vendndodhja\".</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Po ngarkohet media…</string>
-  <string name="AttachmentUploadJob_compressing_video_start">Po ngjeshet video…</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Po shkurtohet video…</string>
   <!--BackgroundMessageRetriever-->
-  <string name="BackgroundMessageRetriever_checking_for_messages">Po kontrollohet për mesazhe…</string>
+  <string name="BackgroundMessageRetriever_checking_for_messages">Duke kontrolluar për mesazhe…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Përdorues të bllokuar</string>
   <string name="BlockedUsersActivity__add_blocked_user">Shtoni përdorues të bllokuar</string>
-  <string name="BlockedUsersActivity__blocked_users_will">Përdoruesit e bllokuar s\’do të jenë në gjendje t\’ju thërrasin apo t\’ju dërgojnë mesazhe.</string>
-  <string name="BlockedUsersActivity__no_blocked_users">S\’ka përdorues të bllokuar</string>
+  <string name="BlockedUsersActivity__blocked_users_will">Përdoruesit e bllokuar nuk do të mund t\'ju telefonojnë ose t\'ju dërgojnë mesazhe.</string>
+  <string name="BlockedUsersActivity__no_blocked_users">Nuk ka përdorues të bllokuar</string>
   <string name="BlockedUsersActivity__block_user">Të bllokohet përdoruesi?</string>
-  <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" s\do të jetë në gjendje t\’ju telefonojë apo t\’ju dërgojë mesazhe.</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">%1$s nuk do të jetë në gjendje t\'ju telefonojë ose t\'ju dërgojë mesazhe.</string>
   <string name="BlockedUsersActivity__block">Bllokoje</string>
   <string name="BlockedUsersActivity__unblock_user">Të zhbllokohet përdoruesi?</string>
-  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Doni të zhbllokohet \"%1$s\"?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Dëshironi të zhbllokoni \"%1$s\"?</string>
   <string name="BlockedUsersActivity__unblock">Zhbllokoje</string>
   <!--BlockUnblockDialog-->
-  <string name="BlockUnblockDialog_block_and_leave_s">Të bllokohet dhe braktiset %1$s?</string>
+  <string name="BlockUnblockDialog_block_and_leave_s">Blloko dhe dil %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Të bllokohet %1$s?</string>
-  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">S\’do të merrni më mesazhe apo përditësime nga ky grup, dhe anëtarët e tij s\’do të jenë në gjendje t\’ju shtojnë sërish te ky grup.</string>
-  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Anëtarët e grupit s\’do të jenë në gjendje t\’ju rishtojnë te ky grup.</string>
-  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Anëtarë të grupit do të jenë në gjendje t\’ju rishtojnë te ky grup.</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Ju nuk do të merrni më mesazhe ose përditësime nga ky grup dhe anëtarët nuk do të mund t\'ju shtojnë më në këtë grup.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Anëtarët e grupit nuk do të mund t\'ju shtojnë përsëri në këtë grup.</string>
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Anëtarët e grupit do të mund t\'ju shtojnë sërish në këtë grup.</string>
   <!--Text that is shown when unblocking a Signal contact-->
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Do të jeni në gjendje t\’i dërgoni mesazhe dhe t\’i bëni thirrje njëri-tjetrit, dhe emri juaj dhe fotoja do të jenë të dukshëm për të.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Ju do të jeni në gjendje t\'i dërgoni mesazhe dhe t\'i telefononi njëri-tjetrit dhe emri e fotografia juaj do të ndahen me ta.</string>
   <!--Text that is shown when unblocking an SMS contact-->
-  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Do të jeni në gjendje të shkëmbeni mesazhe me njëri-tjetrin.</string>
-  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Personat e bllokuar s\’do të jenë në gjendje t\’ju bëjnë thirrje apo t\’ju dërgojnë mesazhe.</string>
-  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Personat e bllokuar s’do të jenë në gjendje t’ju dërgojnë mesazhe.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Ju do të jeni në gjendje t\'i dërgoni mesazhe njëri-tjetrit.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Personat e bllokuar nuk do të mund t\'ju telefonojnë ose t\'ju dërgojnë mesazhe.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Personat e bllokuar nuk do të mund t\'ju dërgojnë mesazhe.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
-  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blloko marrje përditësimesh dhe lajmesh mbi Signal-in.</string>
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blloko marrjen e përditësimeve dhe lajmeve të Signal-it.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
-  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Rifillo marrje përditësimesh dhe lajmesh mbi Signal-in.</string>
-  <string name="BlockUnblockDialog_unblock_s">Të zhbllokohet %1$s?</string>
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Rifilloni marrjen e përditësimeve dhe lajmeve të Signal-it.</string>
+  <string name="BlockUnblockDialog_unblock_s">Zhbllokoni %1$s?</string>
   <string name="BlockUnblockDialog_block">Bllokoje</string>
-  <string name="BlockUnblockDialog_block_and_leave">Bllokoje dhe Braktise</string>
-  <string name="BlockUnblockDialog_report_spam_and_block">Njoftoni mesazh të padëshiruar dhe bllokojeni</string>
+  <string name="BlockUnblockDialog_block_and_leave">Blloko dhe Dil</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">Raportoni mesazhet e padëshiruara dhe bllokojini</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Sot</string>
   <string name="BucketedThreadMedia_Yesterday">Dje</string>
   <string name="BucketedThreadMedia_This_week">Këtë javë</string>
   <string name="BucketedThreadMedia_This_month">Këtë muaj</string>
-  <string name="BucketedThreadMedia_Large">Të mëdha</string>
-  <string name="BucketedThreadMedia_Medium">Mesatare</string>
-  <string name="BucketedThreadMedia_Small">Të vogla</string>
+  <string name="BucketedThreadMedia_Large">Madh</string>
+  <string name="BucketedThreadMedia_Medium">Mesatarë</string>
+  <string name="BucketedThreadMedia_Small">Vogël</string>
   <!--CameraXFragment-->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">Për foto, prekeni, për video mbajeni të prekur</string>
-  <string name="CameraXFragment_capture_description">Regjistro</string>
-  <string name="CameraXFragment_change_camera_description">Ndërroni kamera</string>
-  <string name="CameraXFragment_open_gallery_description">Hap galerinë</string>
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Prekni për foto, mbajeni shtypur për video</string>
+  <string name="CameraXFragment_capture_description">Shkrep</string>
+  <string name="CameraXFragment_change_camera_description">Ndërroni kameran</string>
+  <string name="CameraXFragment_open_gallery_description">Hap albumet</string>
   <!--CameraContacts-->
-  <string name="CameraContacts_recent_contacts">Kontakte së fundi</string>
-  <string name="CameraContacts_signal_contacts">Grupe Signal</string>
-  <string name="CameraContacts_signal_groups">Grupe Signal</string>
-  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Mund të ndani gjëra me e shumta %d biseda.</string>
-  <string name="CameraContacts_select_signal_recipients">Përzgjidhni marrës Signal</string>
-  <string name="CameraContacts_no_signal_contacts">S\’ka kontakte Signal</string>
-  <string name="CameraContacts_you_can_only_use_the_camera_button">Butonin e kamerës mund ta përdorni vetëm për të dërguar foto te kontakte Signal. </string>
-  <string name="CameraContacts_cant_find_who_youre_looking_for">S\’gjeni dot atë që po kërkoni?</string>
+  <string name="CameraContacts_recent_contacts">Kontakte më të fundit</string>
+  <string name="CameraContacts_signal_contacts">Kontaktet e Signal-it</string>
+  <string name="CameraContacts_signal_groups">Grupet e Signal- it</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Ju mund të ndani një maksimum bisedash%d.</string>
+  <string name="CameraContacts_select_signal_recipients">Zgjidhni përdoruesit e Signal-it</string>
+  <string name="CameraContacts_no_signal_contacts">Nuk ka kontakte të Signal</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Ju mund të përdorni vetëm butonin e kamerës për të dërguar foto te kontaktet e Signal-it.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Nuk mund ta gjeni dot atë që po kërkoni?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Ftoni një kontakt të bëhet pjesë e Signal-it</string>
   <string name="CameraContacts__menu_search">Kërko</string>
   <!--Censorship Circumvention Megaphone-->
@@ -143,7 +143,7 @@
   <string name="ClientDeprecatedActivity_update_signal">Përditësoni Signal-in</string>
   <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Ky version i aplikacionit nuk mbulohet më. Që të vazhdoni të dërgoni dhe merrni mesazhe, përditësojeni me versionin më të ri.</string>
   <string name="ClientDeprecatedActivity_update">Përditësoje</string>
-  <string name="ClientDeprecatedActivity_dont_update">Mos e Përditëso</string>
+  <string name="ClientDeprecatedActivity_dont_update">Mos e përditëso</string>
   <string name="ClientDeprecatedActivity_warning">Paralajmërim</string>
   <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Versioni juaj i Signal-it ka skaduar. Mund të shihni historikun e mesazheve tuaj, por s\’do të jeni në gjendje të dërgoni apo merrni mesazhe, para se ta përditësoni.</string>
   <!--CommunicationActions-->
@@ -161,14 +161,14 @@
   <string name="ConfirmIdentityDialog_accept">Pranoje</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Fjalosje së fundi</string>
-  <string name="ContactsCursorLoader_contacts">Kontakte</string>
-  <string name="ContactsCursorLoader_groups">Grupe</string>
+  <string name="ContactsCursorLoader_contacts">Kontaktet</string>
+  <string name="ContactsCursorLoader_groups">Grupet</string>
   <string name="ContactsCursorLoader_phone_number_search">Kërkim numri telefoni</string>
-  <string name="ContactsCursorLoader_username_search">Kërkim emri përdoruesit</string>
+  <string name="ContactsCursorLoader_username_search">Kërkim i emrit të përdoruesit</string>
   <!--Label for my stories when selecting who to send media to-->
-  <string name="ContactsCursorLoader_my_stories">Historitë e Mia</string>
+  <string name="ContactsCursorLoader_my_stories">Story-t e mia</string>
   <!--Action for creating a new story-->
-  <string name="ContactsCursorLoader_new_story">Histori e Re</string>
+  <string name="ContactsCursorLoader_new_story">Story e re</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%s mesazhi</string>
   <string name="ContactsDatabase_signal_call_s">Thirrje Signal me %s</string>
@@ -177,9 +177,9 @@
   <string name="ContactNameEditActivity_family_name">Mbiemër</string>
   <string name="ContactNameEditActivity_prefix">Prefiks</string>
   <string name="ContactNameEditActivity_suffix">Sufiks</string>
-  <string name="ContactNameEditActivity_middle_name">Emër i dytë</string>
+  <string name="ContactNameEditActivity_middle_name">Emri i mesëm</string>
   <!--ContactShareEditActivity-->
-  <string name="ContactShareEditActivity_type_home">Kreu</string>
+  <string name="ContactShareEditActivity_type_home">Kryefaqja</string>
   <string name="ContactShareEditActivity_type_mobile">Celular</string>
   <string name="ContactShareEditActivity_type_work">Pune</string>
   <string name="ContactShareEditActivity_type_missing">Tjetër</string>
@@ -189,7 +189,7 @@
   <string name="ConversationItem_error_partially_not_delivered">Dërguar pjesërisht, prekeni për hollësi</string>
   <string name="ConversationItem_error_network_not_delivered">Dërgimi dështoi</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">U mor mesazh shkëmbimi kyçesh, prekeni që të bëhet.</string>
-  <string name="ConversationItem_group_action_left">%1$s e la grupin.</string>
+  <string name="ConversationItem_group_action_left">%1$s u largua nga grupi.</string>
   <string name="ConversationItem_send_paused">Dërgimi i ndal</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Dërgimi dështoi, prekeni për dërgim të pasigurt</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Të përdoren SMS të pafshehtëzuara?</string>
@@ -197,10 +197,10 @@
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Kjo mesazh <b>nuk</b> s\’do të fshehtëzohet, ngaqë marrësi s\’është më përdorues i Signal-it.\n\nTë dërgohet mesazh i pasiguruar?</string>
   <string name="ConversationItem_unable_to_open_media">S\’gjendet dot një aplikacion i aftë për hapjen e kësaj medie.</string>
   <string name="ConversationItem_copied_text">U kopjua %s</string>
-  <string name="ConversationItem_from_s">prej %s</string>
+  <string name="ConversationItem_from_s"> nga%s</string>
   <string name="ConversationItem_to_s">për %s</string>
-  <string name="ConversationItem_read_more">  Lexoni Më Tepër</string>
-  <string name="ConversationItem_download_more">  Shkarkoni Më Tepër</string>
+  <string name="ConversationItem_read_more">  Lexoni më shumë</string>
+  <string name="ConversationItem_download_more">  Shkarkoni më shumë</string>
   <string name="ConversationItem_pending">  Pezull</string>
   <string name="ConversationItem_this_message_was_deleted">Ky mesazh u fshi.</string>
   <string name="ConversationItem_you_deleted_this_message">E fshitë këtë mesazh.</string>
@@ -210,8 +210,8 @@
   <string name="ConversationActivity_compose_message">Hartoni mesazh</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Na ndjeni, pati një gabim në caktimin e bashkëngjitjes tuaj.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Marrësi s\’është adresë SMS ose email e vlefshme!</string>
-  <string name="ConversationActivity_message_is_empty_exclamation">Mesazhi është i zbrazët!</string>
-  <string name="ConversationActivity_group_members">Anëtarë grupi</string>
+  <string name="ConversationActivity_message_is_empty_exclamation">Mesazhi është bosh!</string>
+  <string name="ConversationActivity_group_members">Anëtarët e grupit</string>
   <string name="ConversationActivity__tap_here_to_start_a_group_call">Prekni këtu që të nisë një thirrje grupi</string>
   <string name="ConversationActivity_invalid_recipient">Marrës i pavlefshëm!</string>
   <string name="ConversationActivity_added_to_home_screen">U shtua te skena e kreut</string>
@@ -222,18 +222,18 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Le të kalojmë në Signal %1$s</string>
   <string name="ConversationActivity_specify_recipient">Ju lutem, zgjidhni një kontakt</string>
-  <string name="ConversationActivity_unblock">Zhbllokoje</string>
+  <string name="ConversationActivity_unblock">Zhblloko</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Bashkëngjitja tejkalon kufij madhësie për llojin e mesazhit që po dërgoni.</string>
   <string name="ConversationActivity_unable_to_record_audio">S\’arrihet të incizohet audio!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">S\’mund të dërgoni mesazhe te ky grup, ngaqë s\’jeni më anëtar.</string>
   <string name="ConversationActivity_only_s_can_send_messages">Vetëm %1$s mund të dërgojë mesazhe.</string>
-  <string name="ConversationActivity_admins">përgjegjësit</string>
+  <string name="ConversationActivity_admins">administratorët</string>
   <string name="ConversationActivity_message_an_admin">Dërgojini mesazh një përgjegjësi</string>
   <string name="ConversationActivity_cant_start_group_call">S\’mund të niset thirrje grupi</string>
-  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Vetëm përgjegjësit e këtij grupi mund të fillojnë një thirrje.</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Vetëm administratorët e këtij grupi mund të nisin një thirrje.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">S\’ka aplikacion të gatshëm në celularin tuaj për trajtim të kësaj në pajisjen tuaj.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Kërkesa juaj për t\’u bërë pjesë e grupit i është dërguar përgjegjësit të grupit. Kur të veprohet prej tij, do të njoftoheni.</string>
-  <string name="ConversationActivity_cancel_request">Anuloje Kërkesën</string>
+  <string name="ConversationActivity_cancel_request">Anuloje kërkesën</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Për të dërguar mesazhe zanorë, lejojeni Signal-in të përdorë mikrofonin tuaj.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Që të mund të dërgojë mesazhe audio, Signal-i lyp leje përdorimi të Mikrofonit, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Mikrofonin\".</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Që të bëjë thirrje me %s, Signal-i lyp leje përdorimi të Mikrofonit dhe Kamerës, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Mikrofonin\" dhe \"Kamerën\".</string>
@@ -248,19 +248,19 @@
   <string name="ConversationActivity_yes">Po</string>
   <string name="ConversationActivity_no">Jo</string>
   <string name="ConversationActivity_search_position">%1$d nga %2$d</string>
-  <string name="ConversationActivity_no_results">S\’ka përfundime</string>
+  <string name="ConversationActivity_no_results">Nuk ka rezultate</string>
   <string name="ConversationActivity_sticker_pack_installed">Paketa e ngjitësve u instalua</string>
   <string name="ConversationActivity_new_say_it_with_stickers">E re! Shprehuni me ngjitës</string>
   <string name="ConversationActivity_cancel">Anuloje</string>
   <string name="ConversationActivity_delete_conversation">Të fshihet biseda?</string>
-  <string name="ConversationActivity_delete_and_leave_group">Të fshihet dhe braktiset grupi?</string>
+  <string name="ConversationActivity_delete_and_leave_group">Dëshironi ta fshini dhe të dilni nga grupi?</string>
   <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Kjo bisedë do të fshihet prej krejt pajisjeve tuaja.</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Do ta braktisni këtë grup dhe do të fshihet prej krejt pajisjeve tuaja.</string>
   <string name="ConversationActivity_delete">Fshije</string>
-  <string name="ConversationActivity_delete_and_leave">Fshije dhe braktise</string>
+  <string name="ConversationActivity_delete_and_leave">Fshije dhe dil</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Për të thirrur %1$s, Signal-i lyp leje përdorimi të mikrofonit tuaj</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Tanimë më tepër mundësi te “Rregullime grupi”</string>
-  <string name="ConversationActivity_join">Merrni pjesë</string>
+  <string name="ConversationActivity_join">Bashkohu</string>
   <string name="ConversationActivity_full">Plot</string>
   <string name="ConversationActivity_error_sending_media">Gabim në dërgim mediash</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Raportuar si mesazh i padëshiruar dhe bllokuar.</string>
@@ -274,7 +274,7 @@
     <item quantity="one">Të fshihet mesazhi i përzgjedhur?</item>
     <item quantity="other">Të fshihen mesazhet e përzgjedhur?</item>
   </plurals>
-  <string name="ConversationFragment_save_to_sd_card">Të ruhet në depozitë?</string>
+  <string name="ConversationFragment_save_to_sd_card">Të ruhet në Storage?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">Ruajtja e kësaj medieje në depozitë do t\’i lejojë përdorimin e tij cilitdo aplikacioni tjetër në pajisjen tuaj.\n\nTë vazhdohet?</item>
     <item quantity="other">Ruajtja e %1$d medieve në depozitë do t\’i lejojë përdorimin e tyre cilitdo aplikacioni tjetër në pajisjen tuaj.\n\nTë vazhdohet?</item>
@@ -1159,6 +1159,7 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ky Grup i Dikurshëm s\’mund të përdoret më, ngaqë është shumë i madh. Madhësia maksimum për grupet është %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Të vazhdohet biseda juaj me %1$s dhe t\’i jepet emri dhe fotoja juaj?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Të bëhet anëtarësim në këtë grup dhe të ndahet emri dhe fotoja juaj me anëtarët e tij? S\’do ta dinë se i keni parë mesazhet e tyre, para se të pranoni këtë.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Dëshironi t\'i bashkoheni këtij grupi dhe të ndani me anëtarët e tij emrin dhe foton tuaj? Ju nuk mund t\'i shihni mesazhet e tyre derisa të konfirmoni.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Doni të bëheni pjesë e këtij grupi? S\’do ta dinë se i keni parë mesazhet e tyre, deri sa të pranoni.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Të zhbllokohet ky grup dhe të lejohet të ndajë emrin dhe foton tuaj me anëtarët e tij? S\’do të merrni ndonjë mesazh, para se ta zhbllokoni.</string>
   <string name="MessageRequestProfileView_view">Shihni</string>
@@ -1301,8 +1302,11 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Po rilidhet…</string>
   <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">Leja për aktivizimin e Bluetooth-it u refuzua</string>
   <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Aktivizo lejen e \"Pajisjeve në afërsi\" për të përdorur Bluetooth gjatë një telefonate.</string>
   <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Hap cilësimet</string>
   <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
   <string name="WebRtcCallActivity__not_now">Jo tani</string>
   <!--WebRtcCallView-->
@@ -1552,6 +1556,7 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <!--Displayed in the notification when the user sends a gift-->
   <string name="ThreadRecord__you_sent_a_gift">Dërguat një dhuratë</string>
   <!--Displayed in the notification when the user has opened a received gift-->
+  <string name="ThreadRecord__you_redeemed_a_gift_badge">Ju përdorët një distinktiv dhuratë</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Përditësim i Signal-it</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Është gati një version i ri i Signal-it, prekeni që të përditësohet</string>
@@ -1688,6 +1693,7 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="SingleRecipientNotificationBuilder_message_request">Kërkesë mesazhi</string>
   <string name="SingleRecipientNotificationBuilder_you">Ju</string>
   <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • Story</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Luaje videon</string>
   <string name="ThumbnailView_Has_a_caption_description">Ka përshkrim</string>
@@ -3624,10 +3630,13 @@ spastrohet dhe krejt lënda do të fshihet.</item>
     <item quantity="other">Vlen për %1$d muaj</item>
   </plurals>
   <!--Gift badge redeem action label-->
+  <string name="GiftMessageView__redeem">Përdor</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">Shihni</string>
   <!--Gift badge redeeming action label-->
+  <string name="GiftMessageView__redeeming">Po përdoret…</string>
   <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">U përdor</string>
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Provoni një metodë tjetër pagese, ose lidhuni me bankën tuaj për më tepër informacion.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3809,6 +3818,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Donation receipts date paid heading-->
   <string name="DonationReceiptDetailsFragment__date_paid">Datë pagese</string>
   <!--Donation receipts share PNG-->
+  <string name="DonationReceiptDetailsFragment__share_receipt">Ndani faturën</string>
   <!--Donation receipts list end note-->
   <string name="DonationReceiptListFragment__if_you_have">Nëse keni riinstaluar Signal-in, dëftesat prej dhurimesh të mëparshme s’do të duken më.</string>
   <!--Donation receipts document title-->
@@ -3894,6 +3904,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Përgjigju</string>
   <!--Displayed when viewing a group post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply_to_group">Përgjigjju grupit</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Ende pa parje</string>
   <!--Displayed when a story has no replies yet-->
@@ -4085,6 +4096,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ExpandModel__view_more">Shihni më tepër</string>
   <string name="StoriesLinkPopup__visit_link">Vizitoni lidhjen</string>
   <!--Duration and price information-->
+  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d kohëzgjatja e ditës</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Dërgoni një stemë dhuratë</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4116,10 +4128,13 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Description for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">I dhuruat %1$s një stemë. Kur ta pranojë, do t’u jepet mundësia për ta shfaqur, ose për ta fshehur.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
+  <string name="ViewReceivedGiftSheet__redeem">Përdor</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">Jo tani</string>
   <!--Dialog text while redeeming a gift-->
+  <string name="ViewReceivedGiftSheet__redeeming_gift">Po përdor dhuratën…</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <string name="ConversationFragment__you_can_redeem_your_badge_later">Ju mund ta përdorni distinktivin tuaj më vonë.</string>
   <!--Description text in gift thanks sheet-->
   <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">I dhuruat %1$s një stemë. Kur ta pranojë, do t’u jepet mundësia për ta shfaqur, ose për ta fshehur.</string>
   <!--Expired gift sheet title-->

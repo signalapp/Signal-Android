@@ -1876,6 +1876,7 @@
   <string name="message_recipients_list_item__resend">ਦੋਬਾਰਾ ਭੇਜੋ</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
   <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">ਤੁਹਾਡੀ ਕਹਾਣੀ ਵਿੱਚ ਕੀਤੀਆਂ ਅੱਪਡੇਟਾਂ ਇੱਥੇ ਦਿਖਾਈ ਦੇਣਗੀਆਂ।</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s ਗਰੁੱਪ ਵਿਚ ਸ਼ਾਮਲ ਹੋ ਗਏ.</item>
@@ -3739,6 +3740,7 @@
   <!--Story settings page title-->
   <!--Story settings private stories heading-->
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">ਪ੍ਰਾਈਵੇਟ ਕਹਾਣੀਆਂ ਨੂੰ ਸਿਰਫ਼ ਉਹ ਲੋਕ ਦੇਖ ਸਕਦੇ ਹਨ ਜਿਹਨਾਂ ਨੂੰ ਤੁਸੀਂ ਉਹਨਾਂ ਕਹਾਣੀਆਂ ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤਾ ਹੈ। ਕਹਾਣੀ ਦਾ ਨਾਮ ਸਿਰਫ਼ ਤੁਸੀਂ ਦੇਖ ਸਕਦੇ ਹੋ।</string>
   <!--Option label for creating a new private story-->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">ਮੇਰੀ ਕਹਾਣੀ</string>

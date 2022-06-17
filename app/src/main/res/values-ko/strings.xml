@@ -1808,6 +1808,7 @@
   <string name="message_recipients_list_item__resend">다시 보내기</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
   <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">스토리에 대한 업데이트가 여기 표시됩니다.</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s 님이 그룹에 참여했습니다.</item>
@@ -3412,6 +3413,7 @@
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">대화</string>
   <!--Label for Stories tab in home app screen-->
+  <string name="ConversationListTabs__stories">스토리</string>
   <!--String for counts above 99 in conversation list tabs-->
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">내 스토리</string>
@@ -3467,6 +3469,7 @@
   <!--Story settings page title-->
   <!--Story settings private stories heading-->
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">비공개 스토리는 본인이 직접 추가하는 사용자만 볼 수 있습니다. 사용자 본인만 스토리 이름을 볼 수 있습니다.</string>
   <!--Option label for creating a new private story-->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">내 스토리</string>
