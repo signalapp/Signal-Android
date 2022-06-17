@@ -2,12 +2,12 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_activated="true">
         <shape android:shape="oval">
-            <stroke android:color="@color/signal_accent_primary" android:width="2.5dp" />
+            <stroke android:color="@color/signal_colorPrimary" android:width="2.5dp" />
         </shape>
     </item>
     <item>
         <shape android:shape="oval">
-            <stroke android:color="@color/signal_inverse_transparent_25" android:width="1dp" />
+            <stroke android:color="@color/signal_inverse_transparent_25" android:width="1.5dp" />
         </shape>
     </item>
 </selector>
