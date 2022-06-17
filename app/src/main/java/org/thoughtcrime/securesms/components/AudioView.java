@@ -87,6 +87,8 @@ public final class AudioView extends FrameLayout {
 
   public AudioView(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
+    setLayoutDirection(LAYOUT_DIRECTION_LTR);
+
     TypedArray typedArray = null;
     try {
       typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.AudioView, 0, 0);
