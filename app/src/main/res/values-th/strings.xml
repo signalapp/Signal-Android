@@ -90,9 +90,13 @@
   <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">คุณจะสามารถส่งข้อความและโทรหากันได้ และชื่อกับรูปถ่ายของคุณจะถูกแบ่งปันกับพวกเขา</string>
   <!--Text that is shown when unblocking an SMS contact-->
+  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">คุณส่งข้อความหากันได้</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">คนที่ถูกปิดกั้นจะไม่สามารถโทรหรือส่งข้อความหาคุณได้</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">คนที่ถูกปิดกั้นจะส่งข้อความหาคุณไม่ได้</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">ปิดกั้นการรับการปรับปรุงและข่าวสารของ Signal</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">กลับมารับการปรับปรุงและข่าวสารของ Signal ต่อไป</string>
   <string name="BlockUnblockDialog_unblock_s">เลิกปิดกั้น %1$sหรือไม่?</string>
   <string name="BlockUnblockDialog_block">ปิดกั้น</string>
   <string name="BlockUnblockDialog_block_and_leave">ปิดกั้นและออก</string>
@@ -123,7 +127,9 @@
   <string name="CameraContacts__menu_search">ค้นหา</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">ปิดการหลบเลี่ยงการปิดกั้น</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">คุณสามารถเชื่อมต่อกับบริการ Signal โดยตรงได้แล้ว เพื่อประสบการณ์ที่ดียิ่งขึ้น</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">ปิด</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
@@ -159,7 +165,9 @@
   <string name="ContactsCursorLoader_phone_number_search">ค้นด้วยหมายเลขโทรศัพท์</string>
   <string name="ContactsCursorLoader_username_search">ค้นหาด้วยชื่อผู้ใช้</string>
   <!--Label for my stories when selecting who to send media to-->
+  <string name="ContactsCursorLoader_my_stories">สตอรี่ของฉัน</string>
   <!--Action for creating a new story-->
+  <string name="ContactsCursorLoader_new_story">สตอรี่ใหม่</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">ข้อความ %s</string>
   <string name="ContactsDatabase_signal_call_s">สาย Signal %s</string>
@@ -304,9 +312,13 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">หมายเลขความปลอดภัยของคุณกับ %s ได้เปลี่ยนไป</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">หมายเลขความปลอดภัยของคุณกับ %s ได้เปลี่ยนไป น่าจะเพราะเขาได้ติดตั้ง Signal ใหม่หรือเปลี่ยนอุปกรณ์ แตะ ตรวจยืนยัน เพื่อยืนยันหมายเลขความปลอดภัยใหม่ สิ่งนี้จะทำหรือไม่ก็ได้</string>
   <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">เปิด %1$s</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">ปิดกั้นคำขอหรือไม่</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s ไม่สามารถเข้าร่วมหรือส่งคำขอเพื่อเข้าร่วมกลุ่มนี้ได้ทางลิงก์กลุ่ม แต่สามารถเพิ่มเข้ากลุ่มได้ด้วยตัวเอง</string>
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">ปิดกั้นคำขอ</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">ยกเลิก</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -326,11 +338,44 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">ย้าย %d การสนทนาไปยังกล่องขาเข้า</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="other">อ่าน</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="other">ยกเลิกการอ่าน</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="other">ปักหมุด</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="other">ยกเลิกปักหมุด</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="other">ปิดเสียง</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="other">ยกเลิกปิดเสียง</item>
+  </plurals>
   <string name="ConversationListFragment_select">เลือก</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="other">เก็บถาวร</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="other">ยกเลิกเก็บถาวร</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="other">ลบ</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">เลือกทั้งหมด</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="other">เลือกไว้ %d</item>
+  </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">โปรไฟล์การแจ้งเตือน</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">เปิดหรือโปรไฟล์การแจ้งเตือนตรงนี้</string>
   <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">เปิด %1$s</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ข้อความแลกเปลี่ยนกุญแจ</string>
   <!--ConversationListItemAction-->
@@ -362,8 +407,11 @@
   <string name="RestoreBackupFragment__choose_folder">เลือกโฟลเดอร์</string>
   <string name="RestoreBackupFragment__not_now">ไม่ใช่ตอนนี้</string>
   <!--Couldn\'t find the selected backup-->
+  <string name="RestoreBackupFragment__backup_not_found">ไม่พบข้อมูลสำรอง</string>
   <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">อ่านข้อมูลสำรองไม่ได้</string>
   <!--Backup has an unsupported file extension-->
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">ข้อมูลสำรองมีส่วนขยายที่ไม่ดี</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">ข้อมูลสำรองของการสนทนา</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">ข้อมูลสำรองถูกเข้ารหัสด้วยวลีรหัสผ่านและเก็บในอุปกรณ์ของคุณ</string>
@@ -379,6 +427,7 @@
   <string name="BackupsPreferenceFragment__in_progress">อยู่ระหว่างดำเนินการ…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d แล้ว…</string>
   <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% ในตอนนี้…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">เพื่อที่จะสำรองข้อมูล Signal ต้องได้รับอนุญาตให้เข้าถึงที่เก็บข้อมูลภายนอก แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ที่เก็บข้อมูล\"</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">ใช้ค่าที่กำหนดเอง: %s</string>
@@ -626,6 +675,8 @@
   <string name="ManageProfileFragment_your_name">ชื่อของคุณ</string>
   <string name="ManageProfileFragment_your_username">ชื่อผู้ใช้ของคุณ</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">ล้มเหลวในการสร้างภาพประจำตัว</string>
+  <string name="ManageProfileFragment_badges">เครื่องหมาย</string>
+  <string name="ManageProfileFragment__edit_photo">แก้ไขรูปภาพ</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">ไม่มีกลุ่มร่วมกัน</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -641,6 +692,8 @@
   <string name="CustomNotificationsDialogFragment__notification_sound">เสียงแจ้งเตือน</string>
   <string name="CustomNotificationsDialogFragment__vibrate">สั่น</string>
   <!--Button text for customizing notification options-->
+  <string name="CustomNotificationsDialogFragment__customize">ปรับแต่ง</string>
+  <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">เปลี่ยนเสียงและการสั่น</string>
   <string name="CustomNotificationsDialogFragment__call_settings">ตั้งค่าการโทร</string>
   <string name="CustomNotificationsDialogFragment__ringtone">เสียงเรียกเข้า</string>
   <string name="CustomNotificationsDialogFragment__enabled">เปิดใช้</string>
@@ -674,10 +727,13 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">พบความผิดพลาดของเครือข่าย</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">ลิงก์กลุ่มนี้ไม่ได้เปิดให้ใช้</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">เข้าร่วมกลุ่มไม่ได้</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">คุณเข้าร่วมกลุ่มนี้ด้วยลิงก์กลุ่มนี้ไม่ได้เพราะผู้ดูแลลบคุณออกไปแล้ว</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">ลิงก์กลุ่มนี้ใช้ไม่ได้แล้ว</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">ลิงก์มีข้อผิดพลาด</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
   <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">การเข้าร่วมผ่านลิงก์นี้ล้มเหลว ลองเข้าร่วมอีกครั้งในภายหลัง</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">คุณต้องการเข้าร่วมกลุ่มและเปิดเผยชื่อกับรูปภาพให้สมาชิกในกลุ่มเห็นหรือไม่?</string>
@@ -704,6 +760,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">เพิ่ม “%1$s” เข้ากลุ่มหรือไม่?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">ปฏิเสธคำขอจาก “%1$s” หรือไม่?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">ปฏิเสธคำขอจาก “%1$s” หรือไม่ เขาจะไม่สามารถส่งคำขอเพื่อเข้าร่วมกลุ่มนี้ด้วยลิงก์นี้ได้อีก</string>
   <string name="RequestConfirmationDialog_add">เพิ่ม</string>
   <string name="RequestConfirmationDialog_deny">ปฏิเสธ</string>
   <!--ImageEditorHud-->
@@ -716,10 +773,12 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">แบ่งปัน</string>
   <string name="InviteActivity_share_with_contacts"> แบ่งปันกับผู้ติดต่อ</string>
+  <string name="InviteActivity_share_via">แชร์ทาง…</string>
   <string name="InviteActivity_cancel">ยกเลิก</string>
   <string name="InviteActivity_sending">กำลังส่ง…</string>
   <string name="InviteActivity_invitations_sent">ส่งคำเชิญแล้ว!</string>
   <string name="InviteActivity_invite_to_signal">เชิญมาใช้ Signal</string>
+  <string name="InviteActivity_send_sms">ส่ง SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">ส่งคำเชิญทาง %dSMS หรือไม่?</item>
   </plurals>
@@ -727,6 +786,7 @@
   <string name="InviteActivity_no_app_to_share_to">ดูเหมือนว่าคุณไม่มีแอปอะไรที่จะแบ่งปันได้</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">เรียนรู้เพิ่มเติม</string>
+  <string name="SpanUtil__read_more">อ่านเพิ่มเติม</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">หาข้อความไม่พบ</string>
   <string name="LongMessageActivity_message_from_s">ข้อความจาก %1$s</string>
@@ -760,6 +820,15 @@
   <string name="MediaOverviewActivity_List_view_description">แสดงข้อมูลแบบแถว</string>
   <string name="MediaOverviewActivity_Selected_description">ถูกเลือก</string>
   <string name="MediaOverviewActivity_select_all">เลือกทั้งหมด</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="other">บันทึก</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="other">ลบ</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="other">เลือกไว้ %1$d (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">แฟ้ม</string>
   <string name="MediaOverviewActivity_audio">เสียง</string>
   <string name="MediaOverviewActivity_video">วิดีโอ</string>
@@ -784,7 +853,9 @@
   <string name="NotificationBarManager_signal_call_in_progress">กำลังโทร Signal อยู่</string>
   <string name="NotificationBarManager__establishing_signal_call">กำลังต่อสาย Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">สาย Signal เรียกเข้า</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">โทรกลุ่ม Signal ที่กำลังเรียกเข้า</string>
   <string name="NotificationBarManager__stopping_signal_call_service">หยุดบริการโทร Signal</string>
+  <string name="NotificationBarManager__decline_call">ปฏิเสธการโทร</string>
   <string name="NotificationBarManager__answer_call">รับสาย</string>
   <string name="NotificationBarManager__end_call">วางสาย</string>
   <string name="NotificationBarManager__cancel_call">ยกเลิกการโทร</string>
@@ -876,6 +947,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s ตั้ง %2$s เป็นผู้ดูแล</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s ตั้งคุณเป็นผู้ดูแล</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">คุณได้เพิกถอนสิทธิ์ผู้ดูแลจาก %1$s</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s ได้เพิกถอนสิทธิ์ผู้ดูแลของคุณ</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ได้เพิกถอนสิทธิ์ผู้ดูแลจาก %2$s</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s ได้เป็นผู้ดูแลแล้ว</string>
   <string name="MessageRecord_you_are_now_an_admin">ตอนนี้คุณเป็นผู้ดูแลแล้ว</string>
@@ -964,6 +1036,9 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">คุณได้ส่งคำร้องขอเข้ากลุ่ม</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s ได้ขอเข้ากลุ่มผ่านลิงก์กลุ่ม</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="other">%1$s ส่งคำขอและยกเลิกคำขอ %2$d เพื่อเข้าร่วมผ่านลิงก์กลุ่มนี้</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s ได้อนุมัติคำขอเพื่อเข้ากลุ่มของคุณ</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s ได้อนุมัติคำขอเข้ากลุ่มจาก %2$s</string>
@@ -983,7 +1058,9 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">คุณทำเครื่องหมายว่า หมายเลขความปลอดภัยของคุณกับ %s ยังไม่ถูกตรวจยืนยัน</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">คุณทำเครื่องหมายจากอีกอุปกรณ์ว่า หมายเลขความปลอดภัยของคุณกับ %s ยังไม่ถูกตรวจยืนยัน</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">ไม่สามารถส่งข้อความจาก %s ได้</string>
+  <string name="MessageRecord_s_changed_their_phone_number">%1$s เปลี่ยนเบอร์โทรศัพท์</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">ชอบฟีเจอร์ใหม่นี้หรือไม่ ขอบคุณด้วย Boost สิ</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ได้เริ่มการโทรแบบกลุ่ม %2$s</string>
@@ -1585,6 +1662,7 @@
   <string name="ConversationUpdateItem_enable_call_notifications">เปิดใช้การแจ้งเตือนการโทร</string>
   <string name="ConversationUpdateItem_update_contact">ปรับปรุงผู้ติดต่อ</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">ปิดกั้นคำขอ</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">ไม่มีกลุ่มที่เหมือนกันเลย โปรดพิจารณาคำขออย่างระวัง</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">ไม่มีผู้ติดต่อในกลุ่มนี้ โปรดพิจารณาคำขออย่างระวัง</string>
   <string name="ConversationUpdateItem_view">ดู</string>
@@ -1878,6 +1956,8 @@
   <string name="preferences__led_color">สี LED</string>
   <string name="preferences__led_color_unknown">ไม่ทราบ</string>
   <string name="preferences__pref_led_blink_title">รูปแบบการกระพริบไฟ LED</string>
+  <string name="preferences__customize">ปรับแต่ง</string>
+  <string name="preferences__change_sound_and_vibration">เปลี่ยนเสียงและการสั่น</string>
   <string name="preferences__sound">เสียง</string>
   <string name="preferences__silent">ไม่ส่งเสียง</string>
   <string name="preferences__default">ค่าเริ่มต้น</string>
@@ -3125,6 +3205,7 @@
   <!--Heading for receipts area of manage subscriptions page-->
   <!--Heading for my subscription area of manage subscriptions page-->
   <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__badges">เครื่องหมาย</string>
   <!--Preference heading for other ways to donate-->
   <!--Preference label to launch badge gifting-->
   <!--Description text in boost sheet-->
@@ -3284,6 +3365,7 @@
   <!--Label for Stories tab in home app screen-->
   <!--String for counts above 99 in conversation list tabs-->
   <!--Title for "My Stories" row item in Stories landing page-->
+  <string name="StoriesLandingFragment__my_stories">สตอรี่ของฉัน</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <!--Displayed when there are no stories to display-->
   <!--Context menu option to hide a story-->
@@ -3419,7 +3501,9 @@
   <!--Displayed in a dialog to let the user select a given users story-->
   <!--Displayed in a dialog to let the user select a given users profile photo-->
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">ปิดการหลบเลี่ยงการปิดกั้น</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">คุณสามารถเชื่อมต่อกับบริการ Signal โดยตรงได้แล้ว เพื่อประสบการณ์ที่ดียิ่งขึ้น</string>
   <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_no_thanks">ไม่ ขอบคุณ</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->

@@ -90,7 +90,9 @@
   <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">អ្នកនឹងអាចផ្ញើសារនិងហៅចេញទៅវិញទៅមក ហើយឈ្មោះនិងរូបភាពរបស់អ្នក នឹងត្រូវចែករំលែកជាមួយពួកគេ។</string>
   <!--Text that is shown when unblocking an SMS contact-->
+  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">អ្នកនឹងអាចផ្ញើសារគ្នាទៅវិញទៅមក។</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">មនុស្សដែលបានហាមឃាត់ នឹងមិនអាចហៅមកអ្នក ឬផ្ញើសារបានទេ។</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">មនុស្សដែលត្រូវបានទប់ស្កាត់នឹងមិនអាចផ្ញើសារទៅអ្នកបានទេ។</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">ហាមឃាត់ការទទួលដំណឹង និងបច្ចុប្បន្នភាព Signal។</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -163,7 +165,9 @@
   <string name="ContactsCursorLoader_phone_number_search">ស្វែងរកលេខទូរស័ព្ទ</string>
   <string name="ContactsCursorLoader_username_search">ស្វែងរកឈ្មោះអ្នកប្រើប្រាស់</string>
   <!--Label for my stories when selecting who to send media to-->
+  <string name="ContactsCursorLoader_my_stories">រឿងរ៉ាវរបស់ខ្ញុំ</string>
   <!--Action for creating a new story-->
+  <string name="ContactsCursorLoader_new_story">រឿងរ៉ាវថ្មី</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">សារ %s</string>
   <string name="ContactsDatabase_signal_call_s">ការហៅចេញរបស់Signal  %s</string>
@@ -310,8 +314,11 @@
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s បើក</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">ទប់ស្កាត់ការស្នើសុំឬ?</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s នឹង​មិន​អាច​ចូល​រួម ឬ​ស្នើ​សុំ​ចូល​រួម​ក្រុម​នេះ​តាម​រយៈ​តំណ​ក្រុម​បាន​ទេ។ ពួកគេម្នាក់ៗនៅតែអាចបញ្ចូលក្នុងក្រុមបាន។</string>
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">ទប់ស្កាត់ការស្នើសុំ</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">បោះបង់</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -400,8 +407,11 @@
   <string name="RestoreBackupFragment__choose_folder">ជ្រើសរើសទីតាំងផ្ទុក</string>
   <string name="RestoreBackupFragment__not_now">ពេលក្រោយ</string>
   <!--Couldn\'t find the selected backup-->
+  <string name="RestoreBackupFragment__backup_not_found">រកមិនឃើញការបម្រុងទុកទិន្នន័យទេ។</string>
   <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">ការបម្រុងទុកទិន្នន័យមិនអាចអានបានទេ។</string>
   <!--Backup has an unsupported file extension-->
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">ការបម្រុងទុកទិន្នន័យមានផ្នែកបន្ថែមមិនល្អ។</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">ការបម្រុងទុកការជជែក</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">ការបម្រុងទុក ត្រូវបានធ្វើកូដនីយកម្មជាមួយឃ្លាសម្ងាត់ និងត្រូវបានរក្សាទុកនៅលើឧបករណ៍របស់អ្នក។</string>
@@ -682,6 +692,8 @@
   <string name="CustomNotificationsDialogFragment__notification_sound">សំឡេងសារជូនដំណឹង</string>
   <string name="CustomNotificationsDialogFragment__vibrate">ញ័រ</string>
   <!--Button text for customizing notification options-->
+  <string name="CustomNotificationsDialogFragment__customize">កំណត់ផ្ទាល់ខ្លួន</string>
+  <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">ផ្លាស់ប្តូរសំឡេង និងរំញ័រ</string>
   <string name="CustomNotificationsDialogFragment__call_settings">កំណត់ការហៅ</string>
   <string name="CustomNotificationsDialogFragment__ringtone">សំឡេងរោទិ៍</string>
   <string name="CustomNotificationsDialogFragment__enabled">បានបើក</string>
@@ -715,11 +727,15 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">បានជួបប្រទះកំហុសបណ្តាញ។</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">តំណភ្ជាប់របស់ក្រុមនេះមិនដំណើរការទេ</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">មិនអាចចូលរួមក្រុមទេ</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">អ្នកមិនអាចចូលរួមក្រុមនេះ​តាម​រយៈ​តំណ​ក្រុម​បាន​ទេ ព្រោះ​អ្នក​គ្រប់គ្រង​បាន​ដក​អ្នក​ចេញ។</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">តំណភ្ជាប់ក្រុមនេះ លែងមានសុពលភាពហើយ។</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">តំណមានបញ្ហា</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
+  <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">មិនអាចចូល​រួម​តាម​រយៈ​តំណ​នេះ​ទេ។ សូមព្យាយាមចូលរួមម្តងទៀតនៅពេលក្រោយ។</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">តើអ្នកចង់ចូលរួមក្រុមនេះ និងចែករំលែកឈ្មោះអ្នក និងរូបភាពជាមួយសមាជិកក្រុមឬទេ?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">អភិបាលនៃក្រុមនេះ ត្រូវអនុម័តសំណើរបស់អ្នក មុនពេលអ្នកអាចចូលរួមក្រុមនេះ។ នៅពេលអ្នកបានស្នើចូលរួម ឈ្មោះនិងរូបភាពរបស់អ្នក នឹងត្រូវចែករំលែកជាមួយសមាជិកក្រុម។</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
@@ -744,6 +760,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">បន្ថែម “%1$s” ចូលក្នុងក្រុម?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">បដិសេធការស្នើសុំពី “%1$s”?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">បដិសេធសំណើពី “%1$s” ឬ? ពួកគេ​នឹង​មិន​អាច​ស្នើ​សុំ​ចូល​រួម​តាម​រយៈ​តំណ​ក្រុម​ទៀត​ទេ។</string>
   <string name="RequestConfirmationDialog_add">បន្ថែម</string>
   <string name="RequestConfirmationDialog_deny">បដិសេធ</string>
   <!--ImageEditorHud-->
@@ -1019,6 +1036,9 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">អ្នកបានស្នើសុំចួលរួមក្រុម។</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s បានស្នើសុំចូលរួម តាមរយៈតំណភ្ជាប់ក្រុម។</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="other">%1$s បានស្នើសុំ និងលុបចោល %2$d សំណើដើម្បីចូលរួមតាមរយៈតំណក្រុម។</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s បានអនុម័តសំណើរបស់អ្នកដើម្បីចូលរួមក្រុម។</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s បានអនុម័តសំណើរបស់អ្នកដើម្បីចូលរួមក្រុមពី %2$s។</string>
@@ -1071,12 +1091,14 @@
   <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">អនុញ្ញាត %1$s ផ្ញើសារមកអ្នក និងចែកឈ្មោះ និងរូបភាពរបស់អ្នកជាមួយសមាជិកក្រុម? អ្នកនឹងមិនទទួលសារណាមួយឡើយ រហូតអ្នកលែងហាមឃាត់ពួកគេ។</string>
   <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">អនុញ្ញាតឲ្យ %1$s ផ្ញើសារទៅអ្នកឬ? អ្នក​នឹង​មិន​ទទួល​បាន​សារ​ណា​មួយ​ឡើយ រហូត​ទាល់​តែ​អ្នក​ឈប់​ទប់ស្កាត់​ពួកគេ។</string>
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">ទទួលបច្ចុប្បន្នភាព និងព័ត៌មានពី %1$s? អ្នកនឹងមិនទទួលបច្ចុប្បន្នភាពណាមួយឡើយ រហូតអ្នកលែងហាមឃាត់វា។</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">បន្តការសន្ទនារបស់អ្នកជាមួយក្រុមនេះ និងចែករំលែកឈ្មោះ និងរូបភាពរបស់អ្នកជាមួយសមាជិកក្រុម។</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">ដំឡើងក្រុមនេះ ដើម្បីបើកមុខងារថ្មីៗដូចជា @mentions និងអ្នកគ្រប់គ្រង។ សមាជិកដែលមិនអាចចែករំលែកឈ្មោះ ឬរូបភាពរបស់ពួកគេនៅក្នុងក្រុម នឹងត្រូវបានអញ្ជើញឲ្យចូលរួម។</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">ក្រុមជំនាន់មុន អាចឈប់ប្រើប្រាស់ ដោយសារវាមានទំហំធំពេក។ ទំហំអតិបរមាក្រុមគឺ %1$d។</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">បន្តការសន្ទនារបស់អ្នកជាមួយ %1$s និងចែករំលែកឈ្មោះ និងរូបភាពរបស់អ្នកជាមួយគេ?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ចូលក្រុមនេះ និងចែករំលែកឈ្មោះ និងរូបថតអ្នក ជាមួយសមាជិកក្រុម? ពួកគេនឹងមិនដឹងថាអ្នកបានឃើញសាររបស់ពួកគេ រហូតអ្នកយល់ព្រមទទួល។</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">ចូលរួមក្រុមនេះ ហើយចែករំលែកឈ្មោះ និងរូបថតរបស់អ្នកជាមួយសមាជិកទាំងនោះឬ? អ្នកនឹងមិនឃើញសាររបស់ពួកគេ រហូតទាល់តែអ្នកយល់ព្រមទទួល។</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ចូលរួមក្រុមនេះ? ពួកគេនឹងមិនដឹងថា អ្នកបានឃើញសាររបស់ពួកគេ រហូតអ្នកយល់ព្រម។</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">លែងហាមឃាត់ក្រុមនេះ និងចែករំលែកឈ្មោះ និងរូបភាពរបស់អ្នកជាមួយសមាជិកក្រុម? អ្នកនឹងមិនទទួលសារណាមួយឡើយ រហូតអ្នកលែងហាមឃាត់ពួកគេ។</string>
   <string name="MessageRequestProfileView_view">បង្ហាញ</string>
@@ -1087,7 +1109,13 @@
     <item quantity="other">%1$d សមាជិក</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="other">សមាជិក %1$d នាក់ (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="other">+%1$d នាក់ត្រូវបានអញ្ជើញ</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="other">%d ក្រុមបន្ថែម</item>
   </plurals>
@@ -1176,6 +1204,7 @@
   <!--Recipient-->
   <string name="Recipient_you">អ្នក</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">រឿងរ៉ាវរបស់ខ្ញុំ</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">ហាមឃាត់</string>
   <string name="RecipientPreferenceActivity_unblock">បើកវិញ</string>
@@ -1205,8 +1234,11 @@
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">កំពុងតភ្ជាប់ម្តងទៀត…</string>
   <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">ការអនុញ្ញាតប៊្លូធូសត្រូវបានបដិសេធ</string>
   <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">សូមបើកការអនុញ្ញាត \"ឧបករណ៍នៅជិត\" ដើម្បីប្រើប៊្លូធូសអំឡុងពេលហៅទូរសព្ទ។</string>
   <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">បើកការកំណត់</string>
   <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
   <string name="WebRtcCallActivity__not_now">ពេលក្រោយ</string>
   <!--WebRtcCallView-->
@@ -1350,6 +1382,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">បន្ថែម</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">លេខកូដសម្ងាត់ត្រូវបានផ្ទៀងផ្ទាត់ដោយជោគជ័យ។ យើងនឹងរំលឹកអ្នកម្តងទៀតនៅពេលក្រោយ។</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">លេខកូដសម្ងាត់ត្រូវបានផ្ទៀងផ្ទាត់ដោយជោគជ័យ។ យើងនឹងរំលឹកអ្នកម្តងទៀតនៅថ្ងៃស្អែក។</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">លេខកូដសម្ងាត់ត្រូវបានផ្ទៀងផ្ទាត់ដោយជោគជ័យ។ យើងនឹងរំលឹកអ្នកម្តងទៀតក្នុងរយៈពេលពីរបីថ្ងៃ។</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">លេខកូដសម្ងាត់ត្រូវបានផ្ទៀងផ្ទាត់ដោយជោគជ័យ។ យើងនឹងរំលឹកអ្នកម្តងទៀតក្នុងរយៈពេលមួយសប្តាហ៍។</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">លេខកូដសម្ងាត់ត្រូវបានផ្ទៀងផ្ទាត់ដោយជោគជ័យ។ យើងនឹងរំលឹកអ្នកម្តងទៀតក្នុងរយៈពេលពីរបីសប្តាហ៍ទៀត។</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">លេខកូដសម្ងាត់ត្រូវបានផ្ទៀងផ្ទាត់ដោយជោគជ័យ។ យើងនឹងរំលឹកអ្នកម្តងទៀតក្នុងរយៈពេលមួយខែ។</string>
   <!--Slide-->
   <string name="Slide_image">រូបភាព</string>
   <string name="Slide_sticker">ស្ទីកគ័រ</string>
@@ -1434,8 +1472,11 @@
   <string name="ThreadRecord_video">វីដេអូ</string>
   <string name="ThreadRecord_chat_session_refreshed">វគ្គជជែកត្រូវបានផ្ទុកឡើងវិញ</string>
   <!--Displayed in the notification when the user is sent a gift-->
+  <string name="ThreadRecord__you_received_a_gift">អ្នកទទួលបានកាដូមួយ</string>
   <!--Displayed in the notification when the user sends a gift-->
+  <string name="ThreadRecord__you_sent_a_gift">អ្នកបានផ្ញើកាដូមួយ</string>
   <!--Displayed in the notification when the user has opened a received gift-->
+  <string name="ThreadRecord__you_redeemed_a_gift_badge">អ្នកបានប្តូរយកស្លាកកាដូ</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">បច្ចុប្បន្នភាព Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">កំណែថ្មីរបស់ Signal មានហើយ, ចុច ដើម្បីធ្វើបច្ចុប្បន្នភាព។</string>
@@ -1569,6 +1610,7 @@
   <string name="SingleRecipientNotificationBuilder_message_request">សារស្នើសុំ</string>
   <string name="SingleRecipientNotificationBuilder_you">អ្នក</string>
   <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story"> %1$s • រឿងរ៉ាវ</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">ចាក់ វីដេអូ</string>
   <string name="ThumbnailView_Has_a_caption_description">មានចំណងជើង</string>
@@ -1638,6 +1680,9 @@
     <item quantity="other">%1$d សមាជិក</item>
   </plurals>
   <!--Displays number of viewers for a story-->
+  <plurals name="contact_selection_list_item__number_of_viewers">
+    <item quantity="other">អ្នកមើល %1$d នាក់</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">សារ Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS គ្មានសុវត្ថិភាព</string>
@@ -1676,6 +1721,7 @@
   <string name="ConversationUpdateItem_enable_call_notifications">បើកការជូនដំណឹងការហៅ</string>
   <string name="ConversationUpdateItem_update_contact">ធ្វើបច្ចុប្បន្នភាពលេខទំនាក់ទំនង</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">ទប់ស្កាត់ការស្នើសុំ</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">មិនមានក្រុមដូចគ្នា។ ត្រួតពិនិត្យការស្នើសុំដោយប្រុងប្រយ័ត្ន។</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">មិនមានលេខទំនាក់ទំនងក្នុងក្រុមនេះ។ ត្រួតពិនិត្យការស្នើសុំដោយប្រុងប្រយ័ត្ន។</string>
   <string name="ConversationUpdateItem_view">បង្ហាញ</string>
@@ -1697,9 +1743,13 @@
   <string name="QuoteView_you">អ្នក</string>
   <string name="QuoteView_original_missing">រកមិនឃើញសារដើម</string>
   <!--Author formatting for group stories-->
+  <string name="QuoteView_s_story">%1$s · រឿងរ៉ាវ</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">អ្នក · រឿងរ៉ាវ</string>
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">លែងមានទៀតហើយ</string>
   <!--Label for quoted gift-->
+  <string name="QuoteView__gift">កាដូ</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">អូសចុះក្រោម</string>
   <!--BubbleOptOutTooltip-->
@@ -1990,6 +2040,8 @@
   <string name="preferences__led_color">ពណ៌​LED</string>
   <string name="preferences__led_color_unknown">មិនដឹង</string>
   <string name="preferences__pref_led_blink_title">លំនាំលោតភ្លើង LED</string>
+  <string name="preferences__customize">កំណត់ផ្ទាល់ខ្លួន</string>
+  <string name="preferences__change_sound_and_vibration">ផ្លាស់ប្តូរសំឡេង និងរំញ័រ</string>
   <string name="preferences__sound">សំឡេង</string>
   <string name="preferences__silent">ស្ងាត់</string>
   <string name="preferences__default">លំនាំដើម</string>
@@ -2016,6 +2068,7 @@
   <string name="preferences__advanced">កម្រិតខ្ពស់</string>
   <string name="preferences__donate_to_signal">ឧបត្ថម្ភទៅ Signal</string>
   <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">ការបរិច្ចាគតែមួយដង</string>
   <string name="preferences__privacy">ឯកជនភាព</string>
   <string name="preferences__mms_user_agent">ភ្នាក់ងារអ្នកប្រើប្រាស់ MMS </string>
   <string name="preferences__advanced_mms_access_point_names">កំណត់ MMS ដោយខ្លួនឯង</string>
@@ -2735,6 +2788,7 @@
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$sមានលទ្ធភាពកែរប្រែក្រុម និងសមាជិកនៅក្នុងក្រុម</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">ដក %1$sចេញពីក្រុម?</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">ដក %1$s ចេញពីក្រុមឬ? ពួកគេនឹងមិនអាចចូលរួមម្តងទៀតតាមរយៈតំណក្រុម។</string>
   <string name="RecipientBottomSheet_remove">លុបចេញ</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">បានចម្លងទៅ clipboard</string>
   <string name="GroupRecipientListItem_admin">អ្នកគ្រប់គ្រង</string>
@@ -2823,6 +2877,7 @@
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">កំពុងលុបគណនី</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
+  <string name="DeleteAccountFragment__canceling_your_subscription">កំពុងបោះបង់ការជាវរបស់អ្នក…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <string name="DeleteAccountFragment__depending_on_the_number_of_groups">អាស្រ័យទៅលើចំនួននៃក្រុមរបស់អ្នក ដំណើរការនេះប្រហែលចំណាយពេលពីរបីនាទី</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
@@ -3355,17 +3410,23 @@
   <string name="BecomeASustainerFragment__get_badges">ទទួលបានស្លាកសម្គាល់សម្រាប់គណនីរបស់អ្នកដោយគាំទ្រ Signal</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal ជាកម្មវិធីដែលមិនរកប្រាក់ចំនូល មិនអ្នកផ្សាយពាណិជ្ជកម្ម ឬអ្នកបណ្ដាក់ទុន តែជាកម្មវិធីដែលគាំទ្រដោយមនុស្សដូចជាអ្នក</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">ធ្វើ​ការ​បរិច្ចាគ​ប្រចាំ​ខែ</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">បន្ថែម</string>
   <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">បង្កាន់ដៃ</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">ការជាវរបស់ខ្ញុំ</string>
   <string name="ManageDonationsFragment__manage_subscription">ចាត់ចែងការជាវ</string>
   <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__donation_receipts">បង្កាន់ដៃបរិច្ចាគ</string>
   <string name="ManageDonationsFragment__badges">ស្លាកសម្គាល់</string>
   <string name="ManageDonationsFragment__subscription_faq">សំណួរដែលសួរញឺកញាប់អំពីការជាវ</string>
   <string name="ManageDonationsFragment__error_getting_subscription">មានបញ្ហាក្នុងការជាវ</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">វិធីផ្សេងទៀតដើម្បីផ្តល់ជូន</string>
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">ផ្តល់ជូនស្លាក</string>
   <string name="BoostFragment__give_signal_a_boost">អោយ Signal នូវការជំរុញមួយ</string>
   <!--Description text in boost sheet-->
   <string name="Boost__enter_custom_amount">បញ្ជូលចំនួនប្រាក់ដោយខ្លួនឯង</string>
@@ -3380,6 +3441,7 @@
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
   <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">ស្លាកទ្រទ្រង់របស់អ្នកបានផុតកំណត់ ហើយមិនអាចមើលឃើញនៅលើប្រូហ្វាល់របស់អ្នកទៀតឡើយ។</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">អ្នកអាចដាក់ស្លាកសម្គាល់ជំរុញរបស់អោយសកម្មឡើងវិញសម្រាប់រយៈពេល ​៣០​ថ្ងៃដោយការចូលរួមចំណែកម្ដង</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">ធ្វើជាអ្នកគាំទ្រ​</string>
@@ -3420,10 +3482,12 @@
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__could_not_verify_recipient">មិនអាចផ្ទៀងផ្ទាត់អ្នកទទួលទេ។</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <!--Gift message view title-->
   <!--Gift message view expiry information-->
   <!--Gift badge redeem action label-->
+  <string name="GiftMessageView__redeem">ប្តូរ</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">បង្ហាញ</string>
   <!--Gift badge redeeming action label-->
@@ -3597,6 +3661,7 @@
   <!--Donation receipts recurring tab label-->
   <!--Donation receipts one-time tab label-->
   <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">កាដូ</string>
   <!--Donation receipts boost row label-->
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">លម្អិត</string>
@@ -3615,6 +3680,7 @@
   <!--Label for Stories tab in home app screen-->
   <!--String for counts above 99 in conversation list tabs-->
   <!--Title for "My Stories" row item in Stories landing page-->
+  <string name="StoriesLandingFragment__my_stories">រឿងរ៉ាវរបស់ខ្ញុំ</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <!--Displayed when there are no stories to display-->
   <!--Context menu option to hide a story-->
@@ -3623,13 +3689,16 @@
   <string name="StoriesLandingItem__forward">បញ្ជូនបន្ត</string>
   <!--Context menu option to share a story-->
   <!--Context menu option to go to story chat-->
+  <string name="StoriesLandingItem__go_to_chat">ទៅកាន់ការជជែក</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">កំពុងផ្ញើ…</string>
   <!--Label when multiple stories are pending sending-->
   <!--Label when a story fails to send-->
   <string name="StoriesLandingItem__send_failed">ផ្ញើបរាជ័យ</string>
   <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">ចុចដើម្បីព្យាយាមម្តងទៀត</string>
   <!--Title of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__hide_story">លាក់រឿងរ៉ាវឬ?</string>
   <!--Message of dialog confirming decision to hide a story-->
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">លាក់</string>
@@ -3669,6 +3738,7 @@
   <!--Note at bottom of story settings regarding who can see private stories.-->
   <!--Option label for creating a new private story-->
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">រឿងរ៉ាវរបស់ខ្ញុំ</string>
   <!--Section heading for story visibility-->
   <!--Clickable option for selecting people to hide your story from-->
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
@@ -3683,20 +3753,28 @@
   <!--Signal connections sheet bullet point 3-->
   <!--Note at the bottom of the Signal connections sheet-->
   <!--Clickable option to add a viewer to a private story-->
+  <string name="PrivateStorySettingsFragment__add_viewer">បញ្ចូលអ្នកមើល</string>
   <!--Clickable option to delete a custom story-->
+  <string name="PrivateStorySettingsFragment__delete_private_story">លុបរឿងរ៉ាវឯកជន</string>
   <!--Dialog title when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__remove_s">ដក %1$s ចេញឬ?</string>
   <!--Dialog message when attempting to remove someone from a private story-->
   <!--Positive action label when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__remove">លុបចេញ</string>
   <!--Dialog title when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__are_you_sure">តើអ្នកប្រាកដឬទេ?</string>
   <!--Dialog message when deleting a private story-->
   <!--Page title for editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__edit_story_name">កែឈ្មោះរឿងរ៉ាវ</string>
   <!--Input field hint when editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__story_name">ឈ្មោះរឿងរ៉ាវ</string>
   <!--Save button label when editing a private story name-->
   <string name="EditPrivateStoryNameFragment__save">រក្សាទុក</string>
   <!--Displayed in text post creator before user enters text-->
+  <string name="TextStoryPostCreationFragment__tap_to_add_text">ចុចដើម្បីបញ្ចូលអត្ថបទ</string>
   <!--Button label for changing font when creating a text post-->
   <!--Displayed in text post creator when prompting user to enter text-->
+  <string name="TextStoryPostTextEntryFragment__add_text">បញ្ចូលអត្ថបទ</string>
   <!--Content description for \'done\' button when adding text to a story post-->
   <!--Text label for media selection toggle-->
   <string name="MediaSelectionActivity__text">អក្សរ</string>
@@ -3707,13 +3785,18 @@
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">ស្វែងរក</string>
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
+  <string name="HideStoryFromFragment__hide_story_from">លាក់រឿងរ៉ាវពី…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">បញ្ចប់</string>
   <!--Dialog title for first time adding something to a story-->
+  <string name="StoryDialogs__add_to_story_q">បញ្ចូលរឿងរ៉ាវឬ?</string>
   <!--Dialog message for first time adding something to a story-->
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
+  <string name="StoryDialogs__add_to_story">បញ្ចូលទៅរឿងរ៉ាវ</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <string name="StoryDialogs__edit_viewers">កែអ្នកមើល</string>
   <!--Error message shown when a failure occurs during story send-->
+  <string name="StoryDialogs__story_could_not_be_sent">មិនអាចផ្ញើរឿងរ៉ាវទេ។ សូមពិនិត្យមើលការតភ្ជាប់របស់អ្នក ហើយព្យាយាមម្តងទៀត។</string>
   <!--Error message dialog button to resend a previously failed story send-->
   <string name="StoryDialogs__send">ផ្ញើ</string>
   <!--Privacy Settings toggle title for stories-->
@@ -3736,6 +3819,7 @@
   <!--Choose story type bottom sheet new story row title-->
   <!--Choose story type bottom sheet new story row summary-->
   <!--Choose story type bottom sheet group story title-->
+  <string name="ChooseStoryTypeBottomSheet__group_story">រឿងរ៉ាវក្រុម</string>
   <!--Choose story type bottom sheet group story summary-->
   <!--Choose groups bottom sheet title-->
   <!--Displayed when copying group story reply text to clipboard-->
@@ -3744,11 +3828,17 @@
   <!--Displayed in toast after sending a direct reply-->
   <!--Displayed in the viewer when a story is no longer available-->
   <!--Displayed in the viewer when the network is not available-->
+  <string name="StorySlateView__no_internet_connection">មិនមានការតភ្ជាប់អ៊ីនធឺណិត</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <string name="StorySlateView__couldnt_load_content">មិនអាចផ្ទុកខ្លឹមសារទេ</string>
   <!--Toasted when the user externally shares to a text story successfully-->
+  <string name="TextStoryPostCreationFragment__sent_story">បានផ្ញើរឿងរ៉ាវ</string>
   <!--Toasted when the user external share to a text story fails-->
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">មិនអាចផ្ញើរឿងរ៉ាវទេ</string>
   <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">មើលរឿងរ៉ាវ</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">មើលរូបថតប្រូហ្វាល់</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">បិទការចៀសវាងការឃ្លាំមើល</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -3758,48 +3848,87 @@
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">បិទ</string>
   <!--Conversation Item label for when you react to someone else\'s story-->
+  <string name="ConversationItem__you_reacted_to_s_story">អ្នកបានប្រតិកម្មទៅនឹងរឿងរ៉ាវរបស់ %1$s</string>
   <!--Conversation Item label for reactions to your story-->
+  <string name="ConversationItem__reacted_to_your_story">បានប្រតិកម្មទៅនឹងរឿងរ៉ាវរបស់អ្នក</string>
   <!--Conversation Item label for reactions to an unavailable story-->
+  <string name="ConversationItem__reacted_to_a_story">បានប្រតិកម្មទៅនឹងរឿងរ៉ាវមួយ</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="ExpandModel__view_more">មើលបន្ថែម</string>
+  <string name="StoriesLinkPopup__visit_link">ចូលមើលតំណ</string>
   <!--Duration and price information-->
   <!--Tagline for gift row items-->
+  <string name="GiftRowItem__send_a_gift_badge">ផ្ញើស្លាកកាដូ</string>
   <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">ផ្តល់ជូនស្លាក</string>
   <!--Description text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">ផ្តល់ស្លាកជូននរណាម្នាក់ដោយធ្វើការបរិច្ចាគទៅ Signal ក្នុងនាមរបស់ពួកគេ។ ពួកគេនឹងទទួលបានស្លាកដើម្បីបង្ហាញនៅលើរូបថតប្រូហ្វាល់របស់ពួកគេ។</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">បន្ទាប់</string>
   <!--Title text on choose recipient page for badge gifting-->
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">ជ្រើសរើសអ្នកទទួល</string>
   <!--Title text on confirm gift page-->
+  <string name="GiftFlowConfirmationFragment__confirm_gift">បញ្ជាក់កាដូ</string>
   <!--Heading text specifying who the gift will be sent to-->
   <string name="GiftFlowConfirmationFragment__send_to">ផ្ញើទៅ</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">កាដូរបស់អ្នកនឹងត្រូវបានផ្ញើជាសារមួយទល់មួយទៅកាន់អ្នកទទួល។ បញ្ចូលសារផ្ទាល់ខ្លួនរបស់អ្នកខាងក្រោម។</string>
   <!--Text explaining that this gift is a one time donation-->
+  <string name="GiftFlowConfirmationFragment__one_time_donation">ការបរិច្ចាគតែមួយដង</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">បន្ថែមសារ</string>
   <!--Displayed in the dialog while verifying the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__verifying_recipient">កំពុងផ្ទៀងផ្ទាត់អ្នកទទួល…</string>
   <!--Title for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s បានផ្តល់កាដូជូនអ្នក</string>
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">អរគុណសម្រាប់ការគាំទ្ររបស់អ្នក!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">អ្នកបានទទួលស្លាកកាដូពី %1$s! ជួយ Signal បង្កើតការយល់ដឹងដោយបង្ហាញស្លាកនេះនៅលើប្រូហ្វាល់របស់អ្នក។</string>
   <!--Description for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">អ្នកបានផ្តល់ស្លាកជូន %1$s។ នៅពេលពួកគេទទួលយក ពួកគេនឹងមានជម្រើសដើម្បីបង្ហាញ ឬលាក់ស្លាករបស់ពួកគេ។</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
+  <string name="ViewReceivedGiftSheet__redeem">ប្តូរ</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">ពេលក្រោយ</string>
   <!--Dialog text while redeeming a gift-->
+  <string name="ViewReceivedGiftSheet__redeeming_gift">ប្តូរយកកាដូ…</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <string name="ConversationFragment__you_can_redeem_your_badge_later">អ្នកអាចប្តូរយកស្លាករបស់អ្នកនៅពេលក្រោយ។</string>
   <!--Description text in gift thanks sheet-->
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">អ្នកបានផ្តល់ស្លាកជូន %1$s។ នៅពេលពួកគេទទួលយក ពួកគេនឹងមានជម្រើសដើម្បីបង្ហាញ ឬលាក់ស្លាករបស់ពួកគេ។</string>
   <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">ស្លាកកាដូរបស់អ្នកបានផុតកំណត់ហើយ</string>
   <!--Expired gift sheet top description text-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">ស្លាកកាដូរបស់អ្នកបានផុតកំណត់ ហើយអ្នកផ្សេងទៀតមិនអាចមើលឃើញនៅលើប្រូហ្វាល់របស់អ្នកទៀតឡើយ។</string>
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">ដើម្បីបន្តគាំទ្របច្ចេកវិទ្យាដែលត្រូវបានបង្កើតឡើងសម្រាប់អ្នក សូមពិចារណាក្នុងការក្លាយជា Sustainer​ ម្នាក់ប្រចាំខែរបស់យើង។</string>
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">ធ្វើ​ការ​បរិច្ចាគ​ប្រចាំ​ខែ</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">ពេលក្រោយ</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="other">រឿងរ៉ាវឯកជន · អ្នកមើល %1$d នាក់</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="other">រឿងរ៉ាវក្រុម ·  អ្នកមើល %1$d នាក់</item>
+  </plurals>
   <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="other">នៅសល់ %1$d ថ្ងៃ</item>
+  </plurals>
   <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="other">នៅសល់ %1$d ម៉ោង</item>
+  </plurals>
   <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="other">នៅសល់ %1$d នាទី</item>
+  </plurals>
   <!--Gift expiry expired-->
+  <string name="Gifts__expired">បានផុតកំណត់</string>
   <!--EOF-->
 </resources>

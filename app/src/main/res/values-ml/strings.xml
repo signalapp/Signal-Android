@@ -91,7 +91,9 @@
   <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">നിങ്ങൾക്ക് പരസ്പരം സന്ദേശമയയ്‌ക്കാനും വിളിക്കാനും കഴിയും ഒപ്പം നിങ്ങളുടെ പേരും ഫോട്ടോയും അവരുമായി പങ്കിടും.</string>
   <!--Text that is shown when unblocking an SMS contact-->
+  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">നിങ്ങൾക്ക് പരസ്‌പരം സന്ദേശം അയയ്ക്കാൻ കഴിയും.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">ബ്ലോക്ക് ചെയ്ത ആളുകൾക്ക് നിങ്ങളെ വിളിക്കാനോ സന്ദേശങ്ങൾ അയയ്ക്കാനോ കഴിയില്ല.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">നിങ്ങൾക്ക് സന്ദേശങ്ങൾ അയയ്ക്കാൻ തടയപ്പെട്ടിരിക്കുന്നവർക്ക് സാധിക്കില്ല.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal അപ്ഡേറ്റുകളും വാർത്തകളും ലഭിക്കുന്നത് തടയുക.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -430,6 +432,7 @@
   <!--Couldn\'t read the selected backup-->
   <string name="RestoreBackupFragment__backup_could_not_be_read">ബാക്കപ്പ് വായിക്കാൻ കഴിയുന്നില്ല.</string>
   <!--Backup has an unsupported file extension-->
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">ബാക്കപ്പിനൊരു മോശം എക്സ്റ്റെൻഷനുണ്ട്.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">ചാറ്റ് ബാക്കപ്പുകൾ</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">ഒരു രഹസ്യവാക്യം ഉപയോഗിച്ച് ബാക്കപ്പുകൾ എൻക്രിപ്റ്റുചെയ്‌ത് നിങ്ങളുടെ ഉപകരണത്തിൽ സംഭരിക്കുന്നു.</string>

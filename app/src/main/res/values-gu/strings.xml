@@ -2258,6 +2258,7 @@
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">સેવ કરો</string>
   <!--Button to retry sending a message-->
+  <string name="conversation_selection__menu_resend_message">Resend</string>
   <!--Button to select a message and enter selection mode-->
   <string name="conversation_selection__menu_multi_select">પસંદ કરો</string>
   <!--conversation_expiring_on-->
