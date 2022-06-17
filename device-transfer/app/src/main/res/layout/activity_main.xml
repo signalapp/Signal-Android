@@ -44,7 +44,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enable_permission" />
+        app:layout_constraintTop_toBottomOf="@+id/libsignal_version" />
 
     <Button
         android:id="@+id/start_client"
@@ -54,5 +54,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/start_server" />
+
+    <TextView
+        android:id="@+id/libsignal_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="libsignal: unknown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enable_permission" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,7 +22,7 @@ android {
 dependencies {
     implementation libs.androidx.appcompat
     implementation project(':core-util')
-    implementation libs.libsignal.client
+    implementation libs.libsignal.android
     api libs.greenrobot.eventbus
 
     testImplementation testLibs.junit.junit
