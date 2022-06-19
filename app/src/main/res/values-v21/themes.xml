@@ -93,7 +93,7 @@
     </style>
 
     <style name="TextSecure.DarkNoActionBar.TransparentNavigationBar">
-        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/effectively_transparent_black</item>
         <item name="android:enforceNavigationBarContrast" tools:ignore="NewApi">false</item>
     </style>
 </resources>
