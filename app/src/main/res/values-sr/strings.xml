@@ -64,8 +64,8 @@
   <string name="AttachmentKeyboard_payment">Уплата</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Нема апликације за избор медијума.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal захтева дозовле за меморију како би могао слати фотографије, видео снимке или аудио снимке, али су трајно забрањене. Молимо Вас идите у мени за подешавања и дозволите приступ меморији.</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Сигнал захтева приступ вашим контактима, али му је дозвола трајно забрањена. Молимо вас да у апликацији за подешавање телефона Сигналу дозволите пруиступ контактима.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Сигнал захтева дозовле за меморију како би могао слати фотографије, видео снимке или аудио снимке, али су трајно забрањене. Молимо Вас идите у мени за подешавања и дозволите приступ меморији.</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Сигнал захтева приступ вашим контактима, али му је дозвола трајно забрањена. Молимо вас да у апликацији за подешавање телефона Сигналу дозволите приступ контактима.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Сигнал захтева приступ вашој локацији за додавање локације у порукама, али му је дозвола трајно забрањена. Молимо вас да у апликацији за подешавање телефона Сигналу дозволите пруиступ локацији.</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Отпремам медије…</string>
@@ -96,7 +96,7 @@
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Блокиране особе неће бити у могућности да Вас зову или да Вам шаљу поруке.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Блокиране особе неће бити у могућности да Вам шаљу поруке.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
-  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Блкирати ажурирање Signal-а и вести.</string>
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Блокирати ажурирање Signal-а и вести.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Поново примати Signal ажурирања и вести.</string>
   <string name="BlockUnblockDialog_unblock_s">Одблокирати контакт %1$s?</string>
@@ -109,7 +109,7 @@
   <string name="BucketedThreadMedia_This_week">Ове седмице</string>
   <string name="BucketedThreadMedia_This_month">Овог месеца</string>
   <string name="BucketedThreadMedia_Large">Велики</string>
-  <string name="BucketedThreadMedia_Medium">Средње </string>
+  <string name="BucketedThreadMedia_Medium">Средњи</string>
   <string name="BucketedThreadMedia_Small">Мали</string>
   <!--CameraXFragment-->
   <string name="CameraXFragment_tap_for_photo_hold_for_video">Додирни за фотографију, држи за видео запис</string>
@@ -378,7 +378,7 @@
   <plurals name="ConversationListFragment_unpin_plural">
     <item quantity="one">Одкачи</item>
     <item quantity="few">Одкачи</item>
-    <item quantity="other">Одкачи</item>
+    <item quantity="other">Откачи</item>
   </plurals>
   <plurals name="ConversationListFragment_mute_plural">
     <item quantity="one">Утишај</item>
@@ -415,7 +415,7 @@
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
   <string name="ConversationListFragment__notification_profile">Профил нотификације</string>
   <!--Tooltip shown after you have created your first notification profile-->
-  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Угасите или упалите овде ваш профил нотификације.</string>
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Угасите или упалите овде Ваш профил нотификације.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
   <string name="ConversationListFragment__s_on">%1$s упаљено</string>
   <!--ConversationListItem-->
@@ -433,7 +433,7 @@
   <string name="CreateProfileActivity__profile">Профил</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Грешка постављања профилне слике</string>
   <string name="CreateProfileActivity_problem_setting_profile">Проблем у поставци профила</string>
-  <string name="CreateProfileActivity_set_up_your_profile">Поставите ваш профил</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Поставите Ваш профил</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Ваш профил је потпуно шифрован. Профил и промене на њему ће бити видљиве Вашим контактима, када започнете или прихватите нове конверзације и када се придружите новим групама.</string>
   <string name="CreateProfileActivity_set_avatar_description">Постави аватар</string>
   <!--ChooseBackupFragment-->
@@ -4204,7 +4204,7 @@
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Даље</string>
   <!--Title text on choose recipient page for badge gifting-->
-  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Изаберите прималац</string>
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Изаберите примаоца</string>
   <!--Title text on confirm gift page-->
   <string name="GiftFlowConfirmationFragment__confirm_gift">Потврдити поклон</string>
   <!--Heading text specifying who the gift will be sent to-->
@@ -4220,9 +4220,9 @@
   <!--Title for sheet shown when opening a redeemed gift-->
   <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s Вам је послао поклон</string>
   <!--Title for sheet shown when opening a sent gift-->
-  <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Хвала вам на подршци!</string>
+  <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Хвала Вам на подршци!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
-  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Добили сте поклон занчку од %1$s! Помозите Signal-у да изгради свест тако што ћете приказати ову значку на свом профилу.</string>
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Добили сте поклон значку од %1$s! Помозите Signal-у да изгради свест тако што ћете приказати ову значку на свом профилу.</string>
   <!--Description for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Поклонили сте значку %1$s. Када прихвате, биће им дат избор да покажу или сакрију своју значку.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
@@ -4236,7 +4236,7 @@
   <!--Description text in gift thanks sheet-->
   <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Поклонили сте значку %1$s. Када прихвате, биће им дат избор да покажу или сакрију своју значку.</string>
   <!--Expired gift sheet title-->
-  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Ваш поклон значка је истекла</string>
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Ваша поклон значка је истекла</string>
   <!--Expired gift sheet top description text-->
   <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Ваша поклон значка је истекла, и није више видљива на Вашом профилу.</string>
   <!--Expired gift sheet bottom description text-->

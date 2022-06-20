@@ -3,9 +3,9 @@
   <string name="yes">Да</string>
   <string name="no">Не</string>
   <string name="delete">Изтрий</string>
-  <string name="please_wait">Моля, изчакайте…</string>
+  <string name="please_wait">Моля, изчакай…</string>
   <string name="save">Запази</string>
-  <string name="note_to_self">Бележка за Мен</string>
+  <string name="note_to_self">Лична бележка</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Ново съобщение</string>
   <!--AlbumThumbnailView-->
@@ -13,8 +13,8 @@
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal се обновява…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">В момента: %s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Все още не сте заложили парола!</string>
-  <string name="ApplicationPreferencesActivity_disable_passphrase">Изключи паролата?</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Все още не си задал/а парола!</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Деактивирай паролата?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Това ще отключи изцяло всички известия за съобщения и Signal.</string>
   <string name="ApplicationPreferencesActivity_disable">Изключи</string>
   <string name="ApplicationPreferencesActivity_unregistering">Отписване</string>
@@ -157,6 +157,7 @@
   <string name="ContactsCursorLoader_phone_number_search">Търсене по телефонен номер</string>
   <string name="ContactsCursorLoader_username_search">Търсене по потребтиелско име</string>
   <!--Label for my stories when selecting who to send media to-->
+  <string name="ContactsCursorLoader_my_stories">Моите истории</string>
   <!--Action for creating a new story-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Съобщение %s</string>
@@ -1195,6 +1196,7 @@
   <!--Recipient-->
   <string name="Recipient_you">Вие</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">Моята история</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Блокиране</string>
   <string name="RecipientPreferenceActivity_unblock">Отблокиране</string>
@@ -1815,6 +1817,7 @@
   <string name="message_recipients_list_item__resend">ПОВТОРНО ИЗПРАЩАНЕ</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
   <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Тук ще се показват актуализации по историята ви.</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s се присъедини към групата.</item>
@@ -3270,8 +3273,10 @@
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Чатове</string>
   <!--Label for Stories tab in home app screen-->
+  <string name="ConversationListTabs__stories">Истории</string>
   <!--String for counts above 99 in conversation list tabs-->
   <!--Title for "My Stories" row item in Stories landing page-->
+  <string name="StoriesLandingFragment__my_stories">Моите истории</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <!--Displayed when there are no stories to display-->
   <!--Context menu option to hide a story-->
@@ -3324,8 +3329,10 @@
   <!--Story settings page title-->
   <!--Story settings private stories heading-->
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Частните истории могат да се виждат само от хората, които добавите към тях. Само вие виждате името на историята.</string>
   <!--Option label for creating a new private story-->
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">Моята история</string>
   <!--Section heading for story visibility-->
   <!--Clickable option for selecting people to hide your story from-->
   <!--Summary of clickable option displaying how many people you have hidden your story from-->

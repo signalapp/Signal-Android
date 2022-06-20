@@ -160,6 +160,7 @@
   <string name="ContactsCursorLoader_phone_number_search">ફોન નંબર શોધો</string>
   <string name="ContactsCursorLoader_username_search">વપરાશકર્તા નામ શોધો</string>
   <!--Label for my stories when selecting who to send media to-->
+  <string name="ContactsCursorLoader_my_stories">મારી સ્ટોરી</string>
   <!--Action for creating a new story-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">મેસેજ %s</string>
@@ -1166,6 +1167,7 @@
   <!--Recipient-->
   <string name="Recipient_you">તમે</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">મારી સ્ટોરી</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">અવરોધિત કરો</string>
   <string name="RecipientPreferenceActivity_unblock">અનાવરોધિત કરો</string>
@@ -1762,6 +1764,7 @@
   <string name="message_recipients_list_item__resend">ફરીથી મોકલો</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
   <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">તમારી સ્ટોરી પરના અપડેટ અહીં દેખાશે.</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$sગ્રુપ માં જોડાયા.</item>
@@ -3346,8 +3349,10 @@
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">ચેટ</string>
   <!--Label for Stories tab in home app screen-->
+  <string name="ConversationListTabs__stories">સ્ટોરી</string>
   <!--String for counts above 99 in conversation list tabs-->
   <!--Title for "My Stories" row item in Stories landing page-->
+  <string name="StoriesLandingFragment__my_stories">મારી સ્ટોરી</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <!--Displayed when there are no stories to display-->
   <!--Context menu option to hide a story-->
@@ -3400,8 +3405,10 @@
   <!--Story settings page title-->
   <!--Story settings private stories heading-->
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">ખાનગી સ્ટોરી એ જ લોકો જોઈ શકે છે જેમને તમે ઉમેરો છો. ફક્ત તમે જ સ્ટોરીનું નામ જોઈ શકો છો.</string>
   <!--Option label for creating a new private story-->
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">મારી સ્ટોરી</string>
   <!--Section heading for story visibility-->
   <!--Clickable option for selecting people to hide your story from-->
   <!--Summary of clickable option displaying how many people you have hidden your story from-->

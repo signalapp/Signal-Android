@@ -10,7 +10,7 @@
   <string name="AbstractNotificationBuilder_new_message">ಹೊಸ ಸಂದೇಶ</string>
   <!--AlbumThumbnailView-->
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signal ನವೀಕರಿಸುತ್ತಿದೆ…</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal ನವೀಕರಣಗೊಳ್ಳುತ್ತಿದೆ…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">ಪ್ರಸ್ತುತ: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">ನೀವು ಇನ್ನೂ ಪಾಸ್‌ಫ್ರೇಸ್ ಹೊಂದಿಸಿಲ್ಲ!</string>
@@ -19,8 +19,8 @@
   <string name="ApplicationPreferencesActivity_disable">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="ApplicationPreferencesActivity_unregistering">ನೋಂದಣಿಯನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುತ್ತಿದೆ…</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal ಸಂದೇಶಗಳು ಹಾಗೂ ಕರೆಗಳ ನೋಂದಣಿಯನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುತ್ತಿದೆ..</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal ಸಂದೇಶಗಳು ಹಾಗೂ ಕರೆಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವುದೇ?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">ಸರ್ವರ್‌ ನಿಂದ ನೋಂದಣಿ ರದ್ದುಗೊಳಿಸುವ ಮೂಲಕ Signal ಸಂದೇಶಗಳನ್ನು ಮತ್ತು ಕರೆಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ. ಭವಿಷ್ಯದಲ್ಲಿ ನೀವು ಮತ್ತೆ ಬಳಸಲು ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಮರು ನೋಂದಾಯಿಸಬೇಕಾಗುತ್ತದೆ.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal ಸಂದೇಶಗಳು ಹಾಗೂ ಕರೆಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಬೇಕೇ?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">ಸರ್ವರ್‌ ನಿಂದ ನೋಂದಣಿ ರದ್ದುಗೊಳಿಸುವ ಮೂಲಕ Signal ಸಂದೇಶಗಳು ಮತ್ತು ಕರೆಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ. ಭವಿಷ್ಯದಲ್ಲಿ ಇವನ್ನು ಮತ್ತೆ ಬಳಸಲು ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ನೀವು ಮರು-ನೋಂದಾಯಿಸಬೇಕಾಗುತ್ತದೆ.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">ಸರ್ವರ್‌ ಗೆ ಸಂಪರ್ಕಿಸುವಾಗ ದೋಷ!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">ಎಸ್‌ಎಂಎಸ್‌ ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">ನಿಮ್ಮ ಡೀಫಾಲ್ಟ್‌ ಎಸ್‌ಎಂಎಸ್ ಅಪ್ಲಿಕೇಶನ್‌ ಅನ್ನು ಬದಲಾಯಿಸಲು ಸ್ಪರ್ಶಿಸಿ</string>
@@ -32,15 +32,15 @@
   <string name="ApplicationPreferencesActivity_Off">ಆಫ಼್</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">ಎಸ್‌‌ಎಂಎಸ್‌%1$s, ಎಂಎಂಎಸ್‌ %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">ಸ್ಕ್ರೀನ್ ಲಾಕ್ %1$s, ನೋಂದಣಿ ಲಾಕ್ %2$s</string>
-  <string name="ApplicationPreferencesActivity_appearance_summary">ಥೀಮ್‌ %1$s, ಭಾಷೆ %2$s</string>
-  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">ನೋಂದಣಿ ಲಾಕ್ ಆಗಿಸಲು ಪಿನ್ಗಳು ಅಗತ್ಯವಿದೆ. ಪಿನ್‌ಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲು, ದಯವಿಟ್ಟು ಮೊದಲು ನೋಂದಣಿ ಲಾಕ್ ಅನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ.</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">ವಿಷಯ‌ %1$s, ಭಾಷೆ %2$s</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">ನೋಂದಣಿ ಲಾಕ್ ಆಗಿಸಲು PINಗಳು ಬೇಕು. PINಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲು, ದಯವಿಟ್ಟು ಮೊದಲು ನೋಂದಣಿ ಲಾಕ್ ಅನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <string name="ApplicationPreferencesActivity_pin_created">ಪಿನ್ ರಚಿಸಲಾಗಿದೆ.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">ಪಿನ್ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ.</string>
-  <string name="ApplicationPreferencesActivity_hide">ಅಡಗಿಸು</string>
-  <string name="ApplicationPreferencesActivity_hide_reminder">ಜ್ಞಾಪಿಸುವುದನ್ನು ಮರೆಮಾಡಬಹುದೆ?</string>
-  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">ಪೇಮೆಂಟ್‌ಗಳ ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ರೆಕಾರ್ಡ್‌ ಮಾಡಿ</string>
+  <string name="ApplicationPreferencesActivity_hide">ಅಡಗಿಸಿ</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">ನೆನಪೋಲೆಯನ್ನು ಮರೆಯಾಗಿಡಬಹುದೇ?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">ಪೇಮೆಂಟ್ಸ್ ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ರೆಕಾರ್ಡ್‌ ಮಾಡಿ</string>
   <string name="ApplicationPreferencesActivity_record_phrase">ಪದಗುಚ್ಛವನ್ನು ರೆಕಾರ್ಡ್‌ ಮಾಡಿ</string>
-  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">ನಿಮ್ಮ ಪಿನ್ ಅನ್ನು ನೀವು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವುದಕ್ಕೂ ಮೊದಲು, ನಿಮ್ಮ ಪೇಮೆಂಟ್ಸ್ ಖಾತೆಯನ್ನು ರಿಕವರಿ ಮಾಡುವುದನ್ನು ಖಚಿತಪಡಿಸಲು ನಿಮ್ಮ ಪೇಮೆಂಟ್ಸ್ ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ನೀವು ರೆಕಾರ್ಡ್‌ ಮಾಡಬೇಕು</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">ನಿಮ್ಮ PIN ಅನ್ನು ನೀವು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವ‌ ಮೊದಲು, ನಿಮ್ಮ ಪೇಮೆಂಟ್ಸ್ ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ರೆಕಾರ್ಡ್‌ ಮಾಡಿ ನಿಮ್ಮ ಪೇಮೆಂಟ್ಸ್ ಖಾತೆಯ ರಿಕವರಿ ಮಾಡುವುದನ್ನು ನೀವು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಬೇಕು. </string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%dನಿಮಿಷಗಳು</item>
@@ -58,7 +58,7 @@
   <string name="AttachmentKeyboard_file">ಫೈಲ್</string>
   <string name="AttachmentKeyboard_contact">ಸಂಪರ್ಕ</string>
   <string name="AttachmentKeyboard_location">ಸ್ಥಳ</string>
-  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">ನಿಮ್ಮ ಫೋಟೋಗಳು ಮತ್ತು ವೀಡಿಯೊಗಳನ್ನು ತೋರಿಸಲು Signal ಗೆ ಅನುಮತಿಯ ಅಗತ್ಯವಿದೆ.</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">ನಿಮ್ಮ ಫೋಟೋ ಮತ್ತು ವೀಡಿಯೊಗಳನ್ನು ತೋರಿಸಲು Signal ಗೆ ಅನುಮತಿಯ ಅಗತ್ಯವಿದೆ.</string>
   <string name="AttachmentKeyboard_give_access">ಪ್ರವೇಶ ಒದಗಿಸಿ</string>
   <string name="AttachmentKeyboard_payment">ಪೇಮೆಂಟ್</string>
   <!--AttachmentManager-->
@@ -160,6 +160,7 @@
   <string name="ContactsCursorLoader_phone_number_search">ದೂರವಾಣಿ ಸಂಖ್ಯೆ ಹುಡುಕಾಟ</string>
   <string name="ContactsCursorLoader_username_search">ಬಳಕೆದಾರಹೆಸರು ಹುಡುಕಾಟ</string>
   <!--Label for my stories when selecting who to send media to-->
+  <string name="ContactsCursorLoader_my_stories">ನನ್ನ ಸ್ಟೋರೀಸ್</string>
   <!--Action for creating a new story-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">ಸಂದೇಶ %s</string>
@@ -1171,6 +1172,7 @@
   <!--Recipient-->
   <string name="Recipient_you">ನೀವು</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">ನನ್ನ ಸ್ಟೋರಿ</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">ನಿರ್ಬಂಧಿಸಿ</string>
   <string name="RecipientPreferenceActivity_unblock">ನಿರ್ಬಂಧ ತೆಗೆಯಿರಿ</string>
@@ -1767,6 +1769,7 @@
   <string name="message_recipients_list_item__resend">ಪುನಃ ಕಳುಹಿಸಿ</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
   <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">ನಿಮ್ಮ ಸ್ಟೋರಿಯ ಪರಿಷ್ಕರಣೆಗಳು ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತವೆ.</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s ಗುಂಪನ್ನು ಸೇರಿದ್ದಾರೆ </item>
@@ -3355,8 +3358,10 @@
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">ಚಾಟ್‌‌ ಗಳು</string>
   <!--Label for Stories tab in home app screen-->
+  <string name="ConversationListTabs__stories">ಸ್ಟೋರೀಸ್</string>
   <!--String for counts above 99 in conversation list tabs-->
   <!--Title for "My Stories" row item in Stories landing page-->
+  <string name="StoriesLandingFragment__my_stories">ನನ್ನ ಸ್ಟೋರೀಸ್</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <!--Displayed when there are no stories to display-->
   <!--Context menu option to hide a story-->
@@ -3409,8 +3414,10 @@
   <!--Story settings page title-->
   <!--Story settings private stories heading-->
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">ಗೌಪ್ಯ ಸ್ಟೋರೀಸ್ ಅನ್ನು ನೀವು ಸೇರಿಸುವ ಜನರು ಮಾತ್ರ ನೋಡಬಹುದು. ಸ್ಟೋರಿ ಹೆಸರನ್ನು ನೀವು ಮಾತ್ರ ನೋಡಬಹುದು.</string>
   <!--Option label for creating a new private story-->
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">ನನ್ನ ಸ್ಟೋರಿ</string>
   <!--Section heading for story visibility-->
   <!--Clickable option for selecting people to hide your story from-->
   <!--Summary of clickable option displaying how many people you have hidden your story from-->

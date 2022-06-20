@@ -1726,6 +1726,7 @@
   <!--Update item button text to show to boost a feature-->
   <string name="ConversationUpdateItem_signal_boost">Signalile hoogu</string>
   <!--Update item button text to show to become a sustainer in the release notes channel-->
+  <string name="ConversationUpdateItem_become_a_sustainer">Hakka toetajaks</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Esita … Peata</string>
   <string name="audio_view__download_accessibility_description">Laadi alla</string>
@@ -2051,6 +2052,7 @@
   <string name="preferences__advanced">Täpsem</string>
   <string name="preferences__donate_to_signal">Anneta Signalile</string>
   <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">Ühekordne annetus</string>
   <string name="preferences__privacy">Privaatsus</string>
   <string name="preferences__mms_user_agent">MMS kasutajaagent</string>
   <string name="preferences__advanced_mms_access_point_names">Käsitsi määratud MMS-seaded</string>
@@ -3082,6 +3084,7 @@
   <string name="AddAProfilePhotoMegaphone__not_now">Mitte praegu</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Lisa foto</string>
   <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Hakka toetajaks</string>
   <!--Displayed in the Become a Sustainer megaphone-->
   <string name="BecomeASustainerMegaphone__not_now">Mitte praegu</string>
   <string name="BecomeASustainerMegaphone__donate">Anneta</string>
@@ -3286,8 +3289,11 @@
   <string name="MySupportPreference__please_contact_support">Palun võta ühendust kasutajatoega.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Igakuine annetus on tühistatud</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Hakka toetajaks</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Lisa Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Mitte praegu</string>
   <!--Copy displayed when badge expires after user inactivity-->
   <!--Copy displayed when badge expires after payment failure-->
@@ -3604,6 +3610,7 @@
   <!--Duration and price information-->
   <!--Tagline for gift row items-->
   <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">Kingi märk</string>
   <!--Description text on start fragment for gifting a badge-->
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Edasi</string>
@@ -3612,6 +3619,7 @@
   <!--Heading text specifying who the gift will be sent to-->
   <string name="GiftFlowConfirmationFragment__send_to">Saaja</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Sinu kingitus saadetakse saajale privaatsõnumiga. Lisa allpool oma sõnum.</string>
   <!--Text explaining that this gift is a one time donation-->
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Lisa sõnum</string>

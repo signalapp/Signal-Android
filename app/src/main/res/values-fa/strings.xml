@@ -1255,6 +1255,7 @@
   <!--Recipient-->
   <string name="Recipient_you">شما</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">استوری من</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">مسدود کردن</string>
   <string name="RecipientPreferenceActivity_unblock">رفع مسدودیت</string>
@@ -1900,6 +1901,7 @@
   <string name="message_recipients_list_item__resend">ارسال مجدد</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
   <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">به‌روزرسانی‌های استوری شما اینجا نشان داده می‌شود.</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s به گروه پیوست.</item>
@@ -3734,6 +3736,7 @@
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">گفتگوها</string>
   <!--Label for Stories tab in home app screen-->
+  <string name="ConversationListTabs__stories">استوری‌ها</string>
   <!--String for counts above 99 in conversation list tabs-->
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">داستان‌های من</string>
@@ -3789,8 +3792,10 @@
   <!--Story settings page title-->
   <!--Story settings private stories heading-->
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">استوری‌های خصوصی را فقط افرادی می‌توانند مشاهده کنند که آن‌ها را به آن‌ استوری‌ها اضافه می‌کنید. فقط شما می‌توانید نام آن استوری را مشاهده کنید.</string>
   <!--Option label for creating a new private story-->
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">استوری من</string>
   <!--Section heading for story visibility-->
   <!--Clickable option for selecting people to hide your story from-->
   <!--Summary of clickable option displaying how many people you have hidden your story from-->

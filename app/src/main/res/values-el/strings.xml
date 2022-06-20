@@ -3847,6 +3847,7 @@
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Στέλνεται…</string>
   <!--Label when multiple stories are pending sending-->
+  <string name="StoriesLandingItem__sending_d">Αποστολή %1$d…</string>
   <!--Label when a story fails to send-->
   <string name="StoriesLandingItem__send_failed">Αποτυχία αποστολής</string>
   <!--Status label when a story fails to send indicating user action to retry-->

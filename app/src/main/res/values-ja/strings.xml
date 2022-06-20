@@ -3777,6 +3777,7 @@
   <!--Story settings private stories heading-->
   <string name="StorySettingsFragment__private_stories">プライベートストーリー</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">プライベートストーリーは、あなたが追加した人だけが見ることができます。ストーリー名は自分だけが見ることができます。</string>
   <!--Option label for creating a new private story-->
   <string name="StorySettingsFragment__new_private_story">新規プライベートストーリー</string>
   <!--Page title for My Story options-->

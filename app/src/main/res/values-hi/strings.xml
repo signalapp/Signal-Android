@@ -160,6 +160,7 @@
   <string name="ContactsCursorLoader_phone_number_search">फ़ोन नंबर खोजें</string>
   <string name="ContactsCursorLoader_username_search">उपयोगकर्ता का नाम खोजें</string>
   <!--Label for my stories when selecting who to send media to-->
+  <string name="ContactsCursorLoader_my_stories">मेरी स्टोरीज़</string>
   <!--Action for creating a new story-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%s को मेसेज</string>
@@ -1227,6 +1228,7 @@
   <!--Recipient-->
   <string name="Recipient_you">आप</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">मेरी स्टोरी</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">ब्लॉक</string>
   <string name="RecipientPreferenceActivity_unblock">अनब्लॉक करें</string>
@@ -1860,6 +1862,7 @@
   <string name="message_recipients_list_item__resend"> दुबारा भेजो </string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
   <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">आपकी स्टोरी के अपडेट यहाँ दिखेंगे।</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s समूह में शामिल हो गए</item>
@@ -3615,8 +3618,10 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">चैट</string>
   <!--Label for Stories tab in home app screen-->
+  <string name="ConversationListTabs__stories">स्टोरीज़</string>
   <!--String for counts above 99 in conversation list tabs-->
   <!--Title for "My Stories" row item in Stories landing page-->
+  <string name="StoriesLandingFragment__my_stories">मेरी स्टोरीज़</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <!--Displayed when there are no stories to display-->
   <!--Context menu option to hide a story-->
@@ -3669,8 +3674,10 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <!--Story settings page title-->
   <!--Story settings private stories heading-->
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">निजी स्टोरीज़ को केवल वे लोग देख सकते हैं जिन्हें आपने उनमें जोड़ा हो। स्टोरी का नाम केवल आप देख सकते हैं।</string>
   <!--Option label for creating a new private story-->
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">मेरी स्टोरी</string>
   <!--Section heading for story visibility-->
   <!--Clickable option for selecting people to hide your story from-->
   <!--Summary of clickable option displaying how many people you have hidden your story from-->

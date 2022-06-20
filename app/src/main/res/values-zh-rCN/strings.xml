@@ -162,6 +162,7 @@
   <string name="ContactsCursorLoader_phone_number_search">手机号码搜索</string>
   <string name="ContactsCursorLoader_username_search">用户名搜索</string>
   <!--Label for my stories when selecting who to send media to-->
+  <string name="ContactsCursorLoader_my_stories">我的动态</string>
   <!--Action for creating a new story-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">消息 %s</string>
@@ -1113,6 +1114,7 @@
   <!--Recipient-->
   <string name="Recipient_you">您</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">我的动态</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">屏蔽</string>
   <string name="RecipientPreferenceActivity_unblock">取消屏蔽</string>
@@ -1701,6 +1703,7 @@
   <string name="message_recipients_list_item__resend">重新发送</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
   <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">您的动态更新将会在这里显示。</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s 加入群组。</item>
@@ -3265,8 +3268,10 @@
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">聊天</string>
   <!--Label for Stories tab in home app screen-->
+  <string name="ConversationListTabs__stories">动态</string>
   <!--String for counts above 99 in conversation list tabs-->
   <!--Title for "My Stories" row item in Stories landing page-->
+  <string name="StoriesLandingFragment__my_stories">我的动态</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <!--Displayed when there are no stories to display-->
   <!--Context menu option to hide a story-->
@@ -3319,8 +3324,10 @@
   <!--Story settings page title-->
   <!--Story settings private stories heading-->
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">私密动态仅对您选中的用户可见。只有您能看见动态名称。</string>
   <!--Option label for creating a new private story-->
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">我的动态</string>
   <!--Section heading for story visibility-->
   <!--Clickable option for selecting people to hide your story from-->
   <!--Summary of clickable option displaying how many people you have hidden your story from-->

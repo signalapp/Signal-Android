@@ -159,6 +159,7 @@
   <string name="ContactsCursorLoader_phone_number_search">Pencarian nombor telefon</string>
   <string name="ContactsCursorLoader_username_search">Pencarian nama pengguna</string>
   <!--Label for my stories when selecting who to send media to-->
+  <string name="ContactsCursorLoader_my_stories">Cerita Saya</string>
   <!--Action for creating a new story-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mesej %s</string>
@@ -1164,6 +1165,7 @@
   <!--Recipient-->
   <string name="Recipient_you">Anda</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">Cerita Saya</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Sekat</string>
   <string name="RecipientPreferenceActivity_unblock">Nyahsekat</string>
@@ -1778,6 +1780,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="message_recipients_list_item__resend">HANTAR SEMULA</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
   <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Kemas kini cerita anda akan ditunjukkan di sini.</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s menyertai kumpulan.</item>
@@ -3509,8 +3512,10 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Sembang</string>
   <!--Label for Stories tab in home app screen-->
+  <string name="ConversationListTabs__stories">Cerita</string>
   <!--String for counts above 99 in conversation list tabs-->
   <!--Title for "My Stories" row item in Stories landing page-->
+  <string name="StoriesLandingFragment__my_stories">Cerita Saya</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <!--Displayed when there are no stories to display-->
   <!--Context menu option to hide a story-->
@@ -3563,8 +3568,10 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Story settings page title-->
   <!--Story settings private stories heading-->
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Cerita peribadi hanya boleh ditonton oleh orang anda tambahkan kepada ia. Hanya anda yang boleh melihat nama cerita.</string>
   <!--Option label for creating a new private story-->
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">Cerita Saya</string>
   <!--Section heading for story visibility-->
   <!--Clickable option for selecting people to hide your story from-->
   <!--Summary of clickable option displaying how many people you have hidden your story from-->

@@ -3910,6 +3910,7 @@
   <!--Story settings private stories heading-->
   <string name="StorySettingsFragment__private_stories">Приватни приказни</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Приватните приказни можат да ги видат само луѓето кои ги додаваш. Само ти можеш да го видиш името на приказната.</string>
   <!--Option label for creating a new private story-->
   <string name="StorySettingsFragment__new_private_story">Нова приватна приказна</string>
   <!--Page title for My Story options-->
