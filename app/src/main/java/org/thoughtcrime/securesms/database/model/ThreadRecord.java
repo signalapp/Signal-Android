@@ -392,7 +392,6 @@ public final class ThreadRecord {
     public ThreadRecord build() {
       if (distributionType == ThreadDatabase.DistributionTypes.CONVERSATION) {
         Preconditions.checkArgument(threadId > 0);
-        Preconditions.checkArgument(date > 0);
         Preconditions.checkNotNull(body);
         Preconditions.checkNotNull(recipient);
       }

@@ -764,7 +764,8 @@ public class ThreadDatabase extends Database {
   public Cursor getUnarchivedConversationList(boolean pinned, long offset, long limit) {
     SQLiteDatabase db          = databaseHelper.getSignalReadableDatabase();
     String         pinnedWhere = PINNED + (pinned ? " != 0" : " = 0");
-    String         where       = ARCHIVED + " = 0 AND " + MEANINGFUL_MESSAGES + " != 0 AND " + pinnedWhere;
+    String         meaningful  = pinned ? "" : MEANINGFUL_MESSAGES + " != 0 AND ";
+    String         where       = ARCHIVED + " = 0 AND " + meaningful + pinnedWhere;
 
     final String query;
 
@@ -805,7 +806,7 @@ public class ThreadDatabase extends Database {
   public int getPinnedConversationListCount() {
     SQLiteDatabase db      = databaseHelper.getSignalReadableDatabase();
     String[]       columns = new String[] { "COUNT(*)" };
-    String         query   = ARCHIVED + " = 0 AND " + PINNED + " != 0 AND " + MEANINGFUL_MESSAGES + " != 0";
+    String         query   = ARCHIVED + " = 0 AND " + PINNED + " != 0";
 
     try (Cursor cursor = db.query(TABLE_NAME, columns, query, null, null, null, null)) {
       if (cursor != null && cursor.moveToFirst()) {
@@ -819,7 +820,7 @@ public class ThreadDatabase extends Database {
   public int getUnarchivedConversationListCount() {
     SQLiteDatabase db      = databaseHelper.getSignalReadableDatabase();
     String[]       columns = new String[] { "COUNT(*)" };
-    String         query   = ARCHIVED + " = 0 AND " + MEANINGFUL_MESSAGES + " != 0";
+    String         query   = ARCHIVED + " = 0 AND (" + MEANINGFUL_MESSAGES + " != 0 OR " + PINNED + " != 0)";
 
     try (Cursor cursor = db.query(TABLE_NAME, columns, query, null, null, null, null)) {
       if (cursor != null && cursor.moveToFirst()) {
@@ -1344,6 +1345,11 @@ public class ThreadDatabase extends Database {
       if (shouldDelete) {
         deleteConversation(threadId);
       }
+
+      if (isPinned) {
+        updateThread(threadId, meaningfulMessages, null, null, null, null, 0, 0, 0, 0, unarchive, 0, 0);
+      }
+
       return true;
     }
 
