@@ -199,6 +199,7 @@ public class MmsDatabase extends MessageDatabase {
     "CREATE INDEX IF NOT EXISTS mms_is_story_index ON " + TABLE_NAME + " (" + STORY_TYPE + ");",
     "CREATE INDEX IF NOT EXISTS mms_parent_story_id_index ON " + TABLE_NAME + " (" + PARENT_STORY_ID + ");",
     "CREATE INDEX IF NOT EXISTS mms_thread_story_parent_story_index ON " + TABLE_NAME + " (" + THREAD_ID + ", " + DATE_RECEIVED + "," + STORY_TYPE + "," + PARENT_STORY_ID + ");",
+    "CREATE INDEX IF NOT EXISTS mms_quote_id_quote_author_index ON " + TABLE_NAME + "(" + QUOTE_ID + ", " + QUOTE_AUTHOR + ");"
   };
 
   private static final String[] MMS_PROJECTION = new String[] {
@@ -2180,7 +2181,11 @@ public class MmsDatabase extends MessageDatabase {
     SignalDatabase.threads().updateLastSeenAndMarkSentAndLastScrolledSilenty(threadId);
 
     if (!message.getStoryType().isStory()) {
-      ApplicationDependencies.getDatabaseObserver().notifyMessageInsertObservers(threadId, new MessageId(messageId, true));
+      if (message.getOutgoingQuote() == null) {
+        ApplicationDependencies.getDatabaseObserver().notifyMessageInsertObservers(threadId, new MessageId(messageId, true));
+      } else {
+        ApplicationDependencies.getDatabaseObserver().notifyConversationListeners(threadId);
+      }
     } else {
       ApplicationDependencies.getDatabaseObserver().notifyStoryObservers(message.getRecipient().getId());
     }

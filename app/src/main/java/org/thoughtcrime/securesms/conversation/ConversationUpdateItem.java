@@ -130,7 +130,8 @@ public final class ConversationUpdateItem extends FrameLayout
                    boolean hasWallpaper,
                    boolean isMessageRequestAccepted,
                    boolean allowedToPlayInline,
-                   @NonNull Colorizer colorizer)
+                   @NonNull Colorizer colorizer,
+                   boolean isCondensedMode)
   {
     this.batchSelected = batchSelected;
 

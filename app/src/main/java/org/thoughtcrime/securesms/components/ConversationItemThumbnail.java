@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.Px;
 import androidx.annotation.UiThread;
 
 import org.thoughtcrime.securesms.R;
@@ -35,6 +36,7 @@ public class ConversationItemThumbnail extends FrameLayout {
   private int[]                  normalBounds;
   private int[]                  gifBounds;
   private int                    minimumThumbnailWidth;
+  private int                    maximumThumbnailHeight;
 
   public ConversationItemThumbnail(Context context) {
     super(context);
@@ -83,7 +85,8 @@ public class ConversationItemThumbnail extends FrameLayout {
         Integer.MAX_VALUE
     };
 
-    minimumThumbnailWidth = -1;
+    minimumThumbnailWidth  = -1;
+    maximumThumbnailHeight = -1;
   }
 
   @SuppressWarnings("SuspiciousNameCombination")
@@ -143,9 +146,14 @@ public class ConversationItemThumbnail extends FrameLayout {
     cornerMask.setRadii(topLeft, topRight, bottomRight, bottomLeft);
   }
 
-  public void setMinimumThumbnailWidth(int width) {
+  public void setMinimumThumbnailWidth(@Px int width) {
     minimumThumbnailWidth = width;
     thumbnail.setMinimumThumbnailWidth(width);
+  }
+
+  public void setMaximumThumbnailHeight(@Px int height) {
+    maximumThumbnailHeight = height;
+    thumbnail.setMaximumThumbnailHeight(height);
   }
 
   public void setBorderless(boolean borderless) {
@@ -169,6 +177,10 @@ public class ConversationItemThumbnail extends FrameLayout {
 
         if (minimumThumbnailWidth != -1) {
           thumbnail.setMinimumThumbnailWidth(minimumThumbnailWidth);
+        }
+
+        if (maximumThumbnailHeight != -1) {
+          thumbnail.setMaximumThumbnailHeight(maximumThumbnailHeight);
         }
       }
 

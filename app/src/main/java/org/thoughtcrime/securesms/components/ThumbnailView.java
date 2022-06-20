@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Px;
 import androidx.annotation.UiThread;
 
 import com.bumptech.glide.RequestBuilder;
@@ -155,8 +156,13 @@ public class ThumbnailView extends FrameLayout {
     captionIcon.setScaleY(captionIconScale);
   }
 
-  public void setMinimumThumbnailWidth(int width) {
+  public void setMinimumThumbnailWidth(@Px int width) {
     bounds[MIN_WIDTH] = width;
+    invalidate();
+  }
+
+  public void setMaximumThumbnailHeight(@Px int height) {
+    bounds[MAX_HEIGHT] = height;
     invalidate();
   }
 

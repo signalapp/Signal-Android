@@ -25,7 +25,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -49,7 +48,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.WindowDecorActionBar;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -104,6 +102,7 @@ import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardBottomSheet;
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment;
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs;
+import org.thoughtcrime.securesms.conversation.quotes.MessageQuotesBottomSheet;
 import org.thoughtcrime.securesms.conversation.ui.error.EnableCallNotificationSettingsDialog;
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog;
 import org.thoughtcrime.securesms.database.MessageDatabase;
@@ -112,6 +111,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
@@ -201,7 +201,7 @@ import java.util.concurrent.ExecutionException;
 import kotlin.Unit;
 
 @SuppressLint("StaticFieldLeak")
-public class ConversationFragment extends LoggingFragment implements MultiselectForwardBottomSheet.Callback {
+public class ConversationFragment extends LoggingFragment implements MultiselectForwardBottomSheet.Callback, MessageQuotesBottomSheet.Callback {
   private static final String TAG = Log.tag(ConversationFragment.class);
 
   private static final int SCROLL_ANIMATION_THRESHOLD = 50;
@@ -1426,6 +1426,22 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     return true;
   }
 
+  @Override
+  public @NonNull ItemClickListener getConversationAdapterListener() {
+    return selectionClickListener;
+  }
+
+  @Override
+  public void jumpToMessage(@NonNull MessageRecord messageRecord) {
+    SimpleTask.run(getLifecycle(), () -> {
+      return SignalDatabase.mmsSms().getMessagePositionInConversation(threadId,
+                                                                      messageRecord.getDateReceived(),
+                                                                      messageRecord.isOutgoing() ? Recipient.self().getId() : messageRecord.getRecipient().getId());
+    }, p -> moveToPosition(p + (isTypingIndicatorShowing() ? 1 : 0), () -> {
+      Toast.makeText(getContext(), R.string.ConversationFragment_failed_to_open_message, Toast.LENGTH_SHORT).show();
+    }));
+  }
+
   public interface ConversationFragmentListener extends VoiceNoteMediaControllerOwner {
     int     getSendButtonTint();
     boolean isKeyboardOpen();
@@ -1701,6 +1717,17 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     public void onLinkPreviewClicked(@NonNull LinkPreview linkPreview) {
       if (getContext() != null && getActivity() != null) {
         CommunicationActions.openBrowserLink(getActivity(), linkPreview.getUrl());
+      }
+    }
+
+    @Override
+    public void onQuotedIndicatorClicked(@NonNull MessageRecord messageRecord) {
+      if (getContext() != null && getActivity() != null) {
+        MessageQuotesBottomSheet.show(
+            getChildFragmentManager(),
+            new MessageId(messageRecord.getId(), messageRecord.isMms()),
+            recipient.getId()
+        );
       }
     }
 

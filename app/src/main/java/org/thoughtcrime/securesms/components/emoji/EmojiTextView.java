@@ -26,6 +26,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewKt;
 import androidx.core.widget.TextViewCompat;
 
+import org.signal.core.util.StringUtil;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
@@ -151,10 +152,10 @@ public class EmojiTextView extends AppCompatTextView {
     // Android fails to ellipsize spannable strings. (https://issuetracker.google.com/issues/36991688)
     // We ellipsize them ourselves by manually truncating the appropriate section.
     if (getText() != null && getText().length() > 0 && isEllipsizedAtEnd()) {
-      if (maxLength > 0) {
-        ellipsizeAnyTextForMaxLength();
-      } else if (getMaxLines() > 0) {
+      if (getMaxLines() > 0) {
         ellipsizeEmojiTextForMaxLines();
+      } else if (maxLength > 0) {
+        ellipsizeAnyTextForMaxLength();
       }
     }
 
@@ -308,11 +309,17 @@ public class EmojiTextView extends AppCompatTextView {
 
       int lineCount = getLineCount();
       if (lineCount > maxLines) {
-        int          overflowStart = getLayout().getLineStart(maxLines - 1);
+        int overflowStart = getLayout().getLineStart(maxLines - 1);
+
+        if (maxLength > 0 && overflowStart > maxLength) {
+          ellipsizeAnyTextForMaxLength();
+          return;
+        }
+
         int          overflowEnd   = getLayout().getLineEnd(maxLines - 1);
         CharSequence overflow      = getText().subSequence(overflowStart, overflowEnd);
         float        adjust        = overflowText != null ? getPaint().measureText(overflowText, 0, overflowText.length()) : 0f;
-        CharSequence ellipsized    = TextUtils.ellipsize(overflow, getPaint(), getWidth() - adjust, TextUtils.TruncateAt.END);
+        CharSequence ellipsized    = StringUtil.trim(TextUtils.ellipsize(overflow, getPaint(), getWidth() - adjust, TextUtils.TruncateAt.END));
 
         SpannableStringBuilder newContent = new SpannableStringBuilder();
         newContent.append(getText().subSequence(0, overflowStart))
@@ -323,6 +330,8 @@ public class EmojiTextView extends AppCompatTextView {
         CharSequence              emojified     = EmojiProvider.emojify(newCandidates, newContent, this, isJumbomoji || forceJumboEmoji);
 
         super.setText(emojified, BufferType.SPANNABLE);
+      } else if (maxLength > 0) {
+        ellipsizeAnyTextForMaxLength();
       }
     };
 

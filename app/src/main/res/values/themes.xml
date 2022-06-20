@@ -470,6 +470,16 @@
         <item name="android:elevation" tools:ignore="NewApi">0dp</item>
     </style>
 
+    <style name="Widget.Signal.FixedRoundedCorners.Messages" parent="Widget.Signal.FixedRoundedCorners">
+        <item name="bottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners.Messages.BottomSheet</item>
+    </style>
+
+    <style name="Widget.Signal.FixedRoundedCorners.Messages.BottomSheet" parent="Widget.Material3.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
+        <item name="backgroundTint">@color/signal_colorSurface</item>
+        <item name="android:elevation" tools:ignore="NewApi">0dp</item>
+    </style>
+
     <style name="Widget.Signal.FixedRoundedCorners.Stories">
         <item name="bottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners.BottomSheet.Stories</item>
         <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/signal_colorSurface</item>

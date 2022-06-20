@@ -200,8 +200,9 @@ object SignalDatabaseMigrations {
   private const val GROUP_STORY_NOTIFICATIONS = 144
   private const val GROUP_STORY_REPLY_CLEANUP = 145
   private const val REMOTE_MEGAPHONE = 146
+  private const val QUOTE_INDEX = 147
 
-  const val DATABASE_VERSION = 146
+  const val DATABASE_VERSION = 147
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -2610,6 +2611,14 @@ object SignalDatabaseMigrations {
             shown_at INTEGER DEFAULT 0,
             finished_at INTEGER DEFAULT 0
           )
+        """
+      )
+    }
+
+    if (oldVersion < QUOTE_INDEX) {
+      db.execSQL(
+        """
+          CREATE INDEX IF NOT EXISTS mms_quote_id_quote_author_index ON mms (quote_id, quote_author)
         """
       )
     }

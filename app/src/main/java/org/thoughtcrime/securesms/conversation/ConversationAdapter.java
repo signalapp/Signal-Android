@@ -123,8 +123,9 @@ public class ConversationAdapter
   private ConversationMessage inlineContent;
   private Colorizer           colorizer;
   private boolean             isTypingViewEnabled;
+  private boolean             condensedMode;
 
-  ConversationAdapter(@NonNull Context context,
+  public ConversationAdapter(@NonNull Context context,
                       @NonNull LifecycleOwner lifecycleOwner,
                       @NonNull GlideRequests glideRequests,
                       @NonNull Locale locale,
@@ -177,9 +178,9 @@ public class ConversationAdapter
     } else if (messageRecord.isUpdate()) {
       return MESSAGE_TYPE_UPDATE;
     } else if (messageRecord.isOutgoing()) {
-      return MessageRecordUtil.isTextOnly(messageRecord, context) ? MESSAGE_TYPE_OUTGOING_TEXT : MESSAGE_TYPE_OUTGOING_MULTIMEDIA;
+      return MessageRecordUtil.isTextOnly(messageRecord, context) && !conversationMessage.hasBeenQuoted() ? MESSAGE_TYPE_OUTGOING_TEXT : MESSAGE_TYPE_OUTGOING_MULTIMEDIA;
     } else {
-      return MessageRecordUtil.isTextOnly(messageRecord, context) ? MESSAGE_TYPE_INCOMING_TEXT : MESSAGE_TYPE_INCOMING_MULTIMEDIA;
+      return MessageRecordUtil.isTextOnly(messageRecord, context) && !conversationMessage.hasBeenQuoted() ? MESSAGE_TYPE_INCOMING_TEXT : MESSAGE_TYPE_INCOMING_MULTIMEDIA;
     }
   }
 
@@ -259,6 +260,11 @@ public class ConversationAdapter
     }
   }
 
+  public void setCondensedMode(boolean condensedMode) {
+    this.condensedMode = condensedMode;
+    notifyDataSetChanged();
+  }
+
   @Override
   public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
     switch (getItemViewType(position)) {
@@ -284,10 +290,11 @@ public class ConversationAdapter
                                                   recipient,
                                                   searchQuery,
                                                   conversationMessage == recordToPulse,
-                                                  hasWallpaper,
+                                                  hasWallpaper && !condensedMode,
                                                   isMessageRequestAccepted,
                                                   conversationMessage == inlineContent,
-                                                  colorizer);
+                                                  colorizer,
+                                                  condensedMode);
 
         if (conversationMessage == recordToPulse) {
           recordToPulse = null;
@@ -776,7 +783,7 @@ public class ConversationAdapter
     }
   }
 
-  interface ItemClickListener extends BindableConversationItem.EventListener {
+  public interface ItemClickListener extends BindableConversationItem.EventListener {
     void onItemClick(MultiselectPart item);
     void onItemLongClick(View itemView, MultiselectPart item);
   }

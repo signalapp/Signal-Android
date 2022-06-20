@@ -111,7 +111,8 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
                           false,
                           false,
                           true,
-                          colorizer);
+                          colorizer,
+                          false);
   }
 
   private void bindErrorState(MessageRecord messageRecord) {

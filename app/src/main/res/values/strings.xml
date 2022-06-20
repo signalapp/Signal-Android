@@ -1041,6 +1041,9 @@
     <string name="Megaphones_appearance">Appearance</string>
     <string name="Megaphones_add_photo">Add photo</string>
 
+    <!-- Title of a bottom sheet to render messages that all quote a specific message -->
+    <string name="MessageQuotesBottomSheet_replies">Replies</string>
+
     <!-- NotificationBarManager -->
     <string name="NotificationBarManager_signal_call_in_progress">Signal call in progress</string>
     <string name="NotificationBarManager__establishing_signal_call">Establishing Signal call</string>

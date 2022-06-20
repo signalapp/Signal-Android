@@ -128,6 +128,10 @@ public class LinkPreviewView extends FrameLayout {
   }
 
   public void setLinkPreview(@NonNull GlideRequests glideRequests, @NonNull LinkPreview linkPreview, boolean showThumbnail) {
+    setLinkPreview(glideRequests, linkPreview, showThumbnail, true);
+  }
+
+  public void setLinkPreview(@NonNull GlideRequests glideRequests, @NonNull LinkPreview linkPreview, boolean showThumbnail, boolean showDescription) {
     spinner.setVisibility(GONE);
     noPreview.setVisibility(GONE);
 
@@ -138,7 +142,7 @@ public class LinkPreviewView extends FrameLayout {
       title.setVisibility(GONE);
     }
 
-    if (!Util.isEmpty(linkPreview.getDescription())) {
+    if (showDescription && !Util.isEmpty(linkPreview.getDescription())) {
       description.setText(linkPreview.getDescription());
       description.setVisibility(VISIBLE);
     } else {

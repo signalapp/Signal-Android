@@ -44,7 +44,8 @@
         android:clipChildren="false"
         android:clipToPadding="false"
         android:orientation="vertical"
-        tools:backgroundTint="@color/core_grey_05">
+        tools:background="@drawable/message_bubble_background_received_alone"
+        tools:backgroundTint="@color/conversation_blue">
 
         <LinearLayout
             android:id="@+id/story_reacted_label_holder"
@@ -82,6 +83,7 @@
             app:message_type="outgoing"
             app:quote_colorPrimary="@color/conversation_item_quote_text_color_sent"
             app:quote_colorSecondary="@color/conversation_item_quote_text_color_sent"
+            tools:background="@color/transparent_white_10"
             tools:visibility="visible" />
 
         <ViewStub
@@ -202,11 +204,32 @@
         android:id="@+id/indicators_parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/body_bubble"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
         android:layout_marginStart="8dp"
         android:orientation="vertical"
         android:padding="8dp" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/body_bubble"
+        android:layout_alignTop="@id/body_bubble"
+        android:layout_alignBottom="@id/body_bubble"
+        android:layout_marginStart="-42dp" >
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/quoted_indicator"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/circle_tintable"
+            android:backgroundTint="@color/signal_colorSurfaceVariant"
+            android:padding="6dp"
+            android:tint="@color/signal_colorOnSurfaceVariant"
+            app:srcCompat="@drawable/ic_replies_outline_20" />
+
+    </FrameLayout>
 
     <org.thoughtcrime.securesms.reactions.ReactionsConversationView
         android:id="@+id/reactions_view"
