@@ -27,6 +27,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.MultiTransformation;
@@ -45,7 +46,6 @@ import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.stories.viewer.page.StoryDisplay;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -71,6 +71,10 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
   private Controller                   controller;
   private OrderEnforcer<Stage>         orderEnforcer;
   private Camera1Controller.Properties properties;
+
+  private final Observer<Optional<Media>> thumbObserver = this::presentRecentItemThumbnail;
+  private boolean isThumbAvailable;
+  private boolean isMediaSelected;
 
   public static Camera1Fragment newInstance() {
     return new Camera1Fragment();
@@ -124,8 +128,6 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
     GestureDetector gestureDetector = new GestureDetector(flipGestureListener);
     cameraPreview.setOnTouchListener((v, event) -> gestureDetector.onTouchEvent(event));
 
-    controller.getMostRecentMediaItem().observe(getViewLifecycleOwner(), this::presentRecentItemThumbnail);
-
     view.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
       // Let's assume portrait for now, so 9:16
       float aspectRatio = CameraFragment.getAspectRatioForOrientation(getResources().getConfiguration().orientation);
@@ -173,7 +175,14 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
     orderEnforcer.reset();
   }
 
-  @Override public void onDestroy() {
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    controller.getMostRecentMediaItem().removeObserver(thumbObserver);
+  }
+
+  @Override
+  public void onDestroy() {
     super.onDestroy();
     requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
   }
@@ -251,6 +260,8 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
 
   private void presentRecentItemThumbnail(Optional<Media> media) {
     if (media == null) {
+      isThumbAvailable = false;
+      updateGalleryVisibility();
       return;
     }
 
@@ -266,17 +277,36 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
       thumbnail.setVisibility(View.GONE);
       thumbnail.setImageResource(0);
     }
+
+    isThumbAvailable = media.isPresent();
+    updateGalleryVisibility();
   }
 
   @Override
   public void presentHud(int selectedMediaCount) {
-    MediaCountIndicatorButton countButton = controlsContainer.findViewById(R.id.camera_review_button);
+    MediaCountIndicatorButton countButton            = controlsContainer.findViewById(R.id.camera_review_button);
+    View                      cameraGalleryContainer = controlsContainer.findViewById(R.id.camera_gallery_button_background);
 
     if (selectedMediaCount > 0) {
       countButton.setVisibility(View.VISIBLE);
       countButton.setCount(selectedMediaCount);
+      cameraGalleryContainer.setVisibility(View.GONE);
     } else {
       countButton.setVisibility(View.GONE);
+      cameraGalleryContainer.setVisibility(View.VISIBLE);
+    }
+
+    isMediaSelected = selectedMediaCount > 0;
+    updateGalleryVisibility();
+  }
+
+  private void updateGalleryVisibility() {
+    View cameraGalleryContainer = controlsContainer.findViewById(R.id.camera_gallery_button_background);
+
+    if (isMediaSelected || !isThumbAvailable) {
+      cameraGalleryContainer.setVisibility(View.GONE);
+    } else {
+      cameraGalleryContainer.setVisibility(View.VISIBLE);
     }
   }
 
@@ -287,6 +317,9 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
     View galleryButton = requireView().findViewById(R.id.camera_gallery_button);
     View countButton   = requireView().findViewById(R.id.camera_review_button);
     View toggleSpacer  = requireView().findViewById(R.id.toggle_spacer);
+
+    controller.getMostRecentMediaItem().removeObserver(thumbObserver);
+    controller.getMostRecentMediaItem().observeForever(thumbObserver);
 
     if (toggleSpacer != null) {
       if (Stories.isFeatureEnabled()) {

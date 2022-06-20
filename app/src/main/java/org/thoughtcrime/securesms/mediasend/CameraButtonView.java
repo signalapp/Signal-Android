@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.mediasend;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
@@ -17,6 +18,7 @@ import android.view.animation.Interpolator;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.DimensionUnit;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -25,19 +27,20 @@ public class CameraButtonView extends View {
 
   private enum CameraButtonMode { IMAGE, MIXED }
 
-  private static final int          CAPTURE_ARC_STROKE_WIDTH       = 4;
-  private static final int          HALF_CAPTURE_ARC_STROKE_WIDTH  = CAPTURE_ARC_STROKE_WIDTH / 2;
+  private static final float        CAPTURE_ARC_STROKE_WIDTH       = 3.5f;
+  private static final int          CAPTURE_FILL_PROTECTION        = 10;
   private static final int          PROGRESS_ARC_STROKE_WIDTH      = 4;
   private static final int          HALF_PROGRESS_ARC_STROKE_WIDTH = PROGRESS_ARC_STROKE_WIDTH / 2;
   private static final float        DEADZONE_REDUCTION_PERCENT     = 0.35f;
   private static final int          DRAG_DISTANCE_MULTIPLIER       = 3;
   private static final Interpolator ZOOM_INTERPOLATOR              = new DecelerateInterpolator();
 
-  private final @NonNull Paint outlinePaint    = outlinePaint();
-  private final @NonNull Paint backgroundPaint = backgroundPaint();
-  private final @NonNull Paint arcPaint        = arcPaint();
-  private final @NonNull Paint recordPaint     = recordPaint();
-  private final @NonNull Paint progressPaint   = progressPaint();
+  private final @NonNull Paint outlinePaint     = outlinePaint();
+  private final @NonNull Paint backgroundPaint  = backgroundPaint();
+  private final @NonNull Paint arcPaint         = arcPaint();
+  private final @NonNull Paint recordPaint      = recordPaint();
+  private final @NonNull Paint progressPaint    = progressPaint();
+  private final @NonNull Paint captureFillPaint = captureFillPaint();
 
   private Animation growAnimation;
   private Animation shrinkAnimation;
@@ -50,8 +53,8 @@ public class CameraButtonView extends View {
 
   private final float imageCaptureSize;
   private final float recordSize;
-  private final RectF progressRect   = new RectF();
-  private final Rect deadzoneRect = new Rect();
+  private final RectF progressRect = new RectF();
+  private final Rect  deadzoneRect = new Rect();
 
   private final @NonNull OnLongClickListener internalLongClickListener = v -> {
     notifyVideoCaptureStarted();
@@ -112,9 +115,18 @@ public class CameraButtonView extends View {
     arcPaint.setColor(0xFFFFFFFF);
     arcPaint.setAntiAlias(true);
     arcPaint.setStyle(Paint.Style.STROKE);
-    arcPaint.setStrokeWidth(ViewUtil.dpToPx(CAPTURE_ARC_STROKE_WIDTH));
+    arcPaint.setStrokeWidth(DimensionUnit.DP.toPixels(CAPTURE_ARC_STROKE_WIDTH));
     return arcPaint;
   }
+
+  private static Paint captureFillPaint() {
+    Paint arcPaint = new Paint();
+    arcPaint.setColor(0xFFFFFFFF);
+    arcPaint.setAntiAlias(true);
+    arcPaint.setStyle(Paint.Style.FILL);
+    return arcPaint;
+  }
+
 
   private static Paint progressPaint() {
     Paint progressPaint = new Paint();
@@ -153,8 +165,8 @@ public class CameraButtonView extends View {
 
     float radius = imageCaptureSize / 2f;
     canvas.drawCircle(centerX, centerY, radius, backgroundPaint);
-    canvas.drawCircle(centerX, centerY, radius, outlinePaint);
-    canvas.drawCircle(centerX, centerY, radius - ViewUtil.dpToPx(HALF_CAPTURE_ARC_STROKE_WIDTH), arcPaint);
+    canvas.drawCircle(centerX, centerY, radius, arcPaint);
+    canvas.drawCircle(centerX, centerY, radius - DimensionUnit.DP.toPixels(CAPTURE_FILL_PROTECTION), captureFillPaint);
   }
 
   private void drawForVideoCapture(Canvas canvas) {

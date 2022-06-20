@@ -9,7 +9,7 @@
         android:id="@+id/camera_capture_button"
         android:layout_width="96dp"
         android:layout_height="96dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginEnd="18dp"
         android:contentDescription="@string/CameraXFragment_capture_description"
         app:imageCaptureSize="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,47 +26,56 @@
         android:background="@drawable/circle_transparent_black_40"
         android:padding="6dp"
         android:src="@drawable/camerax_flash_toggle"
-        app:layout_constraintStart_toEndOf="@+id/camera_flip_button"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/camera_flip_button"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="14dp"
-        android:background="@drawable/circle_transparent_black_40"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/media_selection_camera_switch_background"
         android:contentDescription="@string/CameraXFragment_change_camera_description"
         android:scaleType="centerInside"
         android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_switch_camera_24"
+        app:srcCompat="@drawable/ic_switch_camera_28"
         tools:visibility="visible" />
 
-    <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/camera_gallery_button"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_marginBottom="42dp"
-        android:contentDescription="@string/CameraXFragment_open_gallery_description"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toTopOf="@id/camera_capture_button"
-        app:layout_constraintEnd_toEndOf="@id/camera_capture_button"
-        app:layout_constraintStart_toStartOf="@id/camera_capture_button"
-        app:riv_border_color="@color/core_white"
-        app:riv_border_width="2dp"
-        app:riv_corner_radius="10dp" />
+    <FrameLayout
+        android:id="@+id/camera_gallery_button_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/circle_tintable"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/camera_gallery_button"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:contentDescription="@string/CameraXFragment_open_gallery_description"
+            android:padding="2dp"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle"
+            tools:src="@color/black" />
+
+    </FrameLayout>
 
     <org.thoughtcrime.securesms.mediasend.v2.MediaCountIndicatorButton
         android:id="@+id/camera_review_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="14dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="36dp"
         android:background="@drawable/v2_media_count_indicator_background"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/camera_capture_button"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/camera_capture_button"
         tools:visibility="visible" />
 

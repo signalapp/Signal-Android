@@ -6,21 +6,22 @@
     android:layout_height="wrap_content"
     android:background="@drawable/v2_media_count_indicator_background"
     android:contentDescription="@string/MediaCountIndicatorButton__send"
+    android:paddingTop="13dp"
+    android:paddingBottom="13dp"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
     <TextView
         android:id="@+id/media_count_indicator_text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="18sp"
+        android:layout_marginStart="12dp"
         android:background="@drawable/v2_media_count_indicator_text_background"
-        android:paddingStart="9.5dp"
-        android:paddingTop="3dp"
-        android:paddingEnd="9.5dp"
-        android:paddingBottom="3dp"
-        android:textColor="@color/core_white"
+        android:paddingStart="5.5dp"
+        android:paddingTop="1dp"
+        android:paddingEnd="5.5dp"
+        android:paddingBottom="1dp"
+        android:textAppearance="@style/Signal.Text.MaterialCaption"
+        android:textColor="@color/signal_light_colorBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -28,15 +29,15 @@
 
     <ImageView
         android:id="@+id/media_count_indicator_chevron"
-        android:layout_width="12dp"
-        android:layout_height="12dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="12dp"
         android:importantForAccessibility="no"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/media_count_indicator_text"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_arrow_right" />
+        app:srcCompat="@drawable/ic_chevron_end_24" />
 
 </merge>
