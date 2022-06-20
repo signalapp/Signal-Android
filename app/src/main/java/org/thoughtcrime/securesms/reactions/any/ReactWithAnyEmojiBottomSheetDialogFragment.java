@@ -32,6 +32,7 @@ import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.ShapeAppearanceModel;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.components.emoji.EmojiEventListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageView;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter;
@@ -40,6 +41,7 @@ import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageCategoriesAdap
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageCategoryMappingModel;
 import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView;
 import org.thoughtcrime.securesms.reactions.edit.EditReactionsActivity;
+import org.thoughtcrime.securesms.util.FullscreenHelper;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -49,8 +51,8 @@ import java.util.Optional;
 
 import static androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE;
 
-public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomSheetDialogFragment implements EmojiEventListener,
-                                                                                                           EmojiPageViewGridAdapter.VariationSelectorListener
+public final class ReactWithAnyEmojiBottomSheetDialogFragment extends FixedRoundedCornerBottomSheetDialogFragment implements EmojiEventListener,
+                                                                                                                             EmojiPageViewGridAdapter.VariationSelectorListener
 {
 
   private static final String REACTION_STORAGE_KEY = "reactions_recent_emoji";
@@ -140,36 +142,13 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
   }
 
   @Override
-  public void onCreate(@Nullable Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setStyle(DialogFragment.STYLE_NORMAL, R.style.Widget_Signal_ReactWithAny);
+  protected int getThemeResId() {
+    return R.style.Widget_Signal_ReactWithAny;
   }
 
   @Override
   public @NonNull Dialog onCreateDialog(Bundle savedInstanceState) {
-    BottomSheetDialog dialog = (BottomSheetDialog) super.onCreateDialog(savedInstanceState);
-    dialog.getBehavior().setPeekHeight((int) (getResources().getDisplayMetrics().heightPixels * 0.50));
-
-    ShapeAppearanceModel shapeAppearanceModel = ShapeAppearanceModel.builder()
-                                                                    .setTopLeftCorner(CornerFamily.ROUNDED, ViewUtil.dpToPx(requireContext(), 18))
-                                                                    .setTopRightCorner(CornerFamily.ROUNDED, ViewUtil.dpToPx(requireContext(), 18))
-                                                                    .build();
-
-    MaterialShapeDrawable dialogBackground = new MaterialShapeDrawable(shapeAppearanceModel);
-
-    dialogBackground.setTint(ContextCompat.getColor(requireContext(), R.color.react_with_any_background));
-
-    dialog.getBehavior().addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-      @Override
-      public void onStateChanged(@NonNull View bottomSheet, int newState) {
-        if (bottomSheet.getBackground() != dialogBackground) {
-          ViewCompat.setBackground(bottomSheet, dialogBackground);
-        }
-      }
-
-      @Override
-      public void onSlide(@NonNull View bottomSheet, float slideOffset) { }
-    });
+    Dialog dialog = (BottomSheetDialog) super.onCreateDialog(savedInstanceState);
 
     boolean shadows = requireArguments().getBoolean(ARG_SHADOWS, true);
     if (!shadows) {
