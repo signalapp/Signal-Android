@@ -43,6 +43,7 @@
 
     <style name="Signal.Widget.Button.Medium.Primary" parent="@style/Signal.Widget.Button.Base.Primary">
         <item name="android:minHeight">40dp</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Signal.Button.Primary</item>
     </style>
 
     <style name="Signal.Widget.Button.Small.Primary" parent="Widget.Material3.Button.OutlinedButton">
@@ -175,11 +176,11 @@
         <item name="android:popupBackground">@drawable/rounded_rectangle_surface_2_18</item>
     </style>
 
-    <style name="Signal.MaterialAlertDialog" parent="MaterialAlertDialog.MaterialComponents">
+    <style name="Signal.MaterialAlertDialog" parent="MaterialAlertDialog.Material3">
         <item name="shapeAppearance">@style/Signal.ShapeOverlay.Rounded</item>
     </style>
 
-    <style name="Signal.MaterialAlertDialog.Wide" parent="MaterialAlertDialog.MaterialComponents">
+    <style name="Signal.MaterialAlertDialog.Wide" parent="MaterialAlertDialog.Material3">
         <item name="shapeAppearance">@style/Signal.ShapeOverlay.Rounded</item>
         <item name="backgroundInsetStart">0dp</item>
         <item name="backgroundInsetEnd">0dp</item>
