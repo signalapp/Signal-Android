@@ -41,6 +41,8 @@ class StoryDirectReplyDialogFragment :
   private var isRequestingReactWithAny = false
   private var isReactClosingAfterSend = false
 
+  override val themeResId: Int = R.style.Theme_Signal_RoundedBottomSheet_Stories
+
   private val viewModel: StoryDirectReplyViewModel by viewModels(
     factoryProducer = {
       StoryDirectReplyViewModel.Factory(storyId, recipientId, StoryDirectReplyRepository(requireContext()))

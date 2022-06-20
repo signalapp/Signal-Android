@@ -579,11 +579,11 @@
         <item name="mediaKeyboardBackgroundColor">@color/signal_colorSurface2</item>
         <item name="mediaKeyboardBottomBarBackgroundColor">@color/signal_colorSurface5</item>
 
-        <item name="android:textColorPrimary">@color/core_grey_05</item>
+        <item name="android:textColorPrimary">@color/signal_colorOnSurface</item>
 
-        <item name="colorAccent">@color/core_ultramarine_light</item>
+        <item name="colorAccent">@color/signal_colorPrimary</item>
 
-        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/signal_background_primary</item>
+        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/signal_colorSurface</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
         <item name="android:statusBarColor" tools:ignore="NewApi">@color/transparent</item>
     </style>
