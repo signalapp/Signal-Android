@@ -77,10 +77,10 @@
         android:background="?selectableItemBackground"
         android:gravity="center"
         android:textAppearance="@style/Signal.Text.Body"
-        android:textColor="@color/signal_text_primary"
+        android:textColor="@color/signal_colorOnSurface"
         app:iconGravity="textStart"
         app:iconSize="20dp"
-        app:iconTint="@color/signal_text_primary"
+        app:iconTint="@color/signal_colorOnSurface"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -122,7 +122,8 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="24dp"
             android:gravity="bottom"
-            android:textAppearance="@style/Signal.Text.Body"
+            android:textColor="@color/signal_colorNeutralInverse"
+            android:textAppearance="@style/Signal.Text.BodyLarge"
             tools:text="Ugh." />
     </FrameLayout>
 
@@ -163,7 +164,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/story_content_card_touch_interceptor"
         app:srcCompat="@drawable/ic_x_24"
-        app:tint="@color/core_white" />
+        app:tint="@color/signal_colorNeutralInverse" />
 
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/sender_avatar"
@@ -199,7 +200,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
-        android:textColor="@color/core_white"
+        android:textColor="@color/signal_colorNeutralInverse"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@id/distribution_list"
         app:layout_constraintEnd_toStartOf="@id/date"
@@ -215,8 +216,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="12dp"
-        android:alpha="0.8"
-        android:textAppearance="@style/TextAppearance.Signal.Caption"
+        android:alpha="0.64"
+        android:textColor="@color/signal_colorNeutralVariantInverse"
+        android:textAppearance="@style/Signal.Text.MaterialCaption"
         app:layout_constraintBottom_toBottomOf="@id/from"
         app:layout_constraintEnd_toStartOf="@id/more"
         app:layout_constraintStart_toEndOf="@id/from"
@@ -231,7 +233,7 @@
         android:drawablePadding="4dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textAppearance="@style/TextAppearance.Signal.Subtitle"
+        android:textAppearance="@style/Signal.Text.MaterialCaption"
         android:visibility="gone"
         app:drawableStartCompat="@drawable/ic_lock_16"
         app:drawableTint="@color/transparent_white_80"
@@ -250,7 +252,7 @@
         app:layout_constraintBottom_toTopOf="@id/progress"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_more_vert_24"
-        app:tint="@color/core_white" />
+        app:tint="@color/signal_colorNeutralInverse" />
 
     <org.thoughtcrime.securesms.components.segmentedprogressbar.SegmentedProgressBar
         android:id="@+id/progress"
@@ -265,9 +267,9 @@
         app:segmentBackgroundColor="@color/transparent_white_40"
         app:segmentCornerRadius="10dp"
         app:segmentMargins="2dp"
-        app:segmentSelectedBackgroundColor="@color/core_white"
-        app:segmentSelectedStrokeColor="@color/core_white"
-        app:segmentStrokeColor="@color/core_white"
+        app:segmentSelectedBackgroundColor="@color/signal_colorNeutralInverse"
+        app:segmentSelectedStrokeColor="@color/signal_colorNeutralInverse"
+        app:segmentStrokeColor="@color/signal_colorNeutralInverse"
         app:totalSegments="0"
         tools:totalSegments="5" />
 

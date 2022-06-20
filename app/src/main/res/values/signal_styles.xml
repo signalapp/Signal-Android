@@ -168,6 +168,11 @@
         <item name="cornerSize">8dp</item>
     </style>
 
+    <style name="ShapeAppearance.Signal.MaterialAlertDialog" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerRadius">28dp</item>
+    </style>
+
     <style name="Signal.DayNight.Popup.OverflowMenu" parent="ThemeOverlay.Material3">
         <item name="overlapAnchor">false</item>
         <item name="android:popupElevation" tools:ignore="NewApi">4dp</item>
@@ -180,8 +185,7 @@
         <item name="shapeAppearance">@style/Signal.ShapeOverlay.Rounded</item>
     </style>
 
-    <style name="Signal.MaterialAlertDialog.Wide" parent="MaterialAlertDialog.Material3">
-        <item name="shapeAppearance">@style/Signal.ShapeOverlay.Rounded</item>
+    <style name="Signal.MaterialAlertDialog.Wide">
         <item name="backgroundInsetStart">0dp</item>
         <item name="backgroundInsetEnd">0dp</item>
     </style>
@@ -203,6 +207,7 @@
     <style name="ThemeOverlay.Signal.MaterialAlertDialog" parent="@style/ThemeOverlay.Material3.MaterialAlertDialog">
         <item name="alertDialogStyle">@style/Signal.MaterialAlertDialog</item>
         <item name="android:background">@color/signal_colorSurface1</item>
+        <item name="android:dialogCornerRadius" tools:ignore="NewApi">28dp</item>
         <item name="materialAlertDialogTitleTextStyle">@style/MaterialAlertDialog.Signal.Title.Text</item>
         <item name="materialAlertDialogBodyTextStyle">@style/MaterialAlertDialog.Signal.Body.Text</item>
         <item name="buttonBarPositiveButtonStyle">@style/Signal.Widget.Button.Dialog</item>

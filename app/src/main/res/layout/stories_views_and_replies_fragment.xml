@@ -19,12 +19,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
-        app:tabIndicatorColor="@color/signal_inverse_primary"
+        app:tabIndicatorColor="@color/signal_colorOnSurface"
         app:tabIndicatorFullWidth="false"
         app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/signal_text_primary"
+        app:tabSelectedTextColor="@color/signal_colorOnSurface"
         app:tabTextAppearance="@style/TextAppearance.Signal.Body2"
-        app:tabTextColor="@color/signal_text_secondary" />
+        app:tabTextColor="@color/signal_colorOnSurfaceVariant" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/pager"

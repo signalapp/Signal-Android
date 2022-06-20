@@ -17,6 +17,7 @@
     </style>
 
     <style name="TextSecure.DarkNoActionBar.StoryViewer">
+        <item name="android:windowBackground">@color/signal_colorSurface</item>
         <item name="android:windowContentTransitions">true</item>
         <item name="android:windowSharedElementEnterTransition">@transition/change_transform</item>
         <item name="android:windowSharedElementExitTransition">@transition/change_transform</item>
