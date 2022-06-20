@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_selected="true" android:color="@color/core_black" />
-    <item android:color="@color/core_white" />
+    <item android:state_selected="true" android:color="@color/signal_colorSecondaryContainer" />
+    <item android:color="@color/signal_colorOnSurface" />
 </selector>

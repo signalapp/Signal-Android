@@ -12,6 +12,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -157,6 +158,9 @@ class MediaSelectionActivity :
   }
 
   private fun animateTextStyling(selectedSwitch: TextView, unselectedSwitch: TextView, duration: Long) {
+    val offTextColor = ContextCompat.getColor(this, R.color.signal_colorOnSurface)
+    val onTextColor = ContextCompat.getColor(this, R.color.signal_colorSecondaryContainer)
+
     animateInShadowLayerValueAnimator?.cancel()
     animateInTextColorValueAnimator?.cancel()
     animateOutShadowLayerValueAnimator?.cancel()
@@ -167,7 +171,7 @@ class MediaSelectionActivity :
       addUpdateListener { selectedSwitch.setShadowLayer(it.animatedValue as Float, 0f, 0f, Color.BLACK) }
       start()
     }
-    animateInTextColorValueAnimator = ValueAnimator.ofInt(selectedSwitch.currentTextColor, Color.BLACK).apply {
+    animateInTextColorValueAnimator = ValueAnimator.ofObject(ArgbEvaluatorCompat(), selectedSwitch.currentTextColor, onTextColor).apply {
       setEvaluator(ArgbEvaluatorCompat.getInstance())
       this.duration = duration
       addUpdateListener { selectedSwitch.setTextColor(it.animatedValue as Int) }
@@ -178,7 +182,7 @@ class MediaSelectionActivity :
       addUpdateListener { unselectedSwitch.setShadowLayer(it.animatedValue as Float, 0f, 0f, Color.BLACK) }
       start()
     }
-    animateOutTextColorValueAnimator = ValueAnimator.ofInt(unselectedSwitch.currentTextColor, Color.WHITE).apply {
+    animateOutTextColorValueAnimator = ValueAnimator.ofObject(ArgbEvaluatorCompat(), unselectedSwitch.currentTextColor, offTextColor).apply {
       setEvaluator(ArgbEvaluatorCompat.getInstance())
       this.duration = duration
       addUpdateListener { unselectedSwitch.setTextColor(it.animatedValue as Int) }

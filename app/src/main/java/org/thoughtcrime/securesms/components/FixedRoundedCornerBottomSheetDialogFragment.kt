@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.components
 
 import android.app.Dialog
-import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
