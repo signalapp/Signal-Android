@@ -3267,6 +3267,7 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Aitäh hooandmise eest!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Kuva profiilil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Tehtud</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kui sul on rohkem kui üks märk, saad valida, millist soovid oma profiilil kuvada.</string>
   <!--Button label for creating a monthly donation-->
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">Rohkem</string>
@@ -3459,6 +3460,7 @@
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Vestlused</string>
   <!--Label for Stories tab in home app screen-->
+  <string name="ConversationListTabs__stories">Lood</string>
   <!--String for counts above 99 in conversation list tabs-->
   <!--Title for "My Stories" row item in Stories landing page-->
   <!--Subtitle for "My Stories" row item when user has not added stories-->
