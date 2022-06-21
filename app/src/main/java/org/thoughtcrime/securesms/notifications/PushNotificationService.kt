@@ -4,8 +4,9 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import org.session.libsession.messaging.jobs.BatchMessageReceiveJob
 import org.session.libsession.messaging.jobs.JobQueue
-import org.session.libsession.messaging.jobs.MessageReceiveJob
+import org.session.libsession.messaging.jobs.MessageReceiveParameters
 import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.utilities.Base64
@@ -27,7 +28,7 @@ class PushNotificationService : FirebaseMessagingService() {
         if (data != null) {
             try {
                 val envelopeAsData = MessageWrapper.unwrap(data).toByteArray()
-                val job = MessageReceiveJob(envelopeAsData)
+                val job = BatchMessageReceiveJob(listOf(MessageReceiveParameters(envelopeAsData)), null)
                 JobQueue.shared.add(job)
             } catch (e: Exception) {
                 Log.d("Loki", "Failed to unwrap data for message due to error: $e.")

@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.crypto.BiometricSecretProvider;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.AnimationCompleteListener;
 
+import java.security.InvalidKeyException;
 import java.security.Signature;
 
 import network.loki.messenger.R;
@@ -68,6 +69,7 @@ public class PassphrasePromptActivity extends BaseActionBarActivity {
 
   private boolean authenticated;
   private boolean failure;
+  private boolean hasSignatureObject = true;
 
   private KeyCachingService keyCachingService;
 
@@ -205,7 +207,23 @@ public class PassphrasePromptActivity extends BaseActionBarActivity {
     if (fingerprintManager.isHardwareDetected() && fingerprintManager.hasEnrolledFingerprints()) {
       Log.i(TAG, "Listening for fingerprints...");
       fingerprintCancellationSignal = new CancellationSignal();
-      fingerprintManager.authenticate(new FingerprintManagerCompat.CryptoObject(biometricSecretProvider.getOrCreateBiometricSignature(this)), 0, fingerprintCancellationSignal, fingerprintListener, null);
+      Signature signature;
+      try {
+        signature = biometricSecretProvider.getOrCreateBiometricSignature(this);
+        hasSignatureObject = true;
+        throw new InvalidKeyException("e");
+      } catch (InvalidKeyException e) {
+        signature = null;
+        hasSignatureObject = false;
+        Log.e(TAG, "Error getting / creating signature", e);
+      }
+      fingerprintManager.authenticate(
+              signature == null ? null : new FingerprintManagerCompat.CryptoObject(signature),
+              0,
+              fingerprintCancellationSignal,
+              fingerprintListener,
+              null
+      );
     } else {
       Log.i(TAG, "firing intent...");
       Intent intent = keyguardManager.createConfirmDeviceCredentialIntent("Unlock Session", "");
@@ -230,8 +248,22 @@ public class PassphrasePromptActivity extends BaseActionBarActivity {
     public void onAuthenticationSucceeded(FingerprintManagerCompat.AuthenticationResult result) {
       Log.i(TAG, "onAuthenticationSucceeded");
       if (result.getCryptoObject() == null || result.getCryptoObject().getSignature() == null) {
-        // authentication failed
-        onAuthenticationFailed();
+        if (hasSignatureObject) {
+          // authentication failed
+          onAuthenticationFailed();
+        } else {
+          fingerprintPrompt.setImageResource(R.drawable.ic_check_white_48dp);
+          fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.green_500), PorterDuff.Mode.SRC_IN);
+          fingerprintPrompt.animate().setInterpolator(new BounceInterpolator()).scaleX(1.1f).scaleY(1.1f).setDuration(500).setListener(new AnimationCompleteListener() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+              handleAuthenticated();
+
+              fingerprintPrompt.setImageResource(R.drawable.ic_fingerprint_white_48dp);
+              fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.signal_primary), PorterDuff.Mode.SRC_IN);
+            }
+          }).start();
+        }
         return;
       }
       // Signature object now successfully unlocked

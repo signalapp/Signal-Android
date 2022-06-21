@@ -135,14 +135,12 @@ class BatchMessageReceiveJob(
                         }
                         storage.incrementUnread(threadId, trueUnreadCount)
                         storage.updateThread(threadId, true)
-                        SSKEnvironment.shared.notificationManager.updateNotification(context, threadId)
                     }
                 }
-
                 // await all thread processing
                 deferredThreadMap.awaitAll()
             }
-
+            SSKEnvironment.shared.notificationManager.updateNotification(context)
             if (failures.isEmpty()) {
                 handleSuccess()
             } else {
