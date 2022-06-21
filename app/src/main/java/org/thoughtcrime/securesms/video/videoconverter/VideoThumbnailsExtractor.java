@@ -161,7 +161,14 @@ final class VideoThumbnailsExtractor {
         }
       }
 
-      int outputBufIndex = decoder.dequeueOutputBuffer(info, TIMEOUT_USEC);
+      final int outputBufIndex;
+      try {
+        outputBufIndex = decoder.dequeueOutputBuffer(info, TIMEOUT_USEC);
+      } catch (IllegalStateException e) {
+        Log.w(TAG, "Decoder not in the Executing state, or codec is configured in asynchronous mode.", e);
+        throw new TranscodingException("Decoder not in the Executing state, or codec is configured in asynchronous mode.", e);
+      }
+
       if (outputBufIndex >= 0) {
         if ((info.flags & MediaCodec.BUFFER_FLAG_END_OF_STREAM) != 0) {
           outputDone = true;
