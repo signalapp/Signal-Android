@@ -767,7 +767,7 @@
   <!--Title shown when there was an known issue getting group information from a group link-->
   <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Det går inte att gå med i gruppen</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
-  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Du kan inte gå med i denna grupp via grupplänken eftersom att en administratör tog bort dig.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Du kan inte gå med i denna grupp via grupplänken eftersom en administratör tog bort dig.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Denna grupplänk är inte längre giltig.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->

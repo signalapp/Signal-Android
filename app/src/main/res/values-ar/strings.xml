@@ -134,7 +134,7 @@
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">يمكنك الآن ربط الاتصال بخدمة Signal‬ مباشرة لتجربة استخدام أفضل.</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
-  <string name="CensorshipCircumventionMegaphone_turn_off">إيقاف تشغيل</string>
+  <string name="CensorshipCircumventionMegaphone_turn_off">إيقاف التشغيل</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
   <string name="CensorshipCircumventionMegaphone_no_thanks">لا شكراً</string>
   <!--ClearProfileActivity-->
@@ -350,7 +350,7 @@
   <!--Dialog title for block group link join requests-->
   <string name="ConversationFragment__block_request">حظر الطلب ؟</string>
   <!--Dialog message for block group link join requests-->
-  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">لن يتمكن المستخدم %1$s من الانضمام إلى هذه المجموعة أو حتى إرسال طلب للانضمام إليها من خلال رابط المجموعة. لكن يمكن إضافته يدويا للمجموعة.</string>
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">لن يتمكن المستخدم %1$s من الانضمام إلى هذه المجموعة أو حتى إرسال طلب للانضمام إليها من خلال رابط المجموعة. لكن يمكن إضافته يدويًا للمجموعة.</string>
   <!--Dialog confirm block request button-->
   <string name="ConversationFragment__block_request_button">حظر الطلب</string>
   <!--Dialog cancel block request button-->
@@ -972,7 +972,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">إضافة \"%1$s\" إلى المجموعة ؟</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">رفض طلب \"%1$s\" ؟</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
-  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">رفض طلب انضمام المستخدم \"%1$s\" ؟ لن يتمكن المستخدم من إرسال طلب الانضمام مرة أخرى للمجموعة بواسطة رابط للمجموعة.</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">رفض طلب انضمام المستخدم \"%1$s\"؟ لن يتمكن المُستخدم من إرسال طلب الانضمام مرة أخرى للمجموعة بواسطة رابط للمجموعة.</string>
   <string name="RequestConfirmationDialog_add">إضافة</string>
   <string name="RequestConfirmationDialog_deny">رفض</string>
   <!--ImageEditorHud-->
@@ -1502,7 +1502,7 @@
   <!--RecaptchaRequiredBottomSheetFragment-->
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">التأكد لمواصلة التراسُل</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">للتمكّن من الوقاية من الإزعاج في Signal، يُرجى إتمام التحقق.</string>
-  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">بعد التحقق، يمكنك مواصلة التراسل. ستُرسَل تلقائيا لك كل رسالة متوقفة مؤقتًا.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">بعد التحقق، يمكنك مواصلة التراسل. ستُرسَل تلقائيًا لك كل رسالة متوقفة مؤقتًا.</string>
   <!--Recipient-->
   <string name="Recipient_you">أنت</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
@@ -4281,7 +4281,7 @@
   <!--Story settings private stories heading-->
   <string name="StorySettingsFragment__private_stories">القصص الخاصة</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">يكمن فقط للأشخاص الذين قمت بإضافتهم مشاهدة القصص الخاصة. وأنت فقط من يمكنه رؤية اسم القصة.</string>
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">يكمن فقط للأشخاص الذين قمت بإضافتهم مشاهدة القصص الخاصة. وأنت فقط من يُمكنه رؤية اسم القصة.</string>
   <!--Option label for creating a new private story-->
   <string name="StorySettingsFragment__new_private_story">قصة خاصة جديدة</string>
   <!--Page title for My Story options-->

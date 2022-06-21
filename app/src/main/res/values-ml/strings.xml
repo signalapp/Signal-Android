@@ -4,8 +4,8 @@
   <string name="no">അല്ല/ഇല്ല</string>
   <string name="delete">ഇല്ലാതാക്കൂ</string>
   <string name="please_wait">കാത്തിരിക്കൂ…</string>
-  <string name="save">സംരക്ഷിക്കൂ</string>
-  <string name="note_to_self">സ്വയം കുറിപ്പ്</string>
+  <string name="save">സംരക്ഷിക്കുക</string>
+  <string name="note_to_self">സ്വയം നോട്ട് ചെയ്യുക</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">പുതിയ സന്ദേശം</string>
   <!--AlbumThumbnailView-->
@@ -15,17 +15,17 @@
   <string name="ApplicationPreferencesActivity_currently_s">ഇപ്പോൾ:%s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">നിങ്ങൾ ഒരു രഹസ്യവാചകം ഇതു വരെ ക്രമീകരിച്ചിട്ടില്ല!</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">രഹസ്യവാചകം പ്രവർത്തനരഹിതമാക്കണോ?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">ഇത്  Signal, സന്ദേശം അറിയിപ്പുകളെ സ്ഥിരമായി അൺലോക്ക് ചെയ്യും.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">ഇത്  Signal, സന്ദേശ അറിയിപ്പുകളെ ശാശ്വതമായി അൺലോക്ക് ചെയ്യും.</string>
   <string name="ApplicationPreferencesActivity_disable">പ്രവർത്തനരഹിതമാക്കുക</string>
   <string name="ApplicationPreferencesActivity_unregistering">അൺരജിസ്റ്റർ ചെയ്യുന്നു</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal സന്ദേശങ്ങളിൽ നിന്നും കോളുകളിൽ നിന്നും അൺരജിസ്റ്റർ ചെയ്യുന്നു…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal സന്ദേശങ്ങളും കോളുകളും പ്രവർത്തനരഹിതമാക്കണോ?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">സെർവറിൽ നിന്ന് അൺരജിസ്റ്റർ ചെയ്ത് Signal സന്ദേശങ്ങള്‍, കോളുകള്‍ എന്നിവ പ്രവർത്തനരഹിതമാക്കൂ. ഭാവിയിൽ അവ വീണ്ടും ഉപയോഗിക്കുന്നതിന് നിങ്ങളുടെ ഫോണ്‍ നമ്പര്‍ വീണ്ടും രജിസ്റ്റർ ചെയ്യേണ്ടിവരും.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">സെർവറിൽ നിന്ന് അൺരജിസ്റ്റർ ചെയ്ത് Signal സന്ദേശങ്ങള്‍, കോളുകള്‍ എന്നിവ പ്രവർത്തനരഹിതമാക്കുക. ഭാവിയിൽ അവ ഉപയോഗിക്കുന്നതിന് നിങ്ങളുടെ ഫോണ്‍ നമ്പര്‍ വീണ്ടും രജിസ്റ്റർ ചെയ്യേണ്ടിവരും.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">സെർവറിലേക്ക് കണക്റ്റുചെയ്യുന്നതിൽ പിശക്!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS പ്രവർത്തനക്ഷമമാക്കി</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">നിങ്ങളുടെ സ്ഥിരം SMS അപ്ലിക്കേഷൻ മാറ്റാൻ തൊടൂ</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">നിങ്ങളുടെ സ്ഥിരം SMS അപ്ലിക്കേഷൻ മാറ്റാൻ തൊടുക</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS പ്രവർത്തനരഹിതമാക്കി</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">നിങ്ങളുടെ സ്ഥിരം SMS അപ്ലിക്കേഷൻ Signal ആക്കാൻ തൊടൂ</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">നിങ്ങളുടെ സ്ഥിരം SMS അപ്ലിക്കേഷൻ Signal ആക്കാൻ തൊടുക</string>
   <string name="ApplicationPreferencesActivity_on">ഓൺ</string>
   <string name="ApplicationPreferencesActivity_On">ഓൺ</string>
   <string name="ApplicationPreferencesActivity_off">ഓഫ്</string>
@@ -122,9 +122,9 @@
   <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">നിങ്ങൾക്ക് പരമാവധി %d സംഭാഷണങ്ങളുമായി പങ്കിടാൻ കഴിയും.</string>
   <string name="CameraContacts_select_signal_recipients">Signal സ്വീകർത്താക്കളെ തിരഞ്ഞെടുക്കുക</string>
   <string name="CameraContacts_no_signal_contacts">Signal കോൺടാക്റ്റുകളൊന്നുമില്ല</string>
-  <string name="CameraContacts_you_can_only_use_the_camera_button">നിങ്ങൾക്ക് Signal കോൺടാക്റ്റുകളിലേക്ക് ഫോട്ടോകൾ അയയ്ക്കാൻ മാത്രമേ ക്യാമറ ബട്ടൺ ഉപയോഗിക്കാൻ കഴിയൂ.</string>
-  <string name="CameraContacts_cant_find_who_youre_looking_for">നിങ്ങൾ ആരെയാണ് തിരയുന്നതെന്ന് കണ്ടെത്താൻ കഴിയുന്നില്ലേ?</string>
-  <string name="CameraContacts_invite_a_contact_to_join_signal">Signal-ൽ ചേരാൻ ഒരു കോൺടാക്റ്റിനെ ക്ഷണിക്കുക</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Signal കോൺടാക്റ്റുകളിലേക്ക് ഫോട്ടോകൾ അയയ്ക്കാൻ നിങ്ങൾക്ക് ക്യാമറ ബട്ടൺ മാത്രമേ ഉപയോഗിക്കാൻ കഴിയൂ.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">നിങ്ങൾ തിരയുന്ന ആളെ കണ്ടെത്താൻ കഴിയുന്നില്ലേ?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">ഒരു കോൺടാക്റ്റിനെ Signal-ൽ ചേരാൻ ക്ഷണിക്കുക</string>
   <string name="CameraContacts__menu_search">തിരയൽ</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
@@ -136,12 +136,12 @@
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
   <string name="CensorshipCircumventionMegaphone_no_thanks">വേണ്ട, നന്ദി</string>
   <!--ClearProfileActivity-->
-  <string name="ClearProfileActivity_remove">നീക്കംചെയ്യൂ</string>
-  <string name="ClearProfileActivity_remove_profile_photo">പ്രൊഫൈല്‍ ഫോട്ടോ നീക്കംചെയ്യണോ?</string>
-  <string name="ClearProfileActivity_remove_group_photo">ഗ്രൂപ്പ് ഫോട്ടോ നീക്കംചെയ്യണോ?</string>
+  <string name="ClearProfileActivity_remove">നീക്കം ചെയ്യുക</string>
+  <string name="ClearProfileActivity_remove_profile_photo">പ്രൊഫൈല്‍ ഫോട്ടോ നീക്കം ചെയ്യണോ?</string>
+  <string name="ClearProfileActivity_remove_group_photo">ഗ്രൂപ്പ് ഫോട്ടോ നീക്കം ചെയ്യണോ?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Signal അപ്ഡേറ്റ് ചെയ്യുക</string>
-  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">ആപ്പിന്റെ ഈ പതിപ്പ് ഇനി മുതല്‍ പിന്തുണയ്ക്കില്ല. സന്ദേശങ്ങൾ അയയ്‌ക്കുന്നതും സ്വീകരിക്കുന്നതും തുടരാൻ, ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് പുതുക്കുക..</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">ആപ്പിന്റെ ഈ പതിപ്പ് ഇനി മുതല്‍ പിന്തുണയ്ക്കില്ല. സന്ദേശങ്ങൾ അയയ്‌ക്കുന്നതും സ്വീകരിക്കുന്നതും തുടരാൻ, ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്ഡേറ്റ് ചെയ്യുക..</string>
   <string name="ClientDeprecatedActivity_update">അപ്‌ഡേറ്റ്</string>
   <string name="ClientDeprecatedActivity_dont_update">അപ്ഡേറ്റ് ചെയ്യരുത്</string>
   <string name="ClientDeprecatedActivity_warning">മുന്നറിയിപ്പ്</string>
@@ -149,53 +149,53 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">വെബ്‌ബ്രൗസറൊന്നും കണ്ടെത്തിയില്ല.</string>
   <string name="CommunicationActions_send_email">ഇമെയിൽ അയയ്ക്കുക</string>
-  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">ഒരു ഫോൺ കോൾ ഇപ്പോഴും നടന്നുകൊണ്ടിരിക്കുന്നു.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">ഒരു ഫോൺ കോൾ ഇപ്പോള്‍ നടന്നുകൊണ്ടിരിക്കുന്നു.</string>
   <string name="CommunicationActions_start_voice_call">വോയ്‌സ് കോൾ ആരംഭിക്കണോ?</string>
   <string name="CommunicationActions_cancel">റദ്ദാക്കുക</string>
   <string name="CommunicationActions_call">കോൾ ചെയ്യുക</string>
   <string name="CommunicationActions_insecure_call">സുരക്ഷിതമല്ലാത്ത കോൾ</string>
   <string name="CommunicationActions_carrier_charges_may_apply">കാരിയർ നിരക്കുകൾ ബാധകം. നിങ്ങൾ വിളിക്കുന്ന നമ്പർ Signal-ൽ രജിസ്റ്റർ ചെയ്തിട്ടില്ല. ഈ കോൾ ഇൻറർനെറ്റിലൂടെയല്ല, നിങ്ങളുടെ മൊബൈൽ കാരിയർ വഴിയാണ് നടത്തുക.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി. നിങ്ങളുടെ ആശയവിനിമയം ആരെങ്കിലും തടസ്സപ്പെടുത്താൻ ശ്രമിക്കുകയായിരിക്കും അല്ലെങ്കിൽ %2$s Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്തന്നായിരിക്കും ഇതിനർത്ഥം.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ഈ കോൺടാക്റ്റുമായി നിങ്ങളുടെ സുരക്ഷാ നമ്പർ ഉറപ്പാക്കാം.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി. നിങ്ങളുടെ ആശയവിനിമയം ആരെങ്കിലും തടസ്സപ്പെടുത്താൻ ശ്രമിക്കുന്നു, അല്ലെങ്കിൽ %2$s Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്തു എന്നാകാം ഇതിനർത്ഥം.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ഈ കോൺടാക്റ്റുമായി നിങ്ങളുടെ സുരക്ഷാ നമ്പർ ഉറപ്പാക്കേണ്ടതാണ്.</string>
   <string name="ConfirmIdentityDialog_accept">സ്വീകരിക്കുക</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">സമീപകാല ചാറ്റുകൾ</string>
   <string name="ContactsCursorLoader_contacts">കോൺ‌ടാക്റ്റുകൾ</string>
   <string name="ContactsCursorLoader_groups">ഗ്രൂപ്പുകൾ</string>
   <string name="ContactsCursorLoader_phone_number_search">ഫോൺ നമ്പർ തിരയൽ</string>
-  <string name="ContactsCursorLoader_username_search">ഉപയോക്തൃനാമ തിരയൽ</string>
+  <string name="ContactsCursorLoader_username_search">ഉപയോക്തൃനാമം തിരയൽ</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">എന്റെ കഥകള്‍</string>
   <!--Action for creating a new story-->
   <string name="ContactsCursorLoader_new_story">പുതിയ കഥ</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">സന്ദേശ൦ %s</string>
-  <string name="ContactsDatabase_signal_call_s">Signal കോള്‍ %s</string>
+  <string name="ContactsDatabase_signal_call_s">%s നെ Signal കോള്‍ ചെയ്യുക</string>
   <!--ContactNameEditActivity-->
-  <string name="ContactNameEditActivity_given_name">പേരിന്റെ ആദ്യഭാഗം</string>
-  <string name="ContactNameEditActivity_family_name">കുടുംബ പേര്</string>
+  <string name="ContactNameEditActivity_given_name">നല്‍കിയ നാമം</string>
+  <string name="ContactNameEditActivity_family_name">കുടുംബ നാമം</string>
   <string name="ContactNameEditActivity_prefix">പ്രിഫിക്‌സ്</string>
   <string name="ContactNameEditActivity_suffix">സഫിക്സ്</string>
   <string name="ContactNameEditActivity_middle_name">മധ്യനാമം</string>
   <!--ContactShareEditActivity-->
-  <string name="ContactShareEditActivity_type_home">ഹോം</string>
+  <string name="ContactShareEditActivity_type_home">വീട്</string>
   <string name="ContactShareEditActivity_type_mobile">മൊബൈൽ</string>
   <string name="ContactShareEditActivity_type_work">ജോലി</string>
   <string name="ContactShareEditActivity_type_missing">മറ്റുള്ളവ</string>
   <string name="ContactShareEditActivity_invalid_contact">തിരഞ്ഞെടുത്ത കോൺടാക്റ്റ് അസാധുവായിരുന്നു</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_sent_tap_for_details">അയച്ചില്ല, വിശദാംശങ്ങൾക്ക് തൊടുക</string>
+  <string name="ConversationItem_error_not_sent_tap_for_details">അയച്ചില്ല, വിശദാംശങ്ങൾക്ക് തൊടുക</string>
   <string name="ConversationItem_error_partially_not_delivered">ഭാഗികമായി അയച്ചു, വിശദാംശങ്ങൾക്ക് തൊടുക</string>
   <string name="ConversationItem_error_network_not_delivered">അയയ്‌ക്കുന്നത് പരാജയപ്പെട്ടു</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">കീ കൈമാറ്റ സന്ദേശം ലഭിച്ചു, പ്രോസസ്സുചെയ്യാൻ തൊടുക</string>
   <string name="ConversationItem_group_action_left">%1$s ഈ ഗ്രൂപ്പില്‍ നിന്നും പോയി.</string>
   <string name="ConversationItem_send_paused">അയയ്‌ക്കുന്നത് താൽക്കാലികമായി നിർത്തി</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">അയയ്ക്കാൻ പറ്റിയില്ല, ഭദ്രമല്ലാത്ത ഇതരരീതിക്കായി തൊടുക</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">അയയ്ക്കാൻ പറ്റിയില്ല, സുരക്ഷിതമല്ലാത്ത ഇതരരീതിക്കായി തൊടുക</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">എൻ‌ക്രിപ്റ്റ് ചെയ്യാത്ത SMS പകരം ഉപയോഗിക്കട്ടെ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">എൻ‌ക്രിപ്റ്റ് ചെയ്യാത്ത MMS പകരം ഉപയോഗിക്കട്ടെ?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">സ്വീകർത്താവ് ഇപ്പോൾ  ഒരു Signal ഉപയോക്താവല്ലാത്തതിനാൽ ഈ സന്ദേശം എൻ‌ക്രിപ്റ്റ് <b>ചെയ്യില്ല</b>. \n\nപകരം, സുരക്ഷിതമല്ലാത്ത സന്ദേശം അയയ്‌ക്കണോ?</string>
-  <string name="ConversationItem_unable_to_open_media">ഈ മീഡിയ തുറക്കാൻ കഴിയുന്ന ഒരു അപ്ലിക്കേഷൻ കണ്ടെത്താനായില്ല.</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">സ്വീകർത്താവ് ഇപ്പോൾ  ഒരു Signal ഉപയോക്താവല്ലാത്തതിനാൽ ഈ സന്ദേശം എൻ‌ക്രിപ്റ്റ് <b>ചെയ്യില്ല</b>. \n\nസുരക്ഷിതമല്ലാത്ത സന്ദേശം അയയ്‌ക്കണോ?</string>
+  <string name="ConversationItem_unable_to_open_media">ഈ മീഡിയ തുറക്കാൻ കഴിയുന്ന ഒരു ആപ്പ് കണ്ടെത്താനായില്ല.</string>
   <string name="ConversationItem_copied_text">%s പകർത്തി</string>
   <string name="ConversationItem_from_s">%s മുതൽ</string>
   <string name="ConversationItem_to_s">%s വരെ</string>
@@ -205,40 +205,40 @@
   <string name="ConversationItem_this_message_was_deleted">ഈ സന്ദേശം ഇല്ലാതാക്കി.</string>
   <string name="ConversationItem_you_deleted_this_message">നിങ്ങൾ ഈ സന്ദേശം ഇല്ലാതാക്കി.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_add_attachment">അറ്റാച്മെന്റ്‌  ചേർക്കുക</string>
+  <string name="ConversationActivity_add_attachment">അറ്റാച്ചുമെന്റ്  ചേർക്കുക</string>
   <string name="ConversationActivity_select_contact_info">കോൺ‌ടാക്റ്റ് വിവരം തിരഞ്ഞെടുക്കുക</string>
   <string name="ConversationActivity_compose_message">സന്ദേശം രചിക്കുക</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">ക്ഷമിക്കണം, നിങ്ങളുടെ അറ്റാച്ചുമെന്റ് ക്രമീകരിക്കുന്നതിൽ ഒരു പിശക് ഉണ്ടായിരുന്നു.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">സ്വീകർത്താവ് സാധുവായ ഒരു SMS അല്ലെങ്കിൽ ഇമെയിൽ വിലാസമല്ല!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">സന്ദേശം ശൂന്യമാണ്!</string>
   <string name="ConversationActivity_group_members">ഗ്രൂപ്പിലെ അംഗങ്ങൾ</string>
-  <string name="ConversationActivity__tap_here_to_start_a_group_call">ഒരു ഗ്രൂപ്പ് കോൾ ആരംഭിക്കാൻ ഇവിടെ ടാപ്പ് ചെയ്യുക</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">ഒരു ഗ്രൂപ്പ് കോൾ ആരംഭിക്കാൻ ഇവിടെ തൊടുക</string>
   <string name="ConversationActivity_invalid_recipient">അസാധുവായ സ്വീകർത്താവ്!</string>
   <string name="ConversationActivity_added_to_home_screen">ഹോം സ്‌ക്രീനിൽ ചേർത്തു</string>
-  <string name="ConversationActivity_calls_not_supported">കോളുകൾ അനുവദനീയമല്ല</string>
+  <string name="ConversationActivity_calls_not_supported">കോളുകൾ പിന്തുണയ്ക്കുന്നില്ല</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ഈ ഉപകരണം ഡയൽ പ്രവർത്തനങ്ങളെ പിന്തുണയ്ക്കുന്നതായി കാണുന്നില്ല.</string>
   <string name="ConversationActivity_transport_insecure_sms">സുരക്ഷിതമല്ലാത്ത SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">സുരക്ഷിതമല്ലാത്ത MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_lets_switch_to_signal">നമുക്ക് Signal ലേക്ക് മാറാം %1$s</string>
-  <string name="ConversationActivity_specify_recipient">ദയവായി ഒരു കോൺ‌ടാക്റ്റ് തിരഞ്ഞെടുക്കുക</string>
+  <string name="ConversationActivity_lets_switch_to_signal">നമുക്ക് Signal-ലേക്ക് മാറാം %1$s</string>
+  <string name="ConversationActivity_specify_recipient">ഒരു കോൺ‌ടാക്റ്റ് തിരഞ്ഞെടുക്കുക</string>
   <string name="ConversationActivity_unblock">തടഞ്ഞത് മാറ്റുക</string>
-  <string name="ConversationActivity_attachment_exceeds_size_limits">അറ്റാച്ചുമെന്റ് നിങ്ങൾ അയയ്‌ക്കുന്ന സന്ദേശ ഇനത്തിന്റെ വലുപ്പ പരിധി കവിയുന്നു.</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">അറ്റാച്ചുമെന്റ് നിങ്ങൾ അയയ്‌ക്കുന്ന സന്ദേശ ഇനത്തിന്റെ വലുപ്പ പരിധി കവിഞ്ഞിരിക്കുന്നു.</string>
   <string name="ConversationActivity_unable_to_record_audio">ഓഡിയോ റെക്കോർഡുചെയ്യാനായില്ല!</string>
-  <string name="ConversationActivity_you_cant_send_messages_to_this_group">നിങ്ങൾ മേലിൽ അംഗമല്ലാത്തതിനാൽ നിങ്ങൾക്ക് ഈ ഗ്രൂപ്പിലേക്ക് സന്ദേശങ്ങൾ അയയ്ക്കാൻ കഴിയില്ല.</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">ഇപ്പോള്‍ ഒരു അംഗമല്ലാത്തതിനാൽ നിങ്ങൾക്ക് ഈ ഗ്രൂപ്പിലേക്ക് സന്ദേശങ്ങൾ അയയ്ക്കാനാകില്ല.</string>
   <string name="ConversationActivity_only_s_can_send_messages">%1$s-ന് മാത്രമേ സന്ദേശങ്ങൾ അയയ്ക്കാൻ കഴിയൂ</string>
   <string name="ConversationActivity_admins">അഡ്മിൻസ്</string>
-  <string name="ConversationActivity_message_an_admin">ഒരു അഡ്മിനു സന്ദേശം അയക്കുക</string>
+  <string name="ConversationActivity_message_an_admin">ഒരു അഡ്മിന് സന്ദേശം അയക്കുക</string>
   <string name="ConversationActivity_cant_start_group_call">ഗ്രൂപ്പ് കോൾ ആരംഭിക്കാൻ കഴിയില്ല</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">ഈ ഗ്രൂപ്പിന്റെ അഡ്മിൻമാർക്ക് മാത്രമേ ഒരു കോൾ ആരംഭിക്കാൻ കഴിയൂ.</string>
-  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">നിങ്ങളുടെ ഉപകരണത്തിൽ ഈ ലിങ്ക് കൈകാര്യം ചെയ്യാൻ ഒരു അപ്ലിക്കേഷനും ലഭ്യമല്ല.</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">നിങ്ങളുടെ ഉപകരണത്തിൽ ഈ ലിങ്ക് കൈകാര്യം ചെയ്യാൻ ഒരു ആപ്പും ലഭ്യമല്ല.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">ഗ്രൂപ്പില്‍ ചേരുന്നതിനുള്ള നിങ്ങളുടെ അഭ്യർത്ഥന അഡ്മിന് അയച്ചു. അവർ നടപടിയെടുക്കുമ്പോൾ നിങ്ങളെ അറിയിക്കും.</string>
   <string name="ConversationActivity_cancel_request">അഭ്യർത്ഥന റദ്ദാക്കുക</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ഓഡിയോ സന്ദേശങ്ങള്‍ അയയ്‌ക്കാൻ, നിങ്ങളുടെ മൈക്രോഫോണിലേക്ക് Signal-ന് ആക്‌സസ്സ് അനുവദിക്കുക.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ഓഡിയോ സന്ദേശങ്ങൾ അയയ്‌ക്കാൻ Signal-ന് മൈക്രോഫോൺ അനുമതി ആവശ്യമാണ്, പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"മൈക്രോഫോൺ\" പ്രവർത്തനക്ഷമമാക്കുക.</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">%s-നെ വിളിക്കുന്നതിന് Signal-ന് മൈക്രോഫോൺ, ക്യാമറ അനുമതികൾ ആവശ്യമാണ്, പക്ഷേ അവ ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"മൈക്രോഫോൺ\", \"ക്യാമറ\" എന്നിവ പ്രവർത്തനക്ഷമമാക്കുക.</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">ഫോട്ടോകളും വീഡിയോയും പകർത്താൻ, ക്യാമറയിലേക്ക് Signal ന് ആക്സസ് അനുവദിക്കുക.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">ഫോട്ടോകളോ വീഡിയോയോ എടുക്കാൻ Signal-ന് ക്യാമറ അനുമതി ആവശ്യമാണ്, പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"ക്യാമറ\" പ്രവർത്തനക്ഷമമാക്കുക.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ഓഡിയോ സന്ദേശങ്ങള്‍ അയയ്‌ക്കാൻ, Signal-ന് നിങ്ങളുടെ മൈക്രോഫോണിലേക്ക്  ആക്‌സസ്സ് അനുവദിക്കുക.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ഓഡിയോ സന്ദേശങ്ങൾ അയയ്‌ക്കാൻ Signal-ന് മൈക്രോഫോൺ അനുമതി ആവശ്യമാണ്, പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. ആപ്പ് ക്രമീകരണങ്ങളിൽ ചെന്ന്, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"മൈക്രോഫോൺ\" പ്രവർത്തനക്ഷമമാക്കുക.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">%s-നെ വിളിക്കുന്നതിന് Signal-ന് മൈക്രോഫോൺ, ക്യാമറ അനുമതികൾ ആവശ്യമാണ്, പക്ഷേ അവ ശാശ്വതമായി നിരസിക്കപ്പെട്ടു.  ആപ്പ് ക്രമീകരണങ്ങളിൽ ചെന്ന്,  \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"മൈക്രോഫോൺ\", \"ക്യാമറ\" എന്നിവ പ്രവർത്തനക്ഷമമാക്കുക.</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">ഫോട്ടോകളും വീഡിയോയും പകർത്താൻ, ക്യാമറയിലേക്ക് Signal-ന് ആക്സസ് അനുവദിക്കുക.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">ഫോട്ടോകളോ വീഡിയോയോ എടുക്കാൻ Signal-ന് ക്യാമറ അനുമതി ആവശ്യമാണ്, പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു.  ആപ്പ് ക്രമീകരണങ്ങളിൽ ചെന്ന്, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"ക്യാമറ\" പ്രവർത്തനക്ഷമമാക്കുക.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">ഫോട്ടോകളോ വീഡിയോയോ എടുക്കാൻ Signal-ന് ക്യാമറ അനുമതി ആവശ്യമാണ്</string>
   <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">ശബ്‌ദം ഉപയോഗിച്ച് വീഡിയോകൾ പകർത്താൻ മൈക്രോഫോൺ അനുമതി പ്രവർത്തനക്ഷമമാക്കുക.</string>
   <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">വീഡിയോകൾ റെക്കോർഡുചെയ്യാൻ Signal-ന് മൈക്രോഫോൺ അനുമതി ആവശ്യമാണ്, പക്ഷേ അവ നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"മൈക്രോഫോൺ\", \"ക്യാമറ\" എന്നിവ പ്രവർത്തനക്ഷമമാക്കുക.</string>

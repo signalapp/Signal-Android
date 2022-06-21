@@ -103,7 +103,7 @@
   <string name="BlockUnblockDialog_unblock_s">Želite odblokirati uporabnika_co %1$s?</string>
   <string name="BlockUnblockDialog_block">Blokiraj</string>
   <string name="BlockUnblockDialog_block_and_leave">Blokiraj in zapusti</string>
-  <string name="BlockUnblockDialog_report_spam_and_block">Označi za neželeno in blokiraj</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">Označi kot neželeno in blokiraj</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Danes</string>
   <string name="BucketedThreadMedia_Yesterday">Včeraj</string>
@@ -152,13 +152,13 @@
   <string name="CommunicationActions_no_browser_found">Spletnega brskalnika ni bilo mogoče najti.</string>
   <string name="CommunicationActions_send_email">Pošlji e-pošto</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Telefonski klic je že v teku.</string>
-  <string name="CommunicationActions_start_voice_call">Začetek glasovnega klica?</string>
+  <string name="CommunicationActions_start_voice_call">Začni glasovni klic?</string>
   <string name="CommunicationActions_cancel">Prekliči</string>
-  <string name="CommunicationActions_call">Kliči</string>
+  <string name="CommunicationActions_call">Pokliči</string>
   <string name="CommunicationActions_insecure_call">Nezavarovan klic</string>
   <string name="CommunicationActions_carrier_charges_may_apply">Pozor, možni dodatni stroški za klic! Številka, ki jo kličete ni prijavljena v storitev Signal. Klic bo opravljen preko vašega ponudnika mobilne telefonije, ne prek interneta.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Varnostno število z uporabnikom_co %1$s je bilo spremenjeno. To lahko pomeni, da poskuša nekdo prestrezati vajino komunikacijo ali pa je %2$s zgolj ponovno namestil_a aplikacijo Signal.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Varnostno število z uporabnikom_co %1$s je bilo spremenjeno. To lahko pomeni, da nekdo poskuša prestreči vajino komunikacijo ali pa je %2$s zgolj ponovno namestil_a aplikacijo Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Morda bi želeli preveriti vajino skupno varnostno število.</string>
   <string name="ConfirmIdentityDialog_accept">Sprejmi</string>
   <!--ContactsCursorLoader-->
@@ -228,11 +228,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Velikost priponke presega omejitev velikosti za ta tip sporočil.</string>
   <string name="ConversationActivity_unable_to_record_audio">Snemanje zvoka ni mogoče!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Niste več član_ica te skupine, zato ji tudi ne morete več pošiljati sporočil.</string>
-  <string name="ConversationActivity_only_s_can_send_messages">Samo%1$s lahko pošilja sporočila.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Samo %1$s lahko pošilja sporočila.</string>
   <string name="ConversationActivity_admins">skrbniki_ce</string>
   <string name="ConversationActivity_message_an_admin">Sporočilo skrbniku_ci skupine</string>
   <string name="ConversationActivity_cant_start_group_call">Zagon skupinskega klica ni mogoč.</string>
-  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Samo skrbniki_ce skupine lahko začno klic.</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Samo skrbniki_ce skupine lahko začnejo klic.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Na svoji napravi nimate nameščene aplikacije, ki bi odpirala to povezavo.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Vaša prošnja za pridružitev je bila posredovana skrbniku_ci skupine. Ob njegovem_njenem odzivu boste obveščeni.</string>
   <string name="ConversationActivity_cancel_request">Preklic prošnje</string>
@@ -260,7 +260,7 @@
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Zapustili boste skupino in ta bo izbrisana na vseh vaših napravah.</string>
   <string name="ConversationActivity_delete">Izbriši</string>
   <string name="ConversationActivity_delete_and_leave">Izbriši in zapusti</string>
-  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Za klic uporabnika_ce %1$s, potrebuje Signal dostop do mikrofona</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Za klic uporabnika_ce %1$s, Signal potrebuje dostop do mikrofona</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Več možnosti odslej v \"Nastavitvah skupine\"</string>
   <string name="ConversationActivity_join">Pridruži se</string>
   <string name="ConversationActivity_full">Polno</string>
@@ -337,7 +337,7 @@
   <!--Dialog title for block group link join requests-->
   <string name="ConversationFragment__block_request">Želite blokirati prošnjo?</string>
   <!--Dialog message for block group link join requests-->
-  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s se ne bo več mogel_la pridružiti skupini ali zaprositi za sprejem preko povezave. Lahko pa ga_jo v skupino dodajate ročno.</string>
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s se ne bo več mogel_la pridružiti skupini ali zaprositi za sprejem preko povezave. Lahko pa ga_jo v skupino dodate ročno.</string>
   <!--Dialog confirm block request button-->
   <string name="ConversationFragment__block_request_button">Blokiraj prošnjo</string>
   <!--Dialog cancel block request button-->
