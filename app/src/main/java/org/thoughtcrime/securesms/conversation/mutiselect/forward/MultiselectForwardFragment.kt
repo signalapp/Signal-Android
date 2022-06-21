@@ -384,7 +384,8 @@ class MultiselectForwardFragment :
         if (query.isNullOrEmpty()) {
           addSection(
             ContactSearchConfiguration.Section.Recents(
-              includeHeader = true
+              includeHeader = true,
+              includeSelf = true
             )
           )
         }
