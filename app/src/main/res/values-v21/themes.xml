@@ -88,12 +88,10 @@
 
     <!-- For some reason, using fully transparent causes issues with the nav bar height calculation. Using *almost* transparent prevents this. -->
     <style name="TextSecure.LightNoActionBar.TransparentNavigationBar">
-        <item name="android:navigationBarColor">@color/effectively_transparent_black</item>
-        <item name="android:enforceNavigationBarContrast" tools:ignore="NewApi">false</item>
+        <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
     <style name="TextSecure.DarkNoActionBar.TransparentNavigationBar">
-        <item name="android:navigationBarColor">@color/effectively_transparent_black</item>
-        <item name="android:enforceNavigationBarContrast" tools:ignore="NewApi">false</item>
+        <item name="android:windowTranslucentNavigation">true</item>
     </style>
 </resources>
