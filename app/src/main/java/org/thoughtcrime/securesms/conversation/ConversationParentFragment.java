@@ -832,7 +832,6 @@ public class ConversationParentFragment extends Fragment
       }
 
       long       expiresIn      = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
-      int        subscriptionId = sendButton.getSelectedSendType().getSimSubscriptionIdOr(-1);
       boolean    initiating     = threadId == -1;
       QuoteModel quote          = result.isViewOnce() ? null : inputPanel.getQuote().orElse(null);
       SlideDeck  slideDeck      = new SlideDeck();
@@ -853,7 +852,7 @@ public class ConversationParentFragment extends Fragment
       final Context context = requireContext().getApplicationContext();
 
       sendMediaMessage(result.getRecipientId(),
-                       result.getMessageSendType().usesSmsTransport(),
+                       result.getMessageSendType(),
                        result.getBody(),
                        slideDeck,
                        quote,
@@ -862,7 +861,6 @@ public class ConversationParentFragment extends Fragment
                        mentions,
                        expiresIn,
                        result.isViewOnce(),
-                       subscriptionId,
                        initiating,
                        true,
                        null).addListener(new AssertedSuccessListener<Void>() {
@@ -2758,11 +2756,10 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void sendSharedContact(List<Contact> contacts) {
-    int        subscriptionId = sendButton.getSelectedSendType().getSimSubscriptionIdOr(-1);
     long       expiresIn      = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
     boolean    initiating     = threadId == -1;
 
-    sendMediaMessage(recipient.getId(), isSmsForced(), "", attachmentManager.buildSlideDeck(), null, contacts, Collections.emptyList(), Collections.emptyList(), expiresIn, false, subscriptionId, initiating, false, null);
+    sendMediaMessage(recipient.getId(), sendButton.getSelectedSendType(), "", attachmentManager.buildSlideDeck(), null, contacts, Collections.emptyList(), Collections.emptyList(), expiresIn, false, initiating, false, null);
   }
 
   private void selectContactInfo(ContactData contactData) {
@@ -3060,8 +3057,6 @@ public class ConversationParentFragment extends Fragment
 
       String          message        = getMessage();
       MessageSendType sendType       = sendButton.getSelectedSendType();
-      boolean         forceSms       = (recipient.isForceSmsSelection() || sendButton.isManualSelection()) && sendType.usesSmsTransport();
-      int             subscriptionId = sendButton.getSelectedSendType().getSimSubscriptionIdOr(-1);
       long            expiresIn      = TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds());
       boolean         initiating     = threadId == -1;
       boolean         needsSplit     = !sendType.usesSmsTransport() && message.length() > sendType.calculateCharacters(message).maxPrimaryMessageSize;
@@ -3073,16 +3068,16 @@ public class ConversationParentFragment extends Fragment
                                        linkPreviewViewModel.hasLinkPreview()   ||
                                        needsSplit;
 
-      Log.i(TAG, "[sendMessage] recipient: " + recipient.getId() + ", threadId: " + threadId + ",  forceSms: " + forceSms + ", isManual: " + sendButton.isManualSelection());
+      Log.i(TAG, "[sendMessage] recipient: " + recipient.getId() + ", threadId: " + threadId + ",  sendType: " + (sendType.usesSignalTransport() ? "signal" : "sms") + ", isManual: " + sendButton.isManualSelection());
 
       if ((recipient.isMmsGroup() || recipient.getEmail().isPresent()) && !isMmsEnabled) {
         handleManualMmsRequired();
-      } else if (!forceSms && (identityRecords.isUnverified(true) || identityRecords.isUntrusted(true))) {
+      } else if (sendType.usesSignalTransport() && (identityRecords.isUnverified(true) || identityRecords.isUntrusted(true))) {
         handleRecentSafetyNumberChange();
       } else if (isMediaMessage) {
-        sendMediaMessage(forceSms, expiresIn, false, subscriptionId, initiating, metricId);
+        sendMediaMessage(sendType, expiresIn, false, initiating, metricId);
       } else {
-        sendTextMessage(forceSms, expiresIn, subscriptionId, initiating, metricId);
+        sendTextMessage(sendType, expiresIn, initiating, metricId);
       }
     } catch (RecipientFormattingException ex) {
       Toast.makeText(requireContext(),
@@ -3124,13 +3119,13 @@ public class ConversationParentFragment extends Fragment
     }, this::sendComplete);
   }
 
-  private void sendMediaMessage(final boolean forceSms, final long expiresIn, final boolean viewOnce, final int subscriptionId, final boolean initiating, @Nullable String metricId)
+  private void sendMediaMessage(@NonNull MessageSendType sendType, final long expiresIn, final boolean viewOnce, final boolean initiating, @Nullable String metricId)
       throws InvalidMessageException
   {
     Log.i(TAG, "Sending media message...");
     List<LinkPreview> linkPreviews = linkPreviewViewModel.onSend();
     sendMediaMessage(recipient.getId(),
-                     forceSms,
+                     sendType,
                      getMessage(),
                      attachmentManager.buildSlideDeck(),
                      inputPanel.getQuote().orElse(null),
@@ -3139,14 +3134,13 @@ public class ConversationParentFragment extends Fragment
                      composeText.getMentions(),
                      expiresIn,
                      viewOnce,
-                     subscriptionId,
                      initiating,
                      true,
                      metricId);
   }
 
   private ListenableFuture<Void> sendMediaMessage(@NonNull RecipientId recipientId,
-                                                  final boolean forceSms,
+                                                  @NonNull MessageSendType sendType,
                                                   @NonNull String body,
                                                   SlideDeck slideDeck,
                                                   QuoteModel quote,
@@ -3155,17 +3149,16 @@ public class ConversationParentFragment extends Fragment
                                                   List<Mention> mentions,
                                                   final long expiresIn,
                                                   final boolean viewOnce,
-                                                  final int subscriptionId,
                                                   final boolean initiating,
                                                   final boolean clearComposeBox,
                                                   final @Nullable String metricId)
   {
-    if (!isDefaultSms && (!isSecureText || forceSms) && recipient.get().hasSmsAddress()) {
+    if (!isDefaultSms && sendType.usesSmsTransport() && recipient.get().hasSmsAddress()) {
       showDefaultSmsPrompt();
       return new SettableFuture<>(null);
     }
 
-    final boolean sendPush = (isSecureText && !forceSms) || recipient.get().isServiceIdOnly();
+    final boolean sendPush = sendType.usesSignalTransport();
     final long    thread   = this.threadId;
 
     if (sendPush) {
@@ -3177,7 +3170,7 @@ public class ConversationParentFragment extends Fragment
       }
     }
 
-    OutgoingMediaMessage outgoingMessageCandidate = new OutgoingMediaMessage(Recipient.resolved(recipientId), slideDeck, body, System.currentTimeMillis(), subscriptionId, expiresIn, viewOnce, distributionType, StoryType.NONE, null, false, quote, contacts, previews, mentions, null);
+    OutgoingMediaMessage outgoingMessageCandidate = new OutgoingMediaMessage(Recipient.resolved(recipientId), slideDeck, body, System.currentTimeMillis(), sendType.getSimSubscriptionIdOr(-1), expiresIn, viewOnce, distributionType, StoryType.NONE, null, false, quote, contacts, previews, mentions, null);
 
     final SettableFuture<Void> future  = new SettableFuture<>();
     final Context              context = requireContext().getApplicationContext();
@@ -3205,7 +3198,7 @@ public class ConversationParentFragment extends Fragment
                  final long id = fragment.stageOutgoingMessage(outgoingMessage);
 
                  SimpleTask.run(() -> {
-                   return MessageSender.send(context, outgoingMessage, thread, forceSms, metricId, null);
+                   return MessageSender.send(context, outgoingMessage, thread, sendType.usesSmsTransport(), metricId, null);
                  }, result -> {
                    sendComplete(result);
                    future.set(null);
@@ -3217,10 +3210,10 @@ public class ConversationParentFragment extends Fragment
     return future;
   }
 
-  private void sendTextMessage(final boolean forceSms, final long expiresIn, final int subscriptionId, final boolean initiating, final @Nullable String metricId)
+  private void sendTextMessage(@NonNull MessageSendType sendType, final long expiresIn, final boolean initiating, final @Nullable String metricId)
       throws InvalidMessageException
   {
-    if (!isDefaultSms && (!isSecureText || forceSms) && recipient.get().hasSmsAddress()) {
+    if (!isDefaultSms && sendType.usesSmsTransport() && recipient.get().hasSmsAddress()) {
       showDefaultSmsPrompt();
       return;
     }
@@ -3228,7 +3221,7 @@ public class ConversationParentFragment extends Fragment
     final long    thread      = this.threadId;
     final Context context     = requireContext().getApplicationContext();
     final String  messageBody = getMessage();
-    final boolean sendPush    = (isSecureText && !forceSms) || recipient.get().isServiceIdOnly();
+    final boolean sendPush    = sendType.usesSignalTransport();
 
     OutgoingTextMessage message;
 
@@ -3236,7 +3229,7 @@ public class ConversationParentFragment extends Fragment
       message = new OutgoingEncryptedMessage(recipient.get(), messageBody, expiresIn);
       ApplicationDependencies.getTypingStatusSender().onTypingStopped(thread);
     } else {
-      message = new OutgoingTextMessage(recipient.get(), messageBody, expiresIn, subscriptionId);
+      message = new OutgoingTextMessage(recipient.get(), messageBody, expiresIn, sendType.getSimSubscriptionIdOr(-1));
     }
 
     Permissions.with(this)
@@ -3246,7 +3239,7 @@ public class ConversationParentFragment extends Fragment
                .onAllGranted(() -> {
                  final long id = new SecureRandom().nextLong();
                  SimpleTask.run(() -> {
-                   return MessageSender.send(context, message, thread, forceSms, metricId, null);
+                   return MessageSender.send(context, message, thread, sendType.usesSmsTransport(), metricId, null);
                  }, this::sendComplete);
 
                  silentlySetComposeText("");
@@ -3455,16 +3448,14 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void sendVoiceNote(@NonNull Uri uri, long size) {
-    boolean    forceSms       = sendButton.isManualSelection() && sendButton.getSelectedSendType().usesSmsTransport();
     boolean    initiating     = threadId == -1;
-    int        subscriptionId = sendButton.getSelectedSendType().getSimSubscriptionIdOr(-1);
     long       expiresIn      = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
     AudioSlide audioSlide     = new AudioSlide(requireContext(), uri, size, MediaUtil.AUDIO_AAC, true);
     SlideDeck  slideDeck      = new SlideDeck();
     slideDeck.addSlide(audioSlide);
 
     ListenableFuture<Void> sendResult = sendMediaMessage(recipient.getId(),
-                                                         forceSms,
+                                                         sendButton.getSelectedSendType(),
                                                          "",
                                                          slideDeck,
                                                          inputPanel.getQuote().orElse(null),
@@ -3473,7 +3464,6 @@ public class ConversationParentFragment extends Fragment
                                                          composeText.getMentions(),
                                                          expiresIn,
                                                          false,
-                                                         subscriptionId,
                                                          initiating,
                                                          true,
                                                          null);
@@ -3504,7 +3494,6 @@ public class ConversationParentFragment extends Fragment
     }
 
     long            expiresIn      = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
-    int             subscriptionId = sendButton.getSelectedSendType().getSimSubscriptionIdOr(-1);
     boolean         initiating     = threadId == -1;
     MessageSendType sendType       = sendButton.getSelectedSendType();
     SlideDeck       slideDeck      = new SlideDeck();
@@ -3512,7 +3501,7 @@ public class ConversationParentFragment extends Fragment
 
     slideDeck.addSlide(stickerSlide);
 
-    sendMediaMessage(recipient.getId(), sendType.usesSmsTransport(), "", slideDeck, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), expiresIn, false, subscriptionId, initiating, clearCompose, null);
+    sendMediaMessage(recipient.getId(), sendType, "", slideDeck, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), expiresIn, false, initiating, clearCompose, null);
   }
 
   private void silentlySetComposeText(String text) {
@@ -4155,7 +4144,6 @@ public class ConversationParentFragment extends Fragment
     }
 
     long       expiresIn      = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
-    int        subscriptionId = sendButton.getSelectedSendType().getSimSubscriptionIdOr(-1);
     boolean    initiating     = threadId == -1;
     SlideDeck  slideDeck      = new SlideDeck();
 
@@ -4168,7 +4156,7 @@ public class ConversationParentFragment extends Fragment
     }
 
     sendMediaMessage(recipient.getId(),
-                     isSmsForced(),
+                     sendButton.getSelectedSendType(),
                      "",
                      slideDeck,
                      null,
@@ -4177,7 +4165,6 @@ public class ConversationParentFragment extends Fragment
                      composeText.getMentions(),
                      expiresIn,
                      false,
-                     subscriptionId,
                      initiating,
                      false,
                      null);
