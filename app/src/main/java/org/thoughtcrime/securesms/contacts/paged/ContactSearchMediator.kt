@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.contacts.paged
 
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
@@ -13,12 +14,14 @@ class ContactSearchMediator(
   recyclerView: RecyclerView,
   selectionLimits: SelectionLimits,
   displayCheckBox: Boolean,
-  mapStateToConfiguration: (ContactSearchState) -> ContactSearchConfiguration
+  mapStateToConfiguration: (ContactSearchState) -> ContactSearchConfiguration,
+  private val contactSelectionPreFilter: (View?, Set<ContactSearchKey>) -> Set<ContactSearchKey> = { _, s -> s }
 ) {
 
   private val viewModel: ContactSearchViewModel = ViewModelProvider(fragment, ContactSearchViewModel.Factory(selectionLimits, ContactSearchRepository())).get(ContactSearchViewModel::class.java)
 
   init {
+
     val adapter = PagingMappingAdapter<ContactSearchKey>()
     recyclerView.adapter = adapter
 
@@ -54,7 +57,7 @@ class ContactSearchMediator(
   }
 
   fun setKeysSelected(keys: Set<ContactSearchKey>) {
-    viewModel.setKeysSelected(keys)
+    viewModel.setKeysSelected(contactSelectionPreFilter(null, keys))
   }
 
   fun setKeysNotSelected(keys: Set<ContactSearchKey>) {
@@ -73,11 +76,11 @@ class ContactSearchMediator(
     viewModel.addToVisibleGroupStories(groupStories)
   }
 
-  private fun toggleSelection(contactSearchData: ContactSearchData, isSelected: Boolean) {
-    if (isSelected) {
+  private fun toggleSelection(view: View, contactSearchData: ContactSearchData, isSelected: Boolean) {
+    return if (isSelected) {
       viewModel.setKeysNotSelected(setOf(contactSearchData.contactSearchKey))
     } else {
-      viewModel.setKeysSelected(setOf(contactSearchData.contactSearchKey))
+      viewModel.setKeysSelected(contactSelectionPreFilter(view, setOf(contactSearchData.contactSearchKey)))
     }
   }
 }

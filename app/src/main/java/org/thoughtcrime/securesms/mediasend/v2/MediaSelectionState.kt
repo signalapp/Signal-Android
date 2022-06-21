@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendConstants
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.stories.Stories
 
 data class MediaSelectionState(
   val sendType: MessageSendType,
@@ -22,7 +23,8 @@ data class MediaSelectionState(
   val isMeteredConnection: Boolean = false,
   val editorStateMap: Map<Uri, Any> = mapOf(),
   val cameraFirstCapture: Media? = null,
-  val isStory: Boolean
+  val isStory: Boolean,
+  val storySendRequirements: Stories.MediaTransform.SendRequirements = Stories.MediaTransform.SendRequirements.CAN_NOT_SEND
 ) {
 
   val maxSelection = if (sendType.usesSmsTransport) {

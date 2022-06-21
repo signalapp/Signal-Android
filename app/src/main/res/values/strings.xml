@@ -4086,6 +4086,10 @@
     <string name="MultiselectForwardFragment__share_with">Share with</string>
     <string name="MultiselectForwardFragment__add_a_message">Add a message</string>
     <string name="MultiselectForwardFragment__faster_forwards">Faster forwards</string>
+    <!-- Displayed when user selects a video that will be clipped before sharing to a story -->
+    <string name="MultiselectForwardFragment__videos_will_be_trimmed">Videos will be trimmed to 30s clips and sent as multiple Stories.</string>
+    <!-- Displayed when user selects a video that cannot be sent as a story -->
+    <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Videos sent to Stories can\'t be longer than 30s.</string>
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">Forwarded messages are now sent immediately.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">Send %1$d message</item>

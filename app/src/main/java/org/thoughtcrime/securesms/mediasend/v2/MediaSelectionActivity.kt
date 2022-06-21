@@ -329,6 +329,10 @@ class MediaSelectionActivity :
     }
   }
 
+  override fun getStorySendRequirements(): Stories.MediaTransform.SendRequirements {
+    return viewModel.getStorySendRequirements()
+  }
+
   private inner class OnBackPressed : OnBackPressedCallback(true) {
     override fun handleOnBackPressed() {
       val navController = Navigation.findNavController(this@MediaSelectionActivity, R.id.fragment_container)
@@ -466,9 +470,5 @@ class MediaSelectionActivity :
         putExtra(AS_TEXT_STORY, asTextStory)
       }
     }
-  }
-
-  override fun canSendMediaToStories(): Boolean {
-    return viewModel.canShareSelectedMediaToStory()
   }
 }

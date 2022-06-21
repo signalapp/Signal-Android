@@ -23,17 +23,31 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
      * Rolling window of latest two private or group stories a user has sent to.
      */
     private const val LATEST_STORY_SENDS = "latest.story.sends"
+
+    /**
+     * Video Trim tooltip marker
+     */
+    private const val VIDEO_TOOLTIP_SEEN_MARKER = "stories.video.will.be.trimmed.tooltip.seen"
+
+    /**
+     * Cannot send to story tooltip marker
+     */
+    private const val CANNOT_SEND_SEEN_MARKER = "stories.cannot.send.video.tooltip.seen"
   }
 
   override fun onFirstEverAppLaunch() = Unit
 
-  override fun getKeysToIncludeInBackup(): MutableList<String> = mutableListOf(MANUAL_FEATURE_DISABLE, USER_HAS_ADDED_TO_A_STORY)
+  override fun getKeysToIncludeInBackup(): MutableList<String> = mutableListOf(MANUAL_FEATURE_DISABLE, USER_HAS_ADDED_TO_A_STORY, VIDEO_TOOLTIP_SEEN_MARKER, CANNOT_SEND_SEEN_MARKER)
 
   var isFeatureDisabled: Boolean by booleanValue(MANUAL_FEATURE_DISABLE, false)
 
   var lastFontVersionCheck: Long by longValue(LAST_FONT_VERSION_CHECK, 0)
 
   var userHasBeenNotifiedAboutStories: Boolean by booleanValue(USER_HAS_ADDED_TO_A_STORY, false)
+
+  var videoTooltipSeen by booleanValue(VIDEO_TOOLTIP_SEEN_MARKER, false)
+
+  var cannotSendTooltipSeen by booleanValue(CANNOT_SEND_SEEN_MARKER, false)
 
   fun setLatestStorySend(storySend: StorySend) {
     synchronized(this) {

@@ -16,6 +16,8 @@ import org.signal.core.util.BreakIteratorCompat;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey;
 import org.thoughtcrime.securesms.conversation.MessageSendType;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
@@ -32,10 +34,12 @@ import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryBackgroundColors;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
+import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.SlideFactory;
 import org.thoughtcrime.securesms.mms.StickerSlide;
+import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -48,9 +52,11 @@ import org.thoughtcrime.securesms.util.MessageUtil;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -257,8 +263,17 @@ public final class MultiShareSender {
       } else {
         List<Slide> storySupportedSlides = slideDeck.getSlides()
                                                     .stream()
+                                                    .flatMap(slide -> {
+                                                      if (slide instanceof VideoSlide) {
+                                                        return expandToClips(context, (VideoSlide) slide).stream();
+                                                      } else {
+                                                        return java.util.stream.Stream.of(slide);
+                                                      }
+                                                    })
                                                     .filter(it -> MediaUtil.isStorySupportedType(it.getContentType()))
                                                     .collect(Collectors.toList());
+
+        // For each video slide, we want to convert it into a media, then clip it, and then transform it BACK into a slide.
 
         for (final Slide slide : storySupportedSlides) {
           SlideDeck singletonDeck = new SlideDeck();
@@ -316,6 +331,20 @@ public final class MultiShareSender {
       for (final OutgoingMediaMessage outgoingMessage : outgoingMessages) {
         MessageSender.send(context, outgoingMessage, threadId, forceSms, null, null);
       }
+    }
+  }
+
+  private static Collection<Slide> expandToClips(@NonNull Context context, @NonNull VideoSlide videoSlide) {
+    long duration = Stories.MediaTransform.getVideoDuration(Objects.requireNonNull(videoSlide.getUri()));
+    if (duration > Stories.MAX_VIDEO_DURATION_MILLIS) {
+      return Stories.MediaTransform.clipMediaToStoryDuration(Stories.MediaTransform.videoSlideToMedia(videoSlide, duration))
+                                   .stream()
+                                   .map(media -> Stories.MediaTransform.mediaToVideoSlide(context, media))
+                                   .collect(Collectors.toList());
+    } else if (duration == 0L) {
+      return Collections.emptyList();
+    } else {
+      return Collections.singletonList(videoSlide);
     }
   }
 

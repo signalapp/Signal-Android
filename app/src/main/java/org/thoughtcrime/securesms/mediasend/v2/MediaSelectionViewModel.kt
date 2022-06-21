@@ -9,7 +9,11 @@ import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.kotlin.plusAssign
+import io.reactivex.rxjava3.kotlin.subscribeBy
+import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.PublishSubject
+import io.reactivex.rxjava3.subjects.Subject
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MessageSendType
@@ -20,7 +24,7 @@ import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
-import org.thoughtcrime.securesms.sharing.MultiShareArgs
+import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.SingleLiveEvent
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.livedata.Store
@@ -38,6 +42,8 @@ class MediaSelectionViewModel(
   isStory: Boolean,
   private val repository: MediaSelectionRepository
 ) : ViewModel() {
+
+  private val selectedMediaSubject: Subject<List<Media>> = BehaviorSubject.create()
 
   private val store: Store<MediaSelectionState> = Store(
     MediaSelectionState(
@@ -83,6 +89,14 @@ class MediaSelectionViewModel(
     if (initialMedia.isNotEmpty()) {
       addMedia(initialMedia)
     }
+
+    disposables += selectedMediaSubject.map { media ->
+      Stories.MediaTransform.getSendRequirements(media)
+    }.subscribeBy { requirements ->
+      store.update {
+        it.copy(storySendRequirements = requirements)
+      }
+    }
   }
 
   override fun onCleared() {
@@ -110,6 +124,10 @@ class MediaSelectionViewModel(
     return store.state.isStory
   }
 
+  fun getStorySendRequirements(): Stories.MediaTransform.SendRequirements {
+    return store.state.storySendRequirements
+  }
+
   private fun addMedia(media: List<Media>) {
     val newSelectionList: List<Media> = linkedSetOf<Media>().apply {
       addAll(store.state.selectedMedia)
@@ -127,6 +145,8 @@ class MediaSelectionViewModel(
                 focusedMedia = it.focusedMedia ?: filterResult.filteredMedia.first()
               )
             }
+
+            selectedMediaSubject.onNext(filterResult.filteredMedia)
 
             val newMedia = filterResult.filteredMedia.toSet().intersect(media).toList()
             startUpload(newMedia)
@@ -212,6 +232,7 @@ class MediaSelectionViewModel(
       mediaErrors.postValue(MediaValidator.FilterError.NoItems())
     }
 
+    selectedMediaSubject.onNext(newMediaList)
     repository.deleteBlobs(listOf(media))
 
     cancelUpload(media)
@@ -345,10 +366,6 @@ class MediaSelectionViewModel(
     return store.state.selectedMedia.isNotEmpty()
   }
 
-  fun canShareSelectedMediaToStory(): Boolean {
-    return store.state.selectedMedia.all { MultiShareArgs.isValidStoryDuration(it) }
-  }
-
   fun onRestoreState(savedInstanceState: Bundle) {
     val selection: List<Media> = savedInstanceState.getParcelableArrayList(STATE_SELECTION) ?: emptyList()
     val focused: Media? = savedInstanceState.getParcelable(STATE_FOCUSED)
@@ -361,6 +378,8 @@ class MediaSelectionViewModel(
 
     val editorStates: List<Bundle> = savedInstanceState.getParcelableArrayList(STATE_EDITORS) ?: emptyList()
     val editorStateMap = editorStates.associate { it.toAssociation() }
+
+    selectedMediaSubject.onNext(selection)
 
     store.update { state ->
       state.copy(

@@ -14,6 +14,8 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.PluralsRes
+import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.doOnNextLayout
 import androidx.core.view.isVisible
@@ -26,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ContactFilterView
+import org.thoughtcrime.securesms.components.TooltipPopup
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchMediator
@@ -80,6 +83,7 @@ class MultiselectForwardFragment :
   private lateinit var contactFilterView: ContactFilterView
   private lateinit var addMessage: EditText
   private lateinit var contactSearchMediator: ContactSearchMediator
+  private lateinit var contactSearchRecycler: RecyclerView
 
   private lateinit var callback: Callback
   private var dismissibleDialog: SimpleProgressDialog.DismissibleDialog? = null
@@ -111,8 +115,8 @@ class MultiselectForwardFragment :
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     view.minimumHeight = resources.displayMetrics.heightPixels
 
-    val contactSearchRecycler: RecyclerView = view.findViewById(R.id.contact_selection_list)
-    contactSearchMediator = ContactSearchMediator(this, contactSearchRecycler, FeatureFlags.shareSelectionLimit(), !isSingleRecipientSelection(), this::getConfiguration)
+    contactSearchRecycler = view.findViewById(R.id.contact_selection_list)
+    contactSearchMediator = ContactSearchMediator(this, contactSearchRecycler, FeatureFlags.shareSelectionLimit(), !isSingleRecipientSelection(), this::getConfiguration, this::filterContacts)
 
     callback = findListener()!!
     disposables.bindTo(viewLifecycleOwner.lifecycle)
@@ -356,6 +360,51 @@ class MultiselectForwardFragment :
     viewModel.cancelSend()
   }
 
+  private fun getStorySendRequirements(): Stories.MediaTransform.SendRequirements {
+    return requireListener<Callback>().getStorySendRequirements() ?: viewModel.snapshot.storySendRequirements
+  }
+
+  private fun filterContacts(view: View?, contactSet: Set<ContactSearchKey>): Set<ContactSearchKey> {
+    val storySendRequirements = getStorySendRequirements()
+    val resultsSet = contactSet.filterNot {
+      it is ContactSearchKey.RecipientSearchKey && it.isStory && storySendRequirements == Stories.MediaTransform.SendRequirements.CAN_NOT_SEND
+    }
+
+    if (view != null && contactSet.any { it is ContactSearchKey.RecipientSearchKey && it.isStory }) {
+      @Suppress("NON_EXHAUSTIVE_WHEN_STATEMENT")
+      when (storySendRequirements) {
+        Stories.MediaTransform.SendRequirements.REQUIRES_CLIP -> {
+          if (!SignalStore.storyValues().videoTooltipSeen) {
+            displayTooltip(view, R.string.MultiselectForwardFragment__videos_will_be_trimmed) {
+              SignalStore.storyValues().videoTooltipSeen = true
+            }
+          }
+        }
+        Stories.MediaTransform.SendRequirements.CAN_NOT_SEND -> {
+          if (!SignalStore.storyValues().cannotSendTooltipSeen) {
+            displayTooltip(view, R.string.MultiselectForwardFragment__videos_sent_to_stories_cant) {
+              SignalStore.storyValues().cannotSendTooltipSeen = true
+            }
+          }
+        }
+      }
+    }
+
+    return resultsSet.toSet()
+  }
+
+  private fun displayTooltip(anchor: View, @StringRes text: Int, onDismiss: () -> Unit) {
+    TooltipPopup
+      .forTarget(anchor)
+      .setText(text)
+      .setTextColor(ContextCompat.getColor(requireContext(), R.color.signal_colorOnPrimary))
+      .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.signal_colorPrimary))
+      .setOnDismissListener {
+        onDismiss()
+      }
+      .show(TooltipPopup.POSITION_BELOW)
+  }
+
   private fun getConfiguration(contactSearchState: ContactSearchState): ContactSearchConfiguration {
     return findListener<SearchConfigurationProvider>()?.getSearchConfiguration(childFragmentManager, contactSearchState) ?: ContactSearchConfiguration.build {
       query = contactSearchState.query
@@ -417,7 +466,7 @@ class MultiselectForwardFragment :
   }
 
   private fun isSelectedMediaValidForStories(): Boolean {
-    return requireListener<Callback>().canSendMediaToStories() && getMultiShareArgs().all { it.isValidForStories }
+    return getMultiShareArgs().all { it.isValidForStories }
   }
 
   private fun isSelectedMediaValidForNonStories(): Boolean {
@@ -439,7 +488,7 @@ class MultiselectForwardFragment :
     fun setResult(bundle: Bundle)
     fun getContainer(): ViewGroup
     fun getDialogBackgroundColor(): Int
-    fun canSendMediaToStories(): Boolean = true
+    fun getStorySendRequirements(): Stories.MediaTransform.SendRequirements? = null
   }
 
   companion object {

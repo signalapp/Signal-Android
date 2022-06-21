@@ -419,7 +419,7 @@ public class MessageSender {
    * @return A result if the attachment was enqueued, or null if it failed to enqueue or shouldn't
    *         be enqueued (like in the case of a local self-send).
    */
-  public static @Nullable PreUploadResult preUploadPushAttachment(@NonNull Context context, @NonNull Attachment attachment, @Nullable Recipient recipient) {
+  public static @Nullable PreUploadResult preUploadPushAttachment(@NonNull Context context, @NonNull Attachment attachment, @Nullable Recipient recipient, boolean isStoryClip) {
     if (isLocalSelfSend(context, recipient, false)) {
       return null;
     }
@@ -439,7 +439,7 @@ public class MessageSender {
                              .then(uploadJob)
                              .enqueue();
 
-      return new PreUploadResult(databaseAttachment.getAttachmentId(), Arrays.asList(compressionJob.getId(), resumableUploadSpecJob.getId(), uploadJob.getId()));
+      return new PreUploadResult(isStoryClip, databaseAttachment.getAttachmentId(), Arrays.asList(compressionJob.getId(), resumableUploadSpecJob.getId(), uploadJob.getId()));
     } catch (MmsException e) {
       Log.w(TAG, "preUploadPushAttachment() - Failed to upload!", e);
       return null;
@@ -727,17 +727,24 @@ public class MessageSender {
   }
 
   public static class PreUploadResult implements Parcelable {
-    private final AttachmentId       attachmentId;
+    private final boolean      isVideo;
+    private final AttachmentId attachmentId;
     private final Collection<String> jobIds;
 
-    PreUploadResult(@NonNull AttachmentId attachmentId, @NonNull Collection<String> jobIds) {
+    PreUploadResult(boolean isVideo, @NonNull AttachmentId attachmentId, @NonNull Collection<String> jobIds) {
+      this.isVideo      = isVideo;
       this.attachmentId = attachmentId;
       this.jobIds       = jobIds;
     }
 
     private PreUploadResult(Parcel in) {
       this.attachmentId = in.readParcelable(AttachmentId.class.getClassLoader());
-      this.jobIds       = ParcelUtil.readStringCollection(in);
+      this.jobIds  = ParcelUtil.readStringCollection(in);
+      this.isVideo = ParcelUtil.readBoolean(in);
+    }
+
+    public boolean isVideo() {
+      return isVideo;
     }
 
     public @NonNull AttachmentId getAttachmentId() {
@@ -769,6 +776,7 @@ public class MessageSender {
     public void writeToParcel(Parcel dest, int flags) {
       dest.writeParcelable(attachmentId, flags);
       ParcelUtil.writeStringCollection(dest, jobIds);
+      ParcelUtil.writeBoolean(dest, isVideo);
     }
   }
 

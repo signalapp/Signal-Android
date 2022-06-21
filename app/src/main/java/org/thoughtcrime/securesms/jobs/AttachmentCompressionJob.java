@@ -241,7 +241,7 @@ public final class AttachmentCompressionJob extends BaseJob {
               }
 
               MediaStream mediaStream = new MediaStream(ModernDecryptingPartInputStream.createFor(attachmentSecret, file, 0), MimeTypes.VIDEO_MP4, 0, 0);
-              attachmentDatabase.updateAttachmentData(attachment, mediaStream, transformProperties.isVideoEdited());
+              attachmentDatabase.updateAttachmentData(attachment, mediaStream, true);
             } finally {
               if (!file.delete()) {
                 Log.w(TAG, "Failed to delete temp file");
@@ -267,7 +267,7 @@ public final class AttachmentCompressionJob extends BaseJob {
                                                           percent));
               }, cancelationSignal);
 
-              attachmentDatabase.updateAttachmentData(attachment, mediaStream, transformProperties.isVideoEdited());
+              attachmentDatabase.updateAttachmentData(attachment, mediaStream, true);
 
               attachmentDatabase.markAttachmentAsTransformed(attachment.getAttachmentId());
 
