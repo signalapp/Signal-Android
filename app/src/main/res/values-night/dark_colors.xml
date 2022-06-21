@@ -102,6 +102,7 @@
     <color name="conversation_item_sent_view_once_opened">@color/transparent_white_80</color>
     <color name="conversation_typing_indicator_foreground_tint_normal">@color/signal_colorOnSurfaceVariant</color>
     <color name="conversation_typing_indicator_foreground_tint_wallpaper">@color/signal_colorNeutralVariantInverse</color>
+    <color name="conversation_navigation_wallpaper">#80000000</color>
 
     <color name="wallpaper_bubble_color">@color/signal_colorTransparentInverse4</color>
 

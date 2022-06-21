@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.components.reminder.ReminderView
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentRepository
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.DynamicNoActionBarTransparentNavigationBarTheme
+import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture
 import org.thoughtcrime.securesms.util.views.Stub
@@ -24,7 +24,7 @@ open class ConversationActivity : PassphraseRequiredActivity(), ConversationPare
 
   private lateinit var fragment: ConversationParentFragment
 
-  private val dynamicTheme: DynamicTheme = DynamicNoActionBarTransparentNavigationBarTheme()
+  private val dynamicTheme: DynamicTheme = DynamicNoActionBarTheme()
   override fun onPreCreate() {
     dynamicTheme.onCreate(this)
   }
