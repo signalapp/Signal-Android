@@ -116,7 +116,7 @@
   <string name="CameraXFragment_tap_for_photo_hold_for_video">Натисніть для фото, тримайте для відео</string>
   <string name="CameraXFragment_capture_description">Захопити</string>
   <string name="CameraXFragment_change_camera_description">Змінити камеру</string>
-  <string name="CameraXFragment_open_gallery_description">Відкрити Галерею</string>
+  <string name="CameraXFragment_open_gallery_description">Відкрити галерею</string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Нещодавні контакти</string>
   <string name="CameraContacts_signal_contacts">Контакти Signal</string>
@@ -226,7 +226,7 @@
   <string name="ConversationActivity_specify_recipient">Будь ласка, виберіть контакт</string>
   <string name="ConversationActivity_unblock">Розблокувати</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Вкладення перевищує обмеження за розміром для типу повідомлення, яке ви надсилаєте.</string>
-  <string name="ConversationActivity_unable_to_record_audio">Не вдалося записати аудіо!</string>
+  <string name="ConversationActivity_unable_to_record_audio">Неможливо записати аудіо!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Ви не зможете відправляти повідомлення в цю групу, оскільки більше не є її членом.</string>
   <string name="ConversationActivity_only_s_can_send_messages">Тільки %1$s можуть відправляти повідомлення.</string>
   <string name="ConversationActivity_admins">адміністратори</string>
@@ -1418,7 +1418,7 @@
   <string name="RedPhone_network_failed">Помилка мережі!</string>
   <string name="RedPhone_number_not_registered">Номер не зареєстровано!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Набраний номер не підтримує безпечні дзвінки!</string>
-  <string name="RedPhone_got_it">Ясно</string>
+  <string name="RedPhone_got_it">Зрозуміло</string>
   <!--Valentine\'s Day Megaphone-->
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
   <string name="ValentinesDayMegaphone_happy_heart_day">З Днем усіх 💜!</string>
@@ -2336,7 +2336,7 @@
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Разовий внесок</string>
   <string name="preferences__privacy">Приватність</string>
-  <string name="preferences__mms_user_agent">MMS User Agent</string>
+  <string name="preferences__mms_user_agent">Агент користувача MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Власні налаштування MMS</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
   <string name="preferences__mms_proxy_host">Хост MMS проксі</string>
@@ -2371,7 +2371,7 @@
   <string name="preferences__submit_debug_log">Надіслати журнал відладки</string>
   <string name="preferences__delete_account">Видалити обліковий запис</string>
   <string name="preferences__support_wifi_calling">Режим сумісності \'WiFi Calling\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Увімкніть, якщо ваш пристрій використовує доставку SMS/MMS через WiFi (вмикайте лише якщо «WiFi Calling» увімкнені на вашому пристрої)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Увімкніть, якщо ваш пристрій використовує доставку SMS/MMS через WiFi (вмикайте лише якщо «WiFi Calling» увімкнен на вашому пристрої)</string>
   <string name="preferences__incognito_keyboard">Клавіатура в режимі «інкогніто»</string>
   <string name="preferences__read_receipts">Звіти про прочитання</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Якщо звіти про прочитання вимкнено, ви не бачитимете ці звіти від інших.</string>
@@ -2406,7 +2406,7 @@
   <string name="preferences_storage__none">Жодного</string>
   <string name="preferences_storage__s_messages">%1$s повідомлень</string>
   <string name="preferences_storage__custom">Користувацький</string>
-  <string name="preferences_advanced__use_system_emoji">Використовувати системні emoji</string>
+  <string name="preferences_advanced__use_system_emoji">Використовувати emoji системи</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Вимкнути вбудовану в Signal підтримку emoji</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Ретранслювати всі дзвінки через сервер Signal щоб уникнути розкриття вашого IP-адреси контакту. Включення знизить якість дзвінка.</string>
   <string name="preferences_advanced__always_relay_calls">Завжди ретранслювати дзвінки</string>

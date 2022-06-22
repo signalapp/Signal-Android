@@ -3322,6 +3322,7 @@
   <!--Gift badge redeeming action label-->
   <!--Gift badge redeemed label-->
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Proovi teist maksemeetodit või võta ühendust oma pangaga, et saada täiendavat teavet.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">Rohkem infot</string>

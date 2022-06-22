@@ -20,7 +20,7 @@
   <string name="ApplicationPreferencesActivity_unregistering">Puretaan rekisteröintiä</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Puretaan rekisteröintiä Signal-viesteistä ja -puheluista…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Otetaanko Signal-viestit ja -puhelut pois käytöstä?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Tämä ottaa Signal-viestit ja -puhelut pois käytöstä  purkamalla rekisteröitymisesi palvelimelta. Jos haluat käyttää niitä jatkossa, täytyy sinun rekisteröityä puhelinnumerollasi uudelleen.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Tämä ottaa Signal-viestit ja -puhelut pois käytöstä purkamalla rekisteröitymisesi palvelimelta. Jos haluat käyttää niitä jatkossa, sinun täytyy rekisteröityä puhelinnumerollasi uudelleen.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Virhe yhdistettäessä palvelimeen!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Tekstiviestit käytössä</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Kosketa, jos haluat vaihtaa oletustekstiviestisovellustasi</string>
@@ -29,10 +29,10 @@
   <string name="ApplicationPreferencesActivity_on">päällä</string>
   <string name="ApplicationPreferencesActivity_On">Päällä</string>
   <string name="ApplicationPreferencesActivity_off">pois</string>
-  <string name="ApplicationPreferencesActivity_Off">Poissa päältä</string>
+  <string name="ApplicationPreferencesActivity_Off">Pois päältä</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Näytön lukitus %1$s, rekisteröintiesto %2$s</string>
-  <string name="ApplicationPreferencesActivity_appearance_summary">Teema %1$s, Kieli %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Teema %1$s, kieli %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Rekisteröintiesto vaatii tunnusluvun. Poista rekisteröintiesto käytöstä ennen tunnusluvun poistamista.</string>
   <string name="ApplicationPreferencesActivity_pin_created">Tunnusluku on luotu.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">Tunnusluku on poistettu käytöstä.</string>
@@ -40,7 +40,7 @@
   <string name="ApplicationPreferencesActivity_hide_reminder">Piilotetaanko muistutus?</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Tallenna maksujen palautuslause</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Tallenna lause</string>
-  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Ennen tunnusluvun ottamista pois käytöstä ota ylös palautuslause, joka tarvitaan tilin palauttamiseen.</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Ennen tunnusluvun ottamista pois käytöstä tallenna palautuslause. Sitä tarvitaan maksutilin palauttamiseen.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuutti</item>
@@ -58,16 +58,16 @@
   <string name="AttachmentKeyboard_file">Tiedosto</string>
   <string name="AttachmentKeyboard_contact">Yhteystieto</string>
   <string name="AttachmentKeyboard_location">Sijainti</string>
-  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal tarvitsee käyttöoikeutta kuvien ja videoiden näyttämistä varten.</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal tarvitsee käyttöoikeuden kuvien ja videoiden näyttämiseksi.</string>
   <string name="AttachmentKeyboard_give_access">Myönnä käyttöoikeus</string>
   <string name="AttachmentKeyboard_payment">Maksu</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Median valintaan ei löytynyt sovellusta.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal tarvitsee lupaa käyttää laitteesi tallennustilaa kuvien, videoiden tai äänitiedostojen liittämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tallennustila\".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal tarvitsee lupaa käyttää laitteesi yhteystietoja oman yhteystietolistansa käsittelyä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Yhteystiedot\".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal tarvitsee lupaa käyttää sijaintitietoja sijainnin liittämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Sijainti\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal tarvitsee luvan käyttää laitteesi tallennustilaa kuvien, videoiden tai äänitiedostojen liittämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tallennustila\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal tarvitsee luvan käyttää laitteesi yhteystietoja oman yhteystietolistansa käsittelyä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Yhteystiedot\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal tarvitsee luvan käyttää sijaintitietoja sijainnin liittämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Sijainti\".</string>
   <!--AttachmentUploadJob-->
-  <string name="AttachmentUploadJob_uploading_media">Lähetetään media…</string>
+  <string name="AttachmentUploadJob_uploading_media">Lähetetään mediaa…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Pakataan videota…</string>
   <!--BackgroundMessageRetriever-->
   <string name="BackgroundMessageRetriever_checking_for_messages">Tarkistetaan viestejä…</string>
@@ -85,15 +85,15 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Estetäänkö ja poistutaanko ryhmästä %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Estetäänkö %1$s?</string>
-  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Et tule vastaanottamaan viestejä tai päivityksiä tältä ryhmältä, eivätkä ryhmän jäsenet voi lisätä sinua takaisin ryhmään.</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Et enää saa viestejä tai päivityksiä tältä ryhmältä, eivätkä ryhmän jäsenet voi lisätä sinua takaisin ryhmään.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Ryhmän jäsenet eivät enää voi lisätä sinua takaisin tähän ryhmään.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Ryhmän jäsenet voivat lisätä sinut takaisin tähän ryhmään.</string>
   <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Voitte jatkossa lähettää viestejä ja soittaa toisillenne, ja nimesi ja kuvasi jaetaan heidän kanssaan.</string>
   <!--Text that is shown when unblocking an SMS contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Voitte lähettää viestejä toisillenne.</string>
-  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Estetyt henkilöt eivät voi soittaa sinulle tai lähettää sinulle viestejä.</string>
-  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Estetyt ihmiset eivät voi lähettää sinulle viestejä.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Estetyt käyttäjät eivät voi soittaa sinulle tai lähettää sinulle viestejä.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Estetyt käyttäjät eivät voi lähettää sinulle viestejä.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Estä Signalin päivitysten ja uutisten vastaanotto.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -101,7 +101,7 @@
   <string name="BlockUnblockDialog_unblock_s">Poistetaanko käyttäjän %1$s esto?</string>
   <string name="BlockUnblockDialog_block">Estä</string>
   <string name="BlockUnblockDialog_block_and_leave">Estä ja poistu</string>
-  <string name="BlockUnblockDialog_report_spam_and_block">Ilmoita spammista ja blokkaa</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">Ilmoita roskapostista ja estä</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">tänään</string>
   <string name="BucketedThreadMedia_Yesterday">eilen</string>
@@ -111,26 +111,26 @@
   <string name="BucketedThreadMedia_Medium">Keskikokoinen</string>
   <string name="BucketedThreadMedia_Small">Pieni</string>
   <!--CameraXFragment-->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">Napauttamalla saat kuvan, painamalla videon</string>
-  <string name="CameraXFragment_capture_description">Nappaa</string>
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Ota kuva napauttamalla tai video painamalla pitkään</string>
+  <string name="CameraXFragment_capture_description">Ota kuva</string>
   <string name="CameraXFragment_change_camera_description">Vaihda kamera</string>
   <string name="CameraXFragment_open_gallery_description">Avaa galleria</string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Viimeisimmät yhteystiedot</string>
   <string name="CameraContacts_signal_contacts">Signal-yhteystiedot</string>
   <string name="CameraContacts_signal_groups">Signal-ryhmät</string>
-  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">%d keskustelua on enimmäismäärä, joihin voit jakaa. </string>
-  <string name="CameraContacts_select_signal_recipients">Valitse Signal-vastaanottajat liitteelle:</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Voit jakaa sisältöä enintään %d keskusteluun.</string>
+  <string name="CameraContacts_select_signal_recipients">Valitse Signal-vastaanottajat</string>
   <string name="CameraContacts_no_signal_contacts">Ei Signal-yhteystietoja</string>
-  <string name="CameraContacts_you_can_only_use_the_camera_button">Voit käyttää kamerapainiketta vain valokuvien lähettämiseen Signal-yhteystiedoillesi.</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Voit lähettää valokuvia Signal-yhteystiedoillesi vain kamerapainikkeella.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Etkö löydä etsimääsi?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Kutsu kavereita Signaliin</string>
-  <string name="CameraContacts__menu_search">Hae</string>
+  <string name="CameraContacts__menu_search">Haku</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Kytketäänkö sensuurin kiertäminen pois päältä?</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
-  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Voit nyt kytkeytyä suoraan Signalin palvelimiin ja tämä parantaa käyttökokemusta.</string>
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Voit nyt yhdistää suoraan Signalin palvelimiin. Tämä parantaa käyttökokemusta.</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">Poista käytöstä</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
@@ -141,7 +141,7 @@
   <string name="ClearProfileActivity_remove_group_photo">Poistetaanko ryhmän kuva?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Päivitä Signal</string>
-  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Tätä sovelluksen versiota ei enää tueta. Jatka Signalin käyttämistä päivittämällä uusimpaan versioon.</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Tätä sovelluksen versiota ei enää tueta. Voit lähettää ja vastaanottaa viestejä päivittämällä uusimpaan versioon.</string>
   <string name="ClientDeprecatedActivity_update">Päivitä</string>
   <string name="ClientDeprecatedActivity_dont_update">Älä päivitä</string>
   <string name="ClientDeprecatedActivity_warning">Varoitus</string>
@@ -149,15 +149,15 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Verkkoselainta ei löytynyt.</string>
   <string name="CommunicationActions_send_email">Lähetä sähköposti</string>
-  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Matkapuhelu on jo käynnissä.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Puhelu matkapuhelinverkossa on jo käynnissä.</string>
   <string name="CommunicationActions_start_voice_call">Soitetaanko äänipuhelu?</string>
   <string name="CommunicationActions_cancel">Peruuta</string>
   <string name="CommunicationActions_call">Soita</string>
   <string name="CommunicationActions_insecure_call">Salaamaton puhelu</string>
-  <string name="CommunicationActions_carrier_charges_may_apply">Operaattorisi hinnat voivat olla voimassa. Numeroa, johon soitat, ei ole rekisteröity Signaliin. Tämä puhelu tehdään matkapuhelinoperaattorisi kautta, ei Internetin kautta.</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Operaattori saattaa veloittaa palvelusta. Valitsemaasi numeroa ei ole rekisteröity Signaliin. Tämä puhelu tehdään matkapuhelinoperaattorisi kautta, ei internetin kautta.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Turvanumerosi kontaktin %1$s kanssa on vaihtunut. Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata viestiliikennettänne, tai sitä, että %2$s on vain yksinkertaisesti asentanut Signalin uudelleen.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Saatat haluta varmentaa turvanumerosi tämän kontaktin kanssa.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Turvanumerosi käyttäjän %1$s kanssa on vaihtunut. Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata viestiliikennettänne, tai sitä, että %2$s on asentanut Signalin uudelleen.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Saatat haluta varmentaa turvanumerosi tämän käyttäjän kanssa.</string>
   <string name="ConfirmIdentityDialog_accept">Hyväksy</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Viimeisimmät keskustelut</string>
@@ -170,8 +170,8 @@
   <!--Action for creating a new story-->
   <string name="ContactsCursorLoader_new_story">Uusi tarina</string>
   <!--ContactsDatabase-->
-  <string name="ContactsDatabase_message_s">Viesti %s</string>
-  <string name="ContactsDatabase_signal_call_s">Signal-puhelu %s</string>
+  <string name="ContactsDatabase_message_s">Viesti: %s</string>
+  <string name="ContactsDatabase_signal_call_s">Signal-puhelu: %s</string>
   <!--ContactNameEditActivity-->
   <string name="ContactNameEditActivity_given_name">Etunimi</string>
   <string name="ContactNameEditActivity_family_name">Sukunimi</string>
@@ -212,9 +212,9 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Annettu numero tai sähköpostiosoite ei ole kelvollinen!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Viesti on tyhjä!</string>
   <string name="ConversationActivity_group_members">Ryhmän jäsenet</string>
-  <string name="ConversationActivity__tap_here_to_start_a_group_call">Aloita ryhmäpuhelu napauttamalla tätä</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">Aloita ryhmäpuhelu napauttamalla tästä</string>
   <string name="ConversationActivity_invalid_recipient">Virheellinen vastaanottaja!</string>
-  <string name="ConversationActivity_added_to_home_screen">Lisätty kotiruudulle</string>
+  <string name="ConversationActivity_added_to_home_screen">Lisätty kotinäytölle</string>
   <string name="ConversationActivity_calls_not_supported">Puheluita ei tueta</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Tämä laite ei näytä tukevan valintanäppäintoimintoja.</string>
   <string name="ConversationActivity_transport_insecure_sms">Salaamaton tekstiviesti</string>
@@ -223,28 +223,28 @@
   <string name="ConversationActivity_lets_switch_to_signal">Hei, vaihdetaan Signaliin %1$s</string>
   <string name="ConversationActivity_specify_recipient">Valitse yhteystieto</string>
   <string name="ConversationActivity_unblock">Poista esto</string>
-  <string name="ConversationActivity_attachment_exceeds_size_limits">Liitetiedosto ylittää kyseisen viestityypin kokorajoituikset.</string>
-  <string name="ConversationActivity_unable_to_record_audio">Äänen nauhoitus ei onnistunut!</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">Liitetiedosto ylittää lähettämäsi viestityypin kokorajoituksen.</string>
+  <string name="ConversationActivity_unable_to_record_audio">Äänen tallennus ei onnistunut!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Et voi lähettää viestejä tälle ryhmälle, koska et enää ole sen jäsen.</string>
-  <string name="ConversationActivity_only_s_can_send_messages">Vain %1$s voi lähettää viestejä.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Vain %1$s voi(vat) lähettää viestejä.</string>
   <string name="ConversationActivity_admins">ylläpitäjät</string>
   <string name="ConversationActivity_message_an_admin">Lähetä viesti ylläpitäjälle</string>
-  <string name="ConversationActivity_cant_start_group_call">Ei voi aloittaa ryhmäkutsua</string>
-  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Vain ryhmän ylläpitäjä voi aloittaa kutsun.</string>
+  <string name="ConversationActivity_cant_start_group_call">Ryhmäpuhelua ei voi aloittaa</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Vain ryhmän ylläpitäjä voi aloittaa puhelun.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Laitteessasi ei ole sovellusta, jolla linkki voidaan avata.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Liittymispyyntösi on lähetetty ryhmän ylläpitäjälle. Saat ilmoituksen, kun he tekevät päätöksen.</string>
   <string name="ConversationActivity_cancel_request">Peruuta pyyntö</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Jotta voit lähettää ääniviestejä, Signal tarvitsee lupaa käyttää mikrofonia.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal tarvitsee lupaa käyttää mikrofonia äänitiedostojen lähettämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Mikrofoni\".</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal tarvitsee lupaa käyttää laitteesi mikrofonia ja kameraa yhteystiedolle %s soittamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Mikrofoni\" ja \"Kamera\".</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Jotta voit ottaa kuvia ja videoita, anna Signalille lupaa käyttää kameraa.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal tarvitsee lupaa käyttää laitteesi kameraa kuvien ja videoiden ottamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Kamera\".</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal tarvitsee kameran käyttöoikeutta kuvien ja videoiden ottamista varten.</string>
-  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Myönnä mikrofonin käyttöoikeus, jotta voit tallentaa äänellisiä videoita.</string>
-  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal tarvitsee mikrofonin käyttöoikeutta videoiden tallennusta varten, mutta ne on evätty. Jatka sovellusasetuksiin, valitse \"käyttöoikeudet\" ja ota käyttöön \"mikrofoni\" ja \"kamera\".</string>
-  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal tarvitsee mikrofonin käyttöoikeutta videoiden tallennusta varten.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Ääniviestin lähettäminen edellyttää mikrofonin käyttöoikeuden myöntämistä Signalille.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal tarvitsee luvan käyttää mikrofonia äänitiedostojen lähettämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Mikrofoni\".</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal tarvitsee luvan käyttää laitteesi mikrofonia ja kameraa yhteystiedolle %s soittamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Mikrofoni\" ja \"Kamera\".</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Kuvien ja videoiden ottaminen edellyttää, että annat Signalille kameran käyttöoikeuden.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal tarvitsee luvan käyttää laitteesi kameraa kuvien ja videoiden ottamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Kamera\".</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal tarvitsee käyttöoikeuden kuvien ja videoiden ottamiseksi.</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Myönnä mikrofonin käyttöoikeus, jotta voit tallentaa videoita, joissa on ääni.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal tarvitsee mikrofonin käyttöoikeuden videoiden tallennusta varten, mutta se on evätty. Jatka sovellusasetuksiin, valitse \"käyttöoikeudet\" ja ota käyttöön \"mikrofoni\" ja \"kamera\".</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal tarvitsee mikrofonin käyttöoikeuden videoiden tallennusta varten.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal ei voi lähettää SMS/MMS-viestejä, koska se ei ole oletus tekstiviestisovellus. Haluatko muuttaa tätä Androidin asetuksissa?</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal ei voi lähettää SMS/MMS-viestejä, koska sitä ei ole määritelty oletussovellukseksi näille viesteille. Haluatko muuttaa tätä Androidin asetuksissa?</string>
   <string name="ConversationActivity_yes">Kyllä</string>
   <string name="ConversationActivity_no">Ei</string>
   <string name="ConversationActivity_search_position">%1$d / %2$d</string>
@@ -257,13 +257,13 @@
   <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Tämä keskustelu poistetaan kaikilta laitteiltasi.</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Poistut tästä ryhmästä ja se poistetaan kaikilta laitteiltasi.</string>
   <string name="ConversationActivity_delete">Poista</string>
-  <string name="ConversationActivity_delete_and_leave">Poista ja poistu</string>
-  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Jotta voit soittaa yhteystiedolle %1$s, Signal tarvitsee lupaa käyttää mikrofonia.</string>
+  <string name="ConversationActivity_delete_and_leave">Poista ja poistu ryhmästä</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Jotta voit soittaa käyttäjälle %1$s, Signal tarvitsee luvan käyttää mikrofonia.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Ryhmän asetuksissa on nyt lisää vaihtoehtoja</string>
   <string name="ConversationActivity_join">Liity</string>
   <string name="ConversationActivity_full">Täynnä</string>
   <string name="ConversationActivity_error_sending_media">Virhe median lähettämisessä</string>
-  <string name="ConversationActivity__reported_as_spam_and_blocked">Ilmoitettu spammista ja blokattu</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">Ilmoitettu roskapostista ja estetty</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d lukematon viesti</item>
@@ -293,7 +293,7 @@
     <item quantity="other">Tallennetaan %1$d liitetiedostoa tallennustilaan…</item>
   </plurals>
   <string name="ConversationFragment_pending">Käsiteltävänä…</string>
-  <string name="ConversationFragment_push">Tietoverkko (Signal)</string>
+  <string name="ConversationFragment_push">Data (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Poistetaan</string>
@@ -306,7 +306,7 @@
   <string name="ConversationFragment_failed_to_open_message">Viestin avaaminen epäonnistui</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Vastaa viestiin nopeasti pyyhkäisemällä oikealle</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Vastaa viestiin nopeasti pyyhkäisemällä vasemmalle</string>
-  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Lähtevät kerran katsottavat mediatiedostot poistetaan automaattisesti lähettämisen jälkeen</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Lähtevät, kerran katsottavat mediatiedostot poistetaan automaattisesti lähettämisen jälkeen</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Olet jo katsonut tämän viestin</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Voit lisätä itsellesi muistiinpanoja tähän keskusteluun.\nJos tililläsi on linkitettyjä laitteita, uudet muistiinpanot synkronoidaan.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d ryhmän jäsenellä on sama nimi.</string>
@@ -314,10 +314,10 @@
   <string name="ConversationFragment__review_requests_carefully">Tarkista pyynnöt huolellisesti</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal löysi toisen yhteystiedon samalla nimellä.</string>
   <string name="ConversationFragment_contact_us">Ota yhteyttä</string>
-  <string name="ConversationFragment_verify">Varmenna</string>
+  <string name="ConversationFragment_verify">Vahvista</string>
   <string name="ConversationFragment_not_now">Ei nyt</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Turvanumerosi yhteystiedon %s kanssa on vaihtunut</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Turvanumerosi kontaktin %s kanssa on vaihtunut, luultavasti koska hän on uudelleenasentanut Signalin tai vaihtanut käyttämäänsä laitetta. Varmenna uusi turvanumero napauttamalla Varmenna. Toiminto on valinnainen.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Turvanumerosi kontaktin %s kanssa on vaihtunut, luultavasti koska hän on uudelleenasentanut Signalin tai vaihtanut käyttämäänsä laitetta. Vahvista uusi turvanumero napauttamalla Vahvista. Toiminto on valinnainen.</string>
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s käytössä</string>
   <!--Dialog title for block group link join requests-->
@@ -402,7 +402,7 @@
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Arkistoidut keskustelut (%d)</string>
   <!--ConversationTitleView-->
-  <string name="ConversationTitleView_verified">Varmennettu</string>
+  <string name="ConversationTitleView_verified">Vahvistettu</string>
   <string name="ConversationTitleView_you">Sinä</string>
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
@@ -413,8 +413,8 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Virhe profiilikuvan asettamisessa</string>
   <string name="CreateProfileActivity_problem_setting_profile">Virhe profiilin asettamisessa</string>
   <string name="CreateProfileActivity_set_up_your_profile">Määritä profiilisi</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profiilisi on päästä päähän salattu. Profiilisi ja tekemäsi muutokset näkyvät kontakteillesi, kun aloitat tai hyväksyt uusia keskusteluja ja kun liityt uusiin ryhmiin.</string>
-  <string name="CreateProfileActivity_set_avatar_description">Aseta kuvake</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profiilisi on päästä päähän salattu. Profiilisi ja tekemäsi muutokset näkyvät yhteystiedoillesi, kun aloitat tai hyväksyt uusia keskusteluja ja kun liityt uusiin ryhmiin.</string>
+  <string name="CreateProfileActivity_set_avatar_description">Aseta avatar</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Palautetaanko varmuuskopiosta?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Palauta viestit ja mediasisältö laitteeseen tallennetusta varmuuskopiosta. Palauttaminen ei ole mahdollista myöhemmin.</string>
@@ -449,7 +449,7 @@
   <string name="BackupsPreferenceFragment__d_so_far">%1$d tähän mennessä…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% tähän mennessä…</string>
-  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal tarvitsee lupaa käyttää laitteesi tallennustilaa varmuuskopioiden luomista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tallennustila\".</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal tarvitsee luvan käyttää laitteesi tallennustilaa varmuuskopioiden luomista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tallennustila\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Käytä mukautettua: %s</string>
   <string name="CustomDefaultPreference_using_default">Käytä oletusta: %s</string>
@@ -468,13 +468,13 @@
   <string name="DateUtils_yesterday">eilen</string>
   <!--DecryptionFailedDialog-->
   <string name="DecryptionFailedDialog_chat_session_refreshed">Keskustelu on päivitetty</string>
-  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signalin sisältö salataan päästä päähän, mutta ajoittain keskustelu voidaan joutua päivittämään. Se ei vaikuta tietoturvaan, mutta tämän yhteyshenkilön viimeisin viesti ei välttämättä näy, ja voit pyytää häntä lähettämään sen uudelleen.</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signalin sisältö salataan päästä päähän. Tästä syystä keskustelu täytyy joskus päivittää. Tämä ei vaikuta tietoturvaan. Tämän yhteyshenkilön viimeisin viesti ei välttämättä näy. Voit pyytää häntä lähettämään sen uudelleen.</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Poista \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Jos poistat tämän laitteen, sillä ei voi enää lähettää eikä vastaanottaa viestejä.</string>
   <string name="DeviceListActivity_network_connection_failed">Verkkoyhteyden muodostus epäonnistui</string>
   <string name="DeviceListActivity_try_again">Yritä uudelleen</string>
-  <string name="DeviceListActivity_unlinking_device">Laitetta poistetaan…</string>
+  <string name="DeviceListActivity_unlinking_device">Poistetaan laitetta</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Poistetaan laitetta</string>
   <string name="DeviceListActivity_network_failed">Verkkoyhteysvirhe!</string>
   <!--DeviceListItem-->
@@ -486,7 +486,7 @@
   <string name="DocumentView_unnamed_file">Nimeämätön tiedosto</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Korjaa Play-palvelujen puuttuminen</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Laite ei tue Play-palveluita. Virransäästöominaisuudet estävät viestien hakemisen taustalla, ota toiminto pois käytöstä napauttamalla.</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Laite ei tue Play-palveluita. Virransäästöominaisuudet estävät viestien hakemisen taustalla. Ota toiminto pois käytöstä napauttamalla.</string>
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Tämä Signal-versio on vanhentunut. Päivitä nyt lähettääksesi ja vastaanottaaksesi viestejä.</string>
   <string name="ExpiredBuildReminder_update_now">Päivitä nyt</string>
@@ -498,7 +498,7 @@
   <string name="PendingGroupJoinRequestsReminder_view">Näytä</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Pysyvä Signal-yhteysvirhe!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ei voinut rekisteröityä Google Play Services -palveluun, minkä vuoksi Signal-viestit ja puhelut ovat otettu pois käytöstä. Kokeile rekisteröityä uudelleen Signalin lisäasetuksista.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ei voinut rekisteröityä Google Play Services -palveluun. Tästä syystä Signal-viestit ja puhelut ovat pois käytöstä. Yritä rekisteröityä uudelleen Signalin lisäasetuksista.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Täysikokoisen GIF:n lataaminen epäonnistui</string>
   <!--GiphyFragmentPageAdapter-->
@@ -516,7 +516,7 @@
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Valitse uusi ylläpitäjä</string>
   <string name="ChooseNewAdminActivity_done">Valmis</string>
-  <string name="ChooseNewAdminActivity_you_left">Lähdit ryhmästä %1$s.</string>
+  <string name="ChooseNewAdminActivity_you_left">Poistuit ryhmästä %1$s.</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Sinä</string>
   <!--GV2 access levels-->
@@ -529,31 +529,31 @@
     <item quantity="one">Kutsu lähetetty</item>
     <item quantity="other">%d kutsua lähetetty</item>
   </plurals>
-  <string name="GroupManagement_invite_single_user">Et voi lisätä käyttäjää %1$s automaattisesti tähän ryhmään.\n\nHeidät on kutsuttu liittymään eivätkä näe ryhmäviestejä ennen kutsun hyväksymistä.</string>
-  <string name="GroupManagement_invite_multiple_users">Et voi lisätä näitä käyttäjiä automaattisesti tähän ryhmään.\n\nHeidät on kutsuttu liittymään eivätkä näe ryhmäviestejä ennen kutsun hyväksymistä.</string>
+  <string name="GroupManagement_invite_single_user">Et voi lisätä käyttäjää %1$s automaattisesti tähän ryhmään.\n\nHänet on kutsuttu liittymään ryhmään, ja hän näkee ryhmäviestit vasta hyväksyttyään kutsun.</string>
+  <string name="GroupManagement_invite_multiple_users">Et voi lisätä näitä käyttäjiä automaattisesti tähän ryhmään.\n\nHeidät on kutsuttu liittymään ryhmään, ja he näkee ryhmäviestit vasta hyväksyttyään kutsun.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Mitä uudet ryhmät ovat?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Uuden tyylin ryhmät tukevat nyt @mainintoja ja ylläpitäjiä, sekä muita ominaisuuksia tulevaisuudessa.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Kaikki päivitystä edeltävä viestihistoria ja media on säilytetty.</string>
-  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Sinun on hyväksyttävä kutsu liittyä tähän ryhmään uudelleen, etkä saa ryhmäviestejä ennen kuin olet hyväksynyt.</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Sinun on hyväksyttävä kutsu liittyä tähän ryhmään uudelleen. Saat ryhmäviestit vasta hyväksyttyäsi kutsun.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Tämän jäsenen on hyväksyttävä kutsu liittyä tähän ryhmään uudelleen, eikä saa ryhmäviestejä ennen kuin on hyväksynyt:</item>
-    <item quantity="other">Näiden jäsenten on hyväksyttävä kutsu liittyä tähän ryhmään uudelleen, eivätkä saa ryhmäviestejä ennen kuin ovat hyväksyneet:</item>
+    <item quantity="other">Näiden jäsenten on hyväksyttävä kutsu liittyä tähän ryhmään uudelleen. He saavat ryhmäviestit vasta hyväksyttyään kutsun.</item>
   </plurals>
   <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
     <item quantity="one">Tämä jäsen poistettiin ryhmästä, eikä voi liittyä uudelleen, ennen kuin hän on päivittänyt:</item>
-    <item quantity="other">Nämä jäsenet poistettiin ryhmästä, eivätkä voi liittyä uudelleen, ennen kuin he ovat päivittäneet:</item>
+    <item quantity="other">Nämä jäsenet poistettiin ryhmästä. He eivät voi liittyä uudelleen, ennen kuin he ovat päivittäneet:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Päivitä uuden tyylin ryhmään</string>
   <string name="GroupsV1MigrationInitiation_upgrade_this_group">Päivitä tämä ryhmä</string>
   <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Uuden tyylin ryhmät tukevat nyt @mainintoja ja ylläpitäjiä, sekä muita ominaisuuksia tulevaisuudessa.</string>
-  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Kaikki päivitystä edeltävä viestihistoria ja media tulee säilymään.</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Kaikki päivitystä edeltävä viestihistoria ja media säilyy.</string>
   <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Tapahtui verkkovirhe. Yritä myöhemmin uudelleen.</string>
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Päivitys epäonnistui.</string>
   <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Tämän jäsenen tarvitsee hyväksyä kutsu tähän ryhmään uudestaan, eikä hän saa ryhmän viestejä ennen kuin hyväksyy kutsun:</item>
-    <item quantity="other">Näiden jäsenien tarvitsee hyväksyä kutsu tähän ryhmään uudestaan, eivätkä he saa ryhmän viestejä ennen kuin hyväksyvät kutsun:</item>
+    <item quantity="other">Näiden jäsenten on hyväksyttävä kutsu liittyä tähän ryhmään uudelleen. He saavat ryhmäviestit vasta hyväksyttyään kutsun.</item>
   </plurals>
   <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="one">Tämä jäsen ei pysty liittymään uusiin ryhmiin, ja hänet poistetaan tästä ryhmästä:</item>
@@ -607,14 +607,14 @@
     <item quantity="other">%1$d jäsentä</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMembersActivity_pending_group_invites">Odottavat kutsut</string>
+  <string name="PendingMembersActivity_pending_group_invites">Odottavat ryhmäkutsut</string>
   <string name="PendingMembersActivity_requests">Pyynnöt</string>
   <string name="PendingMembersActivity_invites">Kutsut</string>
   <string name="PendingMembersActivity_people_you_invited">Kutsumasi henkilöt</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">Sinulla ei ole odottavia kutsuja.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Muiden kutsumat henkilöt</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Muilla jäsenillä ei ole odottavia ryhmäkutsuja.</string>
-  <string name="PendingMembersActivity_missing_detail_explanation">Tietoja muiden ryhmän jäsenten kutsumista henkilöistä ei näytetä. Heidän tiedot jaetaan ryhmälle vasta sitten kun he päättävät liittyä ryhmään. He eivät näe ryhmän viestejä ennen liittymistä.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">Muiden ryhmän jäsenten kutsumien henkilöiden tiedot näytetään vasta, kun he liittyvät ryhmään. He eivät näe ryhmän viestejä ennen liittymistä.</string>
   <string name="PendingMembersActivity_revoke_invite">Peruuta kutsu</string>
   <string name="PendingMembersActivity_revoke_invites">Peruuta kutsut</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">
@@ -629,11 +629,11 @@
   <string name="RequestingMembersFragment_pending_member_requests">Odottavat liittymispyynnöt</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Ei odottavia liittymispyyntöjä.</string>
   <string name="RequestingMembersFragment_explanation">Tässä luettelossa olevat henkilöt yrittävät liittyä ryhmään ryhmälinkin kautta.</string>
-  <string name="RequestingMembersFragment_added_s">Lisäsi käyttäjän %1$s</string>
-  <string name="RequestingMembersFragment_denied_s">Hylkäsi käyttäjän %1$s</string>
+  <string name="RequestingMembersFragment_added_s">Käyttäjä %1$s lisätty</string>
+  <string name="RequestingMembersFragment_denied_s">Käyttäjä %1$s hylätty</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Valmis</string>
-  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Tätä henkilöä ei voida lisätä vanhan tyylin ryhmiin.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Tätä henkilöä ei voida lisätä vanhan tyylisiin ryhmiin.</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Tätä henkilöä ei voi lisätä ilmoitusryhmiin.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Lisää \"%1$s\" ryhmään \"%2$s\"?</item>
@@ -652,7 +652,7 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">Tämä kenttä on pakollinen.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Ryhmän luominen epäonnistui.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Yritä myöhemmin uudelleen.</string>
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Olet valinnut kontaktin, joka ei tue Signalin ryhmäkeskusteluja. Tämä ryhmä tulee olemaan multimediaviestipohjainen.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Olet valinnut yhteystiedon, jonka laite ei tue Signalin ryhmäkeskusteluja. Tämä ryhmä tulee olemaan MMS-pohjainen.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Multimediaviestiryhmien mukautetut nimet ja kuvat näkyvät vain sinulle.</string> -->
   <string name="AddGroupDetailsFragment__remove">Poista</string>
   <string name="AddGroupDetailsFragment__sms_contact">Tekstiviestiyhteyshenkilö</string>
@@ -661,8 +661,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Liittymispyynnöt &amp; kutsut</string>
   <string name="ManageGroupActivity_add_members">Lisää jäseniä</string>
   <string name="ManageGroupActivity_edit_group_info">Muokkaa ryhmän tietoja</string>
-  <string name="ManageGroupActivity_who_can_add_new_members">Ketkä voivat lisätä uusia jäseniä?</string>
-  <string name="ManageGroupActivity_who_can_edit_this_groups_info">Ketkä voivat muokata tämän ryhmän tietoja?</string>
+  <string name="ManageGroupActivity_who_can_add_new_members">Kuka voi lisätä uusia jäseniä?</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">Kuka voi muokata tämän ryhmän tietoja?</string>
   <string name="ManageGroupActivity_group_link">Ryhmälinkki</string>
   <string name="ManageGroupActivity_block_group">Estä ryhmä</string>
   <string name="ManageGroupActivity_unblock_group">Poista ryhmän esto</string>
@@ -673,8 +673,8 @@
   <string name="ManageGroupActivity_chat_color_and_wallpaper">Keskustelun väri &amp; taustakuva</string>
   <string name="ManageGroupActivity_until_s">%1$s asti</string>
   <string name="ManageGroupActivity_always">Aina</string>
-  <string name="ManageGroupActivity_off">pois päältä</string>
-  <string name="ManageGroupActivity_on">Päällä</string>
+  <string name="ManageGroupActivity_off">Ei käytössä</string>
+  <string name="ManageGroupActivity_on">Käytössä</string>
   <string name="ManageGroupActivity_view_all_members">Näytä kaikki jäsenet</string>
   <string name="ManageGroupActivity_see_all">Näytä kaikki</string>
   <plurals name="ManageGroupActivity_added">
@@ -685,17 +685,17 @@
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Vain ylläpitäjät voivat ottaa liittymispyynnöt käyttöön tai poistaa ne käytöstä.</string>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Vain ylläpitäjät voivat uudelleenasettaa ryhmälinkin.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Sinulla ei ole oikeuksia tähän</string>
-  <string name="ManageGroupActivity_not_capable">Joku lisäämistäsi käyttäjistä ei tue uusia ryhmiä ja hänen on siis päivitettävä Signal</string>
-  <string name="ManageGroupActivity_not_announcement_capable">Lisäämäsi henkilö ei tue ilmoitusryhmiä, ja hänen on päivitettävä Signal-sovelluksensa</string>
+  <string name="ManageGroupActivity_not_capable">Joku lisäämistäsi käyttäjistä ei tue uusia ryhmiä. Hänen on päivitettävä Signal</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Joku lisäämistäsi käyttäjistä ei tue ilmoitusryhmiä. Hänen on päivitettävä Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Ryhmän päivitys epäonnistui</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Et ole ryhmän jäsen</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Ryhmän päivitys epäonnistui, yritä myöhemmin uudelleen</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Ryhmän päivitys epäonnistui verkkovirheen vuoksi, yritä myöhemmin uudelleen</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Muokkaa nimeä ja kuvaa</string>
-  <string name="ManageGroupActivity_legacy_group">Vanhan tyylin ryhmä</string>
+  <string name="ManageGroupActivity_legacy_group">Vanhan tyyppinen ryhmä</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Tämä on vanhan tyylin ryhmä. Ylläpitäjän kaltaiset ominaisuudet ovat käytettävissä vain uusissa ryhmissä.</string>
-  <string name="ManageGroupActivity_legacy_group_upgrade">Tämä on vanhan tyylin ryhmä. Käyttääksesi uusia ominaisuuksia, kuten @mainintoja ja ylläpitäjyyttä,</string>
-  <string name="ManageGroupActivity_legacy_group_too_large">Tätä vanhan tyyppistä ryhmää ei pystytä päivittämään uuden tyyppiseksi koska se on liian suuri. Ryhmässä voi olla enintään  %1$d jäsentä.</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">Tämä on vanhan tyyppinen ryhmä. Käyttääksesi uusia ominaisuuksia, kuten @mainintoja ja ylläpitäjyyttä,</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">Tätä vanhan tyyppistä ryhmää ei voida päivittää uuden tyyppiseksi, koska se on liian suuri. Ryhmässä voi olla enintään  %1$d jäsentä.</string>
   <string name="ManageGroupActivity_upgrade_this_group">päivitä tämä ryhmä.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Tämä on salaamaton multimediaviestiryhmä. Jos haluat keskustella yksityisesti, kutsu kontaktisi Signaliin.</string>
   <string name="ManageGroupActivity_invite_now">Kutsu nyt</string>
@@ -713,7 +713,7 @@
   <string name="ManageProfileFragment_write_a_few_words_about_yourself">Kirjoita muutama sana itsestäsi</string>
   <string name="ManageProfileFragment_your_name">Nimesi</string>
   <string name="ManageProfileFragment_your_username">Käyttäjätunnuksesi</string>
-  <string name="ManageProfileFragment_failed_to_set_avatar">Avatar-kuvan asettaminen epäonnistui</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Avatarin asettaminen epäonnistui</string>
   <string name="ManageProfileFragment_badges">Merkit</string>
   <string name="ManageProfileFragment__edit_photo">Muokkaa kuvaa</string>
   <!--ManageRecipientActivity-->
@@ -736,7 +736,7 @@
   <string name="CustomNotificationsDialogFragment__customize">Mukauta</string>
   <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Muuta ääni- ja värinäasetuksia</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Puheluasetukset</string>
-  <string name="CustomNotificationsDialogFragment__ringtone">Ilmoitusääni</string>
+  <string name="CustomNotificationsDialogFragment__ringtone">Soittoääni</string>
   <string name="CustomNotificationsDialogFragment__enabled">Päällä</string>
   <string name="CustomNotificationsDialogFragment__disabled">Pois päältä</string>
   <string name="CustomNotificationsDialogFragment__default">Oletus</string>
@@ -746,11 +746,11 @@
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Hallinnoi &amp; jaa</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">Ryhmälinkki</string>
   <string name="ShareableGroupLinkDialogFragment__share">Jaa</string>
-  <string name="ShareableGroupLinkDialogFragment__reset_link">Luo uudelleen</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">Uudelleenaseta linkki</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">Liittymispyynnöt</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">Hyväksy uudet jäsenet</string>
   <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Ylläpitäjän on hyväksyttävä ryhmälinkin kautta liittyvät uudet jäsenet.</string>
-  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Haluatko varmasti nollata ryhmälinkin? Ryhmään ei voi enää liittyä nykyistä linkkiä käyttäen.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Haluatko varmasti asettaa ryhmälinkin uudelleen? Ryhmään ei voi enää liittyä nykyistä linkkiä käyttäen.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR-koodi</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Liity ryhmään skannaamalla koodi. Ylläpitäjän on edelleen hyväksyttävä uudet jäsenet, jos kyseinen asetus on käytössä.</string>
@@ -771,7 +771,7 @@
   <!--Title shown when there was an known issue getting group information from a group link-->
   <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Ryhmään liittyminen ei onnistu</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
-  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Et voi liittyä ryhmään linkin avulla koska ylläpitäjä poisti sinut ryhmästä.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Et voi liittyä ryhmään linkin avulla, koska ylläpitäjä poisti sinut ryhmästä.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Tämä ryhmälinkki ei ole enää kelvollinen.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
@@ -779,7 +779,7 @@
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
   <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Liittyminen tämän linkin kautta epäonnistui. Yritä littyä myöhemmin uudelleen.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Haluatko liittyä tähän ryhmään ja jakaa nimesi ja profiilikuvasi sen jäsenille?</string>
-  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Ryhmän ylläpitäjän on hyväksyttävä liittymispyyntö ennen ryhmään pääsemistä. Liittymispyynnön yhteydessä nimesi ja kuvasi näkyvät ryhmän jäsenille.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Ryhmän ylläpitäjän on hyväksyttävä liittymispyyntö ennen ryhmään liittymistä. Liittymispyynnön yhteydessä nimesi ja kuvasi näkyvät ryhmän jäsenille.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Ryhmä · %1$d jäsen</item>
     <item quantity="other">Ryhmä · %1$d jäsentä</item>
@@ -792,12 +792,12 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Ryhmälinkki ei ole kelvollinen</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Kutsu ystäviä</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Jaa linkki ystävillesi jotta he voivat nopeasti liittyä tähän ryhmään.</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Salli ja jaa tämä linkki</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Jaa kavereille linkki, jolla he voivat liittyä helposti tähän ryhmään.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Ota käyttöön ja jaa linkki</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Jaa linkki</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Ryhmälinkkiä ei voida sallia. Ole hyvä ja yritä uudelleen myöhemmin</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Ryhmälinkkiä ei voida ottaa käyttöön. Ole hyvä ja yritä uudelleen myöhemmin.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Verkkovirhe.</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Sinulla ei ole oikeuksia ryhmälinkin luomiseen. Ole hyvä ja kysy ylläpitäjältä.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Sinulla ei ole oikeuksia ryhmälinkin luomiseen. Pyydä apua ylläpitäjältä.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Et ole tällä hetkellä ryhmän jäsen.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Lisätäänkö %1$s ryhmään?</string>
@@ -827,7 +827,7 @@
     <item quantity="other">Lähetetäänkö %d tekstiviestikutsua?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Hei, vaihdetaan Signaliin: %1$s</string>
-  <string name="InviteActivity_no_app_to_share_to">Näyttää siltä, ettei sinulla ole yhtään sovellusta, johon jakaa.</string>
+  <string name="InviteActivity_no_app_to_share_to">Sinulla ole yhtään sovellusta, joihin voi jakaa sisältöä.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Lue lisää</string>
   <string name="SpanUtil__read_more">Lue lisää</string>
@@ -843,7 +843,7 @@
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
   <string name="MediaOverviewActivity_Files">Tiedostot</string>
-  <string name="MediaOverviewActivity_Audio">Äänitiedosto</string>
+  <string name="MediaOverviewActivity_Audio">Ääni</string>
   <string name="MediaOverviewActivity_All">Kaikki</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
     <item quantity="one">Poistetaanko valittu?</item>
@@ -861,9 +861,9 @@
   <string name="MediaOverviewActivity_Newest">Uusin</string>
   <string name="MediaOverviewActivity_Oldest">Vanhin</string>
   <string name="MediaOverviewActivity_Storage_used">Käytetty tallennustila</string>
-  <string name="MediaOverviewActivity_All_storage_use">Kaikki tallennukset</string>
+  <string name="MediaOverviewActivity_All_storage_use">Kaikki tallennustilan käyttö</string>
   <string name="MediaOverviewActivity_Grid_view_description">Ruudukkonäkymä</string>
-  <string name="MediaOverviewActivity_List_view_description">Listanäkymä</string>
+  <string name="MediaOverviewActivity_List_view_description">Luettelonäkymä</string>
   <string name="MediaOverviewActivity_Selected_description">Valittu</string>
   <string name="MediaOverviewActivity_select_all">Valitse kaikki</string>
   <plurals name="MediaOverviewActivity_save_plural">
@@ -879,14 +879,14 @@
     <item quantity="other">%1$d valittu (%2$s)</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Tiedosto</string>
-  <string name="MediaOverviewActivity_audio">Äänitiedosto</string>
+  <string name="MediaOverviewActivity_audio">Ääni</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Kuva</string>
   <string name="MediaOverviewActivity_voice_message">Ääniviesti</string>
-  <string name="MediaOverviewActivity_sent_by_s">%1$s lähettämä</string>
+  <string name="MediaOverviewActivity_sent_by_s">Lähettäjä %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Sinun lähettämäsi</string>
-  <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s lähettämä henkilölle %2$s</string>
-  <string name="MediaOverviewActivity_sent_by_you_to_s">Sinun lähettämäsi henkilölle %1$s</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">Lähettäjä %1$s, vastaanottaja %2$s</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">Sinun lähettämäsi, vastaanottaja %1$s</string>
   <!--Megaphones-->
   <string name="Megaphones_remind_me_later">Muistuta minua myöhemmin</string>
   <string name="Megaphones_verify_your_signal_pin">Varmenna Signalin tunnusluku</string>
@@ -911,7 +911,7 @@
   <string name="NotificationBarManager__join_call">Liity puheluun</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Otetaanko Ilmoitukset käyttöön?</string>
-  <string name="NotificationsMegaphone_never_miss_a_message">Älä koskaan jää vaille viestiä yhteystiedoilta tai ryhmiltä.</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Viestit yhteystiedoilta tai ryhmiltä eivät jää koskaan huomaamatta.</string>
   <string name="NotificationsMegaphone_turn_on">Ota käyttöön</string>
   <string name="NotificationsMegaphone_not_now">Ei nyt</string>
   <!--NotificationMmsMessageRecord-->
@@ -927,11 +927,11 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Kohde poistettiin, koska sen tyyppiä ei tunnistettu</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Kohde poistettiin, koska se ylitti kokorajan tai sen tyyppiä ei tunnistettu</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera ei käytettävissä</string>
-  <string name="MediaSendActivity_message_to_s">Vastaanottaja: %s</string>
+  <string name="MediaSendActivity_message_to_s">Viesti vastaanottajalle: %s</string>
   <string name="MediaSendActivity_message">Viesti</string>
   <string name="MediaSendActivity_select_recipients">Valitse vastaanottajat</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal tarvitsee luvan yhteystietoihisi, jotta se voisi näyttää ne.</string>
-  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal tarvitsee lupaa käyttää laitteesi yhteystietoja niiden näyttämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Jatka sovellusten asetuksiin, valitse \"Sovelluksen käyttöoikeudet\" ja laita päälle  \"Yhteystiedot\".</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal tarvitsee luuvan käyttää laitteesi yhteystietoja niiden näyttämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Jatka sovellusten asetuksiin, valitse \"Sovelluksen käyttöoikeudet\" ja laita päälle  \"Yhteystiedot\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Et voi jakaa useampaa kuin %d kappaletta.</item>
     <item quantity="other">Voit jakaa enintään %d kappaletta.</item>
@@ -946,9 +946,9 @@
   <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Lähetä virheenkorjausloki napauttamalla</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Tuntematon</string>
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vastaanotettiin viesti, joka on salattu Signalin vanhalla versiolla, jota ei enää tueta. Pyydä lähettäjää päivittämään uusimpaan versioon ja lähettämään viesti uudelleen.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vastaanotettu viesti on salattu Signalin vanhalla versiolla, jota ei enää tueta. Pyydä lähettäjää päivittämään uusimpaan versioon ja lähettämään viesti uudelleen.</string>
   <string name="MessageRecord_left_group">Olet poistunut ryhmästä.</string>
-  <string name="MessageRecord_you_updated_group">Sinä päivitit ryhmää.</string>
+  <string name="MessageRecord_you_updated_group">Päivitit ryhmää.</string>
   <string name="MessageRecord_the_group_was_updated">Ryhmä päivitettiin.</string>
   <string name="MessageRecord_you_called_date">Soitit puhelun · %1$s</string>
   <string name="MessageRecord_missed_audio_call_date">Vastaamaton äänipuhelu · %1$s</string>
@@ -956,14 +956,14 @@
   <string name="MessageRecord_s_updated_group">%s päivitti ryhmää.</string>
   <string name="MessageRecord_s_called_you_date">%1$s soitti sinulle · %2$s</string>
   <string name="MessageRecord_s_joined_signal">%s käyttää Signalia!</string>
-  <string name="MessageRecord_you_disabled_disappearing_messages">Sinä asetit katoavat viestit pois päältä.</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">Asetit katoavat viestit pois päältä.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s asetti katoavat viestit pois päältä.</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Sinä asetit viestien katoamisajaksi %1$s.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Asetit viestien katoamisajaksi %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s asetti viestien katoamisajaksi %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Katoavien viestien ajaksi asetettiin %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Tämä ryhmä päivitettiin uudeksi ryhmäksi.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Sinua ei pystytty lisäämään uuteen ryhmään ja sait siihen kutsun.</string>
-  <string name="MessageRecord_chat_session_refreshed">Keskustelutuokio on virkistetty</string>
+  <string name="MessageRecord_chat_session_refreshed">Keskustelu on päivitetty</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one"> Jäsentä ei pystytty lisäämään uuteen ryhmään ja hänelle on lähetetty kutsu. </item>
     <item quantity="other">%1$s jäsentä ei pystytty lisäämään uuteen ryhmään ja heille on lähetetty kutsu. </item>
@@ -977,7 +977,7 @@
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s muutti profiilinimensä %2$s nimeksi %3$s.</string>
   <string name="MessageRecord_changed_their_profile">%1$s muutti profiiliaan.</string>
   <!--GV2 specific-->
-  <string name="MessageRecord_you_created_the_group">Sinä loit ryhmän.</string>
+  <string name="MessageRecord_you_created_the_group">Loit ryhmän.</string>
   <string name="MessageRecord_group_updated">Ryhmä päivitetty.</string>
   <string name="MessageRecord_invite_friends_to_this_group">Kutsu kavereitasi tähän ryhmään ryhmälinkillä</string>
   <!--GV2 member additions-->
@@ -985,12 +985,12 @@
   <string name="MessageRecord_s_added_s">%1$s lisäsi käyttäjän %2$s.</string>
   <string name="MessageRecord_s_added_you">%1$s lisäsi sinut ryhmään.</string>
   <string name="MessageRecord_you_joined_the_group">Liityit ryhmään.</string>
-  <string name="MessageRecord_s_joined_the_group">%1$s liittyivät ryhmään</string>
+  <string name="MessageRecord_s_joined_the_group">%1$s liittyi ryhmään.</string>
   <!--GV2 member removals-->
   <string name="MessageRecord_you_removed_s">Poistit käyttäjän %1$s.</string>
   <string name="MessageRecord_s_removed_s">%1$s poisti käyttäjän %2$s.</string>
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s poisti sinut ryhmästä.</string>
-  <string name="MessageRecord_you_left_the_group">Olet poistunut ryhmästä.</string>
+  <string name="MessageRecord_you_left_the_group">Poistuit ryhmästä.</string>
   <string name="MessageRecord_s_left_the_group">%1$s poistui ryhmästä.</string>
   <string name="MessageRecord_you_are_no_longer_in_the_group">Et ole enää ryhmässä.</string>
   <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s ei ole enää ryhmässä.</string>
@@ -999,7 +999,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s nimitti käyttäjän %2$s ylläpitäjäksi.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s nimitti sinut ylläpitäjäksi.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Poistit käyttäjän %1$s ylläpito-oikeudet.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s peruutti järjestelmänvalvojan oikeutesi.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s poisti ylläpito-oikeutesi.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s poisti ylläpito-oikeudet käyttäjältä %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s on nyt ylläpitäjä.</string>
   <string name="MessageRecord_you_are_now_an_admin">Olet nyt ylläpitäjä.</string>
@@ -1024,7 +1024,7 @@
   </plurals>
   <plurals name="MessageRecord_s_revoked_invites">
     <item quantity="one">%1$s perui yhden kutsun ryhmään.</item>
-    <item quantity="other">%1$s perui %2$d kutsua ryhmään.</item>
+    <item quantity="other">%1$s peruutti %2$d kutsua ryhmään.</item>
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Joku hylkäsi kutsun ryhmään.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Hylkäsit kutsun ryhmään.</string>
@@ -1116,11 +1116,11 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Merkitsit turvanumerosi kontaktin %s kanssa varmentamattomaksi.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Merkitsit turvanumerosi kontaktin %s kanssa varmentamattomaksi toisesta laitteesta.</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Viestiä kontaktilta %s ei pystytty toimittamaan</string>
-  <string name="MessageRecord_s_changed_their_phone_number">%1$s on vaihtanut puhelinnumeroaan.</string>
+  <string name="MessageRecord_s_changed_their_phone_number">%1$s vaihtoi puhelinnumeroaan.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
   <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Pidätkö tästä uudesta ominaisuudesta? Kiitä siitä Boostilla.</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal toimii kaltaistesi ihmisten tuella. Liity Tukijaksi nyt.</string>
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal toimii kaltaistesi ihmisten tuella. Liity tukijaksi nyt.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s aloitti ryhmäpuhelun · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s on ryhmäpuhelussa · %2$s</string>
@@ -1147,18 +1147,18 @@
   <string name="MessageRequestBottomView_delete">Poista</string>
   <string name="MessageRequestBottomView_block">Estä</string>
   <string name="MessageRequestBottomView_unblock">Poista esto</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Sallitaanko henkilön %1$s lähettää sinulle viestejä ja nähdä nimesi ja profiilikuvasi? Hän ei tiedä että olet nähnyt hänen viestinsä ennen hyväksymistä.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Sallitaanko henkilön %1$s lähettää sinulle viestejä ja nähdä nimesi ja profiilikuvasi? Hän ei tiedä, että olet nähnyt hänen viestinsä ennen hyväksymistäsi.</string>
   <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Sallitaanko henkilön %1$s lähettää sinulle viestejä ja nähdä nimesi ja profiilikuvasi? Et saa viestejä ennen eston poistamista.</string>
   <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Annetaanko käyttäjän %1$s lähettää sinulle viestejä? Et saa häneltä ollenkaan viestejä, ennen kuin annat luvan.</string>
-  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Haluatko päivityksiä ja uutisia lähteestä %1$s? Et saa mitään päivityksiä ennen kuin sallit heidät.</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Haluatko päivityksiä ja uutisia lähteestä %1$s? Et saa päivityksiä, ennen kuin poistat eston.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Jatketaanko keskustelua tämän ryhmän kanssa ja näytetäänkö nimesi ja kuvasi sen jäsenille?</string>
-  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Päivitä tämä ryhmä ottaaksesi käyttöön uudet ominaisuudet kuten @maininnat ja ylläpitäjät. Jäsenille jotka eivät ole jakaneet nimeään tai kuvaansa tässä ryhmässä lähetetään kutsu.</string>
-  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Tätä vanhan tyyppistä ryhmää ei pystytä päivittämään uuden tyyppiseksi koska se on liian suuri. Ryhmässä voi olla enintään  %1$d jäsentä.</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Päivitä tämä ryhmä ottaaksesi käyttöön uudet ominaisuudet kuten @maininnat ja ylläpitäjät. Jäsenille, jotka eivät ole jakaneet nimeään tai kuvaansa tässä ryhmässä, lähetetään kutsu.</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Tätä vanhan tyyppistä ryhmää ei voi enää käyttää, koska se on liian suuri. Ryhmässä voi olla enintään %1$d jäsentä.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Jatketaanko keskustelua käyttäjän %1$s kanssa ja näytetäänkö nimesi ja kuvasi hänelle?</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Liitytäänkö tähän ryhmään ja näytetäänkö nimesi ja profiilikuvasi sen jäsenille? He eivät tiedä että olet nähnyt heidän viestinsä ennen hyväksymistä.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Haluatko liittyä ryhmään ja jakaa nimesi ja profiilikuvasi ryhmän jäsenten kanssa? Et näe ryhmän viestejä ennen kuin hyväksyt liittymisen.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Liitytäänkö tähän ryhmään ja näytetäänkö nimesi ja profiilikuvasi sen jäsenille? He eivät tiedä, että olet nähnyt heidän viestinsä ennen hyväksymistä.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Haluatko liittyä ryhmään ja jakaa nimesi ja profiilikuvasi ryhmän jäsenten kanssa? Et näe ryhmän viestejä, ennen kuin hyväksyt liittymisen.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Haluatko liittyä tähän ryhmään? He eivät tiedä, että olet nähnyt heidän viestinsä ennen hyväksymistä.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Poistetaanko tämän ryhmän esto ja näytetäänkö nimesi ja profiilikuvasi sen jäsenille? Et saa viestejä ennen eston poistamista.</string>
   <string name="MessageRequestProfileView_view">Näytä</string>
@@ -1172,12 +1172,12 @@
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
   <plurals name="MessageRequestProfileView_members_and_invited">
     <item quantity="one">%1$d jäsentä (%2$s)</item>
-    <item quantity="other">%1$d members (%2$s)</item>
+    <item quantity="other">%1$d jäsentä (%2$s)</item>
   </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
   <plurals name="MessageRequestProfileView_invited">
     <item quantity="one">+%1$d kutsuttu</item>
-    <item quantity="other">+%1$d </item>
+    <item quantity="other">+%1$d kutsuttu</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d toinen ryhmä</item>
@@ -1200,11 +1200,11 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">Laitetta ei löytynyt.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Verkkovirhe.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Virheellinen QR-koodi.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Sinulla on liian monta laitetta yhdistettynä. Kokeile poistaa joitakin</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Valitettavasti sinulla on jo liian monta laitetta yhdistettynä. Kokeile poistaa joitakin.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Valitettavasti tämä ei ole laitteen yhdistämiseksi tarkoitettu QR-koodi.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Yhdistetäänkö Signal-laite?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Vaikuttaa siltä, että yrität yhdistää laitetta käyttämällä Signalin ulkopuolista skannaussovellusta. Oman turvallisuutesi vuoksi skannaa QR-koodi uudelleen Signalilla itsellään.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal tarvitsee lupaa käyttää kameraa QR-koodien skannaamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Kamera\".</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal tarvitsee luvan käyttää kameraa QR-koodien skannaamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">QR-koodin skannaus ei onnistu ilman kameran käyttöoikeutta.</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Päivitä nyt</string>
@@ -1230,7 +1230,7 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">Väärä tunnusluku</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Ohitetaanko tunnusluvun syöttö?</string>
   <string name="PinRestoreEntryFragment_need_help">Tarvitsetko apua?</string>
-  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Tunnusluku on vähintään %1$d-numeroinen koodi, joka voi olla sisältää pelkkiä numeroita tai numeroita ja kirjaimia.\n\nJos et muista tunnuslukua, voit luoda uuden. Voit rekisteröidä ja käyttää tiliäsi, mutta menetät tallennetut asetukset, kuten profiilitietosi.</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Tunnusluku on vähintään %1$d-numeroinen koodi, joka voi sisältää pelkkiä numeroita tai numeroita ja kirjaimia.\n\nJos et muista tunnuslukua, voit luoda uuden. Voit rekisteröidä ja käyttää tiliäsi, mutta menetät tallennetut asetukset, kuten profiilitietosi.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Jos et muista tunnuslukuasi, voit luoda uuden. Voit rekisteröidä ja käyttää tiliäsi, mutta menetät tallennetut asetukset, kuten profiilitietosi.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Luo uusi tunnusluku</string>
   <string name="PinRestoreEntryFragment_contact_support">Ota yhteyttä tukeen</string>
@@ -1265,12 +1265,12 @@
   <string name="ReactionsRecipientAdapter_you">Sinä</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Vahvista jatkaaksesi viestintää</string>
-  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Tee verifikaatio jotta voimme välttää spammia Signalissa.</string>
-  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Voit jatkaa viestintää verifikaation jälkeen. Kaikki pausetetut viestit lähetetään automaattisesti.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Auta vähentämään roskapostia Signalissa ja suorita vahvistaminen.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Voit jatkaa viestintää vahvistamisen jälkeen. Kaikki odottavat viestit lähetetään automaattisesti.</string>
   <!--Recipient-->
   <string name="Recipient_you">Sinä</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
-  <string name="Recipient_my_story">Minun tarinani</string>
+  <string name="Recipient_my_story">Omat tarinat</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Estä</string>
   <string name="RecipientPreferenceActivity_unblock">Poista esto</string>
@@ -1281,7 +1281,7 @@
   <string name="RedPhone_ending_call">Katkaistaan…</string>
   <string name="RedPhone_ringing">Soitetaan…</string>
   <string name="RedPhone_busy">Varattu</string>
-  <string name="RedPhone_recipient_unavailable">Vastaanottaja ei ole saavutettavissa</string>
+  <string name="RedPhone_recipient_unavailable">Vastaanottaja ei ole tavoitettavissa</string>
   <string name="RedPhone_network_failed">Verkkoyhteysvirhe!</string>
   <string name="RedPhone_number_not_registered">Numeroa ei rekisteröity!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Numero, johon yritit soittaa, ei tue salattuja puheluita!</string>
@@ -1293,7 +1293,7 @@
   <string name="ValentinesDayMegaphone_show_your_affection">Näytä arvostuksesi ryhtymällä Signalin tukijaksi.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Ota video käyttöön napauttamalla tästä</string>
-  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Jotta voit soittaa yhteystiedolle %1$s, Signal tarvitsee lupaa käyttää kameraa.</string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Jotta voit soittaa yhteystiedolle %1$s, Signal tarvitsee luvan käyttää kameraa.</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Soitetaan…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Ryhmä on liian suuri soittaaksesi osallistujille.</string>
@@ -1313,36 +1313,36 @@
   <string name="WebRtcCallView__start_call">Aloita puhelu</string>
   <string name="WebRtcCallView__join_call">Liity puheluun</string>
   <string name="WebRtcCallView__call_is_full">Puhelu on täynnä</string>
-  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Tämän kutsun enimmäismäärä %1$d on täyttynyt. Yritä uudelleen myöhemmin.</string>
+  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Tämän puhelun enimmäismäärä %1$d on täyttynyt. Yritä uudelleen myöhemmin.</string>
   <string name="WebRtcCallView__view_participants_list">Näytä osallistujat</string>
   <string name="WebRtcCallView__your_video_is_off">Videosi on pois päältä</string>
   <string name="WebRtcCallView__reconnecting">Yhdistetään uudelleen…</string>
-  <string name="WebRtcCallView__joining">Liittymässä…</string>
+  <string name="WebRtcCallView__joining">Liitytään…</string>
   <string name="WebRtcCallView__disconnected">Ei yhteyttä</string>
-  <string name="WebRtcCallView__signal_will_ring_s">Signal soittaa %1$s:lle</string>
-  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal soittaa %1$s:lle ja %2$s:lle</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal soittaa käyttäjälle %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal soittaa käyttäjille %1$s ja %2$s</string>
   <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
     <item quantity="one">Signal soittaa %1$s:lle, %2$s:lle sekä %3$d:lle muulle</item>
-    <item quantity="other">Signal soittaa%1$s:lle, %2$s:lle sekä %3$d:lle muulle</item>
+    <item quantity="other">Signal soittaa käyttäjille %1$s, %2$s sekä %3$d muulle</item>
   </plurals>
-  <string name="WebRtcCallView__s_will_be_notified">%1$s:lle ilmoitetaan</string>
-  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s:lle ja %2$s:lle ilmoitetaan</string>
+  <string name="WebRtcCallView__s_will_be_notified">Käyttäjälle %1$s ilmoitetaan</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">Käyttäjille %1$s ja %2$s ilmoitetaan</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
     <item quantity="one">%1$s:lle, %2$s:lle sekä %3$d:lle muulle ilmoitetaan</item>
-    <item quantity="other">%1$s:lle, %2$s:lle sekä %3$d:lle muulle ilmoitetaan</item>
+    <item quantity="other">Käyttäjille %1$s,  %2$s sekä %3$d muulle ilmoitetaan</item>
   </plurals>
-  <string name="WebRtcCallView__ringing_s">Soitetaan%1$s:lle</string>
-  <string name="WebRtcCallView__ringing_s_and_s">Soitetaan%1$s:lle ja %2$s:lle</string>
+  <string name="WebRtcCallView__ringing_s">Soitetaan käyttäjälle %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Soitetaan käyttäjille %1$s ja %2$s</string>
   <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
     <item quantity="one">Soitetaan %1$s:lle, %2$s:lle sekä %3$d:lle muulle</item>
-    <item quantity="other">Soitetaan%1$s:lle, %2$s:lle sekä %3$d:lle muulle</item>
+    <item quantity="other">Soitetaan käyttäjille %1$s, %2$s sekä %3$d:lle muulle</item>
   </plurals>
   <string name="WebRtcCallView__s_is_calling_you">%1$s soittaa sinulle</string>
-  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s soittaa sinulle ja  %2$s:lle</string>
-  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s soittaa sinulle, %2$s:lle sekä %3$s:lle</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s soittaa sinulle ja käyttäjälle %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s soittaa sinulle ja käyttäjille %2$s ja %3$s</string>
   <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
     <item quantity="one">%1$s soittaa sinulle, %2$s:lle, %3$s:lle sekä %4$d:lle muulle</item>
-    <item quantity="other">%1$s soittaa sinulle, %2$s:lle, %3$s:lle sekä %4$d:lle muulle</item>
+    <item quantity="other">%1$s soittaa sinulle, käyttäjille %2$s, %3$s sekä %4$d muulle</item>
   </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Kukaan muu ei ole täällä</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s on tässä puhelussa</string>
@@ -1368,23 +1368,23 @@
   <!--CallParticipantView-->
   <string name="CallParticipantView__s_is_blocked">%1$s on estetty</string>
   <string name="CallParticipantView__more_info">Lisätietoja</string>
-  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Et vastaanota heiltä ääntä tai videota, eivätkä he sinulta.</string>
-  <string name="CallParticipantView__cant_receive_audio_video_from_s">Ei voida vastaanottaa ääntä &amp; videota lähettäjältä %1$s</string>
-  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Ei voida vastaanottaa ääntä tai videota lähettäjältä %1$s</string>
-  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Tämä saattaa johtua siitä että he eivät ole varmentaneet turvanumerosi muutosta, heidän laitteessaan olevasta ongelmasta, tai siitä että he ovat blokanneet sinut.</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Et voi enää käydä ääni- tai videoviestinvaihtoa henkilön kanssa.</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">Ääni- ja videoviestin vastaanottaminen käyttäjältä %1$sepäonnistui </string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Ääni- ja videoviestin vastaanottaminen käyttäjältä %1$sepäonnistui </string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Tämä saattaa johtua siitä että he eivät ole vahvistaneet uutta turvanumeroasi, laitteiden teknisistä ongelmista, tai siitä, että sinut on estetty.</string>
   <!--CallToastPopupWindow-->
-  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Pyyhkäise nähdäksesi ruudunjaon</string>
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Pyyhkäise nähdäksesi näytönjaon</string>
   <!--ProxyBottomSheetFragment-->
-  <string name="ProxyBottomSheetFragment_proxy_server">Proxyserveri</string>
-  <string name="ProxyBottomSheetFragment_proxy_address">Proxyn osoite</string>
-  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Haluatko käyttää tätä proxyn osoitetta?</string>
-  <string name="ProxyBottomSheetFragment_use_proxy">Käytä proxyä</string>
-  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Yhteyden muodostaminen proxyyn onnistui.</string>
+  <string name="ProxyBottomSheetFragment_proxy_server">Välityspalvelin</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">Välityspalvelimen osoite</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Haluatko käyttää tätä välityspalvelimen osoitetta?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">Käytä välityspalvelinta</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Yhteyden muodostaminen välityspalvelimeen onnistui.</string>
   <!--RecaptchaProofActivity-->
-  <string name="RecaptchaProofActivity_failed_to_submit">Lähettäminen epäonnistui</string>
-  <string name="RecaptchaProofActivity_complete_verification">Tee verifikaatio</string>
+  <string name="RecaptchaProofActivity_failed_to_submit">Lähetys epäonnistui</string>
+  <string name="RecaptchaProofActivity_complete_verification">Tee vahvistus loppuun</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_select_your_country">Valitse maasi</string>
+  <string name="RegistrationActivity_select_your_country">Valitse maa</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Suuntanumero täytyy
 määritellä</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Sinun täytyy määritellä 
@@ -1402,14 +1402,14 @@ puhelinnumero</string>
   <string name="RegistrationActivity_play_services_error">Play-palvelujen virhe</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play -palveluita päivitetään tai ne eivät ole käytettävissä. Yritä myöhemmin uudelleen.</string>
   <string name="RegistrationActivity_terms_and_privacy">Käyttöehdot ja yksityisyydensuoja</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal tarvitsee yhteystietojen ja median käyttöoikeuden helpottaakseen kavereihin yhdistämistä ja viestien lähetykseen. Yhteystietosi lähetetään käyttäen Signalin yksityistä yhteystietohakua, eli ne on suojattu päästä päähän -salauksella, eivätkä missään vaiheessa paljasti Signal-palvelulle.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal tarvitsee yhteystietojesi käyttöoikeuden helpottaakseen kavereihin yhdistämistä. Yhteystietosi lähetetään käyttäen Signalin yksityistä yhteystietohakua, eli ne on suojattu päästä päähän -salauksella, eivätkä missään vaiheessa paljastu Signal-palvelulle.</string>
-  <string name="RegistrationActivity_rate_limited_to_service">Olet yrittänyt rekisteröidä tätä numeroa liian monta kertaa. Yritä myöhemmin uudelleen.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal tarvitsee yhteystietojen ja median käyttöoikeudet, jotta voit olla yhteydessä kavereihisi ja lähettää viestejä. Yhteystietosi lähetetään käyttäen Signalin yksityistä yhteystietohakua ja ne on suojattu päästä päähän -salauksella. Ne eivät missään vaiheessa paljastu Signal-palvelulle.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal tarvitsee yhteystietojen käyttöoikeuden, jotta voit olla yhteydessä kavereihisi.  Yhteystietosi lähetetään käyttäen Signalin yksityistä yhteystietohakua ja ne on suojattu päästä päähän -salauksella. Ne eivät missään vaiheessa paljastu Signal-palvelulle.</string>
+  <string name="RegistrationActivity_rate_limited_to_service">Olet yrittänyt rekisteröidä tämän numeron liian monta kertaa. Yritä myöhemmin uudelleen.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Yhteyttä ei voitu muodostaa palveluun. Tarkista verkkoyhteytesi ja yritä uudelleen.</string>
   <string name="RegistrationActivity_non_standard_number_format">Epästandardi numeron muoto</string>
   <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Syöttämäsi numero (%1$s) ei näytä olevan vakiomuotoinen.\n\nTarkoititko %2$s?</string>
   <string name="RegistrationActivity_signal_android_phone_number_format">Signal Androidille - Puhelinnumeron muoto</string>
-  <string name="RegistrationActivity_call_requested">Soittoa pyydetty</string>
+  <string name="RegistrationActivity_call_requested">Puhelu pyydetty</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Olet tällä hetkellä %d askeleen päässä virheenkorjauslokin lähettämisestä.</item>
     <item quantity="other">Vielä %d vaihetta virheenkorjauslokin lähettämiseen.</item>
@@ -1417,24 +1417,24 @@ puhelinnumero</string>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Meidän on varmistettava, että olet ihminen.</string>
   <string name="RegistrationActivity_next">Seuraava</string>
   <string name="RegistrationActivity_continue">Jatka</string>
-  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ota yksityisyys mukaasi.\nOle itsesi jokaisessa viestissä.</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Yksityisyys aina mukana.\nOle itsesi jokaisessa viestissä.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Aloita syöttämällä puhelinnumerosi</string>
   <string name="RegistrationActivity_enter_your_phone_number">Syötä puhelinnumerosi</string>
-  <string name="RegistrationActivity_you_will_receive_a_verification_code">Saat vahvistuskoodin. Matkapuhelinoperaattorisi hinnat voivat olla voimassa.</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">Saat vahvistuskoodin. Matkapuhelinoperaattorisi saattaa veloittaa palvelusta.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Syötä koodi, jonka lähetimme numeroon %s</string>
-  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Varmista että puhelimellasi on verkkoa tekstarisi tai puhelusi vastaanottamiseen</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Varmista että puhelimesi on matkapuhelinverkossa, jotta tekstiviesti tai puhelu voidaan vastaanottaa.</string>
   <string name="RegistrationActivity_phone_number_description">Puhelinnumero</string>
   <string name="RegistrationActivity_country_code_description">Maatunnus</string>
   <string name="RegistrationActivity_call">Soita</string>
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Otetaanko rekisteröintiesto käyttöön?</string>
   <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Poistetaanko rekisteröintiesto käytöstä?</string>
-  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Jos et muista Signal-tunnuslukua kun rekisteröityessä Signaliin uudelleen, tili lukitaan 7 päiväksi.</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Jos et muista Signal-tunnuslukua kun rekisteröit Signalin uudelleen, tili lukitaan 7 päiväksi.</string>
   <string name="RegistrationLockV2Dialog_turn_on">Ota käyttöön</string>
   <string name="RegistrationLockV2Dialog_turn_off">Poista käytöstä</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Katso kuvaa</string>
-  <string name="RevealableMessageView_view_video">Katso video</string>
+  <string name="RevealableMessageView_view_photo">Näytä kuva</string>
+  <string name="RevealableMessageView_view_video">Näytä video</string>
   <string name="RevealableMessageView_viewed">Katsottu</string>
   <string name="RevealableMessageView_media">Media</string>
   <!--Search-->
@@ -1455,16 +1455,16 @@ puhelinnumero</string>
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Lisää</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">PIN-koodin vahvistus onnistui. Muistutamme sinua myöhemmin uudelleen.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN-koodin vahvistus onnistui. Muistutamme sinua taas huomenna.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN-koodin vahvistus onnistui. Muistutamme sinua uudelleen muutaman päivän kuluttua.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN-koodin vahvistus onnistui. Muistutamme sinua uudelleen viikon kuluttua.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN-koodin vahvistus onnistui. Muistutamme sinua uudelleen parin viikon kuluttua.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN varmistettu onnistuneesti. Kysymme uudelleen kuukauden kuluttua.</string>
+  <string name="SignalPinReminders_well_remind_you_again_later">Tunnusluvun vahvistus onnistui. Muistutamme sinua myöhemmin uudelleen.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Tunnusluvun vahvistus onnistui. Muistutamme sinua huomenna.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Tunnusluvun vahvistus onnistui. Muistutamme sinua uudelleen muutaman päivän kuluttua.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Tunnusluvun vahvistus onnistui. Muistutamme sinua uudelleen viikon kuluttua.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Tunnusluvun vahvistus onnistui. Muistutamme sinua uudelleen parin viikon kuluttua.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Tunnusluvun vahvistus onnistui. Muistutamme sinua uudelleen kuukauden kuluttua.</string>
   <!--Slide-->
   <string name="Slide_image">Kuva</string>
   <string name="Slide_sticker">Tarra</string>
-  <string name="Slide_audio">Äänitallenne</string>
+  <string name="Slide_audio">Ääni</string>
   <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Vastaanotettu avaintenvaihtoviesti 
@@ -1472,10 +1472,10 @@ on viallinen!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle.</string>
   <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Viesti vastaanotettu uudella turvanumerolla. Näytä lisätietoja napauttamalla.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Sinä alustit suojatun istunnon.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Alustit suojatun istunnon.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s alusti suojatun istunnon.</string>
   <string name="SmsMessageRecord_duplicate_message">Viestin kaksoiskappale.</string>
-  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Tätä viestiä ei voitu käsitellä, koska se lähetettiin uudemmasta Signal-versiosta. Voit pyytää yhteystietoasi lähettämään viestin uudelleen sen jälkeen kun olet päivittänyt.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Tätä viestiä ei voitu käsitellä, koska se lähetettiin uudemmasta Signal-versiosta. Voit pyytää yhteystietoasi lähettämään viestin uudelleen sen jälkeen kun olet päivittänyt sovelluksen.</string>
   <string name="SmsMessageRecord_error_handling_incoming_message">Virhe saapuvan viestin käsittelyssä.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Tarrat</string>
@@ -1484,7 +1484,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="StickerManagementAdapter_stickers_you_received">Vastaanotetut tarrat</string>
   <string name="StickerManagementAdapter_signal_artist_series">Signal Artist -sarja</string>
   <string name="StickerManagementAdapter_no_stickers_installed">Tarroja ei ole asennettu</string>
-  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Saapuvien viestien tarrat tulevat näkymään tässä</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Vastaanotetut tarrat näytetään tässä</string>
   <string name="StickerManagementAdapter_untitled">Nimetön</string>
   <string name="StickerManagementAdapter_unknown">Tuntematon</string>
   <!--StickerPackPreviewActivity-->
@@ -1501,7 +1501,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SubmitDebugLogActivity_submit">Lähetä</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Lokin lähettäminen epäonnistui</string>
   <string name="SubmitDebugLogActivity_success">Onnistui!</string>
-  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopioi tämä URL ja lisää se ongelmaraporttiin tai tukisähköpostiisi:\n\n<b>%1$s</b></string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopioi tämä URL ja lisää se virheraporttiin tai tuen sähköpostiviestiin:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Jaa</string>
   <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Loki julkaistaan intermetissä, jossa se on kehittäjien nähtävissä. Voit tutkia sitä ennen lähettämistä.</string>
   <!--SupportEmailUtil-->
@@ -1543,13 +1543,13 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ThreadRecord_voice_message">Ääniviesti</string>
   <string name="ThreadRecord_file">Tiedosto</string>
   <string name="ThreadRecord_video">Video</string>
-  <string name="ThreadRecord_chat_session_refreshed">Keskustelutuokio on virkistetty</string>
+  <string name="ThreadRecord_chat_session_refreshed">Keskustelu on päivitetty</string>
   <!--Displayed in the notification when the user is sent a gift-->
   <string name="ThreadRecord__you_received_a_gift">Olet saanut lahjan</string>
   <!--Displayed in the notification when the user sends a gift-->
   <string name="ThreadRecord__you_sent_a_gift">Lähetit lahjan</string>
   <!--Displayed in the notification when the user has opened a received gift-->
-  <string name="ThreadRecord__you_redeemed_a_gift_badge">Lunastit lahjakunniamerkin</string>
+  <string name="ThreadRecord__you_redeemed_a_gift_badge">Lunastit kunniamerkin</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal-päivitys</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uusi versio Signalista on saatavilla. Päivitä napauttamalla.</string>
@@ -1571,51 +1571,51 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Käyttäjätunnus ei voi alkaa numerolla.</string>
   <string name="UsernameEditFragment_username_is_invalid">Käyttäjätunnus on virheellinen.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Käyttäjätunnuksen on oltava %1$d–%2$d merkkiä pitkä.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Käyttäjätunnukset ovat valinnaisia Signalissa. Jos päätät luoda käyttäjätunnuksen, muut Signal-käyttäjät voivat löytää sinut tämän käyttäjätunnuksen perusteella ilman puhelinnumeroasi.</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Käyttäjätunnukset ovat valinnaisia Signalissa. Jos päätät luoda käyttäjätunnuksen, muut Signal-käyttäjät voivat löytää sinut käyttäjätunnuksen perusteella ilman puhelinnumeroasi.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">Signalissa on %d kontakti!</item>
     <item quantity="other">Signalissa on %d yhteystietoasi!</item>
   </plurals>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontaktisi käyttää vanhaa versiota Signalista. Pyydä häntä päivittämään, jotta voit varmentaa turvanumeron.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Yhteystietosi käyttää uudempaa versiota Signalista, jonka QR-koodi ei toimi oman versiosi kanssa. Päivitä Signalisi uusimpaan versioon.</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Skannaamasi QR-koodi ei ole oikeanmallinen turvanumerokoodi. Yritä skannata uudelleen.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Yhteystietosi käyttää vanhaa Signal-versiota. Pyydä häntä päivittämään sovellus, jotta voit varmentaa turvanumeron.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Yhteystietosi käyttää uudempaa versiota Signalista. Sen QR-koodi ei toimi oman sovellusversiosi kanssa. Päivitä Signal uusimpaan versioon.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Skannaamasi QR-koodi ei ole kelvollinen turvanumerokoodi. Yritä skannata uudelleen.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Jaa turvanumero…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Signal-turvanumeromme:</string>
-  <string name="VerifyIdentityActivity_no_app_to_share_to">Näyttää siltä, ettei sinulla ole yhtään sovellusta, johon jakaa.</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Sinulla ole yhtään sovellusta, joihin voi jakaa sisältöä.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Leikepöydältä ei löytynyt turvanumeroa, johon verrata</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal tarvitsee lupaa käyttää kameraa QR-koodien skannaamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Kamera\".</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal tarvitsee luvan käyttää kameraa QR-koodien skannaamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">QR-koodin skannaus ei onnistu ilman kameran käyttöoikeutta.</string>
-  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Voit nähdä käyttäjän %1$s turvanumeron lähettämällä ensin viestin.</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Voit nähdä käyttäjän %1$s turvanumeron viestimällä hänen kanssaan.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Viesti salattu olemattomalle istunnolle</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Viesti salattu istunnolle, jota ei ole olemassa</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Multimediaviestin salaus on kelvoton</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Multimediaviesti salattu olemattomalle istunnolle</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Multimediaviestin salaus ei kelpaa</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Multimediaviesti salattu istunnolle, jota ei ole olemassa</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Mykistä ilmoitukset</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Tuonti käynnissä</string>
   <string name="ApplicationMigrationService_importing_text_messages">Tuo tekstiviestejä</string>
   <string name="ApplicationMigrationService_import_complete">Tuonti valmis</string>
-  <string name="ApplicationMigrationService_system_database_import_is_complete">Järjestelmän tekstiviestitietokannan tuonti Signaliin on valmis.</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">Järjestelmän tietokannan tuonti Signaliin on valmis.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Siirry takaisin sovellukseen koskettamalla tästä.</string>
-  <string name="KeyCachingService_passphrase_cached">Signalin lukitus on auki</string>
+  <string name="KeyCachingService_passphrase_cached">Signalin lukitus on avattu</string>
   <string name="KeyCachingService_lock">Lukitse Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Sinä</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Median tyyppiä ei tueta</string>
   <string name="MediaPreviewActivity_draft">Luonnos</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal tarvitsee lupaa käyttää laitteesi tallennustilaa tallentaakseen sinne, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tallennustila\".</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal tarvitsee luvan käyttää laitteesi tallennustilaa tallentaakseen sinne, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tallennustila\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Tallennus ulkoiseen tallennustilaan ei onnistu ilman käyttöoikeutta.</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Poistetaanko viesti?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Viesti poistetaan pysyvästi.</string>
-  <string name="MediaPreviewActivity_s_to_s">%1$s henkilölle %2$s</string>
+  <string name="MediaPreviewActivity_s_to_s">%1$s käyttäjälle %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
-  <string name="MediaPreviewActivity_you_to_s">Sinulta %1$s</string>
+  <string name="MediaPreviewActivity_you_to_s">Sinulta käyttäjälle %1$s</string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_s_to_you">%1$s sinulle</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Media ei ole enää saatavilla.</string>
@@ -1627,8 +1627,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MessageNotifier_message_delivery_failed">Viestin toimitus epäonnistui.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Viestin lähetys ei onnistunut.</string>
   <string name="MessageNotifier_error_delivering_message">Virhe viestiä toimitettaessa.</string>
-  <string name="MessageNotifier_message_delivery_paused">Viestien toimitus keskeytetiin.</string>
-  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Tee verifikaatio jatkaaksesi viestintää Signalissa.</string>
+  <string name="MessageNotifier_message_delivery_paused">Viestin toimitus keskeytetty.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Vahvista jatkaaksesi viestintää Signalissa.</string>
   <string name="MessageNotifier_mark_all_as_read">Merkitse kaikki luetuiksi</string>
   <string name="MessageNotifier_mark_read">Luettu</string>
   <string name="MessageNotifier_turn_off_these_notifications">Poista nämä ilmoitukset käytöstä</string>
@@ -1663,7 +1663,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="NotificationChannel_missing_display_name">Tuntematon</string>
   <string name="NotificationChannel_voice_notes">Ääniviestit</string>
   <string name="NotificationChannel_contact_joined_signal">Yhteystieto liittyi Signaliin</string>
-  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Ei aktiviteettia saatavilla jonka kautta avata kanava-asetukset.</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Ilmoituskanavan asetuksen avaavaa toimintaa ei ole saatavana.</string>
   <!--Notification channel name for showing persistent background connection on devices without push notifications-->
   <string name="NotificationChannel_background_connection">Taustayhteys</string>
   <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
@@ -1700,8 +1700,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Todennäköisesti olet rekisteröitynyt Signaliin toisella laitteella. Rekisteröidy uudelleen napauttamalla.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Jotta voit vastata puheluun, anna Signalille lupa käyttää mikrofonia.</string>
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Jotta voit vastata kontaktin %s puheluun, anna Signalille lupa käyttää mikrofonia.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal tarvitsee lupaa käyttää mikrofonia ja kameraa puheluiden soittamista ja vastaanottamista varten, mutta nämä käyttöoikeudet ovat pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Mikrofoni\" ja \"Kamera\".</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Jotta voit vastata yhteystiedon %s puheluun, anna Signalille lupa käyttää mikrofonia.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal tarvitsee luvan käyttää mikrofonia ja kameraa puheluiden soittamista ja vastaanottamista varten, mutta nämä käyttöoikeudet ovat pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Mikrofoni\" ja \"Kamera\".</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Vastattu yhdistetyllä laitteella.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Hylätty yhdistetyllä laitteella.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Varattu yhdistetyllä laitteella.</string>
@@ -1737,7 +1737,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Yhteystiedon kuva</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal tarvitsee lupaa käyttää laitteesi yhteystietoja voidakseen näyttää ne, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Yhteystiedot\".</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal tarvitsee luvan käyttää laitteesi yhteystietoja voidakseen näyttää ne, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Yhteystiedot\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Yhteystietojen haussa tapahtui virhe. Tarkista verkkoyhteytesi.</string>
   <string name="ContactSelectionListFragment_username_not_found">Käyttäjätunnusta ei löydy</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">%1$s ei käytä Signalia. Tarkista käyttäjätunnus ja yritä uudelleen.</string>
@@ -1751,7 +1751,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
     <item quantity="other">%1$d jäsentä</item>
   </plurals>
   <!--contact_selection_list_fragment-->
-  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal tarvitsee luvan yhteystietoihisi, jotta se voisi näyttää ne.</string>
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal tarvitsee luvan käyttää yhteystietojasi, jotta se voi näyttää ne.</string>
   <string name="contact_selection_list_fragment__show_contacts">Näytä yhteystiedot</string>
   <!--contact_selection_list_item-->
   <plurals name="contact_selection_list_item__number_of_members">
@@ -1803,15 +1803,15 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
   <string name="ConversationUpdateItem_block_request">Estä pyyntö</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ei yhteisiä ryhmiä. Tarkista pyynnöt huolellisesti.</string>
-  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Ei kontakteja tässä ryhmässä. Tarkista pyynnöt huolellisesti.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Ei yhteystietoja tässä ryhmässä. Tarkista pyynnöt huolellisesti.</string>
   <string name="ConversationUpdateItem_view">Näytä</string>
-  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Viestien katoamisajastin laitetaan arvoon %1$s kun lähetät heille viestin.</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Viestien katoamisaika on asetettu arvoon %1$s, kun lähetät viestin.</string>
   <!--Update item button text to show to boost a feature-->
   <string name="ConversationUpdateItem_signal_boost">Signal Boost</string>
   <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <string name="ConversationUpdateItem_become_a_sustainer">Ryhdy Tukijaksi</string>
+  <string name="ConversationUpdateItem_become_a_sustainer">Ryhdy tukijaksi</string>
   <!--audio_view-->
-  <string name="audio_view__play_pause_accessibility_description">Soita … Keskeytä</string>
+  <string name="audio_view__play_pause_accessibility_description">Soita … keskeytä</string>
   <string name="audio_view__download_accessibility_description">Lataa</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Äänitallenne</string>
@@ -1843,24 +1843,24 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="safety_number_change_dialog__safety_number_changes">Turvanumeroiden vaihdot</string>
   <string name="safety_number_change_dialog__accept">Hyväksy</string>
   <string name="safety_number_change_dialog__send_anyway">Lähetä silti</string>
-  <string name="safety_number_change_dialog__call_anyway">Soita joka tapauksessa</string>
+  <string name="safety_number_change_dialog__call_anyway">Soita silti</string>
   <string name="safety_number_change_dialog__join_call">Liity puheluun</string>
   <string name="safety_number_change_dialog__continue_call">Jatka puhelua</string>
   <string name="safety_number_change_dialog__leave_call">Poistu puhelusta</string>
-  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Seuraavat henkilöt ovat saattaneet uudelleenasentaa tai ovat vaihtaneet laitteita. Varmenna turvanumerosi heidän kanssaan yksityisyyden takaamiseksi.</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Seuraavat henkilöt ovat saattaneet asentaa sovelluksen uudelleen tai vaihtaa laitetta. Varmenna turvanumerosi heidän kanssaan yksityisyyden takaamiseksi.</string>
   <string name="safety_number_change_dialog__view">Näytä</string>
   <string name="safety_number_change_dialog__previous_verified">Aikaisemmin varmennettu</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
   <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Näytetään ilmoitukset puheluista.</string>
   <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Näytä ilmoitukset puheluista</string>
-  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Salli tausta-aktiivisuus</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Salli toiminta taustalla</string>
   <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Kaikki näyttää nyt hyvältä!</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Nähdäksesi ilmoitukset puheluista, napauta tästä ja valitse \'Näytä ilmoitukset\'</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Nähdäksesi ilmoitukset puheluista, napauta tästä ja valitse Näytä ilmoitukset</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Nähdäksesi ilmoitukset puheluista, napauta tästä, laita ilmoitukset päälle ja varmista että ääni ja ponnahdusikkuna ovat päällä.</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Nähdäksesi ilmoitukset puheluista, napauta asetuksia ja salli tausta-aktiivisuus.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Nähdäksesi ilmoitukset puheluista, napauta asetuksia ja salli toiminta taustalla.</string>
   <string name="EnableCallNotificationSettingsDialog__settings">Asetukset</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Nähdäksesi ilmoitukset puheluista, napauta asetuksia ja valitse \'Näytä ilmoitukset\'</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Nähdäksesi ilmoitukset puheluista, napauta asetuksia, laita ilmoitukset päälle ja varmista että ääni ja ponnahdusikkuna ovat päällä.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Nähdäksesi ilmoitukset puheluista, napauta Asetukset ja valitse Näytä ilmoitukset</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Nähdäksesi ilmoitukset puheluista, napauta Asetukset, laita ilmoitukset päälle ja varmista että ääni ja ponnahdusikkuna ovat päällä.</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Nähdäksesi ilmoitukset puheluista, napauta asetuksia ja salli tausta-aktiivisuus.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Ladataan maita…</string>
@@ -1902,15 +1902,15 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="expiration_weeks_abbreviated">%d vk</string>
   <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
-  <string name="IdentityUtil_unverified_banner_one">Turvanumerosi kontaktin %s kanssa on vaihtunut eikä se ole enää varmennettu.</string>
-  <string name="IdentityUtil_unverified_banner_two">Turvanumerosi kontaktien%1$s ja %2$s kanssa eivät ole enää varmennettuja.</string>
-  <string name="IdentityUtil_unverified_banner_many">Turvanumerosi kontaktien %1$s, %2$s ja %3$s kanssa eivät ole enää varmennettuja.</string>
-  <string name="IdentityUtil_unverified_dialog_one">Turvanumerosi kontaktin %1$s kanssa on vaihtunut eikä ole enää varmennettu. Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata viestiliikennettänne, tai sitä, että %1$s on vain yksinkertaisesti asentanut Signalin uudelleen.</string>
-  <string name="IdentityUtil_unverified_dialog_two">Turvanumerosi kontaktien %1$s ja %2$s kanssa ovat vaihtuneet eivätkä ne ole enää varmennettuja. Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata viestiliikennettänne, tai sitä, että he ovat vain yksinkertaisesti asentaneet Signalin uudelleen.</string>
-  <string name="IdentityUtil_unverified_dialog_many">Turvanumerosi kontaktien %1$s, %2$s ja %3$s kanssa ovat vaihtuneet eivätkä ne ole enää varmennettuja. Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata viestiliikennettänne, tai sitä, että he ovat vain yksinkertaisesti asentaneet Signalin uudelleen.</string>
-  <string name="IdentityUtil_untrusted_dialog_one">Turvanumerosi kontaktin %s kanssa on vaihtunut.</string>
-  <string name="IdentityUtil_untrusted_dialog_two">Turvanumerosi kontaktien %1$s ja %2$s kanssa ovat vaihtuneet.</string>
-  <string name="IdentityUtil_untrusted_dialog_many">Turvanumerosi kontaktien %1$s, %2$s ja %3$s kanssa ovat vaihtuneet.</string>
+  <string name="IdentityUtil_unverified_banner_one">Turvanumerosi käyttäjän %s kanssa on vaihtunut eikä se ole enää varmennettu.</string>
+  <string name="IdentityUtil_unverified_banner_two">Turvanumerosi käyttäjien%1$s ja %2$s kanssa eivät ole enää varmennettuja.</string>
+  <string name="IdentityUtil_unverified_banner_many">Turvanumerosi käyttäjien %1$s, %2$s ja %3$s kanssa eivät ole enää varmennettuja.</string>
+  <string name="IdentityUtil_unverified_dialog_one">Turvanumerosi käyttäjän %1$s kanssa on vaihtunut. Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata viestiliikennettänne, tai sitä, että %1$s on asentanut Signalin uudelleen.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Turvanumerosi käyttäjien %1$s ja %2$s kanssa ovat vaihtuneet. Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata viestiliikennettänne, tai sitä, että he ovat asentaneet Signalin uudelleen.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Turvanumerosi käyttäjien %1$s,  %2$s ja %3$s kanssa ovat vaihtuneet. Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata viestiliikennettänne, tai sitä, että he ovat asentaneet Signalin uudelleen.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">Turvanumerosi käyttäjän %s kanssa on vaihtunut.</string>
+  <string name="IdentityUtil_untrusted_dialog_two">Turvanumerosi käyttäjien %1$s ja %2$s kanssa ovat vaihtuneet.</string>
+  <string name="IdentityUtil_untrusted_dialog_many">Turvanumerosi käyttäjien %1$s, %2$s ja %3$s kanssa ovat vaihtuneet.</string>
   <plurals name="identity_others">
     <item quantity="one">%d muu</item>
     <item quantity="other">%d muuta</item>

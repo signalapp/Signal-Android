@@ -4158,8 +4158,20 @@ spastrohet dhe krejt lënda do të fshihet.</item>
     <item quantity="other">Story-t e grupit · %1$d shikues</item>
   </plurals>
   <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">%1$d ditë të mbetura</item>
+    <item quantity="other">%1$d ditë të mbetura</item>
+  </plurals>
   <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">%1$d orë të mbetura</item>
+    <item quantity="other">%1$d orë të mbetura</item>
+  </plurals>
   <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">%1$d minuta të mbetura</item>
+    <item quantity="other">%1$d minuta të mbetura</item>
+  </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Skaduar</string>
   <!--EOF-->
