@@ -2414,7 +2414,7 @@
     <string name="HelpFragment__debug_log">Debug Log:</string>
     <string name="HelpFragment__could_not_upload_logs">Could not upload logs</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Please be as descriptive as possible to help us understand the issue.</string>
-    <string-array name="HelpFragment__categories_3">
+    <string-array name="HelpFragment__categories_4">
         <item>\-\- Please select an option \-\-</item>
         <item>Something\'s Not Working</item>
         <item>Feature Request</item>
@@ -2422,7 +2422,7 @@
         <item>Feedback</item>
         <item>Other</item>
         <item>Payments (MobileCoin)</item>
-        <item>Sustainers &amp; Signal Boost</item>
+        <item>Donations &amp; Badges</item>
     </string-array>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
