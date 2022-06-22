@@ -7,13 +7,13 @@
 
     <!-- Exists for manual override of Splash theme when setting app theme-->
     <style name="Theme.Signal.DayNight.NoActionBar.LightSplash" parent="Theme.Signal.DayNight.NoActionBar">
-        <item name="android:windowSplashScreenBackground">@color/signal_colorBackground</item>
+        <item name="android:windowSplashScreenBackground">@color/signal_light_colorBackground</item>
         <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_splash_light</item>
     </style>
 
     <!-- Exists for manual override of Splash theme when setting app theme-->
     <style name="Theme.Signal.DayNight.NoActionBar.DarkSplash" parent="Theme.Signal.DayNight.NoActionBar">
-        <item name="android:windowSplashScreenBackground">@color/signal_colorBackground</item>
+        <item name="android:windowSplashScreenBackground">@color/signal_dark_colorBackground</item>
         <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_splash_dark</item>
     </style>
 </resources>
