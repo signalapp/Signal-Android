@@ -192,7 +192,7 @@ class StoryViewerPageFragment :
         viewModel.setIsUserTouching(false)
 
         val canCloseFromHorizontalSlide = requireView().translationX > DimensionUnit.DP.toPixels(56f)
-        val canCloseFromVerticalSlide = requireView().translationY > DimensionUnit.DP.toPixels(56f)
+        val canCloseFromVerticalSlide = requireView().translationY > DimensionUnit.DP.toPixels(56f) || requireView().translationY < -DimensionUnit.DP.toPixels(56f)
         if ((canCloseFromHorizontalSlide || canCloseFromVerticalSlide) && event.actionMasked == MotionEvent.ACTION_UP) {
           requireActivity().onBackPressed()
         } else {
@@ -869,13 +869,24 @@ class StoryViewerPageFragment :
 
     override fun onScroll(e1: MotionEvent, e2: MotionEvent, distanceX: Float, distanceY: Float): Boolean {
       val isFirstStory = sharedViewModel.stateSnapshot.page == 0
+      val isLastStory = sharedViewModel.stateSnapshot.pages.lastIndex == sharedViewModel.stateSnapshot.page
       val isXMagnitudeGreaterThanYMagnitude = abs(distanceX) > abs(distanceY) || viewToTranslate.translationX > 0f
       val isFirstAndHasYTranslationOrNegativeY = isFirstStory && (viewToTranslate.translationY > 0f || distanceY < 0f)
+      val isLastAndHasYTranslationOrNegativeY = isLastStory && (viewToTranslate.translationY < 0f || distanceY > 0f)
 
-      sharedViewModel.setIsChildScrolling(isXMagnitudeGreaterThanYMagnitude || isFirstAndHasYTranslationOrNegativeY)
+      sharedViewModel.setIsChildScrolling(isXMagnitudeGreaterThanYMagnitude || isFirstAndHasYTranslationOrNegativeY || isLastAndHasYTranslationOrNegativeY)
       if (isFirstStory) {
         val delta = max(0f, (e2.rawY - e1.rawY)) / 3f
         val percent = INTERPOLATOR.getInterpolation(delta / maxSlide)
+        val distance = maxSlide * percent
+
+        viewToTranslate.animate().cancel()
+        viewToTranslate.translationY = distance
+      }
+
+      if (isLastStory) {
+        val delta = max(0f, (e1.rawY - e2.rawY)) / 3f
+        val percent = -INTERPOLATOR.getInterpolation(delta / maxSlide)
         val distance = maxSlide * percent
 
         viewToTranslate.animate().cancel()
