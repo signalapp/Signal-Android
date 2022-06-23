@@ -8,6 +8,8 @@ sealed class StripeDeclineCode {
   data class Known(val code: Code) : StripeDeclineCode()
   data class Unknown(val code: String) : StripeDeclineCode()
 
+  fun isKnown(): Boolean = this.isKnown()
+
   enum class Code(val code: String) {
     AUTHENTICATION_REQUIRED("authentication_required"),
     APPROVE_WITH_ID("approve_with_id"),

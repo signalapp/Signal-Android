@@ -166,6 +166,12 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       ActiveSubscription.ChargeFailure chargeFailure = activeSubscription.getChargeFailure();
       if (chargeFailure != null) {
         Log.w(TAG, "Subscription payment charge failure code: " + chargeFailure.getCode() + ", message: " + chargeFailure.getMessage(), true);
+
+        if (!isForKeepAlive) {
+          Log.w(TAG, "Initial subscription payment failed, treating as a permanent failure.");
+          onPaymentFailure(subscription.getStatus(), chargeFailure, subscription.getEndOfCurrentPeriod(), false);
+          throw new Exception("New subscription has hit a payment failure.");
+        }
       }
 
       Log.w(TAG, "Subscription is not yet active. Status: " + subscription.getStatus(), true);
@@ -294,12 +300,31 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       SignalStore.donationsValues().setUnexpectedSubscriptionCancelationReason(status);
       SignalStore.donationsValues().setUnexpectedSubscriptionCancelationTimestamp(timestamp);
       MultiDeviceSubscriptionSyncRequestJob.enqueue();
+    } else if (chargeFailure != null) {
+      StripeDeclineCode               declineCode = StripeDeclineCode.Companion.getFromCode(chargeFailure.getOutcomeNetworkReason());
+      DonationError.PaymentSetupError paymentSetupError;
+
+      if (declineCode.isKnown()) {
+        paymentSetupError = new DonationError.PaymentSetupError.DeclinedError(
+            getErrorSource(),
+            new Exception(chargeFailure.getMessage()),
+            declineCode
+        );
+      } else {
+        paymentSetupError = new DonationError.PaymentSetupError.CodedError(
+            getErrorSource(),
+            new Exception("Card was declined. " + chargeFailure.getCode()),
+            chargeFailure.getCode()
+        );
+      }
+
+      Log.w(TAG, "Not for a keep-alive and we have a charge failure. Routing a payment setup error...", true);
+      DonationError.routeDonationError(context, paymentSetupError);
     } else {
-      Log.d(TAG, "Not for a keep-alive and we have a status. Routing a payment setup error...", true);
-      DonationError.routeDonationError(context, new DonationError.PaymentSetupError.DeclinedError(
+      Log.d(TAG, "Not for a keep-alive and we have a failure status. Routing a payment setup error...", true);
+      DonationError.routeDonationError(context, new DonationError.PaymentSetupError.GenericError(
           getErrorSource(),
-          new Exception("Got a failure status from the subscription object."),
-          StripeDeclineCode.Companion.getFromCode(status)
+          new Exception("Got a failure status from the subscription object.")
       ));
     }
   }
