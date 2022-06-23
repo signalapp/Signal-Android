@@ -21,6 +21,7 @@ import android.animation.Animator;
 import android.animation.LayoutTransition;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -1810,7 +1811,12 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
           @Override
           protected void onPostExecute(Intent intent) {
-            startActivityForResult(intent, CODE_ADD_EDIT_CONTACT);
+            try {
+              startActivityForResult(intent, CODE_ADD_EDIT_CONTACT);
+            } catch (ActivityNotFoundException e) {
+              Log.w(TAG, "Could not locate contacts activity", e);
+              Toast.makeText(requireContext(), R.string.ConversationFragment__contacts_app_not_found, Toast.LENGTH_SHORT).show();
+            }
           }
         }.execute();
       }

@@ -325,6 +325,8 @@
     </plurals>
 
     <!-- ConversationFragment -->
+    <!-- Toast text when contacts activity is not found -->
+    <string name="ConversationFragment__contacts_app_not_found">Contacts app not found.</string>
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">Delete selected message?</item>
         <item quantity="other">Delete selected messages?</item>
