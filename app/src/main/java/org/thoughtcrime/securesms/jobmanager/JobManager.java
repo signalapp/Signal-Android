@@ -7,6 +7,7 @@ import android.os.Build;
 import androidx.annotation.GuardedBy;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.ThreadUtil;
@@ -459,7 +460,8 @@ public class JobManager implements ConstraintObserver.Notifier {
     private final JobManager jobManager;
     private final List<List<Job>> jobs;
 
-    private Chain(@NonNull JobManager jobManager, @NonNull List<? extends Job> jobs) {
+    @VisibleForTesting
+    public Chain(@NonNull JobManager jobManager, @NonNull List<? extends Job> jobs) {
       this.jobManager = jobManager;
       this.jobs       = new LinkedList<>();
 
@@ -489,7 +491,8 @@ public class JobManager implements ConstraintObserver.Notifier {
       enqueue();
     }
 
-    private List<List<Job>> getJobListChain() {
+    @VisibleForTesting
+    public List<List<Job>> getJobListChain() {
       return jobs;
     }
   }

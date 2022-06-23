@@ -87,10 +87,12 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 public class MessageSender {
 
@@ -135,13 +137,15 @@ public class MessageSender {
   public static void sendStories(@NonNull final Context context,
                                  @NonNull final List<OutgoingSecureMediaMessage> messages,
                                  @Nullable final String metricId,
-                                 @Nullable final SmsDatabase.InsertListener insertListener)
+                                 @Nullable final SmsDatabase.InsertListener insertListener
+                                 /** TODO [alex] -- Preupload set if preuploads were of valid length -- */)
   {
     Log.i(TAG, "Sending story messages to " + messages.size() + " targets.");
-    ThreadDatabase  threadDatabase = SignalDatabase.threads();
-    MessageDatabase database       = SignalDatabase.mms();
-    List<Long>      messageIds     = new ArrayList<>(messages.size());
-    List<Long>      threads        = new ArrayList<>(messages.size());
+    ThreadDatabase        threadDatabase  = SignalDatabase.threads();
+    MessageDatabase       database        = SignalDatabase.mms();
+    List<Long>            messageIds      = new ArrayList<>(messages.size());
+    List<Long>            threads         = new ArrayList<>(messages.size());
+    UploadDependencyGraph dependencyGraph = UploadDependencyGraph.EMPTY;
 
     try {
       database.beginTransaction();
@@ -172,6 +176,36 @@ public class MessageSender {
         }
       }
 
+      dependencyGraph = UploadDependencyGraph.create(
+          messages,
+          ApplicationDependencies.getJobManager(),
+          attachment -> {
+            try {
+              return SignalDatabase.attachments().insertAttachmentForPreUpload(attachment);
+            } catch (MmsException e) {
+              Log.e(TAG, e);
+              throw new IllegalStateException(e);
+            }
+          }
+      );
+
+      for (int i = 0; i < messageIds.size(); i++) {
+        long                             messageId = messageIds.get(i);
+        OutgoingSecureMediaMessage       message   = messages.get(i);
+        List<UploadDependencyGraph.Node> nodes     = dependencyGraph.getDependencyMap().get(message);
+
+        if (nodes == null || nodes.isEmpty()) {
+          Log.d(TAG, "No attachments for given message. Skipping.");
+          continue;
+        }
+
+        List<AttachmentId> attachmentIds = nodes.stream().map(UploadDependencyGraph.Node::getAttachmentId).collect(Collectors.toList());
+        SignalDatabase.attachments().updateMessageId(attachmentIds, messageId, true);
+        for (final AttachmentId attachmentId : attachmentIds) {
+          SignalDatabase.attachments().updateAttachmentCaption(attachmentId, message.getBody());
+        }
+      }
+
       database.setTransactionSuccessful();
     } catch (MmsException e) {
       Log.w(TAG, e);
@@ -179,12 +213,25 @@ public class MessageSender {
       database.endTransaction();
     }
 
-    for (int i = 0; i < messageIds.size(); i++) {
-      long                       messageId = messageIds.get(i);
-      OutgoingSecureMediaMessage message   = messages.get(i);
-      Recipient                  recipient = message.getRecipient();
+    List<JobManager.Chain> chains = dependencyGraph.consumeDeferredQueue();
+    for (final JobManager.Chain chain : chains) {
+      chain.enqueue();
+    }
 
-      sendMediaMessage(context, recipient, false, messageId, Collections.emptyList());
+    for (int i = 0; i < messageIds.size(); i++) {
+      long                             messageId    = messageIds.get(i);
+      OutgoingSecureMediaMessage       message      = messages.get(i);
+      Recipient                        recipient    = message.getRecipient();
+      List<UploadDependencyGraph.Node> dependencies = dependencyGraph.getDependencyMap().get(message);
+
+      List<String> jobDependencyIds = (dependencies != null) ? dependencies.stream().map(UploadDependencyGraph.Node::getJobId).collect(Collectors.toList())
+                                                             : Collections.emptyList();
+
+      sendMediaMessage(context,
+                       recipient,
+                       false,
+                       messageId,
+                       jobDependencyIds);
     }
 
     onMessageSent();
