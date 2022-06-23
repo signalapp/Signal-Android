@@ -116,8 +116,6 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   public void onCreate() {
     Log.v(TAG, "onCreate");
     super.onCreate();
-    startForegroundCompat(CallNotificationBuilder.getStartingStoppingNotificationId(), CallNotificationBuilder.getStartingNotification(this));
-
     this.callManager                   = ApplicationDependencies.getSignalCallManager();
     this.hangUpRtcOnDeviceCallAnswered = new HangUpRtcOnPstnCallAnsweredListener();
     this.lastNotificationId            = INVALID_NOTIFICATION_ID;
