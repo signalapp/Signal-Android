@@ -2100,7 +2100,7 @@ public class ConversationParentFragment extends Fragment
           unverifiedBannerView.get().hide();
         }
 
-        titleView.setVerified(isSecureText && identityRecords.isVerified());
+        titleView.setVerified(isSecureText && identityRecords.isVerified() && !recipient.get().isSelf());
 
         future.set(true);
       }
@@ -2634,7 +2634,7 @@ public class ConversationParentFragment extends Fragment
 
     Log.i(TAG, "onModified(" + recipient.getId() + ") " + recipient.getRegistered());
     titleView.setTitle(glideRequests, recipient);
-    titleView.setVerified(identityRecords.isVerified());
+    titleView.setVerified(identityRecords.isVerified() && !recipient.isSelf());
     setBlockedUserState(recipient, isSecureText, isDefaultSms);
     updateReminders();
     updateDefaultSubscriptionId(recipient.getDefaultSubscriptionId());
