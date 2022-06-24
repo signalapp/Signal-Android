@@ -4,8 +4,11 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.RenderEffect
+import android.graphics.Shader
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.GestureDetector
 import android.view.MotionEvent
@@ -20,6 +23,7 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.GestureDetectorCompat
 import androidx.core.view.animation.PathInterpolatorCompat
 import androidx.core.view.doOnNextLayout
+import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -42,11 +46,13 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewFragment
 import org.thoughtcrime.securesms.mediapreview.VideoControlsDelegate
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.stories.StoryFirstTimeNavigationView
 import org.thoughtcrime.securesms.stories.StorySlateView
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerState
@@ -78,7 +84,8 @@ class StoryViewerPageFragment :
   MultiselectForwardBottomSheet.Callback,
   StorySlateView.Callback,
   StoryTextPostPreviewFragment.Callback,
-  StoriesSharedElementCrossFaderView.Callback {
+  StoriesSharedElementCrossFaderView.Callback,
+  StoryFirstTimeNavigationView.Callback {
 
   private lateinit var progressBar: SegmentedProgressBar
   private lateinit var storySlate: StorySlateView
@@ -87,6 +94,7 @@ class StoryViewerPageFragment :
   private lateinit var blurContainer: ImageView
   private lateinit var storyCaptionContainer: FrameLayout
   private lateinit var storyContentContainer: FrameLayout
+  private lateinit var storyFirstTimeNavigationViewStub: StoryFirstNavigationStub
 
   private lateinit var callback: Callback
 
@@ -150,9 +158,11 @@ class StoryViewerPageFragment :
     progressBar = view.findViewById(R.id.progress)
     viewsAndReplies = view.findViewById(R.id.views_and_replies_bar)
     storyCrossfader = view.findViewById(R.id.story_content_crossfader)
+    storyFirstTimeNavigationViewStub = StoryFirstNavigationStub(view.findViewById(R.id.story_first_time_nav_stub))
 
     storySlate.callback = this
     storyCrossfader.callback = this
+    storyFirstTimeNavigationViewStub.setCallback(this)
 
     chrome = listOf(
       closeView,
@@ -165,7 +175,7 @@ class StoryViewerPageFragment :
       viewsAndReplies,
       progressBar,
       storyGradientTop,
-      storyGradientBottom
+      storyGradientBottom,
     )
 
     senderAvatar.setFallbackPhotoProvider(FallbackPhotoProvider())
@@ -338,19 +348,36 @@ class StoryViewerPageFragment :
         resumeProgress()
       }
 
+      val wasDisplayingNavigationView = isFirstTimeNavVisible()
+
       when {
         state.hideChromeImmediate -> {
           hideChromeImmediate()
           storyCaptionContainer.visible = false
+          storyFirstTimeNavigationViewStub.takeIf { it.resolved() }?.get()?.hide()
         }
         state.hideChrome -> {
           hideChrome()
           storyCaptionContainer.visible = true
+          storyFirstTimeNavigationViewStub.get().show()
         }
         else -> {
           showChrome()
           storyCaptionContainer.visible = true
+          storyFirstTimeNavigationViewStub.get().show()
         }
+      }
+
+      val isDisplayingNavigationView = isFirstTimeNavVisible()
+      if (isDisplayingNavigationView && Build.VERSION.SDK_INT >= 31) {
+        hideChromeImmediate()
+        storyContentContainer.setRenderEffect(RenderEffect.createBlurEffect(100f, 100f, Shader.TileMode.CLAMP))
+      } else if (Build.VERSION.SDK_INT >= 31) {
+        storyContentContainer.setRenderEffect(null)
+      }
+
+      if (wasDisplayingNavigationView xor isDisplayingNavigationView) {
+        viewModel.setIsDisplayingFirstTimeNavigation(isFirstTimeNavVisible())
       }
     }
 
@@ -400,6 +427,10 @@ class StoryViewerPageFragment :
 
   override fun onDismissForwardSheet() {
     viewModel.setIsDisplayingForwardDialog(false)
+  }
+
+  private fun isFirstTimeNavVisible(): Boolean {
+    return storyFirstTimeNavigationViewStub.takeIf { it.resolved() }?.get()?.isVisible ?: false
   }
 
   private fun calculateDurationForText(textContent: StoryPost.Content.TextContent): Long {
@@ -622,6 +653,8 @@ class StoryViewerPageFragment :
   private fun presentBlur(blur: ImageView, storyPost: StoryPost) {
     val record = storyPost.conversationMessage.messageRecord as? MediaMmsMessageRecord
     val blurHash = record?.slideDeck?.thumbnailSlide?.placeholderBlur
+
+    storyFirstTimeNavigationViewStub.setBlurHash(blurHash)
 
     if (blurHash == null) {
       GlideApp.with(blur).clear(blur)
@@ -1034,5 +1067,14 @@ class StoryViewerPageFragment :
     fun onGoToPreviousStory(recipientId: RecipientId)
     fun onFinishedPosts(recipientId: RecipientId)
     fun onStoryHidden(recipientId: RecipientId)
+  }
+
+  override fun userHasSeenFirstNavigationView(): Boolean {
+    return SignalStore.storyValues().userHasSeenFirstNavView
+  }
+
+  override fun onGotItClicked() {
+    SignalStore.storyValues().userHasSeenFirstNavView = true
+    viewModel.setIsDisplayingFirstTimeNavigation(false)
   }
 }

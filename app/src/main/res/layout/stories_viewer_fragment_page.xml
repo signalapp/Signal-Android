@@ -122,8 +122,8 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="24dp"
             android:gravity="bottom"
-            android:textColor="@color/signal_colorNeutralInverse"
             android:textAppearance="@style/Signal.Text.BodyLarge"
+            android:textColor="@color/signal_colorNeutralInverse"
             tools:text="Ugh." />
     </FrameLayout>
 
@@ -217,8 +217,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="12dp"
         android:alpha="0.64"
-        android:textColor="@color/signal_colorNeutralVariantInverse"
         android:textAppearance="@style/Signal.Text.MaterialCaption"
+        android:textColor="@color/signal_colorNeutralVariantInverse"
         app:layout_constraintBottom_toBottomOf="@id/from"
         app:layout_constraintEnd_toStartOf="@id/more"
         app:layout_constraintStart_toEndOf="@id/from"
@@ -277,5 +277,14 @@
         android:id="@+id/on_reaction_sent_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <ViewStub
+        android:id="@+id/story_first_time_nav_stub"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:inflatedId="@+id/story_first_time_navigation_view"
+        android:layout="@layout/story_viewer_first_time_navigation_stub"
+        app:layout_constraintBottom_toBottomOf="@id/story_content_card_touch_interceptor"
+        app:layout_constraintTop_toTopOf="@id/story_content_card_touch_interceptor" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

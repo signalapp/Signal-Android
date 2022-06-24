@@ -123,14 +123,15 @@ dependencyResolutionManagement {
         }
 
         testLibs {
-            version('robolectric', '4.4')
+            version('robolectric', '4.8.1')
+            version('androidx-test', '1.4.0')
 
             alias('junit-junit').to('junit:junit:4.13.2')
-            alias('androidx-test-core').to('androidx.test:core:1.2.0')
-            alias('androidx-test-core-ktx').to('androidx.test:core-ktx:1.2.0')
+            alias('androidx-test-core').to('androidx.test', 'core').versionRef('androidx-test')
+            alias('androidx-test-core-ktx').to('androidx.test', 'core-ktx').versionRef('androidx-test')
             alias('androidx-test-ext-junit').to('androidx.test.ext:junit:1.1.1')
             alias('androidx-test-ext-junit-ktx').to('androidx.test.ext:junit-ktx:1.1.1')
-            alias('espresso-core').to('androidx.test.espresso:espresso-core:3.2.0')
+            alias('espresso-core').to('androidx.test.espresso:espresso-core:3.4.0')
             alias('mockito-core').to('org.mockito:mockito-inline:4.4.0')
             alias('mockito-kotlin').to('org.mockito.kotlin:mockito-kotlin:4.0.0')
             alias('robolectric-robolectric').to('org.robolectric', 'robolectric').versionRef('robolectric')

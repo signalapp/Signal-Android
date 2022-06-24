@@ -34,11 +34,22 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
      * Cannot send to story tooltip marker
      */
     private const val CANNOT_SEND_SEEN_MARKER = "stories.cannot.send.video.tooltip.seen"
+
+    /**
+     * Whether or not the user has see the "Navigation education" view
+     */
+    private const val USER_HAS_SEEN_FIRST_NAV_VIEW = "stories.user.has.seen.first.navigation.view"
   }
 
   override fun onFirstEverAppLaunch() = Unit
 
-  override fun getKeysToIncludeInBackup(): MutableList<String> = mutableListOf(MANUAL_FEATURE_DISABLE, USER_HAS_ADDED_TO_A_STORY, VIDEO_TOOLTIP_SEEN_MARKER, CANNOT_SEND_SEEN_MARKER)
+  override fun getKeysToIncludeInBackup(): MutableList<String> = mutableListOf(
+    MANUAL_FEATURE_DISABLE,
+    USER_HAS_ADDED_TO_A_STORY,
+    VIDEO_TOOLTIP_SEEN_MARKER,
+    CANNOT_SEND_SEEN_MARKER,
+    USER_HAS_SEEN_FIRST_NAV_VIEW
+  )
 
   var isFeatureDisabled: Boolean by booleanValue(MANUAL_FEATURE_DISABLE, false)
 
@@ -49,6 +60,8 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
   var videoTooltipSeen by booleanValue(VIDEO_TOOLTIP_SEEN_MARKER, false)
 
   var cannotSendTooltipSeen by booleanValue(CANNOT_SEND_SEEN_MARKER, false)
+
+  var userHasSeenFirstNavView: Boolean by booleanValue(USER_HAS_SEEN_FIRST_NAV_VIEW, false)
 
   fun setLatestStorySend(storySend: StorySend) {
     synchronized(this) {

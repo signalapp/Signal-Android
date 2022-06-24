@@ -214,6 +214,10 @@ class StoryViewerPageViewModel(
     storyViewerPlaybackStore.update { it.copy(isRunningSharedElementAnimation = isRunningSharedElementAnimation) }
   }
 
+  fun setIsDisplayingFirstTimeNavigation(isDisplayingFirstTimeNavigation: Boolean) {
+    storyViewerPlaybackStore.update { it.copy(isDisplayingFirstTimeNavigation = isDisplayingFirstTimeNavigation) }
+  }
+
   private fun resolveSwipeToReplyState(state: StoryViewerPageState, index: Int): StoryViewerPageState.ReplyState {
     if (index !in state.posts.indices) {
       return StoryViewerPageState.ReplyState.NONE

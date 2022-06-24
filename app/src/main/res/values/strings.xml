@@ -4903,6 +4903,15 @@
     <!-- Gift expiry expired -->
     <string name="Gifts__expired">Expired</string>
 
+    <!-- Label indicating that a user can tap to advance to the next post in a story -->
+    <string name="StoryFirstTimeNavigationView__tap_to_advance">Tap to advance</string>
+    <!-- Label indicating swipe direction to skip current story -->
+    <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Swipe up to skip</string>
+    <!-- Label indicating swipe direction to exit story viewer -->
+    <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Swipe right to exit</string>
+    <!-- Button label to confirm understanding of story navigation -->
+    <string name="StoryFirstTimeNagivationView__got_it">Got it</string>
+
     <!-- EOF -->
 
 </resources>
