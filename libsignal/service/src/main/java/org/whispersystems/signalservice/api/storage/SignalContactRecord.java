@@ -191,7 +191,7 @@ public final class SignalContactRecord implements SignalRecord {
     return proto.getHideStory();
   }
 
-  ContactRecord toProto() {
+  public ContactRecord toProto() {
     return proto;
   }
 

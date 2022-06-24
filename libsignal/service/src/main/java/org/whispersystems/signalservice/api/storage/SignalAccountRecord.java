@@ -268,7 +268,7 @@ public final class SignalAccountRecord implements SignalRecord {
     return proto.getSubscriptionManuallyCancelled();
   }
 
-  AccountRecord toProto() {
+  public AccountRecord toProto() {
     return proto;
   }
 

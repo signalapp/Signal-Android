@@ -140,7 +140,7 @@ public final class SignalGroupV2Record implements SignalRecord {
     return proto.getHideStory();
   }
 
-  GroupV2Record toProto() {
+  public GroupV2Record toProto() {
     return proto;
   }
 

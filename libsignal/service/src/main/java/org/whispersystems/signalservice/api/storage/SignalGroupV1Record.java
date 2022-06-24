@@ -114,7 +114,7 @@ public final class SignalGroupV1Record implements SignalRecord {
     return proto.getMutedUntilTimestamp();
   }
 
-  GroupV1Record toProto() {
+  public GroupV1Record toProto() {
     return proto;
   }
 

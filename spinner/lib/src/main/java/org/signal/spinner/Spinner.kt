@@ -18,9 +18,9 @@ object Spinner {
 
   private lateinit var server: SpinnerServer
 
-  fun init(application: Application, deviceInfo: Map<String, String>, databases: Map<String, DatabaseConfig>) {
+  fun init(application: Application, deviceInfo: Map<String, String>, databases: Map<String, DatabaseConfig>, plugins: Map<String, Plugin>) {
     try {
-      server = SpinnerServer(application, deviceInfo, databases)
+      server = SpinnerServer(application, deviceInfo, databases, plugins)
       server.start()
     } catch (e: IOException) {
       Log.w(TAG, "Spinner server hit IO exception!", e)
