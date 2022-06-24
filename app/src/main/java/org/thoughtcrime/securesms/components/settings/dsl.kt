@@ -185,6 +185,15 @@ class DSLConfiguration {
     children.add(preference)
   }
 
+  fun learnMoreTextPref(
+    title: DSLSettingsText? = null,
+    summary: DSLSettingsText? = null,
+    onClick: () -> Unit
+  ) {
+    val preference = LearnMoreTextPreference(title, summary, onClick)
+    children.add(preference)
+  }
+
   fun toMappingModelList(): MappingModelList = MappingModelList().apply { addAll(children) }
 }
 
@@ -217,6 +226,12 @@ class TextPreference(
   title: DSLSettingsText?,
   summary: DSLSettingsText?
 ) : PreferenceModel<TextPreference>(title = title, summary = summary)
+
+class LearnMoreTextPreference(
+  override val title: DSLSettingsText?,
+  override val summary: DSLSettingsText?,
+  val onClick: () -> Unit
+) : PreferenceModel<LearnMoreTextPreference>()
 
 class DividerPreference : PreferenceModel<DividerPreference>() {
   override fun areItemsTheSame(newItem: DividerPreference) = true

@@ -4,16 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
-import com.google.protobuf.ByteString;
 
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.DistributionListId;
-import org.thoughtcrime.securesms.database.model.DistributionListPartialRecord;
+import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode;
 import org.thoughtcrime.securesms.database.model.DistributionListRecord;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -31,6 +31,7 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.storage.protos.AccountRecord;
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord.IdentityState;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -193,13 +194,15 @@ public final class StorageSyncModels {
     return new SignalStoryDistributionListRecord.Builder(rawStorageId, recipient.getSyncExtras().getStorageProto())
                                                 .setIdentifier(UuidUtil.toByteArray(record.getDistributionId().asUuid()))
                                                 .setName(record.getName())
-                                                .setRecipients(record.getMembers().stream()
+                                                .setRecipients(record.getMembersToSync()
+                                                                     .stream()
                                                                      .map(Recipient::resolved)
                                                                      .filter(Recipient::hasServiceId)
                                                                      .map(Recipient::requireServiceId)
                                                                      .map(SignalServiceAddress::new)
                                                                      .collect(Collectors.toList()))
                                                 .setAllowsReplies(record.getAllowsReplies())
+                                                .setIsBlockList(record.getPrivacyMode().isBlockList())
                                                 .build();
   }
 

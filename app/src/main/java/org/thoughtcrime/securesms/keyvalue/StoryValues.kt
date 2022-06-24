@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.keyvalue
 
 import org.json.JSONObject
+import org.signal.core.util.StringSerializer
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.groups.GroupId
 
@@ -62,7 +63,7 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
     return storySends.filter { it.timestamp >= activeCutoffTimestamp }
   }
 
-  private object StorySendSerializer : Serializer<StorySend> {
+  private object StorySendSerializer : StringSerializer<StorySend> {
 
     override fun serialize(data: StorySend): String {
       return JSONObject()

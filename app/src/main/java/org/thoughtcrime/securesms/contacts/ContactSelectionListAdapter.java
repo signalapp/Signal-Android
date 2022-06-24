@@ -73,6 +73,7 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
   private final ItemClickListener clickListener;
   private final GlideRequests     glideRequests;
   private final Set<RecipientId>  currentContacts;
+  private final int               checkboxResource;
 
   private final SelectedContactSet selectedContacts = new SelectedContactSet();
 
@@ -205,14 +206,16 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
                                      @Nullable Cursor cursor,
                                      @Nullable ItemClickListener clickListener,
                                      boolean multiSelect,
-                                     @NonNull Set<RecipientId> currentContacts)
+                                     @NonNull Set<RecipientId> currentContacts,
+                                     int checkboxResource)
   {
     super(context, cursor);
-    this.layoutInflater  = LayoutInflater.from(context);
-    this.glideRequests   = glideRequests;
-    this.multiSelect     = multiSelect;
-    this.clickListener   = clickListener;
-    this.currentContacts = currentContacts;
+    this.layoutInflater   = LayoutInflater.from(context);
+    this.glideRequests    = glideRequests;
+    this.multiSelect      = multiSelect;
+    this.clickListener    = clickListener;
+    this.currentContacts  = currentContacts;
+    this.checkboxResource = checkboxResource;
   }
 
   @Override
@@ -229,7 +232,9 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
   @Override
   public ViewHolder onCreateItemViewHolder(ViewGroup parent, int viewType) {
     if (viewType == VIEW_TYPE_CONTACT) {
-      return new ContactViewHolder(layoutInflater.inflate(R.layout.contact_selection_list_item, parent, false), clickListener);
+      View view = layoutInflater.inflate(R.layout.contact_selection_list_item, parent, false);
+      view.findViewById(R.id.check_box).setBackgroundResource(checkboxResource);
+      return new ContactViewHolder(view, clickListener);
     } else {
       return new DividerViewHolder(layoutInflater.inflate(R.layout.contact_selection_list_divider, parent, false));
     }

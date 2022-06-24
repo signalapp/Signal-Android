@@ -89,9 +89,10 @@ public class StoryDistributionListRecordProcessor extends DefaultStorageRecordPr
     List<SignalServiceAddress> recipients         = remote.getRecipients();
     long                       deletedAtTimestamp = remote.getDeletedAtTimestamp();
     boolean                    allowsReplies      = remote.allowsReplies();
+    boolean                    isBlockList        = remote.isBlockList();
 
-    boolean matchesRemote = doParamsMatch(remote, unknownFields, identifier, name, recipients, deletedAtTimestamp, allowsReplies);
-    boolean matchesLocal  = doParamsMatch(local, unknownFields, identifier, name, recipients, deletedAtTimestamp, allowsReplies);
+    boolean matchesRemote = doParamsMatch(remote, unknownFields, identifier, name, recipients, deletedAtTimestamp, allowsReplies, isBlockList);
+    boolean matchesLocal  = doParamsMatch(local, unknownFields, identifier, name, recipients, deletedAtTimestamp, allowsReplies, isBlockList);
 
     if (matchesRemote) {
       return remote;
@@ -104,6 +105,7 @@ public class StoryDistributionListRecordProcessor extends DefaultStorageRecordPr
                                                   .setRecipients(recipients)
                                                   .setDeletedAtTimestamp(deletedAtTimestamp)
                                                   .setAllowsReplies(allowsReplies)
+                                                  .setIsBlockList(isBlockList)
                                                   .build();
     }
   }
@@ -131,14 +133,16 @@ public class StoryDistributionListRecordProcessor extends DefaultStorageRecordPr
                                 @Nullable byte[] unknownFields,
                                 @Nullable byte[] identifier,
                                 @Nullable String name,
-                                @NonNull  List<SignalServiceAddress> recipients,
+                                @NonNull List<SignalServiceAddress> recipients,
                                 long deletedAtTimestamp,
-                                boolean allowsReplies) {
+                                boolean allowsReplies,
+                                boolean isBlockList) {
     return Arrays.equals(unknownFields, record.serializeUnknownFields()) &&
-           Arrays.equals(identifier, record.getIdentifier())             &&
-           Objects.equals(name, record.getName())                        &&
-           Objects.equals(recipients, record.getRecipients())            &&
-           deletedAtTimestamp == record.getDeletedAtTimestamp()          &&
-           allowsReplies == record.allowsReplies();
+           Arrays.equals(identifier, record.getIdentifier()) &&
+           Objects.equals(name, record.getName()) &&
+           Objects.equals(recipients, record.getRecipients()) &&
+           deletedAtTimestamp == record.getDeletedAtTimestamp() &&
+           allowsReplies == record.allowsReplies() &&
+           isBlockList == record.isBlockList();
   }
 }

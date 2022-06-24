@@ -74,6 +74,10 @@ public class SignalStoryDistributionListRecord implements SignalRecord {
     return proto.getAllowsReplies();
   }
 
+  public boolean isBlockList() {
+    return proto.getIsBlockList();
+  }
+
   @Override
   public String describeDiff(SignalRecord other) {
     if (other instanceof SignalStoryDistributionListRecord) {
@@ -102,6 +106,10 @@ public class SignalStoryDistributionListRecord implements SignalRecord {
 
       if (this.allowsReplies() != that.allowsReplies()) {
         diff.add("AllowsReplies");
+      }
+
+      if (this.isBlockList() != that.isBlockList()) {
+        diff.add("BlockList");
       }
 
       return diff.toString();
@@ -163,6 +171,11 @@ public class SignalStoryDistributionListRecord implements SignalRecord {
 
     public Builder setAllowsReplies(boolean allowsReplies) {
       builder.setAllowsReplies(allowsReplies);
+      return this;
+    }
+
+    public Builder setIsBlockList(boolean isBlockList) {
+      builder.setIsBlockList(isBlockList);
       return this;
     }
 

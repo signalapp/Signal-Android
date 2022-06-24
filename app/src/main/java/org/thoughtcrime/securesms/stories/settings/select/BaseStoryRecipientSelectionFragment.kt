@@ -36,6 +36,7 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
   protected open val toolbarTitleId: Int = R.string.CreateStoryViewerSelectionFragment__choose_viewers
   abstract val actionButtonLabel: Int
   abstract val distributionListId: DistributionListId?
+  protected open val checkboxResource: Int = R.drawable.contact_selection_checkbox
 
   private lateinit var toolbar: Toolbar
   private lateinit var searchField: EditText
@@ -75,8 +76,10 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
     }
 
     viewModel.state.observe(viewLifecycleOwner) {
-      getAttachedContactSelectionFragment().markSelected(it.map(::ShareContact).toSet())
-      presentTitle(toolbar, it.size)
+      if (it.distributionListId == null || it.privateStory != null) {
+        getAttachedContactSelectionFragment().markSelected(it.selection.map(::ShareContact).toSet())
+        presentTitle(toolbar, it.selection.size)
+      }
     }
 
     lifecycleDisposable += viewModel.actionObservable.subscribe { action ->
@@ -144,7 +147,8 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
       canSelectSelf = false,
       currentSelection = emptyList(),
       displaySelectionCount = false,
-      displayChips = true
+      displayChips = true,
+      checkboxResource = checkboxResource
     )
 
     contactSelectionListFragment.arguments = arguments.toArgumentBundle()

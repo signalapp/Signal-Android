@@ -27,6 +27,7 @@ import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
 import org.signal.core.util.select
 import org.signal.core.util.update
+import org.signal.core.util.withinTransaction
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.InvalidKeyException
 import org.signal.libsignal.zkgroup.InvalidInputException
@@ -819,6 +820,15 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     } finally {
       db.endTransaction()
     }
+  }
+
+  fun markNeedsSync(recipientIds: Collection<RecipientId>) {
+    writableDatabase
+      .withinTransaction {
+        for (recipientId in recipientIds) {
+          markNeedsSync(recipientId)
+        }
+      }
   }
 
   fun markNeedsSync(recipientId: RecipientId) {
@@ -2301,6 +2311,14 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   }
 
   fun getSignalContacts(includeSelf: Boolean): Cursor? {
+    return getSignalContacts(includeSelf, "$SORT_NAME, $SYSTEM_JOINED_NAME, $SEARCH_PROFILE_NAME, $USERNAME, $PHONE")
+  }
+
+  fun getSignalContactsCount(includeSelf: Boolean): Int {
+    return getSignalContacts(includeSelf)?.count ?: 0
+  }
+
+  fun getSignalContacts(includeSelf: Boolean, orderBy: String? = null): Cursor? {
     val searchSelection = ContactSearchSelection.Builder()
       .withRegistered(true)
       .withGroups(false)
@@ -2308,7 +2326,6 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       .build()
     val selection = searchSelection.where
     val args = searchSelection.args
-    val orderBy = "$SORT_NAME, $SYSTEM_JOINED_NAME, $SEARCH_PROFILE_NAME, $USERNAME, $PHONE"
     return readableDatabase.query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy)
   }
 

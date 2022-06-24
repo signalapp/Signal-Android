@@ -48,6 +48,10 @@ public final class DistributionListId implements DatabaseId, Parcelable {
     this.id = id;
   }
 
+  public boolean isMyStory() {
+    return equals(MY_STORY);
+  }
+
   @Override
   public void writeToParcel(Parcel dest, int flags) {
     dest.writeLong(id);

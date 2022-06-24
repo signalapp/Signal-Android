@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 
+import org.signal.core.util.StringSerializer;
 import org.thoughtcrime.securesms.database.model.databaseprotos.SignalStoreList;
 
 import java.util.Collections;
@@ -50,7 +51,7 @@ abstract class SignalStoreValues {
     return store.getBlob(key, defaultValue);
   }
 
-  <T> List<T> getList(@NonNull String key, @NonNull Serializer<T> serializer) {
+  <T> List<T> getList(@NonNull String key, @NonNull StringSerializer<T> serializer) {
     byte[] blob = getBlob(key, null);
     if (blob == null) {
       return Collections.emptyList();
@@ -93,7 +94,7 @@ abstract class SignalStoreValues {
     store.beginWrite().putString(key, value).apply();
   }
 
-  <T> void putList(@NonNull String key, @NonNull List<T> values, @NonNull Serializer<T> serializer) {
+  <T> void putList(@NonNull String key, @NonNull List<T> values, @NonNull StringSerializer<T> serializer) {
     putBlob(key, SignalStoreList.newBuilder()
                                 .addAllContents(values.stream()
                                                       .map(serializer::serialize)
@@ -104,10 +105,5 @@ abstract class SignalStoreValues {
 
   void remove(@NonNull String key) {
     store.beginWrite().remove(key).apply();
-  }
-
-  interface Serializer<T> {
-    @NonNull String serialize(@NonNull T data);
-    T deserialize(@NonNull String data);
   }
 }

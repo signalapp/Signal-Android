@@ -9,6 +9,7 @@ import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.subjects.PublishSubject
 import org.thoughtcrime.securesms.database.model.DistributionListId
+import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.livedata.Store
 
@@ -16,18 +17,19 @@ class BaseStoryRecipientSelectionViewModel(
   private val distributionListId: DistributionListId?,
   private val repository: BaseStoryRecipientSelectionRepository
 ) : ViewModel() {
-  private val store = Store(emptySet<RecipientId>())
+  private val store = Store(BaseStoryRecipientSelectionState(distributionListId))
   private val subject = PublishSubject.create<Action>()
   private val disposable = CompositeDisposable()
 
   var actionObservable: Observable<Action> = subject
-  var state: LiveData<Set<RecipientId>> = store.stateLiveData
+  var state: LiveData<BaseStoryRecipientSelectionState> = store.stateLiveData
 
   init {
     if (distributionListId != null) {
-      disposable += repository.getListMembers(distributionListId)
-        .subscribe { members ->
-          store.update { it + members }
+      disposable += repository.getRecord(distributionListId)
+        .subscribe { record ->
+          val startingSelection = if (record.privacyMode == DistributionListPrivacyMode.ALL_EXCEPT) record.rawMembers else record.members
+          store.update { it.copy(privateStory = record, selection = it.selection + startingSelection) }
         }
     }
   }
@@ -38,24 +40,24 @@ class BaseStoryRecipientSelectionViewModel(
 
   fun toggleSelectAll() {
     disposable += repository.getAllSignalContacts().subscribeBy { allSignalRecipients ->
-      store.update { allSignalRecipients }
+      store.update { it.copy(selection = allSignalRecipients) }
     }
   }
 
   fun addRecipient(recipientId: RecipientId) {
-    store.update { it + recipientId }
+    store.update { it.copy(selection = it.selection + recipientId) }
   }
 
   fun removeRecipient(recipientId: RecipientId) {
-    store.update { it - recipientId }
+    store.update { it.copy(selection = it.selection - recipientId) }
   }
 
   fun onAction() {
     if (distributionListId != null) {
-      repository.updateDistributionListMembership(distributionListId, store.state)
+      repository.updateDistributionListMembership(store.state.privateStory!!, store.state.selection)
       subject.onNext(Action.ExitFlow)
     } else {
-      subject.onNext(Action.GoToNextScreen(store.state))
+      subject.onNext(Action.GoToNextScreen(store.state.selection))
     }
   }
 

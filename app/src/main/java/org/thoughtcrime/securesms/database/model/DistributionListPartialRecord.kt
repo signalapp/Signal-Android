@@ -7,5 +7,6 @@ data class DistributionListPartialRecord(
   val name: CharSequence,
   val recipientId: RecipientId,
   val allowsReplies: Boolean,
-  val isUnknown: Boolean
+  val isUnknown: Boolean,
+  val privacyMode: DistributionListPrivacyMode
 )

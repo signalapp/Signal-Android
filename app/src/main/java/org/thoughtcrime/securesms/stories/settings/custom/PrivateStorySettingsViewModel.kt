@@ -39,7 +39,7 @@ class PrivateStorySettingsViewModel(private val distributionListId: Distribution
   }
 
   fun remove(recipient: Recipient) {
-    disposables += repository.removeMember(distributionListId, recipient.id)
+    disposables += repository.removeMember(store.state.privateStory!!, recipient.id)
       .subscribe {
         refresh()
       }

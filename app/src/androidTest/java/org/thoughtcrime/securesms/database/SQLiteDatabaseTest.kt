@@ -122,4 +122,62 @@ class SQLiteDatabaseTest {
     assertTrue(hasRun1.get())
     assertFalse(hasRun2.get())
   }
+
+  @Test
+  fun runPostSuccessfulTransaction_runsAndPerformsAnotherTransaction() {
+    val hasRun = AtomicBoolean(false)
+
+    db.beginTransaction()
+
+    db.runPostSuccessfulTransaction {
+      try {
+        db.beginTransaction()
+        hasRun.set(true)
+        db.setTransactionSuccessful()
+      } finally {
+        db.endTransaction()
+      }
+    }
+
+    assertFalse(hasRun.get())
+
+    db.setTransactionSuccessful()
+    db.endTransaction()
+
+    assertTrue(hasRun.get())
+  }
+
+  @Test
+  fun runPostSuccessfulTransaction_runsAndPerformsAnotherTransactionAndRunPostNested() {
+    val hasRun1 = AtomicBoolean(false)
+    val hasRun2 = AtomicBoolean(false)
+
+    db.beginTransaction()
+
+    db.runPostSuccessfulTransaction {
+      db.beginTransaction()
+
+      db.runPostSuccessfulTransaction {
+        assertTrue(hasRun1.get())
+        assertFalse(hasRun2.get())
+        hasRun2.set(true)
+      }
+
+      assertFalse(hasRun1.get())
+      hasRun1.set(true)
+      assertFalse(hasRun2.get())
+
+      db.setTransactionSuccessful()
+      db.endTransaction()
+    }
+
+    assertFalse(hasRun1.get())
+    assertFalse(hasRun2.get())
+
+    db.setTransactionSuccessful()
+    db.endTransaction()
+
+    assertTrue(hasRun1.get())
+    assertTrue(hasRun2.get())
+  }
 }

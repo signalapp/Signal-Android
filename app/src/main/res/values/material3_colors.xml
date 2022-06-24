@@ -43,6 +43,10 @@
     <color name="signal_colorNeutralInverse">@color/signal_light_colorNeutralInverse</color>
     <color name="signal_colorNeutralVariantInverse">@color/signal_light_colorNeutralVariantInverse</color>
 
+    <!-- Inverses -->
+    <color name="signal_colorErrorInverse">@color/signal_dark_colorError</color>
+    <color name="signal_colorErrorContainerInverse">@color/signal_dark_colorErrorContainer</color>
+
     <!-- Core color alpha variants -->
     <color name="signal_colorSecondaryContainer_12">#1FDCE5F9</color>
     <color name="signal_colorSurface_60">#99FBFCFF</color>

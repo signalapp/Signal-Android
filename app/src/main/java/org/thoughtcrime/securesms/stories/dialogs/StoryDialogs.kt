@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.stories.dialogs
 
 import android.content.Context
 import android.view.View
+import android.widget.Toast
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
@@ -33,7 +34,7 @@ object StoryDialogs {
         .setPositiveButton(R.string.StoryDialogs__add_to_story) { _, _ ->
           onAddToStory.invoke()
         }
-        .setNeutralButton(R.string.StoryDialogs__edit_viewers) { _, _ -> onEditViewers.invoke() }
+        .setNeutralButton(R.string.StoryDialogs__edit_viewers) { _, _ -> Toast.makeText(context, "New flow coming soon", Toast.LENGTH_SHORT).show() }
         .setNegativeButton(android.R.string.cancel) { _, _ -> onCancel.invoke() }
         .setCancelable(false)
         .show()

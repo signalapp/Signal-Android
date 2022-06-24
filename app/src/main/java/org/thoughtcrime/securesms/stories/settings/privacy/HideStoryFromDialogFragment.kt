@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.stories.settings.hide
+package org.thoughtcrime.securesms.stories.settings.privacy
 
 import android.os.Bundle
 import android.view.View
@@ -16,11 +16,7 @@ class HideStoryFromDialogFragment : DialogFragment(R.layout.fragment_container),
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    if (savedInstanceState == null) {
-      childFragmentManager.beginTransaction()
-        .replace(R.id.fragment_container, HideStoryFromFragment())
-        .commit()
-    }
+    // TODO [stories] replace with new bottom sheet
   }
 
   override fun exitFlow() {

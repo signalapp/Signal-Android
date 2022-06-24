@@ -5,8 +5,12 @@
     android:id="@+id/my_story_settings"
     app:startDestination="@id/myStorySettings">
     <fragment
-        android:id="@+id/hideStoryFromFragment"
-        android:name="org.thoughtcrime.securesms.stories.settings.hide.HideStoryFromFragment"
+        android:id="@+id/allExceptFragment"
+        android:name="org.thoughtcrime.securesms.stories.settings.privacy.AllExceptFragment"
+        android:label="hide_story_from_fragment" />
+    <fragment
+        android:id="@+id/onlyShareWithFragment"
+        android:name="org.thoughtcrime.securesms.stories.settings.privacy.OnlyShareWithFragment"
         android:label="hide_story_from_fragment" />
     <fragment
         android:id="@+id/myStorySettings"
@@ -16,8 +20,11 @@
             android:id="@+id/action_myStorySettings_to_signalConnectionsBottomSheet"
             app:destination="@id/signalConnectionsBottomSheet" />
         <action
-            android:id="@+id/action_myStorySettings_to_hideStoryFromFragment"
-            app:destination="@id/hideStoryFromFragment" />
+            android:id="@+id/action_myStorySettings_to_allExceptFragment"
+            app:destination="@id/allExceptFragment" />
+        <action
+            android:id="@+id/action_myStorySettings_to_onlyShareWithFragment"
+            app:destination="@id/onlyShareWithFragment" />
     </fragment>
     <dialog
         android:id="@+id/signalConnectionsBottomSheet"

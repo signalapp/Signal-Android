@@ -201,8 +201,9 @@ object SignalDatabaseMigrations {
   private const val GROUP_STORY_REPLY_CLEANUP = 145
   private const val REMOTE_MEGAPHONE = 146
   private const val QUOTE_INDEX = 147
+  private const val MY_STORY_PRIVACY_MODE = 148
 
-  const val DATABASE_VERSION = 147
+  const val DATABASE_VERSION = 148
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -2621,6 +2622,41 @@ object SignalDatabaseMigrations {
           CREATE INDEX IF NOT EXISTS mms_quote_id_quote_author_index ON mms (quote_id, quote_author)
         """
       )
+    }
+
+    if (oldVersion < MY_STORY_PRIVACY_MODE) {
+      db.execSQL("ALTER TABLE distribution_list ADD COLUMN privacy_mode INTEGER DEFAULT 0")
+      db.execSQL("UPDATE distribution_list SET privacy_mode = 1 WHERE _id = 1")
+
+      db.execSQL(
+        """
+          CREATE TABLE distribution_list_member_tmp (
+            _id INTEGER PRIMARY KEY AUTOINCREMENT,
+            list_id INTEGER NOT NULL REFERENCES distribution_list (_id) ON DELETE CASCADE,
+            recipient_id INTEGER NOT NULL REFERENCES recipient (_id),
+            privacy_mode INTEGER DEFAULT 0
+          )
+        """
+      )
+
+      db.execSQL(
+        """
+          INSERT INTO distribution_list_member_tmp
+          SELECT
+            _id,
+            list_id,
+            recipient_id,
+            0
+          FROM distribution_list_member
+        """
+      )
+
+      db.execSQL("DROP TABLE distribution_list_member")
+      db.execSQL("ALTER TABLE distribution_list_member_tmp RENAME TO distribution_list_member")
+
+      db.execSQL("UPDATE distribution_list_member SET privacy_mode = 1 WHERE list_id = 1")
+
+      db.execSQL("CREATE UNIQUE INDEX distribution_list_member_list_id_recipient_id_privacy_mode_index ON distribution_list_member (list_id, recipient_id, privacy_mode)")
     }
   }
 

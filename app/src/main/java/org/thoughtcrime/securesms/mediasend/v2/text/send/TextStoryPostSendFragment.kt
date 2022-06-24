@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
 import org.thoughtcrime.securesms.stories.settings.create.CreateStoryFlowDialogFragment
 import org.thoughtcrime.securesms.stories.settings.create.CreateStoryWithViewersFragment
-import org.thoughtcrime.securesms.stories.settings.hide.HideStoryFromDialogFragment
+import org.thoughtcrime.securesms.stories.settings.privacy.HideStoryFromDialogFragment
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.LifecycleDisposable

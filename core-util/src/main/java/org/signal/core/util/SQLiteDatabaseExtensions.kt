@@ -7,6 +7,23 @@ import androidx.core.content.contentValuesOf
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.sqlite.db.SupportSQLiteQueryBuilder
 
+/**
+ * Begins a transaction on the `this` database, runs the provided [block] providing the `this` value as it's argument
+ * within the transaction, and then ends the transaction successfully.
+ *
+ * @return The value returned by [block] if any
+ */
+fun <T : SupportSQLiteDatabase, R> T.withinTransaction(block: (T) -> R): R {
+  beginTransaction()
+  try {
+    val toReturn = block(this)
+    setTransactionSuccessful()
+    return toReturn
+  } finally {
+    endTransaction()
+  }
+}
+
 fun SupportSQLiteDatabase.getTableRowCount(table: String): Int {
   return this.query("SELECT COUNT(*) FROM $table").use {
     if (it.moveToFirst()) {
@@ -224,4 +241,3 @@ class DeleteBuilderPart2(
     return db.delete(tableName, where, whereArgs)
   }
 }
-

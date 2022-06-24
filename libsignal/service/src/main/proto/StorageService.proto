@@ -165,4 +165,5 @@ message StoryDistributionListRecord {
   repeated string recipientUuids     = 3;
            uint64 deletedAtTimestamp = 4;
            bool   allowsReplies      = 5;
+           bool   isBlockList        = 6;
 }

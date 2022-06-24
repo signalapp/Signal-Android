@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.keyvalue
 
+import org.signal.core.util.LongSerializer
 import kotlin.reflect.KProperty
 
 internal fun SignalStoreValues.longValue(key: String, default: Long): SignalStoreValueDelegate<Long> {
@@ -24,6 +25,10 @@ internal fun SignalStoreValues.floatValue(key: String, default: Float): SignalSt
 
 internal fun SignalStoreValues.blobValue(key: String, default: ByteArray): SignalStoreValueDelegate<ByteArray> {
   return BlobValue(key, default, this.store)
+}
+
+internal fun <T : Any?> SignalStoreValues.enumValue(key: String, default: T, serializer: LongSerializer<T>): SignalStoreValueDelegate<T> {
+  return KeyValueEnumValue(key, default, serializer, this.store)
 }
 
 /**
@@ -100,5 +105,19 @@ private class BlobValue(private val key: String, private val default: ByteArray,
 
   override fun setValue(values: KeyValueStore, value: ByteArray) {
     values.beginWrite().putBlob(key, value).apply()
+  }
+}
+
+private class KeyValueEnumValue<T>(private val key: String, private val default: T, private val serializer: LongSerializer<T>, store: KeyValueStore) : SignalStoreValueDelegate<T>(store) {
+  override fun getValue(values: KeyValueStore): T {
+    return if (values.containsKey(key)) {
+      serializer.deserialize(values.getLong(key, 0))
+    } else {
+      default
+    }
+  }
+
+  override fun setValue(values: KeyValueStore, value: T) {
+    values.beginWrite().putLong(key, serializer.serialize(value)).apply()
   }
 }

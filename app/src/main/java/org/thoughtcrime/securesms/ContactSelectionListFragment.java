@@ -70,6 +70,7 @@ import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.contacts.HeaderAction;
 import org.thoughtcrime.securesms.contacts.LetterHeaderDecoration;
 import org.thoughtcrime.securesms.contacts.SelectedContact;
+import org.thoughtcrime.securesms.contacts.selection.ContactSelectionArguments;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.groups.ui.GroupLimitDialog;
@@ -385,7 +386,8 @@ public final class ContactSelectionListFragment extends LoggingFragment
                                                                 null,
                                                                 new ListClickListener(),
                                                                 isMulti,
-                                                                currentSelection);
+                                                                currentSelection,
+                                                                safeArguments().getInt(ContactSelectionArguments.CHECKBOX_RESOURCE, R.drawable.contact_selection_checkbox));
 
     RecyclerViewConcatenateAdapterStickyHeader concatenateAdapter = new RecyclerViewConcatenateAdapterStickyHeader();
 

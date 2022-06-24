@@ -16,10 +16,10 @@ class PrivateStorySettingsRepository {
     }.subscribeOn(Schedulers.io())
   }
 
-  fun removeMember(distributionListId: DistributionListId, member: RecipientId): Completable {
+  fun removeMember(distributionListRecord: DistributionListRecord, member: RecipientId): Completable {
     return Completable.fromAction {
-      SignalDatabase.distributionLists.removeMemberFromList(distributionListId, member)
-      Stories.onStorySettingsChanged(distributionListId)
+      SignalDatabase.distributionLists.removeMemberFromList(distributionListRecord.id, distributionListRecord.privacyMode, member)
+      Stories.onStorySettingsChanged(distributionListRecord.id)
     }.subscribeOn(Schedulers.io())
   }
 
