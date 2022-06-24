@@ -19,7 +19,8 @@ data class StoryViewerArgs(
   val storyThumbBlur: BlurHash? = null,
   val recipientIds: List<RecipientId> = emptyList(),
   val isFromNotification: Boolean = false,
-  val groupReplyStartPosition: Int = -1
+  val groupReplyStartPosition: Int = -1,
+  val isUnviewedOnly: Boolean = false
 ) : Parcelable {
 
   class Builder(private val recipientId: RecipientId, private val isInHiddenStoryMode: Boolean) {
@@ -31,6 +32,7 @@ data class StoryViewerArgs(
     private var recipientIds: List<RecipientId> = emptyList()
     private var isFromNotification: Boolean = false
     private var groupReplyStartPosition: Int = -1
+    private var isUnviewedOnly: Boolean = false
 
     fun withStoryId(storyId: Long): Builder {
       this.storyId = storyId
@@ -67,6 +69,11 @@ data class StoryViewerArgs(
       return this
     }
 
+    fun isUnviewedOnly(isUnviewedOnly: Boolean): Builder {
+      this.isUnviewedOnly = isUnviewedOnly
+      return this
+    }
+
     fun build(): StoryViewerArgs {
       return StoryViewerArgs(
         recipientId = recipientId,
@@ -77,7 +84,8 @@ data class StoryViewerArgs(
         storyThumbBlur = storyThumbBlur,
         recipientIds = recipientIds,
         isFromNotification = isFromNotification,
-        groupReplyStartPosition = groupReplyStartPosition
+        groupReplyStartPosition = groupReplyStartPosition,
+        isUnviewedOnly = isUnviewedOnly
       )
     }
   }

@@ -34,8 +34,16 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     storyPager = view.findViewById(R.id.story_item_pager)
 
-    val adapter = StoryViewerPagerAdapter(this, storyViewerArgs.storyId, storyViewerArgs.isFromNotification, storyViewerArgs.groupReplyStartPosition)
+    val adapter = StoryViewerPagerAdapter(
+      this,
+      storyViewerArgs.storyId,
+      storyViewerArgs.isFromNotification,
+      storyViewerArgs.groupReplyStartPosition,
+      storyViewerArgs.isUnviewedOnly
+    )
+
     storyPager.adapter = adapter
+    storyPager.overScrollMode = ViewPager2.OVER_SCROLL_NEVER
 
     viewModel.isChildScrolling.observe(viewLifecycleOwner) {
       storyPager.isUserInputEnabled = !it

@@ -19,7 +19,7 @@ class RxStore<T : Any>(
   private val actionSubject = PublishSubject.create<(T) -> T>().toSerialized()
 
   val state: T get() = behaviorProcessor.value!!
-  val stateFlowable: Flowable<T> = behaviorProcessor
+  val stateFlowable: Flowable<T> = behaviorProcessor.onBackpressureLatest()
 
   init {
     actionSubject

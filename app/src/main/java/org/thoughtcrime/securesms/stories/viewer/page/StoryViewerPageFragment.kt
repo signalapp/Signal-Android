@@ -95,7 +95,7 @@ class StoryViewerPageFragment :
 
   private val viewModel: StoryViewerPageViewModel by viewModels(
     factoryProducer = {
-      StoryViewerPageViewModel.Factory(storyRecipientId, initialStoryId, StoryViewerPageRepository(requireContext()))
+      StoryViewerPageViewModel.Factory(storyRecipientId, initialStoryId, isUnviewedOnly, StoryViewerPageRepository(requireContext()))
     }
   )
 
@@ -119,6 +119,9 @@ class StoryViewerPageFragment :
 
   private val groupReplyStartPosition: Int
     get() = requireArguments().getInt(ARG_GROUP_REPLY_START_POSITION, -1)
+
+  private val isUnviewedOnly: Boolean
+    get() = requireArguments().getBoolean(ARG_IS_UNVIEWED_ONLY, false)
 
   @SuppressLint("ClickableViewAccessibility")
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -832,14 +835,16 @@ class StoryViewerPageFragment :
     private const val ARG_STORY_ID = "arg.story.id"
     private const val ARG_IS_FROM_NOTIFICATION = "is_from_notification"
     private const val ARG_GROUP_REPLY_START_POSITION = "group_reply_start_position"
+    private const val ARG_IS_UNVIEWED_ONLY = "is_unviewed_only"
 
-    fun create(recipientId: RecipientId, initialStoryId: Long, isFromNotification: Boolean, groupReplyStartPosition: Int): Fragment {
+    fun create(recipientId: RecipientId, initialStoryId: Long, isFromNotification: Boolean, groupReplyStartPosition: Int, isUnviewedOnly: Boolean): Fragment {
       return StoryViewerPageFragment().apply {
         arguments = Bundle().apply {
           putParcelable(ARG_STORY_RECIPIENT_ID, recipientId)
           putLong(ARG_STORY_ID, initialStoryId)
           putBoolean(ARG_IS_FROM_NOTIFICATION, isFromNotification)
           putInt(ARG_GROUP_REPLY_START_POSITION, groupReplyStartPosition)
+          putBoolean(ARG_IS_UNVIEWED_ONLY, isUnviewedOnly)
         }
       }
     }

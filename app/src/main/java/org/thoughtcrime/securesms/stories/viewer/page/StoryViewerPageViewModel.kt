@@ -24,6 +24,7 @@ import kotlin.math.min
 class StoryViewerPageViewModel(
   private val recipientId: RecipientId,
   private val initialStoryId: Long,
+  private val isUnviewedOnly: Boolean,
   private val repository: StoryViewerPageRepository
 ) : ViewModel() {
 
@@ -47,7 +48,7 @@ class StoryViewerPageViewModel(
 
   fun refresh() {
     disposables.clear()
-    disposables += repository.getStoryPostsFor(recipientId).subscribe { posts ->
+    disposables += repository.getStoryPostsFor(recipientId, isUnviewedOnly).subscribe { posts ->
       store.update { state ->
         var isDisplayingInitialState = false
         val startIndex = if (state.posts.isEmpty() && initialStoryId > 0) {
@@ -237,9 +238,14 @@ class StoryViewerPageViewModel(
     return store.state.posts.getOrNull(index)
   }
 
-  class Factory(private val recipientId: RecipientId, private val initialStoryId: Long, private val repository: StoryViewerPageRepository) : ViewModelProvider.Factory {
+  class Factory(
+    private val recipientId: RecipientId,
+    private val initialStoryId: Long,
+    private val isUnviewedOnly: Boolean,
+    private val repository: StoryViewerPageRepository
+  ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(StoryViewerPageViewModel(recipientId, initialStoryId, repository)) as T
+      return modelClass.cast(StoryViewerPageViewModel(recipientId, initialStoryId, isUnviewedOnly, repository)) as T
     }
   }
 }

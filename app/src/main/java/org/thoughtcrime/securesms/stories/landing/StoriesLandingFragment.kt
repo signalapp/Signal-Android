@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.permissions.Permissions
@@ -237,7 +238,8 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
                 storyThumbTextModel = text,
                 storyThumbUri = image,
                 storyThumbBlur = blur,
-                recipientIds = viewModel.getRecipientIds(model.data.isHidden)
+                recipientIds = viewModel.getRecipientIds(model.data.isHidden, model.data.storyViewState == StoryViewState.UNVIEWED),
+                isUnviewedOnly = model.data.storyViewState == StoryViewState.UNVIEWED
               )
             ),
             options.toBundle()

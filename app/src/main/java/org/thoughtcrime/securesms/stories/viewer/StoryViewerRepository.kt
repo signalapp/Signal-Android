@@ -4,6 +4,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
+import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 
@@ -11,7 +12,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
  * Open for testing
  */
 open class StoryViewerRepository {
-  fun getStories(hiddenStories: Boolean): Single<List<RecipientId>> {
+  fun getStories(hiddenStories: Boolean, unviewedOnly: Boolean): Single<List<RecipientId>> {
     return Single.create<List<RecipientId>> { emitter ->
       val myStoriesId = SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.MY_STORY)
       val myStories = Recipient.resolved(myStoriesId)
@@ -27,6 +28,16 @@ open class StoryViewerRepository {
           it.shouldHideStory()
         } else {
           !it.shouldHideStory()
+        }
+      }.filter {
+        if (unviewedOnly) {
+          if (it.isSelf || it.isMyStory) {
+            false
+          } else {
+            SignalDatabase.mms.getStoryViewState(it.id) == StoryViewState.UNVIEWED
+          }
+        } else {
+          true
         }
       }.map { it.id }
 

@@ -70,7 +70,10 @@ class StoryViewerViewModel(
     return if (storyViewerArgs.recipientIds.isNotEmpty()) {
       Single.just(storyViewerArgs.recipientIds)
     } else {
-      repository.getStories(storyViewerArgs.isInHiddenStoryMode)
+      repository.getStories(
+        hiddenStories = storyViewerArgs.isInHiddenStoryMode,
+        unviewedOnly = storyViewerArgs.isUnviewedOnly
+      )
     }
   }
 
