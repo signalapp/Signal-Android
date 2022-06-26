@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/contact_selection_item_height"
+    android:paddingStart="@dimen/dsl_settings_gutter"
+    android:paddingEnd="@dimen/dsl_settings_gutter"
+    android:layout_marginBottom="3dp"
+    android:background="@drawable/rounded_rectangle">
+
+    <org.thoughtcrime.securesms.components.AvatarImageView
+        android:id="@+id/conversation_list_item_avatar"
+        android:layout_width="@dimen/conversation_list_avatar_size"
+        android:layout_height="@dimen/conversation_list_avatar_size"
+        android:layout_marginTop="4dp"
+        android:contentDescription="@string/conversation_list_item_view__contact_photo_image"
+        android:foreground="@drawable/contact_photo_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_contact_picture" />
+
+
+    <org.thoughtcrime.securesms.components.FromTextView
+        android:id="@+id/conversation_list_item_name"
+        style="@style/Signal.Text.BodyLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:drawablePadding="5dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/signal_colorOnSurface"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/conversation_list_item_avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constrainedWidth="true"
+        tools:text="Long Chat name for overflow testing purposes" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

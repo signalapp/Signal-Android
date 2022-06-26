@@ -19,7 +19,9 @@ import org.thoughtcrime.securesms.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
+import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.ui.creategroup.details.AddGroupDetailsActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -166,9 +168,17 @@ public class CreateGroupActivity extends ContactSelectionActivity {
 
       return ids;
     }, recipientIds -> {
+      List<GroupDatabase.GroupRecord> existingGroups = SignalDatabase.groups().getGroupsWithMembers(recipientIds);
+      stopwatch.split("group-search");
+
       dismissibleDialog.dismiss();
       stopwatch.stop(TAG);
-      startActivityForResult(AddGroupDetailsActivity.newIntent(this, recipientIds), REQUEST_CODE_ADD_DETAILS);
+      if (existingGroups.isEmpty()) {
+        startActivityForResult(AddGroupDetailsActivity.newIntent(this, recipientIds), REQUEST_CODE_ADD_DETAILS);
+      } else {
+        ExistingGroupChooserDialog existingGroupChooserDialog = new ExistingGroupChooserDialog(existingGroups, recipientIds);
+        existingGroupChooserDialog.show(getSupportFragmentManager(), "ExistingGroupChooserFragment");
+      }
     });
   }
 }

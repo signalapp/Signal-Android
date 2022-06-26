@@ -483,6 +483,29 @@ public class GroupDatabase extends Database implements RecipientIdDatabaseRefere
     return groups;
   }
 
+  @WorkerThread
+  public @NonNull List<GroupRecord> getGroupsWithMembers(@NonNull List<RecipientId> recipientId) {
+    List<RecipientId> recipientListCopy = new ArrayList<>(recipientId);
+    recipientListCopy.add(Recipient.self().getId());
+    Collections.sort(recipientListCopy);
+
+    SQLiteDatabase database   = databaseHelper.getSignalReadableDatabase();
+    String         table      = TABLE_NAME + " INNER JOIN " + ThreadDatabase.TABLE_NAME + " ON " + TABLE_NAME + "." + RECIPIENT_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID;
+    String         query      = MEMBERS + " = ? AND " + ACTIVE + " = 1";
+    String[]       args       = SqlUtil.buildArgs(RecipientId.toSerializedList(recipientListCopy));
+    String         orderBy    = ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.DATE + " DESC";
+
+    List<GroupRecord> groups = new LinkedList<>();
+
+    try (Cursor cursor = database.query(table, null, query, args, null, null, orderBy)) {
+      while (cursor != null && cursor.moveToNext()) {
+        groups.add(new Reader(cursor).getCurrent());
+      }
+    }
+
+    return groups;
+  }
+
   public Reader getGroups() {
     @SuppressLint("Recycle")
     Cursor cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, null, null, null, null, null);

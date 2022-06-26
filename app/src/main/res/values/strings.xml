@@ -5338,6 +5338,8 @@
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">Next</string>
 
+    <string name="ChooseExistingGroup__choose">Reuse an existing group?</string>
+
     <!-- EOF -->
 
 </resources>
