@@ -1409,12 +1409,12 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       URLSpan[] urlSpans = messageBody.getSpans(0, messageBody.length(), URLSpan.class);
 
       for (URLSpan urlSpan : urlSpans) {
-        int     start = messageBody.getSpanStart(urlSpan);
-        int     end   = messageBody.getSpanEnd(urlSpan);
+        int start = messageBody.getSpanStart(urlSpan);
+        int end   = messageBody.getSpanEnd(urlSpan);
 
         Matcher matcher = NOT_URL_PATTERN.matcher(messageBody.toString().substring(end));
         if (matcher.find()) {
-          int newEnd = end + matcher.start();
+          int     newEnd  = end + matcher.start();
           URLSpan newSpan = new URLSpan(messageBody.toString().substring(start, newEnd));
           messageBody.removeSpan(urlSpan);
           messageBody.setSpan(newSpan, start, newEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
