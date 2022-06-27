@@ -390,27 +390,27 @@ class StoryViewerPageFragment :
         resumeProgress()
       }
 
-      val wasDisplayingNavigationView = isFirstTimeNavVisible()
+      val wasDisplayingNavigationView = storyFirstTimeNavigationViewStub.isVisible()
 
       when {
         state.hideChromeImmediate -> {
           hideChromeImmediate()
           storyCaptionContainer.visible = false
-          storyFirstTimeNavigationViewStub.takeIf { it.resolved() }?.get()?.hide()
+          storyFirstTimeNavigationViewStub.hide()
         }
         state.hideChrome -> {
           hideChrome()
           storyCaptionContainer.visible = true
-          storyFirstTimeNavigationViewStub.get().show()
+          storyFirstTimeNavigationViewStub.showIfAble(!SignalStore.storyValues().userHasSeenFirstNavView)
         }
         else -> {
           showChrome()
           storyCaptionContainer.visible = true
-          storyFirstTimeNavigationViewStub.get().show()
+          storyFirstTimeNavigationViewStub.showIfAble(!SignalStore.storyValues().userHasSeenFirstNavView)
         }
       }
 
-      val isDisplayingNavigationView = isFirstTimeNavVisible()
+      val isDisplayingNavigationView = storyFirstTimeNavigationViewStub.isVisible()
       if (isDisplayingNavigationView && Build.VERSION.SDK_INT >= 31) {
         hideChromeImmediate()
         storyContentContainer.setRenderEffect(RenderEffect.createBlurEffect(100f, 100f, Shader.TileMode.CLAMP))
@@ -419,7 +419,7 @@ class StoryViewerPageFragment :
       }
 
       if (wasDisplayingNavigationView xor isDisplayingNavigationView) {
-        viewModel.setIsDisplayingFirstTimeNavigation(isFirstTimeNavVisible())
+        viewModel.setIsDisplayingFirstTimeNavigation(storyFirstTimeNavigationViewStub.isVisible())
       }
     }
 
@@ -471,10 +471,6 @@ class StoryViewerPageFragment :
 
   override fun onDismissForwardSheet() {
     viewModel.setIsDisplayingForwardDialog(false)
-  }
-
-  private fun isFirstTimeNavVisible(): Boolean {
-    return storyFirstTimeNavigationViewStub.takeIf { it.resolved() }?.get()?.isVisible ?: false
   }
 
   private fun calculateDurationForText(textContent: StoryPost.Content.TextContent): Long {

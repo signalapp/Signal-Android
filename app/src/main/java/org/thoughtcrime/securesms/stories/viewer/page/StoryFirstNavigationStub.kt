@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.stories.viewer.page
 
 import android.view.ViewStub
+import androidx.core.view.isVisible
 import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.stories.StoryFirstTimeNavigationView
 import org.thoughtcrime.securesms.util.views.Stub
@@ -26,6 +27,22 @@ class StoryFirstNavigationStub(viewStub: ViewStub) : Stub<StoryFirstTimeNavigati
       get().setBlurHash(blurHash)
     } else {
       this.blurHash = blurHash
+    }
+  }
+
+  fun showIfAble(ableToShow: Boolean) {
+    if (ableToShow) {
+      get().show()
+    }
+  }
+
+  fun isVisible(): Boolean {
+    return resolved() && get().isVisible
+  }
+
+  fun hide() {
+    if (resolved()) {
+      get().hide()
     }
   }
 
