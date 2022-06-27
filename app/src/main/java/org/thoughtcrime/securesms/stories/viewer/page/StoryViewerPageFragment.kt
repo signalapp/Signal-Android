@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.stories.viewer.page
 
+import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
@@ -7,6 +8,7 @@ import android.content.Context
 import android.graphics.RenderEffect
 import android.graphics.Shader
 import android.graphics.drawable.Drawable
+import android.media.AudioManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -54,9 +56,11 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.StoryFirstTimeNavigationView
 import org.thoughtcrime.securesms.stories.StorySlateView
+import org.thoughtcrime.securesms.stories.StoryVolumeOverlayView
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerState
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerViewModel
+import org.thoughtcrime.securesms.stories.viewer.StoryVolumeViewModel
 import org.thoughtcrime.securesms.stories.viewer.reply.StoriesSharedElementCrossFaderView
 import org.thoughtcrime.securesms.stories.viewer.reply.direct.StoryDirectReplyDialogFragment
 import org.thoughtcrime.securesms.stories.viewer.reply.group.StoryGroupReplyBottomSheetDialogFragment
@@ -67,7 +71,9 @@ import org.thoughtcrime.securesms.stories.viewer.views.StoryViewsBottomSheetDial
 import org.thoughtcrime.securesms.util.AvatarUtil
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout
@@ -87,6 +93,8 @@ class StoryViewerPageFragment :
   StoriesSharedElementCrossFaderView.Callback,
   StoryFirstTimeNavigationView.Callback {
 
+  private val activityViewModel: StoryVolumeViewModel by viewModels(ownerProducer = { requireActivity() })
+
   private lateinit var progressBar: SegmentedProgressBar
   private lateinit var storySlate: StorySlateView
   private lateinit var viewsAndReplies: MaterialButton
@@ -100,6 +108,10 @@ class StoryViewerPageFragment :
 
   private lateinit var chrome: List<View>
   private var animatorSet: AnimatorSet? = null
+
+  private var volumeInAnimator: Animator? = null
+  private var volumeOutAnimator: Animator? = null
+  private var volumeDebouncer: Debouncer = Debouncer(3, TimeUnit.SECONDS)
 
   private val viewModel: StoryViewerPageViewModel by viewModels(
     factoryProducer = {
@@ -135,6 +147,12 @@ class StoryViewerPageFragment :
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     callback = requireListener()
 
+    if (activityViewModel.snapshot.isMuted) {
+      videoControlsDelegate.mute()
+    } else {
+      videoControlsDelegate.unmute()
+    }
+
     val closeView: View = view.findViewById(R.id.close)
     val senderAvatar: AvatarImageView = view.findViewById(R.id.sender_avatar)
     val groupAvatar: AvatarImageView = view.findViewById(R.id.group_avatar)
@@ -150,6 +168,7 @@ class StoryViewerPageFragment :
     val reactionAnimationView: OnReactionSentView = view.findViewById(R.id.on_reaction_sent_view)
     val storyGradientTop: View = view.findViewById(R.id.story_gradient_top)
     val storyGradientBottom: View = view.findViewById(R.id.story_gradient_bottom)
+    val storyVolumeOverlayView: StoryVolumeOverlayView = view.findViewById(R.id.story_volume_overlay)
 
     blurContainer = view.findViewById(R.id.story_blur_container)
     storyContentContainer = view.findViewById(R.id.story_content_container)
@@ -265,6 +284,29 @@ class StoryViewerPageFragment :
 
     sharedViewModel.isScrolling.observe(viewLifecycleOwner) { isScrolling ->
       viewModel.setIsUserScrollingParent(isScrolling)
+    }
+
+    lifecycleDisposable += activityViewModel.state.distinctUntilChanged().observeOn(AndroidSchedulers.mainThread()).subscribe { volumeState ->
+      if (volumeState.isMuted) {
+        videoControlsDelegate.mute()
+        return@subscribe
+      }
+
+      if (!viewModel.hasPost() || !viewModel.getPost().content.isVideo() || volumeState.level < 0) {
+        return@subscribe
+      }
+
+      if (!volumeState.isMuted) {
+        videoControlsDelegate.unmute()
+      }
+
+      val audioManager = ServiceUtil.getAudioManager(requireContext())
+      if (audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) != volumeState.level) {
+        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volumeState.level, 0)
+        storyVolumeOverlayView.setVolumeLevel(volumeState.level)
+        storyVolumeOverlayView.setVideoHaNoAudio(!videoControlsDelegate.hasAudioStream())
+        displayStoryVolumeOverlayForTimeout(storyVolumeOverlayView)
+      }
     }
 
     lifecycleDisposable += sharedViewModel.state.distinctUntilChanged().observeOn(AndroidSchedulers.mainThread()).subscribe { parentState ->
@@ -421,6 +463,8 @@ class StoryViewerPageFragment :
         it.cleanUp()
       }
     }
+
+    volumeDebouncer.clear()
   }
 
   override fun onFinishForwardAction() = Unit
@@ -452,6 +496,26 @@ class StoryViewerPageFragment :
       max(MIN_GIF_PLAYBACK_DURATION, timeToPlayMinLoops)
     } else {
       min(playerState.duration, MAX_VIDEO_PLAYBACK_DURATION)
+    }
+  }
+
+  private fun displayStoryVolumeOverlayForTimeout(view: View) {
+    if (volumeInAnimator?.isRunning != true) {
+      volumeOutAnimator?.cancel()
+      volumeInAnimator = ObjectAnimator.ofFloat(view, View.ALPHA, 1f).apply {
+        duration = 200
+        start()
+      }
+    }
+
+    volumeDebouncer.publish {
+      if (volumeOutAnimator?.isRunning != true) {
+        volumeInAnimator?.cancel()
+        volumeOutAnimator = ObjectAnimator.ofFloat(view, View.ALPHA, 0f).apply {
+          duration = 200
+          start()
+        }
+      }
     }
   }
 

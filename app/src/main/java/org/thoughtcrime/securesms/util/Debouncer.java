@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.util;
 import android.os.Handler;
 import android.os.Looper;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * A class that will throttle the number of runnables executed to be at most once every specified
  * interval. However, it could be longer if events are published consistently.
@@ -16,6 +18,10 @@ public class Debouncer {
 
   private final Handler handler;
   private final long    threshold;
+
+  public Debouncer(long threshold, TimeUnit timeUnit) {
+    this(timeUnit.toMillis(threshold));
+  }
 
   /**
    * @param threshold Only one runnable will be executed via {@link #publish(Runnable)} every

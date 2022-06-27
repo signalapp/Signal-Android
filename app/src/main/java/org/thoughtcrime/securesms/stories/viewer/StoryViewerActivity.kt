@@ -2,16 +2,25 @@ package org.thoughtcrime.securesms.stories.viewer
 
 import android.content.Context
 import android.content.Intent
+import android.media.AudioManager
 import android.os.Build
 import android.os.Bundle
+import android.view.KeyEvent
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.media.AudioManagerCompat
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
+import org.thoughtcrime.securesms.util.ServiceUtil
+import kotlin.math.max
+import kotlin.math.min
 
 class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner {
+
+  private val viewModel: StoryVolumeViewModel by viewModels()
 
   override lateinit var voiceNoteMediaController: VoiceNoteMediaController
 
@@ -21,6 +30,8 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
   }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    StoryMutePolicy.initialize()
+
     supportPostponeEnterTransition()
 
     super.onCreate(savedInstanceState, ready)
@@ -30,6 +41,15 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
 
     if (savedInstanceState == null) {
       replaceStoryViewerFragment()
+    }
+  }
+
+  override fun onResume() {
+    super.onResume()
+    if (StoryMutePolicy.isContentMuted) {
+      viewModel.mute()
+    } else {
+      viewModel.unmute()
     }
   }
 
@@ -52,6 +72,25 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
         StoryViewerFragment.create(intent.getParcelableExtra(ARGS)!!)
       )
       .commit()
+  }
+
+  override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+    val audioManager = ServiceUtil.getAudioManager(this)
+    when (keyCode) {
+      KeyEvent.KEYCODE_VOLUME_UP -> {
+        val maxVolume = AudioManagerCompat.getStreamMaxVolume(audioManager, AudioManager.STREAM_MUSIC)
+        StoryMutePolicy.isContentMuted = false
+        viewModel.onVolumeUp(min(maxVolume, audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) + 1))
+        return true
+      }
+      KeyEvent.KEYCODE_VOLUME_DOWN -> {
+        val minVolume = AudioManagerCompat.getStreamMinVolume(audioManager, AudioManager.STREAM_MUSIC)
+        viewModel.onVolumeDown(max(minVolume, audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) - 1))
+        return true
+      }
+    }
+
+    return super.onKeyDown(keyCode, event)
   }
 
   companion object {

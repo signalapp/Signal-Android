@@ -68,6 +68,14 @@
                 android:layout_height="match_parent" />
 
         </androidx.cardview.widget.CardView>
+
+        <org.thoughtcrime.securesms.stories.StoryVolumeOverlayView
+            android:id="@+id/story_volume_overlay"
+            android:alpha="0"
+            android:layout_gravity="center_vertical|end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
     </org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout>
 
     <com.google.android.material.button.MaterialButton
