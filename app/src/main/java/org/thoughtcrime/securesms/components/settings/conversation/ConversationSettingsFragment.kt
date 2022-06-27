@@ -235,7 +235,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         }
 
         state.withRecipientSettingsState {
-          toolbarTitle.text = state.recipient.getDisplayName(requireContext())
+          toolbarTitle.text = if (state.recipient.isSelf) getString(R.string.note_to_self) else state.recipient.getDisplayName(requireContext())
         }
 
         state.withGroupSettingsState {

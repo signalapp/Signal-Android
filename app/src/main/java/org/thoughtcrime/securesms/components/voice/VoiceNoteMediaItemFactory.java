@@ -175,7 +175,8 @@ class VoiceNoteMediaItemFactory {
                                sender.getDisplayName(context),
                                threadRecipient.getDisplayName(context));
     } else if (preference.isDisplayContact()) {
-      return sender.getDisplayName(context);
+      return sender.isSelf() ? context.getString(R.string.note_to_self)
+                             : sender.getDisplayName(context);
     } else {
       return context.getString(R.string.MessageNotifier_signal_message);
     }
