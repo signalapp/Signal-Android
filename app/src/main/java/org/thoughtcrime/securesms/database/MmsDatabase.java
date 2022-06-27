@@ -645,11 +645,12 @@ public class MmsDatabase extends MessageDatabase {
 
   @Override
   public @NonNull MessageDatabase.Reader getUnreadStories(@NonNull RecipientId recipientId, int limit) {
-    final String query   = IS_STORY_CLAUSE +
-                           " AND NOT (" + getOutgoingTypeClause() + ") " +
-                           " AND " + RECIPIENT_ID + " = ?" +
-                           " AND " + VIEWED_RECEIPT_COUNT + " = ?";
-    final String[] args  = SqlUtil.buildArgs(recipientId, 0);
+    final long   threadId = SignalDatabase.threads().getThreadIdIfExistsFor(recipientId);
+    final String query    = IS_STORY_CLAUSE +
+                            " AND NOT (" + getOutgoingTypeClause() + ") " +
+                            " AND " + THREAD_ID_WHERE +
+                            " AND " + VIEWED_RECEIPT_COUNT + " = ?";
+    final String[] args   = SqlUtil.buildArgs(threadId, 0);
 
     return new Reader(rawQuery(query, args, false, limit));
   }
