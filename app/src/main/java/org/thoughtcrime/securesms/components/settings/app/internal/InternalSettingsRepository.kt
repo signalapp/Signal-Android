@@ -43,9 +43,9 @@ class InternalSettingsRepository(context: Context) {
         body = body,
         threadId = threadId,
         messageRanges = bodyRangeList.build(),
-        image = "https://via.placeholder.com/720x480",
-        imageWidth = 720,
-        imageHeight = 480
+        image = "/static/release-notes/signal.png",
+        imageWidth = 1800,
+        imageHeight = 720
       )
 
       SignalDatabase.sms.insertBoostRequestMessage(recipientId, threadId)

@@ -76,7 +76,6 @@ public final class ConversationUpdateItem extends FrameLayout
 
   private TextView                  body;
   private MaterialButton            actionButton;
-  private Stub<CardView>            donateButtonStub;
   private View                      background;
   private ConversationMessage       conversationMessage;
   private Recipient                 conversationRecipient;
@@ -105,10 +104,9 @@ public final class ConversationUpdateItem extends FrameLayout
   @Override
   public void onFinishInflate() {
     super.onFinishInflate();
-    this.body             = findViewById(R.id.conversation_update_body);
-    this.actionButton     = findViewById(R.id.conversation_update_action);
-    this.donateButtonStub = ViewUtil.findStubById(this, R.id.conversation_update_donate_action);
-    this.background       = findViewById(R.id.conversation_update_background);
+    this.body         = findViewById(R.id.conversation_update_body);
+    this.actionButton = findViewById(R.id.conversation_update_action);
+    this.background   = findViewById(R.id.conversation_update_background);
 
     body.setOnClickListener(v -> performClick());
     body.setOnLongClickListener(v -> performLongClick());
@@ -190,7 +188,7 @@ public final class ConversationUpdateItem extends FrameLayout
                       shouldCollapse(messageRecord, nextMessageRecord),
                       hasWallpaper);
 
-    presentActionButton(hasWallpaper);
+    presentActionButton(hasWallpaper, conversationMessage.getMessageRecord().isBoostRequest());
 
     updateSelectedState();
   }
@@ -532,37 +530,24 @@ public final class ConversationUpdateItem extends FrameLayout
           eventListener.onBlockJoinRequest(conversationMessage.getMessageRecord().getIndividualRecipient());
         }
       });
-    } else {
-      actionButton.setVisibility(GONE);
-      actionButton.setOnClickListener(null);
-    }
-
-    if (conversationMessage.getMessageRecord().isBoostRequest()) {
-      actionButton.setVisibility(GONE);
-
-      CardView donateButton = donateButtonStub.get();
-      TextView buttonText   = donateButton.findViewById(R.id.conversation_update_donate_action_button);
-      boolean  isSustainer  = SignalStore.donationsValues().isLikelyASustainer();
-
-      donateButton.setVisibility(VISIBLE);
-      donateButton.setOnClickListener(v -> {
+    } else if (conversationMessage.getMessageRecord().isBoostRequest()) {
+      actionButton.setVisibility(VISIBLE);
+      actionButton.setOnClickListener(v -> {
         if (batchSelected.isEmpty() && eventListener != null) {
           eventListener.onDonateClicked();
         }
       });
 
-      if (isSustainer) {
-        buttonText.setText(R.string.ConversationUpdateItem_signal_boost);
-        buttonText.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_boost_outline_16, 0, 0, 0);
+      if (SignalStore.donationsValues().isLikelyASustainer()) {
+        actionButton.setText(R.string.ConversationUpdateItem_signal_boost);
+        actionButton.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_boost_outline_16, 0, 0, 0);
       } else {
-        buttonText.setText(R.string.ConversationUpdateItem_become_a_sustainer);
-        buttonText.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
+        actionButton.setText(R.string.ConversationUpdateItem_become_a_sustainer);
+        actionButton.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
       }
-
-      AutoRounder.autoSetCorners(donateButton, donateButton::setRadius);
-
-    } else if (donateButtonStub.resolved()) {
-      donateButtonStub.get().setVisibility(GONE);
+    } else {
+      actionButton.setVisibility(GONE);
+      actionButton.setOnClickListener(null);
     }
   }
 
@@ -642,8 +627,11 @@ public final class ConversationUpdateItem extends FrameLayout
     }
   }
 
-  private void presentActionButton(boolean hasWallpaper) {
-    if (hasWallpaper) {
+  private void presentActionButton(boolean hasWallpaper, boolean isBoostRequest) {
+    if (isBoostRequest) {
+      actionButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.signal_colorSecondaryContainer)));
+      actionButton.setTextColor(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.signal_colorOnSecondaryContainer)));
+    } else if (hasWallpaper) {
       actionButton.setBackgroundTintList(AppCompatResources.getColorStateList(getContext(), R.color.conversation_update_item_button_background_wallpaper));
       actionButton.setTextColor(AppCompatResources.getColorStateList(getContext(), R.color.conversation_update_item_button_text_color_wallpaper));
     } else {

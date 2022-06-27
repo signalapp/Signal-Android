@@ -42,14 +42,6 @@
             tools:text="Learn more"
             tools:visibility="visible" />
 
-        <ViewStub
-            android:id="@+id/conversation_update_donate_action"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="4dp"
-            android:layout="@layout/conversation_item_update_donate" />
-
     </LinearLayout>
 
 </org.thoughtcrime.securesms.conversation.ConversationUpdateItem>
