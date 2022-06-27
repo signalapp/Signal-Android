@@ -54,6 +54,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.DimenRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.core.text.util.LinkifyCompat;
@@ -1444,6 +1445,29 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private void linkifyMessageBody(@NonNull Spannable messageBody,
                                   boolean shouldLinkifyAllLinks)
   {
+    linkifyUrlLinks(messageBody, shouldLinkifyAllLinks, urlClickListener);
+
+    if (conversationMessage.hasStyleLinks()) {
+      for (PlaceholderURLSpan placeholder : messageBody.getSpans(0, messageBody.length(), PlaceholderURLSpan.class)) {
+        int     start = messageBody.getSpanStart(placeholder);
+        int     end   = messageBody.getSpanEnd(placeholder);
+        URLSpan span  = new InterceptableLongClickCopyLinkSpan(placeholder.getValue(),
+                                                               urlClickListener,
+                                                               ContextCompat.getColor(getContext(), R.color.signal_accent_primary),
+                                                               false);
+
+        messageBody.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+      }
+    }
+
+    List<Annotation> mentionAnnotations = MentionAnnotation.getMentionAnnotations(messageBody);
+    for (Annotation annotation : mentionAnnotations) {
+      messageBody.setSpan(new MentionClickableSpan(RecipientId.from(annotation.getValue())), messageBody.getSpanStart(annotation), messageBody.getSpanEnd(annotation), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+    }
+  }
+
+  @VisibleForTesting
+  static void linkifyUrlLinks(@NonNull Spannable messageBody, boolean shouldLinkifyAllLinks, @NonNull UrlClickHandler urlClickHandler) {
     int     linkPattern = Linkify.WEB_URLS | Linkify.EMAIL_ADDRESSES | Linkify.PHONE_NUMBERS;
     boolean hasLinks    = LinkifyCompat.addLinks(messageBody, shouldLinkifyAllLinks ? linkPattern : 0);
 
@@ -1471,27 +1495,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       for (URLSpan urlSpan : urlSpans) {
         int     start = messageBody.getSpanStart(urlSpan);
         int     end   = messageBody.getSpanEnd(urlSpan);
-        URLSpan span  = new InterceptableLongClickCopyLinkSpan(urlSpan.getURL(), urlClickListener);
+        URLSpan span  = new InterceptableLongClickCopyLinkSpan(urlSpan.getURL(), urlClickHandler);
         messageBody.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
       }
-    }
-
-    if (conversationMessage.hasStyleLinks()) {
-      for (PlaceholderURLSpan placeholder : messageBody.getSpans(0, messageBody.length(), PlaceholderURLSpan.class)) {
-        int     start = messageBody.getSpanStart(placeholder);
-        int     end   = messageBody.getSpanEnd(placeholder);
-        URLSpan span  = new InterceptableLongClickCopyLinkSpan(placeholder.getValue(),
-                                                               urlClickListener,
-                                                               ContextCompat.getColor(getContext(), R.color.signal_accent_primary),
-                                                               false);
-
-        messageBody.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-      }
-    }
-
-    List<Annotation> mentionAnnotations = MentionAnnotation.getMentionAnnotations(messageBody);
-    for (Annotation annotation : mentionAnnotations) {
-      messageBody.setSpan(new MentionClickableSpan(RecipientId.from(annotation.getValue())), messageBody.getSpanStart(annotation), messageBody.getSpanEnd(annotation), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
   }
 
