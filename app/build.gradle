@@ -434,8 +434,6 @@ dependencies {
     implementation libs.conscrypt.android
     implementation libs.signal.aesgcmprovider
 
-    implementation libs.audioswitch
-
     implementation project(':libsignal-service')
     implementation project(':paging')
     implementation project(':core-util')
