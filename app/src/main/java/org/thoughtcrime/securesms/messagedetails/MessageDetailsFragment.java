@@ -77,18 +77,6 @@ public final class MessageDetailsFragment extends FullScreenDialogFragment {
   }
 
   @Override
-  public void onResume() {
-    super.onResume();
-    adapter.resumeMessageExpirationTimer();
-  }
-
-  @Override
-  public void onPause() {
-    super.onPause();
-    adapter.pauseMessageExpirationTimer();
-  }
-
-  @Override
   public void onDismiss(@NonNull DialogInterface dialog) {
     super.onDismiss(dialog);
 
@@ -104,7 +92,7 @@ public final class MessageDetailsFragment extends FullScreenDialogFragment {
     View          toolbarShadow = view.findViewById(R.id.toolbar_shadow);
 
     colorizer             = new Colorizer();
-    adapter               = new MessageDetailsAdapter(this, glideRequests, colorizer, this::onErrorClicked);
+    adapter               = new MessageDetailsAdapter(getViewLifecycleOwner(), glideRequests, colorizer, this::onErrorClicked);
     recyclerViewColorizer = new RecyclerViewColorizer(list);
 
     list.setAdapter(adapter);
