@@ -4823,6 +4823,7 @@
 
     <!-- Duration and price information -->
     <plurals name="GiftRowItem_s_dot_d_day_duration">
+        <item quantity="one">%1$s · %2$d day duration</item>
         <item quantity="other">%1$s · %2$d day duration</item>
     </plurals>
     <!-- Tagline for gift row items -->
