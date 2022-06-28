@@ -35,7 +35,6 @@ import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.mms.Slide
-import org.thoughtcrime.securesms.mms.VideoSlide
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
@@ -299,7 +298,7 @@ class MediaSelectionRepository(context: Context) {
               OutgoingMediaMessage(
                 recipient,
                 body,
-                listOf(VideoSlide(context, it.uri, it.size, it.isVideoGif, it.width, it.height, it.caption.orElse(null), it.transformProperties.orElse(null)).asAttachment()),
+                listOf(MediaUploadRepository.asAttachment(context, it)),
                 if (recipient.isDistributionList) distributionListStoryClipsSentTimestamps.getOrPut(it) { System.currentTimeMillis() } else System.currentTimeMillis(),
                 -1,
                 TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong()),
@@ -337,15 +336,14 @@ class MediaSelectionRepository(context: Context) {
       MessageSender.sendMediaBroadcast(
         context,
         nonStoryMessages,
-        preUploadResults,
-        Collections.emptyList()
+        preUploadResults
       )
     }
 
     if (storyPreUploadMessages.isNotEmpty()) {
       Log.d(TAG, "Sending ${storyPreUploadMessages.size} preload messages to stories")
       storyPreUploadMessages.forEach { (preUploadResult, messages) ->
-        MessageSender.sendMediaBroadcast(context, messages, Collections.singleton(preUploadResult), Collections.emptyList())
+        MessageSender.sendMediaBroadcast(context, messages, Collections.singleton(preUploadResult))
       }
     }
 

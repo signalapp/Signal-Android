@@ -81,4 +81,22 @@ public class OutgoingSecureMediaMessage extends OutgoingMediaMessage {
                                           getMentions(),
                                           getGiftBadge());
   }
+
+  public @NonNull OutgoingSecureMediaMessage stripAttachments() {
+    return new OutgoingSecureMediaMessage(getRecipient(),
+                                          getBody(),
+                                          Collections.emptyList(),
+                                          getSentTimeMillis(),
+                                          getDistributionType(),
+                                          getExpiresIn(),
+                                          isViewOnce(),
+                                          getStoryType(),
+                                          getParentStoryId(),
+                                          isStoryReaction(),
+                                          getOutgoingQuote(),
+                                          Collections.emptyList(),
+                                          Collections.emptyList(),
+                                          getMentions(),
+                                          getGiftBadge());
+  }
 }

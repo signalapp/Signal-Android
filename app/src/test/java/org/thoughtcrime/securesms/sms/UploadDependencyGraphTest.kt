@@ -180,6 +180,26 @@ class UploadDependencyGraphTest {
     }
   }
 
+  @Test
+  fun `Given a list of attachments of the same uri with different transform props, when I consumeDeferredQueue, then I expect two chains`() {
+    val uriAttachments = (0..1).map {
+      UriAttachmentBuilder.build(
+        1L,
+        contentType = MediaUtil.IMAGE_JPEG,
+        transformProperties = AttachmentDatabase.TransformProperties.forVideoTrim(it.toLong(), it.toLong() + 1)
+      )
+    }
+
+    val message = OutgoingMediaMessageBuilder.create(attachments = uriAttachments)
+    val testSubject = UploadDependencyGraph.create(listOf(message), jobManager) { getAttachmentForPreUpload(uniqueLong.getAndIncrement(), it) }
+    val result = testSubject.consumeDeferredQueue()
+
+    assertEquals(2, result.size)
+    result.forEach {
+      assertValidJobChain(it, 0)
+    }
+  }
+
   private fun assertValidJobChain(chain: JobManager.Chain, expectedCopyDestinationCount: Int) {
     val steps: List<List<Job>> = chain.jobListChain
 
