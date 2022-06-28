@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.StringRes;
 import androidx.annotation.VisibleForTesting;
+import androidx.core.content.ContextCompat;
 
 import com.google.protobuf.ByteString;
 
@@ -896,7 +897,7 @@ final class GroupsV2UpdateMessageProducer {
         String beforeChunk = template.substring(startIndex, nearestPosition);
 
         builder.append(beforeChunk);
-        builder.append(SpanUtil.clickable(Recipient.resolved(recipientId).getDisplayName(context), 0, v -> {
+        builder.append(SpanUtil.clickable(Recipient.resolved(recipientId).getDisplayName(context), ContextCompat.getColor(context, R.color.conversation_item_update_text_color), v -> {
           if (!recipientId.isUnknown() && clickHandler != null) {
             clickHandler.accept(recipientId);
           }

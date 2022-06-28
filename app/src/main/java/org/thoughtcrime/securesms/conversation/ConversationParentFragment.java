@@ -2279,7 +2279,7 @@ public class ConversationParentFragment extends Fragment
       int toolbarTextAndIconColor = getResources().getColor(R.color.signal_colorNeutralInverse);
       toolbar.setTitleTextColor(toolbarTextAndIconColor);
       setToolbarActionItemTint(toolbar, toolbarTextAndIconColor);
-      WindowUtil.setNavigationBarColor(requireActivity().getWindow(), getResources().getColor(R.color.conversation_navigation_wallpaper));
+      WindowUtil.setNavigationBarColor(requireActivity(), getResources().getColor(R.color.conversation_navigation_wallpaper));
     } else {
       wallpaper.setImageDrawable(null);
       wallpaperDim.setVisibility(View.GONE);
@@ -2292,7 +2292,7 @@ public class ConversationParentFragment extends Fragment
       int toolbarTextAndIconColor = getResources().getColor(R.color.signal_colorOnSurface);
       toolbar.setTitleTextColor(toolbarTextAndIconColor);
       setToolbarActionItemTint(toolbar, toolbarTextAndIconColor);
-      WindowUtil.setNavigationBarColor(requireActivity().getWindow(), getResources().getColor(R.color.signal_colorBackground));
+      WindowUtil.setNavigationBarColor(requireActivity(), getResources().getColor(R.color.signal_colorBackground));
     }
     fragment.onWallpaperChanged(chatWallpaper);
     messageRequestBottomView.setWallpaperEnabled(chatWallpaper != null);

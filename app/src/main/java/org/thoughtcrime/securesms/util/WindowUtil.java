@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Rect;
 import android.os.Build;
 import android.view.View;
@@ -35,10 +36,18 @@ public final class WindowUtil {
     setSystemUiFlags(window, View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
   }
 
-  public static void setNavigationBarColor(@NonNull Window window, @ColorInt int color) {
-    if (Build.VERSION.SDK_INT < 21) return;
+  public static void setNavigationBarColor(@NonNull Activity activity, @ColorInt int color) {
+    setNavigationBarColor(activity, activity.getWindow(), color);
+  }
 
-    window.setNavigationBarColor(color);
+  public static void setNavigationBarColor(@NonNull Context context, @NonNull Window window, @ColorInt int color) {
+    if (Build.VERSION.SDK_INT < 21) {
+      return;
+    } else if (Build.VERSION.SDK_INT < 27) {
+      window.setNavigationBarColor(ThemeUtil.getThemedColor(context, android.R.attr.navigationBarColor));
+    } else {
+      window.setNavigationBarColor(color);
+    }
   }
 
   public static void setLightStatusBarFromTheme(@NonNull Activity activity) {

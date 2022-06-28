@@ -62,9 +62,9 @@ class KeyboardPagerFragment : Fragment() {
     }
 
     if (hidden) {
-      WindowUtil.setNavigationBarColor(requireActivity().window, ThemeUtil.getThemedColor(requireContext(), android.R.attr.navigationBarColor))
+      WindowUtil.setNavigationBarColor(requireActivity(), ThemeUtil.getThemedColor(requireContext(), android.R.attr.navigationBarColor))
     } else {
-      WindowUtil.setNavigationBarColor(requireActivity().window, ThemeUtil.getThemedColor(requireContext(), R.attr.mediaKeyboardBottomBarBackgroundColor))
+      WindowUtil.setNavigationBarColor(requireActivity(), ThemeUtil.getThemedColor(requireContext(), R.attr.mediaKeyboardBottomBarBackgroundColor))
     }
   }
 
