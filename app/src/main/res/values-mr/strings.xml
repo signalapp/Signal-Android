@@ -40,7 +40,7 @@
   <string name="ApplicationPreferencesActivity_hide_reminder">स्मरणपत्र लपवायचे?</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">पेमेंट रिकव्हरी फ्रेझ रेकॉर्ड करा</string>
   <string name="ApplicationPreferencesActivity_record_phrase">फ्रेझ रेकॉर्ड करा</string>
-  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">आपण आपला PIN अक्षम करण्यापूर्वी, आपण आपले पेमेंट खाते रिकव्हर करू शकता हे सुनिश्चित करण्यासाठी आपण आपले पेमेंट रिकव्हरी फ्रेझ रेकॉर्ड करणे आवश्यक आहे.</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">आपला PIN अक्षम करण्यापूर्वी, आपले पेमेंट खाते आपण रिकव्हर करू शकता हे सुनिश्चित करण्यासाठी आपली पेमेंट रिकव्हरी फ्रेझ रेकॉर्ड करणे आवश्यक आहे.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d मिनिट</item>
@@ -95,7 +95,7 @@
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">अवरोधित लोक आपल्याला कॉल करण्यास किंवा संदेश पाठविण्यास सक्षम असणार नाहीत.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">अवरोधित केलेले लोक आपल्याला संदेश पाठवू शकणार नाहीत.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
-  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal अपडेट्स आणि बातम्या मिळवणे ब्लॉक करा.</string>
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal अपडेट्स आणि बातम्या मिळवणे अवरोधित करा.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signal अपडेट्स आणि बातम्या मिळवणे पुन्हा सुरू करा.</string>
   <string name="BlockUnblockDialog_unblock_s">%1$s ला अनब्लॉक करायचे?</string>
@@ -128,9 +128,9 @@
   <string name="CameraContacts__menu_search">शोध</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
-  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">सेंसॉरशिप सर्कंवेंशन बंद करायचे ?</string>
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">सेंसॉरशिप सर्कंवेंशन बंद करा ?</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
-  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">चांगल्या अनुभवासाठी आपण आता Signal सेवेशी थेट कनेक्ट होऊ शकता.</string>
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">चांगल्या अनुभवासाठी आपण आता Signal सेवा शी थेट कनेक्ट होऊ शकता.</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">बंद करा</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
@@ -323,7 +323,7 @@
   <!--Dialog title for block group link join requests-->
   <string name="ConversationFragment__block_request">विनंती अवरोधित करायची ?</string>
   <!--Dialog message for block group link join requests-->
-  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s ग्रुप लिंकद्वारे या ग्रुपमध्ये सामील होऊ शकणार नाही किंवा त्यात सामील होण्याची विनंती करू शकणार नाही. ते अजूनही गटात स्वहस्ते जोडले जाऊ शकतात.</string>
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s ग्रुप लिंकद्वारे या ग्रुटात सामील होऊ शकणार नाही किंवा त्यात सामील होण्याची विनंती करू शकणार नाही. ते अजूनही गटात स्वहस्ते व्यक्तिचलितपणे जाऊ शकतात.</string>
   <!--Dialog confirm block request button-->
   <string name="ConversationFragment__block_request_button">विनंती अवरोधित करा </string>
   <!--Dialog cancel block request button-->
@@ -379,8 +379,8 @@
     <item quantity="other">आर्काईव्ह</item>
   </plurals>
   <plurals name="ConversationListFragment_unarchive_plural">
-    <item quantity="one">अनआर्काईव्ह</item>
-    <item quantity="other">अनआर्काईव्ह</item>
+    <item quantity="one">अनआर्काईव्ह करा</item>
+    <item quantity="other">अनआर्काईव्ह करा</item>
   </plurals>
   <plurals name="ConversationListFragment_delete_plural">
     <item quantity="one">हटवा</item>
@@ -432,7 +432,7 @@
   <!--Couldn\'t read the selected backup-->
   <string name="RestoreBackupFragment__backup_could_not_be_read">बॅकअप वाचता आला नाही.</string>
   <!--Backup has an unsupported file extension-->
-  <string name="RestoreBackupFragment__backup_has_a_bad_extension">बॅकअपमध्ये खराब विस्तार आहे.</string>
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">बॅकअप मध्ये खराब विस्तार आहे.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">चॅट बॅकअप</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">बॅकअप आपल्या सांकेतिक वाक्यांशासह कूटबद्ध केले जातात आणि आपल्या डिव्हाइसवर संग्रहित केले जातात.</string>
@@ -448,8 +448,8 @@
   <string name="BackupsPreferenceFragment__in_progress">प्रगतीपथावर…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d आतापर्यंत…</string>
   <!--Show percentage of completion of backup-->
-  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% आतापर्यंत…</string>
-  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">बॅकअप तयार करण्यासाठी Signal ला संचयन परवानगीची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"संचयन\" सक्षम करा.</string>
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% आत्तापर्यंत…</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">बॅकअप तयार करण्यासाठी Signal ला संचयन परवानगी ची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"संचयन\" सक्षम करा.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">सानुकूल वापरून: %s</string>
   <string name="CustomDefaultPreference_using_default">पूर्वनिर्धारित वापरून: %s</string>
@@ -458,7 +458,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">फोटो निवडा </string>
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">फोटो काढा </string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">गॅलरीमधून निवडा</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">फोटो काढा</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">फोटो हटवा</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">फोटो काढण्यासाठी कॅमेरा ची परवानगी आवश्यक आहे.</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">आपली गॅलरी पहाण्यासाठी संचय परवानग्या आवश्यक आहेत.</string>
   <!--DateUtils-->
@@ -467,7 +467,7 @@
   <string name="DateUtils_today">आज</string>
   <string name="DateUtils_yesterday">काल</string>
   <!--DecryptionFailedDialog-->
-  <string name="DecryptionFailedDialog_chat_session_refreshed">चॅट सत्र ताजेतवाने झाले</string>
+  <string name="DecryptionFailedDialog_chat_session_refreshed">चॅट सत्र रिफ्रेश झाले</string>
   <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal एंड-टू-एंड एन्क्रिप्शन वापरते आणि त्यास काही वेळा आपले चॅट रीफ्रेश करावे लागू शकते. यामुळे आपल्या चॅटच्या सुरक्षिततेवर कुठलाही प्रभाव पडत नाही, पण आपल्याकडून या संपर्काचा एखादा संदेश सुटला असू शकतो, आणि आपण त्यांना तो पुन्हा पाठविण्यास सांगू शकता.</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">\'%s\' अनलिंक करायचे?</string>
@@ -649,7 +649,7 @@
   <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">हा गट तयार केल्यानंतर आपण मित्रांना जोडू किंवा आमंत्रित करू शकता.</string>
   <string name="AddGroupDetailsFragment__group_name_required">गट नाव (आवश्यक)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">गट नाव (पर्यायी)</string>
-  <string name="AddGroupDetailsFragment__this_field_is_required">हा रकाना भरणे आवश्यक आहे.</string>
+  <string name="AddGroupDetailsFragment__this_field_is_required">हे फिल़्ड भरणे आवश्यक आहे.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">गट निर्मिती अयशस्वी.</string>
   <string name="AddGroupDetailsFragment__try_again_later">नंतर पुन्हा प्रयत्न करा.</string>
   <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">आपण एक संपर्क निवडला आहे जो Signal गटांना समर्थन देत नाही, म्हणून हा MMS गट होईल.</string> -->
@@ -694,15 +694,15 @@
   <string name="ManageGroupActivity_edit_name_and_picture">नाव आणि चित्र संपादित करा</string>
   <string name="ManageGroupActivity_legacy_group">लेगसी गट</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">हा एक लेगसी गट आहे. गट अॅडमिन सारखे वैशिष्ट्ये फक्त नवीन गटांसाठी उपलब्ध आहेत.</string>
-  <string name="ManageGroupActivity_legacy_group_upgrade">हा एक लेगसी गट आहे. @उल्लेख आणि अॅडमिन सारखे वैशिष्ट्ये अॅक्सेस करण्यासाठी, </string>
-  <string name="ManageGroupActivity_legacy_group_too_large">हा लेगसी गट नवीन गटामध्ये श्रेणीसुधारित केला जाऊ शकत नाही कारण तो खूप मोठा आहे. गटाचा कमाल आकार %1$d आहे.</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">हा एक लेगसी गट आहे. @उल्लेख आणि अॅडमिन सारखे वैशिष्ट्ये प्रवेश करण्यासाठी, </string>
+  <string name="ManageGroupActivity_legacy_group_too_large">या लेगसी गटाला नवीन गटामध्ये श्रेणीसुधारित केला जाऊ शकत नाही कारण तो खूप मोठा आहे. गटाचा कमाल आकार %1$d आहे.</string>
   <string name="ManageGroupActivity_upgrade_this_group">हा गट श्रेणीसुधारित करा.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">हा एक असुरक्षित MMS गट आहे. खाजगीरीत्या चॅट करण्यासाठी, आपल्या संपर्कांना Signal वर आमंत्रित करा.</string>
   <string name="ManageGroupActivity_invite_now">आता आमंत्रित करा</string>
   <string name="ManageGroupActivity_more">आणखी</string>
   <string name="ManageGroupActivity_add_group_description">गट विवरण जोडा…</string>
   <!--GroupMentionSettingDialog-->
-  <string name="GroupMentionSettingDialog_notify_me_for_mentions">उल्लेखसाठी मला सूचित करा</string>
+  <string name="GroupMentionSettingDialog_notify_me_for_mentions">उल्लेखा साठी मला सूचित करा</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">म्यूट केलेल्या चॅटमध्ये आपला उल्लेख केल्यानंतर सूचना प्राप्त करायच्या?</string>
   <string name="GroupMentionSettingDialog_always_notify_me">मला नेहमी सूचित करा</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">मला सूचित करू नका</string>
@@ -1170,7 +1170,15 @@
     <item quantity="other">%1$d सदस्य</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d सदस्य (%2$s)</item>
+    <item quantity="other">%1$d सदस्य (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="one">+%1$d आमंत्रित</item>
+    <item quantity="other">+%1$d आमंत्रित</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d अतिरिक्त गट</item>
     <item quantity="other">%d अतिरिक्त गट</item>
@@ -1754,6 +1762,10 @@
     <item quantity="other">%1$d सदस्य</item>
   </plurals>
   <!--Displays number of viewers for a story-->
+  <plurals name="contact_selection_list_item__number_of_viewers">
+    <item quantity="one">%1$d दर्शक</item>
+    <item quantity="other">%1$d दर्शक</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal संदेश</string>
   <string name="conversation_activity__type_message_sms_insecure">असुरक्षित SMS</string>
@@ -3853,6 +3865,10 @@
   <!--Section header for hidden stories-->
   <string name="StoriesLandingFragment__hidden_stories">लपवलेल्या स्टोरीज</string>
   <!--Displayed on each sent story under My Stories-->
+  <plurals name="MyStories__d_views">
+    <item quantity="one">%1$d दृश्य</item>
+    <item quantity="other">%1$d दृश्ये</item>
+  </plurals>
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">फॉर्वर्ड करा</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
@@ -3862,7 +3878,15 @@
   <!--Message of dialog to confirm deletion of story-->
   <string name="MyStories__this_story_will_be_deleted">ही स्टोरी तुमच्यासाठी आणि ती प्राप्त झालेल्या प्रत्येकासाठी हटवली जाईल.</string>
   <!--Displayed at bottom of story viewer when current item has views-->
+  <plurals name="StoryViewerFragment__d_views">
+    <item quantity="one">%1$d दृश्य</item>
+    <item quantity="other">%1$d दृश्ये</item>
+  </plurals>
   <!--Displayed at bottom of story viewer when current item has replies-->
+  <plurals name="StoryViewerFragment__d_replies">
+    <item quantity="one">%1$d प्रत्त्युत्तर</item>
+    <item quantity="other">%1$d प्रत्त्युत्तरे</item>
+  </plurals>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3908,6 +3932,10 @@
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">यांच्यापासून स्टोरी  लपवा</string>
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <plurals name="MyStorySettingsFragment__d_people">
+    <item quantity="one">%1$d व्यक्ति</item>
+    <item quantity="other">%1$d लोक</item>
+  </plurals>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">प्रत्त्युत्तरे &amp; प्रतिक्रिया</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -3991,6 +4019,10 @@
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">पुढे</string>
   <!--New story viewer selection screen title as recipients are selected-->
+  <plurals name="SelectViewersFragment__d_viewers">
+    <item quantity="one">%1$d दर्शक</item>
+    <item quantity="other">%1$d दर्शक</item>
+  </plurals>
   <!--Name story screen title-->
   <string name="CreateStoryWithViewersFragment__name_story">स्टोरी नाव</string>
   <!--Name story screen label hint-->
@@ -4108,10 +4140,30 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">आता नाही</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">खाजगी स्टोरी  %1$d दर्शक</item>
+    <item quantity="other">खाजगी स्टोरी · %1$d दर्शक</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">गट स्टोरी · %1$d दर्शक</item>
+    <item quantity="other">गट स्टोरी· %1$d दर्शक</item>
+  </plurals>
   <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">%1$d दिवस शिल्लक</item>
+    <item quantity="other">%1$d दिवस शिल्लक</item>
+  </plurals>
   <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">%1$d तास शिल्लक</item>
+    <item quantity="other">%1$d तास शिल्लक</item>
+  </plurals>
   <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">%1$d मिनिट शिल्लक</item>
+    <item quantity="other">%1$d मिनिटे शिल्लक</item>
+  </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">कालबाह्य झालेे</string>
   <!--EOF-->

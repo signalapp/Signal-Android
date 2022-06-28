@@ -1263,6 +1263,7 @@
   <string name="WebRtcCallView__camera">카메라</string>
   <string name="WebRtcCallView__unmute">알림 켜기</string>
   <string name="WebRtcCallView__mute">음소거</string>
+  <string name="WebRtcCallView__ring">전화벨</string>
   <string name="WebRtcCallView__end_call">전화 종료</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">

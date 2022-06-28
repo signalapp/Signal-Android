@@ -1093,6 +1093,10 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">আপনি এই গ্রুপে যোগদানের জন্য একটি অনুরোধ প্রেরণ করেছেন।</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s গ্রুপ লিঙ্কের মাধ্যমে যোগদানের জন্য অনুরোধ করেছেন।</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="one">গ্রুপ লিঙ্কের মাধ্যমে যোগদানের জন্য %1$s অনুরোধ করেছেন এবং -গুলো অনুরোধ বাতিল করেছেন৷ </item>
+    <item quantity="other">গ্রুপ লিঙ্কের মাধ্যমে যোগ দেয়ার জন্য %1$s অনুরোধ করেছেন এবং %2$d-গুলো অনুরোধবাতিল করেছেন৷</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s গ্রুপে যোগ দেওয়ার জন্য আপনার অনুরোধ অনুমোদিত করেছেন।</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%2$s এর  গ্রুপে যোগদানের জন্য একটি অনুরোধ %1$s অনুমোদিত করেছে।</string>
@@ -1166,7 +1170,15 @@
     <item quantity="other">%1$d জন সদস্য</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d সদস্য (%2$s)</item>
+    <item quantity="other">%1$d সদস্য (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="one">+%1$d আমন্ত্রিত</item>
+    <item quantity="other">+ %1$d আমন্ত্রিত</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d টি অতিরিক্ত গ্রুপ</item>
     <item quantity="other">%dটি অতিরিক্ত গ্রুপ</item>
@@ -1747,6 +1759,10 @@
     <item quantity="other">%1$d জন সদস্য</item>
   </plurals>
   <!--Displays number of viewers for a story-->
+  <plurals name="contact_selection_list_item__number_of_viewers">
+    <item quantity="one">%1$d দর্শক</item>
+    <item quantity="other">%1$dদর্শক</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal বার্তা</string>
   <string name="conversation_activity__type_message_sms_insecure">অনিরাপদ এসএমএস</string>
@@ -2413,6 +2429,10 @@
   <string name="conversation_callable_secure__menu_video">Signal ভিডিও কল</string>
   <!--conversation_context-->
   <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">%d নির্বাচিত</item>
+    <item quantity="other">%d নির্বাচিত</item>
+  </plurals>
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_context_image__save_attachment">সংরক্ষণ করুন</string>
@@ -3585,6 +3605,10 @@
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">ব্যাজ উপহার দিন</string>
   <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="one">%1$d মাস পর্যন্ত থাকবে</item>
+    <item quantity="other">%1$d মাস পর্যন্ত থাকবে</item>
+  </plurals>
   <!--Gift badge redeem action label-->
   <string name="GiftMessageView__redeem">ফিরে পান</string>
   <!--Gift badge view action label-->
@@ -3754,6 +3778,7 @@
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">পিকার খুলতে ব্যর্থ হয়েছে।</string>
   <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Signal রিলিজ নোট &amp; নিউজ</string>
   <!--Donation receipts activity title-->
   <string name="DonationReceiptListFragment__all_activity">সমস্ত ক্রিয়াকলাপ</string>
   <!--Donation receipts all tab label-->
