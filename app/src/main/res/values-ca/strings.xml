@@ -2055,7 +2055,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="HelpFragment__could_not_upload_logs">No s\'han pogut carregar els registres.</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Si us plau, expliqueu-ho de la manera més descriptiva possible per ajudar-nos a entendre el problema.</string>
   <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
-    <item> Seleccioneu una opció. </item>
+    <item>\-\- Seleccioneu una opció. \-\-</item>
     <item>Alguna cosa no funciona.</item>
     <item>Petició de funció</item>
     <item>Pregunta</item>

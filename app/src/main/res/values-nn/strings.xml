@@ -2067,7 +2067,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="HelpFragment__could_not_upload_logs">Klarte ikkje lasta opp loggar</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Beskriv problemet så utfyllande som mogleg slik at me kan forstå kva som skjer.</string>
   <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
-    <item> Vel eit alternativ </item>
+    <item>\-\- Vel eit alternativ \-\-</item>
     <item>Noko fungerer ikkje</item>
     <item>Forslag til funksjonalitet</item>
     <item>Spørsmål</item>

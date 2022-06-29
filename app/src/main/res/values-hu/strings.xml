@@ -2062,7 +2062,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="HelpFragment__could_not_upload_logs">Nem sikerült feltölteni a naplót</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Hogy megérthessük a problémát, fogalmazz olyan pontosan, amennyire csak lehetséges!</string>
   <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
-    <item> válassz a lehetőségek közül </item>
+    <item>\-\- válassz a lehetőségek közül \-\-</item>
     <item>Valami nem működik</item>
     <item>Funkció kérés</item>
     <item>Kérdés</item>

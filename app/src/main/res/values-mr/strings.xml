@@ -2058,7 +2058,7 @@
   <string name="HelpFragment__could_not_upload_logs">लॉग अपलोड करू शकले नाही</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">कृपया जास्तीत जास्त विवरण करून आम्हाला समस्या जाणून घेण्यात मदत करा.</string>
   <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
-    <item> कृपया एक पर्याय निवडा </item>
+    <item>\-\- कृपया एक पर्याय निवडा \-\-</item>
     <item>काहीतरी काम करत नाहीये</item>
     <item>वैशिष्ट्य विनंती</item>
     <item>प्रश्न</item>
