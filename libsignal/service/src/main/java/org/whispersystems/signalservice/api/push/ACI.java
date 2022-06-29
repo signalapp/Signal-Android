@@ -16,6 +16,14 @@ public final class ACI extends ServiceId {
     return new ACI(uuid);
   }
 
+  public static ACI from(ServiceId serviceId) {
+    return new ACI(serviceId.uuid());
+  }
+
+  public static ACI fromNullable(ServiceId serviceId) {
+    return serviceId != null ? new ACI(serviceId.uuid()) : null;
+  }
+
   public static ACI parseOrThrow(String raw) {
     return from(UUID.fromString(raw));
   }

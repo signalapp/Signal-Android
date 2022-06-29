@@ -90,6 +90,22 @@ data class RecipientRecord(
     return if (defaultSubscriptionId != -1) Optional.of(defaultSubscriptionId) else Optional.empty()
   }
 
+  fun e164Only(): Boolean {
+    return this.e164 != null && this.serviceId == null
+  }
+
+  fun sidOnly(sid: ServiceId): Boolean {
+    return this.e164 == null && this.serviceId == sid && (this.pni == null || this.pni == sid)
+  }
+
+  fun sidIsPni(): Boolean {
+    return this.serviceId != null && this.pni != null && this.serviceId == this.pni
+  }
+
+  fun pniAndAci(): Boolean {
+    return this.serviceId != null && this.pni != null && this.serviceId != this.pni
+  }
+
   /**
    * A bundle of data that's only necessary when syncing to storage service, not for a
    * [Recipient].

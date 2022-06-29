@@ -17,6 +17,10 @@ public final class Preconditions {
     }
   }
 
+  public static void checkState(boolean state) {
+    checkState(state, "Condition must be true!");
+  }
+
   public static void checkState(boolean state, String message) {
     if (!state) {
       throw new IllegalStateException(message);

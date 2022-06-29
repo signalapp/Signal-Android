@@ -7,6 +7,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.requireNonNullString
+import org.signal.core.util.select
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.state.SessionRecord
 import org.whispersystems.signalservice.api.push.ServiceId
@@ -193,6 +194,20 @@ class SessionDatabase(context: Context, databaseHelper: SignalDatabase) : Databa
     readableDatabase.query(TABLE_NAME, arrayOf("1"), query, args, null, null, null, "1").use { cursor ->
       return cursor.moveToFirst()
     }
+  }
+
+  /**
+   * @return True if a session exists with this address for _any_ of your identities.
+   */
+  fun hasAnySessionFor(addressName: String): Boolean {
+    readableDatabase
+      .select("1")
+      .from(TABLE_NAME)
+      .where("$ADDRESS = ?", addressName)
+      .run()
+      .use { cursor ->
+        return cursor.moveToFirst()
+      }
   }
 
   class SessionRow(val address: String, val deviceId: Int, val record: SessionRecord)
