@@ -4,6 +4,7 @@ import android.os.Build
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.R
@@ -77,6 +78,10 @@ class ContextMenuList(recyclerView: RecyclerView, onItemClick: () -> Unit) {
         model.item.action.run()
         onItemClick()
       }
+
+      val tintColor = ContextCompat.getColor(context, model.item.tintRes)
+      icon.setColorFilter(tintColor)
+      title.setTextColor(tintColor)
 
       if (Build.VERSION.SDK_INT >= 21) {
         when (model.displayType) {

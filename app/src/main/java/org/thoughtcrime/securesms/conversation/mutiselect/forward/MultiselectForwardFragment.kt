@@ -29,6 +29,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ContactFilterView
 import org.thoughtcrime.securesms.components.TooltipPopup
+import org.thoughtcrime.securesms.components.WrapperDialogFragment
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchMediator
@@ -75,7 +76,8 @@ import org.thoughtcrime.securesms.util.visible
 class MultiselectForwardFragment :
   Fragment(R.layout.multiselect_forward_fragment),
   SafetyNumberChangeDialog.Callback,
-  ChooseStoryTypeBottomSheet.Callback {
+  ChooseStoryTypeBottomSheet.Callback,
+  WrapperDialogFragment.WrapperDialogFragmentCallback {
 
   private val viewModel: MultiselectForwardViewModel by viewModels(factoryProducer = this::createViewModelFactory)
   private val disposables = LifecycleDisposable()
@@ -541,5 +543,9 @@ class MultiselectForwardFragment :
         putInt(ARG_SEND_BUTTON_TINT, multiselectForwardFragmentArgs.sendButtonTint)
       }
     }
+  }
+
+  override fun onWrapperDialogFragmentDismissed() {
+    contactSearchMediator.refresh()
   }
 }

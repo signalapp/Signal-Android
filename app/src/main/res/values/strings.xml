@@ -4886,6 +4886,24 @@
         <item quantity="one">Group Story · %1$d viewer</item>
         <item quantity="other">Group Story · %1$d viewers</item>
     </plurals>
+    <!-- Label for context menu item to open story settings -->
+    <string name="ContactSearchItems__story_settings">Story settings</string>
+    <!-- Label for context menu item to remove a group story from contact results -->
+    <string name="ContactSearchItems__remove_story">Remove story</string>
+    <!-- Label for context menu item to delete a private story -->
+    <string name="ContactSearchItems__delete_story">Delete story</string>
+    <!-- Dialog title for removing a group story -->
+    <string name="ContactSearchMediator__remove_group_story">Remove group story?</string>
+    <!-- Dialog message for removing a group story -->
+    <string name="ContactSearchMediator__this_will_remove">This will remove the story from this list. You will still be able to view stories from this group.</string>
+    <!-- Dialog action item for removing a group story -->
+    <string name="ContactSearchMediator__remove">Remove</string>
+    <!-- Dialog title for deleting a private story -->
+    <string name="ContactSearchMediator__delete_story">Delete story?</string>
+    <!-- Dialog message for deleting a private story -->
+    <string name="ContactSearchMediator__delete_the_private">Delete the private story \"%1$s\"?</string>
+    <!-- Dialog action item for deleting a private story -->
+    <string name="ContactSearchMediator__delete">Delete</string>
     <!-- Gift expiry days remaining -->
     <plurals name="Gifts__d_days_remaining">
         <item quantity="one">%1$d days remaining</item>

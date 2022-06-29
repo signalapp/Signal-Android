@@ -17,7 +17,6 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:importantForAccessibility="no"
-        app:tint="@color/signal_colorOnSurface"
         tools:src="@drawable/ic_archive_24dp" />
 
     <TextView
@@ -27,7 +26,6 @@
         android:layout_marginStart="16dp"
         android:layout_weight="1"
         android:textAppearance="@style/Signal.Text.BodyLarge"
-        android:textColor="@color/signal_colorOnSurface"
         tools:text="Archive" />
 
 </LinearLayout>

@@ -2,9 +2,13 @@ package org.thoughtcrime.securesms.stories.settings.my
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.WrapperDialogFragment
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
@@ -12,6 +16,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class MyStorySettingsFragment : DSLSettingsFragment(
@@ -103,6 +108,22 @@ class MyStorySettingsFragment : DSLSettingsFragment(
           viewModel.setRepliesAndReactionsEnabled(!state.areRepliesAndReactionsEnabled)
         }
       )
+    }
+  }
+
+  override fun onToolbarNavigationClicked() {
+    findListener<WrapperDialogFragment>()?.dismiss() ?: super.onToolbarNavigationClicked()
+  }
+
+  class Dialog : WrapperDialogFragment() {
+    override fun getWrappedFragment(): Fragment {
+      return NavHostFragment.create(R.navigation.my_story_settings)
+    }
+  }
+
+  companion object {
+    fun createAsDialog(): DialogFragment {
+      return Dialog()
     }
   }
 }

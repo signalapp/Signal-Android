@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.WrapperDialogFragment
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchMediator
@@ -35,7 +36,7 @@ import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 
-class TextStoryPostSendFragment : Fragment(R.layout.stories_send_text_post_fragment), ChooseStoryTypeBottomSheet.Callback {
+class TextStoryPostSendFragment : Fragment(R.layout.stories_send_text_post_fragment), ChooseStoryTypeBottomSheet.Callback, WrapperDialogFragment.WrapperDialogFragmentCallback {
 
   private lateinit var shareListWrapper: View
   private lateinit var shareSelectionRecyclerView: RecyclerView
@@ -194,5 +195,9 @@ class TextStoryPostSendFragment : Fragment(R.layout.stories_send_text_post_fragm
 
   override fun onGroupStoryClicked() {
     ChooseGroupStoryBottomSheet().show(parentFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+  }
+
+  override fun onWrapperDialogFragmentDismissed() {
+    contactSearchMediator.refresh()
   }
 }

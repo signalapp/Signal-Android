@@ -14,6 +14,7 @@ import org.signal.paging.PagingController
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.livedata.Store
+import org.whispersystems.signalservice.api.util.Preconditions
 
 /**
  * Simple, reusable view model that manages a ContactSearchPagedDataSource as well as filter and expansion state.
@@ -95,6 +96,31 @@ class ContactSearchViewModel(
         }
       )
     }
+  }
+
+  fun removeGroupStory(story: ContactSearchData.Story) {
+    Preconditions.checkArgument(story.recipient.isGroup)
+    setKeysNotSelected(setOf(story.contactSearchKey))
+    disposables += contactSearchRepository.unmarkDisplayAsStory(story.recipient.requireGroupId()).subscribe {
+      configurationStore.update { state ->
+        state.copy(
+          groupStories = state.groupStories.filter { it.recipient.id == story.recipient.id }.toSet()
+        )
+      }
+      refresh()
+    }
+  }
+
+  fun deletePrivateStory(story: ContactSearchData.Story) {
+    Preconditions.checkArgument(story.recipient.isDistributionList && !story.recipient.isMyStory)
+    setKeysNotSelected(setOf(story.contactSearchKey))
+    disposables += contactSearchRepository.deletePrivateStory(story.recipient.requireDistributionListId()).subscribe {
+      refresh()
+    }
+  }
+
+  fun refresh() {
+    controller.value?.onDataInvalidated()
   }
 
   class Factory(private val selectionLimits: SelectionLimits, private val repository: ContactSearchRepository) : ViewModelProvider.Factory {
