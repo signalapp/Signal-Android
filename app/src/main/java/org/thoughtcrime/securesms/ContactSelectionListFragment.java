@@ -18,7 +18,6 @@ package org.thoughtcrime.securesms;
 
 
 import android.Manifest;
-import android.animation.LayoutTransition;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -32,7 +31,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +41,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -54,7 +53,6 @@ import androidx.transition.TransitionManager;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
-import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
@@ -62,7 +60,7 @@ import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.RecyclerViewFastScroller;
 import org.thoughtcrime.securesms.contacts.AbstractContactsCursorLoader;
-import org.thoughtcrime.securesms.contacts.ContactChip;
+import org.thoughtcrime.securesms.contacts.ContactChipViewModel;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListItem;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
@@ -70,6 +68,7 @@ import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.contacts.HeaderAction;
 import org.thoughtcrime.securesms.contacts.LetterHeaderDecoration;
 import org.thoughtcrime.securesms.contacts.SelectedContact;
+import org.thoughtcrime.securesms.contacts.SelectedContacts;
 import org.thoughtcrime.securesms.contacts.selection.ContactSelectionArguments;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.groups.SelectionLimits;
@@ -77,15 +76,17 @@ import org.thoughtcrime.securesms.groups.ui.GroupLimitDialog;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sharing.ShareContact;
+import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.UsernameUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.FixedViewsAdapter;
 import org.thoughtcrime.securesms.util.adapter.RecyclerViewConcatenateAdapterStickyHeader;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.io.IOException;
@@ -94,6 +95,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Consumer;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.Disposable;
+import kotlin.Unit;
 
 /**
  * Fragment for selecting a one or more contacts from a list.
@@ -106,7 +111,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(ContactSelectionListFragment.class);
 
-  private static final int CHIP_GROUP_EMPTY_CHILD_COUNT  = 1;
+  private static final int CHIP_GROUP_EMPTY_CHILD_COUNT  = 0;
   private static final int CHIP_GROUP_REVEAL_DURATION_MS = 150;
 
   public static final int NO_LIMIT = Integer.MAX_VALUE;
@@ -134,10 +139,12 @@ public final class ContactSelectionListFragment extends LoggingFragment
   private RecyclerView                                recyclerView;
   private RecyclerViewFastScroller                    fastScroller;
   private ContactSelectionListAdapter                 cursorRecyclerViewAdapter;
-  private ChipGroup                                   chipGroup;
-  private HorizontalScrollView                        chipGroupScrollContainer;
+  private RecyclerView                                chipRecycler;
   private OnSelectionLimitReachedListener             onSelectionLimitReachedListener;
   private AbstractContactsCursorLoaderFactoryProvider cursorFactoryProvider;
+  private MappingAdapter                              contactChipAdapter;
+  private ContactChipViewModel                        contactChipViewModel;
+  private LifecycleDisposable                         lifecycleDisposable;
 
   private HeaderActionProvider                        headerActionProvider;
   private TextView                                    headerActionView;
@@ -249,8 +256,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
     showContactsButton       = view.findViewById(R.id.show_contacts_button);
     showContactsDescription  = view.findViewById(R.id.show_contacts_description);
     showContactsProgress     = view.findViewById(R.id.progress);
-    chipGroup                = view.findViewById(R.id.chipGroup);
-    chipGroupScrollContainer = view.findViewById(R.id.chipGroupScrollContainer);
+    chipRecycler             = view.findViewById(R.id.chipRecycler);
     constraintLayout         = view.findViewById(R.id.container);
     headerActionView         = view.findViewById(R.id.header_action);
 
@@ -263,6 +269,18 @@ public final class ContactSelectionListFragment extends LoggingFragment
         return true;
       }
     });
+
+    contactChipViewModel = new ViewModelProvider(this).get(ContactChipViewModel.class);
+    contactChipAdapter   = new MappingAdapter();
+    lifecycleDisposable  = new LifecycleDisposable();
+
+    lifecycleDisposable.bindTo(getViewLifecycleOwner());
+    SelectedContacts.register(contactChipAdapter, this::onChipCloseIconClicked);
+    chipRecycler.setAdapter(contactChipAdapter);
+
+    Disposable disposable = contactChipViewModel.getState().subscribe(this::handleSelectedContactsChanged);
+
+    lifecycleDisposable.add(disposable);
 
     Intent intent    = requireActivity().getIntent();
     Bundle arguments = safeArguments();
@@ -730,75 +748,22 @@ public final class ContactSelectionListFragment extends LoggingFragment
   private void markContactUnselected(@NonNull SelectedContact selectedContact) {
     cursorRecyclerViewAdapter.removeFromSelectedContacts(selectedContact);
     cursorRecyclerViewAdapter.notifyItemRangeChanged(0, cursorRecyclerViewAdapter.getItemCount(), ContactSelectionListAdapter.PAYLOAD_SELECTION_CHANGE);
-    removeChipForContact(selectedContact);
+    contactChipViewModel.remove(selectedContact);
 
     if (onContactSelectedListener != null) {
       onContactSelectedListener.onSelectionChanged();
     }
   }
 
-  private void removeChipForContact(@NonNull SelectedContact contact) {
-    for (int i = chipGroup.getChildCount() - 1; i >= 0; i--) {
-      View v = chipGroup.getChildAt(i);
-      if (v instanceof ContactChip && contact.matches(((ContactChip) v).getContact())) {
-        chipGroup.removeView(v);
-      }
-    }
+  private void handleSelectedContactsChanged(@NonNull List<SelectedContacts.Model> selectedContacts) {
+    contactChipAdapter.submitList(new MappingModelList(selectedContacts), this::smoothScrollChipsToEnd);
 
-    if (getChipCount() == 0) {
+    if (selectedContacts.isEmpty()) {
       setChipGroupVisibility(ConstraintSet.GONE);
-    }
-  }
-
-  private void addChipForSelectedContact(@NonNull SelectedContact selectedContact) {
-    SimpleTask.run(getViewLifecycleOwner().getLifecycle(),
-                   () -> Recipient.resolved(selectedContact.getOrCreateRecipientId(requireContext())),
-                   resolved -> addChipForRecipient(resolved, selectedContact));
-  }
-
-  private void addChipForRecipient(@NonNull Recipient recipient, @NonNull SelectedContact selectedContact) {
-    final ContactChip chip = new ContactChip(requireContext());
-
-    if (getChipCount() == 0) {
+    } else {
       setChipGroupVisibility(ConstraintSet.VISIBLE);
     }
 
-    chip.setText(recipient.getShortDisplayName(requireContext()));
-    chip.setContact(selectedContact);
-    chip.setCloseIconVisible(true);
-    chip.setOnCloseIconClickListener(view -> {
-      markContactUnselected(selectedContact);
-
-      if (onContactSelectedListener != null) {
-        onContactSelectedListener.onContactDeselected(Optional.of(recipient.getId()), recipient.getE164().orElse(null));
-      }
-    });
-
-    chipGroup.getLayoutTransition().addTransitionListener(new LayoutTransition.TransitionListener() {
-      @Override
-      public void startTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
-      }
-
-      @Override
-      public void endTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
-        if (getView() == null || !requireView().isAttachedToWindow()) {
-          Log.w(TAG, "Fragment's view was detached before the animation completed.");
-          return;
-        }
-
-        if (view == chip && transitionType == LayoutTransition.APPEARING) {
-          chipGroup.getLayoutTransition().removeTransitionListener(this);
-          registerChipRecipientObserver(chip, recipient.live());
-          chipGroup.post(ContactSelectionListFragment.this::smoothScrollChipsToEnd);
-        }
-      }
-    });
-
-    chip.setAvatar(glideRequests, recipient, () -> addChip(chip));
-  }
-
-  private void addChip(@NonNull ContactChip chip) {
-    chipGroup.addView(chip);
     if (selectionWarningLimitReachedExactly()) {
       if (onSelectionLimitReachedListener != null) {
         onSelectionLimitReachedListener.onSuggestedLimitReached(selectionLimit.getRecommendedLimit());
@@ -808,21 +773,25 @@ public final class ContactSelectionListFragment extends LoggingFragment
     }
   }
 
-  private int getChipCount() {
-    int count = chipGroup.getChildCount() - CHIP_GROUP_EMPTY_CHILD_COUNT;
-    if (count < 0) throw new AssertionError();
-    return count;
+  private void addChipForSelectedContact(@NonNull SelectedContact selectedContact) {
+    SimpleTask.run(getViewLifecycleOwner().getLifecycle(),
+                   () -> Recipient.resolved(selectedContact.getOrCreateRecipientId(requireContext())),
+                   resolved -> contactChipViewModel.add(selectedContact));
   }
 
-  private void registerChipRecipientObserver(@NonNull ContactChip chip, @Nullable LiveRecipient recipient) {
-    if (recipient != null) {
-      recipient.observe(getViewLifecycleOwner(), resolved -> {
-        if (chip.isAttachedToWindow()) {
-          chip.setAvatar(glideRequests, resolved, null);
-          chip.setText(resolved.getShortDisplayName(chip.getContext()));
-        }
-      });
+  private Unit onChipCloseIconClicked(SelectedContacts.Model model) {
+    markContactUnselected(model.getSelectedContact());
+    if (onContactSelectedListener != null) {
+      onContactSelectedListener.onContactDeselected(Optional.of(model.getRecipient().getId()), model.getRecipient().getE164().orElse(null));
     }
+
+    return Unit.INSTANCE;
+  }
+
+  private int getChipCount() {
+    int count = contactChipViewModel.getCount() - CHIP_GROUP_EMPTY_CHILD_COUNT;
+    if (count < 0) throw new AssertionError();
+    return count;
   }
 
   private void setChipGroupVisibility(int visibility) {
@@ -838,7 +807,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
 
     ConstraintSet constraintSet = new ConstraintSet();
     constraintSet.clone(constraintLayout);
-    constraintSet.setVisibility(R.id.chipGroupScrollContainer, visibility);
+    constraintSet.setVisibility(R.id.chipRecycler, visibility);
     constraintSet.applyTo(constraintLayout);
   }
 
@@ -847,8 +816,8 @@ public final class ContactSelectionListFragment extends LoggingFragment
   }
 
   private void smoothScrollChipsToEnd() {
-    int x = ViewUtil.isLtr(chipGroupScrollContainer) ? chipGroup.getWidth() : 0;
-    chipGroupScrollContainer.smoothScrollTo(x, 0);
+    int x = ViewUtil.isLtr(chipRecycler) ? chipRecycler.getWidth() : 0;
+    chipRecycler.smoothScrollBy(x, 0);
   }
 
   public interface OnContactSelectedListener {

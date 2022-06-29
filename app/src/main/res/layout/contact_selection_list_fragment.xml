@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chipGroupScrollContainer">
+        app:layout_constraintTop_toBottomOf="@+id/chipRecycler">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
@@ -44,7 +44,7 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chipGroupScrollContainer"
+        app:layout_constraintTop_toBottomOf="@+id/chipRecycler"
         tools:visibility="visible" />
 
     <LinearLayout
@@ -58,12 +58,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chipGroupScrollContainer"
+        app:layout_constraintTop_toBottomOf="@+id/chipRecycler"
         tools:visibility="visible">
 
         <com.google.android.material.button.MaterialButton
-            style="@style/Signal.Widget.Button.Large.Primary"
             android:id="@+id/show_contacts_button"
+            style="@style/Signal.Widget.Button.Large.Primary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -112,45 +112,22 @@
 
     </LinearLayout>
 
-    <HorizontalScrollView
-        android:id="@+id/chipGroupScrollContainer"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chipRecycler"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:clipChildren="false"
         android:clipToPadding="false"
+        android:minHeight="48sp"
+        android:orientation="horizontal"
         android:paddingStart="@dimen/dsl_settings_gutter"
         android:paddingEnd="@dimen/dsl_settings_gutter"
         android:scrollbars="none"
         android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible">
-
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipGroup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="96dp"
-                android:animateLayoutChanges="true"
-                app:singleLine="true">
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    tools:text="Example"
-                    tools:visibility="visible" />
-
-            </com.google.android.material.chip.ChipGroup>
-        </FrameLayout>
-    </HorizontalScrollView>
+        tools:listitem="@layout/contact_selection_list_chip"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/header_action"
