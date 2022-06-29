@@ -219,8 +219,10 @@
   <string name="ConversationActivity_calls_not_supported">Zvani netiek atbalstīti</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Izskatās, ka šī ierīce neatbalsta zvanu veikšanu.</string>
   <string name="ConversationActivity_transport_insecure_sms">Nedrošs SMS</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
   <string name="ConversationActivity_transport_insecure_mms">Nedrošs MMS</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_signal">Signal ziņa</string>
   <string name="ConversationActivity_lets_switch_to_signal">Pārslēdzamies uz Signal %1$s!</string>
   <string name="ConversationActivity_specify_recipient">Lūdzu, izvēlieties kontaktu!</string>
   <string name="ConversationActivity_unblock">Atbloķēt</string>
@@ -354,7 +356,7 @@
     <item quantity="one">Saruna arhivēta</item>
     <item quantity="other">%d sarunas arhivētas</item>
   </plurals>
-  <string name="ConversationListFragment_undo">ATSAUKT</string>
+  <string name="ConversationListFragment_undo">Atsaukt</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="zero">Pārvietoja %d sarunu uz iesūtni</item>
     <item quantity="one">Pārvietoja sarunu uz iesūtni </item>
@@ -690,8 +692,7 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">Šis lauks ir nepieciešams.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Grupas izveidē notikusi kļūme.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Lūdzu, mēģiniet vēlāk.</string>
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Jūs atzīmējāt kontaktu, kurš neatbalsta Signal grupas, tāpēc šī būs MMS grupa.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Pielāgotie MMS grupu nosaukumi un fotoattēli būs redzami tikai jums.</string> -->
+  <!--Displayed when adding group details to an MMS Group-->
   <string name="AddGroupDetailsFragment__remove">Noņemt</string>
   <string name="AddGroupDetailsFragment__sms_contact">Īsziņu kontakts</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Vai dzēst %1$s no šīs grupas?</string>
@@ -952,6 +953,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Signal zvana savienojuma izveide</string>
   <string name="NotificationBarManager__incoming_signal_call">Ienākošs Signal zvans</string>
   <string name="NotificationBarManager__incoming_signal_group_call">Ienākošs Signal grupas zvans</string>
+  <!--Temporary notification shown when starting the calling service-->
   <string name="NotificationBarManager__stopping_signal_call_service">Tiek apturēts Signal zvana pakalpojums</string>
   <string name="NotificationBarManager__decline_call">Noraidīt zvanu</string>
   <string name="NotificationBarManager__answer_call">Atbildēt</string>
@@ -1752,6 +1754,9 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Meklēt</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Meklēt sarunas, kontaktus un ziņas</string>
+  <!--Material3 Search Toolbar-->
+  <string name="Material3SearchToolbar__close">Aizvērt</string>
+  <string name="Material3SearchToolbar__clear">Notīrīt</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Nepareiza saīsne</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -2016,8 +2021,8 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Nav multivides</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__view">SKATĪT</string>
-  <string name="message_recipients_list_item__resend">PĀRSŪTĪT</string>
+  <string name="message_recipients_list_item__view">Skatīt</string>
+  <string name="message_recipients_list_item__resend">Sūtīt vēlreiz</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
   <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Nosūtīšanas laiks nokopēts starpliktuvē.</string>
   <!--Displayed when there are no outgoing stories-->
@@ -2088,10 +2093,10 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Vilkt uz leju, lai noraidītu</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Daži jautājumi prasa jūsu uzmanību.</string>
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">Nosūtīta:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">Saņemta:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">Izgaisīs:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">Caur:</string> -->
+  <string name="message_details_header_sent">Nosūtītās</string>
+  <string name="message_details_header_received">Saņemtās</string>
+  <string name="message_details_header_disappears">Pazūd</string>
+  <string name="message_details_header_via">Ar</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Gaidīšanas statusā</string>
   <string name="message_details_recipient_header__sent_to">Noūtīts</string>
@@ -2134,7 +2139,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="HelpFragment__debug_log">Atkļūdošanas žurnāls:</string>
   <string name="HelpFragment__could_not_upload_logs">Nebija iespējams augšuplādēt žurnālus</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Lūdzu, esiet pēc iespējas aprakstošāks, lai palīdzētu mums izprast problēmu.</string>
-  <string-array name="HelpFragment__categories_3">
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
     <item>\-\- Lūdzu izvēlieties \-\-</item>
     <item>Kaut kas nedarbojas</item>
     <item>Funkcijas pieprasījums</item>
@@ -2143,7 +2148,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
     <item>Cits</item>
     <item>Maksājumi (MobileCoin)</item>
     <item>Uzturētāji un Signal Atbalsts</item>
-  </string-array>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Šī ziņa</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nesen lietotie</string>
@@ -3672,8 +3677,11 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Jūsu Uzturētāja abonements tika automātiski atcelts, jo jūs pārāk ilgi bijāt neaktīvs. Jūsu %1$s nozīmīte vairs nav redzama uz jūsu profila.</string>
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Jūsu regulārais ikmēneša ziedojums tika atcelts, jo mēs nevarējām apstrādāt jūsu maksājumu. Jūsu nozīmīte vairs nav redzama uz jūsu profila.</string>
+  <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Jūs varat turpināt izmantot Signal, bet lai atbalstītu aplikāciju un atkārtoti aktivizētu jūsu nozīmīti, atjaunojiet tagad.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Atjaunot abonementu</string>
+  <!--Button label to send user to Google Pay website-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Doties uz Google Pay</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Nevar apstrādāt abonementa maksājumu</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Mums ir grūtības iekasēt jūsu Signal Uzturētāja maksājumu. Pārliecinieties, ka maksājuma veids ir atjaunināts. Ja ne, atjauniniet to Google Pay. Signal mēģinās dažu dienu laikā to apstrādāt vēlreiz.</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Nerādīt šo atkārtoti</string>
@@ -3951,8 +3959,9 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="StoriesLandingItem__sending">Sūta…</string>
   <!--Label when multiple stories are pending sending-->
   <string name="StoriesLandingItem__sending_d">Sūta %1$d… </string>
-  <!--Label when a story fails to send-->
+  <!--Label when a story fails to send due to networking-->
   <string name="StoriesLandingItem__send_failed">Sūtīšana neizdevās</string>
+  <!--Label when a story fails to send due to identity mismatch-->
   <!--Status label when a story fails to send indicating user action to retry-->
   <string name="StoriesLandingItem__tap_to_retry">Pieskarieties, lai mēģinātu vēlreiz</string>
   <!--Title of dialog confirming decision to hide a story-->
@@ -3979,6 +3988,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="MyStories__delete_story">Dzēst stāstu?</string>
   <!--Message of dialog to confirm deletion of story-->
   <string name="MyStories__this_story_will_be_deleted">Šis stāsts tiks dzēsts jums un visiem, kuri to saņēma.</string>
+  <!--Toast shown when story media cannot be saved-->
   <!--Displayed at bottom of story viewer when current item has views-->
   <plurals name="StoryViewerFragment__d_views">
     <item quantity="zero">%1$d skatījumi</item>
@@ -3999,7 +4009,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="StoryViewerPageFragment__s_to_s">%1$s %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Atbildēt</string>
-  <!--Displayed when viewing a group post from another user with no replies-->
+  <!--Label for the reply button in story viewer, which will launch the group story replies bottom sheet.-->
   <string name="StoryViewerPageFragment__reply_to_group">Atbildēt grupai</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Vēl nav skatījumu</string>
@@ -4050,7 +4060,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Paslēpt jūsu stāstu no specifiskiem cilvēkiem. Pēc noklusējuma, jūsu stāsts ir kopīgots ar jūsu %1$s</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <string name="MyStorySettingsFragment__signal_connections">Signal pazīstamie.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">Signal pazīstamie.</string> -->
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
   <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Signal pazīstamie</strong> ir cilvēki, kuriem jūs esat izvēlējies uzticēties pēc:</string>
   <!--Signal connections sheet bullet point 1-->
@@ -4099,8 +4109,9 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Kopīgojiet saiti ar jūsu stāsta skatītājiem</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Meklēt</string>
+  <!--Toast shown when an unexpected error occurs while sending a text story-->
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <string name="HideStoryFromFragment__hide_story_from">Paslēpt stāstu no…</string>
+  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">Paslēpt stāstu no…</string> -->
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Darīts</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4194,7 +4205,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ExpandModel__view_more">Skatīt vairāk</string>
   <string name="StoriesLinkPopup__visit_link">Apmeklēt saiti</string>
   <!--Duration and price information-->
-  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s • %2$d dienas ilgums</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Nosūtīt dāvanas nozīmīti</string>
   <!--Headline text on start fragment for gifting a badge-->

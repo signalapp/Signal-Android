@@ -220,8 +220,10 @@
   <string name="ConversationActivity_calls_not_supported">Klici niso podprti</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Izgleda, da naprava ne podpira klicanja.</string>
   <string name="ConversationActivity_transport_insecure_sms">Nezavarovan SMS</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
   <string name="ConversationActivity_transport_insecure_mms">Nezavarovan MMS</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_signal">Sporočilo Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Začni uporabljati aplikacijo Signal %1$s</string>
   <string name="ConversationActivity_specify_recipient">Prosimo, izberite uporabnika_co</string>
   <string name="ConversationActivity_unblock">Odblokiraj</string>
@@ -364,7 +366,7 @@
     <item quantity="few">%d premaknjeni v arhiv</item>
     <item quantity="other">%d premaknjenih v arhiv</item>
   </plurals>
-  <string name="ConversationListFragment_undo">RAZVELJAVI</string>
+  <string name="ConversationListFragment_undo">Razveljavi</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Pogovor je premaknjen v nabiralnik</item>
     <item quantity="two">%d pogovora premaknjena v nabiralnik</item>
@@ -728,8 +730,7 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">To polje je obvezno.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Kreiranje skupine ni uspelo.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Poskusite znova kasneje.</string>
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Izbrali ste stik, ki ne uporablja skupin Signal, zato bo to skupina MMS</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Imena in fotografije MMS skupin po meri bodo vidna le vam.</string> -->
+  <!--Displayed when adding group details to an MMS Group-->
   <string name="AddGroupDetailsFragment__remove">Odstrani</string>
   <string name="AddGroupDetailsFragment__sms_contact">Stik SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Želite odstraniti uporabnika_co %1$s iz skupine?</string>
@@ -1001,6 +1002,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Vzpostavljam klic Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Dohodni klic Signal</string>
   <string name="NotificationBarManager__incoming_signal_group_call">Dohodni skupinski klic Signal</string>
+  <!--Temporary notification shown when starting the calling service-->
   <string name="NotificationBarManager__stopping_signal_call_service">Ustavljanje klicanja Signal</string>
   <string name="NotificationBarManager__decline_call">Zavrni klic</string>
   <string name="NotificationBarManager__answer_call">Sprejmi klic</string>
@@ -1823,6 +1825,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Iskanje</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Iskanje po pogovorih, stikih in sporočilih</string>
+  <!--Material3 Search Toolbar-->
+  <string name="Material3SearchToolbar__close">Zapri</string>
+  <string name="Material3SearchToolbar__clear">Izbriši</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Neveljavna bližnjica</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -2097,8 +2102,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Ni multimedijskih sporočil</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__view">PREGLED</string>
-  <string name="message_recipients_list_item__resend">PONOVNO POŠLJI</string>
+  <string name="message_recipients_list_item__view">Prikaz</string>
+  <string name="message_recipients_list_item__resend">Ponovno pošlji</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
   <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Časovni žig je bil prekopiran v odložišče.</string>
   <!--Displayed when there are no outgoing stories-->
@@ -2170,10 +2175,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Za zavrnitev klica podrsajte navzdol</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Prišlo je do težav, ki zahtevajo vašo pozornost.</string>
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">Poslano:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">Prejeto:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">Izgine:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">Preko:</string> -->
+  <string name="message_details_header_sent">Poslano:</string>
+  <string name="message_details_header_received">Prejeto</string>
+  <string name="message_details_header_disappears">Izgine</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">V teku</string>
   <string name="message_details_recipient_header__sent_to">Poslano uporabniku_ci</string>
@@ -2216,7 +2220,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="HelpFragment__debug_log">Sistemska zabeležba:</string>
   <string name="HelpFragment__could_not_upload_logs">Sistemska zabeležba ni bila prenešena</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Pri opisu napake bodite čim bolj natančni, da bomo lažje razumeli za kaj gre.</string>
-  <string-array name="HelpFragment__categories_3">
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
     <item>\-\- Prosimo izberite opcijo \-\-</item>
     <item>Nekaj ne deluje</item>
     <item>Predlog za novo funkcijo</item>
@@ -2225,7 +2229,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
     <item>Drugo</item>
     <item>Plačila (MobileCoin)</item>
     <item>Podporniki_ce &amp; Pospešek Signalu</item>
-  </string-array>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">To sporočilo</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedavno uporabljeno</string>
@@ -3772,8 +3776,11 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Vaše mesečne donacije so bile preklicane, ker ste bili predolgo neaktivni. Vaš bedž %1$s ni več viden na vašem profilu.</string>
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Vaše mesečne donacije so bile preklicane, ker nismo mogli procesirati plačila. Bedž ni več viden na vašem profilu.</string>
+  <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Še naprej lahko uporabljate Signal, za nadaljevanje podpore in reaktivacijo vašega bedža pa lahko obnovite naročnino.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Obnovitev naročnine</string>
+  <!--Button label to send user to Google Pay website-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Pojdi na Google Pay</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Plačila naročnine ni mogoče izvesti</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Težave imamo z izvedbo vašega plačila za podpornika_co Signala. Prepričajte se, če je vaša plačilna metoda posodobljena. Če ni, jo posodobite v računu Google Pay. V nekaj dneh bomo poskusili znova.</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Ne prikazuj več tega</string>
@@ -4052,8 +4059,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="StoriesLandingItem__sending">Pošiljanje …</string>
   <!--Label when multiple stories are pending sending-->
   <string name="StoriesLandingItem__sending_d">Pošiljanje %1$d…</string>
-  <!--Label when a story fails to send-->
+  <!--Label when a story fails to send due to networking-->
   <string name="StoriesLandingItem__send_failed">Pošiljanje ni uspelo</string>
+  <!--Label when a story fails to send due to identity mismatch-->
   <!--Status label when a story fails to send indicating user action to retry-->
   <string name="StoriesLandingItem__tap_to_retry">Tapnite za ponoven poskus</string>
   <!--Title of dialog confirming decision to hide a story-->
@@ -4081,6 +4089,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MyStories__delete_story">Želite izbrisati zgodbo?</string>
   <!--Message of dialog to confirm deletion of story-->
   <string name="MyStories__this_story_will_be_deleted">Zgodba bo izbrisana za vas in za vse, ki so jo prejeli.</string>
+  <!--Toast shown when story media cannot be saved-->
   <!--Displayed at bottom of story viewer when current item has views-->
   <plurals name="StoryViewerFragment__d_views">
     <item quantity="one">%1$d ogled</item>
@@ -4103,7 +4112,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="StoryViewerPageFragment__s_to_s">%1$s do %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Odgovori</string>
-  <!--Displayed when viewing a group post from another user with no replies-->
+  <!--Label for the reply button in story viewer, which will launch the group story replies bottom sheet.-->
   <string name="StoryViewerPageFragment__reply_to_group">Odgovori skupini</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Brez ogledov</string>
@@ -4155,7 +4164,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Skrijte svojo zgodbo pred določenimi ljudmi. Privzeto je vaša zgodba deljena z %1$s</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <string name="MyStorySettingsFragment__signal_connections">Signal povezanimi.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">Signal povezanimi.</string> -->
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
   <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Signal povezani</strong> so ljudje, ki ste se jim odločili zaupati, s tem, da ste:</string>
   <!--Signal connections sheet bullet point 1-->
@@ -4204,8 +4213,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Delite povezavo z gledalci vaše zgodbe</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Iskanje</string>
+  <!--Toast shown when an unexpected error occurs while sending a text story-->
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <string name="HideStoryFromFragment__hide_story_from">Skrij zgodbo pred …</string>
+  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">Skrij zgodbo pred …</string> -->
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">OK</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4300,7 +4310,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ExpandModel__view_more">Več</string>
   <string name="StoriesLinkPopup__visit_link">Obišči povezavo</string>
   <!--Duration and price information-->
-  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d dni trajanja</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Pošlji darilni bedž</string>
   <!--Headline text on start fragment for gifting a badge-->

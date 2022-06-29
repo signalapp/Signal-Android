@@ -218,8 +218,10 @@
   <string name="ConversationActivity_calls_not_supported">Opkald er ikke understøttet</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Enheden understøtter ikke initieret opkald</string>
   <string name="ConversationActivity_transport_insecure_sms">Usikker SMS</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
   <string name="ConversationActivity_transport_insecure_mms">Usikker MMS</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_signal">Signal-besked</string>
   <string name="ConversationActivity_lets_switch_to_signal">Lad os bruge Signal %1$s?</string>
   <string name="ConversationActivity_specify_recipient">Vælg venligst en kontakt</string>
   <string name="ConversationActivity_unblock">Fjern blokering</string>
@@ -344,7 +346,7 @@
     <item quantity="one">Samtale arkiveret</item>
     <item quantity="other">%d samtaler arkiveret</item>
   </plurals>
-  <string name="ConversationListFragment_undo">FORTRYD</string>
+  <string name="ConversationListFragment_undo">Fortryd</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Samtale flyttet til inbox</item>
     <item quantity="other">Flyttede %d samtaler til indbakke</item>
@@ -652,8 +654,7 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">Dette felt er påkrævet.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Oprettelse af gruppe mislykkedes</string>
   <string name="AddGroupDetailsFragment__try_again_later">Prøv igen senere.</string>
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Du har valgt en kontakt, der ikke understøtter Signal-grupper, så denne gruppe vil være MMS.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Tilpassede MMS-gruppenavne og -billeder vil kun være synlige for dig.</string> -->
+  <!--Displayed when adding group details to an MMS Group-->
   <string name="AddGroupDetailsFragment__remove">Fjern</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS-kontakt</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Fjern %1$s fra gruppen?</string>
@@ -903,6 +904,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Foretager Signal-opkald</string>
   <string name="NotificationBarManager__incoming_signal_call">Indgående Signal-opkald</string>
   <string name="NotificationBarManager__incoming_signal_group_call">Indgående Signal-gruppeopkald</string>
+  <!--Temporary notification shown when starting the calling service-->
   <string name="NotificationBarManager__stopping_signal_call_service">Signal-opkaldstjeneste stopper</string>
   <string name="NotificationBarManager__decline_call">Afvis opkald</string>
   <string name="NotificationBarManager__answer_call">Besvar opkald</string>
@@ -1683,6 +1685,9 @@ nummer (%s) er ugyldigt</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Søg</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Søg efter samtaler, kontakter og beskeder</string>
+  <!--Material3 Search Toolbar-->
+  <string name="Material3SearchToolbar__close">Luk</string>
+  <string name="Material3SearchToolbar__clear">Fjern</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Ugyldig genvej</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -1937,8 +1942,8 @@ nummer (%s) er ugyldigt</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Ingen mediefiler</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__view">VIS</string>
-  <string name="message_recipients_list_item__resend">SEND IGEN</string>
+  <string name="message_recipients_list_item__view">Vis</string>
+  <string name="message_recipients_list_item__resend">Send igen</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
   <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Kopierede sendt-tidsstempel til udklipsholderen.</string>
   <!--Displayed when there are no outgoing stories-->
@@ -2008,10 +2013,10 @@ nummer (%s) er ugyldigt</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Swipe ned for at afvise</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Nogle ting kræver din opmærksomhed.</string>
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">Sendt:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">Modtaget:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">Forsvinder:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">Via:</string> -->
+  <string name="message_details_header_sent">Sendt</string>
+  <string name="message_details_header_received">Modtaget</string>
+  <string name="message_details_header_disappears">Udløber</string>
+  <string name="message_details_header_via">Via</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Afventer</string>
   <string name="message_details_recipient_header__sent_to">Sendt til</string>
@@ -2054,7 +2059,7 @@ nummer (%s) er ugyldigt</string>
   <string name="HelpFragment__debug_log">Fejlsøgningslog:</string>
   <string name="HelpFragment__could_not_upload_logs">Kunne ikke uploade logger</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Beskriv venligst problemet så præcist som muligt, for at sikre vi bedst forstår det</string>
-  <string-array name="HelpFragment__categories_3">
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
     <item>\-\- Vælg en mulighed \-\-</item>
     <item>Noget fungerer ikke</item>
     <item>Anmodning om funktion</item>
@@ -2063,7 +2068,7 @@ nummer (%s) er ugyldigt</string>
     <item>Andet</item>
     <item>Betalinger (MobileCoin)</item>
     <item>Bidragsydere &amp; Signal Boost</item>
-  </string-array>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne besked</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Senest brugte</string>
@@ -3574,8 +3579,11 @@ nummer (%s) er ugyldigt</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Din tilbagevendende, månedlige donation blev automatisk annulleret, fordi du har været inaktiv for længe. Dit %1$s-emblem er ikke længere synligt på din profil.</string>
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Din tilbagevendende, månedlige donation blev annulleret, fordi vi ikke kunne behandle din betaling. Dit emblem er ikke længere synligt på din profil.</string>
+  <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan fortsætte med at bruge Signal, men hvis du vil støtte appen og genaktivere dit badge, skal du forny nu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Forny abonnement</string>
+  <!--Button label to send user to Google Pay website-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Gå til Google Pay</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Kan ikke behandle betaling af abonnement</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Vi har problemer med at modtage din Signal-bidragsyderbetaling. Sørg for, at din betalingsmetode er opdateret. Hvis den ikke er det, skal du opdatere den i Google Pay. Signal vil forsøge at behandle betalingen igen om et par dage.</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Vis ikke dette igen</string>
@@ -3852,8 +3860,9 @@ nummer (%s) er ugyldigt</string>
   <string name="StoriesLandingItem__sending">Sender …</string>
   <!--Label when multiple stories are pending sending-->
   <string name="StoriesLandingItem__sending_d">Sender %1$d…</string>
-  <!--Label when a story fails to send-->
+  <!--Label when a story fails to send due to networking-->
   <string name="StoriesLandingItem__send_failed">Afsendelse mislykkedes</string>
+  <!--Label when a story fails to send due to identity mismatch-->
   <!--Status label when a story fails to send indicating user action to retry-->
   <string name="StoriesLandingItem__tap_to_retry">Tryk for at prøve igen</string>
   <!--Title of dialog confirming decision to hide a story-->
@@ -3879,6 +3888,7 @@ nummer (%s) er ugyldigt</string>
   <string name="MyStories__delete_story">Slet historie?</string>
   <!--Message of dialog to confirm deletion of story-->
   <string name="MyStories__this_story_will_be_deleted">Denne historie vil blive slettet for dig og alle, der har modtaget den.</string>
+  <!--Toast shown when story media cannot be saved-->
   <!--Displayed at bottom of story viewer when current item has views-->
   <plurals name="StoryViewerFragment__d_views">
     <item quantity="one">%1$d visning</item>
@@ -3897,7 +3907,7 @@ nummer (%s) er ugyldigt</string>
   <string name="StoryViewerPageFragment__s_to_s">%1$s til %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Besvar</string>
-  <!--Displayed when viewing a group post from another user with no replies-->
+  <!--Label for the reply button in story viewer, which will launch the group story replies bottom sheet.-->
   <string name="StoryViewerPageFragment__reply_to_group">Svar til gruppe</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Ingen visninger endnu</string>
@@ -3947,7 +3957,7 @@ nummer (%s) er ugyldigt</string>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Skjul din historie for bestemte personer. Som standard deles din historie med dine %1$s</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <string name="MyStorySettingsFragment__signal_connections">Signal-forbindelser</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">Signal-forbindelser</string> -->
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
   <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Signal-forbindelser</strong> er personer, som du har valgt at stole på, enten ved at:</string>
   <!--Signal connections sheet bullet point 1-->
@@ -3996,8 +4006,9 @@ nummer (%s) er ugyldigt</string>
   <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Del et link med seere af din historie</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Søg</string>
+  <!--Toast shown when an unexpected error occurs while sending a text story-->
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <string name="HideStoryFromFragment__hide_story_from">Skjul historie for…</string>
+  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">Skjul historie for…</string> -->
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Udført</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4090,7 +4101,6 @@ nummer (%s) er ugyldigt</string>
   <string name="ExpandModel__view_more">Vis mere</string>
   <string name="StoriesLinkPopup__visit_link">Besøg link</string>
   <!--Duration and price information-->
-  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d dages varighed</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Send et gaveemblem</string>
   <!--Headline text on start fragment for gifting a badge-->

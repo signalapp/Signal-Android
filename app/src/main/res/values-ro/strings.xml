@@ -219,8 +219,10 @@
   <string name="ConversationActivity_calls_not_supported">Nu există suport pentru apeluri</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Acest dispozitiv nu pare să suporte apeluri.</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS nesecurizat</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
   <string name="ConversationActivity_transport_insecure_mms">MMS nesecurizat</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_signal">Mesaj Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Hai să folosim Signal %1$s</string>
   <string name="ConversationActivity_specify_recipient">Te rugăm alege un contact</string>
   <string name="ConversationActivity_unblock">Deblochează</string>
@@ -354,7 +356,7 @@
     <item quantity="few">%d conversații arhivate</item>
     <item quantity="other">%d conversații arhivate</item>
   </plurals>
-  <string name="ConversationListFragment_undo">ANULEAZĂ</string>
+  <string name="ConversationListFragment_undo">Anulează</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Conversație a fost mutată în inbox</item>
     <item quantity="few">%d conversații au fost mutate în inbox</item>
@@ -690,8 +692,7 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">Acest câmp este obligatoriu.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Crearea grupului a eșuat.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Încearcă mai târziu.</string>
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Ai selectat un contact care nu suportă grupuri Signal, astfel acest grup va fi de tip MMS.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Numele și fotografiile personalizate ale grupurilor MMS vor fi vizibile numai pentru tine.</string> -->
+  <!--Displayed when adding group details to an MMS Group-->
   <string name="AddGroupDetailsFragment__remove">Elimină</string>
   <string name="AddGroupDetailsFragment__sms_contact">Contact SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Elimină pe %1$s din acest grup?</string>
@@ -952,6 +953,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Se realizează un apel Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Apel de intrare Signal</string>
   <string name="NotificationBarManager__incoming_signal_group_call">Primire apel Signal de grup</string>
+  <!--Temporary notification shown when starting the calling service-->
   <string name="NotificationBarManager__stopping_signal_call_service">Se oprește serviciul de apelare Signal</string>
   <string name="NotificationBarManager__decline_call">Respinge apelul</string>
   <string name="NotificationBarManager__answer_call">Răspunde apelului</string>
@@ -1754,6 +1756,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Caută</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Caută în conversații, contacte și mesaje</string>
+  <!--Material3 Search Toolbar-->
+  <string name="Material3SearchToolbar__close">Închide</string>
+  <string name="Material3SearchToolbar__clear">Eliminare</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Scurtătură invalidă</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -2018,8 +2023,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Nu ai fișiere media</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__view">VIZUALIZARE</string>
-  <string name="message_recipients_list_item__resend">RETRIMITE</string>
+  <string name="message_recipients_list_item__view">Vizualizare</string>
+  <string name="message_recipients_list_item__resend">Re-trimite</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
   <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Timpul a fost copiat în clipboard.</string>
   <!--Displayed when there are no outgoing stories-->
@@ -2090,10 +2095,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Glisează în jos pentru a respinge</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Anumite probleme au nevoie de atenția ta.</string>
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">Trimis:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">Primit:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">Dispare:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">Prin:</string> -->
+  <string name="message_details_header_sent">Trimis</string>
+  <string name="message_details_header_received">Primit</string>
+  <string name="message_details_header_disappears">Dispare</string>
+  <string name="message_details_header_via">Prin</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">În curs</string>
   <string name="message_details_recipient_header__sent_to">Trimis la</string>
@@ -2136,7 +2141,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="HelpFragment__debug_log">Jurnalul de depanare:</string>
   <string name="HelpFragment__could_not_upload_logs">Nu s-au putut încărca jurnalele</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Te rugăm să fii cât mai descriptiv pentru a ne ajuta să înțelegem problema.</string>
-  <string-array name="HelpFragment__categories_3">
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
     <item>\-\- Te rugăm alege o opțiune \-\-</item>
     <item>Ceva nu funcționează</item>
     <item>Solicitare funcționalitate nouă</item>
@@ -2145,7 +2150,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
     <item>Altceva</item>
     <item>Plăți (MobileCoin)</item>
     <item>Susținători &amp; Signal Boost</item>
-  </string-array>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Acest mesaj</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Utilizate recent</string>
@@ -3674,8 +3679,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Donația ta lunară recurentă a fost anulată automat deoarece ai fost inactiv pentru o perioadă lungă de timp. Insigna ta %1$s nu va mai fi vizibilă pe profilul tău.</string>
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Donația ta lunară recurentă a fost anulată deoarece nu am putut procesa plata. Insigna ta nu va mai fi vizibilă pe profilul tău.</string>
+  <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Poți folosi în continuare Signal dar pentru a sprijini aplicația și pentru a-ți reactiva insigna, reînnoiește acum.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Reînnoiește abonamentul</string>
+  <!--Button label to send user to Google Pay website-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Deschide Google Pay</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Nu s-a putut procesa plata abonamentului</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Avem probleme la colectarea plății de Susținător Signal. Asigură-te că metoda ta de plată este actualizată. Dacă nu, actualizeaz-o în Google Pay. Signal va încerca să proceseze din nou plata în câteva zile.</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Nu mai afișa acest mesaj</string>
@@ -3953,8 +3961,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="StoriesLandingItem__sending">Se trimite…</string>
   <!--Label when multiple stories are pending sending-->
   <string name="StoriesLandingItem__sending_d">Se trimite %1$d…</string>
-  <!--Label when a story fails to send-->
+  <!--Label when a story fails to send due to networking-->
   <string name="StoriesLandingItem__send_failed">Trimitere eșuată</string>
+  <!--Label when a story fails to send due to identity mismatch-->
   <!--Status label when a story fails to send indicating user action to retry-->
   <string name="StoriesLandingItem__tap_to_retry">Atinge pentru a încerca din nou</string>
   <!--Title of dialog confirming decision to hide a story-->
@@ -3981,6 +3990,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MyStories__delete_story">Ștergi povestea?</string>
   <!--Message of dialog to confirm deletion of story-->
   <string name="MyStories__this_story_will_be_deleted">Această poveste va fi ștearsă pentru tine și toți cei care au primit-o.</string>
+  <!--Toast shown when story media cannot be saved-->
   <!--Displayed at bottom of story viewer when current item has views-->
   <plurals name="StoryViewerFragment__d_views">
     <item quantity="one">%1$d vizualizare</item>
@@ -4001,7 +4011,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="StoryViewerPageFragment__s_to_s">%1$s la %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Răspunde</string>
-  <!--Displayed when viewing a group post from another user with no replies-->
+  <!--Label for the reply button in story viewer, which will launch the group story replies bottom sheet.-->
   <string name="StoryViewerPageFragment__reply_to_group">Răspunde grupului</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Nicio vizualizare încă</string>
@@ -4052,7 +4062,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Ascunde-ți povestea de anumite persoane. În mod implicit povestea ta este distribuită %1$s</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <string name="MyStorySettingsFragment__signal_connections">Conexiuni Signal.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">Conexiuni Signal.</string> -->
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
   <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Conexiunile Signal</strong> sunt oameni în care ai ales să ai încredere, fie de către:</string>
   <!--Signal connections sheet bullet point 1-->
@@ -4101,8 +4111,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Distribuie un link cu spectatorii poveștii tale</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Caută</string>
+  <!--Toast shown when an unexpected error occurs while sending a text story-->
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <string name="HideStoryFromFragment__hide_story_from">Ascunde povestea de …</string>
+  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">Ascunde povestea de …</string> -->
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Gata</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4196,7 +4207,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ExpandModel__view_more">Vezi mai multe</string>
   <string name="StoriesLinkPopup__visit_link">Vezi linkul</string>
   <!--Duration and price information-->
-  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d de zile valabilitate</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Trimite o insignă cadou</string>
   <!--Headline text on start fragment for gifting a badge-->

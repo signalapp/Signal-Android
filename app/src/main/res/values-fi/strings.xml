@@ -218,8 +218,10 @@
   <string name="ConversationActivity_calls_not_supported">Puheluita ei tueta</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Tämä laite ei näytä tukevan valintanäppäintoimintoja.</string>
   <string name="ConversationActivity_transport_insecure_sms">Salaamaton tekstiviesti</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
   <string name="ConversationActivity_transport_insecure_mms">Salaamaton MMS-viesti</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_signal">Signal-viesti</string>
   <string name="ConversationActivity_lets_switch_to_signal">Hei, vaihdetaan Signaliin %1$s</string>
   <string name="ConversationActivity_specify_recipient">Valitse yhteystieto</string>
   <string name="ConversationActivity_unblock">Poista esto</string>
@@ -344,7 +346,7 @@
     <item quantity="one">Keskustelu arkistoitu</item>
     <item quantity="other">%d keskustelua arkistoitu</item>
   </plurals>
-  <string name="ConversationListFragment_undo">KUMOA</string>
+  <string name="ConversationListFragment_undo">Kumoa</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Keskustelu siirretty postilaatikkoon</item>
     <item quantity="other">%d keskustelua siirretty postilaatikkoon</item>
@@ -652,8 +654,7 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">Tämä kenttä on pakollinen.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Ryhmän luominen epäonnistui.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Yritä myöhemmin uudelleen.</string>
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Olet valinnut yhteystiedon, jonka laite ei tue Signalin ryhmäkeskusteluja. Tämä ryhmä tulee olemaan MMS-pohjainen.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Multimediaviestiryhmien mukautetut nimet ja kuvat näkyvät vain sinulle.</string> -->
+  <!--Displayed when adding group details to an MMS Group-->
   <string name="AddGroupDetailsFragment__remove">Poista</string>
   <string name="AddGroupDetailsFragment__sms_contact">Tekstiviestiyhteyshenkilö</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Poistetaanko %1$s tästä ryhmästä?</string>
@@ -903,6 +904,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Muodostetaan Signal-puhelua</string>
   <string name="NotificationBarManager__incoming_signal_call">Saapuva Signal-puhelu</string>
   <string name="NotificationBarManager__incoming_signal_group_call">Saapuva Signal-ryhmäpuhelu</string>
+  <!--Temporary notification shown when starting the calling service-->
   <string name="NotificationBarManager__stopping_signal_call_service">Pysäytetään Signalin puhelupalvelua</string>
   <string name="NotificationBarManager__decline_call">Hylkää puhelu</string>
   <string name="NotificationBarManager__answer_call">Vastaa puheluun</string>
@@ -1584,7 +1586,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="VerifyIdentityActivity_our_signal_safety_number">Signal-turvanumeromme:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Sinulla ole yhtään sovellusta, joihin voi jakaa sisältöä.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Leikepöydältä ei löytynyt turvanumeroa, johon verrata</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal tarvitsee luvan käyttää kameraa QR-koodien skannaamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Kamera\".</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal tarvitsee luvan käyttää kameraa QR-koodien skannaamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla Sovelluksen käyttöoikeudet ja laittamalla päälle Kamera.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">QR-koodin skannaus ei onnistu ilman kameran käyttöoikeutta.</string>
   <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Voit nähdä käyttäjän %1$s turvanumeron viestimällä hänen kanssaan.</string>
   <!--ViewOnceMessageActivity-->
@@ -1678,6 +1680,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Hae</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Etsi keskusteluja, yhteystietoja ja viestejä</string>
+  <!--Material3 Search Toolbar-->
+  <string name="Material3SearchToolbar__close">Sulje</string>
+  <string name="Material3SearchToolbar__clear">Tyhjennä</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Virheellinen pikakuvake</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -1932,8 +1937,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Ei mediatiedostoja</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__view">NÄYTÄ</string>
-  <string name="message_recipients_list_item__resend">LÄHETÄ UUDELLEEN</string>
+  <string name="message_recipients_list_item__view">Näytä</string>
+  <string name="message_recipients_list_item__resend">Lähetä uudelleen</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
   <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Lähetetyn viestin aikaleima on kopioitu leikepöydälle.</string>
   <!--Displayed when there are no outgoing stories-->
@@ -2003,16 +2008,16 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Hylkää pyyhkäisemällä alas</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Jotkin asiat kaipaavat huomiotasi.</string>
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">Lähetetty:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">Vastaanotettu:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">Katoaa:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">Lähetystapa:</string> -->
+  <string name="message_details_header_sent">Lähetetty</string>
+  <string name="message_details_header_received">Vastaanotettu</string>
+  <string name="message_details_header_disappears">Katoamisaika</string>
+  <string name="message_details_header_via">Lähetystapa:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Käsiteltävänä</string>
   <string name="message_details_recipient_header__sent_to">Lähetetty käyttäjälle</string>
   <string name="message_details_recipient_header__sent_from">Lähettäjä</string>
   <string name="message_details_recipient_header__delivered_to">Toimitettu käyttäjälle</string>
-  <string name="message_details_recipient_header__read_by">Lukenut</string>
+  <string name="message_details_recipient_header__read_by">Luettu</string>
   <string name="message_details_recipient_header__not_sent">Ei lähetetty</string>
   <string name="message_details_recipient_header__viewed">Nähnyt</string>
   <string name="message_details_recipient_header__skipped">Ohitettu</string>
@@ -2033,7 +2038,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="AndroidManifest_remove_photo">Poista kuva</string>
   <!--Message Requests Megaphone-->
   <string name="MessageRequestsMegaphone__message_requests">Viestipyynnöt</string>
-  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Käyttäjät voivat nyt valita, hyväksyvätkö uuden keskustelun. Profiilinimet kertovat ihmisille, kuka viestii heille.</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Käyttäjät voivat nyt valita, hyväksyvätkö uuden keskustelun. Profiilinimi kertoo, kuka on viestin lähettäjä.</string>
   <string name="MessageRequestsMegaphone__add_profile_name">Lisää profiilinimi</string>
   <!--HelpFragment-->
   <string name="HelpFragment__have_you_read_our_faq_yet">Oletko tutustunut usein kysyttyihin kysymyksiin?</string>
@@ -2049,7 +2054,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="HelpFragment__debug_log">Virheenkorjausloki:</string>
   <string name="HelpFragment__could_not_upload_logs">Lokien lähettäminen ei onnistunut</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Auta meitä ymmärtämään ongelma kuvailemalla se mahdollisimman tarkasti.</string>
-  <string-array name="HelpFragment__categories_3">
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
     <item>\-\- Valitse aihe \-\-</item>
     <item>Jokin ei toimi</item>
     <item>Toive ominaisuudesta</item>
@@ -2058,7 +2063,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
     <item>Muu aihe</item>
     <item>Maksut (MobileCoin)</item>
     <item>Tukijat ja Signal Boost</item>
-  </string-array>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tämä viesti</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Äskettäin käytetyt</string>
@@ -2082,7 +2087,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="arrays__always">Aina</string>
   <string name="arrays__settings_default">Oletus</string>
   <string name="arrays__enabled">Päällä</string>
-  <string name="arrays__disabled">Poissa</string>
+  <string name="arrays__disabled">Pois päältä</string>
   <string name="arrays__name_and_message">Nimi ja viesti</string>
   <string name="arrays__name_only">Vain nimi</string>
   <string name="arrays__no_name_or_message">Ei nimeä eikä viestiä</string>
@@ -2114,7 +2119,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__pref_use_address_book_photos">Käytä osoitekirjan valokuvia</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">Näytä yhteystietojen valokuvat osoitekirjasta, mikäli saatavilla</string>
   <string name="preferences__generate_link_previews">Luo esikatselukuvia linkeistä</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Näytä verkkosivuston esikatselu lähettämiisi linkkeihin.</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Näytä lähettämiesi linkkien esikatselu verkkosivustoilta.</string>
   <string name="preferences__choose_identity">Valitse identiteetti</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Valitse yhteystieto osoitekirjasta.</string>
   <string name="preferences__change_passphrase">Salalauseen vaihto</string>
@@ -2161,7 +2166,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__one_time_donation">Kertalahjoitus</string>
   <string name="preferences__privacy">Yksityisyys</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
-  <string name="preferences__advanced_mms_access_point_names">Manuaaliset MMS-asetukset</string>
+  <string name="preferences__advanced_mms_access_point_names">Manuaaliset multimediaviestiasetukset</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
   <string name="preferences__mms_proxy_host">MMS-välityspalvelin</string>
   <string name="preferences__mms_proxy_port">MMS-välityspalvelimen portti</string>
@@ -2202,7 +2207,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__typing_indicators">Kirjoittamisen ilmaisin</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Jos kirjoittamisen ilmaisin ei ole käytössä, et näe muiden käyttäjien kirjoittamisen ilmaisinta.</string>
   <string name="preferences__request_keyboard_to_disable">Pyydä näppäimistöä kytkemään sanakirjan automaattinen päivittäminen pois päältä</string>
-  <string name="preferences__this_setting_is_not_a_guarantee">Asetus ei takaa mitään, näppäimistö saattaa olla tottelematta sitä.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">Asetus ei välttämättä toimi, näppäimistösi saattaa olla tottelematta sitä.</string>
   <string name="preferences_app_protection__blocked_users">Estetyt käyttäjät</string>
   <string name="preferences_chats__when_using_mobile_data">Mobiiliverkossa</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi-verkossa</string>
@@ -2223,7 +2228,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Haluatko varmasti poistaa kaiken viestihistorian?</string>
   <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Kaikki viestihistoria poistetaan pysyvästi. Toimintoa ei voi kumota.</string>
   <string name="preferences_storage__delete_all_now">Poista kaikki nyt</string>
-  <string name="preferences_storage__forever">Ikuisesti</string>
+  <string name="preferences_storage__forever">Pysyvästi</string>
   <string name="preferences_storage__one_year">1 vuosi</string>
   <string name="preferences_storage__six_months">6 kuukautta</string>
   <string name="preferences_storage__thirty_days">30 päivää</string>
@@ -2276,23 +2281,23 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Ota lähettäjäsinetti käyttöön saapuville viesteille henkilöiltä, jotka eivät ole yhteystiedoissasi tai joiden kanssa et ole jakanut profiiliasi.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Lue lisää</string>
   <string name="preferences_setup_a_username">Aseta käyttäjätunnus</string>
-  <string name="preferences_proxy">Proxy</string>
-  <string name="preferences_use_proxy">Käytä proxyä</string>
+  <string name="preferences_proxy">Välityspalvelin</string>
+  <string name="preferences_use_proxy">Käytä välityspalvelinta</string>
   <string name="preferences_off">Ei käytössä</string>
   <string name="preferences_on">Käytössä</string>
-  <string name="preferences_proxy_address">Proxyn osoite</string>
-  <string name="preferences_only_use_a_proxy_if">Käytä proxyä vain jos et saa yhteyttä Signaliin mobiiliverkolla tai Wi-Fi:llä.</string>
+  <string name="preferences_proxy_address">Välityspalvelimen osoite</string>
+  <string name="preferences_only_use_a_proxy_if">Käytä välityspalvelinta vain, jos et saa yhteyttä Signaliin mobiiliverkolla tai Wi-Fi:llä.</string>
   <string name="preferences_share">Jaa</string>
   <string name="preferences_save">Tallenna</string>
-  <string name="preferences_connecting_to_proxy">Muodostetaan yhteyttä proxyyn…</string>
-  <string name="preferences_connected_to_proxy">Yhteys proxyyn muodostettu</string>
+  <string name="preferences_connecting_to_proxy">Muodostetaan yhteyttä välityspalvelimeen…</string>
+  <string name="preferences_connected_to_proxy">Yhteys välityspalvelimeen muodostettu</string>
   <string name="preferences_connection_failed">Yhteyden muodostaminen epäonnistui</string>
-  <string name="preferences_couldnt_connect_to_the_proxy">Yhteyden muodostaminen proxyyn ei onnistunut. Tarkista proxyn osoite ja yritä uudelleen.</string>
-  <string name="preferences_you_are_connected_to_the_proxy">Olet yhdistetty proxyyn. Voit ottaa proxyn pois päältä milloin tahansa asetuksista.</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">Yhteyden muodostaminen välityspalvelimeen ei onnistunut. Tarkista välityspalvelimen osoite ja yritä uudelleen.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Yhteys välityspalvelimeen muodostettu. Voit kytkeä välityspalvelimen pois päältä milloin tahansa asetuksista.</string>
   <string name="preferences_success">Onnistui</string>
   <string name="preferences_failed_to_connect">Yhteyden muodostaminen epäonnistui</string>
-  <string name="preferences_enter_proxy_address">Syötä proxyn osoite</string>
-  <string name="configurable_single_select__customize_option">Mukauta vaihtoehto</string>
+  <string name="preferences_enter_proxy_address">Syötä välityspalvelimen osoite</string>
+  <string name="configurable_single_select__customize_option">Mukautettu vaihtoehto</string>
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Kaikki toiminta</string>
@@ -2300,7 +2305,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="PaymentsAllActivityFragment__sent">Lähetetty</string>
   <string name="PaymentsAllActivityFragment__received">Vastaanotettu</string>
   <string name="PaymentsHomeFragment__introducing_payments">Esittelyssä maksut (Beta)</string>
-  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">MobileCoin on uusi yksityisyyden suojaan keskittyvä digitaalinen valuutta. Aloita ottamalla käyttöön.</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">MobileCoin on uusi yksityisyyden suojaan keskittyvä digitaalinen valuutta. Aloita ottamalla se käyttöön.</string>
   <string name="PaymentsHomeFragment__activate_payments">Aktivoi maksut</string>
   <string name="PaymentsHomeFragment__activating_payments">Aktivoidaan maksut…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">Palauta maksutili</string>
@@ -2324,26 +2329,26 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__currency_conversion_not_available">Valuuttamuunnos ei saatavilla</string>
   <string name="PaymentsHomeFragment__cant_display_currency_conversion">Valuuttamuunnoksen näyttäminen ei onnistu. Tarkista verkkoyhteytesi ja yritä uudelleen.</string>
-  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Maksut-toiminto ei ole saatavilla alueellasi.</string>
-  <string name="PaymentsHomeFragment__could_not_enable_payments">Maksun käyttöönotto epäonnistui. Yritä myöhemmin uudelleen.</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Maksutoiminto ei ole saatavilla alueellasi.</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">Maksutoiminnon käyttöönotto epäonnistui. Yritä myöhemmin uudelleen.</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">Poistetaanko maksut käytöstä?</string>
   <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">MobileCoin-maksuja ei voi lähettää tai vastaanottaa Signalissa, jos maksut poistetaan käytöstä.</string>
   <string name="PaymentsHomeFragment__deactivate">Poista käytöstä</string>
   <string name="PaymentsHomeFragment__continue">Jatka</string>
   <string name="PaymentsHomeFragment__balance_is_not_currently_available">Saldo ei ole saatavilla tällä hetkellä.</string>
-  <string name="PaymentsHomeFragment__payments_deactivated">Maksut otettu pois käytöstä</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">Maksutoiminto otettu pois käytöstä</string>
   <string name="PaymentsHomeFragment__payment_failed">Maksu epäonnistui</string>
   <string name="PaymentsHomeFragment__details">Lisätietoja</string>
   <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Signalissa voi lähettää tai vastaanottaa MobileCoineja MobileCoinsin ja MobileCoin Walletin käyttöehtojen mukaisesti. Toiminto on yhä kehitysvaiheessa, joten teknisten ongelmien takia keskeytyneitä siirtoja tai katemenetyksiä ei korvata.</string>
   <string name="PaymentsHomeFragment__activate">Aktivoi</string>
-  <string name="PaymentsHomeFragment__view_mobile_coin_terms">Näytä MobileCoin sanasto</string>
-  <string name="PaymentsHomeFragment__payments_not_available">Maksut eivät ole enää saatavilla Signalissa. Varat voi yhä siirtää toiseen kauppapaikkaan, mutta varojen lisääminen tai maksujen lähettäminen ja vastaanottaminen ei ole enää mahdollista.</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">Näytä MobileCoinin ehdot</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Signalin maksutoiminto ei ole enää käytettävissä. Varat voi yhä siirtää toiseen kauppapaikkaan, mutta varojen lisääminen tai maksujen lähettäminen ja vastaanottaminen ei ole enää mahdollista.</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">Lisää varoja</string>
-  <string name="PaymentsAddMoneyFragment__your_wallet_address">Lompakkosi osoite</string>
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">Lompakko-osoite</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopioi</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopioitu leikepöydälle</string>
-  <string name="PaymentsAddMoneyFragment__to_add_funds">Lisää varoja lähettämällä MobileCoineja lompakko-osoitteeseen. Aloita siirto tililtäsi MobileCoin-yhteensopivalla kauppapaikalla ja sitten skannaamalla QR-koodi tai kopioimalla lompakon osoite.</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">Lisää varoja lähettämällä MobileCoineja lompakko-osoitteeseesi. Aloita siirto tililtäsi MobileCoin-yhteensopivan kauppapaikan kautta ja sitten skannaamalla QR-koodi tai kopioimalla lompakko-osoite.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Lisätietoja</string>
   <string name="PaymentsDetailsFragment__status">Tila</string>
@@ -2358,10 +2363,10 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s %2$s klo %3$s</string>
   <string name="PaymentsDetailsFragment__to">Vastaanottajat</string>
   <string name="PaymentsDetailsFragment__from">Lähettäjä</string>
-  <string name="PaymentsDetailsFragment__information">Tapahtuman tiedot kuten summa ja aika tallennetaan MobileCoiniin.</string>
+  <string name="PaymentsDetailsFragment__information">Tapahtuman tiedot, mm. summa ja aika tallennetaan MobileCoiniin.</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_fee">Kolikoiden siivousmaksu</string>
-  <string name="PaymentsDetailsFragment__coin_cleanup_information">Jos siirtoon vaadittavat kolikot eivät mene tasan, veloitetaan \"kolikonjärjestelymaksu\". Järjestelyn jälkeen maksujen lähettäminen on jälleen mahdollista.</string>
-  <string name="PaymentsDetailsFragment__no_details_available">Siirto ei sisällä lisätietoja</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">Jos siirtoon vaadittavat kolikot eivät mene tasan, summasta peritään kolikoiden siivousmaksu. Siivouksen jälkeen maksujen lähettäminen on jälleen mahdollista.</string>
+  <string name="PaymentsDetailsFragment__no_details_available">Siirrosta ei ole saatavilla lisätietoja</string>
   <string name="PaymentsDetailsFragment__sent_payment">Maksu lähetetty</string>
   <string name="PaymentsDetailsFragment__received_payment">Maksu vastaanotettu</string>
   <string name="PaymentsDeatilsFragment__payment_completed_s">Maksu on suoritettu %1$s</string>
@@ -2374,14 +2379,14 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="PaymentsTransferFragment__next">Seuraava</string>
   <string name="PaymentsTransferFragment__invalid_address">Virheellinen osoite</string>
   <string name="PaymentsTransferFragment__check_the_wallet_address">Tarkista vastaanottajan lompakko-osoite ja yritä uudelleen.</string>
-  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Siirtoa ei voi tehdä omaan Signalin klompakko-osoitteeseen. Syötä yhteensopivan kauppapaikan tilin lompakko-osoite.</string>
-  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Signal tarvitsee luvan kameran käyttämiseen skannatakseen QR-koodin.</string>
-  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal tarvitsee kameran köyttöoikeuden QR-koodin lukemiseen. Siirry kohtaan Asetukset, valitse Sovelluksen käyttöoikeudet ja salli kameran käyttö.</string>
-  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Signal tarvitsee luvan kameran käyttämiseen skannatakseen QR-koodin.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Siirtoa ei voi tehdä Signalin lompakko-osoitteeseen. Syötä yhteensopivan kauppapaikan tilin lompakko-osoite.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Jotta voit skannata QR-koodin, Signal tarvitsee luvan käyttää kameraa.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal tarvitsee luvan käyttää laitteesi kameraa QR-koodin lukemiseen. Siirry kohtaan Asetukset, valitse Sovelluksen käyttöoikeudet ja salli kameran käyttö.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Jotta voit skannata QR-koodin, Signal tarvitsee luvan käyttää kameraa.</string>
   <string name="PaymentsTransferFragment__settings">Asetukset</string>
   <!--PaymentsTransferQrScanFragment-->
   <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Skannaa osoitteen QR-koodi</string>
-  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Lue maksun saajan QR-koodi</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Skannaa maksun saajan QR-koodi</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Pyyntö</string>
   <string name="CreatePaymentFragment__pay">Maksa</string>
@@ -2408,8 +2413,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ConfirmPayment__confirm_payment">Vahvista maksu</string>
   <string name="ConfirmPayment__network_fee">Verkkomaksu</string>
   <string name="ConfirmPayment__error_getting_fee">Virhe summan vastaanotossa</string>
-  <string name="ConfirmPayment__estimated_s">Arviolta %1$s</string>
-  <string name="ConfirmPayment__to">Vastaanottajat</string>
+  <string name="ConfirmPayment__estimated_s">Arvio %1$s</string>
+  <string name="ConfirmPayment__to">Vastaanottaja:</string>
   <string name="ConfirmPayment__total_amount">Yhteensä</string>
   <string name="ConfirmPayment__balance_s">Saldo: %1$s</string>
   <string name="ConfirmPayment__submitting_payment">Lähetetään maksua…</string>
@@ -2418,7 +2423,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ConfirmPayment__payment_failed">Maksu epäonnistui</string>
   <string name="ConfirmPayment__payment_will_continue_processing">Maksun käsittelyä jatketaan</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Virheellinen vastaanottaja</string>
-  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Tämä henkilö ei ole ottanut maksuja käyttöön</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Käyttäjä ei ole ottanut maksuja käyttöön.</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Verkkomaksua ei voitu pyytää. Yritä maksua uudelleen napauttamalla OK.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <string name="CurrencyAmountFormatter_s_at_s">%1$s kurssilla %2$s</string>
@@ -2534,7 +2539,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="media_preview__share_title">Jaa</string>
   <string name="media_preview__all_media_title">Kaikki mediatiedostot</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__media_content_description">Liitteen esikatselu</string>
+  <string name="media_preview_activity__media_content_description">Median esikatselu</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Päivitä</string>
   <!--redphone_audio_popup_menu-->
@@ -2542,10 +2547,10 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Tilastot</string>
   <string name="InsightsDashboardFragment__title">Tilastot</string>
-  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal-protokolla suojasi automaattisesti %1$d/%% lähtevistä viesteistäsi viimeisen %2$d päivän aikana. Signalin käyttäjien väliset keskustelut ovat aina salattuja päästä päähän.</string>
-  <string name="InsightsDashboardFragment__spread_the_word">Levitä tietoa</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal-protokolla suojasi automaattisesti %1$d/%% lähtevistä viesteistäsi viimeisten %2$d päivän aikana. Signalin käyttäjien väliset keskustelut ovat aina salattuja päästä päähän.</string>
+  <string name="InsightsDashboardFragment__spread_the_word">Levitä tietoisuutta</string>
   <string name="InsightsDashboardFragment__not_enough_data">Ei tarpeeksi tietoa</string>
-  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Tilastoprosentti lasketaan niiden lähetettyjen viestien perusteella, joita ei ole kadonnut tai poistettu viimeisen %1$d päivän aikana.</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Tilastoprosentti lasketaan niiden lähetettyjen viestien perusteella, joita ei ole kadonnut tai poistettu viimeisten %1$d päivän aikana.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Aloita keskustelu</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">Viesti tästä lähtien turvallisesti ja tekstiviesteihin verrattuna huikein ominaisuuksin kutsumalla kavereita Signaliin.</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Nämä tilastot on luotu paikallisesti laitteellasi, ja vain sinä näet ne. Niitä ei koskaan välitetä mihinkään.</string>
@@ -2553,7 +2558,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="InsightsDashboardFragment__cancel">Peruuta</string>
   <string name="InsightsDashboardFragment__send">Lähetä</string>
   <string name="InsightsModalFragment__title">Esittelyssä tilastot</string>
-  <string name="InsightsModalFragment__description">Selvitä, kuinka suuri osa lähtevistä viesteistäsi lähetettiin turvallisesti. Kutsu sitten näppärästi uusia kontakteja vahvistaaksesi Signal-prosenttiasi.</string>
+  <string name="InsightsModalFragment__description">Selvitä, kuinka suuri osa lähtevistä viesteistäsi lähetettiin turvallisesti. Voit kasvattaa Signalin prosenttia kutsumalla uusia käyttäjiä mukaan.</string>
   <string name="InsightsModalFragment__view_insights">Näytä tilastot</string>
   <string name="FirstInviteReminder__title">Kutsu Signaliin</string>
   <string name="FirstInviteReminder__description">Voisit lisätä lähettämiesi salattujen viestien määrää %1$d %%</string>
@@ -2578,7 +2583,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="CreateKbsPinFragment__create_a_new_pin">Luo uusi tunnusluku</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Tunnusluvun voi vaihtaa vain laitteella, joka on rekisteröity.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Valitse tunnusluku</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Tunnusluvulla salataan Signaliin tallentamasi tiedot. Profiilisi, asetuksesi ja yhteystietosi palautetaan, kun asennat Signalin uudelleen. Tunnuslukua ei tarvita sovelluksen avaamiseen.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Tunnusluvulla salataan Signaliin tallentamasi tiedot, jotta vain sinä pääset niihin käsiksi. Profiilisi, asetuksesi ja yhteystietosi palautetaan, kun asennat Signalin uudelleen. Tunnuslukua ei tarvita sovelluksen avaamiseen.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Valitse vahvempi tunnusluku</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Tunnusluvut eivät täsmää. Yritä uudelleen.</string>
@@ -2590,7 +2595,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ConfirmKbsPinFragment__creating_pin">Luodaan tunnuslukua…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Esittelyssä tunnusluku</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Tunnusluvulla salataan Signaliin tallentamasi tiedot. Profiilisi, asetuksesi ja yhteystietosi palautetaan, kun asennat Signalin uudelleen. Tunnuslukua ei tarvita sovelluksen avaamiseen.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Tunnusluvulla salataan Signaliin tallentamasi tiedot, jotta vain sinä pääset niihin käsiksi. Profiilisi, asetuksesi ja yhteystietosi palautetaan, kun asennat Signalin uudelleen. Tunnuslukua ei tarvita sovelluksen avaamiseen.</string>
   <string name="KbsSplashFragment__learn_more">Lue lisää</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Rekisteröintiesto = tunnusluku</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Rekisteröintiesto on nyt tunnusluku ja sillä on uusia toimintoja. Päivitä sovellus nyt.</string>
@@ -2612,19 +2617,19 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="AccountLockedFragment__learn_more">Lue lisää</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Syötä tunnusluku</string>
-  <string name="RegistrationLockFragment__enter_the_pin_you_created">Syötä tilille valitsemasi tunnusluku. Se ei ole sama kuin tekstiviestivahvistuskoodisi.</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">Syötä tilille valitsemasi tunnusluku. Se ei ole sama kuin saamasi tekstiviestivahvistuskoodi.</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">Syötä aakkosnumeerinen tunnusluku</string>
   <string name="RegistrationLockFragment__enter_numeric_pin">Syötä numeerinen tunnusluku</string>
   <string name="RegistrationLockFragment__incorrect_pin_try_again">Väärä tunnusluku, yritä uudelleen.</string>
   <string name="RegistrationLockFragment__forgot_pin">Unohditko tunnusluvun?</string>
   <string name="RegistrationLockFragment__incorrect_pin">Väärä tunnusluku</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Unohditko tunnusluvun?</string>
-  <string name="RegistrationLockFragment__not_many_tries_left">Ei montaa yritystä jäljellä!</string>
-  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signalin rekisteröinti - Tarvitsen apua tunnusluvun kanssa Androidilla (v1 PIN)</string>
-  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signalin rekisteröinti - Tarvitsen apua tunnusluvun kanssa Androidilla (v2 PIN)</string>
+  <string name="RegistrationLockFragment__not_many_tries_left">Vain muutama yritys jäljellä!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signalin rekisteröinti – Tarvitsen apua tunnusluvun kanssa Androidilla (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signalin rekisteröinti – Tarvitsen apua tunnusluvun kanssa Androidilla (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">Yksityisyytesi ja tietoturvasi vuoksi PIN-koodia ei voida palauttaa. Jos et muista PIN-koodiasi, voit rekisteröityä uudelleen tekstiviestillä %1$d päivän toimettomuuden jälkeen. Tässä tapauksessa tilisi pyyhkiytyy ja kaikki sisältö poistetaan.</item>
-    <item quantity="other">Yksityisyys- ja tietoturvasyistä tunnuslukua ei voida palauttaa. Jos et muista tunnuslukua, voit rekisteröityä uudelleen tekstiviestillä %1$d päivän toimettomuuden jälkeen. Tällöin kaikki tilin sisältö poistetaan.</item>
+    <item quantity="other">Yksityisyys- ja tietoturvasyistä tunnuslukua ei voida palauttaa. Jos et muista tunnuslukua, voit rekisteröityä uudelleen tekstiviestillä, kun tili on ollut käyttämättä %1$d päivää. Tällöin kaikki tilin sisältö poistetaan.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
     <item quantity="one">Väärä PIN-koodi. %1$d yritys jäljellä.</item>
@@ -2632,11 +2637,11 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   </plurals>
   <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
     <item quantity="one">Jos yrityksesi loppuvat, tilisi lukitaan %1$d päiväksi. %1$d päivän toimettomuuden jälkeen voit rekisteröityä uudelleen ilman PIN-koodia. Tilisi pyyhitään ja kaikki sisältö poistetaan.</item>
-    <item quantity="other">Jos yrityksesi loppuvat, tilisi lukitaan %1$d päiväksi. %1$d päivän toimettomuuden jälkeen voit rekisteröityä uudelleen ilman tunnuslukua. Kaikki tilin sisältö poistetaan.</item>
+    <item quantity="other">Jos yritykset loppuvat, tilisi lukitaan %1$d päiväksi. Kun tili on ollut %1$d päivää käyttämättä, voit rekisteröityä uudelleen ilman tunnuslukua. Kaikki tilin sisältö poistetaan.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
     <item quantity="one">Sinulla on %1$d yritys jäljellä.</item>
-    <item quantity="other">Sinulla on %1$d yritystä jäljellä.</item>
+    <item quantity="other">%1$d yritystä jäljellä.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__d_attempts_remaining">
     <item quantity="one">%1$d yritys jäljellä.</item>
@@ -2653,7 +2658,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ConversationListFragment_loading">Ladataan…</string>
   <string name="CallNotificationBuilder_connecting">Yhdistetään…</string>
   <string name="Permissions_permission_required">Käyttöoikeus vaaditaan</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal tarvitsee tekstiviestien käyttöoikeutta niiden lähettämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tekstiviestit\".</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal tarvitsee luvan käyttää tekstiviestejä niiden lähettämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla Sovelluksen käyttöoikeudet ja laittamalla päälle Tekstiviestit.</string>
   <string name="Permissions_continue">Jatka</string>
   <string name="Permissions_not_now">Ei nyt</string>
   <string name="conversation_activity__enable_signal_messages">OTA KÄYTTÖÖN SIGNAL-VIESTIT</string>
@@ -2680,16 +2685,16 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="RegistrationActivity_checking">Tarkistetaan…</string>
   <string name="RegistrationActivity_d_messages_so_far">%d viestiä tähän mennessä…</string>
   <string name="RegistrationActivity_restore_from_backup">Palautetaanko varmuuskopiosta?</string>
-  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Palauta viestisi ja mediasi paikallisesta varmuuskopiostasi. Jos et palauta niitä nyt, et voi palauttaa niitä enää myöhemmin.</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Palauta viestit ja mediasisältö laitteeseen tallennetusta varmuuskopiosta. Palauttaminen ei ole mahdollista myöhemmin.</string>
   <string name="RegistrationActivity_backup_size_s">Koko: %s</string>
   <string name="RegistrationActivity_backup_timestamp_s">Varmuuskopioitu: %s</string>
   <string name="BackupDialog_enable_local_backups">Otetaanko paikalliset varmuuskopiot käyttöön?</string>
   <string name="BackupDialog_enable_backups">Ota varmuuskopiot käyttöön</string>
-  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Ilmaise ymmäryksesi ruksaamalla valintaruutu.</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Ilmaisen ymmärtäneeni tämän valitsemalla valintaruudun.</string>
   <string name="BackupDialog_delete_backups">Poistetaanko varmuuskopiot?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Otetaanko paikalliset varmuuskopiot pois käytöstä ja poistetaanko ne?</string>
   <string name="BackupDialog_delete_backups_statement">Poista varmuuskopiot</string>
-  <string name="BackupDialog_to_enable_backups_choose_a_folder">Valitse kansio varmuuskopioiden käyttöön ottamiseksi. Varmuuskopiot tallennetaan tähän paikkaan.</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">Valitse kansio, jotta varmuuskopioit voidaan ottaa käyttöön. Varmuuskopiot tallennetaan tähän paikkaan.</string>
   <string name="BackupDialog_choose_folder">Valitse kansio</string>
   <string name="BackupDialog_copied_to_clipboard">Kopioitu leikepöydälle</string>
   <string name="BackupDialog_no_file_picker_available">Tiedostonvalitsinta ei ole saatavilla.</string>
@@ -2700,14 +2705,14 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="LocalBackupJob_creating_signal_backup">Luodaan Signal-varmuuskopiota…</string>
   <string name="LocalBackupJobApi29_backup_failed">Varmuuskopio epäonnistui</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Varmuuskopiohakemisto on poistettu tai siirretty.</string>
-  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Varmuuskopiotiedosto on liian suuri tallennettavaksi tälle levylle.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Varmuuskopiotiedosto on liian suuri tallennettavaksi tähän tallennustilaan.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Varmuuskopion tallentamiseen ei ole tarpeeksi tilaa.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Hallitse varmuuskopioita napauttamalla.</string>
   <string name="ProgressPreference_d_messages_so_far">%d viestiä tähän mennessä</string>
   <string name="RegistrationActivity_wrong_number">Väärä numero</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Soita minulle sen sijaan \n (Saatavilla ajassa %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Soita minulle sen sijaan \n (Käytettävissä %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Ota yhteyttä Signalin tukeen</string>
-  <string name="RegistrationActivity_code_support_subject">Signalin rekisteröinti - vahvistuskoodi Androidille</string>
+  <string name="RegistrationActivity_code_support_subject">Signalin rekisteröinti – vahvistuskoodi Androidille</string>
   <string name="RegistrationActivity_incorrect_code">Väärä koodi</string>
   <string name="BackupUtil_never">ei koskaan</string>
   <string name="BackupUtil_unknown">Tuntematon</string>
@@ -2717,7 +2722,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="PhoneNumberPrivacy_my_contacts">Yhteystietoni</string>
   <string name="PhoneNumberPrivacy_nobody">Ei kukaan</string>
   <string name="PhoneNumberPrivacy_everyone_see_description">Puhelinnumerosi näkyy kaikille ihmisille ja ryhmille, joille lähetät viestejä.</string>
-  <string name="PhoneNumberPrivacy_everyone_find_description">Jokainen, jolla on puhelinnumerosi yhteystiedoissa, näkee sinut kontaktina Signalissa. Muut voivat löytää sinut haun kautta.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Jokainen, jolla on puhelinnumerosi yhteystiedoissa, näkee sinut yhteystietona Signalissa. Muut voivat löytää sinut haun kautta.</string>
   <string name="preferences_app_protection__screen_lock">Näytön lukitus</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lukitse Signal Androidin näytön lukituksella tai sormenjäljellä</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Automaattisen näytön lukituksen odotusaika</string>
@@ -2741,49 +2746,49 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Tunnusluvussa on vähintään %d numeroa tai merkkiä</string>
   <string name="RegistrationActivity_too_many_attempts">Liian monta yritystä</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Olet syöttänyt rekisteröintieston tunnusluvun väärin liian monta kertaa. Yritä uudelleen seuraavana päivänä.</string>
-  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Olet tehnyt liian monta yritystä. Yritä myöhemmin uudelleen.</string>
-  <string name="RegistrationActivity_error_connecting_to_service">Palveluunyhdistämisvirhe</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Olet yrittänyt liian monta kertaa. Yritä myöhemmin uudelleen.</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Virhe yhdistettäessä palveluun</string>
   <string name="preferences_chats__backups">Varmuuskopiot</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal on lukittu</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">AVAA NAPAUTTAMALLA</string>
   <string name="Recipient_unknown">Tuntematon</string>
   <!--TransferOrRestoreFragment-->
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Siirrä tai palauta tili</string>
-  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Jos olet aiemmin luonut Signal-tilin, voit siirtää tai palautta tilisi ja viestisi</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Jos olet aiemmin luonut Signal-tilin, voit siirtää tai palauttaa tilisi ja viestisi</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Siirrä Android-laitteesta</string>
-  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Siirrä tilisi ja viestisi vanhalta Android-laitteeltasi. Sinun täytyy päästä vanhalle laitteellesi.</string>
-  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Sinun täytyy päästä vanhalle laitteellesi.</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Siirrä tilisi ja viestisi vanhalta Android-laitteeltasi. Sinulla täytyy olla pääsy vanhaan laitteeseesi.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Sinulla täytyy olla pääsy vanhaan laitteeseesi.</string>
   <string name="TransferOrRestoreFragment__restore_from_backup">Palauta varmuuskopiosta</string>
   <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Palauta viestisi paikallisesta varmuuskopiostasi. Jos et palauta niitä nyt, et voi palauttaa niitä enää myöhemmin.</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Avaa Signal vanhassa Android-laitteessasi</string>
   <string name="NewDeviceTransferInstructions__continue">Jatka</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Napauta profiilikuvaasi ja ylävasemmalla avataksesi asetukset</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Napauta profiilikuvaasi ylävasemmalla avataksesi asetukset</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
   <string name="NewDeviceTransferInstructions__tap_on_account">Napauta Tili-kohtaa</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Napauta \'Siirrä tili\' ja sitten \'Jatka\' molemmilla laitteilla</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Napauta Siirrä tili ja sitten Jatka molemmilla laitteilla</string>
   <!--NewDeviceTransferSetupFragment-->
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Valmistellaan yhteyttä vanhaan Android-laitteeseesi…</string>
-  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Kohtapuoliin pitäisi olla valmista</string>
-  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Odotetaan että vanha Android-laite ottaa yhteyttä…</string>
-  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal tarvitsee luvan sijaintitietoihin vanhan Android-laitteesi löytämiseen ja yhdistämiseen.</string>
-  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Sijaintipalveluiden täytyy olla päällä jotta vanha Android-laitteesi voidaan löytää ja yhdistää.</string>
-  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal tarvitsee Wi-Fi:ä vanhan Android-laitteesi löytämiseen ja yhdistämiseen. Wi-Fi:n pitää olla päällä, mutta sen ei tarvitse olla yhdistettynä mihinkään.</string>
-  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Näyttää siltä että laitteesi ei tue Wi-Fi Direct:iä. Signal käyttää Wi-Fi Direct:iä vanhan Android-laitteesi löytämiseen ja yhdistämiseen. Voit silti siirtää tietosi varmuuskopion avulla vanhasta laitteestasi.</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Vielä hetki</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Odotetaan yhteyttä vanhasta Android-laitteesta…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal tarvitsee luvan käyttää sijaintitietojasi vanhan Android-laitteesi löytämiseen ja yhdistämiseen.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Sijaintipalveluiden täytyy olla päällä, jotta vanha Android-laitteesi voidaan löytää ja yhdistää.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal tarvitsee Wi-Fi:ä vanhan Android-laitteesi löytämiseen ja yhdistämiseen. Wi-Fi:n pitää olla päällä, mutta sen ei tarvitse olla yhdistettynä langattomaan verkkoon.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Näyttää siltä että laitteesi ei tue Wi-Fi Direct -toimintoa. Signal käyttää Wi-Fi Direct -toimintoa vanhan Android-laitteesi löytämiseen ja yhdistämiseen. Voit silti siirtää tiedot vanhasta laitteesta varmuuskopion avulla.</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">Palauta varmuuskopio</string>
-  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Tapahtui odottamaton virhe yritettäessä otta yhteyttä vanhaan Android-laitteeseesi.</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Tapahtui odottamaton virhe yritettäessä luoda yhteyttä vanhaan Android-laitteeseesi.</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_new_android_device">Etsitään uutta Android-laitetta…</string>
-  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal tarvitsee luvan sijaintitietoihin uuden Android-laitteesi löytämiseen ja yhdistämiseen.</string>
-  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Sijaintipalveluiden täytyy olla päällä jotta uusi Android-laitteesi voidaan löytää ja yhdistää.</string>
-  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal tarvitsee Wi-Fi:ä uuden Android-laitteesi löytämiseen ja yhdistämiseen. Wi-Fi:n pitää olla päällä, mutta sen ei tarvitse olla yhdistettynä mihinkään.</string>
-  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Näyttää siltä että laitteesi ei tue Wi-Fi Direct:iä. Signal käyttää Wi-Fi Direct:iä uuden Android-laitteesi löytämiseen ja yhdistämiseen. Voit silti siirtää tietosi varmuuskopion avulla uuteen laitteeseesi.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal tarvitsee luvan käyttää sijaintitietojasi uuden Android-laitteesi löytämiseen ja yhdistämiseen.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Sijaintipalveluiden täytyy olla päällä, jotta uusi Android-laitteesi voidaan löytää ja yhdistää.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal tarvitsee Wi-Fi:ä uuden Android-laitteesi löytämiseen ja yhdistämiseen. Wi-Fi:n pitää olla päällä, mutta sen ei tarvitse olla yhdistettynä langattomaan verkkoon.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Näyttää siltä että laitteesi ei tue Wi-Fi Direct -toimintoa. Signal käyttää Wi-Fi Direct -toimintoa uuden Android-laitteesi löytämiseen ja yhdistämiseen. Voit silti siirtää tiedot luomalla varmuuskopion ja palauttamalla sen uudessa Android-laitteessa.</string>
   <string name="OldDeviceTransferSetup__create_a_backup">Luo varmuuskopio</string>
-  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Tapahtui odottamaton virhe yritettäessä otta yhteyttä uuteen Android-laitteeseesi.</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Tapahtui odottamaton virhe yritettäessä luoda yhteyttä uuteen Android-laitteeseesi.</string>
   <!--DeviceTransferSetupFragment-->
-  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Wi-Fi-asetusten avaaminen ei onnistunut. Ole hyvä ja laita itse Wi-Fi päälle.</string>
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Wi-Fi-asetusten avaaminen ei onnistunut. Laita Wi-Fi päälle käsin.</string>
   <string name="DeviceTransferSetup__grant_location_permission">Salli paikannus</string>
   <string name="DeviceTransferSetup__turn_on_location_services">Laita päälle sijaintipalvelut</string>
   <string name="DeviceTransferSetup__unable_to_open_location_settings">Sijaintiasetusten avaaminen ei onnistunut.</string>
@@ -2792,32 +2797,32 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="DeviceTransferSetup__retry">Yritä uudelleen</string>
   <string name="DeviceTransferSetup__submit_debug_logs">Lähetä virheenkorjauslokeja</string>
   <string name="DeviceTransferSetup__verify_code">Vahvista koodi</string>
-  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Varmista että allaoleva koodi on sama molemmilla laitteillasi. Sitten napauta \'Jatka\'.</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Varmista että alla oleva koodi on sama molemmilla laitteillasi. Napauta sitten Jatka.</string>
   <string name="DeviceTransferSetup__the_numbers_do_not_match">Numerot eivät täsmää</string>
   <string name="DeviceTransferSetup__continue">Jatka</string>
   <string name="DeviceTransferSetup__number_is_not_the_same">Numero ei ole sama</string>
-  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Jos numerot laitteillasi eivät ole samat, on mahdollista että yhdistit väärään laitteeseen. Korjataksesi tämän, pysäytä siirto ja yritä uudestaan, ja pidä molemmat laitteet lähekkäin.</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Jos numerot laitteillasi eivät ole samat, on mahdollista että yhdistit väärään laitteeseen. Korjataksesi tämän, pysäytä siirto ja yritä uudestaan pitäen laitteet lähekkäin.</string>
   <string name="DeviceTransferSetup__stop_transfer">Pysäytä siirto</string>
   <string name="DeviceTransferSetup__unable_to_discover_old_device">Vanhaa laitetta ei löydetty</string>
   <string name="DeviceTransferSetup__unable_to_discover_new_device">Uutta laitetta ei löydetty</string>
-  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Varmista että seuraavat palvelut ja luvat ovat kunnossa:</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Varmista että seuraavat palvelut ja luvat ovat päällä:</string>
   <string name="DeviceTransferSetup__location_permission">Paikannus</string>
   <string name="DeviceTransferSetup__location_services">Sijaintipalvelut</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
   <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Mene Wi-Fi Direct -näytölle, poista kaikki muistetut ryhmät sekä poista kaikkien kutsuttujen tai yhdistettyjen laitteiden linkitys.</string>
-  <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct-ruutu</string>
-  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Koita laittaa Wi-Fi pois päältä ja takaisin päälle molemmissa laitteissa.</string>
-  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Varmista että molemmat laitteet ovat siirtotilassa.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct -näyttö</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Koita kytkeä Wi-Fi pois päältä ja takaisin päälle molemmissa laitteissa.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Varmista, että molemmat laitteet ovat siirtotilassa.</string>
   <string name="DeviceTransferSetup__go_to_support_page">Mene tukisivustolle</string>
   <string name="DeviceTransferSetup__try_again">Yritä uudelleen</string>
   <string name="DeviceTransferSetup__waiting_for_other_device">Odotetaan toista laitetta</string>
-  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Napauta \'Jatka\' toisella laiteellasi aloittaaksesi siirron.</string>
-  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Napauta \'Jatka\' toisella laitteellasi…</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Aloita siirto napauttamalla Jatka toisella laitteellasi.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Napauta Jatka toisella laitteellasi…</string>
   <!--NewDeviceTransferFragment-->
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Siirto uudemmasta Signal-versiosta ei ole mahdollista</string>
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">Siirretään tietoja</string>
-  <string name="DeviceTransfer__keep_both_devices_near_each_other">Pidä laitteet lähekkäin. Älä sammuta niitä ja pidä Signal päällä. Siirto on päästä päähän salattu.</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Pidä laitteet lähekkäin. Älä sammuta niitä ja pidä Signal käynnissä. Siirto on päästä päähän salattu.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d viestiä tähän mennessä…</string>
   <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% viestiä tähän mennessä…</string>
@@ -2832,33 +2837,33 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="OldDeviceTransferInstructions__transfer_account">Siirrä tili</string>
   <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Voit siirtää Signal-tilisi ottaessasi Signalin käyttöön uudella Android-laitteellasi. Ennen kuin jatkat:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
-  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Lataa Signal uuteen Android-laiteeseesi</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Lataa Signal uuteen Android-laitteeseesi</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Napauta \'Siirrä tai palauta tili\'</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Napauta Siirrä tai palauta tili</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
-  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Valitse \'Siirrä Android-laitteesta\' kysyttäessä, ja sitten \'Jatka\'. Pidä molemmat laitteet lähettyvillä.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Valitse Siirrä Android-laitteesta kysyttäessä, ja sitten Jatka. Pidä molemmat laitteet lähellä toisiaan.</string>
   <string name="OldDeviceTransferInstructions__continue">Jatka</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__transfer_complete">Siirto valmis</string>
   <string name="OldDeviceTransferComplete__go_to_your_new_device">Mene uudelle laitteellesi</string>
-  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Signal-tietosi on siirretty uudelle laitteellesi. Siirtoprosessin viimeistelyksi sinun täytyy jatkaa rekisteröitymistä uudella laitteellasi.</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Signal-tietosi on siirretty uudelle laitteellesi. Jatka rekisteröitymistä uudella laitteellasi siirron viimeistelemiseksi.</string>
   <string name="OldDeviceTransferComplete__close">Sulje</string>
   <!--NewDeviceTransferComplete-->
   <string name="NewDeviceTransferComplete__transfer_successful">Siirto onnistui</string>
   <string name="NewDeviceTransferComplete__transfer_complete">Siirto valmis</string>
-  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Siirtoprosessin viimeistelyksi sinun on jatkettava rekisteröintiä.</string>
-  <string name="NewDeviceTransferComplete__continue_registration">Jatka rekisteröintiä</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Jatka rekisteröitymistä siirron viimeistelemiseksi.</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Jatka rekisteröitymistä</string>
   <!--DeviceToDeviceTransferService-->
   <string name="DeviceToDeviceTransferService_content_title">Tilin siirto</string>
   <string name="DeviceToDeviceTransferService_status_ready">Valmistellaan yhteyttä toiseen Android-laitteeseesi…</string>
   <string name="DeviceToDeviceTransferService_status_starting_up">Valmistellaan yhteyttä toiseen Android-laitteeseesi…</string>
   <string name="DeviceToDeviceTransferService_status_discovery">Etsitään toista Android-laitettasi…</string>
-  <string name="DeviceToDeviceTransferService_status_network_connected">Avataan yhteyttä toiseen Android-laitteeseesi…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Muodostetaan yhteyttä toiseen Android-laitteeseesi…</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">Tarvitaan vahvistus</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">Siirretään tiliä…</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Jatka rekisteröintiä uudella laitteellasi</string>
-  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Signal-tilisi on siirretty uudelle laitteellesi, mutta sinun täytyy jatkaa rekisteröitymistä sillä laitteella. Signal ei ole aktiivinen tällä laitteella.</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Signal-tilisi on siirretty uudelle laitteellesi. Sinun täytyy jatkaa rekisteröitymistä uudella laitteella, jotta voit jatkaa. Signal ei ole enää aktiivinen tällä laitteella.</string>
   <string name="OldDeviceTransferLockedDialog__done">Valmis</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Peruuta ja aktivoi tämä laite</string>
   <!--AdvancedPreferenceFragment-->
@@ -3569,8 +3574,11 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Toistuva kuukausittainen lahjoituksesi peruutettiin automaattisesti, koska olet ollut epäaktiivinen liian pitkään. Sinun %1$s merkkisi ei näy enää profiilissasi.</string>
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Tukija-tilauksesi peruttiin, koska maksuasi ei voitu käsitellä. Merkkiäsi ei enää näytetä profiilissasi.</string>
+  <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Voit jatkaa Signalin käyttöä, mutta tukeaksesi sovellusta ja aktivoidaksesi merkkisi uudelleen, uudista nyt.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Uudista tilaus</string>
+  <!--Button label to send user to Google Pay website-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Siirry Google Playhin</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Tilauksen maksua ei voitu käsitellä</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Signal Tukija-tilauksesi maksun veloituksessa on ongelmia. Varmista, että maksutapasi on ajan tasalla. Jos näin ei ole, päitä se Google Playssa. Signal yrittää veloitusta uudelleen muutaman päivän kuluessa.</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Älä näytä tätä uudelleen</string>
@@ -3847,8 +3855,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="StoriesLandingItem__sending">Lähetetään…</string>
   <!--Label when multiple stories are pending sending-->
   <string name="StoriesLandingItem__sending_d">Lähettää %1$d…</string>
-  <!--Label when a story fails to send-->
+  <!--Label when a story fails to send due to networking-->
   <string name="StoriesLandingItem__send_failed">Lähetys epäonnistui</string>
+  <!--Label when a story fails to send due to identity mismatch-->
   <!--Status label when a story fails to send indicating user action to retry-->
   <string name="StoriesLandingItem__tap_to_retry">Napsauta tehdäksesi uudelleen</string>
   <!--Title of dialog confirming decision to hide a story-->
@@ -3874,6 +3883,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MyStories__delete_story">Poista tarina?</string>
   <!--Message of dialog to confirm deletion of story-->
   <string name="MyStories__this_story_will_be_deleted">Tämä tarina poistetaan sinulta ja kaikilta sen vastaanottaneilta.</string>
+  <!--Toast shown when story media cannot be saved-->
   <!--Displayed at bottom of story viewer when current item has views-->
   <plurals name="StoryViewerFragment__d_views">
     <item quantity="one">%1$d katselua</item>
@@ -3892,7 +3902,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="StoryViewerPageFragment__s_to_s">%1$s henkilölle %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Vastaa</string>
-  <!--Displayed when viewing a group post from another user with no replies-->
+  <!--Label for the reply button in story viewer, which will launch the group story replies bottom sheet.-->
   <string name="StoryViewerPageFragment__reply_to_group">Vastaa ryhmään</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Ei katselukertoja vielä</string>
@@ -3942,7 +3952,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Piilota tarinasi tietyiltä ihmisiltä. Vakioasetuksena on, että tarinasi jaetaan %1$s</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <string name="MyStorySettingsFragment__signal_connections">Signalin yhteydet.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">Signalin yhteydet.</string> -->
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
   <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Signalin yhteydet</strong> ovat käyttäjiä joihin olet valinnut luottavasi, joko:</string>
   <!--Signal connections sheet bullet point 1-->
@@ -3991,8 +4001,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Jaa linkki tarinasi katsojille</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Haku</string>
+  <!--Toast shown when an unexpected error occurs while sending a text story-->
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <string name="HideStoryFromFragment__hide_story_from">Piilota tarina henkilöiltä…</string>
+  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">Piilota tarina henkilöiltä…</string> -->
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Valmis</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4085,7 +4096,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ExpandModel__view_more">Näytä lisää</string>
   <string name="StoriesLinkPopup__visit_link">Avaa linkki</string>
   <!--Duration and price information-->
-  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d päivän voimassaolo</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Lähetä lahjamerkki</string>
   <!--Headline text on start fragment for gifting a badge-->

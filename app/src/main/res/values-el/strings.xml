@@ -218,8 +218,10 @@
   <string name="ConversationActivity_calls_not_supported">Οι κλήσεις δεν υποστηρίζονται</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Αυτή η συσκευή δε φαίνεται να υποστηρίζει ενέργειες κλήσης.</string>
   <string name="ConversationActivity_transport_insecure_sms">Μη ασφαλές μήνυμα SMS</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
   <string name="ConversationActivity_transport_insecure_mms">Μη ασφαλές μήνυμα πολυμέσων MMS</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_signal">Μήνυμα Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Έλα να χρησιμοποιήσουμε το Signal %1$s</string>
   <string name="ConversationActivity_specify_recipient">Παρακαλούμε επέλεξε επαφή</string>
   <string name="ConversationActivity_unblock">Κατάργηση φραγής</string>
@@ -344,7 +346,7 @@
     <item quantity="one">Η συνομιλία αρχειοθετήθηκε</item>
     <item quantity="other">Αρχειοθετήθηκαν %d συνομιλίες</item>
   </plurals>
-  <string name="ConversationListFragment_undo">ΑΝΑΙΡΕΣΗ</string>
+  <string name="ConversationListFragment_undo">Αναίρεση</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Η συνομιλία μεταφέρθηκε στα εισερχόμενα</item>
     <item quantity="other">%d συνομιλίες μεταφέρθηκαν στα εισερχόμενα</item>
@@ -652,8 +654,7 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">Αυτό το πεδίο απαιτείται.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Η δημιουργία της ομάδας απέτυχε.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Ξαναδοκίμασε αργότερα.</string>
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Επέλεξες μια επαφή που δεν υποστηρίζει τις ομάδες του Signal, οπότε αυτή η ομάδα θα είναι με MMS.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Τα προσαρμοσμένα ονόματα και φωτογραφίες των ομαδών MMS θα είναι ορατά μόνο σε εσένα.</string> -->
+  <!--Displayed when adding group details to an MMS Group-->
   <string name="AddGroupDetailsFragment__remove">Αφαίρεση</string>
   <string name="AddGroupDetailsFragment__sms_contact">Επαφή SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Αφαίρεση του/της %1$s από την ομάδα;</string>
@@ -903,6 +904,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Γίνεται κλήση Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Εισερχόμενη κλήση Signal</string>
   <string name="NotificationBarManager__incoming_signal_group_call">Εισερχόμενη ομαδική κλήση Signal</string>
+  <!--Temporary notification shown when starting the calling service-->
   <string name="NotificationBarManager__stopping_signal_call_service">Η υπηρεσία κλήσεων του Signal σταματάει</string>
   <string name="NotificationBarManager__decline_call">Απόρριψη κλήσης</string>
   <string name="NotificationBarManager__answer_call">Απάντηση</string>
@@ -1679,6 +1681,9 @@
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Αναζήτηση</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Αναζήτησε συνομιλίες, επαφές και μηνύματα</string>
+  <!--Material3 Search Toolbar-->
+  <string name="Material3SearchToolbar__close">Κλείσιμο</string>
+  <string name="Material3SearchToolbar__clear">Εκκαθάριση</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Μη έγκυρη συντόμευση</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -1933,8 +1938,8 @@
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Κανένα πολυμέσο</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__view">ΠΡΟΒΟΛΗ</string>
-  <string name="message_recipients_list_item__resend">ΕΠΑΝΑΠΟΣΤΟΛΗ</string>
+  <string name="message_recipients_list_item__view">Εμφάνιση</string>
+  <string name="message_recipients_list_item__resend">Επαναποστολή</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
   <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Η ημερομηνία και ώρα αποστολής αντιγράφτηκε στο πρόχειρο.</string>
   <!--Displayed when there are no outgoing stories-->
@@ -2004,10 +2009,10 @@
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Σύρε προς τα κάτω για απόρριψη</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Ορισμένα ζητήματα χρειάζονται την προσοχή σου.</string>
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">Στάλθηκε:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">Ελήφθη:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">Εξαφανίζεται:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">Μέσω:</string> -->
+  <string name="message_details_header_sent">Στάλθηκε στις</string>
+  <string name="message_details_header_received">Ελήφθη</string>
+  <string name="message_details_header_disappears">Εξαφανίζεται</string>
+  <string name="message_details_header_via">Μέσω</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Εκκρεμεί</string>
   <string name="message_details_recipient_header__sent_to">Στάλθηκε σε</string>
@@ -2050,7 +2055,7 @@
   <string name="HelpFragment__debug_log">Αρχείο εντοπισμού σφαλμάτων:</string>
   <string name="HelpFragment__could_not_upload_logs">Δεν μπόρεσαν να ανέβουν τα αρχεία καταγραφής</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Παρακαλούμε να είσαι όσο γίνεται πιο περιγραφικός/ή για να μας βοηθήσεις να καταλάβουμε το πρόβλημα.</string>
-  <string-array name="HelpFragment__categories_3">
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
     <item>\-\- Παρακαλώ επιλέξτε μια επιλογή \-\-</item>
     <item>Κάτι δεν δουλεύει</item>
     <item>Αίτημα νέου χαρακτηριστικού</item>
@@ -2059,7 +2064,7 @@
     <item>Άλλα</item>
     <item>Payments (MobileCoin)</item>
     <item>Υποστηρικτές &amp; Ενίσχυση Signal</item>
-  </string-array>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Αυτό το μήνυμα</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Πρόσφατα χρησιμοποιημένα</string>
@@ -3570,8 +3575,11 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Η επαναλαμβανόμενη μηνιαία δωρεά σου ακυρώθηκε αυτόματα επειδή ήσουν ανενεργός/ή για πολύ καιρό. Το έμβλημα %1$s σου δεν είναι πλέον ορατό στο προφίλ σου.</string>
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Η επαναλαμβανόμενη μηνιαία δωρεά σου ακυρώθηκε επειδή δεν μπορέσαμε να εκτελέσουμε τη πληρωμή σου. Το έμβλημα δεν είναι πλέον ορατό στο προφίλ σου.</string>
+  <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Μπορείς να συνεχίσεις να χρησιμοποιείς το Signal αλλά για να υποστηρίξεις την εφαρμογή και να επανενεργοποιήσεις το έμβλημά σου, ανανέωσε τώρα.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Ανανέωση συνδρομής</string>
+  <!--Button label to send user to Google Pay website-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Μετάβαση στο Google Pay</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Αδυναμία εκτέλεσης πληρωμής συνδρομής</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Έχουμε δυσκολίες με το να λάβουμε την πληρωμή για την Υποστήριξη του Signal. Επιβεβαίωσε πως η μέθοδος πληρωμής είναι επικαιροποιημένη. Αν δεν είναι, επικαιροποίησέ την στο Google Pay. Το Signal θα προσπαθήσει να πραγματοποιήσει αυτή τη πληρωμή ξανά σε μερικές ημέρες.</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Να μην εμφανιστεί ξανά</string>
@@ -3848,8 +3856,9 @@
   <string name="StoriesLandingItem__sending">Στέλνεται…</string>
   <!--Label when multiple stories are pending sending-->
   <string name="StoriesLandingItem__sending_d">Αποστολή %1$d…</string>
-  <!--Label when a story fails to send-->
+  <!--Label when a story fails to send due to networking-->
   <string name="StoriesLandingItem__send_failed">Αποτυχία αποστολής</string>
+  <!--Label when a story fails to send due to identity mismatch-->
   <!--Status label when a story fails to send indicating user action to retry-->
   <string name="StoriesLandingItem__tap_to_retry">Πάτα για επανάληψη</string>
   <!--Title of dialog confirming decision to hide a story-->
@@ -3875,6 +3884,7 @@
   <string name="MyStories__delete_story">Διαγραφή ιστορίας;</string>
   <!--Message of dialog to confirm deletion of story-->
   <string name="MyStories__this_story_will_be_deleted">Η ιστορία θα διαγραφτεί για εσένα και όλα τα άτομα που την έχουν λάβει.</string>
+  <!--Toast shown when story media cannot be saved-->
   <!--Displayed at bottom of story viewer when current item has views-->
   <plurals name="StoryViewerFragment__d_views">
     <item quantity="one">%1$d προβολή</item>
@@ -3893,7 +3903,7 @@
   <string name="StoryViewerPageFragment__s_to_s">%1$s έως %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Απάντηση</string>
-  <!--Displayed when viewing a group post from another user with no replies-->
+  <!--Label for the reply button in story viewer, which will launch the group story replies bottom sheet.-->
   <string name="StoryViewerPageFragment__reply_to_group">Απάντηση στην ομάδα</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Καμία προβολή ακόμα</string>
@@ -3943,7 +3953,7 @@
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Απόκρυψη της ιστορίας σου από συγκεκριμένα άτομα. Η προεπιλογή είναι η ιστορία σου να μοιράζεται με τις %1$s</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <string name="MyStorySettingsFragment__signal_connections">Επαφές Signal σου.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">Επαφές Signal σου.</string> -->
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
   <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Οι <strong>Επαφές Signal</strong> είναι άτομα που έχεις επιλέξει να εμπιστεύεσαι, με τους εξής τρόπους:</string>
   <!--Signal connections sheet bullet point 1-->
@@ -3992,8 +4002,9 @@
   <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Μοιράσου έναν σύνδεσμο με τους θεατές της ιστορίας σου</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Αναζήτηση</string>
+  <!--Toast shown when an unexpected error occurs while sending a text story-->
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <string name="HideStoryFromFragment__hide_story_from">Απόκρυψη ιστορίας από…</string>
+  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">Απόκρυψη ιστορίας από…</string> -->
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Τέλος</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4086,7 +4097,6 @@
   <string name="ExpandModel__view_more">Προβολή περισσότερων</string>
   <string name="StoriesLinkPopup__visit_link">Επίσκεψη συνδέσμου</string>
   <!--Duration and price information-->
-  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · διάρκεια %2$d ημερών</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Αποστολή εμβλήματος δώρου</string>
   <!--Headline text on start fragment for gifting a badge-->

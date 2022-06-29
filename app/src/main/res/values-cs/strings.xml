@@ -220,8 +220,10 @@
   <string name="ConversationActivity_calls_not_supported">Volání není podporováno</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Toto zařízení zřejmě neumí vytáčet telefonní čísla.</string>
   <string name="ConversationActivity_transport_insecure_sms">Nezabezpečená SMS</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
   <string name="ConversationActivity_transport_insecure_mms">Nezabezpečená MMS</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_signal">Zpráva Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Přejít na Signal: %1$s</string>
   <string name="ConversationActivity_specify_recipient">Vyberte prosím kontakt</string>
   <string name="ConversationActivity_unblock">Odblokovat</string>
@@ -364,7 +366,7 @@
     <item quantity="many">%d konverzací archivováno</item>
     <item quantity="other">%d konverzací archivováno</item>
   </plurals>
-  <string name="ConversationListFragment_undo">ZPĚT</string>
+  <string name="ConversationListFragment_undo">Zpět</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Konverzace přesunuta do složky příchozích zpráv</item>
     <item quantity="few">Přesunuty %d konverzace do složky příchozích zpráv</item>
@@ -728,8 +730,7 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">Toto pole je povinné.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Vytvoření skupiny selhalo.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Zkuste to později znovu.</string>
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Vybrali jste kontakt, který nepodporuje Signal, takže tato skupina bude MMS.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Názvy a fotografie vlastních skupin MMS se zobrazí pouze vám.</string> -->
+  <!--Displayed when adding group details to an MMS Group-->
   <string name="AddGroupDetailsFragment__remove">Odebrat</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS kontakt</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Odebrat %1$s z této skupiny?</string>
@@ -1001,6 +1002,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Navazuji hovor Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Příchozí hovor Signal</string>
   <string name="NotificationBarManager__incoming_signal_group_call">Příchozí Signal skupinový hovor</string>
+  <!--Temporary notification shown when starting the calling service-->
   <string name="NotificationBarManager__stopping_signal_call_service">Zastavuji službu hovorů Signal</string>
   <string name="NotificationBarManager__decline_call">Odmítnout hovor</string>
   <string name="NotificationBarManager__answer_call">Přijmout hovor</string>
@@ -1831,6 +1833,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Hledat</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Hledání konverzací, kontaktů a zpráv</string>
+  <!--Material3 Search Toolbar-->
+  <string name="Material3SearchToolbar__close">Zavřít</string>
+  <string name="Material3SearchToolbar__clear">Vymazat</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Chybná klávesová zkratka</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -2105,8 +2110,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Žádná média</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__view">ZOBRAZIT</string>
-  <string name="message_recipients_list_item__resend">ZNOVU POSLAT</string>
+  <string name="message_recipients_list_item__view">Zobrazit</string>
+  <string name="message_recipients_list_item__resend">Znovu odeslat</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
   <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Čas odeslání zprávy zkopírován do schránky.</string>
   <!--Displayed when there are no outgoing stories-->
@@ -2178,10 +2183,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Pro odmítnutí přejeďte prstem dolů</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Některé problémy vyžadují vaši pozornost</string>
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">Odesláno:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">Přijato:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">Zmizí:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">Kanál:</string> -->
+  <string name="message_details_header_sent">Odesláno</string>
+  <string name="message_details_header_received">Přijato</string>
+  <string name="message_details_header_disappears">Zmizí</string>
+  <string name="message_details_header_via">Přes</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Probíhá</string>
   <string name="message_details_recipient_header__sent_to">Odesláno pro</string>
@@ -2224,7 +2229,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="HelpFragment__debug_log">Ladicí log</string>
   <string name="HelpFragment__could_not_upload_logs">Nepodařilo se nahrát logy</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Popište detailně váš problém, aby to bylo pro nás srozumitelné.</string>
-  <string-array name="HelpFragment__categories_3">
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
     <item>\-\- Vyberte jednu z možností prosím \-\-</item>
     <item>Něco nefunguje</item>
     <item>Požadavek na zlepšení</item>
@@ -2233,7 +2238,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
     <item>Jiné</item>
     <item>Platby (MobileCoin)</item>
     <item>Dary &amp; Signal Boost)</item>
-  </string-array>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tato zpráva</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedávno použité</string>
@@ -3780,8 +3785,11 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Váš pravidelný měsíční příspěvek byl automaticky zrušen, protože jste byli příliš dlouho neaktivní. Váš %1$s odznak již není viditelný na vašem profilu.</string>
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Váš pravidelný měsíční příspěvek byl zrušen, protože jsme nemohli zpracovat vaši platbu. Váš odznak již není na vašem profilu viditelný.</string>
+  <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Aplikaci Signal můžete používat i nadále, ale abyste ji podpořili a znovu aktivovali svůj odznak, obnovte předplatné nyní.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Obnovit předplatné</string>
+  <!--Button label to send user to Google Pay website-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Jít do Google Pay</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Nelze zpracovat platbu za předplatné</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Máme potíže s výběrem vaší platby za službu Signal Sustainer. Zkontrolujte, zda je váš způsob platby aktuální. Pokud není, aktualizujte ji v Google Pay. Signal se pokusí platbu za několik dní znovu zpracovat.</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Příště nezobrazovat</string>
@@ -4060,8 +4068,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="StoriesLandingItem__sending">Odesílání…</string>
   <!--Label when multiple stories are pending sending-->
   <string name="StoriesLandingItem__sending_d">Odesílám %1$d…</string>
-  <!--Label when a story fails to send-->
+  <!--Label when a story fails to send due to networking-->
   <string name="StoriesLandingItem__send_failed">Odeslání selhalo</string>
+  <!--Label when a story fails to send due to identity mismatch-->
   <!--Status label when a story fails to send indicating user action to retry-->
   <string name="StoriesLandingItem__tap_to_retry">Klepněte pro opakování</string>
   <!--Title of dialog confirming decision to hide a story-->
@@ -4089,6 +4098,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MyStories__delete_story">Smazat příběh?</string>
   <!--Message of dialog to confirm deletion of story-->
   <string name="MyStories__this_story_will_be_deleted">Příběh bude odstraněn pro vás a každého, kdo ho obdržel.</string>
+  <!--Toast shown when story media cannot be saved-->
   <!--Displayed at bottom of story viewer when current item has views-->
   <plurals name="StoryViewerFragment__d_views">
     <item quantity="one">%1$d zobrazení</item>
@@ -4111,7 +4121,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="StoryViewerPageFragment__s_to_s">%1$s pro %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Odpověď</string>
-  <!--Displayed when viewing a group post from another user with no replies-->
+  <!--Label for the reply button in story viewer, which will launch the group story replies bottom sheet.-->
   <string name="StoryViewerPageFragment__reply_to_group">Odpovědět skupině</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Zatím žádná zobrazení</string>
@@ -4163,7 +4173,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Skryjte svůj příběh před konkrétními lidmi. Ve výchozím nastavení je váš příběh sdílen s vašimi %1$s</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <string name="MyStorySettingsFragment__signal_connections">Spojení Signal.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">Spojení Signal.</string> -->
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
   <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Spojení Signal</strong> jsou lidé, kterým věříte pomocí:</string>
   <!--Signal connections sheet bullet point 1-->
@@ -4212,8 +4222,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Sdílejte odkaz s těmi, kdo si zobrazili váš příběh</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Vyhledat</string>
+  <!--Toast shown when an unexpected error occurs while sending a text story-->
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <string name="HideStoryFromFragment__hide_story_from">Skrýt příběh…</string>
+  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">Skrýt příběh…</string> -->
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Hotovo</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4308,7 +4319,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ExpandModel__view_more">Zobrazit více</string>
   <string name="StoriesLinkPopup__visit_link">Navštívit odkaz</string>
   <!--Duration and price information-->
-  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d dnů trvání</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Odeslání dárkového odznaku</string>
   <!--Headline text on start fragment for gifting a badge-->

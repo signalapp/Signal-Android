@@ -217,8 +217,10 @@
   <string name="ConversationActivity_calls_not_supported">不支援的通話</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">您使用的裝置看來不支援撥號通話功能。</string>
   <string name="ConversationActivity_transport_insecure_sms">不安全的簡訊</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
   <string name="ConversationActivity_transport_insecure_mms">不安全的多媒體訊息</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_signal">Signal 訊息</string>
   <string name="ConversationActivity_lets_switch_to_signal">我們要不要切換到 Signal %1$s</string>
   <string name="ConversationActivity_specify_recipient">請選擇聯絡人</string>
   <string name="ConversationActivity_unblock">解除封鎖</string>
@@ -614,8 +616,7 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">此欄位是必須的</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">群組建立失敗。</string>
   <string name="AddGroupDetailsFragment__try_again_later">請稍後再試一次。</string>
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">你選擇的聯絡人不支援 Signal 群組，因此該群組為多媒體訊息。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">自定義MMS群組名稱和照片僅有你可看見。</string> -->
+  <!--Displayed when adding group details to an MMS Group-->
   <string name="AddGroupDetailsFragment__remove">移除</string>
   <string name="AddGroupDetailsFragment__sms_contact">簡訊聯絡人</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">從此群組移除%1$s嗎？</string>
@@ -854,6 +855,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Signal 通話連線中</string>
   <string name="NotificationBarManager__incoming_signal_call">Signal 來電</string>
   <string name="NotificationBarManager__incoming_signal_group_call">Signal 群組來電</string>
+  <!--Temporary notification shown when starting the calling service-->
   <string name="NotificationBarManager__stopping_signal_call_service">Signal 來電服務停止中</string>
   <string name="NotificationBarManager__decline_call">拒接來電</string>
   <string name="NotificationBarManager__answer_call">接聽通話</string>
@@ -1606,6 +1608,9 @@
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">搜尋</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">搜尋對話、聯絡人與訊息</string>
+  <!--Material3 Search Toolbar-->
+  <string name="Material3SearchToolbar__close">關閉</string>
+  <string name="Material3SearchToolbar__clear">清除</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">無效的捷徑</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -1851,7 +1856,7 @@
   <string name="media_overview_activity__no_media">無媒體</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">檢視</string>
-  <string name="message_recipients_list_item__resend">重新傳送</string>
+  <string name="message_recipients_list_item__resend">重送</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
   <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">傳送時間戳記已複製至剪貼簿。</string>
   <!--Displayed when there are no outgoing stories-->
@@ -1920,10 +1925,10 @@
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">往下滑動來拒接</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">一些問題需要您的注意。</string>
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">傳送：</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">已收到：</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">消毀：</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">透過：</string> -->
+  <string name="message_details_header_sent">傳送時間</string>
+  <string name="message_details_header_received">接收時間</string>
+  <string name="message_details_header_disappears">銷毀期限</string>
+  <string name="message_details_header_via">經由</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">等候中</string>
   <string name="message_details_recipient_header__sent_to">傳送給</string>
@@ -1966,7 +1971,7 @@
   <string name="HelpFragment__debug_log">偵錯紀錄:</string>
   <string name="HelpFragment__could_not_upload_logs">無法上傳記錄檔</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">請盡可能描述一下，以幫助我們理解該問題。</string>
-  <string-array name="HelpFragment__categories_3">
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
     <item>\-\- 請選擇一個選項 \-\-</item>
     <item>似乎有東西無法運作</item>
     <item>功能要求</item>
@@ -1975,7 +1980,7 @@
     <item>其他</item>
     <item>付款(行動貨幣)</item>
     <item>長期贊助 &amp; Signal 單次贊助</item>
-  </string-array>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">這個訊息</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使用的</string>
@@ -3468,8 +3473,11 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">你的每月定期捐款被自動取消，因為你太久沒有活動。你的個人資料上不再顯示你的%1$s徽章。</string>
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">由於我們無法處理你的付款，妳的每月定期捐款將被取消。 你的個人資料上不再顯示你的徽章。</string>
+  <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">你可以繼續使用 Signal，但要支援該應用程式並重新啟動你的徽章，請立即續約。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">更新定期贊助</string>
+  <!--Button label to send user to Google Pay website-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">前往Google Pay</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">無法處理訂閱付款</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">我們在收取您的 Signal 長期贊助付款時遇到問題。 請確保你的付款方式是有效的。 如果不是，請在 Google Pay 中更新付款資訊。 Signal 將在幾天後再次嘗試處理付款。</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">不再顯示</string>
@@ -3745,8 +3753,9 @@
   <string name="StoriesLandingItem__sending">傳送中…</string>
   <!--Label when multiple stories are pending sending-->
   <string name="StoriesLandingItem__sending_d">傳送 %1$d …</string>
-  <!--Label when a story fails to send-->
+  <!--Label when a story fails to send due to networking-->
   <string name="StoriesLandingItem__send_failed">傳送失敗</string>
+  <!--Label when a story fails to send due to identity mismatch-->
   <!--Status label when a story fails to send indicating user action to retry-->
   <string name="StoriesLandingItem__tap_to_retry">點擊已重試</string>
   <!--Title of dialog confirming decision to hide a story-->
@@ -3771,6 +3780,7 @@
   <string name="MyStories__delete_story">要刪除限時動態嗎？</string>
   <!--Message of dialog to confirm deletion of story-->
   <string name="MyStories__this_story_will_be_deleted">此限時動態將為你以及已接收的所有人刪除。</string>
+  <!--Toast shown when story media cannot be saved-->
   <!--Displayed at bottom of story viewer when current item has views-->
   <plurals name="StoryViewerFragment__d_views">
     <item quantity="other">%1$d次觀看</item>
@@ -3787,7 +3797,7 @@
   <string name="StoryViewerPageFragment__s_to_s">%1$s 傳送給 %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">回覆</string>
-  <!--Displayed when viewing a group post from another user with no replies-->
+  <!--Label for the reply button in story viewer, which will launch the group story replies bottom sheet.-->
   <string name="StoryViewerPageFragment__reply_to_group">回覆給群組</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">尚未觀看</string>
@@ -3836,7 +3846,7 @@
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">對特定人士隱藏您的限時動態。你的限時動態預設與你的 %1$s分享。</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <string name="MyStorySettingsFragment__signal_connections">Signal 相識</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">Signal 相識</string> -->
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
   <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Signal 相識</strong>是你選擇信任的人，藉由你：</string>
   <!--Signal connections sheet bullet point 1-->
@@ -3885,8 +3895,9 @@
   <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">與你的限時動態觀看者分享連結</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">搜尋</string>
+  <!--Toast shown when an unexpected error occurs while sending a text story-->
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <string name="HideStoryFromFragment__hide_story_from">對這些人隱藏限時動態…</string>
+  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">對這些人隱藏限時動態…</string> -->
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">完成</string>
   <!--Dialog title for first time adding something to a story-->
@@ -3978,7 +3989,6 @@
   <string name="ExpandModel__view_more">檢視更多</string>
   <string name="StoriesLinkPopup__visit_link">訪問連結</string>
   <!--Duration and price information-->
-  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d 天的期限</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">傳送禮品徽章</string>
   <!--Headline text on start fragment for gifting a badge-->

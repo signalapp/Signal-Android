@@ -218,8 +218,10 @@
   <string name="ConversationActivity_calls_not_supported">কলগুলি সাপোর্ট করেনা</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">এই ডিভাইস ডায়াল ক্রিয়া সমর্থন করে বলে মনে হচ্ছে না।</string>
   <string name="ConversationActivity_transport_insecure_sms">অনিরাপদ এসএমএস</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
   <string name="ConversationActivity_transport_insecure_mms">অনিরাপদ এমএমএস</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_signal">Signal বার্তা</string>
   <string name="ConversationActivity_lets_switch_to_signal">চলুন Signal এ যোগ দেই %1$s</string>
   <string name="ConversationActivity_specify_recipient">দয়া করে একটি পরিচিতি চয়ন করুন</string>
   <string name="ConversationActivity_unblock">আনব্লক করুন</string>
@@ -344,7 +346,7 @@
     <item quantity="one"> টি কথোপকথন সংরক্ষণ করা হয়েছে</item>
     <item quantity="other">%d টি কথোপকথন সংরক্ষণ করা হয়েছে</item>
   </plurals>
-  <string name="ConversationListFragment_undo">পুর্ব অবস্থায় যাওয়া</string>
+  <string name="ConversationListFragment_undo">পূর্বাবস্থায় ফিরে যান</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one"> টি আলাপন ইনবক্সে স্থানান্তরিত করা হয়েছে</item>
     <item quantity="other">%d টি কথোপকথন ইনবক্সে স্থানান্তরিত করা হয়েছে</item>
@@ -652,8 +654,7 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">এই ঘরটি পূরণ বাঞ্ছনীয়</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">গ্রুপ তৈরিকরণ ব্যার্থ হয়েছে</string>
   <string name="AddGroupDetailsFragment__try_again_later">পরবর্তীতে পুনরায় চেষ্টা করুন।</string>
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">আপনি এমন একটি কন্টাক্ট নির্বাচন করেছেন যা Signal গ্রুপ সহায়ক না। তাই এটি এমএমএস গ্রুপ হবে।</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">কাস্টম এমএমএস গ্রুপের নাম এবং ছবিগুলি কেবল আপনার কাছে দৃশ্যমান হবে।</string> -->
+  <!--Displayed when adding group details to an MMS Group-->
   <string name="AddGroupDetailsFragment__remove">সরান</string>
   <string name="AddGroupDetailsFragment__sms_contact">এসএমএস কন্টাক্ট</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s কে এই গ্রুপ থেকে বের করে দিবেন?</string>
@@ -903,6 +904,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Signal কল স্থাপন করা হচ্ছে</string>
   <string name="NotificationBarManager__incoming_signal_call">আগত Signal কল</string>
   <string name="NotificationBarManager__incoming_signal_group_call">ইনকামিং সিগন্যাল গ্রুপ কল</string>
+  <!--Temporary notification shown when starting the calling service-->
   <string name="NotificationBarManager__stopping_signal_call_service">Signal কল সার্ভিস বন্ধ করা হচ্ছে</string>
   <string name="NotificationBarManager__decline_call">কল প্রত্যাখ্যান করুন</string>
   <string name="NotificationBarManager__answer_call">কল গ্রহণ করুন</string>
@@ -1678,6 +1680,9 @@
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">খুঁজুন</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">কথোপকথন, পরিচিতি এবং বার্তাগুলির জন্য অনুসন্ধান করুন</string>
+  <!--Material3 Search Toolbar-->
+  <string name="Material3SearchToolbar__close">বন্ধ করুন</string>
+  <string name="Material3SearchToolbar__clear">সাফ করুন</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">অকার্যকর শর্টকাট</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -1933,7 +1938,7 @@
   <string name="media_overview_activity__no_media">কোন মিডিয়া নেই</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">দেখুন</string>
-  <string name="message_recipients_list_item__resend">আবার পাঠান</string>
+  <string name="message_recipients_list_item__resend">পুনরায় পাঠান</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
   <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">ক্লিপবোর্ডে পাঠানো টাইমস্ট্যাম্প কপি করা হয়েছে।</string>
   <!--Displayed when there are no outgoing stories-->
@@ -2003,10 +2008,10 @@
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">প্রত্যাখ্যান করতে নীচে সোয়াইপ করুন</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">কিছু বিষয়ে আপনার মনোযোগ প্রয়োজন।</string>
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">পাঠানো:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">প্রাপ্ত:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">অদৃশ্য হওয়া:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">মাধ্যমে:</string> -->
+  <string name="message_details_header_sent">পাঠানো হয়েছে</string>
+  <string name="message_details_header_received">গ্রহণ করা হয়েছে</string>
+  <string name="message_details_header_disappears">অদৃশ্য হয়</string>
+  <string name="message_details_header_via">মাধ্যম</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">পেন্ডিং</string>
   <string name="message_details_recipient_header__sent_to">একে পাঠানো হয়েছে</string>
@@ -3560,8 +3565,11 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">অনেক দিন ধরে নিষ্ক্রিয় থাকার কারণে আপনার পুনরাবৃত্ত মাসিক ডোনেশন স্বয়ংক্রিয়ভাবে বাতিল হয়ে গেছে। আপনার %1$s ব্যাজ আপনার প্রোফাইলে আর দৃশ্যমান নয়৷</string>
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">আপনার পুনরাবৃত্ত মাসিক ডোনেশন বাতিল করা হয়েছে কারণ আমরা আপনার প্রদান করা অর্থ প্রক্রিয়া করতে পারিনি। আপনার ব্যাজটি আপনার প্রোফাইলে আর দৃশ্যমান নয়৷</string>
+  <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">আপনি সিগন্যাল ব্যবহার চালিয়ে যেতে পারেন তবে অ্যাপটিকে সমর্থন করতে এবং আপনার ব্যাজ পুনরায় সক্রিয় করতে, এখনই নবায়ন করুন।</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">সদস্যতা নবায়ন করুন</string>
+  <!--Button label to send user to Google Pay website-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Google Pay-তে যান</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">সাবস্ক্রিপশন পেমেন্ট প্রক্রিয়া করতে পারছি না</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">আপনার Signal সাসটেইনার পেমেন্ট সংগ্রহ করতে আমাদের সমস্যা হচ্ছে। আপনার পেমেন্ট পদ্ধতি আপ টু ডেট আছে কিনা তা নিশ্চিত করুন। অন্যথায়, Google Pay-তে আপডেট করুন। Signal কয়েক দিনের মধ্যে আবার পেমেন্ট প্রক্রিয়া করার চেষ্টা করবে।</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">এটি আর দেখবেন না</string>
@@ -3838,8 +3846,9 @@
   <string name="StoriesLandingItem__sending">পাঠানো হচ্ছে…</string>
   <!--Label when multiple stories are pending sending-->
   <string name="StoriesLandingItem__sending_d">%1$d পাঠানো হচ্ছে…</string>
-  <!--Label when a story fails to send-->
+  <!--Label when a story fails to send due to networking-->
   <string name="StoriesLandingItem__send_failed">পাঠাতে ব্যর্থ হয়েছে</string>
+  <!--Label when a story fails to send due to identity mismatch-->
   <!--Status label when a story fails to send indicating user action to retry-->
   <string name="StoriesLandingItem__tap_to_retry">পুনঃরায় চেষ্টা করতে ট্যাপ করুন</string>
   <!--Title of dialog confirming decision to hide a story-->
@@ -3860,6 +3869,7 @@
   <string name="MyStories__delete_story">স্টোরি মুছে ফেলবেন?</string>
   <!--Message of dialog to confirm deletion of story-->
   <string name="MyStories__this_story_will_be_deleted">এই স্টোরিটি আপনার এবং যারা এটি পেয়েছেন তাদের জন্য মুছে ফেলা হবে৷</string>
+  <!--Toast shown when story media cannot be saved-->
   <!--Displayed at bottom of story viewer when current item has views-->
   <!--Displayed at bottom of story viewer when current item has replies-->
   <!--Used to join views and replies when both exist on a story item-->
@@ -3870,7 +3880,7 @@
   <string name="StoryViewerPageFragment__s_to_s">%1$s থেকে %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">প্রত্যুত্তর</string>
-  <!--Displayed when viewing a group post from another user with no replies-->
+  <!--Label for the reply button in story viewer, which will launch the group story replies bottom sheet.-->
   <string name="StoryViewerPageFragment__reply_to_group">গ্ৰুপে রিপ্লাই করুন</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">এখন পর্যন্ত কোন ভিউ নেই</string>
@@ -3914,7 +3924,7 @@
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">নির্দিষ্ট ব্যক্তিদের কাছ থেকে আপনার স্টোরি লুকান। গতানুগতিকভাবে, আপনার স্টোরি আপনার %1$s এর সাথে শেয়ার করা হয়</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <string name="MyStorySettingsFragment__signal_connections">Signal কানেকশন।</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">Signal কানেকশন।</string> -->
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
   <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Signal কানেকশন</strong> হল এমন ব্যক্তিবর্গ যাদের আপনি বিশ্বাস করে বেছে নিয়েছেন, যার কারণ:</string>
   <!--Signal connections sheet bullet point 1-->
@@ -3963,8 +3973,9 @@
   <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">আপনার স্টোরি\'র ভিউয়ারদের সাথে একটি লিংক শেয়ার করুন</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">খুঁজুন</string>
+  <!--Toast shown when an unexpected error occurs while sending a text story-->
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <string name="HideStoryFromFragment__hide_story_from">যাদের কাছ থেকে স্টোরি লুকাবেন…</string>
+  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">যাদের কাছ থেকে স্টোরি লুকাবেন…</string> -->
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">শেষ</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4052,7 +4063,6 @@
   <string name="ExpandModel__view_more">আরো দেখুন</string>
   <string name="StoriesLinkPopup__visit_link">লিংক ভিজিট করুন</string>
   <!--Duration and price information-->
-  <!-- Removed by excludeNonTranslatables <string name="GiftRowItem__s_dot_d_day_duration">%1$s · %2$d দিনের সময়কাল</string> -->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">একটি গিফট ব্যাজ পাঠান</string>
   <!--Headline text on start fragment for gifting a badge-->
