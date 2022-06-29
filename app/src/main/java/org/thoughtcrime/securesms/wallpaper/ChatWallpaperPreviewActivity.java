@@ -97,7 +97,9 @@ public class ChatWallpaperPreviewActivity extends PassphraseRequiredActivity {
     final ChatColors chatColors;
     if (recipientId != null && Recipient.live(recipientId).get().hasOwnChatColors()) {
       Recipient recipient = Recipient.live(recipientId).get();
-      bubble2Text.setText(getString(R.string.ChatWallpaperPreviewActivity__set_wallpaper_for_s, recipient.getDisplayName(this)));
+      bubble2Text.setText(getString(R.string.ChatWallpaperPreviewActivity__set_wallpaper_for_s,
+                                    recipient.isSelf() ? getString(R.string.note_to_self)
+                                                       : recipient.getDisplayName(this)));
       chatColors = recipient.getChatColors();
       bubble2.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
         updateChatColors(chatColors);
