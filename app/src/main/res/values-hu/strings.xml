@@ -1237,7 +1237,7 @@ Kérlek telepítsd újra a Google Play Szolgáltatásokat, majd próbáld újra!
   <string name="PinRestoreEntryFragment_create_new_pin">Új PIN létrehozása</string>
   <string name="PinRestoreEntryFragment_contact_support">Segítségkérés</string>
   <string name="PinRestoreEntryFragment_cancel">Mégse</string>
-  <string name="PinRestoreEntryFragment_skip">Kihagyás</string>
+  <string name="PinRestoreEntryFragment_skip">Átugrás</string>
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
     <item quantity="one">Már csak %1$d próbálkozásod maradt. Ha kifogysz belőlük, lehetőséged lesz új PIN létrehozására. Regisztrálhatsz újra, majd használatba veheted a fiókodat, de mentett beállításaid egy része, mint például a profilinformációid elvesznek. </item>
     <item quantity="other">Még %1$d próbálkozásod maradt. Ha kifogysz belőlük, lehetőséged lesz új PIN létrehozására.  Regisztrálhatsz újra, majd használatba veheted a fiókodat, de mentett beállításaid egy része, mint például a profil-információid elvesznek. </item>
@@ -1929,7 +1929,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Szeretnéd importálni a már meglévő szöveges üzeneteidet a Signal titkosított adatbázisába?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Az alapértelmezett rendszer adatbázist semmilyen módon nem fogjuk megváltoztatni.</string>
-  <string name="database_migration_activity__skip">Kihagyás</string>
+  <string name="database_migration_activity__skip">Átugrás</string>
   <string name="database_migration_activity__import">Importálás</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Ez eltarthat egy darabig. Kérlek légy türelemmel, értesíteni fogunk, amint az importálás befejeződött.</string>
   <string name="database_migration_activity__importing">IMPORTÁLÁS</string>
@@ -1962,7 +1962,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Egy üzenet, matrica, reakció emoji, kézbesítési nyugta, vagy média küldése %s kontakttól nem érkezett meg hozzád.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Keresztnév (kötelező)</string>
-  <string name="CreateProfileActivity_last_name_optional">Vezetéknév (kötelező)</string>
+  <string name="CreateProfileActivity_last_name_optional">Vezetéknév (opcionális)</string>
   <string name="CreateProfileActivity_next">Tovább</string>
   <string name="CreateProfileActivity__username">Felhasználónév</string>
   <string name="CreateProfileActivity__create_a_username">Felhasználónév létrehozása</string>
@@ -1986,7 +1986,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Neved</string>
   <string name="EditProfileNameFragment_first_name">Keresztnév</string>
-  <string name="EditProfileNameFragment_last_name_optional">Vezetéknév (kötelező)</string>
+  <string name="EditProfileNameFragment_last_name_optional">Vezetéknév (opcionális)</string>
   <string name="EditProfileNameFragment_save">Mentés</string>
   <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Hálózati hiba miatt nem sikerült a mentés. Próbáld újra később!</string>
   <!--recipient_preferences_activity-->
@@ -2608,7 +2608,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Add meg Signal PIN kódodat</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">A PIN kód megjegyzése érdekében időnként megkérünk annak begépelésére. Az idő múlásával ez egyre ritkábban fog megtörténni.</string>
-  <string name="KbsReminderDialog__skip">Kihagyás</string>
+  <string name="KbsReminderDialog__skip">Átugrás</string>
   <string name="KbsReminderDialog__submit">Küldés</string>
   <string name="KbsReminderDialog__forgot_pin">Elfelejtetted PIN kódodat?</string>
   <string name="KbsReminderDialog__incorrect_pin_try_again">Hibás PIN kód. Próbáld újra!</string>
@@ -2675,7 +2675,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="registration_activity__restore_backup">Biztonsági mentés visszaállítása</string>
   <string name="registration_activity__transfer_or_restore_account">Fiók átvitele vagy helyreállítása</string>
   <string name="registration_activity__transfer_account">Fiók átvitele</string>
-  <string name="registration_activity__skip">Kihagyás</string>
+  <string name="registration_activity__skip">Átugrás</string>
   <string name="preferences_chats__chat_backups">Csevegések biztonsági mentése</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Csevegések biztonsági mentése külső tárolóra</string>
   <string name="preferences_chats__transfer_account">Fiók átvitele</string>
@@ -2996,7 +2996,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Ország keresése</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity__skip">Kihagyás</string>
+  <string name="CreateGroupActivity__skip">Átugrás</string>
   <plurals name="CreateGroupActivity__d_members">
     <item quantity="one">%1$d tag</item>
     <item quantity="other">%1$d tag</item>
@@ -3766,7 +3766,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--If in edit mode, call to action button text show to save schedule to profile-->
   <string name="EditNotificationProfileSchedule__save">Mentés</string>
   <!--If in create mode, call to action button text to show to skip enabling a schedule-->
-  <string name="EditNotificationProfileSchedule__skip">Kihagyás</string>
+  <string name="EditNotificationProfileSchedule__skip">Átugrás</string>
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">Tovább</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
@@ -3806,7 +3806,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Donation receipts gift tab label-->
   <string name="DonationReceiptListFragment__gift">Ajándék</string>
   <!--Donation receipts boost row label-->
-  <string name="DonationReceiptListFragment__boost">Lökés</string>
+  <string name="DonationReceiptListFragment__boost">Pénzlöket</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Részletek</string>
   <!--Donation receipts donation type heading-->
