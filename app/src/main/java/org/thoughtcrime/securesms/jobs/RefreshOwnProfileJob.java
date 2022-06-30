@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.signal.libsignal.zkgroup.profiles.PniCredential;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.badges.BadgeRepository;
@@ -34,7 +33,6 @@ import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
 import org.whispersystems.signalservice.internal.ServiceResponse;
-import org.whispersystems.signalservice.internal.ServiceResponseProcessor;
 
 import java.io.IOException;
 import java.util.Comparator;
@@ -135,17 +133,6 @@ public class RefreshOwnProfileJob extends BaseJob {
     Optional<ProfileKeyCredential> profileKeyCredential = profileAndCredential.getProfileKeyCredential();
     if (profileKeyCredential.isPresent()) {
       setProfileKeyCredential(self, ProfileKeyUtil.getSelfProfileKey(), profileKeyCredential.get());
-    }
-
-    if (SignalStore.account().getAci() != null) {
-      PniCredential pniCredential = ApplicationDependencies.getProfileService()
-                                                           .getPniProfileCredential(SignalStore.account().requireAci(),
-                                                                                    SignalStore.account().requirePni(),
-                                                                                    ProfileKeyUtil.getSelfProfileKey())
-                                                           .map(ServiceResponseProcessor.DefaultProcessor::new)
-                                                           .blockingGet()
-                                                           .getResultOrThrow();
-      SignalStore.account().setPniCredential(pniCredential);
     }
   }
 

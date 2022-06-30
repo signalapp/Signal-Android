@@ -814,20 +814,6 @@ public class PushServiceSocket {
     });
   }
 
-  public ListenableFuture<SignalServiceProfile> retrievePniCredential(UUID target, String version, String credentialRequest, Locale locale) {
-    String                   subPath  = String.format("%s/%s/%s?credentialType=pni", target, version, credentialRequest);
-    ListenableFuture<String> response = submitServiceRequest(String.format(PROFILE_PATH, subPath), "GET", null, AcceptLanguagesUtil.getHeadersWithAcceptLanguage(locale), Optional.empty());
-
-    return FutureTransformers.map(response, body -> {
-      try {
-        return JsonUtil.fromJson(body, SignalServiceProfile.class);
-      } catch (IOException e) {
-        Log.w(TAG, e);
-        throw new MalformedResponseException("Unable to parse entity", e);
-      }
-    });
-  }
-
   public void retrieveProfileAvatar(String path, File destination, long maxSizeBytes)
       throws IOException
   {

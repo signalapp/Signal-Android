@@ -9,7 +9,6 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import org.signal.libsignal.protocol.logging.Log;
 import org.signal.libsignal.zkgroup.InvalidInputException;
-import org.signal.libsignal.zkgroup.profiles.PniCredentialResponse;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialResponse;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
@@ -64,9 +63,6 @@ public class SignalServiceProfile {
   @JsonProperty
   private List<Badge> badges;
 
-  @JsonProperty
-  private byte[] pniCredential;
-
   @JsonIgnore
   private RequestType requestType;
 
@@ -118,10 +114,6 @@ public class SignalServiceProfile {
 
   public RequestType getRequestType() {
     return requestType;
-  }
-
-  public byte[] getPniCredential() {
-    return pniCredential;
   }
 
   public void setRequestType(RequestType requestType) {
@@ -258,17 +250,6 @@ public class SignalServiceProfile {
 
     try {
       return new ProfileKeyCredentialResponse(credential);
-    } catch (InvalidInputException e) {
-      Log.w(TAG, e);
-      return null;
-    }
-  }
-
-  public PniCredentialResponse getPniCredentialResponse() {
-    if (pniCredential == null) return null;
-
-    try {
-      return new PniCredentialResponse(pniCredential);
     } catch (InvalidInputException e) {
       Log.w(TAG, e);
       return null;
