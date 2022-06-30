@@ -1178,9 +1178,9 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Un message de %s n’a pas pu être remis</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s a changé de numéro de téléphone</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Aimez-vous cette nouvelle fonction ? Dites merci avec un Coup de pouce.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Aimez-vous cette nouvelle fonction ? Dites merci avec un Coup de pouce.</string> -->
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal est alimenté par des personnes comme vous. Devenez un donateur mensuel dès aujourd’hui.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal est alimenté par des personnes comme vous. Devenez un donateur mensuel dès aujourd’hui.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s a lancé un appel de groupe · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s fait partie de l’appel de groupe · %2$s</string>
@@ -1887,9 +1887,9 @@
   <string name="ConversationUpdateItem_view">Afficher</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">La minuterie des messages éphémères sera définie sur %1$s quand vous échangez des messages avec cette personne.</string>
   <!--Update item button text to show to boost a feature-->
-  <string name="ConversationUpdateItem_signal_boost">Coup de pouce à Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">Coup de pouce à Signal</string> -->
   <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <string name="ConversationUpdateItem_become_a_sustainer">Devenir donateur mensuel</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">Devenir donateur mensuel</string> -->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Lecture … Mettre en pause</string>
   <string name="audio_view__download_accessibility_description">Télécharger</string>

@@ -1120,9 +1120,9 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s এর থেকে একটি বার্তা সরবরাহ করা যায়নি</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s তাদের ফোন নাম্বার পৰিবৰ্তন করেছেন।</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">এই নতুন ফিচারটি পছন্দ হয়েছে? একটি বুস্ট দেয়ার মাধ্যমে ধন্যবাদ জানান।</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">এই নতুন ফিচারটি পছন্দ হয়েছে? একটি বুস্ট দেয়ার মাধ্যমে ধন্যবাদ জানান।</string> -->
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">আপনার মতো মানুষেরাই Signal-এর শক্তি। আজই হয়ে যান একজন সাসটেইনার। </string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">আপনার মতো মানুষেরাই Signal-এর শক্তি। আজই হয়ে যান একজন সাসটেইনার। </string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s একটি গ্রুপ কল শুরু করেছে । %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s গ্রুপ কল এ আছেন। %2$s</string>
@@ -1812,9 +1812,9 @@
   <string name="ConversationUpdateItem_view">দেখান</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">আপনি তাদের মেসেজ পাঠালে মেসেজ অদৃশ্য হওয়ার সময় %1$s-এ সেট করা হবে।</string>
   <!--Update item button text to show to boost a feature-->
-  <string name="ConversationUpdateItem_signal_boost">সিগন্যাল বুস্ট</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">সিগন্যাল বুস্ট</string> -->
   <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <string name="ConversationUpdateItem_become_a_sustainer">একজন সাসটেইনার হয়ে উঠুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">একজন সাসটেইনার হয়ে উঠুন</string> -->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">চালু…. বিরতি</string>
   <string name="audio_view__download_accessibility_description">ডাউনলোড</string>

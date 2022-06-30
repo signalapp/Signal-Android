@@ -1238,9 +1238,9 @@ Anfon neges heb ei diogelu?</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Nid oedd modd anfon neges gan %s</string>
   <string name="MessageRecord_s_changed_their_phone_number">Mae %1$s wedi newid rhif eu ffôn.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Yn hoffi\'r nodwedd newydd hon? Dwedwch diolch gyda Boost.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Yn hoffi\'r nodwedd newydd hon? Dwedwch diolch gyda Boost.</string> -->
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Mae Signal yn cael ei rymuso gan bobl fel chi. Dewch yn gefnogwr heddiw.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Mae Signal yn cael ei rymuso gan bobl fel chi. Dewch yn gefnogwr heddiw.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">Dechreuodd %1$s alwad grŵp · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">Mae %1$s mewn galwad grŵp · %2$s</string>
@@ -1976,9 +1976,9 @@ Anfon neges heb ei diogelu?</string>
   <string name="ConversationUpdateItem_view">Golwg</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Bydd amser y neges byrhoedlog yn cael ei osod i %1$s pan fyddwch chi\'n eu neges.</string>
   <!--Update item button text to show to boost a feature-->
-  <string name="ConversationUpdateItem_signal_boost">Signal Boost</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">Signal Boost</string> -->
   <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <string name="ConversationUpdateItem_become_a_sustainer">Dod yn Gefnogwr</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">Dod yn Gefnogwr</string> -->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Chwarae … Oedi</string>
   <string name="audio_view__download_accessibility_description">Llwytho i lawr</string>

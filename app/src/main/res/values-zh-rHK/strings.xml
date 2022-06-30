@@ -1062,9 +1062,9 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">來自 %s 的一則訊息無法送達</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s 已變更電話號碼。</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">喜歡此新功能嗎？何妨集結小小心意，為 Signal 加一加油。</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">喜歡此新功能嗎？何妨集結小小心意，為 Signal 加一加油。</string> -->
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">萬家燈火照，將點點光輝，放進 Signal。今日就成為延續人吧。</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">萬家燈火照，將點點光輝，放進 Signal。今日就成為延續人吧。</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s 開展了群組通話 · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 加入了群組通話 · %2$s</string>
@@ -1739,9 +1739,9 @@
   <string name="ConversationUpdateItem_view">檢視</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">當您發送訊息時，將會設置時效為 %1$s。</string>
   <!--Update item button text to show to boost a feature-->
-  <string name="ConversationUpdateItem_signal_boost">Signal 有團伙</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">Signal 有團伙</string> -->
   <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <string name="ConversationUpdateItem_become_a_sustainer">成為延續人</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">成為延續人</string> -->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">播放 … 暫停</string>
   <string name="audio_view__download_accessibility_description">下載</string>

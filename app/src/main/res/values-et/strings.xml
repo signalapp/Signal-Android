@@ -1729,9 +1729,9 @@
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Selles grupis pole kontakte. Kontrolli taotlusti tähelepanelikult.</string>
   <string name="ConversationUpdateItem_view">Näita</string>
   <!--Update item button text to show to boost a feature-->
-  <string name="ConversationUpdateItem_signal_boost">Signalile hoogu</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">Signalile hoogu</string> -->
   <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <string name="ConversationUpdateItem_become_a_sustainer">Hakka toetajaks</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">Hakka toetajaks</string> -->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Esita … Peata</string>
   <string name="audio_view__download_accessibility_description">Laadi alla</string>

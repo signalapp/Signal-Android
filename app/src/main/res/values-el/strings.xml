@@ -1120,9 +1120,9 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Ένα μήνυμα από τον/την %s δεν μπόρεσε να παραδοθεί</string>
   <string name="MessageRecord_s_changed_their_phone_number">Ο/Η %1$s άλλαξε τον αριθμό τηλεφώνου του/της.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Σου αρέσει το νέο χαρακτηριστικό; Πες ευχαριστώ με μια Ενίσχυση.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Σου αρέσει το νέο χαρακτηριστικό; Πες ευχαριστώ με μια Ενίσχυση.</string> -->
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Το Signal στηρίζεται σε άτομα σαν κι εσένα. Γίνε υποστηρικτής/τρια σήμερα.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Το Signal στηρίζεται σε άτομα σαν κι εσένα. Γίνε υποστηρικτής/τρια σήμερα.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">Ο/Η %1$s ξεκίνησε μια ομαδική κλήση · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">Ο/Η %1$s είναι στην ομαδική κλήση · %2$s</string>
@@ -1813,9 +1813,9 @@
   <string name="ConversationUpdateItem_view">Εμφάνιση</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Ο χρόνος εξαφάνισης μηνυμάτων θα οριστεί σε %1$s όταν του/της στείλεις μήνύμα.</string>
   <!--Update item button text to show to boost a feature-->
-  <string name="ConversationUpdateItem_signal_boost">Ενίσχυση Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">Ενίσχυση Signal</string> -->
   <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <string name="ConversationUpdateItem_become_a_sustainer">Γίνε υποστηρικτής/τρια</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">Γίνε υποστηρικτής/τρια</string> -->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Αναπαραγωγή … Παύση</string>
   <string name="audio_view__download_accessibility_description">Λήψη</string>

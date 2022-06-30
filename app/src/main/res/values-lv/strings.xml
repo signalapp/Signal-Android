@@ -1178,9 +1178,9 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered"> %s ziņu nevarēja piegādāt</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s nomainīja savu telefona numuru.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Patīk šī jaunā iespēja? Saki paldies ar Atbalstu!</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Patīk šī jaunā iespēja? Saki paldies ar Atbalstu!</string> -->
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal veido tādi paši cilvēki kā jūs. Kļūstiet par atbalstitāju jau šodien!</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal veido tādi paši cilvēki kā jūs. Kļūstiet par atbalstitāju jau šodien!</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s sāka grupas zvanu · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ir grupas zvanā · %2$s</string>
@@ -1890,9 +1890,9 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ConversationUpdateItem_view">Skatīt</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Pēc ziņu nosūtīšanas ziņu dzēšanas laiks tiks iestatīts uz %1$s.</string>
   <!--Update item button text to show to boost a feature-->
-  <string name="ConversationUpdateItem_signal_boost">Signal Atbalsts</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">Signal Atbalsts</string> -->
   <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <string name="ConversationUpdateItem_become_a_sustainer">Kļūstiet par Uzturētāju</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">Kļūstiet par Uzturētāju</string> -->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Atskaņot … Pauzēt</string>
   <string name="audio_view__download_accessibility_description">Lejupielādēt</string>

@@ -1116,9 +1116,9 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s-ൽ നിന്നുള്ള ഒരു സന്ദേശം ഡെലിവർ ചെയ്യാൻ കഴിഞ്ഞില്ല</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s അവരുടെ ഫോൺ നമ്പർ മാറ്റി.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">ഈ പുതിയ ഫീച്ചർ ഇഷ്ടപ്പെട്ടോ? ഒരു ബൂസ്റ്റ് നൽകി നന്ദി പറയുക.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">ഈ പുതിയ ഫീച്ചർ ഇഷ്ടപ്പെട്ടോ? ഒരു ബൂസ്റ്റ് നൽകി നന്ദി പറയുക.</string> -->
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">നിങ്ങളെപ്പോലുള്ള ആളുകളാണ് Signal നിലനിർത്തുന്നത്. ഇന്ന് തന്നെ ഒരു പരിപാലകന്‍ ആകുക.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">നിങ്ങളെപ്പോലുള്ള ആളുകളാണ് Signal നിലനിർത്തുന്നത്. ഇന്ന് തന്നെ ഒരു പരിപാലകന്‍ ആകുക.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ഒരു ഗ്രൂപ്പ് കോൾ ആരംഭിച്ചു . %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ഗ്രൂപ്പ് കോളിലാണ് · %2$s</string>
@@ -1794,9 +1794,9 @@
   <string name="ConversationUpdateItem_view">കാണുക</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">നിങ്ങൾ സന്ദേശമയയ്‌ക്കുമ്പോൾ അപ്രത്യക്ഷമാകുന്ന സന്ദേശ സമയം %1$s ആയി സജ്ജീകരിക്കും.</string>
   <!--Update item button text to show to boost a feature-->
-  <string name="ConversationUpdateItem_signal_boost">Signal ബൂസ്റ്റ്</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">Signal ബൂസ്റ്റ്</string> -->
   <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <string name="ConversationUpdateItem_become_a_sustainer">പരിപാലകര്‍ ആകുക</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">പരിപാലകര്‍ ആകുക</string> -->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">പ്ലേ … പോസ്</string>
   <string name="audio_view__download_accessibility_description">ഡൌൺലോഡ്</string>

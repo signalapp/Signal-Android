@@ -1062,9 +1062,9 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s 님의 메시지를 전달할 수 없습니다.</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s가 자신의 전화번호를 변경하였습니다.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">새로운 기능이 마음에 드시나요? Boost로 고마움을 전하세요.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">새로운 기능이 마음에 드시나요? Boost로 고마움을 전하세요.</string> -->
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal은 당신과 같은 사람들에 의해 운영됩니다. 오늘 후원자가 되세요.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal은 당신과 같은 사람들에 의해 운영됩니다. 오늘 후원자가 되세요.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s 님이 그룹 통화를 시작했습니다(%2$s).</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 님이 그룹 통화 중입니다(%2$s).</string>
@@ -1698,7 +1698,7 @@
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">메시지가 사라지는 시간은 메시지를 보낼 때 %1$s(으)로 설정됩니다.</string>
   <!--Update item button text to show to boost a feature-->
   <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <string name="ConversationUpdateItem_become_a_sustainer">후원자가 되기</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">후원자가 되기</string> -->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">재생 … 일시 정지</string>
   <string name="audio_view__download_accessibility_description">다운로드</string>
