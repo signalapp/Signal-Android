@@ -1614,8 +1614,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
           bodyBubble.setVisibility(View.INVISIBLE);
           conversationItem.reactionsView.setVisibility(View.INVISIBLE);
 
-          boolean quotedIndicatorVisible = conversationItem.quotedIndicator.getVisibility() == View.VISIBLE;
-          if (quotedIndicatorVisible) {
+          boolean quotedIndicatorVisible = conversationItem.quotedIndicator != null && conversationItem.quotedIndicator.getVisibility() == View.VISIBLE;
+          if (quotedIndicatorVisible && conversationItem.quotedIndicator != null) {
             ViewUtil.fadeOut(conversationItem.quotedIndicator, 150, View.INVISIBLE);
           }
 
@@ -1655,7 +1655,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
                                       bodyBubble.setVisibility(View.VISIBLE);
                                       conversationItem.reactionsView.setVisibility(View.VISIBLE);
-                                      if (quotedIndicatorVisible) {
+                                      if (quotedIndicatorVisible && conversationItem.quotedIndicator != null) {
                                         ViewUtil.fadeIn(conversationItem.quotedIndicator, 150);
                                       }
 
