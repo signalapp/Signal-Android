@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.thoughtcrime.securesms.conversation.ConversationDataSource
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper
 import org.thoughtcrime.securesms.conversation.colors.NameColor
@@ -26,9 +27,13 @@ class MessageQuotesViewModel(
 
   fun getMessages(): Observable<List<ConversationMessage>> {
     return Observable.create<List<ConversationMessage>> { emitter ->
-      val quotes: List<ConversationMessage> = SignalDatabase
-        .mmsSms
-        .getAllMessagesThatQuote(messageId)
+      val records: List<MessageRecord> = SignalDatabase.mmsSms.getAllMessagesThatQuote(messageId)
+
+      val helper = ConversationDataSource.ReactionHelper()
+      helper.addAll(records)
+      helper.fetchReactions()
+
+      val quotes = helper.buildUpdatedModels(records)
         .map { ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(getApplication(), it) }
 
       val originalRecord: MessageRecord? = if (messageId.mms) {

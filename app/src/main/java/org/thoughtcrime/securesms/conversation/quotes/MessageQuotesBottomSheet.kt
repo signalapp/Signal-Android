@@ -128,7 +128,7 @@ class MessageQuotesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() {
 
     override fun onReactionClicked(multiselectPart: MultiselectPart, messageId: Long, isMms: Boolean) {
       dismiss()
-      getAdapterListener().onReactionClicked(multiselectPart, messageId, isMms)
+      getCallback().jumpToMessage(multiselectPart.conversationMessage.messageRecord)
     }
 
     override fun onGroupMemberClicked(recipientId: RecipientId, groupId: GroupId) {

@@ -44,7 +44,7 @@ import java.util.stream.Collectors;
 /**
  * Core data source for loading an individual conversation.
  */
-class ConversationDataSource implements PagedDataSource<MessageId, ConversationMessage> {
+public class ConversationDataSource implements PagedDataSource<MessageId, ConversationMessage> {
 
   private static final String TAG = Log.tag(ConversationDataSource.class);
 
@@ -126,10 +126,10 @@ class ConversationDataSource implements PagedDataSource<MessageId, ConversationM
     mentionHelper.fetchMentions(context);
     stopwatch.split("mentions");
 
-    reactionHelper.fetchReactions(context);
+    reactionHelper.fetchReactions();
     stopwatch.split("reactions");
 
-    records = reactionHelper.buildUpdatedModels(context, records);
+    records = reactionHelper.buildUpdatedModels(records);
     stopwatch.split("reaction-models");
 
     attachmentHelper.fetchAttachments(context);
@@ -252,7 +252,7 @@ class ConversationDataSource implements PagedDataSource<MessageId, ConversationM
     }
   }
 
-  private static class ReactionHelper {
+  public static class ReactionHelper {
 
     private Collection<MessageId>                messageIds           = new LinkedList<>();
     private Map<MessageId, List<ReactionRecord>> messageIdToReactions = new HashMap<>();
@@ -261,11 +261,17 @@ class ConversationDataSource implements PagedDataSource<MessageId, ConversationM
       messageIds.add(new MessageId(record.getId(), record.isMms()));
     }
 
-    void fetchReactions(Context context) {
+    public void addAll(List<MessageRecord> records) {
+      for (MessageRecord record : records) {
+        add(record);
+      }
+    }
+
+    public void fetchReactions() {
       messageIdToReactions = SignalDatabase.reactions().getReactionsForMessages(messageIds);
     }
 
-    @NonNull List<MessageRecord> buildUpdatedModels(@NonNull Context context, @NonNull List<MessageRecord> records) {
+    public @NonNull List<MessageRecord> buildUpdatedModels(@NonNull List<MessageRecord> records) {
       return records.stream()
                     .map(record -> {
                       MessageId            messageId = new MessageId(record.getId(), record.isMms());
@@ -276,7 +282,7 @@ class ConversationDataSource implements PagedDataSource<MessageId, ConversationM
                     .collect(Collectors.toList());
     }
 
-    static MessageRecord recordWithReactions(@NonNull MessageRecord record, List<ReactionRecord> reactions) {
+    private static MessageRecord recordWithReactions(@NonNull MessageRecord record, List<ReactionRecord> reactions) {
       if (Util.hasItems(reactions)) {
         if (record instanceof MediaMmsMessageRecord) {
           return ((MediaMmsMessageRecord) record).withReactions(reactions);
