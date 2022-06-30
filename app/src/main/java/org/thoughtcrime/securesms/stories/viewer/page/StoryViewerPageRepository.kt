@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.Base64
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 /**
  * Open for testing.
@@ -34,6 +35,8 @@ open class StoryViewerPageRepository(context: Context) {
   }
 
   private val context = context.applicationContext
+
+  fun isReadReceiptsEnabled(): Boolean = TextSecurePreferences.isReadReceiptsEnabled(context)
 
   private fun getStoryRecords(recipientId: RecipientId, isUnviewedOnly: Boolean): Observable<List<MessageRecord>> {
     return Observable.create { emitter ->

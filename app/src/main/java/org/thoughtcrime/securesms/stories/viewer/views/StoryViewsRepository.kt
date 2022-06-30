@@ -7,8 +7,12 @@ import org.thoughtcrime.securesms.database.GroupReceiptDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 class StoryViewsRepository {
+
+  fun isReadReceiptsEnabled(): Boolean = TextSecurePreferences.isReadReceiptsEnabled(ApplicationDependencies.getApplication())
+
   fun getViews(storyId: Long): Observable<List<StoryViewItemData>> {
     return Observable.create<List<StoryViewItemData>> { emitter ->
       fun refresh() {

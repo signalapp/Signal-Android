@@ -127,6 +127,11 @@
         <item name="strokeWidth">0dp</item>
     </style>
 
+    <style name="Signal.Widget.Button.Medium.OutlinedButton" parent="Signal.Widget.Button.Medium.Secondary">
+        <item name="strokeColor">@color/button_outline_color_selector</item>
+        <item name="strokeWidth">1.5dp</item>
+    </style>
+
     <style name="Signal.Widget.Button.Base.Tonal" parent="Widget.Material3.Button.TonalButton">
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>

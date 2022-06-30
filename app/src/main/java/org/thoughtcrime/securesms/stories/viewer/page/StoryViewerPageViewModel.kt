@@ -28,7 +28,7 @@ class StoryViewerPageViewModel(
   private val repository: StoryViewerPageRepository
 ) : ViewModel() {
 
-  private val store = RxStore(StoryViewerPageState())
+  private val store = RxStore(StoryViewerPageState(isReceiptsEnabled = repository.isReadReceiptsEnabled()))
   private val disposables = CompositeDisposable()
   private val storyViewerDialogSubject: Subject<Optional<StoryViewerDialog>> = PublishSubject.create()
 
@@ -44,6 +44,16 @@ class StoryViewerPageViewModel(
 
   init {
     refresh()
+  }
+
+  fun checkReadReceiptState() {
+    val isReceiptsEnabledInState = getStateSnapshot().isReceiptsEnabled
+    val isReceiptsEnabledInRepository = repository.isReadReceiptsEnabled()
+    if (isReceiptsEnabledInState xor isReceiptsEnabledInRepository) {
+      store.update {
+        it.copy(isReceiptsEnabled = isReceiptsEnabledInRepository)
+      }
+    }
   }
 
   fun refresh() {

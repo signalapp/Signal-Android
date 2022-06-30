@@ -6,6 +6,7 @@ data class StoryViewsState(
 ) {
   enum class LoadState {
     INIT,
-    READY
+    READY,
+    DISABLED
   }
 }

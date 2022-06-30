@@ -7,19 +7,27 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import org.thoughtcrime.securesms.util.livedata.Store
 
-class StoryViewsViewModel(storyId: Long, repository: StoryViewsRepository) : ViewModel() {
+class StoryViewsViewModel(private val storyId: Long, private val repository: StoryViewsRepository) : ViewModel() {
 
-  private val store = Store(StoryViewsState())
+  private val store = Store(StoryViewsState(StoryViewsState.LoadState.INIT))
   private val disposables = CompositeDisposable()
 
   val state: LiveData<StoryViewsState> = store.stateLiveData
 
-  init {
-    disposables += repository.getViews(storyId).subscribe { data ->
+  fun refresh() {
+    if (repository.isReadReceiptsEnabled()) {
+      disposables += repository.getViews(storyId).subscribe { data ->
+        store.update {
+          it.copy(
+            views = data,
+            loadState = StoryViewsState.LoadState.READY
+          )
+        }
+      }
+    } else {
       store.update {
         it.copy(
-          views = data,
-          loadState = StoryViewsState.LoadState.READY
+          loadState = StoryViewsState.LoadState.DISABLED
         )
       }
     }

@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerChild
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerParent
@@ -37,13 +38,26 @@ class StoryViewsFragment :
     StoryViewItem.register(adapter)
 
     val emptyNotice: View = requireView().findViewById(R.id.empty_notice)
+    val disabledNotice: View = requireView().findViewById(R.id.disabled_notice)
+    val disabledButton: View = requireView().findViewById(R.id.disabled_button)
+
+    disabledButton.setOnClickListener {
+      startActivity(AppSettingsActivity.privacy(requireContext()))
+    }
 
     onPageSelected(findListener<StoryViewsAndRepliesPagerParent>()?.selectedChild ?: StoryViewsAndRepliesPagerParent.Child.VIEWS)
 
     viewModel.state.observe(viewLifecycleOwner) {
       emptyNotice.visible = it.loadState == StoryViewsState.LoadState.READY && it.views.isEmpty()
+      disabledNotice.visible = it.loadState == StoryViewsState.LoadState.DISABLED
+      recyclerView?.visible = it.loadState == StoryViewsState.LoadState.READY
       adapter.submitList(getConfiguration(it).toMappingModelList())
     }
+  }
+
+  override fun onResume() {
+    super.onResume()
+    viewModel.refresh()
   }
 
   override fun onPageSelected(child: StoryViewsAndRepliesPagerParent.Child) {

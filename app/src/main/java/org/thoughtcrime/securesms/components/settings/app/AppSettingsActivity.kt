@@ -62,6 +62,7 @@ class AppSettingsActivity : DSLSettingsActivity(), DonationPaymentComponent {
         StartLocation.NOTIFICATION_PROFILE_DETAILS -> AppSettingsFragmentDirections.actionDirectToNotificationProfileDetails(
           EditNotificationProfileScheduleFragmentArgs.fromBundle(intent.getBundleExtra(START_ARGUMENTS)!!).profileId
         )
+        StartLocation.PRIVACY -> AppSettingsFragmentDirections.actionDirectToPrivacy()
       }
     }
 
@@ -169,6 +170,9 @@ class AppSettingsActivity : DSLSettingsActivity(), DonationPaymentComponent {
     fun createNotificationProfile(context: Context): Intent = getIntentForStartLocation(context, StartLocation.CREATE_NOTIFICATION_PROFILE)
 
     @JvmStatic
+    fun privacy(context: Context): Intent = getIntentForStartLocation(context, StartLocation.PRIVACY)
+
+    @JvmStatic
     fun notificationProfileDetails(context: Context, profileId: Long): Intent {
       val arguments = EditNotificationProfileScheduleFragmentArgs.Builder(profileId, false)
         .build()
@@ -197,7 +201,8 @@ class AppSettingsActivity : DSLSettingsActivity(), DonationPaymentComponent {
     MANAGE_SUBSCRIPTIONS(8),
     NOTIFICATION_PROFILES(9),
     CREATE_NOTIFICATION_PROFILE(10),
-    NOTIFICATION_PROFILE_DETAILS(11);
+    NOTIFICATION_PROFILE_DETAILS(11),
+    PRIVACY(12);
 
     companion object {
       fun fromCode(code: Int?): StartLocation {

@@ -4590,6 +4590,8 @@
         <item quantity="one">%1$d reply</item>
         <item quantity="other">%1$d replies</item>
     </plurals>
+    <!-- Used when view receipts are disabled -->
+    <string name="StoryViewerPageFragment__views_off">Views off</string>
     <!-- Used to join views and replies when both exist on a story item -->
     <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
     <!-- Displayed when viewing a post you sent -->
@@ -4602,6 +4604,10 @@
     <string name="StoryViewerPageFragment__reply_to_group">Reply to group</string>
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">No views yet</string>
+    <!-- Displayed when user has disabled receipts -->
+    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Enable read receipts to see who\'s viewed your stories.</string>
+    <!-- Button label displayed when user has disabled receipts -->
+    <string name="StoryViewsFragment__go_to_settings">Go to settings</string>
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">No replies yet</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->

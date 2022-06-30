@@ -339,7 +339,7 @@ class StoryViewerPageFragment :
       if (state.posts.isNotEmpty() && state.selectedPostIndex in state.posts.indices) {
         val post = state.posts[state.selectedPostIndex]
 
-        presentViewsAndReplies(post, state.replyState)
+        presentViewsAndReplies(post, state.replyState, state.isReceiptsEnabled)
         presentSenderAvatar(senderAvatar, post)
         presentGroupAvatar(groupAvatar, post)
         presentFrom(from, post)
@@ -449,6 +449,7 @@ class StoryViewerPageFragment :
   override fun onResume() {
     super.onResume()
     viewModel.setIsFragmentResumed(true)
+    viewModel.checkReadReceiptState()
   }
 
   override fun onPause() {
@@ -823,7 +824,7 @@ class StoryViewerPageFragment :
     }
   }
 
-  private fun presentViewsAndReplies(post: StoryPost, replyState: StoryViewerPageState.ReplyState) {
+  private fun presentViewsAndReplies(post: StoryPost, replyState: StoryViewerPageState.ReplyState, isReceiptsEnabled: Boolean) {
     if (replyState == StoryViewerPageState.ReplyState.NONE) {
       viewsAndReplies.visible = false
       return
@@ -835,14 +836,25 @@ class StoryViewerPageFragment :
     val replies = resources.getQuantityString(R.plurals.StoryViewerFragment__d_replies, post.replyCount, post.replyCount)
 
     if (Recipient.self() == post.sender) {
-      if (post.replyCount == 0) {
-        viewsAndReplies.setIconResource(R.drawable.ic_chevron_end_24)
-        viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_END
-        viewsAndReplies.text = views
+      if (isReceiptsEnabled) {
+        if (post.replyCount == 0) {
+          viewsAndReplies.setIconResource(R.drawable.ic_chevron_end_24)
+          viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_END
+          viewsAndReplies.text = views
+        } else {
+          viewsAndReplies.setIconResource(R.drawable.ic_chevron_end_24)
+          viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_END
+          viewsAndReplies.text = getString(R.string.StoryViewerFragment__s_s, views, replies)
+        }
       } else {
-        viewsAndReplies.setIconResource(R.drawable.ic_chevron_end_24)
-        viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_END
-        viewsAndReplies.text = getString(R.string.StoryViewerFragment__s_s, views, replies)
+        if (post.replyCount == 0) {
+          viewsAndReplies.icon = null
+          viewsAndReplies.setText(R.string.StoryViewerPageFragment__views_off)
+        } else {
+          viewsAndReplies.setIconResource(R.drawable.ic_chevron_end_24)
+          viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_END
+          viewsAndReplies.text = replies
+        }
       }
     } else if (post.replyCount > 0) {
       viewsAndReplies.setIconResource(R.drawable.ic_chevron_end_24)
