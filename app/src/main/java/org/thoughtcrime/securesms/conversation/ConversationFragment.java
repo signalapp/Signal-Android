@@ -1614,6 +1614,11 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
           bodyBubble.setVisibility(View.INVISIBLE);
           conversationItem.reactionsView.setVisibility(View.INVISIBLE);
 
+          boolean quotedIndicatorVisible = conversationItem.quotedIndicator.getVisibility() == View.VISIBLE;
+          if (quotedIndicatorVisible) {
+            ViewUtil.fadeOut(conversationItem.quotedIndicator, 150, View.INVISIBLE);
+          }
+
           ViewUtil.hideKeyboard(requireContext(), conversationItem);
 
           boolean showScrollButtons = conversationViewModel.getShowScrollButtons();
@@ -1650,6 +1655,9 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
                                       bodyBubble.setVisibility(View.VISIBLE);
                                       conversationItem.reactionsView.setVisibility(View.VISIBLE);
+                                      if (quotedIndicatorVisible) {
+                                        ViewUtil.fadeIn(conversationItem.quotedIndicator, 150);
+                                      }
 
                                       if (showScrollButtons) {
                                         conversationViewModel.setShowScrollButtons(true);
