@@ -2308,7 +2308,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   private class ThumbnailClickListener implements SlideClickListener {
     public void onClick(final View v, final Slide slide) {
-      if (shouldInterceptClicks(messageRecord) || !batchSelected.isEmpty()) {
+      if (shouldInterceptClicks(messageRecord) || !batchSelected.isEmpty() || isCondensedMode) {
         performClick();
       } else if (!canPlayContent && mediaItem != null && eventListener != null) {
         eventListener.onPlayInlineContent(conversationMessage);
