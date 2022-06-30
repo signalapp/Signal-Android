@@ -538,13 +538,7 @@ public final class ConversationUpdateItem extends FrameLayout
         }
       });
 
-      if (SignalStore.donationsValues().isLikelyASustainer()) {
-        actionButton.setText(R.string.ConversationUpdateItem_signal_boost);
-        actionButton.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_boost_outline_16, 0, 0, 0);
-      } else {
-        actionButton.setText(R.string.ConversationUpdateItem_become_a_sustainer);
-        actionButton.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
-      }
+      actionButton.setText(R.string.ConversationUpdateItem_donate);
     } else {
       actionButton.setVisibility(GONE);
       actionButton.setOnClickListener(null);

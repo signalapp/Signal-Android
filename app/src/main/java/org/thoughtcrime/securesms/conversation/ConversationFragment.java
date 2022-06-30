@@ -2031,16 +2031,12 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
     @Override
     public void onDonateClicked() {
-      if (SignalStore.donationsValues().isLikelyASustainer()) {
-        NavHostFragment navHostFragment = NavHostFragment.create(R.navigation.boosts);
+      NavHostFragment navHostFragment = NavHostFragment.create(R.navigation.boosts);
 
-        requireActivity().getSupportFragmentManager()
-                         .beginTransaction()
-                         .add(navHostFragment, "boost_nav")
-                         .commitNow();
-      } else {
-        startActivity(AppSettingsActivity.subscriptions(requireContext()));
-      }
+      requireActivity().getSupportFragmentManager()
+                       .beginTransaction()
+                       .add(navHostFragment, "boost_nav")
+                       .commitNow();
     }
 
     @Override
