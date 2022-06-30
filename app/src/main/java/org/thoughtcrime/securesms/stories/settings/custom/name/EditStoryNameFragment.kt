@@ -11,13 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.SimpleColorFilter
-import com.dd.CircularProgressButton
 import com.google.android.material.textfield.TextInputLayout
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
 
 class EditStoryNameFragment : Fragment(R.layout.stories_edit_story_name_fragment) {
 
@@ -35,7 +35,7 @@ class EditStoryNameFragment : Fragment(R.layout.stories_edit_story_name_fragment
 
   private val lifecycleDisposable = LifecycleDisposable()
 
-  private lateinit var saveButton: CircularProgressButton
+  private lateinit var saveButton: CircularProgressMaterialButton
   private lateinit var storyName: EditText
   private lateinit var storyNameWrapper: TextInputLayout
 

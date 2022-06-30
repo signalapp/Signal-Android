@@ -28,12 +28,12 @@ import androidx.core.view.inputmethod.InputContentInfoCompat;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.components.emoji.EmojiEditText;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.components.mention.MentionDeleter;
 import org.thoughtcrime.securesms.components.mention.MentionRendererDelegate;
 import org.thoughtcrime.securesms.components.mention.MentionValidatorWatcher;
+import org.thoughtcrime.securesms.conversation.MessageSendType;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -201,13 +201,13 @@ public class ComposeText extends EmojiEditText {
     return getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
   }
 
-  public void setTransport(TransportOption transport) {
+  public void setMessageSendType(MessageSendType messageSendType) {
     final boolean useSystemEmoji = SignalStore.settings().isPreferSystemEmoji();
 
     int imeOptions = (getImeOptions() & ~EditorInfo.IME_MASK_ACTION) | EditorInfo.IME_ACTION_SEND;
     int inputType  = getInputType();
 
-    if (isLandscape()) setImeActionLabel(transport.getComposeHint(), EditorInfo.IME_ACTION_SEND);
+    if (isLandscape()) setImeActionLabel(getContext().getString(messageSendType.getComposeHintRes()), EditorInfo.IME_ACTION_SEND);
     else               setImeActionLabel(null, 0);
 
     if (useSystemEmoji) {
@@ -215,9 +215,9 @@ public class ComposeText extends EmojiEditText {
     }
 
     setImeOptions(imeOptions);
-    setHint(transport.getComposeHint(),
-            transport.getSimName().isPresent()
-                ? getContext().getString(R.string.conversation_activity__from_sim_name, transport.getSimName().get())
+    setHint(getContext().getString(messageSendType.getComposeHintRes()),
+            messageSendType.getSimName() != null
+                ? getContext().getString(R.string.conversation_activity__from_sim_name, messageSendType.getSimName())
                 : null);
     setInputType(inputType);
   }

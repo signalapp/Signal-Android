@@ -21,7 +21,7 @@ import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.melnykov.fab.FloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.loaders.DeviceListLoader;

@@ -42,6 +42,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
 import org.whispersystems.signalservice.api.messages.SignalServicePreview;
 import org.whispersystems.signalservice.api.messages.SignalServiceReceiptMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessage;
+import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessageRecipient;
 import org.whispersystems.signalservice.api.messages.SignalServiceTextAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage;
 import org.whispersystems.signalservice.api.messages.calls.AnswerMessage;
@@ -252,32 +253,43 @@ public class SignalServiceMessageSender {
     sendGroupMessage(distributionId, recipients, unidentifiedAccess, message.getTimestamp(), content, ContentHint.IMPLICIT, message.getGroupId(), true, SenderKeyGroupEvents.EMPTY);
   }
 
-  public List<SendMessageResult> sendStory(List<SignalServiceAddress>             recipients,
-                                           List<Optional<UnidentifiedAccessPair>> unidentifiedAccess,
-                                           SignalServiceStoryMessage              message,
-                                           long                                   timestamp)
+  public List<SendMessageResult> sendStory(List<SignalServiceAddress>              recipients,
+                                           List<Optional<UnidentifiedAccessPair>>  unidentifiedAccess,
+                                           SignalServiceStoryMessage               message,
+                                           long                                    timestamp,
+                                           Set<SignalServiceStoryMessageRecipient> manifest)
       throws IOException, UntrustedIdentityException
   {
-    Content         content         = createStoryContent(message);
-    EnvelopeContent envelopeContent = EnvelopeContent.encrypted(content, ContentHint.RESENDABLE, Optional.empty());
+    Content                  content            = createStoryContent(message);
+    EnvelopeContent          envelopeContent    = EnvelopeContent.encrypted(content, ContentHint.RESENDABLE, Optional.empty());
+    List<SendMessageResult>  sendMessageResults = sendMessage(recipients, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, envelopeContent, false, null, null);
+    SignalServiceSyncMessage syncMessage        = createSelfSendSyncMessageForStory(message, timestamp, manifest);
 
-    return sendMessage(recipients, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, envelopeContent, false, null, null);
+    sendSyncMessage(syncMessage, Optional.empty());
+
+    return sendMessageResults;
   }
 
   /**
    * Send a typing indicator to a group using sender key. Doesn't bother with return results, since these are best-effort.
    * @return
    */
-  public List<SendMessageResult> sendGroupStory(DistributionId              distributionId,
-                                                Optional<byte[]>            groupId,
-                                                List<SignalServiceAddress>  recipients,
-                                                List<UnidentifiedAccess>    unidentifiedAccess,
-                                                SignalServiceStoryMessage   message,
-                                                long                        timestamp)
+  public List<SendMessageResult> sendGroupStory(DistributionId                          distributionId,
+                                                Optional<byte[]>                        groupId,
+                                                List<SignalServiceAddress>              recipients,
+                                                List<UnidentifiedAccess>                unidentifiedAccess,
+                                                SignalServiceStoryMessage               message,
+                                                long                                    timestamp,
+                                                Set<SignalServiceStoryMessageRecipient> manifest)
       throws IOException, UntrustedIdentityException, InvalidKeyException, NoSessionException, InvalidRegistrationIdException
   {
-    Content content = createStoryContent(message);
-    return sendGroupMessage(distributionId, recipients, unidentifiedAccess, timestamp, content, ContentHint.RESENDABLE, groupId, false, SenderKeyGroupEvents.EMPTY);
+    Content                  content            = createStoryContent(message);
+    List<SendMessageResult>  sendMessageResults = sendGroupMessage(distributionId, recipients, unidentifiedAccess, timestamp, content, ContentHint.RESENDABLE, groupId, false, SenderKeyGroupEvents.EMPTY);
+    SignalServiceSyncMessage syncMessage        = createSelfSendSyncMessageForStory(message, timestamp, manifest);
+
+    sendSyncMessage(syncMessage, Optional.empty());
+
+    return sendMessageResults;
   }
 
 
@@ -362,7 +374,7 @@ public class SignalServiceMessageSender {
     sendEvents.onMessageSent();
 
     if (result.getSuccess() != null && result.getSuccess().isNeedsSync()) {
-      Content         syncMessage        = createMultiDeviceSentTranscriptContent(content, Optional.of(recipient), timestamp, Collections.singletonList(result), false);
+      Content         syncMessage        = createMultiDeviceSentTranscriptContent(content, Optional.of(recipient), timestamp, Collections.singletonList(result), false, Collections.emptySet());
       EnvelopeContent syncMessageContent = EnvelopeContent.encrypted(syncMessage, ContentHint.IMPLICIT, Optional.empty());
 
       sendMessage(localAddress, Optional.empty(), timestamp, syncMessageContent, false, null);
@@ -446,7 +458,7 @@ public class SignalServiceMessageSender {
     sendEvents.onMessageSent();
 
     if (store.isMultiDevice()) {
-      Content         syncMessage        = createMultiDeviceSentTranscriptContent(content, Optional.empty(), message.getTimestamp(), results, isRecipientUpdate);
+      Content         syncMessage        = createMultiDeviceSentTranscriptContent(content, Optional.empty(), message.getTimestamp(), results, isRecipientUpdate, Collections.emptySet());
       EnvelopeContent syncMessageContent = EnvelopeContent.encrypted(syncMessage, ContentHint.IMPLICIT, Optional.empty());
 
       sendMessage(localAddress, Optional.empty(), message.getTimestamp(), syncMessageContent, false, null);
@@ -496,7 +508,7 @@ public class SignalServiceMessageSender {
         recipient = Optional.of(recipients.get(0));
       }
 
-      Content         syncMessage        = createMultiDeviceSentTranscriptContent(content, recipient, timestamp, results, isRecipientUpdate);
+      Content         syncMessage        = createMultiDeviceSentTranscriptContent(content, recipient, timestamp, results, isRecipientUpdate, Collections.emptySet());
       EnvelopeContent syncMessageContent = EnvelopeContent.encrypted(syncMessage, ContentHint.IMPLICIT, Optional.empty());
 
       sendMessage(localAddress, Optional.empty(), timestamp, syncMessageContent, false, null);
@@ -791,6 +803,16 @@ public class SignalServiceMessageSender {
     return container.setReceiptMessage(builder).build();
   }
 
+  private Content createMessageContent(SentTranscriptMessage transcriptMessage) throws IOException {
+    if (transcriptMessage.getStoryMessage().isPresent()) {
+      return createStoryContent(transcriptMessage.getStoryMessage().get());
+    } else if (transcriptMessage.getDataMessage().isPresent()) {
+      return createMessageContent(transcriptMessage.getDataMessage().get());
+    } else {
+      return null;
+    }
+  }
+
   private Content createMessageContent(SignalServiceDataMessage message) throws IOException {
     Content.Builder         container = Content.newBuilder();
     DataMessage.Builder     builder   = DataMessage.newBuilder();
@@ -846,7 +868,8 @@ public class SignalServiceMessageSender {
       DataMessage.Quote.Builder quoteBuilder = DataMessage.Quote.newBuilder()
                                                                 .setId(message.getQuote().get().getId())
                                                                 .setText(message.getQuote().get().getText())
-                                                                .setAuthorUuid(message.getQuote().get().getAuthor().getServiceId().toString());
+                                                                .setAuthorUuid(message.getQuote().get().getAuthor().getServiceId().toString())
+                                                                .setType(message.getQuote().get().getType().getProtoType());
 
       if (!message.getQuote().get().getMentions().isEmpty()) {
         for (SignalServiceDataMessage.Mention mention : message.getQuote().get().getMentions()) {
@@ -1107,27 +1130,30 @@ public class SignalServiceMessageSender {
 
   private Content createMultiDeviceSentTranscriptContent(SentTranscriptMessage transcript, boolean unidentifiedAccess) throws IOException {
     SignalServiceAddress address = transcript.getDestination().get();
-    Content              content = createMessageContent(transcript.getMessage());
-    SendMessageResult    result  = SendMessageResult.success(address, Collections.emptyList(), unidentifiedAccess, true, -1, Optional.of(content));
+    Content              content = createMessageContent(transcript);
+    SendMessageResult    result  = SendMessageResult.success(address, Collections.emptyList(), unidentifiedAccess, true, -1, Optional.ofNullable(content));
+
 
     return createMultiDeviceSentTranscriptContent(content,
                                                   Optional.of(address),
                                                   transcript.getTimestamp(),
                                                   Collections.singletonList(result),
-                                                  false);
+                                                  transcript.isRecipientUpdate(),
+                                                  transcript.getStoryMessageRecipients());
   }
 
   private Content createMultiDeviceSentTranscriptContent(Content content, Optional<SignalServiceAddress> recipient,
                                                          long timestamp, List<SendMessageResult> sendMessageResults,
-                                                         boolean isRecipientUpdate)
+                                                         boolean isRecipientUpdate,
+                                                         Set<SignalServiceStoryMessageRecipient> storyMessageRecipients)
   {
-    Content.Builder          container   = Content.newBuilder();
-    SyncMessage.Builder      syncMessage = createSyncMessageBuilder();
-    SyncMessage.Sent.Builder sentMessage = SyncMessage.Sent.newBuilder();
-    DataMessage              dataMessage = content.getDataMessage();
+    Content.Builder          container    = Content.newBuilder();
+    SyncMessage.Builder      syncMessage  = createSyncMessageBuilder();
+    SyncMessage.Sent.Builder sentMessage  = SyncMessage.Sent.newBuilder();
+    DataMessage              dataMessage  = content != null && content.hasDataMessage() ? content.getDataMessage() : null;
+    StoryMessage             storyMessage = content != null && content.hasStoryMessage() ? content.getStoryMessage() : null;
 
     sentMessage.setTimestamp(timestamp);
-    sentMessage.setMessage(dataMessage);
 
     for (SendMessageResult result : sendMessageResults) {
       if (result.getSuccess() != null) {
@@ -1143,18 +1169,37 @@ public class SignalServiceMessageSender {
       sentMessage.setDestinationUuid(recipient.get().getServiceId().toString());
     }
 
-    if (dataMessage.getExpireTimer() > 0) {
-      sentMessage.setExpirationStartTimestamp(System.currentTimeMillis());
+    if (dataMessage != null) {
+      sentMessage.setMessage(dataMessage);
+      if (dataMessage.getExpireTimer() > 0) {
+        sentMessage.setExpirationStartTimestamp(System.currentTimeMillis());
+      }
+
+      if (dataMessage.getIsViewOnce()) {
+        dataMessage = dataMessage.toBuilder().clearAttachments().build();
+        sentMessage.setMessage(dataMessage);
+      }
     }
 
-    if (dataMessage.getIsViewOnce()) {
-      dataMessage = dataMessage.toBuilder().clearAttachments().build();
-      sentMessage.setMessage(dataMessage);
+    if (storyMessage != null) {
+      sentMessage.setStoryMessage(storyMessage);
     }
+
+    sentMessage.addAllStoryMessageRecipients(storyMessageRecipients.stream()
+                                                                   .map(this::createStoryMessageRecipient)
+                                                                   .collect(Collectors.toSet()));
 
     sentMessage.setIsRecipientUpdate(isRecipientUpdate);
 
     return container.setSyncMessage(syncMessage.setSent(sentMessage)).build();
+  }
+  
+  private SyncMessage.Sent.StoryMessageRecipient createStoryMessageRecipient(SignalServiceStoryMessageRecipient storyMessageRecipient) {
+    return SyncMessage.Sent.StoryMessageRecipient.newBuilder()
+                                                 .addAllDistributionListIds(storyMessageRecipient.getDistributionListIds())
+                                                 .setDestinationUuid(storyMessageRecipient.getSignalServiceAddress().getIdentifier())
+                                                 .setIsAllowedToReply(storyMessageRecipient.isAllowedToReply())
+                                                 .build();
   }
 
   private Content createMultiDeviceReadContent(List<ReadMessage> readMessages) {
@@ -1579,13 +1624,28 @@ public class SignalServiceMessageSender {
     return results;
   }
 
+  private SignalServiceSyncMessage createSelfSendSyncMessageForStory(SignalServiceStoryMessage message, long sentTimestamp, Set<SignalServiceStoryMessageRecipient> manifest) {
+    SentTranscriptMessage transcript = new SentTranscriptMessage(Optional.of(localAddress),
+                                                                 sentTimestamp,
+                                                                 Optional.empty(),
+                                                                 0,
+                                                                 Collections.singletonMap(localAddress, false),
+                                                                 false,
+                                                                 Optional.of(message),
+                                                                 manifest);
+
+    return SignalServiceSyncMessage.forSentTranscript(transcript);
+  }
+
   private SignalServiceSyncMessage createSelfSendSyncMessage(SignalServiceDataMessage message) {
     SentTranscriptMessage transcript = new SentTranscriptMessage(Optional.of(localAddress),
                                                                  message.getTimestamp(),
-                                                                 message,
+                                                                 Optional.of(message),
                                                                  message.getExpiresInSeconds(),
                                                                  Collections.singletonMap(localAddress, false),
-                                                                 false);
+                                                                 false,
+                                                                 Optional.empty(),
+                                                                 Collections.emptySet());
     return SignalServiceSyncMessage.forSentTranscript(transcript);
   }
 

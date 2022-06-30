@@ -22,7 +22,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.dd.CircularProgressButton;
 import com.google.android.gms.auth.api.phone.SmsRetriever;
 import com.google.android.gms.auth.api.phone.SmsRetrieverClient;
 import com.google.android.gms.common.ConnectionResult;
@@ -50,26 +49,25 @@ import org.thoughtcrime.securesms.util.PlayServicesUtil;
 import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
+import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView;
 import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.showConfirmNumberDialogIfTranslated;
-import static org.thoughtcrime.securesms.util.CircularProgressButtonUtil.cancelSpinning;
-import static org.thoughtcrime.securesms.util.CircularProgressButtonUtil.setSpinning;
 
 public final class EnterPhoneNumberFragment extends LoggingFragment implements RegistrationNumberInputController.Callbacks {
 
   private static final String TAG = Log.tag(EnterPhoneNumberFragment.class);
 
-  private LabeledEditText        countryCode;
-  private LabeledEditText        number;
-  private CircularProgressButton register;
-  private Spinner                countrySpinner;
-  private View                   cancel;
-  private ScrollView             scrollView;
-  private RegistrationViewModel  viewModel;
+  private LabeledEditText                countryCode;
+  private LabeledEditText                number;
+  private CircularProgressMaterialButton register;
+  private Spinner                        countrySpinner;
+  private View                           cancel;
+  private ScrollView                     scrollView;
+  private RegistrationViewModel          viewModel;
 
   private final LifecycleDisposable disposables = new LifecycleDisposable();
 
@@ -179,7 +177,7 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
   }
 
   private void handleRequestVerification(@NonNull Context context, boolean fcmSupported) {
-    setSpinning(register);
+    register.setSpinning();
     disableAllEntries();
 
     if (fcmSupported) {
@@ -247,7 +245,7 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
                                       Toast.makeText(register.getContext(), R.string.RegistrationActivity_unable_to_connect_to_service, Toast.LENGTH_LONG).show();
                                     }
 
-                                    cancelSpinning(register);
+                                    register.cancelSpinning();
                                     enableAllEntries();
                                   });
 

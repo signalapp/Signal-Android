@@ -61,7 +61,7 @@ class StripeApi(
       Single.just(CreatePaymentIntentResult.AmountIsTooSmall(price))
     } else if (Validation.isAmountTooLarge(price)) {
       Single.just(CreatePaymentIntentResult.AmountIsTooLarge(price))
-    } else if (!Validation.supportedCurrencyCodes.contains(price.currency.currencyCode.toUpperCase(Locale.ROOT))) {
+    } else if (!Validation.supportedCurrencyCodes.contains(price.currency.currencyCode.uppercase(Locale.ROOT))) {
       Single.just<CreatePaymentIntentResult>(CreatePaymentIntentResult.CurrencyIsNotSupported(price.currency.currencyCode))
     } else {
       paymentIntentFetcher

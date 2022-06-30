@@ -60,7 +60,6 @@ import java.util.concurrent.TimeUnit
  */
 class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, StripeApi.SetupIntentHelper {
 
-  private val application = activity.application
   private val googlePayApi = GooglePayApi(activity, StripeApi.Gateway(Environment.Donations.STRIPE_CONFIGURATION), Environment.Donations.GOOGLE_PAY_CONFIGURATION)
   private val stripeApi = StripeApi(Environment.Donations.STRIPE_CONFIGURATION, this, this, ApplicationDependencies.getOkHttpClient())
 
@@ -92,19 +91,16 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
   }
 
   /**
-   * @param price             The amount to charce the local user
-   * @param paymentData       PaymentData from Google Pay that describes the payment method
-   * @param badgeRecipient    Who will be getting the badge
-   * @param additionalMessage An additional message to send along with the badge (only used if badge recipient is not self)
+   * Verifies that the given recipient is a supported target for a gift.
    */
-  fun continuePayment(price: FiatMoney, paymentData: PaymentData, badgeRecipient: RecipientId, additionalMessage: String?, badgeLevel: Long): Completable {
-    val verifyRecipient = Completable.fromAction {
+  fun verifyRecipientIsAllowedToReceiveAGift(badgeRecipient: RecipientId): Completable {
+    return Completable.fromAction {
       Log.d(TAG, "Verifying badge recipient $badgeRecipient", true)
       val recipient = Recipient.resolved(badgeRecipient)
 
       if (recipient.isSelf) {
-        Log.d(TAG, "Badge recipient is self, so this is a boost. Skipping verification.", true)
-        return@fromAction
+        Log.d(TAG, "Cannot send a gift to self.", true)
+        throw DonationError.GiftRecipientVerificationError.SelectedRecipientDoesNotSupportGifts
       }
 
       if (recipient.isGroup || recipient.isDistributionList || recipient.registered != RecipientDatabase.RegisteredState.REGISTERED) {
@@ -124,11 +120,19 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
         Log.w(TAG, "Failed to retrieve profile for recipient.", e, true)
         throw DonationError.GiftRecipientVerificationError.FailedToFetchProfile(e)
       }
-    }
+    }.subscribeOn(Schedulers.io())
+  }
 
-    return verifyRecipient.doOnComplete {
-      Log.d(TAG, "Creating payment intent for $price...", true)
-    }.andThen(stripeApi.createPaymentIntent(price, badgeLevel))
+  /**
+   * @param price             The amount to charce the local user
+   * @param paymentData       PaymentData from Google Pay that describes the payment method
+   * @param badgeRecipient    Who will be getting the badge
+   * @param additionalMessage An additional message to send along with the badge (only used if badge recipient is not self)
+   */
+  fun continuePayment(price: FiatMoney, paymentData: PaymentData, badgeRecipient: RecipientId, additionalMessage: String?, badgeLevel: Long): Completable {
+    Log.d(TAG, "Creating payment intent for $price...", true)
+
+    return stripeApi.createPaymentIntent(price, badgeLevel)
       .onErrorResumeNext {
         if (it is DonationError) {
           Single.error(it)
@@ -168,6 +172,7 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
     val localSubscriber = SignalStore.donationsValues().requireSubscriber()
     return ApplicationDependencies.getDonationsService()
       .cancelSubscription(localSubscriber.subscriberId)
+      .subscribeOn(Schedulers.io())
       .flatMap(ServiceResponse<EmptyResponse>::flattenResult)
       .ignoreElement()
       .doOnComplete { Log.d(TAG, "Cancelled active subscription.", true) }
@@ -179,6 +184,7 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
     return ApplicationDependencies
       .getDonationsService()
       .putSubscription(subscriberId)
+      .subscribeOn(Schedulers.io())
       .flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement()
       .doOnComplete {
         Log.d(TAG, "Successfully set SubscriberId exists on Signal service.", true)
@@ -207,7 +213,7 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
         DonationReceiptRecord.createForGift(price)
       }
 
-      val donationTypeLabel = donationReceiptRecord.type.code.capitalize(Locale.US)
+      val donationTypeLabel = donationReceiptRecord.type.code.replaceFirstChar { c -> if (c.isLowerCase()) c.titlecase(Locale.US) else c.toString() }
 
       Log.d(TAG, "Confirmed payment intent. Recording $donationTypeLabel receipt and submitting badge reimbursement job chain.", true)
       SignalDatabase.donationReceipts.addReceipt(donationReceiptRecord)
@@ -271,9 +277,8 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
         ).flatMapCompletable {
           if (it.status == 200 || it.status == 204) {
             Log.d(TAG, "Successfully set user subscription to level $subscriptionLevel with response code ${it.status}", true)
-            SignalStore.donationsValues().clearUserManuallyCancelled()
+            SignalStore.donationsValues().updateLocalStateForLocalSubscribe()
             scheduleSyncForAccountRecordChange()
-            SignalStore.donationsValues().clearLevelOperations()
             LevelUpdate.updateProcessingState(false)
             Completable.complete()
           } else {

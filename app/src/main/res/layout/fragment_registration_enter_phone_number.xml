@@ -16,7 +16,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <FrameLayout
             android:id="@+id/country_spinner_frame"
@@ -75,7 +75,6 @@
 
         <TextView
             android:id="@+id/verify_header"
-            style="@style/Signal.Text.Headline.Registration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -83,6 +82,7 @@
             android:layout_marginEnd="32dp"
             android:gravity="center"
             android:text="@string/RegistrationActivity_enter_your_phone_number_to_get_started"
+            android:textAppearance="@style/Signal.Text.HeadlineMedium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -101,9 +101,9 @@
             app:layout_constraintTop_toBottomOf="@+id/verify_header"
             tools:layout_editor_absoluteX="0dp" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/cancel_button"
-            style="@style/Button.Borderless.Registration"
+            style="@style/Signal.Widget.Button.Large.Secondary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -117,16 +117,16 @@
             app:layout_constraintTop_toBottomOf="@+id/registerButton"
             app:layout_constraintVertical_bias="0" />
 
-        <com.dd.CircularProgressButton
+        <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
             android:id="@+id/registerButton"
-            style="@style/Button.Registration"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="16dp"
-            app:cpb_textIdle="@string/RegistrationActivity_next"
+            app:materialThemeOverlay="@style/ThemeOverlay.Signal.CircularProgressIndicator.Primary"
+            app:circularProgressMaterialButton__label="@string/RegistrationActivity_next"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

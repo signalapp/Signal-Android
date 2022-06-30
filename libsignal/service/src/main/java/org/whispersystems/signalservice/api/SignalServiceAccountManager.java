@@ -42,8 +42,7 @@ import org.whispersystems.signalservice.api.push.exceptions.NoContentException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
-import org.whispersystems.signalservice.api.services.CdshV1Service;
-import org.whispersystems.signalservice.api.services.CdshV2Service;
+import org.whispersystems.signalservice.api.services.CdsiV2Service;
 import org.whispersystems.signalservice.api.storage.SignalStorageCipher;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.SignalStorageModels;
@@ -64,7 +63,7 @@ import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryRequ
 import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryResponse;
 import org.whispersystems.signalservice.internal.crypto.PrimaryProvisioningCipher;
 import org.whispersystems.signalservice.internal.push.AuthCredentials;
-import org.whispersystems.signalservice.internal.push.CdshAuthResponse;
+import org.whispersystems.signalservice.internal.push.CdsiAuthResponse;
 import org.whispersystems.signalservice.internal.push.ProfileAvatarData;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.RemoteAttestationUtil;
@@ -105,6 +104,7 @@ import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import java.util.function.Consumer;
 
 import io.reactivex.rxjava3.core.Single;
 
@@ -507,45 +507,20 @@ public class SignalServiceAccountManager {
     }
   }
 
-  public Map<String, ACI> getRegisteredUsersWithCdshV1(Set<String> e164numbers, String hexPublicKey, String hexCodeHash)
+  public CdsiV2Service.Response getRegisteredUsersWithCdsi(Set<String> previousE164s,
+                                                           Set<String> newE164s,
+                                                           Map<ServiceId, ProfileKey> serviceIds,
+                                                           Optional<byte[]> token,
+                                                           String mrEnclave,
+                                                           Consumer<byte[]> tokenSaver)
       throws IOException
   {
-    CdshAuthResponse                          auth    = pushServiceSocket.getCdshAuth();
-    CdshV1Service                             service = new CdshV1Service(configuration, hexPublicKey, hexCodeHash);
-    Single<ServiceResponse<Map<String, ACI>>> result  = service.getRegisteredUsers(auth.getUsername(), auth.getPassword(), e164numbers);
+    CdsiAuthResponse                                auth    = pushServiceSocket.getCdsiAuth();
+    CdsiV2Service                                   service = new CdsiV2Service(configuration, mrEnclave);
+    CdsiV2Service.Request                           request = new CdsiV2Service.Request(previousE164s, newE164s, serviceIds, token);
+    Single<ServiceResponse<CdsiV2Service.Response>> single  = service.getRegisteredUsers(auth.getUsername(), auth.getPassword(), request, tokenSaver);
 
-    ServiceResponse<Map<String, ACI>> response;
-    try {
-      response = result.blockingGet();
-    } catch (Exception e) {
-      throw new RuntimeException("Unexpected exception when retrieving registered users!", e);
-    }
-
-    if (response.getResult().isPresent()) {
-      return response.getResult().get();
-    } else if (response.getApplicationError().isPresent()) {
-      throw new IOException(response.getApplicationError().get());
-    } else if (response.getExecutionError().isPresent()) {
-      throw new IOException(response.getExecutionError().get());
-    } else {
-      throw new IOException("Missing result!");
-    }
-  }
-
-  public CdshV2Service.Response getRegisteredUsersWithCdshV2(Set<String> previousE164s,
-                                                             Set<String> newE164s,
-                                                             Map<ServiceId, ProfileKey> serviceIds,
-                                                             Optional<byte[]> token,
-                                                             String hexPublicKey,
-                                                             String hexCodeHash)
-      throws IOException
-  {
-    CdshAuthResponse                                auth    = pushServiceSocket.getCdshAuth();
-    CdshV2Service                                   service = new CdshV2Service(configuration, hexPublicKey, hexCodeHash);
-    CdshV2Service.Request                           request = new CdshV2Service.Request(previousE164s, newE164s, serviceIds, token);
-    Single<ServiceResponse<CdshV2Service.Response>> single  = service.getRegisteredUsers(auth.getUsername(), auth.getPassword(), request);
-
-    ServiceResponse<CdshV2Service.Response> serviceResponse;
+    ServiceResponse<CdsiV2Service.Response> serviceResponse;
     try {
       serviceResponse = single.blockingGet();
     } catch (Exception e) {

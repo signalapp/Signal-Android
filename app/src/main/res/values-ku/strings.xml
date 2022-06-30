@@ -550,8 +550,8 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">Ev qad hewce ye.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Afirandina komê bi ser neket.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Paşê dîsa biceribîne.</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">We berdengek ku nikare komên Signal ê bikar bîne bijart, ji bo vê dê ev kom yeka MMSê be</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Navên u wêneyên komê MMS ye taybetê bi tenê ji alîye we va bên dîtin.</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">We berdengek ku nikare komên Signal ê bikar bîne bijart, ji bo vê dê ev kom yeka MMSê be</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Navên u wêneyên komê MMS ye taybetê bi tenê ji alîye we va bên dîtin.</string> -->
   <string name="AddGroupDetailsFragment__remove">Rake</string>
   <string name="AddGroupDetailsFragment__sms_contact">Kesê SMS\'ê</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s ji vê komê derxîne?</string>
@@ -992,10 +992,6 @@
   <plurals name="MessageRequestProfileView_members">
     <item quantity="one">%1$d endam</item>
     <item quantity="other">%1$d endam</item>
-  </plurals>
-  <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="one">%1$d endam (+ %2$d vexwendî)</item>
-    <item quantity="other">%1$d endam (+ %2$d vexwendî)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d koma din</item>
@@ -1647,10 +1643,10 @@
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Ji bo redkirinê, bişemitîne jêrê</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Divê tu hinek pirsgirêkan kontrol bikî.</string>
-  <string name="message_details_header__sent">Dema şandinê:</string>
-  <string name="message_details_header__received">Dema stendinê:</string>
-  <string name="message_details_header__disappears">Ew ê wenda bibe</string>
-  <string name="message_details_header__via">Bi rêya</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">Dema şandinê:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">Dema stendinê:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">Ew ê wenda bibe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">Bi rêya</string> -->
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Li bendê</string>
   <string name="message_details_recipient_header__sent_to">Hat şandin ji:</string>

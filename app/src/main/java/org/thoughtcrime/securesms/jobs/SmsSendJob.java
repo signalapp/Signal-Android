@@ -20,11 +20,11 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkOrCellServiceConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.SmsDeliveryListener;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.ArrayList;
 
@@ -98,7 +98,7 @@ public class SmsSendJob extends SendJob {
     } catch (UndeliverableMessageException ude) {
       warn(TAG, ude);
       SignalDatabase.sms().markAsSentFailed(record.getId());
-      ApplicationDependencies.getMessageNotifier().notifyMessageDeliveryFailed(context, record.getRecipient(), record.getThreadId());
+      ApplicationDependencies.getMessageNotifier().notifyMessageDeliveryFailed(context, record.getRecipient(), ConversationId.fromMessageRecord(record));
     }
   }
 
@@ -116,7 +116,7 @@ public class SmsSendJob extends SendJob {
     SignalDatabase.sms().markAsSentFailed(messageId);
 
     if (threadId != -1 && recipient != null) {
-      ApplicationDependencies.getMessageNotifier().notifyMessageDeliveryFailed(context, recipient, threadId);
+      ApplicationDependencies.getMessageNotifier().notifyMessageDeliveryFailed(context, recipient, ConversationId.forConversation(threadId));
     } else {
       Log.w(TAG, "Could not find message! threadId: " + threadId + ", recipient: " + (recipient != null ? recipient.getId().toString() : "null"));
     }
@@ -143,7 +143,8 @@ public class SmsSendJob extends SendJob {
       throw new UndeliverableMessageException("Not a valid SMS destination! " + recipient);
     }
 
-    ArrayList<String> messages                = SmsManager.getDefault().divideMessage(message.getBody());
+    SmsManager               smsManager       = getSmsManagerFor(message.getSubscriptionId());
+    ArrayList<String>        messages         = smsManager.divideMessage(message.getBody());
     ArrayList<PendingIntent> sentIntents      = constructSentIntents(message.getId(), message.getType(), messages);
     ArrayList<PendingIntent> deliveredIntents = constructDeliveredIntents(message.getId(), message.getType(), messages);
 
@@ -152,7 +153,7 @@ public class SmsSendJob extends SendJob {
     // catching it and marking the message as a failure.  That way at least it doesn't
     // repeatedly crash every time you start the app.
     try {
-      getSmsManagerFor(message.getSubscriptionId()).sendMultipartTextMessage(recipient, null, messages, sentIntents, deliveredIntents);
+      smsManager.sendMultipartTextMessage(recipient, null, messages, sentIntents, deliveredIntents);
     } catch (NullPointerException | IllegalArgumentException npe) {
       warn(TAG, npe);
       log(TAG, String.valueOf(message.getDateSent()), "Recipient: " + recipient);
@@ -160,9 +161,8 @@ public class SmsSendJob extends SendJob {
 
       try {
         for (int i=0;i<messages.size();i++) {
-          getSmsManagerFor(message.getSubscriptionId()).sendTextMessage(recipient, null, messages.get(i),
-                                                                        sentIntents.get(i),
-                                                                        deliveredIntents == null ? null : deliveredIntents.get(i));
+          smsManager.sendTextMessage(recipient, null, messages.get(i), sentIntents.get(i),
+                                     deliveredIntents == null ? null : deliveredIntents.get(i));
         }
       } catch (NullPointerException | IllegalArgumentException npe2) {
         warn(TAG, npe);

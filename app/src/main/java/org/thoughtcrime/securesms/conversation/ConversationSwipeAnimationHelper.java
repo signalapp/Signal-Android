@@ -25,6 +25,7 @@ final class ConversationSwipeAnimationHelper {
   private static final Interpolator REPLY_TRANSITION_INTERPOLATOR = new ClampingLinearInterpolator(0f, dpToPx(10));
   private static final Interpolator AVATAR_INTERPOLATOR           = new ClampingLinearInterpolator(0f, dpToPx(8));
   private static final Interpolator REPLY_SCALE_INTERPOLATOR      = new ClampingLinearInterpolator(REPLY_SCALE_MIN, REPLY_SCALE_MAX);
+  private static final Interpolator QUOTED_ALPHA_INTERPOLATOR     = new ClampingLinearInterpolator(1f, 0f, 3f);
 
   private ConversationSwipeAnimationHelper() {
   }
@@ -34,6 +35,7 @@ final class ConversationSwipeAnimationHelper {
 
     updateBodyBubbleTransition(conversationItem.bodyBubble, dx, sign);
     updateReactionsTransition(conversationItem.reactionsView, dx, sign);
+    updateQuotedIndicatorTransition(conversationItem.quotedIndicator, dx, progress, sign);
     updateReplyIconTransition(conversationItem.reply, dx, progress, sign);
     updateContactPhotoHolderTransition(conversationItem.contactPhotoHolder, progress, sign);
     updateContactPhotoHolderTransition(conversationItem.badgeImageView, progress, sign);
@@ -49,6 +51,13 @@ final class ConversationSwipeAnimationHelper {
 
   private static void updateReactionsTransition(@NonNull View reactionsContainer, float dx, float sign) {
     reactionsContainer.setTranslationX(BUBBLE_INTERPOLATOR.getInterpolation(dx) * sign);
+  }
+
+  private static void updateQuotedIndicatorTransition(@Nullable View quotedIndicator, float dx, float progress, float sign) {
+    if (quotedIndicator != null) {
+      quotedIndicator.setTranslationX(BUBBLE_INTERPOLATOR.getInterpolation(dx) * sign);
+      quotedIndicator.setAlpha(QUOTED_ALPHA_INTERPOLATOR.getInterpolation(progress) * sign);
+    }
   }
 
   private static void updateReplyIconTransition(@NonNull View replyIcon, float dx, float progress, float sign) {

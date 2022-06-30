@@ -2,13 +2,14 @@ package org.thoughtcrime.securesms.stories.settings.my
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
+import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.util.livedata.Store
 
-class MyStorySettingsViewModel(private val repository: MyStorySettingsRepository) : ViewModel() {
+class MyStorySettingsViewModel @JvmOverloads constructor(private val repository: MyStorySettingsRepository = MyStorySettingsRepository()) : ViewModel() {
   private val store = Store(MyStorySettingsState())
   private val disposables = CompositeDisposable()
 
@@ -20,8 +21,8 @@ class MyStorySettingsViewModel(private val repository: MyStorySettingsRepository
 
   fun refresh() {
     disposables.clear()
-    disposables += repository.getHiddenRecipientCount()
-      .subscribe { count -> store.update { it.copy(hiddenStoryFromCount = count) } }
+    disposables += repository.getPrivacyState()
+      .subscribe { myStoryPrivacyState -> store.update { it.copy(myStoryPrivacyState = myStoryPrivacyState) } }
     disposables += repository.getRepliesAndReactionsEnabled()
       .subscribe { repliesAndReactionsEnabled -> store.update { it.copy(areRepliesAndReactionsEnabled = repliesAndReactionsEnabled) } }
   }
@@ -32,9 +33,13 @@ class MyStorySettingsViewModel(private val repository: MyStorySettingsRepository
       .subscribe { refresh() }
   }
 
-  class Factory(private val repository: MyStorySettingsRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-      return modelClass.cast(MyStorySettingsViewModel(repository)) as T
+  fun setMyStoryPrivacyMode(privacyMode: DistributionListPrivacyMode): Completable {
+    return if (privacyMode == state.value!!.myStoryPrivacyState.privacyMode) {
+      Completable.complete()
+    } else {
+      repository.setPrivacyMode(privacyMode)
+        .observeOn(AndroidSchedulers.mainThread())
+        .doOnComplete { refresh() }
     }
   }
 }

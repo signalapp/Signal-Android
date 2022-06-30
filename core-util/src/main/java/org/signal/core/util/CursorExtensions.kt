@@ -55,4 +55,25 @@ fun Cursor.isNull(column: String): Boolean {
   return CursorUtil.isNull(this, column)
 }
 
+fun <T> Cursor.requireObject(column: String, serializer: LongSerializer<T>): T {
+  return serializer.deserialize(CursorUtil.requireLong(this, column))
+}
+
+fun <T> Cursor.requireObject(column: String, serializer: StringSerializer<T>): T {
+  return serializer.deserialize(CursorUtil.requireString(this, column))
+}
+
+inline fun <T> Cursor.readToList(predicate: (T) -> Boolean = { true }, mapper: (Cursor) -> T): List<T> {
+  val list = mutableListOf<T>()
+  use {
+    while (moveToNext()) {
+      val record = mapper(this)
+      if (predicate(record)) {
+        list += mapper(this)
+      }
+    }
+  }
+  return list
+}
+
 fun Boolean.toInt(): Int = if (this) 1 else 0

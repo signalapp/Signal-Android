@@ -280,7 +280,7 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
   }
 
   class MyViewModelFactory(val recipientId: RecipientId) : ViewModelProvider.NewInstanceFactory() {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return Objects.requireNonNull(modelClass.cast(InternalViewModel(recipientId)))
     }
   }

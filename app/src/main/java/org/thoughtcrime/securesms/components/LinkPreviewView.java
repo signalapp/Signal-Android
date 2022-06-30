@@ -13,7 +13,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-import androidx.core.content.ContextCompat;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -51,7 +50,6 @@ public class LinkPreviewView extends FrameLayout {
   private int                  type;
   private int                  defaultRadius;
   private CornerMask           cornerMask;
-  private Outliner             outliner;
   private CloseClickedListener closeClickedListener;
 
   public LinkPreviewView(Context context) {
@@ -78,9 +76,6 @@ public class LinkPreviewView extends FrameLayout {
     noPreview     = findViewById(R.id.linkpreview_no_preview);
     defaultRadius = getResources().getDimensionPixelSize(R.dimen.thumbnail_default_radius);
     cornerMask    = new CornerMask(this);
-    outliner      = new Outliner();
-
-    outliner.setColor(ContextCompat.getColor(getContext(), R.color.signal_inverse_transparent_20));
 
     if (attrs != null) {
       TypedArray typedArray   = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.LinkPreviewView, 0, 0);
@@ -112,7 +107,6 @@ public class LinkPreviewView extends FrameLayout {
     if (type == TYPE_COMPOSE) return;
 
     cornerMask.mask(canvas);
-    outliner.draw(canvas);
   }
 
   public void setLoading() {
@@ -134,6 +128,10 @@ public class LinkPreviewView extends FrameLayout {
   }
 
   public void setLinkPreview(@NonNull GlideRequests glideRequests, @NonNull LinkPreview linkPreview, boolean showThumbnail) {
+    setLinkPreview(glideRequests, linkPreview, showThumbnail, true);
+  }
+
+  public void setLinkPreview(@NonNull GlideRequests glideRequests, @NonNull LinkPreview linkPreview, boolean showThumbnail, boolean showDescription) {
     spinner.setVisibility(GONE);
     noPreview.setVisibility(GONE);
 
@@ -144,7 +142,7 @@ public class LinkPreviewView extends FrameLayout {
       title.setVisibility(GONE);
     }
 
-    if (!Util.isEmpty(linkPreview.getDescription())) {
+    if (showDescription && !Util.isEmpty(linkPreview.getDescription())) {
       description.setText(linkPreview.getDescription());
       description.setVisibility(VISIBLE);
     } else {
@@ -185,11 +183,9 @@ public class LinkPreviewView extends FrameLayout {
   public void setCorners(int topStart, int topEnd) {
     if (ViewUtil.isRtl(this)) {
       cornerMask.setRadii(topEnd, topStart, 0, 0);
-      outliner.setRadii(topEnd, topStart, 0, 0);
       thumbnail.setCorners(defaultRadius, topEnd, defaultRadius, defaultRadius);
     } else {
       cornerMask.setRadii(topStart, topEnd, 0, 0);
-      outliner.setRadii(topStart, topEnd, 0, 0);
       thumbnail.setCorners(topStart, defaultRadius, defaultRadius, defaultRadius);
     }
     postInvalidate();

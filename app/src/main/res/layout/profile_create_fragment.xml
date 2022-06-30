@@ -185,24 +185,18 @@
 
         </ScrollView>
 
-        <com.dd.CircularProgressButton
+        <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
             android:id="@+id/finish_button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="16dp"
-            android:layout_marginTop="16dp"
-            android:background="@color/core_ultramarine"
             android:enabled="false"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            app:cpb_colorIndicator="@color/white"
-            app:cpb_colorProgress="@color/core_ultramarine"
-            app:cpb_cornerRadius="4dp"
-            app:cpb_selectorIdle="@drawable/progress_button_state"
-            app:cpb_textIdle="@string/CreateProfileActivity_next" />
+            app:materialThemeOverlay="@style/ThemeOverlay.Signal.CircularProgressIndicator.Primary"
+            app:circularProgressMaterialButton__label="@string/CreateProfileActivity_next" />
 
     </LinearLayout>
 

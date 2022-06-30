@@ -17,7 +17,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="20dp"
         android:text="@string/GroupsV1MigrationLearnMore_what_are_new_groups"
-        android:textAppearance="@style/TextAppearance.Signal.Title1"
+        android:textAppearance="@style/Signal.Text.HeadlineMedium"
         android:textColor="@color/signal_text_primary"
         android:gravity="center" />
 
@@ -48,7 +48,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="14dp"
                     android:text="@string/GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions"
-                    android:textAppearance="@style/TextAppearance.Signal.Body1"
+                    android:textAppearance="@style/Signal.Text.BodyLarge"
                     android:textColor="@color/signal_text_primary" />
 
             </LinearLayout>
@@ -71,7 +71,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="14dp"
                     android:text="@string/GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept"
-                    android:textAppearance="@style/TextAppearance.Signal.Body1"
+                    android:textAppearance="@style/Signal.Text.BodyLarge"
                     android:textColor="@color/signal_text_primary" />
 
             </LinearLayout>
@@ -102,7 +102,7 @@
                         android:id="@+id/gv1_learn_more_pending_title"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:textAppearance="@style/TextAppearance.Signal.Body1"
+                        android:textAppearance="@style/Signal.Text.BodyLarge"
                         android:textColor="@color/signal_text_primary"
                         tools:text="Plurized string for pending members." />
 
@@ -143,7 +143,7 @@
                         android:id="@+id/gv1_learn_more_dropped_title"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:textAppearance="@style/TextAppearance.Signal.Body1"
+                        android:textAppearance="@style/Signal.Text.BodyLarge"
                         android:textColor="@color/signal_text_primary"
                         tools:text="Plurized string for ineligible members." />
 
@@ -158,13 +158,12 @@
 
             </LinearLayout>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/gv1_learn_more_ok_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:padding="20dp"
-                style="@style/Button.Primary"
+                style="@style/Signal.Widget.Button.Large.Tonal"
                 android:text="@android:string/ok" />
 
         </LinearLayout>

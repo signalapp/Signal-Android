@@ -10,33 +10,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="24dp"
-        android:paddingBottom="32dp">
+        android:paddingTop="24dp">
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp">
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp">
 
             <ViewStub
                 android:id="@+id/message_details_header_message_view_update"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout="@layout/conversation_item_update"/>
+                android:layout="@layout/conversation_item_update" />
 
             <ViewStub
                 android:id="@+id/message_details_header_message_view_sent_multimedia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout="@layout/conversation_item_sent_multimedia"/>
+                android:layout="@layout/conversation_item_sent_multimedia" />
 
             <ViewStub
                 android:id="@+id/message_details_header_message_view_received_multimedia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:visibility="visible"
-                android:layout="@layout/conversation_item_received_multimedia"/>
+                android:layout="@layout/conversation_item_received_multimedia"
+                tools:visibility="visible" />
 
         </FrameLayout>
 
@@ -52,48 +51,46 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:visibility="gone"
-                android:textSize="16sp"
-                android:padding="5dp"
-                tools:visibility="visible"
-                android:text="@string/message_details_header__issues_need_your_attention"
                 android:drawablePadding="4dp"
+                android:gravity="center_vertical"
+                android:padding="5dp"
+                android:text="@string/message_details_header__issues_need_your_attention"
+                android:textAppearance="@style/Signal.Text.BodyLarge"
+                android:visibility="gone"
                 app:drawableStartCompat="@drawable/ic_info_outline_message_details_24"
-                android:gravity="center_vertical" />
+                tools:visibility="visible" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/message_details_header_resend_button"
+                style="@style/Signal.Widget.Button.Medium.Tonal"
                 android:layout_width="wrap_content"
-                android:layout_height="38sp"
-                style="@style/InfoButton"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:drawableStart="@drawable/ic_refresh_white_18dp"
                 android:text="@string/message_recipients_list_item__resend"
                 android:visibility="gone"
+                app:icon="@drawable/ic_refresh_white_18dp"
                 tools:visibility="visible" />
 
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/message_details_header_message_metadata"
-            android:layout_marginTop="12dp"
-            android:layout_marginStart="@dimen/dsl_settings_gutter"
-            android:layout_marginEnd="@dimen/dsl_settings_gutter"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dsl_settings_gutter"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="@dimen/dsl_settings_gutter">
 
             <TextView
                 android:id="@+id/message_details_header_sent_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                tools:text="@string/message_details_header__sent"
+                android:textAppearance="@style/Signal.Text.BodyMedium"
+                android:textColor="@color/signal_colorOnSurfaceVariant"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/message_details_header_sent" />
 
 
             <TextView
@@ -101,37 +98,42 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                tools:text="@string/message_details_header__received"
+                android:textAppearance="@style/Signal.Text.BodyMedium"
+                android:textColor="@color/signal_colorOnSurfaceVariant"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/message_details_header_sent_time" />
+                app:layout_constraintTop_toBottomOf="@+id/message_details_header_sent_time"
+                tools:text="@string/message_details_header_received" />
 
             <TextView
                 android:id="@+id/message_details_header_expires_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                tools:text="@string/message_details_header__disappears"
+                android:textAppearance="@style/Signal.Text.BodyMedium"
+                android:textColor="@color/signal_colorOnSurfaceVariant"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/message_details_header_received_time" />
+                app:layout_constraintTop_toBottomOf="@+id/message_details_header_received_time"
+                tools:text="@string/message_details_header_disappears" />
 
             <TextView
                 android:id="@+id/message_details_header_transport"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                tools:text="@string/message_details_header__via"
+                android:textAppearance="@style/Signal.Text.BodyMedium"
+                android:textColor="@color/signal_colorOnSurfaceVariant"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/message_details_header_expires_in" />
+                app:layout_constraintTop_toBottomOf="@+id/message_details_header_expires_in"
+                tools:text="@string/message_details_header_via" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <include
+            layout="@layout/dsl_divider_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="24dp" />
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginBottom="8dp"
-        android:layout_gravity="bottom"
-        android:background="@color/signal_inverse_transparent_05" />
 
 </FrameLayout>

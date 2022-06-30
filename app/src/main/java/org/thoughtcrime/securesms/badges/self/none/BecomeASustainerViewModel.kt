@@ -38,7 +38,7 @@ class BecomeASustainerViewModel(subscriptionsRepository: SubscriptionsRepository
   }
 
   class Factory(private val subscriptionsRepository: SubscriptionsRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(BecomeASustainerViewModel(subscriptionsRepository))!!
     }
   }

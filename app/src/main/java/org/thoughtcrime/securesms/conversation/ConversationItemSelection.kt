@@ -48,7 +48,7 @@ object ConversationItemSelection {
     bodyBubble.scaleX = 1.0f
     bodyBubble.scaleY = 1.0f
 
-    val projections = conversationItem.getColorizerProjections(list)
+    val projections = conversationItem.getSnapshotProjections(list, false)
 
     val path = Path()
 

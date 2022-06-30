@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="signal_dark_colorPrimary">#B6C5FA</color>
+    <color name="signal_dark_colorPrimaryContainer">#464B5C</color>
+    <color name="signal_dark_colorSecondary">#C1C6DD</color>
+    <color name="signal_dark_colorSecondaryContainer">#414659</color>
+    <color name="signal_dark_colorSurface">#1B1C1F</color>
+    <color name="signal_dark_colorSurfaceVariant">#303133</color>
+    <color name="signal_dark_colorBackground">#1B1C1F</color>
+    <color name="signal_dark_colorError">#FFB4A9</color>
+    <color name="signal_dark_colorErrorContainer">#930006</color>
+    <color name="signal_dark_colorOnPrimary">#1E2438</color>
+    <color name="signal_dark_colorOnPrimaryContainer">#DBE1FC</color>
+    <color name="signal_dark_colorOnSecondary">#2A3042</color>
+    <color name="signal_dark_colorOnSecondaryContainer">#DCE1F9</color>
+    <color name="signal_dark_colorOnSurface">#E2E1E5</color>
+    <color name="signal_dark_colorOnSurfaceVariant">#BEBFC5</color>
+    <color name="signal_dark_colorOnBackground">#E2E1E5</color>
+    <color name="signal_dark_colorOutline">#5C5E65</color>
+    <color name="signal_dark_neutralSurface">#14FFFFFF</color>
+    <color name="signal_dark_colorOnCustom">#FFFFFF</color>
+    <color name="signal_dark_colorOnCustomVariant">#B3FFFFFF</color>
+
+    <color name="signal_dark_colorSurface1">#23242A</color>
+    <color name="signal_dark_colorSurface2">#272A31</color>
+    <color name="signal_dark_colorSurface3">#2C2F37</color>
+    <color name="signal_dark_colorSurface4">#2E3039</color>
+    <color name="signal_dark_colorSurface5">#31343E</color>
+
+    <color name="signal_dark_colorTransparent1">#0AFFFFFF</color>
+    <color name="signal_dark_colorTransparent2">#1FFFFFFF</color>
+    <color name="signal_dark_colorTransparent3">#29FFFFFF</color>
+    <color name="signal_dark_colorTransparent4">#7AFFFFFF</color>
+    <color name="signal_dark_colorTransparent5">#B8FFFFFF</color>
+    <color name="signal_dark_colorNeutral">#121212</color>
+    <color name="signal_dark_colorNeutralVariant">#5C5C5C</color>
+    <color name="signal_dark_colorTransparentInverse1">#0A000000</color>
+    <color name="signal_dark_colorTransparentInverse2">#14000000</color>
+    <color name="signal_dark_colorTransparentInverse3">#29000000</color>
+    <color name="signal_dark_colorTransparentInverse4">#B8000000</color>
+    <color name="signal_dark_colorTransparentInverse5">#F5000000</color>
+    <color name="signal_dark_colorNeutralInverse">#E0FFFFFF</color>
+    <color name="signal_dark_colorNeutralVariantInverse">#A3FFFFFF</color>
+</resources>

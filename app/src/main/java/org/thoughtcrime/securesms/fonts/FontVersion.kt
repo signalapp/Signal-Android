@@ -51,6 +51,7 @@ data class FontVersion(val id: Long, val path: String) {
             writeVersionToDisk(context, fromNetwork) ?: NONE
           } else {
             Log.i(TAG, "Network version is the same as our local version.")
+            SignalStore.storyValues().lastFontVersionCheck = System.currentTimeMillis()
             fromDisk
           }
         } else {

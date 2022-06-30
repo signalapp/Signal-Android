@@ -108,7 +108,7 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   }
 
   private void updateKeyboardState() {
-    if (viewInset == 0 && Build.VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) viewInset = getViewInset();
+    if (viewInset == 0 && Build.VERSION.SDK_INT >= 21) viewInset = getViewInset();
 
     getWindowVisibleDisplayFrame(rect);
 
@@ -137,6 +137,7 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
     if (Build.VERSION.SDK_INT >= 23 && getRootWindowInsets() != null) {
       int          bottomInset;
       WindowInsets windowInsets = getRootWindowInsets();
+
       if (Build.VERSION.SDK_INT >= 30) {
         bottomInset = windowInsets.getInsets(WindowInsets.Type.navigationBars()).bottom;
       } else {

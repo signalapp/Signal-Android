@@ -2,9 +2,11 @@ package org.thoughtcrime.securesms.components.settings.conversation.sounds.custo
 
 import android.net.Uri
 import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.recipients.Recipient
 
 data class CustomNotificationsSettingsState(
   val isInitialLoadComplete: Boolean = false,
+  val recipient: Recipient? = null,
   val hasCustomNotifications: Boolean = false,
   val controlsEnabled: Boolean = false,
   val messageVibrateState: RecipientDatabase.VibrateState = RecipientDatabase.VibrateState.DEFAULT,

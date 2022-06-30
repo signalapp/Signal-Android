@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
+import org.thoughtcrime.securesms.util.views.LearnMoreTextView
 import org.thoughtcrime.securesms.util.visible
 
 class DSLSettingsAdapter : MappingAdapter() {
@@ -29,6 +30,7 @@ class DSLSettingsAdapter : MappingAdapter() {
     registerFactory(ClickPreference::class.java, LayoutFactory(::ClickPreferenceViewHolder, R.layout.dsl_preference_item))
     registerFactory(LongClickPreference::class.java, LayoutFactory(::LongClickPreferenceViewHolder, R.layout.dsl_preference_item))
     registerFactory(TextPreference::class.java, LayoutFactory(::TextPreferenceViewHolder, R.layout.dsl_preference_item))
+    registerFactory(LearnMoreTextPreference::class.java, LayoutFactory(::LearnMoreTextPreferenceViewHolder, R.layout.dsl_learn_more_preference_item))
     registerFactory(RadioListPreference::class.java, LayoutFactory(::RadioListPreferenceViewHolder, R.layout.dsl_preference_item))
     registerFactory(MultiSelectListPreference::class.java, LayoutFactory(::MultiSelectListPreferenceViewHolder, R.layout.dsl_preference_item))
     registerFactory(ExternalLinkPreference::class.java, LayoutFactory(::ExternalLinkPreferenceViewHolder, R.layout.dsl_preference_item))
@@ -90,6 +92,14 @@ abstract class PreferenceViewHolder<T : PreferenceModel<T>>(itemView: View) : Ma
 }
 
 class TextPreferenceViewHolder(itemView: View) : PreferenceViewHolder<TextPreference>(itemView)
+
+class LearnMoreTextPreferenceViewHolder(itemView: View) : PreferenceViewHolder<LearnMoreTextPreference>(itemView) {
+  override fun bind(model: LearnMoreTextPreference) {
+    super.bind(model)
+    (titleView as LearnMoreTextView).setOnLinkClickListener { model.onClick() }
+    (summaryView as LearnMoreTextView).setOnLinkClickListener { model.onClick() }
+  }
+}
 
 class ClickPreferenceViewHolder(itemView: View) : PreferenceViewHolder<ClickPreference>(itemView) {
   override fun bind(model: ClickPreference) {

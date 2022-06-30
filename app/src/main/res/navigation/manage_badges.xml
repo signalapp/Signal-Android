@@ -41,5 +41,10 @@
             app:argType="string"
             app:nullable="true" />
 
+        <argument
+            android:name="charge_failure"
+            app:argType="string"
+            app:nullable="true" />
+
     </dialog>
 </navigation>

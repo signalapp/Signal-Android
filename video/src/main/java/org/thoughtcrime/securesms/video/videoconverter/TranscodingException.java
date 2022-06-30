@@ -9,4 +9,8 @@ final class TranscodingException extends Exception {
   TranscodingException(Throwable inner) {
     super(inner);
   }
+
+  TranscodingException(String message, Throwable inner) {
+    super(message, inner);
+  }
 }

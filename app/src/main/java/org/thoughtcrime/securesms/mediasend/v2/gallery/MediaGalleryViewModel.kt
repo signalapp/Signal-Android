@@ -60,7 +60,7 @@ class MediaGalleryViewModel(bucketId: String?, bucketTitle: String?, private val
     private val bucketTitle: String?,
     private val repository: MediaGalleryRepository
   ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return requireNotNull(modelClass.cast(MediaGalleryViewModel(bucketId, bucketTitle, repository)))
     }
   }

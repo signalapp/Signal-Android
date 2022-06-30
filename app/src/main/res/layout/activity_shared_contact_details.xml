@@ -50,26 +50,26 @@
                     android:gravity="center"
                     tools:text="(610) 555-5555"/>
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/contact_details_add_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:layout_gravity="center"
-                    style="@style/Button.Primary"
+                    style="@style/Signal.Widget.Button.Large.Primary"
                     android:text="@string/SharedContactDetailsActivity_add_to_contacts" />
 
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/contact_details_invite_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:layout_gravity="center"
-                        style="@style/Button.Borderless"
+                        style="@style/Signal.Widget.Button.Large.Secondary"
                         android:text="@string/SharedContactDetailsActivity_invite_to_signal"
                         android:visibility="gone"
                         tools:visibility="gone"/>

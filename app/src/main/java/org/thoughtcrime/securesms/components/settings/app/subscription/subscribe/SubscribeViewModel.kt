@@ -164,12 +164,7 @@ class SubscribeViewModel(
     return Single.just(SignalStore.donationsValues().shouldCancelSubscriptionBeforeNextSubscribeAttempt).flatMapCompletable {
       if (it) {
         donationPaymentRepository.cancelActiveSubscription().doOnComplete {
-          SignalStore.donationsValues().setLastEndOfPeriod(0L)
-          SignalStore.donationsValues().clearLevelOperations()
-          SignalStore.donationsValues().shouldCancelSubscriptionBeforeNextSubscribeAttempt = false
-          SignalStore.donationsValues().setUnexpectedSubscriptionCancelationChargeFailure(null)
-          SignalStore.donationsValues().unexpectedSubscriptionCancelationReason = null
-          SignalStore.donationsValues().unexpectedSubscriptionCancelationTimestamp = 0L
+          SignalStore.donationsValues().updateLocalStateForManualCancellation()
           MultiDeviceSubscriptionSyncRequestJob.enqueue()
         }
       } else {
@@ -183,12 +178,7 @@ class SubscribeViewModel(
     disposables += donationPaymentRepository.cancelActiveSubscription().subscribeBy(
       onComplete = {
         eventPublisher.onNext(DonationEvent.SubscriptionCancelled)
-        SignalStore.donationsValues().setLastEndOfPeriod(0L)
-        SignalStore.donationsValues().clearLevelOperations()
-        SignalStore.donationsValues().markUserManuallyCancelled()
-        SignalStore.donationsValues().setUnexpectedSubscriptionCancelationChargeFailure(null)
-        SignalStore.donationsValues().unexpectedSubscriptionCancelationReason = null
-        SignalStore.donationsValues().unexpectedSubscriptionCancelationTimestamp = 0L
+        SignalStore.donationsValues().updateLocalStateForManualCancellation()
         refreshActiveSubscription()
         MultiDeviceSubscriptionSyncRequestJob.enqueue()
         donationPaymentRepository.scheduleSyncForAccountRecordChange()
@@ -306,7 +296,7 @@ class SubscribeViewModel(
     private val donationPaymentRepository: DonationPaymentRepository,
     private val fetchTokenRequestCode: Int
   ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(SubscribeViewModel(subscriptionsRepository, donationPaymentRepository, fetchTokenRequestCode))!!
     }
   }

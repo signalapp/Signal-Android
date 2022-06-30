@@ -9,6 +9,7 @@
         android:id="@+id/appBarLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@color/signal_colorBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -16,16 +17,18 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
-            android:background="@color/signal_background_primary"
+            android:layout_height="@dimen/signal_m3_toolbar_height"
+            android:minHeight="@dimen/signal_m3_toolbar_height"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:titleTextColor="@color/media_overview_toolbar_foreground" />
+            app:titleTextAppearance="@style/Signal.Text.TitleLarge"
+            app:titleTextColor="@color/media_overview_toolbar_foreground"
+            tools:title="Media Overview" />
 
         <org.thoughtcrime.securesms.components.ControllableTabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/signal_background_primary"
+            android:background="@color/signal_colorBackground"
             app:tabIndicatorColor="@color/signal_inverse_primary"
             app:tabIndicatorFullWidth="false"
             app:tabMode="scrollable"
@@ -38,8 +41,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@id/sorting"
         android:layout_width="0dp"
-        android:layout_marginTop="8dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
@@ -53,8 +56,8 @@
             android:layout_marginBottom="12dp"
             android:gravity="center_vertical"
             android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
-            android:textStyle="bold"
             android:textColor="@color/signal_inverse_primary"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/sorting"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="@string/MediaOverviewActivity_Storage_used" />
@@ -77,8 +80,8 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
-            android:gravity="center"
             android:layout_marginEnd="@dimen/media_overview_toggle_gutter"
+            android:gravity="center"
             app:layout_constraintBottom_toBottomOf="@+id/sort_order_arrow"
             app:layout_constraintEnd_toEndOf="@+id/sorting"
             app:layout_constraintTop_toTopOf="@+id/sort_order_arrow">

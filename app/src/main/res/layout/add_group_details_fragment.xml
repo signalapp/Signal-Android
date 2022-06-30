@@ -8,19 +8,21 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
+        android:layout_height="@dimen/signal_m3_toolbar_height"
+        android:minHeight="@dimen/signal_m3_toolbar_height"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_arrow_left_24"
-        app:titleTextAppearance="@style/TextAppearance.Signal.Body1.Bold"
+        app:titleTextAppearance="@style/TextAppearance.Material3.TitleLarge"
         tools:title="@string/AddGroupDetailsFragment__name_this_group" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/group_avatar"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="@dimen/dsl_settings_gutter"
         android:layout_marginTop="16dp"
         android:background="@drawable/tinted_circle"
+        app:backgroundTint="@color/signal_colorSurfaceVariant"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
@@ -28,12 +30,14 @@
         android:id="@+id/name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="@dimen/dsl_settings_gutter"
         android:background="@null"
         android:hint="@string/AddGroupDetailsFragment__group_name_required"
         android:inputType="text"
         android:maxLines="1"
+        android:textAppearance="@style/Signal.Text.BodyLarge"
+        android:textColorHint="@color/signal_colorOnSurfaceVariant_60"
         app:layout_constraintBottom_toBottomOf="@id/group_avatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/group_avatar"
@@ -42,12 +46,12 @@
     <LinearLayout
         android:id="@+id/group_disappearing_messages_row"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:layout_marginTop="16dp"
         android:background="?attr/selectableItemBackground"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="16dp"
+        android:paddingHorizontal="@dimen/dsl_settings_gutter"
         app:layout_constraintTop_toBottomOf="@id/group_avatar">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -63,94 +67,76 @@
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
             android:text="@string/PrivacySettingsFragment__disappearing_messages"
-            android:textAppearance="@style/TextAppearance.Signal.Body1" />
+            android:textAppearance="@style/Signal.Text.BodyLarge" />
 
         <TextView
             android:id="@+id/group_disappearing_messages_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.Signal.Body1"
+            android:textAppearance="@style/Signal.Text.BodyLarge"
             android:textColor="@color/signal_text_secondary"
             tools:text="1 week" />
 
     </LinearLayout>
 
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/signal_colorSurfaceVariant"
+        app:layout_constraintBottom_toTopOf="@id/mms_warning"
+        app:layout_constraintTop_toBottomOf="@id/group_disappearing_messages_row" />
+
     <LinearLayout
         android:id="@+id/mms_warning"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="@dimen/dsl_settings_gutter"
+        android:layout_marginEnd="@dimen/dsl_settings_gutter"
         android:orientation="vertical"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/gv2_warning"
-        app:layout_constraintTop_toBottomOf="@id/group_disappearing_messages_row"
+        app:layout_constraintBottom_toTopOf="@id/member_list_header"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        app:layout_goneMarginTop="23dp"
         tools:visibility="visible">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?colorAccent"
+            android:background="@drawable/rounded_outline_12"
             android:paddingStart="16dp"
-            android:paddingTop="8dp"
+            android:paddingTop="16dp"
             android:paddingEnd="16dp"
-            android:text="@string/AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you"
-            android:textAppearance="@style/TextAppearance.Signal.Body2"
-            android:textColor="@color/white" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?colorAccent"
-            android:paddingStart="16dp"
-            android:paddingTop="8dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="8dp"
-            android:text="@string/AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt"
-            android:textAppearance="@style/TextAppearance.Signal.Body2"
-            android:textColor="@color/white" />
+            android:paddingBottom="16dp"
+            android:text="@string/AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support"
+            android:textAppearance="@style/Signal.Text.BodyMedium"
+            android:textColor="@color/signal_colorOnSurfaceVariant" />
 
     </LinearLayout>
-
-    <org.thoughtcrime.securesms.util.views.LearnMoreTextView
-        android:id="@+id/gv2_warning"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@color/signal_background_tertiary"
-        android:paddingStart="16dp"
-        android:paddingTop="8dp"
-        android:paddingEnd="16dp"
-        android:paddingBottom="8dp"
-        android:textAppearance="@style/TextAppearance.Signal.Body2"
-        android:textColor="@color/signal_text_secondary"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/member_list_header"
-        app:layout_constraintTop_toBottomOf="@id/mms_warning"
-        tools:text="8 members do not support New Groups, so this group will be a Legacy Group. Learn more"
-        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/member_list_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="@dimen/dsl_settings_gutter"
+        android:layout_marginEnd="@dimen/dsl_settings_gutter"
+        android:gravity="center_vertical"
+        android:minHeight="52sp"
         android:text="@string/AddGroupDetailsFragment__members"
-        android:textAlignment="viewStart"
-        android:textAppearance="@style/TextAppearance.Signal.Subtitle2"
-        android:textColor="@color/signal_text_secondary"
-        app:layout_constraintTop_toBottomOf="@id/gv2_warning"
-        app:layout_goneMarginTop="30dp" />
+        android:textAppearance="@style/Signal.Text.TitleSmall"
+        app:layout_constraintTop_toBottomOf="@id/mms_warning" />
 
     <TextView
         android:id="@+id/add_later"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="@dimen/dsl_settings_gutter"
+        android:layout_marginEnd="@dimen/dsl_settings_gutter"
         android:text="@string/AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group"
-        android:textAppearance="@style/TextAppearance.Signal.Body2"
-        android:textColor="@color/signal_text_secondary"
+        android:textAppearance="@style/Signal.Text.BodyMedium"
+        android:textColor="@color/signal_colorOnSurfaceVariant"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/member_list_header" />
@@ -162,18 +148,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/member_list_header" />
 
-    <com.dd.CircularProgressButton
+    <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
         android:id="@+id/create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:textColor="@color/white"
-        app:cpb_colorIndicator="@color/white"
-        app:cpb_colorProgress="?colorAccent"
-        app:cpb_cornerRadius="28dp"
-        app:cpb_selectorIdle="@drawable/progress_button_state"
-        app:cpb_textIdle="@string/AddGroupDetailsFragment__create"
+        android:textAllCaps="false"
+        app:circularProgressMaterialButton__label="@string/AddGroupDetailsFragment__create"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

@@ -11,7 +11,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.lock.PinHashing
 import org.thoughtcrime.securesms.registration.fragments.BaseRegistrationLockFragment
 import org.thoughtcrime.securesms.registration.viewmodel.BaseRegistrationViewModel
-import org.thoughtcrime.securesms.util.CircularProgressButtonUtil.cancelSpinning
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.SupportEmailUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -45,7 +44,7 @@ class ChangeNumberRegistrationLockFragment : BaseRegistrationLockFragment(R.layo
   override fun handleSuccessfulPinEntry(pin: String) {
     val pinsDiffer: Boolean = SignalStore.kbsValues().localPinHash?.let { !PinHashing.verifyLocalPinHash(it, pin) } ?: false
 
-    cancelSpinning(pinButton)
+    pinButton.cancelSpinning()
 
     if (pinsDiffer) {
       findNavController().safeNavigate(ChangeNumberRegistrationLockFragmentDirections.actionChangeNumberRegistrationLockToChangeNumberPinDiffers())

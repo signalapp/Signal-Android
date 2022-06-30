@@ -9,11 +9,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.view.OneShotPreDrawListener
 import androidx.fragment.app.Fragment
+import org.signal.qr.kitkat.ScanListener
+import org.signal.qr.kitkat.ScanningThread
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ShapeScrim
 import org.thoughtcrime.securesms.components.camera.CameraView
-import org.thoughtcrime.securesms.qr.ScanListener
-import org.thoughtcrime.securesms.qr.ScanningThread
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
 

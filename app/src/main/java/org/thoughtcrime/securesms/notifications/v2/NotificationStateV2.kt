@@ -39,21 +39,21 @@ data class NotificationStateV2(val conversations: List<NotificationConversation>
   val mostRecentSender: Recipient?
     get() = mostRecentNotification?.individualRecipient
 
-  fun getNonVisibleConversation(visibleThreadId: Long): List<NotificationConversation> {
-    return conversations.filterNot { it.threadId == visibleThreadId }
+  fun getNonVisibleConversation(visibleThread: ConversationId?): List<NotificationConversation> {
+    return conversations.filterNot { it.thread == visibleThread }
   }
 
-  fun getConversation(threadId: Long): NotificationConversation? {
-    return conversations.firstOrNull { it.threadId == threadId }
+  fun getConversation(conversationId: ConversationId): NotificationConversation? {
+    return conversations.firstOrNull { it.thread == conversationId }
   }
 
   fun getDeleteIntent(context: Context): PendingIntent? {
     val ids = LongArray(messageCount)
     val mms = BooleanArray(ids.size)
-    val threadIds: MutableList<Long> = mutableListOf()
+    val threads: MutableList<ConversationId> = mutableListOf()
 
     conversations.forEach { conversation ->
-      threadIds += conversation.threadId
+      threads += conversation.thread
       conversation.notificationItems.forEachIndexed { index, notificationItem ->
         ids[index] = notificationItem.id
         mms[index] = notificationItem.isMms
@@ -64,30 +64,24 @@ data class NotificationStateV2(val conversations: List<NotificationConversation>
       .setAction(DeleteNotificationReceiver.DELETE_NOTIFICATION_ACTION)
       .putExtra(DeleteNotificationReceiver.EXTRA_IDS, ids)
       .putExtra(DeleteNotificationReceiver.EXTRA_MMS, mms)
-      .putExtra(DeleteNotificationReceiver.EXTRA_THREAD_IDS, threadIds.toLongArray())
+      .putParcelableArrayListExtra(DeleteNotificationReceiver.EXTRA_THREADS, ArrayList(threads))
       .makeUniqueToPreventMerging()
 
     return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
   }
 
   fun getMarkAsReadIntent(context: Context): PendingIntent? {
-    val threadArray = LongArray(conversations.size)
-
-    conversations.forEachIndexed { index, conversation ->
-      threadArray[index] = conversation.threadId
-    }
-
     val intent = Intent(context, MarkReadReceiver::class.java).setAction(MarkReadReceiver.CLEAR_ACTION)
-      .putExtra(MarkReadReceiver.THREAD_IDS_EXTRA, threadArray)
+      .putParcelableArrayListExtra(MarkReadReceiver.THREADS_EXTRA, ArrayList(conversations.map { it.thread }))
       .putExtra(MarkReadReceiver.NOTIFICATION_ID_EXTRA, NotificationIds.MESSAGE_SUMMARY)
       .makeUniqueToPreventMerging()
 
     return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
   }
 
-  fun getThreadsWithMostRecentNotificationFromSelf(): Set<Long> {
+  fun getThreadsWithMostRecentNotificationFromSelf(): Set<ConversationId> {
     return conversations.filter { it.mostRecentNotification.individualRecipient.isSelf }
-      .map { it.threadId }
+      .map { it.thread }
       .toSet()
   }
 

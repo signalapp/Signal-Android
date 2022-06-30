@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.keyboard.KeyboardPage
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
+import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.fragments.requireListener
 
@@ -67,10 +68,12 @@ class GiftFlowConfirmationFragment :
   private val lifecycleDisposable = LifecycleDisposable()
   private var errorDialog: DialogInterface? = null
   private lateinit var processingDonationPaymentDialog: AlertDialog
+  private lateinit var verifyingRecipientDonationPaymentDialog: AlertDialog
   private lateinit var donationPaymentComponent: DonationPaymentComponent
   private lateinit var textInputViewHolder: TextInput.MultilineViewHolder
 
   private val eventPublisher = PublishSubject.create<TextInput.TextInputEvent>()
+  private val debouncer = Debouncer(100L)
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
     RecipientPreference.register(adapter)
@@ -82,6 +85,11 @@ class GiftFlowConfirmationFragment :
 
     processingDonationPaymentDialog = MaterialAlertDialogBuilder(requireContext())
       .setView(R.layout.processing_payment_dialog)
+      .setCancelable(false)
+      .create()
+
+    verifyingRecipientDonationPaymentDialog = MaterialAlertDialogBuilder(requireContext())
+      .setView(R.layout.verifying_recipient_payment_dialog)
       .setCancelable(false)
       .create()
 
@@ -101,6 +109,10 @@ class GiftFlowConfirmationFragment :
     textInputViewHolder.onAttachedToWindow()
 
     inputAwareLayout.addOnKeyboardShownListener {
+      if (emojiKeyboard.isEmojiSearchMode) {
+        return@addOnKeyboardShownListener
+      }
+
       inputAwareLayout.hideAttachedInput(true)
       emojiToggle.setImageResource(R.drawable.ic_emoji_smiley_24)
     }
@@ -119,33 +131,40 @@ class GiftFlowConfirmationFragment :
       }
     )
 
+    textInputViewHolder.bind(
+      TextInput.MultilineModel(
+        text = viewModel.snapshot.additionalMessage,
+        hint = DSLSettingsText.from(R.string.GiftFlowConfirmationFragment__add_a_message),
+        onTextChanged = {
+          viewModel.setAdditionalMessage(it)
+        },
+        onEmojiToggleClicked = {
+          if (inputAwareLayout.isKeyboardOpen || (!inputAwareLayout.isKeyboardOpen && !inputAwareLayout.isInputOpen)) {
+            inputAwareLayout.show(it, emojiKeyboard)
+            emojiToggle.setImageResource(R.drawable.ic_keyboard_24)
+          } else {
+            inputAwareLayout.showSoftkey(it)
+            emojiToggle.setImageResource(R.drawable.ic_emoji_smiley_24)
+          }
+        }
+      )
+    )
+
     lifecycleDisposable += viewModel.state.observeOn(AndroidSchedulers.mainThread()).subscribe { state ->
       adapter.submitList(getConfiguration(state).toMappingModelList())
+
+      if (state.stage == GiftFlowState.Stage.RECIPIENT_VERIFICATION) {
+        debouncer.publish { verifyingRecipientDonationPaymentDialog.show() }
+      } else {
+        debouncer.clear()
+        verifyingRecipientDonationPaymentDialog.dismiss()
+      }
 
       if (state.stage == GiftFlowState.Stage.PAYMENT_PIPELINE) {
         processingDonationPaymentDialog.show()
       } else {
-        processingDonationPaymentDialog.hide()
+        processingDonationPaymentDialog.dismiss()
       }
-
-      textInputViewHolder.bind(
-        TextInput.MultilineModel(
-          text = state.additionalMessage,
-          hint = DSLSettingsText.from(R.string.GiftFlowConfirmationFragment__add_a_message),
-          onTextChanged = {
-            viewModel.setAdditionalMessage(it)
-          },
-          onEmojiToggleClicked = {
-            if (inputAwareLayout.isKeyboardOpen || (!inputAwareLayout.isKeyboardOpen && !inputAwareLayout.isInputOpen)) {
-              inputAwareLayout.show(it, emojiKeyboard)
-              emojiToggle.setImageResource(R.drawable.ic_keyboard_24)
-            } else {
-              inputAwareLayout.showSoftkey(it)
-              emojiToggle.setImageResource(R.drawable.ic_emoji_smiley_24)
-            }
-          }
-        )
-      )
     }
 
     lifecycleDisposable.bindTo(viewLifecycleOwner)
@@ -175,6 +194,8 @@ class GiftFlowConfirmationFragment :
     super.onDestroyView()
     textInputViewHolder.onDetachedFromWindow()
     processingDonationPaymentDialog.dismiss()
+    debouncer.clear()
+    verifyingRecipientDonationPaymentDialog.dismiss()
   }
 
   private fun getConfiguration(giftFlowState: GiftFlowState): DSLConfiguration {
@@ -230,6 +251,10 @@ class GiftFlowConfirmationFragment :
         }
       }
     )
+  }
+
+  override fun onToolbarNavigationClicked() {
+    findNavController().popBackStack()
   }
 
   override fun openEmojiSearch() {

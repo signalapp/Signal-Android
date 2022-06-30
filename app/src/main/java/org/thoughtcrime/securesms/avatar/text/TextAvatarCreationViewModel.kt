@@ -33,7 +33,7 @@ class TextAvatarCreationViewModel(initialText: Avatar.Text) : ViewModel() {
   }
 
   class Factory(private val initialText: Avatar.Text) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return requireNotNull(modelClass.cast(TextAvatarCreationViewModel(initialText)))
     }
   }

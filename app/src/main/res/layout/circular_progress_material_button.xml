@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:parentTag="org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton">
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress_indicator"
+        style="?circularProgressIndicatorStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button"
+        style="?circularProgressMaterialButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Material Button"
+        tools:visibility="invisible" />
+
+</merge>

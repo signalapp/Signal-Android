@@ -188,7 +188,6 @@ final class MenuState {
            messageRecord.isSecure()                                                    &&
            (!conversationRecipient.isGroup() || conversationRecipient.isActiveGroup()) &&
            !messageRecord.getRecipient().isBlocked()                                   &&
-           !MessageRecordUtil.hasGiftBadge(messageRecord)                              &&
            !conversationRecipient.isReleaseNotes();
   }
 

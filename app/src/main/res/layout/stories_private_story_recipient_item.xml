@@ -8,7 +8,6 @@
     android:orientation="horizontal"
     android:paddingHorizontal="@dimen/dsl_settings_gutter">
 
-    <!-- TODO - Final art asset -->
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/avatar"
         android:layout_width="40dp"
@@ -16,7 +15,6 @@
         android:layout_gravity="center_vertical"
         android:importantForAccessibility="no"
         android:scaleType="centerInside"
-        app:backgroundTint="@color/signal_background_secondary"
         app:fallbackImageSize="small" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
@@ -27,6 +25,6 @@
         android:layout_marginStart="16dp"
         android:layout_weight="1"
         android:text="@string/MyStorySettingsFragment__my_story"
-        android:textAppearance="@style/Signal.Text.Body" />
+        android:textAppearance="@style/Signal.Text.BodyLarge" />
 
 </LinearLayout>

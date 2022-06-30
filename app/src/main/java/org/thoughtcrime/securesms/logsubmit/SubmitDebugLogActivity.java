@@ -20,8 +20,6 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dd.CircularProgressButton;
-
 import org.thoughtcrime.securesms.BaseActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -29,6 +27,7 @@ import org.thoughtcrime.securesms.util.LongClickCopySpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.util.List;
@@ -39,12 +38,12 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
   private SubmitDebugLogAdapter   adapter;
   private SubmitDebugLogViewModel viewModel;
 
-  private View                   warningBanner;
-  private View                   editBanner;
-  private CircularProgressButton submitButton;
-  private AlertDialog            loadingDialog;
-  private View                   scrollToBottomButton;
-  private View                   scrollToTopButton;
+  private View                           warningBanner;
+  private View                           editBanner;
+  private CircularProgressMaterialButton submitButton;
+  private AlertDialog                    loadingDialog;
+  private View                           scrollToBottomButton;
+  private View                           scrollToTopButton;
 
   private MenuItem editMenuItem;
   private MenuItem doneMenuItem;
@@ -263,9 +262,7 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
   }
 
   private void onSubmitClicked() {
-    submitButton.setClickable(false);
-    submitButton.setIndeterminateProgressMode(true);
-    submitButton.setProgress(50);
+    submitButton.setSpinning();
 
     viewModel.onSubmitClicked().observe(this, result -> {
       if (result.isPresent()) {
@@ -274,9 +271,7 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
         Toast.makeText(this, R.string.SubmitDebugLogActivity_failed_to_submit_logs, Toast.LENGTH_LONG).show();
       }
 
-      submitButton.setClickable(true);
-      submitButton.setIndeterminateProgressMode(false);
-      submitButton.setProgress(0);
+      submitButton.cancelSpinning();
     });
   }
 }

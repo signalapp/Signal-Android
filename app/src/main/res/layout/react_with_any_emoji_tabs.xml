@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:layout_gravity="bottom"
-        android:background="@color/signal_background_dialog"
+        android:background="@color/react_with_any_background"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center_vertical"

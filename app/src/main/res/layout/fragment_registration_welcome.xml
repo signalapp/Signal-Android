@@ -18,49 +18,48 @@
 
     <TextView
         android:id="@+id/title"
-        style="@style/Signal.Text.Headline.Registration"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
         android:gravity="center"
         android:text="@string/RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message"
+        android:textAppearance="@style/Signal.Text.HeadlineMedium"
         app:layout_constraintBottom_toTopOf="@+id/welcome_terms_button"
         app:layout_constraintEnd_toEndOf="@+id/welcome_continue_button"
         app:layout_constraintStart_toStartOf="@+id/welcome_continue_button" />
 
-    <TextView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/welcome_terms_button"
-        style="@style/Signal.Text.Body.Registration"
+        style="@style/Signal.Widget.Button.Large.Secondary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:text="@string/RegistrationActivity_terms_and_privacy"
         android:gravity="center"
-        android:textColor="@color/core_grey_60"
+        android:text="@string/RegistrationActivity_terms_and_privacy"
+        android:textColor="@color/signal_colorOnSurfaceVariant"
         app:layout_constraintBottom_toTopOf="@+id/welcome_continue_button"
         app:layout_constraintEnd_toEndOf="@+id/welcome_continue_button"
         app:layout_constraintStart_toStartOf="@+id/welcome_continue_button" />
 
-    <com.dd.CircularProgressButton
+    <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
         android:id="@+id/welcome_continue_button"
-        style="@style/Button.Registration"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="17dp"
-        android:textAllCaps="false"
-        app:cpb_textIdle="@string/RegistrationActivity_continue"
+        app:circularProgressMaterialButton__label="@string/RegistrationActivity_continue"
         app:layout_constraintBottom_toTopOf="@id/welcome_transfer_or_restore"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_goneMarginBottom="@dimen/registration_button_bottom_margin" />
+        app:layout_goneMarginBottom="@dimen/registration_button_bottom_margin"
+        app:materialThemeOverlay="@style/ThemeOverlay.Signal.CircularProgressIndicator.Primary" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/welcome_transfer_or_restore"
         style="@style/Signal.Widget.Button.Large.Secondary"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="24dp"

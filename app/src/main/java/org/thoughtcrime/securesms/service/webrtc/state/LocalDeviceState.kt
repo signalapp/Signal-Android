@@ -14,7 +14,8 @@ data class LocalDeviceState constructor(
   var isLandscapeEnabled: Boolean = false,
   var deviceOrientation: Orientation = Orientation.PORTRAIT_BOTTOM_EDGE,
   var activeDevice: SignalAudioManager.AudioDevice = SignalAudioManager.AudioDevice.NONE,
-  var availableDevices: Set<SignalAudioManager.AudioDevice> = emptySet()
+  var availableDevices: Set<SignalAudioManager.AudioDevice> = emptySet(),
+  var bluetoothPermissionDenied: Boolean = false
 ) {
 
   fun duplicate(): LocalDeviceState {

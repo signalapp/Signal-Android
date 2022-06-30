@@ -1,12 +1,10 @@
 package org.thoughtcrime.securesms.gcm;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -18,6 +16,7 @@ import org.thoughtcrime.securesms.jobs.SubmitRateLimitPushChallengeJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.registration.PushChallengeRequest;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.NetworkUtil;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -31,11 +30,12 @@ public class FcmReceiveService extends FirebaseMessagingService {
   @Override
   public void onMessageReceived(RemoteMessage remoteMessage) {
     Log.i(TAG, String.format(Locale.US,
-                             "onMessageReceived() ID: %s, Delay: %d, Priority: %d, Original Priority: %d",
+                             "onMessageReceived() ID: %s, Delay: %d, Priority: %d, Original Priority: %d, Network: %s",
                              remoteMessage.getMessageId(),
                              (System.currentTimeMillis() - remoteMessage.getSentTime()),
                              remoteMessage.getPriority(),
-                             remoteMessage.getOriginalPriority()));
+                             remoteMessage.getOriginalPriority(),
+                             NetworkUtil.getNetworkStatus(this)));
 
     String registrationChallenge = remoteMessage.getData().get("challenge");
     String rateLimitChallenge    = remoteMessage.getData().get("rateLimitChallenge");
@@ -80,15 +80,17 @@ public class FcmReceiveService extends FirebaseMessagingService {
   private static void handleReceivedNotification(Context context, @Nullable RemoteMessage remoteMessage) {
     try {
       long timeSinceLastRefresh = System.currentTimeMillis() - SignalStore.misc().getLastFcmForegroundServiceTime();
+      Log.d(TAG, String.format(Locale.US, "[handleReceivedNotification] API: %s, FeatureFlag: %s, RemoteMessagePriority: %s, TimeSinceLastRefresh: %s ms", Build.VERSION.SDK_INT, FeatureFlags.useFcmForegroundService(), remoteMessage != null ? remoteMessage.getPriority() : "n/a", timeSinceLastRefresh));
+
       if (FeatureFlags.useFcmForegroundService() && Build.VERSION.SDK_INT >= 31 && remoteMessage != null && remoteMessage.getPriority() == RemoteMessage.PRIORITY_HIGH && timeSinceLastRefresh > FCM_FOREGROUND_INTERVAL) {
-        context.startService(FcmFetchService.buildIntent(context, true));
+        FcmFetchManager.enqueue(context, true);
         SignalStore.misc().setLastFcmForegroundServiceTime(System.currentTimeMillis());
       } else {
-        context.startService(FcmFetchService.buildIntent(context, false));
+        FcmFetchManager.enqueue(context, false);
       }
     } catch (Exception e) {
       Log.w(TAG, "Failed to start service. Falling back to legacy approach.", e);
-      FcmFetchService.retrieveMessages(context);
+      FcmFetchManager.retrieveMessages(context);
     }
   }
 

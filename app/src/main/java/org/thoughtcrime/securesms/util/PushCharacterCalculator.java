@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms.util;
 
+import android.os.Parcel;
+
 public class PushCharacterCalculator extends CharacterCalculator {
   private static final int MAX_TOTAL_SIZE   = 64 * 1024;
   private static final int MAX_PRIMARY_SIZE = 2000;
@@ -23,5 +25,26 @@ public class PushCharacterCalculator extends CharacterCalculator {
   public CharacterState calculateCharacters(String messageBody) {
     return new CharacterState(1, MAX_TOTAL_SIZE - messageBody.length(), MAX_TOTAL_SIZE, MAX_PRIMARY_SIZE);
   }
+
+  @Override
+  public int describeContents() {
+    return 0;
+  }
+
+  @Override
+  public void writeToParcel(Parcel dest, int flags) {
+  }
+
+  public static final Creator<PushCharacterCalculator> CREATOR = new Creator<PushCharacterCalculator>() {
+    @Override
+    public PushCharacterCalculator createFromParcel(Parcel in) {
+      return new PushCharacterCalculator();
+    }
+
+    @Override
+    public PushCharacterCalculator[] newArray(int size) {
+      return new PushCharacterCalculator[size];
+    }
+  };
 }
 

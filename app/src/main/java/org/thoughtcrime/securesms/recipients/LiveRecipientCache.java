@@ -55,7 +55,7 @@ public final class LiveRecipientCache {
     this.warmedUp          = new AtomicBoolean(false);
     this.localRecipientId  = new AtomicReference<>(null);
     this.unknown           = new LiveRecipient(context, Recipient.UNKNOWN);
-    this.resolveExecutor   = ThreadUtil.trace(new FilteredExecutor(SignalExecutors.BOUNDED, () -> !SignalDatabase.inTransaction()));
+    this.resolveExecutor   = ThreadUtil.trace(new FilteredExecutor(SignalExecutors.newCachedBoundedExecutor("signal-recipients", 1, 4, 15), () -> !SignalDatabase.inTransaction()));
   }
 
   @AnyThread

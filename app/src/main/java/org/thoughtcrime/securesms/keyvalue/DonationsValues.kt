@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.keyvalue
 
+import androidx.annotation.WorkerThread
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.Subject
@@ -8,6 +9,7 @@ import org.signal.donations.StripeApi
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.database.model.databaseprotos.BadgeList
+import org.thoughtcrime.securesms.jobs.SubscriptionReceiptRequestResponseJob
 import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
 import org.thoughtcrime.securesms.subscription.LevelUpdateOperation
 import org.thoughtcrime.securesms.subscription.Subscriber
@@ -81,7 +83,7 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
       CurrencyUtil.getCurrencyByCurrencyCode(currencyCode)
     }
 
-    return if (currency != null && StripeApi.Validation.supportedCurrencyCodes.contains(currency.currencyCode.toUpperCase(Locale.ROOT))) {
+    return if (currency != null && StripeApi.Validation.supportedCurrencyCodes.contains(currency.currencyCode.uppercase(Locale.ROOT))) {
       currency
     } else {
       Currency.getInstance("USD")
@@ -287,4 +289,63 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
   var shouldCancelSubscriptionBeforeNextSubscribeAttempt: Boolean
     get() = getBoolean(SHOULD_CANCEL_SUBSCRIPTION_BEFORE_NEXT_SUBSCRIBE_ATTEMPT, false)
     set(value) = putBoolean(SHOULD_CANCEL_SUBSCRIPTION_BEFORE_NEXT_SUBSCRIBE_ATTEMPT, value)
+
+  /**
+   * Consolidates a bunch of data clears that should occur whenever a user manually cancels their
+   * subscription:
+   *
+   * 1. Clears keep-alive flag
+   * 1. Clears level operation
+   * 1. Marks the user as manually cancelled
+   * 1. Clears out unexpected cancelation state
+   * 1. Clears expired badge if it is for a subscription
+   */
+  @WorkerThread
+  fun updateLocalStateForManualCancellation() {
+    synchronized(SubscriptionReceiptRequestResponseJob.MUTEX) {
+      Log.d(TAG, "[updateLocalStateForManualCancellation] Clearing donation values.")
+
+      setLastEndOfPeriod(0L)
+      clearLevelOperations()
+      markUserManuallyCancelled()
+      shouldCancelSubscriptionBeforeNextSubscribeAttempt = false
+      setUnexpectedSubscriptionCancelationChargeFailure(null)
+      unexpectedSubscriptionCancelationReason = null
+      unexpectedSubscriptionCancelationTimestamp = 0L
+
+      val expiredBadge = getExpiredBadge()
+      if (expiredBadge != null && expiredBadge.isSubscription()) {
+        Log.d(TAG, "[updateLocalStateForManualCancellation] Clearing expired badge.")
+        setExpiredBadge(null)
+      }
+    }
+  }
+
+  /**
+   * Consolidates a bunch of data clears that should occur whenever a user begins a new subscription:
+   *
+   * 1. Manual cancellation marker
+   * 1. Any set level operations
+   * 1. Unexpected cancelation flags
+   * 1. Expired badge, if it is of a subscription
+   */
+  @WorkerThread
+  fun updateLocalStateForLocalSubscribe() {
+    synchronized(SubscriptionReceiptRequestResponseJob.MUTEX) {
+      Log.d(TAG, "[updateLocalStateForLocalSubscribe] Clearing donation values.")
+
+      clearUserManuallyCancelled()
+      clearLevelOperations()
+      shouldCancelSubscriptionBeforeNextSubscribeAttempt = false
+      setUnexpectedSubscriptionCancelationChargeFailure(null)
+      unexpectedSubscriptionCancelationReason = null
+      unexpectedSubscriptionCancelationTimestamp = 0L
+
+      val expiredBadge = getExpiredBadge()
+      if (expiredBadge != null && expiredBadge.isSubscription()) {
+        Log.d(TAG, "[updateLocalStateForLocalSubscribe] Clearing expired badge.")
+        setExpiredBadge(null)
+      }
+    }
+  }
 }

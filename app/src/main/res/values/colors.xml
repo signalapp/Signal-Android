@@ -5,6 +5,8 @@
 
     <color name="signal_accent_green">#4CAF50</color>
 
+    <color name="effectively_transparent_black">#01000000</color>
+
     <color name="transparent_black_05">#0D000000</color>
     <color name="transparent_black_08">#14000000</color>
     <color name="transparent_black_10">#18000000</color>
@@ -64,6 +66,6 @@
     <color name="storage_color_videos">#ff9BCFBD</color>
     <color name="storage_color_audio">@color/core_ultramarine</color>
     <color name="storage_color_files">#ffA23474</color>
-    <color name="conversation_list_archive_background_start">#ff28782A</color>
-    <color name="conversation_list_archive_background_end">#ff329635</color>
+    <color name="conversation_list_archive_background_start">@color/signal_colorPrimary</color>
+    <color name="conversation_list_archive_background_end">@color/signal_colorPrimary</color>
 </resources>

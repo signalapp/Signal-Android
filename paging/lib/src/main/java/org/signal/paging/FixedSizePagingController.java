@@ -21,7 +21,7 @@ import java.util.concurrent.Executor;
  */
 class FixedSizePagingController<Key, Data> implements PagingController<Key> {
 
-  private static final String TAG = FixedSizePagingController.class.getSimpleName();
+  private static final String TAG = Log.tag(FixedSizePagingController.class);
 
   private static final Executor FETCH_EXECUTOR = SignalExecutors.newCachedSingleThreadExecutor("signal-FixedSizePagingController");
   private static final boolean  DEBUG          = false;
@@ -182,10 +182,15 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
   }
 
   @Override
-  public void onDataItemInserted(Key key, int position) {
-    if (DEBUG) Log.d(TAG, buildItemInsertedLog(key, position, ""));
+  public void onDataItemInserted(Key key, int inputPosition) {
+    if (DEBUG) Log.d(TAG, buildItemInsertedLog(key, inputPosition, ""));
 
     FETCH_EXECUTOR.execute(() -> {
+      int position = inputPosition;
+      if (position == POSITION_END) {
+        position = data.size();
+      }
+
       if (keyToPosition.containsKey(key)) {
         Log.w(TAG, "Notified of key " + key + " being inserted at " + position + ", but the item already exists!");
         return;
@@ -245,6 +250,6 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
   }
 
   private String buildItemChangedLog(Key key, String message) {
-    return "[onDataItemInserted(" + key + "), size: " + loadState.size() + "] " + message;
+    return "[onDataItemChanged(" + key + "), size: " + loadState.size() + "] " + message;
   }
 }

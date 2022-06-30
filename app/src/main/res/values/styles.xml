@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Widget.Signal.Snackbar" parent="Widget.Material3.Snackbar">
+        <item name="backgroundTint">@color/signal_dark_colorSurface4</item>
+        <item name="android:layout_margin">16dp</item>
+    </style>
+
+    <style name="Widget.Signal.Snackbar.TextView" parent="Widget.Material3.Snackbar.TextView">
+        <item name="android:textColor">@color/signal_dark_colorOnSurface</item>
+        <item name="android:textAppearance">@style/Signal.Text.BodyLarge</item>
+    </style>
+
+    <style name="Widget.Signal.Button.TextButton.Snackbar" parent="Widget.Material3.Button.TextButton.Snackbar">
+        <item name="android:textColor">@color/signal_dark_colorOnPrimaryContainer</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textAppearance">@style/Signal.Text.BodyLarge</item>
+    </style>
+
+    <style name="Widget.Signal.Button.TextButton" parent="Widget.Material3.Button.TextButton">
+    </style>
+
     <style name="NoAnimation.Theme.BlackScreen" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowBackground">@android:color/black</item>
@@ -19,23 +38,23 @@
     </style>
 
     <style name="AppCompatAlertDialogStyleLight" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="colorAccent">@color/core_ultramarine</item>
+        <item name="colorAccent">@color/signal_colorPrimary</item>
         <item name="android:textColor">@null</item>
     </style>
 
     <style name="AppCompatAlertDialogStyleDark" parent="Theme.AppCompat.Dialog.Alert">
-        <item name="colorAccent">@color/core_ultramarine_light</item>
+        <item name="colorAccent">@color/signal_colorPrimary</item>
         <item name="android:textColor">@null</item>
     </style>
 
     <style name="AppCompatDialogStyleLight" parent="Theme.AppCompat.Light.Dialog">
-        <item name="colorAccent">@color/core_ultramarine</item>
+        <item name="colorAccent">@color/signal_colorPrimary</item>
         <item name="android:textColor">@null</item>
         <item name="android:windowBackground">@drawable/dialog_background</item>
     </style>
 
     <style name="AppCompatDialogStyleDark" parent="Theme.AppCompat.Dialog">
-        <item name="colorAccent">@color/core_ultramarine_light</item>
+        <item name="colorAccent">@color/signal_colorPrimary</item>
         <item name="android:windowBackground">@drawable/dialog_background</item>
         <item name="android:textColor">@null</item>
     </style>
@@ -56,27 +75,29 @@
     </style>
 
     <!-- ActionBar styles -->
-    <style name="TextSecure.DarkActionBar"
-           parent="@style/Widget.AppCompat.ActionBar">
+    <style name="TextSecure.DarkActionBar" parent="@style/Widget.AppCompat.ActionBar">
         <item name="background">?android:attr/windowBackground</item>
         <item name="android:popupTheme" tools:ignore="NewApi">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
-        <item name="titleTextStyle">@style/TextSecure.TitleTextStyle.Dark</item>
+        <item name="titleTextStyle">@style/Signal.Text.TitleLarge</item>
         <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle.Dark</item>
         <item name="elevation">0dp</item>
         <item name="actionOverflowButtonStyle">@style/Signal.Toolbar.Overflow</item>
         <item name="android:actionOverflowButtonStyle">@style/Signal.Toolbar.Overflow</item>
+        <item name="actionOverflowMenuStyle">@style/Signal.DayNight.Popup.OverflowMenu</item>
+        <item name="android:itemTextAppearance">@style/Signal.Text.BodyLarge</item>
     </style>
 
     <style name="TextSecure.LightActionBar"
            parent="@style/Widget.AppCompat.ActionBar">
-        <item name="background">@color/white</item>
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
-        <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
+        <item name="background">@color/signal_colorBackground</item>
+        <item name="actionOverflowMenuStyle">@style/Signal.DayNight.Popup.OverflowMenu</item>
+        <item name="titleTextStyle">@style/Signal.Text.TitleLarge</item>
         <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
         <item name="elevation">0dp</item>
         <item name="actionOverflowButtonStyle">@style/Signal.Toolbar.Overflow.Light</item>
         <item name="android:actionOverflowButtonStyle">@style/Signal.Toolbar.Overflow.Light</item>
+        <item name="android:itemTextAppearance">@style/Signal.Text.BodyLarge</item>
     </style>
 
     <style name="TextSecure.LightActionBar.Settings">
@@ -247,27 +268,13 @@
     <style name="Widget.ProgressBar.Horizontal" parent="@android:style/Widget.ProgressBar.Horizontal">
     </style>
 
-    <style name="MaterialButton">
-        <item name="android:elevation" tools:ignore="NewApi">1dp</item>
-        <item name="android:translationZ" tools:ignore="NewApi">1dp</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">12sp</item>
-    </style>
-
-    <style name="InfoButton" parent="@style/MaterialButton">
-        <item name="android:background">@drawable/info_round</item>
-    </style>
-
-    <style name="ErrorButton" parent="@style/MaterialButton">
-        <item name="android:background">@drawable/error_round</item>
-    </style>
-
     <style name="ComposeEditText" parent="@style/Signal.Text.Body">
         <item name="android:padding">2dp</item>
         <item name="android:background">@null</item>
         <item name="android:maxLines">5</item>
         <item name="android:maxLength">65536</item>
         <item name="android:textColor">@color/signal_text_primary</item>
+        <item name="android:textColorHint">@color/signal_colorOnSurfaceVariant</item>
         <item name="android:capitalize">sentences</item>
         <item name="android:autoText">true</item>
         <item name="android:gravity">center_vertical</item>
@@ -281,19 +288,6 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="Button.Primary" parent="Base.Widget.AppCompat.Button.Colored">
-        <item name="colorAccent">@color/core_ultramarine</item>
-        <item name="android:textColor">@color/white</item>
-    </style>
-
-    <style name="Button.Borderless" parent="Base.Widget.AppCompat.Button.Borderless">
-        <item name="android:textColor">?attr/colorAccent</item>
-    </style>
-
-    <style name="Button.Borderless.LowPriority" parent="Button.Borderless">
-        <item name="android:textColor">@color/low_priority_button_text_color</item>
-    </style>
-
     <!-- RedPhone -->
 
     <!-- Buttons in the main "button row" of the in-call onscreen touch UI. -->
@@ -303,13 +297,6 @@
            (This style is just like "InCallButton" except that we also
            clear out android:textOn and android:textOff, to avoid the default
            text label behavior of the ToggleButton class.) -->
-
-    <style name="WebRtcCallCompoundButton">
-        <item name="android:layout_height">31dp</item>
-        <item name="android:layout_width">31dp</item>
-        <item name="android:textOn">@null</item>
-        <item name="android:textOff">@null</item>
-    </style>
 
     <style name="WebRtcCallV2CompoundButton">
         <item name="android:layout_height">@dimen/webrtc_button_size</item>
@@ -388,10 +375,11 @@
     </style>
 
     <style name="TextSecure.ActionModeStyle" parent="@style/Widget.AppCompat.ActionMode">
-        <item name="titleTextStyle">@style/TextAppearance.Signal.Title.ActionMode</item>
+        <item name="titleTextStyle">@style/Signal.Text.TitleLarge</item>
         <item name="closeItemLayout">@layout/action_mode_close_layout</item>
         <item name="theme">@style/Signal.ActionModeTheme</item>
         <item name="android:paddingStart">10dp</item>
+        <item name="height">@dimen/signal_m3_toolbar_height</item>
     </style>
 
     <style name="Signal.ActionModeTheme" parent="ThemeOverlay.AppCompat">
@@ -426,21 +414,6 @@
         <attr name="arcProgress" format="float"   />
     </declare-styleable>
 
-    <style name="Signal.MessageRequest.Button" parent="Button.Borderless">
-        <item name="android:textAllCaps">false</item>
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">48dp</item>
-        <item name="android:background">@drawable/message_request_button_background</item>
-    </style>
-
-    <style name="Signal.MessageRequest.Button.Deny">
-        <item name="android:textColor">@color/core_red</item>
-    </style>
-
-    <style name="Signal.MessageRequest.Button.Accept">
-        <item name="android:textColor">@color/core_ultramarine</item>
-    </style>
-
     <declare-styleable name="MaxHeightFrameLayout">
         <attr name="mhfl_maxHeight" format="dimension" />
     </declare-styleable>
@@ -451,40 +424,6 @@
             <enum name="textureView" value="1"/>
         </attr>
     </declare-styleable>
-
-    <style name="Widget.Signal.Button.TextButton" parent="Widget.AppCompat.Button.Borderless">
-        <item name="android:textAppearance">@style/TextAppearance.Signal.Body2</item>
-    </style>
-
-    <style name="Widget.Signal.Button.TextButton.Drawable">
-        <item name="android:textAlignment">viewStart</item>
-        <item name="android:drawablePadding">20dp</item>
-        <item name="android:background">?attr/selectableItemBackground</item>
-        <item name="android:textAppearance">@style/Signal.Text.Body</item>
-    </style>
-
-    <style name="Widget.Signal.Button.TextButton.Red" >
-        <item name="android:textColor">@color/core_red</item>
-    </style>
-
-    <style name="Widget.Signal.Button.TextButton.Ultramarine" >
-        <item name="android:textColor">@color/ultramarine_text_button</item>
-    </style>
-
-    <style name="Widget.Signal.Button.TextButton.Drawable.Ultramarine" >
-        <item name="android:textColor">@color/ultramarine_text_button</item>
-    </style>
-
-    <style name="Widget.Signal.Button.CalleeDialog" parent="Widget.AppCompat.Button">
-        <item name="android:textColor">@color/core_ultramarine</item>
-        <item name="android:background">@drawable/callee_dialog_button_background</item>
-    </style>
-
-    <style name="Widget.Signal.CardView.PreferenceRow" parent="Widget.MaterialComponents.CardView">
-        <item name="cardCornerRadius">0dp</item>
-        <item name="cardElevation">0dp</item>
-        <item name="cardBackgroundColor">?android:attr/windowBackground</item>
-    </style>
 
     <style name="Widget.Signal.Button.Icon.Circular" parent="Widget.MaterialComponents.Button.Icon">
         <item name="android:layout_width">48dp</item>

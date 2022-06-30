@@ -58,11 +58,14 @@ import org.whispersystems.signalservice.internal.serialize.SignalServiceMetadata
 import org.whispersystems.signalservice.internal.serialize.protos.SignalServiceContentProto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public final class SignalServiceContent {
 
@@ -674,14 +677,21 @@ public final class SignalServiceContent {
       throws ProtocolInvalidKeyException, UnsupportedDataMessageException, InvalidMessageStructureException
   {
     if (content.hasSent()) {
-      Map<SignalServiceAddress, Boolean>   unidentifiedStatuses = new HashMap<>();
-      SignalServiceProtos.SyncMessage.Sent sentContent          = content.getSent();
-      SignalServiceDataMessage             dataMessage          = createSignalServiceMessage(metadata, sentContent.getMessage());
-      Optional<SignalServiceAddress>       address              = SignalServiceAddress.isValidAddress(sentContent.getDestinationUuid())
-                                                                  ? Optional.of(new SignalServiceAddress(ServiceId.parseOrThrow(sentContent.getDestinationUuid())))
-                                                                  : Optional.empty();
+      Map<SignalServiceAddress, Boolean>      unidentifiedStatuses = new HashMap<>();
+      SignalServiceProtos.SyncMessage.Sent    sentContent          = content.getSent();
+      Optional<SignalServiceDataMessage>      dataMessage          = sentContent.hasMessage() ? Optional.of(createSignalServiceMessage(metadata, sentContent.getMessage())) : Optional.empty();
+      Optional<SignalServiceStoryMessage>     storyMessage         = sentContent.hasStoryMessage() ? Optional.of(createStoryMessage(sentContent.getStoryMessage())) : Optional.empty();
+      Optional<SignalServiceAddress>          address              = SignalServiceAddress.isValidAddress(sentContent.getDestinationUuid())
+                                                                     ? Optional.of(new SignalServiceAddress(ServiceId.parseOrThrow(sentContent.getDestinationUuid())))
+                                                                     : Optional.empty();
+      Set<SignalServiceStoryMessageRecipient> recipientManifest    = sentContent.getStoryMessageRecipientsList()
+                                                                                .stream()
+                                                                                .map(SignalServiceContent::createSignalServiceStoryMessageRecipient)
+                                                                                .collect(Collectors.toSet());
 
-      if (!address.isPresent() && !dataMessage.getGroupContext().isPresent()) {
+      if (!address.isPresent()                                                        &&
+          !dataMessage.flatMap(SignalServiceDataMessage::getGroupContext).isPresent() &&
+          !storyMessage.flatMap(SignalServiceStoryMessage::getGroupContext).isPresent()) {
         throw new InvalidMessageStructureException("SyncMessage missing both destination and group ID!");
       }
 
@@ -699,7 +709,9 @@ public final class SignalServiceContent {
                                                                                   dataMessage,
                                                                                   sentContent.getExpirationStartTimestamp(),
                                                                                   unidentifiedStatuses,
-                                                                                  sentContent.getIsRecipientUpdate()));
+                                                                                  sentContent.getIsRecipientUpdate(),
+                                                                                  storyMessage,
+                                                                                  recipientManifest));
     }
 
     if (content.hasRequest()) {
@@ -913,6 +925,14 @@ public final class SignalServiceContent {
     return SignalServiceSyncMessage.empty();
   }
 
+  private static SignalServiceStoryMessageRecipient createSignalServiceStoryMessageRecipient(SignalServiceProtos.SyncMessage.Sent.StoryMessageRecipient storyMessageRecipient) {
+    return new SignalServiceStoryMessageRecipient(
+        new SignalServiceAddress(ServiceId.parseOrThrow(storyMessageRecipient.getDestinationUuid())),
+        storyMessageRecipient.getDistributionListIdsList(),
+        storyMessageRecipient.getIsAllowedToReply()
+    );
+  }
+
   private static SignalServiceCallMessage createCallMessage(SignalServiceProtos.CallMessage content) {
     boolean isMultiRing         = content.getMultiRing();
     Integer destinationDeviceId = content.hasDestinationDeviceId() ? content.getDestinationDeviceId() : null;
@@ -1021,7 +1041,8 @@ public final class SignalServiceContent {
                                                 address,
                                                 content.getQuote().getText(),
                                                 attachments,
-                                                createMentions(content.getQuote().getBodyRangesList(), content.getQuote().getText(), isGroupV2));
+                                                createMentions(content.getQuote().getBodyRangesList(), content.getQuote().getText(), isGroupV2),
+                                                SignalServiceDataMessage.Quote.Type.fromProto(content.getQuote().getType()));
     } else {
       Log.w(TAG, "Quote was missing an author! Returning null.");
       return null;

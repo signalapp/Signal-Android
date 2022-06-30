@@ -28,7 +28,7 @@ class LetterHeaderDecoration(private val context: Context, private val hideDecor
     color = ContextCompat.getColor(context, R.color.signal_text_primary)
     isAntiAlias = true
     style = Paint.Style.FILL
-    typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+    typeface = Typeface.create("sans-serif-medium", Typeface.NORMAL)
     textAlign = Paint.Align.LEFT
     textSize = ViewUtil.spToPx(16f).toFloat()
   }

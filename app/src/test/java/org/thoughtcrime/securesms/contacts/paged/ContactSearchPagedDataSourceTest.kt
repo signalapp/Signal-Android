@@ -5,12 +5,11 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.mockito.ArgumentMatchers.any
-import org.mockito.ArgumentMatchers.anyBoolean
-import org.mockito.ArgumentMatchers.anyInt
-import org.mockito.ArgumentMatchers.isNull
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.`when`
+import org.mockito.kotlin.any
+import org.mockito.kotlin.anyOrNull
+import org.mockito.kotlin.isNull
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.whenever
 import org.thoughtcrime.securesms.MockCursor
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -18,20 +17,21 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 @RunWith(JUnit4::class)
 class ContactSearchPagedDataSourceTest {
 
-  private val repository = mock(ContactSearchPagedDataSourceRepository::class.java)
-  private val cursor = mock(MockCursor::class.java)
+  private val repository: ContactSearchPagedDataSourceRepository = mock()
+  private val cursor: MockCursor = mock()
   private val groupStoryData = ContactSearchData.Story(Recipient.UNKNOWN, 0)
 
   @Before
   fun setUp() {
-    `when`(repository.getRecipientFromGroupCursor(cursor)).thenReturn(Recipient.UNKNOWN)
-    `when`(repository.getRecipientFromRecipientCursor(cursor)).thenReturn(Recipient.UNKNOWN)
-    `when`(repository.getRecipientFromThreadCursor(cursor)).thenReturn(Recipient.UNKNOWN)
-    `when`(repository.getRecipientFromDistributionListCursor(cursor)).thenReturn(Recipient.UNKNOWN)
-    `when`(repository.getGroupStories()).thenReturn(emptySet())
-    `when`(cursor.moveToPosition(anyInt())).thenCallRealMethod()
-    `when`(cursor.moveToNext()).thenCallRealMethod()
-    `when`(cursor.position).thenCallRealMethod()
+    whenever(repository.getRecipientFromGroupCursor(cursor)).thenReturn(Recipient.UNKNOWN)
+    whenever(repository.getRecipientFromRecipientCursor(cursor)).thenReturn(Recipient.UNKNOWN)
+    whenever(repository.getRecipientFromThreadCursor(cursor)).thenReturn(Recipient.UNKNOWN)
+    whenever(repository.getRecipientFromDistributionListCursor(cursor)).thenReturn(Recipient.UNKNOWN)
+    whenever(repository.getGroupStories()).thenReturn(emptySet())
+    whenever(repository.getLatestStorySends(any())).thenReturn(emptyList())
+    whenever(cursor.moveToPosition(any())).thenCallRealMethod()
+    whenever(cursor.moveToNext()).thenCallRealMethod()
+    whenever(cursor.position).thenCallRealMethod()
   }
 
   @Test
@@ -126,9 +126,9 @@ class ContactSearchPagedDataSourceTest {
       )
     }
 
-    `when`(repository.getStories(any())).thenReturn(cursor)
-    `when`(repository.recipientNameContainsQuery(Recipient.UNKNOWN, null)).thenReturn(true)
-    `when`(cursor.count).thenReturn(10)
+    whenever(repository.getStories(anyOrNull())).thenReturn(cursor)
+    whenever(repository.recipientNameContainsQuery(Recipient.UNKNOWN, null)).thenReturn(true)
+    whenever(cursor.count).thenReturn(10)
 
     return ContactSearchPagedDataSource(configuration, repository)
   }
@@ -151,9 +151,9 @@ class ContactSearchPagedDataSourceTest {
       )
     }
 
-    `when`(repository.getRecents(recents)).thenReturn(cursor)
-    `when`(repository.queryNonGroupContacts(isNull(), anyBoolean())).thenReturn(cursor)
-    `when`(cursor.count).thenReturn(10)
+    whenever(repository.getRecents(recents)).thenReturn(cursor)
+    whenever(repository.queryNonGroupContacts(isNull(), any())).thenReturn(cursor)
+    whenever(cursor.count).thenReturn(10)
 
     return ContactSearchPagedDataSource(configuration, repository)
   }

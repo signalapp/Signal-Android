@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.messagerequests;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Group;
 import androidx.core.text.HtmlCompat;
 
+import com.google.android.material.button.MaterialButton;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.CommunicationActions;
@@ -18,17 +21,19 @@ import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.HtmlUtil;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
 
+import java.util.stream.Stream;
+
 public class MessageRequestsBottomView extends ConstraintLayout {
 
   private final Debouncer showProgressDebouncer = new Debouncer(250);
 
   private LearnMoreTextView question;
-  private Button            accept;
-  private Button            gv1Continue;
-  private View              block;
-  private View              delete;
-  private View              bigDelete;
-  private View              bigUnblock;
+  private MaterialButton    accept;
+  private MaterialButton    gv1Continue;
+  private MaterialButton    block;
+  private MaterialButton    delete;
+  private MaterialButton    bigDelete;
+  private MaterialButton    bigUnblock;
   private View              busyIndicator;
 
   private Group normalButtons;
@@ -65,6 +70,8 @@ public class MessageRequestsBottomView extends ConstraintLayout {
     blockedButtons      = findViewById(R.id.message_request_blocked_buttons);
     gv1MigrationButtons = findViewById(R.id.message_request_gv1_migration_buttons);
     busyIndicator       = findViewById(R.id.message_request_busy_indicator);
+
+    setWallpaperEnabled(false);
   }
 
   public void setMessageData(@NonNull MessageRequestViewModel.MessageData messageData) {
@@ -76,7 +83,8 @@ public class MessageRequestsBottomView extends ConstraintLayout {
     switch (messageData.getMessageState()) {
       case BLOCKED_INDIVIDUAL:
         int message = recipient.isReleaseNotes() ? R.string.MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them
-                                                 : R.string.MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them;
+                                                 : recipient.isRegistered() ? R.string.MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them
+                                                                            : R.string.MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS;
 
         question.setText(HtmlCompat.fromHtml(getContext().getString(message,
                                                                     HtmlUtil.bold(recipient.getShortDisplayName(getContext()))), 0));
@@ -111,8 +119,12 @@ public class MessageRequestsBottomView extends ConstraintLayout {
         gv1Continue.setVisibility(GONE);
         break;
       case GROUP_V1:
-      case GROUP_V2_INVITE:
         question.setText(R.string.MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept);
+        setActiveInactiveGroups(normalButtons, blockedButtons, gv1MigrationButtons);
+        accept.setText(R.string.MessageRequestBottomView_accept);
+        break;
+      case GROUP_V2_INVITE:
+        question.setText(R.string.MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages);
         setActiveInactiveGroups(normalButtons, blockedButtons, gv1MigrationButtons);
         accept.setText(R.string.MessageRequestBottomView_accept);
         break;
@@ -155,6 +167,24 @@ public class MessageRequestsBottomView extends ConstraintLayout {
     if (activeGroup != null) {
       activeGroup.setVisibility(VISIBLE);
     }
+  }
+
+  public void setWallpaperEnabled(boolean isEnabled) {
+    MessageRequestBarColorTheme theme = MessageRequestBarColorTheme.resolveTheme(isEnabled);
+
+    Stream.of(delete, bigDelete, block, bigUnblock, accept, gv1Continue).forEach(button -> {
+      button.setBackgroundTintList(ColorStateList.valueOf(theme.getButtonBackgroundColor(getContext())));
+    });
+
+    Stream.of(delete, bigDelete, block).forEach(button -> {
+      button.setTextColor(theme.getButtonForegroundDenyColor(getContext()));
+    });
+
+    Stream.of(accept, bigUnblock, gv1Continue).forEach(button -> {
+      button.setTextColor(theme.getButtonForegroundAcceptColor(getContext()));
+    });
+
+    setBackgroundColor(theme.getContainerButtonBackgroundColor(getContext()));
   }
 
   public void setAcceptOnClickListener(OnClickListener acceptOnClickListener) {

@@ -443,7 +443,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
     WindowUtil.setStatusBarColor(window, barColor);
 
     originalNavigationBarColor = window.getNavigationBarColor();
-    WindowUtil.setNavigationBarColor(window, barColor);
+    WindowUtil.setNavigationBarColor(activity, barColor);
 
     if (!ThemeUtil.isDarkTheme(getContext())) {
       WindowUtil.clearLightStatusBar(window);
@@ -915,7 +915,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
       ValueAnimator navigationBarAnim = ValueAnimator.ofArgb(activity.getWindow().getStatusBarColor(), originalNavigationBarColor);
       navigationBarAnim.setDuration(duration);
       navigationBarAnim.addUpdateListener(animation -> {
-        WindowUtil.setNavigationBarColor(activity.getWindow(), (int) animation.getAnimatedValue());
+        WindowUtil.setNavigationBarColor(activity, (int) animation.getAnimatedValue());
       });
       animators.add(navigationBarAnim);
     }

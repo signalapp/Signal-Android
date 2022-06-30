@@ -72,14 +72,16 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
   }
 
   public static JobManager.Chain createJobChainForBoost(@NonNull StripeApi.PaymentIntent paymentIntent) {
-    BoostReceiptRequestResponseJob requestReceiptJob    = createJob(paymentIntent, DonationErrorSource.BOOST, Long.parseLong(SubscriptionLevels.BOOST_LEVEL));
-    DonationReceiptRedemptionJob   redeemReceiptJob     = DonationReceiptRedemptionJob.createJobForBoost();
-    RefreshOwnProfileJob           refreshOwnProfileJob = RefreshOwnProfileJob.forBoost();
+    BoostReceiptRequestResponseJob     requestReceiptJob                  = createJob(paymentIntent, DonationErrorSource.BOOST, Long.parseLong(SubscriptionLevels.BOOST_LEVEL));
+    DonationReceiptRedemptionJob       redeemReceiptJob                   = DonationReceiptRedemptionJob.createJobForBoost();
+    RefreshOwnProfileJob               refreshOwnProfileJob               = RefreshOwnProfileJob.forBoost();
+    MultiDeviceProfileContentUpdateJob multiDeviceProfileContentUpdateJob = new MultiDeviceProfileContentUpdateJob();
 
     return ApplicationDependencies.getJobManager()
                                   .startChain(requestReceiptJob)
                                   .then(redeemReceiptJob)
-                                  .then(refreshOwnProfileJob);
+                                  .then(refreshOwnProfileJob)
+                                  .then(multiDeviceProfileContentUpdateJob);
   }
 
   public static JobManager.Chain createJobChainForGift(@NonNull StripeApi.PaymentIntent paymentIntent,

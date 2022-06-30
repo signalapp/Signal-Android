@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.mediapreview;
 
+import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -49,7 +50,7 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
     videoView = itemView.findViewById(R.id.video_player);
 
     videoView.setWindow(requireActivity().getWindow());
-    videoView.setVideoSource(new VideoSlide(getContext(), uri, size, false), autoPlay);
+    videoView.setVideoSource(new VideoSlide(getContext(), uri, size, false), autoPlay, TAG);
     videoView.setPlayerPositionDiscontinuityCallback((v, r) -> {
       if (events.getVideoControlsDelegate() != null) {
         events.getVideoControlsDelegate().onPlayerPositionDiscontinuity(r);
@@ -63,8 +64,9 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
 
       @Override
       public void onPlaying() {
-        if (!isVideoGif && requireActivity() instanceof VoiceNoteMediaControllerOwner) {
-          ((VoiceNoteMediaControllerOwner) requireActivity()).getVoiceNoteMediaController().pausePlayback();
+        Activity activity = getActivity();
+        if (!isVideoGif && activity instanceof VoiceNoteMediaControllerOwner) {
+          ((VoiceNoteMediaControllerOwner) activity).getVoiceNoteMediaController().pausePlayback();
         }
       }
 

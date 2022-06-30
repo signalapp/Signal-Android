@@ -23,9 +23,8 @@ class CustomExpireTimerSelectDialog : DialogFragment() {
     val dialogView: View = LayoutInflater.from(context).inflate(R.layout.custom_expire_timer_select_dialog, null, false)
     selector = dialogView.findViewById(R.id.custom_expire_timer_select_dialog_selector)
 
-    val builder = MaterialAlertDialogBuilder(requireContext(), R.style.Signal_ThemeOverlay_Dialog_Rounded)
-
-    return builder.setTitle(R.string.ExpireTimerSettingsFragment__custom_time)
+    return MaterialAlertDialogBuilder(requireContext())
+      .setTitle(R.string.ExpireTimerSettingsFragment__custom_time)
       .setView(dialogView)
       .setPositiveButton(R.string.ExpireTimerSettingsFragment__set) { _, _ ->
         viewModel.select(selector.getTimer())

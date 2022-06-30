@@ -7,10 +7,14 @@
     <fragment
         android:id="@+id/conversationListFragment"
         android:name="org.thoughtcrime.securesms.conversationlist.ConversationListFragment"
-        android:label="conversation_list_fragment" >
+        android:label="conversation_list_fragment">
         <action
             android:id="@+id/action_conversationListFragment_to_conversationListArchiveFragment"
-            app:destination="@id/conversationListArchiveFragment" />
+            app:destination="@id/conversationListArchiveFragment"
+            app:enterAnim="@anim/slide_from_end"
+            app:exitAnim="@anim/slide_to_start"
+            app:popEnterAnim="@anim/slide_from_start"
+            app:popExitAnim="@anim/slide_to_end" />
         <action
             android:id="@+id/action_conversationListFragment_to_storiesLandingFragment"
             app:destination="@id/storiesLandingFragment" />

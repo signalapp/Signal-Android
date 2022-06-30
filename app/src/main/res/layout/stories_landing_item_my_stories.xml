@@ -31,7 +31,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:text="@string/StoriesLandingFragment__my_stories"
-        android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
+        android:textAppearance="@style/Signal.Text.BodyLarge"
+        android:textColor="@color/signal_colorOnSurface"
         app:layout_constraintBottom_toTopOf="@id/date"
         app:layout_constraintEnd_toStartOf="@id/story"
         app:layout_constraintStart_toEndOf="@id/avatar"
@@ -45,8 +46,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:text="@string/StoriesLandingFragment__add_a_story"
-        android:textAppearance="@style/TextAppearance.Signal.Body2"
-        android:textColor="@color/signal_text_secondary"
+        android:textAppearance="@style/Signal.Text.BodyMedium"
+        android:textColor="@color/signal_colorOnSurfaceVariant"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/story"
         app:layout_constraintStart_toEndOf="@id/avatar"
@@ -59,13 +60,13 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="2dp"
         android:layout_marginBottom="12dp"
-        android:background="@color/signal_background_secondary"
+        android:background="@color/signal_colorSurfaceVariant"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearance="@style/ShapeAppearanceOverlay.Signal.Story.Preview"
         app:srcCompat="@drawable/ic_plus_24"
-        app:tint="@color/signal_inverse_primary" />
+        app:tint="@color/signal_colorOnSurface" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,10 +4,11 @@
     android:layout_height="wrap_content">
 
     <View
+        android:alpha="0.16"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@color/signal_inverse_transparent_05" />
+        android:layout_height="1.5dp"
+        android:layout_marginTop="16.25dp"
+        android:layout_marginBottom="16.25dp"
+        android:background="@color/signal_colorOutline" />
 
 </FrameLayout>

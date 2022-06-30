@@ -9,6 +9,7 @@ import androidx.annotation.VisibleForTesting;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.SetUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -22,7 +23,6 @@ import org.thoughtcrime.securesms.payments.Entropy;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.subscription.Subscriber;
 import org.thoughtcrime.securesms.util.Base64;
-import org.signal.core.util.SetUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
@@ -160,9 +160,7 @@ public final class StorageSyncHelper {
     SignalStore.donationsValues().setDisplayBadgesOnProfile(update.getNew().isDisplayBadgesOnProfile());
 
     if (update.getNew().isSubscriptionManuallyCancelled()) {
-      SignalStore.donationsValues().markUserManuallyCancelled();
-      SignalStore.donationsValues().setUnexpectedSubscriptionCancelationReason(null);
-      SignalStore.donationsValues().setUnexpectedSubscriptionCancelationTimestamp(0L);
+      SignalStore.donationsValues().updateLocalStateForManualCancellation();
     } else {
       SignalStore.donationsValues().clearUserManuallyCancelled();
     }

@@ -9,7 +9,7 @@ interface OpenableGift {
   /**
    * Returns a projection to draw a top, or null to not do so.
    */
-  fun getOpenableGiftProjection(): Projection?
+  fun getOpenableGiftProjection(isAnimating: Boolean): Projection?
 
   /**
    * Returns a unique id assosicated with this gift.

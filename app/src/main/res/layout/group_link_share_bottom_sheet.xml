@@ -20,54 +20,66 @@
             android:id="@+id/group_link_bottom_sheet_hint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="@dimen/dsl_settings_gutter"
+            android:layout_marginEnd="@dimen/dsl_settings_gutter"
             android:layout_marginBottom="8dp"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.Signal.Body2"
+            android:textAppearance="@style/Signal.Text.BodyMedium"
             android:textColor="@color/signal_text_secondary"
             android:visibility="gone"
             tools:text="@string/GroupLinkBottomSheet_share_hint_requiring_approval"
             tools:visibility="visible" />
 
-        <Button
+        <TextView
             android:id="@+id/group_link_bottom_sheet_share_via_signal_button"
-            style="@style/Widget.Signal.Button.TextButton.Drawable"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
+            android:background="?selectableItemBackground"
+            android:drawablePadding="16dp"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/dsl_settings_gutter"
+            android:paddingEnd="@dimen/dsl_settings_gutter"
             android:text="@string/GroupLinkBottomSheet_share_via_signal"
+            android:textAppearance="@style/Signal.Text.BodyLarge"
             app:drawableStartCompat="@drawable/ic_message_tinted_bitmap_24" />
 
-        <Button
+        <TextView
             android:id="@+id/group_link_bottom_sheet_copy_button"
-            style="@style/Widget.Signal.Button.TextButton.Drawable"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
+            android:background="?selectableItemBackground"
+            android:drawablePadding="16dp"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/dsl_settings_gutter"
+            android:paddingEnd="@dimen/dsl_settings_gutter"
             android:text="@string/GroupLinkBottomSheet_copy"
+            android:textAppearance="@style/Signal.Text.BodyLarge"
             app:drawableStartCompat="@drawable/ic_copy_24_tinted" />
 
-        <Button
+        <TextView
             android:id="@+id/group_link_bottom_sheet_qr_code_button"
-            style="@style/Widget.Signal.Button.TextButton.Drawable"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
+            android:background="?selectableItemBackground"
+            android:drawablePadding="16dp"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/dsl_settings_gutter"
+            android:paddingEnd="@dimen/dsl_settings_gutter"
             android:text="@string/GroupLinkBottomSheet_qr_code"
+            android:textAppearance="@style/Signal.Text.BodyLarge"
             app:drawableStartCompat="@drawable/ic_qrcode_24_tinted" />
 
-        <Button
+        <TextView
             android:id="@+id/group_link_bottom_sheet_share_via_system_button"
-            style="@style/Widget.Signal.Button.TextButton.Drawable"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
+            android:background="?selectableItemBackground"
+            android:drawablePadding="16dp"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/dsl_settings_gutter"
+            android:paddingEnd="@dimen/dsl_settings_gutter"
             android:text="@string/GroupLinkBottomSheet_share"
+            android:textAppearance="@style/Signal.Text.BodyLarge"
             app:drawableStartCompat="@drawable/ic_share_24_tinted" />
 
     </LinearLayout>

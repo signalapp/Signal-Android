@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationIds;
 import org.thoughtcrime.securesms.notifications.v2.NotificationFactory;
+import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -75,11 +76,12 @@ public final class BubbleUtil {
    */
   public static void displayAsBubble(@NonNull Context context, @NonNull RecipientId recipientId, long threadId) {
     if (Build.VERSION.SDK_INT >= CONVERSATION_SUPPORT_VERSION) {
+      ConversationId conversationId = ConversationId.forConversation(threadId);
       SignalExecutors.BOUNDED.execute(() -> {
         if (canBubble(context, recipientId, threadId)) {
           NotificationManager     notificationManager      = ServiceUtil.getNotificationManager(context);
           StatusBarNotification[] notifications            = notificationManager.getActiveNotifications();
-          int                     threadNotificationId     = NotificationIds.getNotificationIdForThread(threadId);
+          int                     threadNotificationId     = NotificationIds.getNotificationIdForThread(conversationId);
           Notification            activeThreadNotification = Stream.of(notifications)
                                                                    .filter(n -> n.getId() == threadNotificationId)
                                                                    .findFirst()
@@ -87,7 +89,7 @@ public final class BubbleUtil {
                                                                    .orElse(null);
 
           if (activeThreadNotification != null && activeThreadNotification.deleteIntent != null) {
-            ApplicationDependencies.getMessageNotifier().updateNotification(context, threadId, BubbleState.SHOWN);
+            ApplicationDependencies.getMessageNotifier().updateNotification(context, conversationId, BubbleState.SHOWN);
           } else {
             Recipient recipient = Recipient.resolved(recipientId);
             NotificationFactory.notifyToBubbleConversation(context, recipient, threadId);

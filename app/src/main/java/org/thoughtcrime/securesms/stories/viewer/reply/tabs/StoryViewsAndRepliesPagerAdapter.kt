@@ -10,7 +10,9 @@ import org.thoughtcrime.securesms.stories.viewer.views.StoryViewsFragment
 class StoryViewsAndRepliesPagerAdapter(
   fragment: Fragment,
   private val storyId: Long,
-  private val groupRecipientId: RecipientId
+  private val groupRecipientId: RecipientId,
+  private val isFromNotification: Boolean,
+  private val groupReplyStartPosition: Int
 ) : FragmentStateAdapter(fragment) {
   override fun getItemCount(): Int = 2
 
@@ -22,7 +24,7 @@ class StoryViewsAndRepliesPagerAdapter(
   override fun createFragment(position: Int): Fragment {
     return when (position) {
       0 -> StoryViewsFragment.create(storyId)
-      1 -> StoryGroupReplyFragment.create(storyId, groupRecipientId)
+      1 -> StoryGroupReplyFragment.create(storyId, groupRecipientId, isFromNotification, groupReplyStartPosition)
       else -> throw IndexOutOfBoundsException()
     }
   }

@@ -258,7 +258,7 @@ public class PushServiceSocket {
   private static final String BOOST_RECEIPT_CREDENTIALS           = "/v1/subscription/boost/receipt_credentials";
   private static final String BOOST_BADGES                        = "/v1/subscription/boost/badges";
 
-  private static final String CDSH_AUTH = "/v2/directory/auth";
+  private static final String CDSI_AUTH = "/v2/directory/auth";
 
   private static final String REPORT_SPAM = "/v1/messages/report/%s/%s";
 
@@ -342,9 +342,9 @@ public class PushServiceSocket {
     }
   }
 
-  public CdshAuthResponse getCdshAuth() throws IOException {
-    String body = makeServiceRequest(CDSH_AUTH, "GET", null);
-    return JsonUtil.fromJsonResponse(body, CdshAuthResponse.class);
+  public CdsiAuthResponse getCdsiAuth() throws IOException {
+    String body = makeServiceRequest(CDSI_AUTH, "GET", null);
+    return JsonUtil.fromJsonResponse(body, CdsiAuthResponse.class);
   }
 
   public VerifyAccountResponse verifyAccountCode(String verificationCode, String signalingKey, int registrationId, boolean fetchesMessages,
@@ -803,6 +803,20 @@ public class PushServiceSocket {
     String                   version  = profileKeyIdentifier.serialize();
     String                   subPath  = String.format("%s/%s", target, version);
     ListenableFuture<String> response = submitServiceRequest(String.format(PROFILE_PATH, subPath), "GET", null, AcceptLanguagesUtil.getHeadersWithAcceptLanguage(locale), unidentifiedAccess);
+
+    return FutureTransformers.map(response, body -> {
+      try {
+        return JsonUtil.fromJson(body, SignalServiceProfile.class);
+      } catch (IOException e) {
+        Log.w(TAG, e);
+        throw new MalformedResponseException("Unable to parse entity", e);
+      }
+    });
+  }
+
+  public ListenableFuture<SignalServiceProfile> retrievePniCredential(UUID target, String version, String credentialRequest, Locale locale) {
+    String                   subPath  = String.format("%s/%s/%s?credentialType=pni", target, version, credentialRequest);
+    ListenableFuture<String> response = submitServiceRequest(String.format(PROFILE_PATH, subPath), "GET", null, AcceptLanguagesUtil.getHeadersWithAcceptLanguage(locale), Optional.empty());
 
     return FutureTransformers.map(response, body -> {
       try {

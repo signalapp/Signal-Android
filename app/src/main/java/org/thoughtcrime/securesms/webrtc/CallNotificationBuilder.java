@@ -81,6 +81,20 @@ public class CallNotificationBuilder {
     }
   }
 
+  public static @NonNull Notification getStartingNotification(@NonNull Context context) {
+    Intent contentIntent = new Intent(context, MainActivity.class);
+    contentIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+    PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, contentIntent, 0);
+
+    return new NotificationCompat.Builder(context, NotificationChannels.CALL_STATUS).setSmallIcon(R.drawable.ic_call_secure_white_24dp)
+                                                                                    .setContentIntent(pendingIntent)
+                                                                                    .setOngoing(true)
+                                                                                    .setContentTitle(context.getString(R.string.NotificationBarManager__starting_signal_call_service))
+                                                                                    .setPriority(NotificationCompat.PRIORITY_MIN)
+                                                                                    .build();
+  }
+
   public static @NonNull Notification getStoppingNotification(@NonNull Context context) {
     Intent contentIntent = new Intent(context, MainActivity.class);
     contentIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -95,7 +109,7 @@ public class CallNotificationBuilder {
                                                                                     .build();
   }
 
-  public static int getStoppingNotificationId() {
+  public static int getStartingStoppingNotificationId() {
     return WEBRTC_NOTIFICATION;
   }
 

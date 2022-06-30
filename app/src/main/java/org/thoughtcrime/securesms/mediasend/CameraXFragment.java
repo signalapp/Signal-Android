@@ -32,10 +32,12 @@ import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
 import androidx.camera.view.SignalCameraView;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.Observer;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.util.Executors;
 
+import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
@@ -49,11 +51,9 @@ import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.stories.viewer.page.StoryDisplay;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.signal.core.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.video.VideoUtil;
 
 import java.io.FileDescriptor;
@@ -75,6 +75,10 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   private Controller             controller;
   private View                   selfieFlash;
   private MemoryFileDescriptor   videoFileDescriptor;
+
+  private final Observer<Optional<Media>> thumbObserver = this::presentRecentItemThumbnail;
+  private boolean isThumbAvailable;
+  private boolean isMediaSelected;
 
   public static CameraXFragment newInstanceForAvatarCapture() {
     CameraXFragment fragment = new CameraXFragment();
@@ -118,6 +122,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     ViewGroup cameraParent = view.findViewById(R.id.camerax_camera_parent);
+    requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
 
     this.camera            = view.findViewById(R.id.camerax_camera);
     this.controlsContainer = view.findViewById(R.id.camerax_controls_container);
@@ -127,8 +132,6 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     camera.setCameraLensFacing(CameraXUtil.toLensFacing(TextSecurePreferences.getDirectCaptureCameraId(requireContext())));
 
     onOrientationChanged(getResources().getConfiguration().orientation);
-
-    controller.getMostRecentMediaItem().observe(getViewLifecycleOwner(), this::presentRecentItemThumbnail);
 
     view.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
       // Let's assume portrait for now, so 9:16
@@ -155,13 +158,15 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     camera.bindToLifecycle(getViewLifecycleOwner(),  this::handleCameraInitializationError);
     requireActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-    requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+    requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
   }
 
   @Override
   public void onDestroyView() {
     super.onDestroyView();
+    controller.getMostRecentMediaItem().removeObserver(thumbObserver);
     closeVideoFileDescriptor();
+    requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
   }
 
   @Override
@@ -221,6 +226,8 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
 
   private void presentRecentItemThumbnail(Optional<Media> media) {
     if (media == null) {
+      isThumbAvailable = false;
+      updateGalleryVisibility();
       return;
     }
 
@@ -236,6 +243,9 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
       thumbnail.setVisibility(View.GONE);
       thumbnail.setImageResource(0);
     }
+
+    isThumbAvailable = media.isPresent();
+    updateGalleryVisibility();
   }
 
   @Override
@@ -247,6 +257,19 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
       countButton.setCount(selectedMediaCount);
     } else {
       countButton.setVisibility(View.GONE);
+    }
+
+    isMediaSelected = selectedMediaCount > 0;
+    updateGalleryVisibility();
+  }
+
+  private void updateGalleryVisibility() {
+    View cameraGalleryContainer = controlsContainer.findViewById(R.id.camera_gallery_button_background);
+
+    if (isMediaSelected || !isThumbAvailable) {
+      cameraGalleryContainer.setVisibility(View.GONE);
+    } else {
+      cameraGalleryContainer.setVisibility(View.VISIBLE);
     }
   }
 
@@ -260,7 +283,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     View                   toggleSpacer           = requireView().findViewById(R.id.toggle_spacer);
 
     if (toggleSpacer != null) {
-      if ( Stories.isFeatureEnabled() && FeatureFlags.storiesTextPosts()) {
+      if ( Stories.isFeatureEnabled()) {
         StoryDisplay storyDisplay = StoryDisplay.Companion.getStoryDisplay(getResources().getDisplayMetrics().widthPixels, getResources().getDisplayMetrics().heightPixels);
         if (storyDisplay == StoryDisplay.SMALL) {
           toggleSpacer.setVisibility(View.VISIBLE);
@@ -271,6 +294,9 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
         toggleSpacer.setVisibility(View.GONE);
       }
     }
+
+    controller.getMostRecentMediaItem().removeObserver(thumbObserver);
+    controller.getMostRecentMediaItem().observeForever(thumbObserver);
 
     selfieFlash = requireView().findViewById(R.id.camera_selfie_flash);
 

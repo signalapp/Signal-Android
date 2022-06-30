@@ -119,6 +119,12 @@ public class SignalServiceEnvelope {
     this.serverDeliveredTimestamp = serverDeliveredTimestamp;
   }
 
+  public SignalServiceEnvelope withoutE164() {
+    return deserialize(serializeToProto().clearSourceE164()
+                                         .build()
+                                         .toByteArray());
+  }
+
   public String getServerGuid() {
     return envelope.getServerGuid();
   }
@@ -154,6 +160,10 @@ public class SignalServiceEnvelope {
 
   public boolean hasSourceDevice() {
     return envelope.hasSourceDevice();
+  }
+
+  public boolean hasSourceE164() {
+    return envelope.hasSourceE164();
   }
 
   /**
@@ -263,7 +273,8 @@ public class SignalServiceEnvelope {
     return envelope.getDestinationUuid();
   }
 
-  public byte[] serialize() {
+
+  private SignalServiceEnvelopeProto.Builder serializeToProto() {
     SignalServiceEnvelopeProto.Builder builder = SignalServiceEnvelopeProto.newBuilder()
                                                                            .setType(getType())
                                                                            .setDeviceId(getSourceDevice())
@@ -295,8 +306,11 @@ public class SignalServiceEnvelope {
       builder.setDestinationUuid(getDestinationUuid().toString());
     }
 
+    return builder;
+  }
 
-    return builder.build().toByteArray();
+  public byte[] serialize() {
+    return serializeToProto().build().toByteArray();
   }
 
   public static SignalServiceEnvelope deserialize(byte[] serialized) {

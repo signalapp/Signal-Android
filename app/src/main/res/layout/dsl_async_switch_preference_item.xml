@@ -25,7 +25,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        android:textAppearance="@style/Signal.Text.Body"
+        android:textAppearance="@style/Signal.Text.BodyLarge"
         app:layout_constraintBottom_toTopOf="@id/summary"
         app:layout_constraintEnd_toStartOf="@id/switcher"
         app:layout_constraintStart_toEndOf="@id/icon"
@@ -43,7 +43,7 @@
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
         android:layout_marginBottom="16dp"
         android:lineSpacingExtra="4sp"
-        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:textAppearance="@style/Signal.Text.BodyMedium"
         android:textColor="@color/text_color_secondary_enabled_selector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/switcher"
@@ -72,7 +72,7 @@
 
         <ProgressBar
             android:id="@+id/switch_progress"
-            style="@style/Widget.MaterialComponents.CircularProgressIndicator"
+            style="@style/Widget.Material3.CircularProgressIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:indeterminate="true" />

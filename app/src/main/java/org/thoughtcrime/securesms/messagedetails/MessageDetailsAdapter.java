@@ -16,17 +16,12 @@ import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 
-import java.util.List;
-
 final class MessageDetailsAdapter extends ListAdapter<MessageDetailsAdapter.MessageDetailsViewState<?>, RecyclerView.ViewHolder> {
-
-  private static final Object EXPIRATION_TIMER_CHANGE_PAYLOAD = new Object();
 
   private final LifecycleOwner lifecycleOwner;
   private final GlideRequests  glideRequests;
   private final Colorizer      colorizer;
-  private       Callbacks      callbacks;
-  private       boolean        running;
+  private final Callbacks      callbacks;
 
   MessageDetailsAdapter(@NonNull LifecycleOwner lifecycleOwner, @NonNull GlideRequests glideRequests, @NonNull Colorizer colorizer, @NonNull Callbacks callbacks) {
     super(new MessageDetailsDiffer());
@@ -34,7 +29,6 @@ final class MessageDetailsAdapter extends ListAdapter<MessageDetailsAdapter.Mess
     this.glideRequests  = glideRequests;
     this.colorizer      = colorizer;
     this.callbacks      = callbacks;
-    this.running        = true;
   }
 
   @Override
@@ -54,7 +48,7 @@ final class MessageDetailsAdapter extends ListAdapter<MessageDetailsAdapter.Mess
   @Override
   public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
     if (holder instanceof MessageHeaderViewHolder) {
-      ((MessageHeaderViewHolder) holder).bind(lifecycleOwner, (ConversationMessage) getItem(position).data, running);
+      ((MessageHeaderViewHolder) holder).bind(lifecycleOwner, (ConversationMessage) getItem(position).data);
     } else if (holder instanceof RecipientHeaderViewHolder) {
       ((RecipientHeaderViewHolder) holder).bind((RecipientHeader) getItem(position).data);
     } else if (holder instanceof RecipientViewHolder) {
@@ -65,31 +59,8 @@ final class MessageDetailsAdapter extends ListAdapter<MessageDetailsAdapter.Mess
   }
 
   @Override
-  public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, @NonNull List<Object> payloads) {
-    if (payloads.isEmpty()) {
-      super.onBindViewHolder(holder, position, payloads);
-    } else if (holder instanceof MessageHeaderViewHolder) {
-      ((MessageHeaderViewHolder) holder).partialBind((ConversationMessage) getItem(position).data, running);
-    }
-  }
-
-  @Override
   public int getItemViewType(int position) {
     return getItem(position).itemType;
-  }
-
-  void resumeMessageExpirationTimer() {
-    running = true;
-    if (getItemCount() > 0) {
-      notifyItemChanged(0, EXPIRATION_TIMER_CHANGE_PAYLOAD);
-    }
-  }
-
-  void pauseMessageExpirationTimer() {
-    running = false;
-    if (getItemCount() > 0) {
-      notifyItemChanged(0, EXPIRATION_TIMER_CHANGE_PAYLOAD);
-    }
   }
 
   private static class MessageDetailsDiffer extends DiffUtil.ItemCallback<MessageDetailsViewState<?>> {

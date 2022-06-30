@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -16,13 +17,10 @@ import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.SupportEmailUtil;
-import org.signal.core.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-
-import static org.thoughtcrime.securesms.util.CircularProgressButtonUtil.cancelSpinning;
 
 public final class RegistrationLockFragment extends BaseRegistrationLockFragment {
 
@@ -68,7 +66,7 @@ public final class RegistrationLockFragment extends BaseRegistrationLockFragment
 
       return null;
     }, none -> {
-      cancelSpinning(pinButton);
+      pinButton.cancelSpinning();
       SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), RegistrationLockFragmentDirections.actionSuccessfulRegistration());
     });
   }

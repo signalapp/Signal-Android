@@ -92,7 +92,7 @@ class SqlCipherErrorHandler(private val databaseName: String) : DatabaseErrorHan
     try {
       val results = query("PRAGMA integrity_check")
       output.append(results)
-      if (results.toLowerCase().contains("ok")) {
+      if (results.lowercase().contains("ok")) {
         pragma1Passes = true
       }
     } catch (t: Throwable) {

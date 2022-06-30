@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.TransportOption;
+import org.thoughtcrime.securesms.conversation.MessageSendType;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Fragment;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4SaveResult;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ViewModel;
@@ -47,7 +47,7 @@ public class GiphyActivity extends PassphraseRequiredActivity implements Keyboar
   private GiphyMp4ViewModel giphyMp4ViewModel;
   private AlertDialog       progressDialog;
   private RecipientId       recipientId;
-  private TransportOption   transport;
+  private MessageSendType   sendType;
   private CharSequence      text;
 
   @Override
@@ -62,7 +62,7 @@ public class GiphyActivity extends PassphraseRequiredActivity implements Keyboar
     final boolean forMms = getIntent().getBooleanExtra(EXTRA_IS_MMS, false);
 
     recipientId = getIntent().getParcelableExtra(EXTRA_RECIPIENT_ID);
-    transport   = getIntent().getParcelableExtra(EXTRA_TRANSPORT);
+    sendType    = getIntent().getParcelableExtra(EXTRA_TRANSPORT);
     text        = getIntent().getCharSequenceExtra(EXTRA_TEXT);
 
     giphyMp4ViewModel = ViewModelProviders.of(this, new GiphyMp4ViewModel.Factory(forMms)).get(GiphyMp4ViewModel.class);
@@ -121,7 +121,7 @@ public class GiphyActivity extends PassphraseRequiredActivity implements Keyboar
     }
 
     Media media = new Media(success.getBlobUri(), mimeType, 0, success.getWidth(), success.getHeight(), 0, 0, false, true, Optional.empty(), Optional.empty(), Optional.empty());
-    startActivityForResult(MediaSelectionActivity.editor(this, transport, Collections.singletonList(media), recipientId, text), MEDIA_SENDER);
+    startActivityForResult(MediaSelectionActivity.editor(this, sendType, Collections.singletonList(media), recipientId, text), MEDIA_SENDER);
   }
 
   private void handleGiphyMp4ErrorResult(@NonNull GiphyMp4SaveResult.Error error) {

@@ -14,7 +14,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
-import java.util.Optional;
 
 public final class AppSignatureUtil {
 
@@ -30,7 +29,8 @@ public final class AppSignatureUtil {
    * Only intended to be used for logging.
    */
   @SuppressLint("PackageManagerGetSignatures")
-  public static Optional<String> getAppSignature(@NonNull Context context) {
+  public static @NonNull String getAppSignature(@NonNull Context context) {
+    String hash = null;
     try {
       String         packageName    = context.getPackageName();
       PackageManager packageManager = context.getPackageManager();
@@ -38,14 +38,13 @@ public final class AppSignatureUtil {
       Signature[]    signatures     = packageInfo.signatures;
 
       if (signatures.length > 0) {
-        String hash = hash(packageName, signatures[0].toCharsString());
-        return Optional.ofNullable(hash);
+        hash = hash(packageName, signatures[0].toCharsString());
       }
     } catch (PackageManager.NameNotFoundException e) {
       Log.w(TAG, e);
     }
 
-    return Optional.empty();
+    return hash != null ? hash : "Unknown";
   }
 
   private static String hash(String packageName, String signature) {

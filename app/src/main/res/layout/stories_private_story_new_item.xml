@@ -16,9 +16,9 @@
         android:background="@drawable/circle_tintable"
         android:importantForAccessibility="no"
         android:scaleType="centerInside"
-        app:backgroundTint="@color/signal_background_secondary"
+        app:backgroundTint="@color/signal_colorSurfaceVariant"
         app:srcCompat="@drawable/ic_add_members_20"
-        app:tint="@color/signal_icon_tint_primary" />
+        app:tint="@color/signal_colorOnSurfaceVariant" />
 
     <TextView
         android:id="@+id/label"
@@ -28,6 +28,7 @@
         android:layout_marginStart="16dp"
         android:layout_weight="1"
         android:text="@string/StorySettingsFragment__new_private_story"
-        android:textAppearance="@style/Signal.Text.Body" />
+        android:textAppearance="@style/Signal.Text.BodyLarge"
+        android:textColor="@color/signal_colorOnSurface" />
 
 </LinearLayout>

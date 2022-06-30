@@ -13,7 +13,7 @@
         android:layout_marginEnd="32dp"
         android:gravity="center"
         android:text="@string/ChooseBackupFragment__restore_from_backup"
-        android:textAppearance="@style/Signal.Text.Headline.Registration"
+        android:textAppearance="@style/Signal.Text.HeadlineMedium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -55,15 +55,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_backup_outline_60" />
 
-    <com.dd.CircularProgressButton
+    <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
         android:id="@+id/choose_backup_fragment_button"
-        style="@style/Button.Registration"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        app:cpb_textIdle="@string/ChooseBackupFragment__choose_backup"
+        app:materialThemeOverlay="@style/ThemeOverlay.Signal.CircularProgressIndicator.Primary"
+        app:circularProgressMaterialButton__label="@string/ChooseBackupFragment__choose_backup"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

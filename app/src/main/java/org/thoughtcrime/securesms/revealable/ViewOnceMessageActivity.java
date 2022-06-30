@@ -131,7 +131,7 @@ public class ViewOnceMessageActivity extends PassphraseRequiredActivity implemen
 
     video.setWindow(getWindow());
     video.setPlayerStateCallbacks(this);
-    video.setVideoSource(videoSlide, true);
+    video.setVideoSource(videoSlide, true, TAG);
 
     video.hideControls();
     video.loopForever();

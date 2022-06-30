@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/signal_background_tertiary"
+    android:background="@color/signal_colorSurface"
     android:paddingTop="12dp">
 
     <org.thoughtcrime.securesms.components.FromTextView
@@ -14,7 +14,7 @@
         android:layout_marginStart="18dp"
         android:layout_marginEnd="6dp"
         android:textAppearance="@style/Signal.Text.Caption"
-        android:textColor="@color/signal_inverse_transparent_60"
+        android:textColor="@color/signal_colorOnSurfaceVariant"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/bubble"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,7 +31,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/rounded_rectangle_secondary_18"
+        android:background="@drawable/rounded_rectangle_surface_variant"
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/reply_reaction_switch"
@@ -81,6 +81,7 @@
             android:layout_marginTop="8dp"
             android:background="?selectableItemBackgroundBorderless"
             app:force_outline="true"
+            app:tint="@color/signal_colorOnSurface"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_goneMarginTop="0dp" />
@@ -104,7 +105,7 @@
             android:contentDescription="@string/StoryReplyComposer__react_to_this_story"
             android:padding="6dp"
             app:srcCompat="@drawable/ic_add_reaction_outline_24"
-            app:tint="@color/signal_icon_tint_primary" />
+            app:tint="@color/signal_colorOnSurface" />
 
         <ImageView
             android:id="@+id/reply"
@@ -114,7 +115,7 @@
             android:background="@drawable/circle_tintable"
             android:contentDescription="@string/StoryReplyComposer__react_to_this_story"
             android:padding="6dp"
-            app:backgroundTint="@color/core_ultramarine"
+            app:backgroundTint="@color/signal_light_colorPrimary"
             app:srcCompat="@drawable/ic_send_24" />
     </ViewSwitcher>
 

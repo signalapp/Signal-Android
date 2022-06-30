@@ -899,10 +899,10 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Mana kutinchinkapakka ukuman aysay</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Wakin ruraykuna kikin rikuchun munanmi</string>
-  <string name="message_details_header__sent">Kachashka</string>
-  <string name="message_details_header__received">Chaskishka</string>
-  <string name="message_details_header__disappears">Chinkarishka</string>
-  <string name="message_details_header__via">Kay ñianta</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">Kachashka</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">Chaskishka</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">Chinkarishka</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">Kay ñianta</string> -->
   <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Pipak</string> -->
   <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Ñukamanta</string> -->
   <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Piwan:</string> -->

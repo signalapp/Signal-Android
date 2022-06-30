@@ -38,6 +38,7 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
+import org.signal.qr.kitkat.QrCameraView;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -228,7 +229,7 @@ public class CameraView extends ViewGroup {
     listeners.add(listener);
   }
 
-  public void setPreviewCallback(final @NonNull PreviewCallback previewCallback) {
+  public void setPreviewCallback(final @NonNull QrCameraView.PreviewCallback previewCallback) {
     enqueueTask(new PostInitializationTask<Void>() {
       @Override
       protected void onPostMain(Void avoid) {
@@ -243,7 +244,7 @@ public class CameraView extends ViewGroup {
               final int  rotation    = getCameraPictureOrientation();
               final Size previewSize = camera.getParameters().getPreviewSize();
               if (data != null) {
-                previewCallback.onPreviewFrame(new PreviewFrame(data, previewSize.width, previewSize.height, rotation));
+                previewCallback.onPreviewFrame(new QrCameraView.PreviewFrame(data, previewSize.width, previewSize.height, rotation));
               }
             }
           });
@@ -566,40 +567,6 @@ public class CameraView extends ViewGroup {
     void onCameraFail();
     void onCameraStart();
     void onCameraStop();
-  }
-
-  public interface PreviewCallback {
-    void onPreviewFrame(@NonNull PreviewFrame frame);
-  }
-
-  public static class PreviewFrame {
-    private final @NonNull byte[] data;
-    private final          int    width;
-    private final          int    height;
-    private final          int    orientation;
-
-    private PreviewFrame(@NonNull byte[] data, int width, int height, int orientation) {
-      this.data        = data;
-      this.width       = width;
-      this.height      = height;
-      this.orientation = orientation;
-    }
-
-    public @NonNull byte[] getData() {
-      return data;
-    }
-
-    public int getWidth() {
-      return width;
-    }
-
-    public int getHeight() {
-      return height;
-    }
-
-    public int getOrientation() {
-      return orientation;
-    }
   }
 
   private enum State {

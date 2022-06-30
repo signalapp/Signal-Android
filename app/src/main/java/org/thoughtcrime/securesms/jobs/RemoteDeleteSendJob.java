@@ -1,21 +1,22 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.content.Context;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.SetUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -23,7 +24,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.signal.core.util.SetUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
@@ -53,9 +53,7 @@ public class RemoteDeleteSendJob extends BaseJob {
 
 
   @WorkerThread
-  public static @NonNull RemoteDeleteSendJob create(@NonNull Context context,
-                                                    long messageId,
-                                                    boolean isMms)
+  public static @NonNull JobManager.Chain create(long messageId, boolean isMms)
       throws NoSuchMessageException
   {
     MessageRecord message = isMms ? SignalDatabase.mms().getMessageRecord(messageId)
@@ -70,6 +68,9 @@ public class RemoteDeleteSendJob extends BaseJob {
     List<RecipientId> recipients;
     if (conversationRecipient.isDistributionList()) {
       recipients = SignalDatabase.storySends().getRemoteDeleteRecipients(message.getId(), message.getTimestamp());
+      if (recipients.isEmpty()) {
+        return ApplicationDependencies.getJobManager().startChain(MultiDeviceStorySendSyncJob.create(message.getDateSent(), messageId));
+      }
     } else {
       recipients = conversationRecipient.isGroup() ? Stream.of(conversationRecipient.getParticipants()).map(Recipient::getId).toList()
                                                    : Stream.of(conversationRecipient.getId()).toList();
@@ -77,15 +78,23 @@ public class RemoteDeleteSendJob extends BaseJob {
 
     recipients.remove(Recipient.self().getId());
 
-    return new RemoteDeleteSendJob(messageId,
-                               isMms,
-                               recipients,
-                               recipients.size(),
-                               new Parameters.Builder()
-                                             .setQueue(conversationRecipient.getId().toQueueKey())
-                                             .setLifespan(TimeUnit.DAYS.toMillis(1))
-                                             .setMaxAttempts(Parameters.UNLIMITED)
-                                             .build());
+    RemoteDeleteSendJob sendJob = new RemoteDeleteSendJob(messageId,
+                                                          isMms,
+                                                          recipients,
+                                                          recipients.size(),
+                                                          new Parameters.Builder()
+                                                                        .setQueue(conversationRecipient.getId().toQueueKey())
+                                                                        .setLifespan(TimeUnit.DAYS.toMillis(1))
+                                                                        .setMaxAttempts(Parameters.UNLIMITED)
+                                                                        .build());
+
+    if (conversationRecipient.isDistributionList()) {
+      return ApplicationDependencies.getJobManager()
+                                    .startChain(sendJob)
+                                    .then(MultiDeviceStorySendSyncJob.create(message.getDateSent(), messageId));
+    } else {
+      return ApplicationDependencies.getJobManager().startChain(sendJob);
+    }
   }
 
   private RemoteDeleteSendJob(long messageId,

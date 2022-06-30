@@ -66,16 +66,16 @@ public class PopupMegaphoneView extends FrameLayout {
       image.setVisibility(GONE);
     }
 
-    if (megaphone.getTitle() != 0) {
+    if (megaphone.getTitle().hasText()) {
       titleText.setVisibility(VISIBLE);
-      titleText.setText(megaphone.getTitle());
+      titleText.setText(megaphone.getTitle().resolve(getContext()));
     } else {
       titleText.setVisibility(GONE);
     }
 
-    if (megaphone.getBody() != 0) {
+    if (megaphone.getBody().hasText()) {
       bodyText.setVisibility(VISIBLE);
-      bodyText.setText(megaphone.getBody());
+      bodyText.setText(megaphone.getBody().resolve(getContext()));
     } else {
       bodyText.setVisibility(GONE);
     }

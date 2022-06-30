@@ -45,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/keyboard_toolbar_height"
         android:layout_gravity="bottom"
-        android:background="?mediaKeyboardBackgroundColor"
+        android:background="?mediaKeyboardBottomBarBackgroundColor"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior">
@@ -82,21 +82,5 @@
             app:srcCompat="@drawable/ic_backspace_24"
             app:tint="@color/icon_tab_selector" />
     </LinearLayout>
-
-    <View
-        android:id="@+id/emoji_keyboard_top_shadow"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@drawable/toolbar_shadow"
-        app:app_bar_layout_id="@+id/emoji_keyboard_search_appbar"
-        app:layout_behavior="org.thoughtcrime.securesms.keyboard.TopShadowBehavior" />
-
-    <View
-        android:id="@+id/emoji_keyboard_bottom_shadow"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:background="@drawable/bottom_toolbar_shadow"
-        app:bottom_bar_id="@+id/emoji_keyboard_bottom_bar"
-        app:layout_behavior="org.thoughtcrime.securesms.keyboard.BottomShadowBehavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

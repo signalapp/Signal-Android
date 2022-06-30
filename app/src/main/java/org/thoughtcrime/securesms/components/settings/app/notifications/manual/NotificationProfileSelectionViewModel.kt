@@ -78,7 +78,7 @@ class NotificationProfileSelectionViewModel(private val repository: Notification
   }
 
   class Factory(private val notificationProfilesRepository: NotificationProfilesRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(NotificationProfileSelectionViewModel(notificationProfilesRepository))!!
     }
   }

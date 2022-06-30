@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadin
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.SpanUtil
@@ -67,7 +68,7 @@ class ManageDonationsFragment : DSLSettingsFragment(), ExpiredGiftSheet.Callback
 
     val expiredGiftBadge = SignalStore.donationsValues().getExpiredGiftBadge()
     if (expiredGiftBadge != null) {
-      SignalStore.donationsValues().setExpiredBadge(null)
+      SignalStore.donationsValues().setExpiredGiftBadge(null)
       ExpiredGiftSheet.show(childFragmentManager, expiredGiftBadge)
     }
 
@@ -89,7 +90,7 @@ class ManageDonationsFragment : DSLSettingsFragment(), ExpiredGiftSheet.Callback
       sectionHeaderPref(
         title = DSLSettingsText.from(
           R.string.SubscribeFragment__signal_is_powered_by_people_like_you,
-          DSLSettingsText.CenterModifier, DSLSettingsText.Title2BoldModifier
+          DSLSettingsText.CenterModifier, DSLSettingsText.TitleLargeModifier
         )
       )
 
@@ -214,7 +215,7 @@ class ManageDonationsFragment : DSLSettingsFragment(), ExpiredGiftSheet.Callback
 
     space(DimensionUnit.DP.toPixels(16f).toInt())
 
-    primaryButton(
+    tonalButton(
       text = DSLSettingsText.from(R.string.ManageDonationsFragment__make_a_monthly_donation),
       onClick = {
         findNavController().safeNavigate(R.id.action_manageDonationsFragment_to_subscribeFragment)
@@ -241,7 +242,7 @@ class ManageDonationsFragment : DSLSettingsFragment(), ExpiredGiftSheet.Callback
       }
     )
 
-    if (FeatureFlags.giftBadges()) {
+    if (FeatureFlags.giftBadges() && Recipient.self().giftBadgesCapability == Recipient.Capability.SUPPORTED) {
       clickPref(
         title = DSLSettingsText.from(R.string.ManageDonationsFragment__gift_a_badge),
         icon = DSLSettingsIcon.from(R.drawable.ic_gift_24),

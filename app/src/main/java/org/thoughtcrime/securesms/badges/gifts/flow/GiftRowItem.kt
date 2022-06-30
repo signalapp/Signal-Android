@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import org.thoughtcrime.securesms.util.visible
+import java.util.concurrent.TimeUnit
 
 /**
  * A line item for gifts, displayed in the Gift flow's start and confirmation fragments.
@@ -40,13 +41,18 @@ object GiftRowItem {
       badgeView.setBadge(model.giftBadge)
       titleView.text = model.giftBadge.name
       taglineView.setText(R.string.GiftRowItem__send_a_gift_badge)
-      priceView.text = FiatMoneyUtil.format(
+
+      val price = FiatMoneyUtil.format(
         context.resources,
         model.price,
         FiatMoneyUtil.formatOptions()
           .trimZerosAfterDecimal()
           .withDisplayTime(false)
       )
+
+      val duration = TimeUnit.MILLISECONDS.toDays(model.giftBadge.duration)
+
+      priceView.text = context.resources.getQuantityString(R.plurals.GiftRowItem_s_dot_d_day_duration, duration.toInt(), price, duration)
     }
   }
 }

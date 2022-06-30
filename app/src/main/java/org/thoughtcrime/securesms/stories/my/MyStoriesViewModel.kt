@@ -31,7 +31,7 @@ class MyStoriesViewModel(private val repository: MyStoriesRepository) : ViewMode
   }
 
   class Factory(private val repository: MyStoriesRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(MyStoriesViewModel(repository)) as T
     }
   }

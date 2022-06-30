@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.badges.gifts.viewgift.sent
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LiveDataReactiveStreams
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.gifts.viewgift.ViewGiftRepository
@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.BottomSheetUtil
+import org.thoughtcrime.securesms.util.LifecycleDisposable
 
 /**
  * Handles all interactions for received gift badges.
@@ -45,6 +46,8 @@ class ViewSentGiftBottomSheet : DSLSettingsBottomSheetFragment() {
   private val giftBadge: GiftBadge
     get() = GiftBadge.parseFrom(requireArguments().getByteArray(ARG_GIFT_BADGE))
 
+  private val lifecycleDisposable = LifecycleDisposable()
+
   private val viewModel: ViewSentGiftViewModel by viewModels(
     factoryProducer = { ViewSentGiftViewModel.Factory(sentTo, giftBadge, ViewGiftRepository()) }
   )
@@ -52,7 +55,8 @@ class ViewSentGiftBottomSheet : DSLSettingsBottomSheetFragment() {
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
     BadgeDisplay112.register(adapter)
 
-    LiveDataReactiveStreams.fromPublisher(viewModel.state).observe(viewLifecycleOwner) { state ->
+    lifecycleDisposable.bindTo(viewLifecycleOwner)
+    lifecycleDisposable += viewModel.state.observeOn(AndroidSchedulers.mainThread()).subscribe { state ->
       adapter.submitList(getConfiguration(state).toMappingModelList())
     }
   }
@@ -62,7 +66,7 @@ class ViewSentGiftBottomSheet : DSLSettingsBottomSheetFragment() {
       noPadTextPref(
         title = DSLSettingsText.from(
           stringId = R.string.ViewSentGiftBottomSheet__thanks_for_your_support,
-          DSLSettingsText.CenterModifier, DSLSettingsText.Title2BoldModifier
+          DSLSettingsText.CenterModifier, DSLSettingsText.TitleLargeModifier
         )
       )
 

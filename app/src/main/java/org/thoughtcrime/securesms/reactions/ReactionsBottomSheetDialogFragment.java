@@ -1,17 +1,18 @@
 package org.thoughtcrime.securesms.reactions;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
@@ -23,9 +24,9 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiImageView;
 import org.thoughtcrime.securesms.database.model.MessageId;
+import org.thoughtcrime.securesms.util.FullscreenHelper;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
-import org.thoughtcrime.securesms.util.ThemeUtil;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.WindowUtil;
 
 import java.util.Objects;
 
@@ -68,13 +69,19 @@ public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogF
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
-    if (ThemeUtil.isDarkTheme(requireContext())) {
-      setStyle(DialogFragment.STYLE_NORMAL, R.style.Theme_Signal_BottomSheetDialog_Fixed_ReactWithAny);
-    } else {
-      setStyle(DialogFragment.STYLE_NORMAL, R.style.Theme_Signal_Light_BottomSheetDialog_Fixed_ReactWithAny);
-    }
+    setStyle(DialogFragment.STYLE_NORMAL, R.style.Theme_Signal_BottomSheetDialog_Fixed_ReactWithAny);
 
     super.onCreate(savedInstanceState);
+  }
+
+  @Override
+  public @NonNull Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+    Dialog dialog = super.onCreateDialog(savedInstanceState);
+
+    FullscreenHelper.showSystemUI(dialog.getWindow());
+    WindowUtil.setNavigationBarColor(requireContext(), dialog.getWindow(), ContextCompat.getColor(requireContext(), R.color.signal_colorSurface1));
+
+    return dialog;
   }
 
   @Override
@@ -92,7 +99,7 @@ public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogF
     disposables.bindTo(getViewLifecycleOwner());
 
     setUpRecipientsRecyclerView();
-    setUpTabMediator(savedInstanceState);
+    setUpTabMediator(view, savedInstanceState);
 
     MessageId messageId = new MessageId(requireArguments().getLong(ARGS_MESSAGE_ID), requireArguments().getBoolean(ARGS_IS_MMS));
     setUpViewModel(messageId);
@@ -105,21 +112,9 @@ public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogF
     callback.onReactionsDialogDismissed();
   }
 
-  private void setUpTabMediator(@Nullable Bundle savedInstanceState) {
+  private void setUpTabMediator(@NonNull View view, @Nullable Bundle savedInstanceState) {
     if (savedInstanceState == null) {
-      FrameLayout    container       = requireDialog().findViewById(R.id.container);
-      LayoutInflater layoutInflater  = LayoutInflater.from(requireContext());
-      View           statusBarShader = layoutInflater.inflate(R.layout.react_with_any_emoji_status_fade, container, false);
-      TabLayout      emojiTabs       = (TabLayout) layoutInflater.inflate(R.layout.reactions_bottom_sheet_dialog_fragment_tabs, container, false);
-
-      ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewUtil.getStatusBarHeight(container));
-
-      statusBarShader.setLayoutParams(params);
-
-      container.addView(statusBarShader, 0);
-      container.addView(emojiTabs);
-
-      ViewCompat.setOnApplyWindowInsetsListener(container, (v, insets) -> insets.consumeSystemWindowInsets());
+      TabLayout emojiTabs = view.findViewById(R.id.emoji_tabs);
 
       new TabLayoutMediator(emojiTabs, recipientPagerView, (tab, position) -> {
         tab.setCustomView(R.layout.reactions_bottom_sheet_dialog_fragment_emoji_item);

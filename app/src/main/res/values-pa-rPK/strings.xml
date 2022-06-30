@@ -1188,10 +1188,10 @@
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">مسترد کرن لئی تھلے نوں سوائپ کرو</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">کجھ مسئلیاں نوں تہاڈی توجہ دی لوڑھ اے۔</string>
-  <string name="message_details_header__sent">گھلیا گیا</string>
-  <string name="message_details_header__received">موصول ہویا</string>
-  <string name="message_details_header__disappears">غائب ہویا</string>
-  <string name="message_details_header__via"> دے راہیں</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">گھلیا گیا</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">موصول ہویا</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">غائب ہویا</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via"> دے راہیں</string> -->
   <!--message_details_recipient_header-->
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">گھلن اچ ناکام ہویا</string>

@@ -3,6 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.signal.devicetransfer.app">
 
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+
   <application
       android:allowBackup="true"
       android:icon="@mipmap/ic_launcher"

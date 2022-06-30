@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="yes">Ydi.</string>
+  <string name="yes">Iawn</string>
   <string name="no">Na</string>
   <string name="delete">Dileu</string>
   <string name="please_wait">Arhoswch…</string>
@@ -90,8 +90,12 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Fyddwch chi ddim yn derbyn negeseuon na diweddariadau gan y grŵp hwn mwyach, ac ni fydd aelodau\'n gallu eich ychwanegu at y grŵp hwn eto.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Ni fydd aelodau\'r grŵp yn gallu eich ychwanegu at y grŵp hwn eto.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Bydd aelodau’r grŵp yn gallu eich ychwanegu at y grŵp hwn eto.</string>
+  <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Bydd modd i chi negesu a galw\'ch gilydd a bydd eich enw a\'ch llun yn cael eu rhannu gyda nhw.</string>
+  <!--Text that is shown when unblocking an SMS contact-->
+  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Byddwch chi\'n gallu negesu eich gilydd.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Ni fydd pobl sydd wedi\'u rhwystro\'n gallu eich ffonio nac anfon negeseuon atoch.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Ni fydd pobl sydd wedi\'u rhwystro\'n gallu anfon negeseuon atoch.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Rhwystro derbyn diweddariadau a newyddion Signal.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -218,8 +222,10 @@ Anfon neges heb ei diogelu?</string>
   <string name="ConversationActivity_calls_not_supported">Galwadau heb eu cefnogi</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Mae\'n ymddangos nad yw\'r ddyfais hon yn cefnogi deialu.</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS anniogel</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
   <string name="ConversationActivity_transport_insecure_mms">MMS anniogel</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_signal">Neges Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Gadewch i ni newid i Signal %1$s</string>
   <string name="ConversationActivity_specify_recipient">Dewiswch gysylltiad</string>
   <string name="ConversationActivity_unblock">Dadrwystro</string>
@@ -362,7 +368,7 @@ Anfon neges heb ei diogelu?</string>
     <item quantity="many">%d sgwrs wedi\'u harchifo</item>
     <item quantity="other">%d sgwrs wedi\'u harchifo</item>
   </plurals>
-  <string name="ConversationListFragment_undo">DADWNEUD</string>
+  <string name="ConversationListFragment_undo">Dadwneud</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Symudwyd sgwrs i\'r blwch derbyn</item>
     <item quantity="two">Symudwyd %d sgwrs i\'r blwch derbyn</item>
@@ -726,8 +732,7 @@ Anfon neges heb ei diogelu?</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Mae angen y maes yma.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Methodd creu grŵp.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Ceisiwch eto</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Rydych wedi dewis cyswllt nad yw\'n cynnal grwpiau Signal, felly bydd y grŵp hwn yn MMS.</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Dim ond i chi y bydd enwau a lluniau grŵp MMS cyfaddas yn weladwy.</string>
+  <!--Displayed when adding group details to an MMS Group-->
   <string name="AddGroupDetailsFragment__remove">Tynnu</string>
   <string name="AddGroupDetailsFragment__sms_contact">Cyswllt SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Tynnu %1$s o\'r grŵp hwn?</string>
@@ -812,6 +817,9 @@ Anfon neges heb ei diogelu?</string>
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">Defnyddio hysbysiadau cyfaddas</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Sain hysbysu</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Dirgrynu</string>
+  <!--Button text for customizing notification options-->
+  <string name="CustomNotificationsDialogFragment__customize">Cyfaddasu</string>
+  <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Newid sain a dirgryniad</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Gosodiadau galw</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Tôn canu</string>
   <string name="CustomNotificationsDialogFragment__enabled">Galluogwyd</string>
@@ -996,6 +1004,7 @@ Anfon neges heb ei diogelu?</string>
   <string name="NotificationBarManager__establishing_signal_call">Yn creu galwad Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Yn derbyn galwad Signal</string>
   <string name="NotificationBarManager__incoming_signal_group_call">Yn derbyn galwad grŵp Signal</string>
+  <!--Temporary notification shown when starting the calling service-->
   <string name="NotificationBarManager__stopping_signal_call_service">Atal gwasanaeth galw Signal</string>
   <string name="NotificationBarManager__decline_call">Gwrthod galwad</string>
   <string name="NotificationBarManager__answer_call">Ateb galwad</string>
@@ -1263,13 +1272,17 @@ Anfon neges heb ei diogelu?</string>
   <string name="MessageRequestBottomView_block">Rhwystro</string>
   <string name="MessageRequestBottomView_unblock">Dadrwystro</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Gadael i %1$s eich negesu a rhannu eich enw a llun gyda nhw? Byddan nhw ddim yn gwybod eich bod wedi gweld eich neges nes i ch dderbyn.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Gadael i %1$s eich negesu a rhannu eich enw a llun gyda nhw? Byddan nhw ddim yn derbyn unrhyw negeseuon nes i chi eu dadrwystro.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Gadael i %1$s anfon neges atoch? Fyddwch chi ddim yn derbyn unrhyw negeseuon nes i chi eu dadrwystro.</string>
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Yn derbyn diweddariadau a newyddion gan %1$s? Fyddwch chi ddim yn derbyn diweddariadau nes i chi eu ddadrwystro nhw. </string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Parhau â\'ch sgwrs gyda\'r grŵp hwn a rhannu eich enw a\'ch llun gyda\'i aelodau?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Uwchraddiwch y grŵp hwn i agor nodweddion newydd fel @mentions a gweinyddwyr. Bydd aelodau nad ydyn nhw wedi rhannu eu henw na\'u llun yn y grŵp hwn yn cael gwahoddiad i ymuno.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Nid oes modd defnyddio\'r Hen Grŵp hwn mwyach oherwydd ei fod yn rhy fawr. Uchafswm maint y grŵp yw %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Parhewch â\'ch sgwrs gyda %1$s a rhannwch eich enw a\'ch llun gyda nhw?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ymuno â\'r grŵp hwn a rhannu eich enw a llun gyda\'i aelodau? Byddan nhw ddim yn gwybod eich bod wedi gweld eu negeseuon nes eich bod wedi derbyn.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Ymuno â\'r grŵp hwn a rhannu eich enw a\'ch llun gyda\'i aelodau? Fyddwch chi ddim yn gweld eu negeseuon nes i chi dderbyn.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ymuno â\'r grŵp hwn? Ni fyddant yn gwybod eich bod wedi gweld eu negeseuon nes i chi dderbyn.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Dadrwystro\'r grŵp a rhannu eich enw a llun gyda\'i aelodau? Fyddwch chi ddim yn derbyn unrhyw negeseuon nes i chi eu dadrwystro.</string>
   <string name="MessageRequestProfileView_view">Golwg</string>
@@ -1283,7 +1296,19 @@ Anfon neges heb ei diogelu?</string>
     <item quantity="other">%1$d aelod</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d aelod (%2$s)</item>
+    <item quantity="two">%1$d aelod (%2$s)</item>
+    <item quantity="many">%1$d aelod (%2$s)</item>
+    <item quantity="other">%1$d aelod (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="one">+%1$d wedi\'i wahodd</item>
+    <item quantity="two">+%1$d wedi\'u gwahodd</item>
+    <item quantity="many">+%1$d wedi\'u gwahodd</item>
+    <item quantity="other">+%1$d wedi\'i wahodd</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d grŵp ychwanegol</item>
     <item quantity="two">%d grŵp ychwanegol</item>
@@ -1411,6 +1436,14 @@ Anfon neges heb ei diogelu?</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Mae\'r grŵp yn rhy fawr i ffonio\'r cyfranogwyr.</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Yn Ailgysylltu…</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">Gwrthodwyd caniatâd blueooth</string>
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Galluogwch ganiatâ \"Dyfeisiau gerllaw\" i ddefnyddio bluetooth yn ystod galwad.</string>
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Agor y gosodiadau</string>
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">Nid nawr</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Galwad Signal</string>
   <string name="WebRtcCallView__signal_video_call">Galwad Fideo Signal</string>
@@ -1667,6 +1700,12 @@ Anfon neges heb ei diogelu?</string>
   <string name="ThreadRecord_file">Ffeil</string>
   <string name="ThreadRecord_video">Fideo</string>
   <string name="ThreadRecord_chat_session_refreshed">Adnewyddwyd y sesiwn sgwrsio</string>
+  <!--Displayed in the notification when the user is sent a gift-->
+  <string name="ThreadRecord__you_received_a_gift">Rydych wedi derbyn anrheg.</string>
+  <!--Displayed in the notification when the user sends a gift-->
+  <string name="ThreadRecord__you_sent_a_gift">Rydych wedi anfon anrheg</string>
+  <!--Displayed in the notification when the user has opened a received gift-->
+  <string name="ThreadRecord__you_redeemed_a_gift_badge">Rydych wedi adbrynu bathodyn anrheg</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Diweddariad Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Mae fersiwn newydd o Signal ar gael. Tapiwch i ddiweddaru</string>
@@ -1797,6 +1836,9 @@ Anfon neges heb ei diogelu?</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Chwilio</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Chwilio am sgyrsiau, cysylltiadau a negeseuon</string>
+  <!--Material3 Search Toolbar-->
+  <string name="Material3SearchToolbar__close">Cau</string>
+  <string name="Material3SearchToolbar__clear">Clirio</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Llwybr byr annilys</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -1804,6 +1846,8 @@ Anfon neges heb ei diogelu?</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Neges newydd</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Cais am neges</string>
   <string name="SingleRecipientNotificationBuilder_you">Chi</string>
+  <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">Stori • %1$s</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Chwarae fideo</string>
   <string name="ThumbnailView_Has_a_caption_description">Mae ganddo gapsiwn</string>
@@ -1953,6 +1997,8 @@ Anfon neges heb ei diogelu?</string>
   <string name="QuoteView_your_story">Chi · Stori</string>
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">Ddim ar gael bellach</string>
+  <!--Label for quoted gift-->
+  <string name="QuoteView__gift">Rhodd</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Sgrolio i\'r gwaelod</string>
   <!--BubbleOptOutTooltip-->
@@ -2067,8 +2113,8 @@ Anfon neges heb ei diogelu?</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Dim cyfrwng</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__view">GWELD</string>
-  <string name="message_recipients_list_item__resend">AIL ANFON</string>
+  <string name="message_recipients_list_item__view">Golwg</string>
+  <string name="message_recipients_list_item__resend">Ailanfon</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
   <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Wedi copïo stamp amser a anfonwyd i\'r clipfwrdd.</string>
   <!--Displayed when there are no outgoing stories-->
@@ -2140,10 +2186,10 @@ Anfon neges heb ei diogelu?</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Llusgo i lawr i wrthod</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Mae angen eich sylw ar rai materion.</string>
-  <string name="message_details_header__sent">Anfonwyd:</string>
-  <string name="message_details_header__received">Derbyniwyd:</string>
-  <string name="message_details_header__disappears">Yn diflannu:</string>
-  <string name="message_details_header__via">Trwy:</string>
+  <string name="message_details_header_sent">Anfonwyd</string>
+  <string name="message_details_header_received">Derbyniwyd</string>
+  <string name="message_details_header_disappears">Yn diflannu</string>
+  <string name="message_details_header_via">Drwy</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Yn Disgwyl</string>
   <string name="message_details_recipient_header__sent_to">Anfonwyd at</string>
@@ -2186,7 +2232,7 @@ Anfon neges heb ei diogelu?</string>
   <string name="HelpFragment__debug_log">Cofnod Dadfygio:</string>
   <string name="HelpFragment__could_not_upload_logs">Methu llwytho\'r cofnod</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Byddwch mor ddisgrifiadol â phosibl i\'n helpu i ddeall y mater yma.</string>
-  <string-array name="HelpFragment__categories_3">
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
     <item>\-\- Dewiswch opsiwn \-\-</item>
     <item>Mae Rhywbeth Wedi Torri</item>
     <item>Cais Nodwedd</item>
@@ -2195,7 +2241,7 @@ Anfon neges heb ei diogelu?</string>
     <item>Arall</item>
     <item>Taliadau (MobileCoin)</item>
     <item>Rhoddion (Cefnogwyrwyr a Signal Boost)</item>
-  </string-array>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Y Neges hon</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Defnyddiwyd yn ddiweddar</string>
@@ -2269,6 +2315,8 @@ Anfon neges heb ei diogelu?</string>
   <string name="preferences__led_color">Lliw\'r LED</string>
   <string name="preferences__led_color_unknown">Anhysbys</string>
   <string name="preferences__pref_led_blink_title">Patrwm fflachio\'r LED</string>
+  <string name="preferences__customize">Cyfaddasu</string>
+  <string name="preferences__change_sound_and_vibration">Newid sain a dirgryniad</string>
   <string name="preferences__sound">Sain</string>
   <string name="preferences__silent">Tawel</string>
   <string name="preferences__default">Rhagosodedig</string>
@@ -3296,6 +3344,7 @@ Anfon neges heb ei diogelu?</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Ansawdd llun</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">Gwahoddwch eich ffrindiau!</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">Wedi copïo ID y tanysgrifiwr i\'r clipfwrdd</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Cyfrif</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Bydd yn gofyn i chi yn llai aml dros amser</string>
@@ -3451,6 +3500,14 @@ Anfon neges heb ei diogelu?</string>
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Dewisydd ymyl uchaf</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Dewisydd ymyl gwaelod</string>
+  <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate_to_signal">Cyfrannu at Signal</string>
+  <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Mae Signal yn cael ei bweru gan bobl fel chi. Cyfrannwch yn fisol a derbyniwch fathodyn.</string>
+  <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate">Cyfraniad</string>
+  <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_not_now">Nid nawr</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">Cyfaddasu ymatebion</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Tapio i amnewid emoji</string>
@@ -3458,11 +3515,6 @@ Anfon neges heb ei diogelu?</string>
   <string name="EditReactionsFragment_save">Cadw</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Yn dewis lliw yn awtomatig sy\'n cyfateb i\'r papur wal</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Llusgo i newid cyfeiriad y graddiant</string>
-  <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">Lliwiau Sgwrsio Newydd</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Rydym wedi diwygio\'n lliwiau sgwrsio i roi mwy o ddewis i chi a gwneud sgyrsiau yn haws eu darllen.</string>
-  <string name="ChatColorsMegaphone__appearance">Golwg</string>
-  <string name="ChatColorsMegaphone__not_now">Nid nawr</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Ychwanegu llun proffil</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Dewiswch olwg a lliw neu cyfaddaswch eich llythrennau cyntaf.</string>
@@ -3691,10 +3743,13 @@ Anfon neges heb ei diogelu?</string>
   <string name="BecomeASustainerFragment__get_badges">Cael bathodynnau ar gyfer eich proffil trwy gefnogi Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Mae Signal yn gorff dim-er-elw heb unrhyw hysbysebwyr na buddsoddwyr, sy\'n cael ei gefnogi dim ond gan bobl fel chi.</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">Rhowch rodd yn fisol</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">Rhagor</string>
   <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">Derbynebau</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">Fy nhanysgrifiad</string>
   <string name="ManageDonationsFragment__manage_subscription">Rheoli tanysgrifiad</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Derbyniadau Rhodd</string>
@@ -3702,9 +3757,12 @@ Anfon neges heb ei diogelu?</string>
   <string name="ManageDonationsFragment__subscription_faq">Cwestiynau Cyffredin Tanysgrifio</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Gwall wrth gael tanysgrifiad.</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">Ffyrdd eraill o roi</string>
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">Rhowch fathodyn</string>
   <string name="BoostFragment__give_signal_a_boost">Rhowch Hwb i Signal</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Gwnewch gyfraniad untro ac ennill bathodyn Boost am %1$d diwrnod.</string>
   <string name="Boost__enter_custom_amount">Rhowch Swm Penodol</string>
   <string name="Boost__one_time_contribution">Cyfraniad unwaith</string>
   <string name="MySupportPreference__add_a_signal_boost">Ychwanegu Hwb Signal</string>
@@ -3730,8 +3788,11 @@ Anfon neges heb ei diogelu?</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Cafodd eich rhodd fisol cylchol ei diddymu\'n awtomatig oherwydd eich bod yn anweithredol am gyfnod rhy hir. Nid yw eich bathodyn %1$s bellach yn weladwy ar eich proffil.</string>
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Cafodd eich rhodd misol cylchol ei diddymu oherwydd nad oeddem yn gallu prosesu eich taliad. Nid yw eich bathodyn bellach yn weladwy ar eich proffil.</string>
+  <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Gallwch barhau i ddefnyddio Signal ond i gefnogi\'r ap ac ail-greu\'ch bathodyn, adnewyddwch nawr.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Adnewyddu tanysgrifiad</string>
+  <!--Button label to send user to Google Pay website-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Ewch i Google Pay</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Methu â phrosesu taliad tanysgrifiad</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Rydym yn cael trafferth casglu eich taliad Signal Sustainer. Gwnewch yn siŵr fod eich dull talu yn gyfredol. Os nad yw, diweddarwch ef yn Google Pay. Bydd Signal yn ceisio prosesu\'r taliad eto ymhen ychydig ddyddiau.</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Peidio dangos eto</string>
@@ -3748,9 +3809,13 @@ Anfon neges heb ei diogelu?</string>
   <string name="DonationsErrors__still_processing">Yn dal i brosesu</string>
   <string name="DonationsErrors__couldnt_add_badge">Methu ychwanegu bathodyn</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__failed_to_validate_badge">Wedi methu â dilysu bathodyn</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__could_not_validate">Wedi methu â dilysu ymateb y gweinydd. Cysylltwch â chefnogaeth.</string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__failed_to_send_gift_badge">Wedi methu ag anfon bathodyn rhodd</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__could_not_send_gift_badge">Wedi methu anfon bathodyn rhodd. Cysylltwch â chefnogaeth.</string>
   <string name="DonationsErrors__your_badge_could_not">Nid oedd modd ychwanegu eich bathodyn at eich cyfrif, ond efallai y codwyd tâl arnoch. Cysylltwch â\'n cefnogaeth.</string>
   <string name="DonationsErrors__your_payment_is_still">Mae\'ch taliad yn dal yn prosesu. Gall hyn gymryd rhai munudau yn dibynnu ar eich cysylltiad.</string>
   <string name="DonationsErrors__google_pay_unavailable">Nid yw Google Pay ar gael</string>
@@ -3760,13 +3825,31 @@ Anfon neges heb ei diogelu?</string>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Nid yw\'ch dyfais yn cefnogi Google Pay, felly nid ydych yn gallu tanysgrifio i ennill bathodyn. Gallwch barhau i gefnogi Signal trwy roi rhodd ar ein gwefan.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Gwall rhwydwaith. Gwiriwch eich cysylltiad a cheisio eto.</string>
   <string name="NetworkFailure__retry">Ceisio eto</string>
+  <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__recipient_verification_failed">Methodd dilysu\'r derbynnydd.</string>
+  <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">Nid yw targed yn cefnogi rhoddion.</string>
+  <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__could_not_verify_recipient">Methu â dilysu\'r derbynnydd.</string>
+  <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Gwiriwch eich cysylltiad rhwydwaith a cheisiwch eto.</string>
   <!--Gift message view title-->
+  <string name="GiftMessageView__gift_badge">Bathodyn rhodd</string>
   <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="one">Yn para am %1$d mis</item>
+    <item quantity="two">Yn para am %1$d mis</item>
+    <item quantity="many">Yn para am %1$d mis</item>
+    <item quantity="other">Yn para am %1$d mis</item>
+  </plurals>
   <!--Gift badge redeem action label-->
+  <string name="GiftMessageView__redeem">Cyfnewid</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">Golwg</string>
   <!--Gift badge redeeming action label-->
+  <string name="GiftMessageView__redeeming">Yn cyfnewid…</string>
   <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">Yn cyfnewid</string>
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Rhowch gynnig ar ddull talu arall neu cysylltwch â\'ch banc am ragor o wybodaeth.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3938,6 +4021,7 @@ Anfon neges heb ei diogelu?</string>
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">Untro</string>
   <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">Rhodd</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Hybu</string>
   <!--Donation receipts details title-->
@@ -3958,6 +4042,8 @@ Anfon neges heb ei diogelu?</string>
   <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Diolch am gefnogi Signal. Mae eich cyfraniad yn helpu i danio\'r genhadaeth o ddatblygu technoleg preifatrwydd cod agored sy\'n diogelu siarad yn rhydd ac yn galluogi cyfathrebu byd-eang diogel i filiynau o gwmpas y byd. Os ydych yn breswylydd yn yr Unol Daleithiau, cadwch y dderbynneb hon ar gyfer eich cofnodion treth. Mae Signal Technology Foundation yn sefydliad dim-er-elw sydd wedi\'i eithrio rhag treth yn yr Unol Daleithiau o dan adran 501c3 o\'r Cod Refeniw Mewnol. Ein ID Treth Ffederal yw 82-4506840.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
+  <!--Donation reciepts screen empty state title-->
+  <string name="DonationReceiptListFragment__no_receipts">Dim derbynebau</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Sgyrsiau</string>
@@ -3985,8 +4071,9 @@ Anfon neges heb ei diogelu?</string>
   <string name="StoriesLandingItem__sending">Yn anfon…</string>
   <!--Label when multiple stories are pending sending-->
   <string name="StoriesLandingItem__sending_d">Yn anfon %1$d…</string>
-  <!--Label when a story fails to send-->
+  <!--Label when a story fails to send due to networking-->
   <string name="StoriesLandingItem__send_failed">Methodd yr anfon</string>
+  <!--Label when a story fails to send due to identity mismatch-->
   <!--Status label when a story fails to send indicating user action to retry-->
   <string name="StoriesLandingItem__tap_to_retry">Tapiwch i roi cynnig arall arni</string>
   <!--Title of dialog confirming decision to hide a story-->
@@ -4014,6 +4101,7 @@ Anfon neges heb ei diogelu?</string>
   <string name="MyStories__delete_story">Dileu\'r stori?</string>
   <!--Message of dialog to confirm deletion of story-->
   <string name="MyStories__this_story_will_be_deleted">Bydd y stori hon yn cael ei dileu i chi a phawb a\'i derbyniodd.</string>
+  <!--Toast shown when story media cannot be saved-->
   <!--Displayed at bottom of story viewer when current item has views-->
   <plurals name="StoryViewerFragment__d_views">
     <item quantity="one">%1$d wedi\'i darllen</item>
@@ -4036,6 +4124,8 @@ Anfon neges heb ei diogelu?</string>
   <string name="StoryViewerPageFragment__s_to_s">%1$s i %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Ymateb</string>
+  <!--Label for the reply button in story viewer, which will launch the group story replies bottom sheet.-->
+  <string name="StoryViewerPageFragment__reply_to_group">Ateb i\'r grŵp</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Neb wedi\'i darllen eto</string>
   <!--Displayed when a story has no replies yet-->
@@ -4061,6 +4151,7 @@ Anfon neges heb ei diogelu?</string>
   <!--Story settings private stories heading-->
   <string name="StorySettingsFragment__private_stories">Straeon preifat</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Dim ond y bobl rydych chi\'n eu hychwanegu atyn nhw all weld straeon preifat. Dim ond chi all weld enw\'r stori.</string>
   <!--Option label for creating a new private story-->
   <string name="StorySettingsFragment__new_private_story">Stori breifat newydd</string>
   <!--Page title for My Story options-->
@@ -4085,7 +4176,7 @@ Anfon neges heb ei diogelu?</string>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Cuddiwch eich stori rhag pobl benodol. Trwy ragosodiad, mae eich stori yn cael ei rhannu gyda\'ch %1$s</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <string name="MyStorySettingsFragment__signal_connections">Cysylltiadau Signal.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">Cysylltiadau Signal.</string> -->
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
   <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Mae Signal Connections</strong> yn bobl rydych chi wedi dewis ymddiried ynddynt, naill ai trwy:</string>
   <!--Signal connections sheet bullet point 1-->
@@ -4134,8 +4225,9 @@ Anfon neges heb ei diogelu?</string>
   <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Rhannwch ddolen gyda ddarllenwyr eich stori</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Chwilio</string>
+  <!--Toast shown when an unexpected error occurs while sending a text story-->
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <string name="HideStoryFromFragment__hide_story_from">Cuddio stori rhag…</string>
+  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">Cuddio stori rhag…</string> -->
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Wedi Gorffen</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4196,9 +4288,7 @@ Anfon neges heb ei diogelu?</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
   <string name="StoryViewerPageFragment__see_more">… Gweld rhagor</string>
   <!--Displayed in toast after sending a direct reply-->
-  <string name="StoryDirectReplyDialogFragment__reply_sent">Ateb wedi ei anfon</string>
-  <!--Displayed in toast after sending a direct reaction-->
-  <string name="StoryDirectReplyDialogFragment__reaction_sent">Anfonwyd ateb</string>
+  <string name="StoryDirectReplyDialogFragment__sending_reply">Wrthi\'n anfon ateb…</string>
   <!--Displayed in the viewer when a story is no longer available-->
   <string name="StorySlateView__this_story_is_no_longer_available">Nid yw\'r stori hon ar gael bellach.</string>
   <!--Displayed in the viewer when the network is not available-->
@@ -4210,7 +4300,9 @@ Anfon neges heb ei diogelu?</string>
   <!--Toasted when the user external share to a text story fails-->
   <string name="TextStoryPostCreationFragment__failed_to_send_story">Wedi methu ag anfon y stori</string>
   <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">Gweld stori</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">Gweld llun proffil</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Diffodd Osgoi Sensoriaeth</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -4229,36 +4321,93 @@ Anfon neges heb ei diogelu?</string>
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Gweld rhagor</string>
   <string name="StoriesLinkPopup__visit_link">Ymweld â\'r ddolen</string>
+  <!--Duration and price information-->
   <!--Tagline for gift row items-->
+  <string name="GiftRowItem__send_a_gift_badge">Anfon bathodyn rhodd</string>
   <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">Rhoi Bathodyn</string>
   <!--Description text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">Rhowch fathodyn i rywun trwy gyfrannu at Signal yn eu henw. Byddan nhw\'n cael bathodyn i\'w ddangos ar eu llun proffil.</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Nesaf</string>
   <!--Title text on choose recipient page for badge gifting-->
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Dewiswch dderbynnydd</string>
   <!--Title text on confirm gift page-->
+  <string name="GiftFlowConfirmationFragment__confirm_gift">Cadarnhau rhodd</string>
   <!--Heading text specifying who the gift will be sent to-->
   <string name="GiftFlowConfirmationFragment__send_to">Anfon at</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Bydd eich rhodd yn cael ei anfon mewn neges 1 ar 1 at y derbynnydd. Ychwanegwch eich neges eich hun isod.</string>
   <!--Text explaining that this gift is a one time donation-->
+  <string name="GiftFlowConfirmationFragment__one_time_donation">Rhowch rodd unwaith yn unig</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Ychwanegu neges</string>
+  <!--Displayed in the dialog while verifying the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__verifying_recipient">Wrthi\'n gwirio\'r derbynnydd…</string>
   <!--Title for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">Mae %1$s wedi anfon rhodd atoch</string>
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Diolch am eich cefnogaeth!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Rydych chi wedi derbyn bathodyn rhodd gan %1$s! Helpwch Signal i adeiladu ymwybyddiaeth trwy ddangos y bathodyn hwn ar eich proffil.</string>
   <!--Description for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Rydych chi wedi rhoi bathodyn i %1$s. Pan fyddan nhw\'n ei dderbyn, byddan nhw\'n cael dewis i ddangos neu guddio eu bathodyn.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
+  <string name="ViewReceivedGiftSheet__redeem">Cyfnewid</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">Nid nawr</string>
   <!--Dialog text while redeeming a gift-->
+  <string name="ViewReceivedGiftSheet__redeeming_gift">Cyfnewid rhodd…</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <string name="ConversationFragment__you_can_redeem_your_badge_later">Gallwch gyfnewid eich bathodyn yn ddiweddarach.</string>
   <!--Description text in gift thanks sheet-->
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Rydych chi wedi rhoi bathodyn i %1$s. Pan fyddan nhw\'n ei dderbyn, byddan nhw\'n cael dewis i ddangos neu guddio eu bathodyn.</string>
   <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Mae eich bathodyn rhodd wedi dod i ben</string>
   <!--Expired gift sheet top description text-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Mae eich bathodyn rhodd wedi dod i ben, ac nid yw bellach yn weladwy i eraill ar eich proffil.</string>
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">Er mwyn parhau i gefnogi technoleg sydd wedi\'i hadeiladu ar eich cyfer chi, ystyriwch ddod yn Gefnogwr misol.</string>
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Rhowch rodd yn fisol</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Nid nawr</string>
+  <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Stori Breifat · %1$d darllenydd</item>
+    <item quantity="two">Stori Breifat · %1$d darllenydd</item>
+    <item quantity="many">Stori Breifat · %1$d darllenydd</item>
+    <item quantity="other">Stori Breifat · %1$d darllenydd</item>
+  </plurals>
+  <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Stori Grŵp · %1$d darllenydd</item>
+    <item quantity="two">Stori Grŵp · %1$d darllenydd</item>
+    <item quantity="many">Stori Grŵp · %1$d darllenydd</item>
+    <item quantity="other">Stori Grŵp · %1$d darllenydd</item>
+  </plurals>
+  <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">%1$d diwrnod yn weddill</item>
+    <item quantity="two">%1$d diwrnod yn weddill</item>
+    <item quantity="many">%1$d diwrnod yn weddill</item>
+    <item quantity="other">%1$d diwrnod yn weddill</item>
+  </plurals>
+  <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">%1$d awr yn weddill</item>
+    <item quantity="two">%1$d awr yn weddill</item>
+    <item quantity="many">%1$d awr yn weddill</item>
+    <item quantity="other">%1$d awr yn weddill</item>
+  </plurals>
+  <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">%1$d munud yn weddill</item>
+    <item quantity="two">%1$d munud yn weddill</item>
+    <item quantity="many">%1$d munud yn weddill</item>
+    <item quantity="other">%1$d munud yn weddill</item>
+  </plurals>
+  <!--Gift expiry expired-->
+  <string name="Gifts__expired">Daeth i Ben</string>
   <!--EOF-->
 </resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" android:enterFadeDuration="250" android:exitFadeDuration="250">
+    <item android:state_checked="true" android:state_enabled="false">
+        <layer-list>
+            <item>
+                <shape android:shape="oval">
+                    <solid android:color="@color/signal_colorOutline" />
+                    <stroke android:width="1.5dp" android:color="@color/signal_colorOnPrimary" />
+                </shape>
+            </item>
+            <item android:drawable="@drawable/ic_x_error_inverse_16" android:top="2dp" android:bottom="2dp" android:left="2dp" android:right="2dp"/>
+        </layer-list>
+    </item>
+    <item android:state_checked="true">
+        <layer-list>
+            <item>
+                <shape android:shape="oval">
+                    <solid android:color="@color/signal_colorErrorContainerInverse" />
+                </shape>
+            </item>
+            <item android:drawable="@drawable/ic_x_error_inverse_16" android:top="2dp" android:bottom="2dp" android:left="2dp" android:right="2dp"/>
+        </layer-list>
+    </item>
+    <item android:state_checked="false">
+        <shape android:shape="oval">
+            <stroke android:width="1.5dp" android:color="@color/signal_colorOutline" />
+        </shape>
+    </item>
+</selector>

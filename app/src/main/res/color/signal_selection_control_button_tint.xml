@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Disabled -->
+    <item android:alpha="@dimen/material_emphasis_disabled" android:color="@color/signal_colorOutline" android:state_enabled="false"/>
+
+    <!-- Checked -->
+    <item android:color="@color/signal_colorPrimary" android:state_checked="true"/>
+
+    <!-- Unchecked -->
+    <item android:color="@color/signal_colorOutline" android:state_checked="false"/>
+</selector>

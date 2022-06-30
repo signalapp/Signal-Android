@@ -15,7 +15,8 @@ data class StoryViewerPlaybackState(
   val isFragmentResumed: Boolean = false,
   val isDisplayingLinkPreviewTooltip: Boolean = false,
   val isDisplayingReactionAnimation: Boolean = false,
-  val isRunningSharedElementAnimation: Boolean = false
+  val isRunningSharedElementAnimation: Boolean = false,
+  val isDisplayingFirstTimeNavigation: Boolean = false
 ) {
   val hideChromeImmediate: Boolean = isRunningSharedElementAnimation
 
@@ -36,5 +37,6 @@ data class StoryViewerPlaybackState(
     !isFragmentResumed ||
     isDisplayingLinkPreviewTooltip ||
     isDisplayingReactionAnimation ||
-    isRunningSharedElementAnimation
+    isRunningSharedElementAnimation ||
+    isDisplayingFirstTimeNavigation
 }

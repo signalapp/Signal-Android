@@ -88,6 +88,9 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
+    final TextView libsignalVersion = findViewById(R.id.libsignal_version);
+    libsignalVersion.setText(BuildConfig.LIBSIGNAL_VERSION);
+
     EventBus.getDefault().register(this);
   }
 

@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.zkgroup.profiles.PniCredential;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.badges.BadgeRepository;
@@ -33,6 +34,7 @@ import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
 import org.whispersystems.signalservice.internal.ServiceResponse;
+import org.whispersystems.signalservice.internal.ServiceResponseProcessor;
 
 import java.io.IOException;
 import java.util.Comparator;
@@ -134,6 +136,17 @@ public class RefreshOwnProfileJob extends BaseJob {
     if (profileKeyCredential.isPresent()) {
       setProfileKeyCredential(self, ProfileKeyUtil.getSelfProfileKey(), profileKeyCredential.get());
     }
+
+    if (SignalStore.account().getAci() != null) {
+      PniCredential pniCredential = ApplicationDependencies.getProfileService()
+                                                           .getPniProfileCredential(SignalStore.account().requireAci(),
+                                                                                    SignalStore.account().requirePni(),
+                                                                                    ProfileKeyUtil.getSelfProfileKey())
+                                                           .map(ServiceResponseProcessor.DefaultProcessor::new)
+                                                           .blockingGet()
+                                                           .getResultOrThrow();
+      SignalStore.account().setPniCredential(pniCredential);
+    }
   }
 
   private void setProfileKeyCredential(@NonNull Recipient recipient,
@@ -234,7 +247,7 @@ public class RefreshOwnProfileJob extends BaseJob {
     }
   }
 
-  private void setProfileBadges(@Nullable List<SignalServiceProfile.Badge> badges) {
+  private void setProfileBadges(@Nullable List<SignalServiceProfile.Badge> badges) throws IOException {
     if (badges == null) {
       return;
     }
@@ -286,6 +299,10 @@ public class RefreshOwnProfileJob extends BaseJob {
               Log.d(TAG, "Unexpected expiry due to payment failure.", true);
               isDueToPaymentFailure = true;
             }
+
+            if (activeSubscription.getChargeFailure() != null) {
+              Log.d(TAG, "Active payment contains a charge failure: " + activeSubscription.getChargeFailure().getCode(), true);
+            }
           }
         }
 
@@ -307,6 +324,16 @@ public class RefreshOwnProfileJob extends BaseJob {
 
       Log.d(TAG, "Marking boost badge as expired, should notify next time the conversation list is open.", true);
       SignalStore.donationsValues().setExpiredBadge(mostRecentExpiration);
+    } else {
+      Badge badge = SignalStore.donationsValues().getExpiredBadge();
+
+      if (badge != null && badge.isSubscription() && remoteHasSubscriptionBadges) {
+        Log.d(TAG, "Remote has subscription badges. Clearing local expired subscription badge.", true);
+        SignalStore.donationsValues().setExpiredBadge(null);
+      } else if (badge != null && badge.isBoost() && remoteHasBoostBadges) {
+        Log.d(TAG, "Remote has boost badges. Clearing local expired boost badge.", true);
+        SignalStore.donationsValues().setExpiredBadge(null);
+      }
     }
 
     if (!remoteHasGiftBadges && localHasGiftBadges) {
@@ -320,6 +347,9 @@ public class RefreshOwnProfileJob extends BaseJob {
 
       Log.d(TAG, "Marking gift badge as expired, should notify next time the manage donations screen is open.", true);
       SignalStore.donationsValues().setExpiredGiftBadge(mostRecentExpiration);
+    } else if (remoteHasGiftBadges) {
+      Log.d(TAG, "We have remote gift badges. Clearing local expired gift badge.", true);
+      SignalStore.donationsValues().setExpiredGiftBadge(null);
     }
 
     boolean userHasVisibleBadges   = badges.stream().anyMatch(SignalServiceProfile.Badge::isVisible);
@@ -334,7 +364,8 @@ public class RefreshOwnProfileJob extends BaseJob {
                  " visible.", true);
 
       BadgeRepository badgeRepository = new BadgeRepository(context);
-      badgeRepository.setVisibilityForAllBadges(displayBadgesOnProfile, appBadges).blockingSubscribe();
+      List<Badge> updatedBadges = badgeRepository.setVisibilityForAllBadgesSync(displayBadgesOnProfile, appBadges);
+      SignalDatabase.recipients().setBadges(Recipient.self().getId(), updatedBadges);
     } else {
       SignalDatabase.recipients().setBadges(Recipient.self().getId(), appBadges);
     }

@@ -569,8 +569,8 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">ଏହି କ୍ଷେତ୍ରଟି ଆବଶ୍ୟକୀୟ ଅଟେ।</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">ଗୋଷ୍ଠୀ ସୃଷ୍ଟି ବିଫଳ।</string>
   <string name="AddGroupDetailsFragment__try_again_later">କିଛି ସମୟ ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">ଆପଣ ଏକ ସମ୍ପର୍କ ଚୟନ କରିଛନ୍ତି ଯାହା Signal ଗୋଷ୍ଠୀକୁ ସମର୍ଥନ କରେ ନାହିଁ, ତେଣୁ ଏହି ଗୋଷ୍ଠୀଟି MMS ହେବ</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">କଷ୍ଟମ୍ MMS ଗୋଷ୍ଠୀ ନାମ ଏବଂ ଛବି କେବଳ ଆପଣଙ୍କୁ ଦୃଶ୍ୟମାନ ହେବ</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">ଆପଣ ଏକ ସମ୍ପର୍କ ଚୟନ କରିଛନ୍ତି ଯାହା Signal ଗୋଷ୍ଠୀକୁ ସମର୍ଥନ କରେ ନାହିଁ, ତେଣୁ ଏହି ଗୋଷ୍ଠୀଟି MMS ହେବ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">କଷ୍ଟମ୍ MMS ଗୋଷ୍ଠୀ ନାମ ଏବଂ ଛବି କେବଳ ଆପଣଙ୍କୁ ଦୃଶ୍ୟମାନ ହେବ</string> -->
   <string name="AddGroupDetailsFragment__remove">ଅପସାରଣ କରନ୍ତୁ</string>
   <string name="AddGroupDetailsFragment__sms_contact">ଯୋଗାଯୋଗକୁ ଏସ୍ଏମ୍ଏସ୍ କରନ୍ତୁ</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">ଏହି ଗୋଷ୍ଠୀରୁ %1$sକୁ ହଟାନ୍ତୁ ?</string>
@@ -1043,10 +1043,6 @@
   <plurals name="MessageRequestProfileView_members">
     <item quantity="one">%1$d ସଦସ୍ୟ</item>
     <item quantity="other">%1$dଜଣ ସଦସ୍ୟ</item>
-  </plurals>
-  <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="one">%1$d ସଦସ୍ୟ (+%2$d ଆମନ୍ତ୍ରିତ)</item>
-    <item quantity="other">%1$d ସଦସ୍ୟ (+%2$d ଆମନ୍ତ୍ରିତ)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d ଅତିରିକ୍ତ ଗୋଷ୍ଠୀ</item>
@@ -2673,8 +2669,8 @@
   <string name="EditReactionsFragment__reset">ରିସେଟ୍ କରନ୍ତୁ</string>
   <string name="EditReactionsFragment_save">ସଞ୍ଚୟ କରନ୍ତୁ</string>
   <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__appearance">ରୂପ</string>
-  <string name="ChatColorsMegaphone__not_now">ଏବେ ନୁହେଁ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatColorsMegaphone__appearance">ରୂପ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatColorsMegaphone__not_now">ଏବେ ନୁହେଁ</string> -->
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__not_now">ଏବେ ନୁହେଁ</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">ଫଟୋ ଯୋଡ଼ନ୍ତୁ</string>

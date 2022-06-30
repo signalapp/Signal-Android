@@ -13,6 +13,7 @@ import com.google.android.material.button.MaterialButton
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
+import org.thoughtcrime.securesms.badges.gifts.Gifts.formatExpiry
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.mms.GlideRequests
 
@@ -50,7 +51,7 @@ class GiftMessageView @JvmOverloads constructor(
 
   fun setGiftBadge(glideRequests: GlideRequests, giftBadge: GiftBadge, isOutgoing: Boolean, callback: Callback) {
     titleView.setText(R.string.GiftMessageView__gift_badge)
-    descriptionView.text = resources.getQuantityString(R.plurals.GiftMessageView__lasts_for_d_months, 1, 1)
+    descriptionView.text = giftBadge.formatExpiry(context)
     actionView.icon = null
     actionView.setOnClickListener { callback.onViewGiftBadgeClicked() }
     actionView.isEnabled = true

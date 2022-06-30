@@ -25,6 +25,8 @@ import androidx.autofill.HintConstants;
 import androidx.core.app.DialogCompat;
 import androidx.core.view.ViewCompat;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
@@ -32,7 +34,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
 import org.thoughtcrime.securesms.lock.v2.KbsConstants;
 import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Objects;
@@ -48,7 +49,7 @@ public final class SignalPinReminderDialog {
 
     Log.i(TAG, "Showing PIN reminder dialog.");
 
-    AlertDialog dialog = new AlertDialog.Builder(context, ThemeUtil.isDarkTheme(context) ? R.style.Theme_Signal_AlertDialog_Dark_Cornered_ColoredAccent : R.style.Theme_Signal_AlertDialog_Light_Cornered_ColoredAccent)
+    AlertDialog dialog = new MaterialAlertDialogBuilder(context, R.style.ThemeOverlay_Signal_MaterialAlertDialog_Wide)
                                         .setView(R.layout.kbs_pin_reminder_view)
                                         .setCancelable(false)
                                         .setOnCancelListener(d -> RegistrationLockReminders.scheduleReminder(context, false))

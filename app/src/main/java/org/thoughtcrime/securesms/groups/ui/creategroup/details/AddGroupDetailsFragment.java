@@ -19,14 +19,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
+import com.airbnb.lottie.SimpleColorFilter;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
-import com.dd.CircularProgressButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.EditTextUtil;
@@ -49,7 +50,7 @@ import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
-import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
+import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 
 import java.util.Arrays;
 import java.util.List;
@@ -60,13 +61,13 @@ public class AddGroupDetailsFragment extends LoggingFragment {
   private static final int   AVATAR_PLACEHOLDER_INSET_DP = 18;
   private static final short REQUEST_DISAPPEARING_TIMER  = 28621;
 
-  private CircularProgressButton   create;
-  private Callback                 callback;
-  private AddGroupDetailsViewModel viewModel;
-  private Drawable                 avatarPlaceholder;
-  private EditText                 name;
-  private Toolbar                  toolbar;
-  private View                     disappearingMessagesRow;
+  private CircularProgressMaterialButton create;
+  private Callback                       callback;
+  private AddGroupDetailsViewModel       viewModel;
+  private Drawable                       avatarPlaceholder;
+  private EditText                       name;
+  private Toolbar                        toolbar;
+  private View                           disappearingMessagesRow;
 
   @Override
   public void onAttach(@NonNull Context context) {
@@ -94,17 +95,17 @@ public class AddGroupDetailsFragment extends LoggingFragment {
     toolbar                 = view.findViewById(R.id.toolbar);
     disappearingMessagesRow = view.findViewById(R.id.group_disappearing_messages_row);
 
-    setCreateEnabled(false, false);
+    setCreateEnabled(false);
 
     GroupMemberListView members                  = view.findViewById(R.id.member_list);
     ImageView           avatar                   = view.findViewById(R.id.group_avatar);
     View                mmsWarning               = view.findViewById(R.id.mms_warning);
-    LearnMoreTextView   gv2Warning               = view.findViewById(R.id.gv2_warning);
     View                addLater                 = view.findViewById(R.id.add_later);
     TextView            disappearingMessageValue = view.findViewById(R.id.group_disappearing_messages_value);
 
     members.initializeAdapter(getViewLifecycleOwner());
-    avatarPlaceholder = VectorDrawableCompat.create(getResources(), R.drawable.ic_camera_outline_32_ultramarine, requireActivity().getTheme());
+    avatarPlaceholder = Objects.requireNonNull(VectorDrawableCompat.create(getResources(), R.drawable.ic_camera_outline_24, requireActivity().getTheme()));
+    avatarPlaceholder.setColorFilter(new SimpleColorFilter(ContextCompat.getColor(requireContext(), R.color.signal_icon_tint_primary)));
 
     if (savedInstanceState == null) {
       avatar.setImageDrawable(new InsetDrawable(avatarPlaceholder, ViewUtil.dpToPx(AVATAR_PLACEHOLDER_INSET_DP)));
@@ -122,7 +123,7 @@ public class AddGroupDetailsFragment extends LoggingFragment {
       addLater.setVisibility(list.isEmpty() ? View.VISIBLE : View.GONE);
       members.setMembers(list);
     });
-    viewModel.getCanSubmitForm().observe(getViewLifecycleOwner(), isFormValid -> setCreateEnabled(isFormValid, true));
+    viewModel.getCanSubmitForm().observe(getViewLifecycleOwner(), this::setCreateEnabled);
     viewModel.getIsMms().observe(getViewLifecycleOwner(), isMms -> {
       disappearingMessagesRow.setVisibility(isMms ? View.GONE : View.VISIBLE);
       mmsWarning.setVisibility(isMms ? View.VISIBLE : View.GONE);
@@ -205,9 +206,11 @@ public class AddGroupDetailsFragment extends LoggingFragment {
   }
 
   private void handleCreateClicked() {
-    create.setClickable(false);
-    create.setIndeterminateProgressMode(true);
-    create.setProgress(50);
+    if (!create.isClickable()) {
+      return;
+    }
+
+    create.setSpinning();
 
     viewModel.create();
   }
@@ -254,15 +257,12 @@ public class AddGroupDetailsFragment extends LoggingFragment {
          .show();
   }
 
-  private void setCreateEnabled(boolean isEnabled, boolean animate) {
-    if (create.isEnabled() == isEnabled) {
+  private void setCreateEnabled(boolean isEnabled) {
+    if (create.isClickable() == isEnabled) {
       return;
     }
 
-    create.setEnabled(isEnabled);
-    create.animate()
-          .setDuration(animate ? 300 : 0)
-          .alpha(isEnabled ? 1f : 0.5f);
+    create.setClickable(isEnabled);
   }
 
   private void showAvatarPicker() {

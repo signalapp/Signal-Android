@@ -45,13 +45,13 @@
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/rbs_full_name"
-            style="@style/Signal.Text.Headline.Medium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dsl_settings_gutter"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="@dimen/dsl_settings_gutter"
             android:gravity="center_horizontal"
+            android:textAppearance="@style/Signal.Text.HeadlineMedium"
             android:textColor="@color/signal_text_primary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -61,7 +61,7 @@
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/rbs_about"
-            style="@style/Signal.Text.Body"
+            style="@style/Signal.Text.BodyLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dsl_settings_gutter"
@@ -75,7 +75,7 @@
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/rbs_username_number"
-            style="@style/Signal.Text.Body"
+            style="@style/Signal.Text.BodyLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dsl_settings_gutter"
@@ -91,7 +91,6 @@
 
         <TextView
             android:id="@+id/rbs_note_to_self_description"
-            style="@style/TextAppearance.Signal.Body2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dsl_settings_gutter"
@@ -99,6 +98,7 @@
             android:layout_marginEnd="@dimen/dsl_settings_gutter"
             android:text="@string/ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation"
             android:textAlignment="center"
+            android:textAppearance="@style/Signal.Text.BodyMedium"
             android:textColor="@color/signal_text_primary"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
@@ -121,119 +121,146 @@
 
             <include layout="@layout/dsl_divider_item" />
 
-            <Button
+            <TextView
                 android:id="@+id/rbs_block_button"
-                style="@style/Widget.Signal.Button.TextButton.Drawable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
                 android:minHeight="56dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
+                android:paddingStart="@dimen/dsl_settings_gutter"
+                android:paddingEnd="@dimen/dsl_settings_gutter"
                 android:text="@string/RecipientBottomSheet_block"
+                android:textAppearance="@style/Signal.Text.BodyLarge"
                 android:visibility="gone"
                 app:drawableStartCompat="@drawable/ic_block_tinted_24"
                 tools:visibility="visible" />
 
-            <Button
+            <TextView
                 android:id="@+id/rbs_unblock_button"
-                style="@style/Widget.Signal.Button.TextButton.Drawable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
                 android:minHeight="56dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
+                android:paddingStart="@dimen/dsl_settings_gutter"
+                android:paddingEnd="@dimen/dsl_settings_gutter"
                 android:text="@string/RecipientBottomSheet_unblock"
+                android:textAppearance="@style/Signal.Text.BodyLarge"
                 android:visibility="gone"
                 app:drawableStartCompat="@drawable/ic_block_tinted_24"
                 tools:visibility="visible" />
 
-            <Button
+            <TextView
                 android:id="@+id/rbs_remove_from_group_button"
-                style="@style/Widget.Signal.Button.TextButton.Drawable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
                 android:minHeight="56dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
+                android:paddingStart="@dimen/dsl_settings_gutter"
+                android:paddingEnd="@dimen/dsl_settings_gutter"
                 android:text="@string/RecipientBottomSheet_remove_from_group"
+                android:textAppearance="@style/Signal.Text.BodyLarge"
                 android:visibility="gone"
                 app:drawableStartCompat="@drawable/ic_leave_tinted_24"
                 tools:visibility="visible" />
 
-            <Button
+            <TextView
                 android:id="@+id/rbs_make_group_admin_button"
-                style="@style/Widget.Signal.Button.TextButton.Drawable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
                 android:minHeight="56dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
+                android:paddingStart="@dimen/dsl_settings_gutter"
+                android:paddingEnd="@dimen/dsl_settings_gutter"
                 android:text="@string/RecipientBottomSheet_make_admin"
+                android:textAppearance="@style/Signal.Text.BodyLarge"
                 android:visibility="gone"
                 app:drawableStartCompat="@drawable/ic_group_24"
                 tools:visibility="visible" />
 
-            <Button
+            <TextView
                 android:id="@+id/rbs_remove_group_admin_button"
-                style="@style/Widget.Signal.Button.TextButton.Drawable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
                 android:minHeight="56dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
+                android:paddingStart="@dimen/dsl_settings_gutter"
+                android:paddingEnd="@dimen/dsl_settings_gutter"
                 android:text="@string/RecipientBottomSheet_remove_as_admin"
+                android:textAppearance="@style/Signal.Text.BodyLarge"
                 android:visibility="gone"
                 app:drawableStartCompat="@drawable/ic_group_24"
                 tools:visibility="visible" />
 
-            <Button
+            <TextView
                 android:id="@+id/rbs_add_to_group_button"
-                style="@style/Widget.Signal.Button.TextButton.Drawable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
                 android:minHeight="56dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
+                android:paddingStart="@dimen/dsl_settings_gutter"
+                android:paddingEnd="@dimen/dsl_settings_gutter"
+                android:textAppearance="@style/Signal.Text.BodyLarge"
                 android:visibility="gone"
                 app:drawableStartCompat="@drawable/ic_group_24"
                 tools:text="@string/RecipientBottomSheet_add_to_a_group"
                 tools:visibility="visible" />
 
-            <Button
+            <TextView
                 android:id="@+id/rbs_add_contact_button"
-                style="@style/Widget.Signal.Button.TextButton.Drawable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
                 android:minHeight="56dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
+                android:paddingStart="@dimen/dsl_settings_gutter"
+                android:paddingEnd="@dimen/dsl_settings_gutter"
                 android:text="@string/RecipientBottomSheet_add_to_contacts"
+                android:textAppearance="@style/Signal.Text.BodyLarge"
                 android:visibility="gone"
                 app:drawableStartCompat="@drawable/ic_plus_24"
                 tools:visibility="visible" />
 
-            <Button
+            <TextView
                 android:id="@+id/rbs_contact_details_button"
-                style="@style/Widget.Signal.Button.TextButton.Drawable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
                 android:minHeight="56dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
+                android:paddingStart="@dimen/dsl_settings_gutter"
+                android:paddingEnd="@dimen/dsl_settings_gutter"
                 android:text="@string/ConversationSettingsFragment__contact_details"
+                android:textAppearance="@style/Signal.Text.BodyLarge"
                 android:visibility="gone"
                 app:drawableStartCompat="@drawable/ic_profile_circle_24"
                 tools:visibility="visible" />
 
-            <Button
+            <TextView
                 android:id="@+id/rbs_view_safety_number_button"
-                style="@style/Widget.Signal.Button.TextButton.Drawable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
                 android:minHeight="56dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
+                android:paddingStart="@dimen/dsl_settings_gutter"
+                android:paddingEnd="@dimen/dsl_settings_gutter"
                 android:text="@string/RecipientBottomSheet_view_safety_number"
+                android:textAppearance="@style/Signal.Text.BodyLarge"
                 android:visibility="gone"
                 app:drawableStartCompat="@drawable/ic_safety_number_24"
                 app:drawableTint="@color/signal_icon_tint_primary"

@@ -43,10 +43,11 @@
         android:lines="2"
         android:textAlignment="center"
         android:textAppearance="@style/Signal.Text.Caption"
+        android:hyphenationFrequency="full"
         app:layout_constraintEnd_toEndOf="@id/badge"
         app:layout_constraintStart_toStartOf="@id/badge"
         app:layout_constraintTop_toBottomOf="@id/badge"
         app:layout_constraintWidth_max="64dp"
-        tools:text="Signal Sustainer" />
+        tools:text="Signal-Boost" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

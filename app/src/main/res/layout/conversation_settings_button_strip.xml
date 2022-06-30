@@ -27,24 +27,14 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/message"
-                android:layout_width="@dimen/conversation_settings_button_strip_button_size"
-                android:layout_height="@dimen/conversation_settings_button_strip_button_size"
-                android:layout_marginStart="@dimen/conversation_settings_button_strip_spacing_half"
-                android:layout_marginEnd="@dimen/conversation_settings_button_strip_spacing_half"
-                android:background="@drawable/selectable_icon_button"
+                style="@style/Signal.Widget.ImageView.ActionButton"
                 android:contentDescription="@string/ConversationSettingsFragment__message"
-                android:padding="@dimen/conversation_settings_button_strip_button_padding"
-                app:srcCompat="@drawable/ic_message_24"
-                app:tint="@color/signal_icon_tint_primary" />
+                app:srcCompat="@drawable/ic_chat_message_24" />
 
             <TextView
                 android:id="@+id/message_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:gravity="center_horizontal"
-                android:text="@string/ConversationSettingsFragment__message"
-                android:textAppearance="@style/Signal.Text.Caption" />
+                style="@style/Signal.Widget.TextView.ActionButton"
+                android:text="@string/ConversationSettingsFragment__message" />
 
         </LinearLayout>
 
@@ -60,24 +50,14 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/start_video"
-                android:layout_width="@dimen/conversation_settings_button_strip_button_size"
-                android:layout_height="@dimen/conversation_settings_button_strip_button_size"
-                android:layout_marginStart="@dimen/conversation_settings_button_strip_spacing_half"
-                android:layout_marginEnd="@dimen/conversation_settings_button_strip_spacing_half"
-                android:background="@drawable/selectable_icon_button"
+                style="@style/Signal.Widget.ImageView.ActionButton"
                 android:contentDescription="@string/ConversationSettingsFragment__start_video_call"
-                android:padding="@dimen/conversation_settings_button_strip_button_padding"
-                app:srcCompat="@drawable/ic_video_call_24"
-                app:tint="@color/signal_icon_tint_primary" />
+                app:srcCompat="@drawable/ic_video_call_24" />
 
             <TextView
                 android:id="@+id/start_video_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:gravity="center_horizontal"
-                android:text="@string/ConversationSettingsFragment__video"
-                android:textAppearance="@style/Signal.Text.Caption" />
+                style="@style/Signal.Widget.TextView.ActionButton"
+                android:text="@string/ConversationSettingsFragment__video" />
 
         </LinearLayout>
 
@@ -93,24 +73,14 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/start_audio"
-                android:layout_width="@dimen/conversation_settings_button_strip_button_size"
-                android:layout_height="@dimen/conversation_settings_button_strip_button_size"
-                android:layout_marginStart="@dimen/conversation_settings_button_strip_spacing_half"
-                android:layout_marginEnd="@dimen/conversation_settings_button_strip_spacing_half"
-                android:background="@drawable/selectable_icon_button"
+                style="@style/Signal.Widget.ImageView.ActionButton"
                 android:contentDescription="@string/ConversationSettingsFragment__start_audio_call"
-                android:padding="@dimen/conversation_settings_button_strip_button_padding"
-                app:srcCompat="@drawable/ic_phone_right_24"
-                app:tint="@color/signal_icon_tint_primary" />
+                app:srcCompat="@drawable/ic_phone_right_24" />
 
             <TextView
                 android:id="@+id/start_audio_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:gravity="center_horizontal"
-                android:text="@string/ConversationSettingsFragment__audio"
-                android:textAppearance="@style/Signal.Text.Caption" />
+                style="@style/Signal.Widget.TextView.ActionButton"
+                android:text="@string/ConversationSettingsFragment__audio" />
 
         </LinearLayout>
 
@@ -126,27 +96,14 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/mute"
-                android:layout_width="@dimen/conversation_settings_button_strip_button_size"
-                android:layout_height="@dimen/conversation_settings_button_strip_button_size"
-                android:layout_marginStart="@dimen/conversation_settings_button_strip_spacing_half"
-                android:layout_marginEnd="@dimen/conversation_settings_button_strip_spacing_half"
-                android:background="@drawable/selectable_icon_button"
+                style="@style/Signal.Widget.ImageView.ActionButton"
                 android:contentDescription="@string/ConversationSettingsFragment__mute"
-                android:padding="@dimen/conversation_settings_button_strip_button_padding"
-                app:layout_constraintEnd_toStartOf="@id/search"
-                app:layout_constraintStart_toEndOf="@id/start_audio"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_bell_24"
-                app:tint="@color/signal_icon_tint_primary" />
+                app:srcCompat="@drawable/ic_bell_24" />
 
             <TextView
                 android:id="@+id/mute_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:gravity="center_horizontal"
-                android:text="@string/ConversationSettingsFragment__mute"
-                android:textAppearance="@style/Signal.Text.Caption" />
+                style="@style/Signal.Widget.TextView.ActionButton"
+                android:text="@string/ConversationSettingsFragment__mute" />
 
         </LinearLayout>
 
@@ -162,24 +119,14 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/search"
-                android:layout_width="@dimen/conversation_settings_button_strip_button_size"
-                android:layout_height="@dimen/conversation_settings_button_strip_button_size"
-                android:layout_marginStart="@dimen/conversation_settings_button_strip_spacing_half"
-                android:layout_marginEnd="@dimen/conversation_settings_button_strip_spacing_half"
-                android:background="@drawable/selectable_icon_button"
+                style="@style/Signal.Widget.ImageView.ActionButton"
                 android:contentDescription="@string/ConversationSettingsFragment__search"
-                android:padding="@dimen/conversation_settings_button_strip_button_padding"
-                app:srcCompat="@drawable/ic_search_24"
-                app:tint="@color/signal_icon_tint_primary" />
+                app:srcCompat="@drawable/ic_search_24" />
 
             <TextView
                 android:id="@+id/search_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:gravity="center_horizontal"
-                android:text="@string/ConversationSettingsFragment__search"
-                android:textAppearance="@style/Signal.Text.Caption" />
+                style="@style/Signal.Widget.TextView.ActionButton"
+                android:text="@string/ConversationSettingsFragment__search" />
 
         </LinearLayout>
 

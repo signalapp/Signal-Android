@@ -19,9 +19,11 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
+import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +32,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
 
   private static final String TAG                   = Log.tag(MarkReadReceiver.class);
   public static final  String CLEAR_ACTION          = "org.thoughtcrime.securesms.notifications.CLEAR";
-  public static final  String THREAD_IDS_EXTRA      = "thread_ids";
+  public static final  String THREADS_EXTRA         = "threads";
   public static final  String NOTIFICATION_ID_EXTRA = "notification_id";
 
   @SuppressLint("StaticFieldLeak")
@@ -39,12 +41,12 @@ public class MarkReadReceiver extends BroadcastReceiver {
     if (!CLEAR_ACTION.equals(intent.getAction()))
       return;
 
-    final long[] threadIds = intent.getLongArrayExtra(THREAD_IDS_EXTRA);
+    final ArrayList<ConversationId> threads = intent.getParcelableArrayListExtra(THREADS_EXTRA);
 
-    if (threadIds != null) {
+    if (threads != null) {
       MessageNotifier notifier = ApplicationDependencies.getMessageNotifier();
-      for (long threadId : threadIds) {
-        notifier.removeStickyThread(threadId);
+      for (ConversationId thread : threads) {
+        notifier.removeStickyThread(thread);
       }
 
       NotificationCancellationHelper.cancelLegacy(context, intent.getIntExtra(NOTIFICATION_ID_EXTRA, -1));
@@ -53,9 +55,9 @@ public class MarkReadReceiver extends BroadcastReceiver {
       SignalExecutors.BOUNDED.execute(() -> {
         List<MarkedMessageInfo> messageIdsCollection = new LinkedList<>();
 
-        for (long threadId : threadIds) {
-          Log.i(TAG, "Marking as read: " + threadId);
-          List<MarkedMessageInfo> messageIds = SignalDatabase.threads().setRead(threadId, true);
+        for (ConversationId thread : threads) {
+          Log.i(TAG, "Marking as read: " + thread);
+          List<MarkedMessageInfo> messageIds = SignalDatabase.threads().setRead(thread, true);
           messageIdsCollection.addAll(messageIds);
         }
 

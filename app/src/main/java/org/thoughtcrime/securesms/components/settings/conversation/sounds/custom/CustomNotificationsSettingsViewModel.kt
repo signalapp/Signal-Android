@@ -25,6 +25,7 @@ class CustomNotificationsSettingsViewModel(
     store.update(Recipient.live(recipientId).liveData) { recipient, state ->
       val recipientHasCustomNotifications = NotificationChannels.supported() && recipient.notificationChannel != null
       state.copy(
+        recipient = recipient,
         hasCustomNotifications = recipientHasCustomNotifications,
         controlsEnabled = (!NotificationChannels.supported() || recipientHasCustomNotifications) && state.isInitialLoadComplete,
         messageSound = recipient.messageRingtone,
@@ -77,7 +78,7 @@ class CustomNotificationsSettingsViewModel(
     private val recipientId: RecipientId,
     private val repository: CustomNotificationsSettingsRepository
   ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return requireNotNull(modelClass.cast(CustomNotificationsSettingsViewModel(recipientId, repository)))
     }
   }

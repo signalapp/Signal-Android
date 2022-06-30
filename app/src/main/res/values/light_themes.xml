@@ -5,6 +5,8 @@
 
     <style name="Signal.DayNight.NoActionBar" parent="TextSecure.LightNoActionBar" />
 
+    <style name="Signal.DayNight.NoActionBar.TransparentNavigationBar" parent="TextSecure.LightNoActionBar.TransparentNavigationBar" />
+
     <style name="Signal.DayNight.Invite" parent="Signal.Light.NoActionBar.Invite" />
 
     <style name="Signal.DayNight.IntroTheme" parent="TextSecure.LightIntroTheme" />

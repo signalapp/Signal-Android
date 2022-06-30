@@ -17,7 +17,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="20dp"
         android:text="@string/GroupsV1MigrationInitiation_upgrade_to_new_group"
-        android:textAppearance="@style/TextAppearance.Signal.Title1"
+        android:textAppearance="@style/Signal.Text.HeadlineMedium"
         android:textColor="@color/signal_text_primary"
         android:gravity="center" />
 
@@ -48,7 +48,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="14dp"
                     android:text="@string/GroupsV1MigrationInitiation_new_groups_have_features_like_mentions"
-                    android:textAppearance="@style/TextAppearance.Signal.Body1"
+                    android:textAppearance="@style/Signal.Text.BodyLarge"
                     android:textColor="@color/signal_text_primary" />
 
             </LinearLayout>
@@ -71,7 +71,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="14dp"
                     android:text="@string/GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept"
-                    android:textAppearance="@style/TextAppearance.Signal.Body1"
+                    android:textAppearance="@style/Signal.Text.BodyLarge"
                     android:textColor="@color/signal_text_primary" />
 
             </LinearLayout>
@@ -109,7 +109,7 @@
                         android:id="@+id/gv1_migrate_invite_title"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:textAppearance="@style/TextAppearance.Signal.Body1"
+                        android:textAppearance="@style/Signal.Text.BodyLarge"
                         android:textColor="@color/signal_text_primary"
                         tools:text="Plurized string for invited members." />
 
@@ -150,7 +150,7 @@
                         android:id="@+id/gv1_migrate_ineligible_title"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:textAppearance="@style/TextAppearance.Signal.Body1"
+                        android:textAppearance="@style/Signal.Text.BodyLarge"
                         android:textColor="@color/signal_text_primary"
                         tools:text="Plurized string for ineligible members." />
 
@@ -165,21 +165,20 @@
 
             </LinearLayout>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/gv1_migrate_upgrade_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:padding="20dp"
-                style="@style/Button.Primary"
+                style="@style/Signal.Widget.Button.Large.Tonal"
                 android:text="@string/GroupsV1MigrationInitiation_upgrade_this_group" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/gv1_migrate_cancel_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
-                style="@style/Button.Borderless"
+                style="@style/Signal.Widget.Button.Large.Secondary"
                 android:text="@android:string/cancel" />
 
         </LinearLayout>

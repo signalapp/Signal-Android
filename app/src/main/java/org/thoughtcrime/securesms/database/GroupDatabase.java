@@ -433,6 +433,22 @@ public class GroupDatabase extends Database {
   }
 
   @WorkerThread
+  public @NonNull List<RecipientId> getGroupMemberIds(@NonNull GroupId groupId, @NonNull MemberSet memberSet) {
+    if (groupId.isV2()) {
+      return getGroup(groupId).map(g -> g.requireV2GroupProperties().getMemberRecipientIds(memberSet))
+                              .orElse(Collections.emptyList());
+    } else {
+      List<RecipientId> currentMembers = getCurrentMembers(groupId);
+
+      if (!memberSet.includeSelf) {
+        currentMembers.remove(Recipient.self().getId());
+      }
+
+      return currentMembers;
+    }
+  }
+
+  @WorkerThread
   public @NonNull List<Recipient> getGroupMembers(@NonNull GroupId groupId, @NonNull MemberSet memberSet) {
     if (groupId.isV2()) {
       return getGroup(groupId).map(g -> g.requireV2GroupProperties().getMemberRecipients(memberSet))
@@ -1402,8 +1418,12 @@ public class GroupDatabase extends Database {
   }
 
   public void markDisplayAsStory(@NonNull GroupId groupId) {
+    markDisplayAsStory(groupId, true);
+  }
+
+  public void markDisplayAsStory(@NonNull GroupId groupId, boolean displayAsStory) {
     ContentValues contentValues = new ContentValues(1);
-    contentValues.put(DISPLAY_AS_STORY, true);
+    contentValues.put(DISPLAY_AS_STORY, displayAsStory);
 
     getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID + " = ?", SqlUtil.buildArgs(groupId.toString()));
   }

@@ -1,6 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- region Material3 Styles -->
+    <style name="Signal.Text.HeadlineLarge" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="android:lineSpacingExtra">8sp</item>
+    </style>
+
+    <style name="Signal.Text.HeadlineMedium" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="android:lineSpacingExtra">6sp</item>
+    </style>
+
+    <style name="Signal.Text.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:lineSpacingExtra">6sp</item>
+    </style>
+
+    <style name="Signal.Text.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+    </style>
+
+    <style name="Signal.Text.TitleSmall" parent="TextAppearance.Material3.TitleSmall">
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+    </style>
+
+    <style name="Signal.Text.BodyLarge" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:lineSpacingExtra">6sp</item>
+    </style>
+
+    <style name="Signal.Text.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:lineSpacingExtra">6sp</item>
+    </style>
+
+    <style name="Signal.Text.BodySmall" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textSize">13sp</item>
+        <item name="android:lineSpacingExtra">3sp</item>
+    </style>
+
+    <style name="Signal.Text.MaterialCaption" parent="Signal.Text.BodySmall">
+        <item name="android:textSize">12sp</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+
+    <style name="Signal.Text.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:lineSpacingExtra">6sp</item>
+    </style>
+
+    <style name="Signal.Text.LabelMedium" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textSize">13sp</item>
+        <item name="android:lineSpacingExtra">3sp</item>
+    </style>
+
+    <style name="Signal.Text.LabelSmall" parent="TextAppearance.Material3.LabelSmall">
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+
+    <!-- endregion -->
+
+    <!-- region Material2 and Older -->
+
     <style name="Signal.Text.Headline" parent="Base.TextAppearance.AppCompat.Headline">
         <item name="android:textSize">28sp</item>
         <item name="android:lineSpacingExtra">3sp</item>
@@ -53,16 +114,6 @@
     <style name="Signal.Text.Caption.MessageSent">
         <item name="android:textColor">@color/signal_text_secondary</item>
         <item name="android:shadowRadius">0</item>
-    </style>
-
-    <style name="Signal.Text.Caption.MessageReceived">
-        <item name="android:textColor">@color/conversation_item_sent_text_secondary_color</item>
-        <item name="android:shadowRadius">0</item>
-        <item name="android:alpha">0.7</item>
-    </style>
-
-    <style name="Signal.Text.Caption.MessageImageOverlay">
-        <item name="android:textColor">@color/core_white</item>
     </style>
 
     <style name="Signal.Text.Giant" parent="@style/TextAppearance.AppCompat.Display1">
@@ -204,11 +255,6 @@
     <style name="Signal.Text.Title.SettingsBio">
     </style>
 
-    <style name="Signal.Text.Title.BottomSheet" parent="">
-        <item name="android:textSize">16sp</item>
-        <item name="android:lineSpacingExtra">4sp</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:letterSpacing" tools:ignore="NewApi">0.01</item>
-    </style>
+    <!-- endregion -->
 
 </resources>

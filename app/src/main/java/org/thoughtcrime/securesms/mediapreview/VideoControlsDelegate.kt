@@ -10,6 +10,7 @@ class VideoControlsDelegate {
 
   private val playWhenReady: MutableMap<Uri, Boolean> = mutableMapOf()
   private var player: Player? = null
+  private var isMuted: Boolean = true
 
   fun getPlayerState(uri: Uri): PlayerState? {
     val player: Player? = this.player
@@ -41,8 +42,28 @@ class VideoControlsDelegate {
     }
   }
 
+  fun mute() {
+    isMuted = true
+    player?.videoPlayer?.mute()
+  }
+
+  fun unmute() {
+    isMuted = false
+    player?.videoPlayer?.unmute()
+  }
+
+  fun hasAudioStream(): Boolean {
+    return player?.videoPlayer?.hasAudioTrack() ?: false
+  }
+
   fun attachPlayer(uri: Uri, videoPlayer: VideoPlayer?, isGif: Boolean) {
     player = Player(uri, videoPlayer, isGif)
+
+    if (isMuted) {
+      videoPlayer?.mute()
+    } else {
+      videoPlayer?.unmute()
+    }
 
     if (playWhenReady[uri] == true) {
       playWhenReady[uri] = false

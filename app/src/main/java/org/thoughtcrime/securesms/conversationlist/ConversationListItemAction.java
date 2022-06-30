@@ -6,6 +6,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 
 import org.thoughtcrime.securesms.BindableConversationListItem;
 import org.thoughtcrime.securesms.R;
@@ -39,7 +40,8 @@ public class ConversationListItemAction extends FrameLayout implements BindableC
   }
 
   @Override
-  public void bind(@NonNull ThreadRecord thread,
+  public void bind(@NonNull LifecycleOwner lifecycleOwner,
+                   @NonNull ThreadRecord thread,
                    @NonNull GlideRequests glideRequests,
                    @NonNull Locale locale,
                    @NonNull Set<Long> typingThreads,

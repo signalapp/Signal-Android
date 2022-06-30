@@ -143,7 +143,7 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
   )
 
   class Factory(private val repository: InternalSettingsRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return requireNotNull(modelClass.cast(InternalSettingsViewModel(repository)))
     }
   }

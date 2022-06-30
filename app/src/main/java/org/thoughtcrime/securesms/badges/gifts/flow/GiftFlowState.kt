@@ -20,8 +20,9 @@ data class GiftFlowState(
   enum class Stage {
     INIT,
     READY,
+    RECIPIENT_VERIFICATION,
     TOKEN_REQUEST,
     PAYMENT_PIPELINE,
-    FAILURE
+    FAILURE;
   }
 }

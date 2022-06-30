@@ -158,6 +158,15 @@ class DSLConfiguration {
     children.add(preference)
   }
 
+  fun tonalButton(
+    text: DSLSettingsText,
+    isEnabled: Boolean = true,
+    onClick: () -> Unit
+  ) {
+    val preference = Button.Model.Tonal(text, null, isEnabled, onClick)
+    children.add(preference)
+  }
+
   fun secondaryButtonNoOutline(
     text: DSLSettingsText,
     icon: DSLSettingsIcon? = null,
@@ -173,6 +182,15 @@ class DSLConfiguration {
     summary: DSLSettingsText? = null
   ) {
     val preference = TextPreference(title, summary)
+    children.add(preference)
+  }
+
+  fun learnMoreTextPref(
+    title: DSLSettingsText? = null,
+    summary: DSLSettingsText? = null,
+    onClick: () -> Unit
+  ) {
+    val preference = LearnMoreTextPreference(title, summary, onClick)
     children.add(preference)
   }
 
@@ -208,6 +226,12 @@ class TextPreference(
   title: DSLSettingsText?,
   summary: DSLSettingsText?
 ) : PreferenceModel<TextPreference>(title = title, summary = summary)
+
+class LearnMoreTextPreference(
+  override val title: DSLSettingsText?,
+  override val summary: DSLSettingsText?,
+  val onClick: () -> Unit
+) : PreferenceModel<LearnMoreTextPreference>()
 
 class DividerPreference : PreferenceModel<DividerPreference>() {
   override fun areItemsTheSame(newItem: DividerPreference) = true

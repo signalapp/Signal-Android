@@ -59,7 +59,7 @@ class CreateStoryWithViewersViewModel(
   class Factory(
     private val repository: CreateStoryWithViewersRepository
   ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(CreateStoryWithViewersViewModel(repository)) as T
     }
   }

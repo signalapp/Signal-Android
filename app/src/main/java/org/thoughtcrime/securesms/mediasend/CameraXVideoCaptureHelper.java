@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.mediasend;
 
 import android.Manifest;
+import android.animation.Animator;
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.DisplayMetrics;
@@ -17,8 +19,6 @@ import androidx.camera.view.SignalCameraView;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.util.Executors;
-import com.nineoldandroids.animation.Animator;
-import com.nineoldandroids.animation.ValueAnimator;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -46,6 +46,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
   private       ValueAnimator cameraMetricsAnimator;
 
   private final VideoCapture.OnVideoSavedCallback videoSavedListener = new VideoCapture.OnVideoSavedCallback() {
+    @SuppressLint("RestrictedApi")
     @Override
     public void onVideoSaved(@NonNull VideoCapture.OutputFileResults outputFileResults) {
       try {
@@ -58,6 +59,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
       }
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     public void onError(int videoCaptureError, @NonNull String message, @Nullable Throwable cause) {
       isRecording = false;

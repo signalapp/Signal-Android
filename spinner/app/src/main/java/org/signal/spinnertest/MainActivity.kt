@@ -23,7 +23,8 @@ class MainActivity : AppCompatActivity() {
         "Name" to "${Build.MODEL} (API ${Build.VERSION.SDK_INT})",
         "Package" to packageName
       ),
-      mapOf("main" to Spinner.DatabaseConfig(db = db))
+      mapOf("main" to Spinner.DatabaseConfig(db = db)),
+      emptyMap()
     )
   }
 

@@ -144,7 +144,7 @@ public class MediaUploadRepository {
   @WorkerThread
   private void uploadMediaInternal(@NonNull Media media, @Nullable Recipient recipient) {
     Attachment      attachment = asAttachment(context, media);
-    PreUploadResult result     = MessageSender.preUploadPushAttachment(context, attachment, recipient);
+    PreUploadResult result     = MessageSender.preUploadPushAttachment(context, attachment, recipient, MediaUtil.isVideo(media.getMimeType()));
 
     if (result != null) {
       uploadResults.put(media, result);

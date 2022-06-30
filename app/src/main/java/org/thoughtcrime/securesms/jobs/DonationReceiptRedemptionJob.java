@@ -24,6 +24,7 @@ import org.whispersystems.signalservice.internal.EmptyResponse;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -88,11 +89,13 @@ public class DonationReceiptRedemptionJob extends BaseJob {
             .setLifespan(TimeUnit.DAYS.toMillis(1))
             .build());
 
-    RefreshOwnProfileJob refreshOwnProfileJob = new RefreshOwnProfileJob();
+    RefreshOwnProfileJob               refreshOwnProfileJob               = new RefreshOwnProfileJob();
+    MultiDeviceProfileContentUpdateJob multiDeviceProfileContentUpdateJob = new MultiDeviceProfileContentUpdateJob();
 
     return ApplicationDependencies.getJobManager()
                                   .startChain(redeemReceiptJob)
-                                  .then(refreshOwnProfileJob);
+                                  .then(refreshOwnProfileJob)
+                                  .then(multiDeviceProfileContentUpdateJob);
   }
 
   private DonationReceiptRedemptionJob(long giftMessageId, boolean primary, @NonNull DonationErrorSource errorSource, @NonNull Job.Parameters parameters) {
@@ -174,11 +177,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
       MessageDatabase.MarkedMessageInfo markedMessageInfo = SignalDatabase.mms().setIncomingMessageViewed(giftMessageId);
       if (markedMessageInfo != null) {
         Log.d(TAG, "Marked gift message viewed for " + giftMessageId);
-        ApplicationDependencies.getJobManager()
-                               .add(new SendViewedReceiptJob(markedMessageInfo.getThreadId(),
-                                                             markedMessageInfo.getSyncMessageId().getRecipientId(),
-                                                             markedMessageInfo.getSyncMessageId().getTimetamp(),
-                                                             markedMessageInfo.getMessageId()));
+        MultiDeviceViewedUpdateJob.enqueue(Collections.singletonList(markedMessageInfo.getSyncMessageId()));
       }
     }
   }

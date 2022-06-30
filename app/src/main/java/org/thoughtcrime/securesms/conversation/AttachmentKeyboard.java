@@ -78,6 +78,8 @@ public class AttachmentKeyboard extends FrameLayout implements InputAwareLayout.
     mediaList.setAdapter(mediaAdapter);
     buttonList.setAdapter(buttonAdapter);
 
+    buttonAdapter.registerAdapterDataObserver(new AttachmentButtonCenterHelper(buttonList));
+
     mediaList.setLayoutManager(new GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, false));
     buttonList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
 
@@ -121,7 +123,6 @@ public class AttachmentKeyboard extends FrameLayout implements InputAwareLayout.
     }
     buttonAdapter.setWallpaperEnabled(wallpaperEnabled);
   }
-
 
   @Override
   public void show(int height, boolean immediate) {

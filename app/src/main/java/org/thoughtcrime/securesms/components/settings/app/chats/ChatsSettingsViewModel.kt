@@ -57,7 +57,7 @@ class ChatsSettingsViewModel(private val repository: ChatsSettingsRepository) : 
   }
 
   class Factory(private val repository: ChatsSettingsRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return requireNotNull(modelClass.cast(ChatsSettingsViewModel(repository)))
     }
   }

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.conversation.ui.error;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -18,7 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -155,10 +156,11 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
     long              messageId    = getArguments().getLong(MESSAGE_ID_EXTRA, -1);
     String            messageType  = getArguments().getString(MESSAGE_TYPE_EXTRA, null);
 
-    viewModel = ViewModelProviders.of(this, new SafetyNumberChangeViewModel.Factory(recipientIds, (messageId != -1) ? messageId : null, messageType)).get(SafetyNumberChangeViewModel.class);
+    viewModel = new ViewModelProvider(this, new SafetyNumberChangeViewModel.Factory(recipientIds, (messageId != -1) ? messageId : null, messageType)).get(SafetyNumberChangeViewModel.class);
     viewModel.getChangedRecipients().observe(getViewLifecycleOwner(), adapter::submitList);
   }
 
+  @SuppressLint("InflateParams")
   @Override
   public @NonNull Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
     int continueText = requireArguments().getInt(CONTINUE_TEXT_RESOURCE_EXTRA, android.R.string.ok);

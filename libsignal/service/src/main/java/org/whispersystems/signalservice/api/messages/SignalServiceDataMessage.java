@@ -13,6 +13,7 @@ import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -456,13 +457,21 @@ public class SignalServiceDataMessage {
     private final String                 text;
     private final List<QuotedAttachment> attachments;
     private final List<Mention>          mentions;
+    private final Type                   type;
 
-    public Quote(long id, SignalServiceAddress author, String text, List<QuotedAttachment> attachments, List<Mention> mentions) {
+    public Quote(long id,
+                 SignalServiceAddress author,
+                 String text,
+                 List<QuotedAttachment> attachments,
+                 List<Mention> mentions,
+                 Type type)
+    {
       this.id          = id;
       this.author      = author;
       this.text        = text;
       this.attachments = attachments;
       this.mentions    = mentions;
+      this.type        = type;
     }
 
     public long getId() {
@@ -483,6 +492,35 @@ public class SignalServiceDataMessage {
 
     public List<Mention> getMentions() {
       return mentions;
+    }
+
+    public Type getType() {
+      return type;
+    }
+
+    public enum Type {
+      NORMAL(SignalServiceProtos.DataMessage.Quote.Type.NORMAL),
+      GIFT_BADGE(SignalServiceProtos.DataMessage.Quote.Type.GIFT_BADGE);
+
+      private final SignalServiceProtos.DataMessage.Quote.Type protoType;
+
+      Type(SignalServiceProtos.DataMessage.Quote.Type protoType) {
+        this.protoType = protoType;
+      }
+
+      public SignalServiceProtos.DataMessage.Quote.Type getProtoType() {
+        return protoType;
+      }
+
+      public static Type fromProto(SignalServiceProtos.DataMessage.Quote.Type protoType) {
+        for (final Type value : values()) {
+          if (value.protoType == protoType) {
+            return value;
+          }
+        }
+
+        return NORMAL;
+      }
     }
 
     public static class QuotedAttachment {

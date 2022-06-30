@@ -114,7 +114,7 @@ class StickerKeyboardPageFragment :
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
 
-    viewModel = ViewModelProvider(requireActivity(), StickerKeyboardPageViewModel.Factory(requireContext()))
+    viewModel = ViewModelProvider(requireActivity(), StickerKeyboardPageViewModel.Factory())
       .get(StickerKeyboardPageViewModel::class.java)
 
     viewModel.stickers.observe(viewLifecycleOwner, this::updateStickerList)

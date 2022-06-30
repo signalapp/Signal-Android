@@ -33,6 +33,7 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -42,7 +43,6 @@ import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.components.AudioView;
 import org.thoughtcrime.securesms.components.DocumentView;
@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.components.RemovableEditableMediaView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.components.location.SignalMapView;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
+import org.thoughtcrime.securesms.conversation.MessageSendType;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.maps.PlacePickerActivity;
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity;
@@ -374,12 +375,12 @@ public class AttachmentManager {
     selectMediaType(fragment, "*/*", null, requestCode);
   }
 
-  public static void selectGallery(Fragment fragment, int requestCode, @NonNull Recipient recipient, @NonNull CharSequence body, @NonNull TransportOption transport, boolean hasQuote) {
+  public static void selectGallery(Fragment fragment, int requestCode, @NonNull Recipient recipient, @NonNull CharSequence body, @NonNull MessageSendType messageSendType, boolean hasQuote) {
     Permissions.with(fragment)
                .request(Manifest.permission.READ_EXTERNAL_STORAGE)
                .ifNecessary()
                .withPermanentDenialDialog(fragment.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
-               .onAllGranted(() -> fragment.startActivityForResult(MediaSelectionActivity.gallery(fragment.requireContext(), transport, Collections.emptyList(), recipient.getId(), body, hasQuote), requestCode))
+               .onAllGranted(() -> fragment.startActivityForResult(MediaSelectionActivity.gallery(fragment.requireContext(), messageSendType, Collections.emptyList(), recipient.getId(), body, hasQuote), requestCode))
                .execute();
   }
 
@@ -395,20 +396,20 @@ public class AttachmentManager {
                .execute();
   }
 
-  public static void selectLocation(Fragment fragment, int requestCode) {
+  public static void selectLocation(Fragment fragment, int requestCode, @ColorInt int chatColor) {
     Permissions.with(fragment)
                .request(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
                .ifNecessary()
                .withPermanentDenialDialog(fragment.getString(R.string.AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location))
-               .onAllGranted(() -> PlacePickerActivity.startActivityForResultAtCurrentLocation(fragment, requestCode))
+               .onAllGranted(() -> PlacePickerActivity.startActivityForResultAtCurrentLocation(fragment, requestCode, chatColor))
                .execute();
   }
 
-  public static void selectGif(Fragment fragment, int requestCode, RecipientId id, TransportOption selectedTransport, boolean isForMms, CharSequence textTrimmed) {
+  public static void selectGif(Fragment fragment, int requestCode, RecipientId id, MessageSendType sendType, boolean isForMms, CharSequence textTrimmed) {
     Intent intent = new Intent(fragment.requireContext(), GiphyActivity.class);
     intent.putExtra(GiphyActivity.EXTRA_IS_MMS, isForMms);
     intent.putExtra(GiphyActivity.EXTRA_RECIPIENT_ID, id);
-    intent.putExtra(GiphyActivity.EXTRA_TRANSPORT, selectedTransport);
+    intent.putExtra(GiphyActivity.EXTRA_TRANSPORT, sendType);
     intent.putExtra(GiphyActivity.EXTRA_TEXT, textTrimmed);
     fragment.startActivityForResult(intent, requestCode);
   }

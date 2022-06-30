@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'org.jlleitschuh.gradle.ktlint'
+
+android {
+    buildToolsVersion BUILD_TOOL_VERSION
+    compileSdkVersion COMPILE_SDK
+
+    defaultConfig {
+        versionCode 1
+        versionName "1.0"
+
+        minSdkVersion 19
+        targetSdkVersion TARGET_SDK
+        multiDexEnabled true
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JAVA_VERSION
+        targetCompatibility JAVA_VERSION
+    }
+}
+
+ktlint {
+    // Use a newer version to resolve https://github.com/JLLeitschuh/ktlint-gradle/issues/507
+    version = "0.43.2"
+}
+
+dependencies {
+    coreLibraryDesugaring libs.android.tools.desugar
+
+    implementation "androidx.activity:activity-ktx:1.2.2"
+
+    implementation libs.androidx.appcompat
+    implementation libs.material.material
+    implementation libs.androidx.constraintlayout
+
+    implementation libs.kotlin.stdlib.jdk8
+
+    testImplementation testLibs.junit.junit
+
+    implementation project(':core-util')
+}

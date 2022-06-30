@@ -69,7 +69,7 @@ class PermissionsSettingsViewModel(
     private val groupId: GroupId,
     private val repository: PermissionsSettingsRepository
   ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return requireNotNull(modelClass.cast(PermissionsSettingsViewModel(groupId, repository)))
     }
   }

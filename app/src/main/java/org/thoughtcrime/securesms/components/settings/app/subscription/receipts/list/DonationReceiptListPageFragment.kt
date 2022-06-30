@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.receipts
 
 import android.os.Bundle
 import android.view.View
+import androidx.constraintlayout.widget.Group
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -14,6 +15,7 @@ import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.thoughtcrime.securesms.util.visible
 
 class DonationReceiptListPageFragment : Fragment(R.layout.donation_receipt_list_page_fragment) {
 
@@ -31,6 +33,8 @@ class DonationReceiptListPageFragment : Fragment(R.layout.donation_receipt_list_
   private val type: DonationReceiptRecord.Type?
     get() = requireArguments().getString(ARG_TYPE)?.let { DonationReceiptRecord.Type.fromCode(it) }
 
+  private lateinit var emptyStateGroup: Group
+
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     val adapter = DonationReceiptListAdapter { model ->
       findNavController().safeNavigate(DonationReceiptListFragmentDirections.actionDonationReceiptListFragmentToDonationReceiptDetailFragment(model.record.id))
@@ -41,22 +45,29 @@ class DonationReceiptListPageFragment : Fragment(R.layout.donation_receipt_list_
       addItemDecoration(StickyHeaderDecoration(adapter, false, true, 0))
     }
 
+    emptyStateGroup = view.findViewById(R.id.empty_state)
+
     LiveDataUtil.combineLatest(
       viewModel.state,
       sharedViewModel.state
-    ) { records, badges ->
-      records.map { DonationReceiptListItem.Model(it, getBadgeForRecord(it, badges)) }
-    }.observe(viewLifecycleOwner) { records ->
-      adapter.submitList(
-        records +
-          TextPreference(
-            title = null,
-            summary = DSLSettingsText.from(
-              R.string.DonationReceiptListFragment__if_you_have,
-              DSLSettingsText.TextAppearanceModifier(R.style.TextAppearance_Signal_Subtitle)
+    ) { state, badges ->
+      state.isLoaded to state.records.map { DonationReceiptListItem.Model(it, getBadgeForRecord(it, badges)) }
+    }.observe(viewLifecycleOwner) { (isLoaded, records) ->
+      if (records.isNotEmpty()) {
+        emptyStateGroup.visible = false
+        adapter.submitList(
+          records +
+            TextPreference(
+              title = null,
+              summary = DSLSettingsText.from(
+                R.string.DonationReceiptListFragment__if_you_have,
+                DSLSettingsText.TextAppearanceModifier(R.style.TextAppearance_Signal_Subtitle)
+              )
             )
-          )
-      )
+        )
+      } else {
+        emptyStateGroup.visible = isLoaded
+      }
     }
   }
 

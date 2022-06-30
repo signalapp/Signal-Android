@@ -125,6 +125,11 @@ public class WebRtcServiceStateBuilder {
       toBuild.setAvailableDevices(availableDevices);
       return this;
     }
+
+    public @NonNull LocalDeviceStateBuilder setBluetoothPermissionDenied(boolean bluetoothPermissionDenied) {
+      toBuild.setBluetoothPermissionDenied(bluetoothPermissionDenied);
+      return this;
+    }
   }
 
   public class CallSetupStateBuilder {

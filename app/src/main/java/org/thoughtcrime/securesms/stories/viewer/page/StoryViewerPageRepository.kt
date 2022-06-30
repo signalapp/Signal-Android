@@ -7,6 +7,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.NoSuchMessageException
@@ -28,15 +29,21 @@ import org.thoughtcrime.securesms.util.Base64
  */
 open class StoryViewerPageRepository(context: Context) {
 
+  companion object {
+    private val TAG = Log.tag(StoryViewerPageRepository::class.java)
+  }
+
   private val context = context.applicationContext
 
-  private fun getStoryRecords(recipientId: RecipientId): Observable<List<MessageRecord>> {
+  private fun getStoryRecords(recipientId: RecipientId, isUnviewedOnly: Boolean): Observable<List<MessageRecord>> {
     return Observable.create { emitter ->
       val recipient = Recipient.resolved(recipientId)
 
       fun refresh() {
         val stories = if (recipient.isMyStory) {
           SignalDatabase.mms.getAllOutgoingStories(false)
+        } else if (isUnviewedOnly) {
+          SignalDatabase.mms.getUnreadStories(recipientId, 100)
         } else {
           SignalDatabase.mms.getAllStoriesFor(recipientId)
         }
@@ -104,7 +111,11 @@ open class StoryViewerPageRepository(context: Context) {
       }
 
       val conversationObserver = DatabaseObserver.Observer {
-        refresh(SignalDatabase.mms.getMessageRecord(record.id))
+        try {
+          refresh(SignalDatabase.mms.getMessageRecord(record.id))
+        } catch (e: NoSuchMessageException) {
+          Log.w(TAG, "Message deleted during content refresh.", e)
+        }
       }
 
       ApplicationDependencies.getDatabaseObserver().registerConversationObserver(record.threadId, conversationObserver)
@@ -135,8 +146,8 @@ open class StoryViewerPageRepository(context: Context) {
     return Stories.enqueueAttachmentsFromStoryForDownload(post.conversationMessage.messageRecord as MmsMessageRecord, true)
   }
 
-  fun getStoryPostsFor(recipientId: RecipientId): Observable<List<StoryPost>> {
-    return getStoryRecords(recipientId)
+  fun getStoryPostsFor(recipientId: RecipientId, isUnviewedOnly: Boolean): Observable<List<StoryPost>> {
+    return getStoryRecords(recipientId, isUnviewedOnly)
       .switchMap { records ->
         val posts = records.map { getStoryPostFromRecord(recipientId, it) }
         if (posts.isEmpty()) {

@@ -34,6 +34,12 @@ class StoryGroupReplyBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDi
   private val groupRecipientId: RecipientId
     get() = requireArguments().getParcelable(ARG_GROUP_RECIPIENT_ID)!!
 
+  private val isFromNotification: Boolean
+    get() = requireArguments().getBoolean(ARG_IS_FROM_NOTIFICATION, false)
+
+  private val groupReplyStartPosition: Int
+    get() = requireArguments().getInt(ARG_GROUP_REPLY_START_POSITION, -1)
+
   override val peekHeightPercentage: Float = 1f
 
   private val lifecycleDisposable = LifecycleDisposable()
@@ -52,7 +58,7 @@ class StoryGroupReplyBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDi
     lifecycleDisposable.bindTo(viewLifecycleOwner)
     if (savedInstanceState == null) {
       childFragmentManager.beginTransaction()
-        .replace(R.id.fragment_container, StoryGroupReplyFragment.create(storyId, groupRecipientId))
+        .replace(R.id.fragment_container, StoryGroupReplyFragment.create(storyId, groupRecipientId, isFromNotification, groupReplyStartPosition))
         .commitAllowingStateLoss()
     }
 
@@ -109,12 +115,16 @@ class StoryGroupReplyBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDi
   companion object {
     private const val ARG_STORY_ID = "arg.story.id"
     private const val ARG_GROUP_RECIPIENT_ID = "arg.group.recipient.id"
+    private const val ARG_IS_FROM_NOTIFICATION = "is_from_notification"
+    private const val ARG_GROUP_REPLY_START_POSITION = "group_reply_start_position"
 
-    fun create(storyId: Long, groupRecipientId: RecipientId): DialogFragment {
+    fun create(storyId: Long, groupRecipientId: RecipientId, isFromNotification: Boolean, groupReplyStartPosition: Int): DialogFragment {
       return StoryGroupReplyBottomSheetDialogFragment().apply {
         arguments = Bundle().apply {
           putLong(ARG_STORY_ID, storyId)
           putParcelable(ARG_GROUP_RECIPIENT_ID, groupRecipientId)
+          putBoolean(ARG_IS_FROM_NOTIFICATION, isFromNotification)
+          putInt(ARG_GROUP_REPLY_START_POSITION, groupReplyStartPosition)
         }
       }
     }

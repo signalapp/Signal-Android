@@ -1,36 +1,36 @@
 package org.thoughtcrime.securesms.stories.settings.my
 
-import androidx.core.content.ContextCompat
+import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.WrapperDialogFragment
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
-import org.thoughtcrime.securesms.util.SpanUtil
+import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
+import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class MyStorySettingsFragment : DSLSettingsFragment(
   titleId = R.string.MyStorySettingsFragment__my_story
 ) {
 
-  private val viewModel: MyStorySettingsViewModel by viewModels(
-    factoryProducer = {
-      MyStorySettingsViewModel.Factory(MyStorySettingsRepository())
-    }
-  )
+  private val viewModel: MyStorySettingsViewModel by viewModels()
 
-  private val signalConnectionsSummary by lazy {
-    SpanUtil.clickSubstring(
-      getString(R.string.MyStorySettingsFragment__hide_your_story_from, getString(R.string.MyStorySettingsFragment__signal_connections)),
-      getString(R.string.MyStorySettingsFragment__signal_connections),
-      {
-        findNavController().safeNavigate(R.id.action_myStorySettings_to_signalConnectionsBottomSheet)
-      },
-      ContextCompat.getColor(requireContext(), R.color.signal_text_primary)
-    )
+  private lateinit var lifecycleDisposable: LifecycleDisposable
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    lifecycleDisposable = LifecycleDisposable()
+    lifecycleDisposable.bindTo(viewLifecycleOwner)
+    super.onViewCreated(view, savedInstanceState)
   }
 
   override fun onResume() {
@@ -48,16 +48,57 @@ class MyStorySettingsFragment : DSLSettingsFragment(
     return configure {
       sectionHeaderPref(R.string.MyStorySettingsFragment__who_can_see_this_story)
 
-      clickPref(
-        title = DSLSettingsText.from(R.string.MyStorySettingsFragment__hide_story_from),
-        summary = DSLSettingsText.from(resources.getQuantityString(R.plurals.MyStorySettingsFragment__d_people, state.hiddenStoryFromCount, state.hiddenStoryFromCount)),
+      radioPref(
+        title = DSLSettingsText.from(R.string.MyStorySettingsFragment__all_signal_connections),
+        summary = DSLSettingsText.from(R.string.MyStorySettingsFragment__share_with_all_connections),
+        isChecked = state.myStoryPrivacyState.privacyMode == DistributionListPrivacyMode.ALL,
         onClick = {
-          findNavController().safeNavigate(R.id.action_myStorySettings_to_hideStoryFromFragment)
+          lifecycleDisposable += viewModel.setMyStoryPrivacyMode(DistributionListPrivacyMode.ALL)
+            .subscribe()
         }
       )
 
-      textPref(summary = DSLSettingsText.from(signalConnectionsSummary))
+      val exceptText = if (state.myStoryPrivacyState.privacyMode == DistributionListPrivacyMode.ALL_EXCEPT) {
+        DSLSettingsText.from(resources.getQuantityString(R.plurals.MyStorySettingsFragment__d_people_excluded, state.myStoryPrivacyState.connectionCount, state.myStoryPrivacyState.connectionCount))
+      } else {
+        DSLSettingsText.from(R.string.MyStorySettingsFragment__hide_your_story_from_specific_people)
+      }
+
+      radioPref(
+        title = DSLSettingsText.from(R.string.MyStorySettingsFragment__all_signal_connections_except),
+        summary = exceptText,
+        isChecked = state.myStoryPrivacyState.privacyMode == DistributionListPrivacyMode.ALL_EXCEPT,
+        onClick = {
+          lifecycleDisposable += viewModel.setMyStoryPrivacyMode(DistributionListPrivacyMode.ALL_EXCEPT)
+            .subscribe { findNavController().safeNavigate(R.id.action_myStorySettings_to_allExceptFragment) }
+        }
+      )
+
+      val onlyWithText = if (state.myStoryPrivacyState.privacyMode == DistributionListPrivacyMode.ONLY_WITH) {
+        DSLSettingsText.from(resources.getQuantityString(R.plurals.MyStorySettingsFragment__d_people, state.myStoryPrivacyState.connectionCount, state.myStoryPrivacyState.connectionCount))
+      } else {
+        DSLSettingsText.from(R.string.MyStorySettingsFragment__only_share_with_selected_people)
+      }
+
+      radioPref(
+        title = DSLSettingsText.from(R.string.MyStorySettingsFragment__only_share_with),
+        summary = onlyWithText,
+        isChecked = state.myStoryPrivacyState.privacyMode == DistributionListPrivacyMode.ONLY_WITH,
+        onClick = {
+          lifecycleDisposable += viewModel.setMyStoryPrivacyMode(DistributionListPrivacyMode.ONLY_WITH)
+            .subscribe { findNavController().safeNavigate(R.id.action_myStorySettings_to_onlyShareWithFragment) }
+        }
+      )
+
+      learnMoreTextPref(
+        summary = DSLSettingsText.from(R.string.MyStorySettingsFragment__choose_who_can_view_your_story),
+        onClick = {
+          findNavController().safeNavigate(R.id.action_myStorySettings_to_signalConnectionsBottomSheet)
+        }
+      )
+
       dividerPref()
+
       sectionHeaderPref(R.string.MyStorySettingsFragment__replies_amp_reactions)
       switchPref(
         title = DSLSettingsText.from(R.string.MyStorySettingsFragment__allow_replies_amp_reactions),
@@ -67,6 +108,22 @@ class MyStorySettingsFragment : DSLSettingsFragment(
           viewModel.setRepliesAndReactionsEnabled(!state.areRepliesAndReactionsEnabled)
         }
       )
+    }
+  }
+
+  override fun onToolbarNavigationClicked() {
+    findListener<WrapperDialogFragment>()?.dismiss() ?: super.onToolbarNavigationClicked()
+  }
+
+  class Dialog : WrapperDialogFragment() {
+    override fun getWrappedFragment(): Fragment {
+      return NavHostFragment.create(R.navigation.my_story_settings)
+    }
+  }
+
+  companion object {
+    fun createAsDialog(): DialogFragment {
+      return Dialog()
     }
   }
 }

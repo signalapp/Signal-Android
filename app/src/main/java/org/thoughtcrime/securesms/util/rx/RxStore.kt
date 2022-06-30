@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.util.rx
 
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Scheduler
+import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.processors.BehaviorProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.PublishSubject
@@ -19,7 +20,7 @@ class RxStore<T : Any>(
   private val actionSubject = PublishSubject.create<(T) -> T>().toSerialized()
 
   val state: T get() = behaviorProcessor.value!!
-  val stateFlowable: Flowable<T> = behaviorProcessor
+  val stateFlowable: Flowable<T> = behaviorProcessor.onBackpressureLatest()
 
   init {
     actionSubject
@@ -30,5 +31,11 @@ class RxStore<T : Any>(
 
   fun update(transformer: (T) -> T) {
     actionSubject.onNext(transformer)
+  }
+
+  fun <U> update(flowable: Flowable<U>, transformer: (U, T) -> T): Disposable {
+    return flowable.subscribe {
+      actionSubject.onNext { t -> transformer(it, t) }
+    }
   }
 }

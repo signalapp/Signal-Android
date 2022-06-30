@@ -11,6 +11,7 @@ import android.service.notification.StatusBarNotification
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.ContextCompat
 import me.leolin.shortcutbadger.ShortcutBadger
+import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.MessageDatabase
@@ -31,6 +32,7 @@ import org.thoughtcrime.securesms.util.BubbleUtil.BubbleState
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder
 import org.whispersystems.signalservice.internal.util.Util
+import java.util.Optional
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
@@ -43,7 +45,7 @@ import kotlin.math.max
  * MessageNotifier implementation using the new system for creating and showing notifications.
  */
 class MessageNotifierV2(context: Application) : MessageNotifier {
-  @Volatile private var visibleThread: Long = -1
+  @Volatile private var visibleThread: ConversationId? = null
   @Volatile private var lastDesktopActivityTimestamp: Long = -1
   @Volatile private var lastAudibleNotification: Long = -1
   @Volatile private var lastScheduledReminder: Long = 0
@@ -51,34 +53,34 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
   @Volatile private var previousPrivacyPreference: NotificationPrivacyPreference = SignalStore.settings().messageNotificationsPrivacy
   @Volatile private var previousState: NotificationStateV2 = NotificationStateV2.EMPTY
 
-  private val threadReminders: MutableMap<Long, Reminder> = ConcurrentHashMap()
-  private val stickyThreads: MutableMap<Long, StickyThread> = mutableMapOf()
+  private val threadReminders: MutableMap<ConversationId, Reminder> = ConcurrentHashMap()
+  private val stickyThreads: MutableMap<ConversationId, StickyThread> = mutableMapOf()
 
   private val executor = CancelableExecutor()
 
-  override fun setVisibleThread(threadId: Long) {
-    visibleThread = threadId
-    stickyThreads.remove(threadId)
+  override fun setVisibleThread(conversationId: ConversationId?) {
+    visibleThread = conversationId
+    stickyThreads.remove(conversationId)
   }
 
-  override fun getVisibleThread(): Long {
-    return visibleThread
+  override fun getVisibleThread(): Optional<ConversationId> {
+    return Optional.ofNullable(visibleThread)
   }
 
   override fun clearVisibleThread() {
-    setVisibleThread(-1)
+    setVisibleThread(null)
   }
 
   override fun setLastDesktopActivityTimestamp(timestamp: Long) {
     lastDesktopActivityTimestamp = timestamp
   }
 
-  override fun notifyMessageDeliveryFailed(context: Context, recipient: Recipient, threadId: Long) {
-    NotificationFactory.notifyMessageDeliveryFailed(context, recipient, threadId, visibleThread)
+  override fun notifyMessageDeliveryFailed(context: Context, recipient: Recipient, conversationId: ConversationId) {
+    NotificationFactory.notifyMessageDeliveryFailed(context, recipient, conversationId, visibleThread)
   }
 
-  override fun notifyProofRequired(context: Context, recipient: Recipient, threadId: Long) {
-    NotificationFactory.notifyProofRequired(context, recipient, threadId, visibleThread)
+  override fun notifyProofRequired(context: Context, recipient: Recipient, conversationId: ConversationId) {
+    NotificationFactory.notifyProofRequired(context, recipient, conversationId, visibleThread)
   }
 
   override fun cancelDelayedNotifications() {
@@ -86,24 +88,24 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
   }
 
   override fun updateNotification(context: Context) {
-    updateNotification(context, -1, false, 0, BubbleState.HIDDEN)
+    updateNotification(context, null, false, 0, BubbleState.HIDDEN)
   }
 
-  override fun updateNotification(context: Context, threadId: Long) {
+  override fun updateNotification(context: Context, conversationId: ConversationId) {
     if (System.currentTimeMillis() - lastDesktopActivityTimestamp < DESKTOP_ACTIVITY_PERIOD) {
       Log.i(TAG, "Scheduling delayed notification...")
-      executor.enqueue(context, threadId)
+      executor.enqueue(context, conversationId)
     } else {
-      updateNotification(context, threadId, true)
+      updateNotification(context, conversationId, true)
     }
   }
 
-  override fun updateNotification(context: Context, threadId: Long, defaultBubbleState: BubbleState) {
-    updateNotification(context, threadId, false, 0, defaultBubbleState)
+  override fun updateNotification(context: Context, conversationId: ConversationId, defaultBubbleState: BubbleState) {
+    updateNotification(context, conversationId, false, 0, defaultBubbleState)
   }
 
-  override fun updateNotification(context: Context, threadId: Long, signal: Boolean) {
-    updateNotification(context, threadId, signal, 0, BubbleState.HIDDEN)
+  override fun updateNotification(context: Context, conversationId: ConversationId, signal: Boolean) {
+    updateNotification(context, conversationId, signal, 0, BubbleState.HIDDEN)
   }
 
   /**
@@ -112,7 +114,7 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
    */
   override fun updateNotification(
     context: Context,
-    threadId: Long,
+    conversationId: ConversationId?,
     signal: Boolean,
     reminderCount: Int,
     defaultBubbleState: BubbleState
@@ -162,22 +164,22 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
 
     val displayedNotifications: Set<Int>? = ServiceUtil.getNotificationManager(context).getDisplayedNotificationIds().getOrNull()
     if (displayedNotifications != null) {
-      val cleanedUpThreadIds: MutableSet<Long> = mutableSetOf()
+      val cleanedUpThreads: MutableSet<ConversationId> = mutableSetOf()
       state.conversations.filterNot { it.hasNewNotifications() || displayedNotifications.contains(it.notificationId) }
         .forEach { conversation ->
-          cleanedUpThreadIds += conversation.threadId
+          cleanedUpThreads += conversation.thread
           conversation.notificationItems.forEach { item ->
             val messageDatabase: MessageDatabase = if (item.isMms) SignalDatabase.mms else SignalDatabase.sms
             messageDatabase.markAsNotified(item.id)
           }
         }
-      if (cleanedUpThreadIds.isNotEmpty()) {
-        Log.i(TAG, "Cleaned up ${cleanedUpThreadIds.size} thread(s) with dangling notifications")
-        state = state.copy(conversations = state.conversations.filterNot { cleanedUpThreadIds.contains(it.threadId) })
+      if (cleanedUpThreads.isNotEmpty()) {
+        Log.i(TAG, "Cleaned up ${cleanedUpThreads.size} thread(s) with dangling notifications")
+        state = state.copy(conversations = state.conversations.filterNot { cleanedUpThreads.contains(it.thread) })
       }
     }
 
-    val retainStickyThreadIds: Set<Long> = state.getThreadsWithMostRecentNotificationFromSelf()
+    val retainStickyThreadIds: Set<ConversationId> = state.getThreadsWithMostRecentNotificationFromSelf()
     stickyThreads.keys.retainAll { retainStickyThreadIds.contains(it) }
 
     if (state.isEmpty) {
@@ -188,13 +190,13 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
       return
     }
 
-    val alertOverrides: Set<Long> = threadReminders.filter { (_, reminder) -> reminder.lastNotified < System.currentTimeMillis() - REMINDER_TIMEOUT }.keys
+    val alertOverrides: Set<ConversationId> = threadReminders.filter { (_, reminder) -> reminder.lastNotified < System.currentTimeMillis() - REMINDER_TIMEOUT }.keys
 
-    val threadsThatAlerted: Set<Long> = NotificationFactory.notify(
+    val threadsThatAlerted: Set<ConversationId> = NotificationFactory.notify(
       context = ContextThemeWrapper(context, R.style.TextSecure_LightTheme),
       state = state,
-      visibleThreadId = visibleThread,
-      targetThreadId = threadId,
+      visibleThread = visibleThread,
+      targetThread = conversationId,
       defaultBubbleState = defaultBubbleState,
       lastAudibleNotification = lastAudibleNotification,
       notificationConfigurationChanged = notificationConfigurationChanged,
@@ -222,29 +224,37 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
     SignalDatabase.mmsSms.setNotifiedTimestamp(System.currentTimeMillis(), smsIds, mmsIds)
 
     Log.i(TAG, "threads: ${state.threadCount} messages: ${state.messageCount}")
+
+    if (Build.VERSION.SDK_INT >= 24) {
+      val ids = state.conversations.filter { it.thread != visibleThread }.map { it.notificationId } + stickyThreads.map { (_, stickyThread) -> stickyThread.notificationId }
+      val notShown = ids - ServiceUtil.getNotificationManager(context).getDisplayedNotificationIds().getOrDefault(emptySet())
+      if (notShown.isNotEmpty()) {
+        Log.e(TAG, "Notifications should be showing but are not for ${notShown.size} threads")
+      }
+    }
   }
 
   override fun clearReminder(context: Context) {
     // Intentionally left blank
   }
 
-  override fun addStickyThread(threadId: Long, earliestTimestamp: Long) {
-    stickyThreads[threadId] = StickyThread(threadId, NotificationIds.getNotificationIdForThread(threadId), earliestTimestamp)
+  override fun addStickyThread(conversationId: ConversationId, earliestTimestamp: Long) {
+    stickyThreads[conversationId] = StickyThread(conversationId, NotificationIds.getNotificationIdForThread(conversationId), earliestTimestamp)
   }
 
-  override fun removeStickyThread(threadId: Long) {
-    stickyThreads.remove(threadId)
+  override fun removeStickyThread(conversationId: ConversationId) {
+    stickyThreads.remove(conversationId)
   }
 
-  private fun updateReminderTimestamps(context: Context, alertOverrides: Set<Long>, threadsThatAlerted: Set<Long>) {
+  private fun updateReminderTimestamps(context: Context, alertOverrides: Set<ConversationId>, threadsThatAlerted: Set<ConversationId>) {
     if (SignalStore.settings().messageNotificationsRepeatAlerts == 0) {
       return
     }
 
-    val iterator: MutableIterator<MutableEntry<Long, Reminder>> = threadReminders.iterator()
+    val iterator: MutableIterator<MutableEntry<ConversationId, Reminder>> = threadReminders.iterator()
     while (iterator.hasNext()) {
-      val entry: MutableEntry<Long, Reminder> = iterator.next()
-      val (id: Long, reminder: Reminder) = entry
+      val entry: MutableEntry<ConversationId, Reminder> = iterator.next()
+      val (id: ConversationId, reminder: Reminder) = entry
       if (alertOverrides.contains(id)) {
         val notifyCount: Int = reminder.count + 1
         if (notifyCount >= SignalStore.settings().messageNotificationsRepeatAlerts) {
@@ -255,7 +265,7 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
       }
     }
 
-    for (alertedThreadId: Long in threadsThatAlerted) {
+    for (alertedThreadId: ConversationId in threadsThatAlerted) {
       threadReminders[alertedThreadId] = Reminder(lastAudibleNotification)
     }
 
@@ -274,7 +284,7 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
     }
 
     val alarmManager: AlarmManager? = ContextCompat.getSystemService(context, AlarmManager::class.java)
-    val pendingIntent: PendingIntent = PendingIntent.getBroadcast(context, 0, Intent(context, ReminderReceiver::class.java), PendingIntent.FLAG_UPDATE_CURRENT)
+    val pendingIntent: PendingIntent = PendingIntent.getBroadcast(context, 0, Intent(context, ReminderReceiver::class.java), PendingIntentFlags.updateCurrent())
     alarmManager?.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + timeout, pendingIntent)
     lastScheduledReminder = System.currentTimeMillis()
   }
@@ -283,7 +293,7 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
     lastScheduledReminder = 0
     threadReminders.clear()
 
-    val pendingIntent: PendingIntent? = PendingIntent.getBroadcast(context, 0, Intent(context, ReminderReceiver::class.java), PendingIntent.FLAG_CANCEL_CURRENT)
+    val pendingIntent: PendingIntent? = PendingIntent.getBroadcast(context, 0, Intent(context, ReminderReceiver::class.java), PendingIntentFlags.cancelCurrent())
     if (pendingIntent != null) {
       val alarmManager: AlarmManager? = ContextCompat.getSystemService(context, AlarmManager::class.java)
       alarmManager?.cancel(pendingIntent)
@@ -309,7 +319,7 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
     }
   }
 
-  data class StickyThread(val threadId: Long, val notificationId: Int, val earliestTimestamp: Long)
+  data class StickyThread(val conversationId: ConversationId, val notificationId: Int, val earliestTimestamp: Long)
   private data class Reminder(val lastNotified: Long, val count: Int = 0)
 }
 
@@ -358,8 +368,8 @@ private class CancelableExecutor {
   private val executor: Executor = Executors.newSingleThreadExecutor()
   private val tasks: MutableSet<DelayedNotification> = mutableSetOf()
 
-  fun enqueue(context: Context, threadId: Long) {
-    execute(DelayedNotification(context, threadId))
+  fun enqueue(context: Context, conversationId: ConversationId) {
+    execute(DelayedNotification(context, conversationId))
   }
 
   private fun execute(runnable: DelayedNotification) {
@@ -379,7 +389,7 @@ private class CancelableExecutor {
     }
   }
 
-  private class DelayedNotification constructor(private val context: Context, private val threadId: Long) : Runnable {
+  private class DelayedNotification constructor(private val context: Context, private val thread: ConversationId) : Runnable {
     private val canceled = AtomicBoolean(false)
     private val delayUntil: Long = System.currentTimeMillis() + DELAY
 
@@ -391,7 +401,7 @@ private class CancelableExecutor {
       }
       if (!canceled.get()) {
         Log.i(TAG, "Not canceled, notifying...")
-        ApplicationDependencies.getMessageNotifier().updateNotification(context, threadId, true)
+        ApplicationDependencies.getMessageNotifier().updateNotification(context, thread, true)
         ApplicationDependencies.getMessageNotifier().cancelDelayedNotifications()
       } else {
         Log.w(TAG, "Canceled, not notifying...")

@@ -2,12 +2,15 @@ package org.thoughtcrime.securesms.mediasend.v2.text.send
 
 import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.ThreadUtil
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.fonts.TextFont
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.StorySend
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.mediasend.v2.UntrustedRecords
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationState
@@ -16,6 +19,8 @@ import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.Base64
+
+private val TAG = Log.tag(TextStoryPostSendRepository::class.java)
 
 class TextStoryPostSendRepository {
 
@@ -27,6 +32,7 @@ class TextStoryPostSendRepository {
         if (it is UntrustedRecords.UntrustedRecordsException) {
           TextStoryPostSendResult.UntrustedRecordsError(it.untrustedRecords)
         } else {
+          Log.w(TAG, "Unexpected error occurred", it)
           TextStoryPostSendResult.Failure
         }
       }
@@ -48,8 +54,12 @@ class TextStoryPostSendRepository {
         val recipient = Recipient.resolved(contact.requireShareContact().recipientId.get())
         val isStory = contact is ContactSearchKey.RecipientSearchKey.Story || recipient.isDistributionList
 
-        if (isStory && recipient.isActiveGroup) {
+        if (isStory && recipient.isActiveGroup && recipient.isGroup) {
           SignalDatabase.groups.markDisplayAsStory(recipient.requireGroupId())
+        }
+
+        if (isStory && !recipient.isMyStory) {
+          SignalStore.storyValues().setLatestStorySend(StorySend.newSend(recipient))
         }
 
         val storyType: StoryType = when {

@@ -4,40 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
     android:background="@drawable/conversation_list_item_background"
     android:focusable="true"
-    android:minHeight="78dp"
+    android:minHeight="84dp"
     android:nextFocusLeft="@+id/container"
     android:nextFocusRight="@+id/fab"
     android:paddingStart="@dimen/dsl_settings_gutter"
+    android:paddingTop="10dp"
     android:paddingEnd="@dimen/dsl_settings_gutter"
-    android:animateLayoutChanges="true">
+    android:paddingBottom="10dp">
 
     <FrameLayout
         android:id="@+id/conversation_list_item_check_container"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:visibility="gone"
-        tools:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        tools:visibility="visible">
 
         <ImageView
             android:id="@+id/conversation_list_item_unchecked"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:srcCompat="@drawable/multiselect_empty_ring"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            app:srcCompat="@drawable/multiselect_empty_ring" />
 
         <ImageView
             android:id="@+id/conversation_list_item_checked"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:background="@drawable/circle_tintable_padded_2"
-            app:srcCompat="@drawable/ic_check_circle_solid_24"
-            app:tint="@color/core_ultramarine"
             android:visibility="gone"
+            app:backgroundTint="@color/signal_colorOnPrimary"
+            app:srcCompat="@drawable/ic_check_circle_solid_24"
+            app:tint="@color/signal_colorPrimary"
             tools:visibility="visible" />
 
     </FrameLayout>
@@ -46,28 +49,27 @@
         android:id="@+id/conversation_list_item_avatar"
         android:layout_width="@dimen/conversation_list_avatar_size"
         android:layout_height="@dimen/conversation_list_avatar_size"
-        android:layout_marginTop="12dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
         android:contentDescription="@string/conversation_list_item_view__contact_photo_image"
         android:foreground="@drawable/contact_photo_background"
         app:layout_constraintStart_toEndOf="@id/conversation_list_item_check_container"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/conversation_list_item_name"
         app:layout_goneMarginStart="0dp"
         tools:src="@drawable/ic_contact_picture" />
 
     <org.thoughtcrime.securesms.components.FromTextView
         android:id="@+id/conversation_list_item_name"
-        style="@style/Signal.Text.Body"
+        style="@style/Signal.Text.BodyLarge"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="20dp"
         android:layout_marginEnd="12dp"
         android:drawablePadding="5dp"
         android:ellipsize="end"
-        android:fontFamily="sans-serif-medium"
         android:maxLines="1"
-        android:textColor="@color/signal_text_primary"
+        android:textColor="@color/signal_colorOnSurface"
+        app:layout_constraintBottom_toTopOf="@id/conversation_list_item_summary"
         app:layout_constraintEnd_toStartOf="@id/conversation_list_item_date"
         app:layout_constraintStart_toEndOf="@id/conversation_list_item_avatar"
         app:layout_constraintTop_toTopOf="parent"
@@ -88,15 +90,15 @@
 
     <org.thoughtcrime.securesms.components.emoji.SimpleEmojiTextView
         android:id="@+id/conversation_list_item_summary"
-        style="@style/Signal.Text.Preview"
+        style="@style/Signal.Text.BodyMedium"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
-        android:layout_marginBottom="8dp"
         android:ellipsize="end"
         android:lines="2"
         android:maxLines="2"
         android:textColor="@color/signal_text_secondary"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/conversation_list_item_status_container"
         app:layout_constraintStart_toEndOf="@id/conversation_list_item_alert"
         app:layout_constraintTop_toBottomOf="@id/conversation_list_item_name"
@@ -115,7 +117,7 @@
 
     <TextView
         android:id="@+id/conversation_list_item_date"
-        style="@style/Signal.Text.Caption"
+        style="@style/Signal.Text.BodyMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
@@ -141,36 +143,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            app:iconColor="@color/signal_icon_tint_secondary" />
+            app:iconColor="@color/signal_colorOnSurfaceVariant" />
 
         <TextView
             android:id="@+id/conversation_list_item_unread_indicator"
-            style="@style/Signal.Text.Caption"
+            style="@style/Signal.Text.LabelMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:minWidth="18dp"
             android:background="@drawable/unread_count_background_new"
-            android:fontFamily="sans-serif-medium"
             android:includeFontPadding="false"
+            android:minWidth="18dp"
             android:paddingStart="6dp"
-            android:paddingEnd="6dp"
             android:paddingTop="2dp"
+            android:paddingEnd="6dp"
             android:paddingBottom="2dp"
-            android:textColor="@color/core_white"
+            android:textColor="@color/signal_colorBackground"
             tools:text="99+" />
 
         <TextView
             android:id="@+id/conversation_list_item_archived"
-            style="@style/Signal.Text.Caption"
+            style="@style/Signal.Text.BodySmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:background="@drawable/archived_indicator_background"
-            android:paddingStart="6dp"
-            android:paddingEnd="6dp"
+            android:paddingStart="8dp"
+            android:paddingTop="1dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="1dp"
             android:text="@string/conversation_list_item_view__archived"
-            android:textColor="@color/core_white"
+            android:textColor="@color/signal_colorSurface"
             tools:visibility="gone" />
 
     </LinearLayout>

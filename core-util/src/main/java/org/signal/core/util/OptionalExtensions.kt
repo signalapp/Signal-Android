@@ -9,3 +9,7 @@ fun <E> Optional<E>.or(other: Optional<E>): Optional<E> {
     other
   }
 }
+
+fun <E> Optional<E>.isAbsent(): Boolean {
+  return !isPresent
+}

@@ -35,24 +35,23 @@
             android:textColor="@color/core_grey_60"
             app:layout_constraintTop_toBottomOf="@id/change_number_pin_differs_title" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/change_number_pin_differs_keep_old_pin"
-            style="@style/Button.Borderless"
+            style="@style/Signal.Widget.Button.Large.Secondary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/ChangeNumberPinDiffersFragment__keep_old_pin"
             app:layout_constraintBottom_toTopOf="@id/change_number_pin_differs_update_pin"
             tools:layout_editor_absoluteX="32dp" />
 
-        <com.dd.CircularProgressButton
+        <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
             android:id="@+id/change_number_pin_differs_update_pin"
-            style="@style/Button.Registration"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="16dp"
-            app:cpb_textIdle="@string/ChangeNumberPinDiffersFragment__update_pin"
+            app:circularProgressMaterialButton__label="@string/ChangeNumberPinDiffersFragment__update_pin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

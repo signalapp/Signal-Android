@@ -21,7 +21,6 @@ import androidx.annotation.StringRes;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.annimon.stream.Stream;
-import com.dd.CircularProgressButton;
 
 import org.signal.core.util.ResourceUtil;
 import org.thoughtcrime.securesms.LoggingFragment;
@@ -31,6 +30,7 @@ import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
+import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,16 +41,16 @@ public class HelpFragment extends LoggingFragment {
   public static final int    PAYMENT_INDEX        = 6;
   public static final int    DONATION_INDEX       = 7;
 
-  private EditText                     problem;
-  private CheckBox                     includeDebugLogs;
-  private View                         debugLogInfo;
-  private View                         faq;
-  private CircularProgressButton       next;
-  private View                         toaster;
-  private List<EmojiImageView>         emoji;
-  private HelpViewModel                helpViewModel;
-  private Spinner                      categorySpinner;
-  private ArrayAdapter<CharSequence>   categoryAdapter;
+  private EditText                       problem;
+  private CheckBox                       includeDebugLogs;
+  private View                           debugLogInfo;
+  private View                           faq;
+  private CircularProgressMaterialButton next;
+  private View                           toaster;
+  private List<EmojiImageView>           emoji;
+  private HelpViewModel                  helpViewModel;
+  private Spinner                        categorySpinner;
+  private ArrayAdapter<CharSequence>     categoryAdapter;
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,7 +69,7 @@ public class HelpFragment extends LoggingFragment {
   public void onResume() {
     super.onResume();
 
-    cancelSpinning(next);
+    next.cancelSpinning();
     problem.setEnabled(true);
   }
 
@@ -93,7 +93,7 @@ public class HelpFragment extends LoggingFragment {
       emoji.add(view.findViewById(feeling.getViewId()));
     }
 
-    categoryAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.HelpFragment__categories_3, android.R.layout.simple_spinner_item);
+    categoryAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.HelpFragment__categories_4, android.R.layout.simple_spinner_item);
     categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
     categorySpinner.setAdapter(categoryAdapter);
@@ -161,7 +161,7 @@ public class HelpFragment extends LoggingFragment {
   }
 
   private void submitForm() {
-    setSpinning(next);
+    next.setSpinning();
     problem.setEnabled(false);
 
     helpViewModel.onSubmitClicked(includeDebugLogs.isChecked()).observe(getViewLifecycleOwner(), result -> {
@@ -209,7 +209,7 @@ public class HelpFragment extends LoggingFragment {
       suffix.append(getString(feeling.getStringId()));
     }
 
-    String[] englishCategories = ResourceUtil.getEnglishResources(requireContext()).getStringArray(R.array.HelpFragment__categories_3);
+    String[] englishCategories = ResourceUtil.getEnglishResources(requireContext()).getStringArray(R.array.HelpFragment__categories_4);
     String   category          = (helpViewModel.getCategoryIndex() >= 0 && helpViewModel.getCategoryIndex() < englishCategories.length) ? englishCategories[helpViewModel.getCategoryIndex()]
                                                                                                                                         : categoryAdapter.getItem(helpViewModel.getCategoryIndex()).toString();
 
@@ -218,22 +218,6 @@ public class HelpFragment extends LoggingFragment {
                                                      " - " + category,
                                                      problem.getText().toString() + "\n\n",
                                                      suffix.toString());
-  }
-
-  private static void setSpinning(@Nullable CircularProgressButton button) {
-    if (button != null) {
-      button.setClickable(false);
-      button.setIndeterminateProgressMode(true);
-      button.setProgress(50);
-    }
-  }
-
-  private static void cancelSpinning(@Nullable CircularProgressButton button) {
-    if (button != null) {
-      button.setProgress(0);
-      button.setIndeterminateProgressMode(false);
-      button.setClickable(true);
-    }
   }
 
   private enum Feeling {

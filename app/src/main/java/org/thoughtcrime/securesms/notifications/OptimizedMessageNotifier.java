@@ -6,13 +6,17 @@ import android.os.Handler;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.ExceptionUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.notifications.v2.MessageNotifierV2;
+import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BubbleUtil;
 import org.thoughtcrime.securesms.util.LeakyBucketLimiter;
+
+import java.util.Optional;
 
 /**
  * Uses a leaky-bucket strategy to limiting notification updates.
@@ -29,12 +33,12 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   }
 
   @Override
-  public void setVisibleThread(long threadId) {
-    getNotifier().setVisibleThread(threadId);
+  public void setVisibleThread(@Nullable ConversationId conversationId) {
+    getNotifier().setVisibleThread(conversationId);
   }
 
   @Override
-  public long getVisibleThread() {
+  public @NonNull Optional<ConversationId> getVisibleThread() {
     return getNotifier().getVisibleThread();
   }
 
@@ -49,13 +53,13 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   }
 
   @Override
-  public void notifyMessageDeliveryFailed(@NonNull Context context, @NonNull Recipient recipient, long threadId) {
-    getNotifier().notifyMessageDeliveryFailed(context, recipient, threadId);
+  public void notifyMessageDeliveryFailed(@NonNull Context context, @NonNull Recipient recipient, @NonNull ConversationId conversationId) {
+    getNotifier().notifyMessageDeliveryFailed(context, recipient, conversationId);
   }
 
   @Override
-  public void notifyProofRequired(@NonNull Context context, @NonNull Recipient recipient, long threadId) {
-    getNotifier().notifyProofRequired(context, recipient, threadId);
+  public void notifyProofRequired(@NonNull Context context, @NonNull Recipient recipient, @NonNull ConversationId conversationId) {
+    getNotifier().notifyProofRequired(context, recipient, conversationId);
   }
 
   @Override
@@ -69,23 +73,23 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   }
 
   @Override
-  public void updateNotification(@NonNull Context context, long threadId) {
-    runOnLimiter(() -> getNotifier().updateNotification(context, threadId));
+  public void updateNotification(@NonNull Context context, @NonNull ConversationId conversationId) {
+    runOnLimiter(() -> getNotifier().updateNotification(context, conversationId));
   }
 
   @Override
-  public void updateNotification(@NonNull Context context, long threadId, @NonNull BubbleUtil.BubbleState defaultBubbleState) {
-    runOnLimiter(() -> getNotifier().updateNotification(context, threadId, defaultBubbleState));
+  public void updateNotification(@NonNull Context context, @NonNull ConversationId conversationId, @NonNull BubbleUtil.BubbleState defaultBubbleState) {
+    runOnLimiter(() -> getNotifier().updateNotification(context, conversationId, defaultBubbleState));
   }
 
   @Override
-  public void updateNotification(@NonNull Context context, long threadId, boolean signal) {
-    runOnLimiter(() -> getNotifier().updateNotification(context, threadId, signal));
+  public void updateNotification(@NonNull Context context, @NonNull ConversationId conversationId, boolean signal) {
+    runOnLimiter(() -> getNotifier().updateNotification(context, conversationId, signal));
   }
 
   @Override
-  public void updateNotification(@NonNull Context context, long threadId, boolean signal, int reminderCount, @NonNull BubbleUtil.BubbleState defaultBubbleState) {
-    runOnLimiter(() -> getNotifier().updateNotification(context, threadId, signal, reminderCount, defaultBubbleState));
+  public void updateNotification(@NonNull Context context, @Nullable ConversationId conversationId, boolean signal, int reminderCount, @NonNull BubbleUtil.BubbleState defaultBubbleState) {
+    runOnLimiter(() -> getNotifier().updateNotification(context, conversationId, signal, reminderCount, defaultBubbleState));
   }
 
   @Override
@@ -94,13 +98,13 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   }
 
   @Override
-  public void addStickyThread(long threadId, long earliestTimestamp) {
-    getNotifier().addStickyThread(threadId, earliestTimestamp);
+  public void addStickyThread(@NonNull ConversationId conversationId, long earliestTimestamp) {
+    getNotifier().addStickyThread(conversationId, earliestTimestamp);
   }
 
   @Override
-  public void removeStickyThread(long threadId) {
-    getNotifier().removeStickyThread(threadId);
+  public void removeStickyThread(@NonNull ConversationId conversationId) {
+    getNotifier().removeStickyThread(conversationId);
   }
 
   private void runOnLimiter(@NonNull Runnable runnable) {

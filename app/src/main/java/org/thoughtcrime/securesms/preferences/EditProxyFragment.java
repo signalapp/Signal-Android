@@ -16,8 +16,6 @@ import androidx.core.app.ShareCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.dd.CircularProgressButton;
-
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -25,6 +23,7 @@ import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 import org.whispersystems.signalservice.internal.configuration.SignalProxy;
@@ -33,13 +32,13 @@ import java.util.Optional;
 
 public class EditProxyFragment extends Fragment {
 
-  private SwitchCompat                 proxySwitch;
-  private EditText                     proxyText;
-  private TextView                     proxyTitle;
-  private TextView                     proxyStatus;
-  private View                         shareButton;
-  private CircularProgressButton       saveButton;
-  private EditProxyViewModel           viewModel;
+  private SwitchCompat                   proxySwitch;
+  private EditText                       proxyText;
+  private TextView                       proxyTitle;
+  private TextView                       proxyStatus;
+  private View                           shareButton;
+  private CircularProgressMaterialButton saveButton;
+  private EditProxyViewModel             viewModel;
 
   public static EditProxyFragment newInstance() {
     return new EditProxyFragment();
@@ -173,14 +172,10 @@ public class EditProxyFragment extends Fragment {
   private void presentSaveState(@NonNull EditProxyViewModel.SaveState state) {
     switch (state) {
       case IDLE:
-        saveButton.setClickable(true);
-        saveButton.setIndeterminateProgressMode(false);
-        saveButton.setProgress(0);
+        saveButton.cancelSpinning();
         break;
       case IN_PROGRESS:
-        saveButton.setClickable(false);
-        saveButton.setIndeterminateProgressMode(true);
-        saveButton.setProgress(50);
+        saveButton.setSpinning();
         break;
     }
   }

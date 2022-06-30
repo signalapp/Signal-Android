@@ -7,6 +7,7 @@
     android:gravity="center_vertical"
     android:paddingStart="8dp"
     android:paddingTop="2dp"
+    android:paddingBottom="8dp"
     android:paddingEnd="8dp">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
@@ -121,7 +122,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="1dp"
-        android:layout_marginBottom="1dp"
         app:cardCornerRadius="@dimen/message_corner_radius"
         app:cardElevation="0dp"
         app:contentPadding="0dp"

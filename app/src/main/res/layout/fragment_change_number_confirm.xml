@@ -56,7 +56,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/change_number_confirm_edit_number"
-        style="@style/Signal.Widget.Button.Large.Secondary.NoOutline"
+        style="@style/Signal.Widget.Button.Large.Secondary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"

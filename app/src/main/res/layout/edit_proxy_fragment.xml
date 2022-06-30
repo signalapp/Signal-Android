@@ -83,7 +83,7 @@
       app:layout_constraintTop_toBottomOf="@id/edit_proxy_status"
       app:layout_constraintStart_toStartOf="parent" />
 
-  <com.dd.CircularProgressButton
+  <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
       android:id="@+id/edit_proxy_save"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
@@ -96,11 +96,6 @@
       app:elevation="4dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:cpb_colorIndicator="@color/white"
-      app:cpb_colorProgress="?colorAccent"
-      app:cpb_cornerRadius="28dp"
-      app:cpb_selectorIdle="@drawable/progress_button_state"
-      app:cpb_textIdle="@string/preferences_save" />
-
+      app:circularProgressMaterialButton__label="@string/preferences_save" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

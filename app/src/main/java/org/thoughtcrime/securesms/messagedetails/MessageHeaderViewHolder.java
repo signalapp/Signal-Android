@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.messagedetails;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.os.CountDownTimer;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.StyleSpan;
@@ -13,12 +14,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.exoplayer2.MediaItem;
 
-import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.ConversationItem;
@@ -40,23 +41,24 @@ import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements GiphyMp4Playable, Colorizable {
-  private final TextView               sentDate;
-  private final TextView               receivedDate;
-  private final TextView               expiresIn;
-  private final TextView               transport;
-  private final TextView               errorText;
-  private final View                   resendButton;
-  private final View                   messageMetadata;
-  private final ViewStub               updateStub;
-  private final ViewStub               sentStub;
-  private final ViewStub               receivedStub;
-  private final Colorizer              colorizer;
+  private final TextView      sentDate;
+  private final TextView      receivedDate;
+  private final TextView      expiresIn;
+  private final TextView      transport;
+  private final TextView      errorText;
+  private final View          resendButton;
+  private final View          messageMetadata;
+  private final ViewStub      updateStub;
+  private final ViewStub      sentStub;
+  private final ViewStub      receivedStub;
+  private final Colorizer     colorizer;
+  private final GlideRequests glideRequests;
 
-  private       GlideRequests    glideRequests;
-  private       ConversationItem conversationItem;
-  private       ExpiresUpdater   expiresUpdater;
+  private ConversationItem conversationItem;
+  private CountDownTimer   expiresUpdater;
 
   MessageHeaderViewHolder(@NonNull View itemView, GlideRequests glideRequests, @NonNull Colorizer colorizer) {
     super(itemView);
@@ -75,20 +77,16 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
     receivedStub    = itemView.findViewById(R.id.message_details_header_message_view_received_multimedia);
   }
 
-  void bind(@NonNull LifecycleOwner lifecycleOwner, @Nullable ConversationMessage conversationMessage, boolean running) {
+  void bind(@NonNull LifecycleOwner lifecycleOwner, @NonNull ConversationMessage conversationMessage) {
     MessageRecord messageRecord = conversationMessage.getMessageRecord();
     bindMessageView(lifecycleOwner, conversationMessage);
     bindErrorState(messageRecord);
     bindSentReceivedDates(messageRecord);
-    bindExpirationTime(messageRecord, running);
+    bindExpirationTime(lifecycleOwner, messageRecord);
     bindTransport(messageRecord);
   }
 
-  void partialBind(ConversationMessage conversationMessage, boolean running) {
-    bindExpirationTime(conversationMessage.getMessageRecord(), running);
-  }
-
-  private void bindMessageView(@NonNull LifecycleOwner lifecycleOwner, @Nullable ConversationMessage conversationMessage) {
+  private void bindMessageView(@NonNull LifecycleOwner lifecycleOwner, @NonNull ConversationMessage conversationMessage) {
     if (conversationItem == null) {
       if (conversationMessage.getMessageRecord().isGroupAction()) {
         conversationItem = (ConversationItem) updateStub.inflate();
@@ -111,7 +109,8 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
                           false,
                           false,
                           true,
-                          colorizer);
+                          colorizer,
+                          false);
   }
 
   private void bindErrorState(MessageRecord messageRecord) {
@@ -141,19 +140,19 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
     receivedDate.setOnLongClickListener(null);
 
     if (messageRecord.isPending() || messageRecord.isFailed()) {
-      sentDate.setText(formatBoldString(R.string.message_details_header__sent, "-"));
+      sentDate.setText(formatBoldString(R.string.message_details_header_sent, "-"));
       receivedDate.setVisibility(View.GONE);
     } else {
-      Locale dateLocale    = Locale.getDefault();
+      Locale           dateLocale    = Locale.getDefault();
       SimpleDateFormat dateFormatter = DateUtils.getDetailedDateFormatter(itemView.getContext(), dateLocale);
-      sentDate.setText(formatBoldString(R.string.message_details_header__sent, dateFormatter.format(new Date(messageRecord.getDateSent()))));
+      sentDate.setText(formatBoldString(R.string.message_details_header_sent, dateFormatter.format(new Date(messageRecord.getDateSent()))));
       sentDate.setOnLongClickListener(v -> {
         copyToClipboard(String.valueOf(messageRecord.getDateSent()));
         return true;
       });
 
       if (messageRecord.getDateReceived() != messageRecord.getDateSent() && !messageRecord.isOutgoing()) {
-        receivedDate.setText(formatBoldString(R.string.message_details_header__received, dateFormatter.format(new Date(messageRecord.getDateReceived()))));
+        receivedDate.setText(formatBoldString(R.string.message_details_header_received, dateFormatter.format(new Date(messageRecord.getDateReceived()))));
         receivedDate.setOnLongClickListener(v -> {
           copyToClipboard(String.valueOf(messageRecord.getDateReceived()));
           return true;
@@ -165,9 +164,9 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
     }
   }
 
-  private void bindExpirationTime(final MessageRecord messageRecord, boolean running) {
+  private void bindExpirationTime(@NonNull LifecycleOwner lifecycleOwner, @NonNull MessageRecord messageRecord) {
     if (expiresUpdater != null) {
-      expiresUpdater.stop();
+      expiresUpdater.cancel();
       expiresUpdater = null;
     }
 
@@ -177,10 +176,36 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
     }
 
     expiresIn.setVisibility(View.VISIBLE);
-    if (running) {
-      expiresUpdater = new ExpiresUpdater(messageRecord);
-      ThreadUtil.runOnMain(expiresUpdater);
-    }
+
+    lifecycleOwner.getLifecycle().addObserver(new DefaultLifecycleObserver() {
+      @Override
+      public void onResume(@NonNull LifecycleOwner owner) {
+        if (expiresUpdater != null) {
+          expiresUpdater.cancel();
+        }
+        expiresUpdater = new CountDownTimer(messageRecord.getExpiresIn(), TimeUnit.SECONDS.toMillis(1)) {
+          @Override
+          public void onTick(long millisUntilFinished) {
+            int    expirationTime = Math.max((int) (TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished)), 1);
+            String duration       = ExpirationUtil.getExpirationDisplayValue(itemView.getContext(), expirationTime);
+
+            expiresIn.setText(formatBoldString(R.string.message_details_header_disappears, duration));
+          }
+
+          @Override
+          public void onFinish() {}
+        };
+        expiresUpdater.start();
+      }
+
+      @Override
+      public void onPause(@NonNull LifecycleOwner owner) {
+        if (expiresUpdater != null) {
+          expiresUpdater.cancel();
+          expiresUpdater = null;
+        }
+      }
+    });
   }
 
   private void bindTransport(MessageRecord messageRecord) {
@@ -197,7 +222,7 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
       transportText = itemView.getContext().getString(R.string.ConversationFragment_sms);
     }
 
-    transport.setText(formatBoldString(R.string.message_details_header__via, transportText));
+    transport.setText(formatBoldString(R.string.message_details_header_via, transportText));
   }
 
   private CharSequence formatBoldString(int boldTextRes, CharSequence otherText) {
@@ -253,36 +278,5 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
   @Override
   public @NonNull ProjectionList getColorizerProjections(@NonNull ViewGroup coordinateRoot) {
     return conversationItem.getColorizerProjections(coordinateRoot);
-  }
-
-  private class ExpiresUpdater implements Runnable {
-
-    private final long    expireStartedTimestamp;
-    private final long    expiresInTimestamp;
-    private       boolean running;
-
-    ExpiresUpdater(MessageRecord messageRecord) {
-      expireStartedTimestamp = messageRecord.getExpireStarted();
-      expiresInTimestamp     = messageRecord.getExpiresIn();
-      running                = true;
-    }
-
-    @Override
-    public void run() {
-      long   elapsed        = System.currentTimeMillis() - expireStartedTimestamp;
-      long   remaining      = expiresInTimestamp - elapsed;
-      int    expirationTime = Math.max((int) (remaining / 1000), 1);
-      String duration       = ExpirationUtil.getExpirationDisplayValue(itemView.getContext(), expirationTime);
-
-      expiresIn.setText(formatBoldString(R.string.message_details_header__disappears, duration));
-
-      if (running && expirationTime > 1) {
-        ThreadUtil.runOnMainDelayed(this, 500);
-      }
-    }
-
-    void stop() {
-      running = false;
-    }
   }
 }

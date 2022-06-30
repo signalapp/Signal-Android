@@ -3,8 +3,12 @@ package org.thoughtcrime.securesms.stories.tabs
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
+import io.reactivex.rxjava3.subjects.PublishSubject
+import io.reactivex.rxjava3.subjects.Subject
+import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.livedata.Store
 
 class ConversationListTabsViewModel(repository: ConversationListTabRepository) : ViewModel() {
@@ -13,6 +17,9 @@ class ConversationListTabsViewModel(repository: ConversationListTabRepository) :
   val stateSnapshot: ConversationListTabsState = store.state
   val state: LiveData<ConversationListTabsState> = store.stateLiveData
   val disposables = CompositeDisposable()
+
+  private val internalTabClickEvents: Subject<ConversationListTab> = PublishSubject.create()
+  val tabClickEvents: Observable<ConversationListTab> = internalTabClickEvents.filter { Stories.isFeatureEnabled() }
 
   init {
     disposables += repository.getNumberOfUnreadConversations().subscribe { unreadChats ->
@@ -29,10 +36,12 @@ class ConversationListTabsViewModel(repository: ConversationListTabRepository) :
   }
 
   fun onChatsSelected() {
+    internalTabClickEvents.onNext(ConversationListTab.CHATS)
     store.update { it.copy(tab = ConversationListTab.CHATS) }
   }
 
   fun onStoriesSelected() {
+    internalTabClickEvents.onNext(ConversationListTab.STORIES)
     store.update { it.copy(tab = ConversationListTab.STORIES) }
   }
 
@@ -57,7 +66,7 @@ class ConversationListTabsViewModel(repository: ConversationListTabRepository) :
   }
 
   class Factory(private val repository: ConversationListTabRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(ConversationListTabsViewModel(repository)) as T
     }
   }

@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 
 import org.greenrobot.eventbus.EventBus;
+import org.signal.core.util.Hex;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -21,11 +22,12 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobLogger;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.mms.MmsException;
+import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.releasechannel.ReleaseChannel;
+import org.thoughtcrime.securesms.s3.S3;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.Base64;
-import org.signal.core.util.Hex;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
@@ -42,7 +44,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import okio.Okio;
@@ -119,7 +120,7 @@ public final class AttachmentDownloadJob extends BaseJob {
     doWork();
 
     if (!SignalDatabase.mms().isStory(messageId)) {
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, 0);
+      ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(0));
     }
   }
 
@@ -241,12 +242,7 @@ public final class AttachmentDownloadJob extends BaseJob {
                                      final Attachment attachment)
       throws IOException
   {
-    Request request = new Request.Builder()
-        .get()
-        .url(Objects.requireNonNull(attachment.getFileName()))
-        .build();
-
-    try (Response response = ApplicationDependencies.getOkHttpClient().newCall(request).execute()) {
+    try (Response response = S3.getObject(Objects.requireNonNull(attachment.getFileName()))) {
       ResponseBody body = response.body();
       if (body != null) {
         SignalDatabase.attachments().insertAttachmentsForPlaceholder(messageId, attachmentId, Okio.buffer(body.source()).inputStream());

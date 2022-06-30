@@ -4,13 +4,23 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 
+import androidx.annotation.Dimension;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.Px;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import org.signal.core.util.DimensionUnit;
+
 public class SlideUpWithSnackbarBehavior extends CoordinatorLayout.Behavior<View> {
+
+  @Dimension(unit = Dimension.DP)
+  private static final float PAD_TOP_OF_SNACKBAR_DP = 16f;
+
+  @Px
+  private final float padTopOfSnackbar = DimensionUnit.DP.toPixels(PAD_TOP_OF_SNACKBAR_DP);
 
   public SlideUpWithSnackbarBehavior(@NonNull Context context, @Nullable AttributeSet attributeSet) {
     super(context, attributeSet);
@@ -21,7 +31,7 @@ public class SlideUpWithSnackbarBehavior extends CoordinatorLayout.Behavior<View
                                         @NonNull View child,
                                         @NonNull View dependency)
   {
-    float translationY = Math.min(0, dependency.getTranslationY() - dependency.getHeight());
+    float translationY = Math.min(0, dependency.getTranslationY() - (dependency.getHeight() + padTopOfSnackbar));
     child.setTranslationY(translationY);
 
     return true;

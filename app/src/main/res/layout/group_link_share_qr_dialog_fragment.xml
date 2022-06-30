@@ -47,9 +47,9 @@
         app:layout_constraintTop_toBottomOf="@+id/group_link_share_qr_image"
         app:layout_constraintVertical_bias="0" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/group_link_share_code_button"
-        style="@style/Button.Primary"
+        style="@style/Signal.Widget.Button.Large.Primary"
         android:layout_width="0dp"
         android:layout_height="64dp"
         android:layout_marginStart="24dp"

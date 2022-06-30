@@ -12,6 +12,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -23,12 +24,11 @@ import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.TransportOption
-import org.thoughtcrime.securesms.TransportOptions
 import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchState
+import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFullScreenDialogFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.SearchConfigurationProvider
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
@@ -42,7 +42,6 @@ import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationViewMod
 import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendRepository
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.Stories
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.visible
 
@@ -88,12 +87,12 @@ class MediaSelectionActivity :
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     setContentView(R.layout.media_selection_activity)
 
-    val transportOption: TransportOption = requireNotNull(intent.getParcelableExtra(TRANSPORT_OPTION))
+    val sendType: MessageSendType = requireNotNull(intent.getParcelableExtra(MESSAGE_SEND_TYPE))
     val initialMedia: List<Media> = intent.getParcelableArrayListExtra(MEDIA) ?: listOf()
     val message: CharSequence? = if (shareToTextStory) null else draftText
     val isReply: Boolean = intent.getBooleanExtra(IS_REPLY, false)
 
-    val factory = MediaSelectionViewModel.Factory(destination, transportOption, initialMedia, message, isReply, isStory, MediaSelectionRepository(this))
+    val factory = MediaSelectionViewModel.Factory(destination, sendType, initialMedia, message, isReply, isStory, MediaSelectionRepository(this))
     viewModel = ViewModelProvider(this, factory)[MediaSelectionViewModel::class.java]
 
     val textStoryToggle: ConstraintLayout = findViewById(R.id.switch_widget)
@@ -159,6 +158,9 @@ class MediaSelectionActivity :
   }
 
   private fun animateTextStyling(selectedSwitch: TextView, unselectedSwitch: TextView, duration: Long) {
+    val offTextColor = ContextCompat.getColor(this, R.color.signal_colorOnSurface)
+    val onTextColor = ContextCompat.getColor(this, R.color.signal_colorSecondaryContainer)
+
     animateInShadowLayerValueAnimator?.cancel()
     animateInTextColorValueAnimator?.cancel()
     animateOutShadowLayerValueAnimator?.cancel()
@@ -169,7 +171,7 @@ class MediaSelectionActivity :
       addUpdateListener { selectedSwitch.setShadowLayer(it.animatedValue as Float, 0f, 0f, Color.BLACK) }
       start()
     }
-    animateInTextColorValueAnimator = ValueAnimator.ofInt(selectedSwitch.currentTextColor, Color.BLACK).apply {
+    animateInTextColorValueAnimator = ValueAnimator.ofObject(ArgbEvaluatorCompat(), selectedSwitch.currentTextColor, onTextColor).apply {
       setEvaluator(ArgbEvaluatorCompat.getInstance())
       this.duration = duration
       addUpdateListener { selectedSwitch.setTextColor(it.animatedValue as Int) }
@@ -180,7 +182,7 @@ class MediaSelectionActivity :
       addUpdateListener { unselectedSwitch.setShadowLayer(it.animatedValue as Float, 0f, 0f, Color.BLACK) }
       start()
     }
-    animateOutTextColorValueAnimator = ValueAnimator.ofInt(unselectedSwitch.currentTextColor, Color.WHITE).apply {
+    animateOutTextColorValueAnimator = ValueAnimator.ofObject(ArgbEvaluatorCompat(), unselectedSwitch.currentTextColor, offTextColor).apply {
       setEvaluator(ArgbEvaluatorCompat.getInstance())
       this.duration = duration
       addUpdateListener { unselectedSwitch.setTextColor(it.animatedValue as Int) }
@@ -209,7 +211,6 @@ class MediaSelectionActivity :
 
   private fun canDisplayStorySwitch(): Boolean {
     return Stories.isFeatureEnabled() &&
-      FeatureFlags.storiesTextPosts() &&
       isCameraFirst() &&
       !viewModel.hasSelectedMedia() &&
       destination == MediaSelectionDestination.ChooseAfterMediaSelection
@@ -328,6 +329,10 @@ class MediaSelectionActivity :
     }
   }
 
+  override fun getStorySendRequirements(): Stories.MediaTransform.SendRequirements {
+    return viewModel.getStorySendRequirements()
+  }
+
   private inner class OnBackPressed : OnBackPressedCallback(true) {
     override fun handleOnBackPressed() {
       val navController = Navigation.findNavController(this@MediaSelectionActivity, R.id.fragment_container)
@@ -348,7 +353,7 @@ class MediaSelectionActivity :
     private const val NAV_HOST_TAG = "NAV_HOST"
 
     private const val START_ACTION = "start.action"
-    private const val TRANSPORT_OPTION = "transport.option"
+    private const val MESSAGE_SEND_TYPE = "message.send.type"
     private const val MEDIA = "media"
     private const val MESSAGE = "message"
     private const val DESTINATION = "destination"
@@ -373,14 +378,14 @@ class MediaSelectionActivity :
     @JvmStatic
     fun camera(
       context: Context,
-      transportOption: TransportOption,
+      messageSendType: MessageSendType,
       recipientId: RecipientId,
       isReply: Boolean
     ): Intent {
       return buildIntent(
         context = context,
         startAction = R.id.action_directly_to_mediaCaptureFragment,
-        transportOption = transportOption,
+        messageSendType = messageSendType,
         destination = MediaSelectionDestination.SingleRecipient(recipientId),
         isReply = isReply
       )
@@ -389,7 +394,7 @@ class MediaSelectionActivity :
     @JvmStatic
     fun gallery(
       context: Context,
-      transportOption: TransportOption,
+      messageSendType: MessageSendType,
       media: List<Media>,
       recipientId: RecipientId,
       message: CharSequence?,
@@ -398,7 +403,7 @@ class MediaSelectionActivity :
       return buildIntent(
         context = context,
         startAction = R.id.action_directly_to_mediaGalleryFragment,
-        transportOption = transportOption,
+        messageSendType = messageSendType,
         media = media,
         destination = MediaSelectionDestination.SingleRecipient(recipientId),
         message = message,
@@ -409,14 +414,14 @@ class MediaSelectionActivity :
     @JvmStatic
     fun editor(
       context: Context,
-      transportOption: TransportOption,
+      messageSendType: MessageSendType,
       media: List<Media>,
       recipientId: RecipientId,
       message: CharSequence?
     ): Intent {
       return buildIntent(
         context = context,
-        transportOption = transportOption,
+        messageSendType = messageSendType,
         media = media,
         destination = MediaSelectionDestination.SingleRecipient(recipientId),
         message = message
@@ -426,7 +431,7 @@ class MediaSelectionActivity :
     @JvmStatic
     fun share(
       context: Context,
-      transportOption: TransportOption,
+      messageSendType: MessageSendType,
       media: List<Media>,
       recipientSearchKeys: List<ContactSearchKey.RecipientSearchKey>,
       message: CharSequence?,
@@ -434,7 +439,7 @@ class MediaSelectionActivity :
     ): Intent {
       return buildIntent(
         context = context,
-        transportOption = transportOption,
+        messageSendType = messageSendType,
         media = media,
         destination = MediaSelectionDestination.MultipleRecipients(recipientSearchKeys),
         message = message,
@@ -446,7 +451,7 @@ class MediaSelectionActivity :
     private fun buildIntent(
       context: Context,
       startAction: Int = -1,
-      transportOption: TransportOption = TransportOptions.getPushTransportOption(context),
+      messageSendType: MessageSendType = MessageSendType.SignalMessageSendType,
       media: List<Media> = listOf(),
       destination: MediaSelectionDestination = MediaSelectionDestination.ChooseAfterMediaSelection,
       message: CharSequence? = null,
@@ -456,7 +461,7 @@ class MediaSelectionActivity :
     ): Intent {
       return Intent(context, MediaSelectionActivity::class.java).apply {
         putExtra(START_ACTION, startAction)
-        putExtra(TRANSPORT_OPTION, transportOption)
+        putExtra(MESSAGE_SEND_TYPE, messageSendType)
         putParcelableArrayListExtra(MEDIA, ArrayList(media))
         putExtra(MESSAGE, message)
         putExtra(DESTINATION, destination.toBundle())
@@ -465,9 +470,5 @@ class MediaSelectionActivity :
         putExtra(AS_TEXT_STORY, asTextStory)
       }
     }
-  }
-
-  override fun canSendMediaToStories(): Boolean {
-    return viewModel.canShareSelectedMediaToStory()
   }
 }

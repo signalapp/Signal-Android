@@ -233,7 +233,7 @@ public class NotificationChannels {
   /**
    * Navigates the user to the system settings for the desired notification channel.
    */
-  public static void openChannelSettings(@NonNull Context context, @NonNull String channelId) {
+  public static void openChannelSettings(@NonNull Context context, @NonNull String channelId, @Nullable String conversationId) {
     if (!supported()) {
       return;
     }
@@ -242,6 +242,9 @@ public class NotificationChannels {
       Intent intent = new Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS);
       intent.putExtra(Settings.EXTRA_CHANNEL_ID, channelId);
       intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName());
+      if (conversationId != null && Build.VERSION.SDK_INT >= CONVERSATION_SUPPORT_VERSION) {
+        intent.putExtra(Settings.EXTRA_CONVERSATION_ID, conversationId);
+      }
       context.startActivity(intent);
     } catch (ActivityNotFoundException e) {
       Log.w(TAG, "Channel settings activity not found", e);

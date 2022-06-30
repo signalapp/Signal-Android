@@ -235,3 +235,7 @@ message GiftBadge {
     bytes           redemptionToken = 1;
     RedemptionState redemptionState = 2;
 }
+
+message SignalStoreList {
+    repeated string contents = 1;
+}

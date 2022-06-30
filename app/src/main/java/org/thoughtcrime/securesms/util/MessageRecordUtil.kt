@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
+import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.mms.TextSlide
 import org.thoughtcrime.securesms.stickers.StickerUrl
 
@@ -126,4 +127,11 @@ fun MessageRecord.isTextOnly(context: Context): Boolean {
         !isCaptionlessMms(context) &&
         !hasGiftBadge()
       )
+}
+
+/**
+ * Returns the QuoteType for this record, as if it was being quoted.
+ */
+fun MessageRecord.getRecordQuoteType(): QuoteModel.Type {
+  return if (hasGiftBadge()) QuoteModel.Type.GIFT_BADGE else QuoteModel.Type.NORMAL
 }

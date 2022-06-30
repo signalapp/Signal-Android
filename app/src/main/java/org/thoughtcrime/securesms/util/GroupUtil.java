@@ -51,9 +51,10 @@ public final class GroupUtil {
       return content.getDataMessage().get().getGroupContext().get();
     } else if (content.getSyncMessage().isPresent()                 &&
                content.getSyncMessage().get().getSent().isPresent() &&
-               content.getSyncMessage().get().getSent().get().getMessage().getGroupContext().isPresent())
+               content.getSyncMessage().get().getSent().get().getDataMessage().isPresent() &&
+               content.getSyncMessage().get().getSent().get().getDataMessage().get().getGroupContext().isPresent())
     {
-      return content.getSyncMessage().get().getSent().get().getMessage().getGroupContext().get();
+      return content.getSyncMessage().get().getSent().get().getDataMessage().get().getGroupContext().get();
     } else if (content.getStoryMessage().isPresent() && content.getStoryMessage().get().getGroupContext().isPresent()) {
       try {
         return SignalServiceGroupContext.create(null, content.getStoryMessage().get().getGroupContext().get());

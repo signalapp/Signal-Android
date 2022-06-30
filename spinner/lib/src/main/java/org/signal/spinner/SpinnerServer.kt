@@ -29,7 +29,8 @@ import kotlin.math.min
 internal class SpinnerServer(
   private val application: Application,
   deviceInfo: Map<String, String>,
-  private val databases: Map<String, DatabaseConfig>
+  private val databases: Map<String, DatabaseConfig>,
+  private val plugins: Map<String, Plugin>
 ) : NanoHTTPD(5000) {
 
   companion object {
@@ -66,7 +67,14 @@ internal class SpinnerServer(
         session.method == Method.GET && session.uri == "/query" -> getQuery(dbParam, dbConfig.db)
         session.method == Method.POST && session.uri == "/query" -> postQuery(dbParam, dbConfig, session)
         session.method == Method.GET && session.uri == "/recent" -> getRecent(dbParam, dbConfig.db)
-        else -> newFixedLengthResponse(Response.Status.NOT_FOUND, MIME_HTML, "Not found")
+        else -> {
+          val plugin = plugins[session.uri]
+          if (plugin != null && session.method == Method.GET) {
+            getPlugin(dbParam, plugin)
+          } else {
+            newFixedLengthResponse(Response.Status.NOT_FOUND, MIME_HTML, "Not found")
+          }
+        }
       }
     } catch (t: Throwable) {
       Log.e(TAG, t)
@@ -93,6 +101,7 @@ internal class SpinnerServer(
         deviceInfo = deviceInfo,
         database = dbName,
         databases = databases.keys.toList(),
+        plugins = plugins.values.toList(),
         tables = db.getTables().toTableInfo(),
         indices = db.getIndexes().toIndexInfo(),
         triggers = db.getTriggers().toTriggerInfo(),
@@ -109,6 +118,7 @@ internal class SpinnerServer(
         deviceInfo = deviceInfo,
         database = dbName,
         databases = databases.keys.toList(),
+        plugins = plugins.values.toList(),
         tableNames = db.getTableNames()
       )
     )
@@ -140,6 +150,7 @@ internal class SpinnerServer(
         deviceInfo = deviceInfo,
         database = dbName,
         databases = databases.keys.toList(),
+        plugins = plugins.values.toList(),
         tableNames = dbConfig.db.getTableNames(),
         table = table,
         queryResult = queryResult,
@@ -163,6 +174,7 @@ internal class SpinnerServer(
         deviceInfo = deviceInfo,
         database = dbName,
         databases = databases.keys.toList(),
+        plugins = plugins.values.toList(),
         query = ""
       )
     )
@@ -184,6 +196,7 @@ internal class SpinnerServer(
         deviceInfo = deviceInfo,
         database = dbName,
         databases = databases.keys.toList(),
+        plugins = plugins.values.toList(),
         recentSql = queries?.reversed()
       )
     )
@@ -202,8 +215,24 @@ internal class SpinnerServer(
         deviceInfo = deviceInfo,
         database = dbName,
         databases = databases.keys.toList(),
+        plugins = plugins.values.toList(),
         query = rawQuery,
         queryResult = dbConfig.db.query(query).toQueryResult(queryStartTime = startTime, columnTransformers = dbConfig.columnTransformers)
+      )
+    )
+  }
+
+  private fun getPlugin(dbName: String, plugin: Plugin): Response {
+    return renderTemplate(
+      "plugin",
+      PluginPageModel(
+        environment = environment,
+        deviceInfo = deviceInfo,
+        database = dbName,
+        databases = databases.keys.toList(),
+        plugins = plugins.values.toList(),
+        activePlugin = plugin,
+        pluginResult = plugin.get()
       )
     )
   }
@@ -361,6 +390,7 @@ internal class SpinnerServer(
     val deviceInfo: Map<String, String>
     val database: String
     val databases: List<String>
+    val plugins: List<Plugin>
   }
 
   data class OverviewPageModel(
@@ -368,6 +398,7 @@ internal class SpinnerServer(
     override val deviceInfo: Map<String, String>,
     override val database: String,
     override val databases: List<String>,
+    override val plugins: List<Plugin>,
     val tables: List<TableInfo>,
     val indices: List<IndexInfo>,
     val triggers: List<TriggerInfo>,
@@ -379,6 +410,7 @@ internal class SpinnerServer(
     override val deviceInfo: Map<String, String>,
     override val database: String,
     override val databases: List<String>,
+    override val plugins: List<Plugin>,
     val tableNames: List<String>,
     val table: String? = null,
     val queryResult: QueryResult? = null,
@@ -390,6 +422,7 @@ internal class SpinnerServer(
     override val deviceInfo: Map<String, String>,
     override val database: String,
     override val databases: List<String>,
+    override val plugins: List<Plugin>,
     val query: String = "",
     val queryResult: QueryResult? = null
   ) : PrefixPageData
@@ -399,7 +432,18 @@ internal class SpinnerServer(
     override val deviceInfo: Map<String, String>,
     override val database: String,
     override val databases: List<String>,
+    override val plugins: List<Plugin>,
     val recentSql: List<RecentQuery>?
+  ) : PrefixPageData
+
+  data class PluginPageModel(
+    override val environment: String,
+    override val deviceInfo: Map<String, String>,
+    override val database: String,
+    override val databases: List<String>,
+    override val plugins: List<Plugin>,
+    val activePlugin: Plugin,
+    val pluginResult: PluginResult
   ) : PrefixPageData
 
   data class QueryResult(

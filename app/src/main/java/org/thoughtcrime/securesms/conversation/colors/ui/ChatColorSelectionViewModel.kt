@@ -51,7 +51,7 @@ class ChatColorSelectionViewModel(private val repository: ChatColorSelectionRepo
   }
 
   class Factory(private val repository: ChatColorSelectionRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T = requireNotNull(modelClass.cast(ChatColorSelectionViewModel(repository)))
+    override fun <T : ViewModel> create(modelClass: Class<T>): T = requireNotNull(modelClass.cast(ChatColorSelectionViewModel(repository)))
   }
 
   companion object {

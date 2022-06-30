@@ -15,6 +15,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.Interpolator;
 import android.view.animation.TranslateAnimation;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -77,8 +78,8 @@ public class InputPanel extends LinearLayout
   private LinkPreviewView linkPreview;
   private EmojiToggle     mediaKeyboard;
   private ComposeText     composeText;
-  private View            quickCameraToggle;
-  private View            quickAudioToggle;
+  private ImageButton     quickCameraToggle;
+  private ImageButton     quickAudioToggle;
   private AnimatingToggle buttonToggle;
   private SendButton      sendButton;
   private View            recordingContainer;
@@ -94,6 +95,7 @@ public class InputPanel extends LinearLayout
   private @Nullable Listener listener;
   private           boolean  emojiVisible;
 
+  private boolean hideForMessageRequestState;
   private boolean hideForGroupState;
   private boolean hideForBlockedState;
   private boolean hideForSearch;
@@ -179,9 +181,10 @@ public class InputPanel extends LinearLayout
                        long id,
                        @NonNull Recipient author,
                        @NonNull CharSequence body,
-                       @NonNull SlideDeck attachments)
+                       @NonNull SlideDeck attachments,
+                       @NonNull QuoteModel.Type quoteType)
   {
-    this.quoteView.setQuote(glideRequests, id, author, body, false, attachments, null, null);
+    this.quoteView.setQuote(glideRequests, id, author, body, false, attachments, null, quoteType);
 
     int originalHeight = this.quoteView.getVisibility() == VISIBLE ? this.quoteView.getMeasuredHeight()
                                                                    : 0;
@@ -256,7 +259,7 @@ public class InputPanel extends LinearLayout
 
   public Optional<QuoteModel> getQuote() {
     if (quoteView.getQuoteId() > 0 && quoteView.getVisibility() == View.VISIBLE) {
-      return Optional.of(new QuoteModel(quoteView.getQuoteId(), quoteView.getAuthor().getId(), quoteView.getBody().toString(), false, quoteView.getAttachments(), quoteView.getMentions()));
+      return Optional.of(new QuoteModel(quoteView.getQuoteId(), quoteView.getAuthor().getId(), quoteView.getBody().toString(), false, quoteView.getAttachments(), quoteView.getMentions(), quoteView.getQuoteType()));
     } else {
       return Optional.empty();
     }
@@ -321,13 +324,39 @@ public class InputPanel extends LinearLayout
   }
 
   public void setWallpaperEnabled(boolean enabled) {
+    final int iconTint;
+    final int textColor;
+    final int textHintColor;
+
     if (enabled) {
-      setBackground(new ColorDrawable(getContext().getResources().getColor(R.color.wallpaper_compose_background)));
+      iconTint = getContext().getResources().getColor(R.color.signal_colorOnSurface);
+      textColor = getContext().getResources().getColor(R.color.signal_colorOnSurface);
+      textHintColor = getContext().getResources().getColor(R.color.signal_colorOnSurfaceVariant);
+
+      setBackground(null);
       composeContainer.setBackground(Objects.requireNonNull(ContextCompat.getDrawable(getContext(), R.drawable.compose_background_wallpaper)));
+      quickAudioToggle.setColorFilter(iconTint);
+      quickCameraToggle.setColorFilter(iconTint);
     } else {
-      setBackground(new ColorDrawable(getContext().getResources().getColor(R.color.signal_background_primary)));
+      iconTint = getContext().getResources().getColor(R.color.signal_colorOnSurface);
+      textColor = getContext().getResources().getColor(R.color.signal_colorOnSurface);
+      textHintColor = getContext().getResources().getColor(R.color.signal_colorOnSurfaceVariant);
+
+      setBackground(new ColorDrawable(getContext().getResources().getColor(R.color.signal_colorSurface)));
       composeContainer.setBackground(Objects.requireNonNull(ContextCompat.getDrawable(getContext(), R.drawable.compose_background)));
     }
+
+    mediaKeyboard.setColorFilter(iconTint);
+    quickAudioToggle.setColorFilter(iconTint);
+    quickCameraToggle.setColorFilter(iconTint);
+    composeText.setTextColor(textColor);
+    composeText.setHintTextColor(textHintColor);
+    quoteView.setWallpaperEnabled(enabled);
+  }
+
+  public void setHideForMessageRequestState(boolean hideForMessageRequestState) {
+    this.hideForMessageRequestState = hideForMessageRequestState;
+    updateVisibility();
   }
 
   public void setHideForGroupState(boolean hideForGroupState) {
@@ -527,7 +556,7 @@ public class InputPanel extends LinearLayout
   }
 
   private void updateVisibility() {
-    if (hideForGroupState || hideForBlockedState || hideForSearch || hideForSelection) {
+    if (hideForGroupState || hideForBlockedState || hideForSearch || hideForSelection || hideForMessageRequestState) {
       setVisibility(GONE);
     } else {
       setVisibility(VISIBLE);

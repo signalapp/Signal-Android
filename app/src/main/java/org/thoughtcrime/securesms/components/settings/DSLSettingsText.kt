@@ -65,7 +65,7 @@ sealed class DSLSettingsText {
     }
   }
 
-  object Title2BoldModifier : TextAppearanceModifier(R.style.TextAppearance_Signal_Title2_Bold)
+  object TitleLargeModifier : TextAppearanceModifier(R.style.Signal_Text_TitleLarge)
   object Body1BoldModifier : TextAppearanceModifier(R.style.TextAppearance_Signal_Body1_Bold)
 
   open class TextAppearanceModifier(@StyleRes private val textAppearance: Int) : Modifier {

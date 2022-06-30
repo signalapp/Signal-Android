@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.models.Ne
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadingCircle
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -48,6 +49,11 @@ class GiftFlowStartFragment : DSLSettingsFragment(
 
       adapter.submitList(getConfiguration(state).toMappingModelList())
     }
+  }
+
+  override fun onResume() {
+    super.onResume()
+    ViewUtil.hideKeyboard(requireContext(), requireView())
   }
 
   private fun getConfiguration(state: GiftFlowState): DSLConfiguration {

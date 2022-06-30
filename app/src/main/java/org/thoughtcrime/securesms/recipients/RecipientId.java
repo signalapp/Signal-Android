@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.DatabaseId;
+import org.signal.core.util.LongSerializer;
 import org.thoughtcrime.securesms.util.DelimiterUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.push.ServiceId;
@@ -29,6 +30,7 @@ public class RecipientId implements Parcelable, Comparable<RecipientId>, Databas
   private static final char DELIMITER  = ',';
 
   public static final RecipientId UNKNOWN = RecipientId.from(UNKNOWN_ID);
+  public static final LongSerializer<RecipientId> SERIALIZER = new Serializer();
 
   private final long id;
 
@@ -212,4 +214,16 @@ public class RecipientId implements Parcelable, Comparable<RecipientId>, Databas
 
   private static class InvalidLongRecipientIdError extends AssertionError {}
   private static class InvalidStringRecipientIdError extends AssertionError {}
+
+  private static class Serializer implements LongSerializer<RecipientId> {
+    @Override
+    public Long serialize(RecipientId data) {
+      return data.toLong();
+    }
+
+    @Override
+    public @NonNull RecipientId deserialize(Long data) {
+      return RecipientId.from(data);
+    }
+  }
 }

@@ -6,12 +6,14 @@ import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.ColorInt
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehaviorHack
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.concurrent.SignalExecutors
@@ -22,20 +24,26 @@ import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.conversation.MarkReadHelper
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerFragment
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerViewModel
 import org.thoughtcrime.securesms.database.model.Mention
+import org.thoughtcrime.securesms.database.model.MessageId
+import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyboard.KeyboardPage
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardCallback
 import org.thoughtcrime.securesms.mediasend.v2.UntrustedRecords
+import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
+import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerChild
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerParent
 import org.thoughtcrime.securesms.stories.viewer.reply.composer.StoryReactionBar
@@ -44,7 +52,7 @@ import org.thoughtcrime.securesms.util.DeleteDialog
 import org.thoughtcrime.securesms.util.FragmentDialogs.displayInDialogAboveAnchor
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.ServiceUtil
-import org.thoughtcrime.securesms.util.SnapToTopDataObserver
+import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter
 import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -60,6 +68,26 @@ class StoryGroupReplyFragment :
   EmojiKeyboardCallback,
   ReactWithAnyEmojiBottomSheetDialogFragment.Callback,
   SafetyNumberChangeDialog.Callback {
+
+  companion object {
+    private val TAG = Log.tag(StoryGroupReplyFragment::class.java)
+
+    private const val ARG_STORY_ID = "arg.story.id"
+    private const val ARG_GROUP_RECIPIENT_ID = "arg.group.recipient.id"
+    private const val ARG_IS_FROM_NOTIFICATION = "is_from_notification"
+    private const val ARG_GROUP_REPLY_START_POSITION = "group_reply_start_position"
+
+    fun create(storyId: Long, groupRecipientId: RecipientId, isFromNotification: Boolean, groupReplyStartPosition: Int): Fragment {
+      return StoryGroupReplyFragment().apply {
+        arguments = Bundle().apply {
+          putLong(ARG_STORY_ID, storyId)
+          putParcelable(ARG_GROUP_RECIPIENT_ID, groupRecipientId)
+          putBoolean(ARG_IS_FROM_NOTIFICATION, isFromNotification)
+          putInt(ARG_GROUP_REPLY_START_POSITION, groupReplyStartPosition)
+        }
+      }
+    }
+  }
 
   private val viewModel: StoryGroupReplyViewModel by viewModels(
     factoryProducer = {
@@ -97,10 +125,19 @@ class StoryGroupReplyFragment :
   private val groupRecipientId: RecipientId
     get() = requireArguments().getParcelable(ARG_GROUP_RECIPIENT_ID)!!
 
+  private val isFromNotification: Boolean
+    get() = requireArguments().getBoolean(ARG_IS_FROM_NOTIFICATION, false)
+
+  private val groupReplyStartPosition: Int
+    get() = requireArguments().getInt(ARG_GROUP_REPLY_START_POSITION, -1)
+
   private lateinit var recyclerView: RecyclerView
-  private lateinit var adapter: PagingMappingAdapter<StoryGroupReplyItemData.Key>
-  private lateinit var snapToTopDataObserver: SnapToTopDataObserver
+  private lateinit var adapter: PagingMappingAdapter<MessageId>
+  private lateinit var dataObserver: RecyclerView.AdapterDataObserver
   private lateinit var composer: StoryReplyComposer
+
+  private var markReadHelper: MarkReadHelper? = null
+
   private var currentChild: StoryViewsAndRepliesPagerParent.Child? = null
 
   private var resendBody: CharSequence? = null
@@ -119,8 +156,11 @@ class StoryGroupReplyFragment :
 
     val emptyNotice: View = requireView().findViewById(R.id.empty_notice)
 
-    adapter = PagingMappingAdapter<StoryGroupReplyItemData.Key>()
-    val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, true)
+    adapter = PagingMappingAdapter<MessageId>().apply {
+      setPagingController(viewModel.pagingController)
+    }
+
+    val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
     recyclerView.layoutManager = layoutManager
     recyclerView.adapter = adapter
     recyclerView.itemAnimator = null
@@ -130,35 +170,57 @@ class StoryGroupReplyFragment :
 
     onPageSelected(findListener<StoryViewsAndRepliesPagerParent>()?.selectedChild ?: StoryViewsAndRepliesPagerParent.Child.REPLIES)
 
-    viewModel.state.observe(viewLifecycleOwner) { state ->
-      emptyNotice.visible = state.noReplies && state.loadState == StoryGroupReplyState.LoadState.READY
-      colorizer.onNameColorsChanged(state.nameColors)
-    }
+    var firstSubmit = true
 
-    viewModel.pagingController.observe(viewLifecycleOwner) { controller ->
-      adapter.setPagingController(controller)
-    }
+    viewModel.state
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy { state ->
+        if (markReadHelper == null && state.threadId > 0L) {
+          if (isResumed) {
+            ApplicationDependencies.getMessageNotifier().setVisibleThread(ConversationId(state.threadId, storyId))
+          }
 
-    viewModel.pageData.observe(viewLifecycleOwner) { pageData ->
-      adapter.submitList(getConfiguration(pageData).toMappingModelList())
-    }
+          markReadHelper = MarkReadHelper(ConversationId(state.threadId, storyId), requireContext(), viewLifecycleOwner)
 
-    snapToTopDataObserver = SnapToTopDataObserver(
-      recyclerView,
-      object : SnapToTopDataObserver.ScrollRequestValidator {
-        override fun isPositionStillValid(position: Int): Boolean {
-          return position >= 0 && position < adapter.itemCount
+          if (isFromNotification) {
+            markReadHelper?.onViewsRevealed(System.currentTimeMillis())
+          }
         }
 
-        override fun isItemAtPositionLoaded(position: Int): Boolean {
-          return adapter.hasItem(position)
+        emptyNotice.visible = state.noReplies && state.loadState == StoryGroupReplyState.LoadState.READY
+        colorizer.onNameColorsChanged(state.nameColors)
+
+        adapter.submitList(getConfiguration(state.replies).toMappingModelList()) {
+          if (firstSubmit && (groupReplyStartPosition >= 0 && adapter.hasItem(groupReplyStartPosition))) {
+            firstSubmit = false
+            recyclerView.post { recyclerView.scrollToPosition(groupReplyStartPosition) }
+          }
         }
-      },
-      null
-    )
-    adapter.registerAdapterDataObserver(snapToTopDataObserver)
+      }
+
+    dataObserver = GroupDataObserver()
+    adapter.registerAdapterDataObserver(dataObserver)
 
     initializeMentions()
+
+    if (savedInstanceState == null) {
+      ViewUtil.focusAndShowKeyboard(composer)
+    }
+
+    recyclerView.addOnScrollListener(GroupReplyScrollObserver())
+  }
+
+  override fun onResume() {
+    super.onResume()
+    val threadId = viewModel.stateSnapshot.threadId
+    if (threadId != 0L) {
+      ApplicationDependencies.getMessageNotifier().setVisibleThread(ConversationId(threadId, storyId))
+    }
+  }
+
+  override fun onPause() {
+    super.onPause()
+    ApplicationDependencies.getMessageNotifier().setVisibleThread(null)
   }
 
   override fun onDestroyView() {
@@ -168,72 +230,94 @@ class StoryGroupReplyFragment :
     composer.input.setMentionValidator(null)
   }
 
-  private fun getConfiguration(pageData: List<StoryGroupReplyItemData>): DSLConfiguration {
+  private fun postMarkAsReadRequest() {
+    if (adapter.itemCount == 0 || markReadHelper == null) {
+      return
+    }
+
+    val lastVisibleItem = (recyclerView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+    val adapterItem = adapter.getItem(lastVisibleItem)
+    if (adapterItem == null || adapterItem !is StoryGroupReplyItem.Model) {
+      return
+    }
+
+    markReadHelper?.onViewsRevealed(adapterItem.replyBody.sentAtMillis)
+  }
+
+  private fun getConfiguration(pageData: List<ReplyBody>): DSLConfiguration {
     return configure {
-      pageData.filterNotNull().forEach {
-        when (it.replyBody) {
-          is StoryGroupReplyItemData.ReplyBody.Text -> {
+      pageData.forEach {
+        when (it) {
+          is ReplyBody.Text -> {
             customPref(
               StoryGroupReplyItem.TextModel(
-                storyGroupReplyItemData = it,
-                text = it.replyBody,
-                nameColor = colorizer.getIncomingGroupSenderColor(
-                  requireContext(),
-                  it.sender
-                ),
-                onCopyClick = { model ->
-                  val clipData = ClipData.newPlainText(requireContext().getString(R.string.app_name), model.text.message.getDisplayBody(requireContext()))
-                  ServiceUtil.getClipboardManager(requireContext()).setPrimaryClip(clipData)
-                  Toast.makeText(requireContext(), R.string.StoryGroupReplyFragment__copied_to_clipboard, Toast.LENGTH_SHORT).show()
-                },
-                onDeleteClick = { model ->
-                  lifecycleDisposable += DeleteDialog.show(requireActivity(), setOf(model.text.message.messageRecord)).subscribe { result ->
-                    if (result) {
-                      throw AssertionError("We should never end up deleting a Group Thread like this.")
-                    }
-                  }
-                },
+                text = it,
+                nameColor = it.sender.getStoryGroupReplyColor(),
+                onCopyClick = { s -> onCopyClick(s) },
                 onMentionClick = { recipientId ->
                   RecipientBottomSheetDialogFragment
                     .create(recipientId, null)
                     .show(childFragmentManager, null)
-                }
+                },
+                onDeleteClick = { m -> onDeleteClick(m) },
+                onTapForDetailsClick = { m -> onTapForDetailsClick(m) }
               )
             )
           }
-          is StoryGroupReplyItemData.ReplyBody.Reaction -> {
+          is ReplyBody.Reaction -> {
             customPref(
               StoryGroupReplyItem.ReactionModel(
-                storyGroupReplyItemData = it,
-                reaction = it.replyBody,
-                nameColor = colorizer.getIncomingGroupSenderColor(
-                  requireContext(),
-                  it.sender
-                )
+                reaction = it,
+                nameColor = it.sender.getStoryGroupReplyColor(),
+                onCopyClick = { s -> onCopyClick(s) },
+                onDeleteClick = { m -> onDeleteClick(m) },
+                onTapForDetailsClick = { m -> onTapForDetailsClick(m) }
               )
             )
           }
-          is StoryGroupReplyItemData.ReplyBody.RemoteDelete -> {
+          is ReplyBody.RemoteDelete -> {
             customPref(
               StoryGroupReplyItem.RemoteDeleteModel(
-                storyGroupReplyItemData = it,
-                remoteDelete = it.replyBody,
-                nameColor = colorizer.getIncomingGroupSenderColor(
-                  requireContext(),
-                  it.sender
-                ),
-                onDeleteClick = { model ->
-                  lifecycleDisposable += DeleteDialog.show(requireActivity(), setOf(model.remoteDelete.messageRecord)).subscribe { didDeleteThread ->
-                    if (didDeleteThread) {
-                      throw AssertionError("We should never end up deleting a Group Thread like this.")
-                    }
-                  }
-                },
+                remoteDelete = it,
+                nameColor = it.sender.getStoryGroupReplyColor(),
+                onDeleteClick = { m -> onDeleteClick(m) },
+                onTapForDetailsClick = { m -> onTapForDetailsClick(m) }
               )
             )
           }
         }
       }
+    }
+  }
+
+  private fun onCopyClick(textToCopy: CharSequence) {
+    val clipData = ClipData.newPlainText(requireContext().getString(R.string.app_name), textToCopy)
+    ServiceUtil.getClipboardManager(requireContext()).setPrimaryClip(clipData)
+    Toast.makeText(requireContext(), R.string.StoryGroupReplyFragment__copied_to_clipboard, Toast.LENGTH_SHORT).show()
+  }
+
+  private fun onDeleteClick(messageRecord: MessageRecord) {
+    lifecycleDisposable += DeleteDialog.show(requireActivity(), setOf(messageRecord)).subscribe { didDeleteThread ->
+      if (didDeleteThread) {
+        throw AssertionError("We should never end up deleting a Group Thread like this.")
+      }
+    }
+  }
+
+  private fun onTapForDetailsClick(messageRecord: MessageRecord) {
+    if (messageRecord.isRemoteDelete) {
+      // TODO [cody] Android doesn't support resending remote deletes yet
+      return
+    }
+
+    if (messageRecord.isIdentityMismatchFailure) {
+      SafetyNumberChangeDialog.show(requireContext(), childFragmentManager, messageRecord)
+    } else if (messageRecord.hasFailedWithNetworkFailures()) {
+      MaterialAlertDialogBuilder(requireContext())
+        .setMessage(R.string.conversation_activity__message_could_not_be_sent)
+        .setNegativeButton(android.R.string.cancel, null)
+        .setPositiveButton(R.string.conversation_activity__send) { _, _ -> SignalExecutors.BOUNDED.execute { MessageSender.resend(requireContext(), messageRecord) } }
+        .show()
     }
   }
 
@@ -294,9 +378,6 @@ class StoryGroupReplyFragment :
               Toast.makeText(context, R.string.message_details_recipient__failed_to_send, Toast.LENGTH_SHORT).show()
             }
           }
-        },
-        onComplete = {
-          snapToTopDataObserver.requestScrollPosition(0)
         }
       )
   }
@@ -328,8 +409,7 @@ class StoryGroupReplyFragment :
     composer.closeEmojiSearch()
   }
 
-  override fun onReactWithAnyEmojiDialogDismissed() {
-  }
+  override fun onReactWithAnyEmojiDialogDismissed() = Unit
 
   override fun onReactWithAnyEmojiSelected(emoji: String) {
     sendReaction(emoji)
@@ -379,22 +459,6 @@ class StoryGroupReplyFragment :
     }
   }
 
-  companion object {
-    private val TAG = Log.tag(StoryGroupReplyFragment::class.java)
-
-    private const val ARG_STORY_ID = "arg.story.id"
-    private const val ARG_GROUP_RECIPIENT_ID = "arg.group.recipient.id"
-
-    fun create(storyId: Long, groupRecipientId: RecipientId): Fragment {
-      return StoryGroupReplyFragment().apply {
-        arguments = Bundle().apply {
-          putLong(ARG_STORY_ID, storyId)
-          putParcelable(ARG_GROUP_RECIPIENT_ID, groupRecipientId)
-        }
-      }
-    }
-  }
-
   private fun performSend(body: CharSequence, mentions: List<Mention>) {
     lifecycleDisposable += StoryGroupReplySender.sendReply(requireContext(), storyId, body, mentions)
       .observeOn(AndroidSchedulers.mainThread())
@@ -412,9 +476,6 @@ class StoryGroupReplyFragment :
               Toast.makeText(context, R.string.message_details_recipient__failed_to_send, Toast.LENGTH_SHORT).show()
             }
           }
-        },
-        onComplete = {
-          snapToTopDataObserver.requestScrollPosition(0)
         }
       )
   }
@@ -430,13 +491,44 @@ class StoryGroupReplyFragment :
   }
 
   override fun onMessageResentAfterSafetyNumberChange() {
-    error("Should never get here.")
+    Log.i(TAG, "Message resent")
   }
 
   override fun onCanceled() {
     resendBody = null
     resendMentions = emptyList()
     resendReaction = null
+  }
+
+  @ColorInt
+  private fun Recipient.getStoryGroupReplyColor(): Int {
+    return colorizer.getIncomingGroupSenderColor(requireContext(), this)
+  }
+
+  private inner class GroupReplyScrollObserver : RecyclerView.OnScrollListener() {
+    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+      postMarkAsReadRequest()
+    }
+
+    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+      postMarkAsReadRequest()
+    }
+  }
+
+  private inner class GroupDataObserver : RecyclerView.AdapterDataObserver() {
+    override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+      if (itemCount == 0) {
+        return
+      }
+
+      val item = adapter.getItem(positionStart)
+      if (positionStart == adapter.itemCount - 1 && item is StoryGroupReplyItem.Model) {
+        val isOutgoing = item.replyBody.sender == Recipient.self()
+        if (isOutgoing || (!isOutgoing && !recyclerView.canScrollVertically(1))) {
+          recyclerView.post { recyclerView.scrollToPosition(positionStart) }
+        }
+      }
+    }
   }
 
   interface Callback {

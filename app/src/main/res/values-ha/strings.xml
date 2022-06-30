@@ -1181,10 +1181,10 @@
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Daga zuwa kasa domin kin dagawa</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Wasu matsaloli na bukatar lurarka/ki</string>
-  <string name="message_details_header__sent">Sake gwadawa.</string>
-  <string name="message_details_header__received">An karba</string>
-  <string name="message_details_header__disappears">Ya bace</string>
-  <string name="message_details_header__via">Ta</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">Sake gwadawa.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">An karba</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">Ya bace</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">Ta</string> -->
   <!--message_details_recipient_header-->
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Turawa ya gaza</string>

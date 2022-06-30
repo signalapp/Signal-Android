@@ -15,7 +15,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.dd.CircularProgressButton
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
@@ -28,6 +27,7 @@ import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.formatHours
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.orderOfDaysInWeek
+import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
 import org.thoughtcrime.securesms.util.visible
 import java.time.DayOfWeek
 import java.time.LocalTime
@@ -75,7 +75,7 @@ class EditNotificationProfileScheduleFragment : LoggingFragment(R.layout.fragmen
     val startTime: TextView = view.findViewById(R.id.edit_notification_profile_schedule_start_time)
     val endTime: TextView = view.findViewById(R.id.edit_notification_profile_schedule_end_time)
 
-    val next: CircularProgressButton = view.findViewById(R.id.edit_notification_profile_schedule__next)
+    val next: CircularProgressMaterialButton = view.findViewById(R.id.edit_notification_profile_schedule__next)
     next.setOnClickListener {
       lifecycleDisposable += viewModel.save(createMode)
         .subscribeBy(

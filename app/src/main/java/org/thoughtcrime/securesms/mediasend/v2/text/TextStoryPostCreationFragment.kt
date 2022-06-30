@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendReposi
 import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendResult
 import org.thoughtcrime.securesms.stories.StoryTextPostView
 import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
-import org.thoughtcrime.securesms.stories.settings.hide.HideStoryFromDialogFragment
+import org.thoughtcrime.securesms.stories.settings.privacy.HideStoryFromDialogFragment
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 

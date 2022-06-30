@@ -126,4 +126,10 @@ public abstract class ServiceResponseProcessor<T> {
            error instanceof TimeoutException ||
            error instanceof InterruptedException;
   }
+
+  public static final class DefaultProcessor<T> extends ServiceResponseProcessor<T> {
+    public DefaultProcessor(ServiceResponse<T> response) {
+      super(response);
+    }
+  }
 }

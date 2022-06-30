@@ -16,9 +16,11 @@
  */
 package org.thoughtcrime.securesms.mms;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.io.InputStream;
 
-public class MediaStream {
+public class MediaStream implements Closeable {
   private final InputStream stream;
   private final String      mimeType;
   private final int         width;
@@ -45,5 +47,10 @@ public class MediaStream {
 
   public int getHeight() {
     return height;
+  }
+
+  @Override
+  public void close() throws IOException {
+    stream.close();
   }
 }

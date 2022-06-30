@@ -1,11 +1,16 @@
 package org.thoughtcrime.securesms.stories.viewer.page
 
+import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.RenderEffect
+import android.graphics.Shader
 import android.graphics.drawable.Drawable
+import android.media.AudioManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.GestureDetector
 import android.view.MotionEvent
@@ -20,10 +25,11 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.GestureDetectorCompat
 import androidx.core.view.animation.PathInterpolatorCompat
 import androidx.core.view.doOnNextLayout
+import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LiveDataReactiveStreams
+import com.google.android.material.button.MaterialButton
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import org.signal.core.util.DimensionUnit
@@ -42,15 +48,19 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewFragment
 import org.thoughtcrime.securesms.mediapreview.VideoControlsDelegate
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.stories.StoryFirstTimeNavigationView
 import org.thoughtcrime.securesms.stories.StorySlateView
+import org.thoughtcrime.securesms.stories.StoryVolumeOverlayView
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerState
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerViewModel
+import org.thoughtcrime.securesms.stories.viewer.StoryVolumeViewModel
 import org.thoughtcrime.securesms.stories.viewer.reply.StoriesSharedElementCrossFaderView
 import org.thoughtcrime.securesms.stories.viewer.reply.direct.StoryDirectReplyDialogFragment
 import org.thoughtcrime.securesms.stories.viewer.reply.group.StoryGroupReplyBottomSheetDialogFragment
@@ -61,7 +71,9 @@ import org.thoughtcrime.securesms.stories.viewer.views.StoryViewsBottomSheetDial
 import org.thoughtcrime.securesms.util.AvatarUtil
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout
@@ -78,24 +90,32 @@ class StoryViewerPageFragment :
   MultiselectForwardBottomSheet.Callback,
   StorySlateView.Callback,
   StoryTextPostPreviewFragment.Callback,
-  StoriesSharedElementCrossFaderView.Callback {
+  StoriesSharedElementCrossFaderView.Callback,
+  StoryFirstTimeNavigationView.Callback {
+
+  private val activityViewModel: StoryVolumeViewModel by viewModels(ownerProducer = { requireActivity() })
 
   private lateinit var progressBar: SegmentedProgressBar
   private lateinit var storySlate: StorySlateView
-  private lateinit var viewsAndReplies: TextView
+  private lateinit var viewsAndReplies: MaterialButton
   private lateinit var storyCrossfader: StoriesSharedElementCrossFaderView
   private lateinit var blurContainer: ImageView
   private lateinit var storyCaptionContainer: FrameLayout
   private lateinit var storyContentContainer: FrameLayout
+  private lateinit var storyFirstTimeNavigationViewStub: StoryFirstNavigationStub
 
   private lateinit var callback: Callback
 
   private lateinit var chrome: List<View>
   private var animatorSet: AnimatorSet? = null
 
+  private var volumeInAnimator: Animator? = null
+  private var volumeOutAnimator: Animator? = null
+  private var volumeDebouncer: Debouncer = Debouncer(3, TimeUnit.SECONDS)
+
   private val viewModel: StoryViewerPageViewModel by viewModels(
     factoryProducer = {
-      StoryViewerPageViewModel.Factory(storyRecipientId, initialStoryId, StoryViewerPageRepository(requireContext()))
+      StoryViewerPageViewModel.Factory(storyRecipientId, initialStoryId, isUnviewedOnly, StoryViewerPageRepository(requireContext()))
     }
   )
 
@@ -114,9 +134,24 @@ class StoryViewerPageFragment :
   private val initialStoryId: Long
     get() = requireArguments().getLong(ARG_STORY_ID, -1L)
 
+  private val isFromNotification: Boolean
+    get() = requireArguments().getBoolean(ARG_IS_FROM_NOTIFICATION, false)
+
+  private val groupReplyStartPosition: Int
+    get() = requireArguments().getInt(ARG_GROUP_REPLY_START_POSITION, -1)
+
+  private val isUnviewedOnly: Boolean
+    get() = requireArguments().getBoolean(ARG_IS_UNVIEWED_ONLY, false)
+
   @SuppressLint("ClickableViewAccessibility")
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     callback = requireListener()
+
+    if (activityViewModel.snapshot.isMuted) {
+      videoControlsDelegate.mute()
+    } else {
+      videoControlsDelegate.unmute()
+    }
 
     val closeView: View = view.findViewById(R.id.close)
     val senderAvatar: AvatarImageView = view.findViewById(R.id.sender_avatar)
@@ -133,6 +168,7 @@ class StoryViewerPageFragment :
     val reactionAnimationView: OnReactionSentView = view.findViewById(R.id.on_reaction_sent_view)
     val storyGradientTop: View = view.findViewById(R.id.story_gradient_top)
     val storyGradientBottom: View = view.findViewById(R.id.story_gradient_bottom)
+    val storyVolumeOverlayView: StoryVolumeOverlayView = view.findViewById(R.id.story_volume_overlay)
 
     blurContainer = view.findViewById(R.id.story_blur_container)
     storyContentContainer = view.findViewById(R.id.story_content_container)
@@ -141,9 +177,11 @@ class StoryViewerPageFragment :
     progressBar = view.findViewById(R.id.progress)
     viewsAndReplies = view.findViewById(R.id.views_and_replies_bar)
     storyCrossfader = view.findViewById(R.id.story_content_crossfader)
+    storyFirstTimeNavigationViewStub = StoryFirstNavigationStub(view.findViewById(R.id.story_first_time_nav_stub))
 
     storySlate.callback = this
     storyCrossfader.callback = this
+    storyFirstTimeNavigationViewStub.setCallback(this)
 
     chrome = listOf(
       closeView,
@@ -156,7 +194,7 @@ class StoryViewerPageFragment :
       viewsAndReplies,
       progressBar,
       storyGradientTop,
-      storyGradientBottom
+      storyGradientBottom,
     )
 
     senderAvatar.setFallbackPhotoProvider(FallbackPhotoProvider())
@@ -186,7 +224,7 @@ class StoryViewerPageFragment :
         viewModel.setIsUserTouching(false)
 
         val canCloseFromHorizontalSlide = requireView().translationX > DimensionUnit.DP.toPixels(56f)
-        val canCloseFromVerticalSlide = requireView().translationY > DimensionUnit.DP.toPixels(56f)
+        val canCloseFromVerticalSlide = requireView().translationY > DimensionUnit.DP.toPixels(56f) || requireView().translationY < -DimensionUnit.DP.toPixels(56f)
         if ((canCloseFromHorizontalSlide || canCloseFromVerticalSlide) && event.actionMasked == MotionEvent.ACTION_UP) {
           requireActivity().onBackPressed()
         } else {
@@ -248,7 +286,30 @@ class StoryViewerPageFragment :
       viewModel.setIsUserScrollingParent(isScrolling)
     }
 
-    LiveDataReactiveStreams.fromPublisher(sharedViewModel.state.distinctUntilChanged()).observe(viewLifecycleOwner) { parentState ->
+    lifecycleDisposable += activityViewModel.state.distinctUntilChanged().observeOn(AndroidSchedulers.mainThread()).subscribe { volumeState ->
+      if (volumeState.isMuted) {
+        videoControlsDelegate.mute()
+        return@subscribe
+      }
+
+      if (!viewModel.hasPost() || !viewModel.getPost().content.isVideo() || volumeState.level < 0) {
+        return@subscribe
+      }
+
+      if (!volumeState.isMuted) {
+        videoControlsDelegate.unmute()
+      }
+
+      val audioManager = ServiceUtil.getAudioManager(requireContext())
+      if (audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) != volumeState.level) {
+        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volumeState.level, 0)
+        storyVolumeOverlayView.setVolumeLevel(volumeState.level)
+        storyVolumeOverlayView.setVideoHaNoAudio(!videoControlsDelegate.hasAudioStream())
+        displayStoryVolumeOverlayForTimeout(storyVolumeOverlayView)
+      }
+    }
+
+    lifecycleDisposable += sharedViewModel.state.distinctUntilChanged().observeOn(AndroidSchedulers.mainThread()).subscribe { parentState ->
       if (parentState.pages.size <= parentState.page) {
         viewModel.setIsSelectedPage(false)
       } else if (storyRecipientId == parentState.pages[parentState.page]) {
@@ -257,61 +318,70 @@ class StoryViewerPageFragment :
           progressBar.setPosition(viewModel.getRestartIndex())
           videoControlsDelegate.restart()
         }
+        viewModel.setIsFirstPage(parentState.page == 0)
         viewModel.setIsSelectedPage(true)
         when (parentState.crossfadeSource) {
           is StoryViewerState.CrossfadeSource.TextModel -> storyCrossfader.setSourceView(parentState.crossfadeSource.storyTextPostModel)
           is StoryViewerState.CrossfadeSource.ImageUri -> storyCrossfader.setSourceView(parentState.crossfadeSource.imageUri, parentState.crossfadeSource.imageBlur)
-          else -> onReadyToAnimate()
         }
+
+        onReadyToAnimate()
       } else {
         viewModel.setIsSelectedPage(false)
       }
     }
 
-    LiveDataReactiveStreams
-      .fromPublisher(viewModel.state.observeOn(AndroidSchedulers.mainThread()))
-      .observe(viewLifecycleOwner) { state ->
-        if (state.posts.isNotEmpty() && state.selectedPostIndex in state.posts.indices) {
-          val post = state.posts[state.selectedPostIndex]
-
-          presentViewsAndReplies(post, state.replyState)
-          presentSenderAvatar(senderAvatar, post)
-          presentGroupAvatar(groupAvatar, post)
-          presentFrom(from, post)
-          presentDate(date, post)
-          presentDistributionList(distributionList, post)
-          presentCaption(caption, largeCaption, largeCaptionOverlay, post)
-          presentBlur(blurContainer, post)
-
-          val durations: Map<Int, Long> = state.posts
-            .mapIndexed { index, storyPost ->
-              index to when {
-                storyPost.content.isVideo() -> -1L
-                storyPost.content is StoryPost.Content.TextContent -> calculateDurationForText(storyPost.content)
-                else -> DEFAULT_DURATION
-              }
-            }
-            .toMap()
-
-          if (progressBar.segmentCount != state.posts.size || progressBar.segmentDurations != durations) {
-            progressBar.segmentCount = state.posts.size
-            progressBar.segmentDurations = durations
-          }
-
-          presentStory(post, state.selectedPostIndex)
-          presentSlate(post)
-
-          if (!storyCrossfader.setTargetView(post.conversationMessage.messageRecord as MmsMessageRecord)) {
-            onReadyToAnimate()
-          }
-
-          viewModel.setAreSegmentsInitialized(true)
-        } else if (state.selectedPostIndex >= state.posts.size) {
-          callback.onFinishedPosts(storyRecipientId)
-        } else if (state.selectedPostIndex < 0) {
-          callback.onGoToPreviousStory(storyRecipientId)
-        }
+    lifecycleDisposable += viewModel.state.observeOn(AndroidSchedulers.mainThread()).subscribe { state ->
+      if (!state.isReady) {
+        return@subscribe
       }
+
+      if (state.posts.isNotEmpty() && state.selectedPostIndex in state.posts.indices) {
+        val post = state.posts[state.selectedPostIndex]
+
+        presentViewsAndReplies(post, state.replyState)
+        presentSenderAvatar(senderAvatar, post)
+        presentGroupAvatar(groupAvatar, post)
+        presentFrom(from, post)
+        presentDate(date, post)
+        presentDistributionList(distributionList, post)
+        presentCaption(caption, largeCaption, largeCaptionOverlay, post)
+        presentBlur(blurContainer, post)
+
+        val durations: Map<Int, Long> = state.posts
+          .mapIndexed { index, storyPost ->
+            index to when {
+              storyPost.content.isVideo() -> -1L
+              storyPost.content is StoryPost.Content.TextContent -> calculateDurationForText(storyPost.content)
+              else -> DEFAULT_DURATION
+            }
+          }
+          .toMap()
+
+        if (progressBar.segmentCount != state.posts.size || progressBar.segmentDurations != durations) {
+          progressBar.segmentCount = state.posts.size
+          progressBar.segmentDurations = durations
+        }
+
+        presentStory(post, state.selectedPostIndex)
+        presentSlate(post)
+
+        if (!storyCrossfader.setTargetView(post.conversationMessage.messageRecord as MmsMessageRecord)) {
+          onReadyToAnimate()
+        }
+
+        viewModel.setAreSegmentsInitialized(true)
+      } else if (state.selectedPostIndex >= state.posts.size) {
+        callback.onFinishedPosts(storyRecipientId)
+      } else if (state.selectedPostIndex < 0) {
+        callback.onGoToPreviousStory(storyRecipientId)
+      }
+
+      if (state.isDisplayingInitialState && isFromNotification && !sharedViewModel.hasConsumedInitialState) {
+        sharedViewModel.consumeInitialState()
+        startReply(isFromNotification = true, groupReplyStartPosition = groupReplyStartPosition)
+      }
+    }
 
     viewModel.storyViewerPlaybackState.observe(viewLifecycleOwner) { state ->
       if (state.isPaused) {
@@ -320,19 +390,36 @@ class StoryViewerPageFragment :
         resumeProgress()
       }
 
+      val wasDisplayingNavigationView = storyFirstTimeNavigationViewStub.isVisible()
+
       when {
         state.hideChromeImmediate -> {
           hideChromeImmediate()
           storyCaptionContainer.visible = false
+          storyFirstTimeNavigationViewStub.hide()
         }
         state.hideChrome -> {
           hideChrome()
           storyCaptionContainer.visible = true
+          storyFirstTimeNavigationViewStub.showIfAble(!SignalStore.storyValues().userHasSeenFirstNavView)
         }
         else -> {
           showChrome()
           storyCaptionContainer.visible = true
+          storyFirstTimeNavigationViewStub.showIfAble(!SignalStore.storyValues().userHasSeenFirstNavView)
         }
+      }
+
+      val isDisplayingNavigationView = storyFirstTimeNavigationViewStub.isVisible()
+      if (isDisplayingNavigationView && Build.VERSION.SDK_INT >= 31) {
+        hideChromeImmediate()
+        storyContentContainer.setRenderEffect(RenderEffect.createBlurEffect(100f, 100f, Shader.TileMode.CLAMP))
+      } else if (Build.VERSION.SDK_INT >= 31) {
+        storyContentContainer.setRenderEffect(null)
+      }
+
+      if (wasDisplayingNavigationView xor isDisplayingNavigationView) {
+        viewModel.setIsDisplayingFirstTimeNavigation(storyFirstTimeNavigationViewStub.isVisible())
       }
     }
 
@@ -376,6 +463,8 @@ class StoryViewerPageFragment :
         it.cleanUp()
       }
     }
+
+    volumeDebouncer.clear()
   }
 
   override fun onFinishForwardAction() = Unit
@@ -403,6 +492,26 @@ class StoryViewerPageFragment :
       max(MIN_GIF_PLAYBACK_DURATION, timeToPlayMinLoops)
     } else {
       min(playerState.duration, MAX_VIDEO_PLAYBACK_DURATION)
+    }
+  }
+
+  private fun displayStoryVolumeOverlayForTimeout(view: View) {
+    if (volumeInAnimator?.isRunning != true) {
+      volumeOutAnimator?.cancel()
+      volumeInAnimator = ObjectAnimator.ofFloat(view, View.ALPHA, 1f).apply {
+        duration = 200
+        start()
+      }
+    }
+
+    volumeDebouncer.publish {
+      if (volumeOutAnimator?.isRunning != true) {
+        volumeInAnimator?.cancel()
+        volumeOutAnimator = ObjectAnimator.ofFloat(view, View.ALPHA, 0f).apply {
+          duration = 200
+          start()
+        }
+      }
     }
   }
 
@@ -482,13 +591,25 @@ class StoryViewerPageFragment :
     videoControlsDelegate.pause()
   }
 
-  private fun startReply() {
+  private fun startReply(isFromNotification: Boolean = false, groupReplyStartPosition: Int = -1) {
+    val storyPostId: Long = viewModel.getPost().id
     val replyFragment: DialogFragment = when (viewModel.getSwipeToReplyState()) {
       StoryViewerPageState.ReplyState.NONE -> return
-      StoryViewerPageState.ReplyState.SELF -> StoryViewsBottomSheetDialogFragment.create(viewModel.getPost().id)
-      StoryViewerPageState.ReplyState.GROUP -> StoryGroupReplyBottomSheetDialogFragment.create(viewModel.getPost().id, viewModel.getPost().group!!.id)
-      StoryViewerPageState.ReplyState.PRIVATE -> StoryDirectReplyDialogFragment.create(viewModel.getPost().id)
-      StoryViewerPageState.ReplyState.GROUP_SELF -> StoryViewsAndRepliesDialogFragment.create(viewModel.getPost().id, viewModel.getPost().group!!.id, getViewsAndRepliesDialogStartPage())
+      StoryViewerPageState.ReplyState.SELF -> StoryViewsBottomSheetDialogFragment.create(storyPostId)
+      StoryViewerPageState.ReplyState.GROUP -> StoryGroupReplyBottomSheetDialogFragment.create(
+        storyPostId,
+        viewModel.getPost().group!!.id,
+        isFromNotification,
+        groupReplyStartPosition
+      )
+      StoryViewerPageState.ReplyState.PRIVATE -> StoryDirectReplyDialogFragment.create(storyPostId)
+      StoryViewerPageState.ReplyState.GROUP_SELF -> StoryViewsAndRepliesDialogFragment.create(
+        storyPostId,
+        viewModel.getPost().group!!.id,
+        if (isFromNotification) StoryViewsAndRepliesDialogFragment.StartPage.REPLIES else getViewsAndRepliesDialogStartPage(),
+        isFromNotification,
+        groupReplyStartPosition
+      )
     }
 
     if (viewModel.getSwipeToReplyState() == StoryViewerPageState.ReplyState.PRIVATE) {
@@ -592,6 +713,8 @@ class StoryViewerPageFragment :
   private fun presentBlur(blur: ImageView, storyPost: StoryPost) {
     val record = storyPost.conversationMessage.messageRecord as? MediaMmsMessageRecord
     val blurHash = record?.slideDeck?.thumbnailSlide?.placeholderBlur
+
+    storyFirstTimeNavigationViewStub.setBlurHash(blurHash)
 
     if (blurHash == null) {
       GlideApp.with(blur).clear(blur)
@@ -713,14 +836,25 @@ class StoryViewerPageFragment :
 
     if (Recipient.self() == post.sender) {
       if (post.replyCount == 0) {
+        viewsAndReplies.setIconResource(R.drawable.ic_chevron_end_24)
+        viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_END
         viewsAndReplies.text = views
       } else {
+        viewsAndReplies.setIconResource(R.drawable.ic_chevron_end_24)
+        viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_END
         viewsAndReplies.text = getString(R.string.StoryViewerFragment__s_s, views, replies)
       }
     } else if (post.replyCount > 0) {
+      viewsAndReplies.setIconResource(R.drawable.ic_chevron_end_24)
+      viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_END
       viewsAndReplies.text = replies
+    } else if (post.group != null) {
+      viewsAndReplies.setIconResource(R.drawable.ic_reply_24_outline)
+      viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_START
+      viewsAndReplies.setText(R.string.StoryViewerPageFragment__reply_to_group)
     } else {
-
+      viewsAndReplies.setIconResource(R.drawable.ic_reply_24_outline)
+      viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_START
       viewsAndReplies.setText(R.string.StoryViewerPageFragment__reply)
     }
   }
@@ -792,12 +926,18 @@ class StoryViewerPageFragment :
 
     private const val ARG_STORY_RECIPIENT_ID = "arg.story.recipient.id"
     private const val ARG_STORY_ID = "arg.story.id"
+    private const val ARG_IS_FROM_NOTIFICATION = "is_from_notification"
+    private const val ARG_GROUP_REPLY_START_POSITION = "group_reply_start_position"
+    private const val ARG_IS_UNVIEWED_ONLY = "is_unviewed_only"
 
-    fun create(recipientId: RecipientId, initialStoryId: Long): Fragment {
+    fun create(recipientId: RecipientId, initialStoryId: Long, isFromNotification: Boolean, groupReplyStartPosition: Int, isUnviewedOnly: Boolean): Fragment {
       return StoryViewerPageFragment().apply {
         arguments = Bundle().apply {
           putParcelable(ARG_STORY_RECIPIENT_ID, recipientId)
           putLong(ARG_STORY_ID, initialStoryId)
+          putBoolean(ARG_IS_FROM_NOTIFICATION, isFromNotification)
+          putInt(ARG_GROUP_REPLY_START_POSITION, groupReplyStartPosition)
+          putBoolean(ARG_IS_UNVIEWED_ONLY, isUnviewedOnly)
         }
       }
     }
@@ -827,13 +967,24 @@ class StoryViewerPageFragment :
 
     override fun onScroll(e1: MotionEvent, e2: MotionEvent, distanceX: Float, distanceY: Float): Boolean {
       val isFirstStory = sharedViewModel.stateSnapshot.page == 0
+      val isLastStory = sharedViewModel.stateSnapshot.pages.lastIndex == sharedViewModel.stateSnapshot.page
       val isXMagnitudeGreaterThanYMagnitude = abs(distanceX) > abs(distanceY) || viewToTranslate.translationX > 0f
       val isFirstAndHasYTranslationOrNegativeY = isFirstStory && (viewToTranslate.translationY > 0f || distanceY < 0f)
+      val isLastAndHasYTranslationOrNegativeY = isLastStory && (viewToTranslate.translationY < 0f || distanceY > 0f)
 
-      sharedViewModel.setIsChildScrolling(isXMagnitudeGreaterThanYMagnitude || isFirstAndHasYTranslationOrNegativeY)
+      sharedViewModel.setIsChildScrolling(isXMagnitudeGreaterThanYMagnitude || isFirstAndHasYTranslationOrNegativeY || isLastAndHasYTranslationOrNegativeY)
       if (isFirstStory) {
         val delta = max(0f, (e2.rawY - e1.rawY)) / 3f
         val percent = INTERPOLATOR.getInterpolation(delta / maxSlide)
+        val distance = maxSlide * percent
+
+        viewToTranslate.animate().cancel()
+        viewToTranslate.translationY = distance
+      }
+
+      if (isLastStory) {
+        val delta = max(0f, (e1.rawY - e2.rawY)) / 3f
+        val percent = -INTERPOLATOR.getInterpolation(delta / maxSlide)
         val distance = maxSlide * percent
 
         viewToTranslate.animate().cancel()
@@ -976,5 +1127,14 @@ class StoryViewerPageFragment :
     fun onGoToPreviousStory(recipientId: RecipientId)
     fun onFinishedPosts(recipientId: RecipientId)
     fun onStoryHidden(recipientId: RecipientId)
+  }
+
+  override fun userHasSeenFirstNavigationView(): Boolean {
+    return SignalStore.storyValues().userHasSeenFirstNavView
+  }
+
+  override fun onGotItClicked() {
+    SignalStore.storyValues().userHasSeenFirstNavView = true
+    viewModel.setIsDisplayingFirstTimeNavigation(false)
   }
 }

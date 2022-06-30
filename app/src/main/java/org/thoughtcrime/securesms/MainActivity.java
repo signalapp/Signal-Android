@@ -125,10 +125,10 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
   private void updateTabVisibility() {
     if (Stories.isFeatureEnabled()) {
       findViewById(R.id.conversation_list_tabs).setVisibility(View.VISIBLE);
-      WindowUtil.setNavigationBarColor(getWindow(), ContextCompat.getColor(this, R.color.signal_colorSecondaryContainer));
+      WindowUtil.setNavigationBarColor(this, ContextCompat.getColor(this, R.color.signal_colorSurface2));
     } else {
       findViewById(R.id.conversation_list_tabs).setVisibility(View.GONE);
-      WindowUtil.setNavigationBarColor(getWindow(), ContextCompat.getColor(this, R.color.signal_background_primary));
+      WindowUtil.setNavigationBarColor(this, ContextCompat.getColor(this, R.color.signal_colorBackground));
       conversationListTabsViewModel.onChatsSelected();
     }
   }

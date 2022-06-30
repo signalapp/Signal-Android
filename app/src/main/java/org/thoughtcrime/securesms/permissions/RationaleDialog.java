@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.permissions;
 
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -18,13 +17,15 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class RationaleDialog {
 
-  public static AlertDialog.Builder createFor(@NonNull Context context, @NonNull String message, @DrawableRes int... drawables) {
+  public static MaterialAlertDialogBuilder createFor(@NonNull Context context, @NonNull String message, @DrawableRes int... drawables) {
     View      view   = LayoutInflater.from(context).inflate(R.layout.permissions_rationale_dialog, null);
     ViewGroup header = view.findViewById(R.id.header_container);
     TextView  text   = view.findViewById(R.id.message);
@@ -54,8 +55,10 @@ public class RationaleDialog {
 
     text.setText(message);
 
-    return new AlertDialog.Builder(context, ThemeUtil.isDarkTheme(context) ? R.style.Theme_Signal_AlertDialog_Dark_Cornered : R.style.Theme_Signal_AlertDialog_Light_Cornered)
-                          .setView(view);
+    return new MaterialAlertDialogBuilder(context,
+                                          ThemeUtil.isDarkTheme(context) ? R.style.Theme_Signal_AlertDialog_Dark_Cornered
+                                                                         : R.style.Theme_Signal_AlertDialog_Light_Cornered)
+        .setView(view);
   }
 
 }

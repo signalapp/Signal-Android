@@ -123,7 +123,7 @@ class TextStoryPostTextEntryFragment : KeyboardEntryDialogFragment(
     if (TextUtils.isEmpty(input.text)) {
       input.alpha = 0.6f
       if (input.filters.contains(allCapsFilter)) {
-        input.hint = getString(R.string.TextStoryPostTextEntryFragment__add_text).toUpperCase(Locale.getDefault())
+        input.hint = getString(R.string.TextStoryPostTextEntryFragment__add_text).uppercase(Locale.getDefault())
       } else {
         input.setHint(R.string.TextStoryPostTextEntryFragment__add_text)
       }

@@ -14,7 +14,7 @@
         android:layout_marginRight="@dimen/dsl_settings_gutter"
         android:minHeight="44dp"
         app:cfv_autoFocus="false"
-        app:cfv_background="@drawable/rounded_rectangle_dialog_secondary" />
+        app:cfv_background="@drawable/rounded_rectangle_surface_variant" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/contact_selection_list"

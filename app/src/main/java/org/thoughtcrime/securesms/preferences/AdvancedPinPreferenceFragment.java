@@ -42,7 +42,7 @@ public class AdvancedPinPreferenceFragment extends ListSummaryPreferenceFragment
   @Override
   public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
     if (requestCode == CreateKbsPinActivity.REQUEST_NEW_PIN && resultCode == CreateKbsPinActivity.RESULT_OK) {
-      Snackbar.make(requireView(), R.string.ApplicationPreferencesActivity_pin_created, Snackbar.LENGTH_LONG).setTextColor(Color.WHITE).show();
+      Snackbar.make(requireView(), R.string.ApplicationPreferencesActivity_pin_created, Snackbar.LENGTH_LONG).show();
     }
   }
 
@@ -99,7 +99,7 @@ public class AdvancedPinPreferenceFragment extends ListSummaryPreferenceFragment
       PinOptOutDialog.show(requireContext(),
                            () -> {
                              updatePreferenceState();
-                             Snackbar.make(requireView(), R.string.ApplicationPreferencesActivity_pin_disabled, Snackbar.LENGTH_SHORT).setTextColor(Color.WHITE).show();
+                             Snackbar.make(requireView(), R.string.ApplicationPreferencesActivity_pin_disabled, Snackbar.LENGTH_SHORT).show();
                            });
     } else {
       startActivityForResult(CreateKbsPinActivity.getIntentForPinCreate(requireContext()), CreateKbsPinActivity.REQUEST_NEW_PIN);

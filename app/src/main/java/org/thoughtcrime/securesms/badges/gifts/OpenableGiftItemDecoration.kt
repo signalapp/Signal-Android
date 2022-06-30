@@ -6,9 +6,13 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
+import android.graphics.drawable.Drawable
 import android.provider.Settings
 import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.AnticipateInterpolator
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.toRect
 import androidx.core.graphics.withSave
 import androidx.core.graphics.withTranslation
 import androidx.core.view.children
@@ -33,17 +37,21 @@ class OpenableGiftItemDecoration(context: Context) : RecyclerView.ItemDecoration
   private val animationState = mutableMapOf<Long, GiftAnimationState>()
 
   private val rect = RectF()
-  private val lineWidth = DimensionUnit.DP.toPixels(24f).toInt()
+  private val lineWidth = DimensionUnit.DP.toPixels(16f).toInt()
 
   private val boxPaint = Paint().apply {
     isAntiAlias = true
     color = ContextCompat.getColor(context, R.color.core_ultramarine)
   }
 
-  private val ribbonPaint = Paint().apply {
+  private val bowPaint = Paint().apply {
     isAntiAlias = true
     color = Color.WHITE
   }
+
+  private val bowWidth = DimensionUnit.DP.toPixels(80f)
+  private val bowHeight = DimensionUnit.DP.toPixels(60f)
+  private val bowDrawable: Drawable = AppCompatResources.getDrawable(context, R.drawable.ic_gift_bow)!!
 
   override fun onDestroy(owner: LifecycleOwner) {
     super.onDestroy(owner)
@@ -62,19 +70,19 @@ class OpenableGiftItemDecoration(context: Context) : RecyclerView.ItemDecoration
     val notAnimated = openableChildren.filterNot { animationState.containsKey(it.getGiftId()) }
 
     notAnimated.filterNot { messageIdsOpenedThisSession.contains(it.getGiftId()) }.forEach { child ->
-      val projection = child.getOpenableGiftProjection()
+      val projection = child.getOpenableGiftProjection(false)
       if (projection != null) {
-        if (messageIdsShakenThisSession.contains(child.getGiftId())) {
-          child.setOpenGiftCallback {
-            child.clearOpenGiftCallback()
-            val proj = it.getOpenableGiftProjection()
-            if (proj != null) {
-              messageIdsOpenedThisSession.add(it.getGiftId())
-              startOpenAnimation(it)
-              parent.invalidate()
-            }
+        child.setOpenGiftCallback {
+          child.clearOpenGiftCallback()
+          val proj = it.getOpenableGiftProjection(true)
+          if (proj != null) {
+            messageIdsOpenedThisSession.add(it.getGiftId())
+            startOpenAnimation(it)
+            parent.invalidate()
           }
+        }
 
+        if (messageIdsShakenThisSession.contains(child.getGiftId())) {
           drawGiftBox(c, projection)
           drawGiftBow(c, projection)
         } else {
@@ -124,7 +132,7 @@ class OpenableGiftItemDecoration(context: Context) : RecyclerView.ItemDecoration
       projection.y + projection.height
     )
 
-    canvas.drawRect(rect, ribbonPaint)
+    canvas.drawRect(rect, bowPaint)
 
     rect.set(
       projection.x,
@@ -133,18 +141,23 @@ class OpenableGiftItemDecoration(context: Context) : RecyclerView.ItemDecoration
       projection.y + (projection.height / 2) + lineWidth / 2
     )
 
-    canvas.drawRect(rect, ribbonPaint)
+    canvas.drawRect(rect, bowPaint)
   }
 
   private fun drawGiftBow(canvas: Canvas, projection: Projection) {
     rect.set(
-      projection.x + (projection.width / 2) - lineWidth,
-      projection.y + (projection.height / 2) - lineWidth,
-      projection.x + (projection.width / 2) + lineWidth,
-      projection.y + (projection.height / 2) + lineWidth
+      projection.x + (projection.width / 2) - (bowWidth / 2),
+      projection.y,
+      projection.x + (projection.width / 2) + (bowWidth / 2),
+      projection.y + bowHeight
     )
 
-    canvas.drawRect(rect, ribbonPaint)
+    val padTop = (projection.height - rect.height()) * (48f / 89f)
+
+    bowDrawable.bounds = rect.toRect()
+    canvas.withTranslation(y = padTop) {
+      bowDrawable.draw(canvas)
+    }
   }
 
   private fun startShakeAnimation(child: OpenableGift) {
@@ -155,14 +168,14 @@ class OpenableGiftItemDecoration(context: Context) : RecyclerView.ItemDecoration
     animationState[child.getGiftId()] = GiftAnimationState.OpenAnimationState(child, System.currentTimeMillis())
   }
 
-  sealed class GiftAnimationState(val openableGift: OpenableGift, val startTime: Long) {
+  sealed class GiftAnimationState(val openableGift: OpenableGift, val startTime: Long, val duration: Long) {
 
     /**
      * Shakes the gift box to the left and right, slightly revealing the contents underneath.
      * Uses a lag value to keep the bow one "frame" behind the box, to give it the effect of
      * following behind.
      */
-    class ShakeAnimationState(openableGift: OpenableGift, startTime: Long) : GiftAnimationState(openableGift, startTime) {
+    class ShakeAnimationState(openableGift: OpenableGift, startTime: Long) : GiftAnimationState(openableGift, startTime, SHAKE_DURATION_MILLIS) {
       override fun update(canvas: Canvas, projection: Projection, progress: Float, lastFrameProgress: Float, drawBox: (Canvas, Projection) -> Unit, drawBow: (Canvas, Projection) -> Unit) {
         canvas.withTranslation(x = getTranslation(progress).toFloat()) {
           drawBox(canvas, projection)
@@ -181,12 +194,15 @@ class OpenableGiftItemDecoration(context: Context) : RecyclerView.ItemDecoration
       }
     }
 
-    class OpenAnimationState(openableGift: OpenableGift, startTime: Long) : GiftAnimationState(openableGift, startTime) {
+    class OpenAnimationState(openableGift: OpenableGift, startTime: Long) : GiftAnimationState(openableGift, startTime, OPEN_DURATION_MILLIS) {
       override fun update(canvas: Canvas, projection: Projection, progress: Float, lastFrameProgress: Float, drawBox: (Canvas, Projection) -> Unit, drawBow: (Canvas, Projection) -> Unit) {
         val interpolatedProgress = INTERPOLATOR.getInterpolation(progress)
-        val evaluatedValue = EVALUATOR.evaluate(interpolatedProgress, 0f, DimensionUnit.DP.toPixels(300f))
+        val evaluatedValue = EVALUATOR.evaluate(interpolatedProgress, 0f, DimensionUnit.DP.toPixels(161f))
 
-        canvas.translate(evaluatedValue, -evaluatedValue)
+        val interpolatedY = TRANSLATION_Y_INTERPOLATOR.getInterpolation(progress)
+        val evaluatedY = EVALUATOR.evaluate(interpolatedY, 0f, DimensionUnit.DP.toPixels(355f))
+
+        canvas.translate(evaluatedValue, evaluatedY)
 
         drawBox(canvas, projection)
         drawBow(canvas, projection)
@@ -194,7 +210,7 @@ class OpenableGiftItemDecoration(context: Context) : RecyclerView.ItemDecoration
     }
 
     fun update(animatorDurationScale: Float, canvas: Canvas, drawBox: (Canvas, Projection) -> Unit, drawBow: (Canvas, Projection) -> Unit): Boolean {
-      val projection = openableGift.getOpenableGiftProjection() ?: return false
+      val projection = openableGift.getOpenableGiftProjection(true) ?: return false
 
       if (animatorDurationScale <= 0f) {
         update(canvas, projection, 0f, 0f, drawBox, drawBow)
@@ -203,8 +219,8 @@ class OpenableGiftItemDecoration(context: Context) : RecyclerView.ItemDecoration
       }
 
       val currentFrameTime = System.currentTimeMillis()
-      val lastFrameProgress = max(0f, (currentFrameTime - startTime - ONE_FRAME_RELATIVE_TO_30_FPS_MILLIS) / (DURATION_MILLIS.toFloat() * animatorDurationScale))
-      val progress = (currentFrameTime - startTime) / (DURATION_MILLIS.toFloat() * animatorDurationScale)
+      val lastFrameProgress = max(0f, (currentFrameTime - startTime - ONE_FRAME_RELATIVE_TO_30_FPS_MILLIS) / (duration.toFloat() * animatorDurationScale))
+      val progress = (currentFrameTime - startTime) / (duration.toFloat() * animatorDurationScale)
 
       if (progress > 1f) {
         update(canvas, projection, 1f, 1f, drawBox, drawBow)
@@ -228,10 +244,12 @@ class OpenableGiftItemDecoration(context: Context) : RecyclerView.ItemDecoration
   }
 
   companion object {
+    private val TRANSLATION_Y_INTERPOLATOR = AnticipateInterpolator(3f)
     private val INTERPOLATOR = AccelerateDecelerateInterpolator()
     private val EVALUATOR = FloatEvaluator()
 
-    private const val DURATION_MILLIS = 1000
+    private const val SHAKE_DURATION_MILLIS = 1000L
+    private const val OPEN_DURATION_MILLIS = 700L
     private const val ONE_FRAME_RELATIVE_TO_30_FPS_MILLIS = 33
   }
 }

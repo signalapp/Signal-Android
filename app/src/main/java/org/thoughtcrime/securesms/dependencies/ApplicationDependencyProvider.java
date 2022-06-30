@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.concurrent.DeadlockDetector;
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
@@ -79,6 +80,7 @@ import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.PNI;
 import org.whispersystems.signalservice.api.services.DonationsService;
+import org.whispersystems.signalservice.api.services.ProfileService;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.SleepTimer;
 import org.whispersystems.signalservice.api.util.UptimeSleepTimer;
@@ -269,7 +271,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   @Override
   public @NonNull PendingRetryReceiptCache providePendingRetryReceiptCache() {
-    return new PendingRetryReceiptCache(context);
+    return new PendingRetryReceiptCache();
   }
 
   @Override
@@ -350,6 +352,14 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
                                 BuildConfig.SIGNAL_AGENT,
                                 provideGroupsV2Operations(),
                                 FeatureFlags.okHttpAutomaticRetry());
+  }
+
+  @Override
+  public @NonNull ProfileService provideProfileService(@NonNull ClientZkProfileOperations clientZkProfileOperations,
+                                                       @NonNull SignalServiceMessageReceiver receiver,
+                                                       @NonNull SignalWebSocket signalWebSocket)
+  {
+    return new ProfileService(clientZkProfileOperations, receiver, signalWebSocket);
   }
 
   @Override

@@ -65,19 +65,20 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
       this,
       contactRecycler,
       FeatureFlags.shareSelectionLimit(),
-      true
-    ) { state ->
-      ContactSearchConfiguration.build {
-        query = state.query
+      true,
+      { state ->
+        ContactSearchConfiguration.build {
+          query = state.query
 
-        addSection(
-          ContactSearchConfiguration.Section.Groups(
-            includeHeader = false,
-            returnAsGroupStories = true
+          addSection(
+            ContactSearchConfiguration.Section.Groups(
+              includeHeader = false,
+              returnAsGroupStories = true
+            )
           )
-        )
+        }
       }
-    }
+    )
 
     mediator.getSelectionState().observe(viewLifecycleOwner) { state ->
       adapter.submitList(

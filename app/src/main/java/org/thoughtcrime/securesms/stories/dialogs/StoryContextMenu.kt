@@ -45,7 +45,8 @@ object StoryContextMenu {
     val uri: Uri? = mediaMessageRecord?.slideDeck?.firstSlide?.uri
     val contentType: String? = mediaMessageRecord?.slideDeck?.firstSlide?.contentType
     if (uri == null || contentType == null) {
-      // TODO [stories] Toast that we can't save this media
+      Log.w(TAG, "Unable to save story media uri: $uri contentType: $contentType")
+      Toast.makeText(context, R.string.MyStories__unable_to_save, Toast.LENGTH_SHORT).show()
       return
     }
 
@@ -176,7 +177,6 @@ object StoryContextMenu {
             }
           )
         } else {
-          // TODO [stories] -- Final icon
           add(
             ActionItem(R.drawable.ic_check_circle_24, context.getString(R.string.StoriesLandingItem__unhide_story)) {
               callbacks.onUnhide()

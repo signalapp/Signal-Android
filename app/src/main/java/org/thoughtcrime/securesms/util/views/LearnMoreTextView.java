@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.core.content.ContextCompat;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.CommunicationActions;
@@ -42,7 +43,7 @@ public class LearnMoreTextView extends AppCompatTextView {
   private void init() {
     setMovementMethod(LinkMovementMethod.getInstance());
     setLinkTextInternal(R.string.LearnMoreTextView_learn_more);
-    setLinkColor(ThemeUtil.getThemedColor(getContext(), R.attr.colorAccent));
+    setLinkColor(ContextCompat.getColor(getContext(), R.color.signal_colorOnSurface));
     visible = true;
   }
 

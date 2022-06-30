@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.service.SmsDeliveryListener;
 
 public class SmsSentJob extends BaseJob {
@@ -108,7 +109,7 @@ public class SmsSentJob extends BaseJob {
           if (isMultipart) {
             Log.w(TAG, "Service connectivity problem, but not retrying due to multipart");
             database.markAsSentFailed(messageId);
-            ApplicationDependencies.getMessageNotifier().notifyMessageDeliveryFailed(context, record.getRecipient(), record.getThreadId());
+            ApplicationDependencies.getMessageNotifier().notifyMessageDeliveryFailed(context, record.getRecipient(), ConversationId.forConversation(record.getThreadId()));
           } else {
             Log.w(TAG, "Service connectivity problem, requeuing...");
             ApplicationDependencies.getJobManager().add(new SmsSendJob(messageId, record.getIndividualRecipient(), runAttempt + 1));
@@ -116,7 +117,7 @@ public class SmsSentJob extends BaseJob {
           break;
         default:
           database.markAsSentFailed(messageId);
-          ApplicationDependencies.getMessageNotifier().notifyMessageDeliveryFailed(context, record.getRecipient(), record.getThreadId());
+          ApplicationDependencies.getMessageNotifier().notifyMessageDeliveryFailed(context, record.getRecipient(), ConversationId.forConversation(record.getThreadId()));
       }
     } catch (NoSuchMessageException e) {
       Log.w(TAG, e);

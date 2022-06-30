@@ -88,7 +88,9 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">இந்த குழுவிலிருந்து நீங்கள் இனி செய்திகளையோ புதுப்பிப்புகளையோ பெறமாட்டீர்கள், மேலும் உறுப்பினர்கள் உங்களை மீண்டும் இந்தக் குழுவில் சேர்க்க முடியாது.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">குழு உறுப்பினர்கள் உங்களை மீண்டும் இந்த குழுவில் சேர்க்க முடியாது.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">குழு உறுப்பினர்கள் உங்களை இந்த குழுவிற்கு மீண்டும் சேர்க்க முடியும்.</string>
+  <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">நீங்கள் ஒருவருக்கொருவர் செய்தி அனுப்பவும் அழைக்கவும் முடியும், மேலும் உங்கள் பெயரும் புகைப்படமும் அவர்களுடன் பகிரப்படும்.</string>
+  <!--Text that is shown when unblocking an SMS contact-->
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">தடுக்கப்பட்ட நபர்கள் உங்களை அழைக்கவோ அல்லது செய்திகளை அனுப்பவோ முடியாது.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -208,8 +210,10 @@
   <string name="ConversationActivity_calls_not_supported">அழைப்புக்களுக்கு ஆதரவில்லை</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">இந்த சாதனம் டயல் செயல்பாட்டை ஆதரிப்பதுபோல் தோன்றவில்லை.</string>
   <string name="ConversationActivity_transport_insecure_sms">பாதுகாப்பற்ற SMS</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
   <string name="ConversationActivity_transport_insecure_mms">பாதுகாப்பற்ற MMS</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_signal">Signal செய்தி</string>
   <string name="ConversationActivity_lets_switch_to_signal">%1$s நாம் Signalக்கு மாறுவோம்</string>
   <string name="ConversationActivity_specify_recipient">தயவு செய்து ஒரு தொடர்பை தேர்ந்தெடு</string>
   <string name="ConversationActivity_unblock">தடுப்புநீக்க</string>
@@ -331,7 +335,7 @@
     <item quantity="one">உரையாடல்கள் பெட்டகப்படுத்தப்பட்டது.</item>
     <item quantity="other">%d உரையாடல்கள் பெட்டகப்படுத்தப்பட்டது.</item>
   </plurals>
-  <string name="ConversationListFragment_undo">செயல் தளர்த்து </string>
+  <string name="ConversationListFragment_undo">செயல்தவிர்</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">உரையாடல் அகப்பெட்டிக்கு நகர்த்தப்பட்டது.</item>
     <item quantity="other">%d உரையாடலைகள் அகப்பெட்டிக்கு நகர்த்தப்பட்டது.</item>
@@ -605,8 +609,7 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">இந்த தகவல் தேவை.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">குழு உருவாக்கம் தோல்வியடைந்தது.</string>
   <string name="AddGroupDetailsFragment__try_again_later">பின்னர் மீண்டும் முயற்சிக்கவும்.</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Signal அல்லாத பயனர் தொடர்பை நீங்கள் தேர்ந்தெடுத்துள்ளீர்கள், எனவே இந்த குழு எம்.எம்.எஸ்.</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">தனிப்பயன் எம்.எம்.எஸ் குழு பெயர்கள் மற்றும் புகைப்படங்கள் உங்களுக்கு மட்டுமே தெரியும்.</string>
+  <!--Displayed when adding group details to an MMS Group-->
   <string name="AddGroupDetailsFragment__remove">நீக்கு</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS தொடர்பு</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">இந்த குழுவிலிருந்து %1$s ஐ அகற்றவா?</string>
@@ -684,6 +687,7 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">தனிப்பயன் அறிவிப்புகளைப் பயன்படுத்தவும்</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">அறிவிப்பு ஒலி</string>
   <string name="CustomNotificationsDialogFragment__vibrate">அதிர்வு</string>
+  <!--Button text for customizing notification options-->
   <string name="CustomNotificationsDialogFragment__call_settings">அழைப்பு அமைப்புகள்</string>
   <string name="CustomNotificationsDialogFragment__ringtone">ரிங்டோன்</string>
   <string name="CustomNotificationsDialogFragment__enabled">இயக்கப்பட்டது</string>
@@ -836,6 +840,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Signal அழைப்பு நிறுவுப்படுகிறது</string>
   <string name="NotificationBarManager__incoming_signal_call">உள்வரும் Signal அழைப்பு</string>
   <string name="NotificationBarManager__incoming_signal_group_call">உள்வரும் Signal குழு அழைப்பு</string>
+  <!--Temporary notification shown when starting the calling service-->
   <string name="NotificationBarManager__stopping_signal_call_service">Signal அழைப்பு சேவையை நிறுத்துதல்</string>
   <string name="NotificationBarManager__decline_call">அழைப்பை நிராகரி</string>
   <string name="NotificationBarManager__answer_call">அழைப்பை எடு</string>
@@ -1074,7 +1079,9 @@
   <string name="MessageRequestBottomView_block">தடு </string>
   <string name="MessageRequestBottomView_unblock">தடைநீக்கு </string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s உங்களுக்கு செய்தி அனுப்ப அனுமதித்து, உங்கள் பெயரையும் புகைப்படத்தையும் அவர்களுடன் பகிர்ந்து கொள்ள விரும்புகிறீர்களா? நீங்கள் ஏற்றுக்கொள்ளும் வரை அவர்களின் செய்தியை நீங்கள் பார்த்திருப்பதை அவர்கள் அறிய மாட்டார்கள்.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s உங்களுக்கு செய்தி அனுப்ப அனுமதித்து, உங்கள் பெயரையும் புகைப்படத்தையும் அவர்களுடன் பகிர்ந்து கொள்ள விரும்புகிறீர்களா? நீங்கள் அவரை தடை நீக்கம் செய்யும் வரை எந்த செய்திகளையும் பெற மாட்டீர்கள்.</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">இந்த குழுவுடன் உங்கள் உரையாடலைத் தொடர, உங்கள் பெயரையும் புகைப்படத்தையும் அதன் உறுப்பினர்களுடன் பகிர்ந்து கொள்ளவா?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">@ குறிப்புகள் மற்றும் நிர்வாகிகள் போன்ற புதிய அம்சங்களை செயல்படுத்த இந்த குழுவை மேம்படுத்தவும். இந்த குழுவில் தங்கள் பெயரையோ புகைப்படத்தையோ பகிர்ந்து கொள்ளாத உறுப்பினர்கள் சேர அழைக்கப்படுவார்கள்.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">இந்த மரபு குழு மிகப் பெரியது, எனவே இதை இனி பயன்படுத்த முடியாது. அதிகபட்ச குழு அளவு: %1$d</string>
@@ -1210,6 +1217,11 @@
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">எண்ணிக்கை கூடியதால் குழுவில் உள்ள அனைவரையும் அழைக்க இயலாது</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">மீண்டும் இணைக்கிறது …</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">இப்போது இல்லை</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal  அழைப்பு</string>
   <string name="WebRtcCallView__signal_video_call">Signal காணொளி அழைப்பு</string>
@@ -1421,6 +1433,9 @@
   <string name="ThreadRecord_file">கோப்பு</string>
   <string name="ThreadRecord_video">காணொளி</string>
   <string name="ThreadRecord_chat_session_refreshed">உரையாடல் அமர்வு புதுப்பிக்கப்பட்டது</string>
+  <!--Displayed in the notification when the user is sent a gift-->
+  <!--Displayed in the notification when the user sends a gift-->
+  <!--Displayed in the notification when the user has opened a received gift-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal புதுப்பிப்பு</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal புதிய பதிப்பு கிடைக்கும், புதுப்பிக்க தட்டவும்</string>
@@ -1545,6 +1560,9 @@
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">தேடு </string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">உரையாடல்கள், தொடர்புகள் மற்றும் செய்திகளைத் தேடுங்கள்</string>
+  <!--Material3 Search Toolbar-->
+  <string name="Material3SearchToolbar__close">நெருக்கமான</string>
+  <string name="Material3SearchToolbar__clear">அழி</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">தவறான குறுக்குவழி</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -1552,6 +1570,7 @@
   <string name="SingleRecipientNotificationBuilder_new_message">புதிய செய்தி</string>
   <string name="SingleRecipientNotificationBuilder_message_request">செய்தி கோரிக்கை</string>
   <string name="SingleRecipientNotificationBuilder_you">நீங்கள்</string>
+  <!--Notification subtext for group stories-->
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">காணொளியை ஓட்டு</string>
   <string name="ThumbnailView_Has_a_caption_description">ஒரு தலைப்பு உள்ளது</string>
@@ -1682,6 +1701,7 @@
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
   <!--Label indicating that the story being replied to no longer exists-->
+  <!--Label for quoted gift-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">கீழே உருட்டவும்</string>
   <!--BubbleOptOutTooltip-->
@@ -1783,7 +1803,7 @@
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media"> ஊடகங்கள்இல்லை</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__view">பார்</string>
+  <string name="message_recipients_list_item__view">காண்க</string>
   <string name="message_recipients_list_item__resend">மீண்டும் அனுப்பு</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
   <!--Displayed when there are no outgoing stories-->
@@ -1848,6 +1868,10 @@
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">நிராகரிக்க கீழே ஸ்வைப் செய்யவும்</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">சில பிரச்சினைகளுக்கு உங்கள் கவனம் தேவைப்படுகிறது.</string>
+  <string name="message_details_header_sent">அனுப்பியது </string>
+  <string name="message_details_header_received">பெறப்பட்டது</string>
+  <string name="message_details_header_disappears">மறைந்து</string>
+  <string name="message_details_header_via">வழியாக</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">நிலுவையில் உள்ளது</string>
   <string name="message_details_recipient_header__sent_to">அனுப்பப்பட்டது</string>
@@ -3069,6 +3093,14 @@
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">மேல் விளிம்பு தேர்வாளர்</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">கீழ் விளிம்பு தேர்வாளர்</string>
+  <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate_to_signal">Signal-க்கு நன்கொடை அளி</string>
+  <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal உங்களைப் போன்றவர்களின் உதவியில் இயங்குகிறது. மாதாந்தர நன்கொடை அளித்து ஒரு பேட்ஜைப் பெறுங்கள். </string>
+  <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate">நன்கொடை</string>
+  <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_not_now">இப்போது இல்லை</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">தனிப்பயனாக்கலாம் எதிர்வினைகள்</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">தட்டவும் ஒரு மாற்ற ஈமோஜி</string>
@@ -3076,11 +3108,6 @@
   <string name="EditReactionsFragment_save">சேமி</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">பின்னணிப்படத்துடன் அரட்டை நிறத்தை தானே பொருந்துகிறது</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">இழுக்கவும் மாற்றம் சாய்வு திசை</string>
-  <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">புதிய அரட்டை நிறங்கள்</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">உங்களுக்கு கூடுதல் விருப்பங்களை வழங்கவும் அரட்டைகளை எளிதாக படிக்கவும் அரட்டை நிறங்களை மாற்றியுள்ளோம்.</string>
-  <string name="ChatColorsMegaphone__appearance">தோற்றம்</string>
-  <string name="ChatColorsMegaphone__not_now">இப்போது இல்லை</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">கூட்டு ஒரு சுயவிவரம் புகைப்படம்</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">தோற்றத்தையும் நிறத்தையும் தேர்வு செய்யவும் அல்லது உங்கள் முதலெழுத்துக்களைத் தனிப்பயனாக்கவும்.</string>
@@ -3248,6 +3275,8 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">இப்போது இல்லை</string>
   <!--Copy displayed when badge expires after user inactivity-->
   <!--Copy displayed when badge expires after payment failure-->
+  <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
+  <!--Button label to send user to Google Pay website-->
   <string name="Subscription__contact_support">தொடர்பு ஆதரவு</string>
   <string name="SubscribeFragment__processing_payment">கட்டணத்தை செயலாக்குகிறது…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
@@ -3257,6 +3286,10 @@
   <!--Displayed as title when some generic error happens during gift badge sending-->
   <!--Displayed as message when some generic error happens during gift badge sending-->
   <string name="NetworkFailure__retry">மீண்டும் முயற்சி செய்</string>
+  <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <!--Gift message view title-->
   <!--Gift message view expiry information-->
   <!--Gift badge redeem action label-->
@@ -3411,6 +3444,7 @@
   <!--Donation receipts amount title-->
   <!--Donation receipts thanks-->
   <!--Donation receipt type-->
+  <!--Donation reciepts screen empty state title-->
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">உரையாடல்கள்
@@ -3429,8 +3463,9 @@
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">அனுப்புகிறது …</string>
   <!--Label when multiple stories are pending sending-->
-  <!--Label when a story fails to send-->
+  <!--Label when a story fails to send due to networking-->
   <string name="StoriesLandingItem__send_failed">அனுப்புவது தோல்வியுற்றது</string>
+  <!--Label when a story fails to send due to identity mismatch-->
   <!--Status label when a story fails to send indicating user action to retry-->
   <!--Title of dialog confirming decision to hide a story-->
   <!--Message of dialog confirming decision to hide a story-->
@@ -3444,6 +3479,7 @@
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
   <!--Title of dialog to confirm deletion of story-->
   <!--Message of dialog to confirm deletion of story-->
+  <!--Toast shown when story media cannot be saved-->
   <!--Displayed at bottom of story viewer when current item has views-->
   <!--Displayed at bottom of story viewer when current item has replies-->
   <!--Used to join views and replies when both exist on a story item-->
@@ -3454,6 +3490,7 @@
   <string name="StoryViewerPageFragment__s_to_s">%1$s to %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">பதில்</string>
+  <!--Label for the reply button in story viewer, which will launch the group story replies bottom sheet.-->
   <!--Displayed when a story has no views-->
   <!--Displayed when a story has no replies yet-->
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -3508,6 +3545,7 @@
   <!--Displayed prior to the user entering a URL for a text post-->
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">தேடு </string>
+  <!--Toast shown when an unexpected error occurs while sending a text story-->
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">முடிந்தது</string>
@@ -3544,7 +3582,6 @@
   <string name="StoryGroupReplyFragment__copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
   <!--Displayed in toast after sending a direct reply-->
-  <!--Displayed in toast after sending a direct reaction-->
   <!--Displayed in the viewer when a story is no longer available-->
   <!--Displayed in the viewer when the network is not available-->
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
@@ -3563,6 +3600,7 @@
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <!--Duration and price information-->
   <!--Tagline for gift row items-->
   <!--Headline text on start fragment for gifting a badge-->
   <!--Description text on start fragment for gifting a badge-->
@@ -3575,6 +3613,7 @@
   <!--Text explaining that this gift is a one time donation-->
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">கூட்டு ஒரு செய்தி</string>
+  <!--Displayed in the dialog while verifying the chosen recipient-->
   <!--Title for sheet shown when opening a redeemed gift-->
   <!--Title for sheet shown when opening a sent gift-->
   <!--Description for sheet shown when opening a redeemed gift-->
@@ -3591,5 +3630,11 @@
   <!--Expired gift sheet make a monthly donation button-->
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">இப்போது இல்லை</string>
+  <!--Label under name for private stories-->
+  <!--Label under name for group stories-->
+  <!--Gift expiry days remaining-->
+  <!--Gift expiry hours remaining-->
+  <!--Gift expiry minutes remaining-->
+  <!--Gift expiry expired-->
   <!--EOF-->
 </resources>

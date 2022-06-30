@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
 import android.net.Uri
+import android.os.Build
 import android.provider.Settings
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
@@ -19,6 +20,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.notifications.NotificationChannels
+import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.RingtoneUtil
 
 private val TAG = Log.tag(CustomNotificationsSettingsFragment::class.java)
@@ -84,30 +86,39 @@ class CustomNotificationsSettingsFragment : DSLSettingsFragment(R.string.CustomN
         )
       }
 
-      clickPref(
-        title = DSLSettingsText.from(R.string.CustomNotificationsDialogFragment__notification_sound),
-        summary = DSLSettingsText.from(getRingtoneSummary(requireContext(), state.messageSound, Settings.System.DEFAULT_NOTIFICATION_URI)),
-        isEnabled = state.controlsEnabled,
-        onClick = { requestSound(state.messageSound, false) }
-      )
-
-      if (NotificationChannels.supported()) {
-        switchPref(
-          title = DSLSettingsText.from(R.string.CustomNotificationsDialogFragment__vibrate),
+      if (Build.VERSION.SDK_INT >= 30) {
+        clickPref(
+          title = DSLSettingsText.from(R.string.CustomNotificationsDialogFragment__customize),
+          summary = DSLSettingsText.from(R.string.CustomNotificationsDialogFragment__change_sound_and_vibration),
           isEnabled = state.controlsEnabled,
-          isChecked = state.messageVibrateEnabled,
-          onClick = { viewModel.setMessageVibrate(RecipientDatabase.VibrateState.fromBoolean(!state.messageVibrateEnabled)) }
+          onClick = { NotificationChannels.openChannelSettings(requireContext(), state.recipient!!.notificationChannel!!, ConversationUtil.getShortcutId(state.recipient)) }
         )
       } else {
-        radioListPref(
-          title = DSLSettingsText.from(R.string.CustomNotificationsDialogFragment__vibrate),
+        clickPref(
+          title = DSLSettingsText.from(R.string.CustomNotificationsDialogFragment__notification_sound),
+          summary = DSLSettingsText.from(getRingtoneSummary(requireContext(), state.messageSound, Settings.System.DEFAULT_NOTIFICATION_URI)),
           isEnabled = state.controlsEnabled,
-          listItems = vibrateLabels,
-          selected = state.messageVibrateState.id,
-          onSelected = {
-            viewModel.setMessageVibrate(RecipientDatabase.VibrateState.fromId(it))
-          }
+          onClick = { requestSound(state.messageSound, false) }
         )
+
+        if (NotificationChannels.supported()) {
+          switchPref(
+            title = DSLSettingsText.from(R.string.CustomNotificationsDialogFragment__vibrate),
+            isEnabled = state.controlsEnabled,
+            isChecked = state.messageVibrateEnabled,
+            onClick = { viewModel.setMessageVibrate(RecipientDatabase.VibrateState.fromBoolean(!state.messageVibrateEnabled)) }
+          )
+        } else {
+          radioListPref(
+            title = DSLSettingsText.from(R.string.CustomNotificationsDialogFragment__vibrate),
+            isEnabled = state.controlsEnabled,
+            listItems = vibrateLabels,
+            selected = state.messageVibrateState.id,
+            onSelected = {
+              viewModel.setMessageVibrate(RecipientDatabase.VibrateState.fromId(it))
+            }
+          )
+        }
       }
 
       if (state.showCallingOptions) {

@@ -5,12 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <View
+        android:id="@+id/toolbar_background"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/signal_m3_toolbar_height"
+        android:background="@color/signal_colorBackground"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <org.thoughtcrime.securesms.util.views.DarkOverflowToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/signal_background_primary"
-        android:minHeight="?attr/actionBarSize"
+        android:layout_height="@dimen/signal_m3_toolbar_height"
+        android:minHeight="@dimen/signal_m3_toolbar_height"
         android:theme="?attr/actionBarStyle"
         android:visibility="gone"
         app:contentInsetStart="0dp"
@@ -68,12 +74,10 @@
                 android:id="@+id/conversation_list_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="26dp"
+                android:layout_marginStart="30dp"
                 android:text="@string/app_name"
                 android:textAlignment="viewStart"
-                android:textColor="@color/signal_text_primary"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                android:textAppearance="@style/Signal.Text.TitleLarge"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/conversation_list_notification_profile_status"
                 app:layout_constraintStart_toEndOf="@id/toolbar_icon"
@@ -128,16 +132,16 @@
     <ViewStub
         android:id="@+id/toolbar_basic_stub"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="@dimen/signal_m3_toolbar_height"
         android:inflatedId="@+id/toolbar_basic"
         android:layout="@layout/conversation_list_archive_toolbar"
-        android:minHeight="?attr/actionBarSize"
+        android:minHeight="@dimen/signal_m3_toolbar_height"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ViewStub
         android:id="@+id/search_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/signal_m3_toolbar_height"
         android:layout="@layout/conversation_list_search_toolbar"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -146,7 +150,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="toolbar,toolbar_basic" />
+        app:constraint_referenced_ids="toolbar,toolbar_basic,toolbar_background" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"

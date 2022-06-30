@@ -80,25 +80,6 @@ class DistributionListDatabaseTest {
     Assert.assertEquals(StoryType.STORY_WITHOUT_REPLIES, storyType)
   }
 
-  @Test
-  fun givenStoryExistsAndMarkedNoReplies_getAllListsForContactSelectionUi_returnsStoryWithoutReplies() {
-    val id: DistributionListId? = distributionDatabase.createList("test", recipientList(1, 2, 3))
-    Assert.assertNotNull(id)
-    distributionDatabase.setAllowsReplies(id!!, false)
-
-    val records = distributionDatabase.getAllListsForContactSelectionUi(null, false)
-    Assert.assertFalse(records.first().allowsReplies)
-  }
-
-  @Test
-  fun givenStoryExists_getAllListsForContactSelectionUi_returnsStoryWithReplies() {
-    val id: DistributionListId? = distributionDatabase.createList("test", recipientList(1, 2, 3))
-    Assert.assertNotNull(id)
-
-    val records = distributionDatabase.getAllListsForContactSelectionUi(null, false)
-    Assert.assertTrue(records.first().allowsReplies)
-  }
-
   @Test(expected = IllegalStateException::class)
   fun givenStoryDoesNotExist_getStoryType_throwsIllegalStateException() {
     distributionDatabase.getStoryType(DistributionListId.from(12))

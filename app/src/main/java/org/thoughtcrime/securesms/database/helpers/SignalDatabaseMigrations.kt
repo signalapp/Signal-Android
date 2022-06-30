@@ -195,8 +195,15 @@ object SignalDatabaseMigrations {
   private const val REMOVE_KNOWN_UNKNOWNS = 139
   private const val CDS_V2 = 140
   private const val GROUP_SERVICE_ID = 141
+  private const val QUOTE_TYPE = 142
+  private const val STORY_SYNCS = 143
+  private const val GROUP_STORY_NOTIFICATIONS = 144
+  private const val GROUP_STORY_REPLY_CLEANUP = 145
+  private const val REMOTE_MEGAPHONE = 146
+  private const val QUOTE_INDEX = 147
+  private const val MY_STORY_PRIVACY_MODE = 148
 
-  const val DATABASE_VERSION = 141
+  const val DATABASE_VERSION = 148
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -2527,6 +2534,129 @@ object SignalDatabaseMigrations {
 
     if (oldVersion < GROUP_SERVICE_ID) {
       db.execSQL("ALTER TABLE groups ADD COLUMN auth_service_id TEXT DEFAULT NULL")
+    }
+
+    if (oldVersion < QUOTE_TYPE) {
+      db.execSQL("ALTER TABLE mms ADD COLUMN quote_type INTEGER DEFAULT 0")
+    }
+
+    if (oldVersion < STORY_SYNCS) {
+      db.execSQL("ALTER TABLE distribution_list ADD COLUMN is_unknown INTEGER DEFAULT 0")
+
+      db.execSQL(
+        """
+          CREATE TABLE story_sends_tmp (
+            _id INTEGER PRIMARY KEY,
+            message_id INTEGER NOT NULL REFERENCES mms (_id) ON DELETE CASCADE,
+            recipient_id INTEGER NOT NULL REFERENCES recipient (_id) ON DELETE CASCADE,
+            sent_timestamp INTEGER NOT NULL,
+            allows_replies INTEGER NOT NULL,
+            distribution_id TEXT NOT NULL REFERENCES distribution_list (distribution_id) ON DELETE CASCADE
+          )
+        """.trimIndent()
+      )
+
+      db.execSQL(
+        """
+          INSERT INTO story_sends_tmp (_id, message_id, recipient_id, sent_timestamp, allows_replies, distribution_id)
+              SELECT story_sends._id, story_sends.message_id, story_sends.recipient_id, story_sends.sent_timestamp, story_sends.allows_replies, distribution_list.distribution_id
+              FROM story_sends
+              INNER JOIN mms ON story_sends.message_id = mms._id
+              INNER JOIN distribution_list ON distribution_list.recipient_id = mms.address
+        """.trimIndent()
+      )
+
+      db.execSQL("DROP TABLE story_sends")
+      db.execSQL("DROP INDEX IF EXISTS story_sends_recipient_id_sent_timestamp_allows_replies_index")
+
+      db.execSQL("ALTER TABLE story_sends_tmp RENAME TO story_sends")
+      db.execSQL("CREATE INDEX story_sends_recipient_id_sent_timestamp_allows_replies_index ON story_sends (recipient_id, sent_timestamp, allows_replies)")
+    }
+
+    if (oldVersion < GROUP_STORY_NOTIFICATIONS) {
+      db.execSQL("UPDATE mms SET read = 1 WHERE parent_story_id > 0")
+    }
+
+    if (oldVersion < GROUP_STORY_REPLY_CLEANUP) {
+      db.execSQL(
+        """
+        DELETE FROM mms
+        WHERE 
+          parent_story_id > 0 AND
+          parent_story_id NOT IN (SELECT _id FROM mms WHERE remote_deleted = 0) 
+        """.trimIndent()
+      )
+    }
+
+    if (oldVersion < REMOTE_MEGAPHONE) {
+      db.execSQL(
+        """
+          CREATE TABLE remote_megaphone (
+            _id INTEGER PRIMARY KEY,
+            uuid TEXT UNIQUE NOT NULL,
+            priority INTEGER NOT NULL,
+            countries TEXT,
+            minimum_version INTEGER NOT NULL,
+            dont_show_before INTEGER NOT NULL,
+            dont_show_after INTEGER NOT NULL,
+            show_for_days INTEGER NOT NULL,
+            conditional_id TEXT,
+            primary_action_id TEXT,
+            secondary_action_id TEXT,
+            image_url TEXT,
+            image_uri TEXT DEFAULT NULL,
+            title TEXT NOT NULL,
+            body TEXT NOT NULL,
+            primary_action_text TEXT,
+            secondary_action_text TEXT,
+            shown_at INTEGER DEFAULT 0,
+            finished_at INTEGER DEFAULT 0
+          )
+        """
+      )
+    }
+
+    if (oldVersion < QUOTE_INDEX) {
+      db.execSQL(
+        """
+          CREATE INDEX IF NOT EXISTS mms_quote_id_quote_author_index ON mms (quote_id, quote_author)
+        """
+      )
+    }
+
+    if (oldVersion < MY_STORY_PRIVACY_MODE) {
+      db.execSQL("ALTER TABLE distribution_list ADD COLUMN privacy_mode INTEGER DEFAULT 0")
+      db.execSQL("UPDATE distribution_list SET privacy_mode = 1 WHERE _id = 1")
+
+      db.execSQL(
+        """
+          CREATE TABLE distribution_list_member_tmp (
+            _id INTEGER PRIMARY KEY AUTOINCREMENT,
+            list_id INTEGER NOT NULL REFERENCES distribution_list (_id) ON DELETE CASCADE,
+            recipient_id INTEGER NOT NULL REFERENCES recipient (_id),
+            privacy_mode INTEGER DEFAULT 0
+          )
+        """
+      )
+
+      db.execSQL(
+        """
+          INSERT INTO distribution_list_member_tmp
+          SELECT
+            _id,
+            list_id,
+            recipient_id,
+            0
+          FROM distribution_list_member
+        """
+      )
+
+      db.execSQL("DROP TABLE distribution_list_member")
+      db.execSQL("ALTER TABLE distribution_list_member_tmp RENAME TO distribution_list_member")
+
+      db.execSQL("UPDATE distribution_list_member SET privacy_mode = 1 WHERE list_id = 1")
+
+      db.execSQL("CREATE UNIQUE INDEX distribution_list_member_list_id_recipient_id_privacy_mode_index ON distribution_list_member (list_id, recipient_id, privacy_mode)")
     }
   }
 

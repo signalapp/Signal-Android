@@ -162,7 +162,16 @@ class SignalBluetoothManager(
       return
     }
 
-    val devices: List<BluetoothDevice>? = bluetoothHeadset?.connectedDevices
+    val devices: List<BluetoothDevice>?
+    try {
+      devices = bluetoothHeadset?.connectedDevices
+    } catch (e: SecurityException) {
+      Log.w(TAG, "Unable to get bluetooth devices", e)
+      stop()
+      state = State.PERMISSION_DENIED
+      return
+    }
+
     if (devices == null || devices.isEmpty()) {
       bluetoothDevice = null
       state = State.UNAVAILABLE
@@ -320,6 +329,7 @@ class SignalBluetoothManager(
     DISCONNECTING,
     CONNECTING,
     CONNECTED,
+    PERMISSION_DENIED,
     ERROR;
 
     fun shouldUpdate(): Boolean {

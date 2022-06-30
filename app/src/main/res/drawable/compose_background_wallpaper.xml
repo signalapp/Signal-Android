@@ -4,7 +4,7 @@
     android:shape="rectangle">
 
     <solid
-        android:color="@color/core_white" />
+        android:color="@color/conversation_item_recv_bubble_color_wallpaper" />
 
     <corners
         android:radius="20dp" />

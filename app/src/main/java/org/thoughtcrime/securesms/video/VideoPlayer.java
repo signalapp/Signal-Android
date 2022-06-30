@@ -33,6 +33,7 @@ import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.ClippingMediaSource;
 import com.google.android.exoplayer2.source.DefaultMediaSourceFactory;
 import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.PlayerControlView;
 import com.google.android.exoplayer2.ui.PlayerView;
@@ -41,6 +42,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.mms.VideoSlide;
+import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -121,9 +123,9 @@ public class VideoPlayer extends FrameLayout {
 
   private MediaItem mediaItem;
 
-  public void setVideoSource(@NonNull VideoSlide videoSource, boolean autoplay) {
+  public void setVideoSource(@NonNull VideoSlide videoSource, boolean autoplay, String poolTag) {
     if (exoPlayer == null) {
-      exoPlayer = ApplicationDependencies.getExoPlayerPool().require();
+      exoPlayer = ApplicationDependencies.getExoPlayerPool().require(poolTag);
       exoPlayer.addListener(exoPlayerListener);
       exoPlayer.addListener(playerListener);
       exoView.setPlayer(exoPlayer);
@@ -134,6 +136,36 @@ public class VideoPlayer extends FrameLayout {
     exoPlayer.setMediaItem(mediaItem);
     exoPlayer.prepare();
     exoPlayer.setPlayWhenReady(autoplay);
+  }
+
+  public void mute() {
+    if (exoPlayer != null && exoPlayer.getAudioComponent() != null) {
+      exoPlayer.getAudioComponent().setVolume(0f);
+    }
+  }
+
+  public void unmute() {
+    if (exoPlayer != null && exoPlayer.getAudioComponent() != null) {
+      exoPlayer.getAudioComponent().setVolume(1f);
+    }
+  }
+
+  public boolean hasAudioTrack() {
+    if (exoPlayer != null) {
+      TrackGroupArray trackGroupArray = exoPlayer.getCurrentTrackGroups();
+      if (trackGroupArray != null) {
+        for (int i = 0; i < trackGroupArray.length; i++) {
+          for (int j = 0; j < trackGroupArray.get(i).length; j++) {
+            String sampleMimeType = trackGroupArray.get(i).getFormat(j).sampleMimeType;
+            if (MediaUtil.isAudioType(sampleMimeType)) {
+              return true;
+            }
+          }
+        }
+      }
+    }
+
+    return false;
   }
 
   public boolean isInitialized() {

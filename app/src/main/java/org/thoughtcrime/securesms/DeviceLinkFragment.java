@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
 public class DeviceLinkFragment extends Fragment implements View.OnClickListener {
@@ -21,6 +22,7 @@ public class DeviceLinkFragment extends Fragment implements View.OnClickListener
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
     this.container = (LinearLayout) inflater.inflate(R.layout.device_link_fragment, container, false);
     this.container.findViewById(R.id.link_device).setOnClickListener(this);
+    ViewCompat.setTransitionName(container.findViewById(R.id.devices), "devices");
 
     if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
       container.setOrientation(LinearLayout.HORIZONTAL);

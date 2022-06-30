@@ -93,9 +93,9 @@ object SqlUtil {
     while (i < len) {
       val point = StringUtil.codePointToString(query.codePointAt(i))
       pattern.append("[")
-      pattern.append(point.toLowerCase(Locale.getDefault()))
-      pattern.append(point.toUpperCase(Locale.getDefault()))
-      pattern.append(getAccentuatedCharRegex(point.toLowerCase(Locale.getDefault())))
+      pattern.append(point.lowercase(Locale.getDefault()))
+      pattern.append(point.uppercase(Locale.getDefault()))
+      pattern.append(getAccentuatedCharRegex(point.lowercase(Locale.getDefault())))
       pattern.append("]")
       i++
     }
@@ -166,7 +166,7 @@ object SqlUtil {
       if (value != null) {
         if (value is ByteArray) {
           qualifier.append("hex(").append(key).append(") != ? OR ").append(key).append(" IS NULL")
-          fullArgs.add(Hex.toStringCondensed(value).toUpperCase(Locale.US))
+          fullArgs.add(Hex.toStringCondensed(value).uppercase(Locale.US))
         } else {
           qualifier.append(key).append(" != ? OR ").append(key).append(" IS NULL")
           fullArgs.add(value.toString())

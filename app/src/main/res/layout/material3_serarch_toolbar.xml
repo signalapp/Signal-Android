@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/signal_m3_toolbar_height"
+    tools:orientation="vertical"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <View
+        android:id="@+id/background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/search_toolbar_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/search_close"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="4dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:contentDescription="@string/Material3SearchToolbar__close"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_left_24"
+        app:tint="@color/signal_colorOnSurface" />
+
+    <EditText
+        android:id="@+id/search_input"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/transparent"
+        android:hint="@string/SearchToolbar_search"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textColor="@color/signal_colorOnSurface"
+        android:textColorHint="@color/signal_colorOnSurfaceVariant_60"
+        app:layout_constraintBottom_toBottomOf="@id/background"
+        app:layout_constraintEnd_toStartOf="@id/search_clear"
+        app:layout_constraintStart_toEndOf="@id/search_close"
+        app:layout_constraintTop_toTopOf="@id/background" />
+
+    <ImageView
+        android:id="@+id/search_clear"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/Material3SearchToolbar__clear"
+        android:scaleType="centerInside"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_x_24" />
+
+</merge>

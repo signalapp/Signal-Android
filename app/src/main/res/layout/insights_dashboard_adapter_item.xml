@@ -30,9 +30,9 @@
         app:layout_constraintVertical_chainStyle="packed"
         tools:text="Peter Parker (This is a long name to make sure we stick within our bounds)" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/recipient_invite"
-        style="@style/Button.Borderless"
+        style="@style/Signal.Widget.Button.Large.Secondary"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:paddingStart="16dp"

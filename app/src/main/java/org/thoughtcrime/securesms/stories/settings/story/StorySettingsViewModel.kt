@@ -29,7 +29,7 @@ class StorySettingsViewModel(
   class Factory(
     private val repository: StorySettingsRepository
   ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(StorySettingsViewModel(repository)) as T
     }
   }

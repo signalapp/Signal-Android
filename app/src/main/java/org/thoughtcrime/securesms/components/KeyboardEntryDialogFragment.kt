@@ -22,8 +22,10 @@ abstract class KeyboardEntryDialogFragment(@LayoutRes contentLayoutId: Int) :
 
   protected open val withDim: Boolean = false
 
+  protected open val themeResId: Int = R.style.Theme_Signal_RoundedBottomSheet
+
   override fun onCreate(savedInstanceState: Bundle?) {
-    setStyle(STYLE_NORMAL, R.style.Theme_Signal_RoundedBottomSheet)
+    setStyle(STYLE_NORMAL, themeResId)
     super.onCreate(savedInstanceState)
   }
 

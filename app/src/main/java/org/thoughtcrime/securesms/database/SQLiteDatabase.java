@@ -48,9 +48,14 @@ public class SQLiteDatabase implements SupportSQLiteDatabase {
   private final net.zetetic.database.sqlcipher.SQLiteDatabase wrapped;
   private final Tracer                                        tracer;
 
-  private static final ThreadLocal<Set<Runnable>> POST_TRANSACTION_TASKS = new ThreadLocal<>();
+  private static final ThreadLocal<Set<Runnable>> PENDING_POST_SUCCESSFUL_TRANSACTION_TASKS;
+  private static final ThreadLocal<Set<Runnable>> POST_SUCCESSFUL_TRANSACTION_TASKS;
+
   static {
-    POST_TRANSACTION_TASKS.set(new LinkedHashSet<>());
+    PENDING_POST_SUCCESSFUL_TRANSACTION_TASKS = new ThreadLocal<>();
+    POST_SUCCESSFUL_TRANSACTION_TASKS         = new ThreadLocal<>();
+
+    PENDING_POST_SUCCESSFUL_TRANSACTION_TASKS.set(new LinkedHashSet<>());
   }
 
   public SQLiteDatabase(net.zetetic.database.sqlcipher.SQLiteDatabase wrapped) {
@@ -125,7 +130,7 @@ public class SQLiteDatabase implements SupportSQLiteDatabase {
    */
   public void runPostSuccessfulTransaction(@NonNull Runnable task) {
     if (wrapped.inTransaction()) {
-      getPostTransactionTasks().add(task);
+      getPendingPostSuccessfulTransactionTasks().add(task);
     } else {
       task.run();
     }
@@ -137,18 +142,29 @@ public class SQLiteDatabase implements SupportSQLiteDatabase {
    */
   public void runPostSuccessfulTransaction(@NonNull String dedupeKey, @NonNull Runnable task) {
     if (wrapped.inTransaction()) {
-      getPostTransactionTasks().add(new DedupedRunnable(dedupeKey, task));
+      getPendingPostSuccessfulTransactionTasks().add(new DedupedRunnable(dedupeKey, task));
     } else {
       task.run();
     }
   }
 
-  private @NonNull Set<Runnable> getPostTransactionTasks() {
-    Set<Runnable> tasks = POST_TRANSACTION_TASKS.get();
+  private @NonNull Set<Runnable> getPendingPostSuccessfulTransactionTasks() {
+    Set<Runnable> tasks = PENDING_POST_SUCCESSFUL_TRANSACTION_TASKS.get();
 
     if (tasks == null) {
       tasks = new LinkedHashSet<>();
-      POST_TRANSACTION_TASKS.set(tasks);
+      PENDING_POST_SUCCESSFUL_TRANSACTION_TASKS.set(tasks);
+    }
+
+    return tasks;
+  }
+
+  private @NonNull Set<Runnable> getPostSuccessfulTransactionTasks() {
+    Set<Runnable> tasks = POST_SUCCESSFUL_TRANSACTION_TASKS.get();
+
+    if (tasks == null) {
+      tasks = new LinkedHashSet<>();
+      POST_SUCCESSFUL_TRANSACTION_TASKS.set(tasks);
     }
 
     return tasks;
@@ -278,16 +294,16 @@ public class SQLiteDatabase implements SupportSQLiteDatabase {
 
           @Override
           public void onCommit() {
-            Set<Runnable> tasks = getPostTransactionTasks();
-            for (Runnable r : new HashSet<>(tasks)) {
-              r.run();
-            }
+            Set<Runnable> pendingTasks = getPendingPostSuccessfulTransactionTasks();
+            Set<Runnable> tasks        = getPostSuccessfulTransactionTasks();
             tasks.clear();
+            tasks.addAll(pendingTasks);
+            pendingTasks.clear();
           }
 
           @Override
           public void onRollback() {
-            getPostTransactionTasks().clear();
+            getPendingPostSuccessfulTransactionTasks().clear();
           }
         });
       });
@@ -297,6 +313,12 @@ public class SQLiteDatabase implements SupportSQLiteDatabase {
   public void endTransaction() {
     trace("endTransaction()", wrapped::endTransaction);
     traceLockEnd();
+
+    Set<Runnable> tasks = getPostSuccessfulTransactionTasks();
+    for (Runnable r : new HashSet<>(tasks)) {
+      r.run();
+    }
+    tasks.clear();
   }
 
   public void setTransactionSuccessful() {

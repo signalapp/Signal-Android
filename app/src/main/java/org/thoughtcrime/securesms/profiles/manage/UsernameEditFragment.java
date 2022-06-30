@@ -16,13 +16,12 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.dd.CircularProgressButton;
-
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.UsernameUtil;
+import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 
 public class UsernameEditFragment extends LoggingFragment {
 
@@ -30,10 +29,10 @@ public class UsernameEditFragment extends LoggingFragment {
 
   private UsernameEditViewModel viewModel;
 
-  private EditText               usernameInput;
-  private TextView               usernameSubtext;
-  private CircularProgressButton submitButton;
-  private CircularProgressButton deleteButton;
+  private EditText                       usernameInput;
+  private TextView                       usernameSubtext;
+  private CircularProgressMaterialButton submitButton;
+  private CircularProgressMaterialButton deleteButton;
 
   public static UsernameEditFragment newInstance() {
     return new UsernameEditFragment();
@@ -84,42 +83,42 @@ public class UsernameEditFragment extends LoggingFragment {
 
     switch (state.getButtonState()) {
       case SUBMIT:
-        cancelSpinning(submitButton);
+        submitButton.cancelSpinning();
         submitButton.setVisibility(View.VISIBLE);
         submitButton.setEnabled(true);
         submitButton.setAlpha(1);
         deleteButton.setVisibility(View.GONE);
         break;
       case SUBMIT_DISABLED:
-        cancelSpinning(submitButton);
+        submitButton.cancelSpinning();
         submitButton.setVisibility(View.VISIBLE);
         submitButton.setEnabled(false);
         submitButton.setAlpha(DISABLED_ALPHA);
         deleteButton.setVisibility(View.GONE);
         break;
       case SUBMIT_LOADING:
-        setSpinning(submitButton);
+        submitButton.setSpinning();
         submitButton.setVisibility(View.VISIBLE);
         submitButton.setAlpha(1);
         deleteButton.setVisibility(View.GONE);
         usernameInput.setEnabled(false);
         break;
       case DELETE:
-        cancelSpinning(deleteButton);
+        deleteButton.cancelSpinning();
         deleteButton.setVisibility(View.VISIBLE);
         deleteButton.setEnabled(true);
         deleteButton.setAlpha(1);
         submitButton.setVisibility(View.GONE);
         break;
       case DELETE_DISABLED:
-        cancelSpinning(deleteButton);
+        deleteButton.cancelSpinning();
         deleteButton.setVisibility(View.VISIBLE);
         deleteButton.setEnabled(false);
         deleteButton.setAlpha(DISABLED_ALPHA);
         submitButton.setVisibility(View.GONE);
         break;
       case DELETE_LOADING:
-        setSpinning(deleteButton);
+        deleteButton.setSpinning();
         deleteButton.setVisibility(View.VISIBLE);
         deleteButton.setAlpha(1);
         submitButton.setVisibility(View.GONE);
@@ -179,17 +178,5 @@ public class UsernameEditFragment extends LoggingFragment {
         Toast.makeText(requireContext(), R.string.UsernameEditFragment_encountered_a_network_error, Toast.LENGTH_SHORT).show();
         break;
     }
-  }
-
-  private static void setSpinning(@NonNull CircularProgressButton button) {
-    button.setClickable(false);
-    button.setIndeterminateProgressMode(true);
-    button.setProgress(50);
-  }
-
-  private static void cancelSpinning(@NonNull CircularProgressButton button) {
-    button.setProgress(0);
-    button.setIndeterminateProgressMode(false);
-    button.setClickable(true);
   }
 }

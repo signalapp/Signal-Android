@@ -98,7 +98,7 @@ public class VideoEditorFragment extends Fragment implements VideoEditorHud.Even
     boolean    autoplay   = isVideoGif;
 
     player.setWindow(requireActivity().getWindow());
-    player.setVideoSource(slide, autoplay);
+    player.setVideoSource(slide, autoplay, TAG);
 
     if (slide.isVideoGif()) {
       player.setPlayerCallback(new VideoPlayer.PlayerCallback() {

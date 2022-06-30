@@ -165,7 +165,7 @@ class ChangeNumberViewModel(
 
   class Factory(owner: SavedStateRegistryOwner) : AbstractSavedStateViewModelFactory(owner, null) {
 
-    override fun <T : ViewModel?> create(key: String, modelClass: Class<T>, handle: SavedStateHandle): T {
+    override fun <T : ViewModel> create(key: String, modelClass: Class<T>, handle: SavedStateHandle): T {
       val context: Application = ApplicationDependencies.getApplication()
       val localNumber: String = SignalStore.account().e164!!
       val password: String = SignalStore.account().servicePassword!!

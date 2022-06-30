@@ -9,6 +9,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.R;
@@ -54,10 +55,14 @@ public class TypingIndicatorView extends LinearLayout {
       int        tint       = typedArray.getColor(R.styleable.TypingIndicatorView_typingIndicator_tint, Color.WHITE);
       typedArray.recycle();
 
-      dot1.getBackground().setColorFilter(tint, PorterDuff.Mode.MULTIPLY);
-      dot2.getBackground().setColorFilter(tint, PorterDuff.Mode.MULTIPLY);
-      dot3.getBackground().setColorFilter(tint, PorterDuff.Mode.MULTIPLY);
+      setDotTint(tint);
     }
+  }
+
+  public void setDotTint(@ColorInt int tint) {
+    dot1.getBackground().setColorFilter(tint, PorterDuff.Mode.MULTIPLY);
+    dot2.getBackground().setColorFilter(tint, PorterDuff.Mode.MULTIPLY);
+    dot3.getBackground().setColorFilter(tint, PorterDuff.Mode.MULTIPLY);
   }
 
   @Override

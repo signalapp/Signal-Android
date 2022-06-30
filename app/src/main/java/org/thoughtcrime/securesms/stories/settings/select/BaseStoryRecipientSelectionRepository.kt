@@ -7,32 +7,34 @@ import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
+import org.thoughtcrime.securesms.database.model.DistributionListRecord
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.Stories
 
 class BaseStoryRecipientSelectionRepository {
-  fun updateDistributionListMembership(distributionListId: DistributionListId, recipients: Set<RecipientId>) {
+
+  fun getRecord(distributionListId: DistributionListId): Single<DistributionListRecord> {
+    return Single.fromCallable {
+      SignalDatabase.distributionLists.getList(distributionListId) ?: error("Record does not exist.")
+    }.subscribeOn(Schedulers.io())
+  }
+
+  fun updateDistributionListMembership(distributionListRecord: DistributionListRecord, recipients: Set<RecipientId>) {
     SignalExecutors.BOUNDED.execute {
-      val currentRecipients = SignalDatabase.distributionLists.getRawMembers(distributionListId).toSet()
+      val currentRecipients = SignalDatabase.distributionLists.getRawMembers(distributionListRecord.id, distributionListRecord.privacyMode).toSet()
       val oldNotNew = currentRecipients - recipients
       val newNotOld = recipients - currentRecipients
 
       oldNotNew.forEach {
-        SignalDatabase.distributionLists.removeMemberFromList(distributionListId, it)
+        SignalDatabase.distributionLists.removeMemberFromList(distributionListRecord.id, distributionListRecord.privacyMode, it)
       }
 
       newNotOld.forEach {
-        SignalDatabase.distributionLists.addMemberToList(distributionListId, it)
+        SignalDatabase.distributionLists.addMemberToList(distributionListRecord.id, distributionListRecord.privacyMode, it)
       }
 
-      Stories.onStorySettingsChanged(distributionListId)
+      Stories.onStorySettingsChanged(distributionListRecord.id)
     }
-  }
-
-  fun getListMembers(distributionListId: DistributionListId): Single<Set<RecipientId>> {
-    return Single.fromCallable {
-      SignalDatabase.distributionLists.getRawMembers(distributionListId).toSet()
-    }.subscribeOn(Schedulers.io())
   }
 
   fun getAllSignalContacts(): Single<Set<RecipientId>> {

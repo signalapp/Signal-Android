@@ -14,7 +14,7 @@
         app:layout_constraintBottom_toBottomOf="@id/voice_note_player_info"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/voice_note_player_info"
-        app:lottie_colorFilter="@color/signal_icon_tint_primary"
+        app:lottie_colorFilter="@color/signal_colorOnSurface"
         app:lottie_rawRes="@raw/lottie_play_pause"
         tools:background="@color/signal_alert_primary" />
 
@@ -27,8 +27,8 @@
         android:marqueeRepeatLimit="marquee_forever"
         android:minHeight="36dp"
         android:singleLine="true"
-        android:textAppearance="@style/TextAppearance.Signal.Body2"
-        android:textColor="@color/signal_icon_tint_primary"
+        android:textAppearance="@style/Signal.Text.BodyMedium"
+        android:textColor="@color/signal_colorOnSurface"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/voice_note_player_duration"
@@ -47,8 +47,8 @@
         android:paddingStart="4dp"
         android:paddingEnd="13dp"
         android:singleLine="true"
-        android:textColor="@color/signal_icon_tint_primary"
-        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:textColor="@color/signal_colorOnSurface"
+        android:textAppearance="@style/Signal.Text.BodyMedium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/voice_note_player_speed_touch_target"
         app:layout_constraintStart_toEndOf="@id/voice_note_player_info"
@@ -75,16 +75,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/round_background"
-            android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:lineSpacingExtra="1sp"
             android:minWidth="30dp"
             android:minHeight="20dp"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
-            android:textAppearance="@style/TextAppearance.Signal.Subtitle"
-            android:textColor="@color/signal_text_secondary"
-            app:backgroundTint="@color/voice_note_player_speed_background_tint"
+            android:textAppearance="@style/Signal.Text.LabelMedium"
+            android:textColor="@color/signal_colorOnSurfaceVariant"
+            app:backgroundTint="@color/signal_colorTransparentInverse1"
             tools:text="1x" />
     </FrameLayout>
 
@@ -99,6 +97,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/voice_note_player_info"
         app:srcCompat="@drawable/ic_x_20"
-        app:tint="@color/signal_icon_tint_secondary" />
+        app:tint="@color/signal_colorOnSurface" />
 
 </merge>

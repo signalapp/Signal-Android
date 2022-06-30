@@ -4,6 +4,6 @@
     android:shape="rectangle">
 
     <corners android:radius="@dimen/signal_context_menu_corner_radius" />
-    <solid android:color="@color/signal_background_dialog" />
+    <solid android:color="@color/signal_colorSurface2" />
 
 </shape>

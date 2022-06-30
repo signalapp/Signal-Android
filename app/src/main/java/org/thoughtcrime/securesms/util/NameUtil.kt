@@ -1,9 +1,14 @@
 package org.thoughtcrime.securesms.util
 
-import android.text.TextUtils
+import org.signal.core.util.CharacterIterable
 import java.util.regex.Pattern
 
 object NameUtil {
+
+  /**
+   * \p{L} is letter, \p{Nd} is digit, \p{S} is whitespace/separator
+   * https://www.regular-expressions.info/unicode.html#category
+   */
   private val PATTERN = Pattern.compile("[^\\p{L}\\p{Nd}\\p{S}]+")
 
   /**
@@ -11,24 +16,20 @@ object NameUtil {
    */
   @JvmStatic
   fun getAbbreviation(name: String): String? {
-    val parts = name.split(" ").toTypedArray()
-    val builder = StringBuilder()
-    var count = 0
-    var i = 0
+    val parts = name
+      .split(" ")
+      .map { it.trim() }
+      .map { PATTERN.matcher(it).replaceFirst("") }
+      .filter { it.isNotEmpty() }
 
-    while (i < parts.size && count < 2) {
-      val cleaned = PATTERN.matcher(parts[i]).replaceFirst("")
-      if (!TextUtils.isEmpty(cleaned)) {
-        builder.appendCodePoint(cleaned.codePointAt(0))
-        count++
-      }
-      i++
+    return when {
+      parts.isEmpty() -> null
+      parts.size == 1 -> parts[0].firstGrapheme()
+      else -> "${parts[0].firstGrapheme()}${parts[1].firstGrapheme()}"
     }
+  }
 
-    return if (builder.isEmpty()) {
-      null
-    } else {
-      builder.toString()
-    }
+  private fun String.firstGrapheme(): String {
+    return CharacterIterable(this).first()
   }
 }

@@ -11,7 +11,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.dd.CircularProgressButton
 import com.google.android.material.textfield.TextInputLayout
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.BreakIteratorCompat
@@ -24,11 +23,11 @@ import org.thoughtcrime.securesms.components.settings.app.notifications.profiles
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.models.NotificationProfileNamePreset
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
 import org.thoughtcrime.securesms.util.BottomSheetUtil
-import org.thoughtcrime.securesms.util.CircularProgressButtonUtil
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.text.AfterTextChanged
+import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
 
 /**
  * Dual use Edit/Create notification profile fragment. Use to create in the create profile flow,
@@ -58,7 +57,7 @@ class EditNotificationProfileFragment : DSLSettingsFragment(layoutId = R.layout.
 
     val title: TextView = view.findViewById(R.id.edit_notification_profile_title)
     val countView: TextView = view.findViewById(R.id.edit_notification_profile_count)
-    val saveButton: CircularProgressButton = view.findViewById(R.id.edit_notification_profile_save)
+    val saveButton: CircularProgressMaterialButton = view.findViewById(R.id.edit_notification_profile_save)
     val emojiView: ImageView = view.findViewById(R.id.edit_notification_profile_emoji)
     val nameView: EditText = view.findViewById(R.id.edit_notification_profile_name)
     val nameTextWrapper: TextInputLayout = view.findViewById(R.id.edit_notification_profile_name_wrapper)
@@ -90,8 +89,8 @@ class EditNotificationProfileFragment : DSLSettingsFragment(layoutId = R.layout.
       }
 
       lifecycleDisposable += viewModel.save(nameView.text.toString())
-        .doOnSubscribe { CircularProgressButtonUtil.setSpinning(saveButton) }
-        .doAfterTerminate { CircularProgressButtonUtil.cancelSpinning(saveButton) }
+        .doOnSubscribe { saveButton.setSpinning() }
+        .doAfterTerminate { saveButton.cancelSpinning() }
         .subscribeBy(
           onSuccess = { saveResult ->
             when (saveResult) {

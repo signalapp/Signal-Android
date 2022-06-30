@@ -4,12 +4,12 @@
 dependencyResolutionManagement {
     versionCatalogs {
         libs {
-            version('libsignal-client', '0.16.0')
+            version('libsignal-client', '0.17.0')
             version('exoplayer', '2.15.0')
             version('androidx-camera', '1.0.0-beta11')
             version('androidx-lifecycle', '2.3.1')
             version('mp4parser', '1.9.39')
-            version('kotlin', '1.5.10')
+            version('kotlin', '1.6.21')
 
             // Desugaring
             alias('android-tools-desugar').to('com.android.tools:desugar_jdk_libs:1.1.5')
@@ -54,7 +54,7 @@ dependencyResolutionManagement {
 
             // Google
             alias('google-protobuf-javalite').to('com.google.protobuf:protobuf-javalite:3.11.4')
-            alias('google-libphonenumber').to('com.googlecode.libphonenumber:libphonenumber:8.12.42')
+            alias('google-libphonenumber').to('com.googlecode.libphonenumber:libphonenumber:8.12.50')
             alias('google-play-services-maps').to('com.google.android.gms:play-services-maps:16.1.0')
             alias('google-play-services-auth').to('com.google.android.gms:play-services-auth:16.0.1')
             alias('google-play-services-wallet').to('com.google.android.gms:play-services-wallet:18.1.3')
@@ -76,7 +76,7 @@ dependencyResolutionManagement {
             alias('libsignal-android').to('org.signal', 'libsignal-android').versionRef('libsignal-client')
             alias('signal-aesgcmprovider').to('org.signal:aesgcmprovider:0.0.3')
             alias('signal-argon2').to('org.signal:argon2:13.1')
-            alias('signal-ringrtc').to('org.signal:ringrtc-android:2.20.4')
+            alias('signal-ringrtc').to('org.signal:ringrtc-android:2.20.10.1')
             alias('signal-android-database-sqlcipher').to('org.signal:android-database-sqlcipher:4.4.3-S8')
 
             // Third Party
@@ -103,7 +103,6 @@ dependencyResolutionManagement {
             alias('roundedimageview').to('com.makeramen:roundedimageview:2.1.0')
             alias('materialish-progress').to('com.pnikosis:materialish-progress:1.5')
             alias('waitingdots').to('pl.tajchert:waitingdots:0.1.0')
-            alias('floatingactionbutton').to('com.melnykov:floatingactionbutton:1.3.0')
             alias('time-duration-picker').to('mobi.upod:time-duration-picker:1.1.3')
             alias('subsampling-scale-image-view').to('com.davemorrissey.labs:subsampling-scale-image-view:3.10.0')
             alias('numberpickerview').to('cn.carbswang.android:NumberPickerView:1.0.9')
@@ -113,7 +112,6 @@ dependencyResolutionManagement {
             alias('colorpicker').to('com.takisoft.fix:colorpicker:0.9.1')
             alias('lottie').to('com.airbnb.android:lottie:3.6.0')
             alias('stickyheadergrid').to('com.codewaves.stickyheadergrid:stickyheadergrid:0.9.4')
-            alias('circular-progress-button').to('com.github.dmytrodanylyk.circular-progress-button:library:1.1.3-S2')
             alias('dnsjava').to('dnsjava:dnsjava:2.1.9')
 
             // Mp4Parser
@@ -124,12 +122,15 @@ dependencyResolutionManagement {
         }
 
         testLibs {
-            version('robolectric', '4.4')
+            version('robolectric', '4.8.1')
+            version('androidx-test', '1.4.0')
 
             alias('junit-junit').to('junit:junit:4.13.2')
-            alias('androidx-test-core').to('androidx.test:core:1.2.0')
+            alias('androidx-test-core').to('androidx.test', 'core').versionRef('androidx-test')
+            alias('androidx-test-core-ktx').to('androidx.test', 'core-ktx').versionRef('androidx-test')
             alias('androidx-test-ext-junit').to('androidx.test.ext:junit:1.1.1')
-            alias('espresso-core').to('androidx.test.espresso:espresso-core:3.2.0')
+            alias('androidx-test-ext-junit-ktx').to('androidx.test.ext:junit-ktx:1.1.1')
+            alias('espresso-core').to('androidx.test.espresso:espresso-core:3.4.0')
             alias('mockito-core').to('org.mockito:mockito-inline:4.4.0')
             alias('mockito-kotlin').to('org.mockito.kotlin:mockito-kotlin:4.0.0')
             alias('robolectric-robolectric').to('org.robolectric', 'robolectric').versionRef('robolectric')

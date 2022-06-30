@@ -71,12 +71,20 @@ class DonationErrorParams<V> private constructor(
     }
 
     private fun <V> getVerificationErrorParams(context: Context, verificationError: DonationError.GiftRecipientVerificationError, callback: Callback<V>): DonationErrorParams<V> {
-      return DonationErrorParams(
-        title = R.string.DonationsErrors__recipient_verification_failed,
-        message = R.string.DonationsErrors__target_does_not_support_gifting,
-        positiveAction = callback.onContactSupport(context),
-        negativeAction = null
-      )
+      return when (verificationError) {
+        is DonationError.GiftRecipientVerificationError.FailedToFetchProfile -> DonationErrorParams(
+          title = R.string.DonationsErrors__could_not_verify_recipient,
+          message = R.string.DonationsErrors__please_check_your_network_connection,
+          positiveAction = callback.onOk(context),
+          negativeAction = null
+        )
+        else -> DonationErrorParams(
+          title = R.string.DonationsErrors__recipient_verification_failed,
+          message = R.string.DonationsErrors__target_does_not_support_gifting,
+          positiveAction = callback.onOk(context),
+          negativeAction = null
+        )
+      }
     }
 
     private fun <V> getDeclinedErrorParams(context: Context, declinedError: DonationError.PaymentSetupError.DeclinedError, callback: Callback<V>): DonationErrorParams<V> {

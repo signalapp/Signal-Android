@@ -83,6 +83,7 @@ class LocalMetricsDatabase private constructor(
           if (instance == null) {
             SqlCipherLibraryLoader.load()
             instance = LocalMetricsDatabase(context, DatabaseSecretProvider.getOrCreateDatabaseSecret(context))
+            instance!!.setWriteAheadLoggingEnabled(true)
           }
         }
       }
@@ -114,7 +115,6 @@ class LocalMetricsDatabase private constructor(
   }
 
   override fun onOpen(db: SQLiteDatabase) {
-    db.enableWriteAheadLogging()
     db.setForeignKeyConstraintsEnabled(true)
   }
 

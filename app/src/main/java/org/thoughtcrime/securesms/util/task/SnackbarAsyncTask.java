@@ -75,8 +75,6 @@ public abstract class SnackbarAsyncTask<Params>
 
     Snackbar.make(view, snackbarText, snackbarDuration)
             .setAction(snackbarActionText, this)
-            .setActionTextColor(snackbarActionColor)
-            .setTextColor(Color.WHITE)
             .show();
   }
 

@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.jobs.PushProcessMessageJob;
 import org.thoughtcrime.securesms.messages.MessageDecryptionUtil.DecryptionResult;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.signal.core.util.SetUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
@@ -30,6 +31,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalSessionLock;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupContext;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -81,6 +83,11 @@ public class IncomingMessageProcessor {
      *         one was created. Otherwise null.
      */
     public @Nullable String processEnvelope(@NonNull SignalServiceEnvelope envelope) {
+      if (FeatureFlags.phoneNumberPrivacy() && envelope.hasSourceE164()) {
+        Log.w(TAG, "PNP enabled -- mimicking PNP by dropping the E164 from the envelope.");
+        envelope = envelope.withoutE164();
+      }
+
       if (envelope.hasSourceUuid()) {
         Recipient.externalHighTrustPush(context, envelope.getSourceAddress());
       }

@@ -75,7 +75,8 @@
         android:clipChildren="false"
         android:clipToPadding="false"
         android:orientation="vertical"
-        tools:backgroundTint="@color/conversation_blue">
+        tools:background="@drawable/message_bubble_background_received_alone"
+        tools:backgroundTint="@color/signal_colorSurfaceVariant">
 
         <LinearLayout
             android:id="@+id/group_sender_holder"
@@ -140,6 +141,7 @@
             app:message_type="incoming"
             app:quote_colorPrimary="@color/conversation_item_quote_text_color"
             app:quote_colorSecondary="@color/conversation_item_quote_text_color"
+            tools:background="@color/transparent_black_05"
             tools:visibility="visible" />
 
         <ViewStub
@@ -225,8 +227,8 @@
             android:id="@+id/conversation_item_call_to_action_stub"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout="@layout/conversation_item_call_to_action"
-            android:layout_margin="8dp" />
+            android:layout_margin="8dp"
+            android:layout="@layout/conversation_item_call_to_action" />
 
         <org.thoughtcrime.securesms.components.ConversationItemFooter
             android:id="@+id/conversation_item_footer"
@@ -270,9 +272,31 @@
         android:id="@+id/indicators_parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+        android:layout_toStartOf="@id/quoted_indicator"
         android:gravity="center_vertical"
-        android:orientation="vertical" />
+        android:orientation="vertical"
+        android:visibility="gone"/>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/body_bubble"
+        android:layout_alignTop="@id/body_bubble"
+        android:layout_alignBottom="@id/body_bubble"
+        android:layout_marginEnd="-42dp" >
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/quoted_indicator"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/circle_tintable"
+            android:backgroundTint="@color/signal_colorSurfaceVariant"
+            android:padding="6dp"
+            android:tint="@color/signal_colorOnSurfaceVariant"
+            app:srcCompat="@drawable/ic_replies_outline_20" />
+
+    </FrameLayout>
 
     <org.thoughtcrime.securesms.reactions.ReactionsConversationView
         android:id="@+id/reactions_view"

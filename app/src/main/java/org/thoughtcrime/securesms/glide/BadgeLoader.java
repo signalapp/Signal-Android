@@ -11,21 +11,9 @@ import com.bumptech.glide.load.model.MultiModelLoaderFactory;
 
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.push.SignalServiceTrustStore;
-import org.whispersystems.signalservice.api.push.TrustStore;
-import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
-import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager;
-import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.InputStream;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-
-import okhttp3.ConnectionSpec;
 import okhttp3.OkHttpClient;
 
 /**
@@ -50,23 +38,7 @@ public class BadgeLoader implements ModelLoader<Badge, InputStream> {
   }
 
   public static Factory createFactory() {
-    try {
-      OkHttpClient   baseClient    = ApplicationDependencies.getOkHttpClient();
-      SSLContext     sslContext    = SSLContext.getInstance("TLS");
-      TrustStore     trustStore    = new SignalServiceTrustStore(ApplicationDependencies.getApplication());
-      TrustManager[] trustManagers = BlacklistingTrustManager.createFor(trustStore);
-
-      sslContext.init(null, trustManagers, null);
-
-      OkHttpClient client = baseClient.newBuilder()
-                                      .sslSocketFactory(new Tls12SocketFactory(sslContext.getSocketFactory()), (X509TrustManager) trustManagers[0])
-                                      .connectionSpecs(Util.immutableList(ConnectionSpec.RESTRICTED_TLS))
-                                      .build();
-
-      return new Factory(client);
-    } catch (NoSuchAlgorithmException | KeyManagementException e) {
-      throw new AssertionError(e);
-    }
+    return new Factory(ApplicationDependencies.getSignalOkHttpClient());
   }
 
   public static class Factory implements ModelLoaderFactory<Badge, InputStream> {

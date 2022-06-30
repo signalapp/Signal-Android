@@ -90,8 +90,8 @@ public class ConversationItemBodyBubble extends LinearLayout {
   }
 
   @Override
-  protected void onDraw(Canvas canvas) {
-    super.onDraw(canvas);
+  public void onDrawForeground(Canvas canvas) {
+    super.onDrawForeground(canvas);
 
     if (Util.isEmpty(outliners)) return;
 

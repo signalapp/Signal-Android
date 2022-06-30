@@ -138,6 +138,11 @@ message DataMessage {
   }
 
   message Quote {
+    enum Type {
+      NORMAL     = 0;
+      GIFT_BADGE = 1;
+    }
+
     message QuotedAttachment {
       optional string            contentType = 1;
       optional string            fileName    = 2;
@@ -150,6 +155,7 @@ message DataMessage {
     optional string           text        = 3;
     repeated QuotedAttachment attachments = 4;
     repeated BodyRange        bodyRanges  = 6;
+    optional Type             type        = 7;
   }
 
   message Contact {
@@ -421,6 +427,12 @@ message SyncMessage {
       optional bool   unidentified    = 2;
     }
 
+    message StoryMessageRecipient {
+      optional string destinationUuid     = 1;
+      repeated string distributionListIds = 2;
+      optional bool   isAllowedToReply    = 3;
+    }
+
     reserved                          /*destinationE164*/          1;
     optional string                     destinationUuid          = 7;
     optional uint64                     timestamp                = 2;
@@ -428,6 +440,8 @@ message SyncMessage {
     optional uint64                     expirationStartTimestamp = 4;
     repeated UnidentifiedDeliveryStatus unidentifiedStatus       = 5;
     optional bool                       isRecipientUpdate        = 6 [default = false];
+    optional StoryMessage               storyMessage             = 8;
+    repeated StoryMessageRecipient      storyMessageRecipients   = 9;
   }
 
   message Contacts {

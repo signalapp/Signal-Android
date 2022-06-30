@@ -3,10 +3,14 @@ package org.thoughtcrime.securesms.stories.settings.custom
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.WrapperDialogFragment
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
@@ -16,6 +20,7 @@ import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.settings.story.PrivateStoryItem
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
+import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.viewholders.RecipientMappingModel
 import org.thoughtcrime.securesms.util.viewholders.RecipientViewHolder
@@ -56,16 +61,6 @@ class PrivateStorySettingsFragment : DSLSettingsFragment(
     }
 
     return configure {
-      customPref(
-        PrivateStoryItem.Model(
-          privateStoryItemData = state.privateStory,
-          onClick = {
-            // TODO [stories] -- is this even clickable?
-          }
-        )
-      )
-
-      dividerPref()
       sectionHeaderPref(R.string.MyStorySettingsFragment__who_can_see_this_story)
       customPref(
         PrivateStoryItem.AddViewerModel(
@@ -128,9 +123,27 @@ class PrivateStorySettingsFragment : DSLSettingsFragment(
       .show()
   }
 
+  override fun onToolbarNavigationClicked() {
+    findListener<WrapperDialogFragment>()?.dismiss() ?: super.onToolbarNavigationClicked()
+  }
+
   inner class RecipientEventListener : RecipientViewHolder.EventListener<RecipientMappingModel.RecipientIdMappingModel> {
     override fun onClick(recipient: Recipient) {
       handleRemoveRecipient(recipient)
+    }
+  }
+
+  class Dialog : WrapperDialogFragment() {
+    override fun getWrappedFragment(): Fragment {
+      return NavHostFragment.create(R.navigation.private_story_settings, requireArguments())
+    }
+  }
+
+  companion object {
+    fun createAsDialog(distributionListId: DistributionListId): DialogFragment {
+      return Dialog().apply {
+        arguments = PrivateStorySettingsFragmentArgs.Builder(distributionListId).build().toBundle()
+      }
     }
   }
 }

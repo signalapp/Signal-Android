@@ -32,7 +32,7 @@
         android:ellipsize="end"
         android:singleLine="true"
         android:textAlignment="viewStart"
-        android:textAppearance="@style/Signal.Text.Preview"
+        android:textAppearance="@style/Signal.Text.BodyLarge"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/recipient_view_avatar"

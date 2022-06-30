@@ -15,8 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.recyclerview.OnScrollAnimationHelper
-import org.thoughtcrime.securesms.components.recyclerview.ToolbarShadowAnimationHelper
+import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 
 abstract class DSLSettingsFragment(
   @StringRes private val titleId: Int = -1,
@@ -28,28 +27,21 @@ abstract class DSLSettingsFragment(
   protected var recyclerView: RecyclerView? = null
     private set
 
-  private var scrollAnimationHelper: OnScrollAnimationHelper? = null
-
   @CallSuper
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     val toolbar: Toolbar? = view.findViewById(R.id.toolbar)
-    val toolbarShadow: View? = view.findViewById(R.id.toolbar_shadow)
 
     if (titleId != -1) {
       toolbar?.setTitle(titleId)
     }
 
     toolbar?.setNavigationOnClickListener {
-      requireActivity().onBackPressed()
+      onToolbarNavigationClicked()
     }
 
     if (menuId != -1) {
       toolbar?.inflateMenu(menuId)
       toolbar?.setOnMenuItemClickListener { onOptionsItemSelected(it) }
-    }
-
-    if (toolbarShadow != null) {
-      scrollAnimationHelper = getOnScrollAnimationHelper(toolbarShadow)
     }
 
     val settingsAdapter = DSLSettingsAdapter()
@@ -59,23 +51,29 @@ abstract class DSLSettingsFragment(
       layoutManager = layoutManagerProducer(requireContext())
       adapter = settingsAdapter
 
-      val helper = scrollAnimationHelper
-      if (helper != null) {
-        addOnScrollListener(helper)
+      getMaterial3OnScrollHelper(toolbar)?.let {
+        it.attach(this)
       }
     }
 
     bindAdapter(settingsAdapter)
   }
 
+  open fun getMaterial3OnScrollHelper(toolbar: Toolbar?): Material3OnScrollHelper? {
+    if (toolbar == null) {
+      return null
+    }
+
+    return Material3OnScrollHelper(requireActivity(), toolbar)
+  }
+
+  open fun onToolbarNavigationClicked() {
+    requireActivity().onBackPressed()
+  }
+
   override fun onDestroyView() {
     super.onDestroyView()
     recyclerView = null
-    scrollAnimationHelper = null
-  }
-
-  protected open fun getOnScrollAnimationHelper(toolbarShadow: View): OnScrollAnimationHelper {
-    return ToolbarShadowAnimationHelper(toolbarShadow)
   }
 
   abstract fun bindAdapter(adapter: DSLSettingsAdapter)

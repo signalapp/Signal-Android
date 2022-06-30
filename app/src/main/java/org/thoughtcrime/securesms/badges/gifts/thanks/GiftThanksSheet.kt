@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.badges.gifts.thanks
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.models.Badge
@@ -48,7 +49,8 @@ class GiftThanksSheet : DSLSettingsBottomSheetFragment() {
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
     BadgePreview.register(adapter)
 
-    lifecycleDisposable += Recipient.observable(recipientId).subscribe {
+    lifecycleDisposable.bindTo(viewLifecycleOwner)
+    lifecycleDisposable += Recipient.observable(recipientId).observeOn(AndroidSchedulers.mainThread()).subscribe {
       adapter.submitList(getConfiguration(it).toMappingModelList())
     }
   }
@@ -56,7 +58,7 @@ class GiftThanksSheet : DSLSettingsBottomSheetFragment() {
   private fun getConfiguration(recipient: Recipient): DSLConfiguration {
     return configure {
       textPref(
-        title = DSLSettingsText.from(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support, DSLSettingsText.Title2BoldModifier, DSLSettingsText.CenterModifier)
+        title = DSLSettingsText.from(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support, DSLSettingsText.TitleLargeModifier, DSLSettingsText.CenterModifier)
       )
 
       noPadTextPref(

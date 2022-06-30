@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.components.settings.app.notifications.profiles
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
@@ -147,8 +146,6 @@ class NotificationProfileDetailsFragment : DSLSettingsFragment() {
                     view?.let { view ->
                       Snackbar.make(view, getString(R.string.NotificationProfileDetails__s_removed, removed.getDisplayName(requireContext())), Snackbar.LENGTH_LONG)
                         .setAction(R.string.NotificationProfileDetails__undo) { undoRemove(id) }
-                        .setActionTextColor(ContextCompat.getColor(requireContext(), R.color.core_ultramarine_light))
-                        .setTextColor(Color.WHITE)
                         .show()
                     }
                   }

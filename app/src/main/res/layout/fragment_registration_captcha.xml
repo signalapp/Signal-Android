@@ -11,7 +11,7 @@
 
         <TextView
             android:id="@+id/registration_captcha_title"
-            style="@style/Signal.Text.Headline"
+            style="@style/Signal.Text.HeadlineMedium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"

@@ -87,6 +87,7 @@ class LogDatabase private constructor(
           if (instance == null) {
             SqlCipherLibraryLoader.load()
             instance = LogDatabase(context, DatabaseSecretProvider.getOrCreateDatabaseSecret(context))
+            instance!!.setWriteAheadLoggingEnabled(true)
           }
         }
       }
@@ -112,7 +113,6 @@ class LogDatabase private constructor(
   }
 
   override fun onOpen(db: SQLiteDatabase) {
-    db.enableWriteAheadLogging()
     db.setForeignKeyConstraintsEnabled(true)
   }
 

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/button"
-    style="@style/Signal.Widget.Button.Large.Secondary.NoOutline"
+    style="@style/Signal.Widget.Button.Large.Secondary"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/dsl_settings_gutter"

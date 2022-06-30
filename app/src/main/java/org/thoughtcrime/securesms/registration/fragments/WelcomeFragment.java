@@ -22,7 +22,6 @@ import androidx.navigation.ActivityNavigator;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.dd.CircularProgressButton;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
@@ -40,12 +39,11 @@ import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
+import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 
 import java.util.Optional;
 
 import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView;
-import static org.thoughtcrime.securesms.util.CircularProgressButtonUtil.cancelSpinning;
-import static org.thoughtcrime.securesms.util.CircularProgressButtonUtil.setSpinning;
 
 public final class WelcomeFragment extends LoggingFragment {
 
@@ -74,8 +72,8 @@ public final class WelcomeFragment extends LoggingFragment {
   private static final            int[] HEADERS          = { R.drawable.ic_contacts_white_48dp, R.drawable.ic_folder_white_48dp };
   private static final            int[] HEADERS_API_29   = { R.drawable.ic_contacts_white_48dp };
 
-  private CircularProgressButton continueButton;
-  private RegistrationViewModel  viewModel;
+  private CircularProgressMaterialButton continueButton;
+  private RegistrationViewModel          viewModel;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -164,7 +162,7 @@ public final class WelcomeFragment extends LoggingFragment {
   }
 
   private void gatherInformationAndContinue(@NonNull View view) {
-    setSpinning(continueButton);
+    continueButton.setSpinning();
 
     RestoreBackupFragment.searchForBackup(backup -> {
       Context context = getContext();
@@ -177,7 +175,7 @@ public final class WelcomeFragment extends LoggingFragment {
 
       initializeNumber();
 
-      cancelSpinning(continueButton);
+      continueButton.cancelSpinning();
 
       if (backup == null) {
         Log.i(TAG, "Skipping backup. No backup found, or no permission to look.");

@@ -4,6 +4,9 @@
 
     <attr name="search_view_style" format="reference" />
 
+    <attr name="circularProgressMaterialButtonStyle" format="reference" />
+    <attr name="circularProgressIndicatorStyle" format="reference" />
+
     <attr name="emoji_category_recent" format="reference"/>
     <attr name="emoji_category_people" format="reference"/>
     <attr name="emoji_category_nature" format="reference"/>
@@ -16,6 +19,7 @@
     <attr name="emoji_category_emoticons" format="reference"/>
 
     <attr name="mediaKeyboardBackgroundColor" format="color" />
+    <attr name="mediaKeyboardBottomBarBackgroundColor" format="color" />
 
     <attr name="settingsToolbarStyle" format="reference" />
 
@@ -369,5 +373,9 @@
         <attr name="giftMessageView__textColor" format="color" />
         <attr name="giftMessageView__buttonTextColor" format="color" />
         <attr name="giftMessageView__buttonBackgroundTint" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="CircularProgressMaterialButton">
+        <attr name="circularProgressMaterialButton__label" format="string" />
     </declare-styleable>
 </resources>

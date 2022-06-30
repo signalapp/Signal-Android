@@ -33,7 +33,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/retry_button"
-        style="@style/Signal.Widget.Button.Large.Secondary.NoOutline"
+        style="@style/Signal.Widget.Button.Large.Secondary"
         android:layout_width="wrap_content"
         android:layout_height="36dp"
         android:layout_marginTop="12dp"

@@ -224,10 +224,10 @@ public class DeleteAccountFragment extends Fragment {
   private void handleEvent(@NonNull DeleteAccountEvent deleteAccountEvent) {
     switch (deleteAccountEvent.getType()) {
       case NO_COUNTRY_CODE:
-        Snackbar.make(requireView(), R.string.DeleteAccountFragment__no_country_code, Snackbar.LENGTH_SHORT).setTextColor(Color.WHITE).show();
+        Snackbar.make(requireView(), R.string.DeleteAccountFragment__no_country_code, Snackbar.LENGTH_SHORT).show();
         break;
       case NO_NATIONAL_NUMBER:
-        Snackbar.make(requireView(), R.string.DeleteAccountFragment__no_number, Snackbar.LENGTH_SHORT).setTextColor(Color.WHITE).show();
+        Snackbar.make(requireView(), R.string.DeleteAccountFragment__no_number, Snackbar.LENGTH_SHORT).show();
         break;
       case NOT_A_MATCH:
         new AlertDialog.Builder(requireContext())

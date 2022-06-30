@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.keyboard
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,9 +12,11 @@ import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.gif.GifKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.sticker.StickerKeyboardPageFragment
+import org.thoughtcrime.securesms.util.ThemeUtil
 import org.thoughtcrime.securesms.util.ThemedFragment.themeResId
 import org.thoughtcrime.securesms.util.ThemedFragment.themedInflate
 import org.thoughtcrime.securesms.util.ThemedFragment.withTheme
+import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.visible
 import kotlin.reflect.KClass
@@ -49,6 +52,20 @@ class KeyboardPagerFragment : Fragment() {
     emojiButton.setOnClickListener { viewModel.switchToPage(KeyboardPage.EMOJI) }
     stickerButton.setOnClickListener { viewModel.switchToPage(KeyboardPage.STICKER) }
     gifButton.setOnClickListener { viewModel.switchToPage(KeyboardPage.GIF) }
+
+    onHiddenChanged(false)
+  }
+
+  override fun onHiddenChanged(hidden: Boolean) {
+    if (Build.VERSION.SDK_INT < 21) {
+      return
+    }
+
+    if (hidden) {
+      WindowUtil.setNavigationBarColor(requireActivity(), ThemeUtil.getThemedColor(requireContext(), android.R.attr.navigationBarColor))
+    } else {
+      WindowUtil.setNavigationBarColor(requireActivity(), ThemeUtil.getThemedColor(requireContext(), R.attr.mediaKeyboardBottomBarBackgroundColor))
+    }
   }
 
   @Suppress("DEPRECATION")
@@ -103,12 +120,16 @@ class KeyboardPagerFragment : Fragment() {
 
   fun show() {
     if (isAdded && view != null) {
+      onHiddenChanged(false)
+
       viewModel.page().value?.let(this::onPageSelected)
     }
   }
 
   fun hide() {
     if (isAdded && view != null) {
+      onHiddenChanged(true)
+
       val transaction = childFragmentManager.beginTransaction()
       fragments.values.forEach { transaction.remove(it) }
       transaction.commitAllowingStateLoss()

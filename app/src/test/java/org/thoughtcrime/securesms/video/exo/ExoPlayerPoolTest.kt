@@ -18,7 +18,7 @@ class ExoPlayerPoolTest {
     val testSubject = createTestSubject(1, 1)
 
     // WHEN
-    val player = testSubject.require()
+    val player = testSubject.require("")
 
     // THEN
     assertNotNull(player)
@@ -30,7 +30,7 @@ class ExoPlayerPoolTest {
     val testSubject = createTestSubject(1, 0)
 
     // WHEN
-    testSubject.require()
+    testSubject.require("")
 
     // THEN
     fail("Expected an IllegalStateException")
@@ -42,8 +42,8 @@ class ExoPlayerPoolTest {
     val testSubject = createTestSubject(0, 10)
 
     // WHEN
-    val players = (1..10).map { testSubject.get() }
-    val nulls = (1..10).map { testSubject.get() }
+    val players = (1..10).map { testSubject.get("") }
+    val nulls = (1..10).map { testSubject.get("") }
 
     // THEN
     assertTrue(players.all { it != null })
@@ -54,11 +54,11 @@ class ExoPlayerPoolTest {
   fun `Given a pool that allows 10 items and has all items checked out, when I return then check them all out again, then I expect 10 non null players`() {
     // GIVEN
     val testSubject = createTestSubject(0, 10)
-    val players = (1..10).map { testSubject.get() }
+    val players = (1..10).map { testSubject.get("") }
 
     // WHEN
     players.filterNotNull().forEach { testSubject.pool(it) }
-    val morePlayers = (1..10).map { testSubject.get() }
+    val morePlayers = (1..10).map { testSubject.get("") }
 
     assertTrue(morePlayers.all { it != null })
   }

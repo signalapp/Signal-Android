@@ -78,8 +78,8 @@ class IncomingMediaMessage(
     isUnidentified = unidentified,
     isViewOnce = viewOnce,
     serverGuid = null,
-    attachments = ArrayList(attachments),
-    sharedContacts = ArrayList(sharedContacts.orElse(emptyList())),
+    attachments = attachments?.let { ArrayList<Attachment>(it) } ?: emptyList(),
+    sharedContacts = ArrayList<Contact>(sharedContacts.orElse(emptyList())),
   )
 
   constructor(

@@ -481,11 +481,11 @@ final class GroupManagerV2 {
     }
 
     @WorkerThread
-    @NonNull GroupManager.GroupActionResult ejectMember(@NonNull ServiceId authServiceId, boolean allowWhenBlocked, boolean ban)
+    @NonNull GroupManager.GroupActionResult ejectMember(@NonNull ServiceId serviceId, boolean allowWhenBlocked, boolean ban)
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {
-      return commitChangeWithConflictResolution(authServiceId,
-                                                groupOperations.createRemoveMembersChange(Collections.singleton(authServiceId.uuid()),
+      return commitChangeWithConflictResolution(selfAci,
+                                                groupOperations.createRemoveMembersChange(Collections.singleton(serviceId.uuid()),
                                                                                           ban,
                                                                                           ban ? v2GroupProperties.getDecryptedGroup().getBannedMembersList()
                                                                                               : Collections.emptyList()),

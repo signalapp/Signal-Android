@@ -8,10 +8,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.annimon.stream.Stream;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.thoughtcrime.securesms.ContactSelectionActivity;
 import org.thoughtcrime.securesms.ContactSelectionListFragment;
@@ -84,12 +84,12 @@ public final class AddToGroupsActivity extends ContactSelectionActivity {
         Toast.makeText(this, ((Event.ToastEvent) event).getMessage(), Toast.LENGTH_SHORT).show();
       } else if (event instanceof Event.AddToSingleGroupConfirmationEvent) {
         Event.AddToSingleGroupConfirmationEvent addEvent = (Event.AddToSingleGroupConfirmationEvent) event;
-        new AlertDialog.Builder(this)
-                       .setTitle(addEvent.getTitle())
-                       .setMessage(addEvent.getMessage())
-                       .setPositiveButton(R.string.AddToGroupActivity_add, (dialog, which) -> viewModel.onAddToGroupsConfirmed(addEvent))
-                       .setNegativeButton(android.R.string.cancel, null)
-                       .show();
+        new MaterialAlertDialogBuilder(this)
+           .setTitle(addEvent.getTitle())
+           .setMessage(addEvent.getMessage())
+           .setPositiveButton(R.string.AddToGroupActivity_add, (dialog, which) -> viewModel.onAddToGroupsConfirmed(addEvent))
+           .setNegativeButton(android.R.string.cancel, null)
+           .show();
       } else if (event instanceof Event.LegacyGroupDenialEvent) {
         Toast.makeText(this, R.string.AddToGroupActivity_this_person_cant_be_added_to_legacy_groups, Toast.LENGTH_SHORT).show();
       } else {

@@ -8,10 +8,11 @@ import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.thoughtcrime.securesms.R;
 
@@ -113,7 +114,7 @@ public class WebRtcAudioOutputToggleButton extends AppCompatImageView {
     rv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
     rv.setAdapter(adapter);
 
-    picker = new AlertDialog.Builder(getContext(), R.style.Theme_Signal_AlertDialog_Dark_Cornered)
+    picker = new MaterialAlertDialogBuilder(getContext())
                             .setTitle(R.string.WebRtcAudioOutputToggle__audio_output)
                             .setView(rv)
                             .setCancelable(true)

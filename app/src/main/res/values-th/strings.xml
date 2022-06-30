@@ -15,7 +15,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">ขณะนี้: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">คุณยังไม่ได้ตั้งวลีรหัสผ่าน</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">ปิดใช้งานวลีรหัสผ่านหรือไม่?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">นี่จะปลดล็อก Signal และการแจ้งเตือนข้อความอย่างถาวร</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signal และการแจ้งเตือนข้อความจะถูกปลดล็อกอย่างถาวร</string>
   <string name="ApplicationPreferencesActivity_disable">ปิดใช้งาน</string>
   <string name="ApplicationPreferencesActivity_unregistering">ยกเลิกการลงทะเบียน</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">กำลังยกเลิกการลงทะเบียนการใช้งานข้อความ Signal และการโทร…</string>
@@ -87,10 +87,16 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">คุณจะไม่ได้รับข้อความหรือข่าวสารจากกลุ่มนี้อีกต่อไป และสมาชิกจะไม่สามารถเพิ่มคุณกลับเข้ามาในกลุ่มนี้อีก</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">สมาชิกจะไม่สามารถเพิ่มคุณกลับเข้ามาในกลุ่มนี้อีก</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">สมาชิกจะสามารถเพิ่มคุณกลับเข้ามาในกลุ่มนี้อีก</string>
+  <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">คุณจะสามารถส่งข้อความและโทรหากันได้ และชื่อกับรูปถ่ายของคุณจะถูกแบ่งปันกับพวกเขา</string>
+  <!--Text that is shown when unblocking an SMS contact-->
+  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">คุณส่งข้อความหากันได้</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">คนที่ถูกปิดกั้นจะไม่สามารถโทรหรือส่งข้อความหาคุณได้</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">คนที่ถูกปิดกั้นจะส่งข้อความหาคุณไม่ได้</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">ปิดกั้นการรับการปรับปรุงและข่าวสารของ Signal</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">กลับมารับการปรับปรุงและข่าวสารของ Signal ต่อไป</string>
   <string name="BlockUnblockDialog_unblock_s">เลิกปิดกั้น %1$sหรือไม่?</string>
   <string name="BlockUnblockDialog_block">ปิดกั้น</string>
   <string name="BlockUnblockDialog_block_and_leave">ปิดกั้นและออก</string>
@@ -121,7 +127,9 @@
   <string name="CameraContacts__menu_search">ค้นหา</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">ปิดการหลบเลี่ยงการปิดกั้น</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">คุณสามารถเชื่อมต่อกับบริการ Signal โดยตรงได้แล้ว เพื่อประสบการณ์ที่ดียิ่งขึ้น</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">ปิด</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
@@ -157,7 +165,9 @@
   <string name="ContactsCursorLoader_phone_number_search">ค้นด้วยหมายเลขโทรศัพท์</string>
   <string name="ContactsCursorLoader_username_search">ค้นหาด้วยชื่อผู้ใช้</string>
   <!--Label for my stories when selecting who to send media to-->
+  <string name="ContactsCursorLoader_my_stories">สตอรี่ของฉัน</string>
   <!--Action for creating a new story-->
+  <string name="ContactsCursorLoader_new_story">สตอรี่ใหม่</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">ข้อความ %s</string>
   <string name="ContactsDatabase_signal_call_s">สาย Signal %s</string>
@@ -207,8 +217,10 @@
   <string name="ConversationActivity_calls_not_supported">ไม่รองรับการโทร</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">อุปกรณ์นี้ไม่รองรับการโทรออก</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS ที่ไม่ปลอดภัย</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
   <string name="ConversationActivity_transport_insecure_mms">MMS ที่ไม่ปลอดภัย</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_signal">ข้อความ Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">เปลี่ยนมาใช้ Signal กันเถอะ %1$s</string>
   <string name="ConversationActivity_specify_recipient">โปรดเลือกผู้ติดต่อ</string>
   <string name="ConversationActivity_unblock">เลิกปิดกั้น</string>
@@ -302,9 +314,13 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">หมายเลขความปลอดภัยของคุณกับ %s ได้เปลี่ยนไป</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">หมายเลขความปลอดภัยของคุณกับ %s ได้เปลี่ยนไป น่าจะเพราะเขาได้ติดตั้ง Signal ใหม่หรือเปลี่ยนอุปกรณ์ แตะ ตรวจยืนยัน เพื่อยืนยันหมายเลขความปลอดภัยใหม่ สิ่งนี้จะทำหรือไม่ก็ได้</string>
   <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">เปิด %1$s</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">ปิดกั้นคำขอหรือไม่</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s ไม่สามารถเข้าร่วมหรือส่งคำขอเพื่อเข้าร่วมกลุ่มนี้ได้ทางลิงก์กลุ่ม แต่สามารถเพิ่มเข้ากลุ่มได้ด้วยตัวเอง</string>
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">ปิดกั้นคำขอ</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">ยกเลิก</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -320,15 +336,48 @@
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="other">%dการสนทนาถูกเก็บเข้าที่เก็บถาวร</item>
   </plurals>
-  <string name="ConversationListFragment_undo"> เลิกทำ</string>
+  <string name="ConversationListFragment_undo">เลิกทำ</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">ย้าย %d การสนทนาไปยังกล่องขาเข้า</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="other">อ่าน</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="other">ยกเลิกการอ่าน</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="other">ปักหมุด</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="other">ยกเลิกปักหมุด</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="other">ปิดเสียง</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="other">ยกเลิกปิดเสียง</item>
+  </plurals>
   <string name="ConversationListFragment_select">เลือก</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="other">เก็บถาวร</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="other">ยกเลิกเก็บถาวร</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="other">ลบ</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">เลือกทั้งหมด</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="other">เลือกไว้ %d</item>
+  </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">โปรไฟล์การแจ้งเตือน</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">เปิดหรือโปรไฟล์การแจ้งเตือนตรงนี้</string>
   <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">เปิด %1$s</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ข้อความแลกเปลี่ยนกุญแจ</string>
   <!--ConversationListItemAction-->
@@ -360,8 +409,11 @@
   <string name="RestoreBackupFragment__choose_folder">เลือกโฟลเดอร์</string>
   <string name="RestoreBackupFragment__not_now">ไม่ใช่ตอนนี้</string>
   <!--Couldn\'t find the selected backup-->
+  <string name="RestoreBackupFragment__backup_not_found">ไม่พบข้อมูลสำรอง</string>
   <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">อ่านข้อมูลสำรองไม่ได้</string>
   <!--Backup has an unsupported file extension-->
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">ข้อมูลสำรองมีส่วนขยายที่ไม่ดี</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">ข้อมูลสำรองของการสนทนา</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">ข้อมูลสำรองถูกเข้ารหัสด้วยวลีรหัสผ่านและเก็บในอุปกรณ์ของคุณ</string>
@@ -377,6 +429,7 @@
   <string name="BackupsPreferenceFragment__in_progress">อยู่ระหว่างดำเนินการ…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d แล้ว…</string>
   <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% ในตอนนี้…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">เพื่อที่จะสำรองข้อมูล Signal ต้องได้รับอนุญาตให้เข้าถึงที่เก็บข้อมูลภายนอก แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ที่เก็บข้อมูล\"</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">ใช้ค่าที่กำหนดเอง: %s</string>
@@ -563,8 +616,7 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">ช่องนี้ต้องใส่</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">การสร้างกลุ่มล้มเหลว</string>
   <string name="AddGroupDetailsFragment__try_again_later">ลองใหม่ภายหลัง</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">คุณได้เลือกผู้ติดต่อที่ไม่รองรับการคุยแบบกลุ่มใน Signal ดังนั้นกลุ่มนี้จะเป็น MMS</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">จะมีแต่คุณที่มองเห็นรูปภาพและชื่อกลุ่ม MMS ที่ตั้งเอง</string>
+  <!--Displayed when adding group details to an MMS Group-->
   <string name="AddGroupDetailsFragment__remove">ลบ</string>
   <string name="AddGroupDetailsFragment__sms_contact">ผู้ติดต่อ SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">ลบ %1$s ออกจากกลุ่มนี้หรือไม่?</string>
@@ -624,6 +676,8 @@
   <string name="ManageProfileFragment_your_name">ชื่อของคุณ</string>
   <string name="ManageProfileFragment_your_username">ชื่อผู้ใช้ของคุณ</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">ล้มเหลวในการสร้างภาพประจำตัว</string>
+  <string name="ManageProfileFragment_badges">โล่</string>
+  <string name="ManageProfileFragment__edit_photo">แก้ไขรูปภาพ</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">ไม่มีกลุ่มร่วมกัน</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -638,6 +692,9 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">ใช้การแจ้งเตือนที่กำหนดเอง</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">เสียงแจ้งเตือน</string>
   <string name="CustomNotificationsDialogFragment__vibrate">สั่น</string>
+  <!--Button text for customizing notification options-->
+  <string name="CustomNotificationsDialogFragment__customize">ปรับแต่ง</string>
+  <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">เปลี่ยนเสียงและการสั่น</string>
   <string name="CustomNotificationsDialogFragment__call_settings">ตั้งค่าการโทร</string>
   <string name="CustomNotificationsDialogFragment__ringtone">เสียงเรียกเข้า</string>
   <string name="CustomNotificationsDialogFragment__enabled">เปิดใช้</string>
@@ -671,10 +728,13 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">พบความผิดพลาดของเครือข่าย</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">ลิงก์กลุ่มนี้ไม่ได้เปิดให้ใช้</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">เข้าร่วมกลุ่มไม่ได้</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">คุณเข้าร่วมกลุ่มนี้ด้วยลิงก์กลุ่มนี้ไม่ได้เพราะผู้ดูแลลบคุณออกไปแล้ว</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">ลิงก์กลุ่มนี้ใช้ไม่ได้แล้ว</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">ลิงก์มีข้อผิดพลาด</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
   <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">การเข้าร่วมผ่านลิงก์นี้ล้มเหลว ลองเข้าร่วมอีกครั้งในภายหลัง</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">คุณต้องการเข้าร่วมกลุ่มและเปิดเผยชื่อกับรูปภาพให้สมาชิกในกลุ่มเห็นหรือไม่?</string>
@@ -701,6 +761,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">เพิ่ม “%1$s” เข้ากลุ่มหรือไม่?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">ปฏิเสธคำขอจาก “%1$s” หรือไม่?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">ปฏิเสธคำขอจาก “%1$s” หรือไม่ เขาจะไม่สามารถส่งคำขอเพื่อเข้าร่วมกลุ่มนี้ด้วยลิงก์นี้ได้อีก</string>
   <string name="RequestConfirmationDialog_add">เพิ่ม</string>
   <string name="RequestConfirmationDialog_deny">ปฏิเสธ</string>
   <!--ImageEditorHud-->
@@ -713,10 +774,12 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">แบ่งปัน</string>
   <string name="InviteActivity_share_with_contacts"> แบ่งปันกับผู้ติดต่อ</string>
+  <string name="InviteActivity_share_via">แชร์ทาง…</string>
   <string name="InviteActivity_cancel">ยกเลิก</string>
   <string name="InviteActivity_sending">กำลังส่ง…</string>
   <string name="InviteActivity_invitations_sent">ส่งคำเชิญแล้ว!</string>
   <string name="InviteActivity_invite_to_signal">เชิญมาใช้ Signal</string>
+  <string name="InviteActivity_send_sms">ส่ง SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">ส่งคำเชิญทาง %dSMS หรือไม่?</item>
   </plurals>
@@ -724,6 +787,7 @@
   <string name="InviteActivity_no_app_to_share_to">ดูเหมือนว่าคุณไม่มีแอปอะไรที่จะแบ่งปันได้</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">เรียนรู้เพิ่มเติม</string>
+  <string name="SpanUtil__read_more">อ่านเพิ่มเติม</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">หาข้อความไม่พบ</string>
   <string name="LongMessageActivity_message_from_s">ข้อความจาก %1$s</string>
@@ -757,6 +821,15 @@
   <string name="MediaOverviewActivity_List_view_description">แสดงข้อมูลแบบแถว</string>
   <string name="MediaOverviewActivity_Selected_description">ถูกเลือก</string>
   <string name="MediaOverviewActivity_select_all">เลือกทั้งหมด</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="other">บันทึก</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="other">ลบ</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="other">เลือกไว้ %1$d (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">แฟ้ม</string>
   <string name="MediaOverviewActivity_audio">เสียง</string>
   <string name="MediaOverviewActivity_video">วิดีโอ</string>
@@ -781,7 +854,10 @@
   <string name="NotificationBarManager_signal_call_in_progress">กำลังโทร Signal อยู่</string>
   <string name="NotificationBarManager__establishing_signal_call">กำลังต่อสาย Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">สาย Signal เรียกเข้า</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">โทรกลุ่ม Signal ที่กำลังเรียกเข้า</string>
+  <!--Temporary notification shown when starting the calling service-->
   <string name="NotificationBarManager__stopping_signal_call_service">หยุดบริการโทร Signal</string>
+  <string name="NotificationBarManager__decline_call">ปฏิเสธการโทร</string>
   <string name="NotificationBarManager__answer_call">รับสาย</string>
   <string name="NotificationBarManager__end_call">วางสาย</string>
   <string name="NotificationBarManager__cancel_call">ยกเลิกการโทร</string>
@@ -873,6 +949,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s ตั้ง %2$s เป็นผู้ดูแล</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s ตั้งคุณเป็นผู้ดูแล</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">คุณได้เพิกถอนสิทธิ์ผู้ดูแลจาก %1$s</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s ได้เพิกถอนสิทธิ์ผู้ดูแลของคุณ</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ได้เพิกถอนสิทธิ์ผู้ดูแลจาก %2$s</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s ได้เป็นผู้ดูแลแล้ว</string>
   <string name="MessageRecord_you_are_now_an_admin">ตอนนี้คุณเป็นผู้ดูแลแล้ว</string>
@@ -961,6 +1038,9 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">คุณได้ส่งคำร้องขอเข้ากลุ่ม</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s ได้ขอเข้ากลุ่มผ่านลิงก์กลุ่ม</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="other">%1$s ส่งคำขอและยกเลิกคำขอ %2$d เพื่อเข้าร่วมผ่านลิงก์กลุ่มนี้</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s ได้อนุมัติคำขอเพื่อเข้ากลุ่มของคุณ</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s ได้อนุมัติคำขอเข้ากลุ่มจาก %2$s</string>
@@ -980,8 +1060,11 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">คุณทำเครื่องหมายว่า หมายเลขความปลอดภัยของคุณกับ %s ยังไม่ถูกตรวจยืนยัน</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">คุณทำเครื่องหมายจากอีกอุปกรณ์ว่า หมายเลขความปลอดภัยของคุณกับ %s ยังไม่ถูกตรวจยืนยัน</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">ไม่สามารถส่งข้อความจาก %s ได้</string>
+  <string name="MessageRecord_s_changed_their_phone_number">%1$s เปลี่ยนเบอร์โทรศัพท์</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">ชอบฟีเจอร์ใหม่นี้หรือไม่ ขอบคุณด้วย Boost สิ</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal ขับเคลื่อนโดยผู้ใช้เช่นคุณ ขอเชิญมาเป็นผู้สนับสนุนของเรา</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ได้เริ่มการโทรแบบกลุ่ม %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s อยู่ในการโทรแบบกลุ่ม %2$s</string>
@@ -1007,12 +1090,17 @@
   <string name="MessageRequestBottomView_block">ปิดกั้น</string>
   <string name="MessageRequestBottomView_unblock">เลิกปิดกั้น</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">อนุญาตให้ %1$s ส่งข้อความและเห็นชื่อกับรูปภาพของคุณหรือไม่? พวกเขาจะไม่รู้ว่าคุณได้เห็นข้อความของพวกเขาแล้วจนกว่าคุณจะตอบรับ</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">อนุญาตให้ %1$s ส่งข้อความและเห็นชื่อกับรูปภาพของคุณหรือไม่? คุณจะไม่ได้รับข้อความใดจนกว่าคุณจะเลิกปิดกั้นพวกเขา</string>
+  <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">ให้ %1$s ส่งข้อความหาคุณหรือไม่ คุณจะไม่ได้รับข้อความใดๆ จนกว่าคุณเลิกปิดกั้นเขา</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">รับข้อมูลใหม่ๆ และข่าวสารจาก %1$s หรือไม่ คุณจะไม่ได้รับข้อมูลใหม่ๆ จนกว่าจะยกเลิกปิดกั้นเขา</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">ต้องการสนทนาภายในกลุ่มนี้ต่อไปและเปิดเผยชื่อกับรูปภาพให้สมาชิกในกลุ่มเห็นหรือไม่?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">ปรับรุ่นกลุ่มนี้เพื่อเปิดใช้ความสามารถใหม่ เช่น @กล่าวถึง และระบบผู้ดูแล สมาชิกที่ไม่ได้เปิดเผยชื่อหรือรูปภาพในกลุ่มนี้จะได้รับคำเชิญให้เข้าร่วม</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">กลุ่มแบบเก่านี้ไม่สามารถใช้งานได้อีกต่อไป เนื่องจากมีขนาดใหญ่เกินไป ขนาดที่ใหญ่ที่สุดของกลุ่มคือ %1$d</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">ต้องการสนทนากับ %1$s ต่อและเปิดเผยชื่อและรูปภาพให้พวกเขาเห็นหรือไม่?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">เข้าร่วมกลุ่มนี้และเปิดเผยชื่อและรูปถ่ายของคุณให้สมาชิกในกลุ่มเห็นหรือไม่? พวกเขาจะไม่รู้ว่าคุณเห็นข้อความของพวกเขาจนกว่าคุณจะตอบรับ</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">เข้าร่วมกลุ่มนี้และแชร์ชื่อกับรูปภาพให้กับสมาชิกในกลุ่มหรือไม่ คุณจะไม่เห็นข้อความของพวกเขาจนกว่าคุณจะรับ</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">เข้าร่วมกลุ่มนี้หรือไม่? พวกเขาจะไม่รู้ว่าคุณเห็นข้อความของพวกเขาจนกว่าคุณจะตอบรับ</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">คุณต้องการเลิกปิดกั้นกลุ่มนี้และเปิดเผยชื่อและรูปภาพให้สมาชิกในกลุ่มเห็นหรือไม่? คุณจะไม่ได้รับข้อความใดจนกว่าคุณจะเลิกปิดกั้นพวกเขา</string>
   <string name="MessageRequestProfileView_view">ดู</string>
@@ -1023,7 +1111,13 @@
     <item quantity="other">%1$d สมาชิก</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="other">%1$d สมาชิก (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="other">+%1$d ได้รับเชิญ</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="other">%d กลุ่มเพิ่มเติม</item>
   </plurals>
@@ -1113,6 +1207,7 @@
   <!--Recipient-->
   <string name="Recipient_you">คุณ</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">สตอรี่ของฉัน</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">ปิดกั้น</string>
   <string name="RecipientPreferenceActivity_unblock">เลิกปิดกั้น</string>
@@ -1130,16 +1225,28 @@
   <string name="RedPhone_got_it">เข้าใจแล้ว</string>
   <!--Valentine\'s Day Megaphone-->
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <string name="ValentinesDayMegaphone_happy_heart_day">วัน 💜 แห่งความสุข!</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
+  <string name="ValentinesDayMegaphone_show_your_affection">แสดงความรักด้วยการเป็นผู้สนับสนุน Signal</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">แตะเพื่อเปิดวิดีโอของคุณ</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">เพื่อจะโทรหา %1$s Signal จำเป็นต้องเข้าถึงกล้องของคุณ</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">กำลังโทร…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">กลุ่มใหญ่เกินไปที่จะจับกลุ่มผู้เข้าร่วม</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">กำลังเชื่อมต่อใหม่…</string>
+  <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">การอนุญาตบลูทูธถูกปฏิเสธ</string>
+  <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">กรุณาเปิดใช้งานอนุญาต \"อุปกรณ์ใกล้เคียง\" เพื่อใช้บลูทูธขณะโทร</string>
+  <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">เปิดการตั้งค่า</string>
+  <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
+  <string name="WebRtcCallActivity__not_now">ไม่ใช่ตอนนี้</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">โทร Signal</string>
+  <string name="WebRtcCallView__signal_video_call">โทรวิดีโอ Signal</string>
   <string name="WebRtcCallView__start_call">เริ่มโทร</string>
   <string name="WebRtcCallView__join_call">เข้าร่วมการโทร</string>
   <string name="WebRtcCallView__call_is_full">ห้องเต็ม</string>
@@ -1149,17 +1256,41 @@
   <string name="WebRtcCallView__reconnecting">กำลังเชื่อมต่อใหม่…</string>
   <string name="WebRtcCallView__joining">กำลังเข้าร่วม…</string>
   <string name="WebRtcCallView__disconnected">เลิกเชื่อมต่อแล้ว</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal จะส่งเสียงเรียก %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal จะส่งเสียงเรียก %1$s และ %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="other">Signal จะส่งเสียงเรียก %1$s, %2$s, และ %3$d อื่นๆ</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s จะได้รับแจ้งเตือน</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s และ %2$s จะได้รับแจ้งเตือน</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="other">%1$s, %2$s, และ %3$d อื่นๆ จะได้รับแจ้งเตือน</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">ส่งเสียงเรียก %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">ส่งเสียงเรียก %1$s และ %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="other">ส่งเสียงเรียก %1$s, %2$s, และ %3$d อื่นๆ</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s กำลังโทรหาคุณ</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s กำลังโทรหาคุณและ %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s กำลังโทรหาคุณ %2$s และ %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="other">%1$s กำลังโทรหาคุณ %2$s, %3$s, และ %4$d อื่นๆ</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">ไม่มีใครที่นี่</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s อยู่ในการโทรนี้</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s อยู่ในสายนี้</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s และ %2$s อยู่ในการโทรนี้</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s กำลังนำเสนออยู่</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="other">%1$s %2$s และ %3$d รวมถึงคนอื่นๆ อยู่ในการโทรนี้</item>
   </plurals>
+  <string name="WebRtcCallView__flip">พลิก</string>
   <string name="WebRtcCallView__speaker">ลำโพง</string>
   <string name="WebRtcCallView__camera">กล้อง</string>
   <string name="WebRtcCallView__unmute">เปิดเสียง</string>
   <string name="WebRtcCallView__mute">ปิดเสียง</string>
+  <string name="WebRtcCallView__ring">ส่งเสียงเรียก</string>
   <string name="WebRtcCallView__end_call">วางสาย</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1205,8 +1336,14 @@
   <string name="RegistrationActivity_play_services_error">ข้อผิดพลาดเกี่ยวกับ Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services กำลังปรับรุ่นหรือใช้ไม่ได้ชั่วคราว โปรดลองอีกครั้ง</string>
   <string name="RegistrationActivity_terms_and_privacy">เงื่อนไขและนโยบายความเป็นส่วนตัว</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal จำเป็นต้องมีการอนุญาตให้ใช้รายชื่อผู้ติดต่อและสื่อเพื่อช่วยให้คุณเชื่อมต่อกับเพื่อนๆ และส่งข้อความ รายชื่อผู้ติดต่อของคุณจะถูกอัปโหลดโดยใช้การค้นหาผู้ติดต่อส่วนตัว Signal ซึ่งแปลว่าสิ่งนี้เป็นการเข้ารหัสจากต้นทางถึงปลายทางและไม่ปรากฏในบริการของ Signal</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal จำเป็นต้องได้รับการอนุญาตให้ใช้รายชื่อผู้ติดต่อเพื่อช่วยให้คุณเชื่อมต่อกับเพื่อนๆ รายชื่อผู้ติดต่อของคุณจะถูกอัปโหลดโดยใช้โดยใช้การค้นหาผู้ติดต่อส่วนตัว Signal ซึ่งแปลว่าสิ่งนี้เป็นการเข้ารหัสจากต้นทางถึงปลายทางและไม่ปรากฏในบริการของ Signal</string>
   <string name="RegistrationActivity_rate_limited_to_service">คุณได้พยายามลงทะเบียนด้วยหมายเลขนี้หลายครั้งเกินไป โปรดลองใหม่ในภายหลัง</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">ไม่สามารถเชื่อมต่อบริการได้ โปรดตรวจสอบการเชื่อมต่อเครือข่ายและลองอีกครั้ง</string>
+  <string name="RegistrationActivity_non_standard_number_format">ฟอร์แมทหมายเลขที่ไม่มีมาตรฐาน</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">ตัวเลขที่คุณป้อน (%1$s) เป็นฟอร์แมทที่ไม่ได้มาตรฐาน\n\n คุณต้องการใส่ %2$sหรือเปล่า</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - ฟอร์แมทหมายเลขโทรศัพท์</string>
+  <string name="RegistrationActivity_call_requested">ส่งคำขอการโทรแล้ว</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">เหลืออีก %d ขั้นตอนในการส่งปูมดีบัก</item>
   </plurals>
@@ -1251,6 +1388,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">ดูเพิ่ม</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">ตรวจยืนยัน PIN เรียบร้อยแล้ว เราจะแจ้งเตือนคุณอีกครั้งภายหลัง</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">ตรวจยืนยัน PIN เรียบร้อยแล้ว เราจะแจ้งเตือนคุณอีกครั้งพรุ่งนี้</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">ตรวจยืนยัน PIN เรียบร้อยแล้ว เราจะแจ้งเตือนคุณอีกครั้งในอีกสองสามวัน</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">ตรวจยืนยัน PIN เรียบร้อยแล้ว เราจะแจ้งเตือนคุณอีกครั้งในหนึ่งสัปดาห์</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">ตรวจยืนยัน PIN เรียบร้อยแล้ว เราจะแจ้งเตือนคุณอีกครั้งอีกสองอาทิตย์</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">ตรวจยืนยัน PIN เรียบร้อยแล้ว เราจะแจ้งเตือนคุณอีกครั้งในหนึ่งเดือน</string>
   <!--Slide-->
   <string name="Slide_image">รูปภาพ</string>
   <string name="Slide_sticker">สติกเกอร์</string>
@@ -1336,6 +1479,12 @@
   <string name="ThreadRecord_file">แฟ้ม</string>
   <string name="ThreadRecord_video">วิดีโอ</string>
   <string name="ThreadRecord_chat_session_refreshed">ข้อมูลสนทนาถูกเรียกขึ้นใหม่</string>
+  <!--Displayed in the notification when the user is sent a gift-->
+  <string name="ThreadRecord__you_received_a_gift">คุณได้รับของขวัญ</string>
+  <!--Displayed in the notification when the user sends a gift-->
+  <string name="ThreadRecord__you_sent_a_gift">คุณส่งของขวัญแล้ว</string>
+  <!--Displayed in the notification when the user has opened a received gift-->
+  <string name="ThreadRecord__you_redeemed_a_gift_badge">คุณแลกโล่ของขวัญแล้ว</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">ปรับรุ่น Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal รุ่นใหม่มาแล้ว แตะเพื่อปรับรุ่น</string>
@@ -1400,7 +1549,9 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">นี่จะเป็นการลบข้อความนี้โดยถาวร</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s ถึง %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">คุณถึง %1$s</string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s ถึงคุณ</string>
   <string name="MediaPreviewActivity_media_no_longer_available">สื่อตัวนี้ไม่มีอยู่แล้ว</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">ไม่พบแอปที่แบ่งปันสื่อนี้ได้</string>
   <!--MessageNotifier-->
@@ -1427,6 +1578,7 @@
   <string name="MessageNotifier_reacted_s_to_s">ตอบสนอง %1$s ต่อ: \"%2$s\"</string>
   <string name="MessageNotifier_reacted_s_to_your_video">ตอบสนอง %1$s ต่อวิดีโอของคุณ</string>
   <string name="MessageNotifier_reacted_s_to_your_image">ตอบสนอง %1$s ต่อรูปภาพของคุณ</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">%1$s ที่ตอบสนองกับ GIF ของคุณ</string>
   <string name="MessageNotifier_reacted_s_to_your_file">ตอบสนอง %1$s ต่อแฟ้มของคุณ</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">ตอบสนอง %1$s ต่อเสียงของคุณ</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">ตอบสนอง %1$s กับสื่อที่ดูได้ครั้งเดียวของคุณ</string>
@@ -1447,7 +1599,9 @@
   <string name="NotificationChannel_contact_joined_signal">มีผู้ติดต่อเริ่มใช้ Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">ไม่มีกิจกรรมเพื่อเปิดการตั้งค่าเปิดการแจ้งเตือนช่อง</string>
   <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">การเชื่อมต่อพื้นหลัง</string>
   <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">สถานะการโทร</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">การตอบด่วนใช้ไม่ได้ถ้า Signal ถูกล็อคอยู่</string>
@@ -1458,6 +1612,9 @@
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">ค้นหา</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">ค้นหาการสนทนา ผู้ติดต่อ และข้อความ</string>
+  <!--Material3 Search Toolbar-->
+  <string name="Material3SearchToolbar__close">ปิด</string>
+  <string name="Material3SearchToolbar__clear">ล้าง</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">ปุ่มลัดใช้ไม่ได้</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -1465,6 +1622,8 @@
   <string name="SingleRecipientNotificationBuilder_new_message">ข้อความใหม่</string>
   <string name="SingleRecipientNotificationBuilder_message_request">คำขอส่งข้อความ</string>
   <string name="SingleRecipientNotificationBuilder_you">คุณ</string>
+  <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • สตอรี่</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">เล่นวิดีโอ</string>
   <string name="ThumbnailView_Has_a_caption_description">มีคำบรรยายภาพ</string>
@@ -1476,6 +1635,7 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">อุปกรณ์นี้ไม่ได้ลงทะเบียนอีกต่อไป</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">นี่น่าจะเป็นเพราะคุณเคยลงทะเบียนหมายเลขโทรศัพท์นี้กับ Signal บนอุปกรณ์อื่นแล้ว แตะเพื่อลงทะเบียนใหม่</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">หากต้องการรับสาย ต้องให้สิทธิ์ Signal เข้าถึงไมโครโฟนของคุณ</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">เพื่อที่จะรับสายโทรเข้าจาก %s อนุญาตให้ Signal เข้าถึงไมโครโฟนของคุณ</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">เพื่อที่จะโทรออกและรับสาย Signal ต้องได้รับอนุญาตให้เข้าถึงไมโครโฟนและกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ไมโครโฟน\" และ \"กล้อง\"</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">มีการรับสายบนอุปกรณ์ที่เชื่อมโยงอยู่</string>
@@ -1533,6 +1693,9 @@
     <item quantity="other">%1$d สมาชิก</item>
   </plurals>
   <!--Displays number of viewers for a story-->
+  <plurals name="contact_selection_list_item__number_of_viewers">
+    <item quantity="other">คนดู %1$d</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">ข้อความ Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS ที่ไม่ปลอดภัย</string>
@@ -1571,12 +1734,15 @@
   <string name="ConversationUpdateItem_enable_call_notifications">เปิดใช้การแจ้งเตือนการโทร</string>
   <string name="ConversationUpdateItem_update_contact">ปรับปรุงผู้ติดต่อ</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">ปิดกั้นคำขอ</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">ไม่มีกลุ่มที่เหมือนกันเลย โปรดพิจารณาคำขออย่างระวัง</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">ไม่มีผู้ติดต่อในกลุ่มนี้ โปรดพิจารณาคำขออย่างระวัง</string>
   <string name="ConversationUpdateItem_view">ดู</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">เวลาข้อความหายไปจะตั้งค่าเป็น %1$s เมื่อคุณส่งข้อความให้พวกเขา</string>
   <!--Update item button text to show to boost a feature-->
+  <string name="ConversationUpdateItem_signal_boost">Signal Boost</string>
   <!--Update item button text to show to become a sustainer in the release notes channel-->
+  <string name="ConversationUpdateItem_become_a_sustainer">เป็นผู้สนับสนุน</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">เล่น … หยุดชั่วคราว</string>
   <string name="audio_view__download_accessibility_description">ดาวน์โหลด</string>
@@ -1590,12 +1756,18 @@
   <string name="QuoteView_you">คุณ</string>
   <string name="QuoteView_original_missing">ไม่พบข้อความเดิม</string>
   <!--Author formatting for group stories-->
+  <string name="QuoteView_s_story">%1$s · สตอรี่</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">คุณ · สตอรี่</string>
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">ไม่มีอีกต่อไปแล้ว</string>
+  <!--Label for quoted gift-->
+  <string name="QuoteView__gift">ของขวัญ</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">เลื่อนลงล่างสุด</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">การแจ้งเตือนข้อความแบบ Bubble เป็นฟีเจอร์ของแอนดรอยด์ที่คุณปิดได้สำหรับการแชตของ Signal</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">ไม่ใช่ตอนนี้</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -1690,7 +1862,9 @@
   <string name="message_recipients_list_item__view">ดู</string>
   <string name="message_recipients_list_item__resend">ส่งใหม่</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
+  <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">คัดลอกประทับเวลาที่ส่งไปยังคลิปบอร์ดแล้ว</string>
   <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">การอัปเดตสตอรี่ของคุณจะแสดงตรงนี้</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s ได้เข้าร่วมกลุ่ม</item>
@@ -1739,9 +1913,13 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ใส่ชื่อหรือหมายเลข</small></string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[หากต้องการตรวจยืนยันความปลอดภัยของการเข้ารหัสจากต้นทางถึงปลายทางด้วย%s ให้เปรียบเทียบหมายเลขข้างบนกับอุปกรณ์ของพวกเขา นอกจากนี้คุณยังสามารถสแกนรหัสบนโทรศัพท์ของพวกเขาได้ด้วย <a href="https://signal.org/redirect/safety-numbers">เรียนรู้เพิ่มเติม</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">แตะเพื่อสแกน</string>
+  <string name="verify_display_fragment__successful_match">จับคู่สำเร็จ</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">การตรวจยืนยันหมายเลขความปลอดภัยล้มเหลว</string>
   <string name="verify_display_fragment__loading">กำลังโหลด…</string>
   <string name="verify_display_fragment__mark_as_verified">ทำเครื่องหมายว่าตรวจยืนยันแล้ว</string>
+  <string name="verify_display_fragment__clear_verification">ล้างการตรวจยืนยัน</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">แบ่งปันหมายเลขความปลอดภัย</string>
   <!--verity_scan_fragment-->
@@ -1751,6 +1929,10 @@
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">ปัดลงเพื่อปฏิเสธ</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">มีปัญหาบางประการที่คุณควรให้ความสนใจ</string>
+  <string name="message_details_header_sent">ส่งแล้ว</string>
+  <string name="message_details_header_received">ได้รับแล้ว</string>
+  <string name="message_details_header_disappears">ลบตัวเอง</string>
+  <string name="message_details_header_via">ผ่าน</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">รอดำเนินการ</string>
   <string name="message_details_recipient_header__sent_to">ส่งถึง</string>
@@ -1793,6 +1975,16 @@
   <string name="HelpFragment__debug_log">ปูมดีบัก:</string>
   <string name="HelpFragment__could_not_upload_logs">ไม่สามารถอัปโหลดปูม</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">กรุณาอธิบายละเอียดที่สุดเท่าที่จะทำได้ เพื่อช่วยให้เราเข้าใจปัญหา</string>
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
+    <item>\-\- กรุณาเลือกตัวเลือก 1 อย่าง \-\-</item>
+    <item>มีบางอย่างไม่ทำงาน</item>
+    <item>คำขอฟีเจอร์</item>
+    <item>คำถาม</item>
+    <item>ข้อเสนอแนะ</item>
+    <item>อื่นๆ</item>
+    <item>การชำระเงิน (MobileCoin)</item>
+    <item>ผู้สนับสนุน &amp; Signal Boost</item>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ข้อความนี้</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">เพิ่งใช้</string>
@@ -1863,6 +2055,8 @@
   <string name="preferences__led_color">สี LED</string>
   <string name="preferences__led_color_unknown">ไม่ทราบ</string>
   <string name="preferences__pref_led_blink_title">รูปแบบการกระพริบไฟ LED</string>
+  <string name="preferences__customize">ปรับแต่ง</string>
+  <string name="preferences__change_sound_and_vibration">เปลี่ยนเสียงและการสั่น</string>
   <string name="preferences__sound">เสียง</string>
   <string name="preferences__silent">ไม่ส่งเสียง</string>
   <string name="preferences__default">ค่าเริ่มต้น</string>
@@ -1889,6 +2083,7 @@
   <string name="preferences__advanced">ขั้นสูง</string>
   <string name="preferences__donate_to_signal">บริจาคให้ Signal</string>
   <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">การบริจาคครั้งเดียว</string>
   <string name="preferences__privacy">ความเป็นส่วนตัว</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">ตั้งค่า MMS เอง</string>
@@ -1987,7 +2182,9 @@
   <string name="preferences_events__contact_joined_signal">มีผู้ติดต่อเริ่มใช้ Signal</string>
   <string name="preferences_notifications__priority">ความสำคัญ</string>
   <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">การหลบเลี่ยงการปิดกั้น</string>
   <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">การหลบเลี่ยงการปิดกั้น</string>
   <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">หากเปิดใช้ Signal จะพยายามหลบเลี่ยงการปิดกั้นข้อมูล อย่าเปิดใช้ความสามารถนี้ เว้นแต่ว่าคุณอยู่ในที่ที่ Signal ถูกปิดกั้น</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
   <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">การหลบเลี่ยงการปิดกั้นถูกเปิดใช้ เนื่องจากหมายเลขโทรศัพท์ของบัญชีของคุณ</string>
@@ -2167,6 +2364,9 @@
   <string name="conversation_callable_secure__menu_video">โทรวิดีโอ Signal</string>
   <!--conversation_context-->
   <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="other">เลือกไว้ %d</item>
+  </plurals>
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_context_image__save_attachment">บันทึก</string>
@@ -2267,6 +2467,7 @@
   <string name="Insights__title">Insights</string>
   <string name="InsightsDashboardFragment__title">Insights</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">โปรโตคอลของ Signal ปกป้อง %1$d%% ข้อความส่งออกอัตโนมัติเป็นเวลา %2$d วัน บทสนทนาระหว่างผู้ใช้ Signal จะเป็นการเข้ารหัสตั้งแต่ต้นทางถึงปลายทางเสมอ</string>
+  <string name="InsightsDashboardFragment__spread_the_word">กระจ่ายข่าว</string>
   <string name="InsightsDashboardFragment__not_enough_data">ข้อมูลไม่พอ</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">เปอร์เซ็นต์ข้อมูล insights ของคุณถูกคำนวณจากข้อความส่งออกที่ไม่ได้ลบตัวเองหรือถูกลบภายใน %1$d วันที่ผ่านมา </string>
   <string name="InsightsDashboardFragment__start_a_conversation">เริ่มการสนทนา</string>
@@ -2413,6 +2614,7 @@
   <string name="BackupDialog_verify">ตรวจยืนยัน</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">คุณได้ป้อนวลีรหัสผ่านสำหรับข้อมูลสำรองของคุณเสร็จแล้ว</string>
   <string name="BackupDialog_passphrase_was_not_correct">วลีรหัสผ่านไม่ถูกต้อง</string>
+  <string name="LocalBackupJob_creating_signal_backup">กำลังสร้างข้อมูลสำรอง Signal…</string>
   <string name="LocalBackupJobApi29_backup_failed">สำรองข้อมูลไม่สำเร็จ</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">ไดเรกทอรีสำหรับข้อมูลสำรองของคุณได้ถูกย้ายหรือลบ</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">แฟ้มสำรองของคุณใหญ่เกินที่จะจัดเก็บไว้ในนี้ได้</string>
@@ -2423,6 +2625,7 @@
   <string name="RegistrationActivity_call_me_instead_available_in">โทรหาฉันแทน \n (ใช้งานได้ใน %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">ติดต่อทีมซัพพอร์ตของ Signal</string>
   <string name="RegistrationActivity_code_support_subject">การลงทะเบียน Signal - รหัสตรวจยืนยันสำหรับ Android</string>
+  <string name="RegistrationActivity_incorrect_code">รหัสไม่ถูกต้อง</string>
   <string name="BackupUtil_never">ไม่เลย</string>
   <string name="BackupUtil_unknown">ไม่ทราบ</string>
   <string name="preferences_app_protection__see_my_phone_number">ดูหมายเลขโทรศัพท์ของฉัน</string>
@@ -2534,6 +2737,7 @@
   <string name="DeviceTransfer__keep_both_devices_near_each_other">ทำให้แน่ใจว่าอุปกรณ์ทั้งคู่อยู่ใกล้กัน อย่าปิดเครื่องใด และให้เปิด Signal อยู่ตลอดเวลา การถ่ายโอนนั้นจะถูกเข้ารหัสลับตั้งแต่ต้นทางถึงปลายทาง</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d ข้อความจนถึงตอนนี้…</string>
   <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% ของข้อความในตอนนี้…</string>
   <string name="DeviceTransfer__cancel">ยกเลิก</string>
   <string name="DeviceTransfer__try_again">ลองอีกครั้ง</string>
   <string name="DeviceTransfer__stop_transfer_question">หยุดการถ่ายโอนหรือไม่?</string>
@@ -2584,6 +2788,7 @@
   <string name="RecipientBottomSheet_unblock">เลิกปิดกั้น</string>
   <string name="RecipientBottomSheet_add_to_contacts">เพิ่มลงในรายชื่อผู้ติดต่อ</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">ไม่พบแอปที่เปิดรายชื่อผู้ติดต่อได้</string>
   <string name="RecipientBottomSheet_add_to_a_group">เพิ่มเข้ากลุ่ม</string>
   <string name="RecipientBottomSheet_add_to_another_group">เพิ่มเข้าอีกกลุ่ม</string>
   <string name="RecipientBottomSheet_view_safety_number">ดูหมายเลขความปลอดภัย</string>
@@ -2598,6 +2803,7 @@
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" จะสามารถแก้ไขกลุ่มและสมาชิกของกลุ่มได้</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">นำ %1$s ออกจากกลุ่มหรือไม่?</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">ลบ %1$s ออกจากกลุ่มหรือไม่ เขาจะไม่สามารถกลับเข้ากลุ่มใหม่ได้ผ่านลิงก์กลุ่มนี้</string>
   <string name="RecipientBottomSheet_remove">ลบ</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">คัดลอกไปคลิปบอร์ดแล้ว</string>
   <string name="GroupRecipientListItem_admin">ผู้ดูแล</string>
@@ -2682,12 +2888,19 @@
   <string name="DeleteAccountFragment__failed_to_delete_local_data">ลบข้อมูลในเครื่องไม่สำเร็จ คุณสามารถล้างข้อมูลเองได้ในการตั้งค่าแอปของระบบ</string>
   <string name="DeleteAccountFragment__launch_app_settings">การตั้งค่าการเริ่มแอป</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">กำลังออกจากกลุ่ม…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">กำลังลบบัญชี…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
+  <string name="DeleteAccountFragment__canceling_your_subscription">กำลังยกเลิกการเป็นสมาชิกของคุณ…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">สิ่งนี้อาจจะใช้เวลาเล็กน้อย ขึ้นอยู่กับจำนวนกลุ่มที่คุณอยู่ </string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">กำลังลบข้อมูลผู้ใช้งานและรีเซ็ตแอป</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">บัญชีไม่ได้ถูกลบ</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">กระบวนการลบมีปัญหา ตรวจสอบการเชื่อมต่อเครือข่าย แล้วลองอีกครั้ง</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">ค้นหาประเทศ</string>
   <!--CreateGroupActivity-->
@@ -2838,29 +3051,58 @@
   <string name="QualitySelectorBottomSheetDialog__photo_quality">คุณภาพรูปภาพ</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">เชิญเพื่อนของคุณ</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">คัดลอกไอดีสมาชิกไปยังคลิปบอร์ดแล้ว</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">บัญชี</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">จะมีการสอบถามคุณน้อยลงเมื่อเวลาผ่านไป</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">ต้องการรหัส SignalPIN ในการลงทะเบียนหมายเลขโทรศัพท์ของคุณกับ Signal อีกครั้ง</string>
+  <string name="AccountSettingsFragment__change_phone_number">เปลี่ยนหมายเลขโทรศัพท์</string>
   <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">ใช้สิ่งนี้เพื่อเปลี่ยนหมายเลขโทรศัพท์ปัจจุบันเป็นหมายเลขโทรศัพท์ใหม่ คุณไม่สามารถยกเลิกการเปลี่ยนแปลงได้ \n\nก่อนที่จะดำเนินการต่อ ตรวจสอบให้มั่นใจว่าหมายเลขใหม่สามารถรับ SMS หรือรับสายได้</string>
   <string name="ChangeNumberFragment__continue">ทำต่อ</string>
   <!--Message shown on dialog after your number has been changed successfully.-->
+  <string name="ChangeNumber__your_phone_number_has_changed_to_s">หมายเลขโทรศัพท์ของคุณเปลี่ยนเป็น %1$s</string>
   <!--Confirmation button to dismiss number changed dialog-->
   <string name="ChangeNumber__okay">ตกลง</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">เปลี่ยนหมายเลขโทรศัพท์</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">หมายเลขโทรศัพท์เก่าของคุณ</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">หมายเลขโทรศัพท์เก่า</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">หมายเลขโทรศัพท์ใหม่ของคุณ</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">หมายเลขโทรศัพท์ใหม่</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">หมายเลขโทรศัพท์ที่คุณป้อนไม่ตรงกับหมายเลขในบัญชีคุณ</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">คุณต้องระบุรหัสประเทศของหมายเลขโทรศัพท์เก่าของคุณ</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">คุณต้องระบุหมายเลขโทรศัพท์เก่าของคุณ</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">คุณต้องระบุรหัสประเทศของหมายเลขโทรศัพท์ใหม่ของคุณ</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">คุณต้องระบุหมายเลขโทรศัพท์ใหม่ของคุณ</string>
   <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">เปลี่ยนหมายเลขโทรศัพท์</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">กำลังตรวจยืนยัน %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">ต้องใช้แคปช่า</string>
   <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">เปลี่ยนหมายเลข</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">คุณกำลังจะเปลี่ยนหมายเลขโทรศัพท์จาก %1$s เป็น %2$s.\n\nก่อนดำเนินการ กรุณาตรวจยืนยันว่าหมายเลขด้านล่างถูกต้อง</string>
   <string name="ChangeNumberConfirmFragment__edit_number">แก้ไขหมายเลข</string>
   <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">การเปลี่ยนหมายเลขใน Signal - ต้องการความช่วยเหลือ PIN สำหรับ Android (v2 PIN)</string>
   <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN ไม่ตรงกัน</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">PIN ที่เชื่อมโยงกับหมายเลขโทรศัพท์ใหม่แตกต่างกับ PIN ที่เชื่อมโยงกับหมายเลขเดิม ต้องการเก็บ PIN เก่าไว้หรืออัปเดตเป็นอันใหม่</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">เก็บ PIN เก่าไว้</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">เปลี่ยนรหัส PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">เก็บ PIN เก่าไว้หรือไม่</string>
   <!--ChangeNumberLockActivity-->
   <!--Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">ดูเหมือนว่าคุณพยายามจะเปลี่ยนหมายเลขโทรศัพท์แต่เราไม่สามารถกำหนดได้ว่าสำเร็จหรือไม่ n\nตรวจสอบให้อีกครั้งตอนนี้…
+ </string>
   <!--Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
+  <string name="ChangeNumberLockActivity__change_status_confirmed">ยืนยันการเปลี่ยนสถานะ</string>
   <!--Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">หมายเลขของคุณได้รับการยืนยันว่าเป็น %1$s ถ้านี่ไม่ใช่หมายเลขใหม่ของคุณ กรุณารีสตาร์ทกระบวนการเปลี่ยนหมายเลขใหม่</string>
   <!--Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow-->
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">การเปลี่ยนสถานะไม่ได้รับการยืนยัน</string>
   <!--Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow-->
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">เราไม่สามารถกำหนดสถานะคำขอเปลี่ยนหมายเลขของคุณได้\n\n(ข้อผิดพลาด: %1$s)</string>
   <!--Dialog button to retry confirming the number on the server-->
   <string name="ChangeNumberLockActivity__retry">ลองใหม่</string>
   <!--Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow-->
@@ -2877,11 +3119,16 @@
   <string name="NotificationsSettingsFragment__notify_when">แจ้งเตือนเมื่อ…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">ผู้ติดต่อเริ่มใช้ Signal</string>
   <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">โปรไฟล์การแจ้งเตือน</string>
   <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">โปรไฟล์</string>
   <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">สร้างโปรไฟล์เพื่อรับการแจ้งเตือนจากคนหรือกลุ่มที่คุณเลือกเองเท่านั้น</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">โปรไฟล์การแจ้งเตือน</string>
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">สร้างโปรไฟล์</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">ถูกปิดกั้น</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d ผู้ติดต่อ</string>
@@ -2923,6 +3170,8 @@
   <string name="HelpFragment__copyright_signal_messenger">ลิขสิทธิ์ Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">อนุญาตให้ใช้ภายใต้ GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">คุณภาพของสื่อ</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">ส่งคุณภาพสื่อแล้ว</string>
   <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">การส่งสื่อคุณภาพสูงจะใช้ข้อมูลมากขึ้น</string>
   <string name="DataAndStorageSettingsFragment__high">สูง</string>
   <string name="DataAndStorageSettingsFragment__standard">มาตรฐาน</string>
@@ -2953,6 +3202,14 @@
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">ตัวเลือกขอบบน</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">ตัวเลือกขอบล่าง</string>
+  <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate_to_signal">บริจาคให้ Signal</string>
+  <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal ขับเคลื่อนโดยผู้ใช้เช่นคุณ ร่วมบริจาคแบบรายเดือนกับเรา พร้อมรับโล่ติดโปรไฟล์</string>
+  <!--Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_donate">บริจาค</string>
+  <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
+  <string name="Donate2022Q2Megaphone_not_now">ไม่ใช่ตอนนี้</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">ปรับแต่งการตอบสนอง</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">แตะเพื่อเปลี่ยนอีโมจิ</string>
@@ -2960,18 +3217,15 @@
   <string name="EditReactionsFragment_save">บันทึก</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">จับคู่สีกับวอลล์เปเปอร์โดยอัตโนมัติ</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">ลากเพื่อเปลี่ยนทิศทางของการไล่สี</string>
-  <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">สีแชตใหม่</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">เราสลับเปลี่ยนสีแชตเพื่อให้คุณมีตัวเลือกมากขึ้น และทำให้แชตอ่านง่ายขึ้น</string>
-  <string name="ChatColorsMegaphone__appearance">หน้าตา</string>
-  <string name="ChatColorsMegaphone__not_now">ไม่ใช่ตอนนี้</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">เพิ่มภาพโปรไฟล์</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">เลือกหน้าตาและสีหรือปรับแต่งหน้าตาเริ่มต้นของคุณ</string>
   <string name="AddAProfilePhotoMegaphone__not_now">ไม่ใช่ตอนนี้</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">เพิ่มรูปภาพ</string>
   <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">เป็นผู้สนับสนุน</string>
   <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal ขับเคลื่อนโดยผู้ใช้เช่นคุณ ร่วมบริจาคแล้วรับโล่ติดโปรไฟล์</string>
   <string name="BecomeASustainerMegaphone__not_now">ไม่ใช่ตอนนี้</string>
   <string name="BecomeASustainerMegaphone__donate">บริจาค</string>
   <!--KeyboardPagerFragment-->
@@ -3022,6 +3276,7 @@
   <string name="ConversationSettingsFragment__conversation_muted_forever">ปิดเสียงการสนทนาตลอดไป</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">คัดลอกหมายเลขโทรศัพท์ไปยังคลิปบอร์ดแล้ว</string>
   <string name="ConversationSettingsFragment__phone_number">หมายเลขโทรศัพท์</string>
+  <string name="ConversationSettingsFragment__get_badges">รับโล่ติดโปรไฟล์ด้วยการสนับสนุน Signal แตะที่โล่เพื่อเรียนรู้เพิ่มเติม</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">เพิ่มสมาชิก</string>
   <string name="PermissionsSettingsFragment__edit_group_info">แก้ไขข้อมูลกลุ่ม</string>
@@ -3044,6 +3299,7 @@
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">การชำระเงินใหม่</string>
@@ -3084,73 +3340,233 @@
   <string name="ShareInterstitialActivity__share">แบ่งปัน</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">เลื่อนขึ้น</string>
+  <string name="MultiselectForwardFragment__forward_to">ส่งต่อไปยัง</string>
   <!--Displayed when sharing content via the fragment-->
   <string name="MultiselectForwardFragment__share_with">แบ่งปันกับ</string>
+  <string name="MultiselectForwardFragment__add_a_message">เพิ่มข้อความ</string>
+  <string name="MultiselectForwardFragment__faster_forwards">ส่งต่อเร็วขึ้น</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">ข้อความที่ถูกส่งต่อจะถูกส่งทันที</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="other">ส่ง %1$d ข้อความ</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="other">ข้อความถูกส่งแล้ว</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="other">การส่งข้อความล้มเหลว</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="other">ไม่สามารถส่งต่อข้อความเพราะว่าข้อความไม่มีอยู่อีกต่อไปแล้ว</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">ถึงขีดจำกัดแล้ว</string>
   <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">เพิ่มข้อความ</string>
+  <string name="MediaReviewFragment__add_a_reply">เพิ่มการตอบกลับ</string>
+  <string name="MediaReviewFragment__send_to">ส่งไปยัง</string>
+  <string name="MediaReviewFragment__view_once_message">ดูข้อความครั้งเดียว</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">มีรายการที่ใหญ่เกินไปอย่างน้อยหนึ่งรายการ</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">มีรายการที่ไม่ถูกต้องอย่างน้อยหนึ่งรายการ</string>
+  <string name="MediaReviewFragment__too_many_items_selected">เลือกหลายรายการมากเกินไป</string>
   <string name="ImageEditorHud__cancel">ยกเลิก</string>
+  <string name="ImageEditorHud__draw">วาด</string>
+  <string name="ImageEditorHud__write_text">เขียนข้อความ</string>
+  <string name="ImageEditorHud__add_a_sticker">เพิ่มสติ๊กเกอร์</string>
+  <string name="ImageEditorHud__blur">เบลอ</string>
+  <string name="ImageEditorHud__done_editing">แก้ไขเสร็จสิ้น</string>
+  <string name="ImageEditorHud__clear_all">ล้างทั้งหมด</string>
   <string name="ImageEditorHud__undo">เลิกทำ</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">สลับระหว่างตัวทำเครื่องหมายและตัวเน้นข้อความ</string>
   <string name="ImageEditorHud__delete">ลบ</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">สลับระหว่างสไตล์ข้อความ</string>
   <string name="MediaCountIndicatorButton__send">ส่ง</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">แตะเพื่อลบ</string>
   <string name="MediaReviewSelectedItem__tap_to_select">แตะเพื่อเลือก</string>
   <string name="MediaReviewImagePageFragment__discard">ยกเลิก</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">ละทิ้งการเปลี่ยนแปลง</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">คุณจะสูญเสียการเปลี่ยนแปลงทั้งหมดที่ทำไว้กับรูปภาพนี้</string>
+  <string name="CameraFragment__failed_to_open_camera">การเปิดกล้องล้มเหลว</string>
+  <string name="BadgesOverviewFragment__my_badges">โล่ของฉัน</string>
+  <string name="BadgesOverviewFragment__featured_badge">โล่ที่น่าสนใจ</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">แสดงโล่บนโปรไฟล์</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">การอัปเดตโปรไฟล์ล้มเหลว</string>
+  <string name="BadgeSelectionFragment__select_badges">เลือกโล่</string>
   <string name="SelectFeaturedBadgeFragment__preview">ภาพตัวอย่าง</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">เลือกโล่</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">คุณต้องเลือกโล่</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">การอัปเดตโปรไฟล์ล้มเหลว</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">เป็นผู้สนับสนุน</string>
+  <string name="ImageView__badge">โล่</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal ขับเคลื่อนโดยผู้คนเช่นคุณ</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">สนับสนุนเทคโนโลยีที่สร้างมาเพื่อคุณ ไม่เพื่อข้อมูลของคุณ ด้วยการเข้าร่วมชุมชนของผู้คนที่สนับสนุนมัน</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">สนับสนุนเทคโนโลยีที่สร้างมาเพื่อคุณ ไม่เพื่อข้อมูลของคุณ ด้วยการเข้าร่วมชุมชนของผู้คนที่สนับสนุน Signal</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">บริจาครายเดือนให้กับ Signal เพื่อสนับสนุนเทคโนโลยีที่สร้างมาเพื่่อคุณ ไม่ใช่เพื่อข้อมูลของคุณ</string>
+  <string name="SubscribeFragment__currency">สกุลเงิน</string>
+  <string name="SubscribeFragment__more_payment_options">ตัวเลือกการชำระเงินเพิ่มเติม</string>
+  <string name="SubscribeFragment__cancel_subscription">ยกเลิกการเป็นสมาชิก</string>
+  <string name="SubscribeFragment__confirm_cancellation">ยืนยันการยกเลิก</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">คุณจะไม่ถูกเรียกเก็บเงินอีก โล่ของคุณจะถูกลบออกจากโปรไฟล์เมื่อสิ้นสุดรอบเรียกเก็บเงิน</string>
   <string name="SubscribeFragment__not_now">ไม่ใช่ตอนนี้</string>
   <string name="SubscribeFragment__confirm">ยืนยัน</string>
+  <string name="SubscribeFragment__update_subscription">อัปเดตการเป็นสมาชิก</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">การเป็นสมาชิกของคุณถูกยกเลิกแล้ว</string>
+  <string name="SubscribeFragment__update_subscription_question">อัปเดตการเป็นสมาชิกหรือไม่</string>
   <string name="SubscribeFragment__update">ปรับรุ่น</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">คุณจะถูกเรียกเก็บเงินเป็นจำนวนเต็ม  (%1$s) ของราคาสามาชิกใหม่ในปัจจุบัน แล้วการเป็นสมาชิกของคุณจะต่ออายุแบบรายเดือน</string>
+  <string name="Subscription__s_per_month">%s/ต่อเดือน</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/เดือน · ต่ออายุ %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/เดือน · หมดอายุ %2$s</string>
   <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal เป็นแอปที่ไม่แสวงผลกำไรที่ไม่มีโฆษณาหรือผู้ลงทุน สนับสนุนจากคนที่ใช้และเห็นคุณค่าของแอปเท่านั้น บริจาครายเดือนแล้วรับโล่โปรไฟล์เพื่อแสดงการสนับสนุนของคุณ</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">บริจาคไปทำไม?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal มุ่งมั่นในการพัฒนาเทคโนโลยีความเป็นส่วนตัวแบบโอเพ่นซอร์สที่ป้องกันการแสดงความคิดเห็นเสรีและเปิดใช้งานการสื่อสารทั่วโลกด้วยความปลอดภัย</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">การบริจาคของคุณจะเป็นพลังให้กับสิ่งนี้และเป็นค่าใช้จ่ายในการพัฒนาและดำเนินการของแอปที่ผู้คนเป็นล้านใช้ในการติดต่อสื่อสารส่วนตัว ไม่มีโฆษณา ไม่มีตัวติดตาม และไม่ได้มาเล่นๆ</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ขอบคุณสำหรับการสนับสนุน!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">ขอบคุณสำหรับ Bosst!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">คุณได้รับโล่ %s ! แสดงโล่บนโปรไฟล์คุณเพื่อสร้างการรับรู้การบริจาคของคุณให้กับ Signal</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">คุณได้รับโล่ Boost! แสดงโล่นี้บนโปรไฟล์เพื่อสร้างการรับรู้การบริจาคของคุณให้กับ Signal</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">คุณยังสามารถ</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">เป็นผู้สนับสนุนรายเดือน</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">แสดงบนโปรไฟล์</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">สร้างโล่ที่น่าสนใจ</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">เสร็จสิ้น</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">เมื่อคุณมีโล่มากกว่าหนึ่งอัน คุณสามารถเลือกได้หนึ่งอันเพื่อแสดงให้ผู้อื่นเห็นบนโปรไฟล์</string>
+  <string name="BecomeASustainerFragment__get_badges">รับโล่สำหรับแสดงบนโปรไฟล์ของคุณด้วยการสนับสนุน Signal</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal เป็นแอปไม่แสวงผลกำไรที่ไม่มีโฆษณาหรือนักลงทุน สนับสนุนโดยคนแบบคุณเท่านั้น</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">บริจาครายเดือน</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">ดูเพิ่ม</string>
   <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">ใบเสร็จ</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">การเป็นสมาชิกของฉัน</string>
+  <string name="ManageDonationsFragment__manage_subscription">จัดการการเป็นสมาชิก</string>
   <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__donation_receipts">ใบเสร็จการบริจาค</string>
+  <string name="ManageDonationsFragment__badges">โล่</string>
+  <string name="ManageDonationsFragment__subscription_faq">คำถามที่พบบ่อยเกี่ยวกับการเป็นสมาชิก</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">ข้อผิดพลาดการเป็นสมาชิก</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">วิธีอื่นๆ ในการมอบ</string>
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">ให้ของขวัญโล่</string>
+  <string name="BoostFragment__give_signal_a_boost">มอบ Boost ให้ Signal</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">บริจาคหนึ่งครั้งแล้วรับโล่ Boost เป็นเวลา %1$d วัน</string>
   <string name="Boost__enter_custom_amount">กรอกจำนวนเอง</string>
+  <string name="Boost__one_time_contribution">การบริจาคครั้งเดียว</string>
+  <string name="MySupportPreference__add_a_signal_boost">เพิ่ม Signal Boost</string>
+  <string name="MySupportPreference__s_per_month">%1$s/เดือน</string>
+  <string name="MySupportPreference__renews_s">ต่ออายุ %1$s</string>
+  <string name="MySupportPreference__processing_transaction">กำลังดำเนินการธุรกรรม…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">เพิ่มโล่ไม่ได้  %1$s</string>
+  <string name="MySupportPreference__please_contact_support">กรุณาฝ่ายสนับสนุน</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">โล่ Boost หมดอายุแล้ว</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">ยกเลิกการบริจาครายเดือน</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">โล่ Boost ของคุณหมดอายุแล้ว และจะไม่ปรากฏบนโปรไฟล์คุณอีกต่อไป</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">คุณสามารถเปิดใช้งานโล่ Boost ได้ใหม่เป็นเวลา 30 วันด้วยการบริจาคหนึ่งครั้ง</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">คุณสามารถใช้ Signal ต่อไปได้ แต่หากต้องการสนับสนุนเทคโนโลยีที่สร้างมาเพื่อคุณ ให้ลองพิจารณาการเป็นผู้สนับสนุนด้วยการบริจาครายเดือน</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">เป็นผู้สนับสนุน</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">เพิ่ม Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ไม่ใช่ตอนนี้</string>
   <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">การบริจาครายเดือนของคุณจะถูกยกเลิกโดยอัตโนมัติ เพราะว่าคุณไม่มีการเคลื่อนไหวมาเป็นระยะเวลานาน  โล่ %1$sของคุณจะไม่ปรากฎบนโปรไฟล์อีกต่อไป </string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">การบริจาครายเดือนของคุณยกเลิกเพราะเราไม่สามารถดำเนินการชำระเงินได้ โล่ของคุณจะไม่ปรากฏบนโปรไฟล์อีกต่อไป</string>
+  <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">คุณสามารถใช้ Signal ต่อไปได้ แต่หากต้องการสนับสนุนแอปและเปิดใช้งานโล่อีกครั้ง ให้ต่ออายุตอนนี้</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">ต่ออายุการเป็นสมาชิก</string>
+  <!--Button label to send user to Google Pay website-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">ไปที่ Google Pay</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">ไม่สามารถดำเนินการการชำระเงินการสมัครสมาชิกได้</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">เรามีปัญหาในการเก็บค่าผู้สนับสนุน Signal ตรวจสอบให้แน่ใจว่ามีการอัปเดตวิธีการชำระเงินแล้ว ถ้ายังไม่ได้อัปเดต ให้อัปเดตใน Google Pay แล้ว Signal จะลองดำเนินการการชำระเงินอีกครั้งในอีกสองถึงสามวัน</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">ไม่ต้องแสดงอีก</string>
+  <string name="Subscription__please_contact_support_for_more_information">กรุณาติดต่อฝ่ายสนับสนุนเพื่อสอบถามข้อมูลเพิ่มเติม</string>
   <string name="Subscription__contact_support">ติดต่อการสนับสนุน</string>
+  <string name="Subscription__earn_a_s_badge">รับโล่ %1$s</string>
   <string name="SubscribeFragment__processing_payment">กำลังประมวลผลการชำระเงิน…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">การดำเนินการชำระเงินมีข้อผิดพลาด</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">การดำเนินการชำระเงินมีข้อผิดพลาด %1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">โล่ของคุณไม่สามารถเพิ่มไปยังบัญชีของคุณได้ แต่คุณอาจจะถูกเรียกเก็บเงิน กรุณาติดต่อฝ่ายสนับสนุน</string>
+  <string name="DonationsErrors__your_payment">การชำระเงินของคุณไม่สามารถดำเนินการได้ และคุณยังไม่ได้ถูกเรียกเก็บเงิน กรุณาลองใหม่อีกครั้ง</string>
+  <string name="DonationsErrors__still_processing">ยังดำเนินการอยู่</string>
+  <string name="DonationsErrors__couldnt_add_badge">เพิ่มโล่ไม่ได้</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__failed_to_validate_badge">การตรวจยืนยันโล่ล้มเหลว</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__could_not_validate">ไม่สามารถตรวจยืนยันการตอบสนองเซิร์ฟเวอร์ได้ กรุณาติดต่อฝ่ายสนับสนุน</string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__failed_to_send_gift_badge">การส่งโล่ของขวัญล้มเหลว</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__could_not_send_gift_badge">ไม่สามารถส่งโล่ของขวัญได้ กรุณาติดต่อฝ่ายสนับสนุน</string>
+  <string name="DonationsErrors__your_badge_could_not">โล่ของคุณไม่สามารถเพิ่มไปยังบัญชีของคุณได้ แต่คุณอาจจะถูกเรียกเก็บเงิน กรุณาติดต่อฝ่ายสนับสนุน</string>
+  <string name="DonationsErrors__your_payment_is_still">การชำระเงินของคุณยังคงดำเนินการอยู่ อาจจะใช้เวลาสักครู่ ขึ้นอยู่กับการสัญญาณอินเทอร์เน็ตของคุณ</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay ไม่สามารถใช้งานได้</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">คุณต้องตั้งค่า Google Pay เพื่อบริจาคผ่านในตัวแอป</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">การยกเลิกสมาชิกล้มเหลว</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">การจะยกเลิกสมาชิกต้องมีการเชื่อมต่ออินเทอร์เน็ต</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">อุปกรณ์ของคุณไม่รองรับ Google Pay คุณจึงไม่สามารถสมัครเพื่อรับโล่ได้ แต่คุณสามารถสนับสนุน Signal ได้ด้วยการบริจารบนเว็บไซต์ของเรา</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">เครือข่ายมีข้อผิดพลาด ตรวจสอบการเชื่อมต่อแล้วลองใหม่อีกครั้ง</string>
   <string name="NetworkFailure__retry">ลองใหม่</string>
+  <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__recipient_verification_failed">การตรวจยืนยันผู้รับล้มเหลว</string>
+  <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">เป้าหมายไม่รองรับการให้ของขวัญ</string>
+  <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__could_not_verify_recipient">ไม่สามารถตรวจยืนยันผู้รับ</string>
+  <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">กรุณาตรวจสอบการเชื่อมต่อเครือข่ายแล้วลองอีกครั้ง</string>
   <!--Gift message view title-->
+  <string name="GiftMessageView__gift_badge">โล่ของขวัญ</string>
   <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="other">มีอายุ %1$d เดือน</item>
+  </plurals>
   <!--Gift badge redeem action label-->
+  <string name="GiftMessageView__redeem">แลกเปลี่ยน</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">ดู</string>
   <!--Gift badge redeeming action label-->
+  <string name="GiftMessageView__redeeming">กำลังแลกเปลี่ยน…</string>
   <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">แลกเปลี่ยนแล้ว</string>
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">ลองวิธีการชำระอื่น หรือติดต่อธนาคารเพื่อขอข้อมูลเพิ่มเติม</string>
   <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">ตรวจยืนยันวิธีการชำระเงินว่ามีการอัปเดตแล้วใน Google Pay แล้วลองอีกครั้ง</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">เรียนรู้เพิ่มเติม</string>
   <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">ตรวจยืนยันวิธีการชำระเงินว่ามีการอัปเดตแล้วใน Google Pay แล้วลองอีกครั้ง ถ้ายังมีปัญหาอยู่ ให้ติดต่อธนาคาร</string>
   <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">บัตรของคุณไม่รับรองการซื้อประเภทนี้ ลองวิธีชำระเงินแบบอื่น</string>
   <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">บัตรของคุณหมดอายุแล้ว อัปเดตวิธีการชำระเงินใน Google Pay แล้วลองอีกครั้ง</string>
   <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">ไปที่ Google Pay</string>
   <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">หมายเลขบัตรไม่ถูกต้อง อัปเดตใน Google Pay แล้วลองอีกครั้ง</string>
   <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">หมายเลข CVC ของบัตรคุณไม่ถูกต้อง อัปเดตใน Google Pay แล้วลองอีกครั้ง</string>
   <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">บัตรของคุณมีวงเงินไม่เพียงพอที่จะทำการซื้อนี้ให้เสร็จสิ้น ลองวิธีการชำระเงินแบบอื่น</string>
   <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">เดือนหมดอายุของวิธีการชำระเงินของคุณไม่ถูกต้อง อัปเดตใน Google Pay แล้วลองอีกครั้ง</string>
   <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">ปีหมดอายุของวิธีการชำระเงินของคุณไม่ถูกต้อง อัปเดตใน Google Pay แล้วลองอีกครั้ง</string>
   <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">ลองทำการชำระเงินให้เรียบร้อยอีกครั้ง หรือติดต่อธนาคารเพื่อขอข้อมูลเพิ่มเติม</string>
   <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">ลองอีกครั้งหรือติดต่อธนาคารเพพื่อขอข้อมูลเพิ่มเติม</string>
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">ตั้งชื่อโปรไฟล์ของคุณ</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">ชื่อโปรไฟล์</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
@@ -3162,33 +3578,51 @@
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">บันทึก</string>
   <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">แก้ไขโปรไฟล์นี้</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">มีโปรไฟล์ที่มีชื่อนี้อยู่แล้ว</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__work">ที่ทำงาน</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">นอนหลับ</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">กำลังขับรถ</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">เวลาหยุดทำงาน</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">โฟกัส</string>
   <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">ต้องมีชื่อ</string>
   <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">อนุญาตการแจ้งเตือนแล้ว</string>
   <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">เพิ่มคนและกลุ่มที่คุณต้องการการแจ้งเตือนและการโทรเมื่อโปรไฟล์นี้มีการใช้งาน</string>
   <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">เพิ่มคนหรือกลุ่ม</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">เพิ่ม</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">สร้างโปรไฟล์เพื่อรับการแจ้งเตือนและการโทรเท่านั้นจากคนและกลุ่มที่คุณต้องการได้ข่าว</string>
   <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">โปรไฟล์</string>
   <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">โปรไฟล์ใหม่</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
   <string name="NotificationProfilesFragment__on">เปิด</string>
   <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">ลบโปรไฟล์</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">\"%1$s\" ถูกลบแล้ว</string>
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">เลิกทำ</string>
   <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">ลบโปรไฟล์ถาวรหรือไม่</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">ลบ</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">แก้ไขโปรไฟล์การแจ้งเตือน</string>
   <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">ทุกวัน</string>
   <!--Profile status on if it is the active profile-->
   <string name="NotificationProfileDetails__on">เปิด</string>
   <!--Profile status on if it is not the active profile-->
@@ -3196,26 +3630,43 @@
   <!--Description of hours for schedule (start to end) times-->
   <string name="NotificationProfileDetails__s_to_s">%1$s ถึง %2$s</string>
   <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">ข้อยกเว้น</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">อนุญาตการโทรทั้งหมด</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">แจ้งเตือนการกล่าวถึงทั้งหมด</string>
   <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">กำหนดการ</string>
   <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
   <string name="NotificationProfileDetails__see_all">ดูทั้งหมด</string>
   <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">เพิ่มกำหนดการ</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">ตั้งค่ากำหนดการเพื่อเปิดใช้งานโปรไฟล์การแจ้งเตือนนี้อัตโนมัติ</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">ตาราง</string>
   <!--Label for showing the start time for the schedule-->
   <string name="EditNotificationProfileSchedule__start">เริ่ม</string>
   <!--Label for showing the end time for the schedule-->
+  <string name="EditNotificationProfileSchedule__end">สิ้นสุด</string>
   <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">อา</string>
   <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">จ</string>
   <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">อ</string>
   <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">พ</string>
   <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">พฤ</string>
   <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">ศ</string>
   <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">ส</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">ตั้งเวลาเริ่มต้น</string>
   <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">ตั้งเวลาสิ้นสุด</string>
   <!--If in edit mode, call to action button text show to save schedule to profile-->
   <string name="EditNotificationProfileSchedule__save">บันทึก</string>
   <!--If in create mode, call to action button text to show to skip enabling a schedule-->
@@ -3223,72 +3674,126 @@
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">ถัดไป</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">กำหนดการต้องมีอย่างน้อยหนึ่งวัน</string>
   <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">โปรไฟล์ที่สร้างไว้</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">เสร็จสิ้น</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">คุณสามารถเปิดหรือปิดโปรไฟล์ได้ด้วยตัวเองทางเมนูที่อยู่บนรายการสนทนา</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">เพิ่มกำหนดการในการตั้งค่าเพื่อทำให้โปรไฟล์เป็นอัตโนมัติ</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">โปรไฟล์ของคุณจะเปิดและปิดอัตโนมัติตามตารางของคุณ</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <string name="NotificationProfileSelection__new_profile">โปรไฟล์ใหม่</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">เป็นเวลา 1 ชั่วโมง</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">จนถึง %1$s</string>
   <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">ดูการตั้งค่า</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">เปิดจนถึง %1$s</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">การเปิดตัวเลือกล้มเหลว</string>
   <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">บันทึกการเปลี่ยนแปลง Signal &amp; ข่าว</string>
   <!--Donation receipts activity title-->
   <string name="DonationReceiptListFragment__all_activity">กิจกรรมทั้งหมด</string>
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">ทั้งหมด</string>
   <!--Donation receipts recurring tab label-->
+  <string name="DonationReceiptListFragment__recurring">การเกิดซ้ำ</string>
   <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">ครั้งเดียว</string>
   <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">ของขวัญ</string>
   <!--Donation receipts boost row label-->
+  <string name="DonationReceiptListFragment__boost">Boost</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">รายละเอียด</string>
   <!--Donation receipts donation type heading-->
+  <string name="DonationReceiptDetailsFragment__donation_type">ประเภทการบริจาค</string>
   <!--Donation receipts date paid heading-->
+  <string name="DonationReceiptDetailsFragment__date_paid">วันที่ชำระ</string>
   <!--Donation receipts share PNG-->
+  <string name="DonationReceiptDetailsFragment__share_receipt">แชร์ใบเสร็จ</string>
   <!--Donation receipts list end note-->
+  <string name="DonationReceiptListFragment__if_you_have">ถ้าคุณติดตั้ง Signal ใหม่ ใบเสร็จจากการบริจาคก่อนหน้านี้จะไม่สามารถใช้งานได้</string>
   <!--Donation receipts document title-->
+  <string name="DonationReceiptDetailsFragment__donation_receipt">ใบเสร็จการบริจาค</string>
   <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">ยอดเงิน</string>
   <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">ขอบคุณสำหรับการสนับสนุน Signal การสนับสนุนของคุณจะช่วยเป็นพลังให้กับภารกิจในการพัฒนาเทคโนโลยีความเป็นส่วนตัวแบบโอเพนซอร์สที่ปกป้องการแสดงออกอย่างเสรีและเปิดใช้งานการสื่อสารทั่วโลกที่ปลอดภัยสำหรับผู้คนหลายล้านคนทั่วโลก ถ้าคุณเป็นผู้อาศัยในสหรัฐอเมริกา ให้เก็บใบเสร็จไว้เพื่อบันทึกภาษี Signal Technology Foundation เป็นองค์กรที่ได้รับการยกเว้นภาษีในสหรัฐอเมริกาภายใต้มาตรา 501c3 ของประมวลรัษฎากรภายใน หมายเลขประจำตัวผู้เสียภาษีของรัฐบาลกลางของเราคือ 82–4506840</string>
   <!--Donation receipt type-->
+  <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
+  <!--Donation reciepts screen empty state title-->
+  <string name="DonationReceiptListFragment__no_receipts">ไม่มีใบเสร็จ</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">การสนทนา</string>
   <!--Label for Stories tab in home app screen-->
+  <string name="ConversationListTabs__stories">สตอรี่</string>
   <!--String for counts above 99 in conversation list tabs-->
+  <string name="ConversationListTabs__99p">99+</string>
   <!--Title for "My Stories" row item in Stories landing page-->
+  <string name="StoriesLandingFragment__my_stories">สตอรี่ของฉัน</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
+  <string name="StoriesLandingFragment__add_a_story">เพิ่มสตอรี่</string>
   <!--Displayed when there are no stories to display-->
+  <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">ไม่มีการอัปเดตล่าสุดแสดงในตอนนี้ แตะ + เพื่อเพิ่มสตอรี่ของคุณ</string>
   <!--Context menu option to hide a story-->
+  <string name="StoriesLandingItem__hide_story">ซ่อนสตอรี่</string>
   <!--Context menu option to unhide a story-->
+  <string name="StoriesLandingItem__unhide_story">ยกเลิกการซ่อนสตอรี่</string>
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">ส่งต่อ</string>
   <!--Context menu option to share a story-->
+  <string name="StoriesLandingItem__share">แชร์…</string>
   <!--Context menu option to go to story chat-->
+  <string name="StoriesLandingItem__go_to_chat">ไปที่แชต</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">กำลังส่ง…</string>
   <!--Label when multiple stories are pending sending-->
-  <!--Label when a story fails to send-->
+  <string name="StoriesLandingItem__sending_d">กำลังส่ง %1$d…</string>
+  <!--Label when a story fails to send due to networking-->
   <string name="StoriesLandingItem__send_failed">การส่งล้มเหลว</string>
+  <!--Label when a story fails to send due to identity mismatch-->
   <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">แตะเพื่อลองใหม่</string>
   <!--Title of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__hide_story">ซ่อนสตอรี่</string>
   <!--Message of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__new_story_updates">สตอรี่อัปเดตใหม่จาก %1$s จะไม่ปรากฎที่ด้านบนของรายการสตอรี่อีกต่อไป</string>
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">ซ่อน</string>
   <!--Displayed in Snackbar after story is hidden-->
+  <string name="StoriesLandingFragment__story_hidden">สตอรี่ที่ซ่อนอยู่</string>
   <!--Section header for hidden stories-->
+  <string name="StoriesLandingFragment__hidden_stories">สตอรี่ที่ซ่อนไว้</string>
   <!--Displayed on each sent story under My Stories-->
+  <plurals name="MyStories__d_views">
+    <item quantity="other">รับชม %1$d</item>
+  </plurals>
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">ส่งต่อ</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
+  <string name="MyStories__ss_story">สตอรี่ของ %1$s</string>
   <!--Title of dialog to confirm deletion of story-->
+  <string name="MyStories__delete_story">ลบสตอรี่</string>
   <!--Message of dialog to confirm deletion of story-->
+  <string name="MyStories__this_story_will_be_deleted">สตอรี่จะถูกลบสำหรับคุณและทุกคนที่ได้รับ</string>
+  <!--Toast shown when story media cannot be saved-->
   <!--Displayed at bottom of story viewer when current item has views-->
+  <plurals name="StoryViewerFragment__d_views">
+    <item quantity="other">รับชม %1$d</item>
+  </plurals>
   <!--Displayed at bottom of story viewer when current item has replies-->
+  <plurals name="StoryViewerFragment__d_replies">
+    <item quantity="other">ตอบกลับ %1$d</item>
+  </plurals>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3297,141 +3802,269 @@
   <string name="StoryViewerPageFragment__s_to_s">%1$s ถึง %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">ตอบกลับ</string>
+  <!--Label for the reply button in story viewer, which will launch the group story replies bottom sheet.-->
+  <string name="StoryViewerPageFragment__reply_to_group">ตอบกลับกลุ่ม</string>
   <!--Displayed when a story has no views-->
+  <string name="StoryViewsFragment__no_views_yet">ยังไม่มีคนดู</string>
   <!--Displayed when a story has no replies yet-->
+  <string name="StoryGroupReplyFragment__no_replies_yet">ยังไม่มีการตอบกลับ</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
+  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">ตอบสนองสตอรี่ของคุณ</string>
   <!--Label for story views tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__views">รับชม</string>
   <!--Label for story replies tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__replies">ตอบกลับ</string>
   <!--Description of action for reaction button-->
+  <string name="StoryReplyComposer__react_to_this_story">ตอบสนองสตอรี่นี้</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
+  <string name="StoryReplyComposer__replying_privately_to_s">ตอบกลับเป็นการส่วนตัวกับ %1$s</string>
   <!--Context menu item to privately reply to a story response-->
+  <string name="StoryGroupReplyItem__private_reply">ตอบกลับเป็นการส่วนตัว</string>
   <!--Context menu item to copy a story response-->
   <string name="StoryGroupReplyItem__copy">คัดลอก</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">ลบ</string>
   <!--Story settings page title-->
+  <string name="StorySettingsFragment__story_settings">การตั้งค่าสตอรี่</string>
   <!--Story settings private stories heading-->
+  <string name="StorySettingsFragment__private_stories">สตอรี่ส่วนตัว</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">สตอรี่ส่วนตัวจะสามารถดูได้เฉพาะคนที่คุณเพิ่มเข้าไปให้เท่านั้น มีเพียงคุณที่เห็นชื่อสตอรี่</string>
   <!--Option label for creating a new private story-->
+  <string name="StorySettingsFragment__new_private_story">สตอรี่ส่วนตัวใหม่</string>
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">สตอรี่ของฉัน</string>
   <!--Section heading for story visibility-->
+  <string name="MyStorySettingsFragment__who_can_see_this_story">ใครที่เห็นสตอรี่นี้ได้บ้าง</string>
   <!--Clickable option for selecting people to hide your story from-->
+  <string name="MyStorySettingsFragment__hide_story_from">ซ่อนสตอรี่จาก</string>
   <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <plurals name="MyStorySettingsFragment__d_people">
+    <item quantity="other">%1$d คน</item>
+  </plurals>
   <!--Section header for options related to replies and reactions-->
+  <string name="MyStorySettingsFragment__replies_amp_reactions">การตอบกลับ &amp; การตอบสนอง</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
+  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">อนุญาตการตอบกลับ &amp; การตอบสนอง</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
+  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">ให้คนที่ดูสตอรี่คุณตอบสนองและตอบกลับ</string>
   <!--Note about default sharing-->
+  <string name="MyStorySettingsFragment__hide_your_story_from">ซ่อนสตอรี่จากคนบางคน ในค่าเริ่มต้น สตอรี่ของคุณจะถูกแชร์กับ %1$s ของคุณ</string>
   <!--Signal connections linked text that opens the Signal Connections sheet-->
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">สายสัมพันธ์ Signal</string> -->
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>สายสัมพันธ์ Signal</strong> คือคนที่คุณได้เลือกที่จะไว้ใจ โดย</string>
   <!--Signal connections sheet bullet point 1-->
+  <string name="SignalConnectionsBottomSheet__starting_a_conversation">กำลังเริ่มต้นการสนทนา</string>
   <!--Signal connections sheet bullet point 2-->
+  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">กำลังรับคำขอส่งข้อความ</string>
   <!--Signal connections sheet bullet point 3-->
+  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">กำลังใส่พวกเขาเข้าไปในรายชื่อผู้ติดต่อในระบบของคุณ</string>
   <!--Note at the bottom of the Signal connections sheet-->
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">สายสัมพันธ์ของคุณจะสามารถมองเห็นชื่อและรูปภาพ และโพสต์ใน \"สตอรี่ของฉัน\" จนกว่าคุณจะซ่อนสตอรี่นั้นจากพวกเขา</string>
   <!--Clickable option to add a viewer to a private story-->
+  <string name="PrivateStorySettingsFragment__add_viewer">เพิ่มผู้ชม</string>
   <!--Clickable option to delete a custom story-->
+  <string name="PrivateStorySettingsFragment__delete_private_story">ลบสตอรี่ส่วนตัว</string>
   <!--Dialog title when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__remove_s">ลบ %1$sหรือไม่</string>
   <!--Dialog message when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__this_person_will_no_longer">คนคนนี้จะไม่เห็นสตอรี่ของคุณอีกต่อไป</string>
   <!--Positive action label when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__remove">ลบ</string>
   <!--Dialog title when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__are_you_sure">แน่ใจหรือไม่</string>
   <!--Dialog message when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__this_action_cannot">การกระทำนี้ไม่สามารถยกเลิกได้</string>
   <!--Page title for editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__edit_story_name">แก้ไขชื่อสตอรี่</string>
   <!--Input field hint when editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__story_name">ชื่อสตอรี่</string>
   <!--Save button label when editing a private story name-->
   <string name="EditPrivateStoryNameFragment__save">บันทึก</string>
   <!--Displayed in text post creator before user enters text-->
+  <string name="TextStoryPostCreationFragment__tap_to_add_text">แตะเพื่อเพิ่มข้อความ</string>
   <!--Button label for changing font when creating a text post-->
+  <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
   <!--Displayed in text post creator when prompting user to enter text-->
+  <string name="TextStoryPostTextEntryFragment__add_text">เพิ่มข้อความ</string>
   <!--Content description for \'done\' button when adding text to a story post-->
+  <string name="TextStoryPostTextEntryFragment__done_adding_text">เพิ่มข้อความเสร็จแล้ว</string>
   <!--Text label for media selection toggle-->
   <string name="MediaSelectionActivity__text">ข้อความ</string>
   <!--Camera label for media selection toggle-->
   <string name="MediaSelectionActivity__camera">กล้อง</string>
   <!--Hint for entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">พิมพ์หรือวาง URL</string>
   <!--Displayed prior to the user entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">แชร์ลิงก์กับผู้ที่รับชมสตอรี่ของคุณ</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">ค้นหา</string>
+  <!--Toast shown when an unexpected error occurs while sending a text story-->
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
+  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">ซ่อนสตอรี่จาก…</string> -->
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">เสร็จสิ้น</string>
   <!--Dialog title for first time adding something to a story-->
+  <string name="StoryDialogs__add_to_story_q">เพิ่มไปยังสตอรี่หรือไม่</string>
   <!--Dialog message for first time adding something to a story-->
+  <string name="StoryDialogs__adding_content">การเพิ่มเนื้อหาไปยังสตอรี่ของคุณจะช่วยให้สายสัมพันธ์ Signal ได้ดูเนื้อหานั้น 24 ชั่วโมง คุณสามารถเปลี่ยนผู้ที่สามารถรับชมสตอรี่ของคุณได้ในการตั้งค่า</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
+  <string name="StoryDialogs__add_to_story">เพิ่มไปยังสตอรี่</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <string name="StoryDialogs__edit_viewers">แก้ไขผู้ชม</string>
   <!--Error message shown when a failure occurs during story send-->
+  <string name="StoryDialogs__story_could_not_be_sent">ไม่สามารถส่งสตอรี่ได้ ตรวจสอบการเชื่อมต่อแล้วลองอีกครั้ง</string>
   <!--Error message dialog button to resend a previously failed story send-->
   <string name="StoryDialogs__send">ส่ง</string>
   <!--Privacy Settings toggle title for stories-->
+  <string name="PrivacySettingsFragment__share_and_view_stories">แชร์ &amp; ดูสตอรี่</string>
   <!--Privacy Settings toggle summary for stories-->
+  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">คุณจะไม่สามารถแชร์หรือรับชมสตอรี่ได้อีกต่อไป ถ้าตัวเลือกนี้ถูกปิด</string>
   <!--New story viewer selection screen title-->
+  <string name="CreateStoryViewerSelectionFragment__choose_viewers">เลือกผู้ชม</string>
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">ถัดไป</string>
   <!--New story viewer selection screen title as recipients are selected-->
+  <plurals name="SelectViewersFragment__d_viewers">
+    <item quantity="other">ผู้ชม %1$d</item>
+  </plurals>
   <!--Name story screen title-->
+  <string name="CreateStoryWithViewersFragment__name_story">ตั้งชื่อสตอรี่</string>
   <!--Name story screen label hint-->
+  <string name="CreateStoryWithViewersFragment__story_name_required">ชื่อสตอรี่ (ต้องมี)</string>
   <!--Name story screen viewers subheading-->
+  <string name="CreateStoryWithViewersFragment__viewers">ผู้ชม</string>
   <!--Name story screen create button label-->
   <string name="CreateStoryWithViewersFragment__create">สร้าง</string>
   <!--Name story screen error when save attempted with no label-->
   <string name="CreateStoryWithViewersFragment__this_field_is_required">ช่องนี้ต้องใส่</string>
   <!--Name story screen error when save attempted but label is duplicate-->
+  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">มีสตอรี่ที่มีชื่อนี้อยู่แล้ว</string>
   <!--Text for select all action when editing recipients for a story-->
   <string name="BaseStoryRecipientSelectionFragment__select_all">เลือกทั้งหมด</string>
   <!--Choose story type bottom sheet title-->
+  <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">เลือกประเภทสตอรี่ของคุณ</string>
   <!--Choose story type bottom sheet new story row title-->
+  <string name="ChooseStoryTypeBottomSheet__new_private_story">สตอรี่ส่วนตัวใหม่</string>
   <!--Choose story type bottom sheet new story row summary-->
+  <string name="ChooseStoryTypeBottomSheet__visible_only_to">เห็นได้เป็นบางคนเท่านั้น</string>
   <!--Choose story type bottom sheet group story title-->
+  <string name="ChooseStoryTypeBottomSheet__group_story">สตอรี่กลุ่ม</string>
   <!--Choose story type bottom sheet group story summary-->
+  <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">แชร์ไปยังกลุ่มที่มีอยู่</string>
   <!--Choose groups bottom sheet title-->
+  <string name="ChooseGroupStoryBottomSheet__choose_groups">เลือกกลุ่ม</string>
   <!--Displayed when copying group story reply text to clipboard-->
   <string name="StoryGroupReplyFragment__copied_to_clipboard">คัดลอกไปคลิปบอร์ดแล้ว</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
+  <string name="StoryViewerPageFragment__see_more">ดูเพิ่มเติม</string>
   <!--Displayed in toast after sending a direct reply-->
-  <!--Displayed in toast after sending a direct reaction-->
+  <string name="StoryDirectReplyDialogFragment__sending_reply">กำลังส่งการตอบกลับ</string>
   <!--Displayed in the viewer when a story is no longer available-->
+  <string name="StorySlateView__this_story_is_no_longer_available">ไม่มีสตอรี่นี้อีกต่อไป</string>
   <!--Displayed in the viewer when the network is not available-->
+  <string name="StorySlateView__no_internet_connection">ไม่มีการเชื่อมต่ออินเทอร์เน็ต</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <string name="StorySlateView__couldnt_load_content">ไม่สามารถโหลดเนื้อหาได้</string>
   <!--Toasted when the user externally shares to a text story successfully-->
+  <string name="TextStoryPostCreationFragment__sent_story">ส่งสตอรี่แล้ว</string>
   <!--Toasted when the user external share to a text story fails-->
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">การส่งสตอรี่ล้มเหลว</string>
   <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">ดูสตอรี่</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">ดูรูปโปรไฟล์</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">ปิดการหลบเลี่ยงการปิดกั้น</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">คุณสามารถเชื่อมต่อกับบริการ Signal โดยตรงได้แล้ว เพื่อประสบการณ์ที่ดียิ่งขึ้น</string>
   <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_no_thanks">ไม่ ขอบคุณ</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">ปิด</string>
   <!--Conversation Item label for when you react to someone else\'s story-->
+  <string name="ConversationItem__you_reacted_to_s_story">คุณตอบสนองกับสตอรี่ของ %1$s</string>
   <!--Conversation Item label for reactions to your story-->
+  <string name="ConversationItem__reacted_to_your_story">ตอบสนองกับสตอรี่ของคุณ</string>
   <!--Conversation Item label for reactions to an unavailable story-->
+  <string name="ConversationItem__reacted_to_a_story">ตอบสนองกับสตอรี่</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="ExpandModel__view_more">ดูเพิ่มเติม</string>
+  <string name="StoriesLinkPopup__visit_link">ไปที่ลิงก์</string>
+  <!--Duration and price information-->
   <!--Tagline for gift row items-->
+  <string name="GiftRowItem__send_a_gift_badge">ส่งโล่ของขวัญ</string>
   <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">ให้โล่เป็นของขวัญ</string>
   <!--Description text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">มอบโล่ให้คนอื่นเป็นของขวัญด้วยการบริจาคให้กับ Signal ในนามของพวกเขา แล้วพวกเขาก็จะได้โล่แสดงที่รูปโปรไฟล์</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">ถัดไป</string>
   <!--Title text on choose recipient page for badge gifting-->
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">เลือกผู้รับ</string>
   <!--Title text on confirm gift page-->
+  <string name="GiftFlowConfirmationFragment__confirm_gift">ยืนยันการให้ของขวัญ</string>
   <!--Heading text specifying who the gift will be sent to-->
+  <string name="GiftFlowConfirmationFragment__send_to">ส่งไปยัง</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">ของขวัญจะถูกส่งในข้อความที่คุย 1 ต่อ 1 ของผู้รับ เพิ่มข้อความของคุณด้านล่าง</string>
   <!--Text explaining that this gift is a one time donation-->
+  <string name="GiftFlowConfirmationFragment__one_time_donation">การบริจาคครั้งเดียว</string>
   <!--Hint for add message input-->
+  <string name="GiftFlowConfirmationFragment__add_a_message">เพิ่มข้อความ</string>
+  <!--Displayed in the dialog while verifying the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__verifying_recipient">กำลังตรวจยืนยันผู้รับ</string>
   <!--Title for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s ส่งของขวัญให้คุณ</string>
   <!--Title for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__thanks_for_your_support">ขอบคุณสำหรับการสนับสนุน!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">คุณได้รับโล่ของขวัญจาก %1$s! ช่วย Signal สร้างการรับรู้ด้วยการแสดงโล่นี้บนโปรไฟล์ของคุณ</string>
   <!--Description for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">คุณได้ให้โล่ของขวัญกับ %1$s เมื่อคุณรับ เขาจะได้รับตัวเลือกให้แสดงหรือซ่อนโล่</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
+  <string name="ViewReceivedGiftSheet__redeem">แลกเปลี่ยน</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">ไม่ใช่ตอนนี้</string>
   <!--Dialog text while redeeming a gift-->
+  <string name="ViewReceivedGiftSheet__redeeming_gift">กำลังแลกเปลี่ยนของขวัญ…</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <string name="ConversationFragment__you_can_redeem_your_badge_later">คุณสามารถแลกโล่ได้ภายหลัง</string>
   <!--Description text in gift thanks sheet-->
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">คุณได้ให้โล่ของขวัญกับ %1$s เมื่อคุณรับ เขาจะได้รับตัวเลือกให้แสดงหรือซ่อนโล่</string>
   <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">โล่ของขวัญคุณหมดอายุแล้ว</string>
   <!--Expired gift sheet top description text-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">โล่ของขวัญคุณหมดอายุแล้ว และคนอื่นจะไม่สามารถมองเห็นโล่บนโปรไฟล์ของคุณได้อีกต่อไป</string>
   <!--Expired gift sheet bottom description text-->
+  <string name="ExpiredGiftSheetConfiguration__to_continue">เพื่อสนับสนุนเทคโนโลยีที่สร้างมาเพื่อคุณต่อไป ได้โปรดพิจารณาการเป็นผู้สนับสนุนรายเดือน</string>
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">บริจาครายเดือน</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">ไม่ใช่ตอนนี้</string>
+  <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="other">สตอรี่ส่วนตัว · ผู้ชม %1$d</item>
+  </plurals>
+  <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="other">สตอรี่กลุ่ม · ผู้ชม %1$d </item>
+  </plurals>
+  <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="other">เหลือ %1$d วัน</item>
+  </plurals>
+  <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="other">เหลือ %1$d ชั่วโมง</item>
+  </plurals>
+  <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="other">เหลือ %1$d นาที</item>
+  </plurals>
+  <!--Gift expiry expired-->
+  <string name="Gifts__expired">หมดอายุ</string>
   <!--EOF-->
 </resources>

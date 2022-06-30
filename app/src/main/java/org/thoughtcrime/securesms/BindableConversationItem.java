@@ -46,7 +46,8 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
             boolean hasWallpaper,
             boolean isMessageRequestAccepted,
             boolean canPlayInline,
-            @NonNull Colorizer colorizer);
+            @NonNull Colorizer colorizer,
+            boolean isCondensedMode);
 
   @NonNull ConversationMessage getConversationMessage();
 
@@ -61,12 +62,13 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
   }
 
   default void updateSelectedState() {
-    // Intentionall Blank.
+    // Intentionally Blank.
   }
 
   interface EventListener {
     void onQuoteClicked(MmsMessageRecord messageRecord);
     void onLinkPreviewClicked(@NonNull LinkPreview linkPreview);
+    void onQuotedIndicatorClicked(@NonNull MessageRecord messageRecord);
     void onMoreTextClicked(@NonNull RecipientId conversationRecipientId, long messageId, boolean isMms);
     void onStickerClicked(@NonNull StickerLocator stickerLocator);
     void onViewOnceMessageClicked(@NonNull MmsMessageRecord messageRecord);
@@ -105,5 +107,6 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
     boolean onUrlClicked(@NonNull String url);
 
     void onViewGiftBadgeClicked(@NonNull MessageRecord messageRecord);
+    void onGiftBadgeRevealed(@NonNull MessageRecord messageRecord);
   }
 }

@@ -9,25 +9,15 @@ import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.model.ModelLoader
 import com.bumptech.glide.load.model.ModelLoaderFactory
 import com.bumptech.glide.load.model.MultiModelLoaderFactory
-import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.push.SignalServiceTrustStore
-import org.whispersystems.signalservice.api.push.TrustStore
-import org.whispersystems.signalservice.api.util.Tls12SocketFactory
-import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager
-import org.whispersystems.signalservice.internal.util.Util
 import java.io.InputStream
 import java.lang.Exception
-import java.security.KeyManagementException
 import java.security.MessageDigest
-import java.security.NoSuchAlgorithmException
 import java.util.Locale
-import javax.net.ssl.SSLContext
-import javax.net.ssl.X509TrustManager
 
 /**
  * Glide Model allowing the direct loading of a GiftBadge.
@@ -44,6 +34,7 @@ data class GiftBadgeModel(val giftBadge: GiftBadge) : Key {
   }
 
   override fun updateDiskCacheKey(messageDigest: MessageDigest) {
+    messageDigest.update(giftBadge.toByteArray())
   }
 
   class Fetcher(
@@ -101,25 +92,7 @@ data class GiftBadgeModel(val giftBadge: GiftBadge) : Key {
   companion object {
     @JvmStatic
     fun createFactory(): Factory {
-      return try {
-        val baseClient = ApplicationDependencies.getOkHttpClient()
-        val sslContext = SSLContext.getInstance("TLS")
-        val trustStore: TrustStore = SignalServiceTrustStore(ApplicationDependencies.getApplication())
-        val trustManagers = BlacklistingTrustManager.createFor(trustStore)
-
-        sslContext.init(null, trustManagers, null)
-
-        val client = baseClient.newBuilder()
-          .sslSocketFactory(Tls12SocketFactory(sslContext.socketFactory), trustManagers[0] as X509TrustManager)
-          .connectionSpecs(Util.immutableList(ConnectionSpec.RESTRICTED_TLS))
-          .build()
-
-        Factory(client)
-      } catch (e: NoSuchAlgorithmException) {
-        throw AssertionError(e)
-      } catch (e: KeyManagementException) {
-        throw AssertionError(e)
-      }
+      return Factory(ApplicationDependencies.getSignalOkHttpClient())
     }
   }
 }

@@ -33,8 +33,8 @@ object Fonts {
 
   private val TAG = Log.tag(Fonts::class.java)
 
-  private const val VERSION_URL = "https://updates.signal.org/dynamic/story-fonts/version.txt"
-  private const val BASE_STATIC_BUCKET_URL = "https://updates.signal.org/static/story-fonts"
+  private const val VERSION_URI = "${S3.DYNAMIC_PATH}/story-fonts/version.txt"
+  private const val BASE_STATIC_BUCKET_URI = "${S3.STATIC_PATH}/story-fonts"
   private const val MANIFEST = "manifest.json"
 
   private val taskCache = Collections.synchronizedMap(mutableMapOf<FontDownloadKey, ListenableFutureTask<Typeface>>())
@@ -201,7 +201,7 @@ object Fonts {
    */
   @WorkerThread
   fun downloadLatestVersionLong(): Long {
-    return S3.getLong(VERSION_URL)
+    return S3.getLong(VERSION_URI)
   }
 
   /**
@@ -211,7 +211,7 @@ object Fonts {
   fun downloadAndVerifyLatestManifest(context: Context, version: FontVersion, manifestPath: String): Boolean {
     return S3.verifyAndWriteToDisk(
       context,
-      "$BASE_STATIC_BUCKET_URL/${version.id}/$MANIFEST",
+      "$BASE_STATIC_BUCKET_URI/${version.id}/$MANIFEST",
       File(getDirectory(context), manifestPath)
     )
   }
@@ -227,7 +227,7 @@ object Fonts {
 
     val script: FontManifest.FontScript = resolveFontScriptFromScriptName(supportedScript, fontManifest) ?: return null
     val path = getScriptPath(font, script) ?: return null
-    val networkPath = "$BASE_STATIC_BUCKET_URL/${fontVersion.id}/$path"
+    val networkPath = "$BASE_STATIC_BUCKET_URI/${fontVersion.id}/$path"
     val localUUID = UUID.randomUUID().toString()
     val localPath = "${fontVersion.path}/" + localUUID
 

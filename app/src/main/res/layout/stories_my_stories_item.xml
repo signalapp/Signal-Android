@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
+        android:textAppearance="@style/Signal.Text.BodyLarge"
         app:layout_constraintBottom_toTopOf="@id/date"
         app:layout_constraintStart_toEndOf="@+id/error_indicator"
         app:layout_constraintTop_toTopOf="parent"
@@ -59,14 +59,14 @@
         app:layout_constraintStart_toEndOf="@id/story"
         app:layout_constraintTop_toTopOf="@+id/view_count"
         app:srcCompat="@drawable/ic_error_outline_24"
-        app:tint="@color/signal_alert_primary"
+        app:tint="@color/signal_colorError"
         tools:visibility="visible" />
 
     <TextView
         android:id="@+id/date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:textAppearance="@style/Signal.Text.BodyMedium"
         android:textColor="@color/signal_text_secondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/view_count"
@@ -101,12 +101,12 @@
         android:layout_marginEnd="24dp"
         android:background="@drawable/circle_tintable"
         android:scaleType="centerInside"
-        app:backgroundTint="@color/signal_background_secondary"
+        app:backgroundTint="@color/signal_colorSecondaryContainer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/more"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_download_24"
-        app:tint="@color/signal_icon_tint_primary" />
+        app:srcCompat="@drawable/ic_save_24"
+        app:tint="@color/signal_colorOnSecondaryContainer" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/more"
@@ -114,11 +114,11 @@
         android:layout_height="32dp"
         android:background="@drawable/circle_tintable"
         android:scaleType="centerInside"
-        app:backgroundTint="@color/signal_background_secondary"
+        app:backgroundTint="@color/signal_colorSecondaryContainer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_more_vert_24"
-        app:tint="@color/signal_icon_tint_primary" />
+        app:tint="@color/signal_colorOnSecondaryContainer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

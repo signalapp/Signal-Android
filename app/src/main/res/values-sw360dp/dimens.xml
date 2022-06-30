@@ -22,11 +22,6 @@
 
     <dimen name="chat_colors_preview_bubble_max_width">260dp</dimen>
 
-    <dimen name="conversation_settings_button_strip_spacing">32dp</dimen>
-    <dimen name="conversation_settings_button_strip_spacing_half">16dp</dimen>
-    <dimen name="conversation_settings_button_strip_button_size">56dp</dimen>
-    <dimen name="conversation_settings_button_strip_button_padding">16dp</dimen>
-
     <dimen name="avatar_picker_image_width">160dp</dimen>
 
     <dimen name="toolbar_avatar_margin">34dp</dimen>

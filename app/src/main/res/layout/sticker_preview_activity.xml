@@ -91,36 +91,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sticker_install_author" />
 
-    <com.dd.CircularProgressButton
+    <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
         android:id="@+id/sticker_install_button"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginBottom="16dp"
-        android:elevation="4dp"
-        android:textColor="@color/white"
         android:visibility="gone"
-        app:cpb_colorIndicator="@color/white"
-        app:cpb_colorProgress="@color/StickerPreviewActivity_install_button_color"
-        app:cpb_cornerRadius="4dp"
-        app:cpb_selectorIdle="@drawable/progress_button_state"
-        app:cpb_textIdle="@string/StickerPackPreviewActivity_install"
+        app:circularProgressMaterialButton__label="@string/StickerPackPreviewActivity_install"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/sticker_install_list"
         app:layout_constraintStart_toStartOf="@id/sticker_install_list" />
 
-    <com.dd.CircularProgressButton
+    <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
         android:id="@+id/sticker_install_remove_button"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginBottom="16dp"
-        android:elevation="4dp"
-        android:textColor="@color/white"
         android:visibility="gone"
-        app:cpb_colorIndicator="@color/white"
-        app:cpb_colorProgress="@color/StickerPreviewActivity_remove_button_color"
-        app:cpb_cornerRadius="4dp"
-        app:cpb_selectorIdle="@drawable/remove_button_state"
-        app:cpb_textIdle="@string/StickerPackPreviewActivity_remove"
+        app:circularProgressMaterialButton__label="@string/StickerPackPreviewActivity_remove"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/sticker_install_list"
         app:layout_constraintStart_toStartOf="@id/sticker_install_list" />

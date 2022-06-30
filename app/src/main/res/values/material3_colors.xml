@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Core colors for Material3 -->
+    <color name="signal_colorPrimary">@color/signal_light_colorPrimary</color>
+    <color name="signal_colorPrimaryContainer">@color/signal_light_colorPrimaryContainer</color>
+    <color name="signal_colorSecondary">@color/signal_light_colorSecondary</color>
+    <color name="signal_colorSecondaryContainer">@color/signal_light_colorSecondaryContainer</color>
+    <color name="signal_colorSurface">@color/signal_light_colorSurface</color>
+    <color name="signal_colorSurfaceVariant">@color/signal_light_colorSurfaceVariant</color>
+    <color name="signal_colorBackground">@color/signal_light_colorBackground</color>
+    <color name="signal_colorError">@color/signal_light_colorError</color>
+    <color name="signal_colorErrorContainer">@color/signal_light_colorErrorContainer</color>
+    <color name="signal_colorOnPrimary">@color/signal_light_colorOnPrimary</color>
+    <color name="signal_colorOnPrimaryContainer">@color/signal_light_colorOnPrimaryContainer</color>
+    <color name="signal_colorOnSecondary">@color/signal_light_colorOnSecondary</color>
+    <color name="signal_colorOnSecondaryContainer">@color/signal_light_colorOnSecondaryContainer</color>
+    <color name="signal_colorOnSurface">@color/signal_light_colorOnSurface</color>
+    <color name="signal_colorOnSurfaceVariant">@color/signal_light_colorOnSurfaceVariant</color>
+    <color name="signal_colorOnBackground">@color/signal_light_colorOnBackground</color>
+    <color name="signal_colorOutline">@color/signal_light_colorOutline</color>
+    <color name="signal_neutralSurface">@color/signal_light_neutralSurface</color>
+    <color name="signal_colorOnCustom">@color/signal_light_colorOnCustom</color>
+    <color name="signal_colorOnCustomVariant">@color/signal_light_colorOnCustomVariant</color>
+
+    <color name="signal_colorSurface1">@color/signal_light_colorSurface1</color>
+    <color name="signal_colorSurface2">@color/signal_light_colorSurface2</color>
+    <color name="signal_colorSurface3">@color/signal_light_colorSurface3</color>
+    <color name="signal_colorSurface4">@color/signal_light_colorSurface4</color>
+    <color name="signal_colorSurface5">@color/signal_light_colorSurface5</color>
+    
+    <color name="signal_colorTransparent1">@color/signal_light_colorTransparent1</color>
+    <color name="signal_colorTransparent2">@color/signal_light_colorTransparent2</color>
+    <color name="signal_colorTransparent3">@color/signal_light_colorTransparent3</color>
+    <color name="signal_colorTransparent4">@color/signal_light_colorTransparent4</color>
+    <color name="signal_colorTransparent5">@color/signal_light_colorTransparent5</color>
+    <color name="signal_colorNeutral">@color/signal_light_colorNeutral</color>
+    <color name="signal_colorNeutralVariant">@color/signal_light_colorNeutralVariant</color>
+    <color name="signal_colorTransparentInverse1">@color/signal_light_colorTransparentInverse1</color>
+    <color name="signal_colorTransparentInverse2">@color/signal_light_colorTransparentInverse2</color>
+    <color name="signal_colorTransparentInverse3">@color/signal_light_colorTransparentInverse3</color>
+    <color name="signal_colorTransparentInverse4">@color/signal_light_colorTransparentInverse4</color>
+    <color name="signal_colorTransparentInverse5">@color/signal_light_colorTransparentInverse5</color>
+    <color name="signal_colorNeutralInverse">@color/signal_light_colorNeutralInverse</color>
+    <color name="signal_colorNeutralVariantInverse">@color/signal_light_colorNeutralVariantInverse</color>
+
+    <!-- Inverses -->
+    <color name="signal_colorErrorInverse">@color/signal_dark_colorError</color>
+    <color name="signal_colorErrorContainerInverse">@color/signal_dark_colorErrorContainer</color>
+
+    <!-- Core color alpha variants -->
+    <color name="signal_colorSecondaryContainer_12">#1FDCE5F9</color>
+    <color name="signal_colorSurface_60">#99FBFCFF</color>
+    <color name="signal_colorSurfaceVariant_38">#61E7EBF3</color>
+    <color name="signal_colorOnSurface_12">#1F1B1B1D</color>
+    <color name="signal_colorOnSurfaceVariant_60">#99545863</color>
+    <color name="signal_colorOnBackground_60">#991B1D1D</color>
+    <color name="signal_colorOutline_38">#61808389</color>
+    <color name="signal_colorBackground_0">#00FBFCFF</color>
+
+    <!-- Core color alpha variants without alpha channel -->
+    <color name="signal_colorSurfaceVariant_16_no_alpha">#D5D8DE</color>
+    <color name="signal_colorSurfaceVariant_32_no_alpha">#B8BCC5</color>
+</resources>

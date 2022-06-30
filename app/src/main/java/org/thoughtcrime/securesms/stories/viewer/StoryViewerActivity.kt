@@ -2,19 +2,25 @@ package org.thoughtcrime.securesms.stories.viewer
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
+import android.media.AudioManager
 import android.os.Build
 import android.os.Bundle
+import android.view.KeyEvent
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.media.AudioManagerCompat
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
-import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.stories.StoryTextPostModel
+import org.thoughtcrime.securesms.stories.StoryViewerArgs
+import org.thoughtcrime.securesms.util.ServiceUtil
+import kotlin.math.max
+import kotlin.math.min
 
 class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner {
+
+  private val viewModel: StoryVolumeViewModel by viewModels()
 
   override lateinit var voiceNoteMediaController: VoiceNoteMediaController
 
@@ -24,6 +30,8 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
   }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    StoryMutePolicy.initialize()
+
     supportPostponeEnterTransition()
 
     super.onCreate(savedInstanceState, ready)
@@ -32,21 +40,23 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
     voiceNoteMediaController = VoiceNoteMediaController(this)
 
     if (savedInstanceState == null) {
-      supportFragmentManager.beginTransaction()
-        .replace(
-          R.id.fragment_container,
-          StoryViewerFragment.create(
-            intent.getParcelableExtra(ARG_START_RECIPIENT_ID)!!,
-            intent.getLongExtra(ARG_START_STORY_ID, -1L),
-            intent.getBooleanExtra(ARG_HIDDEN_STORIES, false),
-            intent.getParcelableExtra(ARG_CROSSFADE_TEXT_MODEL),
-            intent.getParcelableExtra(ARG_CROSSFADE_IMAGE_URI),
-            intent.getStringExtra(ARG_CROSSFADE_IMAGE_BLUR),
-            intent.getParcelableArrayListExtra(ARG_RECIPIENT_IDS)!!
-          )
-        )
-        .commit()
+      replaceStoryViewerFragment()
     }
+  }
+
+  override fun onResume() {
+    super.onResume()
+    if (StoryMutePolicy.isContentMuted) {
+      viewModel.mute()
+    } else {
+      viewModel.unmute()
+    }
+  }
+
+  override fun onNewIntent(intent: Intent?) {
+    super.onNewIntent(intent)
+    setIntent(intent)
+    replaceStoryViewerFragment()
   }
 
   override fun onEnterAnimationComplete() {
@@ -55,34 +65,43 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
     }
   }
 
+  private fun replaceStoryViewerFragment() {
+    supportFragmentManager.beginTransaction()
+      .replace(
+        R.id.fragment_container,
+        StoryViewerFragment.create(intent.getParcelableExtra(ARGS)!!)
+      )
+      .commit()
+  }
+
+  override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+    val audioManager = ServiceUtil.getAudioManager(this)
+    when (keyCode) {
+      KeyEvent.KEYCODE_VOLUME_UP -> {
+        val maxVolume = AudioManagerCompat.getStreamMaxVolume(audioManager, AudioManager.STREAM_MUSIC)
+        StoryMutePolicy.isContentMuted = false
+        viewModel.onVolumeUp(min(maxVolume, audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) + 1))
+        return true
+      }
+      KeyEvent.KEYCODE_VOLUME_DOWN -> {
+        val minVolume = AudioManagerCompat.getStreamMinVolume(audioManager, AudioManager.STREAM_MUSIC)
+        viewModel.onVolumeDown(max(minVolume, audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) - 1))
+        return true
+      }
+    }
+
+    return super.onKeyDown(keyCode, event)
+  }
+
   companion object {
-    private const val ARG_START_RECIPIENT_ID = "start.recipient.id"
-    private const val ARG_START_STORY_ID = "start.story.id"
-    private const val ARG_HIDDEN_STORIES = "hidden_stories"
-    private const val ARG_CROSSFADE_TEXT_MODEL = "crossfade.text.model"
-    private const val ARG_CROSSFADE_IMAGE_URI = "crossfade.image.uri"
-    private const val ARG_CROSSFADE_IMAGE_BLUR = "crossfade.image.blur"
-    private const val ARG_RECIPIENT_IDS = "recipient_ids"
+    private const val ARGS = "story.viewer.args"
 
     @JvmStatic
     fun createIntent(
       context: Context,
-      recipientId: RecipientId,
-      storyId: Long = -1L,
-      onlyIncludeHiddenStories: Boolean = false,
-      storyThumbTextModel: StoryTextPostModel? = null,
-      storyThumbUri: Uri? = null,
-      storyThumbBlur: BlurHash? = null,
-      recipientIds: List<RecipientId> = emptyList()
+      storyViewerArgs: StoryViewerArgs
     ): Intent {
-      return Intent(context, StoryViewerActivity::class.java)
-        .putExtra(ARG_START_RECIPIENT_ID, recipientId)
-        .putExtra(ARG_START_STORY_ID, storyId)
-        .putExtra(ARG_HIDDEN_STORIES, onlyIncludeHiddenStories)
-        .putExtra(ARG_CROSSFADE_TEXT_MODEL, storyThumbTextModel)
-        .putExtra(ARG_CROSSFADE_IMAGE_URI, storyThumbUri)
-        .putExtra(ARG_CROSSFADE_IMAGE_BLUR, storyThumbBlur?.hash)
-        .putParcelableArrayListExtra(ARG_RECIPIENT_IDS, ArrayList(recipientIds))
+      return Intent(context, StoryViewerActivity::class.java).putExtra(ARGS, storyViewerArgs)
     }
   }
 }

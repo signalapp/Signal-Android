@@ -49,9 +49,9 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:text="@string/KbsSplashFragment__your_registration_lock_is_now_called_a_pin" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/kbs_splash_primary_action"
-        style="@style/Button.Primary"
+        style="@style/Signal.Widget.Button.Large.Primary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -64,9 +64,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/kbs_splash_secondary_action"
-        style="@style/Button.Borderless"
+        style="@style/Signal.Widget.Button.Large.Secondary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
