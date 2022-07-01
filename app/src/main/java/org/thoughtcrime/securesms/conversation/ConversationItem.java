@@ -1608,6 +1608,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     } else if (current.isOutgoing()) {
       ViewUtil.setPaddingStart(this, readDimen(R.dimen.conversation_individual_left_gutter));
       ViewUtil.setPaddingEnd(this, readDimen(R.dimen.conversation_individual_right_gutter));
+    } else {
+      ViewUtil.setPaddingStart(this, readDimen(R.dimen.conversation_individual_received_left_gutter));
+      ViewUtil.setPaddingEnd(this, readDimen(R.dimen.conversation_individual_right_gutter));
     }
   }
 

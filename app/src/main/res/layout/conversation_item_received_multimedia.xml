@@ -11,7 +11,7 @@
     android:nextFocusLeft="@+id/conversation_item"
     android:nextFocusRight="@+id/embedded_text_editor"
     android:orientation="vertical"
-    android:paddingStart="8dp"
+    android:paddingStart="@dimen/conversation_individual_received_left_gutter"
     android:paddingEnd="@dimen/conversation_individual_right_gutter">
 
     <FrameLayout
