@@ -95,7 +95,7 @@ public class OutgoingSecureMediaMessage extends OutgoingMediaMessage {
                                           isStoryReaction(),
                                           getOutgoingQuote(),
                                           Collections.emptyList(),
-                                          Collections.emptyList(),
+                                          getLinkPreviews(),
                                           getMentions(),
                                           getGiftBadge());
   }
