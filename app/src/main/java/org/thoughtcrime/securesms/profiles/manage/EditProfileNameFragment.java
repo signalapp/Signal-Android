@@ -91,12 +91,14 @@ public class EditProfileNameFragment extends Fragment {
         setEditTextEnabled(familyName, true);
         break;
       case IDLE:
+        saveButton.setClickable(true);
         saveButton.cancelSpinning();
         saveButton.setAlpha(1);
         setEditTextEnabled(givenName, true);
         setEditTextEnabled(familyName, true);
         break;
       case IN_PROGRESS:
+        saveButton.setClickable(false);
         saveButton.setSpinning();
         saveButton.setAlpha(1);
         setEditTextEnabled(givenName, false);
