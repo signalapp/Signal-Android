@@ -1234,8 +1234,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       List<Slide> thumbnailSlides = ((MmsMessageRecord) messageRecord).getSlideDeck().getThumbnailSlides();
       mediaThumbnailStub.require().setMinimumThumbnailWidth(readDimen(isCaptionlessMms(messageRecord) ? R.dimen.media_bubble_min_width_solo
                                                                                                       : R.dimen.media_bubble_min_width_with_content));
-      mediaThumbnailStub.require().setMaximumThumbnailHeight(readDimen(isCondensedMode ? R.dimen.media_bubble_max_height_condensed
-                                                                                       : R.dimen.media_bubble_max_height));
+      mediaThumbnailStub.require().setMaximumThumbnailHeight(readDimen(isContentCondensed() ? R.dimen.media_bubble_max_height_condensed
+                                                                                            : R.dimen.media_bubble_max_height));
       mediaThumbnailStub.require().setImageResource(glideRequests,
                                                     thumbnailSlides,
                                                     showControls,
