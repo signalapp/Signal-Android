@@ -262,7 +262,7 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
                 val timeoutSeconds = TimeUnit.MILLISECONDS.toSeconds(duration)
                 viewModel.setScreenLockTimeout(timeoutSeconds)
               },
-              0, TimeDurationPicker.HH_MM
+              0, TimeDurationPicker.HH_MM_SS
             ).show()
           }
         )
@@ -359,13 +359,13 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
 
   private fun getScreenLockInactivityTimeoutSummary(timeoutSeconds: Long): String {
     val hours = TimeUnit.SECONDS.toHours(timeoutSeconds)
-    val minutes =
-      TimeUnit.SECONDS.toMinutes(timeoutSeconds) - TimeUnit.SECONDS.toHours(timeoutSeconds) * 60
+    val minutes = TimeUnit.SECONDS.toMinutes(timeoutSeconds) - hours * 60
+    val seconds = timeoutSeconds - minutes * 60 - hours * 3600
 
-    return if (timeoutSeconds <= 0) {
+    return if (timeoutSeconds < 5) {
       getString(R.string.AppProtectionPreferenceFragment_none)
     } else {
-      String.format(Locale.getDefault(), "%02d:%02d:00", hours, minutes)
+      String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds)
     }
   }
 
