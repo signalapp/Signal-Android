@@ -556,6 +556,11 @@
         <item name="backgroundTint">@color/signal_colorSurface1</item>
     </style>
 
+    <style name="Widget.Signal.BottomSheet.MaterialButtonStyle" parent="Widget.Material3.Button.TextButton.Dialog.Flush">
+        <item name="android:lines">@null</item>
+        <item name="android:singleLine">false</item>
+    </style>
+
     <style name="Theme.Signal.RoundedBottomSheet.Light">
         <item name="bottomSheetStyle">@style/Widget.Signal.BottomSheet.Rounded</item>
 
@@ -581,6 +586,7 @@
         <item name="android:navigationBarColor" tools:ignore="NewApi">@color/signal_colorSurface1</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
         <item name="android:statusBarColor" tools:ignore="NewApi">@color/transparent</item>
+        <item name="materialButtonStyle">@style/Widget.Signal.BottomSheet.MaterialButtonStyle</item>
     </style>
 
     <style name="Theme.Signal.RoundedBottomSheet.Stories">
