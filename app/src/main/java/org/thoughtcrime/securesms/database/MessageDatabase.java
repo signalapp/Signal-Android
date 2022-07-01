@@ -201,7 +201,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   public abstract boolean hasSelfReplyInGroupStory(long parentStoryId);
   public abstract @NonNull Cursor getStoryReplies(long parentStoryId);
   public abstract @Nullable Long getOldestStorySendTimestamp();
-  public abstract int deleteStoriesOlderThan(long timestamp);
+  public abstract int deleteStoriesOlderThan(long timestamp, boolean hasSeenReleaseChannelStories);
   public abstract @NonNull MessageDatabase.Reader getUnreadStories(@NonNull RecipientId recipientId, int limit);
   public abstract @Nullable ParentStoryId.GroupReply getParentStoryIdForGroupReply(long messageId);
   public abstract void deleteGroupStoryReplies(long parentStoryId);
@@ -728,9 +728,38 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
     void onComplete();
   }
 
-  public interface Reader extends Closeable {
+  /**
+   * Allows the developer to safely iterate over and close a cursor containing
+   * data for MessageRecord objects. Supports for-each loops as well as try-with-resources
+   * blocks.
+   *
+   * Readers are considered "one-shot" and it's on the caller to decide what needs
+   * to be done with the data. Once read, a reader cannot be read from again. This
+   * is by design, since reading data out of a cursor involves object creations and
+   * lookups, so it is in the best interest of app performance to only read out the
+   * data once. If you need to parse the list multiple times, it is recommended that
+   * you copy the iterable out into a normal List, or use extension methods such as
+   * partition.
+   *
+   * This reader does not support removal, since this would be considered a destructive
+   * database call.
+   */
+  public interface Reader extends Closeable, Iterable<MessageRecord> {
+    /**
+     * @deprecated Use the Iterable interface instead.
+     */
+    @Deprecated
     MessageRecord getNext();
+
+    /**
+     * @deprecated Use the Iterable interface instead.
+     */
+    @Deprecated
     MessageRecord getCurrent();
+
+    /**
+     * From the {@link Closeable} interface, removing the IOException requirement.
+     */
     void close();
   }
 

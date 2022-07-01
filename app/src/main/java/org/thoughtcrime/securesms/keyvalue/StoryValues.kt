@@ -39,6 +39,16 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
      * Whether or not the user has see the "Navigation education" view
      */
     private const val USER_HAS_SEEN_FIRST_NAV_VIEW = "stories.user.has.seen.first.navigation.view"
+
+    /**
+     * Whether or not the onboarding story has been downloaded.
+     */
+    private const val HAS_DOWNLOADED_ONBOARDING_STORY = "stories.has.downloaded.onboarding"
+
+    /**
+     * Marks whether the user has seen the onboarding story
+     */
+    private const val USER_HAS_SEEN_ONBOARDING_STORY = "stories.user.has.seen.onboarding"
   }
 
   override fun onFirstEverAppLaunch() = Unit
@@ -48,7 +58,8 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
     USER_HAS_ADDED_TO_A_STORY,
     VIDEO_TOOLTIP_SEEN_MARKER,
     CANNOT_SEND_SEEN_MARKER,
-    USER_HAS_SEEN_FIRST_NAV_VIEW
+    USER_HAS_SEEN_FIRST_NAV_VIEW,
+    HAS_DOWNLOADED_ONBOARDING_STORY
   )
 
   var isFeatureDisabled: Boolean by booleanValue(MANUAL_FEATURE_DISABLE, false)
@@ -62,6 +73,10 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
   var cannotSendTooltipSeen by booleanValue(CANNOT_SEND_SEEN_MARKER, false)
 
   var userHasSeenFirstNavView: Boolean by booleanValue(USER_HAS_SEEN_FIRST_NAV_VIEW, false)
+
+  var hasDownloadedOnboardingStory: Boolean by booleanValue(HAS_DOWNLOADED_ONBOARDING_STORY, false)
+
+  var userHasSeenOnboardingStory: Boolean by booleanValue(USER_HAS_SEEN_ONBOARDING_STORY, false)
 
   fun setLatestStorySend(storySend: StorySend) {
     synchronized(this) {

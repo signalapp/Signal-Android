@@ -88,6 +88,7 @@ object StoryContextMenu {
       anchorView = anchorView,
       isFromSelf = model.data.primaryStory.messageRecord.isOutgoing,
       isToGroup = model.data.storyRecipient.isGroup,
+      isFromReleaseChannel = model.data.storyRecipient.isReleaseNotes,
       canHide = !model.data.isHidden,
       callbacks = object : Callbacks {
         override fun onHide() = model.onHideStory(model)
@@ -120,6 +121,7 @@ object StoryContextMenu {
       anchorView = anchorView,
       isFromSelf = selectedStory.sender.isSelf,
       isToGroup = selectedStory.group != null,
+      isFromReleaseChannel = selectedStory.sender.isReleaseNotes,
       canHide = true,
       callbacks = object : Callbacks {
         override fun onHide() = onHide(selectedStory)
@@ -145,6 +147,7 @@ object StoryContextMenu {
       anchorView = anchorView,
       isFromSelf = true,
       isToGroup = false,
+      isFromReleaseChannel = false,
       canHide = false,
       callbacks = object : Callbacks {
         override fun onHide() = throw NotImplementedError()
@@ -164,6 +167,7 @@ object StoryContextMenu {
     anchorView: View,
     isFromSelf: Boolean,
     isToGroup: Boolean,
+    isFromReleaseChannel: Boolean,
     rootView: ViewGroup = anchorView.rootView as ViewGroup,
     canHide: Boolean,
     callbacks: Callbacks
@@ -208,7 +212,7 @@ object StoryContextMenu {
         )
       }
 
-      if (isToGroup || !isFromSelf) {
+      if ((isToGroup || !isFromSelf) && !isFromReleaseChannel) {
         add(
           ActionItem(R.drawable.ic_open_24_tinted, context.getString(R.string.StoriesLandingItem__go_to_chat)) {
             callbacks.onGoToChat()

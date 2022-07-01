@@ -98,9 +98,11 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -917,26 +919,28 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public int deleteStoriesOlderThan(long timestamp) {
+  public int deleteStoriesOlderThan(long timestamp, boolean hasSeenReleaseChannelStories) {
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
 
     db.beginTransaction();
     try {
-      String   storiesBeforeTimestampWhere = IS_STORY_CLAUSE + " AND " + DATE_SENT + " < ?";
-      String[] sharedArgs                  = SqlUtil.buildArgs(timestamp);
-      String   deleteStoryRepliesQuery     = "DELETE FROM " + TABLE_NAME + " " +
-                                             "WHERE " + PARENT_STORY_ID + " > 0 AND " + PARENT_STORY_ID + " IN (" +
-                                                 "SELECT " + ID + " " +
-                                                 "FROM " + TABLE_NAME + " " +
-                                                 "WHERE " + storiesBeforeTimestampWhere +
-                                             ")";
-      String   disassociateQuoteQuery      = "UPDATE " + TABLE_NAME + " " +
-                                             "SET " + QUOTE_MISSING + " = 1, " + QUOTE_BODY + " = '' " +
-                                             "WHERE " + PARENT_STORY_ID + " < 0 AND ABS(" + PARENT_STORY_ID + ") IN (" +
-                                                 "SELECT " + ID + " " +
-                                                 "FROM " + TABLE_NAME + " " +
-                                                 "WHERE " + storiesBeforeTimestampWhere +
-                                             ")";
+      RecipientId releaseChannelRecipient     = hasSeenReleaseChannelStories ? null : SignalStore.releaseChannelValues().getReleaseChannelRecipientId();
+      long        releaseChannelThreadId      = releaseChannelRecipient != null ? SignalDatabase.threads().getOrCreateThreadIdFor(Recipient.resolved(releaseChannelRecipient)) : -1;
+      String      storiesBeforeTimestampWhere = IS_STORY_CLAUSE + " AND " + DATE_SENT + " < ? AND " + THREAD_ID + " != ?";
+      String[]    sharedArgs                  = SqlUtil.buildArgs(timestamp, releaseChannelThreadId);
+      String      deleteStoryRepliesQuery     = "DELETE FROM " + TABLE_NAME + " " +
+                                                "WHERE " + PARENT_STORY_ID + " > 0 AND " + PARENT_STORY_ID + " IN (" +
+                                                    "SELECT " + ID + " " +
+                                                    "FROM " + TABLE_NAME + " " +
+                                                    "WHERE " + storiesBeforeTimestampWhere +
+                                                ")";
+      String      disassociateQuoteQuery      = "UPDATE " + TABLE_NAME + " " +
+                                                "SET " + QUOTE_MISSING + " = 1, " + QUOTE_BODY + " = '' " +
+                                                "WHERE " + PARENT_STORY_ID + " < 0 AND ABS(" + PARENT_STORY_ID + ") IN (" +
+                                                    "SELECT " + ID + " " +
+                                                    "FROM " + TABLE_NAME + " " +
+                                                    "WHERE " + storiesBeforeTimestampWhere +
+                                                ")";
 
       db.execSQL(deleteStoryRepliesQuery, sharedArgs);
       db.execSQL(disassociateQuoteQuery, sharedArgs);
@@ -2631,6 +2635,15 @@ public class MmsDatabase extends MessageDatabase {
     }
   }
 
+  /**
+   * MessageRecord reader which implements the Iterable interface. This allows it to
+   * be used with many Kotlin Extension Functions as well as with for-each loops.
+   *
+   * Note that it's the responsibility of the developer using the reader to ensure that:
+   *
+   * 1. They only utilize one of the two interfaces (legacy or iterator)
+   * 1. They close this reader after use, preferably via try-with-resources or a use block.
+   */
   public static class Reader implements MessageDatabase.Reader {
 
     private final Cursor  cursor;
@@ -2852,6 +2865,29 @@ public class MmsDatabase extends MessageDatabase {
     public void close() {
       if (cursor != null) {
         cursor.close();
+      }
+    }
+
+    @NonNull
+    @Override
+    public Iterator<MessageRecord> iterator() {
+      return new ReaderIterator();
+    }
+
+    private class ReaderIterator implements Iterator<MessageRecord> {
+      @Override
+      public boolean hasNext() {
+        return cursor != null && cursor.getCount() != 0 && !cursor.isLast();
+      }
+
+      @Override
+      public MessageRecord next() {
+        MessageRecord record = getNext();
+        if (record == null) {
+          throw new NoSuchElementException();
+        }
+
+        return record;
       }
     }
   }

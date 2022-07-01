@@ -38,7 +38,7 @@ class InternalSettingsRepository(context: Context) {
       val recipientId = SignalStore.releaseChannelValues().releaseChannelRecipientId!!
       val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(recipientId))
 
-      val insertResult: MessageDatabase.InsertResult? = ReleaseChannel.insertAnnouncement(
+      val insertResult: MessageDatabase.InsertResult? = ReleaseChannel.insertReleaseChannelMessage(
         recipientId = recipientId,
         body = body,
         threadId = threadId,

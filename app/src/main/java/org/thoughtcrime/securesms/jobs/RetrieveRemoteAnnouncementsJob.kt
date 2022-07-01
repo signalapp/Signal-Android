@@ -199,7 +199,7 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
         }
 
         ThreadUtil.sleep(5)
-        val insertResult: MessageDatabase.InsertResult? = ReleaseChannel.insertAnnouncement(
+        val insertResult: MessageDatabase.InsertResult? = ReleaseChannel.insertReleaseChannelMessage(
           recipientId = values.releaseChannelRecipientId!!,
           body = body,
           threadId = threadId,

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.releasechannel
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.database.MessageDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -19,7 +20,7 @@ object ReleaseChannel {
 
   const val CDN_NUMBER = -1
 
-  fun insertAnnouncement(
+  fun insertReleaseChannelMessage(
     recipientId: RecipientId,
     body: String,
     threadId: Long,
@@ -27,7 +28,8 @@ object ReleaseChannel {
     imageWidth: Int = 0,
     imageHeight: Int = 0,
     serverUuid: String? = UUID.randomUUID().toString(),
-    messageRanges: BodyRangeList? = null
+    messageRanges: BodyRangeList? = null,
+    storyType: StoryType = StoryType.NONE
   ): MessageDatabase.InsertResult? {
 
     val attachments: Optional<List<SignalServiceAttachment>> = if (image != null) {
@@ -63,7 +65,8 @@ object ReleaseChannel {
       body = body,
       attachments = PointerAttachment.forPointers(attachments),
       serverGuid = serverUuid,
-      messageRanges = messageRanges
+      messageRanges = messageRanges,
+      storyType = storyType
     )
 
     return SignalDatabase.mms.insertSecureDecryptedMessageInbox(message, threadId).orElse(null)

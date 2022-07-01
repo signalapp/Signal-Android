@@ -5,6 +5,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.StoryViewState
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 
@@ -16,6 +17,7 @@ open class StoryViewerRepository {
     return Single.create<List<RecipientId>> { emitter ->
       val myStoriesId = SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.MY_STORY)
       val myStories = Recipient.resolved(myStoriesId)
+      val releaseChannelId = SignalStore.releaseChannelValues().releaseChannelRecipientId
       val recipientIds = SignalDatabase.mms.orderedStoryRecipientsAndIds.groupBy {
         val recipient = Recipient.resolved(it.recipientId)
         if (recipient.isDistributionList) {
@@ -42,12 +44,16 @@ open class StoryViewerRepository {
       }.map { it.id }
 
       emitter.onSuccess(
-        if (recipientIds.contains(myStoriesId)) {
-          listOf(myStoriesId) + (recipientIds - myStoriesId)
-        } else {
-          recipientIds
-        }
+        recipientIds.floatToTop(releaseChannelId).floatToTop(myStoriesId)
       )
     }.subscribeOn(Schedulers.io())
+  }
+
+  private fun List<RecipientId>.floatToTop(recipientId: RecipientId?): List<RecipientId> {
+    return if (recipientId != null && contains(recipientId)) {
+      listOf(recipientId) + (this - recipientId)
+    } else {
+      this
+    }
   }
 }

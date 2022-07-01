@@ -1477,7 +1477,7 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public int deleteStoriesOlderThan(long timestamp) {
+  public int deleteStoriesOlderThan(long timestamp, boolean hasSeenReleaseChannelStories) {
     throw new UnsupportedOperationException();
   }
 
