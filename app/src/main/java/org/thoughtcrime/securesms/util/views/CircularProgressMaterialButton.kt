@@ -61,6 +61,12 @@ class CircularProgressMaterialButton @JvmOverloads constructor(
     progressIndicator.visible = enabled
   }
 
+  override fun setClickable(clickable: Boolean) {
+    super.setClickable(clickable)
+    materialButton.isClickable = clickable
+    progressIndicator.visible = clickable
+  }
+
   override fun onSaveInstanceState(): Parcelable {
     return Bundle().apply {
       putParcelable(SUPER_STATE, super.onSaveInstanceState())
