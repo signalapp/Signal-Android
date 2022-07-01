@@ -56,7 +56,7 @@ final class ConversationSwipeAnimationHelper {
   private static void updateQuotedIndicatorTransition(@Nullable View quotedIndicator, float dx, float progress, float sign) {
     if (quotedIndicator != null) {
       quotedIndicator.setTranslationX(BUBBLE_INTERPOLATOR.getInterpolation(dx) * sign);
-      quotedIndicator.setAlpha(QUOTED_ALPHA_INTERPOLATOR.getInterpolation(progress) * sign);
+      quotedIndicator.setAlpha(QUOTED_ALPHA_INTERPOLATOR.getInterpolation(progress));
     }
   }
 
