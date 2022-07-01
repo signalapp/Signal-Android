@@ -8,6 +8,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.thoughtcrime.securesms.database.model.DistributionListId
+import org.thoughtcrime.securesms.database.model.ParentStoryId
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage
@@ -237,5 +238,99 @@ class MmsDatabaseTest_stories {
 
     // THEN
     assertTrue(result)
+  }
+
+  @Test
+  fun givenAGroupStoryWithNoReplies_whenICheckHasSelfReplyInGroupStory_thenIExpectFalse() {
+    // GIVEN
+    val groupStoryId = MmsHelper.insert(
+      recipient = myStory,
+      sentTimeMillis = 200,
+      storyType = StoryType.STORY_WITH_REPLIES,
+      threadId = -1L
+    )
+
+    // WHEN
+    val result = mms.hasSelfReplyInGroupStory(groupStoryId)
+
+    // THEN
+    assertFalse(result)
+  }
+
+  @Test
+  fun givenAGroupStoryWithAReplyFromSelf_whenICheckHasSelfReplyInGroupStory_thenIExpectTrue() {
+    // GIVEN
+    val groupStoryId = MmsHelper.insert(
+      recipient = myStory,
+      sentTimeMillis = 200,
+      storyType = StoryType.STORY_WITH_REPLIES,
+      threadId = -1L
+    )
+
+    MmsHelper.insert(
+      recipient = myStory,
+      sentTimeMillis = 201,
+      storyType = StoryType.NONE,
+      parentStoryId = ParentStoryId.GroupReply(groupStoryId)
+    )
+
+    // WHEN
+    val result = mms.hasSelfReplyInGroupStory(groupStoryId)
+
+    // THEN
+    assertTrue(result)
+  }
+
+  @Test
+  fun givenAGroupStoryWithAReactionFromSelf_whenICheckHasSelfReplyInGroupStory_thenIExpectFalse() {
+    // GIVEN
+    val groupStoryId = MmsHelper.insert(
+      recipient = myStory,
+      sentTimeMillis = 200,
+      storyType = StoryType.STORY_WITH_REPLIES,
+      threadId = -1L
+    )
+
+    MmsHelper.insert(
+      recipient = myStory,
+      sentTimeMillis = 201,
+      storyType = StoryType.NONE,
+      parentStoryId = ParentStoryId.GroupReply(groupStoryId),
+      isStoryReaction = true
+    )
+
+    // WHEN
+    val result = mms.hasSelfReplyInGroupStory(groupStoryId)
+
+    // THEN
+    assertFalse(result)
+  }
+
+  @Test
+  fun givenAGroupStoryWithAReplyFromSomeoneElse_whenICheckHasSelfReplyInGroupStory_thenIExpectFalse() {
+    // GIVEN
+    val groupStoryId = MmsHelper.insert(
+      recipient = myStory,
+      sentTimeMillis = 200,
+      storyType = StoryType.STORY_WITH_REPLIES,
+      threadId = -1L
+    )
+
+    MmsHelper.insert(
+      IncomingMediaMessage(
+        from = myStory.id,
+        sentTimeMillis = 201,
+        serverTimeMillis = 201,
+        receivedTimeMillis = 202,
+        parentStoryId = ParentStoryId.GroupReply(groupStoryId)
+      ),
+      -1
+    )
+
+    // WHEN
+    val result = mms.hasSelfReplyInGroupStory(groupStoryId)
+
+    // THEN
+    assertFalse(result)
   }
 }

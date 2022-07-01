@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.database
 
+import org.thoughtcrime.securesms.database.model.ParentStoryId
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage
@@ -22,6 +23,8 @@ object MmsHelper {
     distributionType: Int = ThreadDatabase.DistributionTypes.DEFAULT,
     threadId: Long = 1,
     storyType: StoryType = StoryType.NONE,
+    parentStoryId: ParentStoryId? = null,
+    isStoryReaction: Boolean = false,
     giftBadge: GiftBadge? = null
   ): Long {
     val message = OutgoingMediaMessage(
@@ -34,8 +37,8 @@ object MmsHelper {
       viewOnce,
       distributionType,
       storyType,
-      null,
-      false,
+      parentStoryId,
+      isStoryReaction,
       null,
       emptyList(),
       emptyList(),
