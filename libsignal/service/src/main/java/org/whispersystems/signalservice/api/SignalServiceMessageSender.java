@@ -1802,10 +1802,11 @@ public class SignalServiceMessageSender {
         Log.w(TAG, ike);
         unidentifiedAccess = Optional.empty();
       } catch (AuthorizationFailedException afe) {
-        Log.w(TAG, afe);
         if (unidentifiedAccess.isPresent()) {
+          Log.w(TAG, "Got an AuthorizationFailedException when trying to send using sealed sender. Falling back.");
           unidentifiedAccess = Optional.empty();
         } else {
+          Log.w(TAG, "Got an AuthorizationFailedException without using sealed sender!", afe);
           throw afe;
         }
       } catch (MismatchedDevicesException mde) {
