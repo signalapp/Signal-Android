@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.isStoryReaction
 
 /**
  * Queries the message databases to determine messages that should be in notifications.
@@ -125,7 +126,7 @@ object NotificationStateProvider {
   ) {
     private val isGroupStoryReply: Boolean = thread.groupStoryId != null
     private val isUnreadIncoming: Boolean = isUnreadMessage && !messageRecord.isOutgoing && !isGroupStoryReply
-    private val isNotifiableGroupStoryMessage: Boolean = isUnreadMessage && !messageRecord.isOutgoing && isGroupStoryReply && (isParentStorySentBySelf || hasSelfRepliedToStory)
+    private val isNotifiableGroupStoryMessage: Boolean = isUnreadMessage && !messageRecord.isOutgoing && isGroupStoryReply && (isParentStorySentBySelf || (hasSelfRepliedToStory && !messageRecord.isStoryReaction()))
 
     fun includeMessage(notificationProfile: NotificationProfile?): MessageInclusion {
       return if (isUnreadIncoming || stickyThread || isNotifiableGroupStoryMessage) {
