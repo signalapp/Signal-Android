@@ -721,6 +721,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">આ ગ્રુપ લિંક સક્રિય નથી</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">તમે ગ્રુપ લિંક દ્વારા આ ગ્રુપમાં જોડાઈ શકતા નથી કારણ કે એક એડમીને તમને દૂર કર્યા.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">આ ગ્રુપ લિંક હવે માન્ય નથી.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
@@ -774,6 +775,7 @@
   <string name="InviteActivity_no_app_to_share_to">એવું લાગે છે કે તમારી પાસે શેર કરવા માટે કોઈ એપ્લિકેશન નથી.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">વધુ શીખો</string>
+  <string name="SpanUtil__read_more">વધુ vancho</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">મેસેજ શોધવા માટે અસમર્થ</string>
   <string name="LongMessageActivity_message_from_s">%1$s તરફથી મેસેજ</string>
@@ -1676,6 +1678,7 @@
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">હવે ઉપલબ્ધ નથી</string>
   <!--Label for quoted gift-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">નીચે સ્ક્રોલ કરો</string>
@@ -2273,6 +2276,7 @@
   <string name="conversation_expiring_off__disappearing_messages">અદૃશ્ય થઈ રહેલા મેસેજ</string>
   <!--conversation_selection-->
   <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">માહિતી</string>
   <!--Button to copy a message\'s text to the clipboard-->
   <string name="conversation_selection__menu_copy">કૉપિ</string>
   <!--Button to delete a message-->
@@ -2946,6 +2950,7 @@
   <string name="QualitySelectorBottomSheetDialog__photo_quality">ફોટો ગુણવત્તા</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">તમારા મિત્રોને આમંત્રણ આપો</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">સબ્સ્ક્રાઇબરનું ID ક્લિપબોર્ડ પર કોપી કર્યું</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">એકાઉન્ટ</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">સમય જતાં તમને ઓછી વાર પૂછવામાં આવશે</string>
@@ -2956,8 +2961,10 @@
   <!--Confirmation button to dismiss number changed dialog-->
   <string name="ChangeNumber__okay">બરાબર</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">નંબર badlo</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">તમે દાખલ કરેલા ફોન નંબર તમારા એકાઉન્ટ સાથે મેળ ખાતા નથી.</string>
   <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">નંબર badlo</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__edit_number">નંબરમાં ફેરફાર કરો</string>
   <!--ChangeNumberRegistrationLockFragment-->
@@ -3031,6 +3038,7 @@
   <string name="HelpFragment__copyright_signal_messenger">કોપીરાઇટ Signal મેસેન્જર</string>
   <string name="HelpFragment__licenced_under_the_gplv3"> GPLv3 હેઠળ લાયસન્સ </string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">ઉચ્ચ ગુણવત્તાના મીડિયા મોકલવાથી વધુ ડેટા વાપરશે.</string>
   <string name="DataAndStorageSettingsFragment__high">ઉચ્ચ</string>
   <string name="DataAndStorageSettingsFragment__standard">સ્ટાન્ડર્ડ</string>
   <string name="DataAndStorageSettingsFragment__calls">કૉલ્સ</string>
@@ -3085,6 +3093,7 @@
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">સસ્ટેનર બનો</string>
   <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal તમારા જેવા લોકોથી સંચાલિત છે. દાન કરો અને એક બૅજ મેળવો.</string>
   <string name="BecomeASustainerMegaphone__not_now">અત્યારે નહીં </string>
   <string name="BecomeASustainerMegaphone__donate">દાન કરો</string>
   <!--KeyboardPagerFragment-->
@@ -3196,6 +3205,7 @@
   <!--Displayed when sharing content via the fragment-->
   <string name="MultiselectForwardFragment__share_with">સાથે શેર કરો</string>
   <string name="MultiselectForwardFragment__add_a_message">મેસેજ ઉમેરો</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">ફોરવર્ડ કરેલા મેસેજ હવે તાત્કાલિક મોકલવામાં આવે છે.</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">મેસેજ ઉમેરો</string>
   <string name="ImageEditorHud__cancel">રદ કરો</string>
@@ -3204,12 +3214,19 @@
   <string name="MediaCountIndicatorButton__send">મોકલો</string>
   <string name="MediaReviewSelectedItem__tap_to_select">પસંદ કરવા માટે ટેપ કરો</string>
   <string name="MediaReviewImagePageFragment__discard">કાઢી નાખો</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">પ્રોફાઇલ પર બૅજ દર્શાવો</string>
   <string name="SelectFeaturedBadgeFragment__preview">પ્રિવ્યૂ</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal તમારા જેવા લોકો દ્વારા સંચાલિત છે.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Signalને પુનરાવર્તિત માસિક દાન આપો જેથી એવી ટેક્નોલોજીને સમર્થન મળે જે તમારા માટે નિર્મિત છે, નહીં કે તમારા ડેટા માટે.</string>
+  <string name="SubscribeFragment__more_payment_options">વધુ ચુકવણી વિકલ્પો</string>
+  <string name="SubscribeFragment__cancel_subscription">સબ્સ્ક્રિપ્શન રદ કરો</string>
+  <string name="SubscribeFragment__confirm_cancellation">રદ કરવાની પુષ્ટિ કરો છો?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">તમારી પાસેથી ફરીથી ચાર્જ લેવામાં આવશે નહીં. તમારી બિલિંગ અવધિના અંતે તમારી પ્રોફાઇલમાંથી તમારું બૅજ દૂર થઈ જશે.</string>
   <string name="SubscribeFragment__not_now">અત્યારે નહીં </string>
   <string name="SubscribeFragment__confirm">ખાતરી કરો</string>
   <string name="SubscribeFragment__update">અપડેટ</string>
   <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal એ કોઈ જાહેરાતકર્તા કે રોકાણકારો વગરનું બિન-લાભકારી છે, ફક્ત એવા લોકો દ્વારા ચાલે છે જે તેનો ઉપયોગ કરે છે અને તેનું મહત્વ સમજે છે. એક પુનરાવર્તિત માસિક દાન કરો અને તમારો સપોર્ટ શેર કરવા એક પ્રોફાઇલ બૅજ મેળવો.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">શા માટે ફાળો આપવો?</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">બૂસ્ટ માટે આભાર!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">પ્રોફાઇલ પર દર્શાવો</string>
@@ -3219,15 +3236,19 @@
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">વધુ</string>
   <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">રસીદો</string>
   <!--Heading for my subscription area of manage subscriptions page-->
   <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__donation_receipts">દાનની રસીદો</string>
   <string name="ManageDonationsFragment__badges">બૅજ</string>
+  <string name="ManageDonationsFragment__subscription_faq">સબ્સ્ક્રિપ્શન અંગેની પ્રશ્નોત્તરી</string>
   <!--Preference heading for other ways to donate-->
   <!--Preference label to launch badge gifting-->
   <string name="BoostFragment__give_signal_a_boost">Signalને થોડું બૂસ્ટ કરો</string>
   <!--Description text in boost sheet-->
   <string name="Boost__enter_custom_amount">કસ્ટમ રકમ દાખલ કરો</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__please_contact_support">કૃપા કરીને સપોર્ટનો સંપર્ક કરો.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">માસિક દાન રદ કર્યું</string>
@@ -3248,6 +3269,8 @@
   <!--Displayed when badge credential couldn\'t be verified-->
   <!--Displayed as title when some generic error happens during gift badge sending-->
   <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__your_payment_is_still">તમારી ચુકવણીની હજી પ્રક્રિયા ચાલુ છે. આમાં તમારા કનેક્શનને આધારે થોડી મિનિટો લાગી શકે છે.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">નેટવર્ક ત્રુટિ. તમારું કનેક્શન તપાસો અને ફરી પ્રયાસ કરો.</string>
   <string name="NetworkFailure__retry">ફરી પ્રયાસ કરો</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
@@ -3262,6 +3285,7 @@
   <!--Gift badge redeeming action label-->
   <!--Gift badge redeemed label-->
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">અન્ય ચુકવણી પદ્ધતિ અજમાવો અથવા વધુ માહિતી માટે તમારી બેંકનો સંપર્ક કરો.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">વધુ શીખો</string>
@@ -3275,6 +3299,7 @@
   <!--Stripe decline code incorrect expiration month-->
   <!--Stripe decline code incorrect expiration year-->
   <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">ફરીથી ચુકવણી પૂરી કરવાનો પ્રયાસ કરો અથવા વધુ માહિતી માટે તમારી બેંકનો સંપર્ક કરો.</string>
   <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
   <!--Hint text for create/edit notification profile name-->
@@ -3368,17 +3393,23 @@
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">બધા</string>
   <!--Donation receipts recurring tab label-->
+  <string name="DonationReceiptListFragment__recurring">પુનરાવર્તિત</string>
   <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">એક-વખત</string>
   <!--Donation receipts gift tab label-->
   <!--Donation receipts boost row label-->
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">વિગતો</string>
   <!--Donation receipts donation type heading-->
   <!--Donation receipts date paid heading-->
+  <string name="DonationReceiptDetailsFragment__date_paid">ચુકવણીની તારીખ</string>
   <!--Donation receipts share PNG-->
   <!--Donation receipts list end note-->
+  <string name="DonationReceiptListFragment__if_you_have">જો તમે Signalને ફરીથી ઇન્સ્ટોલ કર્યું હોય, તો અગાઉના દાનની રસીદો ઉપલબ્ધ નહીં રહે.</string>
   <!--Donation receipts document title-->
+  <string name="DonationReceiptDetailsFragment__donation_receipt">દાનની રસીદ</string>
   <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">રકમ</string>
   <!--Donation receipts thanks-->
   <!--Donation receipt type-->
   <!--Donation reciepts screen empty state title-->
@@ -3431,7 +3462,9 @@
   <!--Label for the reply button in story viewer, which will launch the group story replies bottom sheet.-->
   <!--Displayed when a story has no views-->
   <!--Displayed when a story has no replies yet-->
+  <string name="StoryGroupReplyFragment__no_replies_yet">હજી કોઈ જવાબો નથી</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
+  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">સ્ટોરી પર પ્રતિક્રિયા આપી</string>
   <!--Label for story views tab-->
   <!--Label for story replies tab-->
   <!--Description of action for reaction button-->
@@ -3539,9 +3572,11 @@
   <string name="TurnOffCircumventionMegaphone_turn_off">બંધ કરો</string>
   <!--Conversation Item label for when you react to someone else\'s story-->
   <!--Conversation Item label for reactions to your story-->
+  <string name="ConversationItem__reacted_to_your_story">તમારી સ્ટોરી પર પ્રતિક્રિયા આપી</string>
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="StoriesLinkPopup__visit_link">લિંકની મુલાકાત લો</string>
   <!--Duration and price information-->
   <!--Tagline for gift row items-->
   <!--Headline text on start fragment for gifting a badge-->
@@ -3555,6 +3590,7 @@
   <!--Text explaining that gift will be sent to the chosen recipient-->
   <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">તમારી ભેટ પ્રાપ્તકર્તાને સામ-સામે મેસેજમાં મોકલવામાં આવશે. નીચે તમારો પોતાનો મેસેજ ઉમેરો.</string>
   <!--Text explaining that this gift is a one time donation-->
+  <string name="GiftFlowConfirmationFragment__one_time_donation">એક-વખતનું દાન</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">મેસેજ ઉમેરો</string>
   <!--Displayed in the dialog while verifying the chosen recipient-->
