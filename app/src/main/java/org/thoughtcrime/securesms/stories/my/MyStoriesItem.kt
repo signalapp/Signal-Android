@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
@@ -99,11 +100,15 @@ object MyStoriesItem {
       presentDateOrStatus(model)
 
       if (model.distributionStory.messageRecord.isSent) {
-        viewCount.text = context.resources.getQuantityString(
-          R.plurals.MyStories__d_views,
-          model.distributionStory.messageRecord.viewedReceiptCount,
-          model.distributionStory.messageRecord.viewedReceiptCount
-        )
+        if (TextSecurePreferences.isReadReceiptsEnabled(context)) {
+          viewCount.text = context.resources.getQuantityString(
+            R.plurals.MyStories__d_views,
+            model.distributionStory.messageRecord.viewedReceiptCount,
+            model.distributionStory.messageRecord.viewedReceiptCount
+          )
+        } else {
+          viewCount.setText(R.string.StoryViewerPageFragment__views_off)
+        }
       }
 
       if (STATUS_CHANGE in payload) {
