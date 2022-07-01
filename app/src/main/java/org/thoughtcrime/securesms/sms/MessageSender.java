@@ -102,8 +102,11 @@ public class MessageSender {
    * Suitable for a 1:1 conversation or a GV1 group only.
    */
   @WorkerThread
-  public static void sendProfileKey(final Context context, final long threadId) {
-    ApplicationDependencies.getJobManager().add(ProfileKeySendJob.create(context, threadId, false));
+  public static void sendProfileKey(final long threadId) {
+    ProfileKeySendJob job = ProfileKeySendJob.create(threadId, false);
+    if (job != null) {
+      ApplicationDependencies.getJobManager().add(job);
+    }
   }
 
   public static long send(final Context context,

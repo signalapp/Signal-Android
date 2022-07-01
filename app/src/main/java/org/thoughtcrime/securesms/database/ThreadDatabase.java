@@ -1153,7 +1153,6 @@ public class ThreadDatabase extends Database {
     SQLiteDatabase db = databaseHelper.getSignalReadableDatabase();
 
     try (Cursor cursor = db.query(TABLE_NAME, RECIPIENT_ID_PROJECTION, ID_WHERE, SqlUtil.buildArgs(threadId), null, null, null)) {
-
       if (cursor != null && cursor.moveToFirst()) {
         return RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID)));
       }

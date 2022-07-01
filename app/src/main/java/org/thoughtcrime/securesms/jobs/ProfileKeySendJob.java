@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
@@ -45,13 +46,16 @@ public class ProfileKeySendJob extends BaseJob {
    *
    * @param queueLimits True if you only want one of these to be run per person after decryptions
    *                    are drained, otherwise false.
+   *
+   * @return The job that is created, or null if the threadId provided was invalid.
    */
   @WorkerThread
-  public static ProfileKeySendJob create(@NonNull Context context, long threadId, boolean queueLimits) {
+  public static @Nullable ProfileKeySendJob create(long threadId, boolean queueLimits) {
     Recipient conversationRecipient = SignalDatabase.threads().getRecipientForThreadId(threadId);
 
     if (conversationRecipient == null) {
-      throw new AssertionError("We have a thread but no recipient!");
+      Log.w(TAG, "Thread no longer valid! Aborting.");
+      return null;
     }
 
     if (conversationRecipient.isPushV2Group()) {

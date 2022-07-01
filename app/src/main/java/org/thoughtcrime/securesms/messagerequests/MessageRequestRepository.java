@@ -144,7 +144,7 @@ final class MessageRequestRepository {
         RecipientDatabase recipientDatabase = SignalDatabase.recipients();
         recipientDatabase.setProfileSharing(liveRecipient.getId(), true);
 
-        MessageSender.sendProfileKey(context, threadId);
+        MessageSender.sendProfileKey(threadId);
 
         List<MessageDatabase.MarkedMessageInfo> messageIds = SignalDatabase.threads().setEntireThreadRead(threadId);
         ApplicationDependencies.getMessageNotifier().updateNotification(context);

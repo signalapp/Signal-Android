@@ -325,10 +325,14 @@ public final class MessageContentProcessor {
                                                      .enqueue();
             } else if (!threadRecipient.isGroup()) {
               Log.i(TAG, "Message was to a 1:1. Ensuring this user has our profile key.");
-              ApplicationDependencies.getJobManager()
-                                     .startChain(new RefreshAttributesJob(false))
-                                     .then(ProfileKeySendJob.create(context, SignalDatabase.threads().getOrCreateThreadIdFor(threadRecipient), true))
-                                     .enqueue();
+              ProfileKeySendJob profileSendJob = ProfileKeySendJob.create(SignalDatabase.threads().getOrCreateThreadIdFor(threadRecipient), true);
+
+              if (profileSendJob != null) {
+                ApplicationDependencies.getJobManager()
+                                       .startChain(new RefreshAttributesJob(false))
+                                       .then(profileSendJob)
+                                       .enqueue();
+              }
             }
           }
         }
