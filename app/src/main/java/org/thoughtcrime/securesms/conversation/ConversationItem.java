@@ -947,7 +947,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private boolean hasQuote(MessageRecord messageRecord) {
-    return MessageRecordUtil.hasQuote(messageRecord) && (!isCondensedMode || !previousMessage.isPresent());
+    return MessageRecordUtil.hasQuote(messageRecord);
   }
 
   private boolean hasSharedContact(MessageRecord messageRecord) {
@@ -1696,7 +1696,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private void setHasBeenQuoted(@NonNull ConversationMessage message) {
-    if (message.hasBeenQuoted() && quotedIndicator != null) {
+    if (message.hasBeenQuoted() && !isCondensedMode && quotedIndicator != null) {
       quotedIndicator.setVisibility(VISIBLE);
       quotedIndicator.setOnClickListener(quotedIndicatorClickListener);
     } else if (quotedIndicator != null) {

@@ -81,6 +81,10 @@ class MessageQuotesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() {
     val recyclerViewColorizer = RecyclerViewColorizer(list)
 
     disposables += viewModel.getMessages().subscribe { messages ->
+      if (messages.isEmpty()) {
+        dismiss()
+      }
+
       messageAdapter.submitList(messages) {
         (list.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(messages.size - 1, 100)
       }

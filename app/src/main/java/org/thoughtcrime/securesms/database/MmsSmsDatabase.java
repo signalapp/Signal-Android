@@ -45,6 +45,7 @@ import java.io.Closeable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -307,8 +308,19 @@ public class MmsSmsDatabase extends Database {
       MessageRecord record;
       while ((record = reader.getNext()) != null) {
         records.add(record);
+        records.addAll(getAllMessagesThatQuote(new MessageId(record.getId(), record.isMms())));
       }
     }
+
+    Collections.sort(records, (lhs, rhs) -> {
+      if (lhs.getDateReceived() > rhs.getDateReceived()) {
+        return -1;
+      } else if (lhs.getDateReceived() < rhs.getDateReceived()) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
 
     return records;
   }
