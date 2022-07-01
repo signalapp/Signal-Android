@@ -30,19 +30,25 @@
 
     <include layout="@layout/media_overview_detail_text" />
 
-    <org.thoughtcrime.securesms.components.AudioView
-        android:id="@+id/audio"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        app:autoRewind="true"
+    <FrameLayout
+        android:id="@+id/audio_wrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
-        app:foregroundTintColor="@color/signal_inverse_primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toEndOf="@id/media_overview_text"
-        app:layout_constraintTop_toTopOf="parent"
-        app:progressAndPlayTint="@color/signal_background_secondary"
-        app:audioView_mode="small" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <org.thoughtcrime.securesms.components.AudioView
+            android:id="@+id/audio"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:audioView_mode="small"
+            app:autoRewind="true"
+            app:foregroundTintColor="@color/signal_inverse_primary"
+            app:progressAndPlayTint="@color/signal_background_secondary" />
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

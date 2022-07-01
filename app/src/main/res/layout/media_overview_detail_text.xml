@@ -9,7 +9,7 @@
     android:layout_marginEnd="16dp"
     android:orientation="vertical"
     app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toStartOf="@+id/audio"
+    app:layout_constraintEnd_toStartOf="@+id/audio_wrapper"
     app:layout_constraintStart_toEndOf="@+id/image_container"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_goneMarginEnd="@dimen/dsl_settings_gutter"
