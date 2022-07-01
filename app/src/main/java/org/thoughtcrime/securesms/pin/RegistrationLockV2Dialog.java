@@ -8,6 +8,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -23,13 +25,13 @@ public final class RegistrationLockV2Dialog {
   private RegistrationLockV2Dialog() {}
 
   public static void showEnableDialog(@NonNull Context context, @NonNull Runnable onSuccess) {
-      AlertDialog dialog = new AlertDialog.Builder(context)
-                                          .setTitle(R.string.RegistrationLockV2Dialog_turn_on_registration_lock)
-                                          .setView(R.layout.registration_lock_v2_dialog)
-                                          .setMessage(R.string.RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again)
-                                          .setNegativeButton(android.R.string.cancel, null)
-                                          .setPositiveButton(R.string.RegistrationLockV2Dialog_turn_on, null)
-                                          .create();
+      AlertDialog dialog = new MaterialAlertDialogBuilder(context)
+          .setTitle(R.string.RegistrationLockV2Dialog_turn_on_registration_lock)
+          .setView(R.layout.registration_lock_v2_dialog)
+          .setMessage(R.string.RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again)
+          .setNegativeButton(android.R.string.cancel, null)
+          .setPositiveButton(R.string.RegistrationLockV2Dialog_turn_on, null)
+          .create();
       dialog.setOnShowListener(d -> {
         ProgressBar progress       = Objects.requireNonNull(dialog.findViewById(R.id.reglockv2_dialog_progress));
         View        positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
@@ -65,12 +67,12 @@ public final class RegistrationLockV2Dialog {
   }
 
   public static void showDisableDialog(@NonNull Context context, @NonNull Runnable onSuccess) {
-    AlertDialog dialog = new AlertDialog.Builder(context)
-                                        .setTitle(R.string.RegistrationLockV2Dialog_turn_off_registration_lock)
-                                        .setView(R.layout.registration_lock_v2_dialog)
-                                        .setNegativeButton(android.R.string.cancel, null)
-                                        .setPositiveButton(R.string.RegistrationLockV2Dialog_turn_off, null)
-                                        .create();
+    AlertDialog dialog = new MaterialAlertDialogBuilder(context)
+        .setTitle(R.string.RegistrationLockV2Dialog_turn_off_registration_lock)
+        .setView(R.layout.registration_lock_v2_dialog)
+        .setNegativeButton(android.R.string.cancel, null)
+        .setPositiveButton(R.string.RegistrationLockV2Dialog_turn_off, null)
+        .create();
     dialog.setOnShowListener(d -> {
       ProgressBar progress       = Objects.requireNonNull(dialog.findViewById(R.id.reglockv2_dialog_progress));
       View        positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
