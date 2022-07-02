@@ -257,7 +257,7 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
     private Collection<MessageId>                messageIds           = new LinkedList<>();
     private Map<MessageId, List<ReactionRecord>> messageIdToReactions = new HashMap<>();
 
-    void add(MessageRecord record) {
+    public void add(MessageRecord record) {
       messageIds.add(new MessageId(record.getId(), record.isMms()));
     }
 

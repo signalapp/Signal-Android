@@ -426,6 +426,18 @@ public class MmsSmsDatabase extends Database {
            SignalDatabase.mms().hasMeaningfulMessage(threadId);
   }
 
+  public long getThreadId(MessageId messageId) {
+    if (messageId.isMms()) {
+      return SignalDatabase.mms().getThreadIdForMessage(messageId.getId());
+    } else {
+      return SignalDatabase.sms().getThreadIdForMessage(messageId.getId());
+    }
+  }
+
+  /**
+   * This is currently only used in an old migration and shouldn't be used by anyone else, just because it flat-out isn't correct.
+   */
+  @Deprecated
   public long getThreadForMessageId(long messageId) {
     long id = SignalDatabase.sms().getThreadIdForMessage(messageId);
 

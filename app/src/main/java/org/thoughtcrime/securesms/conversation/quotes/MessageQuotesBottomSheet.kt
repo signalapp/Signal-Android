@@ -48,6 +48,7 @@ class MessageQuotesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() {
   )
 
   private val disposables: LifecycleDisposable = LifecycleDisposable()
+  private var firstRender: Boolean = true
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
     val view = inflater.inflate(R.layout.message_quotes_bottom_sheet, container, false)
@@ -86,7 +87,12 @@ class MessageQuotesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() {
       }
 
       messageAdapter.submitList(messages) {
-        (list.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(messages.size - 1, 100)
+        if (firstRender) {
+          (list.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(messages.size - 1, 100)
+          firstRender = false
+        } else if (!list.canScrollVertically(1)) {
+          list.layoutManager?.scrollToPosition(0)
+        }
       }
       recyclerViewColorizer.setChatColors(conversationRecipient.chatColors)
     }
