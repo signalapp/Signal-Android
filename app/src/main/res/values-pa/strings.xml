@@ -91,7 +91,9 @@
   <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">ਤੁਸੀਂ ਇਕ ਦੂਜੇ ਨੂੰ ਸੁਨੇਹਾ ਭੇਜਣ ਅਤੇ ਕਾਲ ਕਰਨ ਦੇ ਯੋਗ ਹੋਵੋਗੇ ਅਤੇ ਤੁਹਾਡਾ ਨਾਂ ਅਤੇ ਫੋਟੋ ਉਨ੍ਹਾਂ ਨਾਲ ਸਾਂਝੀ ਕੀਤੀ ਜਾਏਗੀ।</string>
   <!--Text that is shown when unblocking an SMS contact-->
+  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">ਤੁਸੀਂ ਇੱਕ ਦੂਜੇ ਨੂੰ ਸੁਨੇਹਾ ਭੇਜ ਸਕੋਗੇ।</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">ਪਾਬੰਦੀਸ਼ੁਦਾ ਲੋਕ ਤੁਹਾਨੂੰ ਕਾਲ ਨਹੀਂ ਕਰ ਸਕਣਗੇ ਜਾਂ ਸੁਨੇਹੇ ਨਹੀਂ ਭੇਜ ਸਕਣਗੇ।</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">ਪਾਬੰਦੀ ਲਗਾਏ ਲੋਕ ਤੁਹਾਨੂੰ ਸੁਨੇਹੇ ਨਹੀਂ ਭੇਜ ਸਕਣਗੇ।</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal ਅੱਪਡੇਟ ਤੇ ਖ਼ਬਰਾਂ ਲੈਣ ਤੋਂ ਪਾਬੰਦੀ ਲਾਓ।</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -126,6 +128,7 @@
   <string name="CameraContacts__menu_search">ਖੋਜੋ</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">ਕੀ ਸੈਂਸਰਸ਼ਿਪ ਦਾ ਹੱਲ ਬੰਦ ਕਰਨਾ ਹੈ?</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">ਤੁਸੀਂ ਹੁਣ ਵਧੀਆ ਤਜਰਬੇ ਵਾਸਤੇ Signal ਸੇਵਾ ਨਾਲ ਸਿੱਧਾ ਕਨੈਕਟ ਕਰ ਸਕਦੇ ਹੋ।</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
@@ -216,8 +219,10 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ਇਹ ਡਿਵਾਈਸ ਡਾਇਲ ਕਾਰਜਾਂ ਨੂੰ ਸਮਰਥਿਤ ਕਰਦੀ ਨਹੀਂ ਜਾਪਦੀ।</string>
   <string name="ConversationActivity_transport_insecure_sms">ਅਸੁਰੱਖਿਅਤ SMS</string>
   <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_insecure_sms_with_sim">ਅਸੁਰੱਖਿਅਤ SMS (%1$s)</string>
   <string name="ConversationActivity_transport_insecure_mms">ਅਸੁਰੱਖਿਅਤ MMS</string>
   <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_insecure_mms_with_sim">ਅਸੁਰੱਖਿਅਤ MMS (%1$s)</string>
   <string name="ConversationActivity_transport_signal">Signal ਸੁਨੇਹਾ</string>
   <string name="ConversationActivity_lets_switch_to_signal">ਆਓ Signal %1$s ਨੂੰ ਅਪਣਾਈਏ</string>
   <string name="ConversationActivity_specify_recipient">ਕਿਰਪਾ ਕਰਕੇ ਕੋਈ ਸੰਪਰਕ ਚੁਣੋ</string>
@@ -320,7 +325,9 @@
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s ਚਾਲੂ</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">ਕੀ ਬੇਨਤੀ ਉੱਤੇ ਪਾਬੰਦੀ ਲਗਾਉਣੀ ਹੈ?</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s ਗਰੁੱਪ ਲਿੰਕ ਰਾਹੀਂ ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਨਹੀਂ ਹੋ ਸਕਣਗੇ ਜਾਂ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣ ਦੀ ਬੇਨਤੀ ਨਹੀਂ ਕਰ ਸਕਣਗੇ। ਉਹਨਾਂ ਨੂੰ ਅਜੇ ਵੀ ਖੁਦ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ।</string>
   <!--Dialog confirm block request button-->
   <string name="ConversationFragment__block_request_button">ਬੇਨਤੀ ਉੱਤੇ ਪਾਬੰਦੀ</string>
   <!--Dialog cancel block request button-->
@@ -3838,6 +3845,7 @@
   <!--Displayed in a dialog to let the user select a given users story-->
   <!--Displayed in a dialog to let the user select a given users profile photo-->
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">ਕੀ ਸੈਂਸਰਸ਼ਿਪ ਦਾ ਹੱਲ ਬੰਦ ਕਰਨਾ ਹੈ?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">ਤੁਸੀਂ ਹੁਣ ਵਧੀਆ ਤਜਰਬੇ ਵਾਸਤੇ Signal ਸੇਵਾ ਨਾਲ ਸਿੱਧਾ ਕਨੈਕਟ ਕਰ ਸਕਦੇ ਹੋ।</string>
   <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->

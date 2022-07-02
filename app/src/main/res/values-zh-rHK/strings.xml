@@ -218,8 +218,10 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">此裝置似乎不支援撥打動作。</string>
   <string name="ConversationActivity_transport_insecure_sms">不安全的短訊</string>
   <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_insecure_sms_with_sim">不安全的短訊 (%1$s)</string>
   <string name="ConversationActivity_transport_insecure_mms">不安全的多媒體短訊</string>
   <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_insecure_mms_with_sim">不安全的多媒體短訊 (%1$s)</string>
   <string name="ConversationActivity_transport_signal">Signal 訊息</string>
   <string name="ConversationActivity_lets_switch_to_signal">我們不如改用 Signal 吧 %1$s</string>
   <string name="ConversationActivity_specify_recipient">請選擇一個聯絡人</string>
@@ -617,6 +619,7 @@
   <string name="AddGroupDetailsFragment__group_creation_failed">群組建立失敗。</string>
   <string name="AddGroupDetailsFragment__try_again_later">請稍後再試。</string>
   <!--Displayed when adding group details to an MMS Group-->
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">您選擇了一個不支援 Signal 群組的聯絡人。因此，這群組將會用多媒體短訊。只有您可看見自訂多媒體短訊群組的名稱和照片。</string>
   <string name="AddGroupDetailsFragment__remove">移除</string>
   <string name="AddGroupDetailsFragment__sms_contact">短訊聯絡人</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">要從此群組中移除 %1$s 嗎？</string>
@@ -856,6 +859,7 @@
   <string name="NotificationBarManager__incoming_signal_call">Signal 來電</string>
   <string name="NotificationBarManager__incoming_signal_group_call">Signal 群組來電</string>
   <!--Temporary notification shown when starting the calling service-->
+  <string name="NotificationBarManager__starting_signal_call_service">開始 Signal 通話服務</string>
   <string name="NotificationBarManager__stopping_signal_call_service">正在停止 Signal 通話服務</string>
   <string name="NotificationBarManager__decline_call">拒接通話</string>
   <string name="NotificationBarManager__answer_call">接聽通話</string>
@@ -3477,6 +3481,7 @@
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">我們未能處理您的付款，因此您的每月定期捐款已取消。您的徽章不再見於您的個人資料中。</string>
   <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">您的每月定期捐款已經取消。%1$s 您的個人資料不會再顯示「%2$s」徽章。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">您可如常使用 Signal，沒有關係。假如您希望支持此應用程式並延續您的徽章，請立即續期。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">為訂閱續期</string>
   <!--Button label to send user to Google Pay website-->
@@ -3759,6 +3764,7 @@
   <!--Label when a story fails to send due to networking-->
   <string name="StoriesLandingItem__send_failed">傳送失敗</string>
   <!--Label when a story fails to send due to identity mismatch-->
+  <string name="StoriesLandingItem__partially_sent">已部分傳送</string>
   <!--Status label when a story fails to send indicating user action to retry-->
   <string name="StoriesLandingItem__tap_to_retry">輕觸以重試</string>
   <!--Title of dialog confirming decision to hide a story-->
@@ -3784,6 +3790,7 @@
   <!--Message of dialog to confirm deletion of story-->
   <string name="MyStories__this_story_will_be_deleted">此限時動態將為您以及已接收的所有人刪除。</string>
   <!--Toast shown when story media cannot be saved-->
+  <string name="MyStories__unable_to_save">無法儲存</string>
   <!--Displayed at bottom of story viewer when current item has views-->
   <plurals name="StoryViewerFragment__d_views">
     <item quantity="other">%1$d 次觀看</item>
@@ -3899,6 +3906,7 @@
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">搜尋</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
+  <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">發生未知錯誤</string>
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
   <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">對這些人隱藏限時動態…</string> -->
   <!--Done button label for hide story from screen-->
@@ -3992,6 +4000,9 @@
   <string name="ExpandModel__view_more">檢視更多</string>
   <string name="StoriesLinkPopup__visit_link">造訪連結</string>
   <!--Duration and price information-->
+  <plurals name="GiftRowItem_s_dot_d_day_duration">
+    <item quantity="other">%1$s · 為期 %2$d 天</item>
+  </plurals>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">送贈一枚禮品徽章</string>
   <!--Headline text on start fragment for gifting a badge-->

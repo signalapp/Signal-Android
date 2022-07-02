@@ -218,8 +218,10 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">呢部機似乎無得撥輪喎。</string>
   <string name="ConversationActivity_transport_insecure_sms">唔安全嘅短訊</string>
   <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_insecure_sms_with_sim">唔安全嘅短訊 (%1$s)</string>
   <string name="ConversationActivity_transport_insecure_mms">唔安全嘅多媒體短訊</string>
   <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_insecure_mms_with_sim">唔安全嘅多媒體短訊 (%1$s)</string>
   <string name="ConversationActivity_transport_signal">Signal 訊息</string>
   <string name="ConversationActivity_lets_switch_to_signal">不如我哋齊齊轉會 Signal %1$s</string>
   <string name="ConversationActivity_specify_recipient">請揀一位聯絡人吖</string>
@@ -617,6 +619,7 @@
   <string name="AddGroupDetailsFragment__group_creation_failed">開唔到新谷。</string>
   <string name="AddGroupDetailsFragment__try_again_later">陣間再試下啦。</string>
   <!--Displayed when adding group details to an MMS Group-->
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">您揀左一個唔支援 Signal 群組嘅聯絡人。所以呢個群組將會用多媒體短訊。只有您先可以睇到自訂多媒體短訊群組嘅名同埋相。</string>
   <string name="AddGroupDetailsFragment__remove">移除</string>
   <string name="AddGroupDetailsFragment__sms_contact">短訊聯絡人</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">係咪要踼 %1$s 出呢個谷？</string>
@@ -856,6 +859,7 @@
   <string name="NotificationBarManager__incoming_signal_call">打入嚟嘅 Signal 通話</string>
   <string name="NotificationBarManager__incoming_signal_group_call">打入嚟嘅 Signal 成谷通話</string>
   <!--Temporary notification shown when starting the calling service-->
+  <string name="NotificationBarManager__starting_signal_call_service">開始 Signal 通話服務</string>
   <string name="NotificationBarManager__stopping_signal_call_service">停止緊 Signal 通話服務</string>
   <string name="NotificationBarManager__decline_call">拒絕通話</string>
   <string name="NotificationBarManager__answer_call">接聽通話</string>
@@ -1100,6 +1104,7 @@
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">呢個舊版谷冇得繼續用，因為太大喇。谷嘅人數上限係 %1$d 人。</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">係咪要繼續同 %1$s 對話，並同佢分享您嘅名同相？</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">係咪要加入呢個谷，並同個谷嘅所有成員分享您嘅名同相？您話䎺之前，佢哋都唔會知您睇過個訊息嘅。</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">係咪要加入呢個群組，仲同群組成員分享您嘅名同相？您要同意先可以睇到佢哋嘅訊息。</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">係咪要加入呢個谷？您話䎺之前，佢哋都唔會知您睇過個訊息嘅。</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">係咪要解除封鎖呢個谷，並同個谷嘅所有成員分享您嘅名同相？您解除封鎖之前，都唔會收到佢哋任何嘅訊息。</string>
   <string name="MessageRequestProfileView_view">睇下</string>
@@ -1236,8 +1241,11 @@
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">重新連緊線…</string>
   <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">藍牙權限被拒</string>
   <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">請您啟用「附近裝置」權限嚟喺通話嗰陣用藍牙。</string>
   <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">打開設定</string>
   <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
   <string name="WebRtcCallActivity__not_now">遲啲先啦</string>
   <!--WebRtcCallView-->
@@ -1476,8 +1484,11 @@
   <string name="ThreadRecord_video">影片</string>
   <string name="ThreadRecord_chat_session_refreshed">傾偈階段已經重新整理</string>
   <!--Displayed in the notification when the user is sent a gift-->
+  <string name="ThreadRecord__you_received_a_gift">您收到一份禮品</string>
   <!--Displayed in the notification when the user sends a gift-->
+  <string name="ThreadRecord__you_sent_a_gift">您送出咗一份禮品</string>
   <!--Displayed in the notification when the user has opened a received gift-->
+  <string name="ThreadRecord__you_redeemed_a_gift_badge">您換領咗一個禮品徽章</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal 出咗新版本喇，撳一下以更新</string>
@@ -1616,6 +1627,7 @@
   <string name="SingleRecipientNotificationBuilder_message_request">訊息請求</string>
   <string name="SingleRecipientNotificationBuilder_you">您</string>
   <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • 限時動態</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">播片</string>
   <string name="ThumbnailView_Has_a_caption_description">有題字</string>
@@ -1754,6 +1766,7 @@
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">已經收檔</string>
   <!--Label for quoted gift-->
+  <string name="QuoteView__gift">禮品</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">拉到落最底</string>
   <!--BubbleOptOutTooltip-->
@@ -3412,6 +3425,8 @@
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">擔當呢份使命，全靠您嘅捐款做後援，幫手補貼程式開發同營運嘅燈油火蠟，等世界上數以百萬計嘅人，都用到同一個 app 做私密通訊，開住個「爐」為對方焗一份蘋果派。無廣告、無追蹤、堅過石堅。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">多謝您嘅鼎力支持！</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">多謝您為我哋集氣！</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">您得到「%s」徽章！不妨喺您嘅個人資料顯示徽章，等大家一呼百應，一齊捐款撐起 Signal。</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">您得到「贊助徽章」！不妨喺您嘅個人資料顯示徽章，等大家一呼百應，一齊捐款撐起 Signal。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">不妨考慮埋</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">擔當月供課金計劃嘅後援。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">掛上去個人資料度展示</string>
@@ -3435,7 +3450,9 @@
   <string name="ManageDonationsFragment__subscription_faq">課金計劃問答</string>
   <string name="ManageDonationsFragment__error_getting_subscription">攞返課金計劃嘅時候發生錯誤。</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">其他捐款方式</string>
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">贈送徽章</string>
   <string name="BoostFragment__give_signal_a_boost">Signal 賣旗籌款</string>
   <!--Description text in boost sheet-->
   <string name="BoostFragment__make_a_one_time">單次捐款奉送「集氣」襟章一枚，為期 %1$d 日，聊作心意。</string>
@@ -3461,8 +3478,11 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">買多支旗</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">遲啲先啦</string>
   <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">因為您冇用一段時間，所以您嘅每月定期捐款已經自動取消。您嘅個人資料唔會再顯示「%1$s」徽章。</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">因為我哋處理唔到您嘅付款，所以您嘅每月定期捐款已經取消。您嘅個人資料唔會再顯示徽章。</string>
   <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">您嘅每月定期捐款已經取消。%1$s 您嘅個人資料唔會再顯示「%2$s」徽章。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal 一切如常運作，並讓您自由使用。若要繼續支持呢個 app 並掛返起您個襟章，請立即續期。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">為課金計劃續期</string>
   <!--Button label to send user to Google Pay website-->
@@ -3483,9 +3503,13 @@
   <string name="DonationsErrors__still_processing">仲處理緊</string>
   <string name="DonationsErrors__couldnt_add_badge">加唔到個襟章</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__failed_to_validate_badge">驗證唔到徵章</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__could_not_validate">驗證唔到伺服器回應。請聯絡支援團隊。</string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__failed_to_send_gift_badge">傳送唔到禮品徽章</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__could_not_send_gift_badge">傳送唔到禮品徽章。請聯絡支援團隊。</string>
   <string name="DonationsErrors__your_badge_could_not">您個襟章加唔到落去您個帳戶度，但有可能已經扣咗您數。請聯絡支援。</string>
   <string name="DonationsErrors__your_payment_is_still">仲處理緊您嘅付款。視乎您嘅上網速度，可能需時幾分鐘。</string>
   <string name="DonationsErrors__google_pay_unavailable">用唔到 Google Pay</string>
@@ -3496,19 +3520,27 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">網絡有問題。請檢查您嘅連線，然後再試下啦。</string>
   <string name="NetworkFailure__retry">再試一次</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__recipient_verification_failed">驗證唔到接收人。</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">對方唔支援送禮。</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__could_not_verify_recipient">驗證唔到接收人。</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">請檢查您嘅網路連線，然後再試一次。</string>
   <!--Gift message view title-->
+  <string name="GiftMessageView__gift_badge">禮品徽章</string>
   <!--Gift message view expiry information-->
   <plurals name="GiftMessageView__lasts_for_d_months">
     <item quantity="other">為期 %1$d 個月</item>
   </plurals>
   <!--Gift badge redeem action label-->
+  <string name="GiftMessageView__redeem">換領</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">睇下</string>
   <!--Gift badge redeeming action label-->
+  <string name="GiftMessageView__redeeming">換領緊…</string>
   <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">換領咗</string>
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">試下轉另一個付款方法，又或者聯絡返您間銀行問清楚。</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3680,6 +3712,7 @@
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">單次</string>
   <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">禮品</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">集氣</string>
   <!--Donation receipts details title-->
@@ -3701,6 +3734,7 @@
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--Donation reciepts screen empty state title-->
+  <string name="DonationReceiptListFragment__no_receipts">無收據</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">傾偈</string>
@@ -3731,6 +3765,7 @@
   <!--Label when a story fails to send due to networking-->
   <string name="StoriesLandingItem__send_failed">傳送失敗</string>
   <!--Label when a story fails to send due to identity mismatch-->
+  <string name="StoriesLandingItem__partially_sent">已部分傳送</string>
   <!--Status label when a story fails to send indicating user action to retry-->
   <string name="StoriesLandingItem__tap_to_retry">撳一下再試一次</string>
   <!--Title of dialog confirming decision to hide a story-->
@@ -3756,6 +3791,7 @@
   <!--Message of dialog to confirm deletion of story-->
   <string name="MyStories__this_story_will_be_deleted">呢味是日花生，您同埋收到佢嘅全世界都會剷走佢個囉噃。</string>
   <!--Toast shown when story media cannot be saved-->
+  <string name="MyStories__unable_to_save">儲存唔到</string>
   <!--Displayed at bottom of story viewer when current item has views-->
   <plurals name="StoryViewerFragment__d_views">
     <item quantity="other">%1$d 次遊覽</item>
@@ -3773,6 +3809,7 @@
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">回覆</string>
   <!--Label for the reply button in story viewer, which will launch the group story replies bottom sheet.-->
+  <string name="StoryViewerPageFragment__reply_to_group">回覆群組</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">未有人遊覽</string>
   <!--Displayed when a story has no replies yet-->
@@ -3798,6 +3835,7 @@
   <!--Story settings private stories heading-->
   <string name="StorySettingsFragment__private_stories">私伙放送是日花生</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">只有您加入嘅成員先可以睇到私人限時動態。只有您先可以睇到限時動態嘅名。</string>
   <!--Option label for creating a new private story-->
   <string name="StorySettingsFragment__new_private_story">整多味私伙放送是日花生</string>
   <!--Page title for My Story options-->
@@ -3869,6 +3907,7 @@
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">搜尋</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
+  <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">發生未知錯誤</string>
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
   <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">隱藏是日花生唔俾佢睇…</string> -->
   <!--Done button label for hide story from screen-->
@@ -3928,6 +3967,7 @@
   <!--Displayed in story caption when content is longer than 5 lines-->
   <string name="StoryViewerPageFragment__see_more">… 睇埋佢</string>
   <!--Displayed in toast after sending a direct reply-->
+  <string name="StoryDirectReplyDialogFragment__sending_reply">傳送緊回覆…</string>
   <!--Displayed in the viewer when a story is no longer available-->
   <string name="StorySlateView__this_story_is_no_longer_available">呢味是日花生已經收爐。</string>
   <!--Displayed in the viewer when the network is not available-->
@@ -3961,33 +4001,53 @@
   <string name="ExpandModel__view_more">睇多啲</string>
   <string name="StoriesLinkPopup__visit_link">打開條拎去睇</string>
   <!--Duration and price information-->
+  <plurals name="GiftRowItem_s_dot_d_day_duration">
+    <item quantity="other">%1$s · 為期 %2$d 日</item>
+  </plurals>
   <!--Tagline for gift row items-->
+  <string name="GiftRowItem__send_a_gift_badge">送出一個禮品徽章</string>
   <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">贈送徽章</string>
   <!--Description text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">用其他人嘅名義捐款俾 Signal 可以向對方送上一個徽章。呢個徽章會顯示喺佢嘅個人資料照片到。</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">下一步</string>
   <!--Title text on choose recipient page for badge gifting-->
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">揀選接收人</string>
   <!--Title text on confirm gift page-->
+  <string name="GiftFlowConfirmationFragment__confirm_gift">確認禮品</string>
   <!--Heading text specifying who the gift will be sent to-->
   <string name="GiftFlowConfirmationFragment__send_to">傳畀</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">您嘅禮品會以一對一訊息傳送俾接收人。您可以喺下面加入自己嘅訊息。</string>
   <!--Text explaining that this gift is a one time donation-->
+  <string name="GiftFlowConfirmationFragment__one_time_donation">一次性捐款</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">寫返句訊息</string>
   <!--Displayed in the dialog while verifying the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__verifying_recipient">驗證緊接收人…</string>
   <!--Title for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s 送咗一份禮品俾您</string>
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">多謝您嘅鼎力支持！</string>
   <!--Description for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">%1$s 送咗一個禮品徽章俾您！不妨喺您嘅個人資料顯示呢個徽章，等大家一呼百應，一齊撐起 Signal。</string>
   <!--Description for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">您送左一個徵章俾 %1$s。當佢接受咗之後就可以揀要顯示定係隱藏徽章。</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
+  <string name="ViewReceivedGiftSheet__redeem">換領</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">遲啲先啦</string>
   <!--Dialog text while redeeming a gift-->
+  <string name="ViewReceivedGiftSheet__redeeming_gift">換領緊禮品…</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <string name="ConversationFragment__you_can_redeem_your_badge_later">您可以稍後先換領徽章。</string>
   <!--Description text in gift thanks sheet-->
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">您送左一個徵章俾 %1$s。當佢接受咗之後就可以揀要顯示定係隱藏徽章。</string>
   <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">您嘅禮品徽章已經過期</string>
   <!--Expired gift sheet top description text-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">您嘅禮品徽章已經過期，其他人唔會再喺您嘅個人資料到見到徽章。</string>
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">如果您想繼續力撐為您而設嘅科技，請考慮做我哋月供課金計劃嘅後援金主。</string>
   <!--Expired gift sheet make a monthly donation button-->
@@ -4003,8 +4063,18 @@
     <item quantity="other">成谷放送是日花生 · %1$d 位花生友</item>
   </plurals>
   <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="other">剩返 %1$d 日</item>
+  </plurals>
   <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="other">剩返 %1$d 個鐘</item>
+  </plurals>
   <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="other">剩返 %1$d 分鐘</item>
+  </plurals>
   <!--Gift expiry expired-->
+  <string name="Gifts__expired">過咗期</string>
   <!--EOF-->
 </resources>
