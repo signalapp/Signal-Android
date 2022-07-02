@@ -1009,7 +1009,7 @@ public class ConversationParentFragment extends Fragment
     if (recipient != null && recipient.get().isMuted()) inflater.inflate(R.menu.conversation_muted, menu);
     else                                                inflater.inflate(R.menu.conversation_unmuted, menu);
 
-    if (isSingleConversation() && getRecipient().getContactUri() == null && !recipient.get().isReleaseNotes()) {
+    if (isSingleConversation() && getRecipient().getContactUri() == null && !recipient.get().isReleaseNotes() && !recipient.get().isSelf()) {
       inflater.inflate(R.menu.conversation_add_to_contacts, menu);
     }
 
