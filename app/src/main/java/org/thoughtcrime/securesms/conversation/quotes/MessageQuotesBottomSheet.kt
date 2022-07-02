@@ -21,6 +21,11 @@ import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ItemDecoration
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionPlayerHolder
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionRecycler
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
@@ -101,6 +106,24 @@ class MessageQuotesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() {
       colorizer.onNameColorsChanged(map)
       messageAdapter.notifyItemRangeChanged(0, messageAdapter.itemCount, ConversationAdapter.PAYLOAD_NAME_COLORS)
     }
+
+    initializeGiphyMp4(view.findViewById(R.id.video_container) as ViewGroup, list)
+  }
+
+  private fun initializeGiphyMp4(videoContainer: ViewGroup, list: RecyclerView): GiphyMp4ProjectionRecycler {
+    val maxPlayback = GiphyMp4PlaybackPolicy.maxSimultaneousPlaybackInConversation()
+    val holders = GiphyMp4ProjectionPlayerHolder.injectVideoViews(
+      requireContext(),
+      viewLifecycleOwner.lifecycle,
+      videoContainer,
+      maxPlayback
+    )
+    val callback = GiphyMp4ProjectionRecycler(holders)
+
+    GiphyMp4PlaybackController.attach(list, callback, maxPlayback)
+    list.addItemDecoration(GiphyMp4ItemDecoration(callback) {}, 0)
+
+    return callback
   }
 
   private fun getCallback(): Callback {
