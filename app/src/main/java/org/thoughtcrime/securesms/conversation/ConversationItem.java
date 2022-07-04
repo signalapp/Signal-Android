@@ -403,6 +403,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   @Override
+  public void updateSelectedState() {
+    setHasBeenQuoted(conversationMessage);
+  }
+
+  @Override
   public void updateTimestamps() {
     getActiveFooter(messageRecord).setMessageRecord(messageRecord, locale);
   }
@@ -1696,7 +1701,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private void setHasBeenQuoted(@NonNull ConversationMessage message) {
-    if (message.hasBeenQuoted() && !isCondensedMode && quotedIndicator != null) {
+    if (message.hasBeenQuoted() && !isCondensedMode && quotedIndicator != null && batchSelected.isEmpty()) {
       quotedIndicator.setVisibility(VISIBLE);
       quotedIndicator.setOnClickListener(quotedIndicatorClickListener);
     } else if (quotedIndicator != null) {
