@@ -80,7 +80,7 @@ class MessageQuotesRepository {
         fetchReactions()
       }
       .buildUpdatedModels(listOf(originalRecord))
-      .map { ConversationMessageFactory.createWithUnresolvedData(application, it, it.getDisplayBody(application), 0) }
+      .map { ConversationMessageFactory.createWithUnresolvedData(application, it, it.getDisplayBody(application), false) }
 
     return replies + originalMessage
   }

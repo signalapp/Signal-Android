@@ -276,17 +276,17 @@ public class MmsSmsDatabase extends Database {
   }
 
   /**
-   * The number of messages that quote the target message
+   * Whether or not the message has been quoted by another message.
    */
-  public int getQuotedCount(@NonNull MessageRecord messageRecord) {
+  public boolean isQuoted(@NonNull MessageRecord messageRecord) {
     RecipientId author    = messageRecord.isOutgoing() ? Recipient.self().getId() : messageRecord.getRecipient().getId();
     long        timestamp = messageRecord.getDateSent();
 
     String   where      = MmsDatabase.QUOTE_ID +  " = ?  AND " + MmsDatabase.QUOTE_AUTHOR + " = ?";
     String[] whereArgs  = SqlUtil.buildArgs(timestamp, author);
 
-    try (Cursor cursor = getReadableDatabase().query(MmsDatabase.TABLE_NAME, COUNT, where, whereArgs, null, null, null)) {
-      return cursor.moveToFirst() ? cursor.getInt(0) : 0;
+    try (Cursor cursor = getReadableDatabase().query(MmsDatabase.TABLE_NAME, new String[]{ "1" }, where, whereArgs, null, null, null, "1")) {
+      return cursor.moveToFirst();
     }
   }
 
