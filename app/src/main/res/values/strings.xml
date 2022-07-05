@@ -4888,6 +4888,8 @@
         <item quantity="one">Group Story · %1$d viewer</item>
         <item quantity="other">Group Story · %1$d viewers</item>
     </plurals>
+    <!-- Label under name for My Story when first sending to my story -->
+    <string name="ContactSearchItems__tap_to_choose_your_viewers">Tap to choose your viewers</string>
     <!-- Label for context menu item to open story settings -->
     <string name="ContactSearchItems__story_settings">Story settings</string>
     <!-- Label for context menu item to remove a group story from contact results -->
@@ -4932,6 +4934,17 @@
     <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Swipe right to exit</string>
     <!-- Button label to confirm understanding of story navigation -->
     <string name="StoryFirstTimeNagivationView__got_it">Got it</string>
+
+    <!-- Title of initial My Story settings configuration shown when sending to My Story for the first time -->
+    <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">My Story Privacy</string>
+    <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
+    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Choose who can see posts to My Story. You can always make changes in settings.</string>
+    <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">All Signal connections</string>
+    <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">All Signal connections except…</string>
+    <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
+    <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Only share with…</string>
 
     <!-- EOF -->
 

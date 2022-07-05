@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.groups.SelectionLimits
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.stories.settings.custom.PrivateStorySettingsFragment
 import org.thoughtcrime.securesms.stories.settings.my.MyStorySettingsFragment
+import org.thoughtcrime.securesms.stories.settings.privacy.ChooseInitialMyStoryMembershipBottomSheetDialogFragment
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
@@ -35,7 +37,7 @@ class ContactSearchMediator(
       mappingAdapter = adapter,
       displayCheckBox = displayCheckBox,
       recipientListener = this::toggleSelection,
-      storyListener = this::toggleSelection,
+      storyListener = this::toggleStorySelection,
       storyContextMenuCallbacks = StoryContextMenuCallbacks(),
       expandListener = { viewModel.expandSection(it.sectionKey) }
     )
@@ -85,6 +87,14 @@ class ContactSearchMediator(
 
   fun refresh() {
     viewModel.refresh()
+  }
+
+  private fun toggleStorySelection(view: View, contactSearchData: ContactSearchData.Story, isSelected: Boolean) {
+    if (contactSearchData.recipient.isMyStory && !SignalStore.storyValues().userHasBeenNotifiedAboutStories) {
+      ChooseInitialMyStoryMembershipBottomSheetDialogFragment.show(fragment.childFragmentManager)
+    } else {
+      toggleSelection(view, contactSearchData, isSelected)
+    }
   }
 
   private fun toggleSelection(view: View, contactSearchData: ContactSearchData, isSelected: Boolean) {

@@ -22,8 +22,6 @@ import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
 import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendRepository
 import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendResult
 import org.thoughtcrime.securesms.stories.StoryTextPostView
-import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
-import org.thoughtcrime.securesms.stories.settings.privacy.HideStoryFromDialogFragment
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -134,22 +132,7 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
         findNavController().safeNavigate(R.id.action_textStoryPostCreationFragment_to_textStoryPostSendFragment)
       } else {
         send.isClickable = false
-        StoryDialogs.guardWithAddToYourStoryDialog(
-          contacts = contacts,
-          context = requireContext(),
-          onAddToStory = {
-            performSend(contacts)
-          },
-          onEditViewers = {
-            send.isClickable = true
-            storyTextPostView.hideCloseButton()
-            HideStoryFromDialogFragment().show(childFragmentManager, null)
-          },
-          onCancel = {
-            send.isClickable = true
-            storyTextPostView.hideCloseButton()
-          }
-        )
+        performSend(contacts)
       }
     }
   }

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="48dp">
+
+        <View
+            android:id="@+id/anchor"
+            android:layout_width="48dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:background="@color/signal_icon_tint_tab_unselected" />
+
+        <TextView
+            android:id="@+id/choose_initial_my_story_title"
+            style="@style/Signal.Text.TitleLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="32dp"
+
+            android:gravity="center_horizontal"
+            android:text="@string/ChooseInitialMyStoryMembershipFragment__my_story_privacy" />
+
+        <TextView
+            style="@style/Signal.Text.BodyMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="24dp"
+            android:gravity="center_horizontal"
+            android:text="@string/ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings"
+            android:textColor="@color/signal_colorOnSurfaceVariant" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/choose_initial_my_story_all_signal_connnections_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="?selectableItemBackground"
+            android:gravity="center_vertical"
+            android:minHeight="56dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="24dp">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/choose_initial_my_story_all_signal_connnections_radio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false" />
+
+            <TextView
+                style="@style/Signal.Text.BodyLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="@string/ChooseInitialMyStoryMembershipFragment__all_signal_connections" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/choose_initial_my_story_all_signal_connnections_except_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackground"
+            android:gravity="center_vertical"
+            android:minHeight="56dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="24dp">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/choose_initial_my_story_all_signal_connnections_except_radio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/choose_initial_my_story_all_signal_connnections_except_message"
+                style="@style/Signal.Text.BodyLarge"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="@string/ChooseInitialMyStoryMembershipFragment__all_signal_connections_except"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toTopOf="@+id/choose_initial_my_story_all_signal_connnections_except_count"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/choose_initial_my_story_all_signal_connnections_except_radio"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/choose_initial_my_story_all_signal_connnections_except_count"
+                style="@style/Signal.Text.BodyMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/signal_colorOnSurfaceVariant"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/choose_initial_my_story_all_signal_connnections_except_message"
+                app:layout_constraintStart_toStartOf="@+id/choose_initial_my_story_all_signal_connnections_except_message"
+                app:layout_constraintTop_toBottomOf="@+id/choose_initial_my_story_all_signal_connnections_except_message"
+                tools:text="Asdf"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/choose_initial_my_story_only_share_with_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackground"
+            android:gravity="center_vertical"
+            android:minHeight="56dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="24dp">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/choose_initial_my_story_only_share_with_radio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/choose_initial_my_story_only_share_with_message"
+                style="@style/Signal.Text.BodyLarge"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="@string/ChooseInitialMyStoryMembershipFragment__only_share_with"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toTopOf="@+id/choose_initial_my_story_only_share_with_count"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/choose_initial_my_story_only_share_with_radio"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/choose_initial_my_story_only_share_with_count"
+                style="@style/Signal.Text.BodyMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/signal_colorOnSurfaceVariant"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/choose_initial_my_story_only_share_with_message"
+                app:layout_constraintStart_toStartOf="@+id/choose_initial_my_story_only_share_with_message"
+                app:layout_constraintTop_toBottomOf="@+id/choose_initial_my_story_only_share_with_message"
+                tools:text="Asdf"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/choose_initial_my_story_save"
+            style="@style/Signal.Widget.Button.Medium.Tonal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/save" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</ScrollView>

@@ -1,7 +1,10 @@
 package org.thoughtcrime.securesms.stories.settings.privacy
 
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.WrapperDialogFragment
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.stories.settings.select.BaseStoryRecipientSelectionFragment
 
@@ -20,6 +23,18 @@ abstract class ChangeMyStoryMembershipFragment : BaseStoryRecipientSelectionFrag
 class AllExceptFragment : ChangeMyStoryMembershipFragment() {
   override val toolbarTitleId: Int = R.string.ChangeMyStoryMembershipFragment__all_except
   override val checkboxResource: Int = R.drawable.contact_selection_exclude_checkbox
+
+  class Dialog : WrapperDialogFragment() {
+    override fun getWrappedFragment(): Fragment {
+      return AllExceptFragment()
+    }
+  }
+
+  companion object {
+    fun createAsDialog(): DialogFragment {
+      return Dialog()
+    }
+  }
 }
 
 /**
@@ -27,4 +42,16 @@ class AllExceptFragment : ChangeMyStoryMembershipFragment() {
  */
 class OnlyShareWithFragment : ChangeMyStoryMembershipFragment() {
   override val toolbarTitleId: Int = R.string.ChangeMyStoryMembershipFragment__only_share_with
+
+  class Dialog : WrapperDialogFragment() {
+    override fun getWrappedFragment(): Fragment {
+      return OnlyShareWithFragment()
+    }
+  }
+
+  companion object {
+    fun createAsDialog(): DialogFragment {
+      return Dialog()
+    }
+  }
 }

@@ -27,16 +27,19 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sharing.ShareSelectionAdapter
 import org.thoughtcrime.securesms.sharing.ShareSelectionMappingModel
 import org.thoughtcrime.securesms.stories.Stories
-import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
 import org.thoughtcrime.securesms.stories.settings.create.CreateStoryFlowDialogFragment
 import org.thoughtcrime.securesms.stories.settings.create.CreateStoryWithViewersFragment
-import org.thoughtcrime.securesms.stories.settings.privacy.HideStoryFromDialogFragment
+import org.thoughtcrime.securesms.stories.settings.privacy.ChooseInitialMyStoryMembershipBottomSheetDialogFragment
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 
-class TextStoryPostSendFragment : Fragment(R.layout.stories_send_text_post_fragment), ChooseStoryTypeBottomSheet.Callback, WrapperDialogFragment.WrapperDialogFragmentCallback {
+class TextStoryPostSendFragment :
+  Fragment(R.layout.stories_send_text_post_fragment),
+  ChooseStoryTypeBottomSheet.Callback,
+  WrapperDialogFragment.WrapperDialogFragmentCallback,
+  ChooseInitialMyStoryMembershipBottomSheetDialogFragment.Callback {
 
   private lateinit var shareListWrapper: View
   private lateinit var shareSelectionRecyclerView: RecyclerView
@@ -87,18 +90,7 @@ class TextStoryPostSendFragment : Fragment(R.layout.stories_send_text_post_fragm
 
     shareConfirmButton.setOnClickListener {
       viewModel.onSending()
-      StoryDialogs.guardWithAddToYourStoryDialog(
-        contacts = contactSearchMediator.getSelectedContacts(),
-        context = requireContext(),
-        onAddToStory = { send() },
-        onEditViewers = {
-          viewModel.onSendCancelled()
-          HideStoryFromDialogFragment().show(childFragmentManager, null)
-        },
-        onCancel = {
-          viewModel.onSendCancelled()
-        }
-      )
+      send()
     }
 
     disposables += viewModel.untrustedIdentities.subscribe {
@@ -198,6 +190,11 @@ class TextStoryPostSendFragment : Fragment(R.layout.stories_send_text_post_fragm
   }
 
   override fun onWrapperDialogFragmentDismissed() {
+    contactSearchMediator.refresh()
+  }
+
+  override fun onMyStoryConfigured(recipientId: RecipientId) {
+    contactSearchMediator.setKeysSelected(setOf(ContactSearchKey.RecipientSearchKey.Story(recipientId)))
     contactSearchMediator.refresh()
   }
 }

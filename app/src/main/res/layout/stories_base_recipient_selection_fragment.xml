@@ -39,7 +39,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/action_button"
-        style="@style/Signal.Widget.Button.Large.Primary"
+        style="@style/Signal.Widget.Button.Large.Tonal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"

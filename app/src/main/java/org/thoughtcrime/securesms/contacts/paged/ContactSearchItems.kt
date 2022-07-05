@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.FromTextView
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -55,7 +56,7 @@ object ContactSearchItems {
     return MappingModelList(
       contactSearchData.filterNotNull().map {
         when (it) {
-          is ContactSearchData.Story -> StoryModel(it, selection.contains(it.contactSearchKey))
+          is ContactSearchData.Story -> StoryModel(it, selection.contains(it.contactSearchKey), SignalStore.storyValues().userHasBeenNotifiedAboutStories)
           is ContactSearchData.KnownRecipient -> RecipientModel(it, selection.contains(it.contactSearchKey))
           is ContactSearchData.Expand -> ExpandModel(it)
           is ContactSearchData.Header -> HeaderModel(it)
@@ -67,18 +68,23 @@ object ContactSearchItems {
   /**
    * Story Model
    */
-  private class StoryModel(val story: ContactSearchData.Story, val isSelected: Boolean) : MappingModel<StoryModel> {
+  private class StoryModel(val story: ContactSearchData.Story, val isSelected: Boolean, val hasBeenNotified: Boolean) : MappingModel<StoryModel> {
 
     override fun areItemsTheSame(newItem: StoryModel): Boolean {
       return newItem.story == story
     }
 
     override fun areContentsTheSame(newItem: StoryModel): Boolean {
-      return story.recipient.hasSameContent(newItem.story.recipient) && isSelected == newItem.isSelected
+      return story.recipient.hasSameContent(newItem.story.recipient) &&
+        isSelected == newItem.isSelected &&
+        hasBeenNotified == newItem.hasBeenNotified
     }
 
     override fun getChangePayload(newItem: StoryModel): Any? {
-      return if (story.recipient.hasSameContent(newItem.story.recipient) && newItem.isSelected != isSelected) {
+      return if (story.recipient.hasSameContent(newItem.story.recipient) &&
+        hasBeenNotified == newItem.hasBeenNotified &&
+        newItem.isSelected != isSelected
+      ) {
         0
       } else {
         null
@@ -100,13 +106,17 @@ object ContactSearchItems {
         model.story.viewerCount
       }
 
-      val pluralId = when {
-        model.story.recipient.isGroup -> R.plurals.ContactSearchItems__group_story_d_viewers
-        model.story.recipient.isMyStory -> R.plurals.SelectViewersFragment__d_viewers
-        else -> R.plurals.ContactSearchItems__private_story_d_viewers
-      }
+      if (model.story.recipient.isMyStory && !model.hasBeenNotified) {
+        number.setText(R.string.ContactSearchItems__tap_to_choose_your_viewers)
+      } else {
+        val pluralId = when {
+          model.story.recipient.isGroup -> R.plurals.ContactSearchItems__group_story_d_viewers
+          model.story.recipient.isMyStory -> R.plurals.SelectViewersFragment__d_viewers
+          else -> R.plurals.ContactSearchItems__private_story_d_viewers
+        }
 
-      number.text = context.resources.getQuantityString(pluralId, count, count)
+        number.text = context.resources.getQuantityString(pluralId, count, count)
+      }
     }
 
     override fun bindLongPress(model: StoryModel) {
