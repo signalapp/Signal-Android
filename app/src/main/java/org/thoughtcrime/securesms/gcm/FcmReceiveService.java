@@ -78,18 +78,25 @@ public class FcmReceiveService extends FirebaseMessagingService {
   }
 
   private static void handleReceivedNotification(Context context, @Nullable RemoteMessage remoteMessage) {
+    boolean enqueueSuccessful;
+
     try {
       long timeSinceLastRefresh = System.currentTimeMillis() - SignalStore.misc().getLastFcmForegroundServiceTime();
       Log.d(TAG, String.format(Locale.US, "[handleReceivedNotification] API: %s, FeatureFlag: %s, RemoteMessagePriority: %s, TimeSinceLastRefresh: %s ms", Build.VERSION.SDK_INT, FeatureFlags.useFcmForegroundService(), remoteMessage != null ? remoteMessage.getPriority() : "n/a", timeSinceLastRefresh));
 
       if (FeatureFlags.useFcmForegroundService() && Build.VERSION.SDK_INT >= 31 && remoteMessage != null && remoteMessage.getPriority() == RemoteMessage.PRIORITY_HIGH && timeSinceLastRefresh > FCM_FOREGROUND_INTERVAL) {
-        FcmFetchManager.enqueue(context, true);
+        enqueueSuccessful = FcmFetchManager.enqueue(context, true);
         SignalStore.misc().setLastFcmForegroundServiceTime(System.currentTimeMillis());
       } else {
-        FcmFetchManager.enqueue(context, false);
+        enqueueSuccessful = FcmFetchManager.enqueue(context, false);
       }
     } catch (Exception e) {
-      Log.w(TAG, "Failed to start service. Falling back to legacy approach.", e);
+      Log.w(TAG, "Failed to start service.", e);
+      enqueueSuccessful = false;
+    }
+
+    if (!enqueueSuccessful) {
+      Log.w(TAG, "Failed to start service. Falling back to legacy approach.");
       FcmFetchManager.retrieveMessages(context);
     }
   }

@@ -40,8 +40,11 @@ object FcmFetchManager {
   @Volatile
   private var startedForeground = false
 
+  /**
+   * @return True if a service was successfully started, otherwise false.
+   */
   @JvmStatic
-  fun enqueue(context: Context, foreground: Boolean) {
+  fun enqueue(context: Context, foreground: Boolean): Boolean {
     synchronized(this) {
       try {
         if (foreground) {
@@ -63,8 +66,11 @@ object FcmFetchManager {
         }
       } catch (e: IllegalStateException) {
         Log.w(TAG, "Failed to start service!", e)
+        return false
       }
     }
+
+    return true
   }
 
   private fun fetch(context: Context) {

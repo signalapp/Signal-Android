@@ -56,8 +56,8 @@ public class FcmRefreshJob extends BaseJob {
     this(new Job.Parameters.Builder()
                            .setQueue("FcmRefreshJob")
                            .addConstraint(NetworkConstraint.KEY)
-                           .setMaxAttempts(1)
-                           .setLifespan(TimeUnit.MINUTES.toMillis(5))
+                           .setMaxAttempts(3)
+                           .setLifespan(TimeUnit.HOURS.toMillis(6))
                            .setMaxInstancesForFactory(1)
                            .build());
   }
@@ -109,7 +109,7 @@ public class FcmRefreshJob extends BaseJob {
 
   @Override
   public void onFailure() {
-    Log.w(TAG, "GCM reregistration failed after retry attempt exhaustion!");
+    Log.w(TAG, "FCM reregistration failed after retry attempt exhaustion!");
   }
 
   @Override
