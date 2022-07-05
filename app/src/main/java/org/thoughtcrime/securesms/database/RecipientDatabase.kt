@@ -14,6 +14,7 @@ import net.zetetic.database.sqlcipher.SQLiteConstraintException
 import org.signal.core.util.Bitmask
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.delete
 import org.signal.core.util.logging.Log
 import org.signal.core.util.optionalBlob
 import org.signal.core.util.optionalBoolean
@@ -2167,7 +2168,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     db.beginTransaction()
     try {
       for ((e164, result) in mapping) {
-        ids += processCdsV2Result(e164, result.pni, result.aci)
+        ids += processPnpTuple(e164, result.pni, result.aci, false)
       }
 
       db.setTransactionSuccessful()
@@ -2179,20 +2180,24 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   }
 
   @VisibleForTesting
-  fun processCdsV2Result(e164: String, pni: PNI, aci: ACI?): RecipientId {
-    val result = processPnpTupleToChangeSet(e164, pni, aci, pniVerified = false)
+  fun processPnpTuple(e164: String?, pni: PNI?, aci: ACI?, pniVerified: Boolean): RecipientId {
+    val changeSet = processPnpTupleToChangeSet(e164, pni, aci, pniVerified)
+    return writePnpChangeSetToDisk(changeSet)
+  }
 
-    val id: RecipientId = when (result.id) {
+  @VisibleForTesting
+  fun writePnpChangeSetToDisk(changeSet: PnpChangeSet): RecipientId {
+    val id: RecipientId = when (changeSet.id) {
       is PnpIdResolver.PnpNoopId -> {
-        result.id.recipientId
+        changeSet.id.recipientId
       }
       is PnpIdResolver.PnpInsert -> {
-        val id: Long = writableDatabase.insert(TABLE_NAME, null, buildContentValuesForCdsInsert(result.id.e164, result.id.pni, result.id.aci))
+        val id: Long = writableDatabase.insert(TABLE_NAME, null, buildContentValuesForPnpInsert(changeSet.id.e164, changeSet.id.pni, changeSet.id.aci))
         RecipientId.from(id)
       }
     }
 
-    for (operation in result.operations) {
+    for (operation in changeSet.operations) {
       @Exhaustive
       when (operation) {
         is PnpOperation.Update -> {
@@ -2205,37 +2210,81 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
             .where("$ID = ?", operation.recipientId)
             .run()
         }
+        is PnpOperation.RemoveE164 -> {
+          writableDatabase
+            .update(TABLE_NAME)
+            .values(PHONE to null)
+            .where("$ID = ?", operation.recipientId)
+            .run()
+        }
+        is PnpOperation.RemovePni -> {
+          writableDatabase
+            .update(TABLE_NAME)
+            .values(SERVICE_ID to null)
+            .where("$ID = ? AND $SERVICE_ID NOT NULL AND $SERVICE_ID = $PNI_COLUMN", operation.recipientId)
+            .run()
+
+          writableDatabase
+            .update(TABLE_NAME)
+            .values(PNI_COLUMN to null)
+            .where("$ID = ?", operation.recipientId)
+            .run()
+        }
+        is PnpOperation.SetAci -> {
+          writableDatabase
+            .update(TABLE_NAME)
+            .values(SERVICE_ID to operation.aci.toString())
+            .where("$ID = ?", operation.recipientId)
+            .run()
+        }
+        is PnpOperation.SetE164 -> {
+          writableDatabase
+            .update(TABLE_NAME)
+            .values(PHONE to operation.e164)
+            .where("$ID = ?", operation.recipientId)
+            .run()
+        }
+        is PnpOperation.SetPni -> {
+          writableDatabase
+            .update(TABLE_NAME)
+            .values(SERVICE_ID to operation.pni.toString())
+            .where("$ID = ? AND ($SERVICE_ID IS NULL OR $SERVICE_ID = $PNI_COLUMN)", operation.recipientId)
+            .run()
+
+          writableDatabase
+            .update(TABLE_NAME)
+            .values(PNI_COLUMN to operation.pni.toString())
+            .where("$ID = ?", operation.recipientId)
+            .run()
+        }
         is PnpOperation.Merge -> {
-          // TODO [pnp]
-          error("Not yet implemented")
+          Log.w(TAG, "WARNING: Performing a PNP merge! This operation currently only has a basic implementation only suitable for basic testing!")
+
+          val primary = getRecord(operation.primaryId)
+          val secondary = getRecord(operation.secondaryId)
+
+          writableDatabase
+            .delete(TABLE_NAME)
+            .where("$ID = ?", operation.secondaryId)
+            .run()
+
+          writableDatabase
+            .update(TABLE_NAME)
+            .values(
+              PHONE to (primary.e164 ?: secondary.e164),
+              PNI_COLUMN to (primary.pni ?: secondary.pni)?.toString(),
+              SERVICE_ID to (primary.serviceId ?: secondary.serviceId)?.toString()
+            )
+            .where("$ID = ?", operation.primaryId)
+            .run()
         }
         is PnpOperation.SessionSwitchoverInsert -> {
           // TODO [pnp]
-          error("Not yet implemented")
+          Log.w(TAG, "Session switchover events aren't implemented yet!")
         }
         is PnpOperation.ChangeNumberInsert -> {
           // TODO [pnp]
-          error("Not yet implemented")
-        }
-        is PnpOperation.RemoveE164 -> {
-          // TODO [pnp]
-          error("Not yet implemented")
-        }
-        is PnpOperation.RemovePni -> {
-          // TODO [pnp]
-          error("Not yet implemented")
-        }
-        is PnpOperation.SetAci -> {
-          // TODO [pnp]
-          error("Not yet implemented")
-        }
-        is PnpOperation.SetE164 -> {
-          // TODO [pnp]
-          error("Not yet implemented")
-        }
-        is PnpOperation.SetPni -> {
-          // TODO [pnp]
-          error("Not yet implemented")
+          Log.w(TAG, "Change number inserts aren't implemented yet!")
         }
       }
     }
@@ -3285,13 +3334,12 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     return values
   }
 
-  private fun buildContentValuesForCdsInsert(e164: String?, pni: PNI?, aci: ACI?): ContentValues {
-    Preconditions.checkArgument(pni != null || aci != null, "Must provide a serviceId!")
+  private fun buildContentValuesForPnpInsert(e164: String?, pni: PNI?, aci: ACI?): ContentValues {
+    check(e164 != null || pni != null || aci != null) { "Must provide some sort of identifier!" }
 
-    val serviceId: ServiceId = aci ?: pni!!
     return contentValuesOf(
       PHONE to e164,
-      SERVICE_ID to serviceId.toString(),
+      SERVICE_ID to (aci ?: pni)?.toString(),
       PNI_COLUMN to pni.toString(),
       REGISTERED to RegisteredState.REGISTERED.id,
       STORAGE_SERVICE_ID to Base64.encodeBytes(StorageSyncHelper.generateKey()),
