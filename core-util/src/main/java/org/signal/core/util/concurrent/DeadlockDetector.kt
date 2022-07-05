@@ -40,7 +40,7 @@ class DeadlockDetector(private val handler: Handler, private val pollingInterval
         val thread: Thread = entry.key
         val stack: Array<StackTraceElement> = entry.value
 
-        thread.state == Thread.State.BLOCKED || (waitingStates.contains(thread.state) && stack.any { it.methodName.startsWith("lock") || it.methodName.startsWith("waitForConnection") })
+        thread.state == Thread.State.BLOCKED || (thread.state.isWaiting() && stack.hasPotentialLock())
       }
       .filter { entry -> !BLOCK_BLOCKLIST.contains(entry.key.name) }
 
@@ -92,6 +92,16 @@ class DeadlockDetector(private val handler: Handler, private val pollingInterval
     val executor: ExecutorService,
     val namePrefix: String
   )
+
+  private fun Thread.State.isWaiting(): Boolean {
+    return waitingStates.contains(this)
+  }
+
+  private fun Array<StackTraceElement>.hasPotentialLock(): Boolean {
+    return any {
+      it.methodName.startsWith("lock") || (it.methodName.startsWith("waitForConnection") && it.className.contains("IncomingMessageObserver"))
+    }
+  }
 
   companion object {
     private val TAG = Log.tag(DeadlockDetector::class.java)
