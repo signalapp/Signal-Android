@@ -148,12 +148,20 @@ class StoryViewerPageViewModel(
     return store.state.selectedPostIndex in store.state.posts.indices
   }
 
-  fun getPost(): StoryPost {
-    return store.state.posts[store.state.selectedPostIndex]
+  fun getPost(): StoryPost? {
+    return if (hasPost()) {
+      store.state.posts[store.state.selectedPostIndex]
+    } else {
+      null
+    }
+  }
+
+  fun requirePost(): StoryPost {
+    return getPost()!!
   }
 
   fun forceDownloadSelectedPost() {
-    disposables += repository.forceDownload(getPost()).subscribe()
+    disposables += repository.forceDownload(requirePost()).subscribe()
   }
 
   fun startDirectReply(storyId: Long, recipientId: RecipientId) {

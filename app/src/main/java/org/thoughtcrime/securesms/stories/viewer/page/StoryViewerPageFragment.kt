@@ -25,7 +25,6 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.GestureDetectorCompat
 import androidx.core.view.animation.PathInterpolatorCompat
 import androidx.core.view.doOnNextLayout
-import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -257,8 +256,9 @@ class StoryViewerPageFragment :
       }
 
       override fun onRequestSegmentProgressPercentage(): Float? {
-        val attachmentUri = if (viewModel.hasPost() && viewModel.getPost().content.isVideo()) {
-          viewModel.getPost().content.uri
+        val storyPost = viewModel.getPost() ?: return null
+        val attachmentUri = if (storyPost.content.isVideo()) {
+          storyPost.content.uri
         } else {
           null
         }
@@ -292,7 +292,7 @@ class StoryViewerPageFragment :
         return@subscribe
       }
 
-      if (!viewModel.hasPost() || !viewModel.getPost().content.isVideo() || volumeState.level < 0) {
+      if (!viewModel.hasPost() || viewModel.getPost()?.content?.isVideo() != true || volumeState.level < 0) {
         return@subscribe
       }
 
@@ -578,8 +578,9 @@ class StoryViewerPageFragment :
   }
 
   private fun resumeProgress() {
-    if (progressBar.segmentCount != 0 && viewModel.hasPost()) {
-      val postUri = viewModel.getPost().content.uri
+    val storyPost = viewModel.getPost() ?: return
+    if (progressBar.segmentCount != 0) {
+      val postUri = storyPost.content.uri
       if (postUri != null) {
         progressBar.start()
         videoControlsDelegate.resume(postUri)
@@ -593,20 +594,21 @@ class StoryViewerPageFragment :
   }
 
   private fun startReply(isFromNotification: Boolean = false, groupReplyStartPosition: Int = -1) {
-    val storyPostId: Long = viewModel.getPost().id
+    val storyPost = viewModel.getPost() ?: return
+    val storyPostId: Long = storyPost.id
     val replyFragment: DialogFragment = when (viewModel.getSwipeToReplyState()) {
       StoryViewerPageState.ReplyState.NONE -> return
       StoryViewerPageState.ReplyState.SELF -> StoryViewsBottomSheetDialogFragment.create(storyPostId)
       StoryViewerPageState.ReplyState.GROUP -> StoryGroupReplyBottomSheetDialogFragment.create(
         storyPostId,
-        viewModel.getPost().group!!.id,
+        storyPost.group!!.id,
         isFromNotification,
         groupReplyStartPosition
       )
       StoryViewerPageState.ReplyState.PRIVATE -> StoryDirectReplyDialogFragment.create(storyPostId)
       StoryViewerPageState.ReplyState.GROUP_SELF -> StoryViewsAndRepliesDialogFragment.create(
         storyPostId,
-        viewModel.getPost().group!!.id,
+        storyPost.group!!.id,
         if (isFromNotification) StoryViewsAndRepliesDialogFragment.StartPage.REPLIES else getViewsAndRepliesDialogStartPage(),
         isFromNotification,
         groupReplyStartPosition
@@ -631,7 +633,7 @@ class StoryViewerPageFragment :
   }
 
   private fun getViewsAndRepliesDialogStartPage(): StoryViewsAndRepliesDialogFragment.StartPage {
-    return if (viewModel.getPost().replyCount > 0) {
+    return if (viewModel.requirePost().replyCount > 0) {
       StoryViewsAndRepliesDialogFragment.StartPage.REPLIES
     } else {
       StoryViewsAndRepliesDialogFragment.StartPage.VIEWS
