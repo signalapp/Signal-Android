@@ -1478,7 +1478,7 @@ public final class MessageContentProcessor {
     }
 
     if (insertResult.isPresent()) {
-      Stories.enqueueNextStoriesForDownload(threadRecipient.getId(), false);
+      Stories.enqueueNextStoriesForDownload(threadRecipient.getId(), false, FeatureFlags.storiesAutoDownloadMaximum());
       ApplicationDependencies.getExpireStoriesManager().scheduleIfNecessary();
     }
   }

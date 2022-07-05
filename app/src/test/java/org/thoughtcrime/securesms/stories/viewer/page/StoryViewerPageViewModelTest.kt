@@ -167,7 +167,8 @@ class StoryViewerPageViewModelTest {
       RecipientId.from(1),
       -1L,
       false,
-      repository
+      repository,
+      mock()
     )
   }
 

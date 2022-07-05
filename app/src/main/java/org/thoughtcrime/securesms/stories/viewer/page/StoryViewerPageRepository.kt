@@ -45,11 +45,11 @@ open class StoryViewerPageRepository(context: Context) {
 
       fun refresh() {
         val stories = if (recipient.isMyStory) {
-          SignalDatabase.mms.getAllOutgoingStories(false)
+          SignalDatabase.mms.getAllOutgoingStories(false, 100)
         } else if (isUnviewedOnly) {
           SignalDatabase.mms.getUnreadStories(recipientId, 100)
         } else {
-          SignalDatabase.mms.getAllStoriesFor(recipientId)
+          SignalDatabase.mms.getAllStoriesFor(recipientId, 100)
         }
 
         val results = mutableListOf<MessageRecord>()
@@ -190,7 +190,7 @@ open class StoryViewerPageRepository(context: Context) {
 
             val recipientId = storyPost.group?.id ?: storyPost.sender.id
             SignalDatabase.recipients.updateLastStoryViewTimestamp(recipientId)
-            Stories.enqueueNextStoriesForDownload(recipientId, true)
+            Stories.enqueueNextStoriesForDownload(recipientId, true, 5)
           }
         }
       }

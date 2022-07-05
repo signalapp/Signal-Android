@@ -45,6 +45,8 @@ import kotlin.math.min
 
 object Stories {
 
+  private val TAG = Log.tag(Stories::class.java)
+
   const val MAX_BODY_SIZE = 700
 
   @JvmField
@@ -97,16 +99,18 @@ object Stories {
 
   @JvmStatic
   @WorkerThread
-  fun enqueueNextStoriesForDownload(recipientId: RecipientId, ignoreAutoDownloadConstraints: Boolean = false) {
+  fun enqueueNextStoriesForDownload(recipientId: RecipientId, force: Boolean = false, limit: Int) {
     val recipient = Recipient.resolved(recipientId)
-    if (!recipient.isSelf && (recipient.shouldHideStory() || !recipient.hasViewedStory())) {
+    if (!force && !recipient.isSelf && (recipient.shouldHideStory() || !recipient.hasViewedStory())) {
       return
     }
 
-    val unreadStoriesReader = SignalDatabase.mms.getUnreadStories(recipientId, FeatureFlags.storiesAutoDownloadMaximum())
-    while (unreadStoriesReader.next != null) {
-      val record = unreadStoriesReader.current as MmsMessageRecord
-      enqueueAttachmentsFromStoryForDownloadSync(record, ignoreAutoDownloadConstraints)
+    Log.d(TAG, "Enqueuing downloads for up to $limit stories for $recipientId (force: $force)")
+    SignalDatabase.mms.getUnreadStories(recipientId, limit).use {
+      while (it.next != null) {
+        val record = it.current as MmsMessageRecord
+        enqueueAttachmentsFromStoryForDownloadSync(record, force)
+      }
     }
   }
 

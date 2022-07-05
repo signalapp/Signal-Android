@@ -10,12 +10,16 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageFragment
+import org.thoughtcrime.securesms.stories.viewer.reply.StoriesSharedElementCrossFaderView
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 
 /**
  * Fragment which manages a vertical pager fragment of stories.
  */
-class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryViewerPageFragment.Callback {
+class StoryViewerFragment :
+  Fragment(R.layout.stories_viewer_fragment),
+  StoryViewerPageFragment.Callback,
+  StoriesSharedElementCrossFaderView.Callback {
 
   private val onPageChanged = OnPageChanged()
 
@@ -31,8 +35,15 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
 
   private val storyViewerArgs: StoryViewerArgs by lazy { requireArguments().getParcelable(ARGS)!! }
 
+  private lateinit var storyCrossfader: StoriesSharedElementCrossFaderView
+
+  private var pagerOnPageSelectedLock: Boolean = false
+
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    storyCrossfader = view.findViewById(R.id.story_content_crossfader)
     storyPager = view.findViewById(R.id.story_item_pager)
+
+    storyCrossfader.callback = this
 
     val adapter = StoryViewerPagerAdapter(
       this,
@@ -45,23 +56,37 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
     storyPager.adapter = adapter
     storyPager.overScrollMode = ViewPager2.OVER_SCROLL_NEVER
 
-    viewModel.isChildScrolling.observe(viewLifecycleOwner) {
-      storyPager.isUserInputEnabled = !it
+    lifecycleDisposable += viewModel.allowParentScrolling.observeOn(AndroidSchedulers.mainThread()).subscribe {
+      storyPager.isUserInputEnabled = it
     }
+
+    storyPager.offscreenPageLimit = 1
 
     lifecycleDisposable.bindTo(viewLifecycleOwner)
     lifecycleDisposable += viewModel.state.observeOn(AndroidSchedulers.mainThread()).subscribe { state ->
       adapter.setPages(state.pages)
       if (state.pages.isNotEmpty() && storyPager.currentItem != state.page) {
+        pagerOnPageSelectedLock = true
         storyPager.setCurrentItem(state.page, state.previousPage > -1)
+        pagerOnPageSelectedLock = false
 
         if (state.page >= state.pages.size) {
           requireActivity().onBackPressed()
         }
       }
 
-      if (state.loadState.isCrossfaderReady) {
+      when (state.crossfadeSource) {
+        is StoryViewerState.CrossfadeSource.TextModel -> storyCrossfader.setSourceView(state.crossfadeSource.storyTextPostModel)
+        is StoryViewerState.CrossfadeSource.ImageUri -> storyCrossfader.setSourceView(state.crossfadeSource.imageUri, state.crossfadeSource.imageBlur)
+      }
+
+      if (state.crossfadeTarget is StoryViewerState.CrossfadeTarget.Record) {
+        storyCrossfader.setTargetView(state.crossfadeTarget.messageRecord)
         requireActivity().supportStartPostponedEnterTransition()
+      }
+
+      if (state.loadState.isReady()) {
+        storyCrossfader.alpha = 0f
       }
     }
   }
@@ -90,9 +115,22 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
     viewModel.onRecipientHidden()
   }
 
+  override fun onReadyToAnimate() {
+  }
+
+  override fun onAnimationStarted() {
+    viewModel.setCrossfaderIsReady(false)
+  }
+
+  override fun onAnimationFinished() {
+    viewModel.setCrossfaderIsReady(true)
+  }
+
   inner class OnPageChanged : ViewPager2.OnPageChangeCallback() {
     override fun onPageSelected(position: Int) {
-      viewModel.setSelectedPage(position)
+      if (!pagerOnPageSelectedLock) {
+        viewModel.setSelectedPage(position)
+      }
     }
 
     override fun onPageScrollStateChanged(state: Int) {

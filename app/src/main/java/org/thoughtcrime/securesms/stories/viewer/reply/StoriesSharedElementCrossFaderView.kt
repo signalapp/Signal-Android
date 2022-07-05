@@ -231,8 +231,6 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
       return
     }
 
-    animate().alpha(0f)
-
     callback?.onAnimationFinished()
   }
 

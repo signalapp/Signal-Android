@@ -9,6 +9,8 @@ import android.view.KeyEvent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.media.AudioManagerCompat
+import com.bumptech.glide.Glide
+import com.bumptech.glide.MemoryCategory
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
@@ -31,6 +33,7 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     StoryMutePolicy.initialize()
+    Glide.get(this).setMemoryCategory(MemoryCategory.HIGH)
 
     supportPostponeEnterTransition()
 
@@ -42,6 +45,11 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
     if (savedInstanceState == null) {
       replaceStoryViewerFragment()
     }
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
+    Glide.get(this).setMemoryCategory(MemoryCategory.NORMAL)
   }
 
   override fun onResume() {

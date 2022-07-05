@@ -42,6 +42,7 @@ class StorySlateView @JvmOverloads constructor(
   private val background: ImageView = findViewById(R.id.background)
   private val loadingSpinner: View = findViewById(R.id.loading_spinner)
   private val errorCircle: View = findViewById(R.id.error_circle)
+  private val errorBackground: View = findViewById(R.id.stories_error_background)
   private val unavailableText: View = findViewById(R.id.unavailable)
   private val errorText: TextView = findViewById(R.id.error_text)
 
@@ -87,6 +88,7 @@ class StorySlateView @JvmOverloads constructor(
     background.visible = true
     loadingSpinner.visible = true
     errorCircle.visible = false
+    errorBackground.visible = false
     unavailableText.visible = false
     errorText.visible = false
   }
@@ -97,6 +99,7 @@ class StorySlateView @JvmOverloads constructor(
     background.visible = true
     loadingSpinner.visible = false
     errorCircle.visible = true
+    errorBackground.visible = true
     unavailableText.visible = false
     errorText.visible = true
 
@@ -113,6 +116,7 @@ class StorySlateView @JvmOverloads constructor(
     background.visible = true
     loadingSpinner.visible = false
     errorCircle.visible = false
+    errorBackground.visible = false
     unavailableText.visible = true
     errorText.visible = false
   }

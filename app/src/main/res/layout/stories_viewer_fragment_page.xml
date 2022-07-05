@@ -25,29 +25,11 @@
             app:cardCornerRadius="18dp"
             app:cardElevation="0dp">
 
-            <ImageView
-                android:id="@+id/story_blur_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:importantForAccessibility="no"
-                android:scaleType="centerCrop" />
-
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/story_content_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:background="@drawable/test_gradient" />
-
-            <org.thoughtcrime.securesms.stories.viewer.reply.StoriesSharedElementCrossFaderView
-                android:id="@+id/story_content_crossfader"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:alpha="0"
-                android:clipChildren="false"
-                android:clipToPadding="false"
-                android:transitionName="story"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="0dp" />
 
             <View
                 android:id="@+id/story_gradient_top"

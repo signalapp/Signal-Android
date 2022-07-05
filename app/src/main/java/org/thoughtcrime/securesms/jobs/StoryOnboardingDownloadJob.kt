@@ -79,7 +79,7 @@ class StoryOnboardingDownloadJob private constructor(parameters: Parameters) : B
       throw Exception("No release channel recipient.")
     }
 
-    SignalDatabase.mms.getAllStoriesFor(releaseChannelRecipientId).use { reader ->
+    SignalDatabase.mms.getAllStoriesFor(releaseChannelRecipientId, -1).use { reader ->
       reader.forEach { messageRecord ->
         SignalDatabase.mms.deleteMessage(messageRecord.id)
       }

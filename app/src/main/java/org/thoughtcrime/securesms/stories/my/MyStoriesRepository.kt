@@ -26,7 +26,7 @@ class MyStoriesRepository(context: Context) {
     return Observable.create { emitter ->
       fun refresh() {
         val storiesMap = mutableMapOf<Recipient, List<MessageRecord>>()
-        SignalDatabase.mms.getAllOutgoingStories(true).use {
+        SignalDatabase.mms.getAllOutgoingStories(true, -1).use {
           while (it.next != null) {
             val messageRecord = it.current
             val currentList = storiesMap[messageRecord.recipient] ?: emptyList()

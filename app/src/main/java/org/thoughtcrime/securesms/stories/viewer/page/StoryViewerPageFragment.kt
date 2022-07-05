@@ -17,7 +17,6 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.animation.Interpolator
 import android.widget.FrameLayout
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -46,7 +45,6 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
-import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewFragment
 import org.thoughtcrime.securesms.mediapreview.VideoControlsDelegate
@@ -57,10 +55,8 @@ import org.thoughtcrime.securesms.stories.StoryFirstTimeNavigationView
 import org.thoughtcrime.securesms.stories.StorySlateView
 import org.thoughtcrime.securesms.stories.StoryVolumeOverlayView
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
-import org.thoughtcrime.securesms.stories.viewer.StoryViewerState
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerViewModel
 import org.thoughtcrime.securesms.stories.viewer.StoryVolumeViewModel
-import org.thoughtcrime.securesms.stories.viewer.reply.StoriesSharedElementCrossFaderView
 import org.thoughtcrime.securesms.stories.viewer.reply.direct.StoryDirectReplyDialogFragment
 import org.thoughtcrime.securesms.stories.viewer.reply.group.StoryGroupReplyBottomSheetDialogFragment
 import org.thoughtcrime.securesms.stories.viewer.reply.reaction.OnReactionSentView
@@ -89,16 +85,13 @@ class StoryViewerPageFragment :
   MultiselectForwardBottomSheet.Callback,
   StorySlateView.Callback,
   StoryTextPostPreviewFragment.Callback,
-  StoriesSharedElementCrossFaderView.Callback,
   StoryFirstTimeNavigationView.Callback {
 
-  private val activityViewModel: StoryVolumeViewModel by viewModels(ownerProducer = { requireActivity() })
+  private val storyVolumeViewModel: StoryVolumeViewModel by viewModels(ownerProducer = { requireActivity() })
 
   private lateinit var progressBar: SegmentedProgressBar
   private lateinit var storySlate: StorySlateView
   private lateinit var viewsAndReplies: MaterialButton
-  private lateinit var storyCrossfader: StoriesSharedElementCrossFaderView
-  private lateinit var blurContainer: ImageView
   private lateinit var storyCaptionContainer: FrameLayout
   private lateinit var storyContentContainer: FrameLayout
   private lateinit var storyFirstTimeNavigationViewStub: StoryFirstNavigationStub
@@ -114,7 +107,18 @@ class StoryViewerPageFragment :
 
   private val viewModel: StoryViewerPageViewModel by viewModels(
     factoryProducer = {
-      StoryViewerPageViewModel.Factory(storyRecipientId, initialStoryId, isUnviewedOnly, StoryViewerPageRepository(requireContext()))
+      StoryViewerPageViewModel.Factory(
+        storyRecipientId,
+        initialStoryId,
+        isUnviewedOnly,
+        StoryViewerPageRepository(
+          requireContext()
+        ),
+        StoryCache(
+          GlideApp.with(requireActivity()),
+          StoryDisplay.getStorySize(resources)
+        )
+      )
     }
   )
 
@@ -146,7 +150,7 @@ class StoryViewerPageFragment :
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     callback = requireListener()
 
-    if (activityViewModel.snapshot.isMuted) {
+    if (storyVolumeViewModel.snapshot.isMuted) {
       videoControlsDelegate.mute()
     } else {
       videoControlsDelegate.unmute()
@@ -169,17 +173,14 @@ class StoryViewerPageFragment :
     val storyGradientBottom: View = view.findViewById(R.id.story_gradient_bottom)
     val storyVolumeOverlayView: StoryVolumeOverlayView = view.findViewById(R.id.story_volume_overlay)
 
-    blurContainer = view.findViewById(R.id.story_blur_container)
     storyContentContainer = view.findViewById(R.id.story_content_container)
     storyCaptionContainer = view.findViewById(R.id.story_caption_container)
     storySlate = view.findViewById(R.id.story_slate)
     progressBar = view.findViewById(R.id.progress)
     viewsAndReplies = view.findViewById(R.id.views_and_replies_bar)
-    storyCrossfader = view.findViewById(R.id.story_content_crossfader)
     storyFirstTimeNavigationViewStub = StoryFirstNavigationStub(view.findViewById(R.id.story_first_time_nav_stub))
 
     storySlate.callback = this
-    storyCrossfader.callback = this
     storyFirstTimeNavigationViewStub.setCallback(this)
 
     chrome = listOf(
@@ -286,7 +287,7 @@ class StoryViewerPageFragment :
       viewModel.setIsUserScrollingParent(isScrolling)
     }
 
-    lifecycleDisposable += activityViewModel.state.distinctUntilChanged().observeOn(AndroidSchedulers.mainThread()).subscribe { volumeState ->
+    lifecycleDisposable += storyVolumeViewModel.state.distinctUntilChanged().observeOn(AndroidSchedulers.mainThread()).subscribe { volumeState ->
       if (volumeState.isMuted) {
         videoControlsDelegate.mute()
         return@subscribe
@@ -310,6 +311,9 @@ class StoryViewerPageFragment :
     }
 
     lifecycleDisposable += sharedViewModel.state.distinctUntilChanged().observeOn(AndroidSchedulers.mainThread()).subscribe { parentState ->
+      viewModel.setIsRunningSharedElementAnimation(!parentState.loadState.isCrossfaderReady)
+      storyContentContainer.visible = parentState.loadState.isCrossfaderReady
+
       if (parentState.pages.size <= parentState.page) {
         viewModel.setIsSelectedPage(false)
       } else if (storyRecipientId == parentState.pages[parentState.page]) {
@@ -320,12 +324,6 @@ class StoryViewerPageFragment :
         }
         viewModel.setIsFirstPage(parentState.page == 0)
         viewModel.setIsSelectedPage(true)
-        when (parentState.crossfadeSource) {
-          is StoryViewerState.CrossfadeSource.TextModel -> storyCrossfader.setSourceView(parentState.crossfadeSource.storyTextPostModel)
-          is StoryViewerState.CrossfadeSource.ImageUri -> storyCrossfader.setSourceView(parentState.crossfadeSource.imageUri, parentState.crossfadeSource.imageBlur)
-        }
-
-        onReadyToAnimate()
       } else {
         viewModel.setIsSelectedPage(false)
       }
@@ -346,7 +344,7 @@ class StoryViewerPageFragment :
         presentDate(date, post)
         presentDistributionList(distributionList, post)
         presentCaption(caption, largeCaption, largeCaptionOverlay, post)
-        presentBlur(blurContainer, post)
+        presentBlur(post)
 
         val durations: Map<Int, Long> = state.posts
           .mapIndexed { index, storyPost ->
@@ -366,10 +364,6 @@ class StoryViewerPageFragment :
         presentStory(post, state.selectedPostIndex)
         presentSlate(post)
 
-        if (!storyCrossfader.setTargetView(post.conversationMessage.messageRecord as MmsMessageRecord)) {
-          onReadyToAnimate()
-        }
-
         viewModel.setAreSegmentsInitialized(true)
       } else if (state.selectedPostIndex >= state.posts.size) {
         callback.onFinishedPosts(storyRecipientId)
@@ -377,9 +371,11 @@ class StoryViewerPageFragment :
         callback.onGoToPreviousStory(storyRecipientId)
       }
 
-      if (state.isDisplayingInitialState && isFromNotification && !sharedViewModel.hasConsumedInitialState) {
+      if (state.isDisplayingInitialState && !sharedViewModel.hasConsumedInitialState) {
         sharedViewModel.consumeInitialState()
-        startReply(isFromNotification = true, groupReplyStartPosition = groupReplyStartPosition)
+        if (isFromNotification) {
+          startReply(isFromNotification = true, groupReplyStartPosition = groupReplyStartPosition)
+        }
       }
     }
 
@@ -450,6 +446,7 @@ class StoryViewerPageFragment :
     super.onResume()
     viewModel.setIsFragmentResumed(true)
     viewModel.checkReadReceiptState()
+    markViewedIfAble()
   }
 
   override fun onPause() {
@@ -624,6 +621,15 @@ class StoryViewerPageFragment :
     replyFragment.showNow(childFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
   }
 
+  private fun markViewedIfAble() {
+    val post = if (viewModel.hasPost()) viewModel.getPost() else null
+    if (post?.content?.transferState == AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
+      if (isResumed) {
+        viewModel.markViewed(post)
+      }
+    }
+  }
+
   private fun onStartDirectReply(storyId: Long, recipientId: RecipientId) {
     viewModel.setIsDisplayingDirectReplyDialog(true)
     StoryDirectReplyDialogFragment.create(
@@ -671,10 +677,7 @@ class StoryViewerPageFragment :
       AttachmentDatabase.TRANSFER_PROGRESS_DONE -> {
         storySlate.moveToState(StorySlateView.State.HIDDEN, post.id)
         viewModel.setIsDisplayingSlate(false)
-
-        if (post.content.transferState == AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
-          viewModel.markViewed(post)
-        }
+        markViewedIfAble()
       }
       AttachmentDatabase.TRANSFER_PROGRESS_PENDING -> {
         storySlate.moveToState(StorySlateView.State.LOADING, post.id)
@@ -713,17 +716,11 @@ class StoryViewerPageFragment :
     distributionList.visible = storyPost.distributionList != null && !storyPost.distributionList.isMyStory
   }
 
-  private fun presentBlur(blur: ImageView, storyPost: StoryPost) {
+  private fun presentBlur(storyPost: StoryPost) {
     val record = storyPost.conversationMessage.messageRecord as? MediaMmsMessageRecord
     val blurHash = record?.slideDeck?.thumbnailSlide?.placeholderBlur
 
     storyFirstTimeNavigationViewStub.setBlurHash(blurHash)
-
-    if (blurHash == null) {
-      GlideApp.with(blur).clear(blur)
-    } else {
-      GlideApp.with(blur).load(blurHash).into(blur)
-    }
   }
 
   @SuppressLint("SetTextI18n")
@@ -875,8 +872,16 @@ class StoryViewerPageFragment :
 
   private fun createFragmentForPost(storyPost: StoryPost): Fragment {
     return when (storyPost.content) {
-      is StoryPost.Content.AttachmentContent -> MediaPreviewFragment.newInstance(storyPost.content.attachment, false)
+      is StoryPost.Content.AttachmentContent -> createFragmentForAttachmentContent(storyPost.content)
       is StoryPost.Content.TextContent -> StoryTextPostPreviewFragment.create(storyPost.content)
+    }
+  }
+
+  private fun createFragmentForAttachmentContent(attachmentContent: StoryPost.Content.AttachmentContent): Fragment {
+    return if (attachmentContent.isVideo()) {
+      MediaPreviewFragment.newInstance(attachmentContent.attachment, false)
+    } else {
+      StoryImageContentFragment.create(attachmentContent.attachment)
     }
   }
 
@@ -1119,22 +1124,6 @@ class StoryViewerPageFragment :
 
   override fun mediaNotAvailable() {
     sharedViewModel.setContentIsReady()
-  }
-
-  override fun onReadyToAnimate() {
-    sharedViewModel.setCrossfaderIsReady()
-  }
-
-  override fun onAnimationStarted() {
-    storyContentContainer.alpha = 0f
-    blurContainer.alpha = 0f
-    viewModel.setIsRunningSharedElementAnimation(true)
-  }
-
-  override fun onAnimationFinished() {
-    storyContentContainer.alpha = 1f
-    blurContainer.alpha = 1f
-    viewModel.setIsRunningSharedElementAnimation(false)
   }
 
   interface Callback {
