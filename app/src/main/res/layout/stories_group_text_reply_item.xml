@@ -41,7 +41,7 @@
         android:layout_height="1dp"
         app:barrierDirection="start"
         app:barrierMargin="-8dp"
-        app:constraint_referenced_ids="alert_view" />
+        app:constraint_referenced_ids="alert_view,spacer" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/viewed_at_end_barrier"
@@ -159,7 +159,17 @@
         app:layout_constraintEnd_toStartOf="@+id/reaction"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/bubble_end_barrier"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
+
+    <Space
+        android:id="@+id/spacer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_goneMarginEnd="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/reaction"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/bubble_end_barrier" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiImageView
         android:id="@+id/reaction"

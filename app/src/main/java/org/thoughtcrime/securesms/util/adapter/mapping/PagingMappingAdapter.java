@@ -38,7 +38,7 @@ public class PagingMappingAdapter<Key> extends MappingAdapter {
       pagingController.onDataNeededAroundIndex(position);
     }
 
-    if (position > 0 && position < super.getCurrentList().size()) {
+    if (position >= 0 && position < super.getCurrentList().size()) {
       return super.getItem(position);
     } else {
       return null;
