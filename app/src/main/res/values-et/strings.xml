@@ -1478,8 +1478,10 @@
   <string name="ThreadRecord_video">Video</string>
   <string name="ThreadRecord_chat_session_refreshed">Vestluse seanss on värskendatud</string>
   <!--Displayed in the notification when the user is sent a gift-->
+  <string name="ThreadRecord__you_received_a_gift">Said kingituse</string>
   <!--Displayed in the notification when the user sends a gift-->
   <!--Displayed in the notification when the user has opened a received gift-->
+  <string name="ThreadRecord__you_redeemed_a_gift_badge">Lunastasid kinkemärgi</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signali uuendus</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uus Signali versioon on saadaval, koputa uuendamiseks</string>
@@ -1748,6 +1750,7 @@
   <!--Label indicating that a quote is for a reply to a story you created-->
   <!--Label indicating that the story being replied to no longer exists-->
   <!--Label for quoted gift-->
+  <string name="QuoteView__gift">Kingitus</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Keri alla</string>
   <!--BubbleOptOutTooltip-->
@@ -3328,6 +3331,7 @@
   <string name="GiftMessageView__view">Näita</string>
   <!--Gift badge redeeming action label-->
   <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">Lunastatud</string>
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Proovi teist maksemeetodit või võta ühendust oma pangaga, et saada täiendavat teavet.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3452,6 +3456,7 @@
   <!--Donation receipts recurring tab label-->
   <!--Donation receipts one-time tab label-->
   <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">Kingitus</string>
   <!--Donation receipts boost row label-->
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Üksikasjad</string>
@@ -3660,5 +3665,6 @@
   <!--Gift expiry hours remaining-->
   <!--Gift expiry minutes remaining-->
   <!--Gift expiry expired-->
+  <string name="Gifts__expired">Aegunud</string>
   <!--EOF-->
 </resources>

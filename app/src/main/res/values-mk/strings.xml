@@ -219,8 +219,10 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Овој уред не поддржува повици.</string>
   <string name="ConversationActivity_transport_insecure_sms">Незаштитена SMS порака</string>
   <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_insecure_sms_with_sim">Небезбедна SMS порака (%1$s)</string>
   <string name="ConversationActivity_transport_insecure_mms">Незаштитена MMS порака</string>
   <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_insecure_mms_with_sim">Небезбедна MMS порака (%1$s)</string>
   <string name="ConversationActivity_transport_signal">Signal порака </string>
   <string name="ConversationActivity_lets_switch_to_signal">Ајде да се префрлиме на Signal %1$s</string>
   <string name="ConversationActivity_specify_recipient">Ве молиме изберете контакт</string>
@@ -655,6 +657,7 @@
   <string name="AddGroupDetailsFragment__group_creation_failed">Создавањето на групата е неуспешно.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Обидете се повторно подоцна.</string>
   <!--Displayed when adding group details to an MMS Group-->
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Избравте контакт кој не поддржува Signal групи, па во оваа група ќе се испраќаат MMS пораки. Само вам ќе ви бидат видливи персонализираните имиња и слики на MMS групи.</string>
   <string name="AddGroupDetailsFragment__remove">Отстрани</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS контакт</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Да го/ја отстранам %1$s од оваа група?</string>
@@ -905,6 +908,7 @@
   <string name="NotificationBarManager__incoming_signal_call">Дојдовен Signal повик</string>
   <string name="NotificationBarManager__incoming_signal_group_call">Дојдовен групен Signal повик</string>
   <!--Temporary notification shown when starting the calling service-->
+  <string name="NotificationBarManager__starting_signal_call_service">Започнување повик преку Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Го стопирам Signal сервисот за повикување</string>
   <string name="NotificationBarManager__decline_call">Одбиј повик</string>
   <string name="NotificationBarManager__answer_call">Одговори на повик</string>
@@ -1160,6 +1164,7 @@
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ова е застарена група и не може да се користи повеќе бидејќи е преголема. Максималната големина на група е %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Дали сакате да го продолжите разговорот со %1$s и да го споделите Вашето име и слика? </string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Дали сакате да и се приклучите на оваа група и да ги споделите Вашето име и слика со нејзните членови? Тие нема да знаат дека сте ги виделе нивните пораки додека не прифатите.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Сакате да се придружите на оваа група и да ги споделите името и сликата со нејзините членови? Нема да можете да ги видите нивните пораки додека не прифатите.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Дали сакате да и се приклучите на оваа група?Тие нема да знаат дека сте ги виделе нивните пораки додека не прифатите.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Дали сакате да ја одблокирате оваа група и да ги споделите Вашето име и фотографија со нејзините членови? Нема да примате пораки додека не ја одблокирате.</string>
   <string name="MessageRequestProfileView_view">Поглед</string>
@@ -3499,6 +3504,7 @@
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal е овозможен од луѓе како тебе.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Поддржете ја технологијата што е создадена за Вас—не за Вашите податоци—со приклучување кон заедницата што го оддржува Signal.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Поддржете ја технологијата што е создадена за Вас, а не за Вашите податоци, со приклучување кон заедницата што го оддржува Signal.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Донирајте месечно на Signal за да поддржите технологија направена за вас, а не за вашите податоци.</string>
   <string name="SubscribeFragment__currency">Валута</string>
   <string name="SubscribeFragment__more_payment_options">Повеќе опции за плаќање</string>
   <string name="SubscribeFragment__cancel_subscription">Откажи претплата</string>
@@ -3515,10 +3521,14 @@
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/месец · Се обновува на %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/месец · Истекува на %2$s</string>
   <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal е непрофитен, без огласувачи или инвеститори, одржан само од луѓе кои го користат и ценат. Донирајте месечно и добијте беџ за профилот за да ја споделите својата поддршка.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Зошто да донирате?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal е посветен на развивање технологија за приватност со отворен код која го штити слободното изразување и овозможува сигурна глобална комуникација.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Вашата донација ја поддржува оваа кауза и плаќа за развојот и дејствувањето на апликација која ја користат милиони лица за приватна комуникација. Без реклами. Без тракери. Без зафркавање.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Ви благодариме за Вашата поддршка!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Благодариме за поттикот!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Добивте беџ%s! Прикажете го беџот на вашиот профил за да подигнете свест за донирање на Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Добивте беџ за поддршка! Прикажите го беџот на вашиот профил за да подигнете свест за донирање на Signal.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Можете исто така да</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">Станете месечен поддржувач</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Прикажи на профил</string>
@@ -3565,12 +3575,16 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Вашиот беџ за поттик е истечен и повеќе не е видлив на Вашиот профил.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Можете повторно да го активирате Вашиот беџ за поттик за уште 30 дена со еднократен надомест.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Можете да продолжите да користите Signal, но за да поддржите технологија која е направена за вас, разгледајте ја можноста да станете поддржувач со месечни донации.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Станете поддржувач</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Додај поттик</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сега</string>
   <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Вашата периодична месечна донација автоматски беше откажана бидејќи не бевте активни долг период. Вашиот беџ %1$s повеќе не е видлив на профилот.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Вашата периодична месечна донација беше откажана бидејќи не можевме да го процесираме плаќањето. Вашиот беџ повеќе не е видлив на вашиот профил.</string>
   <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Вашата периодична месечна донација беше откажана. %1$sВашиот беџ %2$sповеќе не е видлив на вашиот профил.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Можете да продолжите да го користите Signal, но за да ја поддржите апликацијата реактивирајте го беџот, обновете сега.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Обнови претплата</string>
   <!--Button label to send user to Google Pay website-->
@@ -3591,9 +3605,13 @@
   <string name="DonationsErrors__still_processing">Сѐ уште се обработува</string>
   <string name="DonationsErrors__couldnt_add_badge">Не може да се додаде беџ</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__failed_to_validate_badge">Неуспешно потврдување на беџот</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__could_not_validate">Не може да се потврди одговорот од серверот. Ве молиме контактирајте го тимот за корисничката поддршка.</string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__failed_to_send_gift_badge">Неуспешно испраќање на подарок беџ</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__could_not_send_gift_badge">Не може да се испрати подарок беџот. Ве молиме контактирајте го тимот за корисничка поддршка.</string>
   <string name="DonationsErrors__your_badge_could_not">Вашиот беџ не може да се додаде на Вашата сметка, но можеби Ви е наплатено. Ве молиме контактирајте со тимот за поддршка.</string>
   <string name="DonationsErrors__your_payment_is_still">Вашето плаќање сѐ уште се обработува. Ова може да потрае неколку минути, во зависност од Вашата интернет конекција.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay недостапен</string>
@@ -3612,6 +3630,7 @@
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">Ве молиме проверете ја Вашата интернет конекција и обидете се повторно.</string>
   <!--Gift message view title-->
+  <string name="GiftMessageView__gift_badge">Подарок беџ</string>
   <!--Gift message view expiry information-->
   <plurals name="GiftMessageView__lasts_for_d_months">
     <item quantity="one">Трае %1$d месец</item>
@@ -3849,6 +3868,7 @@
   <!--Label when a story fails to send due to networking-->
   <string name="StoriesLandingItem__send_failed">Испраќањето е неуспешно</string>
   <!--Label when a story fails to send due to identity mismatch-->
+  <string name="StoriesLandingItem__partially_sent">Делумно испратена</string>
   <!--Status label when a story fails to send indicating user action to retry-->
   <string name="StoriesLandingItem__tap_to_retry">Допрете за да се обидете повторно</string>
   <!--Title of dialog confirming decision to hide a story-->
@@ -3875,6 +3895,7 @@
   <!--Message of dialog to confirm deletion of story-->
   <string name="MyStories__this_story_will_be_deleted">Оваа приказна ќе биде избришана за Вас и сите кои ја примиле.</string>
   <!--Toast shown when story media cannot be saved-->
+  <string name="MyStories__unable_to_save">Неуспешно зачувување</string>
   <!--Displayed at bottom of story viewer when current item has views-->
   <plurals name="StoryViewerFragment__d_views">
     <item quantity="one">%1$d преглед</item>
@@ -3993,6 +4014,7 @@
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Барај</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
+  <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Се појави неочекувана грешка</string>
   <!--Title for screen allowing user to hide "My Story" entries from specific people-->
   <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">Сокриј приказна од…</string> -->
   <!--Done button label for hide story from screen-->
@@ -4087,10 +4109,16 @@
   <string name="ExpandModel__view_more">Види повеќе</string>
   <string name="StoriesLinkPopup__visit_link">Посети го линкот</string>
   <!--Duration and price information-->
+  <plurals name="GiftRowItem_s_dot_d_day_duration">
+    <item quantity="one">%1$s · %2$dден важност</item>
+    <item quantity="other">%1$s · %2$dдена важност</item>
+  </plurals>
   <!--Tagline for gift row items-->
+  <string name="GiftRowItem__send_a_gift_badge">Испратете подарок беџ</string>
   <!--Headline text on start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__gift_a_badge">Подари беџ</string>
   <!--Description text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">Подарате беџ некому со донација на Signal во нивно име. Тие ќе добијат беџ кој можат да го прикажат на профилната слика.</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Следно</string>
   <!--Title text on choose recipient page for badge gifting-->
@@ -4112,7 +4140,9 @@
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Ви благодариме за Вашата поддршка!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Добивте подарок беџ од %1$s! Помогнете да се подигне свест за Signal со прикажување на беџот на вашиот профил.</string>
   <!--Description for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Подаривте беџ на %1$s. Кога ќе прифатат, ќе имаат можност да го прикажат или скријат беџот.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
   <string name="ViewReceivedGiftSheet__redeem">Прифати</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
@@ -4122,9 +4152,11 @@
   <!--Snackbar text when user presses "not now" on redemption sheet-->
   <string name="ConversationFragment__you_can_redeem_your_badge_later">Можете да го прифатите Вашиот беџ подоцна.</string>
   <!--Description text in gift thanks sheet-->
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Подаривте беџ на %1$s. Кога ќе прифатат, ќе имаат можност да го прикажат или скријат беџот.</string>
   <!--Expired gift sheet title-->
   <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Вашиот беџ подарок истече</string>
   <!--Expired gift sheet top description text-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Истече важноста на вашиот подарок беџ, па повеќе нема да биде видлив на вашиот профил.</string>
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">За да продолжите да ја поддржувате технологијата што е создадена за Вас, размислете да станете месечен поддржувач.</string>
   <!--Expired gift sheet make a monthly donation button-->

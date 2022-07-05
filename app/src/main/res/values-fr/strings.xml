@@ -3990,6 +3990,7 @@ Nouvelle tentative…</string>
   <!--Message of dialog to confirm deletion of story-->
   <string name="MyStories__this_story_will_be_deleted">Cette histoire sera supprimée pour vous et quiconque l’a reçue.</string>
   <!--Toast shown when story media cannot be saved-->
+  <string name="MyStories__unable_to_save">Échec de la sauvegarde</string>
   <!--Displayed at bottom of story viewer when current item has views-->
   <plurals name="StoryViewerFragment__d_views">
     <item quantity="one">%1$d vue</item>

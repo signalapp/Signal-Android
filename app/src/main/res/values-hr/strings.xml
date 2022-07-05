@@ -2052,6 +2052,7 @@ broj telefona</string>
   <string name="preferences__advanced">Napredno</string>
   <string name="preferences__donate_to_signal">Donirajte Signalu</string>
   <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">Jednokratna donacija</string>
   <string name="preferences__privacy">Privatnost</string>
   <string name="preferences__mms_user_agent">MMS korisnički agent</string>
   <string name="preferences__advanced_mms_access_point_names">Ručne MMS postavke</string>
@@ -3651,6 +3652,7 @@ broj telefona</string>
   <!--Duration and price information-->
   <!--Tagline for gift row items-->
   <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">Pokloni značku</string>
   <!--Description text on start fragment for gifting a badge-->
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Sljedeće</string>
@@ -3658,6 +3660,7 @@ broj telefona</string>
   <!--Title text on confirm gift page-->
   <!--Heading text specifying who the gift will be sent to-->
   <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Vaš poklon bit će poslan primatelju u privatnoj poruci. U nastavku napišite vlastitu poruku.</string>
   <!--Text explaining that this gift is a one time donation-->
   <string name="GiftFlowConfirmationFragment__one_time_donation">Jednokratna donacija</string>
   <!--Hint for add message input-->
@@ -3686,5 +3689,6 @@ broj telefona</string>
   <!--Gift expiry hours remaining-->
   <!--Gift expiry minutes remaining-->
   <!--Gift expiry expired-->
+  <string name="Gifts__expired">Isteklo</string>
   <!--EOF-->
 </resources>
