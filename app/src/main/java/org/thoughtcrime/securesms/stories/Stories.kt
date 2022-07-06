@@ -300,10 +300,11 @@ object Stories {
      * Callers can utilize canClipMedia to determine if the given media can and should be clipped.
      */
     @JvmStatic
+    @WorkerThread
     fun clipMediaToStoryDuration(media: Media): List<Media> {
       val storyDurationUs = TimeUnit.MILLISECONDS.toMicros(MAX_VIDEO_DURATION_MILLIS)
       val startOffsetUs = media.transformProperties.map { it.videoTrimStartTimeUs }.orElse(0L)
-      val endOffsetUs = media.transformProperties.map { it.videoTrimEndTimeUs }.orElse(TimeUnit.MILLISECONDS.toMicros(media.duration))
+      val endOffsetUs = media.transformProperties.map { it.videoTrimEndTimeUs }.orElse(TimeUnit.MILLISECONDS.toMicros(getVideoDuration(media.uri)))
       val durationUs = endOffsetUs - startOffsetUs
 
       if (durationUs <= 0L) {

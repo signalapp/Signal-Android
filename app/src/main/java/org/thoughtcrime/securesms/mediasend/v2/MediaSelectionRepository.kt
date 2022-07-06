@@ -41,7 +41,6 @@ import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.sms.MessageSender.PreUploadResult
 import org.thoughtcrime.securesms.stories.Stories
-import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageUtil
 import java.util.Collections
 import java.util.concurrent.TimeUnit
@@ -129,12 +128,10 @@ class MediaSelectionRepository(context: Context) {
         }
 
         val clippedMediaForStories = if (singleContact?.isStory == true || contacts.any { it.isStory }) {
-          updatedMedia.filter { MediaUtil.isVideo(it.mimeType) }.map { media ->
-            if (Stories.MediaTransform.getSendRequirements(media) == Stories.MediaTransform.SendRequirements.REQUIRES_CLIP) {
-              Stories.MediaTransform.clipMediaToStoryDuration(media)
-            } else {
-              listOf(media)
-            }
+          updatedMedia.filter {
+            Stories.MediaTransform.getSendRequirements(it) == Stories.MediaTransform.SendRequirements.REQUIRES_CLIP
+          }.map { media ->
+            Stories.MediaTransform.clipMediaToStoryDuration(media)
           }.flatten()
         } else emptyList()
 
@@ -274,7 +271,7 @@ class MediaSelectionRepository(context: Context) {
       )
 
       if (isStory) {
-        preUploadResults.filterNot { it.isVideo }.forEach {
+        preUploadResults.filterNot { result -> storyClips.any { it.uri == result.media.uri } }.forEach {
           val list = storyPreUploadMessages[it] ?: mutableListOf()
           list.add(
             OutgoingSecureMediaMessage(message).withSentTimestamp(

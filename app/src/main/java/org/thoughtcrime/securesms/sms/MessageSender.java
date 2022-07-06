@@ -67,6 +67,7 @@ import org.thoughtcrime.securesms.jobs.ResumableUploadSpecJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
+import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
@@ -215,7 +216,8 @@ public class MessageSender {
 
       database.setTransactionSuccessful();
     } catch (MmsException e) {
-      Log.w(TAG, e);
+      Log.w(TAG, "Failed to send stories.", e);
+      return;
     } finally {
       database.endTransaction();
     }
@@ -443,7 +445,7 @@ public class MessageSender {
    * @return A result if the attachment was enqueued, or null if it failed to enqueue or shouldn't
    *         be enqueued (like in the case of a local self-send).
    */
-  public static @Nullable PreUploadResult preUploadPushAttachment(@NonNull Context context, @NonNull Attachment attachment, @Nullable Recipient recipient, boolean isStoryClip) {
+  public static @Nullable PreUploadResult preUploadPushAttachment(@NonNull Context context, @NonNull Attachment attachment, @Nullable Recipient recipient, @NonNull Media media) {
     if (isLocalSelfSend(context, recipient, false)) {
       return null;
     }
@@ -463,7 +465,7 @@ public class MessageSender {
                              .then(uploadJob)
                              .enqueue();
 
-      return new PreUploadResult(isStoryClip, databaseAttachment.getAttachmentId(), Arrays.asList(compressionJob.getId(), resumableUploadSpecJob.getId(), uploadJob.getId()));
+      return new PreUploadResult(media, databaseAttachment.getAttachmentId(), Arrays.asList(compressionJob.getId(), resumableUploadSpecJob.getId(), uploadJob.getId()));
     } catch (MmsException e) {
       Log.w(TAG, "preUploadPushAttachment() - Failed to upload!", e);
       return null;
@@ -751,24 +753,20 @@ public class MessageSender {
   }
 
   public static class PreUploadResult implements Parcelable {
-    private final boolean      isVideo;
-    private final AttachmentId attachmentId;
+    private final Media              media;
+    private final AttachmentId       attachmentId;
     private final Collection<String> jobIds;
 
-    PreUploadResult(boolean isVideo, @NonNull AttachmentId attachmentId, @NonNull Collection<String> jobIds) {
-      this.isVideo      = isVideo;
+    PreUploadResult(@NonNull Media media, @NonNull AttachmentId attachmentId, @NonNull Collection<String> jobIds) {
+      this.media        = media;
       this.attachmentId = attachmentId;
       this.jobIds       = jobIds;
     }
 
     private PreUploadResult(Parcel in) {
       this.attachmentId = in.readParcelable(AttachmentId.class.getClassLoader());
-      this.jobIds  = ParcelUtil.readStringCollection(in);
-      this.isVideo = ParcelUtil.readBoolean(in);
-    }
-
-    public boolean isVideo() {
-      return isVideo;
+      this.jobIds       = ParcelUtil.readStringCollection(in);
+      this.media        = in.readParcelable(Media.class.getClassLoader());
     }
 
     public @NonNull AttachmentId getAttachmentId() {
@@ -777,6 +775,10 @@ public class MessageSender {
 
     public @NonNull Collection<String> getJobIds() {
       return jobIds;
+    }
+
+    public @NonNull Media getMedia() {
+      return media;
     }
 
     public static final Creator<PreUploadResult> CREATOR = new Creator<PreUploadResult>() {
@@ -800,7 +802,7 @@ public class MessageSender {
     public void writeToParcel(Parcel dest, int flags) {
       dest.writeParcelable(attachmentId, flags);
       ParcelUtil.writeStringCollection(dest, jobIds);
-      ParcelUtil.writeBoolean(dest, isVideo);
+      dest.writeParcelable(media, flags);
     }
   }
 
