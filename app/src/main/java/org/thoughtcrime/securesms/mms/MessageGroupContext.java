@@ -132,7 +132,7 @@ public final class MessageGroupContext {
       return Stream.of(groupContext.getMembersList())
                    .map(GroupContext.Member::getE164)
                    .withoutNulls()
-                   .map(RecipientId::fromExternalPush)
+                   .map(RecipientId::fromE164)
                    .filterNot(selfId::equals)
                    .toList();
     }
@@ -191,7 +191,7 @@ public final class MessageGroupContext {
       List<RecipientId> members = new ArrayList<>(decryptedGroupV2Context.getGroupState().getMembersCount());
 
       for (DecryptedMember member : decryptedGroupV2Context.getGroupState().getMembersList()) {
-        RecipientId recipient = RecipientId.from(ServiceId.fromByteString(member.getUuid()), null);
+        RecipientId recipient = RecipientId.from(ServiceId.fromByteString(member.getUuid()));
         if (!Recipient.self().getId().equals(recipient)) {
           members.add(recipient);
         }

@@ -150,7 +150,7 @@ public final class RegistrationRepository {
     }
 
     RecipientDatabase recipientDatabase = SignalDatabase.recipients();
-    RecipientId       selfId            = Recipient.externalPush(aci, registrationData.getE164(), true).getId();
+    RecipientId       selfId            = Recipient.externalPush(new SignalServiceAddress(aci, registrationData.getE164())).getId();
 
     recipientDatabase.setProfileSharing(selfId, true);
     recipientDatabase.markRegisteredOrThrow(selfId, aci);

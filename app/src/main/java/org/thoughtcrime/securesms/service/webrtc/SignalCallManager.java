@@ -639,7 +639,7 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
     SignalServiceCallMessage callMessage   = SignalServiceCallMessage.forOpaque(opaqueMessage, true, null);
 
     networkExecutor.execute(() -> {
-      Recipient recipient = Recipient.resolved(RecipientId.from(ServiceId.from(uuid), null));
+      Recipient recipient = Recipient.resolved(RecipientId.from(ServiceId.from(uuid)));
       if (recipient.isBlocked()) {
         return;
       }

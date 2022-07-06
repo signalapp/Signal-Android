@@ -91,7 +91,7 @@ public final class GroupProtoUtil {
       return Recipient.UNKNOWN;
     }
 
-    return Recipient.externalPush(serviceId, null, false);
+    return Recipient.externalPush(serviceId);
   }
 
   @WorkerThread
@@ -102,7 +102,7 @@ public final class GroupProtoUtil {
       return RecipientId.UNKNOWN;
     }
 
-    return RecipientId.from(serviceId, null);
+    return RecipientId.from(serviceId);
   }
 
   public static boolean isMember(@NonNull UUID uuid, @NonNull List<DecryptedMember> membersList) {

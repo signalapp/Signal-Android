@@ -779,7 +779,7 @@ final class GroupsV2UpdateMessageProducer {
                                               @DrawableRes int iconResource)
   {
     ServiceId   serviceId   = ServiceId.fromByteStringOrUnknown(uuid1Bytes);
-    RecipientId recipientId = RecipientId.from(serviceId, null);
+    RecipientId recipientId = RecipientId.from(serviceId);
 
     return UpdateDescription.mentioning(
         Collections.singletonList(serviceId),
@@ -800,8 +800,8 @@ final class GroupsV2UpdateMessageProducer {
     ServiceId sid1 = ServiceId.fromByteStringOrUnknown(uuid1Bytes);
     ServiceId sid2 = ServiceId.fromByteStringOrUnknown(uuid2Bytes);
 
-    RecipientId recipientId1 = RecipientId.from(sid1, null);
-    RecipientId recipientId2 = RecipientId.from(sid2, null);
+    RecipientId recipientId1 = RecipientId.from(sid1);
+    RecipientId recipientId2 = RecipientId.from(sid2);
 
     return UpdateDescription.mentioning(
         Arrays.asList(sid1, sid2),
@@ -821,7 +821,7 @@ final class GroupsV2UpdateMessageProducer {
                                               @DrawableRes int iconResource)
   {
     ServiceId   serviceId   = ServiceId.fromByteStringOrUnknown(uuid1Bytes);
-    RecipientId recipientId = RecipientId.from(serviceId, null);
+    RecipientId recipientId = RecipientId.from(serviceId);
 
     return UpdateDescription.mentioning(
         Collections.singletonList(serviceId),
@@ -842,7 +842,7 @@ final class GroupsV2UpdateMessageProducer {
                                               @DrawableRes int iconResource)
   {
     ServiceId   serviceId   = ServiceId.fromByteStringOrUnknown(uuid1Bytes);
-    RecipientId recipientId = RecipientId.from(serviceId, null);
+    RecipientId recipientId = RecipientId.from(serviceId);
 
     return UpdateDescription.mentioning(
         Collections.singletonList(serviceId),

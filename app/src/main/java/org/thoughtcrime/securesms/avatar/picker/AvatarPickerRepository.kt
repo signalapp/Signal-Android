@@ -50,7 +50,7 @@ class AvatarPickerRepository(context: Context) {
   }
 
   fun getAvatarForGroup(groupId: GroupId): Single<Avatar> = Single.fromCallable {
-    val recipient = Recipient.externalGroupExact(applicationContext, groupId)
+    val recipient = Recipient.externalGroupExact(groupId)
 
     if (AvatarHelper.hasAvatar(applicationContext, recipient.id)) {
       try {
@@ -161,7 +161,7 @@ class AvatarPickerRepository(context: Context) {
   }
 
   fun getDefaultAvatarForGroup(groupId: GroupId): Avatar {
-    val recipient = Recipient.externalGroupExact(applicationContext, groupId)
+    val recipient = Recipient.externalGroupExact(groupId)
 
     return getDefaultAvatarForGroup(recipient.avatarColor)
   }

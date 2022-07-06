@@ -250,7 +250,7 @@ public class IdentityDatabase extends Database {
     boolean     firstUse            = CursorUtil.requireBoolean(cursor, FIRST_USE);
     IdentityKey identity            = new IdentityKey(Base64.decode(serializedIdentity), 0);
 
-    return new IdentityRecord(RecipientId.fromExternalPush(addressName), identity, VerifiedStatus.forState(verifiedStatus), firstUse, timestamp, nonblockingApproval);
+    return new IdentityRecord(RecipientId.fromSidOrE164(addressName), identity, VerifiedStatus.forState(verifiedStatus), firstUse, timestamp, nonblockingApproval);
   }
 
   private void saveIdentityInternal(@NonNull String addressName,

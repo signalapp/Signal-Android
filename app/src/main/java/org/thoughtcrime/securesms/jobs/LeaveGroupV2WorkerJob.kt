@@ -20,7 +20,7 @@ class LeaveGroupV2WorkerJob(parameters: Parameters, private val groupId: GroupId
 
   constructor(groupId: GroupId.V2) : this(
     parameters = Parameters.Builder()
-      .setQueue(PushProcessMessageJob.getQueueName(Recipient.externalGroupExact(ApplicationDependencies.getApplication(), groupId).id))
+      .setQueue(PushProcessMessageJob.getQueueName(Recipient.externalGroupExact(groupId).id))
       .addConstraint(NetworkConstraint.KEY)
       .setMaxAttempts(Parameters.UNLIMITED)
       .setMaxInstancesForQueue(2)
@@ -41,7 +41,7 @@ class LeaveGroupV2WorkerJob(parameters: Parameters, private val groupId: GroupId
   override fun onRun() {
     Log.i(TAG, "Attempting to leave group $groupId")
 
-    val groupRecipient = Recipient.externalGroupExact(ApplicationDependencies.getApplication(), groupId)
+    val groupRecipient = Recipient.externalGroupExact(groupId)
 
     GroupManager.leaveGroup(context, groupId)
 

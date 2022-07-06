@@ -126,7 +126,7 @@ public final class PushProcessMessageJob extends BaseJob {
         try {
           GroupId groupId = GroupUtil.idFromGroupContext(signalServiceGroupContext);
 
-          queueName = getQueueName(Recipient.externalPossiblyMigratedGroup(context, groupId).getId());
+          queueName = getQueueName(Recipient.externalPossiblyMigratedGroup(groupId).getId());
 
           if (groupId.isV2()) {
             int localRevision = SignalDatabase.groups().getGroupV2Revision(groupId.requireV2());
@@ -143,12 +143,12 @@ public final class PushProcessMessageJob extends BaseJob {
           Log.w(TAG, "Bad groupId! Using default queue. ID: " + content.getTimestamp());
         }
       } else if (content.getSyncMessage().isPresent() && content.getSyncMessage().get().getSent().isPresent() && content.getSyncMessage().get().getSent().get().getDestination().isPresent()) {
-        queueName = getQueueName(RecipientId.fromHighTrust(content.getSyncMessage().get().getSent().get().getDestination().get()));
+        queueName = getQueueName(RecipientId.from(content.getSyncMessage().get().getSent().get().getDestination().get()));
       } else {
-        queueName = getQueueName(RecipientId.fromHighTrust(content.getSender()));
+        queueName = getQueueName(RecipientId.from(content.getSender()));
       }
     } else if (exceptionMetadata != null) {
-      Recipient recipient = exceptionMetadata.getGroupId() != null ? Recipient.externalPossiblyMigratedGroup(context, exceptionMetadata.getGroupId())
+      Recipient recipient = exceptionMetadata.getGroupId() != null ? Recipient.externalPossiblyMigratedGroup(exceptionMetadata.getGroupId())
                                                                    : Recipient.external(context, exceptionMetadata.getSender());
       queueName = getQueueName(recipient.getId());
     }

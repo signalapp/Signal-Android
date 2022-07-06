@@ -7,7 +7,6 @@ import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
@@ -44,7 +43,7 @@ final class RequestGroupV2InfoWorkerJob extends BaseJob {
   @WorkerThread
   RequestGroupV2InfoWorkerJob(@NonNull GroupId.V2 groupId, int toRevision) {
     this(new Parameters.Builder()
-                       .setQueue(PushProcessMessageJob.getQueueName(Recipient.externalGroupExact(ApplicationDependencies.getApplication(), groupId).getId()))
+                       .setQueue(PushProcessMessageJob.getQueueName(Recipient.externalGroupExact(groupId).getId()))
                        .addConstraint(NetworkConstraint.KEY)
                        .setLifespan(TimeUnit.DAYS.toMillis(1))
                        .setMaxAttempts(Parameters.UNLIMITED)
@@ -87,7 +86,7 @@ final class RequestGroupV2InfoWorkerJob extends BaseJob {
       return;
     }
 
-    if (Recipient.externalGroupExact(context, groupId).isBlocked()) {
+    if (Recipient.externalGroupExact(groupId).isBlocked()) {
       Log.i(TAG, "Not fetching group info for blocked group " + groupId);
       return;
     }

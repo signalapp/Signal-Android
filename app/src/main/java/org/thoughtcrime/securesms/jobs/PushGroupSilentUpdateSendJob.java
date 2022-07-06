@@ -76,7 +76,7 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
     Set<RecipientId> recipients = Stream.concat(Stream.of(memberUuids), Stream.of(pendingUuids))
                                         .filter(uuid -> !UuidUtil.UNKNOWN_UUID.equals(uuid))
                                         .filter(uuid -> !SignalStore.account().requireAci().uuid().equals(uuid))
-                                        .map(uuid -> Recipient.externalPush(ServiceId.from(uuid), null, false))
+                                        .map(uuid -> Recipient.externalPush(ServiceId.from(uuid)))
                                         .filter(recipient -> recipient.getRegistered() != RecipientDatabase.RegisteredState.NOT_REGISTERED)
                                         .map(Recipient::getId)
                                         .collect(Collectors.toSet());
@@ -84,7 +84,7 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
     MessageGroupContext.GroupV2Properties properties   = groupMessage.requireGroupV2Properties();
     SignalServiceProtos.GroupContextV2    groupContext = properties.getGroupContext();
 
-    String queue = Recipient.externalGroupExact(context, groupId).getId().toQueueKey();
+    String queue = Recipient.externalGroupExact(groupId).getId().toQueueKey();
 
     return new PushGroupSilentUpdateSendJob(new ArrayList<>(recipients),
                                             recipients.size(),
@@ -133,7 +133,7 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
 
     GroupId.V2 groupId = GroupId.v2(GroupUtil.requireMasterKey(groupContextV2.getMasterKey().toByteArray()));
 
-    if (Recipient.externalGroupExact(context, groupId).isBlocked()) {
+    if (Recipient.externalGroupExact(groupId).isBlocked()) {
       Log.i(TAG, "Not updating group state for blocked group " + groupId);
       return;
     }

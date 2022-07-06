@@ -56,7 +56,17 @@ public class RecipientId implements Parcelable, Comparable<RecipientId>, Databas
 
   @AnyThread
   public static @NonNull RecipientId from(@NonNull SignalServiceAddress address) {
-    return from(address.getServiceId(), address.getNumber().orElse(null), false);
+    return from(address.getServiceId(), address.getNumber().orElse(null));
+  }
+
+  @AnyThread
+  public static @NonNull RecipientId from(@NonNull ServiceId serviceId) {
+    return from(serviceId, null);
+  }
+
+  @AnyThread
+  public static @NonNull RecipientId fromE164(@NonNull String identifier) {
+    return from(null, identifier);
   }
 
   /**
@@ -65,35 +75,17 @@ public class RecipientId implements Parcelable, Comparable<RecipientId>, Databas
    * @param identifier A UUID or e164
    */
   @AnyThread
-  public static @NonNull RecipientId fromExternalPush(@NonNull String identifier) {
+  public static @NonNull RecipientId fromSidOrE164(@NonNull String identifier) {
     if (UuidUtil.isUuid(identifier)) {
-      return from(ServiceId.parseOrThrow(identifier), null);
+      return from(ServiceId.parseOrThrow(identifier));
     } else {
       return from(null, identifier);
     }
   }
 
-  /**
-   * Indicates that the pairing is from a high-trust source.
-   * See {@link Recipient#externalHighTrustPush(Context, SignalServiceAddress)}
-   */
-  @AnyThread
-  public static @NonNull RecipientId fromHighTrust(@NonNull SignalServiceAddress address) {
-    return from(address.getServiceId(), address.getNumber().orElse(null), true);
-  }
-
-  /**
-   * Always supply both {@param uuid} and {@param e164} if you have both.
-   */
   @AnyThread
   @SuppressLint("WrongThread")
-  public static @NonNull RecipientId from(@Nullable ServiceId serviceId, @Nullable String e164) {
-    return from(serviceId, e164, false);
-  }
-
-  @AnyThread
-  @SuppressLint("WrongThread")
-  private static @NonNull RecipientId from(@Nullable ServiceId serviceId, @Nullable String e164, boolean highTrust) {
+  private static @NonNull RecipientId from(@Nullable ServiceId serviceId, @Nullable String e164) {
     if (serviceId != null && serviceId.isUnknown()) {
       return RecipientId.UNKNOWN;
     }
@@ -101,7 +93,7 @@ public class RecipientId implements Parcelable, Comparable<RecipientId>, Databas
     RecipientId recipientId = RecipientIdCache.INSTANCE.get(serviceId, e164);
 
     if (recipientId == null) {
-      Recipient recipient = Recipient.externalPush(serviceId, e164, highTrust);
+      Recipient recipient = Recipient.externalPush(serviceId, e164);
       RecipientIdCache.INSTANCE.put(recipient);
       recipientId = recipient.getId();
     }

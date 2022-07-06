@@ -88,8 +88,8 @@ public final class GroupsV2UpdateMessageProducerTest {
 
     producer = new GroupsV2UpdateMessageProducer(ApplicationProvider.getApplicationContext(), new ServiceIds(ACI.from(you), PNI.from(UUID.randomUUID())), null);
 
-    recipientIdMockedStatic.when(() -> RecipientId.from(ServiceId.from(alice), null)).thenReturn(aliceId);
-    recipientIdMockedStatic.when(() -> RecipientId.from(ServiceId.from(bob), null)).thenReturn(bobId);
+    recipientIdMockedStatic.when(() -> RecipientId.from(ServiceId.from(alice))).thenReturn(aliceId);
+    recipientIdMockedStatic.when(() -> RecipientId.from(ServiceId.from(bob))).thenReturn(bobId);
     recipientMockedStatic.when(() -> Recipient.resolved(aliceId)).thenReturn(aliceRecipient);
     recipientMockedStatic.when(() -> Recipient.resolved(bobId)).thenReturn(bobRecipient);
   }

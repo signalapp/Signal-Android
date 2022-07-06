@@ -151,7 +151,7 @@ public final class GroupsV1MigrationUtil {
         return;
       }
 
-      Recipient recipient = Recipient.externalGroupExact(context, gv1Id);
+      Recipient recipient = Recipient.externalGroupExact(gv1Id);
       long      threadId  = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
 
       performLocalMigration(context, gv1Id, threadId, recipient);

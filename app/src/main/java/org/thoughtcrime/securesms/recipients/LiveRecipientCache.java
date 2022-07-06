@@ -163,7 +163,7 @@ public final class LiveRecipientCache {
       }
 
       if (selfId == null) {
-        selfId = recipientDatabase.getAndPossiblyMerge(localAci, localE164, true);
+        selfId = recipientDatabase.getAndPossiblyMerge(localAci, localE164);
       }
 
       synchronized (localRecipientId) {

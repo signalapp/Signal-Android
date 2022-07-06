@@ -121,7 +121,7 @@ public final class MentionUtil {
         return Stream.of(BodyRangeList.parseFrom(data).getRangesList())
                      .filter(bodyRange -> bodyRange.getAssociatedValueCase() == BodyRangeList.BodyRange.AssociatedValueCase.MENTIONUUID)
                      .map(mention -> {
-                       RecipientId id = Recipient.externalPush(ServiceId.parseOrThrow(mention.getMentionUuid()), null, false).getId();
+                       RecipientId id = Recipient.externalPush(ServiceId.parseOrThrow(mention.getMentionUuid())).getId();
                        return new Mention(id, mention.getStart(), mention.getLength());
                      })
                      .toList();

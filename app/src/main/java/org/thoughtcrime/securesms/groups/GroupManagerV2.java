@@ -400,7 +400,7 @@ final class GroupManagerV2 {
         GroupManager.GroupActionResult groupActionResult = commitChangeWithConflictResolution(selfAci, change);
 
         if (avatarChanged) {
-          AvatarHelper.setAvatar(context, Recipient.externalGroupExact(context, groupId).getId(), avatarBytes != null ? new ByteArrayInputStream(avatarBytes) : null);
+          AvatarHelper.setAvatar(context, Recipient.externalGroupExact(groupId).getId(), avatarBytes != null ? new ByteArrayInputStream(avatarBytes) : null);
           groupDatabase.onAvatarUpdated(groupId, avatarBytes != null);
         }
 
@@ -643,7 +643,7 @@ final class GroupManagerV2 {
 
           if (GroupChangeUtil.changeIsEmpty(change.build())) {
             Log.i(TAG, "Change is empty after conflict resolution");
-            Recipient groupRecipient = Recipient.externalGroupExact(context, groupId);
+            Recipient groupRecipient = Recipient.externalGroupExact(groupId);
             long      threadId       = SignalDatabase.threads().getOrCreateThreadIdFor(groupRecipient);
 
             return new GroupManager.GroupActionResult(groupRecipient, threadId, 0, Collections.emptyList());
@@ -696,7 +696,7 @@ final class GroupManagerV2 {
       final DecryptedGroup                  decryptedGroupState;
       final DecryptedGroup                  previousGroupState;
 
-      if (!allowWhenBlocked && Recipient.externalGroupExact(context, groupId).isBlocked()) {
+      if (!allowWhenBlocked && Recipient.externalGroupExact(groupId).isBlocked()) {
         throw new GroupChangeFailedException("Group is blocked.");
       }
 
@@ -1232,7 +1232,7 @@ final class GroupManagerV2 {
                                                         boolean sendToMembers)
     {
       GroupId.V2              groupId                 = GroupId.v2(masterKey);
-      Recipient               groupRecipient          = Recipient.externalGroupExact(context, groupId);
+      Recipient               groupRecipient          = Recipient.externalGroupExact(groupId);
       DecryptedGroupV2Context decryptedGroupV2Context = GroupProtoUtil.createDecryptedGroupV2Context(masterKey, groupMutation, signedGroupChange);
       OutgoingGroupUpdateMessage outgoingMessage = new OutgoingGroupUpdateMessage(groupRecipient,
                                                                                   decryptedGroupV2Context,
@@ -1276,7 +1276,7 @@ final class GroupManagerV2 {
 
   private static @NonNull List<RecipientId> getPendingMemberRecipientIds(@NonNull List<DecryptedPendingMember> newPendingMembersList) {
     return Stream.of(DecryptedGroupUtil.pendingToUuidList(newPendingMembersList))
-                 .map(uuid -> RecipientId.from(ServiceId.from(uuid), null))
+                 .map(uuid -> RecipientId.from(ServiceId.from(uuid)))
                  .toList();
   }
 

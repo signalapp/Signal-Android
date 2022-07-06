@@ -199,19 +199,18 @@ public class Recipient {
    */
   @WorkerThread
   public static @NonNull Recipient externalUsername(@NonNull ServiceId serviceId, @NonNull String username) {
-    Recipient recipient = externalPush(serviceId, null, false);
+    Recipient recipient = externalPush(serviceId);
     SignalDatabase.recipients().setUsername(recipient.getId(), username);
     return recipient;
   }
 
   /**
    * Returns a fully-populated {@link Recipient} based off of a {@link SignalServiceAddress},
-   * creating one in the database if necessary. Convenience overload of
-   * {@link #externalPush(ServiceId, String, boolean)}
+   * creating one in the database if necessary.
    */
   @WorkerThread
   public static @NonNull Recipient externalPush(@NonNull SignalServiceAddress signalServiceAddress) {
-    return externalPush(signalServiceAddress.getServiceId(), signalServiceAddress.getNumber().orElse(null), false);
+    return externalPush(signalServiceAddress.getServiceId(), signalServiceAddress.getNumber().orElse(null));
   }
 
   /**
@@ -222,46 +221,38 @@ public class Recipient {
   @WorkerThread
   public static @NonNull Recipient externalGV1Member(@NonNull SignalServiceAddress address) {
     if (address.getNumber().isPresent()) {
-      return externalPush(null, address.getNumber().get(), false);
+      return externalPush(null, address.getNumber().get());
     } else {
-      return externalPush(address.getServiceId(), null, false);
+      return externalPush(address.getServiceId());
     }
   }
 
   /**
-   * Returns a fully-populated {@link Recipient} based off of a {@link SignalServiceAddress},
-   * creating one in the database if necessary. This should only used for high-trust sources,
-   * which are limited to:
-   * - Envelopes
-   * - UD Certs
-   * - CDS
-   * - Storage Service
+   * Returns a fully-populated {@link Recipient} based off of a ServiceId, creating one
+   * in the database if necessary.
    */
   @WorkerThread
-  public static @NonNull Recipient externalHighTrustPush(@NonNull Context context, @NonNull SignalServiceAddress signalServiceAddress) {
-    return externalPush(signalServiceAddress.getServiceId(), signalServiceAddress.getNumber().orElse(null), true);
+  public static @NonNull Recipient externalPush(@NonNull ServiceId serviceId) {
+    return externalPush(serviceId, null);
   }
 
   /**
-   * Returns a fully-populated {@link Recipient} based off of an ACI and phone number, creating one
+   * Returns a fully-populated {@link Recipient} based off of a ServiceId and phone number, creating one
    * in the database if necessary. We want both piece of information so we're able to associate them
    * both together, depending on which are available.
    *
    * In particular, while we'll eventually get the ACI of a user created via a phone number
    * (through a directory sync), the only way we can store the phone number is by retrieving it from
    * sent messages and whatnot. So we should store it when available.
-   *
-   * @param highTrust This should only be set to true if the source of the E164-ACI pairing is one
-   *                  that can be trusted as accurate (like an envelope).
    */
   @WorkerThread
-  public static @NonNull Recipient externalPush(@Nullable ServiceId serviceId, @Nullable String e164, boolean highTrust) {
+  static @NonNull Recipient externalPush(@Nullable ServiceId serviceId, @Nullable String e164) {
     if (ServiceId.UNKNOWN.equals(serviceId)) {
       throw new AssertionError();
     }
 
     RecipientDatabase db          = SignalDatabase.recipients();
-    RecipientId       recipientId = db.getAndPossiblyMerge(serviceId, e164, highTrust);
+    RecipientId       recipientId = db.getAndPossiblyMerge(serviceId, e164);
 
     Recipient resolved = resolved(recipientId);
 
@@ -269,11 +260,11 @@ public class Recipient {
       Log.w(TAG, "Resolved " + recipientId + ", but got back a recipient with " + resolved.getId());
     }
 
-    if (highTrust && !resolved.isRegistered() && serviceId != null) {
-      Log.w(TAG, "External high-trust push was locally marked unregistered. Marking as registered.");
+    if (!resolved.isRegistered() && serviceId != null) {
+      Log.w(TAG, "External push was locally marked unregistered. Marking as registered.");
       db.markRegistered(recipientId, serviceId);
-    } else if (highTrust && !resolved.isRegistered()) {
-      Log.w(TAG, "External high-trust push was locally marked unregistered, but we don't have an ACI, so we can't do anything.", new Throwable());
+    } else if (!resolved.isRegistered()) {
+      Log.w(TAG, "External push was locally marked unregistered, but we don't have an ACI, so we can't do anything.", new Throwable());
     }
 
     return resolved;
@@ -287,7 +278,7 @@ public class Recipient {
    * (This may seem strange, but apparently some devices are returning valid UUIDs for contacts)
    */
   @WorkerThread
-  public static @NonNull Recipient externalContact(@NonNull Context context, @NonNull String identifier) {
+  public static @NonNull Recipient externalContact(@NonNull String identifier) {
     RecipientDatabase db = SignalDatabase.recipients();
     RecipientId       id = null;
 
@@ -308,11 +299,11 @@ public class Recipient {
    *
    * Important: This will throw an exception if the groupId you're using could have been migrated.
    * If you're dealing with inbound data, you should be using
-   * {@link #externalPossiblyMigratedGroup(Context, GroupId)}, or checking the database before
+   * {@link #externalPossiblyMigratedGroup(GroupId)}, or checking the database before
    * calling this method.
    */
   @WorkerThread
-  public static @NonNull Recipient externalGroupExact(@NonNull Context context, @NonNull GroupId groupId) {
+  public static @NonNull Recipient externalGroupExact(@NonNull GroupId groupId) {
     return Recipient.resolved(SignalDatabase.recipients().getOrInsertFromGroupId(groupId));
   }
 
@@ -327,7 +318,7 @@ public class Recipient {
    * You should be very cautious when using the groupId on the returned recipient.
    */
   @WorkerThread
-  public static @NonNull Recipient externalPossiblyMigratedGroup(@NonNull Context context, @NonNull GroupId groupId) {
+  public static @NonNull Recipient externalPossiblyMigratedGroup(@NonNull GroupId groupId) {
     return Recipient.resolved(SignalDatabase.recipients().getOrInsertFromPossiblyMigratedGroupId(groupId));
   }
 
@@ -337,7 +328,7 @@ public class Recipient {
    * or serialized groupId.
    *
    * If the identifier is a UUID of a Signal user, prefer using
-   * {@link #externalPush(ServiceId, String, boolean)} or its overload, as this will let us associate
+   * {@link #externalPush(ServiceId, String)} or its overload, as this will let us associate
    * the phone number with the recipient.
    */
   @WorkerThread

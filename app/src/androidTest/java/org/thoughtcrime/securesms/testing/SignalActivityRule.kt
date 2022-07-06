@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.registration.RegistrationUtil
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
 import org.whispersystems.signalservice.api.push.ACI
+import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
 import java.util.UUID
 
@@ -89,7 +90,7 @@ class SignalActivityRule : ExternalResource() {
 
     for (i in 0..4) {
       val aci = ACI.from(UUID.randomUUID())
-      val recipientId = RecipientId.from(aci, "+1555555101$i")
+      val recipientId = RecipientId.from(SignalServiceAddress(aci, "+1555555101$i"))
       SignalDatabase.recipients.setProfileName(recipientId, ProfileName.fromParts("Buddy", "#$i"))
       SignalDatabase.recipients.setProfileKeyIfAbsent(recipientId, ProfileKeyUtil.createNew())
       SignalDatabase.recipients.setCapabilities(recipientId, SignalServiceProfile.Capabilities(true, true, true, true, true, true, true))

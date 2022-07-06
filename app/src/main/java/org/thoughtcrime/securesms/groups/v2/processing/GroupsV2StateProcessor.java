@@ -449,7 +449,7 @@ public class GroupsV2StateProcessor {
         return;
       }
 
-      Recipient groupRecipient = Recipient.externalGroupExact(context, groupId);
+      Recipient groupRecipient = Recipient.externalGroupExact(groupId);
       UUID      selfUuid       = serviceId.uuid();
 
       DecryptedGroup decryptedGroup = groupDatabase.requireGroup(groupId)
@@ -587,7 +587,7 @@ public class GroupsV2StateProcessor {
                                                     .filter(c -> c != null && c.getRevision() == revisionJoinedAt)
                                                     .findFirst()
                                                     .map(c -> Optional.ofNullable(UuidUtil.fromByteStringOrNull(c.getEditor()))
-                                                                      .map(a -> Recipient.externalPush(ServiceId.fromByteStringOrNull(c.getEditor()), null, false)))
+                                                                      .map(uuid -> Recipient.externalPush(ServiceId.from(uuid))))
                                                     .orElse(Optional.empty());
 
         if (addedByOptional.isPresent()) {
@@ -603,7 +603,7 @@ public class GroupsV2StateProcessor {
           } else if (addedBy.isSystemContact() || addedBy.isProfileSharing()) {
             Log.i(TAG, "Group 'adder' is trusted. contact: " + addedBy.isSystemContact() + ", profileSharing: " + addedBy.isProfileSharing());
             Log.i(TAG, "Added to a group and auto-enabling profile sharing");
-            recipientDatabase.setProfileSharing(Recipient.externalGroupExact(context, groupId).getId(), true);
+            recipientDatabase.setProfileSharing(Recipient.externalGroupExact(groupId).getId(), true);
           } else {
             Log.i(TAG, "Added to a group, but not enabling profile sharing, as 'adder' is not trusted");
           }
@@ -612,7 +612,7 @@ public class GroupsV2StateProcessor {
         }
       } else if (selfAsPendingOptional.isPresent()) {
         Optional<Recipient> addedBy = selfAsPendingOptional.flatMap(adder -> Optional.ofNullable(UuidUtil.fromByteStringOrNull(adder.getAddedByUuid()))
-                                                                                     .map(a -> Recipient.externalPush(ServiceId.fromByteStringOrNull(adder.getAddedByUuid()), null, false)));
+                                                                                     .map(uuid -> Recipient.externalPush(ServiceId.from(uuid))));
 
         if (addedBy.isPresent() && addedBy.get().isBlocked()) {
           Log.i(TAG, String.format( "Added to group %s by a blocked user %s. Leaving group.", groupId, addedBy.get().getId()));
@@ -698,7 +698,7 @@ public class GroupsV2StateProcessor {
         }
       } else {
         MessageDatabase                        smsDatabase  = SignalDatabase.sms();
-        RecipientId                            sender       = RecipientId.from(editor.get(), null);
+        RecipientId                            sender       = RecipientId.from(editor.get());
         IncomingTextMessage                    incoming     = new IncomingTextMessage(sender, -1, timestamp, timestamp, timestamp, "", Optional.of(groupId), 0, false, null);
         IncomingGroupUpdateMessage             groupMessage = new IncomingGroupUpdateMessage(incoming, decryptedGroupV2Context);
         Optional<MessageDatabase.InsertResult> insertResult = smsDatabase.insertMessageInbox(groupMessage);

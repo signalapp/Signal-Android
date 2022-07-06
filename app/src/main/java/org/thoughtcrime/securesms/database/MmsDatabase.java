@@ -2162,7 +2162,7 @@ public class MmsDatabase extends MessageDatabase {
         MessageGroupContext.GroupV2Properties groupV2Properties = outgoingGroupUpdateMessage.requireGroupV2Properties();
         members.addAll(Stream.of(groupV2Properties.getAllActivePendingAndRemovedMembers())
                              .distinct()
-                             .map(uuid -> RecipientId.from(ServiceId.from(uuid), null))
+                             .map(uuid -> RecipientId.from(ServiceId.from(uuid)))
                              .toList());
         members.remove(Recipient.self().getId());
       } else {

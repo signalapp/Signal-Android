@@ -31,7 +31,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalSessionLock;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupContext;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -89,7 +88,7 @@ public class IncomingMessageProcessor {
       }
 
       if (envelope.hasSourceUuid()) {
-        Recipient.externalHighTrustPush(context, envelope.getSourceAddress());
+        Recipient.externalPush(envelope.getSourceAddress());
       }
 
       if (envelope.isReceipt()) {
@@ -165,7 +164,7 @@ public class IncomingMessageProcessor {
     }
 
     private void processReceipt(@NonNull SignalServiceEnvelope envelope) {
-      Recipient sender = Recipient.externalHighTrustPush(context, envelope.getSourceAddress());
+      Recipient sender = Recipient.externalPush(envelope.getSourceAddress());
       Log.i(TAG, "Received server receipt. Sender: " + sender.getId() + ", Device: " + envelope.getSourceDevice() + ", Timestamp: " + envelope.getTimestamp());
 
       mmsSmsDatabase.incrementDeliveryReceiptCount(new SyncMessageId(sender.getId(), envelope.getTimestamp()), System.currentTimeMillis());
@@ -185,7 +184,7 @@ public class IncomingMessageProcessor {
           GroupId groupId = GroupUtil.idFromGroupContext(groupContext);
 
           if (groupId.isV2()) {
-            String        queueName     = PushProcessMessageJob.getQueueName(Recipient.externalPossiblyMigratedGroup(context, groupId).getId());
+            String        queueName     = PushProcessMessageJob.getQueueName(Recipient.externalPossiblyMigratedGroup(groupId).getId());
             GroupDatabase groupDatabase = SignalDatabase.groups();
 
             return !jobManager.isQueueEmpty(queueName)                                                                   ||
@@ -199,7 +198,7 @@ public class IncomingMessageProcessor {
           return false;
         }
       } else if (result.getContent() != null) {
-        RecipientId recipientId = RecipientId.fromHighTrust(result.getContent().getSender());
+        RecipientId recipientId = RecipientId.from(result.getContent().getSender());
         String      queueKey    = PushProcessMessageJob.getQueueName(recipientId);
 
         return !jobManager.isQueueEmpty(queueKey);

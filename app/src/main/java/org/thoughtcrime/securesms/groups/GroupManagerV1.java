@@ -196,7 +196,7 @@ final class GroupManagerV1 {
   static void updateGroupTimer(@NonNull Context context, @NonNull GroupId.V1 groupId, int expirationTime) {
     RecipientDatabase recipientDatabase = SignalDatabase.recipients();
     ThreadDatabase    threadDatabase    = SignalDatabase.threads();
-    Recipient         recipient         = Recipient.externalGroupExact(context, groupId);
+    Recipient         recipient         = Recipient.externalGroupExact(groupId);
     long              threadId          = threadDatabase.getOrCreateThreadIdFor(recipient);
 
     recipientDatabase.setExpireMessages(recipient.getId(), expirationTime);

@@ -419,11 +419,12 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     return getByColumn(USERNAME, username)
   }
 
-  fun getAndPossiblyMerge(serviceId: ServiceId?, e164: String?, highTrust: Boolean): RecipientId {
-    return getAndPossiblyMerge(serviceId, e164, highTrust, false)
+  fun getAndPossiblyMerge(serviceId: ServiceId?, e164: String?): RecipientId {
+    return getAndPossiblyMerge(serviceId, e164, changeSelf = false)
   }
 
-  fun getAndPossiblyMerge(serviceId: ServiceId?, e164: String?, highTrust: Boolean, changeSelf: Boolean): RecipientId {
+  @VisibleForTesting
+  fun getAndPossiblyMerge(serviceId: ServiceId?, e164: String?, changeSelf: Boolean): RecipientId {
     require(!(serviceId == null && e164 == null)) { "Must provide an ACI or E164!" }
 
     val db = writableDatabase
@@ -435,7 +436,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
     db.beginTransaction()
     try {
-      val fetch: RecipientFetch = fetchRecipient(serviceId, e164, highTrust, changeSelf)
+      val fetch: RecipientFetch = fetchRecipient(serviceId, e164, changeSelf = changeSelf)
 
       if (fetch.logBundle != null) {
         Log.w(TAG, fetch.toString())
@@ -537,7 +538,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     return serviceIdToProfileKey
   }
 
-  private fun fetchRecipient(serviceId: ServiceId?, e164: String?, highTrust: Boolean, changeSelf: Boolean): RecipientFetch {
+  private fun fetchRecipient(serviceId: ServiceId?, e164: String?, changeSelf: Boolean): RecipientFetch {
     val byE164 = e164?.let { getByE164(it) } ?: Optional.empty()
     val byAci = serviceId?.let { getByServiceId(it) } ?: Optional.empty()
 
@@ -548,20 +549,20 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     )
 
     if (byAci.isPresent && byE164.isPresent && byAci.get() == byE164.get()) {
-      return RecipientFetch.Match(byAci.get(), null)
+      return RecipientFetch.Match(byAci.get(), logs.label("L0"))
     }
 
     if (byAci.isPresent && byE164.isAbsent()) {
       val aciRecord: RecipientRecord = getRecord(byAci.get())
       logs = logs.copy(bySid = aciRecord.toLogDetails())
 
-      if (highTrust && e164 != null && (changeSelf || serviceId != SignalStore.account().aci)) {
+      if (e164 != null && (changeSelf || serviceId != SignalStore.account().aci)) {
         val changedNumber: RecipientId? = if (aciRecord.e164 != null && aciRecord.e164 != e164) aciRecord.id else null
         return RecipientFetch.MatchAndUpdateE164(byAci.get(), e164, changedNumber, logs.label("L1"))
       } else if (e164 == null) {
-        return RecipientFetch.Match(byAci.get(), null)
-      } else {
         return RecipientFetch.Match(byAci.get(), logs.label("L2"))
+      } else {
+        return RecipientFetch.Match(byAci.get(), logs.label("L3"))
       }
     }
 
@@ -569,25 +570,19 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       val e164Record: RecipientRecord = getRecord(byE164.get())
       logs = logs.copy(byE164 = e164Record.toLogDetails())
 
-      if (highTrust && serviceId != null && e164Record.serviceId == null) {
-        return RecipientFetch.MatchAndUpdateAci(byE164.get(), serviceId, logs.label("L3"))
-      } else if (highTrust && serviceId != null && e164Record.serviceId != SignalStore.account().aci) {
-        return RecipientFetch.InsertAndReassignE164(serviceId, e164, byE164.get(), logs.label("L4"))
+      if (serviceId != null && e164Record.serviceId == null) {
+        return RecipientFetch.MatchAndUpdateAci(byE164.get(), serviceId, logs.label("L4"))
+      } else if (serviceId != null && e164Record.serviceId != SignalStore.account().aci) {
+        return RecipientFetch.InsertAndReassignE164(serviceId, e164, byE164.get(), logs.label("L5"))
       } else if (serviceId != null) {
-        return RecipientFetch.Insert(serviceId, null, logs.label("L5"))
+        return RecipientFetch.Insert(serviceId, null, logs.label("L6"))
       } else {
-        return RecipientFetch.Match(byE164.get(), null)
+        return RecipientFetch.Match(byE164.get(), logs.label("L7"))
       }
     }
 
     if (byAci.isAbsent() && byE164.isAbsent()) {
-      if (highTrust) {
-        return RecipientFetch.Insert(serviceId, e164, logs.label("L6"))
-      } else if (serviceId != null) {
-        return RecipientFetch.Insert(serviceId, null, logs.label("L7"))
-      } else {
-        return RecipientFetch.Insert(null, e164, logs.label("L8"))
-      }
+      return RecipientFetch.Insert(serviceId, e164, logs.label("L8"))
     }
 
     require(byAci.isPresent && byE164.isPresent && byAci.get() != byE164.get()) { "Assumed conditions at this point." }
@@ -598,18 +593,14 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     logs = logs.copy(bySid = aciRecord.toLogDetails(), byE164 = e164Record.toLogDetails())
 
     if (e164Record.serviceId == null) {
-      if (highTrust) {
-        val changedNumber: RecipientId? = if (aciRecord.e164 != null) aciRecord.id else null
-        return RecipientFetch.MatchAndMerge(sidId = byAci.get(), e164Id = byE164.get(), changedNumber = changedNumber, logs.label("L9"))
-      } else {
-        return RecipientFetch.Match(byAci.get(), logs.label("L10"))
-      }
+      val changedNumber: RecipientId? = if (aciRecord.e164 != null) aciRecord.id else null
+      return RecipientFetch.MatchAndMerge(sidId = byAci.get(), e164Id = byE164.get(), changedNumber = changedNumber, logs.label("L9"))
     } else {
-      if (highTrust && e164Record.serviceId != SignalStore.account().aci) {
+      if (e164Record.serviceId != SignalStore.account().aci) {
         val changedNumber: RecipientId? = if (aciRecord.e164 != null) aciRecord.id else null
-        return RecipientFetch.MatchAndReassignE164(id = byAci.get(), e164Id = byE164.get(), e164 = e164!!, changedNumber = changedNumber, logs.label("L11"))
+        return RecipientFetch.MatchAndReassignE164(id = byAci.get(), e164Id = byE164.get(), e164 = e164!!, changedNumber = changedNumber, logs.label("L10"))
       } else {
-        return RecipientFetch.Match(byAci.get(), logs.label("L12"))
+        return RecipientFetch.Match(byAci.get(), logs.label("L11"))
       }
     }
   }
@@ -868,7 +859,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     val recipientId: RecipientId
     if (id < 0) {
       Log.w(TAG, "[applyStorageSyncContactInsert] Failed to insert. Possibly merging.")
-      recipientId = getAndPossiblyMerge(if (insert.address.hasValidServiceId()) insert.address.serviceId else null, insert.address.number.orElse(null), true)
+      recipientId = getAndPossiblyMerge(if (insert.address.hasValidServiceId()) insert.address.serviceId else null, insert.address.number.orElse(null))
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId))
     } else {
       recipientId = RecipientId.from(id)
@@ -905,7 +896,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       var recipientId = getByColumn(STORAGE_SERVICE_ID, Base64.encodeBytes(update.old.id.raw)).get()
 
       Log.w(TAG, "[applyStorageSyncContactUpdate] Found user $recipientId. Possibly merging.")
-      recipientId = getAndPossiblyMerge(if (update.new.address.hasValidServiceId()) update.new.address.serviceId else null, update.new.address.number.orElse(null), true)
+      recipientId = getAndPossiblyMerge(if (update.new.address.hasValidServiceId()) update.new.address.serviceId else null, update.new.address.number.orElse(null))
 
       Log.w(TAG, "[applyStorageSyncContactUpdate] Merged into $recipientId")
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId))
@@ -960,7 +951,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       throw AssertionError("Had an update, but it didn't match any rows!")
     }
 
-    val recipient = Recipient.externalGroupExact(context, GroupId.v1orThrow(update.old.groupId))
+    val recipient = Recipient.externalGroupExact(GroupId.v1orThrow(update.old.groupId))
     threads.applyStorageSyncUpdate(recipient.id, update.new)
     recipient.live().refresh()
   }
@@ -971,7 +962,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     val values = getValuesForStorageGroupV2(insert, true)
 
     writableDatabase.insertOrThrow(TABLE_NAME, null, values)
-    val recipient = Recipient.externalGroupExact(context, groupId)
+    val recipient = Recipient.externalGroupExact(groupId)
 
     Log.i(TAG, "Creating restore placeholder for $groupId")
     groups.create(
@@ -1001,7 +992,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
 
     val masterKey = update.old.masterKeyOrThrow
-    val recipient = Recipient.externalGroupExact(context, GroupId.v2(masterKey))
+    val recipient = Recipient.externalGroupExact(GroupId.v2(masterKey))
 
     updateExtras(recipient.id) {
       it.setHideStory(update.new.shouldHideStory())
@@ -1149,7 +1140,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
 
     for (id in groups.allGroupV2Ids) {
-      val recipient = Recipient.externalGroupExact(context, id!!)
+      val recipient = Recipient.externalGroupExact(id!!)
       val recipientId = recipient.id
       val existing: RecipientRecord = getRecordForSync(recipientId) ?: throw AssertionError()
       val key = existing.storageId ?: throw AssertionError()
@@ -1909,7 +1900,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       Log.w(TAG, "[setPhoneNumber] Hit a conflict when trying to update $id. Possibly merging.")
 
       val existing: RecipientRecord = getRecord(id)
-      val newId = getAndPossiblyMerge(existing.serviceId, e164, true)
+      val newId = getAndPossiblyMerge(existing.serviceId, e164)
       Log.w(TAG, "[setPhoneNumber] Resulting id: $newId")
 
       db.setTransactionSuccessful()
@@ -1961,7 +1952,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     db.beginTransaction()
     try {
       val id = Recipient.self().id
-      val newId = getAndPossiblyMerge(SignalStore.account().requireAci(), e164, highTrust = true, changeSelf = true)
+      val newId = getAndPossiblyMerge(SignalStore.account().requireAci(), e164, changeSelf = true)
 
       if (id == newId) {
         Log.i(TAG, "[updateSelfPhone] Phone updated for self")
@@ -2044,7 +2035,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       Log.w(TAG, "[markRegistered] Hit a conflict when trying to update $id. Possibly merging.")
 
       val existing = getRecord(id)
-      val newId = getAndPossiblyMerge(serviceId, existing.e164, true)
+      val newId = getAndPossiblyMerge(serviceId, existing.e164)
       Log.w(TAG, "[markRegistered] Merged into $newId")
 
       db.setTransactionSuccessful()
@@ -2099,7 +2090,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         } catch (e: SQLiteConstraintException) {
           Log.w(TAG, "[bulkUpdateRegisteredStatus] Hit a conflict when trying to update $recipientId. Possibly merging.")
           val e164 = getRecord(recipientId).e164
-          val newId = getAndPossiblyMerge(aci, e164, true)
+          val newId = getAndPossiblyMerge(aci, e164)
           Log.w(TAG, "[bulkUpdateRegisteredStatus] Merged into $newId")
         }
       }

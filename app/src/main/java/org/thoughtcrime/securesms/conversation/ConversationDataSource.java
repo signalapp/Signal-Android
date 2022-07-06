@@ -139,7 +139,7 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
     stopwatch.split("attachment-models");
 
     for (ServiceId serviceId : referencedIds) {
-      Recipient.resolved(RecipientId.from(serviceId, null));
+      Recipient.resolved(RecipientId.from(serviceId));
     }
     stopwatch.split("recipient-resolves");
 

@@ -46,7 +46,7 @@ public final class LiveUpdateMessage {
     }
 
     List<LiveData<Recipient>> allMentionedRecipients = Stream.of(updateDescription.getMentioned())
-                                                             .map(uuid -> Recipient.resolved(RecipientId.from(uuid, null)).live().getLiveData())
+                                                             .map(uuid -> Recipient.resolved(RecipientId.from(uuid)).live().getLiveData())
                                                              .toList();
 
     LiveData<?> mentionedRecipientChangeStream = allMentionedRecipients.isEmpty() ? LiveDataUtil.just(new Object())

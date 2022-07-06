@@ -322,7 +322,7 @@ object ContactDiscovery {
             }
 
             handle.setSystemContactInfo(
-              Recipient.externalContact(context, realNumber).id,
+              Recipient.externalContact(realNumber).id,
               profileName,
               phoneDetails.displayName,
               phoneDetails.photoUri,

@@ -16,6 +16,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPoin
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContact
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsInputStream
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage.VerifiedState
+import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException
 import org.whispersystems.signalservice.api.util.AttachmentPointerUtil
 import java.io.File
@@ -75,7 +76,7 @@ class MultiDeviceContactSyncJob(parameters: Parameters, private val attachmentPo
 
     var contact: DeviceContact? = deviceContacts.read()
     while (contact != null) {
-      val recipient = Recipient.externalPush(contact.address.serviceId, contact.address.number.orElse(null), true)
+      val recipient = Recipient.externalPush(SignalServiceAddress(contact.address.serviceId, contact.address.number.orElse(null)))
 
       if (recipient.isSelf) {
         contact = deviceContacts.read()

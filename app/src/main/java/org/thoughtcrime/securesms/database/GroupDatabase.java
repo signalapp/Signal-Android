@@ -231,7 +231,7 @@ public class GroupDatabase extends Database {
 
     databaseHelper.getSignalWritableDatabase().update(TABLE_NAME, values, GROUP_ID + " = ?", SqlUtil.buildArgs(id));
 
-    Recipient.live(Recipient.externalGroupExact(context, id).getId()).refresh();
+    Recipient.live(Recipient.externalGroupExact(id).getId()).refresh();
   }
 
   Optional<GroupRecord> getGroup(Cursor cursor) {
@@ -915,7 +915,7 @@ public class GroupDatabase extends Database {
       if (UuidUtil.UNKNOWN_UUID.equals(uuid)) {
         Log.w(TAG, "Seen unknown UUID in members list");
       } else {
-        RecipientId           id       = RecipientId.from(ServiceId.from(uuid), null);
+        RecipientId           id       = RecipientId.from(ServiceId.from(uuid));
         Optional<RecipientId> remapped = RemappedRecords.getInstance().getRecipient(id);
 
         if (remapped.isPresent()) {
@@ -1373,7 +1373,7 @@ public class GroupDatabase extends Database {
         if (UuidUtil.UNKNOWN_UUID.equals(uuid)) {
           unknownMembers++;
         } else if (includeSelf || !selfUuid.equals(uuid)) {
-          recipients.add(RecipientId.from(ServiceId.from(uuid), null));
+          recipients.add(RecipientId.from(ServiceId.from(uuid)));
         }
       }
       if (memberSet.includePending) {
@@ -1381,7 +1381,7 @@ public class GroupDatabase extends Database {
           if (UuidUtil.UNKNOWN_UUID.equals(uuid)) {
             unknownPending++;
           } else if (includeSelf || !selfUuid.equals(uuid)) {
-            recipients.add(RecipientId.from(ServiceId.from(uuid), null));
+            recipients.add(RecipientId.from(ServiceId.from(uuid)));
           }
         }
       }

@@ -99,7 +99,7 @@ public class GroupCallUpdateMessageFactory implements UpdateDescription.Spannabl
       return context.getString(R.string.MessageRecord_unknown);
     }
 
-    Recipient recipient = Recipient.resolved(RecipientId.from(serviceId, null));
+    Recipient recipient = Recipient.resolved(RecipientId.from(serviceId));
 
     if (recipient.isSelf()) {
       return context.getString(R.string.MessageRecord_you);

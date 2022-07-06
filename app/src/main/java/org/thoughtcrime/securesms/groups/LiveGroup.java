@@ -84,7 +84,7 @@ public final class LiveGroup {
       this.groupLink = new MutableLiveData<>(GroupLinkUrlAndStatus.NONE);
     }
 
-    SignalExecutors.BOUNDED.execute(() -> liveRecipient.postValue(Recipient.externalGroupExact(context, groupId).live()));
+    SignalExecutors.BOUNDED.execute(() -> liveRecipient.postValue(Recipient.externalGroupExact(groupId).live()));
   }
 
   protected static LiveData<List<GroupMemberEntry.FullMember>> mapToFullMembers(@NonNull LiveData<GroupDatabase.GroupRecord> groupRecord) {
@@ -110,7 +110,7 @@ public final class LiveGroup {
 
                                    return Stream.of(requestingMembersList)
                                                 .map(requestingMember -> {
-                                                  Recipient recipient = Recipient.externalPush(ServiceId.fromByteString(requestingMember.getUuid()), null, false);
+                                                  Recipient recipient = Recipient.externalPush(ServiceId.fromByteString(requestingMember.getUuid()));
                                                   return new GroupMemberEntry.RequestingMember(recipient, selfAdmin);
                                                 })
                                                 .toList();
