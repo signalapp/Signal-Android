@@ -197,8 +197,13 @@ public class MessageSender {
         List<UploadDependencyGraph.Node> nodes     = dependencyGraph.getDependencyMap().get(message);
 
         if (nodes == null || nodes.isEmpty()) {
-          Log.d(TAG, "No attachments for given message. Skipping.");
-          continue;
+          if (message.getStoryType().isTextStory()) {
+            Log.d(TAG, "No attachments for given text story. Skipping.");
+            continue;
+          } else {
+            Log.e(TAG, "No attachments for given media story. Aborting.");
+            throw new MmsException("No attachment for story.");
+          }
         }
 
         List<AttachmentId> attachmentIds = nodes.stream().map(UploadDependencyGraph.Node::getAttachmentId).collect(Collectors.toList());
