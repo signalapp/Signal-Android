@@ -31,6 +31,7 @@ import com.google.android.material.button.MaterialButton
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import org.signal.core.util.DimensionUnit
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.segmentedprogressbar.SegmentedProgressBar
@@ -332,6 +333,10 @@ class StoryViewerPageFragment :
     lifecycleDisposable += viewModel.state.observeOn(AndroidSchedulers.mainThread()).subscribe { state ->
       if (!state.isReady) {
         return@subscribe
+      }
+
+      if (context == null) {
+        Log.d(TAG, "Subscriber called while fragment is detached. Ignoring state update.")
       }
 
       if (state.posts.isNotEmpty() && state.selectedPostIndex in state.posts.indices) {
@@ -936,6 +941,8 @@ class StoryViewerPageFragment :
   }
 
   companion object {
+    private val TAG = Log.tag(StoryViewerPageFragment::class.java)
+
     private val MAX_VIDEO_PLAYBACK_DURATION: Long = TimeUnit.SECONDS.toMillis(30)
     private val MIN_GIF_LOOPS: Long = 3L
     private val MIN_GIF_PLAYBACK_DURATION = TimeUnit.SECONDS.toMillis(5)
