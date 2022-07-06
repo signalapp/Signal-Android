@@ -17,7 +17,6 @@ import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.push.PNI
 import org.whispersystems.signalservice.api.push.ServiceId
 import java.lang.IllegalArgumentException
-import java.lang.IllegalStateException
 import java.util.UUID
 
 @RunWith(AndroidJUnit4::class)
@@ -401,34 +400,6 @@ class RecipientDatabaseTest_processPnpTuple {
     private val generatedIds: LinkedHashSet<RecipientId> = LinkedHashSet()
     private var expectCount = 0
 
-    val id: RecipientId
-      get() = if (generatedIds.size == 1) {
-        generatedIds.elementAt(0)
-      } else {
-        throw IllegalStateException()
-      }
-
-    val firstId: RecipientId
-      get() = if (generatedIds.size > 1) {
-        generatedIds.elementAt(0)
-      } else {
-        throw IllegalStateException()
-      }
-
-    val secondId: RecipientId
-      get() = if (generatedIds.size > 1) {
-        generatedIds.elementAt(1)
-      } else {
-        throw IllegalStateException()
-      }
-
-    val thirdId: RecipientId
-      get() = if (generatedIds.size > 1) {
-        generatedIds.elementAt(2)
-      } else {
-        throw IllegalStateException()
-      }
-
     fun given(e164: String?, pni: PNI?, aci: ACI?) {
       generatedIds += insert(e164, pni, aci)
     }
@@ -456,25 +427,6 @@ class RecipientDatabaseTest_processPnpTuple {
       assertNull(get(id))
     }
   }
-
-  private data class Input(
-    val e164: String?,
-    val pni: PNI?,
-    val aci: ACI?
-  )
-
-  private data class Update(
-    val e164: String?,
-    val pni: PNI?,
-    val aci: ACI?
-  )
-
-  private data class Output(
-    val id: RecipientId,
-    val e164: String?,
-    val pni: PNI?,
-    val aci: ACI?
-  )
 
   private data class IdRecord(
     val id: RecipientId,
