@@ -1102,7 +1102,7 @@ public final class MessageContentProcessor {
     if (response.getPerson().isPresent()) {
       recipient = Recipient.externalPush(response.getPerson().get());
     } else if (response.getGroupId().isPresent()) {
-      GroupId groupId = GroupId.v1(response.getGroupId().get());
+      GroupId groupId = GroupId.push(response.getGroupId().get());
       recipient = Recipient.externalPossiblyMigratedGroup(groupId);
     } else {
       warn("Message request response was missing a thread recipient! Skipping.");
