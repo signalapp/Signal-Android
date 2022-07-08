@@ -274,7 +274,7 @@ object NotificationFactory {
       recipient.messageRingtone ?: SignalStore.settings().messageNotificationSound
     }
 
-    if (uri.toString().isEmpty()) {
+    if (uri == Uri.EMPTY || uri.toString().isEmpty()) {
       Log.d(TAG, "ringtone uri is empty")
       return
     }

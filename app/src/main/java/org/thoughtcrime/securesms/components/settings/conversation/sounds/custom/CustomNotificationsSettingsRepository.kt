@@ -25,7 +25,8 @@ class CustomNotificationsSettingsRepository(context: Context) {
         val recipient = Recipient.resolved(recipientId)
         val database = SignalDatabase.recipients
         if (recipient.notificationChannel != null) {
-          database.setMessageRingtone(recipient.id, NotificationChannels.getMessageRingtone(context, recipient))
+          val ringtoneUri: Uri? = NotificationChannels.getMessageRingtone(context, recipient)
+          database.setMessageRingtone(recipient.id, if (ringtoneUri == Uri.EMPTY) null else ringtoneUri)
           database.setMessageVibrate(recipient.id, RecipientDatabase.VibrateState.fromBoolean(NotificationChannels.getMessageVibrate(context, recipient)))
         }
       }

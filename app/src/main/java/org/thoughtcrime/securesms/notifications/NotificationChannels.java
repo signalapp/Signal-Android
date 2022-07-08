@@ -296,7 +296,8 @@ public class NotificationChannels {
       return null;
     }
 
-    return channel.getSound();
+    Uri channelSound = channel.getSound();
+    return channelSound != null ? channelSound : Uri.EMPTY;
   }
 
   /**
