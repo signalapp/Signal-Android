@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
@@ -54,6 +55,6 @@
         android:layout_margin="16dp"
         android:contentDescription="@string/device_list_fragment__link_new_device"
         android:focusable="true"
-        android:src="@drawable/ic_plus_24" />
+        app:srcCompat="@drawable/ic_plus_24" />
 
 </LinearLayout>
