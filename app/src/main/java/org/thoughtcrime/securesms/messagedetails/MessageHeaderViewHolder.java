@@ -183,7 +183,12 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
         if (expiresUpdater != null) {
           expiresUpdater.cancel();
         }
-        expiresUpdater = new CountDownTimer(messageRecord.getExpiresIn(), TimeUnit.SECONDS.toMillis(1)) {
+
+        long elapsed    = System.currentTimeMillis() - messageRecord.getExpireStarted();
+        long remaining  = messageRecord.getExpiresIn() - elapsed;
+        long updateRate = (remaining < TimeUnit.HOURS.toMillis(1)) ? TimeUnit.SECONDS.toMillis(1) : TimeUnit.MINUTES.toMillis(1);
+
+        expiresUpdater = new CountDownTimer(remaining, updateRate) {
           @Override
           public void onTick(long millisUntilFinished) {
             int    expirationTime = Math.max((int) (TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished)), 1);
