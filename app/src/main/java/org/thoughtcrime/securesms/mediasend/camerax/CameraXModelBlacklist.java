@@ -106,6 +106,9 @@ public final class CameraXModelBlacklist {
     add("COR-AL00");
     add("COR-AL10");
     add("COR-TL10");
+
+    // Motorola G20
+    add("moto g(20)");
   }};
 
   private CameraXModelBlacklist() {
