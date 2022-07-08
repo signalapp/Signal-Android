@@ -2405,9 +2405,8 @@ public final class MessageContentProcessor {
       messageId = SignalDatabase.sms().insertMessageOutbox(threadId, outgoingTextMessage, false, message.getTimestamp(), null);
       database  = SignalDatabase.sms();
       database.markUnidentified(messageId, isUnidentified(message, recipient));
-      SignalDatabase.threads().update(threadId, true);
     }
-
+    SignalDatabase.threads().update(threadId, true);
     database.markAsSent(messageId, true);
 
     if (expiresInMillis > 0) {
