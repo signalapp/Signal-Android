@@ -68,45 +68,54 @@
                 android:inflatedId="@+id/attachment_editor"
                 android:layout="@layout/conversation_activity_attachment_editor_stub" />
 
-            <FrameLayout
+            <LinearLayout
                 android:id="@+id/conversation_activity_panel_parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:clipChildren="false"
                 android:clipToPadding="false">
 
-                <include
-                    layout="@layout/conversation_no_longer_a_member"
-                    android:visibility="gone" />
-
-                <include
-                    layout="@layout/conversation_requesting_bottom_banner"
-                    android:visibility="gone" />
-
-                <include layout="@layout/conversation_input_panel" />
-
-                <ViewStub
-                    android:id="@+id/conversation_cannot_send_announcement_stub"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout="@layout/conversation_cannot_send_announcement_group" />
-
                 <include layout="@layout/conversation_search_nav" />
 
-                <org.thoughtcrime.securesms.messagerequests.MessageRequestsBottomView
-                    android:id="@+id/conversation_activity_message_request_bottom_bar"
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:visibility="gone" />
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
 
-                <ViewStub
-                    android:id="@+id/conversation_release_notes_unmute_stub"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout="@layout/conversation_activity_unmute" />
+                    <include
+                        layout="@layout/conversation_no_longer_a_member"
+                        android:visibility="gone" />
 
-            </FrameLayout>
+                    <include
+                        layout="@layout/conversation_requesting_bottom_banner"
+                        android:visibility="gone" />
+
+                    <include layout="@layout/conversation_input_panel" />
+
+                    <ViewStub
+                        android:id="@+id/conversation_cannot_send_announcement_stub"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout="@layout/conversation_cannot_send_announcement_group" />
+
+                    <org.thoughtcrime.securesms.messagerequests.MessageRequestsBottomView
+                        android:id="@+id/conversation_activity_message_request_bottom_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:visibility="gone" />
+
+                    <ViewStub
+                        android:id="@+id/conversation_release_notes_unmute_stub"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout="@layout/conversation_activity_unmute" />
+
+                </FrameLayout>
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/register_button"

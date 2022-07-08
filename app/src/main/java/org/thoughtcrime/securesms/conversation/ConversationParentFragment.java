@@ -416,7 +416,6 @@ public class ConversationParentFragment extends Fragment
   protected HidingLinearLayout       quickAttachmentToggle;
   protected HidingLinearLayout       inlineAttachmentToggle;
   private   InputPanel               inputPanel;
-  private   View                     panelParent;
   private   View                     noLongerMemberBanner;
   private   Stub<TextView>           cannotSendInAnnouncementGroupBanner;
   private   View                     requestingMemberBanner;
@@ -2135,7 +2134,6 @@ public class ConversationParentFragment extends Fragment
     quickAttachmentToggle    = view.findViewById(R.id.quick_attachment_toggle);
     inlineAttachmentToggle   = view.findViewById(R.id.inline_attachment_container);
     inputPanel               = view.findViewById(R.id.bottom_panel);
-    panelParent              = view.findViewById(R.id.conversation_activity_panel_parent);
     searchNav                = view.findViewById(R.id.conversation_search_nav);
     messageRequestBottomView = view.findViewById(R.id.conversation_activity_message_request_bottom_bar);
     mentionsSuggestions      = ViewUtil.findStubById(view, R.id.conversation_mention_suggestions_stub);
