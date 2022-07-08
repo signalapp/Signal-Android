@@ -134,6 +134,8 @@ public class RefreshOwnProfileJob extends BaseJob {
     if (profileKeyCredential.isPresent()) {
       setProfileKeyCredential(self, ProfileKeyUtil.getSelfProfileKey(), profileKeyCredential.get());
     }
+
+    StoryOnboardingDownloadJob.Companion.enqueueIfNeeded();
   }
 
   private void setProfileKeyCredential(@NonNull Recipient recipient,

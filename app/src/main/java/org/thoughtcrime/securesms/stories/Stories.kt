@@ -54,7 +54,7 @@ object Stories {
 
   @JvmStatic
   fun isFeatureAvailable(): Boolean {
-    return FeatureFlags.stories() && Recipient.self().storiesCapability == Recipient.Capability.SUPPORTED
+    return SignalStore.account().isRegistered && FeatureFlags.stories() && Recipient.self().storiesCapability == Recipient.Capability.SUPPORTED
   }
 
   @JvmStatic
