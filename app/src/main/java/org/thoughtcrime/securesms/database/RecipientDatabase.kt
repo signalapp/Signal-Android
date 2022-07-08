@@ -419,12 +419,17 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     return getByColumn(USERNAME, username)
   }
 
-  fun getAndPossiblyMerge(serviceId: ServiceId?, e164: String?): RecipientId {
-    return getAndPossiblyMerge(serviceId, e164, changeSelf = false)
+  @JvmOverloads
+  fun getAndPossiblyMerge(serviceId: ServiceId?, e164: String?, changeSelf: Boolean = false): RecipientId {
+    return if (FeatureFlags.phoneNumberPrivacy()) {
+      getAndPossiblyMergePnp(serviceId, e164, changeSelf)
+    } else {
+      getAndPossiblyMergeLegacy(serviceId, e164, changeSelf)
+    }
   }
 
   @VisibleForTesting
-  fun getAndPossiblyMerge(serviceId: ServiceId?, e164: String?, changeSelf: Boolean): RecipientId {
+  fun getAndPossiblyMergeLegacy(serviceId: ServiceId?, e164: String?, changeSelf: Boolean = false): RecipientId {
     require(!(serviceId == null && e164 == null)) { "Must provide an ACI or E164!" }
 
     val db = writableDatabase
@@ -512,6 +517,21 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         if (recipientChangedNumber != null) {
           ApplicationDependencies.getJobManager().add(RecipientChangedNumberJob(recipientChangedNumber))
         }
+      }
+    }
+  }
+
+  @VisibleForTesting
+  fun getAndPossiblyMergePnp(serviceId: ServiceId?, e164: String?, changeSelf: Boolean = false): RecipientId {
+    require(!(serviceId == null && e164 == null)) { "Must provide an ACI or E164!" }
+
+    return writableDatabase.withinTransaction {
+      when {
+        serviceId is PNI -> processPnpTuple(e164, serviceId, null, pniVerified = false)
+        serviceId is ACI -> processPnpTuple(e164, null, serviceId, pniVerified = false)
+        serviceId == null -> processPnpTuple(e164, null, null, pniVerified = false)
+        getByPni(PNI.from(serviceId.uuid())).isPresent -> processPnpTuple(e164, PNI.from(serviceId.uuid()), null, pniVerified = false)
+        else -> processPnpTuple(e164, null, ACI.fromNullable(serviceId), pniVerified = false)
       }
     }
   }
@@ -2014,10 +2034,17 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   }
 
   fun setPni(id: RecipientId, pni: PNI) {
-    val values = ContentValues().apply {
-      put(PNI_COLUMN, pni.toString())
-    }
-    writableDatabase.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(id))
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(SERVICE_ID to pni.toString())
+      .where("$ID = ? AND ($SERVICE_ID IS NULL OR $SERVICE_ID = $PNI_COLUMN)", id)
+      .run()
+
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(PNI_COLUMN to pni.toString())
+      .where("$ID = ?", id)
+      .run()
   }
 
   /**
@@ -2170,6 +2197,12 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     return ids
   }
 
+  /**
+   * Takes a tuple of (e164, pni, aci) and incorporates it into our database.
+   * It is assumed that we are in a transaction.
+   *
+   * @return The [RecipientId] of the resulting recipient.
+   */
   @VisibleForTesting
   fun processPnpTuple(e164: String?, pni: PNI?, aci: ACI?, pniVerified: Boolean): RecipientId {
     val changeSet = processPnpTupleToChangeSet(e164, pni, aci, pniVerified)
@@ -2178,16 +2211,6 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
   @VisibleForTesting
   fun writePnpChangeSetToDisk(changeSet: PnpChangeSet): RecipientId {
-    val id: RecipientId = when (changeSet.id) {
-      is PnpIdResolver.PnpNoopId -> {
-        changeSet.id.recipientId
-      }
-      is PnpIdResolver.PnpInsert -> {
-        val id: Long = writableDatabase.insert(TABLE_NAME, null, buildContentValuesForPnpInsert(changeSet.id.e164, changeSet.id.pni, changeSet.id.aci))
-        RecipientId.from(id)
-      }
-    }
-
     for (operation in changeSet.operations) {
       @Exhaustive
       when (operation) {
@@ -2224,7 +2247,10 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         is PnpOperation.SetAci -> {
           writableDatabase
             .update(TABLE_NAME)
-            .values(SERVICE_ID to operation.aci.toString())
+            .values(
+              SERVICE_ID to operation.aci.toString(),
+              REGISTERED to RegisteredState.REGISTERED.id
+            )
             .where("$ID = ?", operation.recipientId)
             .run()
         }
@@ -2244,7 +2270,10 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
           writableDatabase
             .update(TABLE_NAME)
-            .values(PNI_COLUMN to operation.pni.toString())
+            .values(
+              PNI_COLUMN to operation.pni.toString(),
+              REGISTERED to RegisteredState.REGISTERED.id
+            )
             .where("$ID = ?", operation.recipientId)
             .run()
         }
@@ -2264,7 +2293,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
             .values(
               PHONE to (primary.e164 ?: secondary.e164),
               PNI_COLUMN to (primary.pni ?: secondary.pni)?.toString(),
-              SERVICE_ID to (primary.serviceId ?: secondary.serviceId)?.toString()
+              SERVICE_ID to (primary.serviceId ?: secondary.serviceId)?.toString(),
+              REGISTERED to RegisteredState.REGISTERED.id
             )
             .where("$ID = ?", operation.primaryId)
             .run()
@@ -2280,7 +2310,15 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       }
     }
 
-    return id
+    return when (changeSet.id) {
+      is PnpIdResolver.PnpNoopId -> {
+        changeSet.id.recipientId
+      }
+      is PnpIdResolver.PnpInsert -> {
+        val id: Long = writableDatabase.insert(TABLE_NAME, null, buildContentValuesForPnpInsert(changeSet.id.e164, changeSet.id.pni, changeSet.id.aci))
+        RecipientId.from(id)
+      }
+    }
   }
 
   /**
@@ -2323,6 +2361,21 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       val record: RecipientRecord = getRecord(partialData.commonId)
 
       val operations: MutableList<PnpOperation> = mutableListOf()
+
+      // This is a special case. The ACI passed in doesn't match the common record. We can't change ACIs, so we need to make a new record.
+      if (aci != null && aci != record.serviceId && record.serviceId != null && !record.sidIsPni()) {
+        if (record.e164 == e164) {
+          operations += PnpOperation.RemoveE164(record.id)
+          operations += PnpOperation.RemovePni(record.id)
+        } else if (record.pni == pni) {
+          operations += PnpOperation.RemovePni(record.id)
+        }
+
+        return PnpChangeSet(
+          id = PnpIdResolver.PnpInsert(e164, pni, aci),
+          operations = operations
+        )
+      }
 
       if (e164 != null && record.e164 != e164) {
         operations += PnpOperation.SetE164(
@@ -3328,14 +3381,19 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   private fun buildContentValuesForPnpInsert(e164: String?, pni: PNI?, aci: ACI?): ContentValues {
     check(e164 != null || pni != null || aci != null) { "Must provide some sort of identifier!" }
 
-    return contentValuesOf(
+    val values = contentValuesOf(
       PHONE to e164,
       SERVICE_ID to (aci ?: pni)?.toString(),
-      PNI_COLUMN to pni.toString(),
-      REGISTERED to RegisteredState.REGISTERED.id,
+      PNI_COLUMN to pni?.toString(),
       STORAGE_SERVICE_ID to Base64.encodeBytes(StorageSyncHelper.generateKey()),
       AVATAR_COLOR to AvatarColor.random().serialize()
     )
+
+    if (pni != null || aci != null) {
+      values.put(REGISTERED, RegisteredState.REGISTERED.id)
+    }
+
+    return values
   }
 
   private fun getValuesForStorageContact(contact: SignalContactRecord, isInsert: Boolean): ContentValues {

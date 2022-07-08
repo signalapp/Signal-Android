@@ -102,6 +102,17 @@ class RecipientDatabaseTest_processPnpTuple {
   }
 
   @Test
+  fun onlyE164Matches_differentAci() {
+    test {
+      given(E164_A, null, ACI_B)
+      process(E164_A, PNI_A, ACI_A)
+
+      expect(null, null, ACI_B)
+      expect(E164_A, PNI_A, ACI_A)
+    }
+  }
+
+  @Test
   fun e164AndPniMatches() {
     test {
       given(E164_A, PNI_A, null)

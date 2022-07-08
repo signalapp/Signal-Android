@@ -46,7 +46,7 @@ import java.util.Optional
 import java.util.UUID
 
 @RunWith(AndroidJUnit4::class)
-class RecipientDatabaseTest_getAndPossiblyMerge {
+class RecipientDatabaseTest_getAndPossiblyMergeLegacy {
 
   private lateinit var recipientDatabase: RecipientDatabase
   private lateinit var identityDatabase: IdentityDatabase
@@ -93,7 +93,7 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
   /** If all you have is an ACI, you can just store that, regardless of trust level. */
   @Test
   fun getAndPossiblyMerge_aciAndE164MapToNoOne_aciOnly() {
-    val recipientId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, null)
+    val recipientId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, null)
 
     val recipient = Recipient.resolved(recipientId)
     assertEquals(ACI_A, recipient.requireServiceId())
@@ -103,7 +103,7 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
   /** If all you have is an E164, you can just store that, regardless of trust level. */
   @Test
   fun getAndPossiblyMerge_aciAndE164MapToNoOne_e164Only() {
-    val recipientId: RecipientId = recipientDatabase.getAndPossiblyMerge(null, E164_A)
+    val recipientId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(null, E164_A)
 
     val recipient = Recipient.resolved(recipientId)
     assertEquals(E164_A, recipient.requireE164())
@@ -113,7 +113,7 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
   /** With high trust, you can associate an ACI-e164 pair. */
   @Test
   fun getAndPossiblyMerge_aciAndE164MapToNoOne_aciAndE164() {
-    val recipientId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A)
+    val recipientId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, E164_A)
 
     val recipient = Recipient.resolved(recipientId)
     assertEquals(ACI_A, recipient.requireServiceId())
@@ -129,7 +129,7 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
   fun getAndPossiblyMerge_aciMapsToExistingUserButE164DoesNot_aciAndE164() {
     val existingId: RecipientId = recipientDatabase.getOrInsertFromServiceId(ACI_A)
 
-    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A)
+    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, E164_A)
     assertEquals(existingId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
@@ -140,9 +140,9 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
   /** Basically the ‘change number’ case. Update the existing user. */
   @Test
   fun getAndPossiblyMerge_aciMapsToExistingUserButE164DoesNot_aciAndE164_2() {
-    val existingId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A)
+    val existingId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, E164_A)
 
-    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_B)
+    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, E164_B)
     assertEquals(existingId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
@@ -159,7 +159,7 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
   fun getAndPossiblyMerge_e164MapsToExistingUserButAciDoesNot_aciAndE164() {
     val existingId: RecipientId = recipientDatabase.getOrInsertFromE164(E164_A)
 
-    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A)
+    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, E164_A)
     assertEquals(existingId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
@@ -170,10 +170,10 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
   /** We never change the ACI of an existing row. New ACI = new person. Take the e164 from the current holder. */
   @Test
   fun getAndPossiblyMerge_e164MapsToExistingUserButAciDoesNot_aciAndE164_2() {
-    val existingId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A)
+    val existingId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, E164_A)
     recipientDatabase.setPni(existingId, PNI_A)
 
-    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_B, E164_A)
+    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_B, E164_A)
     recipientDatabase.setPni(retrievedId, PNI_A)
     assertNotEquals(existingId, retrievedId)
 
@@ -195,9 +195,9 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
     }
     SignalStore.inject(KeyValueStore(MockKeyValuePersistentStorage.withDataSet(dataSet)))
 
-    val existingId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A)
+    val existingId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, E164_A)
 
-    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_B, E164_A)
+    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_B, E164_A)
     assertNotEquals(existingId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
@@ -216,9 +216,9 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
   /** If your ACI and e164 match, you’re good. */
   @Test
   fun getAndPossiblyMerge_bothAciAndE164MapToExistingUser_aciAndE164() {
-    val existingId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A)
+    val existingId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, E164_A)
 
-    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A)
+    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, E164_A)
     assertEquals(existingId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
@@ -232,10 +232,10 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
     val changeNumberListener = ChangeNumberListener()
     changeNumberListener.enqueue()
 
-    val existingAciId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, null)
-    val existingE164Id: RecipientId = recipientDatabase.getAndPossiblyMerge(null, E164_A)
+    val existingAciId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, null)
+    val existingE164Id: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(null, E164_A)
 
-    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A)
+    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, E164_A)
     assertEquals(existingAciId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
@@ -255,10 +255,10 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
     val changeNumberListener = ChangeNumberListener()
     changeNumberListener.enqueue()
 
-    val existingAciId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_B)
-    val existingE164Id: RecipientId = recipientDatabase.getAndPossiblyMerge(null, E164_A)
+    val existingAciId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, E164_B)
+    val existingE164Id: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(null, E164_A)
 
-    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A)
+    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, E164_A)
     assertEquals(existingAciId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
@@ -278,10 +278,10 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
     val changeNumberListener = ChangeNumberListener()
     changeNumberListener.enqueue()
 
-    val existingId1: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_B)
-    val existingId2: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_B, E164_A)
+    val existingId1: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, E164_B)
+    val existingId2: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_B, E164_A)
 
-    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A)
+    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, E164_A)
     assertEquals(existingId1, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
@@ -301,10 +301,10 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
    */
   @Test
   fun getAndPossiblyMerge_bothAciAndE164MapToExistingUser_aciAndE164_mergeAndPhoneNumberChange() {
-    val existingId1: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_B)
-    val existingId2: RecipientId = recipientDatabase.getAndPossiblyMerge(null, E164_A)
+    val existingId1: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, E164_B)
+    val existingId2: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(null, E164_A)
 
-    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A)
+    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, E164_A)
     assertEquals(existingId1, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
@@ -326,10 +326,10 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
     }
     SignalStore.inject(KeyValueStore(MockKeyValuePersistentStorage.withDataSet(dataSet)))
 
-    val existingId1: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_B, E164_A)
-    val existingId2: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, null)
+    val existingId1: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_B, E164_A)
+    val existingId2: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, null)
 
-    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A)
+    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, E164_A)
     assertEquals(existingId2, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
@@ -350,9 +350,9 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
     }
     SignalStore.inject(KeyValueStore(MockKeyValuePersistentStorage.withDataSet(dataSet)))
 
-    val existingId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A)
+    val existingId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, E164_A)
 
-    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_B, changeSelf = false)
+    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, E164_B, changeSelf = false)
     assertEquals(existingId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
@@ -369,9 +369,9 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
     }
     SignalStore.inject(KeyValueStore(MockKeyValuePersistentStorage.withDataSet(dataSet)))
 
-    val existingId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A)
+    val existingId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, E164_A)
 
-    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_B, changeSelf = true)
+    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, E164_B, changeSelf = true)
     assertEquals(existingId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
@@ -385,9 +385,9 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
     val changeNumberListener = ChangeNumberListener()
     changeNumberListener.enqueue()
 
-    val existingId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A)
+    val existingId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, E164_A)
 
-    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_B)
+    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, E164_B)
     assertEquals(existingId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
@@ -445,7 +445,7 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
     val distributionListId: DistributionListId = distributionListDatabase.createList("testlist", listOf(recipientIdE164, recipientIdAciB))!!
 
     // Merge
-    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A, true)
+    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMergeLegacy(ACI_A, E164_A, true)
     val retrievedThreadId: Long = threadDatabase.getThreadIdFor(retrievedId)!!
     assertEquals(recipientIdAci, retrievedId)
 
@@ -572,7 +572,7 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
 
   @Test(expected = IllegalArgumentException::class)
   fun getAndPossiblyMerge_noArgs_invalid() {
-    recipientDatabase.getAndPossiblyMerge(null, null, true)
+    recipientDatabase.getAndPossiblyMergeLegacy(null, null, true)
   }
 
   private fun ensureDbEmpty() {
