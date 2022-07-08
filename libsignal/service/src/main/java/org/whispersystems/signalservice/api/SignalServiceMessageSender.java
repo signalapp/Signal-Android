@@ -868,7 +868,7 @@ public class SignalServiceMessageSender {
       DataMessage.Quote.Builder quoteBuilder = DataMessage.Quote.newBuilder()
                                                                 .setId(message.getQuote().get().getId())
                                                                 .setText(message.getQuote().get().getText())
-                                                                .setAuthorUuid(message.getQuote().get().getAuthor().getServiceId().toString())
+                                                                .setAuthorUuid(message.getQuote().get().getAuthor().toString())
                                                                 .setType(message.getQuote().get().getType().getProtoType());
 
       if (!message.getQuote().get().getMentions().isEmpty()) {
@@ -951,7 +951,7 @@ public class SignalServiceMessageSender {
                                                                          .setEmoji(message.getReaction().get().getEmoji())
                                                                          .setRemove(message.getReaction().get().isRemove())
                                                                          .setTargetSentTimestamp(message.getReaction().get().getTargetSentTimestamp())
-                                                                         .setTargetAuthorUuid(message.getReaction().get().getTargetAuthor().getServiceId().toString());
+                                                                         .setTargetAuthorUuid(message.getReaction().get().getTargetAuthor().toString());
 
       builder.setReaction(reactionBuilder.build());
       builder.setRequiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.REACTIONS_VALUE, builder.getRequiredProtocolVersion()));
@@ -1209,7 +1209,7 @@ public class SignalServiceMessageSender {
     for (ReadMessage readMessage : readMessages) {
       builder.addRead(SyncMessage.Read.newBuilder()
                                       .setTimestamp(readMessage.getTimestamp())
-                                      .setSenderUuid(readMessage.getSender().getServiceId().toString()));
+                                      .setSenderUuid(readMessage.getSender().toString()));
     }
 
     return container.setSyncMessage(builder).build();
@@ -1222,7 +1222,7 @@ public class SignalServiceMessageSender {
     for (ViewedMessage readMessage : readMessages) {
       builder.addViewed(SyncMessage.Viewed.newBuilder()
                                           .setTimestamp(readMessage.getTimestamp())
-                                          .setSenderUuid(readMessage.getSender().getServiceId().toString()));
+                                          .setSenderUuid(readMessage.getSender().toString()));
     }
 
     return container.setSyncMessage(builder).build();
@@ -1234,7 +1234,7 @@ public class SignalServiceMessageSender {
 
     builder.setViewOnceOpen(SyncMessage.ViewOnceOpen.newBuilder()
                                                     .setTimestamp(readMessage.getTimestamp())
-                                                    .setSenderUuid(readMessage.getSender().getServiceId().toString()));
+                                                    .setSenderUuid(readMessage.getSender().toString()));
 
     return container.setSyncMessage(builder).build();
   }
@@ -1345,7 +1345,7 @@ public class SignalServiceMessageSender {
     }
 
     if (message.getPerson().isPresent()) {
-      responseMessage.setThreadUuid(message.getPerson().get().getServiceId().toString());
+      responseMessage.setThreadUuid(message.getPerson().get().toString());
     }
 
     switch (message.getType()) {
@@ -1378,7 +1378,7 @@ public class SignalServiceMessageSender {
     SyncMessage.OutgoingPayment.Builder paymentMessage = SyncMessage.OutgoingPayment.newBuilder();
 
     if (message.getRecipient().isPresent()) {
-      paymentMessage.setRecipientUuid(message.getRecipient().get().getServiceId().toString());
+      paymentMessage.setRecipientUuid(message.getRecipient().get().toString());
     }
 
     if (message.getNote().isPresent()) {
@@ -1629,7 +1629,7 @@ public class SignalServiceMessageSender {
                                                                  sentTimestamp,
                                                                  Optional.empty(),
                                                                  0,
-                                                                 Collections.singletonMap(localAddress, false),
+                                                                 Collections.singletonMap(localAddress.getServiceId(), false),
                                                                  false,
                                                                  Optional.of(message),
                                                                  manifest);
@@ -1642,7 +1642,7 @@ public class SignalServiceMessageSender {
                                                                  message.getTimestamp(),
                                                                  Optional.of(message),
                                                                  message.getExpiresInSeconds(),
-                                                                 Collections.singletonMap(localAddress, false),
+                                                                 Collections.singletonMap(localAddress.getServiceId(), false),
                                                                  false,
                                                                  Optional.empty(),
                                                                  Collections.emptySet());

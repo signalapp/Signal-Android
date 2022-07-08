@@ -453,14 +453,14 @@ public class SignalServiceDataMessage {
 
   public static class Quote {
     private final long                   id;
-    private final SignalServiceAddress   author;
+    private final ServiceId              author;
     private final String                 text;
     private final List<QuotedAttachment> attachments;
     private final List<Mention>          mentions;
     private final Type                   type;
 
     public Quote(long id,
-                 SignalServiceAddress author,
+                 ServiceId author,
                  String text,
                  List<QuotedAttachment> attachments,
                  List<Mention> mentions,
@@ -478,7 +478,7 @@ public class SignalServiceDataMessage {
       return id;
     }
 
-    public SignalServiceAddress getAuthor() {
+    public ServiceId getAuthor() {
       return author;
     }
 
@@ -585,12 +585,12 @@ public class SignalServiceDataMessage {
   }
 
   public static class Reaction {
-    private final String               emoji;
-    private final boolean              remove;
-    private final SignalServiceAddress targetAuthor;
-    private final long                 targetSentTimestamp;
+    private final String    emoji;
+    private final boolean   remove;
+    private final ServiceId targetAuthor;
+    private final long      targetSentTimestamp;
 
-    public Reaction(String emoji, boolean remove, SignalServiceAddress targetAuthor, long targetSentTimestamp) {
+    public Reaction(String emoji, boolean remove, ServiceId targetAuthor, long targetSentTimestamp) {
       this.emoji               = emoji;
       this.remove              = remove;
       this.targetAuthor        = targetAuthor;
@@ -605,7 +605,7 @@ public class SignalServiceDataMessage {
       return remove;
     }
 
-    public SignalServiceAddress getTargetAuthor() {
+    public ServiceId getTargetAuthor() {
       return targetAuthor;
     }
 

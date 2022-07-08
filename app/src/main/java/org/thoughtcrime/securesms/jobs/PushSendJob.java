@@ -355,8 +355,7 @@ public abstract class PushSendJob extends SendJob {
     Recipient quoteAuthorRecipient = Recipient.resolved(quoteAuthor);
 
     if (quoteAuthorRecipient.isMaybeRegistered()) {
-      SignalServiceAddress quoteAddress = RecipientUtil.toSignalServiceAddress(context, quoteAuthorRecipient);
-      return Optional.of(new SignalServiceDataMessage.Quote(quoteId, quoteAddress, quoteBody, quoteAttachments, quoteMentions, quoteType.getDataMessageType()));
+      return Optional.of(new SignalServiceDataMessage.Quote(quoteId, RecipientUtil.getOrFetchServiceId(context, quoteAuthorRecipient), quoteBody, quoteAttachments, quoteMentions, quoteType.getDataMessageType()));
     } else {
       return Optional.empty();
     }
@@ -386,10 +385,10 @@ public abstract class PushSendJob extends SendJob {
 
   protected Optional<SignalServiceDataMessage.Reaction> getStoryReactionFor(@NonNull OutgoingMediaMessage message, @NonNull SignalServiceDataMessage.StoryContext storyContext) {
     if (message.isStoryReaction()) {
-      return Optional.of(new SignalServiceDataMessage.Reaction(
-                         message.getBody(),
-                         false,
-                         new SignalServiceAddress(storyContext.getAuthorServiceId()), storyContext.getSentTimestamp()));
+      return Optional.of(new SignalServiceDataMessage.Reaction(message.getBody(),
+                                                               false,
+                                                               storyContext.getAuthorServiceId(),
+                                                               storyContext.getSentTimestamp()));
     } else {
       return Optional.empty();
     }

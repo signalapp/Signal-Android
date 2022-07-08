@@ -3,6 +3,7 @@ package org.whispersystems.signalservice.api.messages.multidevice;
 import com.google.protobuf.ByteString;
 
 import org.whispersystems.signalservice.api.payments.Money;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.List;
@@ -10,18 +11,18 @@ import java.util.Optional;
 
 public final class OutgoingPaymentMessage {
 
-  private final Optional<SignalServiceAddress> recipient;
-  private final Money.MobileCoin               amount;
-  private final Money.MobileCoin               fee;
-  private final ByteString                     receipt;
-  private final long                           blockIndex;
-  private final long                           blockTimestamp;
-  private final Optional<byte[]>               address;
-  private final Optional<String>               note;
-  private final List<ByteString>               publicKeys;
-  private final List<ByteString>               keyImages;
+  private final Optional<ServiceId> recipient;
+  private final Money.MobileCoin    amount;
+  private final Money.MobileCoin    fee;
+  private final ByteString          receipt;
+  private final long                blockIndex;
+  private final long                blockTimestamp;
+  private final Optional<byte[]>    address;
+  private final Optional<String>    note;
+  private final List<ByteString>    publicKeys;
+  private final List<ByteString>    keyImages;
 
-  public OutgoingPaymentMessage(Optional<SignalServiceAddress> recipient,
+  public OutgoingPaymentMessage(Optional<ServiceId> recipient,
                                 Money.MobileCoin amount,
                                 Money.MobileCoin fee,
                                 ByteString receipt,
@@ -44,7 +45,7 @@ public final class OutgoingPaymentMessage {
     this.keyImages      = keyImages;
   }
 
-  public Optional<SignalServiceAddress> getRecipient() {
+  public Optional<ServiceId> getRecipient() {
     return recipient;
   }
 

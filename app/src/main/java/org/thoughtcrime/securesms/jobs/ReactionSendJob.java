@@ -260,7 +260,7 @@ public class ReactionSendJob extends BaseJob {
   {
     return new SignalServiceDataMessage.Reaction(reaction.getEmoji(),
                                                  remove,
-                                                 RecipientUtil.toSignalServiceAddress(context, targetAuthor),
+                                                 RecipientUtil.getOrFetchServiceId(context, targetAuthor),
                                                  targetSentTimestamp);
   }
 

@@ -24,9 +24,8 @@ public class SentTranscriptMessage {
   private final long                                    timestamp;
   private final long                                    expirationStartTimestamp;
   private final Optional<SignalServiceDataMessage>      message;
-  private final Map<String, Boolean>                    unidentifiedStatusBySid;
-  private final Map<String, Boolean>                    unidentifiedStatusByE164;
-  private final Set<SignalServiceAddress>               recipients;
+  private final Map<ServiceId, Boolean>                 unidentifiedStatusBySid;
+  private final Set<ServiceId>                          recipients;
   private final boolean                                 isRecipientUpdate;
   private final Optional<SignalServiceStoryMessage>     storyMessage;
   private final Set<SignalServiceStoryMessageRecipient> storyMessageRecipients;
@@ -35,7 +34,7 @@ public class SentTranscriptMessage {
                                long timestamp,
                                Optional<SignalServiceDataMessage> message,
                                long expirationStartTimestamp,
-                               Map<SignalServiceAddress, Boolean> unidentifiedStatus,
+                               Map<ServiceId, Boolean> unidentifiedStatus,
                                boolean isRecipientUpdate,
                                Optional<SignalServiceStoryMessage> storyMessage,
                                Set<SignalServiceStoryMessageRecipient> storyMessageRecipients)
@@ -44,20 +43,11 @@ public class SentTranscriptMessage {
     this.timestamp                = timestamp;
     this.message                  = message;
     this.expirationStartTimestamp = expirationStartTimestamp;
-    this.unidentifiedStatusBySid  = new HashMap<>();
-    this.unidentifiedStatusByE164 = new HashMap<>();
+    this.unidentifiedStatusBySid  = new HashMap<>(unidentifiedStatus);
     this.recipients               = unidentifiedStatus.keySet();
     this.isRecipientUpdate        = isRecipientUpdate;
     this.storyMessage             = storyMessage;
     this.storyMessageRecipients   = storyMessageRecipients;
-
-    for (Map.Entry<SignalServiceAddress, Boolean> entry : unidentifiedStatus.entrySet()) {
-      unidentifiedStatusBySid.put(entry.getKey().getServiceId().toString(), entry.getValue());
-
-      if (entry.getKey().getNumber().isPresent()) {
-        unidentifiedStatusByE164.put(entry.getKey().getNumber().get(), entry.getValue());
-      }
-    }
   }
 
   public Optional<SignalServiceAddress> getDestination() {
@@ -85,20 +75,10 @@ public class SentTranscriptMessage {
   }
 
   public boolean isUnidentified(ServiceId serviceId) {
-    return isUnidentified(serviceId.toString());
+    return unidentifiedStatusBySid.getOrDefault(serviceId, false);
   }
 
-  public boolean isUnidentified(String destination) {
-    if (unidentifiedStatusBySid.containsKey(destination)) {
-      return unidentifiedStatusBySid.get(destination);
-    } else if (unidentifiedStatusByE164.containsKey(destination)) {
-      return unidentifiedStatusByE164.get(destination);
-    } else {
-      return false;
-    }
-  }
-
-  public Set<SignalServiceAddress> getRecipients() {
+  public Set<ServiceId> getRecipients() {
     return recipients;
   }
 

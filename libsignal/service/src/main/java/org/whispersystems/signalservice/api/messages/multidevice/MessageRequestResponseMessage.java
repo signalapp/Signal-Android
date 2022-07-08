@@ -2,17 +2,18 @@ package org.whispersystems.signalservice.api.messages.multidevice;
 
 
 
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.Optional;
 
 public class MessageRequestResponseMessage {
 
-  private final Optional<SignalServiceAddress> person;
-  private final Optional<byte[]>               groupId;
-  private final Type                           type;
+  private final Optional<ServiceId> person;
+  private final Optional<byte[]>    groupId;
+  private final Type                type;
 
-  public static MessageRequestResponseMessage forIndividual(SignalServiceAddress address, Type type) {
+  public static MessageRequestResponseMessage forIndividual(ServiceId address, Type type) {
     return new MessageRequestResponseMessage(Optional.of(address), Optional.empty(), type);
   }
 
@@ -20,7 +21,7 @@ public class MessageRequestResponseMessage {
     return new MessageRequestResponseMessage(Optional.empty(), Optional.of(groupId), type);
   }
 
-  private MessageRequestResponseMessage(Optional<SignalServiceAddress> person,
+  private MessageRequestResponseMessage(Optional<ServiceId> person,
                                         Optional<byte[]> groupId,
                                         Type type)
   {
@@ -29,7 +30,7 @@ public class MessageRequestResponseMessage {
     this.type    = type;
   }
 
-  public Optional<SignalServiceAddress> getPerson() {
+  public Optional<ServiceId> getPerson() {
     return person;
   }
 

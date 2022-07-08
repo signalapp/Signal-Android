@@ -111,7 +111,7 @@ public class MultiDeviceMessageRequestResponseJob extends BaseJob {
     if (recipient.isGroup()) {
       response = MessageRequestResponseMessage.forGroup(recipient.getGroupId().get().getDecodedId(), localToRemoteType(type));
     } else if (recipient.isMaybeRegistered()) {
-      response = MessageRequestResponseMessage.forIndividual(RecipientUtil.toSignalServiceAddress(context, recipient), localToRemoteType(type));
+      response = MessageRequestResponseMessage.forIndividual(RecipientUtil.getOrFetchServiceId(context, recipient), localToRemoteType(type));
     } else {
       response = null;
     }

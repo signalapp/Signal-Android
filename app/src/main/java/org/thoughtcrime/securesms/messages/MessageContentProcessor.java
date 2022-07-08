@@ -2305,7 +2305,7 @@ public final class MessageContentProcessor {
     }
 
     List<org.signal.libsignal.protocol.util.Pair<RecipientId, Boolean>> unidentifiedStatus = Stream.of(members)
-                                                                                                  .map(m -> new org.signal.libsignal.protocol.util.Pair<>(m.getId(), message.isUnidentified(m.requireServiceId().toString())))
+                                                                                                  .map(m -> new org.signal.libsignal.protocol.util.Pair<>(m.getId(), message.isUnidentified(m.requireServiceId())))
                                                                                                   .toList();
     receiptDatabase.setUnidentified(unidentifiedStatus, messageId);
   }
@@ -3132,16 +3132,11 @@ public final class MessageContentProcessor {
   }
 
   private static boolean isUnidentified(@NonNull SentTranscriptMessage message, @NonNull Recipient recipient) {
-    boolean unidentified = false;
-
-    if (recipient.hasE164()) {
-      unidentified |= message.isUnidentified(recipient.requireE164());
-    }
     if (recipient.hasServiceId()) {
-      unidentified |= message.isUnidentified(recipient.requireServiceId());
+      return message.isUnidentified(recipient.requireServiceId());
+    } else {
+      return false;
     }
-
-    return unidentified;
   }
 
   private static void log(@NonNull String message) {

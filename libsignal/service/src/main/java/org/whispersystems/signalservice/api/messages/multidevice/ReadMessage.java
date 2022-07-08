@@ -6,14 +6,14 @@
 
 package org.whispersystems.signalservice.api.messages.multidevice;
 
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.push.ServiceId;
 
 public class ReadMessage {
 
-  private final SignalServiceAddress sender;
-  private final long                 timestamp;
+  private final ServiceId sender;
+  private final long      timestamp;
 
-  public ReadMessage(SignalServiceAddress sender, long timestamp) {
+  public ReadMessage(ServiceId sender, long timestamp) {
     this.sender    = sender;
     this.timestamp = timestamp;
   }
@@ -22,7 +22,7 @@ public class ReadMessage {
     return timestamp;
   }
 
-  public SignalServiceAddress getSender() {
+  public ServiceId getSender() {
     return sender;
   }
 
