@@ -78,6 +78,7 @@ import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.badges.gifts.OpenableGift;
 import org.thoughtcrime.securesms.badges.gifts.OpenableGiftItemDecoration;
 import org.thoughtcrime.securesms.badges.gifts.viewgift.received.ViewReceivedGiftBottomSheet;
 import org.thoughtcrime.securesms.badges.gifts.viewgift.sent.ViewSentGiftBottomSheet;
@@ -171,6 +172,7 @@ import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.HtmlUtil;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
+import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
@@ -250,6 +252,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private TransitionListener          transitionListener;
   private View                        reactionsShade;
   private SignalBottomActionBar       bottomActionBar;
+  private OpenableGiftItemDecoration  openableGiftItemDecoration;
 
   private GiphyMp4ProjectionRecycler giphyMp4ProjectionRecycler;
   private Colorizer                  colorizer;
@@ -318,7 +321,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
     RecyclerViewColorizer recyclerViewColorizer = new RecyclerViewColorizer(list);
 
-    OpenableGiftItemDecoration openableGiftItemDecoration = new OpenableGiftItemDecoration(requireContext());
+    openableGiftItemDecoration = new OpenableGiftItemDecoration(requireContext());
     getViewLifecycleOwner().getLifecycle().addObserver(openableGiftItemDecoration);
 
     list.addItemDecoration(openableGiftItemDecoration);
@@ -1560,6 +1563,10 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
       MessageRecord messageRecord = item.getConversationMessage().getMessageRecord();
 
+      if (isUnopenedGift(itemView, messageRecord)) {
+        return;
+      }
+
       if (messageRecord.isSecure()                                        &&
           !messageRecord.isRemoteDelete()                                 &&
           !messageRecord.isUpdate()                                       &&
@@ -2076,6 +2083,18 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
         conversationViewModel.markGiftBadgeRevealed(messageRecord.getId());
       }
     }
+  }
+
+  private boolean isUnopenedGift(View itemView, MessageRecord messageRecord) {
+    if (itemView instanceof OpenableGift) {
+      Projection projection = ((OpenableGift) itemView).getOpenableGiftProjection(false);
+      if (projection != null) {
+        projection.release();
+        return !openableGiftItemDecoration.hasOpenedGiftThisSession(messageRecord.getId());
+      }
+    }
+
+    return false;
   }
 
   public void refreshList() {

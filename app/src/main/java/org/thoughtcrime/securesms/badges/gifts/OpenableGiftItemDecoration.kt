@@ -53,6 +53,10 @@ class OpenableGiftItemDecoration(context: Context) : RecyclerView.ItemDecoration
   private val bowHeight = DimensionUnit.DP.toPixels(60f)
   private val bowDrawable: Drawable = AppCompatResources.getDrawable(context, R.drawable.ic_gift_bow)!!
 
+  fun hasOpenedGiftThisSession(messageRecordId: Long): Boolean {
+    return messageIdsOpenedThisSession.contains(messageRecordId)
+  }
+
   override fun onDestroy(owner: LifecycleOwner) {
     super.onDestroy(owner)
     animationState.clear()
