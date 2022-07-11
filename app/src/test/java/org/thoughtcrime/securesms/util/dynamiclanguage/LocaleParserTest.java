@@ -42,7 +42,7 @@ public final class LocaleParserTest {
   }
 
   private static String getUnsupportedLanguage() {
-    String unsupportedLanguage = "af";
+    String unsupportedLanguage = "ae";
     assertFalse("Language should be an unsupported one", buildConfigLanguages().contains(unsupportedLanguage));
     return unsupportedLanguage;
   }

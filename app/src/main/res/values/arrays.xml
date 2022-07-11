@@ -4,6 +4,7 @@
   <string-array name="language_entries">
 <!-- zz --><item>@string/preferences__system_default</item>
 <!-- en --><item>English</item>
+<!-- af --><item>Afrikaans</item>
 <!-- ar --><item>Arabic العربية</item>
 <!-- az --><item>Azərbaycan</item>
 <!-- jv --><item>Basa Jawa</item>
@@ -86,6 +87,7 @@
   <string-array name="language_values">
       <item>zz</item>
       <item>en</item>
+      <item>af</item>
       <item>ar</item>
       <item>az</item>
       <item>jv</item>
