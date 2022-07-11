@@ -39,7 +39,7 @@ object UntrustedRecords {
       }
       .flatten()
 
-    return ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients).identityRecords
+    return ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients).untrustedRecords
   }
 
   class UntrustedRecordsException(val untrustedRecords: List<IdentityRecord>, val destinations: Set<ContactSearchKey.RecipientSearchKey>) : Throwable()
