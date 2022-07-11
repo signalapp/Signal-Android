@@ -31,7 +31,6 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchState
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFullScreenDialogFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.SearchConfigurationProvider
-import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil
@@ -41,6 +40,7 @@ import org.thoughtcrime.securesms.mediasend.v2.review.MediaReviewFragment
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationViewModel
 import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendRepository
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.visible
@@ -245,7 +245,9 @@ class MediaSelectionActivity :
   override fun onSendError(error: Throwable) {
     if (error is UntrustedRecords.UntrustedRecordsException) {
       Log.w(TAG, "Send failed due to untrusted identities.")
-      SafetyNumberChangeDialog.show(supportFragmentManager, error.untrustedRecords)
+      SafetyNumberBottomSheet
+        .forIdentityRecordsAndDestinations(error.untrustedRecords, error.destinations.toList())
+        .show(supportFragmentManager)
     } else {
       setResult(RESULT_CANCELED)
 

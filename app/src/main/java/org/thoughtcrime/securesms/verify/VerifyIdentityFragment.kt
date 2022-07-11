@@ -4,10 +4,12 @@ import android.Manifest
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import org.signal.core.util.ThreadUtil
 import org.signal.qr.kitkat.ScanListener
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.WrapperDialogFragment
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.permissions.Permissions
@@ -19,6 +21,14 @@ import org.thoughtcrime.securesms.util.ServiceUtil
  * Fragment to assist user in verifying recipient identity utilizing keys.
  */
 class VerifyIdentityFragment : Fragment(R.layout.fragment_container), ScanListener, VerifyDisplayFragment.Callback {
+
+  class Dialog : WrapperDialogFragment() {
+    override fun getWrappedFragment(): Fragment {
+      return VerifyIdentityFragment().apply {
+        arguments = this@Dialog.requireArguments()
+      }
+    }
+  }
 
   companion object {
     private const val EXTRA_RECIPIENT = "extra.recipient.id"
@@ -32,11 +42,25 @@ class VerifyIdentityFragment : Fragment(R.layout.fragment_container), ScanListen
       verified: Boolean
     ): VerifyIdentityFragment {
       return VerifyIdentityFragment().apply {
-        arguments = Bundle().apply {
-          putParcelable(EXTRA_RECIPIENT, recipientId)
-          putParcelable(EXTRA_IDENTITY, remoteIdentity)
-          putBoolean(EXTRA_VERIFIED, verified)
-        }
+        arguments = bundleOf(
+          EXTRA_RECIPIENT to recipientId,
+          EXTRA_IDENTITY to remoteIdentity,
+          EXTRA_VERIFIED to verified
+        )
+      }
+    }
+
+    fun createDialog(
+      recipientId: RecipientId,
+      remoteIdentity: IdentityKeyParcelable,
+      verified: Boolean
+    ): Dialog {
+      return Dialog().apply {
+        arguments = bundleOf(
+          EXTRA_RECIPIENT to recipientId,
+          EXTRA_IDENTITY to remoteIdentity,
+          EXTRA_VERIFIED to verified
+        )
       }
     }
   }

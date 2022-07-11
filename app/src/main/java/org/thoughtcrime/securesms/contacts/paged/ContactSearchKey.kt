@@ -17,7 +17,7 @@ sealed class ContactSearchKey {
    */
   open fun requireShareContact(): ShareContact = error("This key cannot be converted into a ShareContact")
 
-  open fun requireParcelable(): Parcelable = error("This key cannot be parcelized")
+  open fun requireParcelable(): ParcelableRecipientSearchKey = error("This key cannot be parcelized")
 
   sealed class RecipientSearchKey : ContactSearchKey() {
 
@@ -29,7 +29,7 @@ sealed class ContactSearchKey {
         return ShareContact(recipientId)
       }
 
-      override fun requireParcelable(): Parcelable {
+      override fun requireParcelable(): ParcelableRecipientSearchKey {
         return ParcelableRecipientSearchKey(ParcelableType.STORY, recipientId)
       }
 
@@ -44,7 +44,7 @@ sealed class ContactSearchKey {
         return ShareContact(recipientId)
       }
 
-      override fun requireParcelable(): Parcelable {
+      override fun requireParcelable(): ParcelableRecipientSearchKey {
         return ParcelableRecipientSearchKey(ParcelableType.KNOWN_RECIPIENT, recipientId)
       }
 

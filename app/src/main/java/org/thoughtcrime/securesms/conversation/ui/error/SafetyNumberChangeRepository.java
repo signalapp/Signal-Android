@@ -22,10 +22,12 @@ import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
+import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.safety.SafetyNumberRecipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.SignalSessionLock;
@@ -35,15 +37,37 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-final class SafetyNumberChangeRepository {
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
+public final class SafetyNumberChangeRepository {
 
   private static final String TAG = Log.tag(SafetyNumberChangeRepository.class);
 
   private final Context context;
 
-  SafetyNumberChangeRepository(Context context) {
+  public SafetyNumberChangeRepository(Context context) {
     this.context = context.getApplicationContext();
+  }
+
+  @NonNull
+  public Single<TrustAndVerifyResult> trustOrVerifyChangedRecipientsRx(@NonNull List<SafetyNumberRecipient> safetyNumberRecipients) {
+    Log.d(TAG, "Trust or verify changed recipients for: " + Util.join(safetyNumberRecipients, ","));
+    return Single.fromCallable(() -> trustOrVerifyChangedRecipientsInternal(fromSafetyNumberRecipients(safetyNumberRecipients)))
+                 .subscribeOn(Schedulers.io());
+  }
+
+  @NonNull
+  public Single<TrustAndVerifyResult> trustOrVerifyChangedRecipientsAndResendRx(@NonNull List<SafetyNumberRecipient> safetyNumberRecipients, @NonNull MessageId messageId) {
+    Log.d(TAG, "Trust or verify changed recipients and resend message: " + messageId + " for: " + Util.join(safetyNumberRecipients, ","));
+    return Single.fromCallable(() -> {
+      MessageRecord messageRecord = messageId.isMms() ? SignalDatabase.mms().getMessageRecord(messageId.getId())
+                                                      : SignalDatabase.sms().getMessageRecord(messageId.getId());
+
+      return trustOrVerifyChangedRecipientsAndResendInternal(fromSafetyNumberRecipients(safetyNumberRecipients), messageRecord);
+    }).subscribeOn(Schedulers.io());
   }
 
   @NonNull LiveData<TrustAndVerifyResult> trustOrVerifyChangedRecipients(@NonNull List<ChangedRecipient> changedRecipients) {
@@ -78,6 +102,14 @@ final class SafetyNumberChangeRepository {
     return new SafetyNumberChangeState(changedRecipients, messageRecord);
   }
 
+  private @NonNull List<ChangedRecipient> fromSafetyNumberRecipients(@NonNull List<SafetyNumberRecipient> safetyNumberRecipients) {
+    return safetyNumberRecipients.stream().map(this::fromSafetyNumberRecipient).collect(Collectors.toList());
+  }
+
+  private @NonNull ChangedRecipient fromSafetyNumberRecipient(@NonNull SafetyNumberRecipient safetyNumberRecipient) {
+    return new ChangedRecipient(safetyNumberRecipient.getRecipient(), safetyNumberRecipient.getIdentityRecord());
+  }
+
   @WorkerThread
   private @Nullable MessageRecord getMessageRecord(Long messageId, String messageType) {
     try {
@@ -99,7 +131,7 @@ final class SafetyNumberChangeRepository {
   private TrustAndVerifyResult trustOrVerifyChangedRecipientsInternal(@NonNull List<ChangedRecipient> changedRecipients) {
     SignalIdentityKeyStore identityStore = ApplicationDependencies.getProtocolStore().aci().identities();
 
-    try(SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
+    try (SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
       for (ChangedRecipient changedRecipient : changedRecipients) {
         IdentityRecord identityRecord = changedRecipient.getIdentityRecord();
 
@@ -126,7 +158,7 @@ final class SafetyNumberChangeRepository {
       Log.d(TAG, "No changed recipients to process, will still process message record");
     }
 
-    try(SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
+    try (SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
       for (ChangedRecipient changedRecipient : changedRecipients) {
         SignalProtocolAddress mismatchAddress = changedRecipient.getRecipient().requireServiceId().toProtocolAddress(SignalServiceAddress.DEFAULT_DEVICE_ID);
 

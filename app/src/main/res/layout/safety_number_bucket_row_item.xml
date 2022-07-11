@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:id="@+id/safety_number_bucket_header_wrapper"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:paddingStart="@dimen/dsl_settings_gutter"
+        android:paddingTop="16dp"
+        android:paddingEnd="@dimen/dsl_settings_gutter"
+        android:paddingBottom="12dp"
+        app:layout_constraintEnd_toStartOf="@id/safety_number_bucket_menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            android:id="@+id/safety_number_bucket_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:textAppearance="@style/Signal.Text.TitleSmall"
+            tools:text="Section Header" />
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/safety_number_bucket_menu"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/SafetyNumberRecipientRowItem__open_context_menu"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_more_vert_24"
+        app:tint="@color/signal_colorOnSurfaceVariant" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

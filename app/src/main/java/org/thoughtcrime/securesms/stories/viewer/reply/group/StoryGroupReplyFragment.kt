@@ -24,9 +24,9 @@ import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MarkReadHelper
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
-import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerFragment
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerViewModel
 import org.thoughtcrime.securesms.database.model.Mention
@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDial
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
+import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerChild
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerParent
@@ -67,7 +68,7 @@ class StoryGroupReplyFragment :
   StoryReplyComposer.Callback,
   EmojiKeyboardCallback,
   ReactWithAnyEmojiBottomSheetDialogFragment.Callback,
-  SafetyNumberChangeDialog.Callback {
+  SafetyNumberBottomSheet.Callbacks {
 
   companion object {
     private val TAG = Log.tag(StoryGroupReplyFragment::class.java)
@@ -311,7 +312,9 @@ class StoryGroupReplyFragment :
     }
 
     if (messageRecord.isIdentityMismatchFailure) {
-      SafetyNumberChangeDialog.show(requireContext(), childFragmentManager, messageRecord)
+      SafetyNumberBottomSheet
+        .forMessageRecord(requireContext(), messageRecord)
+        .show(childFragmentManager)
     } else if (messageRecord.hasFailedWithNetworkFailures()) {
       MaterialAlertDialogBuilder(requireContext())
         .setMessage(R.string.conversation_activity__message_could_not_be_sent)
@@ -370,7 +373,9 @@ class StoryGroupReplyFragment :
           if (error is UntrustedRecords.UntrustedRecordsException) {
             resendReaction = emoji
 
-            SafetyNumberChangeDialog.show(childFragmentManager, error.untrustedRecords)
+            SafetyNumberBottomSheet
+              .forIdentityRecordsAndDestination(error.untrustedRecords, ContactSearchKey.RecipientSearchKey.Story(groupRecipientId))
+              .show(childFragmentManager)
           } else {
             Log.w(TAG, "Failed to send reply", error)
             val context = context
@@ -463,14 +468,16 @@ class StoryGroupReplyFragment :
     lifecycleDisposable += StoryGroupReplySender.sendReply(requireContext(), storyId, body, mentions)
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy(
-        onError = {
-          if (it is UntrustedRecords.UntrustedRecordsException) {
+        onError = { throwable ->
+          if (throwable is UntrustedRecords.UntrustedRecordsException) {
             resendBody = body
             resendMentions = mentions
 
-            SafetyNumberChangeDialog.show(childFragmentManager, it.untrustedRecords)
+            SafetyNumberBottomSheet
+              .forIdentityRecordsAndDestination(throwable.untrustedRecords, ContactSearchKey.RecipientSearchKey.Story(groupRecipientId))
+              .show(childFragmentManager)
           } else {
-            Log.w(TAG, "Failed to send reply", it)
+            Log.w(TAG, "Failed to send reply", throwable)
             val context = context
             if (context != null) {
               Toast.makeText(context, R.string.message_details_recipient__failed_to_send, Toast.LENGTH_SHORT).show()
@@ -480,7 +487,7 @@ class StoryGroupReplyFragment :
       )
   }
 
-  override fun onSendAnywayAfterSafetyNumberChange(changedRecipients: MutableList<RecipientId>) {
+  override fun sendAnywayAfterSafetyNumberChangedInBottomSheet(destinations: List<ContactSearchKey.RecipientSearchKey>) {
     val resendBody = resendBody
     val resendReaction = resendReaction
     if (resendBody != null) {
@@ -490,7 +497,7 @@ class StoryGroupReplyFragment :
     }
   }
 
-  override fun onMessageResentAfterSafetyNumberChange() {
+  override fun onMessageResentAfterSafetyNumberChangeInBottomSheet() {
     Log.i(TAG, "Message resent")
   }
 

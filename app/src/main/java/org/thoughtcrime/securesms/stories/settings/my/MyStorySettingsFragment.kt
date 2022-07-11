@@ -16,7 +16,6 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.util.LifecycleDisposable
-import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class MyStorySettingsFragment : DSLSettingsFragment(
@@ -109,10 +108,6 @@ class MyStorySettingsFragment : DSLSettingsFragment(
         }
       )
     }
-  }
-
-  override fun onToolbarNavigationClicked() {
-    findListener<WrapperDialogFragment>()?.dismiss() ?: super.onToolbarNavigationClicked()
   }
 
   class Dialog : WrapperDialogFragment() {

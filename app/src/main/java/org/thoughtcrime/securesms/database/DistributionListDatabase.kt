@@ -488,6 +488,13 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
       .run()
   }
 
+  fun removeAllMembers(listId: DistributionListId, privacyMode: DistributionListPrivacyMode) {
+    writableDatabase
+      .delete(MembershipTable.TABLE_NAME)
+      .where("${MembershipTable.LIST_ID} = ? AND ${MembershipTable.PRIVACY_MODE} = ?", listId.serialize(), privacyMode.serialize())
+      .run()
+  }
+
   fun remapRecipient(oldId: RecipientId, newId: RecipientId) {
     val values = ContentValues().apply {
       put(MembershipTable.RECIPIENT_ID, newId.serialize())
@@ -643,5 +650,34 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
 
   private fun createUniqueNameForUnknownDistributionId(): String {
     return "DELETED-${UUID.randomUUID()}"
+  }
+
+  fun excludeFromStory(recipientId: RecipientId, record: DistributionListRecord) {
+    excludeAllFromStory(listOf(recipientId), record)
+  }
+
+  fun excludeAllFromStory(recipientIds: List<RecipientId>, record: DistributionListRecord) {
+    writableDatabase.withinTransaction {
+      when (record.privacyMode) {
+        DistributionListPrivacyMode.ONLY_WITH -> {
+          recipientIds.forEach {
+            removeMemberFromList(record.id, record.privacyMode, it)
+          }
+        }
+        DistributionListPrivacyMode.ALL_EXCEPT -> {
+          recipientIds.forEach {
+            addMemberToList(record.id, record.privacyMode, it)
+          }
+        }
+        DistributionListPrivacyMode.ALL -> {
+          removeAllMembers(record.id, DistributionListPrivacyMode.ALL_EXCEPT)
+          setPrivacyMode(record.id, DistributionListPrivacyMode.ALL_EXCEPT)
+
+          recipientIds.forEach {
+            addMemberToList(record.id, DistributionListPrivacyMode.ALL_EXCEPT, it)
+          }
+        }
+      }
+    }
   }
 }

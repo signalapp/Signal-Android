@@ -32,13 +32,13 @@ import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
-import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.permissions.Permissions
+import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
@@ -211,7 +211,9 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
           startActivityIfAble(Intent(requireContext(), MyStoriesActivity::class.java))
         } else if (model.data.primaryStory.messageRecord.isOutgoing && model.data.primaryStory.messageRecord.isFailed) {
           if (model.data.primaryStory.messageRecord.isIdentityMismatchFailure) {
-            SafetyNumberChangeDialog.show(requireContext(), childFragmentManager, model.data.primaryStory.messageRecord)
+            SafetyNumberBottomSheet
+              .forMessageRecord(requireContext(), model.data.primaryStory.messageRecord)
+              .show(childFragmentManager)
           } else {
             StoryDialogs.resendStory(requireContext()) {
               lifecycleDisposable += viewModel.resend(model.data.primaryStory.messageRecord).subscribe()

@@ -16,7 +16,7 @@ object UntrustedRecords {
     return Completable.fromAction {
       val untrustedRecords: List<IdentityRecord> = checkForBadIdentityRecordsSync(contactSearchKeys)
       if (untrustedRecords.isNotEmpty()) {
-        throw UntrustedRecordsException(untrustedRecords)
+        throw UntrustedRecordsException(untrustedRecords, contactSearchKeys)
       }
     }.subscribeOn(Schedulers.io())
   }
@@ -39,8 +39,8 @@ object UntrustedRecords {
       }
       .flatten()
 
-    return ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients).untrustedRecords
+    return ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients).identityRecords
   }
 
-  class UntrustedRecordsException(val untrustedRecords: List<IdentityRecord>) : Throwable()
+  class UntrustedRecordsException(val untrustedRecords: List<IdentityRecord>, val destinations: Set<ContactSearchKey.RecipientSearchKey>) : Throwable()
 }

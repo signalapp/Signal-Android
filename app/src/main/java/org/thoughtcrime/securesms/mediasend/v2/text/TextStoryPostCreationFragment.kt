@@ -14,18 +14,18 @@ import androidx.navigation.fragment.findNavController
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
-import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.mediasend.v2.HudCommand
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
 import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendRepository
 import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendResult
+import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.stories.StoryTextPostView
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
-class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creation_fragment), TextStoryPostTextEntryFragment.Callback {
+class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creation_fragment), TextStoryPostTextEntryFragment.Callback, SafetyNumberBottomSheet.Callbacks {
 
   private lateinit var scene: ConstraintLayout
   private lateinit var backgroundButton: AppCompatImageView
@@ -166,9 +166,21 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
         }
         is TextStoryPostSendResult.UntrustedRecordsError -> {
           send.isClickable = true
-          SafetyNumberChangeDialog.show(childFragmentManager, result.untrustedRecords)
+          SafetyNumberBottomSheet
+            .forIdentityRecordsAndDestinations(result.untrustedRecords, contacts.toList())
+            .show(childFragmentManager)
         }
       }
     }
   }
+
+  override fun sendAnywayAfterSafetyNumberChangedInBottomSheet(destinations: List<ContactSearchKey.RecipientSearchKey>) {
+    performSend(destinations.toSet())
+  }
+
+  override fun onMessageResentAfterSafetyNumberChangeInBottomSheet() {
+    error("Unsupported, we do not hand in a message id.")
+  }
+
+  override fun onCanceled() = Unit
 }

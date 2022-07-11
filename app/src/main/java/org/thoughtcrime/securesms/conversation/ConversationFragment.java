@@ -158,6 +158,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.revealable.ViewOnceMessageActivity;
 import org.thoughtcrime.securesms.revealable.ViewOnceUtil;
+import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
@@ -1874,7 +1875,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
     @Override
     public void onIncomingIdentityMismatchClicked(@NonNull RecipientId recipientId) {
-      SafetyNumberChangeDialog.show(getParentFragmentManager(), recipientId);
+      SafetyNumberBottomSheet.forRecipientId(recipientId)
+                             .show(getParentFragmentManager());
     }
 
     @Override

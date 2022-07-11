@@ -44,7 +44,14 @@ class MultiselectForwardViewModel(
         if (identityRecords.isEmpty()) {
           performSend(additionalMessage, selectedContacts)
         } else {
-          store.update { it.copy(stage = MultiselectForwardState.Stage.SafetyConfirmation(identityRecords)) }
+          store.update { state ->
+            state.copy(
+              stage = MultiselectForwardState.Stage.SafetyConfirmation(
+                identityRecords,
+                selectedContacts.filterIsInstance<ContactSearchKey.RecipientSearchKey>()
+              )
+            )
+          }
         }
       }
     }

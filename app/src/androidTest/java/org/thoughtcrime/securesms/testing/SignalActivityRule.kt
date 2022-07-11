@@ -30,6 +30,7 @@ import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
 import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
+import java.lang.IllegalArgumentException
 import java.util.UUID
 
 /**
@@ -38,7 +39,7 @@ import java.util.UUID
  *
  * To use: `@get:Rule val harness = SignalActivityRule()`
  */
-class SignalActivityRule : ExternalResource() {
+class SignalActivityRule(private val othersCount: Int = 4) : ExternalResource() {
 
   val application: Application = ApplicationDependencies.getApplication()
 
@@ -88,9 +89,13 @@ class SignalActivityRule : ExternalResource() {
   private fun setupOthers(): List<RecipientId> {
     val others = mutableListOf<RecipientId>()
 
-    for (i in 0..4) {
+    if (othersCount !in 0 until 1000) {
+      throw IllegalArgumentException("$othersCount must be between 0 and 1000")
+    }
+
+    for (i in 0 until othersCount) {
       val aci = ACI.from(UUID.randomUUID())
-      val recipientId = RecipientId.from(SignalServiceAddress(aci, "+1555555101$i"))
+      val recipientId = RecipientId.from(SignalServiceAddress(aci, "+15555551%03d".format(i)))
       SignalDatabase.recipients.setProfileName(recipientId, ProfileName.fromParts("Buddy", "#$i"))
       SignalDatabase.recipients.setProfileKeyIfAbsent(recipientId, ProfileKeyUtil.createNew())
       SignalDatabase.recipients.setCapabilities(recipientId, SignalServiceProfile.Capabilities(true, true, true, true, true, true, true))

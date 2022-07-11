@@ -152,6 +152,7 @@ import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlayerView;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactShareEditActivity;
@@ -161,7 +162,6 @@ import org.thoughtcrime.securesms.conversation.ConversationGroupViewModel.GroupA
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
 import org.thoughtcrime.securesms.conversation.drafts.DraftRepository;
 import org.thoughtcrime.securesms.conversation.drafts.DraftViewModel;
-import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog;
 import org.thoughtcrime.securesms.conversation.ui.groupcall.GroupCallViewModel;
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerViewModel;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
@@ -263,6 +263,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.recipients.ui.disappearingmessages.RecipientDisappearingMessagesActivity;
 import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
+import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet;
 import org.thoughtcrime.securesms.search.MessageResult;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -348,7 +349,7 @@ public class ConversationParentFragment extends Fragment
                AttachmentKeyboard.Callback,
                ConversationReactionOverlay.OnReactionSelectedListener,
                ReactWithAnyEmojiBottomSheetDialogFragment.Callback,
-               SafetyNumberChangeDialog.Callback,
+               SafetyNumberBottomSheet.Callbacks,
                ReactionsBottomSheetDialogFragment.Callback,
                MediaKeyboard.MediaKeyboardListener,
                EmojiEventListener,
@@ -1594,22 +1595,16 @@ public class ConversationParentFragment extends Fragment
   private void handleRecentSafetyNumberChange() {
     List<IdentityRecord> records = identityRecords.getUnverifiedRecords();
     records.addAll(identityRecords.getUntrustedRecords());
-    SafetyNumberChangeDialog.show(getChildFragmentManager(), records);
+    SafetyNumberBottomSheet
+        .forIdentityRecordsAndDestination(
+            records,
+            new ContactSearchKey.RecipientSearchKey.KnownRecipient(recipient.getId())
+        )
+        .show(getChildFragmentManager());
   }
 
   @Override
-  public void onSendAnywayAfterSafetyNumberChange(@NonNull List<RecipientId> changedRecipients) {
-    Log.d(TAG, "onSendAnywayAfterSafetyNumberChange");
-    initializeIdentityRecords().addListener(new AssertedSuccessListener<Boolean>() {
-      @Override
-      public void onSuccess(Boolean result) {
-        sendMessage(null);
-      }
-    });
-  }
-
-  @Override
-  public void onMessageResentAfterSafetyNumberChange() {
+  public void onMessageResentAfterSafetyNumberChangeInBottomSheet() {
     Log.d(TAG, "onMessageResentAfterSafetyNumberChange");
     initializeIdentityRecords().addListener(new AssertedSuccessListener<Boolean>() {
       @Override
@@ -3629,6 +3624,17 @@ public class ConversationParentFragment extends Fragment
     material3OnScrollHelper.setColorImmediate();
   }
 
+  @Override
+  public void sendAnywayAfterSafetyNumberChangedInBottomSheet(@NonNull List<? extends ContactSearchKey.RecipientSearchKey> destinations) {
+    Log.d(TAG, "onSendAnywayAfterSafetyNumberChange");
+    initializeIdentityRecords().addListener(new AssertedSuccessListener<Boolean>() {
+      @Override
+      public void onSuccess(Boolean result) {
+        sendMessage(null);
+      }
+    });
+  }
+
   // Listeners
 
   private final class DeleteCanceledVoiceNoteListener implements ListenableFuture.Listener<VoiceNoteDraft> {
@@ -3888,7 +3894,9 @@ public class ConversationParentFragment extends Fragment
   @Override
   public void onMessageWithErrorClicked(@NonNull MessageRecord messageRecord) {
     if (messageRecord.isIdentityMismatchFailure()) {
-      SafetyNumberChangeDialog.show(requireContext(), getChildFragmentManager(), messageRecord);
+      SafetyNumberBottomSheet
+          .forMessageRecord(requireContext(), messageRecord)
+          .show(getChildFragmentManager());
     } else if (messageRecord.hasFailedWithNetworkFailures()) {
       new MaterialAlertDialogBuilder(requireContext())
           .setMessage(R.string.conversation_activity__message_could_not_be_sent)

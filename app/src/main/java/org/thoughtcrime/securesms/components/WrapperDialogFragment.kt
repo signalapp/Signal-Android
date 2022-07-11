@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import org.thoughtcrime.securesms.R
@@ -40,11 +41,24 @@ abstract class WrapperDialogFragment : DialogFragment(R.layout.fragment_containe
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    requireActivity().onBackPressedDispatcher.addCallback(
+      viewLifecycleOwner,
+      object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+          onHandleBackPressed()
+        }
+      }
+    )
+
     if (savedInstanceState == null) {
       childFragmentManager.beginTransaction()
         .replace(R.id.fragment_container, getWrappedFragment())
         .commitAllowingStateLoss()
     }
+  }
+
+  open fun onHandleBackPressed() {
+    dismissAllowingStateLoss()
   }
 
   override fun onDismiss(dialog: DialogInterface) {

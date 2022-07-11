@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.FullScreenDialogFragment;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer;
-import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController;
@@ -26,6 +25,7 @@ import org.thoughtcrime.securesms.messagedetails.MessageDetailsViewModel.Factory
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet;
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper;
 
 import java.util.ArrayList;
@@ -88,8 +88,8 @@ public final class MessageDetailsFragment extends FullScreenDialogFragment {
   }
 
   private void initializeList(@NonNull View view) {
-    RecyclerView  list          = view.findViewById(R.id.message_details_list);
-    View          toolbarShadow = view.findViewById(R.id.toolbar_shadow);
+    RecyclerView list          = view.findViewById(R.id.message_details_list);
+    View         toolbarShadow = view.findViewById(R.id.toolbar_shadow);
 
     colorizer             = new Colorizer();
     adapter               = new MessageDetailsAdapter(getViewLifecycleOwner(), glideRequests, colorizer, this::onErrorClicked);
@@ -159,7 +159,9 @@ public final class MessageDetailsFragment extends FullScreenDialogFragment {
   }
 
   private void onErrorClicked(@NonNull MessageRecord messageRecord) {
-    SafetyNumberChangeDialog.show(requireContext(), getChildFragmentManager(), messageRecord);
+    SafetyNumberBottomSheet
+        .forMessageRecord(requireContext(), messageRecord)
+        .show(getChildFragmentManager());
   }
 
   public interface Callback {

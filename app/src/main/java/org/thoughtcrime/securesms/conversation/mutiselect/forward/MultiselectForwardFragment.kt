@@ -34,12 +34,12 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchMediator
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchState
-import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.v2.stories.ChooseGroupStoryBottomSheet
 import org.thoughtcrime.securesms.mediasend.v2.stories.ChooseStoryTypeBottomSheet
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.sharing.ShareSelectionAdapter
 import org.thoughtcrime.securesms.sharing.ShareSelectionMappingModel
@@ -74,7 +74,7 @@ import org.thoughtcrime.securesms.util.visible
  */
 class MultiselectForwardFragment :
   Fragment(R.layout.multiselect_forward_fragment),
-  SafetyNumberChangeDialog.Callback,
+  SafetyNumberBottomSheet.Callbacks,
   ChooseStoryTypeBottomSheet.Callback,
   WrapperDialogFragment.WrapperDialogFragmentCallback,
   ChooseInitialMyStoryMembershipBottomSheetDialogFragment.Callback {
@@ -204,7 +204,7 @@ class MultiselectForwardFragment :
       when (it.stage) {
         MultiselectForwardState.Stage.Selection -> {}
         MultiselectForwardState.Stage.FirstConfirmation -> displayFirstSendConfirmation()
-        is MultiselectForwardState.Stage.SafetyConfirmation -> displaySafetyNumberConfirmation(it.stage.identities)
+        is MultiselectForwardState.Stage.SafetyConfirmation -> displaySafetyNumberConfirmation(it.stage.identities, it.stage.selectedContacts)
         MultiselectForwardState.Stage.LoadingIdentities -> {}
         MultiselectForwardState.Stage.SendPending -> {
           handler?.removeCallbacksAndMessages(null)
@@ -288,8 +288,10 @@ class MultiselectForwardFragment :
     viewModel.send(addMessage.text.toString(), contactSearchMediator.getSelectedContacts())
   }
 
-  private fun displaySafetyNumberConfirmation(identityRecords: List<IdentityRecord>) {
-    SafetyNumberChangeDialog.show(childFragmentManager, identityRecords)
+  private fun displaySafetyNumberConfirmation(identityRecords: List<IdentityRecord>, selectedContacts: List<ContactSearchKey>) {
+    SafetyNumberBottomSheet
+      .forIdentityRecordsAndDestinations(identityRecords, selectedContacts)
+      .show(childFragmentManager)
   }
 
   private fun dismissWithSuccess(@PluralsRes toastTextResId: Int) {
@@ -332,11 +334,11 @@ class MultiselectForwardFragment :
     callback.exitFlow()
   }
 
-  override fun onSendAnywayAfterSafetyNumberChange(changedRecipients: MutableList<RecipientId>) {
-    viewModel.confirmSafetySend(addMessage.text.toString(), contactSearchMediator.getSelectedContacts())
+  override fun sendAnywayAfterSafetyNumberChangedInBottomSheet(destinations: List<ContactSearchKey.RecipientSearchKey>) {
+    viewModel.confirmSafetySend(addMessage.text.toString(), destinations.toSet())
   }
 
-  override fun onMessageResentAfterSafetyNumberChange() {
+  override fun onMessageResentAfterSafetyNumberChangeInBottomSheet() {
     throw UnsupportedOperationException()
   }
 

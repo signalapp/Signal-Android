@@ -13,7 +13,7 @@ data class MultiselectForwardState(
     object Selection : Stage()
     object FirstConfirmation : Stage()
     object LoadingIdentities : Stage()
-    data class SafetyConfirmation(val identities: List<IdentityRecord>) : Stage()
+    data class SafetyConfirmation(val identities: List<IdentityRecord>, val selectedContacts: List<ContactSearchKey>) : Stage()
     object SendPending : Stage()
     object SomeFailed : Stage()
     object AllFailed : Stage()

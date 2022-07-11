@@ -18,12 +18,12 @@ import org.thoughtcrime.securesms.components.WrapperDialogFragment
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchMediator
-import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.mediasend.v2.stories.ChooseGroupStoryBottomSheet
 import org.thoughtcrime.securesms.mediasend.v2.stories.ChooseStoryTypeBottomSheet
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationViewModel
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.sharing.ShareSelectionAdapter
 import org.thoughtcrime.securesms.sharing.ShareSelectionMappingModel
 import org.thoughtcrime.securesms.stories.Stories
@@ -39,7 +39,8 @@ class TextStoryPostSendFragment :
   Fragment(R.layout.stories_send_text_post_fragment),
   ChooseStoryTypeBottomSheet.Callback,
   WrapperDialogFragment.WrapperDialogFragmentCallback,
-  ChooseInitialMyStoryMembershipBottomSheetDialogFragment.Callback {
+  ChooseInitialMyStoryMembershipBottomSheetDialogFragment.Callback,
+  SafetyNumberBottomSheet.Callbacks {
 
   private lateinit var shareListWrapper: View
   private lateinit var shareSelectionRecyclerView: RecyclerView
@@ -93,8 +94,10 @@ class TextStoryPostSendFragment :
       send()
     }
 
-    disposables += viewModel.untrustedIdentities.subscribe {
-      SafetyNumberChangeDialog.show(childFragmentManager, it)
+    disposables += viewModel.untrustedIdentities.subscribe { records ->
+      SafetyNumberBottomSheet
+        .forIdentityRecordsAndDestinations(records, contactSearchMediator.getSelectedContacts().toList())
+        .show(childFragmentManager)
     }
 
     searchField.doAfterTextChanged {
@@ -196,5 +199,15 @@ class TextStoryPostSendFragment :
   override fun onMyStoryConfigured(recipientId: RecipientId) {
     contactSearchMediator.setKeysSelected(setOf(ContactSearchKey.RecipientSearchKey.Story(recipientId)))
     contactSearchMediator.refresh()
+  }
+
+  override fun sendAnywayAfterSafetyNumberChangedInBottomSheet(destinations: List<ContactSearchKey.RecipientSearchKey>) {
+    send()
+  }
+
+  override fun onMessageResentAfterSafetyNumberChangeInBottomSheet() = error("Not supported here")
+
+  override fun onCanceled() {
+    viewModel.onSendCancelled()
   }
 }
