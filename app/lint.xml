@@ -41,4 +41,5 @@
         <ignore path="*/org/thoughtcrime/securesms/jobs/StickerPackDownloadJob.java" />
     </issue>
 
+    <issue id="OptionalUsedAsFieldOrParameterType" severity="ignore" />
 </lint>

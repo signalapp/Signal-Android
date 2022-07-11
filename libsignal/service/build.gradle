@@ -37,7 +37,7 @@ dependencies {
     implementation libs.libsignal.client
     api libs.square.okhttp3
     api libs.square.okio
-    implementation libs.threeten.threetenbp
+    implementation libs.google.jsr305
 
     api libs.rxjava3.rxjava
 

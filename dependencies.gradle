@@ -61,6 +61,7 @@ dependencyResolutionManagement {
             alias('google-zxing-android-integration').to('com.google.zxing:android-integration:3.3.0')
             alias('google-zxing-core').to('com.google.zxing:core:3.4.1')
             alias('google-ez-vcard').to('com.googlecode.ez-vcard:ez-vcard:0.9.11')
+            alias('google-jsr305').to('com.google.code.findbugs:jsr305:3.0.2')
 
             // Exoplayer
             alias('exoplayer-core').to('com.google.android.exoplayer', 'exoplayer-core').versionRef('exoplayer')
@@ -86,7 +87,6 @@ dependencyResolutionManagement {
             alias('square-okhttp3').to('com.squareup.okhttp3:okhttp:3.12.13')
             alias('square-okio').to('com.squareup.okio:okio:2.2.2')
             alias('square-leakcanary').to('com.squareup.leakcanary:leakcanary-android:2.7')
-            alias('threeten-threetenbp').to('org.threeten:threetenbp:1.3.6')
             alias('rxjava3-rxjava').to('io.reactivex.rxjava3:rxjava:3.0.13')
             alias('rxjava3-rxandroid').to('io.reactivex.rxjava3:rxandroid:3.0.0')
             alias('rxjava3-rxkotlin').to('io.reactivex.rxjava3:rxkotlin:3.0.1')

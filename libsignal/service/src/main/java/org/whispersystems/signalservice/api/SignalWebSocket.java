@@ -220,7 +220,7 @@ public final class SignalWebSocket {
   /**
    * <p>
    * A blocking call that reads a message off the pipe. When this call returns, the message has been
-   * acknowledged and will not be retransmitted. This will return {@link Optional#absent()} when an
+   * acknowledged and will not be retransmitted. This will return {@link Optional#empty()} when an
    * empty response is hit, which indicates the WebSocket is empty.
    * <p>
    * You can specify a {@link MessageReceivedCallback} that will be called before the received message is acknowledged.
