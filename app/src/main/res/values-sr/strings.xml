@@ -276,6 +276,8 @@
     <item quantity="other">%d непрочитаних порука</item>
   </plurals>
   <!--ConversationFragment-->
+  <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">Aplikacija sa kontaktima nije pronađena.</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Обрисати изабрану поруку?</item>
     <item quantity="few">Обрисати изабране поруке?</item>
@@ -951,6 +953,8 @@
   <string name="Megaphones_use_sms">Користи СМС</string>
   <string name="Megaphones_appearance">Изглед</string>
   <string name="Megaphones_add_photo">Додајте слику</string>
+  <!--Title of a bottom sheet to render messages that all quote a specific message-->
+  <string name="MessageQuotesBottomSheet_replies">Одговора</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Позив преко Signal-a у току</string>
   <string name="NotificationBarManager__establishing_signal_call">Успостављам Signal позив</string>
@@ -1182,9 +1186,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Порука од %s није могла да се испоручи</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s су променили свој број телефона</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Свиђа Вам се нова способност? Кажите хвала са Boost.</string> -->
-  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal покрећу особе попут Вас. Покажите своју подршку већ данас.</string> -->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Sviđa vam se ova nova funkcija? Podržite Signal jednokratnom donacijom.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s покренуо/ла групни позив · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s је у групном позиву · %2$s</string>
@@ -1899,9 +1901,7 @@
   <string name="ConversationUpdateItem_view">Приказ</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Време нестајања поруке биће постављено на %1$s када их шаљете.</string>
   <!--Update item button text to show to boost a feature-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">Signal Boost</string> -->
-  <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">Постати одрживач</string> -->
+  <string name="ConversationUpdateItem_donate">Донирајте</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Пусти … Заустави</string>
   <string name="audio_view__download_accessibility_description">Преузми</string>
@@ -2148,16 +2148,16 @@
   <string name="HelpFragment__debug_log">Извештај о грешкама:</string>
   <string name="HelpFragment__could_not_upload_logs">Грешка при отпремању извештаја</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Будите што описнији како бисте нам помогли да разумемо проблем.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
-    <item>\-\- Молимо, изаберите опцију \-\-</item>
-    <item>Нешто не ради</item>
-    <item>Захтев за функцију</item>
-    <item>Питање</item>
-    <item>Повратне информације</item>
-    <item>Друго</item>
-    <item>Плаћања (MobileCoin)</item>
-    <item>Одрживачи &amp; Signal Boost</item>
-  </string-array> -->
+  <string-array name="HelpFragment__categories_4">
+    <item>\-\- Izaberite opciju \-\-</item>
+    <item>Nešto ne radi</item>
+    <item>Zahtev za funkciju</item>
+    <item>Pitanje</item>
+    <item>Komentar</item>
+    <item>Drugo</item>
+    <item>Plaćanja (MobileCoin)</item>
+    <item>Donacije i značke</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ова порука</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Недавно коришћено</string>
@@ -3546,6 +3546,10 @@
   <string name="MultiselectForwardFragment__share_with">Подели са</string>
   <string name="MultiselectForwardFragment__add_a_message">Додати поруку</string>
   <string name="MultiselectForwardFragment__faster_forwards">Убрзавање прослеђивање</string>
+  <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">Video snimci će biti skraćeni na klipove od 30 sekundi i poslati kao više priča.</string>
+  <!--Displayed when user selects a video that cannot be sent as a story-->
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Video snimci koji se šalju u pričama ne mogu biti duži od 30 sekundi.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Прослеђивање поруке је сада урађено сместа.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">Слање %1$d поруке</item>
@@ -3628,7 +3632,7 @@
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal је непрофитна без оглашивача или инвеститора, што је одржило само људи који га користе и цене. Направите понављајући месечни допринос и примите значку профила да бисте поделили своју подршку.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Зашто донирати?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal се залаже за развој технологије приватности отвореног кода која штити слободно изражавање и омогућава сигурну глобалну комуникацију.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Vaša donacija podstiče ovaj cilj i koristi se za razvoj i rad aplikacije koju milioni koriste za privatnu komunikaciju. Bez oglasa. Bez praćenja. Bez zezanja.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Vaša donacija doprinosi ostvarivanju ovog cilja i koristi se za razvoj i rad aplikacije koju milioni koriste za privatnu komunikaciju. Bez oglasa. Bez praćenja. Bez zezanja.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Хвала вам на подршци!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Хвала вам на Boost!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Добили сте %s беџ! Прикажите ову значку на свом профилу да бисте подигли свест о донирању Signal.</string>
@@ -3686,7 +3690,7 @@
   <!--Copy displayed when badge expires after user inactivity-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Vaša periodična mesečna donacija je automatski otkazana jer ste predugo bili neaktivni. Značka „%1$s“ više nije vidljiva na vašem profilu.</string>
   <!--Copy displayed when badge expires after payment failure-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Vaša periodična mesečna donacija je otkazana jer nismo mogli da obradimo vašu uplatu. Vaša značka više nije vidljiva na vašem profilu.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Vaša periodična mesečna donacija je otkazana jer nismo mogli da obradimo vašu uplatu. Značka više nije vidljiva na vašem profilu.</string>
   <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Vaša periodična mesečna donacija je otkazana. %1$s Značka „%2$s“ više nije vidljiva na vašem profilu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Још увек можете да кориситите Signal али да подржите апликацију и поново активирате своју значку, обновите сада.</string>
@@ -4058,12 +4062,32 @@
   <string name="MyStorySettingsFragment__who_can_see_this_story">Ко може да види ову причу</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Сакриј причу од</string>
-  <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <!--Privacy setting title for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections">Sve Signal veze</string>
+  <!--Privacy setting description for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__share_with_all_connections">Podelite sa svim vezama</string>
+  <!--Privacy setting title for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections_except">Sve Signal veze osim…</string>
+  <!--Privacy setting description for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Sakrijite priču od određenih ljudi</string>
+  <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <plurals name="MyStorySettingsFragment__d_people_excluded">
+    <item quantity="one">Izuzetih osoba: %1$d</item>
+    <item quantity="few">Izuzetih osoba: %1$d</item>
+    <item quantity="other">Izuzetih osoba: %1$d</item>
+  </plurals>
+  <!--Privacy setting title for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with">Samo podelite sa…</string>
+  <!--Privacy setting description for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">Samo podelite sa odabranim ljudima</string>
+  <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d особа</item>
     <item quantity="few">%1$d особе</item>
     <item quantity="other">%1$d особа</item>
   </plurals>
+  <!--My story privacy fine print about what the privacy settings are for-->
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Birajte ko može da vidi vašu priču. Izmene neće uticati na priče koje ste već poslali.</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">Одговори &amp; реакције</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -4072,10 +4096,10 @@
   <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Нека људи који могу да виде вашу причу реагују и одговоре</string>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Сакријте своју причу од одређених људи. Подразумевано, ваша прича се дели са вашим %1$s</string>
-  <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">Signal везе.</string> -->
+  <!--Signal connections bolded text in the Signal Connections sheet-->
+  <string name="SignalConnectionsBottomSheet___signal_connections">Signal veze</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Signal везе</strong> су људи од којих сте изабрали да верујете, тако што:</string>
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal veze su ljudi kojima verujete i koje ste izabrali na neki od sledećih načina:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">Започнете разговор</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4124,8 +4148,10 @@
   <string name="TextStoryPostSendFragment__search">Претрага</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Došlo je do neočekivane greške</string>
-  <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">Сакриј причу од…</string> -->
+  <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <string name="ChangeMyStoryMembershipFragment__all_except">Svi osim…</string>
+  <!--Title for screen allowing user to only share "My Story" entries with specific people-->
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">Samo podelite sa…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Готово</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4286,6 +4312,24 @@
     <item quantity="few">Групна прича · %1$d гледалаца</item>
     <item quantity="other">Групна прича · %1$d гледалаца</item>
   </plurals>
+  <!--Label for context menu item to open story settings-->
+  <string name="ContactSearchItems__story_settings">Подешавања приче</string>
+  <!--Label for context menu item to remove a group story from contact results-->
+  <string name="ContactSearchItems__remove_story">Ukloni priču</string>
+  <!--Label for context menu item to delete a private story-->
+  <string name="ContactSearchItems__delete_story">Izbriši priču</string>
+  <!--Dialog title for removing a group story-->
+  <string name="ContactSearchMediator__remove_group_story">Ukloni grupnu priču?</string>
+  <!--Dialog message for removing a group story-->
+  <string name="ContactSearchMediator__this_will_remove">Ovim ćete ukloniti priču sa liste. I dalje ćete moći da vidite priče iz ove grupe.</string>
+  <!--Dialog action item for removing a group story-->
+  <string name="ContactSearchMediator__remove">Уклони</string>
+  <!--Dialog title for deleting a private story-->
+  <string name="ContactSearchMediator__delete_story">Обрисати причу?</string>
+  <!--Dialog message for deleting a private story-->
+  <string name="ContactSearchMediator__delete_the_private">Želite li da izbrišete privatnu priču „%1$s“?</string>
+  <!--Dialog action item for deleting a private story-->
+  <string name="ContactSearchMediator__delete">Избриши</string>
   <!--Gift expiry days remaining-->
   <plurals name="Gifts__d_days_remaining">
     <item quantity="one">Остало %1$d дан</item>
@@ -4306,5 +4350,13 @@
   </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Истекло</string>
+  <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">Dodirnite da nastavite</string>
+  <!--Label indicating swipe direction to skip current story-->
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Prevucite nagore da preskočite</string>
+  <!--Label indicating swipe direction to exit story viewer-->
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Prevucite nadesno da izađete</string>
+  <!--Button label to confirm understanding of story navigation-->
+  <string name="StoryFirstTimeNagivationView__got_it">У реду</string>
   <!--EOF-->
 </resources>

@@ -272,6 +272,8 @@
     <item quantity="other">%d 則未讀訊息</item>
   </plurals>
   <!--ConversationFragment-->
+  <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">找不到聯絡人應用程式。</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="other">要刪除選取的訊息嗎？</item>
   </plurals>
@@ -853,6 +855,8 @@
   <string name="Megaphones_use_sms">使用短訊</string>
   <string name="Megaphones_appearance">外觀</string>
   <string name="Megaphones_add_photo">新增照片</string>
+  <!--Title of a bottom sheet to render messages that all quote a specific message-->
+  <string name="MessageQuotesBottomSheet_replies">回覆</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal 通話進行中</string>
   <string name="NotificationBarManager__establishing_signal_call">正在建立 Signal 通話</string>
@@ -1066,9 +1070,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">來自 %s 的一則訊息無法送達</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s 已變更電話號碼。</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">喜歡此新功能嗎？何妨集結小小心意，為 Signal 加一加油。</string> -->
-  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">萬家燈火照，將點點光輝，放進 Signal。今日就成為延續人吧。</string> -->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">您喜歡這個全新功能嗎？透過單次捐款來支持 Signal。</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s 開展了群組通話 · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 加入了群組通話 · %2$s</string>
@@ -1743,9 +1745,7 @@
   <string name="ConversationUpdateItem_view">檢視</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">當您發送訊息時，將會設置時效為 %1$s。</string>
   <!--Update item button text to show to boost a feature-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">Signal 有團伙</string> -->
-  <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">成為延續人</string> -->
+  <string name="ConversationUpdateItem_donate">捐款</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">播放 … 暫停</string>
   <string name="audio_view__download_accessibility_description">下載</string>
@@ -1978,16 +1978,16 @@
   <string name="HelpFragment__debug_log">除錯記錄檔：</string>
   <string name="HelpFragment__could_not_upload_logs">無法上載記錄檔</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">請儘可能具體描述，以協助我們瞭解箇中問題。</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
-    <item>\-\- 請選下列其中一項 \-\-</item>
-    <item>運作異常</item>
+  <string-array name="HelpFragment__categories_4">
+    <item>\-\- 請選擇一個選項 \-\-</item>
+    <item>系統運作異常</item>
     <item>功能請求</item>
-    <item>發問</item>
-    <item>意見回饋</item>
+    <item>問題</item>
+    <item>回饋</item>
     <item>其他</item>
     <item>付款 (MobileCoin)</item>
-    <item>延續人及 Signal 集氣</item>
-  </string-array> -->
+    <item>捐款 &amp; 徽章</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">此訊息</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使用</string>
@@ -3347,6 +3347,10 @@
   <string name="MultiselectForwardFragment__share_with">分享給</string>
   <string name="MultiselectForwardFragment__add_a_message">新增訊息</string>
   <string name="MultiselectForwardFragment__faster_forwards">轉寄更快速</string>
+  <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">影片會被修剪成 30 秒，並作為多個限時動態傳送。</string>
+  <!--Displayed when user selects a video that cannot be sent as a story-->
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">發送到限時動態的影片不得超過 30 秒。</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">訊息轉寄現將立即傳送。</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="other">傳送 %1$d 則訊息</item>
@@ -3843,10 +3847,28 @@
   <string name="MyStorySettingsFragment__who_can_see_this_story">誰可以看見此限時動態</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">對這些人隱藏限時動態</string>
-  <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <!--Privacy setting title for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections">所有 Signal 的人脈</string>
+  <!--Privacy setting description for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__share_with_all_connections">與所有人脈分享</string>
+  <!--Privacy setting title for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections_except">所有 Signal 的人脈，除了…</string>
+  <!--Privacy setting description for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">對特定的人隱藏您的限時動態</string>
+  <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <plurals name="MyStorySettingsFragment__d_people_excluded">
+    <item quantity="other">排除了 %1$d 個人</item>
+  </plurals>
+  <!--Privacy setting title for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with">只分享給…</string>
+  <!--Privacy setting description for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">只與選定的人分享</string>
+  <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="other">%1$d 人</item>
   </plurals>
+  <!--My story privacy fine print about what the privacy settings are for-->
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">選擇誰可以觀看您的限時動態。這不會影響您在更改前發送的限時動態。</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">回覆和心情</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -3855,10 +3877,10 @@
   <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">誰可檢視您的限時動態也可表達心情和回覆</string>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">對特定人士隱藏您的限時動態。您的限時動態預設與您的 %1$s分享。</string>
-  <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">Signal 人脈</string> -->
+  <!--Signal connections bolded text in the Signal Connections sheet-->
+  <string name="SignalConnectionsBottomSheet___signal_connections">Signal 的人脈</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Signal 人脈</strong>是您選擇信任的人，藉由您：</string>
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal 人脈是您透過以下方式選擇可信任的人：</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">開展一個對話</string>
   <!--Signal connections sheet bullet point 2-->
@@ -3907,8 +3929,10 @@
   <string name="TextStoryPostSendFragment__search">搜尋</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">發生未知錯誤</string>
-  <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">對這些人隱藏限時動態…</string> -->
+  <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <string name="ChangeMyStoryMembershipFragment__all_except">所有人，除了…</string>
+  <!--Title for screen allowing user to only share "My Story" entries with specific people-->
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">只分享給…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">完成</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4061,6 +4085,24 @@
   <plurals name="ContactSearchItems__group_story_d_viewers">
     <item quantity="other">群組限時動態 · %1$d 個觀看者</item>
   </plurals>
+  <!--Label for context menu item to open story settings-->
+  <string name="ContactSearchItems__story_settings">限時動態設定</string>
+  <!--Label for context menu item to remove a group story from contact results-->
+  <string name="ContactSearchItems__remove_story">移除限時動態</string>
+  <!--Label for context menu item to delete a private story-->
+  <string name="ContactSearchItems__delete_story">刪除限時動態</string>
+  <!--Dialog title for removing a group story-->
+  <string name="ContactSearchMediator__remove_group_story">要移除群組限時動態嗎？</string>
+  <!--Dialog message for removing a group story-->
+  <string name="ContactSearchMediator__this_will_remove">這樣會從清單中移除限時動態。您仍然可以觀看此群組的限時動態。</string>
+  <!--Dialog action item for removing a group story-->
+  <string name="ContactSearchMediator__remove">移除</string>
+  <!--Dialog title for deleting a private story-->
+  <string name="ContactSearchMediator__delete_story">要刪除限時動態嗎？</string>
+  <!--Dialog message for deleting a private story-->
+  <string name="ContactSearchMediator__delete_the_private">要刪除私人限時動態「%1$s」嗎？</string>
+  <!--Dialog action item for deleting a private story-->
+  <string name="ContactSearchMediator__delete">刪除</string>
   <!--Gift expiry days remaining-->
   <plurals name="Gifts__d_days_remaining">
     <item quantity="other">尚餘 %1$d 天</item>
@@ -4075,5 +4117,13 @@
   </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">已過期</string>
+  <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">輕按以繼續操作</string>
+  <!--Label indicating swipe direction to skip current story-->
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">向上滑動以跳過</string>
+  <!--Label indicating swipe direction to exit story viewer-->
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">向右滑動以退出</string>
+  <!--Button label to confirm understanding of story navigation-->
+  <string name="StoryFirstTimeNagivationView__got_it">我知道了</string>
   <!--EOF-->
 </resources>

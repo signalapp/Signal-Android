@@ -264,6 +264,7 @@
     <item quantity="other">%d نالوستي پیغامونه</item>
   </plurals>
   <!--ConversationFragment-->
+  <!--Toast text when contacts activity is not found-->
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">غواړئ ټاکل شوی پیغام پاک کړئ؟</item>
     <item quantity="other">غواړئ ټاکل شوي پیغامونه پاک کړئ؟</item>
@@ -819,6 +820,7 @@
   <string name="Megaphones_use_sms">SMS وکاروئ</string>
   <string name="Megaphones_appearance">د پروګرام ظاهر</string>
   <string name="Megaphones_add_photo">د انځور اضافه کول</string>
+  <!--Title of a bottom sheet to render messages that all quote a specific message-->
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">د Signal زنګ د پرمختګ په حال کې ده</string>
   <string name="NotificationBarManager__establishing_signal_call">د Signal زنګ رامنځته کول</string>
@@ -1035,7 +1037,6 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">تاسې له %s سره خپل د خوندیتوب شمېره له بلې وسیلې څخه د ناتایید شوي په توګه نښاني کړې</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">د %s یو پیغام و نه لیږل شو</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ګروپ کال پیل کړی. %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s په ګروپ کال کې ده. %2$s</string>
@@ -1689,8 +1690,7 @@
   <string name="ConversationUpdateItem_view">ليدل</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">کله چې تاسې هغوی ته پیغام لیږئ نو د ورک کېدونکي پیغام وخت به %1$s ته تنظیم شي.</string>
   <!--Update item button text to show to boost a feature-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">د Signal پیاوړی کول</string> -->
-  <!--Update item button text to show to become a sustainer in the release notes channel-->
+  <string name="ConversationUpdateItem_donate">مرسته کول</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">پلي کول… درول</string>
   <string name="audio_view__download_accessibility_description">راښکته کول</string>
@@ -3263,6 +3263,8 @@
   <string name="MultiselectForwardFragment__share_with">سره شریکول</string>
   <string name="MultiselectForwardFragment__add_a_message">د پیغام اضافه کول</string>
   <string name="MultiselectForwardFragment__faster_forwards">چټک فاروارډونه</string>
+  <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <!--Displayed when user selects a video that cannot be sent as a story-->
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">فاروارډ شوي پیغامونه اوس سملاسي ولیږل شول.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">%1$d پیغام ولیږئ</item>
@@ -3572,12 +3574,20 @@
   <!--Page title for My Story options-->
   <!--Section heading for story visibility-->
   <!--Clickable option for selecting people to hide your story from-->
-  <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <!--Privacy setting title for sending stories to all your signal connections-->
+  <!--Privacy setting description for sending stories to all your signal connections-->
+  <!--Privacy setting title for sending stories to all except the specified connections-->
+  <!--Privacy setting description for sending stories to all except the specified connections-->
+  <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <!--Privacy setting title for only sharing your story with specified connections-->
+  <!--Privacy setting description for only sharing your story with specified connections-->
+  <!--Summary of clickable option displaying how many people you have included to send to in your story-->
+  <!--My story privacy fine print about what the privacy settings are for-->
   <!--Section header for options related to replies and reactions-->
   <!--Switchable option for allowing replies and reactions on your stories-->
   <!--Summary for switchable option allowing replies and reactions on your story-->
   <!--Note about default sharing-->
-  <!--Signal connections linked text that opens the Signal Connections sheet-->
+  <!--Signal connections bolded text in the Signal Connections sheet-->
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
   <!--Signal connections sheet bullet point 1-->
   <!--Signal connections sheet bullet point 2-->
@@ -3608,7 +3618,8 @@
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">پلټنه</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
-  <!--Title for screen allowing user to hide "My Story" entries from specific people-->
+  <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <!--Title for screen allowing user to only share "My Story" entries with specific people-->
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">تر سره شو</string>
   <!--Dialog title for first time adding something to a story-->
@@ -3695,9 +3706,25 @@
   <string name="ExpiredGiftSheetConfiguration__not_now">اوس نه</string>
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
+  <!--Label for context menu item to open story settings-->
+  <!--Label for context menu item to remove a group story from contact results-->
+  <!--Label for context menu item to delete a private story-->
+  <!--Dialog title for removing a group story-->
+  <!--Dialog message for removing a group story-->
+  <!--Dialog action item for removing a group story-->
+  <string name="ContactSearchMediator__remove">ایسته کول</string>
+  <!--Dialog title for deleting a private story-->
+  <!--Dialog message for deleting a private story-->
+  <!--Dialog action item for deleting a private story-->
+  <string name="ContactSearchMediator__delete">پاکول</string>
   <!--Gift expiry days remaining-->
   <!--Gift expiry hours remaining-->
   <!--Gift expiry minutes remaining-->
   <!--Gift expiry expired-->
+  <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <!--Label indicating swipe direction to skip current story-->
+  <!--Label indicating swipe direction to exit story viewer-->
+  <!--Button label to confirm understanding of story navigation-->
+  <string name="StoryFirstTimeNagivationView__got_it">پوه شوئ</string>
   <!--EOF-->
 </resources>

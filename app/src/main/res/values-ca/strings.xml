@@ -274,6 +274,7 @@
     <item quantity="other">%d missatges sense llegir</item>
   </plurals>
   <!--ConversationFragment-->
+  <!--Toast text when contacts activity is not found-->
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Voleu suprimir el missatge seleccionat?</item>
     <item quantity="other">Voleu suprimir els missatges seleccionats?</item>
@@ -902,6 +903,8 @@
   <string name="Megaphones_use_sms">Usa SMS</string>
   <string name="Megaphones_appearance">Aparença</string>
   <string name="Megaphones_add_photo">Afegiu-hi una fotografia</string>
+  <!--Title of a bottom sheet to render messages that all quote a specific message-->
+  <string name="MessageQuotesBottomSheet_replies">Respostes</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Trucada del Signal en curs</string>
   <string name="NotificationBarManager__establishing_signal_call">S\'estableix la trucada del Signal</string>
@@ -1124,9 +1127,6 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">No s\'ha pogut lliurar un missatge de %s.</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s ha canviat el número de telèfon.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Us agrada aquesta funció nova? Doneu les gràcies amb una Empenta.</string> -->
-  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">El Signal és sostingut per persones com vosaltres. Convertiu-vos-en en un sostenidor avui.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ha iniciat una trucada de grup · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s és a la trucada de grup · %2$s</string>
@@ -1816,9 +1816,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ConversationUpdateItem_view">Vista</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">El temps de desaparició del missatge s\'establirà a %1$s quan els n\'envieu un.</string>
   <!--Update item button text to show to boost a feature-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">Empenta del Signal</string> -->
-  <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">Sigueu-ne un sostenidor</string> -->
+  <string name="ConversationUpdateItem_donate">Feu una donació</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Reprodueix… Pausa</string>
   <string name="audio_view__download_accessibility_description">Baixa</string>
@@ -2058,16 +2056,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="HelpFragment__debug_log">Informe de depuració:</string>
   <string name="HelpFragment__could_not_upload_logs">No s\'han pogut carregar els registres.</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Si us plau, expliqueu-ho de la manera més descriptiva possible per ajudar-nos a entendre el problema.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
-    <item>\-\- Seleccioneu una opció. \-\-</item>
-    <item>Alguna cosa no funciona.</item>
-    <item>Petició de funció</item>
-    <item>Pregunta</item>
-    <item>Retroacció</item>
-    <item>Altres</item>
-    <item>Pagaments  (MobileCoin) </item>
-    <item>Donacions (Sostenidors i Signal Boost)</item>
-  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Aquest missatge</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Usat recentment</string>
@@ -3441,6 +3429,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MultiselectForwardFragment__share_with">Comparteix amb</string>
   <string name="MultiselectForwardFragment__add_a_message">Afegiu-hi un missatge</string>
   <string name="MultiselectForwardFragment__faster_forwards">Reenviaments més ràpids</string>
+  <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <!--Displayed when user selects a video that cannot be sent as a story-->
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Ara els missatges reenviats s\'envien immediatament.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">Envia %1$d missatge</item>
@@ -3945,11 +3935,19 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MyStorySettingsFragment__who_can_see_this_story">Qui pot veure aquesta història</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Amaga la història de</string>
-  <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <!--Privacy setting title for sending stories to all your signal connections-->
+  <!--Privacy setting description for sending stories to all your signal connections-->
+  <!--Privacy setting title for sending stories to all except the specified connections-->
+  <!--Privacy setting description for sending stories to all except the specified connections-->
+  <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <!--Privacy setting title for only sharing your story with specified connections-->
+  <!--Privacy setting description for only sharing your story with specified connections-->
+  <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d persona</item>
     <item quantity="other">%1$d persones</item>
   </plurals>
+  <!--My story privacy fine print about what the privacy settings are for-->
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">Respostes i reaccions</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -3958,10 +3956,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Permeteu que les persones que puguin veure la història hi reaccionin i hi responguin.</string>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Amagueu la història a persones específiques. De manera predeterminada, la vostra història es comparteix amb %1$s</string>
-  <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">Connexions del Signal.</string> -->
+  <!--Signal connections bolded text in the Signal Connections sheet-->
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Les <strong>connexions del Signal</strong> són persones en qui heu triat confiar, ja sigui per</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">començar una conversa</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4010,8 +4006,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="TextStoryPostSendFragment__search">Cerca</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Alguna cosa ha anat malament</string>
-  <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">Amaga la història de…</string> -->
+  <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <!--Title for screen allowing user to only share "My Story" entries with specific people-->
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Fet</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4168,6 +4164,19 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
     <item quantity="one">Història de grup · %1$d espectador</item>
     <item quantity="other">Història de grup · %1$d espectadors</item>
   </plurals>
+  <!--Label for context menu item to open story settings-->
+  <string name="ContactSearchItems__story_settings">Configuració de la història</string>
+  <!--Label for context menu item to remove a group story from contact results-->
+  <!--Label for context menu item to delete a private story-->
+  <!--Dialog title for removing a group story-->
+  <!--Dialog message for removing a group story-->
+  <!--Dialog action item for removing a group story-->
+  <string name="ContactSearchMediator__remove">Suprimeix</string>
+  <!--Dialog title for deleting a private story-->
+  <string name="ContactSearchMediator__delete_story">Voleu suprimir la història?</string>
+  <!--Dialog message for deleting a private story-->
+  <!--Dialog action item for deleting a private story-->
+  <string name="ContactSearchMediator__delete">Suprimits</string>
   <!--Gift expiry days remaining-->
   <plurals name="Gifts__d_days_remaining">
     <item quantity="one">%1$d dia restant</item>
@@ -4185,5 +4194,10 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Ha vençut</string>
+  <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <!--Label indicating swipe direction to skip current story-->
+  <!--Label indicating swipe direction to exit story viewer-->
+  <!--Button label to confirm understanding of story navigation-->
+  <string name="StoryFirstTimeNagivationView__got_it">Entesos</string>
   <!--EOF-->
 </resources>

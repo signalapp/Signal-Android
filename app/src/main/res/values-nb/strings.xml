@@ -208,8 +208,10 @@
   <string name="ConversationActivity_calls_not_supported">Samtaler støttes ikke</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Denne enheten ser ikke ut til å støtte oppringing.</string>
   <string name="ConversationActivity_transport_insecure_sms">Usikker SMS</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
   <string name="ConversationActivity_transport_insecure_mms">Usikker MMS</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_signal">Signal-melding</string>
   <string name="ConversationActivity_lets_switch_to_signal">La oss bytte til Signal %1$s</string>
   <string name="ConversationActivity_specify_recipient">Velg en kontakt</string>
   <string name="ConversationActivity_unblock">Fjern blokkering</string>
@@ -217,6 +219,7 @@
   <string name="ConversationActivity_unable_to_record_audio">Kan ikke ta opp lyd!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kan ikke sende meldinger til denne gruppen fordi du ikke lenger er medlem av den.</string>
   <string name="ConversationActivity_only_s_can_send_messages">Kun %1$s kan sende meldinger.</string>
+  <string name="ConversationActivity_admins">administratorer</string>
   <string name="ConversationActivity_cant_start_group_call">Kan ikke starte gruppeanrop</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Bare administratorer for denne gruppen kan starte en samtale.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Du har ingen programmer på denne enheten som kan håndtere denne lenka.</string>
@@ -258,6 +261,8 @@
     <item quantity="other">%d uleste meldinger</item>
   </plurals>
   <!--ConversationFragment-->
+  <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">Kunne ikke finne kontakter-appen.</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Vil du slette valgt melding?</item>
     <item quantity="other">Vil du slette valgte meldinger?</item>
@@ -328,7 +333,7 @@
     <item quantity="one">Samtale arkivert</item>
     <item quantity="other">%d samtaler arkivert</item>
   </plurals>
-  <string name="ConversationListFragment_undo">ANGRE</string>
+  <string name="ConversationListFragment_undo">Angre</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Flyttet samtalen til innboks</item>
     <item quantity="other">Flyttet %d samtaler til innboks</item>
@@ -590,8 +595,7 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">Dette feltet er påkrevd.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Oppretting av gruppen mislyktes.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Prøv igjen senere.</string>
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Du har valgt en kontakt som ikke støtter Signal-grupper. Denne gruppa blir derfor en MMS-gruppe.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Selvvalgte MMS-gruppenavn og -gruppebilder er kun synlige for deg.</string> -->
+  <!--Displayed when adding group details to an MMS Group-->
   <string name="AddGroupDetailsFragment__remove">Fjern</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS-kontakt</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Fjern %1$s fra denne gruppen?</string>
@@ -651,6 +655,7 @@
   <string name="ManageProfileFragment_your_name">Ditt navn</string>
   <string name="ManageProfileFragment_your_username">Ditt brukernavn</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Kunne ikke lagre profilbilde</string>
+  <string name="ManageProfileFragment_badges">Merker</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Ingen grupper til felles</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -821,10 +826,12 @@
   <string name="Megaphones_invite_friends">Inviter venner</string>
   <string name="Megaphones_use_sms">Bruk SMS</string>
   <string name="Megaphones_appearance">Utseende</string>
+  <!--Title of a bottom sheet to render messages that all quote a specific message-->
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtale pågår</string>
   <string name="NotificationBarManager__establishing_signal_call">Setter opp Signal-anrop</string>
   <string name="NotificationBarManager__incoming_signal_call">Inngående Signal-anrop</string>
+  <!--Temporary notification shown when starting the calling service-->
   <string name="NotificationBarManager__stopping_signal_call_service">Stopper Signal-tjenesten</string>
   <string name="NotificationBarManager__answer_call">Svar på anrop</string>
   <string name="NotificationBarManager__end_call">Avslutt samtale</string>
@@ -976,6 +983,10 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s endret hvem som kan redigere gruppemedlemskap til \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Den som kan redigere gruppemedlemskap er endret til \"%1$s\".</string>
   <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Du endret gruppeinnstillingene slik at alle kan sende meldinger.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Du endret gruppeinnstillingene slik at kun administratorer kan sende meldinger.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Gruppeinnstillingene ble endret for å gjøre det mulig for alle i gruppa å sende meldinger.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Gruppeinnstillingene ble satt til at kun administratorer kan sende meldinger.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Du slo på gruppelenken med administrativ godkjenning avslått.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Du slo på gruppelenken med administrativ godkjenning skrudd på.</string>
@@ -1023,7 +1034,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du markerte sikkerhetsnummer for %s som ikke bekreftet fra en annen enhet</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">En melding fra %s kunne ikke leveres</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Liker du denne nye funksjonen? Vil du støtte Signal med en ekstra pengegave?</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s startet en gruppesamtale · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s er i gruppesamtalen · %2$s</string>
@@ -1516,6 +1527,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Søk</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Søk etter samtaler, kontakter, og meldinger</string>
+  <!--Material3 Search Toolbar-->
+  <string name="Material3SearchToolbar__close">Lukk</string>
+  <string name="Material3SearchToolbar__clear">Slett</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Ugyldig snarvei</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -1638,7 +1652,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ConversationUpdateItem_view">Vis</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Utløpstiden for meldinger blir satt til %1$s når du melder dem.</string>
   <!--Update item button text to show to boost a feature-->
-  <!--Update item button text to show to become a sustainer in the release notes channel-->
+  <string name="ConversationUpdateItem_donate">Donér</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spill av … Pause</string>
   <string name="audio_view__download_accessibility_description">Last ned</string>
@@ -1756,8 +1770,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Ingen medier</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__view">VIS</string>
-  <string name="message_recipients_list_item__resend">SEND PÅ NYTT</string>
+  <string name="message_recipients_list_item__view">Vis</string>
+  <string name="message_recipients_list_item__resend">Send på nytt</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
   <!--Displayed when there are no outgoing stories-->
   <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Varsler om storyen din vil vises her.</string>
@@ -1773,6 +1787,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal krever MMS-oppsett for å levere medier og gruppemeldinger via mobilnett. Enheten din gjør ikke denne informasjonen tilgjengelig, som kan skje for låste enheter og andre restriktive konfigurasjoner.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Trykk «OK» og følg anvisninger hvis du vil sende medie- og gruppemeldinger. Du finner vanligvis MMS-oppsettet for operatøren din ved å søke etter «din operatør APN». Du trenger bare å gjøre dette én gang.</string>
   <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">Problemer med sending</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Fornavn (påkrevd)</string>
   <string name="CreateProfileActivity_last_name_optional">Etternavn (valgfritt)</string>
@@ -1819,8 +1834,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Sveip ned for å avvise</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Problemer venter på manuell løsning.</string>
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">Sendt:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">Mottatt:</string> -->
+  <string name="message_details_header_sent">Sendt</string>
+  <string name="message_details_header_received">Mottatt</string>
+  <string name="message_details_header_disappears">Forsvinner</string>
+  <string name="message_details_header_via">Via</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Avventer</string>
   <string name="message_details_recipient_header__sent_to">Sendt til</string>
@@ -1863,6 +1880,16 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="HelpFragment__debug_log">Feilsøkingslogg:</string>
   <string name="HelpFragment__could_not_upload_logs">Kunne ikke laste opp logger</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vær så beskrivende som mulig for å hjelpe oss med å forstå problemet.</string>
+  <string-array name="HelpFragment__categories_4">
+    <item>\-\- Velg et alternativ \-\-</item>
+    <item>Noe virker ikke som det skal</item>
+    <item>Forespørsel om funksjon</item>
+    <item>Spørsmål</item>
+    <item>Tilbakemelding</item>
+    <item>Annet</item>
+    <item>Betaling (MobileCoin)</item>
+    <item>Donasjoner og merker</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne meldingen</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nylig brukt</string>
@@ -2170,6 +2197,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="CreatePaymentFragment__0">0</string>
   <string name="CreatePaymentFragment__lt">&lt;</string>
   <string name="CreatePaymentFragment__add_note">Legg til notat</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">Valutakursen er kun et estimat som kan være unøyaktig.</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Notat</string>
   <!--ConfirmPaymentFragment-->
@@ -2210,6 +2238,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="conversation_expiring_off__disappearing_messages">Tidsavgrensede meldinger</string>
   <!--conversation_selection-->
   <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">Info</string>
   <!--Button to copy a message\'s text to the clipboard-->
   <string name="conversation_selection__menu_copy">Kopier</string>
   <!--Button to delete a message-->
@@ -2782,12 +2811,16 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">Om MobileCoin</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin er en ny, personvernorientert digital valuta.</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Du kan legge til penger for å bruke i Signal ved å sende MobileCoin til kontonummeret ditt.</string>
   <string name="payment_info_card_hide">Skjul</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">Gjenopprettingspassordet ditt gjør det mulig å gjenopprette betalingskontoen din.</string>
   <string name="payment_info_card_update_your_pin">Oppdater PIN-koden din</string>
+  <string name="payment_info_card_with_a_high_balance">Det kan være lurt å velge en sikrere PIN-kode som består av både tall og bokstaver når du har en høy saldo.</string>
   <string name="payment_info_card_update_pin">Oppdater PIN</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__your_balance">Din balanse</string>
   <string name="DeactivateWalletFragment__deactivate">Deaktiver</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">Kontosaldoen din vil holde seg i lommeboken du har koblet til Signal hvis du ønsker å reaktivere betalingene.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Gjenopprettingsfrase</string>
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Se gjenopprettingsfrasen</string>
@@ -2811,6 +2844,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Betalingskontoen ble gjenopprettet.</string>
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Ugyldig gjenopprettingsfrase</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Kopier til utklippstavlen?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Pass på at gjenopprettingspassordet er lagret en trygg og sikker plass hvis du velger å lagre det digitalt.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopier</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Bekreft gjenopprettingfrasen</string>
@@ -2986,6 +3020,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__not_now">Ikke nå</string>
   <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Bli en støttespiller</string>
   <!--Displayed in the Become a Sustainer megaphone-->
   <string name="BecomeASustainerMegaphone__not_now">Ikke nå</string>
   <string name="BecomeASustainerMegaphone__donate">Donér</string>
@@ -3039,11 +3074,13 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Kamera</string>
   <string name="AvatarPickerFragment__photo">Bilde</string>
+  <string name="AvatarPickerFragment__text">Tekst</string>
   <string name="AvatarPickerFragment__save">Lagre</string>
   <string name="AvatarPickerFragment__edit">Rediger</string>
   <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Forhåndsvisning</string>
   <string name="TextAvatarCreationFragment__done">Ferdig</string>
+  <string name="TextAvatarCreationFragment__text">Tekst</string>
   <string name="TextAvatarCreationFragment__color">Farge</string>
   <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
@@ -3053,20 +3090,34 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--DSLSettingsToolbar-->
   <!--Displayed when sharing content via the fragment-->
   <string name="MultiselectForwardFragment__share_with">Del med</string>
+  <string name="MultiselectForwardFragment__add_a_message">Legg til en melding</string>
+  <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">Videoene vil kuttes ned til klipp på 30 sekunder og sendes som flere stories.</string>
+  <!--Displayed when user selects a video that cannot be sent as a story-->
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Videoer som legges ut på story kan ikke være lengre enn 30 sekunder.</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Videresendte meldinger sendes nå umiddelbart.</string>
   <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Legg til en melding</string>
   <string name="ImageEditorHud__cancel">Avbryt</string>
   <string name="ImageEditorHud__undo">Angre</string>
   <string name="ImageEditorHud__delete">Slett</string>
   <string name="MediaCountIndicatorButton__send">Send</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Trykk for å velge</string>
   <string name="MediaReviewImagePageFragment__discard">Kast</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Vis merkene på profilen</string>
   <string name="SelectFeaturedBadgeFragment__preview">Forhåndsvisning</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal drives av folk som deg.</string>
+  <string name="SubscribeFragment__more_payment_options">Flere betalingsalternativer</string>
+  <string name="SubscribeFragment__cancel_subscription">Avslutt abonnement</string>
+  <string name="SubscribeFragment__confirm_cancellation">Bekrefte kanselleringen?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Betalingen vil ikke trekkes igjen. Merket fjernes fra profilen din på slutten av abonnementsperioden.</string>
   <string name="SubscribeFragment__not_now">Ikke nå</string>
   <string name="SubscribeFragment__confirm">Bekreft</string>
   <string name="SubscribeFragment__update">Oppdater</string>
   <!--First small text blurb on learn more sheet-->
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Hvorfor donere?</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Takk for donasjonen!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Vis på profilen</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Ferdig</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Når du har mer enn ett merke, kan du velge ett som skal vises som andre kan se på profilen din.</string>
   <!--Button label for creating a monthly donation-->
@@ -3075,18 +3126,23 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--Heading for receipts area of manage subscriptions page-->
   <!--Heading for my subscription area of manage subscriptions page-->
   <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__badges">Merker</string>
   <!--Preference heading for other ways to donate-->
   <!--Preference label to launch badge gifting-->
   <!--Description text in boost sheet-->
   <string name="Boost__enter_custom_amount">Angi tilpasset beløp</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__please_contact_support">Ta kontakt med kundestøtten vår.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
   <!--Displayed in the bottom sheet when a boost badge expires-->
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bli en støttespiller</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikke nå</string>
   <!--Copy displayed when badge expires after user inactivity-->
   <!--Copy displayed when badge expires after payment failure-->
+  <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
+  <!--Button label to send user to Google Pay website-->
   <string name="Subscription__contact_support">Kontakt brukerstøtte</string>
   <string name="SubscribeFragment__processing_payment">Behandler betaling …</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
@@ -3248,8 +3304,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Sender…</string>
   <!--Label when multiple stories are pending sending-->
-  <!--Label when a story fails to send-->
+  <!--Label when a story fails to send due to networking-->
   <string name="StoriesLandingItem__send_failed">Sending feilet</string>
+  <!--Label when a story fails to send due to identity mismatch-->
   <!--Status label when a story fails to send indicating user action to retry-->
   <!--Title of dialog confirming decision to hide a story-->
   <!--Message of dialog confirming decision to hide a story-->
@@ -3263,6 +3320,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
   <!--Title of dialog to confirm deletion of story-->
   <!--Message of dialog to confirm deletion of story-->
+  <!--Toast shown when story media cannot be saved-->
   <!--Displayed at bottom of story viewer when current item has views-->
   <!--Displayed at bottom of story viewer when current item has replies-->
   <!--Used to join views and replies when both exist on a story item-->
@@ -3273,7 +3331,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="StoryViewerPageFragment__s_to_s">%1$s til %2$s</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Svar</string>
-  <!--Displayed when viewing a group post from another user with no replies-->
+  <!--Label for the reply button in story viewer, which will launch the group story replies bottom sheet.-->
   <!--Displayed when a story has no views-->
   <!--Displayed when a story has no replies yet-->
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -3295,13 +3353,34 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MyStorySettingsFragment__my_story">Min story</string>
   <!--Section heading for story visibility-->
   <!--Clickable option for selecting people to hide your story from-->
-  <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <!--Privacy setting title for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections">Alle kontakter på Signal</string>
+  <!--Privacy setting description for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__share_with_all_connections">Del med alle på kontaktlisten</string>
+  <!--Privacy setting title for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections_except">Alle kontakter på Signal unntatt…</string>
+  <!--Privacy setting description for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Skjul historien din for utvalgte personer</string>
+  <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <plurals name="MyStorySettingsFragment__d_people_excluded">
+    <item quantity="one">%1$d person er ekskludert</item>
+    <item quantity="other">%1$d personer er ekskludert</item>
+  </plurals>
+  <!--Privacy setting title for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with">Del kun med…</string>
+  <!--Privacy setting description for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">Del kun med utvalgte personer</string>
+  <!--Summary of clickable option displaying how many people you have included to send to in your story-->
+  <!--My story privacy fine print about what the privacy settings are for-->
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Velg ut hvem som kan se storyen din. Dette vil ikke påvirke stories som du allerede har delt.</string>
   <!--Section header for options related to replies and reactions-->
   <!--Switchable option for allowing replies and reactions on your stories-->
   <!--Summary for switchable option allowing replies and reactions on your story-->
   <!--Note about default sharing-->
-  <!--Signal connections linked text that opens the Signal Connections sheet-->
+  <!--Signal connections bolded text in the Signal Connections sheet-->
+  <string name="SignalConnectionsBottomSheet___signal_connections">Signal-kontakter</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal-kontakter er personer som du stoler på, enten ved:</string>
   <!--Signal connections sheet bullet point 1-->
   <!--Signal connections sheet bullet point 2-->
   <!--Signal connections sheet bullet point 3-->
@@ -3323,13 +3402,18 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--Displayed in text post creator when prompting user to enter text-->
   <!--Content description for \'done\' button when adding text to a story post-->
   <!--Text label for media selection toggle-->
+  <string name="MediaSelectionActivity__text">Tekst</string>
   <!--Camera label for media selection toggle-->
   <string name="MediaSelectionActivity__camera">Kamera</string>
   <!--Hint for entering a URL for a text post-->
   <!--Displayed prior to the user entering a URL for a text post-->
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Søk</string>
-  <!--Title for screen allowing user to hide "My Story" entries from specific people-->
+  <!--Toast shown when an unexpected error occurs while sending a text story-->
+  <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <string name="ChangeMyStoryMembershipFragment__all_except">Alle unntatt…</string>
+  <!--Title for screen allowing user to only share "My Story" entries with specific people-->
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">Del kun med…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Ferdig</string>
   <!--Dialog title for first time adding something to a story-->
@@ -3396,6 +3480,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
   <!--Text explaining that this gift is a one time donation-->
   <!--Hint for add message input-->
+  <string name="GiftFlowConfirmationFragment__add_a_message">Legg til en melding</string>
   <!--Displayed in the dialog while verifying the chosen recipient-->
   <!--Title for sheet shown when opening a redeemed gift-->
   <!--Title for sheet shown when opening a sent gift-->
@@ -3416,9 +3501,33 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ExpiredGiftSheetConfiguration__not_now">Ikke nå</string>
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
+  <!--Label for context menu item to open story settings-->
+  <!--Label for context menu item to remove a group story from contact results-->
+  <string name="ContactSearchItems__remove_story">Fjern story</string>
+  <!--Label for context menu item to delete a private story-->
+  <string name="ContactSearchItems__delete_story">Slett story</string>
+  <!--Dialog title for removing a group story-->
+  <string name="ContactSearchMediator__remove_group_story">Vil du fjerne gruppestoryen?</string>
+  <!--Dialog message for removing a group story-->
+  <string name="ContactSearchMediator__this_will_remove">Dette vil fjerne storyen fra listen. Du vil fremdeles se de andre storyene i denne gruppen.</string>
+  <!--Dialog action item for removing a group story-->
+  <string name="ContactSearchMediator__remove">Fjern</string>
+  <!--Dialog title for deleting a private story-->
+  <!--Dialog message for deleting a private story-->
+  <string name="ContactSearchMediator__delete_the_private">Vil du slette den private storyen \"%1$s\"?</string>
+  <!--Dialog action item for deleting a private story-->
+  <string name="ContactSearchMediator__delete">Slett</string>
   <!--Gift expiry days remaining-->
   <!--Gift expiry hours remaining-->
   <!--Gift expiry minutes remaining-->
   <!--Gift expiry expired-->
+  <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">Trykk for å gå videre</string>
+  <!--Label indicating swipe direction to skip current story-->
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Sveip opp for å hoppe over</string>
+  <!--Label indicating swipe direction to exit story viewer-->
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Sveip til høyre for å avslutte</string>
+  <!--Button label to confirm understanding of story navigation-->
+  <string name="StoryFirstTimeNagivationView__got_it">Skjønner</string>
   <!--EOF-->
 </resources>

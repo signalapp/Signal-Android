@@ -278,6 +278,8 @@
     <item quantity="other">%d непрочитаних повідомлень</item>
   </plurals>
   <!--ConversationFragment-->
+  <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">Програму з контактами не знайдено.</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Видалити обране повідомлення?</item>
     <item quantity="few">Видалити обрані повідомлення?</item>
@@ -733,7 +735,7 @@
   <string name="AddGroupDetailsFragment__group_creation_failed">Не вдалось створити групу.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Спробуйте знову пізніше.</string>
   <!--Displayed when adding group details to an MMS Group-->
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Ви вибрали контакт, який не підтримує групи Signal, тому ця група буде MMS-групою. Настроювані назви і фото MMS-групи будуть видимі тільки для вас.</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Ви вибрали контакт, який не підтримує групи Signal, тому ця група буде MMS-групою. Настроювані назви і фото MMS-групи зможете бачити тільки ви.</string>
   <string name="AddGroupDetailsFragment__remove">Вилучити</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS контакт</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Видалити %1$s з цієї групи?</string>
@@ -1000,6 +1002,8 @@
   <string name="Megaphones_use_sms">Використовувати SMS </string>
   <string name="Megaphones_appearance">Вигляд</string>
   <string name="Megaphones_add_photo">Додати Фото</string>
+  <!--Title of a bottom sheet to render messages that all quote a specific message-->
+  <string name="MessageQuotesBottomSheet_replies">Відповіді</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Відбувається виклик Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Встановлення виклику Signal</string>
@@ -1241,9 +1245,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Повідомлення від %s неможливо доставити </string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s змінив номер телефону.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Подобається нова можливість? Подякуйте Boost\'ом.</string> -->
-  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal працює завдяки таким людям, як ви. Підтримайте нас сьогодні.</string> -->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Подобається нова функція? Підтримайте Signal за допомогою разового внеску.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s розпочав груповий дзвінок · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s бере участь у груповому дзвінку · %2$s</string>
@@ -1285,7 +1287,7 @@
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ця Застаріла Група більше не може використовуватись, тому що вона занадто велика. Максимальний розмір групи це - %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Продовжити вашу розмову з %1$s і відкрити ваше ім\'я і фото для цієї людини?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Приєднатися до цієї групи та поділитися своїм ім’ям та фото з її учасниками? Вони не знатимуть, що ви бачили їхні повідомлення, поки ви не приймете.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Приєднатися до цієї групи та поділитися своїм ім’ям і фото з її учасниками? Ви не бачитиме повідомлення групи, доки не погодитесь.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Приєднатися до цієї групи та поділитися своїм ім’ям і фото з її учасниками? Ви не будете бачити повідомлення групи, доки не погодитесь.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Приєднатись до групи? Вони не дізнаються, що ви бачили їх повідомлення допоки ви не приймете запит.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Розблокувати цю групу та поділитися своїм ім’ям та фото з її учасниками? Ви не отримаєте жодного повідомлення, поки не розблокуєте їх.</string>
   <string name="MessageRequestProfileView_view">Детальніше</string>
@@ -1442,7 +1444,7 @@
   <!--Title for dialog warning about lacking bluetooth permissions during a call-->
   <string name="WebRtcCallActivity__bluetooth_permission_denied">Доступ до Bluetooth не отримано</string>
   <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
-  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Увімкніть дозвіл «пристроїв поблизу», щоб використовувати Bluetooth під час дзвінка.</string>
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Увімкніть дозвіл «Пристроїв поблизу», щоб використовувати Bluetooth під час дзвінка.</string>
   <!--Positive action for bluetooth warning dialog to open settings-->
   <string name="WebRtcCallActivity__open_settings">Відкрити налаштування</string>
   <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
@@ -1978,9 +1980,7 @@
   <string name="ConversationUpdateItem_view">Детальніше</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Час зникання повідомлення буде встановлено на %1$s, коли ви його відправите їм.</string>
   <!--Update item button text to show to boost a feature-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">Розвиток Signal</string> -->
-  <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">Стати прихильником</string> -->
+  <string name="ConversationUpdateItem_donate">Дарувати</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Відтворення … Пауза </string>
   <string name="audio_view__download_accessibility_description">Завантажити</string>
@@ -2234,16 +2234,16 @@
   <string name="HelpFragment__debug_log">Журнал відладки:</string>
   <string name="HelpFragment__could_not_upload_logs">Не вдалося вивантажити логи</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Будь ласка, пишіть якомога детальніше, щоб допомогти нам зрозуміти проблему. </string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
+  <string-array name="HelpFragment__categories_4">
     <item>\-\- Виберіть варіант \-\-</item>
     <item>Щось не працює</item>
-    <item>Запит на функцію</item>
-    <item>Запитання</item>
-    <item>Відгук</item>
+    <item>Пропозиція функції</item>
+    <item>Питання</item>
+    <item>Зворотній зв\'язок</item>
     <item>Інше</item>
     <item>Платежі (MobileCoin)</item>
-    <item>Прихильники &amp; Signal Boost</item>
-  </string-array> -->
+    <item>Донати і значки</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Це повідомлення</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Недавні</string>
@@ -3647,6 +3647,10 @@
   <string name="MultiselectForwardFragment__share_with">Поділитися із</string>
   <string name="MultiselectForwardFragment__add_a_message">Додати повідомлення</string>
   <string name="MultiselectForwardFragment__faster_forwards">Швидше пересилання</string>
+  <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">Відео обріжеться до 30-секундних кліпів і опублікуються як кілька сторіз.</string>
+  <!--Displayed when user selects a video that cannot be sent as a story-->
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Відео в сторіз не може тривати довше 30 сек.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Переслані повідомлення тепер відправляються миттєво.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">Відправити повідомлення %1$d</item>
@@ -4167,13 +4171,34 @@
   <string name="MyStorySettingsFragment__who_can_see_this_story">Хто може бачити цю історію</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Сховати історію від</string>
-  <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <!--Privacy setting title for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections">Усі знайомі в Signal</string>
+  <!--Privacy setting description for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__share_with_all_connections">Ділитися з усіма знайомими</string>
+  <!--Privacy setting title for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections_except">Усі знайомі в Signal, крім…</string>
+  <!--Privacy setting description for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Приховати сторіз від деяких людей</string>
+  <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <plurals name="MyStorySettingsFragment__d_people_excluded">
+    <item quantity="one">Приховано від %1$d людини</item>
+    <item quantity="few">Приховано від %1$d людей</item>
+    <item quantity="many">Приховано від %1$d людей</item>
+    <item quantity="other">Приховано від %1$d людини</item>
+  </plurals>
+  <!--Privacy setting title for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with">Ділитися тільки з…</string>
+  <!--Privacy setting description for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">Ділитися тільки з вибраними людьми</string>
+  <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d особи</item>
     <item quantity="few">%1$d осіб</item>
     <item quantity="many">%1$d осіб</item>
     <item quantity="other">%1$d осіб</item>
   </plurals>
+  <!--My story privacy fine print about what the privacy settings are for-->
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Виберіть, хто може переглядати ваші сторіз. Зміни не впливатимуть на вже надіслані сторіз.</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">Відповіді &amp; реакції</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -4182,10 +4207,10 @@
   <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Дозволити тим, хто бачить вашу історію, реагувати та відповідати</string>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Приховати історію від певних осіб. За замовчуванням вашу історію побачать %1$s</string>
-  <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">Знайомі у Signal.</string> -->
+  <!--Signal connections bolded text in the Signal Connections sheet-->
+  <string name="SignalConnectionsBottomSheet___signal_connections">Знайомі в Signal</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Знайомі у Signal</strong> — особи, яким ви довіряєте, бо:</string>
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Знайомі в Signal — це люди, яким ви вирішили довіряти одним із таких способів:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">Почали з ними розмову</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4234,8 +4259,10 @@
   <string name="TextStoryPostSendFragment__search">Пошук</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Сталася неочікувана помилка</string>
-  <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">Сховати історію від…</string> -->
+  <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <string name="ChangeMyStoryMembershipFragment__all_except">Усі, крім…</string>
+  <!--Title for screen allowing user to only share "My Story" entries with specific people-->
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">Ділитися тільки з…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Готово</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4296,7 +4323,7 @@
   <!--Displayed in story caption when content is longer than 5 lines-->
   <string name="StoryViewerPageFragment__see_more">… Читати далі</string>
   <!--Displayed in toast after sending a direct reply-->
-  <string name="StoryDirectReplyDialogFragment__sending_reply">Надсилаємо відповіть…</string>
+  <string name="StoryDirectReplyDialogFragment__sending_reply">Надсилаємо відповідь…</string>
   <!--Displayed in the viewer when a story is no longer available-->
   <string name="StorySlateView__this_story_is_no_longer_available">Ця історія вже недоступна.</string>
   <!--Displayed in the viewer when the network is not available-->
@@ -4341,11 +4368,11 @@
   <!--Headline text on start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__gift_a_badge">Подарувати емблему</string>
   <!--Description text on start fragment for gifting a badge-->
-  <string name="GiftFlowStartFragment__gift_someone_a_badge">Подаруйте комусь значок, зробивши пожертву Signal від імені цієї людини. Вона отримає особливий значок, який відображатиметься на фото профілю.</string>
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">Подаруйте комусь значок, зробивши пожертву Signal від імені цих людей. Вони отримають особливий значок, який відображатиметься на фото їх профілей.</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Далі</string>
   <!--Title text on choose recipient page for badge gifting-->
-  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Виберіть одержувача</string>
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Оберіть одержувача</string>
   <!--Title text on confirm gift page-->
   <string name="GiftFlowConfirmationFragment__confirm_gift">Підтвердити</string>
   <!--Heading text specifying who the gift will be sent to-->
@@ -4391,15 +4418,33 @@
     <item quantity="one">Приватна сторі · %1$d глядач</item>
     <item quantity="few">Приватна сторі · %1$d глядачі</item>
     <item quantity="many">Приватна сторі · %1$d глядачів</item>
-    <item quantity="other">Приватна сторі · %1$d глядача</item>
+    <item quantity="other">Приватна сторі · %1$d глядачів(-а)</item>
   </plurals>
   <!--Label under name for group stories-->
   <plurals name="ContactSearchItems__group_story_d_viewers">
     <item quantity="one">Групова сторі · %1$d глядач</item>
     <item quantity="few">Групова сторі · %1$d гладачі</item>
     <item quantity="many">Групова сторі · %1$d глядачів</item>
-    <item quantity="other">Групова сторі · %1$d глядача</item>
+    <item quantity="other">Групова сторі · %1$d глядачів(-а)</item>
   </plurals>
+  <!--Label for context menu item to open story settings-->
+  <string name="ContactSearchItems__story_settings">Налаштування історії</string>
+  <!--Label for context menu item to remove a group story from contact results-->
+  <string name="ContactSearchItems__remove_story">Вилучити сторі</string>
+  <!--Label for context menu item to delete a private story-->
+  <string name="ContactSearchItems__delete_story">Видалити сторі</string>
+  <!--Dialog title for removing a group story-->
+  <string name="ContactSearchMediator__remove_group_story">Вилучити групову сторі?</string>
+  <!--Dialog message for removing a group story-->
+  <string name="ContactSearchMediator__this_will_remove">Сторі буде вилучено з цього переліку. Ви все одно зможете переглядати сторіз у цій групі.</string>
+  <!--Dialog action item for removing a group story-->
+  <string name="ContactSearchMediator__remove">Видалити</string>
+  <!--Dialog title for deleting a private story-->
+  <string name="ContactSearchMediator__delete_story">Видалити історію?</string>
+  <!--Dialog message for deleting a private story-->
+  <string name="ContactSearchMediator__delete_the_private">Видалити приватну сторі «%1$s»?</string>
+  <!--Dialog action item for deleting a private story-->
+  <string name="ContactSearchMediator__delete">Видалити</string>
   <!--Gift expiry days remaining-->
   <plurals name="Gifts__d_days_remaining">
     <item quantity="one">Залишився %1$d день</item>
@@ -4412,16 +4457,24 @@
     <item quantity="one">Залишилась %1$d година</item>
     <item quantity="few">Залишилось %1$d години</item>
     <item quantity="many">Залишилось %1$d годин</item>
-    <item quantity="other">Залишилось %1$d години</item>
+    <item quantity="other">Залишилось %1$d год</item>
   </plurals>
   <!--Gift expiry minutes remaining-->
   <plurals name="Gifts__d_minutes_remaining">
     <item quantity="one">Залишилась %1$d хвилина</item>
     <item quantity="few">Залишилось %1$d хвилини</item>
     <item quantity="many">Залишилось %1$d хвилин</item>
-    <item quantity="other">Залишилось %1$d хвилини</item>
+    <item quantity="other">Залишилось %1$d хв</item>
   </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Строк дії закінчився</string>
+  <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">Натисніть, щоб перейти</string>
+  <!--Label indicating swipe direction to skip current story-->
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Проведіть вгору, щоб пропустити</string>
+  <!--Label indicating swipe direction to exit story viewer-->
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Проведіть праворуч, щоб вийти</string>
+  <!--Button label to confirm understanding of story navigation-->
+  <string name="StoryFirstTimeNagivationView__got_it">Зрозуміло</string>
   <!--EOF-->
 </resources>

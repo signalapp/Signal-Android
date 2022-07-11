@@ -278,6 +278,8 @@
     <item quantity="other">%d neprebranih sporočil</item>
   </plurals>
   <!--ConversationFragment-->
+  <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">Aplikacija za stike ni bila najdena.</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Izbrišem izbrano sporočilo?</item>
     <item quantity="two">Izbrišem izbrani sporočili?</item>
@@ -543,7 +545,7 @@
     <item quantity="few">%d čakajoča vabila za članstvo.</item>
     <item quantity="other">%d čakajočih vabil za članstvo.</item>
   </plurals>
-  <string name="PendingGroupJoinRequestsReminder_view">Preglej</string>
+  <string name="PendingGroupJoinRequestsReminder_view">Ogled</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna okvara pri komunikaciji aplikacije Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Registracija z Google Play Services ni bila uspešna. Podatkovna komunikacija je izklopljena, prosimo, poskusite s ponovno registracijo v meniju Nastavive &gt; Napredno.</string>
@@ -761,7 +763,7 @@
     <item quantity="one">Dodan_a je bil_a %d član_ica.</item>
     <item quantity="two">Dodana_ni sta bila_li %d člana_ici.</item>
     <item quantity="few">Dodani_ne so bili_le %d člani_ce.</item>
-    <item quantity="other">Dodanih je bilo %d članov_ic.</item>
+    <item quantity="other">Dodanih je bilo toliko članov_ic: %d.</item>
   </plurals>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Samo skrbniki_ce skupine lahko vklopijo ali izklopijo deljenje povezav.</string>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Samo skrbniki_ce skupine lahko vklopijo ali izklopijo portrjevanje novih članov.</string>
@@ -784,7 +786,7 @@
   <string name="ManageGroupActivity_more">več</string>
   <string name="ManageGroupActivity_add_group_description">Dodaj opis skupine …</string>
   <!--GroupMentionSettingDialog-->
-  <string name="GroupMentionSettingDialog_notify_me_for_mentions">Obveščajte me o omembah</string>
+  <string name="GroupMentionSettingDialog_notify_me_for_mentions">Obveščaj me o omembah</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Želite prejemati obvestila, kadar bo vaše ime omenjeno v pogovorih, ki ste jih utišali?</string>
   <string name="GroupMentionSettingDialog_always_notify_me">Vedno me obveščaj</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">Ne obveščaj me</string>
@@ -850,7 +852,7 @@
     <item quantity="other">Želite preklicati %2$d vabila uporabnika_ce %1$s?</item>
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
-  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Ste že član_ca</string>
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Ste že član_ica</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Pridruži se</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Prošnja za priključitev</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Skupini se ni bilo mogoče pridružiti. Poskusite spet kasneje.</string>
@@ -890,15 +892,15 @@
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Nimate pravice vklopa povezave do skupine. Posvetujte se s skrbnikom_co skupine.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Trenutno niste član_ica skupine.</string>
   <!--GV2 Request confirmation dialog-->
-  <string name="RequestConfirmationDialog_add_s_to_the_group">Želite dodati uporabnika_co“%1$s” v skupino?</string>
+  <string name="RequestConfirmationDialog_add_s_to_the_group">Želite dodati uporabnika_co “%1$s” v skupino?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Želite zavrniti prošnjo uporabnika_ce “%1$s”?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
-  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Želite zavrniti prošnjo uporabnika_ce “%1$s”? Ta osebe ne bo več mogla zaprositi za članstvo preko povezave.</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Želite zavrniti prošnjo uporabnika_ce “%1$s”? Ta oseba ne bo več mogla zaprositi za članstvo preko povezave.</string>
   <string name="RequestConfirmationDialog_add">Dodaj</string>
   <string name="RequestConfirmationDialog_deny">Zavrni</string>
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">Zabris obrazov</string>
-  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Novo: zabrišite obraze ali s potegom prsta katerikoli del slike</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Novo: zabrišite obraze ali s potegom prsta zabrišite katerikoli del slike</string>
   <string name="ImageEditorHud_draw_anywhere_to_blur">Za zabris potegnite s prstom kjerkoli</string>
   <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Za zabris drugih delov slike potegnite s prstom</string>
   <!--InputPanel-->
@@ -921,8 +923,8 @@
   <string name="InviteActivity_lets_switch_to_signal">Preklopi na Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Kaže, da nimate nameščene nobene primerne aplikacije.</string>
   <!--LearnMoreTextView-->
-  <string name="LearnMoreTextView_learn_more">Izvedite več</string>
-  <string name="SpanUtil__read_more">Preberi več</string>
+  <string name="LearnMoreTextView_learn_more">Več informacij</string>
+  <string name="SpanUtil__read_more">Preberite več</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Sporočilo ni bilo najdeno</string>
   <string name="LongMessageActivity_message_from_s">Sporočilo uporabnika_ce %1$s</string>
@@ -1000,6 +1002,8 @@
   <string name="Megaphones_use_sms">Uporabi SMS</string>
   <string name="Megaphones_appearance">Izgled</string>
   <string name="Megaphones_add_photo">Dodaj fotografijo</string>
+  <!--Title of a bottom sheet to render messages that all quote a specific message-->
+  <string name="MessageQuotesBottomSheet_replies">Odgovori</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Klic Signal poteka</string>
   <string name="NotificationBarManager__establishing_signal_call">Vzpostavljam klic Signal</string>
@@ -1240,9 +1244,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Sporočilo uporabnika_ce %s ni moglo biti dostavljeno</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s je spremenil_a svojo telefonsko številko.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Vam je všeč ta novost? Recite hvala s spodbudo.</string> -->
-  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Razvoj aplikacije Signal omogočajo ljudje, kot ste vi. Postanite podpornik_ca.</string> -->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Ali vam je ta nova funkcija všeč? Pomagajte podpreti Signal z enkratno donacijo.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s je začel_a skupinski klic. · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s je v skupinskem klicu. · %2$s</string>
@@ -1259,13 +1261,13 @@
     <item quantity="one">%1$s, %2$s, in še %3$d drug_a so v skupinskem klicu · %4$s</item>
     <item quantity="two">%1$s, %2$s, in še %3$d druga_i so v skupinskem klicu · %4$s</item>
     <item quantity="few">%1$s, %2$s, in še %3$d drugi_e so v skupinskem klicu · %4$s</item>
-    <item quantity="other">%1$s, %2$s, in še %3$d drugih so v skupinskem klicu · %4$s</item>
+    <item quantity="other">%1$s, %2$s in še %3$d drugih je v skupinskem klicu · %4$s</item>
   </plurals>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
     <item quantity="one">%1$s, %2$s, in še %3$d drug_a so v skupinskem klicu</item>
     <item quantity="two">%1$s, %2$s, in še %3$d druga_i so v skupinskem klicu</item>
     <item quantity="few">%1$s, %2$s in še %3$d drugi_e so v skupinskem klicu</item>
-    <item quantity="other">%1$s, %2$s, in še %3$d drugih so v skupinskem klicu</item>
+    <item quantity="other">%1$s, %2$s in še %3$d drugih je v skupinskem klicu</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Sprejmi</string>
@@ -1337,8 +1339,8 @@
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Imate preveč registriranih naprav. Za povezavo nove najprej kakšno odstranite.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Koda QR za povezavo naprav ni veljavna.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Povežem z napravo Signal?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Izgleda, da želite za povezavo z napravo Signal uporabiti zunanji optični čitalnik. Prosimo, da storite to znotraj aplikacije Signal, saj je tako najvarneje.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Dostop do kamere je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do kamere, da bi lahko skenirali kode QR. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Kamera\".</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Izgleda, da želite za povezavo z napravo Signal uporabiti zunanji optični čitalnik. Prosimo, da to storite znotraj aplikacije Signal, saj je tako najvarneje.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Dostop do kamere je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do kamere, da bi lahko skenirali kode QR. Prosimo, pojdite v Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Brez dovoljenja za dostop do kamere ne morem skenirati kode QR.</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Posodobi zdaj</string>
@@ -1383,7 +1385,7 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Vnesite številčni PIN</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Ustvarite svoj PIN</string>
-  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Ostali ste brez poskusov za vnos PINa. Za dostop do računa SIgnal morate ustvariti nov PIN. Zaradi varnosti in zasebnosti bo vaš račun obnovljen brez podatkov shranjenih v vašem profilu.</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Ostali ste brez poskusov za vnos PINa. Za dostop do računa Signal morate ustvariti nov PIN. Zaradi varnosti in zasebnosti bo vaš račun obnovljen brez podatkov shranjenih v vašem profilu.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Ustvari nov PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Opozorilo</string>
@@ -1403,7 +1405,7 @@
   <string name="ReactionsRecipientAdapter_you">Vi</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Za nadaljevanje sporočanja se verificirajte</string>
-  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Da bi preprečili nezaželeno pošto, prosimo dokončajte postopek verifikacije.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Da bi preprečili nezaželeno pošto, dokončajte postopek verifikacije.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Po dokončanem postopku verifikacije lahko nadaljujete s sporočanjem. Vsa ustavljena sporočila bodo avtomatično poslana.</string>
   <!--Recipient-->
   <string name="Recipient_you">Vi</string>
@@ -1431,7 +1433,7 @@
   <string name="ValentinesDayMegaphone_show_your_affection">Pokažite svojo naklonjenost in postanite podpornik_ca Signala.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Tapnite tukaj za vklop videa</string>
-  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Za klic uporabnika_ce %1$s, potrebuje Signal dostop do kamere</string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Za klic uporabnika_ce %1$s, Signal potrebuje dostop do kamere</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Klicanje …</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Skupina je prevelika za zvonjenje vsem udeležencem.</string>
@@ -1499,7 +1501,7 @@
     <item quantity="one">%1$s, %2$s, in še %3$d drug_ga so v tem klicu</item>
     <item quantity="two">%1$s, %2$s, in še %3$d druga_gi so v tem klicu</item>
     <item quantity="few">%1$s, %2$s, in še %3$d drugi_ge so v tem klicu</item>
-    <item quantity="other">%1$s, %2$s, in še %3$d drugih so v tem klicu</item>
+    <item quantity="other">%1$s, %2$s in še %3$d drugih so v tem klicu</item>
   </plurals>
   <string name="WebRtcCallView__flip">Obrni</string>
   <string name="WebRtcCallView__speaker">Zvočnik</string>
@@ -1969,9 +1971,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ConversationUpdateItem_view">Preglej</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Čas poteka sporočil bo nastavljen na %1$s.</string>
   <!--Update item button text to show to boost a feature-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">Pospešek Signalu</string> -->
-  <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">Postanite podpornik_ca</string> -->
+  <string name="ConversationUpdateItem_donate">Podpri Signal!</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Predvajanje … pavza</string>
   <string name="audio_view__download_accessibility_description">Prenesi</string>
@@ -2225,7 +2225,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="HelpFragment__debug_log">Sistemska zabeležba:</string>
   <string name="HelpFragment__could_not_upload_logs">Sistemska zabeležba ni bila prenešena</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Pri opisu napake bodite čim bolj natančni, da bomo lažje razumeli za kaj gre.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
+  <string-array name="HelpFragment__categories_4">
     <item>\-\- Prosimo izberite opcijo \-\-</item>
     <item>Nekaj ne deluje</item>
     <item>Predlog za novo funkcijo</item>
@@ -2233,8 +2233,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
     <item>Odziv</item>
     <item>Drugo</item>
     <item>Plačila (MobileCoin)</item>
-    <item>Podporniki_ce &amp; Pospešek Signalu</item>
-  </string-array> -->
+    <item>Podporniki_ce &amp; Značke</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">To sporočilo</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedavno uporabljeno</string>
@@ -3636,6 +3636,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MultiselectForwardFragment__share_with">Deli z</string>
   <string name="MultiselectForwardFragment__add_a_message">Dodaj sporočilo</string>
   <string name="MultiselectForwardFragment__faster_forwards">Hitrejše posredovanje</string>
+  <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">Videi bodo obrezani na 30-sekundne posnetke in poslani kot več Zgodb.</string>
+  <!--Displayed when user selects a video that cannot be sent as a story-->
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Videi, poslani v Zgodbe, ne smejo biti daljši od 30 s.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Posredovana sporočila so zdaj poslana v trenutku.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">Pošlji %1$d sporočilo</item>
@@ -4156,13 +4160,34 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MyStorySettingsFragment__who_can_see_this_story">Kdo lahko vidi to zgodbo</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Skrij zgodbo pred</string>
-  <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <!--Privacy setting title for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections">Vse Signal povezave</string>
+  <!--Privacy setting description for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__share_with_all_connections">Deli s vsemi povezavami</string>
+  <!--Privacy setting title for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections_except">Vse Signal povezave razen …</string>
+  <!--Privacy setting description for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Skrijte svojo Zgodbo pred določenimi ljudmi</string>
+  <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <plurals name="MyStorySettingsFragment__d_people_excluded">
+    <item quantity="one">%1$d oseba izključena</item>
+    <item quantity="two">%1$dosebi izključeni</item>
+    <item quantity="few">%1$d ljudje izključeni</item>
+    <item quantity="other">%1$d ljudi izključenih</item>
+  </plurals>
+  <!--Privacy setting title for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with">Deli le s/z …</string>
+  <!--Privacy setting description for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">Deli le z izbranimi ljudmi</string>
+  <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d oseba</item>
     <item quantity="two">%1$d osebi</item>
     <item quantity="few">%1$d osebe</item>
     <item quantity="other">%1$d ljudi</item>
   </plurals>
+  <!--My story privacy fine print about what the privacy settings are for-->
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Izberite, kdo lahko vidi vašo Zgodbo. Spremembe ne bodo vplivale na že poslane Zgodbe.</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">Odgovori &amp; reakcije</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -4171,10 +4196,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Dovoli ljudem, ki lahko vidijo vašo zgodbo, odgovore in reakcije</string>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Skrijte svojo zgodbo pred določenimi ljudmi. Privzeto je vaša zgodba deljena z %1$s</string>
-  <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">Signal povezanimi.</string> -->
+  <!--Signal connections bolded text in the Signal Connections sheet-->
+  <string name="SignalConnectionsBottomSheet___signal_connections">Signal povezave</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Signal povezani</strong> so ljudje, ki ste se jim odločili zaupati, s tem, da ste:</string>
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal povezave so ljudje, ki ste se jim odločili zaupati, s tem, da ste:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">začeli pogovor z njimi</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4223,8 +4248,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="TextStoryPostSendFragment__search">Iskanje</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Zgodila se je nepričakovana napaka</string>
-  <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">Skrij zgodbo pred …</string> -->
+  <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <string name="ChangeMyStoryMembershipFragment__all_except">Vsi, razen …</string>
+  <!--Title for screen allowing user to only share "My Story" entries with specific people-->
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">Deli le s/z …</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">OK</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4389,6 +4416,24 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
     <item quantity="few">Skupinska zgodba · %1$d gledalci_ke</item>
     <item quantity="other">Skupinska zgodba · %1$d gledalcev_k</item>
   </plurals>
+  <!--Label for context menu item to open story settings-->
+  <string name="ContactSearchItems__story_settings">Nastavitve zgodbe</string>
+  <!--Label for context menu item to remove a group story from contact results-->
+  <string name="ContactSearchItems__remove_story">Odstrani Zgodbo</string>
+  <!--Label for context menu item to delete a private story-->
+  <string name="ContactSearchItems__delete_story">Izbriši Zgodbo</string>
+  <!--Dialog title for removing a group story-->
+  <string name="ContactSearchMediator__remove_group_story">Želite odstraniti Zgodbo skupine?</string>
+  <!--Dialog message for removing a group story-->
+  <string name="ContactSearchMediator__this_will_remove">To bo odstranilo Zgodbo iz tega seznama. Še vedno boste lahko videli Zgodbe iz te skupine.</string>
+  <!--Dialog action item for removing a group story-->
+  <string name="ContactSearchMediator__remove">Odstrani</string>
+  <!--Dialog title for deleting a private story-->
+  <string name="ContactSearchMediator__delete_story">Želite izbrisati zgodbo?</string>
+  <!--Dialog message for deleting a private story-->
+  <string name="ContactSearchMediator__delete_the_private">Želite izbrisati zasebno Zgodbo \"%1$s\"?</string>
+  <!--Dialog action item for deleting a private story-->
+  <string name="ContactSearchMediator__delete">Izbriši</string>
   <!--Gift expiry days remaining-->
   <plurals name="Gifts__d_days_remaining">
     <item quantity="one">še %1$d dan</item>
@@ -4412,5 +4457,13 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Poteklo</string>
+  <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">Tapnite za napredovanje</string>
+  <!--Label indicating swipe direction to skip current story-->
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Podrsajte navzgor, da preskočite</string>
+  <!--Label indicating swipe direction to exit story viewer-->
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Podrsajte desno, da izstopite</string>
+  <!--Button label to confirm understanding of story navigation-->
+  <string name="StoryFirstTimeNagivationView__got_it">Razumem</string>
   <!--EOF-->
 </resources>

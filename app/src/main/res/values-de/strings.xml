@@ -274,6 +274,8 @@
     <item quantity="other">%d ungelesene Nachrichten</item>
   </plurals>
   <!--ConversationFragment-->
+  <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">Kontakte-App nicht gefunden.</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Ausgewählte Nachricht löschen?</item>
     <item quantity="other">Ausgewählte Nachrichten löschen?</item>
@@ -902,13 +904,15 @@
   <string name="Megaphones_use_sms">SMS verwenden</string>
   <string name="Megaphones_appearance">Darstellung</string>
   <string name="Megaphones_add_photo">Foto hinzufügen</string>
+  <!--Title of a bottom sheet to render messages that all quote a specific message-->
+  <string name="MessageQuotesBottomSheet_replies">Antworten</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-Anruf läuft</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal-Anruf wird hergestellt</string>
   <string name="NotificationBarManager__incoming_signal_call">Eingehender Signal-Anruf</string>
   <string name="NotificationBarManager__incoming_signal_group_call">Eingehender Signal-Gruppenanruf</string>
   <!--Temporary notification shown when starting the calling service-->
-  <string name="NotificationBarManager__starting_signal_call_service">Den Signal Anrufdiesnt starten</string>
+  <string name="NotificationBarManager__starting_signal_call_service">Den Signal Anrufdienst starten</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signals Anrufdienst wird gestoppt</string>
   <string name="NotificationBarManager__decline_call">Anruf ablehnen</string>
   <string name="NotificationBarManager__answer_call">Anruf annehmen</string>
@@ -1124,9 +1128,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Eine Nachricht von %s konnte nicht zugestellt werden</string>
   <string name="MessageRecord_s_changed_their_phone_number">Die Rufnummer von %1$s hat sich geändert.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Gefällt dir diese neue Funktion? Bedanke dich mit einem Boost.</string> -->
-  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal existiert dank Menschen wie dir. Zeig heute deine Unterstützung!</string> -->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Dir gefällt diese neue Funktion? Unterstütze Signal mit einer einmaligen Spende.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s hat einen Gruppenanruf begonnen · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s nimmt am Gruppenanruf teil · %2$s</string>
@@ -1811,9 +1813,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ConversationUpdateItem_view">Anzeigen</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Die Ablaufzeit für verschwindende Nachrichten wird auf %1$s festgelegt, sobald du dem Nutzer eine Nachricht sendest.</string>
   <!--Update item button text to show to boost a feature-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">Signal-Boost</string> -->
-  <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">Unterstützer werden</string> -->
+  <string name="ConversationUpdateItem_donate">Spenden</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Abspielen … Pause</string>
   <string name="audio_view__download_accessibility_description">Herunterladen</string>
@@ -2053,16 +2053,16 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="HelpFragment__debug_log">Diagnoseprotokoll:</string>
   <string name="HelpFragment__could_not_upload_logs">Protokoll konnte nicht hochgeladen werden</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Bitte beschreibe das Problem so genau wie möglich, damit wir es besser verstehen können.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
-    <item>\-\- Bitte wähle eine Option \-\-</item>
+  <string-array name="HelpFragment__categories_4">
+    <item>\-\- Bitte wähle eine Option aus \-\-</item>
     <item>Etwas funktioniert nicht</item>
     <item>Erweiterungswunsch</item>
     <item>Frage</item>
     <item>Rückmeldung</item>
     <item>Sonstiges</item>
     <item>Zahlungen (MobileCoin)</item>
-    <item>Unterstützer &amp; Signal-Boost</item>
-  </string-array> -->
+    <item>Spenden und Abzeichen</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Diese Nachricht</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Zuletzt verwendet</string>
@@ -3436,6 +3436,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MultiselectForwardFragment__share_with">Teilen mit</string>
   <string name="MultiselectForwardFragment__add_a_message">Füg eine Nachricht hinzu</string>
   <string name="MultiselectForwardFragment__faster_forwards">Schnellere Weiterleitungen</string>
+  <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">Die Videos werden auf 30-Sekunden-Clips gekürzt und als mehrere Storys verschickt.</string>
+  <!--Displayed when user selects a video that cannot be sent as a story-->
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Videos, die an Storys gesendet werden, dürfen nicht länger als 30 Sekunden sein.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Weitergeleitete Nachrichten werden nun sofort gesendet.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">%1$d Nachricht senden</item>
@@ -3940,11 +3944,26 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MyStorySettingsFragment__who_can_see_this_story">Diese Story kann sehen</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Story verbergen vor</string>
-  <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <!--Privacy setting title for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections">Alle Signal-Verbindungen</string>
+  <!--Privacy setting description for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__share_with_all_connections">Mit allen Verbindungen teilen.</string>
+  <!--Privacy setting title for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections_except">Mit allen Signal-Verbindungen außer…</string>
+  <!--Privacy setting description for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Deine Story vor bestimmten Personen verbergen</string>
+  <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <!--Privacy setting title for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with">Nur teilen mit…</string>
+  <!--Privacy setting description for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">Nur mit ausgewählten Personen teilen</string>
+  <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d Person</item>
     <item quantity="other">%1$d Personen</item>
   </plurals>
+  <!--My story privacy fine print about what the privacy settings are for-->
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Wähle aus, wer deine Story sehen kann. Änderungen wirken sich nicht auf bereits gesendete Storys aus.</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">Antworten &amp; Reaktionen</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -3953,10 +3972,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Erlaube Personen, die deine Story sehen können, auf sie zu antworten und zu reagieren</string>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Verberge deine Story vor bestimmten Personen. Standardmäßig wird deine Story geteilt mit deinen %1$s</string>
-  <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">Signal-Beziehungen.</string> -->
+  <!--Signal connections bolded text in the Signal Connections sheet-->
+  <string name="SignalConnectionsBottomSheet___signal_connections">Signal-Verbindungen</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Signal-Beziehungen</strong> sind Personen, denen du vertraust, entweder durch:</string>
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal-Verbindungen sind Menschen, denen du vertraust, entweder durch:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">Beginnen einer Unterhaltung</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4004,9 +4023,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Suchen</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
-  <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Ein unerwarteter Fehler ist aufgetreten.</string>
-  <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">Story verbergen vor …</string> -->
+  <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Ein unerwarteter Fehler ist aufgetreten</string>
+  <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <string name="ChangeMyStoryMembershipFragment__all_except">Alle außer…</string>
+  <!--Title for screen allowing user to only share "My Story" entries with specific people-->
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">Nur teilen mit…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Fertig</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4163,6 +4184,24 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
     <item quantity="one">Gruppen-Story · %1$d Betrachter</item>
     <item quantity="other">Gruppen-Story · %1$d Betrachter</item>
   </plurals>
+  <!--Label for context menu item to open story settings-->
+  <string name="ContactSearchItems__story_settings">Story-Einstellungen</string>
+  <!--Label for context menu item to remove a group story from contact results-->
+  <string name="ContactSearchItems__remove_story">Story entfernen</string>
+  <!--Label for context menu item to delete a private story-->
+  <string name="ContactSearchItems__delete_story">Story löschen</string>
+  <!--Dialog title for removing a group story-->
+  <string name="ContactSearchMediator__remove_group_story">Deine Gruppen-Story entfernen?</string>
+  <!--Dialog message for removing a group story-->
+  <string name="ContactSearchMediator__this_will_remove">Dadurch wird die Story aus dieser Liste entfernt. Du kannst die Storys aus dieser Gruppe aber immer noch sehen.</string>
+  <!--Dialog action item for removing a group story-->
+  <string name="ContactSearchMediator__remove">Entfernen</string>
+  <!--Dialog title for deleting a private story-->
+  <string name="ContactSearchMediator__delete_story">Story löschen?</string>
+  <!--Dialog message for deleting a private story-->
+  <string name="ContactSearchMediator__delete_the_private"> Private Story \"%1$s\" löschen?</string>
+  <!--Dialog action item for deleting a private story-->
+  <string name="ContactSearchMediator__delete">Löschen</string>
   <!--Gift expiry days remaining-->
   <plurals name="Gifts__d_days_remaining">
     <item quantity="one">%1$d Tag verbleibend</item>
@@ -4180,5 +4219,13 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Abgelaufen</string>
+  <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">Antippen, um fortzufahren</string>
+  <!--Label indicating swipe direction to skip current story-->
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Zum Überspringen nach oben wischen</string>
+  <!--Label indicating swipe direction to exit story viewer-->
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Zum Beenden nach rechts wischen</string>
+  <!--Button label to confirm understanding of story navigation-->
+  <string name="StoryFirstTimeNagivationView__got_it">Verstanden</string>
   <!--EOF-->
 </resources>

@@ -90,9 +90,13 @@
   <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Anda akan dapat menghantar mesej dan membuat panggilan antara satu sama lain dan nama serta gambar anda akan dikongsi bersama mereka.</string>
   <!--Text that is shown when unblocking an SMS contact-->
+  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Anda boleh mesej satu sama lain.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Orang-orang diblock tidak akan boleh untuk memanggil anda atau menghantar anda mesej.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Orang yang disekat tidak dapat menghantar mesej kepada anda.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Sekat daripada menerima kemas kini dan berita Signal.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Teruskan menerima kemas kini dan berita Signal.</string>
   <string name="BlockUnblockDialog_unblock_s">Unblock %1$s?</string>
   <string name="BlockUnblockDialog_block">Sekat</string>
   <string name="BlockUnblockDialog_block_and_leave">Block dan Tinggalkan</string>
@@ -123,7 +127,9 @@
   <string name="CameraContacts__menu_search">Cari</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Matikan penapisan pemintasan?</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Anda kini boleh berhubung dengan perkhidmatan Signal secara terus untuk pengalaman yang lebih baik.</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">Matikan</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
@@ -161,6 +167,7 @@
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Cerita Saya</string>
   <!--Action for creating a new story-->
+  <string name="ContactsCursorLoader_new_story">Cerita Baru</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mesej %s</string>
   <string name="ContactsDatabase_signal_call_s">Panggilan Signal %s</string>
@@ -211,8 +218,10 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Peranti ini tidak menyokong tindakan dail.</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS yang tidak selamat</string>
   <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_insecure_sms_with_sim">SMS tidak selamat (%1$s)</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS yang tidak selamat</string>
   <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_insecure_mms_with_sim">MMS tidak selamat (%1$s)</string>
   <string name="ConversationActivity_transport_signal">Mesej Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Mari beralih kepada Signal %1$s</string>
   <string name="ConversationActivity_specify_recipient">Sila pilih kenalan</string>
@@ -263,6 +272,7 @@
     <item quantity="other">%d mesej yang belum dibaca</item>
   </plurals>
   <!--ConversationFragment-->
+  <!--Toast text when contacts activity is not found-->
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="other">Padamkan mesej yang dipilih?</item>
   </plurals>
@@ -307,9 +317,13 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">Nombor keselamatan anda dengan %s diubah</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Nombor keselamatan anda dengan %s telah berubah, mungkin kerana mereka telah memasang semula Signal atau telah menukar peranti. Ketik Sahkan untuk mengesahkan nombor keselamatan baharu. Ini adalah pilihan.</string>
   <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$s hidup</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">Sekat permintaan?</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s tidak akan dapat menyertai atau meminta untuk menyertai kumpulan ini melalui pautan kumpulan. Mereka masih boleh ditambahkan ke kumpulan secara manual.</string>
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">Sekat permintaan</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">Batal</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -362,8 +376,11 @@
     <item quantity="other">%d dipilih</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">Profil pemberitahuan</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Hidupkan atau matikan profil pemberitahuan anda di sini.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s hidup</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mesej pertukaran kunci</string>
   <!--ConversationListItemAction-->
@@ -395,8 +412,11 @@
   <string name="RestoreBackupFragment__choose_folder">Memilih folder</string>
   <string name="RestoreBackupFragment__not_now">Bukan sekarang</string>
   <!--Couldn\'t find the selected backup-->
+  <string name="RestoreBackupFragment__backup_not_found">Sandar tidak ditemui.</string>
   <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">Sandar tidak boleh dibaca.</string>
   <!--Backup has an unsupported file extension-->
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">Sandar mempunyai sambungan teruk.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Sandaran sembang</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Sandaran disulitkan dengan frasa laluan dan disimpan pada peranti anda.</string>
@@ -412,6 +432,7 @@
   <string name="BackupsPreferenceFragment__in_progress">Dalam progres…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d setakat ini…</string>
   <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% setakat ini…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal memerlukan kebenaran storan luaran untuk mencipta sandaran, tetapi telah ditolak secara kekal. Sila terus ke menu tetapan aplikasi, pilih \"Kebenaran\", dan dayakan \"Storan\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Menggunakan tersuai: %s</string>
@@ -600,6 +621,7 @@
   <string name="AddGroupDetailsFragment__group_creation_failed">Penciptaan kumpulan gagal.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Cuba lagi kemudian.</string>
   <!--Displayed when adding group details to an MMS Group-->
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Anda telah memilih kenalan yang tidak menyokong kumpulan Signal, jadi kumpulan ini akan menjadi MMS. MMS nama kumpulan dan foto tersuai hanya akan kelihatan kepada anda.</string>
   <string name="AddGroupDetailsFragment__remove">Alih keluar</string>
   <string name="AddGroupDetailsFragment__sms_contact">Kenalan SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Keluarkan %1$s daripada kumpulan ini?</string>
@@ -676,6 +698,8 @@
   <string name="CustomNotificationsDialogFragment__notification_sound">Bunyi pemberitahuan</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Bergetar</string>
   <!--Button text for customizing notification options-->
+  <string name="CustomNotificationsDialogFragment__customize">Sesuaikan</string>
+  <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Tukar bunyi dan getaran</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Tetapan panggilan</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Nada dering</string>
   <string name="CustomNotificationsDialogFragment__enabled">Didayakan</string>
@@ -709,11 +733,15 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Menghadapi ralat rangkaian.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Pautan kumpulan ini tidak aktif</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Tidak boleh menyertai kumpulan</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Anda tidak boleh menyertai kumpulan ini melalui pautan kumpulan tersebut kerana pentadbir telah mengalih keluar anda.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Pautan kumpulan ini tidak lagi sah.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">Ralat pautan</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
+  <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Menyertai melalui pautan ini telah gagal. Cuba sertai lagi nanti.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Adakah anda ingin menyertai kumpulan ini dan kongsikan nama dan foto anda dengan ahli-ahlinya?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Pentadbir kumpulan ini mesti meluluskan permintaan anda sebelum anda dapat menyertai kumpulan ini. Apabila anda meminta untuk menyertai kumpulan, nama dan foto anda akan dikongsikan dengan ahli-ahlinya.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
@@ -738,6 +766,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">Tambah “%1$s” kepada kumpulan?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Tolak permintaan daripada “%1$s”?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Tolak permintaan daripada \"%1$s\"? Mereka tidak boleh meminta untuk menyertai melalui pautan kumpulan lagi.</string>
   <string name="RequestConfirmationDialog_add">Tambah</string>
   <string name="RequestConfirmationDialog_deny">Tolak</string>
   <!--ImageEditorHud-->
@@ -826,12 +855,15 @@
   <string name="Megaphones_use_sms">Gunakan SMS</string>
   <string name="Megaphones_appearance">Penampilan</string>
   <string name="Megaphones_add_photo">Tambah foto</string>
+  <!--Title of a bottom sheet to render messages that all quote a specific message-->
+  <string name="MessageQuotesBottomSheet_replies">Balasan</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Panggilan Signal sedang berjalan</string>
   <string name="NotificationBarManager__establishing_signal_call">Mewujudkan panggilan Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Panggilan masuk Signal</string>
   <string name="NotificationBarManager__incoming_signal_group_call">Panggilan kumpulan Signal masuk</string>
   <!--Temporary notification shown when starting the calling service-->
+  <string name="NotificationBarManager__starting_signal_call_service">Memulakan perkhidmatan panggilan Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Menghentikan perkhidmatan panggilan Signal</string>
   <string name="NotificationBarManager__decline_call">Tolak panggilan</string>
   <string name="NotificationBarManager__answer_call">Jawab panggilan </string>
@@ -1014,6 +1046,9 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Anda telah menghantar permintaan untuk menyertai kumpulan.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s telah meminta untuk menyertai kumpulan melalui pautan kumpulan.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="other">%1$s meminta dan telah membatalkan permintaan %2$d untuk menyertai melalui pautan kumpulan.</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s telah meluluskan permintaan anda untuk menyertai kumpulan.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s telah meluluskan permintaan untuk menyertai kumpulan daripada %2$s.</string>
@@ -1033,8 +1068,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Anda telah menandakan tak sah kepada nombor keselamatan anda dengan %s </string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Anda telah menandakan tak sah kepada nombor keselamatan anda dengan %s daripada peranti lain</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Mesej daripada %s tidak dapat disampaikan</string>
+  <string name="MessageRecord_s_changed_their_phone_number">%1$s telah menukar nombor telefon mereka.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s telah memulakan panggilan kumpulan · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s berada dalam panggilan kumpulan · %2$s</string>
@@ -1063,11 +1098,14 @@
   <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Membenarkan %1$s menghantar mesej kepada anda dan kongsikan nama dan foto anda dengan mereka? Anda tidak akan menerima sebarang mesej sehingga anda menyahsekatnya.</string>
   <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Benarkan %1$s mesej anda? Anda tidak akan menerima sebarang mesej sehingga anda nyahsekat mereka.</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Dapatkan kemas kini dan berita daripada %1$s? Anda tidak akan menerima sebarang kemas kini sehingga anda nyahsekat mereka.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Teruskan perbualan anda dengan kumpulan ini dan kongsikan nama dan foto anda dengan ahli-ahlinya?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Naik tarafkan kumpulan ini untuk mengaktifkan ciri-ciri baharu seperti @sebutan dan pentadbir. Ahli-ahli yang belum kongsikan nama atau foto mereka dalam kumpulan ini akan dijemput untuk menyertainya.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Kumpulan Legasi ini tidak lagi dapat digunakan kerana terlalu besar. Saiz kumpulan maksimum ialah %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Teruskan perbualan anda dengan %1$s dan kongsikan nama dan foto anda dengan mereka?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Sertai kumpulan ini dan kongsikan nama dan foto anda dengan ahli-ahlinya? Mereka tidak akan tahu bahawa anda telah melihat mesej mereka sehingga anda menerimanya.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Sertai kumpulan ini dan kongsikan nama dan foto anda bersama ahlinya? Anda tidak akan melihat merej mereka sehingga anda terima.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Sertai kumpulan ini? Mereka tidak akan tahu bahawa anda telah melihat mesej mereka sehingga anda menerimanya.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Nyahsekat kumpulan ini dan kongsikan nama dan foto anda dengan ahli-ahlinya? Anda tidak akan menerima sebarang mesej sehingga anda menyahsekatnya.</string>
   <string name="MessageRequestProfileView_view">Lihat</string>
@@ -1078,7 +1116,13 @@
     <item quantity="other">%1$d ahli</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="other">%1$d ahli (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="other">+%1$d dijemput</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="other">%d kumpulan tambahan</item>
   </plurals>
@@ -1185,7 +1229,9 @@
   <string name="RedPhone_got_it">Faham</string>
   <!--Valentine\'s Day Megaphone-->
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <string name="ValentinesDayMegaphone_happy_heart_day">Selamat Hari 💜!</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
+  <string name="ValentinesDayMegaphone_show_your_affection">Tunjukkan kasih sayang anda dengan menjadi penderma Signal.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Ketik sini untuk dayakan video anda</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Untuk memanggil %1$s, Signal memerlukan akses kepada kamera anda</string>
@@ -1195,8 +1241,11 @@
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">Menyambung Semula…</string>
   <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">Kebenaran Bluetooth ditolak</string>
   <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Sila dayakan kebenaran \"Peranti berhampiran\" untuk menggunakan bluetooth semasa panggilan.</string>
   <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">Buka tetapan</string>
   <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
   <string name="WebRtcCallActivity__not_now">Bukan sekarang</string>
   <!--WebRtcCallView-->
@@ -1337,6 +1386,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Lagi</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN berjaya disahkan. Kami akan mengingatkan anda lagi nanti.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN berjaya disahkan. Kami akan mengingatkan anda lagi nanti esok.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN berjaya disahkan. Kami akan mengingatkan anda lagi dalam beberapa hari.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN berjaya disahkan. Kami akan mengingatkan anda lagi dalam masa seminggu.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN berjaya disahkan. Kami akan mengingatkan anda lagi dalam beberapa minggu.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN berjaya disahkan. Kami akan mengingatkan anda lagi dalam masa sebulan.</string>
   <!--Slide-->
   <string name="Slide_image">Imej</string>
   <string name="Slide_sticker">Pelekat</string>
@@ -1420,8 +1475,11 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="ThreadRecord_video">Video</string>
   <string name="ThreadRecord_chat_session_refreshed">Sesi sembang dimulakan semula</string>
   <!--Displayed in the notification when the user is sent a gift-->
+  <string name="ThreadRecord__you_received_a_gift">Anda telah menerima hadiah</string>
   <!--Displayed in the notification when the user sends a gift-->
+  <string name="ThreadRecord__you_sent_a_gift">Anda telah menghantarkan hadiah</string>
   <!--Displayed in the notification when the user has opened a received gift-->
+  <string name="ThreadRecord__you_redeemed_a_gift_badge">Anda telah menebus lencana hadiah</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Kemas kini Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Versi baru Signal tersedia, ketik untuk kemas kini</string>
@@ -1486,7 +1544,9 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Ini akan memadam mesej ini secara kekal.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s kepada %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Anda kepada %1$s</string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s kepada anda</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Media tidak lagi tersedia.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Tidak menemui aplikasi yang dapat kongsikan media ini.</string>
   <!--MessageNotifier-->
@@ -1534,7 +1594,9 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="NotificationChannel_contact_joined_signal">Kenalan menyertai Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Tidak ada aktiviti yang tersedia untuk membuka tetapan pemberitahuan.</string>
   <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">Sambungan latar belakang</string>
   <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">Status panggilan</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Respons pantas tidak tersedia apabila Signal dikunci!</string>
@@ -1556,6 +1618,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Permintaan mesej</string>
   <string name="SingleRecipientNotificationBuilder_you">Anda</string>
   <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • Cerita</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Mainkan video</string>
   <string name="ThumbnailView_Has_a_caption_description">Mempunyai kapsyen</string>
@@ -1567,6 +1630,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="UnauthorizedReminder_device_no_longer_registered">Peranti tidak lagi didaftarkan</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Ini berkemungkinan kerana anda mendaftarkan nombor telefon anda dengan Signal pada peranti lain. Ketik untuk mendaftar semula.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Untuk menjawab panggilan, berikan Signal akses kepada mikrofon anda.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Beri Signal akses kepada mikrofon anda untuk menjawab panggilan dari %s.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal memerlukan kebenaran Mikrofon dan Kamera untuk memanggil atau menerima panggilan, tetapi telah ditolak secara kekal. Sila terus ke menu tetapan aplikasi, pilih \"Kebenaran\", dan dayakan \"Mikrofon\" dan \"Kamera\".</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Dijawab pada peranti yang dipautkan.</string>
@@ -1624,6 +1688,9 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
     <item quantity="other">%1$d ahli</item>
   </plurals>
   <!--Displays number of viewers for a story-->
+  <plurals name="contact_selection_list_item__number_of_viewers">
+    <item quantity="other">%1$d tontonan</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Mesej Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS yang tidak selamat</string>
@@ -1662,14 +1729,13 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Dayakan Pemberitahuan Panggilan</string>
   <string name="ConversationUpdateItem_update_contact">Kemas kini kenalan</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">Sekat permintaan</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Tidak ada kumpulan yang sama. Semak permintaan dengan teliti.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Tidak ada kenalan dalam kumpulan ini. Semak permintaan dengan teliti.</string>
   <string name="ConversationUpdateItem_view">Lihat</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Masa mesej hilang akan ditetapkan kepada %1$s apabila anda menghantar mesej tersebut.</string>
   <!--Update item button text to show to boost a feature-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">Signal Boost</string> -->
-  <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">Jadilah seorang Sustainer</string> -->
+  <string name="ConversationUpdateItem_donate">Derma</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Main … Jeda</string>
   <string name="audio_view__download_accessibility_description">Muat turun</string>
@@ -1683,13 +1749,18 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="QuoteView_you">Anda</string>
   <string name="QuoteView_original_missing">Mesej asal tidak dijumpai</string>
   <!--Author formatting for group stories-->
+  <string name="QuoteView_s_story">%1$s . Cerita</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Anda . Cerita</string>
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Tiada lagi</string>
   <!--Label for quoted gift-->
+  <string name="QuoteView__gift">Hadiah</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Tatal ke bawah</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">Bubbles ialah ciri Android yang anda boleh matikan untuk sembang Signal.</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">Bukan sekarang</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -1784,6 +1855,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="message_recipients_list_item__view">Lihat</string>
   <string name="message_recipients_list_item__resend">Hantar semula</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
+  <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Cap masa yang dihantar, disalin ke papan keratan.</string>
   <!--Displayed when there are no outgoing stories-->
   <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Kemas kini cerita anda akan ditunjukkan di sini.</string>
   <!--GroupUtil-->
@@ -1896,16 +1968,6 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="HelpFragment__debug_log">Log Nyahpepijat:</string>
   <string name="HelpFragment__could_not_upload_logs">Tidak dapat memuat naik log</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Tolong terangkan dengan sejelas mungkin untuk bantu kami memahami isu tersebut.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
-    <item>\-\- Sila pilih satu opsyen \-\-</item>
-    <item>Terdapat Isu</item>
-    <item>Permintaan Ciri</item>
-    <item>Soalan</item>
-    <item>Maklum Balas</item>
-    <item>Lain-Lain</item>
-    <item>Pembayaran (MobileCoin)</item>
-    <item>Sustainers &amp; Signal Boost</item>
-  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Mesej Ini</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Digunakan Baru-baru Ini</string>
@@ -1976,6 +2038,8 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="preferences__led_color">Warna LED</string>
   <string name="preferences__led_color_unknown">Tidak diketahui</string>
   <string name="preferences__pref_led_blink_title">Corak kelip LED</string>
+  <string name="preferences__customize">Sesuaikan</string>
+  <string name="preferences__change_sound_and_vibration">Tukar bunyi dan getaran</string>
   <string name="preferences__sound">Bunyi</string>
   <string name="preferences__silent">Senyap</string>
   <string name="preferences__default">Lalai</string>
@@ -2002,6 +2066,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="preferences__advanced">Lanjutan</string>
   <string name="preferences__donate_to_signal">Sumbang kepada Signal</string>
   <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">Derma Sekali</string>
   <string name="preferences__privacy">Privasi</string>
   <string name="preferences__mms_user_agent">Agen Pengguna MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Tetapan MMS manual</string>
@@ -2100,7 +2165,9 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="preferences_events__contact_joined_signal">Kenalan menyertai Signal</string>
   <string name="preferences_notifications__priority">Keutamaan</string>
   <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">Penapisan pemintasan</string>
   <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">Penapisan pemintasan</string>
   <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Jika didayakan, Signal akan cuba memintas penapisan. Jangan mendayakan ciri ini melainkan jika anda berada di lokasi di mana Signal ditapis.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
   <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Pemintasan penapisan telah diaktifkan berdasarkan nombor telefon akaun anda.</string>
@@ -2280,6 +2347,9 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="conversation_callable_secure__menu_video">Panggilan video Signal</string>
   <!--conversation_context-->
   <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="other">%d dipilih</item>
+  </plurals>
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_context_image__save_attachment">Simpan</string>
@@ -2527,6 +2597,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="BackupDialog_verify">Sahkan</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Anda berjaya memasukkan frasa laluan sandaran anda</string>
   <string name="BackupDialog_passphrase_was_not_correct">Frasa laluan tidak betul</string>
+  <string name="LocalBackupJob_creating_signal_backup">Mencipta sandaran Signal…</string>
   <string name="LocalBackupJobApi29_backup_failed">Sandaran gagal</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Direktori sandaran anda telah dipadamkan atau telah dipindah.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Fail sandaran anda terlalu besar untuk disimpan pada volum ini.</string>
@@ -2649,6 +2720,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Pastikan kedua-dua peranti dekat antara satu sama lain. Jangan matikan peranti dan pastikan Signal dibuka. Pemindahan disulitkan dari hujung ke hujung.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d mesej setakat ini…</string>
   <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% mesej setakat ini…</string>
   <string name="DeviceTransfer__cancel">Batal</string>
   <string name="DeviceTransfer__try_again">Cuba lagi</string>
   <string name="DeviceTransfer__stop_transfer_question">Hentikan pemindahan?</string>
@@ -2699,6 +2771,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="RecipientBottomSheet_unblock">Nyahsekat</string>
   <string name="RecipientBottomSheet_add_to_contacts">Tambah ke kenalan</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">Tidak menemui aplikasi yang boleh membuka kenalan.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Tambah kepada kumpulan</string>
   <string name="RecipientBottomSheet_add_to_another_group">Tambah ke kumpulan lain</string>
   <string name="RecipientBottomSheet_view_safety_number">Lihat nombor keselamatan</string>
@@ -2713,6 +2786,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" akan dapat mengedit kumpulan ini dan ahli-ahlinya.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">Alih keluar %1$s daripada kumpulan?</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Alih keluar %1$s daripada kumpulan? Mereka tidak akan dapat menyertai semula melalui pautan kumpulan.</string>
   <string name="RecipientBottomSheet_remove">Alih keluar</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Disalin ke papan klip</string>
   <string name="GroupRecipientListItem_admin">Pentadbir</string>
@@ -2797,12 +2871,19 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Gagal memadamkan data tempatan. Anda boleh mengosongkannya secara manual dalam tetapan aplikasi sistem.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Lancarkan Tetapan Aplikasi</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">Meninggalkan kumpulan…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">Memadamkan akaun…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
+  <string name="DeleteAccountFragment__canceling_your_subscription">Membatalkan langganan anda…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Bergantung pada bilangan kumpulan yang anda sertai, ini mungkin mengambil masa beberapa minit</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Memadamkan data pengguna dan mengeset semula aplikasi</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">Akaun Tidak Dipadamkan</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">Terdapat masalah menyelesaikan proses pemadaman. Semak sambungan rangkaian anda dan cuba lagi.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Cari Negara</string>
   <!--CreateGroupActivity-->
@@ -2953,6 +3034,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Kualiti foto</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">Jemput rakan anda</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">Telah menyalin id pelanggan ke papan keratan</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Akaun</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Anda akan diminta dengan kurang kerap dari masa ke masa</string>
@@ -2962,6 +3044,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Gunakan ini untuk menukar nombor telefon semasa anda ke nombor telefon yang baharu. Anda tidak boleh membatalkan perubahan ini.\n\Sebelum meneruskan, sila pastikan nombor telefon yang baharu boleh menerima SMS atau panggilan.</string>
   <string name="ChangeNumberFragment__continue">Teruskan</string>
   <!--Message shown on dialog after your number has been changed successfully.-->
+  <string name="ChangeNumber__your_phone_number_has_changed_to_s">Nombor telefon anda telah ditukar kepada %1$s</string>
   <!--Confirmation button to dismiss number changed dialog-->
   <string name="ChangeNumber__okay">Okay</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
@@ -3018,11 +3101,16 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="NotificationsSettingsFragment__notify_when">Maklumkan apabila…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">Kenalan menyertai Signal</string>
   <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">Profil pemberitahuan</string>
   <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">Profil</string>
   <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Cipta profil untuk menerima pemberitahuan hanya dairpada orang dan kumpulan yang anda pilih.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">Profil pemberitahuan</string>
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">Cipta profil</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Disekat</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d kenalan</string>
@@ -3119,6 +3207,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Jadilah seorang Sustainer</string>
   <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal dikuasakan oleh orang seperti anda. Derma dan terima lencana.</string>
   <string name="BecomeASustainerMegaphone__not_now">Bukan sekarang</string>
   <string name="BecomeASustainerMegaphone__donate">Derma</string>
   <!--KeyboardPagerFragment-->
@@ -3238,6 +3327,8 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="MultiselectForwardFragment__share_with">Kongsi dengan</string>
   <string name="MultiselectForwardFragment__add_a_message">Tambah mesej</string>
   <string name="MultiselectForwardFragment__faster_forwards">Ciri ajuan lebih pantas</string>
+  <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <!--Displayed when user selects a video that cannot be sent as a story-->
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Mesej dimajukan kini dihantar serta-merta.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="other">Hantar %1$d mesej</item>
@@ -3292,6 +3383,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal dikuasakan oleh orang seperti anda.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Teknologi sokongan yang dibina untuk anda—bukan untuk data anda—dengan menyertai komuniti orang yang mengekalkannya.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Sokong teknologi yang dibina untuk anda, bukan untuk data anda, dengan menyertai komuniti yang memelihara Signal.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Buat derma bulanan berulang kepada Signal untuk menyokong teknologi yang dibina untuk anda, bukan data anda.</string>
   <string name="SubscribeFragment__currency">Matawang</string>
   <string name="SubscribeFragment__more_payment_options">Lebih Banyak Pilihan Pembayaran</string>
   <string name="SubscribeFragment__cancel_subscription">Batal Langganan</string>
@@ -3308,10 +3400,14 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/bulan · Perbaharui semula %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/bulan · Luput pada %2$s</string>
   <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal adalah tanpa untung dengan tiada pengiklan atau pelabur, ditampung oleh orang yang menggunakan dan menghargainya. Buat derma bulanan berulang dan terima lencana profil untuk berkongsi sokongan anda.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Mengapa Menderma?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal komited untuk membangunkan teknologi privasi sumber terbuka yang melindungi ungkapan bebas dan membolehkan komunikasi global yang selamat.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Derma anda menampung tujuan ini dan membayar perkembangan dan operasi aplikasi yang digunakan oleh berjuta orang untuk komuikasi peribadi. Tiada iklan. Tiada penjejak. Tiada penipuan.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Terima kasih atas Sokongan anda!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Terima kasih untuk Boost!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Anda telah menerima lencana %s! Paparkan lencana ini pada profil anda untuk membina kesedaran kerana menderma kepada Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Anda telah menerima lencana Boost! Paparkan lencana ini pada profil anda untuk membina kesedaran kerana menderma kepada Signal.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Anda juga boleh</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">jadilah Sustainer bulanan.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Pamerkan di Profil</string>
@@ -3321,19 +3417,26 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="BecomeASustainerFragment__get_badges">Dapatkan lencana untuk profil anda dengan menyokong Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal adalah organisasi bukan untung tanpa pengiklan atau pelabur, hanya disokong oleh orang ramai seperti anda.</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">Buat derma bulanan</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">Lagi</string>
   <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">Resit</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">Langganan saya</string>
   <string name="ManageDonationsFragment__manage_subscription">Urus langganan</string>
   <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__donation_receipts">Resit Derma</string>
   <string name="ManageDonationsFragment__badges">Lencana</string>
   <string name="ManageDonationsFragment__subscription_faq">Soalan Lazim Langganan</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Ralat mendapatkan langganan.</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">Cara lain untuk derma</string>
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">Hadiahkan lencana</string>
   <string name="BoostFragment__give_signal_a_boost">Berikan Signal satu Boost</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Buat derma sekali dan terima lencana Boost selama %1$d hari.</string>
   <string name="Boost__enter_custom_amount">Masukkan Jumlah Tersuai</string>
   <string name="Boost__one_time_contribution">Sumbangan satu kali</string>
   <string name="MySupportPreference__add_a_signal_boost">Tambah Signal Boost</string>
@@ -3344,19 +3447,30 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="MySupportPreference__couldnt_add_badge_s">Tidak dapat menambah lencana. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Sila hubungi pusat bantuan.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Lencana Boost Tamat Tempoh</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Derma Bulanan Dibatalkan</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Lencana Boost anda telah tamat tempoh dan tidak lagi kelihatan pada profil anda.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Anda boleh mengaktifkan semula lencana Boost anda selama 30 hari lagi dengan satu sumbangan derma.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Anda masih boleh menggunakan Signal untuk menyokong teknologi yang dibina untuk anda, pertimbangkan untuk menjadi penderma dengan membuat derma bulanan.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Menjadi Sustainer</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Tambah Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Bukan sekarang</string>
   <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Derma bulanan berulang anda dibatalkan secara automatik kerana anda tidak aktif untuk masa yang terlalu lama. Lencana %1$s anda tidak lagi kelihatan pada profil anda.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Derma bulanan berulang anda telah dibatalkan kerana kami tidak boleh memproses pembayaran anda. Lencana anda tidak lagi kelihatan pada profil anda.</string>
   <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Derma bulanan berulang anda telah dibatalkan.%1$s lencana %2$s anda tidak lagi kelihatan pada profil anda.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Anda boleh terus menggunakan Signal tetapi untuk menyokong aplikasi dan mengaktifkan semula lencana anda, sila perbaharui sekarang.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Perbaharui langganan</string>
   <!--Button label to send user to Google Pay website-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Pergi ke Google Pay</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Tidak boleh memproses pembayaran langganan</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Kami mengalami masalah mengumpul pembayaran Penderma Signal anda. Pastikan kaedah pembayaran anda adalah terkini. Jika tidak, kemas kini dalam Google Pay. Signal akan cuba memproses pembayaran lagi dalam beberapa hari.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Jangan tunjukkan ini lagi</string>
   <string name="Subscription__please_contact_support_for_more_information">Sila hubungi bantuan untuk maklumat lebih lanjut</string>
   <string name="Subscription__contact_support">Hubungi Sokongan</string>
   <string name="Subscription__earn_a_s_badge">Dapatkan lencana %1$s</string>
@@ -3370,9 +3484,13 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="DonationsErrors__still_processing">Masih sedang diproses</string>
   <string name="DonationsErrors__couldnt_add_badge">Tidak dapat menambah lencana</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__failed_to_validate_badge">Gagal untuk mengesahkan lencana</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__could_not_validate">Tidak boleh mengesahkan respons pelayan. Sila hubungi sokongan.</string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__failed_to_send_gift_badge">Gagal menghantar lencana hadiah</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__could_not_send_gift_badge">Tidak boleh menghantar lencana hadiah. Sila hubungi sokongan.</string>
   <string name="DonationsErrors__your_badge_could_not">Lencana anda tidak dapat ditambahkan ke akaun anda, tetapi anda mungkin telah dikenakan bayaran. Sila hubungi pusat bantuan.</string>
   <string name="DonationsErrors__your_payment_is_still">Bayaran anda masih diproses. Ini boleh mengambil masa beberapa minit bergantung kepada sambungan anda.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay Tidak Tersedia</string>
@@ -3383,32 +3501,57 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Ralat rangkaian. Periksa sambungan anda dan cuba lagi.</string>
   <string name="NetworkFailure__retry">Cuba Semula</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__recipient_verification_failed">Pengesahan penerima gagal.</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">Sasaran tidak menyokong pemberian hadiah.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__could_not_verify_recipient">Tidak boleh mengesahkan penerima.</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Sila periksa sambungan rangkaian anda dan cuba lagi.</string>
   <!--Gift message view title-->
+  <string name="GiftMessageView__gift_badge">Lencana hadiah</string>
   <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="other">Bertahan selama %1$d bulan</item>
+  </plurals>
   <!--Gift badge redeem action label-->
+  <string name="GiftMessageView__redeem">Tebus</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">Lihat</string>
   <!--Gift badge redeeming action label-->
+  <string name="GiftMessageView__redeeming">Menebus…</string>
   <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">Ditebus</string>
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Cuba kaedah pembayaran lain atau hubungi bank anda untuk maklumat lebih lanjut.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Sahkan kaedah pembayaran anda terkini dalam Google Pay dan cuba lagi.</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">Ketahui lebih lanjut</string>
   <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Sahkan kaedah pembayaran anda terkini dalam Google Pay dan cuba lagi. Jika masalah masih berterusan, hubungi bank anda.</string>
   <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Kad anda tidak menyokong pembelian jenis ini. Cuba kaedah pembayaran lain.</string>
   <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">Kad anda telah tamat tempoh. Kemas kini kaedah pembayaran dalam Google Pay dan cuba lagi.</string>
   <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">Pergi ke Google Pay</string>
   <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">Nombor kad anda tidak betul. Kemas kini dalam Google Pay dan cuba lagi.</string>
   <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">Nombor CVC kad anda tidak betul. Kemas kini dalam Google Pay dan cuba lagi.</string>
   <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Kad anda tidak mempunyai baki yang mencukupi untuk menyelesaikan pembelian ini. Cuba kaedah pembayaran yang lain.</string>
   <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">Bulan tamat tempoh pada kaedah pembayaran anda tidak betul. Kemas kini dalam Google Pay dan cuba lagi.</string>
   <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">Tahun tamat tempoh pada kaedah pembayaran anda tidak betul. Kemas kini dalam Google Pay dan cuba lagi.</string>
   <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">Cuba selesaikan pembayaran lagi atau hubungi bank anda untuk maklumat lebih lanjut.</string>
   <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">Cuba lagi atau hubungi bank anda untuk maklumat lanjut.</string>
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">Namakan profil anda</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">Nama profil</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
@@ -3420,33 +3563,51 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Simpan</string>
   <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">Edit profil ini</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Profil dengan nama ini sudah wujud</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__work">Kerja</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">Tidur</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">Memandu</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">Masa mati</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">Fokus</string>
   <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">Mesti mempunyai nama</string>
   <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">Benarkan pemberitahuan</string>
   <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Tambah orang dan kumpulan yang anda mahukan pemberitahuan dan panggilan semasa profil ini dihidupkan</string>
   <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">Tambah orang atau kumpulan</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">Tambah</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Cipta profil untuk menerima pemberitahuan dan panggilan daripada orang dan kumpulan yang anda mahukan.</string>
   <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">Profil</string>
   <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">Profil baru</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
   <string name="NotificationProfilesFragment__on">Hidup</string>
   <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">Padam profil</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">\"%1$s\" dialih keluar.</string>
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">Buat Asal</string>
   <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">Padam profil secara kekal?</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">Padam</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">Edit profil pemberitahuan</string>
   <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">Setiap hari</string>
   <!--Profile status on if it is the active profile-->
   <string name="NotificationProfileDetails__on">Hidup</string>
   <!--Profile status on if it is not the active profile-->
@@ -3454,26 +3615,43 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Description of hours for schedule (start to end) times-->
   <string name="NotificationProfileDetails__s_to_s">%1$s kepada %2$s</string>
   <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">Pengecualian</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">Benarkan semua panggilan</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">Pemberitahuan untuk semua sebutan</string>
   <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">Jadual</string>
   <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
   <string name="NotificationProfileDetails__see_all">Lihat semua</string>
   <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">Tambah jadual</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Sediakan jadual untuk mendayakan profil pemberitahuan ini secara automatik.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">Jadual</string>
   <!--Label for showing the start time for the schedule-->
   <string name="EditNotificationProfileSchedule__start">Mulakan</string>
   <!--Label for showing the end time for the schedule-->
+  <string name="EditNotificationProfileSchedule__end">Tamat</string>
   <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">A</string>
   <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">I</string>
   <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">S</string>
   <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">R</string>
   <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">K</string>
   <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">J</string>
   <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">S</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">Tetapkan masa mula</string>
   <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">Tetapkan masa tamat</string>
   <!--If in edit mode, call to action button text show to save schedule to profile-->
   <string name="EditNotificationProfileSchedule__save">Simpan</string>
   <!--If in create mode, call to action button text to show to skip enabling a schedule-->
@@ -3481,78 +3659,128 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">Seterusnya</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">Jadual mesti mempunyai sekurang-kurangnya satu hari</string>
   <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">Profil dicipta</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">Selesai</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Anda boleh hidupkan atau matikan profil anda secara manual melalui menu pada senarai sembang.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Tambah jadual dalam tetapan untuk mengautomatikkan profil anda.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Profil akan dihidupkan dan dimatikan secara automatik bergantung kepada jadual.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <string name="NotificationProfileSelection__new_profile">Profil baru</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">Selama 1 jam</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">Sehingga %1$s</string>
   <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">Lihat tetapan</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">Hidupkan sehingga %1$s</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Gagal untuk membuka pemilih.</string>
   <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Nota Keluaran Signal &amp; Berita</string>
   <!--Donation receipts activity title-->
   <string name="DonationReceiptListFragment__all_activity">Semua aktiviti</string>
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">Semua</string>
   <!--Donation receipts recurring tab label-->
+  <string name="DonationReceiptListFragment__recurring">Berulang</string>
   <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">Sekali</string>
   <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">Hadiah</string>
   <!--Donation receipts boost row label-->
+  <string name="DonationReceiptListFragment__boost">Boost</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Butiran</string>
   <!--Donation receipts donation type heading-->
+  <string name="DonationReceiptDetailsFragment__donation_type">Jenis derma</string>
   <!--Donation receipts date paid heading-->
+  <string name="DonationReceiptDetailsFragment__date_paid">Tarikh bayar</string>
   <!--Donation receipts share PNG-->
+  <string name="DonationReceiptDetailsFragment__share_receipt">Kongsi resit</string>
   <!--Donation receipts list end note-->
+  <string name="DonationReceiptListFragment__if_you_have">Jika anda telah menyahpasang Signal, resit daripada derma terdahulu tidak akan tersedia.</string>
   <!--Donation receipts document title-->
+  <string name="DonationReceiptDetailsFragment__donation_receipt">Resit derma</string>
   <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">Jumlah</string>
   <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Terima kasih kerana menyokong Signal. Sumbangan anda membantu menampung misi membina teknologi privasi sumber terbuka yang melindungi pernyataan bebas dan membolehkan komunikasi global yang selamat untuk berjuta orang di seluruh dunia. Jika anda penduduk Amerika Syarikat, sila simpan resit ini untuk rekod cukai anda. Signal Technology Foundation merupakan organisasi bukan untung yang dikecualikan cukai di Amerika Syarikat di bawah seksyen 501c3 Kod Hasil dalam Negeri. ID Cukai Persekutuan kami ialah 82-4506840.</string>
   <!--Donation receipt type-->
+  <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--Donation reciepts screen empty state title-->
+  <string name="DonationReceiptListFragment__no_receipts">Tiada resit</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Sembang</string>
   <!--Label for Stories tab in home app screen-->
   <string name="ConversationListTabs__stories">Cerita</string>
   <!--String for counts above 99 in conversation list tabs-->
+  <string name="ConversationListTabs__99p">99+</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Cerita Saya</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
+  <string name="StoriesLandingFragment__add_a_story">Tambah cerita</string>
   <!--Displayed when there are no stories to display-->
+  <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Tiada kemas kini terkini untuk ditunjukkan sekarang. Ketik + untuk menambahkan ke cerita anda.</string>
   <!--Context menu option to hide a story-->
+  <string name="StoriesLandingItem__hide_story">Sembunyikan cerita</string>
   <!--Context menu option to unhide a story-->
+  <string name="StoriesLandingItem__unhide_story">Nyahsembunyi cerita</string>
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">Hantar</string>
   <!--Context menu option to share a story-->
+  <string name="StoriesLandingItem__share">Kongsi…</string>
   <!--Context menu option to go to story chat-->
+  <string name="StoriesLandingItem__go_to_chat">Pergi ke sembang</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Menghantar…</string>
   <!--Label when multiple stories are pending sending-->
+  <string name="StoriesLandingItem__sending_d">Menghantar %1$d…</string>
   <!--Label when a story fails to send due to networking-->
   <string name="StoriesLandingItem__send_failed">Penghantaran gagal</string>
   <!--Label when a story fails to send due to identity mismatch-->
+  <string name="StoriesLandingItem__partially_sent">Sebahagiannya dihantar</string>
   <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">Ketik untuk cuba lagi</string>
   <!--Title of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__hide_story">Sembunyikan cerita?</string>
   <!--Message of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__new_story_updates">Kemas kini cerita terbaru daripada %1$s tidak akan muncul di bahagian atas senarai cerita lagi.</string>
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">Sembunyikan</string>
   <!--Displayed in Snackbar after story is hidden-->
+  <string name="StoriesLandingFragment__story_hidden">Cerita disembunyikan</string>
   <!--Section header for hidden stories-->
+  <string name="StoriesLandingFragment__hidden_stories">Cerita yang disembunyikan</string>
   <!--Displayed on each sent story under My Stories-->
+  <plurals name="MyStories__d_views">
+    <item quantity="other">%1$d tontonan</item>
+  </plurals>
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">Hantar</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
+  <string name="MyStories__ss_story">Cerita %1$s</string>
   <!--Title of dialog to confirm deletion of story-->
+  <string name="MyStories__delete_story">Padam cerita?</string>
   <!--Message of dialog to confirm deletion of story-->
+  <string name="MyStories__this_story_will_be_deleted">Cerita ini akan dipadamkan untuk anda dan semua orang yang telah menerimanya.</string>
   <!--Toast shown when story media cannot be saved-->
+  <string name="MyStories__unable_to_save">Tidak boleh menyimpan</string>
   <!--Displayed at bottom of story viewer when current item has views-->
+  <plurals name="StoryViewerFragment__d_views">
+    <item quantity="other">%1$d tontonan</item>
+  </plurals>
   <!--Displayed at bottom of story viewer when current item has replies-->
+  <plurals name="StoryViewerFragment__d_replies">
+    <item quantity="other">%1$d balasan</item>
+  </plurals>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s%2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3562,156 +3790,296 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Balas</string>
   <!--Label for the reply button in story viewer, which will launch the group story replies bottom sheet.-->
+  <string name="StoryViewerPageFragment__reply_to_group">Balas ke kumpulan</string>
   <!--Displayed when a story has no views-->
+  <string name="StoryViewsFragment__no_views_yet">Tiada tontonan lagi</string>
   <!--Displayed when a story has no replies yet-->
+  <string name="StoryGroupReplyFragment__no_replies_yet">Tiada balasan lagi</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
+  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Telah bereaksi kepada cerita</string>
   <!--Label for story views tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__views">Tontonan</string>
   <!--Label for story replies tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__replies">Balasan</string>
   <!--Description of action for reaction button-->
+  <string name="StoryReplyComposer__react_to_this_story">Bereaksi kepada cerita ini</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
+  <string name="StoryReplyComposer__replying_privately_to_s">Balas secara peribadi kepada %1$s</string>
   <!--Context menu item to privately reply to a story response-->
+  <string name="StoryGroupReplyItem__private_reply">Balasan Peribadi</string>
   <!--Context menu item to copy a story response-->
   <string name="StoryGroupReplyItem__copy">Salin</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Padam</string>
   <!--Story settings page title-->
+  <string name="StorySettingsFragment__story_settings">Tetapan cerita</string>
   <!--Story settings private stories heading-->
+  <string name="StorySettingsFragment__private_stories">Cerita peribadi</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
   <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Cerita peribadi hanya boleh ditonton oleh orang anda tambahkan kepada ia. Hanya anda yang boleh melihat nama cerita.</string>
   <!--Option label for creating a new private story-->
+  <string name="StorySettingsFragment__new_private_story">Cerita peribadi baru</string>
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Cerita Saya</string>
   <!--Section heading for story visibility-->
+  <string name="MyStorySettingsFragment__who_can_see_this_story">Siapa boleh melihat cerita ini</string>
   <!--Clickable option for selecting people to hide your story from-->
-  <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <string name="MyStorySettingsFragment__hide_story_from">Sembunyikan cerita daripada</string>
+  <!--Privacy setting title for sending stories to all your signal connections-->
+  <!--Privacy setting description for sending stories to all your signal connections-->
+  <!--Privacy setting title for sending stories to all except the specified connections-->
+  <!--Privacy setting description for sending stories to all except the specified connections-->
+  <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <!--Privacy setting title for only sharing your story with specified connections-->
+  <!--Privacy setting description for only sharing your story with specified connections-->
+  <!--Summary of clickable option displaying how many people you have included to send to in your story-->
+  <plurals name="MyStorySettingsFragment__d_people">
+    <item quantity="other">%1$d orang</item>
+  </plurals>
+  <!--My story privacy fine print about what the privacy settings are for-->
   <!--Section header for options related to replies and reactions-->
+  <string name="MyStorySettingsFragment__replies_amp_reactions">Balasan &amp; reaksi</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
+  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Benarkan balasan &amp; reaksi</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
+  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Benarkan orang yang boleh melihat cerita anda bereaksi dan balas</string>
   <!--Note about default sharing-->
-  <!--Signal connections linked text that opens the Signal Connections sheet-->
+  <string name="MyStorySettingsFragment__hide_your_story_from">Sembunyikan cerita anda daripada orang tertentu. Dengan lalai, cerita anda dikongsikan dengan %1$s anda</string>
+  <!--Signal connections bolded text in the Signal Connections sheet-->
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
   <!--Signal connections sheet bullet point 1-->
+  <string name="SignalConnectionsBottomSheet__starting_a_conversation">Memulakan perbualan</string>
   <!--Signal connections sheet bullet point 2-->
+  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Menerima permintaan mesej</string>
   <!--Signal connections sheet bullet point 3-->
+  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Meletakkan mereka dalam sistem kenalan anda</string>
   <!--Note at the bottom of the Signal connections sheet-->
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Hubungan anda boleh melihat nama dan foto anda, dan boleh melihat hantaran anda ke \"Cerita Saya\" kecuali anda menyembunyikannya daripada mereka.</string>
   <!--Clickable option to add a viewer to a private story-->
+  <string name="PrivateStorySettingsFragment__add_viewer">Tambah penonton</string>
   <!--Clickable option to delete a custom story-->
+  <string name="PrivateStorySettingsFragment__delete_private_story">Padam cerita peribadi</string>
   <!--Dialog title when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__remove_s">Alih keluar %1$s?</string>
   <!--Dialog message when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Orang ini tidak lagi akan dapat melihat cerita anda.</string>
   <!--Positive action label when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__remove">Alih keluar</string>
   <!--Dialog title when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__are_you_sure">Anda pasti?</string>
   <!--Dialog message when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__this_action_cannot">Tindakan ini tidak boleh dibatalkan.</string>
   <!--Page title for editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__edit_story_name">Edit nama cerita</string>
   <!--Input field hint when editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__story_name">Nama cerita</string>
   <!--Save button label when editing a private story name-->
   <string name="EditPrivateStoryNameFragment__save">Simpan</string>
   <!--Displayed in text post creator before user enters text-->
+  <string name="TextStoryPostCreationFragment__tap_to_add_text">Ketik untuk tambah teks</string>
   <!--Button label for changing font when creating a text post-->
+  <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
   <!--Displayed in text post creator when prompting user to enter text-->
   <string name="TextStoryPostTextEntryFragment__add_text">Tambah teks</string>
   <!--Content description for \'done\' button when adding text to a story post-->
+  <string name="TextStoryPostTextEntryFragment__done_adding_text">Selesai menambahkan teks</string>
   <!--Text label for media selection toggle-->
   <string name="MediaSelectionActivity__text">Teks</string>
   <!--Camera label for media selection toggle-->
   <string name="MediaSelectionActivity__camera">Kamera</string>
   <!--Hint for entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Taip atau tampal URL</string>
   <!--Displayed prior to the user entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Kongsi pautan dengan tontonan cerita anda</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Cari</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
-  <!--Title for screen allowing user to hide "My Story" entries from specific people-->
+  <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Ralat yang tidak dijangka berlaku</string>
+  <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <!--Title for screen allowing user to only share "My Story" entries with specific people-->
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Selesai</string>
   <!--Dialog title for first time adding something to a story-->
+  <string name="StoryDialogs__add_to_story_q">Tambah ke cerita?</string>
   <!--Dialog message for first time adding something to a story-->
+  <string name="StoryDialogs__adding_content">Menambah kandungan ke cerita anda membenarkan hubungan Signal melihat ia selama 24 jam. Anda boleg menukar siapa yang boleh melihat cerita anda dalam Tetapan.</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
+  <string name="StoryDialogs__add_to_story">Tambah ke cerita</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <string name="StoryDialogs__edit_viewers">Edit penonton</string>
   <!--Error message shown when a failure occurs during story send-->
+  <string name="StoryDialogs__story_could_not_be_sent">Cerita tidak boleh dihantar. Periksa sambungan anda dan cuba lagi.</string>
   <!--Error message dialog button to resend a previously failed story send-->
   <string name="StoryDialogs__send">Hantar</string>
   <!--Privacy Settings toggle title for stories-->
+  <string name="PrivacySettingsFragment__share_and_view_stories">Kongsi &amp; Lihat Cerita</string>
   <!--Privacy Settings toggle summary for stories-->
+  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Anda tidak lagi dapat berkongsi atau melihat Cerita apabila pilihan ini dimatikan.</string>
   <!--New story viewer selection screen title-->
+  <string name="CreateStoryViewerSelectionFragment__choose_viewers">Pilih penonton</string>
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">Seterusnya</string>
   <!--New story viewer selection screen title as recipients are selected-->
+  <plurals name="SelectViewersFragment__d_viewers">
+    <item quantity="other">%1$d penonton</item>
+  </plurals>
   <!--Name story screen title-->
+  <string name="CreateStoryWithViewersFragment__name_story">Nama cerita</string>
   <!--Name story screen label hint-->
+  <string name="CreateStoryWithViewersFragment__story_name_required">Nama cerita (diperlukan)</string>
   <!--Name story screen viewers subheading-->
+  <string name="CreateStoryWithViewersFragment__viewers">Penonton</string>
   <!--Name story screen create button label-->
   <string name="CreateStoryWithViewersFragment__create">Cipta</string>
   <!--Name story screen error when save attempted with no label-->
   <string name="CreateStoryWithViewersFragment__this_field_is_required">Ruang ini diperlukan.</string>
   <!--Name story screen error when save attempted but label is duplicate-->
+  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">Sudah ada cerita dengan nama ini.</string>
   <!--Text for select all action when editing recipients for a story-->
   <string name="BaseStoryRecipientSelectionFragment__select_all">Pilih semua</string>
   <!--Choose story type bottom sheet title-->
+  <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Pilih jenis cerita anda</string>
   <!--Choose story type bottom sheet new story row title-->
+  <string name="ChooseStoryTypeBottomSheet__new_private_story">Cerita peribadi baru</string>
   <!--Choose story type bottom sheet new story row summary-->
+  <string name="ChooseStoryTypeBottomSheet__visible_only_to">Kelihatan hanya kepada orang tertentu</string>
   <!--Choose story type bottom sheet group story title-->
+  <string name="ChooseStoryTypeBottomSheet__group_story">Cerita kumpulan</string>
   <!--Choose story type bottom sheet group story summary-->
+  <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Kongsi ke kumpulan yang wujud</string>
   <!--Choose groups bottom sheet title-->
+  <string name="ChooseGroupStoryBottomSheet__choose_groups">Pilih kumpulan</string>
   <!--Displayed when copying group story reply text to clipboard-->
   <string name="StoryGroupReplyFragment__copied_to_clipboard">Disalin ke papan klip</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
+  <string name="StoryViewerPageFragment__see_more">… Lihat Lebih Lagi</string>
   <!--Displayed in toast after sending a direct reply-->
+  <string name="StoryDirectReplyDialogFragment__sending_reply">Menghantar balasan…</string>
   <!--Displayed in the viewer when a story is no longer available-->
+  <string name="StorySlateView__this_story_is_no_longer_available">Cerita ini tidak tersedia lagi.</string>
   <!--Displayed in the viewer when the network is not available-->
+  <string name="StorySlateView__no_internet_connection">Tiada Sambungan Internet</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <string name="StorySlateView__couldnt_load_content">Tidak Boleh Memuatkan Kandungan</string>
   <!--Toasted when the user externally shares to a text story successfully-->
+  <string name="TextStoryPostCreationFragment__sent_story">Hantar cerita</string>
   <!--Toasted when the user external share to a text story fails-->
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">Gagal untuk menghantar cerita</string>
   <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">Lihat cerita</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">Lihat foto profil</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Matikan penapisan pemintasan?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">Anda kini boleh berhubung dengan perkhidmatan Signal secara terus untuk pengalaman yang lebih baik.</string>
   <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_no_thanks">Tidak, terima kasih</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Matikan</string>
   <!--Conversation Item label for when you react to someone else\'s story-->
+  <string name="ConversationItem__you_reacted_to_s_story">Anda bereaksi kepada cerita %1$s</string>
   <!--Conversation Item label for reactions to your story-->
+  <string name="ConversationItem__reacted_to_your_story">Bereaksi kepada cerita anda</string>
   <!--Conversation Item label for reactions to an unavailable story-->
+  <string name="ConversationItem__reacted_to_a_story">Bereaksi kepada cerita</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="ExpandModel__view_more">Lihat lebih lagi</string>
+  <string name="StoriesLinkPopup__visit_link">Lawati pautan</string>
   <!--Duration and price information-->
+  <plurals name="GiftRowItem_s_dot_d_day_duration">
+    <item quantity="other">%1$s . durasi %2$d hari</item>
+  </plurals>
   <!--Tagline for gift row items-->
+  <string name="GiftRowItem__send_a_gift_badge">Hantar lencana hadiah</string>
   <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">Hadiahkan Lencana</string>
   <!--Description text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">Hadiahkan seseorang lencana dengan membuat derma kepada Signal atas nama mereka. Mereka akan menerima lencana untuk dipaparkan pada foto profil mereka.</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Seterusnya</string>
   <!--Title text on choose recipient page for badge gifting-->
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Pilih penerima</string>
   <!--Title text on confirm gift page-->
+  <string name="GiftFlowConfirmationFragment__confirm_gift">Sahkan hadiah</string>
   <!--Heading text specifying who the gift will be sent to-->
   <string name="GiftFlowConfirmationFragment__send_to">Hantar kepada</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Hadiah anda akan dihantar dalam mesej 1 ke 1 kepada penerima. Tambah mesej anda di bawah.</string>
   <!--Text explaining that this gift is a one time donation-->
+  <string name="GiftFlowConfirmationFragment__one_time_donation">Derma sekali</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Tambah mesej</string>
   <!--Displayed in the dialog while verifying the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__verifying_recipient">Mengesahkan penerima…</string>
   <!--Title for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s menghantarkan hadiah kepada anda</string>
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Terima kasih di atas sokongan anda!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Anda telah menerima lencana hadiah daripada %1$s! Bantu Signal untuk membina kesedaran dengan memaparkan lencana ini pada profil anda.</string>
   <!--Description for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Anda telah menghadiahkan lencana kepada %1$s. Apabila mereka menerima, mereka akan diberikan pilihan untuk menunjukkan atau menyembunyikan lencana mereka.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
+  <string name="ViewReceivedGiftSheet__redeem">Tebus</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">Bukan sekarang</string>
   <!--Dialog text while redeeming a gift-->
+  <string name="ViewReceivedGiftSheet__redeeming_gift">Menebus hadiah…</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <string name="ConversationFragment__you_can_redeem_your_badge_later">Anda boleh menebus lencana anda nanti.</string>
   <!--Description text in gift thanks sheet-->
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Anda telah menghadiahkan lencana kepada %1$s. Apabila mereka menerima, mereka akan diberikan pilihan untuk menunjukkan atau menyembunyikan lencana mereka.</string>
   <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Lencana hadiah anda telah tamat tempoh</string>
   <!--Expired gift sheet top description text-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Lencana hadiah anda telah tamat tempoh, dan tidak lagi kelihatan kepada orang lain pada profil anda.</string>
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">Untuk terus menyokong teknologi yang dibina untuk anda, sila pertimbangkan untuk menjadi Sustainer bulanan.</string>
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Buat derma bulanan</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Bukan sekarang</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="other">Cerita Peribadi . %1$d penonton</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="other">Cerita Kumpulan . %1$d penonton</item>
+  </plurals>
+  <!--Label for context menu item to open story settings-->
+  <string name="ContactSearchItems__story_settings">Tetapan cerita</string>
+  <!--Label for context menu item to remove a group story from contact results-->
+  <!--Label for context menu item to delete a private story-->
+  <!--Dialog title for removing a group story-->
+  <!--Dialog message for removing a group story-->
+  <!--Dialog action item for removing a group story-->
+  <string name="ContactSearchMediator__remove">Alih keluar</string>
+  <!--Dialog title for deleting a private story-->
+  <string name="ContactSearchMediator__delete_story">Padam cerita?</string>
+  <!--Dialog message for deleting a private story-->
+  <!--Dialog action item for deleting a private story-->
+  <string name="ContactSearchMediator__delete">Padam</string>
   <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="other">%1$d hari lagi</item>
+  </plurals>
   <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="other">%1$d jam lagi</item>
+  </plurals>
   <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="other">%1$d minit lagi</item>
+  </plurals>
   <!--Gift expiry expired-->
+  <string name="Gifts__expired">Tamat tempoh</string>
+  <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <!--Label indicating swipe direction to skip current story-->
+  <!--Label indicating swipe direction to exit story viewer-->
+  <!--Button label to confirm understanding of story navigation-->
+  <string name="StoryFirstTimeNagivationView__got_it">Faham</string>
   <!--EOF-->
 </resources>

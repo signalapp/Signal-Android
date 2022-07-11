@@ -272,6 +272,8 @@
     <item quantity="other">%d សារមិនទាន់អាន</item>
   </plurals>
   <!--ConversationFragment-->
+  <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">រកមិនឃើញកម្មវិធីទំនាក់ទំនងទេ។</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="other">លុបសារដែលបានជ្រើសរើស?</item>
   </plurals>
@@ -853,6 +855,8 @@
   <string name="Megaphones_use_sms">ប្រើប្រាស់ SMS</string>
   <string name="Megaphones_appearance">រូបរាង</string>
   <string name="Megaphones_add_photo">បន្ថែមរូបភាព</string>
+  <!--Title of a bottom sheet to render messages that all quote a specific message-->
+  <string name="MessageQuotesBottomSheet_replies">ការឆ្លើយតប</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">ការហៅចេញSignal កំពុងដំណើរការ</string>
   <string name="NotificationBarManager__establishing_signal_call">ការហៅចេញ តាមSignal</string>
@@ -1066,9 +1070,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">សារពី %s មិនអាចបញ្ជូនបាន</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s បានផ្លាស់ប្តូរលេខទូរស័ព្ទរបស់គេ។</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">ចូលចិត្តមុខងារថ្មីនេះ? និយាយអរគុណ ជាមួយការជម្រុញមួយ។ </string> -->
-  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal ដំណើរការដោយមនុស្សដូចអ្នក។ ក្លាយជាអ្នកទ្រទ្រង់ថ្ងៃនេះ។ </string> -->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">ចូលចិត្តមុខងារថ្មីនេះឬ? ជួយគាំទ្រ Signal ជាមួយនឹងការបរិច្ចាគតែម្តង។</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s បានចាប់ផ្តើមការហៅជាក្រុម · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s នៅក្នុងការហៅជាក្រុម · %2$s</string>
@@ -1738,9 +1740,7 @@
   <string name="ConversationUpdateItem_view">បង្ហាញ</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">រយៈពេលសារបាត់ទៅវិញ នឹងត្រូវកំណត់ទៅ %1$s នៅពេលអ្នកផ្ញើសារពួកគេ។</string>
   <!--Update item button text to show to boost a feature-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">Signal Boost</string> -->
-  <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">ក្លាយជា Sustainer​ ម្នាក់</string> -->
+  <string name="ConversationUpdateItem_donate">ឧបត្ថម្ភ</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">លេង … ផ្អាក</string>
   <string name="audio_view__download_accessibility_description">ទាញយក</string>
@@ -1973,16 +1973,16 @@
   <string name="HelpFragment__debug_log">កំណត់ត្រាបញ្ហា៖</string>
   <string name="HelpFragment__could_not_upload_logs">មិនអាចបញ្ជូនកំណត់ត្រា</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">សូមពន្យល់តាមដែលអាចធ្វើទៅបានដើម្បីជួយយើងឱ្យយល់ពីបញ្ហា។</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
+  <string-array name="HelpFragment__categories_4">
     <item>\-\- សូមជ្រើសរើសជម្រើសមួយ \-\-</item>
-    <item>មានអ្វីមួយមិនដំណើរការ</item>
-    <item>សំណើមុខងារ</item>
+    <item>អ្វីមួយមិនដំណើរការ</item>
+    <item>ការស្នើសុំមុខងារ</item>
     <item>សំណួរ</item>
-    <item>មតិយោបល់</item>
+    <item>មតិកែលម្អ</item>
     <item>ផ្សេងៗ</item>
-    <item>ការទូទាត់ (កាក់ទូរស័ព្ទ)</item>
-    <item>អ្នកទ្រទ្រង់ &amp; Signal Boost</item>
-  </string-array> -->
+    <item>ការទូទាត់ (MobileCoin)</item>
+    <item>ការបរិច្ចាគ និងស្លាក</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">សារនេះ</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">បានប្រើប្រាស់ថ្មីៗ</string>
@@ -3342,6 +3342,10 @@
   <string name="MultiselectForwardFragment__share_with">ចែកទៅកាន់</string>
   <string name="MultiselectForwardFragment__add_a_message">បន្ថែមសារ</string>
   <string name="MultiselectForwardFragment__faster_forwards">ការបញ្ជូនសារបន្តលឿនជាងមុន</string>
+  <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">វីដេអូ​នឹង​ត្រូវ​បានកាត់​តម្រឹមជាវីដេអូខ្លី​ 30 វិនាទី ហើយ​ផ្ញើ​ជា​រឿងរ៉ាវជា​ច្រើន។</string>
+  <!--Displayed when user selects a video that cannot be sent as a story-->
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">វីដេអូដែលបានផ្ញើទៅរឿងរ៉ាវមិនអាចវែងជាង 30 វិនាទីទេ។</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">ការបញ្ជូនសារបន្តនឹងផ្ញើចេញទៅភ្លាមៗ</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="other">ផ្ញើ %1$d សារ</item>
@@ -3838,10 +3842,28 @@
   <string name="MyStorySettingsFragment__who_can_see_this_story">អ្នកដែលអាចមើលឃើញរឿងរ៉ាវនេះ</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">លាក់រឿងរ៉ាវពី</string>
-  <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <!--Privacy setting title for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections">ទំនាក់ទំនង Signal ទាំងអស់</string>
+  <!--Privacy setting description for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__share_with_all_connections">ចែករំលែកជាមួយការតភ្ជាប់ទាំងអស់។</string>
+  <!--Privacy setting title for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections_except">ទំនាក់ទំនង Signal ទាំងអស់លើកលែងតែ…</string>
+  <!--Privacy setting description for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">លាក់រឿងរ៉ាវរបស់អ្នកពីមនុស្សជាក់លាក់</string>
+  <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <plurals name="MyStorySettingsFragment__d_people_excluded">
+    <item quantity="other">មិនរាប់បញ្ចូលមនុស្ស %1$d នាក់</item>
+  </plurals>
+  <!--Privacy setting title for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with">គ្រាន់តែចែករំលែកជាមួយ…</string>
+  <!--Privacy setting description for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">ចែករំលែកជាមួយតែមនុស្សដែលបានជ្រើសរើស</string>
+  <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="other">មនុស្ស %1$d នាក់</item>
   </plurals>
+  <!--My story privacy fine print about what the privacy settings are for-->
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">ជ្រើសរើសអ្នកដែលអាចមើលរឿងរ៉ាវរបស់អ្នក។ ការផ្លាស់ប្តូរទាំងនេះនឹងមិនប៉ះពាល់ដល់រឿងរ៉ាវដែលអ្នកបានផ្ញើហើយនោះទេ។</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">ការឆ្លើយតប និងការប្រតិកម្ម</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -3850,10 +3872,10 @@
   <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">អនុញ្ញាតឲ្យមនុស្សដែលអាចមើលរឿងរបស់អ្នកប្រតិកម្ម និងឆ្លើយតប</string>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">លាក់រឿងរ៉ាវរបស់អ្នកពីមនុស្សជាក់លាក់។ តាមលំនាំដើម រឿងរ៉ាវរបស់អ្នកត្រូវបានចែករំលែកជាមួយ %1$s របស់អ្នក</string>
-  <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">អ្នកភ្ជាប់ទំនាក់ទំនងក្នុង Signal។</string> -->
+  <!--Signal connections bolded text in the Signal Connections sheet-->
+  <string name="SignalConnectionsBottomSheet___signal_connections">ទំនាក់ទំនង Signal</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>អ្នកភ្ជាប់ទំនាក់ទំនងក្នុង Signal</strong> គឺជាមនុស្សដែលអ្នកបានសម្រេចថា​អាចទុកចិត្តបាន តាមរយៈការ៖</string>
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">ទំនាក់ទំនង Signal គឺជាមនុស្សដែលអ្នកមានទំនុកចិត្តលើដោយសារ៖</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">ចាប់ផ្តើមការសន្ទនា</string>
   <!--Signal connections sheet bullet point 2-->
@@ -3902,8 +3924,10 @@
   <string name="TextStoryPostSendFragment__search">ស្វែងរក</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">បញ្ហាមួយដែលមិនបានរំពឹងទុកបានកើតឡើង</string>
-  <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">លាក់រឿងរ៉ាវពី…</string> -->
+  <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <string name="ChangeMyStoryMembershipFragment__all_except">ទាំងអស់លើកលែងតែ…</string>
+  <!--Title for screen allowing user to only share "My Story" entries with specific people-->
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">គ្រាន់តែចែករំលែកជាមួយ…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">បញ្ចប់</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4056,6 +4080,24 @@
   <plurals name="ContactSearchItems__group_story_d_viewers">
     <item quantity="other">រឿងរ៉ាវក្រុម ·  អ្នកមើល %1$d នាក់</item>
   </plurals>
+  <!--Label for context menu item to open story settings-->
+  <string name="ContactSearchItems__story_settings">ការកំណត់រឿងរ៉ាវ</string>
+  <!--Label for context menu item to remove a group story from contact results-->
+  <string name="ContactSearchItems__remove_story">ដករឿងរ៉ាវចេញ</string>
+  <!--Label for context menu item to delete a private story-->
+  <string name="ContactSearchItems__delete_story">លុបរឿងរ៉ាវ</string>
+  <!--Dialog title for removing a group story-->
+  <string name="ContactSearchMediator__remove_group_story">ដករឿងរ៉ាវក្រុមចេញឬ?</string>
+  <!--Dialog message for removing a group story-->
+  <string name="ContactSearchMediator__this_will_remove">ការធ្វើបែបនេះនឹងដករឿងរ៉ាវចេញពីបញ្ជីនេះ។ អ្នកនៅតែអាចមើលរឿងរ៉ាវពីក្រុមនេះ។</string>
+  <!--Dialog action item for removing a group story-->
+  <string name="ContactSearchMediator__remove">លុបចេញ</string>
+  <!--Dialog title for deleting a private story-->
+  <string name="ContactSearchMediator__delete_story">លុបរឿងរ៉ាវឬ?</string>
+  <!--Dialog message for deleting a private story-->
+  <string name="ContactSearchMediator__delete_the_private">លុបរឿងរ៉ាវឯកជន \"%1$s\" ឬ?</string>
+  <!--Dialog action item for deleting a private story-->
+  <string name="ContactSearchMediator__delete">លុប</string>
   <!--Gift expiry days remaining-->
   <plurals name="Gifts__d_days_remaining">
     <item quantity="other">នៅសល់ %1$d ថ្ងៃ</item>
@@ -4070,5 +4112,13 @@
   </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">បានផុតកំណត់</string>
+  <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">ចុចដើម្បីទៅមុខ</string>
+  <!--Label indicating swipe direction to skip current story-->
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">អូសឡើងលើដើម្បីរំលង</string>
+  <!--Label indicating swipe direction to exit story viewer-->
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">អូសទៅស្តាំដើម្បីចាកចេញ</string>
+  <!--Button label to confirm understanding of story navigation-->
+  <string name="StoryFirstTimeNagivationView__got_it">ទទួលបាន</string>
   <!--EOF-->
 </resources>

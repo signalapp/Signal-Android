@@ -270,6 +270,7 @@
     <item quantity="other">%d olästa meddelanden</item>
   </plurals>
   <!--ConversationFragment-->
+  <!--Toast text when contacts activity is not found-->
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Ta bort valt meddelande?</item>
     <item quantity="other">Ta bort valda meddelanden?</item>
@@ -895,6 +896,8 @@
   <string name="Megaphones_use_sms">Använd SMS</string>
   <string name="Megaphones_appearance">Utseende</string>
   <string name="Megaphones_add_photo">Lägg till foto</string>
+  <!--Title of a bottom sheet to render messages that all quote a specific message-->
+  <string name="MessageQuotesBottomSheet_replies">Svar</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtal pågår</string>
   <string name="NotificationBarManager__establishing_signal_call">Upprättar Signal-samtal</string>
@@ -1116,9 +1119,6 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Ett meddelande från %s kunde inte levereras</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s ändrade sitt telefonnummer.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Gillar du den här nya funktionen? Säg tack med en Boost.</string> -->
-  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal drivs av människor som du. Bli en upprätthållare idag.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s startade ett gruppsamtal · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s är i gruppsamtalet · %2$s</string>
@@ -1793,9 +1793,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ConversationUpdateItem_view">Visa</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Den försvinnande meddelandetiden ställs in till %1$s när du meddelar dem.</string>
   <!--Update item button text to show to boost a feature-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">Signal Boost</string> -->
-  <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">Bli en upprätthållare</string> -->
+  <string name="ConversationUpdateItem_donate">Donera</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spela … Pausa</string>
   <string name="audio_view__download_accessibility_description">Hämta</string>
@@ -2035,16 +2033,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="HelpFragment__debug_log">Felsökningslogg:</string>
   <string name="HelpFragment__could_not_upload_logs">Det gick inte att ladda upp loggar</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Var så beskrivande som möjligt för att hjälpa oss att förstå problemet.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
-    <item>\-\- Välj ett alternativ \-\-</item>
-    <item>Något fungerar inte</item>
-    <item>Funktionsbegäran</item>
-    <item>Fråga</item>
-    <item>Återkoppling</item>
-    <item>Annat</item>
-    <item>Betalningar (MobileCoin)</item>
-    <item>Underhållare &amp; Signal Boost</item>
-  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Detta meddelande</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nyligen använda</string>
@@ -3416,6 +3404,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MultiselectForwardFragment__share_with">Dela med</string>
   <string name="MultiselectForwardFragment__add_a_message">Lägg till ett meddelande</string>
   <string name="MultiselectForwardFragment__faster_forwards">Snabbare vidarebefordringar</string>
+  <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <!--Displayed when user selects a video that cannot be sent as a story-->
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Vidarebefordrade meddelanden skickas nu omedelbart.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">Skicka %1$d meddelande</item>
@@ -3896,11 +3886,19 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MyStorySettingsFragment__who_can_see_this_story">Vem kan se denna berättelse</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Dölj berättelse från</string>
-  <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <!--Privacy setting title for sending stories to all your signal connections-->
+  <!--Privacy setting description for sending stories to all your signal connections-->
+  <!--Privacy setting title for sending stories to all except the specified connections-->
+  <!--Privacy setting description for sending stories to all except the specified connections-->
+  <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <!--Privacy setting title for only sharing your story with specified connections-->
+  <!--Privacy setting description for only sharing your story with specified connections-->
+  <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d person</item>
     <item quantity="other">%1$d personer</item>
   </plurals>
+  <!--My story privacy fine print about what the privacy settings are for-->
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">Svar &amp; reaktioner</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -3909,10 +3907,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Låt personer som kan se din berättelse reagera och svara</string>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Dölj din berättelse från specifika personer. Som standard delas din berättelse med dina %1$s</string>
-  <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">Signalanslutningar.</string> -->
+  <!--Signal connections bolded text in the Signal Connections sheet-->
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Signalanslutningar</strong> är personer som du har valt att lita på, antingen genom att:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">Starta en konversation</string>
   <!--Signal connections sheet bullet point 2-->
@@ -3960,8 +3956,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Sök</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
-  <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">Dölj berättelse från…</string> -->
+  <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <!--Title for screen allowing user to only share "My Story" entries with specific people-->
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Klar</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4089,10 +4085,28 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ExpiredGiftSheetConfiguration__not_now">Inte nu</string>
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
+  <!--Label for context menu item to open story settings-->
+  <string name="ContactSearchItems__story_settings">Berättelse inställningar</string>
+  <!--Label for context menu item to remove a group story from contact results-->
+  <!--Label for context menu item to delete a private story-->
+  <!--Dialog title for removing a group story-->
+  <!--Dialog message for removing a group story-->
+  <!--Dialog action item for removing a group story-->
+  <string name="ContactSearchMediator__remove">Ta bort</string>
+  <!--Dialog title for deleting a private story-->
+  <string name="ContactSearchMediator__delete_story">Ta bort berättelse?</string>
+  <!--Dialog message for deleting a private story-->
+  <!--Dialog action item for deleting a private story-->
+  <string name="ContactSearchMediator__delete">Ta bort</string>
   <!--Gift expiry days remaining-->
   <!--Gift expiry hours remaining-->
   <!--Gift expiry minutes remaining-->
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Utgånget</string>
+  <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <!--Label indicating swipe direction to skip current story-->
+  <!--Label indicating swipe direction to exit story viewer-->
+  <!--Button label to confirm understanding of story navigation-->
+  <string name="StoryFirstTimeNagivationView__got_it">Uppfattat</string>
   <!--EOF-->
 </resources>

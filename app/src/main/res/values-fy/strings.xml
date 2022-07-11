@@ -274,6 +274,7 @@
     <item quantity="other">%d net lêzen berjochten</item>
   </plurals>
   <!--ConversationFragment-->
+  <!--Toast text when contacts activity is not found-->
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Selektearre berjocht wiskje?</item>
     <item quantity="other">Selektearre berjochten wiskje?</item>
@@ -901,6 +902,8 @@
   <string name="Megaphones_use_sms">Sms brûke</string>
   <string name="Megaphones_appearance">Uterlik</string>
   <string name="Megaphones_add_photo">Foegje in foto ta</string>
+  <!--Title of a bottom sheet to render messages that all quote a specific message-->
+  <string name="MessageQuotesBottomSheet_replies">Reaksjes</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Do bist noch yn in Signal-oprop</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal-oprop oan it opsetten</string>
@@ -1122,9 +1125,6 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">In berjocht fan %s kin net ôflevere wurde</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s hat syn of har telefoannûmer wizige.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Meisto wol oer dizze funksje? Sis tank mei in Boost.</string> -->
-  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal wurdt mooglik makke troch minsken as do. Wurdt hjoed in stiper.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s hat in groepsoprop start · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s is yn dizze groepsoprop oanwêzich · %2$s</string>
@@ -1823,9 +1823,7 @@
   <string name="ConversationUpdateItem_view">Werjaan</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Sa gau asto in berjocht ferstjoerst sil it tiidrek foar ferrinnende berjochten op %1$s ynsteld wurde.</string>
   <!--Update item button text to show to boost a feature-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">Ienmalige donaasje</string> -->
-  <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">Wurdt in stiper</string> -->
+  <string name="ConversationUpdateItem_donate">Donearje</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Ofspylje… Pauzearje</string>
   <string name="audio_view__download_accessibility_description">Downloade</string>
@@ -2063,16 +2061,6 @@
   <string name="HelpFragment__debug_log">Flateropspoaringslogboek:</string>
   <string name="HelpFragment__could_not_upload_logs">Logs oplade is mislearre</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Probearje sa beskriuwend mooglik te wêzen om ús te helpen it probleem te begripen.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
-    <item>\-\- Meitsje in kar \-\-</item>
-    <item>Der wurket wat net sa as it heart</item>
-    <item>Fersyk foar nije funksjonaliteit</item>
-    <item>Fraach</item>
-    <item>Kommentaar</item>
-    <item>Wat oars</item>
-    <item>Oerskriuwingen (MobileCoin)</item>
-    <item>Donaasjes (moanliks of ienmalich)</item>
-  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Dit berjocht</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Resintlik brûkt</string>
@@ -3446,6 +3434,8 @@
   <string name="MultiselectForwardFragment__share_with">Trochstjoere nei</string>
   <string name="MultiselectForwardFragment__add_a_message">In berjocht tafoegje</string>
   <string name="MultiselectForwardFragment__faster_forwards">Flugger trochstjoere</string>
+  <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <!--Displayed when user selects a video that cannot be sent as a story-->
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Trochstjoerde berjochten wurde fan no ôf daliks ferstjoerd.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">%1$d berjocht ferstjoere</item>
@@ -3943,18 +3933,26 @@
   <string name="MyStorySettingsFragment__who_can_see_this_story">Wa meie dit ferhaal sjen</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Ferstopje dit ferhaal fan</string>
-  <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <!--Privacy setting title for sending stories to all your signal connections-->
+  <!--Privacy setting description for sending stories to all your signal connections-->
+  <!--Privacy setting title for sending stories to all except the specified connections-->
+  <!--Privacy setting description for sending stories to all except the specified connections-->
+  <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <!--Privacy setting title for only sharing your story with specified connections-->
+  <!--Privacy setting description for only sharing your story with specified connections-->
+  <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d persoan</item>
     <item quantity="other">%1$d persoanen</item>
   </plurals>
+  <!--My story privacy fine print about what the privacy settings are for-->
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">Reaksjes</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
   <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Reaksjes tastean</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
   <!--Note about default sharing-->
-  <!--Signal connections linked text that opens the Signal Connections sheet-->
+  <!--Signal connections bolded text in the Signal Connections sheet-->
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
   <!--Signal connections sheet bullet point 1-->
   <!--Signal connections sheet bullet point 2-->
@@ -3986,7 +3984,8 @@
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Sykje</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
-  <!--Title for screen allowing user to hide "My Story" entries from specific people-->
+  <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <!--Title for screen allowing user to only share "My Story" entries with specific people-->
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Klear</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4085,9 +4084,27 @@
   <string name="ExpiredGiftSheetConfiguration__not_now">No net</string>
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
+  <!--Label for context menu item to open story settings-->
+  <string name="ContactSearchItems__story_settings">Ferhaalynstellingen</string>
+  <!--Label for context menu item to remove a group story from contact results-->
+  <!--Label for context menu item to delete a private story-->
+  <!--Dialog title for removing a group story-->
+  <!--Dialog message for removing a group story-->
+  <!--Dialog action item for removing a group story-->
+  <string name="ContactSearchMediator__remove">Furt helje</string>
+  <!--Dialog title for deleting a private story-->
+  <string name="ContactSearchMediator__delete_story">Ferhaal wiskje?</string>
+  <!--Dialog message for deleting a private story-->
+  <!--Dialog action item for deleting a private story-->
+  <string name="ContactSearchMediator__delete">Fuortsmite</string>
   <!--Gift expiry days remaining-->
   <!--Gift expiry hours remaining-->
   <!--Gift expiry minutes remaining-->
   <!--Gift expiry expired-->
+  <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <!--Label indicating swipe direction to skip current story-->
+  <!--Label indicating swipe direction to exit story viewer-->
+  <!--Button label to confirm understanding of story navigation-->
+  <string name="StoryFirstTimeNagivationView__got_it">Begrepen</string>
   <!--EOF-->
 </resources>

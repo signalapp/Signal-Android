@@ -272,6 +272,8 @@
     <item quantity="other">%d pesan belum dibaca</item>
   </plurals>
   <!--ConversationFragment-->
+  <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">Aplikasi kontak tidak ditemukan.</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="other">Hapus pesan terpilih?</item>
   </plurals>
@@ -853,6 +855,8 @@
   <string name="Megaphones_use_sms">Gunakan SMS</string>
   <string name="Megaphones_appearance">Tampilan</string>
   <string name="Megaphones_add_photo">Tambahkan foto</string>
+  <!--Title of a bottom sheet to render messages that all quote a specific message-->
+  <string name="MessageQuotesBottomSheet_replies">Balasan</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Panggilan Signal berlangsung</string>
   <string name="NotificationBarManager__establishing_signal_call">Menyiapkan panggilan Signal</string>
@@ -1066,9 +1070,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Sebuah pesan dari %s tidak dapat diterima</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s mengubah nomor teleponnya.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Suka fitur baru ini? Ucapkan terima kasih dengan Boost</string> -->
-  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal didukung oleh orang seperti Anda. Jadilah seorang Sustainer hari ini.</string> -->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Suka fitur baru ini? Dukung Signal dengan donasi satu kali.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s memulai panggilan grup. %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s berada di panggilan grup. %2$s</string>
@@ -1744,9 +1746,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ConversationUpdateItem_view">Lihat</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Waktu pesan menghilang akan diatur menjadi %1$s saat Anda mengirimkan pesan.</string>
   <!--Update item button text to show to boost a feature-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">Penguat Signal</string> -->
-  <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">Menjadi Penyokong</string> -->
+  <string name="ConversationUpdateItem_donate">Donasi</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Putar … Jeda</string>
   <string name="audio_view__download_accessibility_description">Unduh</string>
@@ -1979,16 +1979,16 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="HelpFragment__debug_log">Catatan Awakutu:</string>
   <string name="HelpFragment__could_not_upload_logs">Gagal mengunggah catatan</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Mohon jelaskan sedeskriptif mungkin untuk membantu kami memahami permasalahannya.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
-    <item>\-\- Mohon pilih sebuah opsi \-\-</item>
+  <string-array name="HelpFragment__categories_4">
+    <item>\-\- Pilih satu opsi \-\-</item>
     <item>Sesuatu Tidak Berfungsi</item>
     <item>Permintaan Fitur</item>
     <item>Pertanyaan</item>
-    <item>Umpan balik</item>
+    <item>Masukan</item>
     <item>Lainnya</item>
     <item>Pembayaran (MobileCoin)</item>
-    <item>Penyokong &amp; Penguat Signal</item>
-  </string-array> -->
+    <item>Donasi &amp; Lencana</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Pesan Ini</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Terakhir Digunakan</string>
@@ -3348,6 +3348,10 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MultiselectForwardFragment__share_with">Berbagi dengan</string>
   <string name="MultiselectForwardFragment__add_a_message">Tambah pesan</string>
   <string name="MultiselectForwardFragment__faster_forwards">Teruskan lebih cepat</string>
+  <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">Video akan dipangkas menjadi klip 30 dtk dan dikirim sebagai beberapa Cerita.</string>
+  <!--Displayed when user selects a video that cannot be sent as a story-->
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Video yang dikirim ke Cerita maksimal berdurasi 30 dtk.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Pesan yang diteruskan akan segera dikirimkan sekarang.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="other">Mengirimkan %1$d pesan</item>
@@ -3844,10 +3848,28 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MyStorySettingsFragment__who_can_see_this_story">Siapa yang bisa melihat cerita ini</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Sembunyikan serita dari</string>
-  <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <!--Privacy setting title for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections">Semua koneksi Signal</string>
+  <!--Privacy setting description for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__share_with_all_connections">Bagikan dengan semua koneksi</string>
+  <!--Privacy setting title for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections_except">Semua koneksi Signal kecuali…</string>
+  <!--Privacy setting description for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Sembunyikan Cerita dari orang tertentu</string>
+  <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <plurals name="MyStorySettingsFragment__d_people_excluded">
+    <item quantity="other">%1$d orang dikecualikan</item>
+  </plurals>
+  <!--Privacy setting title for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with">Hanya bagikan dengan…</string>
+  <!--Privacy setting description for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">Hanya bagikan dengan orang tertentu</string>
+  <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="other">%1$d orang</item>
   </plurals>
+  <!--My story privacy fine print about what the privacy settings are for-->
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Pilih siapa yang bisa melihat cerita Anda. Perubahan tidak akan memengaruhi cerita yang telah terkirim.</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">Balasan &amp; reaksi</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -3856,10 +3878,10 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Biarkan orang yang bisa melihat cerita Anda bereaksi dan membalas</string>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Sembunyikan cerita Anda dari orang-orang spesifik. Secara default, cerita Anda dibagikan dengan %1$s Anda</string>
-  <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">Koneksi Signal</string> -->
+  <!--Signal connections bolded text in the Signal Connections sheet-->
+  <string name="SignalConnectionsBottomSheet___signal_connections">Koneksi Signal</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Koneksi Signal</strong> adalah orang yang Anda percayai, baik oleh: </string>
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Koneksi Signal adalah orang yang Anda pilih untuk dipercayai, dengan:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">Memulai percakapan</string>
   <!--Signal connections sheet bullet point 2-->
@@ -3909,8 +3931,10 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="TextStoryPostSendFragment__search">Cari</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Terjadi kesalahan tidak terduga</string>
-  <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">Sembunyikan cerita Anda dari…</string> -->
+  <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <string name="ChangeMyStoryMembershipFragment__all_except">Semua kecuali…</string>
+  <!--Title for screen allowing user to only share "My Story" entries with specific people-->
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">Hanya bagikan dengan…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Selesai</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4063,6 +4087,24 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <plurals name="ContactSearchItems__group_story_d_viewers">
     <item quantity="other">Cerita Grup · %1$d penonton</item>
   </plurals>
+  <!--Label for context menu item to open story settings-->
+  <string name="ContactSearchItems__story_settings">Pengaturan cerita</string>
+  <!--Label for context menu item to remove a group story from contact results-->
+  <string name="ContactSearchItems__remove_story">Hapus cerita</string>
+  <!--Label for context menu item to delete a private story-->
+  <string name="ContactSearchItems__delete_story">Hapus cerita</string>
+  <!--Dialog title for removing a group story-->
+  <string name="ContactSearchMediator__remove_group_story">Hapus cerita grup?</string>
+  <!--Dialog message for removing a group story-->
+  <string name="ContactSearchMediator__this_will_remove">Ini akan menghapus cerita dari daftar ini. Anda masih bisa melihat cerita dari grup ini.</string>
+  <!--Dialog action item for removing a group story-->
+  <string name="ContactSearchMediator__remove">Hapus</string>
+  <!--Dialog title for deleting a private story-->
+  <string name="ContactSearchMediator__delete_story">Hapus cerita?</string>
+  <!--Dialog message for deleting a private story-->
+  <string name="ContactSearchMediator__delete_the_private">Hapus cerita privat \"%1$s\"?</string>
+  <!--Dialog action item for deleting a private story-->
+  <string name="ContactSearchMediator__delete">Hapus</string>
   <!--Gift expiry days remaining-->
   <plurals name="Gifts__d_days_remaining">
     <item quantity="other">%1$d hari tersisa</item>
@@ -4077,5 +4119,13 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Kadaluwarsa</string>
+  <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">Ketuk untuk postingan berikutnya</string>
+  <!--Label indicating swipe direction to skip current story-->
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Geser ke atas untuk melewati</string>
+  <!--Label indicating swipe direction to exit story viewer-->
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Geser kanan untuk keluar</string>
+  <!--Button label to confirm understanding of story navigation-->
+  <string name="StoryFirstTimeNagivationView__got_it">Paham</string>
   <!--EOF-->
 </resources>

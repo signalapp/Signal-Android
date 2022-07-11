@@ -274,6 +274,7 @@
     <item quantity="other">%d न वाचलेले संदेश</item>
   </plurals>
   <!--ConversationFragment-->
+  <!--Toast text when contacts activity is not found-->
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">निवडलेला संदेश हटवायचा?</item>
     <item quantity="other">निवडलेले संदेश हटवायचे?</item>
@@ -657,7 +658,7 @@
   <string name="AddGroupDetailsFragment__group_creation_failed">गट निर्मिती अयशस्वी.</string>
   <string name="AddGroupDetailsFragment__try_again_later">नंतर पुन्हा प्रयत्न करा.</string>
   <!--Displayed when adding group details to an MMS Group-->
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">आपण Signal गट समर्थन देत नसलेल्या एका संपर्काला निवडले आहे, त्यामुळे हा MMS गट असेल. सानुकूल MMS गट नावे आणि फोटो हे फक्त आपणाला दृश्यमान असतील.</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">आपण Signal गट समर्थन देत नसलेला संपर्क निवडला आहे, त्यामुळे हा गट MMS असेल. सानुकूलित MMS गटाची नावे आणि फोटो हे फक्त आपणाला दृश्यमान असतील.</string>
   <string name="AddGroupDetailsFragment__remove">काढा</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS संपर्क</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">या गटातून %1$s ला काढायचे?</string>
@@ -902,6 +903,8 @@
   <string name="Megaphones_use_sms">SMS वापरा</string>
   <string name="Megaphones_appearance">स्वरूप</string>
   <string name="Megaphones_add_photo">फोटो जोडा</string>
+  <!--Title of a bottom sheet to render messages that all quote a specific message-->
+  <string name="MessageQuotesBottomSheet_replies">प्रत्युत्तरे</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal कॉल प्रगती मध्ये</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal कॉल प्रस्थापित करत आहे</string>
@@ -1124,9 +1127,6 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s कडील संदेश डिलिव्हर केला जाऊ शकला नाही</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s यांनी त्यांचा फोन नंबर बदलला.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">हे नवीन वैशिष्ट्य आवडले ? बूस्टसह धन्यवाद म्हणा.</string> -->
-  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal आपल्यासारख्या लोकांद्वारे समर्थित आहे. आज आपला पाठिंबा दाखवा!</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ने गट कॉल चालू केला · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s गट कॉलमध्ये  आहे · %2$s</string>
@@ -1819,9 +1819,7 @@
   <string name="ConversationUpdateItem_view">बघा</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">आपण त्यांना संदेश पाठवल्यावर हरवणाऱ्या संदेशाची वेळ %1$s वर सेट केली गेली जाईल.</string>
   <!--Update item button text to show to boost a feature-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">Signal बूस्ट</string> -->
-  <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">सस्टेनर बना</string> -->
+  <string name="ConversationUpdateItem_donate">दान करा</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">प्ले करा … विराम द्या</string>
   <string name="audio_view__download_accessibility_description">डाऊनलोड करा</string>
@@ -2061,16 +2059,6 @@
   <string name="HelpFragment__debug_log">डीबग लॉग:</string>
   <string name="HelpFragment__could_not_upload_logs">लॉग अपलोड करू शकले नाही</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">कृपया जास्तीत जास्त विवरण करून आम्हाला समस्या जाणून घेण्यात मदत करा.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
-    <item>\-\- कृपया एक पर्याय निवडा \-\-</item>
-    <item>काहीतरी काम करत नाहीये</item>
-    <item>वैशिष्ट्य विनंती</item>
-    <item>प्रश्न</item>
-    <item>फीडबॅक/अभिप्राय</item>
-    <item>इतर</item>
-    <item>पेमेंट्स(MobileCoin)</item>
-    <item>देणग्या (Sustainers &amp; Signal Boost)</item>
-  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">हा संदेश</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">अलीकडील वापरलेले</string>
@@ -3444,6 +3432,8 @@
   <string name="MultiselectForwardFragment__share_with">यासोबत सामायिक करा </string>
   <string name="MultiselectForwardFragment__add_a_message">संदेश जोडा</string>
   <string name="MultiselectForwardFragment__faster_forwards">जलद फॉर्वर्डस्</string>
+  <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <!--Displayed when user selects a video that cannot be sent as a story-->
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">फॉर्वर्ड केलेले संदेश आत्ता विनाविलंब  पाठवले जातील.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">%1$d संदेश पाठवा</item>
@@ -3582,7 +3572,7 @@
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">आपली आवर्ती मासिक देणगी रद्द करण्यात आली कारण आम्ही आपल्या पेमेंटवर प्रक्रिया करू शकलो नाही. आपला  बॅज यापुढे आपल्या प्रोफाईलवर दिसणार नाही.</string>
   <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">आपले आवर्ती मासिक दान रद्द करण्यात होते. %1$s आपले %2$s बॅज यापुढे आपल्या प्रोफाईल वर दृश्यमान होणार नाहीत.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">आपली आवर्ती मासिक देणगी रद्द करण्यात आली. %1$s आपला %2$s बॅज यापुढे आपल्या प्रोफाईल वर दृश्यमान होणार नाही.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">आपण Signal वापरणे सुरू ठेवू शकता परंतु अॅपला समर्थन देण्यासाठी आणि तुमचा बॅज पुन्हा सक्रिय करण्यासाठी, आता नूतनीकरण करा.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription"> सब्स्क्रिप्शन नूतनीकरण करा</string>
   <!--Button label to send user to Google Pay website-->
@@ -3948,11 +3938,19 @@
   <string name="MyStorySettingsFragment__who_can_see_this_story">ही स्टोरी कोण पाहू शकेल</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">यांच्यापासून स्टोरी  लपवा</string>
-  <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <!--Privacy setting title for sending stories to all your signal connections-->
+  <!--Privacy setting description for sending stories to all your signal connections-->
+  <!--Privacy setting title for sending stories to all except the specified connections-->
+  <!--Privacy setting description for sending stories to all except the specified connections-->
+  <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <!--Privacy setting title for only sharing your story with specified connections-->
+  <!--Privacy setting description for only sharing your story with specified connections-->
+  <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d व्यक्ति</item>
     <item quantity="other">%1$d लोक</item>
   </plurals>
+  <!--My story privacy fine print about what the privacy settings are for-->
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">प्रत्त्युत्तरे &amp; प्रतिक्रिया</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -3961,10 +3959,8 @@
   <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">जे लोक तुमची कथा पाहू शकतात त्यांना प्रतिक्रिया द्या आणि उत्तर द्या</string>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">विशिष्ट लोकांपासून आपली स्टोरी लपवा. पूर्वनिर्धारितपणे, आपली स्टोरी आपल्या %1$sसह शेअर करा</string>
-  <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">Signal कनेक्शन्स.</string> -->
+  <!--Signal connections bolded text in the Signal Connections sheet-->
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Signal कनेक्शन्स</strong> हे लोक आहेत ज्यांच्यावर आपण विश्वास ठेवला आहे, एकतर:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">संभाषण सुरू करत आहे</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4013,8 +4009,8 @@
   <string name="TextStoryPostSendFragment__search">शोध</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">अनपेक्षित त्रूटी उद्भवली</string>
-  <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">…पासून स्टोरी लपवा</string> -->
+  <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <!--Title for screen allowing user to only share "My Story" entries with specific people-->
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">ठीक</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4171,6 +4167,19 @@
     <item quantity="one">गट स्टोरी · %1$d दर्शक</item>
     <item quantity="other">गट स्टोरी· %1$d दर्शक</item>
   </plurals>
+  <!--Label for context menu item to open story settings-->
+  <string name="ContactSearchItems__story_settings">स्टोरी सेटिंग्ज</string>
+  <!--Label for context menu item to remove a group story from contact results-->
+  <!--Label for context menu item to delete a private story-->
+  <!--Dialog title for removing a group story-->
+  <!--Dialog message for removing a group story-->
+  <!--Dialog action item for removing a group story-->
+  <string name="ContactSearchMediator__remove">काढा</string>
+  <!--Dialog title for deleting a private story-->
+  <string name="ContactSearchMediator__delete_story">स्टोरी हटवायची ?</string>
+  <!--Dialog message for deleting a private story-->
+  <!--Dialog action item for deleting a private story-->
+  <string name="ContactSearchMediator__delete">हटवा</string>
   <!--Gift expiry days remaining-->
   <plurals name="Gifts__d_days_remaining">
     <item quantity="one">%1$d दिवस शिल्लक</item>
@@ -4188,5 +4197,10 @@
   </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">कालबाह्य झालेे</string>
+  <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <!--Label indicating swipe direction to skip current story-->
+  <!--Label indicating swipe direction to exit story viewer-->
+  <!--Button label to confirm understanding of story navigation-->
+  <string name="StoryFirstTimeNagivationView__got_it">कळले</string>
   <!--EOF-->
 </resources>

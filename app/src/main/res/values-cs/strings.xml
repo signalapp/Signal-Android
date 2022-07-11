@@ -278,6 +278,8 @@
     <item quantity="other">%d nepřečtených zpráv</item>
   </plurals>
   <!--ConversationFragment-->
+  <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">Aplikace s kontakty nenalezena.</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Smazat označenou zprávu?</item>
     <item quantity="few">Smazat označené zprávy?</item>
@@ -1000,13 +1002,15 @@
   <string name="Megaphones_use_sms">Použít SMS</string>
   <string name="Megaphones_appearance">Vzhled</string>
   <string name="Megaphones_add_photo">Přidat fotku</string>
+  <!--Title of a bottom sheet to render messages that all quote a specific message-->
+  <string name="MessageQuotesBottomSheet_replies">Odpovědi</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Probíhá hovor Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Navazuji hovor Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Příchozí hovor Signal</string>
   <string name="NotificationBarManager__incoming_signal_group_call">Příchozí Signal skupinový hovor</string>
   <!--Temporary notification shown when starting the calling service-->
-  <string name="NotificationBarManager__starting_signal_call_service">Zahajování volání služby Signal</string>
+  <string name="NotificationBarManager__starting_signal_call_service">Zahájení služby volání Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Zastavuji službu hovorů Signal</string>
   <string name="NotificationBarManager__decline_call">Odmítnout hovor</string>
   <string name="NotificationBarManager__answer_call">Přijmout hovor</string>
@@ -1240,9 +1244,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Zpráva od %s nemohla být doručena.</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s změnil(a) své telefonní číslo.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Líbí se vám tahle nová funkce? Poděkujte nám přes Boost.</string> -->
-  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal je aplikace, za kterou stojí lidé jako vy. Prokažte jim svoji podporu!</string> -->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Líbí se vám tato nová funkce? Podpořte Signal jednorázovým finančním příspěvkem.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s zahájil skupinový hovor · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s se účastní skupinového hovoru · %2$s</string>
@@ -1977,9 +1979,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ConversationUpdateItem_view">Zobrazit</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Čas zmizení zprávy bude nastaven na %1$s, když jim pošlete zprávu. </string>
   <!--Update item button text to show to boost a feature-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">Signal Boost</string> -->
-  <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">Staňte se podporovatelem</string> -->
+  <string name="ConversationUpdateItem_donate">Sponzorujte</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spustit … Pozastavit</string>
   <string name="audio_view__download_accessibility_description">Stáhnout</string>
@@ -2233,16 +2233,16 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="HelpFragment__debug_log">Ladicí log</string>
   <string name="HelpFragment__could_not_upload_logs">Nepodařilo se nahrát logy</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Popište detailně váš problém, aby to bylo pro nás srozumitelné.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
-    <item>\-\- Vyberte jednu z možností prosím \-\-</item>
+  <string-array name="HelpFragment__categories_4">
+    <item>\-\- Vyberte jednu z možností \-\-</item>
     <item>Něco nefunguje</item>
-    <item>Požadavek na zlepšení</item>
+    <item>Žádost o novou funkci</item>
     <item>Dotaz</item>
     <item>Zpětná vazba</item>
     <item>Jiné</item>
     <item>Platby (MobileCoin)</item>
-    <item>Dary &amp; Signal Boost)</item>
-  </string-array> -->
+    <item>Příspěvky a odznaky</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tato zpráva</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedávno použité</string>
@@ -3644,6 +3644,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MultiselectForwardFragment__share_with">Sdílet s</string>
   <string name="MultiselectForwardFragment__add_a_message">Přidat zprávu</string>
   <string name="MultiselectForwardFragment__faster_forwards">Rychlejší přeposílání</string>
+  <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">Videa budou zkrácena na 30vteřinové klipy a odeslána jako několik příběhů.</string>
+  <!--Displayed when user selects a video that cannot be sent as a story-->
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Videa posílaná jako příběhy nesmí být delší než 30 vteřin.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Přeposlané zprávy se nyní odesílají okamžitě.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">Odeslat %1$d zprávu</item>
@@ -3790,7 +3794,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Váš pravidelný měsíční příspěvek byl zrušen, protože jsme nemohli zpracovat vaši platbu. Váš odznak již není na vašem profilu viditelný.</string>
   <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Váš pravidelný měsíční finanční příspěvek byl zrušen. %1$s Odznak %2$s se vám už na profilu nebude zobrazovat.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Váš pravidelný měsíční finanční příspěvek byl zrušen. %1$s Váš odznak %2$s se vám už na profilu nebude zobrazovat.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Aplikaci Signal můžete používat i nadále, ale abyste ji podpořili a znovu aktivovali svůj odznak, obnovte předplatné nyní.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Obnovit předplatné</string>
   <!--Button label to send user to Google Pay website-->
@@ -4164,13 +4168,34 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MyStorySettingsFragment__who_can_see_this_story">Kdo může zobrazit tento příběh</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Skrýt příběhy od</string>
-  <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <!--Privacy setting title for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections">Všechna spojení Signal</string>
+  <!--Privacy setting description for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__share_with_all_connections">Sdílet se všemi spojeními</string>
+  <!--Privacy setting title for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections_except">Všechna spojení Signal kromě…</string>
+  <!--Privacy setting description for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Skryjte svůj příběh před konkrétními lidmi</string>
+  <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <plurals name="MyStorySettingsFragment__d_people_excluded">
+    <item quantity="one">%1$d člověk vyloučen</item>
+    <item quantity="few">%1$d lidi vyloučeni</item>
+    <item quantity="many">%1$d lidí vyloučeno</item>
+    <item quantity="other">%1$d lidí vyloučeno</item>
+  </plurals>
+  <!--Privacy setting title for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with">Sdílet jen s…</string>
+  <!--Privacy setting description for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">Sdílet jen s vybranými lidmi</string>
+  <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d člověk</item>
     <item quantity="few">%1$d lidé</item>
     <item quantity="many">%1$d lidí</item>
     <item quantity="other">%1$d lidí</item>
   </plurals>
+  <!--My story privacy fine print about what the privacy settings are for-->
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Vyberte, kdo kdo si může váš příběh prohlédnout. Změny se nedotknou příběhů, které jste už sdíleli.</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">Odpovědi &amp; reakce</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -4179,10 +4204,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Nechte lidi, kteří si mohou váš příběh prohlédnout, reagovat a odpovídat</string>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Skryjte svůj příběh před konkrétními lidmi. Ve výchozím nastavení je váš příběh sdílen s vašimi %1$s</string>
-  <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">Spojení Signal.</string> -->
+  <!--Signal connections bolded text in the Signal Connections sheet-->
+  <string name="SignalConnectionsBottomSheet___signal_connections">Spojení Signal</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Spojení Signal</strong> jsou lidé, kterým věříte pomocí:</string>
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Spojení Signal jsou lidé, které jste si vybrali jako důvěryhodné, a to buď:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">Zahájením konverzace</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4231,8 +4256,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="TextStoryPostSendFragment__search">Vyhledat</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Došlo k neočekávané chybě</string>
-  <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">Skrýt příběh…</string> -->
+  <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <string name="ChangeMyStoryMembershipFragment__all_except">Všichni kromě…</string>
+  <!--Title for screen allowing user to only share "My Story" entries with specific people-->
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">Sdílet jen s…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Hotovo</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4328,10 +4355,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="StoriesLinkPopup__visit_link">Navštívit odkaz</string>
   <!--Duration and price information-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
-    <item quantity="one">%1$s · %2$ddenní trvání</item>
-    <item quantity="few">%1$s · %2$ddenní trvání</item>
-    <item quantity="many">%1$s · %2$ddenní trvání</item>
-    <item quantity="other">%1$s · %2$ddenní trvání</item>
+    <item quantity="one">%1$s · %2$dden trvání</item>
+    <item quantity="few">%1$s · %2$ddny trvání</item>
+    <item quantity="many">%1$s · %2$ddní trvání</item>
+    <item quantity="other">%1$s · %2$ddní trvání</item>
   </plurals>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Odeslání dárkového odznaku</string>
@@ -4397,6 +4424,24 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
     <item quantity="many">Skupinový příběh · %1$d zobrazení</item>
     <item quantity="other">Skupinový příběh · %1$d zobrazení</item>
   </plurals>
+  <!--Label for context menu item to open story settings-->
+  <string name="ContactSearchItems__story_settings">Nastavení příběhu</string>
+  <!--Label for context menu item to remove a group story from contact results-->
+  <string name="ContactSearchItems__remove_story">Odebrat příběh</string>
+  <!--Label for context menu item to delete a private story-->
+  <string name="ContactSearchItems__delete_story">Smazat příběh</string>
+  <!--Dialog title for removing a group story-->
+  <string name="ContactSearchMediator__remove_group_story">Odebrat skupinový příběh?</string>
+  <!--Dialog message for removing a group story-->
+  <string name="ContactSearchMediator__this_will_remove">Tím se příběh z tohoto seznamu odstraní. Stále ale uvidíte příběhy z této skupiny.</string>
+  <!--Dialog action item for removing a group story-->
+  <string name="ContactSearchMediator__remove">Odebrat</string>
+  <!--Dialog title for deleting a private story-->
+  <string name="ContactSearchMediator__delete_story">Smazat příběh?</string>
+  <!--Dialog message for deleting a private story-->
+  <string name="ContactSearchMediator__delete_the_private">Smazat soukromý příběh „%1$s“?</string>
+  <!--Dialog action item for deleting a private story-->
+  <string name="ContactSearchMediator__delete">Smazat</string>
   <!--Gift expiry days remaining-->
   <plurals name="Gifts__d_days_remaining">
     <item quantity="one">%1$d den zbývá</item>
@@ -4420,5 +4465,13 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Vypršel</string>
+  <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">Klepnutím budete pokračovat</string>
+  <!--Label indicating swipe direction to skip current story-->
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Přejetím nahoru přeskočíte</string>
+  <!--Label indicating swipe direction to exit story viewer-->
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Pro ukončení přejeďte doprava</string>
+  <!--Button label to confirm understanding of story navigation-->
+  <string name="StoryFirstTimeNagivationView__got_it">Rozumím</string>
   <!--EOF-->
 </resources>

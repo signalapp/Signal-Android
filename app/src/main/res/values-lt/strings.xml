@@ -276,6 +276,7 @@
     <item quantity="other">%d neskaitytų žinučių</item>
   </plurals>
   <!--ConversationFragment-->
+  <!--Toast text when contacts activity is not found-->
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Ištrinti pažymėtą žinutę?</item>
     <item quantity="few">Ištrinti pažymėtas žinutes?</item>
@@ -997,6 +998,8 @@
   <string name="Megaphones_use_sms">Naudokite SMS</string>
   <string name="Megaphones_appearance">Išvaizda</string>
   <string name="Megaphones_add_photo">Pridėti nuotrauką</string>
+  <!--Title of a bottom sheet to render messages that all quote a specific message-->
+  <string name="MessageQuotesBottomSheet_replies">Atsakymai</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal skambutis yra eigoje</string>
   <string name="NotificationBarManager__establishing_signal_call">Užmezgiamas Signal skambutis</string>
@@ -1236,9 +1239,6 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Nepavyko pristatyti žinutės nuo %s</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s pasikeitė telefono numerį.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Patinka ši nauja ypatybė? Atsidėkokite Signal paskatinimu.</string> -->
-  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal veikia dėka tokių žmonių kaip jūs. Tapkite rėmėju jau šiandien.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s pradėjo grupės skambutį · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s yra grupės skambutyje · %2$s</string>
@@ -1974,9 +1974,7 @@
   <string name="ConversationUpdateItem_view">Rodyti</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Kai rašysite jiems žinutes, išnykstančių žinučių laikas bus nustatytas į %1$s.</string>
   <!--Update item button text to show to boost a feature-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">Signal paskatinimas</string> -->
-  <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">Tapti rėmėju</string> -->
+  <string name="ConversationUpdateItem_donate">Paaukokite</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Atkurti … Pristabdyti</string>
   <string name="audio_view__download_accessibility_description">Atsisiųsti</string>
@@ -2230,16 +2228,6 @@
   <string name="HelpFragment__debug_log">Derinimo žurnalas:</string>
   <string name="HelpFragment__could_not_upload_logs">Nepavyko atnaujinti žurnalų</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Kaip įmanoma išsamiau aprašykite problemą, kad lengviau ją suprastume.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
-    <item>\-\- Pasirinkite parinktį \-\-</item>
-    <item>Kažkas neveikia</item>
-    <item>Prašymas pridėti naują ypatybę</item>
-    <item>Klausimas</item>
-    <item>Atsiliepimas</item>
-    <item>Kita</item>
-    <item>Mokėjimai („MobileCoin“)</item>
-    <item>Rėmėjai ir Signal paskatinimas</item>
-  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ši žinutė</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Paskiausi</string>
@@ -3641,6 +3629,8 @@
   <string name="MultiselectForwardFragment__share_with">Bendrinti su</string>
   <string name="MultiselectForwardFragment__add_a_message">Pridėti žinutę</string>
   <string name="MultiselectForwardFragment__faster_forwards">Greitesni persiuntimai</string>
+  <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <!--Displayed when user selects a video that cannot be sent as a story-->
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Dabar, persiunčiamos žinutės yra išsiunčiamos nedelsiant.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">Išsiųsta %1$d žinutė</item>
@@ -4158,13 +4148,21 @@
   <string name="MyStorySettingsFragment__who_can_see_this_story">Kas gali matyti šią istoriją</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Slėpti istoriją nuo</string>
-  <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <!--Privacy setting title for sending stories to all your signal connections-->
+  <!--Privacy setting description for sending stories to all your signal connections-->
+  <!--Privacy setting title for sending stories to all except the specified connections-->
+  <!--Privacy setting description for sending stories to all except the specified connections-->
+  <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <!--Privacy setting title for only sharing your story with specified connections-->
+  <!--Privacy setting description for only sharing your story with specified connections-->
+  <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d žmogus</item>
     <item quantity="few">%1$d žmonės</item>
     <item quantity="many">%1$d žmonių</item>
     <item quantity="other">%1$d žmogus</item>
   </plurals>
+  <!--My story privacy fine print about what the privacy settings are for-->
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">Atsakymai ir reakcijos</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -4173,10 +4171,8 @@
   <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Leisti žmonėms, kurie gali peržiūrėti jūsų istoriją, reaguoti ir atsakyti</string>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Slėpkite savo istoriją nuo konkrečių žmonių. Pagal numatymą, jūsų istorija yra bendrinama su jūsų %1$s</string>
-  <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">Signal ryšiais.</string> -->
+  <!--Signal connections bolded text in the Signal Connections sheet-->
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Signal ryšiai</strong> yra žmonės, kuriais nusprendėte pasitikėti:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">Pradėdami su jais pokalbį</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4224,8 +4220,8 @@
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Ieškoti</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
-  <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">Slėpti istoriją nuo…</string> -->
+  <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <!--Title for screen allowing user to only share "My Story" entries with specific people-->
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Atlikta</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4384,6 +4380,19 @@
     <item quantity="many">Grupės istorija · %1$d žiūrovų</item>
     <item quantity="other">Grupės istorija · %1$d žiūrovas</item>
   </plurals>
+  <!--Label for context menu item to open story settings-->
+  <string name="ContactSearchItems__story_settings">Istorijos nustatymai</string>
+  <!--Label for context menu item to remove a group story from contact results-->
+  <!--Label for context menu item to delete a private story-->
+  <!--Dialog title for removing a group story-->
+  <!--Dialog message for removing a group story-->
+  <!--Dialog action item for removing a group story-->
+  <string name="ContactSearchMediator__remove">Šalinti</string>
+  <!--Dialog title for deleting a private story-->
+  <string name="ContactSearchMediator__delete_story">Ištrinti istoriją?</string>
+  <!--Dialog message for deleting a private story-->
+  <!--Dialog action item for deleting a private story-->
+  <string name="ContactSearchMediator__delete">Ištrinti</string>
   <!--Gift expiry days remaining-->
   <plurals name="Gifts__d_days_remaining">
     <item quantity="one">Liko %1$d diena</item>
@@ -4407,5 +4416,10 @@
   </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Nebegalioja</string>
+  <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <!--Label indicating swipe direction to skip current story-->
+  <!--Label indicating swipe direction to exit story viewer-->
+  <!--Button label to confirm understanding of story navigation-->
+  <string name="StoryFirstTimeNagivationView__got_it">Supratau</string>
   <!--EOF-->
 </resources>

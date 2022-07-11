@@ -274,6 +274,8 @@
     <item quantity="other">%d lukematonta viestiä</item>
   </plurals>
   <!--ConversationFragment-->
+  <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">Yhteystiedot-sovellusta ei löydy.</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Poistetaanko valittu viesti?</item>
     <item quantity="other">Poistetaanko valitut viestit?</item>
@@ -902,6 +904,8 @@
   <string name="Megaphones_use_sms">Käytä tekstiviestiä</string>
   <string name="Megaphones_appearance">Ulkonäkö</string>
   <string name="Megaphones_add_photo">Lisää kuva</string>
+  <!--Title of a bottom sheet to render messages that all quote a specific message-->
+  <string name="MessageQuotesBottomSheet_replies">Vastaukset</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-puhelu käynnissä</string>
   <string name="NotificationBarManager__establishing_signal_call">Muodostetaan Signal-puhelua</string>
@@ -1124,9 +1128,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Viestiä lähettäjältä %s ei voitu toimittaa</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s vaihtoi puhelinnumeroaan.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Pidätkö tästä uudesta ominaisuudesta? Kiitä siitä Boostilla.</string> -->
-  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal toimii kaltaistesi ihmisten tuella. Liity tukijaksi nyt.</string> -->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Pidätkö tästä uudesta ominaisuudesta? Tue Signalia kertalahjoituksella.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s aloitti ryhmäpuhelun · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s on ryhmäpuhelussa · %2$s</string>
@@ -1816,9 +1818,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ConversationUpdateItem_view">Näytä</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Viestien katoamisaika on asetettu arvoon %1$s, kun lähetät viestin.</string>
   <!--Update item button text to show to boost a feature-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">Signal Boost</string> -->
-  <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">Ryhdy tukijaksi</string> -->
+  <string name="ConversationUpdateItem_donate">Lahjoita</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Soita … keskeytä</string>
   <string name="audio_view__download_accessibility_description">Lataa</string>
@@ -2058,16 +2058,16 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="HelpFragment__debug_log">Virheenkorjausloki:</string>
   <string name="HelpFragment__could_not_upload_logs">Lokien lähettäminen ei onnistunut</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Auta meitä ymmärtämään ongelma kuvailemalla se mahdollisimman tarkasti.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
-    <item>\-\- Valitse aihe \-\-</item>
+  <string-array name="HelpFragment__categories_4">
+    <item>\-\- Valitse vaihtoehto \-\-</item>
     <item>Jokin ei toimi</item>
-    <item>Toive ominaisuudesta</item>
+    <item>Ominaisuuspyyntö</item>
     <item>Kysymys</item>
     <item>Palaute</item>
-    <item>Muu aihe</item>
+    <item>Muu</item>
     <item>Maksut (MobileCoin)</item>
-    <item>Tukijat ja Signal Boost</item>
-  </string-array> -->
+    <item>Lahjoitukset ja merkit</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tämä viesti</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Äskettäin käytetyt</string>
@@ -3441,6 +3441,10 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MultiselectForwardFragment__share_with">Jaa</string>
   <string name="MultiselectForwardFragment__add_a_message">Lisää viesti</string>
   <string name="MultiselectForwardFragment__faster_forwards">Nopeammat etenemiset</string>
+  <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">Videot lyhennetään 30 sekunnin leikkeiksi ja lähetetään useana tarinana.</string>
+  <!--Displayed when user selects a video that cannot be sent as a story-->
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Tarinoihin lähetettyjen videoiden enimmäispituus on 30 sekuntia.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Edelleen lähetetyt viestit lähetetään välittömästi.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">Lähetä %1$d viesti</item>
@@ -3945,11 +3949,30 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MyStorySettingsFragment__who_can_see_this_story">Kuka voi nähdä tämän tarinan</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Piilota tarina näiltä</string>
-  <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <!--Privacy setting title for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections">Kaikki Signalin yhteystiedot</string>
+  <!--Privacy setting description for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__share_with_all_connections">Jaa kaikille yhteystiedoille</string>
+  <!--Privacy setting title for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections_except">Kaikki Signalin yhteystiedot paitsi…</string>
+  <!--Privacy setting description for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Piilota tarina tietyiltä henkilöiltä</string>
+  <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <plurals name="MyStorySettingsFragment__d_people_excluded">
+    <item quantity="one">%1$d henkilö suljettu pois</item>
+    <item quantity="other">%1$d henkilöä suljettu pois</item>
+  </plurals>
+  <!--Privacy setting title for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with">Jaa vain seuraaville…</string>
+  <!--Privacy setting description for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">Jaa vain valituille henkilöille</string>
+  <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d henkilöä</item>
     <item quantity="other">%1$d henkilöä</item>
   </plurals>
+  <!--My story privacy fine print about what the privacy settings are for-->
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Valitse, kuka voi nähdä tarinasi. Muutokset eivät vaikuta aiemmin lähetettyihin tarinoihin.</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">Vastaukset ja reaktiot</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -3958,10 +3981,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Anna tarinasi katsoneiden ihmisten reagoida ja vastata</string>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Piilota tarinasi tietyiltä ihmisiltä. Vakioasetuksena on, että tarinasi jaetaan %1$s</string>
-  <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">Signalin yhteydet.</string> -->
+  <!--Signal connections bolded text in the Signal Connections sheet-->
+  <string name="SignalConnectionsBottomSheet___signal_connections">Signalin yhteystiedot</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Signalin yhteydet</strong> ovat käyttäjiä joihin olet valinnut luottavasi, joko:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">Aloittamalla keskustelun</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4010,8 +4032,10 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="TextStoryPostSendFragment__search">Haku</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Tapahtui odottamaton virhe</string>
-  <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">Piilota tarina henkilöiltä…</string> -->
+  <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <string name="ChangeMyStoryMembershipFragment__all_except">Kaikki paitsi…</string>
+  <!--Title for screen allowing user to only share "My Story" entries with specific people-->
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">Jaa vain seuraaville…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Valmis</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4168,6 +4192,24 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
     <item quantity="one">Ryhmätarina · %1$d katsoja</item>
     <item quantity="other">Ryhmätarina · %1$d katsojaa</item>
   </plurals>
+  <!--Label for context menu item to open story settings-->
+  <string name="ContactSearchItems__story_settings">Tarinan asetukset</string>
+  <!--Label for context menu item to remove a group story from contact results-->
+  <string name="ContactSearchItems__remove_story">Poista tarina</string>
+  <!--Label for context menu item to delete a private story-->
+  <string name="ContactSearchItems__delete_story">Poista tarina</string>
+  <!--Dialog title for removing a group story-->
+  <string name="ContactSearchMediator__remove_group_story">Poistetaanko ryhmätarina?</string>
+  <!--Dialog message for removing a group story-->
+  <string name="ContactSearchMediator__this_will_remove">Tämä poistaa tarinan tästä luettelosta. Voit edelleen katsella tämän ryhmän tarinoita.</string>
+  <!--Dialog action item for removing a group story-->
+  <string name="ContactSearchMediator__remove">Poista</string>
+  <!--Dialog title for deleting a private story-->
+  <string name="ContactSearchMediator__delete_story">Poista tarina?</string>
+  <!--Dialog message for deleting a private story-->
+  <string name="ContactSearchMediator__delete_the_private">Poistetaanko yksityinen tarina \"%1$s\"?</string>
+  <!--Dialog action item for deleting a private story-->
+  <string name="ContactSearchMediator__delete">Poista</string>
   <!--Gift expiry days remaining-->
   <plurals name="Gifts__d_days_remaining">
     <item quantity="one">%1$d päivä jäljellä</item>
@@ -4185,5 +4227,13 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Vanhentunut</string>
+  <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">Jatka napauttamalla</string>
+  <!--Label indicating swipe direction to skip current story-->
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Ohita sipaisemalla ylös</string>
+  <!--Label indicating swipe direction to exit story viewer-->
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Poistu sipaisemalla oikealle</string>
+  <!--Button label to confirm understanding of story navigation-->
+  <string name="StoryFirstTimeNagivationView__got_it">Selvä</string>
   <!--EOF-->
 </resources>

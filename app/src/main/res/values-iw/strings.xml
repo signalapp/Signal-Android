@@ -278,6 +278,7 @@
     <item quantity="other">%d הודעות לא נקראו</item>
   </plurals>
   <!--ConversationFragment-->
+  <!--Toast text when contacts activity is not found-->
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">למחוק הודעה נבחרת?</item>
     <item quantity="two">למחוק הודעות נבחרות?</item>
@@ -1000,6 +1001,8 @@
   <string name="Megaphones_use_sms">השתמש במסרון</string>
   <string name="Megaphones_appearance">מראה</string>
   <string name="Megaphones_add_photo">הוסף תמונה</string>
+  <!--Title of a bottom sheet to render messages that all quote a specific message-->
+  <string name="MessageQuotesBottomSheet_replies">תשובות</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">שיחת Signal בתהליך</string>
   <string name="NotificationBarManager__establishing_signal_call">מקים שיחת Signal</string>
@@ -1240,9 +1243,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">הודעה מאת %s לא יכלה להימסר</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s שינה/שינתה את המספר שלו/שלה.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">אוהב את המאפיין החדש הזה? אמור תודה עם תמריץ.</string> -->
-  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal ממונע על ידי אנשים כמוך. הפוך אל מחזיק היום.</string> -->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">אהבת את הפיצ׳ר החדש הזה? אפשר לסייע ולתמוך ב-Signal באמצעות תרומה חד-פעמית.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s התחיל/ה שיחה קבוצתית · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s בשיחה הקבוצתית · %2$s</string>
@@ -1978,9 +1979,7 @@
   <string name="ConversationUpdateItem_view">הצג</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">הזמן של ההודעות הנעלמות יוגדר אל %1$s כאשר אתה מתכתב עם הצד השני.</string>
   <!--Update item button text to show to boost a feature-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">תמריץ Signal</string> -->
-  <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">הפוך אל מחזיק</string> -->
+  <string name="ConversationUpdateItem_donate">תרום</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">נגן … השהה</string>
   <string name="audio_view__download_accessibility_description">הורד</string>
@@ -2234,16 +2233,6 @@
   <string name="HelpFragment__debug_log">יומן ניפוי תקלים:</string>
   <string name="HelpFragment__could_not_upload_logs">לא היה ניתן להעלות יומן</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">אנא הייה מפורט ככל האפשר כדי לעזור לנו להבין את הסוגייה.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
-    <item>\-\- אנא בחר אפשרות \-\-</item>
-    <item>משהו לא עובד</item>
-    <item>בקשת מאפיין</item>
-    <item>שאלה</item>
-    <item>משוב</item>
-    <item>אחר</item>
-    <item>תשלומים (MobileCoin)</item>
-    <item>מחזיקים ותמריץ Signal</item>
-  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">הודעה זו</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">בשימוש לאחרונה</string>
@@ -3645,6 +3634,10 @@
   <string name="MultiselectForwardFragment__share_with">שתף עם</string>
   <string name="MultiselectForwardFragment__add_a_message">הוסף הודעה</string>
   <string name="MultiselectForwardFragment__faster_forwards">העברות הלאה מהירות יותר</string>
+  <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">סרטונים יחתכו לקליפים של 30 שניות וישלחו כסטוריז נפרדים.</string>
+  <!--Displayed when user selects a video that cannot be sent as a story-->
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">סרטונים שנשלחים כסטוריז לא יכולים להיות באורך של מעל 30 שניות.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">הודעות מועברות הלאה נשלחות כעת באופן מיידי.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">שלח הודעה %1$d</item>
@@ -3791,7 +3784,7 @@
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">התרומה החודשית המחזורית שלך בוטלה מאחר שלא יכולנו לעבד את התשלום שלך. התג שלך אינו גלוי יותר בפרופיל שלך.</string>
   <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">התרומה החודשית החוזרת שלך בוטלה. %1$s תג ה%2$s שלך לא גלוי יותר בפרופיל שלך.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">התרומה החודשית החוזרת שלך בוטלה. %1$s תג ה%2$s לא גלוי יותר בפרופיל שלך.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">אתה יכול להמשיך להשתמש ב־Signal אבל כדי לתמוך ביישום ולהפעיל מחדש את התג שלך, חדש עכשיו.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">חדש מינוי</string>
   <!--Button label to send user to Google Pay website-->
@@ -4077,7 +4070,7 @@
   <!--Label when a story fails to send due to networking-->
   <string name="StoriesLandingItem__send_failed">השליחה נכשלה</string>
   <!--Label when a story fails to send due to identity mismatch-->
-  <string name="StoriesLandingItem__partially_sent">נשלח באופן חלקי</string>
+  <string name="StoriesLandingItem__partially_sent">נשלח חלקית</string>
   <!--Status label when a story fails to send indicating user action to retry-->
   <string name="StoriesLandingItem__tap_to_retry">הקש כדי לנסות שוב</string>
   <!--Title of dialog confirming decision to hide a story-->
@@ -4106,7 +4099,7 @@
   <!--Message of dialog to confirm deletion of story-->
   <string name="MyStories__this_story_will_be_deleted">הסיפור הזה יימחק עבורך ועבור כל מי שקיבל אותו.</string>
   <!--Toast shown when story media cannot be saved-->
-  <string name="MyStories__unable_to_save">לא הייתה אפשרות לשמור</string>
+  <string name="MyStories__unable_to_save">לא ניתן לשמור</string>
   <!--Displayed at bottom of story viewer when current item has views-->
   <plurals name="StoryViewerFragment__d_views">
     <item quantity="one">צפייה %1$d</item>
@@ -4165,13 +4158,34 @@
   <string name="MyStorySettingsFragment__who_can_see_this_story">מי יכול לראות את הסיפור הזה</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">הסתר סיפור מפני</string>
-  <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <!--Privacy setting title for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections">כל חברי ה-Signal</string>
+  <!--Privacy setting description for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__share_with_all_connections">שיתוף עם כל חברי ה-Signal</string>
+  <!--Privacy setting title for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections_except">כל חברי ה-Signal שלך חוץ מ…</string>
+  <!--Privacy setting description for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">הסתרת הסטורי שלך מאנשים ספציפים</string>
+  <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <plurals name="MyStorySettingsFragment__d_people_excluded">
+    <item quantity="one">הסטורי מוסתר מאדם %1$d</item>
+    <item quantity="two">הסטורי מוסתר מ%1$d אנשים</item>
+    <item quantity="many">הסטורי מוסתר מ%1$d אנשים</item>
+    <item quantity="other">הסטורי מוסתר מ%1$d אנשים</item>
+  </plurals>
+  <!--Privacy setting title for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with">שיתוף רק עם…</string>
+  <!--Privacy setting description for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">שיתוף רק עם אנשים נבחרים</string>
+  <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">איש %1$d</item>
     <item quantity="two">%1$d אנשים</item>
     <item quantity="many">%1$d אנשים</item>
     <item quantity="other">%1$d אנשים</item>
   </plurals>
+  <!--My story privacy fine print about what the privacy settings are for-->
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">אפשר לבחור מי יראה את הסטורי שלך. השינויים לא ישפיעו על סטוריז שכבר שלחת.</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">תשובות ותגובות</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -4180,10 +4194,10 @@
   <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">תן לאנשים שיכולים לצפות בסיפור שלך להגיב ולהשיב</string>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">הסתר את הסיפור שלך מפני אנשים מסוימים. כברירת מחדל, הסיפור שלך משותף עם %1$s</string>
-  <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">חיבורי Signal.</string> -->
+  <!--Signal connections bolded text in the Signal Connections sheet-->
+  <string name="SignalConnectionsBottomSheet___signal_connections">חברי Signal</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>חיבורי Signal</strong> הם אנשים שבחרת לבטוח בהם ע״י אחת מהאפשרויות:</string>
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">חברי Signal הם אנשים שבחרת לבטוח בהם, על ידי:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">מתחיל שיחה</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4232,8 +4246,10 @@
   <string name="TextStoryPostSendFragment__search">חפש</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">קרתה שגיאה לא צפויה</string>
-  <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">הסתר סיפור מפני…</string> -->
+  <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <string name="ChangeMyStoryMembershipFragment__all_except">כולם חוץ מ…</string>
+  <!--Title for screen allowing user to only share "My Story" entries with specific people-->
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">שיתוף רק עם…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">סיים</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4398,6 +4414,24 @@
     <item quantity="many">סיפור קבוצתי · %1$d צופים</item>
     <item quantity="other">סיפור קבוצתי · %1$d צופים</item>
   </plurals>
+  <!--Label for context menu item to open story settings-->
+  <string name="ContactSearchItems__story_settings">הגדרות סיפור</string>
+  <!--Label for context menu item to remove a group story from contact results-->
+  <string name="ContactSearchItems__remove_story">הסרת סטורי</string>
+  <!--Label for context menu item to delete a private story-->
+  <string name="ContactSearchItems__delete_story">מחיקת סטורי</string>
+  <!--Dialog title for removing a group story-->
+  <string name="ContactSearchMediator__remove_group_story">להסיר סטורי קבוצתי?</string>
+  <!--Dialog message for removing a group story-->
+  <string name="ContactSearchMediator__this_will_remove">פעולה זו תסיר את הסטורי מהרשימה הזו. עדיין תהיה לך אפשרות לצפות בסיפורים מקבוצה זו.</string>
+  <!--Dialog action item for removing a group story-->
+  <string name="ContactSearchMediator__remove">הסר</string>
+  <!--Dialog title for deleting a private story-->
+  <string name="ContactSearchMediator__delete_story">למחוק סיפור?</string>
+  <!--Dialog message for deleting a private story-->
+  <string name="ContactSearchMediator__delete_the_private">למחוק את הסטורי הפרטי ״%1$s״?</string>
+  <!--Dialog action item for deleting a private story-->
+  <string name="ContactSearchMediator__delete">מחק</string>
   <!--Gift expiry days remaining-->
   <plurals name="Gifts__d_days_remaining">
     <item quantity="one">%1$d יום נותר</item>
@@ -4421,5 +4455,13 @@
   </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">פג</string>
+  <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">אפשר ללחוץ כדי להתקדם</string>
+  <!--Label indicating swipe direction to skip current story-->
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">אפשר להחליק כדי לדלג</string>
+  <!--Label indicating swipe direction to exit story viewer-->
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">אפשר להחליק ימינה כדי לצאת</string>
+  <!--Button label to confirm understanding of story navigation-->
+  <string name="StoryFirstTimeNagivationView__got_it">הבנתי</string>
   <!--EOF-->
 </resources>

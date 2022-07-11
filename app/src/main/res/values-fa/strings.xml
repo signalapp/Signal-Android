@@ -274,6 +274,7 @@
     <item quantity="other">%d پیام نخوانده</item>
   </plurals>
   <!--ConversationFragment-->
+  <!--Toast text when contacts activity is not found-->
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">حذف پیام انتخاب شده؟</item>
     <item quantity="other">حذف پیام‌های انتخاب شده؟</item>
@@ -902,6 +903,8 @@
   <string name="Megaphones_use_sms">استفاده از پیامک</string>
   <string name="Megaphones_appearance">ظاهر برنامه</string>
   <string name="Megaphones_add_photo">افزودن عکس</string>
+  <!--Title of a bottom sheet to render messages that all quote a specific message-->
+  <string name="MessageQuotesBottomSheet_replies">پاسخ‌ها</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">تماس سیگنال در جریان است</string>
   <string name="NotificationBarManager__establishing_signal_call">در حال برقراری تماس سیگنال</string>
@@ -1124,9 +1127,6 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">یک پیام از %s نتوانست تحویل داده شود</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s شماره‌تلفن خود را تغییر داد.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">قابلیت جدید را می‌پسندید؟ با یک تقویت حمایت خود را نشان دهید.</string> -->
-  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">سیگنال از سوی کسانی همانند شما حمایت می‌شود. امروز به یک حامی تبدیل شوید.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s یک تماس گروهی آغاز کرد · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s در تماس گروهی است · %2$s</string>
@@ -1820,9 +1820,7 @@
   <string name="ConversationUpdateItem_view">مشاهده</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">زمان پیام ناپدید شونده هنگامی که به آن‌ها پیام دهید روی %1$s تنظیم خواهد شد.</string>
   <!--Update item button text to show to boost a feature-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">تقویت سیگنال</string> -->
-  <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">به یک حامی تبدیل شوید</string> -->
+  <string name="ConversationUpdateItem_donate">حمایت کنید</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">پخش … توقف</string>
   <string name="audio_view__download_accessibility_description">بارگیری</string>
@@ -2062,16 +2060,6 @@
   <string name="HelpFragment__debug_log">گزارش عیب‌یابی:</string>
   <string name="HelpFragment__could_not_upload_logs">بارگذاری گزارش‌ها موفق نبود</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">توصیف هر چه بهتر شما، به ما در فهم اشکال کمک خواهد کرد.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
-    <item>لطفاً یک گزینه انتخاب کنید</item>
-    <item>چیزی خراب شده است</item>
-    <item>درخواست قابلیت جدید</item>
-    <item>سؤال</item>
-    <item>بازخورد</item>
-    <item>سایر</item>
-    <item>پرداخت‌ها (MobileCoin)</item>
-    <item>حامیان و تقویت سیگنال</item>
-  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">این پیام</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">به‌تازگی استفاده شده</string>
@@ -3445,6 +3433,8 @@
   <string name="MultiselectForwardFragment__share_with">اشتراک‌گذاری با</string>
   <string name="MultiselectForwardFragment__add_a_message">افزودن یک پیام</string>
   <string name="MultiselectForwardFragment__faster_forwards">بازارسال‌های سریع‌تر</string>
+  <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <!--Displayed when user selects a video that cannot be sent as a story-->
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">پیام‌های بازارسال شده حالا بلافاصله ارسال می‌شوند.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">ارسال %1$d پیام</item>
@@ -3949,11 +3939,19 @@
   <string name="MyStorySettingsFragment__who_can_see_this_story">کسانی که می‌توانند این استوری را ببینند</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">استوری پنهان شود از</string>
-  <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <!--Privacy setting title for sending stories to all your signal connections-->
+  <!--Privacy setting description for sending stories to all your signal connections-->
+  <!--Privacy setting title for sending stories to all except the specified connections-->
+  <!--Privacy setting description for sending stories to all except the specified connections-->
+  <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <!--Privacy setting title for only sharing your story with specified connections-->
+  <!--Privacy setting description for only sharing your story with specified connections-->
+  <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d نفر</item>
     <item quantity="other">%1$d نفر</item>
   </plurals>
+  <!--My story privacy fine print about what the privacy settings are for-->
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">پاسخ‌ها و واکنش‌ها</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -3962,10 +3960,8 @@
   <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">اجازه واکنش و پاسخ به افرادی که می‌توانند استوری شما را ببینند</string>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">استوری خود را از افراد خاصی پنهان کنید. استوری شما به طور پیش‌فرض با %1$s شما اشتراک‌گذاری می‌شود.</string>
-  <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">آشنایان در سیگنال.</string> -->
+  <!--Signal connections bolded text in the Signal Connections sheet-->
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>آشنایان در سیگنال</strong> افرادی هستند که به دلایل زیر تصمیم گرفته‌اید به آن‌ها اعتماد کنید:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">شروع یک مکالمه</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4014,8 +4010,8 @@
   <string name="TextStoryPostSendFragment__search">جستجو</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">یک خطای غیرمنتظره رخ داد</string>
-  <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">پنهان کردن استوری از…</string> -->
+  <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <!--Title for screen allowing user to only share "My Story" entries with specific people-->
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">تمام</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4172,6 +4168,19 @@
     <item quantity="one">استوری گروهی · %1$d بازدید کننده</item>
     <item quantity="other">استوری گروهی · %1$d بازدید کننده</item>
   </plurals>
+  <!--Label for context menu item to open story settings-->
+  <string name="ContactSearchItems__story_settings">تنظیمات استوری</string>
+  <!--Label for context menu item to remove a group story from contact results-->
+  <!--Label for context menu item to delete a private story-->
+  <!--Dialog title for removing a group story-->
+  <!--Dialog message for removing a group story-->
+  <!--Dialog action item for removing a group story-->
+  <string name="ContactSearchMediator__remove">حذف</string>
+  <!--Dialog title for deleting a private story-->
+  <string name="ContactSearchMediator__delete_story">حذف استوری؟</string>
+  <!--Dialog message for deleting a private story-->
+  <!--Dialog action item for deleting a private story-->
+  <string name="ContactSearchMediator__delete">حذف</string>
   <!--Gift expiry days remaining-->
   <plurals name="Gifts__d_days_remaining">
     <item quantity="one">%1$d روز باقی مانده</item>
@@ -4189,5 +4198,10 @@
   </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">منقضی شده</string>
+  <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <!--Label indicating swipe direction to skip current story-->
+  <!--Label indicating swipe direction to exit story viewer-->
+  <!--Button label to confirm understanding of story navigation-->
+  <string name="StoryFirstTimeNagivationView__got_it">فهمیدم</string>
   <!--EOF-->
 </resources>

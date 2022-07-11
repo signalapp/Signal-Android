@@ -91,9 +91,13 @@
   <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">நீங்கள் ஒருவருக்கொருவர் செய்தி அனுப்பவும் அழைக்கவும் முடியும், மேலும் உங்கள் பெயரும் புகைப்படமும் அவர்களுடன் பகிரப்படும்.</string>
   <!--Text that is shown when unblocking an SMS contact-->
+  <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">உங்களால் ஒருவருக்கொருவர் செய்தி அனுப்ப முடியும்.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">தடுக்கப்பட்ட நபர்கள் உங்களை அழைக்கவோ அல்லது செய்திகளை அனுப்பவோ முடியாது.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">தடை செய்யப்பட்ட நபர்கள் உங்களுக்கு செய்திகளை அனுப்ப முடியாது.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">சிக்னல் புதுப்பிப்புகள் மற்றும் செய்திகள் பெறுவதைத் தடை செய்யவும்.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">சிக்னல் புதுப்பிப்புகள் மற்றும் செய்திகளைப் பெறுவதைத் தொடரவும்.</string>
   <string name="BlockUnblockDialog_unblock_s">%1$sஐ தடைநீக்கவா?</string>
   <string name="BlockUnblockDialog_block">தடு </string>
   <string name="BlockUnblockDialog_block_and_leave">தடுத்து வெளியேறு</string>
@@ -124,7 +128,9 @@
   <string name="CameraContacts__menu_search">தேடல்</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">தணிக்கைச் சுற்றறிக்கையை முடக்கம் செய்வதா?</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">சிறந்த அனுபவத்திற்காக நீங்கள் இப்போது சிக்னல் சேவையுடன் நேரடியாக இணையலாம்.</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">அணைக்க</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
@@ -160,7 +166,9 @@
   <string name="ContactsCursorLoader_phone_number_search">தொலைபேசி எண் தேடல்</string>
   <string name="ContactsCursorLoader_username_search">பயனர்பெயர் தேடல்</string>
   <!--Label for my stories when selecting who to send media to-->
+  <string name="ContactsCursorLoader_my_stories">எனது ஸ்டோரீஸ்</string>
   <!--Action for creating a new story-->
+  <string name="ContactsCursorLoader_new_story">புதிய ஸ்டோரி</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">செய்தி %s</string>
   <string name="ContactsDatabase_signal_call_s"> Signal அழைப்பு %s</string>
@@ -211,8 +219,10 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">இந்த சாதனம் டயல் செயல்பாட்டை ஆதரிப்பதுபோல் தோன்றவில்லை.</string>
   <string name="ConversationActivity_transport_insecure_sms">பாதுகாப்பற்ற SMS</string>
   <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_insecure_sms_with_sim">பாதுகாப்பற்ற எஸ்.எம்.எஸ் (%1$s)</string>
   <string name="ConversationActivity_transport_insecure_mms">பாதுகாப்பற்ற MMS</string>
   <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_insecure_mms_with_sim">பாதுகாப்பற்ற எம்.எம்.எஸ் (%1$s)</string>
   <string name="ConversationActivity_transport_signal">Signal செய்தி</string>
   <string name="ConversationActivity_lets_switch_to_signal">%1$s நாம் Signalக்கு மாறுவோம்</string>
   <string name="ConversationActivity_specify_recipient">தயவு செய்து ஒரு தொடர்பை தேர்ந்தெடு</string>
@@ -264,6 +274,8 @@
     <item quantity="other">%d படிக்காத செய்திகள்</item>
   </plurals>
   <!--ConversationFragment-->
+  <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">தொடர்புகள் பயன்பாடு கிடைக்கவில்லை.</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">தேர்ந்தெடுக்கப்பட்ட செய்தியை நீக்க ?</item>
     <item quantity="other">தேர்ந்தெடுக்கப்பட்ட செய்திகளை நீக்கவா?</item>
@@ -315,8 +327,11 @@
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s உள்ளது</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">கோரிக்கையைத் தடை செய்யலாமா?</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s குழு இணைப்பு வாயிலாக இந்த குழுவில் சேரவோ அல்லது சேர கோரிக்கை விடுக்கவோ முடியாது. அவர்கள் இன்னும் கைமுறையாக குழுவில் சேர்க்கப்படலாம்.</string>
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">கோரிக்கையைத் தடை செய்</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">ரத்து</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -348,14 +363,44 @@
     <item quantity="one">படிக்காதது</item>
     <item quantity="other">படிக்காதவை</item>
   </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">ஒட்டு</item>
+    <item quantity="other">ஒட்டு </item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">விலக்கு </item>
+    <item quantity="other">விலக்கு</item>
+  </plurals>
   <plurals name="ConversationListFragment_mute_plural">
     <item quantity="one">முடக்கு</item>
     <item quantity="other">முடக்கு</item>
   </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">ஒலிதடுப்பை நீக்கு</item>
+    <item quantity="other">ஒலிதடுப்பை நீக்கு</item>
+  </plurals>
   <string name="ConversationListFragment_select">தேர்வு</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">காப்பகப்படுத்து</item>
+    <item quantity="other">காப்பகப்படுத்து</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">காப்பகமகற்று</item>
+    <item quantity="other">காப்பகமகற்று</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">நீக்கு</item>
+    <item quantity="other">நீக்கு</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">அனைத்தையும்  தேர்வுசெய்</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d தேர்ந்தெடுக்கப்பட்டது</item>
+    <item quantity="other">%d தேர்ந்தெடுக்கப்பட்டது</item>
+  </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">அறிவிப்பு சுயவிவரம்</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">உங்கள் அறிவிப்பு சுயவிவரத்தை இங்கே இயக்கவும் அல்லது முடக்கவும்.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
   <string name="ConversationListFragment__s_on">%1$s உள்ளது</string>
   <!--ConversationListItem-->
@@ -389,8 +434,11 @@
   <string name="RestoreBackupFragment__choose_folder">கோப்புறையைத் தேர்வுசெய்க</string>
   <string name="RestoreBackupFragment__not_now">இப்போது இல்லை</string>
   <!--Couldn\'t find the selected backup-->
+  <string name="RestoreBackupFragment__backup_not_found">காப்புப்பிரதி கிடைக்கவில்லை.</string>
   <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">காப்புப்பிரதியைப் படிக்க முடியவில்லை.</string>
   <!--Backup has an unsupported file extension-->
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">காப்புப்பிரதி தவறான நீட்டிப்பைக் கொண்டுள்ளது.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">உரையாடல் காப்புப்பிரதிகள்</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">காப்புப்பிரதிகள் கடவுத்தொடருடன் குறியாக்கம் செய்யப்பட்டு உங்கள் சாதனத்தில் சேமிக்கப்படும்.</string>
@@ -406,6 +454,7 @@
   <string name="BackupsPreferenceFragment__in_progress">செயல்நிலையில் உள்ளது…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$dஇதுவரை…</string>
   <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">இது வரை %1$s%%… </string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">காப்புப்பிரதிகளை உருவாக்க Signal கு வெளிப்புற சேமிப்பக அனுமதி தேவைப்படுகிறது, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகளைத் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து \"சேமிப்பகத்தை\" இயக்கவும்.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">பயன்படுத்தப்படும் வழக்கம் : %s</string>
@@ -610,6 +659,7 @@
   <string name="AddGroupDetailsFragment__group_creation_failed">குழு உருவாக்கம் தோல்வியடைந்தது.</string>
   <string name="AddGroupDetailsFragment__try_again_later">பின்னர் மீண்டும் முயற்சிக்கவும்.</string>
   <!--Displayed when adding group details to an MMS Group-->
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">சிக்னல் குழுக்களை ஆதரிக்காத ஒரு தொடர்பை நீங்கள் தேர்ந்தெடுத்துள்ளீர்கள், எனவே இந்தக் குழு எம்.எம்.எஸ் ஆக இருக்கும். தனிப்பயன் எம்.எம்.எஸ் குழுப் பெயர்கள் மற்றும் புகைப்படங்கள் உங்களுக்கு மட்டுமே தெரியப்படும்.</string>
   <string name="AddGroupDetailsFragment__remove">நீக்கு</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS தொடர்பு</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">இந்த குழுவிலிருந்து %1$s ஐ அகற்றவா?</string>
@@ -670,6 +720,7 @@
   <string name="ManageProfileFragment_your_name">உங்கள் பெயர்</string>
   <string name="ManageProfileFragment_your_username">உங்கள் பயனர்பெயர்</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">சித்தரிப்பு அமைப்பதில் தோல்வி</string>
+  <string name="ManageProfileFragment_badges">பேட்ஜ்கள்</string>
   <string name="ManageProfileFragment__edit_photo">படத்தை திருத்த</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">பொதுவான குழுக்கள் எதுவும் இல்லை</string>
@@ -688,6 +739,8 @@
   <string name="CustomNotificationsDialogFragment__notification_sound">அறிவிப்பு ஒலி</string>
   <string name="CustomNotificationsDialogFragment__vibrate">அதிர்வு</string>
   <!--Button text for customizing notification options-->
+  <string name="CustomNotificationsDialogFragment__customize">தனிப்பயனாக்கவும்</string>
+  <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">ஒலி மற்றும் அதிர்வை மாற்றவும்</string>
   <string name="CustomNotificationsDialogFragment__call_settings">அழைப்பு அமைப்புகள்</string>
   <string name="CustomNotificationsDialogFragment__ringtone">ரிங்டோன்</string>
   <string name="CustomNotificationsDialogFragment__enabled">இயக்கப்பட்டது</string>
@@ -722,10 +775,13 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">பிணைய பிழையை எதிர்கொண்டது.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">இந்த குழு இணைப்பு செயலில் இல்லை</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">குழுவில் சேர முடியவில்லை</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">ஒரு நிர்வாகி உங்களை நீக்கியதால், குழு இணைப்பு வாயிலாக இந்தக் குழுவில் உங்களால் சேர முடியாது.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">இது குழு இணைப்பு இருக்கிறது இல்லை நீண்டது செல்லுபடியாகும்.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">இணைப்பு பிழை</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
   <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">இதன் வழியாக இணைகிறது இணைப்புதோல்வி. பின்னர் மீண்டும் சேர முயற்சிக்கவும்.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">இந்த குழுவில் சேர்ந்து உங்கள் பெயரையும் புகைப்படத்தையும் அதன் உறுப்பினர்களுடன் பகிர்ந்து கொள்ள விரும்புகிறீர்களா?</string>
@@ -753,6 +809,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">குழுவில் \"%1$s\" ஐ சேர்க்கவா?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">\"%1$s\" இன் கோரிக்கையை மறுக்கவா?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">\"%1$s\"-இடமிருந்து கோரிக்கையை மறுப்பதா? அவர்கள் மீண்டும் குழு இணைப்பு வாயிலாக சேரக் கோரிக்கை விடுக்க முடியாது.</string>
   <string name="RequestConfirmationDialog_add">சேர்க்கவும்</string>
   <string name="RequestConfirmationDialog_deny">மறுக்க</string>
   <!--ImageEditorHud-->
@@ -815,6 +872,18 @@
   <string name="MediaOverviewActivity_List_view_description">பட்டியல் காட்சி</string>
   <string name="MediaOverviewActivity_Selected_description">தேர்ந்தெடுக்கப்பட்ட</string>
   <string name="MediaOverviewActivity_select_all">அனைத்தையும்  தேர்வுசெய்</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">சேமி</item>
+    <item quantity="other">சேமி</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">நீக்கு</item>
+    <item quantity="other">நீக்கு</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d தேர்ந்தெடுக்கப்பட்டது (%2$s)</item>
+    <item quantity="other">%1$d தேர்ந்தெடுக்கப்பட்டது (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">கோப்பு</string>
   <string name="MediaOverviewActivity_audio">ஒலி</string>
   <string name="MediaOverviewActivity_video">காணொளி</string>
@@ -835,12 +904,15 @@
   <string name="Megaphones_use_sms">எஸ்எம்எஸ் பயன்படுத்தவும்</string>
   <string name="Megaphones_appearance">தோற்றம்</string>
   <string name="Megaphones_add_photo">கூட்டு புகைப்படம்</string>
+  <!--Title of a bottom sheet to render messages that all quote a specific message-->
+  <string name="MessageQuotesBottomSheet_replies">பதிலகள்</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal அழைப்புப் போய்க்கொண்டிருக்கிறது</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal அழைப்பு நிறுவுப்படுகிறது</string>
   <string name="NotificationBarManager__incoming_signal_call">உள்வரும் Signal அழைப்பு</string>
   <string name="NotificationBarManager__incoming_signal_group_call">உள்வரும் Signal குழு அழைப்பு</string>
   <!--Temporary notification shown when starting the calling service-->
+  <string name="NotificationBarManager__starting_signal_call_service">சிக்னல் அழைப்பு சேவை தொடங்குகிறது</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal அழைப்பு சேவையை நிறுத்துதல்</string>
   <string name="NotificationBarManager__decline_call">அழைப்பை நிராகரி</string>
   <string name="NotificationBarManager__answer_call">அழைப்பை எடு</string>
@@ -1031,6 +1103,10 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">குழுவில் சேர கோரிக்கை அனுப்பியுள்ளீர்கள்.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$sகுழு இணைப்பைப் பயன்படுத்தி குழுவில் சேர அவர் கோரியுள்ளார்.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="one">%1$s கோரிக்கை விடுத்தார் மற்றும் குழு இணைப்பு மூலம் சேருவதற்கான அவரது கோரிக்கையை ரத்து செய்துள்ளார்.</item>
+    <item quantity="other">%1$s கோரிக்கை விடுத்தார் மற்றும் குழு இணைப்பு மூலம் சேருவதற்கான  %2$dகோரிக்கைகளை ரத்து செய்துள்ளார்.</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">குழுவில் சேர உங்கள் கோரிக்கையை%1$s ஏற்றுக்கொண்டார்.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">குழுவில் சேர%2$s அனுப்பப்பட்ட உங்கள் கோரிக்கையை %1$s ஏற்றுக்கொண்டார்.</string>
@@ -1050,8 +1126,9 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s உடனான உங்கள் பாதுகாப்பு எண்ணை சரிபார்க்கப்படாததாக குறித்தீர்கள்</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s உடனான உங்கள் பாதுகாப்பு எண்ணை சரிபார்க்கப்படாததாக வேறொரு சாதனத்திலிருந்து குறித்தீர்கள்</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">இருந்து ஒரு செய்தி %s வழங்க முடியவில்லை</string>
+  <string name="MessageRecord_s_changed_their_phone_number">%1$s அவர்களது தொலைபேசி எண்ணை மாற்றியுள்ளார்.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">இந்த புதிய அம்சம் பிடித்திருக்கிறதா? ஒரு முறை நன்கொடை மூலம் சிக்னலை ஆதரிக்க உதவுங்கள்.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$sகுழு அழைப்பைத் தொடங்கினார்%2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s குழு அழைப்பில் உள்ளார் %2$s</string>
@@ -1082,11 +1159,14 @@
   <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s உங்களுக்கு செய்தி அனுப்ப அனுமதித்து, உங்கள் பெயரையும் புகைப்படத்தையும் அவர்களுடன் பகிர்ந்து கொள்ள விரும்புகிறீர்களா? நீங்கள் அவரை தடை நீக்கம் செய்யும் வரை எந்த செய்திகளையும் பெற மாட்டீர்கள்.</string>
   <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">உங்களுக்கு %1$s செய்தி அனுப்ப அனுமதிக்கிறீர்களா? நீங்கள் தடை நீக்கம் செய்யும் வரை நீங்கள் எந்த செய்தியையும் பெறமாட்டீர்கள்.</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s -இடமிருந்து புதுப்பிப்புகள் மற்றும் செய்திகளைப் பெற வேண்டுமா? நீங்கள் தடை நீக்கம் செய்யும் வரை எந்த புதுப்பிப்புகளையும் பெறமாட்டீர்கள்.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">இந்த குழுவுடன் உங்கள் உரையாடலைத் தொடர, உங்கள் பெயரையும் புகைப்படத்தையும் அதன் உறுப்பினர்களுடன் பகிர்ந்து கொள்ளவா?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">@ குறிப்புகள் மற்றும் நிர்வாகிகள் போன்ற புதிய அம்சங்களை செயல்படுத்த இந்த குழுவை மேம்படுத்தவும். இந்த குழுவில் தங்கள் பெயரையோ புகைப்படத்தையோ பகிர்ந்து கொள்ளாத உறுப்பினர்கள் சேர அழைக்கப்படுவார்கள்.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">இந்த மரபு குழு மிகப் பெரியது, எனவே இதை இனி பயன்படுத்த முடியாது. அதிகபட்ச குழு அளவு: %1$d</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s உடன் உங்கள் உரையாடலைத் தொடரவும். அவருடன் உங்கள் பெயரையும் புகைப்படத்தையும் பகிர்ந்து கொள்ளலாமா?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">இந்த குழுவில் சேர்ந்து உங்கள் பெயர் மற்றும் புகைப்படத்தை அதன் உறுப்பினர்களுடன் பகிர்ந்து கொள்ள விரும்புகிறீர்களா? நீங்கள் ஏற்றுக்கொள்ளும் வரை அவர்களின் செய்திகளை நீங்கள் பார்த்திருப்பதை அவர்கள் அறிய மாட்டார்கள்.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">இந்த குழுவில் சேர்ந்து உங்கள் பெயரையும் புகைப்படத்தையும் அதன் உறுப்பினர்களுடன் பகிர்ந்துகொள்கிறீர்களா? நீங்கள் ஏற்றுக்கொள்ளும் வரை அவர்களின் செய்திகளைப் பார்க்க மாட்டீர்கள்.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">இந்த குழுவில் சேரவா? நீங்கள் ஏற்றுக்கொள்ளும் வரை அவர்களின் செய்திகளைப் பார்த்திருப்பதை அவர்கள் அறிய மாட்டார்கள்.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">இந்த குழுவைத் தடை நீக்கம் செய்து, உங்கள் பெயரையும் புகைப்படத்தையும் அதன் உறுப்பினர்களுடன் பகிர்ந்து கொள்ளலாமா? நீங்கள் தடை நீக்கம் செய்யும் வரை எந்த செய்திகளையும் பெற மாட்டீர்கள்.</string>
   <string name="MessageRequestProfileView_view">காண்க</string>
@@ -1098,7 +1178,15 @@
     <item quantity="other">%1$d உறுப்பினர்கள்</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d உறுப்பினர்கள் (%2$s)</item>
+    <item quantity="other">%1$d உறுப்பினர்கள் (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="one">+%1$dஅழைக்கப்பட்டிருக்கிறார்கள் </item>
+    <item quantity="other">+%1$d அழைக்கப்பட்டிருக்கிறார்கள் </item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d கூடுதல் குழு</item>
     <item quantity="other">%d கூடுதல் குழு</item>
@@ -1191,6 +1279,7 @@
   <!--Recipient-->
   <string name="Recipient_you">நீங்கள்</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">எனது ஸ்டோரி</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">தடு</string>
   <string name="RecipientPreferenceActivity_unblock">தடுப்புநீக்க</string>
@@ -1208,7 +1297,9 @@
   <string name="RedPhone_got_it">அறிந்துகொண்டேன் .</string>
   <!--Valentine\'s Day Megaphone-->
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <string name="ValentinesDayMegaphone_happy_heart_day">இனிய 💜 நாள்!</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
+  <string name="ValentinesDayMegaphone_show_your_affection">சிக்னல் காப்பாளராக மாறுவதன் மூலம் உங்கள் அன்பை வெளிப்படுத்துங்கள்.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">உங்கள் வீடியோவை இயக்க இங்கே தட்டவும்</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s ஐ அழைக்க, சிக்னலுக்கு உங்கள் கேமரா அனுமதி தேவை Signal Camera permission</string>
@@ -1218,8 +1309,11 @@
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">மீண்டும் இணைக்கிறது …</string>
   <!--Title for dialog warning about lacking bluetooth permissions during a call-->
+  <string name="WebRtcCallActivity__bluetooth_permission_denied">புளூடூத் அனுமதி மறுக்கப்பட்டது</string>
   <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">அழைப்பின் போது புளூடூத்தைப் பயன்படுத்த \"அருகிலுள்ள சாதனங்கள்\" அனுமதியை இயக்கவும்.</string>
   <!--Positive action for bluetooth warning dialog to open settings-->
+  <string name="WebRtcCallActivity__open_settings">அமைப்புகளைத் திற</string>
   <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
   <string name="WebRtcCallActivity__not_now">இப்போது இல்லை</string>
   <!--WebRtcCallView-->
@@ -1236,13 +1330,29 @@
   <string name="WebRtcCallView__disconnected">துண்டிக்கப்பட்டது</string>
   <string name="WebRtcCallView__signal_will_ring_s">Signal %1$s ஐ அழைக்கும்</string>
   <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal %1$sஐயும் %2$sஐயும் அழைக்கும்</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">சிக்னல் %1$s, %2$s, மற்றும் %3$d நபருக்கு அழைப்பு விடுக்கும்</item>
+    <item quantity="other">சிக்னல் %1$s, %2$s, மற்றும் %3$d நபர்களுக்கு அழைப்பு விடுக்கும்</item>
+  </plurals>
   <string name="WebRtcCallView__s_will_be_notified">%1$sக்கு தெரியபடுத்தப்படும் </string>
   <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s மற்றும் %2$sக்கு தெரியபடுத்தப்படும்</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s, மற்றும் %3$d நபருக்கு அறிவிக்கப்படும்</item>
+    <item quantity="other">%1$s, %2$s, மற்றும் %3$d நபர்களுக்கு அறிவிக்கப்படும்</item>
+  </plurals>
   <string name="WebRtcCallView__ringing_s">%1$s அழைக்கப்படுகிறார்</string>
   <string name="WebRtcCallView__ringing_s_and_s">%1$s மற்றும் %2$s அழைக்கப்படுகின்றனர்</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">%1$s, %2$s, மற்றும் %3$d நபருக்கு அழைப்பு விடுக்கிறது</item>
+    <item quantity="other">%1$s, %2$s, மற்றும் %3$d நபர்களுக்கு அழைப்பு விடுக்கிறது</item>
+  </plurals>
   <string name="WebRtcCallView__s_is_calling_you">%1$s உங்களை அழைக்கிறார்</string>
   <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s உங்களையும் %2$sஐயும் அழைக்கிறார்</string>
   <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s உங்களையும் %2$sஐயும் மற்றும் %3$sஐயும் அழைக்கிறார்</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s உங்களை, %2$s, %3$s, மற்றும் %4$d நபரை அழைக்கிறார்</item>
+    <item quantity="other">%1$s உங்களை, %2$s, %3$s, மற்றும் %4$d நபர்களை அழைக்கிறார்</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">வேறு யாரும் இங்கு இல்லை</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s இந்த அழைப்பில் இருக்கிறார்</string>
   <string name="WebRtcCallView__s_are_in_this_call">%1$s இந்த அழைப்பில் உள்ளார்</string>
@@ -1303,8 +1413,14 @@
   <string name="RegistrationActivity_play_services_error">சேவைகளில் பிழை</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play சேவைகள் புதுப்பித்தல் அல்லது தற்காலிகமாக கிடைக்கவில்லை. தயவு செய்து மீண்டும் முயற்சிக்கவும்.</string>
   <string name="RegistrationActivity_terms_and_privacy">விதிமுறைகள் &amp; ஆம்ப்; தனியுரிமைக் கொள்கை</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">நண்பர்களுடன் இணைவதற்கும் செய்திகளை அனுப்புவதற்கும் சிக்னலுக்கு தொடர்புகள் மற்றும் மீடியா அனுமதிகள் தேவை. உங்கள் தொடர்புகள் சிக்னலின் தனிப்பட்ட தொடர்பு கண்டறிதலைப் பயன்படுத்தி பதிவேற்றப்படுகின்றன, அதாவது அவை இறுதியிலிருந்து இறுதி வரை மறையாக்கப்பட்டவை மற்றும் சிக்னல் சேவைக்கு ஒருபோதும் தெரியப்படுவதில்லை.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">நண்பர்களுடன் நீங்கள் இணைவதற்கு சிக்னலுக்கு தொடர்புகளின் அனுமதி தேவை. உங்கள் தொடர்புகள் சிக்னலின் தனிப்பட்ட தொடர்பு கண்டறிதலைப் பயன்படுத்தி பதிவேற்றப்படுகின்றன, அதாவது அவை இறுதியிலிருந்து இறுதி வரை மறையாக்கப்பட்டவை மற்றும் சிக்னல் சேவைக்கு ஒருபோதும் தெரியப்படுவதில்லை.</string>
   <string name="RegistrationActivity_rate_limited_to_service">இந்த எண்ணை பதிவு செய்ய நீங்கள் பல முயற்சிகளை செய்துள்ளீர்கள். சிறிது நேரம் கழித்து மீண்டும் முயற்சிக்கவும்.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">சேவையுடன் இணைக்க முடியவில்லை. பிணைய இணைப்பைச் சரிபார்த்து மீண்டும் முயற்சிக்கவும்.</string>
+  <string name="RegistrationActivity_non_standard_number_format">தரமற்ற எண் வடிவம்</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">நீங்கள் உள்ளிட்ட எண் (%1$s) தரமற்ற எண் வடிவத்தைக் கொண்டுள்ளது.\n\nநீங்கள் %2$s-ஐ நினைத்தீர்களா?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">சிக்னல் ஆண்ட்ராய்டு - தொலைபேசி எண் வடிவம்</string>
+  <string name="RegistrationActivity_call_requested">அழைப்பு கோரப்பட்டது</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">பிழைத்திருத்த பதிவைச் சமர்ப்பிப்பதில் இருந்து இப்போது நீங்கள் %d விலகிவிட்டீர்கள்.</item>
     <item quantity="other">பிழைத்திருத்த பதிவைச் சமர்ப்பிப்பதில் இருந்து இப்போது நீங்கள் %d படிகள் தொலைவில் உள்ளீர்கள்.</item>
@@ -1350,6 +1466,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">மேலும்</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">குறியீடு வெற்றிகரமாக சரிபார்க்கப்பட்டது. பின்னர் மீண்டும் நினைவூட்டுவோம்.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">குறியீடு வெற்றிகரமாக சரிபார்க்கப்பட்டது. நாளை மீண்டும் உங்களுக்கு நாங்கள் நினைவூட்டுவோம்.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">குறியீடு வெற்றிகரமாக சரிபார்க்கப்பட்டது. சில நாட்களில் மீண்டும் உங்களுக்கு நாங்கள் நினைவூட்டுவோம்.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">குறியீடு வெற்றிகரமாக சரிபார்க்கப்பட்டது. ஒரு வாரத்தில் மீண்டும் உங்களுக்கு நாங்கள் நினைவூட்டுவோம்.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">குறியீடு வெற்றிகரமாக சரிபார்க்கப்பட்டது. இரண்டு வாரங்களில் மீண்டும் உங்களுக்கு நாங்கள் நினைவூட்டுவோம்.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">குறியீடு வெற்றிகரமாக சரிபார்க்கப்பட்டது. ஒரு மாதத்தில் மீண்டும் உங்களுக்கு நாங்கள் நினைவூட்டுவோம்.</string>
   <!--Slide-->
   <string name="Slide_image">உருவம்</string>
   <string name="Slide_sticker">ஒட்டிப்படம்</string>
@@ -1434,8 +1556,11 @@
   <string name="ThreadRecord_video">காணொளி</string>
   <string name="ThreadRecord_chat_session_refreshed">உரையாடல் அமர்வு புதுப்பிக்கப்பட்டது</string>
   <!--Displayed in the notification when the user is sent a gift-->
+  <string name="ThreadRecord__you_received_a_gift">நீங்கள் ஒரு பரிசு பெற்றுள்ளீர்கள்</string>
   <!--Displayed in the notification when the user sends a gift-->
+  <string name="ThreadRecord__you_sent_a_gift">நீங்கள் ஒரு பரிசை அனுப்பியுள்ளீர்கள்</string>
   <!--Displayed in the notification when the user has opened a received gift-->
+  <string name="ThreadRecord__you_redeemed_a_gift_badge">நீங்கள் ஒரு பரிசு பேட்ஜை மீட்டெடுத்துள்ளீர்கள்</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal புதுப்பிப்பு</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal புதிய பதிப்பு கிடைக்கும், புதுப்பிக்க தட்டவும்</string>
@@ -1501,7 +1626,9 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">இது இந்த செய்தியை நிரந்தரமாக நீக்கும்.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s to %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">தங்களிடமிருந்து %1$s-க்கு </string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s இடமிருந்து தாங்களுக்கு</string>
   <string name="MediaPreviewActivity_media_no_longer_available">இந்த ஊடகம் சேமிப்பகத்தில் இல்லை.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">இந்த மீடியாவைப் பகிரக்கூடிய பயன்பாட்டைக் கண்டுபிடிக்க முடியவில்லை.</string>
   <!--MessageNotifier-->
@@ -1528,6 +1655,7 @@
   <string name="MessageNotifier_reacted_s_to_s">%1$s என வினைபுரிந்தார்: \"%2$s\" க்கு.</string>
   <string name="MessageNotifier_reacted_s_to_your_video">உங்கள் காணொளிக்கு %1$s என வினைபுரிந்தார்.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">உங்கள் படத்திற்கு %1$s என வினைபுரிந்தார்.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">உங்கள் ஜிஃப்-க்கு %1$s என்று பதிலளித்துள்ளார்.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">உங்கள் கோப்பிற்கு %1$s என வினைபுரிந்தார்.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">உங்கள் கேட்பொலிக்கு %1$s என வினைபுரிந்தார்.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">  %1$sஉங்கள் பார்வைக்கு ஒரு முறை ஊடகங்களுக்கு அவர் பதில்செயல் காட்டியுள்ளீர்கள்</string>
@@ -1549,7 +1677,9 @@
   <string name="NotificationChannel_contact_joined_signal">தொடர்பு  Signal இல் இணைந்தது </string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">இல்லை செயல்பாடு கிடைக்கிறது திறந்த அறிவிப்பு சேனல் அமைப்புகள்.</string>
   <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">பின்னணி இணைப்பு</string>
   <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">அழைப்பு நிலை</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal பூட்டப்பட்டிருக்கும் போது விரைவான பதில் கிடைக்காது!</string>
@@ -1571,6 +1701,7 @@
   <string name="SingleRecipientNotificationBuilder_message_request">செய்தி கோரிக்கை</string>
   <string name="SingleRecipientNotificationBuilder_you">நீங்கள்</string>
   <!--Notification subtext for group stories-->
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • ஸ்டோரி</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">காணொளியை ஓட்டு</string>
   <string name="ThumbnailView_Has_a_caption_description">ஒரு தலைப்பு உள்ளது</string>
@@ -1583,6 +1714,7 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">சாதனம் இனி பதிவு செய்யப்படவில்லை</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">உங்கள் தொலைபேசி எண்ணை Signal வேறு சாதனத்தில் பதிவு செய்ததால் இது நிகழலாம். மீண்டும் பதிவு செய்ய தட்டவும்.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">அழைப்பிற்கு பதிலளிக்க, உங்கள் மைக்ரோஃபோன் அணுகலை சிக்னலுக்கு வழங்கவும்.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%s இலிருந்து அழைப்பிற்கு பதிலளிக்க, உங்கள் மைக்ரோஃபோனுக்கு Signal அணுகலை வழங்கவும்.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">அழைப்புகளைச் செய்ய அல்லது பெற Signal கு மைக்ரோஃபோன் மற்றும் கேமரா அனுமதிகள் தேவை, ஆனால் அவை நிரந்தரமாக மறுக்கப்பட்டுள்ளன. பயன்பாடு அமைப்புகளைத் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து, \"மைக்ரோஃபோன்\" மற்றும் \"கேமரா\" ஐ இயக்கவும்.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">இணைக்கப்பட்ட சாதனத்தில் பதிலளிக்கப்பட்டது.</string>
@@ -1642,6 +1774,10 @@
     <item quantity="other">%1$d உறுப்பினர்கள்</item>
   </plurals>
   <!--Displays number of viewers for a story-->
+  <plurals name="contact_selection_list_item__number_of_viewers">
+    <item quantity="one">%1$d பார்வையாளர்</item>
+    <item quantity="other">%1$d பார்வையாளர்கள்</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal செய்தி</string>
   <string name="conversation_activity__type_message_sms_insecure">பாதுகாப்பற்ற SMS</string>
@@ -1680,12 +1816,13 @@
   <string name="ConversationUpdateItem_enable_call_notifications">அழைப்பு அறிவிப்புகளை இயக்கு</string>
   <string name="ConversationUpdateItem_update_contact">தொடர்பைப் புதுப்பிக்கவும்</string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">கோரிக்கையைத் தடை செய்</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">இல்லை குழுக்கள்பொதுவாக. கோரிக்கைகளை கவனமாக மதிப்பாய்வு செய்யவும்.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">இல்லை இதில் தொடர்புகள் குழு. கோரிக்கைகளை கவனமாக மதிப்பாய்வு செய்யவும்.</string>
   <string name="ConversationUpdateItem_view">காண்க</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">நீங்கள் அவர்களுக்கு செய்தி அனுப்பும் போது காணாமல் போகும் செய்திகள் நேரம் %1$s ஆக அமைக்கப்படும்.</string>
   <!--Update item button text to show to boost a feature-->
-  <!--Update item button text to show to become a sustainer in the release notes channel-->
+  <string name="ConversationUpdateItem_donate">நன்கொடை</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">விளையாடு … இடைநிறுத்து</string>
   <string name="audio_view__download_accessibility_description">பதிவிறக்க</string>
@@ -1699,13 +1836,18 @@
   <string name="QuoteView_you">நீங்கள்</string>
   <string name="QuoteView_original_missing">அசல் செய்தி கிடைக்கவில்லை</string>
   <!--Author formatting for group stories-->
+  <string name="QuoteView_s_story">%1$s · ஸ்டோரி</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">நீங்கள் · ஸ்டோரி</string>
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">இனி ஒருபோதும் கிடைக்கப்பெறாது</string>
   <!--Label for quoted gift-->
+  <string name="QuoteView__gift">பரிசு</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">கீழே உருட்டவும்</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">பபிள்ஸ் என்பது ஆண்ட்ராய்டு அம்சமாகும், இதை நீங்கள் சிக்னல் அரட்டைகளுக்கு முடக்கப் பயன்படுத்தலாம்.</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">இப்போது இல்லை</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -1806,7 +1948,9 @@
   <string name="message_recipients_list_item__view">காண்க</string>
   <string name="message_recipients_list_item__resend">மீண்டும் அனுப்பு</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
+  <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">அனுப்பட்ட நேரமுத்திரை கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது.</string>
   <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">உங்கள் ஸ்டோரியின் புதுப்பிப்புகள் இங்கே காட்டப்படும்.</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s குழுவில் சேர்ந்தார்.</item>
@@ -1856,9 +2000,13 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ஒரு பெயர் அல்லது எண்ணை உள்ளிடவும்</small></string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ %s உடன் உங்கள் இறுதியிலிருந்து இறுதி குறியாக்கத்தின் பாதுகாப்பை சரிபார்க்க, அவர்களின் சாதனத்துடன் மேலிருக்கும் எண்களோடு ஒப்பிடுக. நீங்கள் அவர்களின் தொலைபேசியில் உள்ள குறியீட்டை ஸ்கேன் செய்யலாம். <a href="https://signal.org/redirect/safety-numbers"> மேலும் அறிக.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">ஸ்கேன் செய்ய தட்டவும்</string>
+  <string name="verify_display_fragment__successful_match">வெற்றிகரமான இணை</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">பாதுகாப்பு எண்ணைச் சரிபார்க்கத் தவறியது</string>
   <string name="verify_display_fragment__loading">ஏற்றுதல் …</string>
   <string name="verify_display_fragment__mark_as_verified">சரிபார்க்கப்பட்டதாகக் குறிக்கவும்</string>
+  <string name="verify_display_fragment__clear_verification">சரிபார்ப்பை நீக்கவும்</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">பாதுகாப்பு எண்ணைப் பகிரவும்</string>
   <!--verity_scan_fragment-->
@@ -1986,6 +2134,8 @@
   <string name="preferences__led_color">LED நிறம்</string>
   <string name="preferences__led_color_unknown">முன் தெரிந்திராத</string>
   <string name="preferences__pref_led_blink_title">LED மிளிரும் முறை</string>
+  <string name="preferences__customize">தனிப்பயனாக்கவும்</string>
+  <string name="preferences__change_sound_and_vibration">ஒலி மற்றும் அதிர்வை மாற்றவும்</string>
   <string name="preferences__sound">ஒலி</string>
   <string name="preferences__silent">அமைதி</string>
   <string name="preferences__default">இயல்புநிலை</string>
@@ -2012,6 +2162,7 @@
   <string name="preferences__advanced">மேம்பட்ட</string>
   <string name="preferences__donate_to_signal">Signal-க்கு நன்கொடை அளி</string>
   <!--Preference label for making one-time donations to Signal-->
+  <string name="preferences__one_time_donation">ஒரு-முறை நன்கொடை</string>
   <string name="preferences__privacy">தனியுரிமை</string>
   <string name="preferences__mms_user_agent">எம்.எம்.எஸ் பயனர் முகவர்</string>
   <string name="preferences__advanced_mms_access_point_names">நீங்கள் செய்யவேண்டிய MMS அமைப்புகள்</string>
@@ -2110,7 +2261,9 @@
   <string name="preferences_events__contact_joined_signal">தொடர்பு  Signal இல் இணைந்தது </string>
   <string name="preferences_notifications__priority">முன்னுரிமை</string>
   <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">தணிக்கை புறக்கணிப்பு</string>
   <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">தணிக்கை புறக்கணிப்பு</string>
   <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">இயக்கப்பட்டால், தணிக்கை தவிர்க்க Signal முயற்சிக்கும். நீங்கள் Signal தணிக்கை செய்யப்பட்ட இடத்தில் இல்லாவிட்டால் இந்த அம்சத்தை இயக்க வேண்டாம்.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
   <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">உங்கள் கணக்கு தொலைபேசி எண்ணின் அடிப்படையில் தணிக்கை சுற்றளவு செயல்படுத்தப்பட்டுள்ளது.</string>
@@ -2291,6 +2444,10 @@
   <string name="conversation_callable_secure__menu_video">Signal காணொளி அழைப்பு</string>
   <!--conversation_context-->
   <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">%d தேர்ந்தெடுக்கப்பட்டது</item>
+    <item quantity="other">%d </item>
+  </plurals>
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_context_image__save_attachment">சேமி</string>
@@ -2392,6 +2549,7 @@
   <string name="Insights__title">நுண்ணறிவு</string>
   <string name="InsightsDashboardFragment__title">நுண்ணறிவு</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">கடந்த %2$d நாட்களில் Signal நெறிமுறை தானாகவே உங்களின் %1$d%% வெளிச்செல்லும் செய்திகளை பாதுகாத்தது. Signal பயனர்களிடையேயான உரையாடல்கள் எப்போதும் முடிவிலிருந்து-முடிவுவரை மறையாக்கம் செய்யப்படுகின்றன.</string>
+  <string name="InsightsDashboardFragment__spread_the_word">மற்றவர்களுக்குத் தெரியப்படுத்துங்கள்</string>
   <string name="InsightsDashboardFragment__not_enough_data">போதிய தரவு இல்லை</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">கடந்த %1$d நாட்களில் காணாமல் போகாத அல்லது நீக்கப்படாத வெளிச்செல்லும் செய்திகளின் அடிப்படையில் உங்கள் நுண்ணறிவு சதவீதம் கணக்கிடப்படுகிறது.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">புதிய உரையாடலை தொடங்கு</string>
@@ -2545,6 +2703,7 @@
   <string name="BackupDialog_verify">சரிபார்க்கவும்</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">உங்கள் காப்புப்பிரதி கடவுச்சொற்றொடரை வெற்றிகரமாக உள்ளிட்டுள்ளீர்கள்</string>
   <string name="BackupDialog_passphrase_was_not_correct">கடவுச்சொல் சரியாக இல்லை</string>
+  <string name="LocalBackupJob_creating_signal_backup">சிக்னல் காப்புநகலை உருவாக்குகிறது…</string>
   <string name="LocalBackupJobApi29_backup_failed">மறுபிரதி தோல்வியுற்றது</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">உங்கள் மறுபிரதி கோப்புறை நீக்கப்பட்டது அல்லது வேறு இடத்திற்கு நகர்த்தப்பட்டது.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">உங்கள் மறுபிரதி கோப்பின் அளவு இந்த தொகுதியில் சேமிக்க முடியாத அளவுக்கு பெரியது.</string>
@@ -2555,6 +2714,7 @@
   <string name="RegistrationActivity_call_me_instead_available_in">அதற்கு பதிலாக என்னை அழைக்கவும் \ n ( %1$02d :%2$02d இல் கிடைக்கும்)</string>
   <string name="RegistrationActivity_contact_signal_support">Signal ஆதரவைத் தொடர்பு கொள்ளுங்கள்</string>
   <string name="RegistrationActivity_code_support_subject">Signal பதிவு - அண்ட்ராய்டு க்கான சரிபார்ப்புக் குறியீடு</string>
+  <string name="RegistrationActivity_incorrect_code">தவறான குறியீடு</string>
   <string name="BackupUtil_never">ஒருபோதுமில்லை</string>
   <string name="BackupUtil_unknown">முன் தெரிந்திராத</string>
   <string name="preferences_app_protection__see_my_phone_number">எனது தொலைபேசி எண்ணைக் காண்க</string>
@@ -2666,6 +2826,7 @@
   <string name="DeviceTransfer__keep_both_devices_near_each_other">இரண்டு சாதனங்களையும் ஒவ்வொன்றின் அருகே வைத்திருங்கள் மற்றவை. சாதனங்களை அணைத்து வைக்க வேண்டாம் Signal திறந்த. இடமாற்றங்கள் முடிவிலிருந்து-முடிவுவரை மறையாக்கப்பட்ட.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d இதுவரை செய்திகள்…</string>
   <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">இதுவரை வந்த செய்திகளில் %1$s%%…</string>
   <string name="DeviceTransfer__cancel">ரத்து</string>
   <string name="DeviceTransfer__try_again">மீண்டும் முயற்சிக்கவும்</string>
   <string name="DeviceTransfer__stop_transfer_question">நிறுத்து பரிமாற்றம்?</string>
@@ -2716,6 +2877,7 @@
   <string name="RecipientBottomSheet_unblock">தடைநீக்கு </string>
   <string name="RecipientBottomSheet_add_to_contacts">தொடர்புகளுடன் சேர்க்க</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">தொடர்புகளைத் திறக்கக்கூடிய ஒரு பயன்பாட்டைக் கண்டறிய முடியவில்லை.</string>
   <string name="RecipientBottomSheet_add_to_a_group">ஒரு குழுவில் சேர்க்கவும்</string>
   <string name="RecipientBottomSheet_add_to_another_group">மற்றொரு குழுவில் சேர்க்கவும்</string>
   <string name="RecipientBottomSheet_view_safety_number">பாதுகாப்பு எண்ணைக் காண்பி</string>
@@ -2730,6 +2892,7 @@
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" இந்த குழுவையும் அதன் உறுப்பினர்களையும் திருத்த முடியும்</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s குழுவிலிருந்து நீக்கவா? </string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">குழுவிலிருந்து %1$s-ஐ அகற்றுவதா? குழு இணைப்பு மூலம் அவர்களால் மீண்டும் சேர முடியாது.</string>
   <string name="RecipientBottomSheet_remove">நீக்கு</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
   <string name="GroupRecipientListItem_admin">நிர்வாகி</string>
@@ -2816,12 +2979,19 @@
   <string name="DeleteAccountFragment__failed_to_delete_local_data">உள்ளூர் தரவை நீக்குவதில் தோல்வி. நீங்கள் அதை கணினியில் கைமுறையாக அழிக்கலாம்விண்ணப்பம் அமைப்புகள்.</string>
   <string name="DeleteAccountFragment__launch_app_settings">பயன்பாட்டு அமைப்புகளை தொடங்கு</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">குழுக்களை விட்டு வெளியேறுகிறது…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">கணக்கை நீக்குகிறது…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
+  <string name="DeleteAccountFragment__canceling_your_subscription">உங்கள் சந்தாவை ரத்துசெய்கிறது…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">நீங்கள் இருக்கும் குழுக்களின் எண்ணிக்கையைப் பொறுத்து, இது சில நிமிடங்கள் எடுக்கலாம்</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">பயனர் தரவை நீக்குகிறது மற்றும் பயன்பாட்டை மீட்டமைக்கிறது</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">கணக்கு நீக்கப்படவில்லை</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">நீக்குதல் செயல்முறையை முடிப்பதில் சிக்கல் ஏற்பட்டது. உங்கள் இணைப்பைச் சரிபார்த்து, மீண்டும் முயற்சிக்கவும்.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">நாடுகளை தேடு</string>
   <!--CreateGroupActivity-->
@@ -2974,29 +3144,57 @@
   <string name="QualitySelectorBottomSheetDialog__photo_quality">புகைப்பட தரம்</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">நண்பர்களை அழைக்கவும்</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">சந்தாதாரர் ஐ.டி கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">பயனர் கணக்கு</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">காலப்போக்கில் உங்களிடம் குறைவாகக் கேட்கப்படும்</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">உங்கள் தேவை Signal பின் பதிவு செய்ய தொலைபேசி உடன் எண் Signal மீண்டும்</string>
+  <string name="AccountSettingsFragment__change_phone_number">தொலைபேசி எண்ணை மாற்றவும்</string>
   <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">உங்கள் தற்போதைய தொலைபேசி எண்ணை புதிய தொலைபேசி எண்ணாக மாற்ற இதைப் பயன்படுத்தவும். இந்த மாற்றத்தை உங்களால் செயல்தவிர்க்க முடியாது.\n\nதொடர்வதற்கு முன், உங்கள் புதிய எண்ணுக்கு எஸ்.எம்.எஸ்  அல்லது அழைப்புகள் வருகிறதா என்பதை உறுதிசெய்து கொள்ளுங்கள்.</string>
   <string name="ChangeNumberFragment__continue">தொடர்ந்து செல் </string>
   <!--Message shown on dialog after your number has been changed successfully.-->
+  <string name="ChangeNumber__your_phone_number_has_changed_to_s">உங்கள் தொலைபேசி எண் %1$s ஆக மாற்றப்பட்டுள்ளது</string>
   <!--Confirmation button to dismiss number changed dialog-->
   <string name="ChangeNumber__okay">சரி</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">எண்ணை மாற்றவும்</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">உங்கள் பழைய எண்</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">பழைய தொலைபேசி எண்</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">உங்கள் புதிய எண்</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">புதிய தொலைபேசி எண்</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">தி தொலைபேசி நீங்கள் உள்ளிட்ட எண் உங்களுடன் பொருந்தவில்லை கணக்கு.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">உங்கள் பழைய எண்ணுடைய நாட்டின் குறியீட்டைக் குறிப்பிட வேண்டும்</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">உங்கள் பழைய தொலைபேசி எண்ணைக் குறிப்பிட வேண்டும்</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">உங்கள் புதிய எண்ணுடைய நாட்டின் குறியீட்டைக் குறிப்பிட வேண்டும்</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">உங்கள் புதிய தொலைபேசி எண்ணைக் குறிப்பிட வேண்டும்</string>
   <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">எண்ணை மாற்றவும்</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">%1$s சரிபார்க்கப்படுகிறது</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">கேப்ட்சா தேவை</string>
   <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">எண்ணை மாற்று</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">%1$s-லிருந்து %2$s-க்கு உங்கள் தொலைபேசி எண்ணை மாற்றவிருக்கிறீர்கள்.\n\nதொடர்வதற்கு முன், தயவுசெய்து கீழே உள்ள எண் சரியானதா என்பதைச் சரிபார்க்கவும்.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">எண்ணை தொகுக்க</string>
   <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">சிக்னல் எண்ணை மாற்று - ஆண்ட்ராய்டுக்கான குறியீட்டுக்காக உதவி தேவை (வி2 குறியீடு)</string>
   <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">குறியீடுகள் பொருந்தவில்லை</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">உங்களின் புதிய எண்ணுடன் தொடர்புடைய குறியீடும், உங்கள் பழைய எண்ணுடன் தொடர்புடைய குறியீடும் வேறுபட்டது. உங்கள் பழைய குறியீட்டை வைத்திருக்க விரும்புகிறீர்களா அல்லது புதுப்பிக்க விரும்புகிறீர்களா?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">பழைய குறியீட்டை வைத்துக்கொள்ளவும்</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">பின்னைப் புதுப்பிக்கவும்</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">பழைய குறியீட்டை வைத்துக்கொள்கிறீர்களா?</string>
   <!--ChangeNumberLockActivity-->
   <!--Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">உங்கள் எண்ணை மாற்ற முயற்சிப்பது போல் தெரிகிறது, ஆனால் அது வெற்றி பெற்றதா என்பதை எங்களால் உறுதிசெய்ய முடியவில்லை.\n\nஇப்போது மீண்டும் சரிபார்க்கிறோம்…</string>
   <!--Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
+  <string name="ChangeNumberLockActivity__change_status_confirmed">நிலை மாற்றம் உறுதிசெய்யப்பட்டது</string>
   <!--Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">உங்கள் எண் %1$sஎன்று உறுதிசெய்யப்பட்டது. இது உங்கள் புதிய எண் இல்லை என்றால், தயவுசெய்து எண் மாற்ற செயல்முறையை மீண்டும் தொடங்கவும்.</string>
   <!--Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow-->
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">நிலை மாற்றம் உறுதிப்படுத்தப்படவில்லை</string>
   <!--Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow-->
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">உங்கள் எண்ணை மாற்று கோரிக்கையின் நிலையை எங்களால் தீர்மானிக்க முடியவில்லை.\n\n(பிழை: %1$s)</string>
   <!--Dialog button to retry confirming the number on the server-->
   <string name="ChangeNumberLockActivity__retry">மீண்டும் முயற்சி செய்</string>
   <!--Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow-->
@@ -3015,11 +3213,14 @@
   <!--Notification preference header-->
   <string name="NotificationsSettingsFragment__notification_profiles">அறிவிப்பு சுயவிவரங்கள்</string>
   <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">சுயவிவரங்கள்</string>
   <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">நீங்கள் தேர்ந்தெடுக்கும் நபர்கள் மற்றும் குழுக்களிடமிருந்து மட்டும் அறிவிப்புகளைப் பெற சுயவிவரத்தை உருவாக்கவும்.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">அறிவிப்பு சுயவிவரங்கள்</string>
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">சுயவிவரத்தை உருவாக்கவும்</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">தடுக்கப்பட்ட</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d contacts</string>
@@ -3061,6 +3262,8 @@
   <string name="HelpFragment__copyright_signal_messenger">பதிப்புரிமை Signal தூதர்</string>
   <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 இன் கீழ் உரிமம் பெற்றது</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">மீடியா தரம்</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">அனுப்பிய மீடியா தரம்</string>
   <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">உயர்தரத்தை அனுப்புகிறது ஊடகம் அதிக தரவைப் பயன்படுத்தும்.</string>
   <string name="DataAndStorageSettingsFragment__high">உயர்</string>
   <string name="DataAndStorageSettingsFragment__standard">தரநிலை</string>
@@ -3114,7 +3317,9 @@
   <string name="AddAProfilePhotoMegaphone__not_now">இப்போது இல்லை</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">கூட்டு புகைப்படம்</string>
   <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">ஒரு காப்பாளராக மாறவும்</string>
   <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">உங்களைப் போன்றவர்களால் சிக்னல் இயக்கப்படுகிறது. நன்கொடை அளித்து பேட்ஜைப் பெறுங்கள்.</string>
   <string name="BecomeASustainerMegaphone__not_now">இப்போது இல்லை</string>
   <string name="BecomeASustainerMegaphone__donate">நன்கொடை</string>
   <!--KeyboardPagerFragment-->
@@ -3165,6 +3370,7 @@
   <string name="ConversationSettingsFragment__conversation_muted_forever">உரையாடல் எப்போதும் முடக்கப்பட்டது</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">கிளிப்போர்டுக்கு தொலைபேசி எண் நகலெடுக்கப்பட்டது.</string>
   <string name="ConversationSettingsFragment__phone_number">தொலைபேசி எண்</string>
+  <string name="ConversationSettingsFragment__get_badges">சிக்னலை ஆதரிப்பதன் மூலம் உங்கள் சுயவிவரத்திற்கான பேட்ஜ்களைப் பெறுங்கள். மேலும் அறிய ஒரு பேட்ஜில் தட்டவும்.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">உறுப்பினர்களைச் சேர்க்கவும்</string>
   <string name="PermissionsSettingsFragment__edit_group_info">குழு தகவலைத் திருத்தல்</string>
@@ -3187,6 +3393,7 @@
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1 எக்ஸ்</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">புதிய கட்டணம்</string>
@@ -3231,6 +3438,16 @@
   <!--Displayed when sharing content via the fragment-->
   <string name="MultiselectForwardFragment__share_with">பகிர்</string>
   <string name="MultiselectForwardFragment__add_a_message">கூட்டு ஒரு செய்தி</string>
+  <string name="MultiselectForwardFragment__faster_forwards">வேகமாக முன்னோக்கிகள்</string>
+  <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">வீடியோக்கள் 30 நொடிகளுக்கான கிளிப்களாக ட்ரிம் செய்யப்பட்டு பல ஸ்டோரீக்களாக அனுப்பப்படும்.</string>
+  <!--Displayed when user selects a video that cannot be sent as a story-->
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">ஸ்டோரீக்களுக்கு அனுப்பப்படும் வீடியோக்கள் 30 வினாடிகளுக்கு மேல் இருக்கக்கூடாது.</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">முன்னனுப்பப்பட்ட செய்திகள் இப்போது உடனடியாக அனுப்பப்படுகின்றன.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">%1$d செய்தி அனுப்பவும்</item>
+    <item quantity="other">%1$d செய்திகள் அனுப்பவும்</item>
+  </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="one">செய்தி அனுப்பப்பட்டது</item>
     <item quantity="other">செய்திகள் அனுப்பப்பட்டன</item>
@@ -3239,80 +3456,221 @@
     <item quantity="one">செய்திதோல்வி அனுப்பு</item>
     <item quantity="other">செய்திகள் தோல்வி அனுப்பு</item>
   </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">செய்தி கிடைக்காததால் அதை முன்னனுப்ப முடியவில்லை.</item>
+    <item quantity="other">செய்திகள் கிடைக்காததால் அவற்றை முன்னனுப்ப முடியவில்லை.</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">வரம்பை எட்டியது</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">கூட்டு ஒரு செய்தி</string>
+  <string name="MediaReviewFragment__add_a_reply">ஒரு பதிலைச் சேர்க்கவும்</string>
+  <string name="MediaReviewFragment__send_to">அனுப்பவும்</string>
+  <string name="MediaReviewFragment__view_once_message">ஒருமுறை பார்க்கும் செய்தி</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">ஒன்று அல்லது அதற்கு மேற்பட்ட பொருட்கள் மிகப் பெரியதாக இருந்தன</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">ஒன்று அல்லது அதற்கு மேற்பட்ட பொருட்கள் செல்லாதவை</string>
+  <string name="MediaReviewFragment__too_many_items_selected">பல பொருட்கள் தேர்ந்தெடுக்கப்பட்டுள்ளன</string>
   <string name="ImageEditorHud__cancel">ரத்து</string>
+  <string name="ImageEditorHud__draw">வரை</string>
+  <string name="ImageEditorHud__write_text">உரை எழுதவும்</string>
+  <string name="ImageEditorHud__add_a_sticker">ஒரு ஸ்டிக்கரைச் சேர்க்கவும்</string>
   <string name="ImageEditorHud__blur">தெளிவின்மை</string>
+  <string name="ImageEditorHud__done_editing">திருத்தம் முடிந்தது</string>
+  <string name="ImageEditorHud__clear_all">அனைத்தையும் அழிக்கவும்</string>
   <string name="ImageEditorHud__undo">செயல்தவிர்</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">மார்க்கர் மற்றும் ஹைலைட்டருக்கு இடையில் மாறவும்</string>
   <string name="ImageEditorHud__delete">நீக்கு</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">உரை நடைகளுக்கு இடையில் மாறவும்</string>
   <string name="MediaCountIndicatorButton__send">அனுப்புக</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">அகற்ற தட்டவும்</string>
   <string name="MediaReviewSelectedItem__tap_to_select">தேர்ந்தெடுக்க தட்டவும்</string>
   <string name="MediaReviewImagePageFragment__discard">புறந்தள்ளு</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">மாற்றங்களைக் கைவிடுவதா?</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">இந்தப் புகைப்படத்தில் நீங்கள் செய்த மாற்றங்களை இழப்பீர்கள்.</string>
+  <string name="CameraFragment__failed_to_open_camera">கேமராவைத் திறக்க முடியவில்லை</string>
+  <string name="BadgesOverviewFragment__my_badges">எனது பேட்ஜ்கள்</string>
+  <string name="BadgesOverviewFragment__featured_badge">சிறப்பு பேட்ஜ்</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">சுயவிவரத்தில் பேட்ஜ்களைக் காண்பிக்கவும்</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">சுயவிவரத்தைப் புதுப்பிக்க இயலவில்லை</string>
+  <string name="BadgeSelectionFragment__select_badges">பேட்ஜ்களை தேர்ந்தெடுக்கவும்</string>
   <string name="SelectFeaturedBadgeFragment__preview">முன்னோட்டம்</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">ஒரு பேட்ஜை தேர்ந்தெடுக்கவும்</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">நீங்கள் ஒரு பேட்ஜைத் தேர்ந்தெடுக்க வேண்டும்</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">சுயவிவரத்தைப் புதுப்பிக்க இயலவில்லை</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">ஒரு காப்பாளராக மாறவும்</string>
+  <string name="ImageView__badge">பேட்ஜ்</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal இயக்கப்படுகிறது மக்கள் உன்னைப்போல.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">உங்களுக்காக உருவாக்கப்பட்ட  தொழில்நுட்பதை—உங்கள் தரவுக்காக அல்ல—அதைத் தக்கவைக்கும் நபர்களின் சமூகத்தில் சேர்வதன் மூலம் ஆதரிக்கவும்.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">உங்களுக்காக உருவாக்கப்பட்ட தொழில்நுட்பதை—உங்கள் தரவுக்காக அல்ல—சிக்னலைத் தக்கவைக்கும் நபர்களின் சமூகத்தில் சேர்வதன் மூலம் ஆதரிக்கவும்.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">உங்களுக்காக உருவாக்கப்பட்ட தொழில்நுட்பத்தை ஆதரிக்க சிக்னலுக்கு தொடர்ச்சியான மாதாந்திர நன்கொடையை வழங்குங்கள், உங்கள் தரவு அல்ல.</string>
+  <string name="SubscribeFragment__currency">பணம்</string>
+  <string name="SubscribeFragment__more_payment_options">நிறைய கட்டண விருப்பங்கள்</string>
+  <string name="SubscribeFragment__cancel_subscription">சந்தாவை ரத்துசெய்யவும்</string>
+  <string name="SubscribeFragment__confirm_cancellation">ரத்து செய்வதை உறுதிசெய்யலாமா?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">உங்களிடம் மீண்டும் கட்டணம் விதிக்கப்படாது. உங்கள் பில்லிங் காலத்தின் முடிவில் உங்கள் சுயவிவரத்திலிருந்து உங்கள் பேட்ஜ் அகற்றப்படும்.</string>
   <string name="SubscribeFragment__not_now">இப்போது இல்லை</string>
   <string name="SubscribeFragment__confirm">உறுதிப்படுத்தவும்</string>
+  <string name="SubscribeFragment__update_subscription">சந்தாவைப் புதுப்பிக்கவும்</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">உங்கள் சந்தா ரத்துசெய்யப்பட்டது.</string>
+  <string name="SubscribeFragment__update_subscription_question">சந்தாவைப் புதுப்பிப்பு செய்வதா?</string>
   <string name="SubscribeFragment__update">புதுப்பிக்கப்பட்டது</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">புதிய சந்தா விலையின் முழுத் தொகையும் (%1$s) இன்று உங்களிடம் வசூலிக்கப்படும். உங்கள் சந்தா மாதந்தோறும் புதுப்பிக்கப்படும்.</string>
+  <string name="Subscription__s_per_month">%s/மாதம்</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/மாதம் · புதுப்பிக்கிறது %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/மாதம் · காலாவதியாகிறது %2$s</string>
   <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">சிக்னல் என்பது விளம்பரதாரர்கள் அல்லது முதலீட்டாளர்கள் இல்லாத ஒரு இலாப நோக்கமற்ற நிறுவனமாகும், அதைப் பயன்படுத்தும் மற்றும் மதிக்கும் நபர்களால் மட்டுமே நிலைநிறுத்தப்படுகிறது. தொடர்ச்சியான மாதாந்திர நன்கொடையைச் செய்து, உங்கள் ஆதரவைப் பகிர்ந்து கொள்ள சுயவிவரப் பேட்ஜைப் பெறுங்கள்.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">ஏன் நன்கொடை?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">இலவச வெளிப்பாட்டைப் பாதுகாக்கும் மற்றும் பாதுகாப்பான உலகளாவிய தகவல்தொடர்புகளை செயல்படுத்தும் திறந்த மூல தனியுரிமை தொழில்நுட்பத்தை உருவாக்குவதற்கு சிக்னல் கடமைப்பட்டுள்ளது.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">உங்கள் நன்கொடை இந்த காரணத்தை தூண்டுகிறது மற்றும் தனிப்பட்ட தகவல்தொடர்புக்காக லட்சக் கணக்கானவர்கள் பயன்படுத்தும் பயன்பாட்டின் மேம்பாடு மற்றும் செயல்பாடுகளுக்கு பணம் செலுத்துகிறது. விளம்பரங்கள் இல்லை. டிராக்கர்கள் இல்லை. விளையாட்டு இல்லை.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">உங்கள் ஆதரவுக்கு நன்றி!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">பூஸ்ட்டுக்கு நன்றி!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">நீங்கள் %s பேட்ஜ் பெற்றுள்ளீர்கள்! சிக்னலுக்கு நன்கொடை அளிப்பது குறித்த விழிப்புணர்வை உருவாக்க உங்கள் சுயவிவரத்தில் இந்த பேட்ஜைக் காண்பிக்கவும்.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">ஒரு பூஸ்ட் பேட்ஜைப் பெற்றுள்ளீர்கள்! சிக்னலுக்கு நன்கொடை அளிப்பது குறித்த விழிப்புணர்வை உருவாக்க உங்கள் சுயவிவரத்தில் இந்த பேட்ஜைக் காண்பிக்கவும்.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">நீங்களும்</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">ஒரு மாதாந்திர காப்பாளராகலாம்.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">சுயவிவரத்தில் காண்பிக்கவும்</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">சிறப்பு பேட்ஜை உருவாக்கவும்</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">முடிந்தது</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">உங்களிடம் ஒன்றுக்கும் மேற்பட்ட பேட்ஜ்கள் இருந்தால், உங்கள் சுயவிவரத்தில் மற்றவர்கள் பார்க்கும்படியாக ஒன்றைத் தேர்ந்தெடுக்கலாம்.</string>
+  <string name="BecomeASustainerFragment__get_badges">சிக்னலை ஆதரிப்பதன் மூலம் உங்கள் சுயவிவரத்திற்கான பேட்ஜ்களைப் பெறுங்கள்.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">சிக்னல் என்பது உங்களைப் போன்றவர்களால் மட்டுமே ஆதரிக்கப்படும், விளம்பரதாரர்கள் அல்லது முதலீட்டாளர்கள் இல்லாத ஒரு இலாப நோக்கமற்ற நிறுவனமாகும்.</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">மாதாந்திர நன்கொடையை வழங்கவும்</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">மேலும்</string>
   <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">ரசீதுகள்</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">எனது சந்தா</string>
+  <string name="ManageDonationsFragment__manage_subscription">சந்தாவைக் கையாளவும்</string>
   <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__donation_receipts">நன்கொடை ரசீதுகள்</string>
+  <string name="ManageDonationsFragment__badges">பேட்ஜ்கள்</string>
+  <string name="ManageDonationsFragment__subscription_faq">சந்தா பற்றி அடிக்கடி கேட்கப்படும் கேள்விகள்</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">சந்தா கிடைப்பதில் பிழை</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">கொடுக்க மற்ற வழிகள்</string>
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">ஒரு பேட்ஜை பரிசளிக்கவும்</string>
+  <string name="BoostFragment__give_signal_a_boost">சிக்னலுக்கு ஒரு பூஸ்ட் கொடுக்கவும்</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">ஒரு-முறை நன்கொடை அளித்து, %1$d நாட்களுக்கு ஒரு பூஸ்ட் பேட்ஜைப் பெறுங்கள்.</string>
   <string name="Boost__enter_custom_amount">உள்ளிடவும் தனிப்பயன் தொகை</string>
+  <string name="Boost__one_time_contribution">ஒரு முறை பங்களிப்பு</string>
+  <string name="MySupportPreference__add_a_signal_boost">ஒரு சிக்னல் பூஸ்ட்டைச் சேர்க்கவும்</string>
+  <string name="MySupportPreference__s_per_month">%1$s/மாதம்</string>
+  <string name="MySupportPreference__renews_s">%1$s புதுப்பிக்கப்படுகிறது</string>
+  <string name="MySupportPreference__processing_transaction">பரிவர்த்தனையைச் செயலாக்குகிறது…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">பேட்ஜை சேர்க்க முடியவில்லை. %1$s</string>
+  <string name="MySupportPreference__please_contact_support">தயவுசெய்து உதவி மையத்தை தொடர்பு கொள்ளவும்.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">பூஸ்ட் பேட்ஜ் காலாவதியாகிவிட்டது</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">மாதாந்திர நன்கொடை றது செய்யப்பட்டது</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">உங்கள் பூஸ்ட் பேட்ஜ் காலாவதியாகிவிட்டது மற்றும் உங்கள் சுயவிவரத்தில் இனி பார்க்க முடியாது.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">ஒரு முறை பங்களிப்புடன் உங்கள் பூஸ்ட் பேட்ஜை இன்னும் 30 நாட்களுக்கு மீண்டும் இயக்கலாம்.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">நீங்கள் தொடர்ந்து சிக்னலைப் பயன்படுத்தலாம், ஆனால் உங்களுக்காக உருவாக்கப்பட்ட தொழில்நுட்பத்தை ஆதரிக்க, மாதாந்திர நன்கொடையை வழங்குவதன் மூலம் ஒரு காப்பாளராக மாறுவதைக் கருத்தில் கொள்ளுங்கள்.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">ஒரு காப்பாளராக மாறவும்</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">ஒரு பூஸ்ட்டைச் சேர்க்கவும்</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">இப்போது இல்லை</string>
   <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">நீங்கள் அதிக நேரம் செயல்படாமல் இருந்ததால், உங்கள் தொடர் மாதாந்திர நன்கொடை தானாகவே ரத்து செய்யப்பட்டது. உங்கள் %1$sபேட்ஜ் இனி உங்கள் சுயவிவரத்தில் தெரியப்படாது.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">உங்கள் கட்டணத்தைச் செயல்படுத்த முடியாததால், உங்கள் தொடர் மாதாந்திர நன்கொடை ரத்துசெய்யப்பட்டது. உங்கள் பேட்ஜ் இனி உங்கள் சுயவிவரத்தில் தெரியப்படாது.</string>
   <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">உங்கள் தொடர் மாதாந்திர நன்கொடை ரத்து செய்யப்பட்டது. %1$s உங்கள் %2$s பேட்ஜ் இனி உங்கள் சுயவிவரத்தில் தெரியப்படாது.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">நீங்கள் தொடர்ந்து சிக்னலைப் பயன்படுத்தலாம், ஆனால் பயன்பாட்டை ஆதரிக்கவும், உங்கள் பேட்ஜை மீண்டும் செயல்படுத்தவும், இப்போதே புதுப்பிக்கவும்.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">சந்தாவைப் புதுப்பிக்கவும்</string>
   <!--Button label to send user to Google Pay website-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">கூகிள் பே-க்குச் செல்லவும்</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">சந்தா கட்டணத்தைச் செயல்படுத்த முடியவில்லை</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">உங்கள் சிக்னல் காப்பாளர் கட்டணத்தைச் சேகரிப்பதில் சிக்கலை எதிர்கொள்கிறோம். உங்கள் கட்டண முறை புதுப்பித்த நிலையில் இருப்பதை உறுதிசெய்யவும். இல்லையெனில், கூகிள் பே-இல் புதுப்பிக்கவும். சிக்னல் சில நாட்களில் கட்டணத்தைச் செயல்படுத்த முயற்சிக்கும்.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">இதை மீண்டும் காட்ட வேண்டாம்</string>
+  <string name="Subscription__please_contact_support_for_more_information">மேலும் தகவலுக்கு உதவி மையத்தை தொடர்பு கொள்ளவும்.</string>
   <string name="Subscription__contact_support">தொடர்பு ஆதரவு</string>
+  <string name="Subscription__earn_a_s_badge">ஒரு %1$s பேட்ஜைப் பெறுங்கள்</string>
   <string name="SubscribeFragment__processing_payment">கட்டணத்தை செயலாக்குகிறது…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">கட்டணத்தைச் செயல்படுத்துவதில் பிழை</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">கட்டணத்தைச் செயல்படுத்துவதில் பிழை. %1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">உங்கள் பேட்ஜை உங்கள் கணக்கில் சேர்க்க முடியவில்லை, ஆனால் உங்களிடம் கட்டணம் விதிக்கப்பட்டிருக்கலாம். உதவி மையத்தை தொடர்பு கொள்ளவும்.</string>
+  <string name="DonationsErrors__your_payment">உங்கள் கட்டணத்தைச் செயல்படுத்த முடியவில்லை, மேலும் உங்களிடம் கட்டணம் வசூலிக்கப்படவில்லை. தயவுசெய்து மீண்டும் முயற்சிக்கவும்.</string>
+  <string name="DonationsErrors__still_processing">இன்னும் செயலாக்கப்படுகிறது</string>
+  <string name="DonationsErrors__couldnt_add_badge">பேட்ஜை சேர்க்க முடியவில்லை</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__failed_to_validate_badge">பேட்ஜை சரிபார்க்க முடியவில்லை</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__could_not_validate">சர்வர் பதிலைச் சரிபார்க்க முடியவில்லை. உதவி மையத்தை தொடர்பு கொள்ளவும்.</string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__failed_to_send_gift_badge">பரிசு பேட்ஜ் அனுப்ப இயலவில்லை</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__could_not_send_gift_badge">பரிசு பேட்ஜை அனுப்ப முடியவில்லை. தயவுசெய்து உதவி மையத்தை தொடர்பு கொள்ளவும்.</string>
+  <string name="DonationsErrors__your_badge_could_not">உங்கள் பேட்ஜை உங்கள் கணக்கில் சேர்க்க முடியவில்லை, ஆனால் உங்களிடம் கட்டணம் விதிக்கப்பட்டிருக்கலாம். உதவி மையத்தை தொடர்பு கொள்ளவும்.</string>
+  <string name="DonationsErrors__your_payment_is_still">உங்கள் கட்டணம் இன்னும் செயல்படுத்தப்படுகிறது. உங்கள் இணைப்பைப் பொறுத்து இதற்கு ஒரு சில நிமிடங்கள் ஆகலாம்.</string>
+  <string name="DonationsErrors__google_pay_unavailable">கூகிள் பே கிடைக்கப்பெறவில்லை</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">பயன்பாட்டில் நன்கொடை அளிக்க கூகிள் பே-இல் அமைக்க வேண்டும்.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">சந்தாவை ரத்து செய்ய முடியவில்லை</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">சந்தா ரத்துக்கு இணைய இணைப்பு தேவை.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">உங்கள் டிவைஸ் கூகிள் பே-ஐ ஆதரிக்காததால், பேட்ஜைப் பெற நீங்கள் சப்ஸ்கிரைப் செய்ய முடியாது. எங்கள் இணையதளத்தில் நன்கொடை அளிப்பதன் மூலம் நீங்கள் சிக்னலை ஆதரிக்கலாம்.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">நெட்வொர்க் பிழை. உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்.</string>
   <string name="NetworkFailure__retry">மீண்டும் முயற்சி செய்</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__recipient_verification_failed">பெறுநர் சரிபார்ப்பு தோல்வியுற்றது.</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">பரிசு வழங்குவதை இலக்கு ஆதரிக்காது.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__could_not_verify_recipient">பெறுநரைச் சரிபார்க்க முடியவில்லை.</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">உங்கள் நெட்வொர்க் இணைப்பைச் சரிபார்த்து, மீண்டும் முயற்சிக்கவும்.</string>
   <!--Gift message view title-->
+  <string name="GiftMessageView__gift_badge">பரிசு பேட்ஜ்</string>
   <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="one">%1$d மாதத்திற்கு நீடிக்கும்</item>
+    <item quantity="other">%1$d மாதங்களுங்கு நீடிக்கும்</item>
+  </plurals>
   <!--Gift badge redeem action label-->
+  <string name="GiftMessageView__redeem">மீட்டெடு</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">காண்க</string>
   <!--Gift badge redeeming action label-->
+  <string name="GiftMessageView__redeeming">மீட்டெடுக்கிறது…</string>
   <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">மீட்டெடுக்கப்பட்டது</string>
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">மற்றொரு கட்டண முறையை முயற்சிக்கவும் அல்லது மேலும் தகவலுக்கு உங்கள் வங்கியைத் தொடர்பு கொள்ளவும்.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">கூகிள் பே-இல் உங்கள் கட்டண முறை புதுப்பித்த நிலையில் உள்ளதா என்பதைச் சரிபார்த்து, மீண்டும் முயலவும்.</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">மேலும் அறிக</string>
   <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">கூகிள் பே-இல் உங்கள் கட்டண முறை புதுப்பித்த நிலையில் உள்ளதா என்பதைச் சரிபார்த்து, மீண்டும் முயலவும். சிக்கல் தொடர்ந்தால், உங்கள் வங்கியைத் தொடர்புகொள்ளவும்.</string>
   <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">இந்த வகையான வாங்குதலை உங்கள் கார்டு ஆதரிக்கவில்லை. மற்றொரு கட்டண முறையை முயற்சிக்கவும்.</string>
   <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">உங்கள் கார்டு காலாவதியாகிவிட்டது. கூகிள் பே-இல் உங்கள் கட்டண முறையைப் புதுப்பித்து மீண்டும் முயற்சிக்கவும்.</string>
   <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">கூகிள் பே-க்குச் செல்லவும்</string>
   <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">உங்கள் அட்டை எண் தவறானது. அதை கூகிள் பே-இல் புதுப்பித்து மீண்டும் முயற்சிக்கவும்.</string>
   <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">உங்கள் கார்டின் சி.வி.சி எண் தவறானது. அதை கூகிள் பே-இல் புதுப்பித்து மீண்டும் முயற்சிக்கவும்.</string>
   <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">இந்த வாங்குதலை முடிக்க உங்கள் கார்டில் போதுமான நிதி இல்லை. மற்றொரு கட்டண முறையை முயற்சிக்கவும்.</string>
   <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">உங்கள் கட்டண முறையின் காலாவதி மாதம் தவறானது. அதை கூகிள் பே-இல் புதுப்பித்து மீண்டும் முயற்சிக்கவும்.</string>
   <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">உங்கள் கட்டண முறையின் காலாவதி வருடம் தவறானது. அதை கூகிள் பே-இல் புதுப்பித்து மீண்டும் முயற்சிக்கவும்.</string>
   <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">கட்டணத்தை மீண்டும் முடிக்க முயற்சிக்கவும் அல்லது மேலும் தகவலுக்கு உங்கள் வங்கியைத் தொடர்பு கொள்ளவும்.</string>
   <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">மீண்டும் முயற்சிக்கவும் அல்லது மேலும் தகவலுக்கு உங்கள் வங்கியைத் தொடர்பு கொள்ளவும்.</string>
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">உங்கள் சுயவிவரத்துக்குப் பெயரிடவும்</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">சுயவிவரப் பெயர்</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
@@ -3324,34 +3682,51 @@
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">சேமி</string>
   <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">இந்த சுயவிவரத்தை திருத்தவும்</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">இந்தப் பெயரில் ஒரு சுயவிவரம் ஏற்கனவே உள்ளது</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__work">வேலை</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">தூக்கம்</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">ஓட்டுதல்</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">வேலையில்லா நேரம்</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">கவனம்</string>
   <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">ஒரு பெயர் இருக்க வேண்டும்</string>
   <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">அனுமதிக்கப்பட்ட அறிவிப்புகள்</string>
   <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">இந்தச் சுயவிவரம் இயக்கத்தில் இருக்கும் போது நீங்கள் அறிவிப்புகளையும் அழைப்புகளையும் பெற விரும்பும் நபர்களையும் குழுக்களையும் சேர்க்கவும்</string>
   <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">நபர்களையும் குழுக்களையும் சேர்க்கவும்</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">சேர்க்கவும்</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">நீங்கள் கேட்க விரும்பும் நபர்கள் மற்றும் குழுக்களிடமிருந்து மட்டும் அறிவிப்புகள் மற்றும் அழைப்புகளைப் பெற சுயவிவரத்தை உருவாக்கவும்.</string>
   <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">சுயவிவரங்கள்</string>
   <!--Button that starts the create new notification profile flow-->
   <string name="NotificationProfilesFragment__new_profile">புதிய சுயவிவரம்</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
   <string name="NotificationProfilesFragment__on">இயக்கு</string>
   <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">சுயவிவரத்தை அகற்றவும்</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">\"%1$s\" அகற்றப்பட்டது.</string>
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">செயல்தவிர்</string>
   <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">நிரந்தரமாக சுயவிவரத்தை அகற்றுவதா?</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">நீக்கு</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">அறிவிப்பு சுயவிவரத்தைத் திருத்தவும்</string>
   <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">தினந்தோரும் </string>
   <!--Profile status on if it is the active profile-->
   <string name="NotificationProfileDetails__on">இயக்கு</string>
   <!--Profile status on if it is not the active profile-->
@@ -3363,6 +3738,7 @@
   <!--Profile exception to allow all calls through the profile restrictions-->
   <string name="NotificationProfileDetails__allow_all_calls">அனைத்து அழைப்புகளையும் அனுமதி</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">அனைத்து குறிப்புகளுக்கும் தெரிவிக்கவும்</string>
   <!--Section header for showing schedule information-->
   <string name="NotificationProfileDetails__schedule">கால அட்டவணை</string>
   <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
@@ -3422,6 +3798,7 @@
   <!--Option to view profile details-->
   <string name="NotificationProfileSelection__view_settings">அமைப்புகளைப் காண்க</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">%1$s வரையில்</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">பிக்கரைத் திறக்க முடியவில்லை.</string>
   <!--Description shown for the Signal Release Notes channel-->
@@ -3431,57 +3808,102 @@
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">அனைத்து</string>
   <!--Donation receipts recurring tab label-->
+  <string name="DonationReceiptListFragment__recurring">தொடரும்</string>
   <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">ஒரு-முறை</string>
   <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">பரிசு</string>
   <!--Donation receipts boost row label-->
+  <string name="DonationReceiptListFragment__boost">பூஸ்ட்</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">விவரங்கள்</string>
   <!--Donation receipts donation type heading-->
+  <string name="DonationReceiptDetailsFragment__donation_type">நன்கொடை வகை</string>
   <!--Donation receipts date paid heading-->
+  <string name="DonationReceiptDetailsFragment__date_paid">செலுத்திய தேதி</string>
   <!--Donation receipts share PNG-->
+  <string name="DonationReceiptDetailsFragment__share_receipt">ரசீது பகிரவும்</string>
   <!--Donation receipts list end note-->
+  <string name="DonationReceiptListFragment__if_you_have">நீங்கள் சிக்னலை மீண்டும் நிறுவியிருந்தால், முந்தைய நன்கொடைகளின் ரசீதுகள் கிடைக்காது.</string>
   <!--Donation receipts document title-->
+  <string name="DonationReceiptDetailsFragment__donation_receipt">நன்கொடை ரசீது</string>
   <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">தொகை</string>
   <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">சிக்னலை ஆதரித்ததற்கு நன்றி. உங்கள் பங்களிப்பு, சுதந்திரமான வெளிப்பாட்டைப் பாதுகாக்கும் மற்றும் உலகெங்கிலும் உள்ள லட்சக் கணக்கானவர்களுக்கு பாதுகாப்பான உலகளாவிய தகவல்தொடர்புகளை செயல்படுத்தும் திறந்த மூல தனியுரிமைத் தொழில்நுட்பத்தை உருவாக்கும் பணிக்கு ஊக்கமளிக்கிறது. நீங்கள் அமெரிக்காவில் வசிப்பவராக இருந்தால், உங்கள் வரிப் பதிவுகளுக்கு இந்த ரசீதைத் தக்கவைத்துக் கொள்ளவும். சிக்னல் தொழில்நுட்ப அறக்கட்டளை என்பது உள்நாட்டு வருவாய்க் குறியீட்டின் 501c3 பிரிவின் கீழ் அமெரிக்காவில் உள்ள வரிவிலக்கு பெற்ற லாப நோக்கமற்ற அமைப்பாகும். எங்களின் மத்திய வரி ஐ.டி 82–4506840 ஆகும்.</string>
   <!--Donation receipt type-->
+  <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--Donation reciepts screen empty state title-->
+  <string name="DonationReceiptListFragment__no_receipts">ரசீதுகள் இல்லை</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">உரையாடல்கள்
  </string>
   <!--Label for Stories tab in home app screen-->
+  <string name="ConversationListTabs__stories">ஸ்டோரீஸ்</string>
   <!--String for counts above 99 in conversation list tabs-->
+  <string name="ConversationListTabs__99p">99+</string>
   <!--Title for "My Stories" row item in Stories landing page-->
+  <string name="StoriesLandingFragment__my_stories">எனது ஸ்டோரீஸ்</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
+  <string name="StoriesLandingFragment__add_a_story">ஒரு ஸ்டோரியைச் சேர்க்கவும்</string>
   <!--Displayed when there are no stories to display-->
+  <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">தற்போது காண்பிக்க சமீபத்திய புதுப்பிப்புகள் ஏதும் இல்லை. உங்கள் ஸ்டோரியில் சேர்க்க + என்பதைத் தட்டவும்.</string>
   <!--Context menu option to hide a story-->
+  <string name="StoriesLandingItem__hide_story">ஸ்டோரியை மறைக்கவும்</string>
   <!--Context menu option to unhide a story-->
+  <string name="StoriesLandingItem__unhide_story">ஸ்டோரி மறைநிலை மாற்றவும்</string>
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">முன்னனுப்புக</string>
   <!--Context menu option to share a story-->
+  <string name="StoriesLandingItem__share">பகிர்…</string>
   <!--Context menu option to go to story chat-->
+  <string name="StoriesLandingItem__go_to_chat">அரட்டைக்குச் செல் </string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">அனுப்புகிறது …</string>
   <!--Label when multiple stories are pending sending-->
+  <string name="StoriesLandingItem__sending_d">%1$d அனுப்பப்படுகிறது…</string>
   <!--Label when a story fails to send due to networking-->
   <string name="StoriesLandingItem__send_failed">அனுப்புவது தோல்வியுற்றது</string>
   <!--Label when a story fails to send due to identity mismatch-->
+  <string name="StoriesLandingItem__partially_sent">ஓரளவு அனுப்பப்பட்டது</string>
   <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">மீண்டும் முயற்சிக்கத் தட்டவும்</string>
   <!--Title of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__hide_story">ஸ்டோரியை மறைப்பதா?</string>
   <!--Message of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__new_story_updates">%1$s-இருந்து புதிய ஸ்டோரி புதுப்பிப்புகள் இனி ஸ்டோரீக்கள் பட்டியலின் மேலே தோன்றாது.</string>
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">மறை</string>
   <!--Displayed in Snackbar after story is hidden-->
+  <string name="StoriesLandingFragment__story_hidden">ஸ்டோரி மறைக்கப்பட்டது</string>
   <!--Section header for hidden stories-->
+  <string name="StoriesLandingFragment__hidden_stories">மறைக்கப்பட்ட ஸ்டோரீக்கள்</string>
   <!--Displayed on each sent story under My Stories-->
+  <plurals name="MyStories__d_views">
+    <item quantity="one">%1$d பார்வை</item>
+    <item quantity="other">%1$d பார்வைகள்</item>
+  </plurals>
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">முன்னனுப்புக</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
+  <string name="MyStories__ss_story">%1$s-இன் ஸ்டோரி</string>
   <!--Title of dialog to confirm deletion of story-->
+  <string name="MyStories__delete_story">ஸ்டோரியை நீக்குவதா?</string>
   <!--Message of dialog to confirm deletion of story-->
+  <string name="MyStories__this_story_will_be_deleted">உங்களுக்கும் அதைப் பெற்ற அனைவருக்கும் இந்த ஸ்டோரி நீக்கப்படும்.</string>
   <!--Toast shown when story media cannot be saved-->
+  <string name="MyStories__unable_to_save">சேமிக்க இயலவில்லை</string>
   <!--Displayed at bottom of story viewer when current item has views-->
+  <plurals name="StoryViewerFragment__d_views">
+    <item quantity="one">%1$d பார்வை</item>
+    <item quantity="other">%1$d பார்வைகள்</item>
+  </plurals>
   <!--Displayed at bottom of story viewer when current item has replies-->
+  <plurals name="StoryViewerFragment__d_replies">
+    <item quantity="one">%1$d பதில்</item>
+    <item quantity="other">%1$d பதில்கள்</item>
+  </plurals>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3491,150 +3913,327 @@
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">பதில்</string>
   <!--Label for the reply button in story viewer, which will launch the group story replies bottom sheet.-->
+  <string name="StoryViewerPageFragment__reply_to_group">குழுவுக்குப் பதிலளிக்கவும்</string>
   <!--Displayed when a story has no views-->
+  <string name="StoryViewsFragment__no_views_yet">இன்னும் பார்வைகள் ஏதுமில்லை</string>
   <!--Displayed when a story has no replies yet-->
+  <string name="StoryGroupReplyFragment__no_replies_yet">இன்னும் பதில்கள் ஏதுமில்லை</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
+  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">ஸ்டோரிக்கு பதிலளிக்கப்பட்டது</string>
   <!--Label for story views tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__views">பார்வைகள்</string>
   <!--Label for story replies tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__replies">பதிலகள்</string>
   <!--Description of action for reaction button-->
+  <string name="StoryReplyComposer__react_to_this_story">இந்த ஸ்டோரிக்கு பதிலளி</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
+  <string name="StoryReplyComposer__replying_privately_to_s">%1$s-க்கு தனிப்பட்ட முறையில் பதிலளிக்கிறது</string>
   <!--Context menu item to privately reply to a story response-->
+  <string name="StoryGroupReplyItem__private_reply">தனிப்பட்ட பதில்</string>
   <!--Context menu item to copy a story response-->
   <string name="StoryGroupReplyItem__copy">நகல்</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">நீக்கு</string>
   <!--Story settings page title-->
+  <string name="StorySettingsFragment__story_settings">ஸ்டோரி அமைப்புகள்</string>
   <!--Story settings private stories heading-->
+  <string name="StorySettingsFragment__private_stories">தனிப்பட்ட ஸ்டோரீக்கள்</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">தனிப்பட்ட ஸ்டோரீக்களை நீங்கள் சேர்க்கும் நபர்களால் மட்டுமே பார்க்க முடியும். ஸ்டோரியின் பெயரை நீங்கள் மட்டுமே பார்க்க முடியும்.</string>
   <!--Option label for creating a new private story-->
+  <string name="StorySettingsFragment__new_private_story">புதிய தனிப்பட்ட ஸ்டோரி</string>
   <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">எனது ஸ்டோரி</string>
   <!--Section heading for story visibility-->
+  <string name="MyStorySettingsFragment__who_can_see_this_story">இந்தக் ஸ்டோரியை யார் பார்க்கலாம்</string>
   <!--Clickable option for selecting people to hide your story from-->
-  <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <string name="MyStorySettingsFragment__hide_story_from">-இடமிருந்து ஸ்டோரியை மறைக்கவும்</string>
+  <!--Privacy setting title for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections">அனைத்து சிக்னல் இணைப்புகள்</string>
+  <!--Privacy setting description for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__share_with_all_connections">அனைத்து இணைப்புகளுடனும் பகிரவும்</string>
+  <!--Privacy setting title for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections_except">அனைத்து சிக்னல் இணைப்புகளும், இதை தவிர…</string>
+  <!--Privacy setting description for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">குறிப்பிட்ட நபர்களிடமிருந்து உங்கள் ஸ்டோரியை மறைக்கவும்</string>
+  <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <plurals name="MyStorySettingsFragment__d_people_excluded">
+    <item quantity="one">%1$d நபர் விலக்கப்பட்டுள்ளனர்</item>
+    <item quantity="other">%1$d நபர்கள் விலக்கப்பட்டுள்ளனர்</item>
+  </plurals>
+  <!--Privacy setting title for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with">இவர்களுடன் மட்டும் பகிரவும்…</string>
+  <!--Privacy setting description for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">தேர்ந்தெடுக்கப்பட்டவர்களுடன் மட்டும் பகிரவும்</string>
+  <!--Summary of clickable option displaying how many people you have included to send to in your story-->
+  <plurals name="MyStorySettingsFragment__d_people">
+    <item quantity="one">%1$d நபர்</item>
+    <item quantity="other">%1$d நபர்கள்</item>
+  </plurals>
+  <!--My story privacy fine print about what the privacy settings are for-->
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">உங்கள் ஸ்டோரியை யார் பார்க்கலாம் என்பதைத் தேர்வுசெய்யவும். நீங்கள் ஏற்கனவே அனுப்பிய ஸ்டோரீக்களை மாற்றங்கள் பாதிக்காது.</string>
   <!--Section header for options related to replies and reactions-->
+  <string name="MyStorySettingsFragment__replies_amp_reactions">பதில்கள் &amp;ஆம்ப்; எதிர்வினைகள்</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
+  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">பதில்கள் &amp;ஆம்ப்; எதிர்வினைகளை அனுமதிக்கவும்</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
+  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">உங்கள் ஸ்டோரியைப் பார்க்கக்கூடியவர்கள் எதிர்வினையாற்றி பதிலளிக்கட்டும்</string>
   <!--Note about default sharing-->
-  <!--Signal connections linked text that opens the Signal Connections sheet-->
+  <string name="MyStorySettingsFragment__hide_your_story_from">குறிப்பிட்ட நபர்களிடமிருந்து உங்கள் ஸ்டோரியை மறைக்கவும். இயல்பாக, உங்கள் ஸ்டோரி உங்கள் %1$s உடன் பகிரப்படும்</string>
+  <!--Signal connections bolded text in the Signal Connections sheet-->
+  <string name="SignalConnectionsBottomSheet___signal_connections">சிக்னல் இணைப்புகள்</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">சிக்னல் இணைப்புகள் நீங்கள் நம்புவதற்குத் தேர்ந்தெடுத்த நபர்களாகும், ஒன்று இதனால்:</string>
   <!--Signal connections sheet bullet point 1-->
+  <string name="SignalConnectionsBottomSheet__starting_a_conversation">ஒரு உரையாடலைத் தொடங்குவது</string>
   <!--Signal connections sheet bullet point 2-->
+  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">செய்தி கோரிக்கையை ஏற்கிறது</string>
   <!--Signal connections sheet bullet point 3-->
+  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">உங்கள் அமைப்பு தொடர்புகளில் அவற்றை வைத்திருப்பது</string>
   <!--Note at the bottom of the Signal connections sheet-->
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">உங்கள் இணைப்புகளால் உங்கள் பெயரையும் புகைப்படத்தையும் பார்க்க முடியும், மேலும் \"எனது ஸ்டோரி\"க்கான இடுகைகளை நீங்கள் அவர்களிடம் இருந்து மறைக்காதவரை அவர்களால் பார்க்க முடியும்.</string>
   <!--Clickable option to add a viewer to a private story-->
+  <string name="PrivateStorySettingsFragment__add_viewer">பார்வையாளரைச் சேர்க்கவும் </string>
   <!--Clickable option to delete a custom story-->
+  <string name="PrivateStorySettingsFragment__delete_private_story">தனிப்பட்ட ஸ்டோரியை நீக்கவும்</string>
   <!--Dialog title when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__remove_s">%1$s அகற்றுவதா?</string>
   <!--Dialog message when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__this_person_will_no_longer">இந்த நபர் இனி உங்கள் ஸ்டோரியைப் பார்க்க மாட்டார்.</string>
   <!--Positive action label when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__remove">நீக்கு</string>
   <!--Dialog title when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__are_you_sure">உறுதியாக உள்ளீர்களா?</string>
   <!--Dialog message when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__this_action_cannot">இந்தச் செயலைச் செயல்தவிர்க்க முடியாது.</string>
   <!--Page title for editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__edit_story_name">ஸ்டோரி பெயரைத் திருத்தவும்</string>
   <!--Input field hint when editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__story_name">ஸ்டோரி பெயர்</string>
   <!--Save button label when editing a private story name-->
   <string name="EditPrivateStoryNameFragment__save">சேமி</string>
   <!--Displayed in text post creator before user enters text-->
+  <string name="TextStoryPostCreationFragment__tap_to_add_text">உரை சேர்க்க தட்டவும்</string>
   <!--Button label for changing font when creating a text post-->
+  <string name="TextStoryPostTextEntryFragment__aa">அஆ</string>
   <!--Displayed in text post creator when prompting user to enter text-->
+  <string name="TextStoryPostTextEntryFragment__add_text">உரையைச் சேர்க்கவும்</string>
   <!--Content description for \'done\' button when adding text to a story post-->
+  <string name="TextStoryPostTextEntryFragment__done_adding_text">உரை சேர்ப்பது முடிந்தது</string>
   <!--Text label for media selection toggle-->
   <string name="MediaSelectionActivity__text">உரை</string>
   <!--Camera label for media selection toggle-->
   <string name="MediaSelectionActivity__camera">புகைப்பட கருவி</string>
   <!--Hint for entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">இணைப்பை உள்ளிடவும் அல்லது ஒட்டவும்</string>
   <!--Displayed prior to the user entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">உங்கள் ஸ்டோரியின் பார்வையாளர்களுடன் ஒரு இணைப்பைப் பகிரவும்</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">தேடு </string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
-  <!--Title for screen allowing user to hide "My Story" entries from specific people-->
+  <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">எதிர் பாராத பிழை ஏற்பட்டது</string>
+  <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <string name="ChangeMyStoryMembershipFragment__all_except">அனைத்தும், இது தவிர…</string>
+  <!--Title for screen allowing user to only share "My Story" entries with specific people-->
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">இவர்களுடன் மட்டும் பகிரவும்…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">முடிந்தது</string>
   <!--Dialog title for first time adding something to a story-->
+  <string name="StoryDialogs__add_to_story_q">ஸ்டோரியில் சேர்ப்பதா?</string>
   <!--Dialog message for first time adding something to a story-->
+  <string name="StoryDialogs__adding_content">உங்கள் ஸ்டோரியில் உள்ளடக்கத்தைச் சேர்ப்பதன் மூலம் உங்கள் சிக்னல் இணைப்புகளை 24 மணிநேரம் அதைப் பார்க்க அனுமதிக்கிறது. உங்கள் ஸ்டோரியை  யார் பார்க்கலாம் என்பதை அமைப்புகளில் மாற்றலாம்.</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
+  <string name="StoryDialogs__add_to_story">ஸ்டோரியில் சேர்க்கவும்</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <string name="StoryDialogs__edit_viewers">பார்வையாளர்களைத் திருத்தவும்</string>
   <!--Error message shown when a failure occurs during story send-->
+  <string name="StoryDialogs__story_could_not_be_sent">ஸ்டோரி அனுப்ப முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயற்சிக்கவும்.</string>
   <!--Error message dialog button to resend a previously failed story send-->
   <string name="StoryDialogs__send">அனுப்புக</string>
   <!--Privacy Settings toggle title for stories-->
+  <string name="PrivacySettingsFragment__share_and_view_stories">பகிர் &amp;ஆம்ப்; ஸ்டோரீக்கள் காணவும்</string>
   <!--Privacy Settings toggle summary for stories-->
+  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">இந்த விருப்பம் முடக்கப்பட்டிருக்கும் போது உங்களால் இனி ஸ்டோரீக்களைப் பகிரவோ பார்க்கவோ முடியாது.</string>
   <!--New story viewer selection screen title-->
+  <string name="CreateStoryViewerSelectionFragment__choose_viewers">பார்வையாளர்களைத் தேர்ந்தெடுக்கவும்</string>
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">அடுத்தது</string>
   <!--New story viewer selection screen title as recipients are selected-->
+  <plurals name="SelectViewersFragment__d_viewers">
+    <item quantity="one">%1$d பார்வையாளர்</item>
+    <item quantity="other">%1$d பார்வையாளர்கள்</item>
+  </plurals>
   <!--Name story screen title-->
+  <string name="CreateStoryWithViewersFragment__name_story">ஸ்டோரிக்குப் பெயரிடவும்</string>
   <!--Name story screen label hint-->
+  <string name="CreateStoryWithViewersFragment__story_name_required">ஸ்டோரி பெயர் (தேவை)</string>
   <!--Name story screen viewers subheading-->
+  <string name="CreateStoryWithViewersFragment__viewers">பார்வையாளர்கள்</string>
   <!--Name story screen create button label-->
   <string name="CreateStoryWithViewersFragment__create">உருவாக்கவும்</string>
   <!--Name story screen error when save attempted with no label-->
   <string name="CreateStoryWithViewersFragment__this_field_is_required">இந்த தகவல் தேவை.</string>
   <!--Name story screen error when save attempted but label is duplicate-->
+  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">இந்த பெயரில் ஏற்கனவே ஒரு ஸ்டோரி உள்ளது.</string>
   <!--Text for select all action when editing recipients for a story-->
   <string name="BaseStoryRecipientSelectionFragment__select_all">அனைத்தையும்  தேர்வுசெய்</string>
   <!--Choose story type bottom sheet title-->
+  <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">உங்கள் ஸ்டோரி வகையை தேர்ந்தெடுக்கவும்</string>
   <!--Choose story type bottom sheet new story row title-->
+  <string name="ChooseStoryTypeBottomSheet__new_private_story">புதிய தனிப்பட்ட ஸ்டோரி</string>
   <!--Choose story type bottom sheet new story row summary-->
+  <string name="ChooseStoryTypeBottomSheet__visible_only_to">குறிப்பிட்ட நபர்களுக்கு மட்டுமே தெரியும்</string>
   <!--Choose story type bottom sheet group story title-->
+  <string name="ChooseStoryTypeBottomSheet__group_story">குழு ஸ்டோரி</string>
   <!--Choose story type bottom sheet group story summary-->
+  <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">ஏற்கனவே உள்ள ஒரு குழுவில் பகிரவும்</string>
   <!--Choose groups bottom sheet title-->
+  <string name="ChooseGroupStoryBottomSheet__choose_groups">குழுக்களைத் தேர்ந்தெடுக்கவும்</string>
   <!--Displayed when copying group story reply text to clipboard-->
   <string name="StoryGroupReplyFragment__copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
+  <string name="StoryViewerPageFragment__see_more">… மேலும் பார்க்கவும்</string>
   <!--Displayed in toast after sending a direct reply-->
+  <string name="StoryDirectReplyDialogFragment__sending_reply">பதில் அனுப்பப்படுகிறது…</string>
   <!--Displayed in the viewer when a story is no longer available-->
+  <string name="StorySlateView__this_story_is_no_longer_available">இந்த ஸ்டோரி இனி கிடைக்கப்பெறாது.</string>
   <!--Displayed in the viewer when the network is not available-->
+  <string name="StorySlateView__no_internet_connection">இணைய இணைப்பு இல்லை</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <string name="StorySlateView__couldnt_load_content">உள்ளடக்கத்தை ஏற்ற முடியவில்லை</string>
   <!--Toasted when the user externally shares to a text story successfully-->
+  <string name="TextStoryPostCreationFragment__sent_story">ஸ்டோரி அனுப்பப்பட்டது</string>
   <!--Toasted when the user external share to a text story fails-->
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">ஸ்டோரி அனுப்ப முடியவில்லை</string>
   <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">ஸ்டோரியைக் காணவும்</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">சுயவிவர புகைப்படத்தைக் காணவும்</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">தணிக்கைச் சுற்றறிக்கையை முடக்கம் செய்வதா?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">சிறந்த அனுபவத்திற்காக நீங்கள் இப்போது சிக்னல் சேவையுடன் நேரடியாக இணையலாம்.</string>
   <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_no_thanks">தேவையில்லை,நன்றி</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">அணைக்க</string>
   <!--Conversation Item label for when you react to someone else\'s story-->
+  <string name="ConversationItem__you_reacted_to_s_story">%1$s-யின் ஸ்டோரிக்கு நீங்கள் பதிலளித்துள்ளீர்கள்</string>
   <!--Conversation Item label for reactions to your story-->
+  <string name="ConversationItem__reacted_to_your_story">உங்கள் ஸ்டோரிக்குப் பதிலாளித்துள்ளார்</string>
   <!--Conversation Item label for reactions to an unavailable story-->
+  <string name="ConversationItem__reacted_to_a_story">ஒரு ஸ்டோரிக்குப் பதிலளித்துள்ளார்</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="ExpandModel__view_more">மேலும் பார்க்கவும்</string>
+  <string name="StoriesLinkPopup__visit_link">இணைப்பை பார்வையிடவும்</string>
   <!--Duration and price information-->
+  <plurals name="GiftRowItem_s_dot_d_day_duration">
+    <item quantity="one">%1$s · %2$d நாள் காலம்</item>
+    <item quantity="other">%1$s · %2$d நாள் காலம்</item>
+  </plurals>
   <!--Tagline for gift row items-->
+  <string name="GiftRowItem__send_a_gift_badge">ஒரு பரிசு பேட்ஜை அனுப்பவும்</string>
   <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">ஒரு பேட்ஜை பரிசளிக்கவும்</string>
   <!--Description text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">ஒருவரின் பெயரில் சிக்னலுக்கு நன்கொடை அளிப்பதன் மூலம் அவர்களுக்கு பேட்ஜைப் பரிசளிக்கவும். அவர்களின் சுயவிவரப் புகைப்படத்தில் காண்பிக்க ஒரு பேட்ஜைப் பெறுவார்கள்.</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">அடுத்தது</string>
   <!--Title text on choose recipient page for badge gifting-->
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">பெறுநரைத் தேர்ந்தெடுக்கவும்</string>
   <!--Title text on confirm gift page-->
+  <string name="GiftFlowConfirmationFragment__confirm_gift">பரிசை உறுதிசெய்யவும்</string>
   <!--Heading text specifying who the gift will be sent to-->
+  <string name="GiftFlowConfirmationFragment__send_to">அனுப்பவும்</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">உங்கள் பரிசு பெறுநருக்கு 1 -க்கு 1 செய்தியில் அனுப்பப்படும். உங்கள் சொந்த செய்தியை கீழே சேர்க்கவும்.</string>
   <!--Text explaining that this gift is a one time donation-->
+  <string name="GiftFlowConfirmationFragment__one_time_donation">ஒரு-முறை நன்கொடை</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">கூட்டு ஒரு செய்தி</string>
   <!--Displayed in the dialog while verifying the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__verifying_recipient">பெறுநரைச் சரிபார்க்கப்படுகிறது…</string>
   <!--Title for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s உங்களுக்கு ஒரு பரிசை அனுப்பியுள்ளார்</string>
   <!--Title for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__thanks_for_your_support">உங்கள் ஆதரவுக்கு நன்றி!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">%1$s-இடமிருந்து நீங்கள் ஒரு பரிசு பேட்ஜைப் பெற்றுள்ளீர்கள்! உங்கள் சுயவிவரத்தில் இந்த பேட்ஜைக் காண்பிப்பதன் மூலம் விழிப்புணர்வை உருவாக்க சிக்னலுக்கு உதவுங்கள்.</string>
   <!--Description for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">நீங்கள் %1$s-க்கு ஒரு பேட்ஜை பரிசளித்துள்ளீர்கள். அவர்கள் ஏற்றுக்கொண்டால், அவர்களின் பேட்ஜைக் காட்ட அல்லது மறைக்க அவர்களுக்கு விருப்பம் வழங்கப்படும்.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
+  <string name="ViewReceivedGiftSheet__redeem">மீட்டெடு</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">இப்போது இல்லை</string>
   <!--Dialog text while redeeming a gift-->
+  <string name="ViewReceivedGiftSheet__redeeming_gift">பரிசு மீட்டெடுக்கப்படுகிறது…</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <string name="ConversationFragment__you_can_redeem_your_badge_later">உங்கள் பேட்ஜை பின்னர் நீங்கள் மீட்டெடுக்கலாம்.</string>
   <!--Description text in gift thanks sheet-->
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">நீங்கள் %1$s-க்கு ஒரு பேட்ஜை பரிசளித்துள்ளீர்கள். அவர்கள் ஏற்றுக்கொண்டால், அவர்களின் பேட்ஜைக் காட்ட அல்லது மறைக்க அவர்களுக்கு விருப்பம் வழங்கப்படும்.</string>
   <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">உங்களது பரிசு பேட்ஜ் காலாவதியாகிவிட்டது</string>
   <!--Expired gift sheet top description text-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">உங்கள் பரிசு பேட்ஜ் காலாவதியானது, இனி உங்கள் சுயவிவரத்தில் உள்ள மற்றவர்களுக்கு அது தெரியப்படாது.</string>
   <!--Expired gift sheet bottom description text-->
+  <string name="ExpiredGiftSheetConfiguration__to_continue">உங்களுக்காக உருவாக்கப்பட்ட தொழில்நுட்பத்தை தொடர்ந்து ஆதரிக்க, மாதாந்திர காப்பாளராக மாற கருத்தில் கொள்ளவும்.</string>
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">மாதாந்திர நன்கொடையை வழங்கவும்</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">இப்போது இல்லை</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">தனிப்பட்ட ஸ்டோரி · %1$d பார்வையாளர்</item>
+    <item quantity="other">தனிப்பட்ட ஸ்டோரி · %1$d பார்வையாளர்கள்</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">குழு ஸ்டோரி · %1$d பார்வையாளர்</item>
+    <item quantity="other">குழு ஸ்டோரி  · %1$d பார்வையாளர்கள்</item>
+  </plurals>
+  <!--Label for context menu item to open story settings-->
+  <string name="ContactSearchItems__story_settings">ஸ்டோரி அமைப்புகள்</string>
+  <!--Label for context menu item to remove a group story from contact results-->
+  <string name="ContactSearchItems__remove_story">ஸ்டோரியை அகற்று</string>
+  <!--Label for context menu item to delete a private story-->
+  <string name="ContactSearchItems__delete_story">ஸ்டோரியை நீக்கு</string>
+  <!--Dialog title for removing a group story-->
+  <string name="ContactSearchMediator__remove_group_story">குழு ஸ்டோரியை அகற்றுவதா?</string>
+  <!--Dialog message for removing a group story-->
+  <string name="ContactSearchMediator__this_will_remove">இது இந்த பட்டியலிலிருந்து ஸ்டோரியை அகற்றும். இந்தக் குழுவின் ஸ்டோரீக்களை நீங்கள் இன்னும் பார்க்க முடியும்.</string>
+  <!--Dialog action item for removing a group story-->
+  <string name="ContactSearchMediator__remove">நீக்கு</string>
+  <!--Dialog title for deleting a private story-->
+  <string name="ContactSearchMediator__delete_story">ஸ்டோரியை நீக்குவதா?</string>
+  <!--Dialog message for deleting a private story-->
+  <string name="ContactSearchMediator__delete_the_private">\"%1$s\" தனிப்பட்ட ஸ்டோரியை நீக்குவதா?</string>
+  <!--Dialog action item for deleting a private story-->
+  <string name="ContactSearchMediator__delete">நீக்கு</string>
   <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">%1$d நாட்கள் மீதமுள்ளது</item>
+    <item quantity="other">%1$d நாட்கள் மீதமுள்ளது</item>
+  </plurals>
   <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">%1$d மணிநேரம் மீதமுள்ளது</item>
+    <item quantity="other">%1$d மணிநேரம் மீதமுள்ளது</item>
+  </plurals>
   <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">%1$d நிமிடம் மீதமுள்ளது</item>
+    <item quantity="other">%1$d நிமிடங்கள் மீதமுள்ளது</item>
+  </plurals>
   <!--Gift expiry expired-->
+  <string name="Gifts__expired">காலாவதியாகிவிட்டது</string>
+  <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">முன்னேற தட்டவும்</string>
+  <!--Label indicating swipe direction to skip current story-->
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">தவிர்க்க மேலே ஸ்வைப் செய்யவும்</string>
+  <!--Label indicating swipe direction to exit story viewer-->
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">வெளியேற வலதுபுறமாக ஸ்வைப் செய்யவும்</string>
+  <!--Button label to confirm understanding of story navigation-->
+  <string name="StoryFirstTimeNagivationView__got_it">அறிந்துகொண்டேன்</string>
   <!--EOF-->
 </resources>

@@ -272,6 +272,7 @@
     <item quantity="other">%d ulæste beskeder</item>
   </plurals>
   <!--ConversationFragment-->
+  <!--Toast text when contacts activity is not found-->
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Slet valgte besked?</item>
     <item quantity="other">Slet valgte beskeder?</item>
@@ -899,6 +900,8 @@
   <string name="Megaphones_use_sms">Brug SMS</string>
   <string name="Megaphones_appearance">Udseende</string>
   <string name="Megaphones_add_photo">Tilføj billede</string>
+  <!--Title of a bottom sheet to render messages that all quote a specific message-->
+  <string name="MessageQuotesBottomSheet_replies">Svar</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-opkald i gang</string>
   <string name="NotificationBarManager__establishing_signal_call">Foretager Signal-opkald</string>
@@ -1120,9 +1123,6 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">En besked fra %s kunne ikke leveres</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s ændrede sit telefonnummer.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Kan du lide denne nye funktion? Sig tak med et Boost.</string> -->
-  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal er drevet af personer som dig. Bliv bidragsyder i dag.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s startede et gruppeopkald · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s er med i gruppeopkaldet · %2$s</string>
@@ -1817,9 +1817,7 @@ nummer (%s) er ugyldigt</string>
   <string name="ConversationUpdateItem_view">Vis</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Udløbstiden for forsvindende besked indstilles til %1$s, når du sender beskeder til dem.</string>
   <!--Update item button text to show to boost a feature-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_signal_boost">Signal Boost</string> -->
-  <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_become_a_sustainer">Bliv bidragsyder</string> -->
+  <string name="ConversationUpdateItem_donate">Donér</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Afspil … Pause</string>
   <string name="audio_view__download_accessibility_description">Hent</string>
@@ -2059,16 +2057,6 @@ nummer (%s) er ugyldigt</string>
   <string name="HelpFragment__debug_log">Fejlsøgningslog:</string>
   <string name="HelpFragment__could_not_upload_logs">Kunne ikke uploade logger</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Beskriv venligst problemet så præcist som muligt, for at sikre vi bedst forstår det</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_3">
-    <item>\-\- Vælg en mulighed \-\-</item>
-    <item>Noget fungerer ikke</item>
-    <item>Anmodning om funktion</item>
-    <item>Spørgsmål</item>
-    <item>Feedback</item>
-    <item>Andet</item>
-    <item>Betalinger (MobileCoin)</item>
-    <item>Bidragsydere &amp; Signal Boost</item>
-  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne besked</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Senest brugte</string>
@@ -3442,6 +3430,8 @@ nummer (%s) er ugyldigt</string>
   <string name="MultiselectForwardFragment__share_with">Del med</string>
   <string name="MultiselectForwardFragment__add_a_message">Tilføj en besked</string>
   <string name="MultiselectForwardFragment__faster_forwards">Hurtigere videresendelser</string>
+  <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <!--Displayed when user selects a video that cannot be sent as a story-->
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Videresendte beskeder sendes nu øjeblikkeligt.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">Send %1$d besked</item>
@@ -3943,11 +3933,19 @@ nummer (%s) er ugyldigt</string>
   <string name="MyStorySettingsFragment__who_can_see_this_story">Hvem kan se denne historie</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Skjul historie for</string>
-  <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <!--Privacy setting title for sending stories to all your signal connections-->
+  <!--Privacy setting description for sending stories to all your signal connections-->
+  <!--Privacy setting title for sending stories to all except the specified connections-->
+  <!--Privacy setting description for sending stories to all except the specified connections-->
+  <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <!--Privacy setting title for only sharing your story with specified connections-->
+  <!--Privacy setting description for only sharing your story with specified connections-->
+  <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d person</item>
     <item quantity="other">%1$d personer</item>
   </plurals>
+  <!--My story privacy fine print about what the privacy settings are for-->
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">Svar &amp; reaktioner</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -3956,10 +3954,8 @@ nummer (%s) er ugyldigt</string>
   <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Lad folk, der kan se din historie, reagere og svare</string>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Skjul din historie for bestemte personer. Som standard deles din historie med dine %1$s</string>
-  <!--Signal connections linked text that opens the Signal Connections sheet-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__signal_connections">Signal-forbindelser</string> -->
+  <!--Signal connections bolded text in the Signal Connections sheet-->
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Signal-forbindelser</strong> er personer, som du har valgt at stole på, enten ved at:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">Starte en samtale</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4007,8 +4003,8 @@ nummer (%s) er ugyldigt</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Søg</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
-  <!--Title for screen allowing user to hide "My Story" entries from specific people-->
-  <!-- Removed by excludeNonTranslatables <string name="HideStoryFromFragment__hide_story_from">Skjul historie for…</string> -->
+  <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <!--Title for screen allowing user to only share "My Story" entries with specific people-->
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Udført</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4161,6 +4157,19 @@ nummer (%s) er ugyldigt</string>
     <item quantity="one">Gruppehistorie · %1$d seer</item>
     <item quantity="other">Gruppehistorie · %1$d seere</item>
   </plurals>
+  <!--Label for context menu item to open story settings-->
+  <string name="ContactSearchItems__story_settings">Indstillinger for historie</string>
+  <!--Label for context menu item to remove a group story from contact results-->
+  <!--Label for context menu item to delete a private story-->
+  <!--Dialog title for removing a group story-->
+  <!--Dialog message for removing a group story-->
+  <!--Dialog action item for removing a group story-->
+  <string name="ContactSearchMediator__remove">Fjern</string>
+  <!--Dialog title for deleting a private story-->
+  <string name="ContactSearchMediator__delete_story">Slet historie?</string>
+  <!--Dialog message for deleting a private story-->
+  <!--Dialog action item for deleting a private story-->
+  <string name="ContactSearchMediator__delete">Slet</string>
   <!--Gift expiry days remaining-->
   <plurals name="Gifts__d_days_remaining">
     <item quantity="one">%1$d dag tilbage</item>
@@ -4178,5 +4187,10 @@ nummer (%s) er ugyldigt</string>
   </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Udløbet</string>
+  <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <!--Label indicating swipe direction to skip current story-->
+  <!--Label indicating swipe direction to exit story viewer-->
+  <!--Button label to confirm understanding of story navigation-->
+  <string name="StoryFirstTimeNagivationView__got_it">Forstået</string>
   <!--EOF-->
 </resources>
