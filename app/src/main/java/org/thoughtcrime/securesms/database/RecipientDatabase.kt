@@ -33,8 +33,8 @@ import org.signal.core.util.withinTransaction
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.InvalidKeyException
 import org.signal.libsignal.zkgroup.InvalidInputException
+import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
-import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredential
 import org.signal.storageservice.protos.groups.local.DecryptedGroup
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.Badges.toDatabaseBadge
@@ -66,7 +66,7 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BadgeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.ChatColor
 import org.thoughtcrime.securesms.database.model.databaseprotos.DeviceLastResetTime
-import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileKeyCredentialColumnData
+import org.thoughtcrime.securesms.database.model.databaseprotos.ExpiringProfileKeyCredentialColumnData
 import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras
 import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -154,7 +154,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     private const val SYSTEM_CONTACT_URI = "system_contact_uri"
     private const val SYSTEM_INFO_PENDING = "system_info_pending"
     private const val PROFILE_KEY = "profile_key"
-    private const val PROFILE_KEY_CREDENTIAL = "profile_key_credential"
+    const val EXPIRING_PROFILE_KEY_CREDENTIAL = "profile_key_credential"
     private const val SIGNAL_PROFILE_AVATAR = "signal_profile_avatar"
     const val PROFILE_SHARING = "profile_sharing"
     private const val LAST_PROFILE_FETCH = "last_profile_fetch"
@@ -214,7 +214,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         $SYSTEM_CONTACT_URI TEXT DEFAULT NULL, 
         $SYSTEM_INFO_PENDING INTEGER DEFAULT 0, 
         $PROFILE_KEY TEXT DEFAULT NULL, 
-        $PROFILE_KEY_CREDENTIAL TEXT DEFAULT NULL, 
+        $EXPIRING_PROFILE_KEY_CREDENTIAL TEXT DEFAULT NULL, 
         $PROFILE_GIVEN_NAME TEXT DEFAULT NULL, 
         $PROFILE_FAMILY_NAME TEXT DEFAULT NULL, 
         $PROFILE_JOINED_NAME TEXT DEFAULT NULL, 
@@ -269,7 +269,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       MESSAGE_EXPIRATION_TIME,
       REGISTERED,
       PROFILE_KEY,
-      PROFILE_KEY_CREDENTIAL,
+      EXPIRING_PROFILE_KEY_CREDENTIAL,
       SYSTEM_JOINED_NAME,
       SYSTEM_GIVEN_NAME,
       SYSTEM_FAMILY_NAME,
@@ -925,7 +925,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     val recipientId = getByStorageKeyOrThrow(update.new.id.raw)
     if (StorageSyncHelper.profileKeyChanged(update)) {
       val clearValues = ContentValues(1).apply {
-        putNull(PROFILE_KEY_CREDENTIAL)
+        putNull(EXPIRING_PROFILE_KEY_CREDENTIAL)
       }
       db.update(TABLE_NAME, clearValues, ID_WHERE, SqlUtil.buildArgs(recipientId))
     }
@@ -986,7 +986,6 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
     Log.i(TAG, "Creating restore placeholder for $groupId")
     groups.create(
-      null,
       masterKey,
       DecryptedGroup.newBuilder()
         .setRevision(GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION)
@@ -1560,7 +1559,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
     val valuesToSet = ContentValues(3).apply {
       put(PROFILE_KEY, encodedProfileKey)
-      putNull(PROFILE_KEY_CREDENTIAL)
+      putNull(EXPIRING_PROFILE_KEY_CREDENTIAL)
       put(UNIDENTIFIED_ACCESS_MODE, UnidentifiedAccessMode.UNKNOWN.mode)
     }
 
@@ -1592,7 +1591,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     val args = arrayOf(id.serialize())
     val valuesToSet = ContentValues(3).apply {
       put(PROFILE_KEY, Base64.encodeBytes(profileKey.serialize()))
-      putNull(PROFILE_KEY_CREDENTIAL)
+      putNull(EXPIRING_PROFILE_KEY_CREDENTIAL)
       put(UNIDENTIFIED_ACCESS_MODE, UnidentifiedAccessMode.UNKNOWN.mode)
     }
 
@@ -1611,16 +1610,16 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   fun setProfileKeyCredential(
     id: RecipientId,
     profileKey: ProfileKey,
-    profileKeyCredential: ProfileKeyCredential
+    expiringProfileKeyCredential: ExpiringProfileKeyCredential
   ): Boolean {
     val selection = "$ID = ? AND $PROFILE_KEY = ?"
     val args = arrayOf(id.serialize(), Base64.encodeBytes(profileKey.serialize()))
-    val columnData = ProfileKeyCredentialColumnData.newBuilder()
+    val columnData = ExpiringProfileKeyCredentialColumnData.newBuilder()
       .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
-      .setProfileKeyCredential(ByteString.copyFrom(profileKeyCredential.serialize()))
+      .setExpiringProfileKeyCredential(ByteString.copyFrom(expiringProfileKeyCredential.serialize()))
       .build()
     val values = ContentValues(1).apply {
-      put(PROFILE_KEY_CREDENTIAL, Base64.encodeBytes(columnData.toByteArray()))
+      put(EXPIRING_PROFILE_KEY_CREDENTIAL, Base64.encodeBytes(columnData.toByteArray()))
     }
     val updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, values)
 
@@ -1634,11 +1633,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
   fun clearProfileKeyCredential(id: RecipientId) {
     val values = ContentValues(1)
-    values.putNull(PROFILE_KEY_CREDENTIAL)
-    values.putNull(PROFILE_KEY)
-    values.put(PROFILE_SHARING, 0)
+    values.putNull(EXPIRING_PROFILE_KEY_CREDENTIAL)
     if (update(id, values)) {
-      rotateStorageId(id)
       ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
@@ -2101,11 +2097,11 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
     db.beginTransaction()
     try {
-      for ((recipientId, aci) in registered) {
+      for ((recipientId, serviceId) in registered) {
         val values = ContentValues(2).apply {
           put(REGISTERED, RegisteredState.REGISTERED.id)
-          if (aci != null) {
-            put(SERVICE_ID, aci.toString().lowercase())
+          if (serviceId != null) {
+            put(SERVICE_ID, serviceId.toString().lowercase())
           }
         }
 
@@ -2117,7 +2113,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         } catch (e: SQLiteConstraintException) {
           Log.w(TAG, "[bulkUpdateRegisteredStatus] Hit a conflict when trying to update $recipientId. Possibly merging.")
           val e164 = getRecord(recipientId).e164
-          val newId = getAndPossiblyMerge(aci, e164)
+          val newId = getAndPossiblyMerge(serviceId, e164)
           Log.w(TAG, "[bulkUpdateRegisteredStatus] Merged into $newId")
         }
       }
@@ -2173,7 +2169,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   }
 
   /**
-   * Processes CDSv2 results, merging recipients as necessary.
+   * Processes CDSv2 results, merging recipients as necessary. Does not mark users as
+   * registered.
    *
    * Important: This is under active development and is not suitable for actual use.
    *
@@ -3489,6 +3486,9 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         }
       }
       .run()
+
+    ApplicationDependencies.getRecipientCache().clear()
+    RecipientId.clearCache()
   }
 
   /**
@@ -3499,7 +3499,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       .update(TABLE_NAME)
       .values(
         PROFILE_KEY to null,
-        PROFILE_KEY_CREDENTIAL to null,
+        EXPIRING_PROFILE_KEY_CREDENTIAL to null,
         PROFILE_GIVEN_NAME to null,
         PROFILE_FAMILY_NAME to null,
         PROFILE_JOINED_NAME to null,
@@ -3514,6 +3514,9 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         }
       }
       .run()
+
+    ApplicationDependencies.getRecipientCache().clear()
+    RecipientId.clearCache()
   }
 
   fun getRecord(context: Context, cursor: Cursor): RecipientRecord {
@@ -3522,9 +3525,9 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
   fun getRecord(context: Context, cursor: Cursor, idColumnName: String): RecipientRecord {
     val profileKeyString = cursor.requireString(PROFILE_KEY)
-    val profileKeyCredentialString = cursor.requireString(PROFILE_KEY_CREDENTIAL)
+    val expiringProfileKeyCredentialString = cursor.requireString(EXPIRING_PROFILE_KEY_CREDENTIAL)
     var profileKey: ByteArray? = null
-    var profileKeyCredential: ProfileKeyCredential? = null
+    var expiringProfileKeyCredential: ExpiringProfileKeyCredential? = null
 
     if (profileKeyString != null) {
       try {
@@ -3533,12 +3536,12 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         Log.w(TAG, e)
       }
 
-      if (profileKeyCredentialString != null) {
+      if (expiringProfileKeyCredentialString != null) {
         try {
-          val columnDataBytes = Base64.decode(profileKeyCredentialString)
-          val columnData = ProfileKeyCredentialColumnData.parseFrom(columnDataBytes)
+          val columnDataBytes = Base64.decode(expiringProfileKeyCredentialString)
+          val columnData = ExpiringProfileKeyCredentialColumnData.parseFrom(columnDataBytes)
           if (Arrays.equals(columnData.profileKey.toByteArray(), profileKey)) {
-            profileKeyCredential = ProfileKeyCredential(columnData.profileKeyCredential.toByteArray())
+            expiringProfileKeyCredential = ExpiringProfileKeyCredential(columnData.expiringProfileKeyCredential.toByteArray())
           } else {
             Log.i(TAG, "Out of date profile key credential data ignored on read")
           }
@@ -3598,7 +3601,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       expireMessages = cursor.requireInt(MESSAGE_EXPIRATION_TIME),
       registered = RegisteredState.fromId(cursor.requireInt(REGISTERED)),
       profileKey = profileKey,
-      profileKeyCredential = profileKeyCredential,
+      expiringProfileKeyCredential = expiringProfileKeyCredential,
       systemProfileName = ProfileName.fromParts(cursor.requireString(SYSTEM_GIVEN_NAME), cursor.requireString(SYSTEM_FAMILY_NAME)),
       systemDisplayName = cursor.requireString(SYSTEM_JOINED_NAME),
       systemContactPhotoUri = cursor.requireString(SYSTEM_PHOTO_URI),
@@ -3688,7 +3691,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   private fun updateProfileValuesForMerge(values: ContentValues, record: RecipientRecord) {
     values.apply {
       put(PROFILE_KEY, if (record.profileKey != null) Base64.encodeBytes(record.profileKey) else null)
-      putNull(PROFILE_KEY_CREDENTIAL)
+      putNull(EXPIRING_PROFILE_KEY_CREDENTIAL)
       put(SIGNAL_PROFILE_AVATAR, record.signalProfileAvatar)
       put(PROFILE_GIVEN_NAME, record.signalProfileName.givenName)
       put(PROFILE_FAMILY_NAME, record.signalProfileName.familyName)

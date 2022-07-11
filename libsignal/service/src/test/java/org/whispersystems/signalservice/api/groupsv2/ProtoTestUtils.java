@@ -55,6 +55,14 @@ final class ProtoTestUtils {
     return ByteString.copyFrom(concat);
   }
 
+  /**
+   * Emulates a presentation by concatenating the uuid and profile key which makes it suitable for
+   * equality assertions in these tests.
+   */
+  static ByteString presentation(ByteString uuid, ByteString profileKey) {
+    return uuid.concat(profileKey);
+  }
+
   static DecryptedModifyMemberRole promoteAdmin(UUID member) {
     return DecryptedModifyMemberRole.newBuilder()
                                     .setUuid(UuidUtil.toByteString(member))
@@ -146,6 +154,22 @@ final class ProtoTestUtils {
 
   static DecryptedMember member(UUID uuid, ProfileKey profileKey) {
     return withProfileKey(member(uuid), profileKey);
+  }
+
+  static DecryptedMember pendingPniAciMember(UUID uuid, UUID pni, ProfileKey profileKey) {
+    return DecryptedMember.newBuilder()
+                          .setUuid(UuidUtil.toByteString(uuid))
+                          .setPni(UuidUtil.toByteString(pni))
+                          .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
+                          .build();
+  }
+
+  static DecryptedMember pendingPniAciMember(ByteString uuid, ByteString pni, ByteString profileKey) {
+    return DecryptedMember.newBuilder()
+                          .setUuid(uuid)
+                          .setPni(pni)
+                          .setProfileKey(profileKey)
+                          .build();
   }
 
   static DecryptedMember admin(UUID uuid, ProfileKey profileKey) {

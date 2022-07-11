@@ -102,10 +102,10 @@ internal class SpinnerServer(
         database = dbName,
         databases = databases.keys.toList(),
         plugins = plugins.values.toList(),
-        tables = db.getTables().toTableInfo(),
-        indices = db.getIndexes().toIndexInfo(),
-        triggers = db.getTriggers().toTriggerInfo(),
-        queryResult = db.getTables().toQueryResult()
+        tables = db.getTables().use { it.toTableInfo() },
+        indices = db.getIndexes().use { it.toIndexInfo() },
+        triggers = db.getTriggers().use { it.toTriggerInfo() },
+        queryResult = db.getTables().use { it.toQueryResult() }
       )
     )
   }
@@ -141,7 +141,7 @@ internal class SpinnerServer(
     }
 
     val query = "select * from $table limit $pageSize offset ${pageSize * pageIndex}"
-    val queryResult = dbConfig.db.query(query).toQueryResult(columnTransformers = dbConfig.columnTransformers)
+    val queryResult = dbConfig.db.query(query).use { it.toQueryResult(columnTransformers = dbConfig.columnTransformers) }
 
     return renderTemplate(
       "browse",
@@ -217,7 +217,7 @@ internal class SpinnerServer(
         databases = databases.keys.toList(),
         plugins = plugins.values.toList(),
         query = rawQuery,
-        queryResult = dbConfig.db.query(query).toQueryResult(queryStartTime = startTime, columnTransformers = dbConfig.columnTransformers)
+        queryResult = dbConfig.db.query(query).use { it.toQueryResult(queryStartTime = startTime, columnTransformers = dbConfig.columnTransformers) }
       )
     )
   }

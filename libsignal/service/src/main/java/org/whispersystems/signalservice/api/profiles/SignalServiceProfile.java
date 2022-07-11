@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import org.signal.libsignal.protocol.logging.Log;
 import org.signal.libsignal.zkgroup.InvalidInputException;
-import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialResponse;
+import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredentialResponse;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
 
@@ -245,11 +245,11 @@ public class SignalServiceProfile {
     }
   }
 
-  public ProfileKeyCredentialResponse getProfileKeyCredentialResponse() {
+  public ExpiringProfileKeyCredentialResponse getExpiringProfileKeyCredentialResponse() {
     if (credential == null) return null;
 
     try {
-      return new ProfileKeyCredentialResponse(credential);
+      return new ExpiringProfileKeyCredentialResponse(credential);
     } catch (InvalidInputException e) {
       Log.w(TAG, e);
       return null;

@@ -25,27 +25,28 @@ public final class GroupChangeUtil {
    * True iff there are no change actions.
    */
   public static boolean changeIsEmpty(GroupChange.Actions change) {
-    return change.getAddMembersCount()               == 0 && // field 3
-           change.getDeleteMembersCount()            == 0 && // field 4
-           change.getModifyMemberRolesCount()        == 0 && // field 5
-           change.getModifyMemberProfileKeysCount()  == 0 && // field 6
-           change.getAddPendingMembersCount()        == 0 && // field 7
-           change.getDeletePendingMembersCount()     == 0 && // field 8
-           change.getPromotePendingMembersCount()    == 0 && // field 9
-           !change.hasModifyTitle()                       && // field 10
-           !change.hasModifyAvatar()                      && // field 11
-           !change.hasModifyDisappearingMessagesTimer()   && // field 12
-           !change.hasModifyAttributesAccess()            && // field 13
-           !change.hasModifyMemberAccess()                && // field 14
-           !change.hasModifyAddFromInviteLinkAccess()     && // field 15
-           change.getAddRequestingMembersCount()     == 0 && // field 16
-           change.getDeleteRequestingMembersCount()  == 0 && // field 17
-           change.getPromoteRequestingMembersCount() == 0 && // field 18
-           !change.hasModifyInviteLinkPassword()          && // field 19
-           !change.hasModifyDescription()                 && // field 20
-           !change.hasModifyAnnouncementsOnly()           && // field 21
-           change.getAddBannedMembersCount()         == 0 && // field 22
-           change.getDeleteBannedMembersCount()      == 0;   // field 23
+    return change.getAddMembersCount() == 0 &&                // field 3
+           change.getDeleteMembersCount() == 0 &&             // field 4
+           change.getModifyMemberRolesCount() == 0 &&         // field 5
+           change.getModifyMemberProfileKeysCount() == 0 &&   // field 6
+           change.getAddPendingMembersCount() == 0 &&         // field 7
+           change.getDeletePendingMembersCount() == 0 &&      // field 8
+           change.getPromotePendingMembersCount() == 0 &&     // field 9
+           !change.hasModifyTitle() &&                        // field 10
+           !change.hasModifyAvatar() &&                       // field 11
+           !change.hasModifyDisappearingMessagesTimer() &&    // field 12
+           !change.hasModifyAttributesAccess() &&             // field 13
+           !change.hasModifyMemberAccess() &&                 // field 14
+           !change.hasModifyAddFromInviteLinkAccess() &&      // field 15
+           change.getAddRequestingMembersCount() == 0 &&      // field 16
+           change.getDeleteRequestingMembersCount() == 0 &&   // field 17
+           change.getPromoteRequestingMembersCount() == 0 &&  // field 18
+           !change.hasModifyInviteLinkPassword() &&           // field 19
+           !change.hasModifyDescription() &&                  // field 20
+           !change.hasModifyAnnouncementsOnly() &&            // field 21
+           change.getAddBannedMembersCount() == 0 &&          // field 22
+           change.getDeleteBannedMembersCount() == 0 &&       // field 23
+           change.getPromotePendingPniAciMembersCount() == 0; // field 24
   }
 
   /**
@@ -147,6 +148,7 @@ public final class GroupChangeUtil {
     resolveField21ModifyAnnouncementsOnly        (groupState, conflictingChange, changeSetModifier);
     resolveField22AddBannedMembers               (conflictingChange, changeSetModifier, bannedMembersByUuid);
     resolveField23DeleteBannedMembers            (conflictingChange, changeSetModifier, bannedMembersByUuid);
+    resolveField24PromotePendingPniAciMembers    (conflictingChange, changeSetModifier, fullMembersByUuid);
   }
 
   private static void resolveField3AddMembers(DecryptedGroupChange conflictingChange, ChangeSetModifier result, HashMap<ByteString, DecryptedMember> fullMembersByUuid, HashMap<ByteString, DecryptedPendingMember> pendingMembersByUuid) {
@@ -349,6 +351,18 @@ public final class GroupChangeUtil {
 
       if (!bannedMembersByUuid.containsKey(member.getUuid())) {
         result.removeDeleteBannedMembers(i);
+      }
+    }
+  }
+
+  private static void resolveField24PromotePendingPniAciMembers(DecryptedGroupChange conflictingChange, ChangeSetModifier result, HashMap<ByteString, DecryptedMember> fullMembersByUuid) {
+    List<DecryptedMember> promotePendingPniAciMembersList = conflictingChange.getPromotePendingPniAciMembersList();
+
+    for (int i = promotePendingPniAciMembersList.size() - 1; i >= 0; i--) {
+      DecryptedMember member = promotePendingPniAciMembersList.get(i);
+
+      if (fullMembersByUuid.containsKey(member.getUuid())) {
+        result.removePromotePendingPniAciMembers(i);
       }
     }
   }

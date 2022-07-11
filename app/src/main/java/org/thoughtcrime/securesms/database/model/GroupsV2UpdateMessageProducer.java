@@ -28,13 +28,13 @@ import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.signal.storageservice.protos.groups.local.EnabledState;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.GV2AccessLevelUtil;
-import org.thoughtcrime.securesms.keyvalue.ServiceIds;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceIds;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.Arrays;
@@ -91,8 +91,8 @@ final class GroupsV2UpdateMessageProducer {
     }
 
     if (DecryptedGroupUtil.findMemberByUuid(group.getMembersList(), selfIds.getAci().uuid()).isPresent() ||
-        (selfIds.getPni() != null && DecryptedGroupUtil.findMemberByUuid(group.getMembersList(), selfIds.getPni().uuid()).isPresent())
-    ) {
+        (selfIds.getPni() != null && DecryptedGroupUtil.findMemberByUuid(group.getMembersList(), selfIds.getPni().uuid()).isPresent()))
+    {
       return updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group), R.drawable.ic_update_group_add_16);
     } else {
       return updateDescription(context.getString(R.string.MessageRecord_group_updated), R.drawable.ic_update_group_16);
@@ -124,6 +124,7 @@ final class GroupsV2UpdateMessageProducer {
       describeUnknownEditorRequestingMembersApprovals(change, updates);
       describeUnknownEditorRequestingMembersDeletes(change, updates);
       describeUnknownEditorAnnouncementGroupChange(change, updates);
+      describeUnknownEditorPromotePendingPniAci(change, updates);
 
       describeUnknownEditorMemberRemovals(change, updates);
 
@@ -149,6 +150,7 @@ final class GroupsV2UpdateMessageProducer {
       describeRequestingMembersApprovals(change, updates);
       describeRequestingMembersDeletes(change, updates);
       describeAnnouncementGroupChange(change, updates);
+      describePromotePendingPniAci(change, updates);
 
       describeMemberRemovals(change, updates);
 
@@ -304,8 +306,8 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeInvitations(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = selfIds.matches(change.getEditor());
-    int notYouInviteCount = 0;
+    boolean editorIsYou       = selfIds.matches(change.getEditor());
+    int     notYouInviteCount = 0;
 
     for (DecryptedPendingMember invitee : change.getNewPendingMembersList()) {
       boolean newMemberIsYou = selfIds.matches(invitee.getUuid());
@@ -351,8 +353,8 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeRevokedInvitations(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = selfIds.matches(change.getEditor());
-    int notDeclineCount = 0;
+    boolean editorIsYou     = selfIds.matches(change.getEditor());
+    int     notDeclineCount = 0;
 
     for (DecryptedPendingMemberRemoval invitee : change.getDeletePendingMembersList()) {
       boolean decline = invitee.getUuid().equals(change.getEditor());
@@ -400,8 +402,8 @@ final class GroupsV2UpdateMessageProducer {
     boolean editorIsYou = selfIds.matches(change.getEditor());
 
     for (DecryptedMember newMember : change.getPromotePendingMembersList()) {
-      ByteString uuid = newMember.getUuid();
-      boolean newMemberIsYou = selfIds.matches(uuid);
+      ByteString uuid           = newMember.getUuid();
+      boolean    newMemberIsYou = selfIds.matches(uuid);
 
       if (editorIsYou) {
         if (newMemberIsYou) {
@@ -425,8 +427,8 @@ final class GroupsV2UpdateMessageProducer {
 
   private void describeUnknownEditorPromotePending(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
     for (DecryptedMember newMember : change.getPromotePendingMembersList()) {
-      ByteString uuid = newMember.getUuid();
-      boolean newMemberIsYou = selfIds.matches(uuid);
+      ByteString uuid           = newMember.getUuid();
+      boolean    newMemberIsYou = selfIds.matches(uuid);
 
       if (newMemberIsYou) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group), R.drawable.ic_update_group_add_16));
@@ -679,7 +681,7 @@ final class GroupsV2UpdateMessageProducer {
       if (requestingMemberIsYou) {
         updates.add(updateDescription(R.string.MessageRecord_s_approved_your_request_to_join_the_group, change.getEditor(), R.drawable.ic_update_group_accept_16));
       } else {
-      boolean editorIsYou = selfIds.matches(change.getEditor());
+        boolean editorIsYou = selfIds.matches(change.getEditor());
 
         if (editorIsYou) {
           updates.add(updateDescription(R.string.MessageRecord_you_approved_a_request_to_join_the_group_from_s, requestingMember.getUuid(), R.drawable.ic_update_group_accept_16));
@@ -767,6 +769,46 @@ final class GroupsV2UpdateMessageProducer {
       updates.add(updateDescription(context.getString(R.string.MessageRecord_allow_only_admins_to_send), R.drawable.ic_update_group_role_16));
     } else if (change.getNewIsAnnouncementGroup() == EnabledState.DISABLED) {
       updates.add(updateDescription(context.getString(R.string.MessageRecord_allow_all_members_to_send), R.drawable.ic_update_group_role_16));
+    }
+  }
+
+  private void describePromotePendingPniAci(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
+    boolean editorIsYou = selfIds.matches(change.getEditor());
+
+    for (DecryptedMember newMember : change.getPromotePendingPniAciMembersList()) {
+      ByteString uuid           = newMember.getUuid();
+      boolean    newMemberIsYou = selfIds.matches(uuid);
+
+      if (editorIsYou) {
+        if (newMemberIsYou) {
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_accepted_invite), R.drawable.ic_update_group_accept_16));
+        } else {
+          updates.add(updateDescription(R.string.MessageRecord_you_added_invited_member_s, uuid, R.drawable.ic_update_group_add_16));
+        }
+      } else {
+        if (newMemberIsYou) {
+          updates.add(updateDescription(R.string.MessageRecord_s_added_you, change.getEditor(), R.drawable.ic_update_group_add_16));
+        } else {
+          if (uuid.equals(change.getEditor())) {
+            updates.add(updateDescription(R.string.MessageRecord_s_accepted_invite, uuid, R.drawable.ic_update_group_accept_16));
+          } else {
+            updates.add(updateDescription(R.string.MessageRecord_s_added_invited_member_s, change.getEditor(), uuid, R.drawable.ic_update_group_add_16));
+          }
+        }
+      }
+    }
+  }
+
+  private void describeUnknownEditorPromotePendingPniAci(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
+    for (DecryptedMember newMember : change.getPromotePendingPniAciMembersList()) {
+      ByteString uuid           = newMember.getUuid();
+      boolean    newMemberIsYou = selfIds.matches(uuid);
+
+      if (newMemberIsYou) {
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group), R.drawable.ic_update_group_add_16));
+      } else {
+        updates.add(updateDescription(R.string.MessageRecord_s_joined_the_group, uuid, R.drawable.ic_update_group_add_16));
+      }
     }
   }
 
@@ -868,8 +910,8 @@ final class GroupsV2UpdateMessageProducer {
 
   @VisibleForTesting
   static @NonNull Spannable makeRecipientsClickable(@NonNull Context context, @NonNull String template, @NonNull List<RecipientId> recipientIds, @Nullable Consumer<RecipientId> clickHandler) {
-    SpannableStringBuilder builder = new SpannableStringBuilder();
-    int startIndex = 0;
+    SpannableStringBuilder builder    = new SpannableStringBuilder();
+    int                    startIndex = 0;
 
     Map<String, RecipientId> idByPlaceholder = new HashMap<>();
     for (RecipientId id : recipientIds) {

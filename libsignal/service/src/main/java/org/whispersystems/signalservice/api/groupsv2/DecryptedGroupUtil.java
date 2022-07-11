@@ -15,6 +15,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.signal.storageservice.protos.groups.local.EnabledState;
+import org.whispersystems.signalservice.api.push.ServiceIds;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.ArrayList;
@@ -193,6 +194,16 @@ public final class DecryptedGroupUtil {
     return Optional.empty();
   }
 
+  public static Optional<DecryptedPendingMember> findPendingByServiceIds(Collection<DecryptedPendingMember> members, ServiceIds serviceIds) {
+    for (DecryptedPendingMember member : members) {
+      if (serviceIds.matches(member.getUuid())) {
+        return Optional.of(member);
+      }
+    }
+
+    return Optional.empty();
+  }
+
   private static int findPendingIndexByUuidCipherText(List<DecryptedPendingMember> members, ByteString cipherText) {
     for (int i = 0; i < members.size(); i++) {
       DecryptedPendingMember member = members.get(i);
@@ -227,9 +238,19 @@ public final class DecryptedGroupUtil {
     return Optional.empty();
   }
 
-  public static boolean isPendingOrRequesting(DecryptedGroup group, UUID uuid) {
-    return findPendingByUuid(group.getPendingMembersList(), uuid).isPresent() ||
-           findRequestingByUuid(group.getRequestingMembersList(), uuid).isPresent();
+  public static Optional<DecryptedRequestingMember> findRequestingByServiceIds(Collection<DecryptedRequestingMember> members, ServiceIds serviceIds) {
+    for (DecryptedRequestingMember member : members) {
+      if (serviceIds.matches(member.getUuid())) {
+        return Optional.of(member);
+      }
+    }
+
+    return Optional.empty();
+  }
+
+  public static boolean isPendingOrRequesting(DecryptedGroup group, ServiceIds serviceIds) {
+    return findPendingByServiceIds(group.getPendingMembersList(), serviceIds).isPresent() ||
+           findRequestingByServiceIds(group.getRequestingMembersList(), serviceIds).isPresent();
   }
 
   public static boolean isRequesting(DecryptedGroup group, UUID uuid) {
@@ -323,6 +344,8 @@ public final class DecryptedGroupUtil {
     applyAddBannedMembersActions(builder, change.getNewBannedMembersList());
 
     applyDeleteBannedMembersActions(builder, change.getDeleteBannedMembersList());
+
+    applyPromotePendingPniAciMemberActions(builder, change.getPromotePendingPniAciMembersList());
 
     return builder.build();
   }
@@ -557,6 +580,19 @@ public final class DecryptedGroupUtil {
     }
   }
 
+  protected static void applyPromotePendingPniAciMemberActions(DecryptedGroup.Builder builder, List<DecryptedMember> promotePendingPniAciMembersList) throws NotAbleToApplyGroupV2ChangeException {
+    for (DecryptedMember newMember : promotePendingPniAciMembersList) {
+      int index = findPendingIndexByUuid(builder.getPendingMembersList(), newMember.getPni());
+
+      if (index == -1) {
+        throw new NotAbleToApplyGroupV2ChangeException();
+      }
+
+      builder.removePendingMembers(index);
+      builder.addMembers(newMember);
+    }
+  }
+
   private static DecryptedMember withNewProfileKey(DecryptedMember member, ByteString profileKey) {
     return DecryptedMember.newBuilder(member)
                           .setProfileKey(profileKey)
@@ -653,48 +689,50 @@ public final class DecryptedGroupUtil {
    * When updating this, update {@link #changeIsEmptyExceptForBanChangesAndOptionalProfileKeyChanges(DecryptedGroupChange)}
    */
   public static boolean changeIsEmptyExceptForProfileKeyChanges(DecryptedGroupChange change) {
-    return change.getNewMembersCount()               == 0 && // field 3
-           change.getDeleteMembersCount()            == 0 && // field 4
-           change.getModifyMemberRolesCount()        == 0 && // field 5
-           change.getNewPendingMembersCount()        == 0 && // field 7
-           change.getDeletePendingMembersCount()     == 0 && // field 8
-           change.getPromotePendingMembersCount()    == 0 && // field 9
-           !change.hasNewTitle()                          && // field 10
-           !change.hasNewAvatar()                         && // field 11
-           !change.hasNewTimer()                          && // field 12
-           isEmpty(change.getNewAttributeAccess())        && // field 13
-           isEmpty(change.getNewMemberAccess())           && // field 14
-           isEmpty(change.getNewInviteLinkAccess())       && // field 15
-           change.getNewRequestingMembersCount()     == 0 && // field 16
-           change.getDeleteRequestingMembersCount()  == 0 && // field 17
-           change.getPromoteRequestingMembersCount() == 0 && // field 18
-           change.getNewInviteLinkPassword().size()  == 0 && // field 19
-           !change.hasNewDescription()                    && // field 20
-           isEmpty(change.getNewIsAnnouncementGroup())    && // field 21
-           change.getNewBannedMembersCount()         == 0 && // field 22
-           change.getDeleteBannedMembersCount()      == 0;   // field 23
+    return change.getNewMembersCount() == 0 &&                // field 3
+           change.getDeleteMembersCount() == 0 &&             // field 4
+           change.getModifyMemberRolesCount() == 0 &&         // field 5
+           change.getNewPendingMembersCount() == 0 &&         // field 7
+           change.getDeletePendingMembersCount() == 0 &&      // field 8
+           change.getPromotePendingMembersCount() == 0 &&     // field 9
+           !change.hasNewTitle() &&                           // field 10
+           !change.hasNewAvatar() &&                          // field 11
+           !change.hasNewTimer() &&                           // field 12
+           isEmpty(change.getNewAttributeAccess()) &&         // field 13
+           isEmpty(change.getNewMemberAccess()) &&            // field 14
+           isEmpty(change.getNewInviteLinkAccess()) &&        // field 15
+           change.getNewRequestingMembersCount() == 0 &&      // field 16
+           change.getDeleteRequestingMembersCount() == 0 &&   // field 17
+           change.getPromoteRequestingMembersCount() == 0 &&  // field 18
+           change.getNewInviteLinkPassword().size() == 0 &&   // field 19
+           !change.hasNewDescription() &&                     // field 20
+           isEmpty(change.getNewIsAnnouncementGroup()) &&     // field 21
+           change.getNewBannedMembersCount() == 0 &&          // field 22
+           change.getDeleteBannedMembersCount() == 0 &&       // field 23
+           change.getPromotePendingPniAciMembersCount() == 0; // field 24
   }
 
   public static boolean changeIsEmptyExceptForBanChangesAndOptionalProfileKeyChanges(DecryptedGroupChange change) {
     return (change.getNewBannedMembersCount() != 0 || change.getDeleteBannedMembersCount() != 0) &&
-           change.getNewMembersCount()               == 0 && // field 3
-           change.getDeleteMembersCount()            == 0 && // field 4
-           change.getModifyMemberRolesCount()        == 0 && // field 5
-           change.getNewPendingMembersCount()        == 0 && // field 7
-           change.getDeletePendingMembersCount()     == 0 && // field 8
-           change.getPromotePendingMembersCount()    == 0 && // field 9
-           !change.hasNewTitle()                          && // field 10
-           !change.hasNewAvatar()                         && // field 11
-           !change.hasNewTimer()                          && // field 12
-           isEmpty(change.getNewAttributeAccess())        && // field 13
-           isEmpty(change.getNewMemberAccess())           && // field 14
-           isEmpty(change.getNewInviteLinkAccess())       && // field 15
-           change.getNewRequestingMembersCount()     == 0 && // field 16
-           change.getDeleteRequestingMembersCount()  == 0 && // field 17
-           change.getPromoteRequestingMembersCount() == 0 && // field 18
-           change.getNewInviteLinkPassword().size()  == 0 && // field 19
-           !change.hasNewDescription()                    && // field 20
-           isEmpty(change.getNewIsAnnouncementGroup());      // field 21
+           change.getNewMembersCount() == 0 &&                // field 3
+           change.getDeleteMembersCount() == 0 &&             // field 4
+           change.getModifyMemberRolesCount() == 0 &&         // field 5
+           change.getNewPendingMembersCount() == 0 &&         // field 7
+           change.getDeletePendingMembersCount() == 0 &&      // field 8
+           change.getPromotePendingMembersCount() == 0 &&     // field 9
+           !change.hasNewTitle() &&                           // field 10
+           !change.hasNewAvatar() &&                          // field 11
+           !change.hasNewTimer() &&                           // field 12
+           isEmpty(change.getNewAttributeAccess()) &&         // field 13
+           isEmpty(change.getNewMemberAccess()) &&            // field 14
+           isEmpty(change.getNewInviteLinkAccess()) &&        // field 15
+           change.getNewRequestingMembersCount() == 0 &&      // field 16
+           change.getDeleteRequestingMembersCount() == 0 &&   // field 17
+           change.getPromoteRequestingMembersCount() == 0 &&  // field 18
+           change.getNewInviteLinkPassword().size() == 0 &&   // field 19
+           !change.hasNewDescription() &&                     // field 20
+           isEmpty(change.getNewIsAnnouncementGroup()) &&     // field 21
+           change.getPromotePendingPniAciMembersCount() == 0; // field 24
   }
 
   static boolean isEmpty(AccessControl.AccessRequired newAttributeAccess) {

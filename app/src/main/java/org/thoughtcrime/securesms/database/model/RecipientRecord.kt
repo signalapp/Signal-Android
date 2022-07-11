@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.database.model
 
 import android.net.Uri
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
-import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredential
+import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
@@ -45,7 +45,7 @@ data class RecipientRecord(
   val expireMessages: Int,
   val registered: RegisteredState,
   val profileKey: ByteArray?,
-  val profileKeyCredential: ProfileKeyCredential?,
+  val expiringProfileKeyCredential: ExpiringProfileKeyCredential?,
   val systemProfileName: ProfileName,
   val systemDisplayName: String?,
   val systemContactPhotoUri: String?,

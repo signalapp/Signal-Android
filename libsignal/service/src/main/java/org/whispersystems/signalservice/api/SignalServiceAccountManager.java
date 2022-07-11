@@ -16,8 +16,8 @@ import org.signal.libsignal.protocol.ecc.ECPublicKey;
 import org.signal.libsignal.protocol.logging.Log;
 import org.signal.libsignal.protocol.state.PreKeyRecord;
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord;
+import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
-import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredential;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
@@ -824,12 +824,12 @@ public class SignalServiceAccountManager {
                                                                              profileAvatarData);
   }
 
-  public Optional<ProfileKeyCredential> resolveProfileKeyCredential(ServiceId serviceId, ProfileKey profileKey, Locale locale)
+  public Optional<ExpiringProfileKeyCredential> resolveProfileKeyCredential(ServiceId serviceId, ProfileKey profileKey, Locale locale)
       throws NonSuccessfulResponseCodeException, PushNetworkException
   {
     try {
       ProfileAndCredential credential = this.pushServiceSocket.retrieveVersionedProfileAndCredential(serviceId.uuid(), profileKey, Optional.empty(), locale).get(10, TimeUnit.SECONDS);
-      return credential.getProfileKeyCredential();
+      return credential.getExpiringProfileKeyCredential();
     } catch (InterruptedException | TimeoutException e) {
       throw new PushNetworkException(e);
     } catch (ExecutionException e) {

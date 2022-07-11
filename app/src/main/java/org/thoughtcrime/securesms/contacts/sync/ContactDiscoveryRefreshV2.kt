@@ -77,6 +77,9 @@ object ContactDiscoveryRefreshV2 {
     )
     stopwatch.split("recipient-db")
 
+    SignalDatabase.recipients.bulkUpdatedRegisteredStatus(registeredIds.associateWith { null }, emptyList())
+    stopwatch.split("update-registered")
+
     stopwatch.stop(TAG)
 
     return ContactDiscovery.RefreshResult(registeredIds, emptyMap())
@@ -126,6 +129,9 @@ object ContactDiscoveryRefreshV2 {
         .mapValues { entry -> RecipientDatabase.CdsV2Result(entry.value.pni, entry.value.aci.orElse(null)) }
     )
     stopwatch.split("recipient-db")
+
+    SignalDatabase.recipients.bulkUpdatedRegisteredStatus(registeredIds.associateWith { null }, emptyList())
+    stopwatch.split("update-registered")
 
     stopwatch.stop(TAG)
 

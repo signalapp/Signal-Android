@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.database
 
 import android.net.Uri
 import org.signal.core.util.Bitmask
-import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredential
+import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
@@ -47,7 +47,7 @@ object RecipientDatabaseTestUtils {
     expireMessages: Int = 0,
     registered: RecipientDatabase.RegisteredState = RecipientDatabase.RegisteredState.REGISTERED,
     profileKey: ByteArray = Random.nextBytes(32),
-    profileKeyCredential: ProfileKeyCredential? = null,
+    expiringProfileKeyCredential: ExpiringProfileKeyCredential? = null,
     systemProfileName: ProfileName = ProfileName.EMPTY,
     systemDisplayName: String? = null,
     systemContactPhoto: String? = null,
@@ -111,7 +111,7 @@ object RecipientDatabaseTestUtils {
         expireMessages,
         registered,
         profileKey,
-        profileKeyCredential,
+        expiringProfileKeyCredential,
         systemProfileName,
         systemDisplayName,
         systemContactPhoto,

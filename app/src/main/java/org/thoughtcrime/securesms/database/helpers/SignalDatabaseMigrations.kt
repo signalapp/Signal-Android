@@ -202,8 +202,9 @@ object SignalDatabaseMigrations {
   private const val REMOTE_MEGAPHONE = 146
   private const val QUOTE_INDEX = 147
   private const val MY_STORY_PRIVACY_MODE = 148
+  private const val EXPIRING_PROFILE_CREDENTIALS = 149
 
-  const val DATABASE_VERSION = 148
+  const val DATABASE_VERSION = 149
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -2657,6 +2658,10 @@ object SignalDatabaseMigrations {
       db.execSQL("UPDATE distribution_list_member SET privacy_mode = 1 WHERE list_id = 1")
 
       db.execSQL("CREATE UNIQUE INDEX distribution_list_member_list_id_recipient_id_privacy_mode_index ON distribution_list_member (list_id, recipient_id, privacy_mode)")
+    }
+
+    if (oldVersion < EXPIRING_PROFILE_CREDENTIALS) {
+      db.execSQL("UPDATE recipient SET profile_key_credential = NULL")
     }
   }
 

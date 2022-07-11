@@ -45,6 +45,13 @@ fun Long.toLocalDateTime(zoneId: ZoneId = ZoneId.systemDefault()): LocalDateTime
 }
 
 /**
+ * Convert milliseconds to local date time with provided [zoneId].
+ */
+fun Instant.toLocalDateTime(zoneId: ZoneId = ZoneId.systemDefault()): LocalDateTime {
+  return LocalDateTime.ofInstant(this, zoneId)
+}
+
+/**
  * Converts milliseconds to local time with provided [zoneId].
  */
 fun Long.toLocalTime(zoneId: ZoneId = ZoneId.systemDefault()): LocalTime {

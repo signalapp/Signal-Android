@@ -311,6 +311,7 @@ import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil;
 import org.whispersystems.signalservice.api.SignalSessionLock;
+import org.whispersystems.signalservice.api.util.ExpiringProfileCredentialUtil;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -1267,7 +1268,7 @@ public class ConversationParentFragment extends Fragment
         AttachmentManager.selectLocation(this, PICK_LOCATION, getSendButtonColor(sendButton.getSelectedSendType()));
         break;
       case PAYMENT:
-        if (recipient.get().hasProfileKeyCredential()) {
+        if (ExpiringProfileCredentialUtil.isValid(recipient.get().getExpiringProfileKeyCredential())) {
           AttachmentManager.selectPayment(this, recipient.getId());
         } else {
           CanNotSendPaymentDialog.show(requireActivity());

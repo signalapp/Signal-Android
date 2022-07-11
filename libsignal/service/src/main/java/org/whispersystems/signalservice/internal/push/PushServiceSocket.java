@@ -22,6 +22,7 @@ import org.signal.libsignal.protocol.state.SignedPreKeyRecord;
 import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
+import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredential;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialRequest;
@@ -236,7 +237,7 @@ public class PushServiceSocket {
   private static final String STICKER_MANIFEST_PATH          = "stickers/%s/manifest.proto";
   private static final String STICKER_PATH                   = "stickers/%s/full/%d";
 
-  private static final String GROUPSV2_CREDENTIAL       = "/v1/certificate/group/%d/%d?identity=%s";
+  private static final String GROUPSV2_CREDENTIAL       = "/v1/certificate/auth/group?redemptionStartSeconds=%d&redemptionEndSeconds=%d";
   private static final String GROUPSV2_GROUP            = "/v1/groups/";
   private static final String GROUPSV2_GROUP_PASSWORD   = "/v1/groups/?inviteLinkPassword=%s";
   private static final String GROUPSV2_GROUP_CHANGES    = "/v1/groups/logs/%s?maxSupportedChangeEpoch=%d&includeFirstState=%s&includeLastState=false";
@@ -774,7 +775,7 @@ public class PushServiceSocket {
 
     String version           = profileKeyIdentifier.serialize();
     String credentialRequest = Hex.toStringCondensed(request.serialize());
-    String subPath           = String.format("%s/%s/%s", target, version, credentialRequest);
+    String subPath           = String.format("%s/%s/%s?credentialType=expiringProfileKey", target, version, credentialRequest);
 
 
     ListenableFuture<String> response = submitServiceRequest(String.format(PROFILE_PATH, subPath), "GET", null, AcceptLanguagesUtil.getHeadersWithAcceptLanguage(locale), unidentifiedAccess);
@@ -789,10 +790,10 @@ public class PushServiceSocket {
       SignalServiceProfile signalServiceProfile = JsonUtil.fromJson(body, SignalServiceProfile.class);
 
       try {
-        ProfileKeyCredential profileKeyCredential = signalServiceProfile.getProfileKeyCredentialResponse() != null
-                                                      ? clientZkProfileOperations.receiveProfileKeyCredential(requestContext, signalServiceProfile.getProfileKeyCredentialResponse())
-                                                      : null;
-        return new ProfileAndCredential(signalServiceProfile, SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL, Optional.ofNullable(profileKeyCredential));
+        ExpiringProfileKeyCredential expiringProfileKeyCredential = signalServiceProfile.getExpiringProfileKeyCredentialResponse() != null
+                                                                    ? clientZkProfileOperations.receiveExpiringProfileKeyCredential(requestContext, signalServiceProfile.getExpiringProfileKeyCredentialResponse())
+                                                                    : null;
+        return new ProfileAndCredential(signalServiceProfile, SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL, Optional.ofNullable(expiringProfileKeyCredential));
       } catch (VerificationFailedException e) {
         Log.w(TAG, "Failed to verify credential.", e);
         return new ProfileAndCredential(signalServiceProfile, SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL, Optional.empty());
@@ -2339,15 +2340,15 @@ public class PushServiceSocket {
 
   public enum ClientSet { ContactDiscovery, KeyBackup }
 
-  public CredentialResponse retrieveGroupsV2Credentials(int today, boolean isAci)
+  public CredentialResponse retrieveGroupsV2Credentials(long todaySeconds)
       throws IOException
   {
-    int    todayPlus7 = today + 7;
-    String response   = makeServiceRequest(String.format(Locale.US, GROUPSV2_CREDENTIAL, today, todayPlus7, isAci ? "aci" : "pni"),
-                                           "GET",
-                                           null,
-                                           NO_HEADERS,
-                                           Optional.empty());
+    long todayPlus7 = todaySeconds + TimeUnit.DAYS.toSeconds(7);
+    String response = makeServiceRequest(String.format(Locale.US, GROUPSV2_CREDENTIAL, todaySeconds, todayPlus7),
+                                         "GET",
+                                         null,
+                                         NO_HEADERS,
+                                         Optional.empty());
 
     return JsonUtil.fromJson(response, CredentialResponse.class);
   }

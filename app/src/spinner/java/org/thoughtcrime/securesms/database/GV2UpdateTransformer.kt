@@ -7,7 +7,9 @@ import org.signal.spinner.ColumnTransformer
 import org.signal.spinner.DefaultColumnTransformer
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.UpdateDescription
+import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.util.Base64
 
 object GV2UpdateTransformer : ColumnTransformer {
   override fun matches(tableName: String?, columnName: String): Boolean {
@@ -24,8 +26,11 @@ object GV2UpdateTransformer : ColumnTransformer {
     val body: String? = CursorUtil.requireString(cursor, MmsSmsColumns.BODY)
 
     return if (MmsSmsColumns.Types.isGroupV2(type) && MmsSmsColumns.Types.isGroupUpdate(type) && body != null) {
+      val decoded = Base64.decode(body)
+      val decryptedGroupV2Context = DecryptedGroupV2Context.parseFrom(decoded)
       val gv2ChangeDescription: UpdateDescription = MessageRecord.getGv2ChangeDescription(ApplicationDependencies.getApplication(), body, null)
-      gv2ChangeDescription.spannable.toString()
+
+      "${gv2ChangeDescription.spannable}<br><br>${decryptedGroupV2Context.change}"
     } else {
       body ?: ""
     }

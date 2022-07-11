@@ -4,8 +4,8 @@ import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
+import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
-import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredential;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialRequest;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialRequestContext;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyVersion;
@@ -90,7 +90,7 @@ public final class ProfileService {
         ProfileKeyCredentialRequest request           = requestContext.getRequest();
         String                      credentialRequest = Hex.toStringCondensed(request.serialize());
 
-        builder.setPath(String.format("/v1/profile/%s/%s/%s", serviceId, version, credentialRequest));
+        builder.setPath(String.format("/v1/profile/%s/%s/%s?credentialType=expiringProfileKey", serviceId, version, credentialRequest));
       } else {
         builder.setPath(String.format("/v1/profile/%s/%s", serviceId, version));
       }
@@ -170,13 +170,13 @@ public final class ProfileService {
         throws MalformedResponseException
     {
       try {
-        SignalServiceProfile signalServiceProfile = JsonUtil.fromJsonResponse(body, SignalServiceProfile.class);
-        ProfileKeyCredential profileKeyCredential = null;
-        if (requestContext != null && signalServiceProfile.getProfileKeyCredentialResponse() != null) {
-          profileKeyCredential = clientZkProfileOperations.receiveProfileKeyCredential(requestContext, signalServiceProfile.getProfileKeyCredentialResponse());
+        SignalServiceProfile         signalServiceProfile         = JsonUtil.fromJsonResponse(body, SignalServiceProfile.class);
+        ExpiringProfileKeyCredential expiringProfileKeyCredential = null;
+        if (requestContext != null && signalServiceProfile.getExpiringProfileKeyCredentialResponse() != null) {
+          expiringProfileKeyCredential = clientZkProfileOperations.receiveExpiringProfileKeyCredential(requestContext, signalServiceProfile.getExpiringProfileKeyCredentialResponse());
         }
 
-        return ServiceResponse.forResult(new ProfileAndCredential(signalServiceProfile, requestType, Optional.ofNullable(profileKeyCredential)), status, body);
+        return ServiceResponse.forResult(new ProfileAndCredential(signalServiceProfile, requestType, Optional.ofNullable(expiringProfileKeyCredential)), status, body);
       } catch (VerificationFailedException e) {
         return ServiceResponse.forApplicationError(e, status, body);
       }
@@ -203,6 +203,11 @@ public final class ProfileService {
     @Override
     public boolean genericIoError() {
       return super.genericIoError();
+    }
+
+    @Override
+    public Throwable getError() {
+      return super.getError();
     }
   }
 }

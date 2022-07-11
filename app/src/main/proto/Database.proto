@@ -52,7 +52,7 @@ message DecryptedGroupV2Context {
 }
 
 message TemporalAuthCredentialResponse {
-    int32 date                   = 1;
+    int64 date                   = 1;
     bytes authCredentialResponse = 2;
 }
 
@@ -118,9 +118,9 @@ message GroupCallUpdateDetails {
              bool   isCallFull           = 5;
 }
 
-message ProfileKeyCredentialColumnData {
+message ExpiringProfileKeyCredentialColumnData {
     bytes profileKey           = 1;
-    bytes profileKeyCredential = 2;
+    bytes expiringProfileKeyCredential = 2;
 }
 
 message DeviceLastResetTime {

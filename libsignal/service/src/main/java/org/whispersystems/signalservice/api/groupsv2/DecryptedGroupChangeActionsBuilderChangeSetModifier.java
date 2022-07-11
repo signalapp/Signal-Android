@@ -143,6 +143,11 @@ final class DecryptedGroupChangeActionsBuilderChangeSetModifier implements Chang
     result.removeDeleteBannedMembers(i);
   }
 
+  @Override
+  public void removePromotePendingPniAciMembers(int i) {
+    result.removePromotePendingPniAciMembers(i);
+  }
+
   private static List<ByteString> removeIndexFromByteStringList(List<ByteString> byteStrings, int i) {
     List<ByteString> modifiedList = new ArrayList<>(byteStrings);
 

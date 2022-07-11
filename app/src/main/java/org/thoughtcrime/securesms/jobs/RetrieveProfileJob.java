@@ -12,13 +12,14 @@ import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.ListUtil;
+import org.signal.core.util.SetUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.util.Pair;
+import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
-import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.badges.Badges;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
@@ -41,7 +42,6 @@ import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.ProfileUtil;
-import org.signal.core.util.SetUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
@@ -50,6 +50,7 @@ import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.services.ProfileService;
+import org.whispersystems.signalservice.api.util.ExpiringProfileCredentialUtil;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 
 import java.io.IOException;
@@ -59,7 +60,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -274,7 +274,7 @@ public class RetrieveProfileJob extends BaseJob {
                                                 } else if (processor.genericIoError()) {
                                                   state.retries.add(recipient.getId());
                                                 } else {
-                                                  Log.w(TAG, "Failed to retrieve profile for " + recipient.getId());
+                                                  Log.w(TAG, "Failed to retrieve profile for " + recipient.getId(), processor.getError());
                                                 }
                                                 return state;
                                               })
@@ -350,10 +350,8 @@ public class RetrieveProfileJob extends BaseJob {
     setUnidentifiedAccessMode(recipient, profile.getUnidentifiedAccess(), profile.isUnrestrictedUnidentifiedAccess());
 
     if (recipientProfileKey != null) {
-      Optional<ProfileKeyCredential> profileKeyCredential = profileAndCredential.getProfileKeyCredential();
-      if (profileKeyCredential.isPresent()) {
-        setProfileKeyCredential(recipient, recipientProfileKey, profileKeyCredential.get());
-      }
+      profileAndCredential.getExpiringProfileKeyCredential()
+                          .ifPresent(profileKeyCredential -> setExpiringProfileKeyCredential(recipient, recipientProfileKey, profileKeyCredential));
     }
   }
 
@@ -371,18 +369,17 @@ public class RetrieveProfileJob extends BaseJob {
     SignalDatabase.recipients().setBadges(recipient.getId(), badges);
   }
 
-  private void setProfileKeyCredential(@NonNull Recipient recipient,
-                                       @NonNull ProfileKey recipientProfileKey,
-                                       @NonNull ProfileKeyCredential credential)
+  private void setExpiringProfileKeyCredential(@NonNull Recipient recipient,
+                                               @NonNull ProfileKey recipientProfileKey,
+                                               @NonNull ExpiringProfileKeyCredential credential)
   {
     RecipientDatabase recipientDatabase = SignalDatabase.recipients();
     recipientDatabase.setProfileKeyCredential(recipient.getId(), recipientProfileKey, credential);
   }
 
   private static SignalServiceProfile.RequestType getRequestType(@NonNull Recipient recipient) {
-    return !recipient.hasProfileKeyCredential()
-           ? SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL
-           : SignalServiceProfile.RequestType.PROFILE;
+    return ExpiringProfileCredentialUtil.isValid(recipient.getExpiringProfileKeyCredential()) ? SignalServiceProfile.RequestType.PROFILE
+                                                                                              : SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL;
   }
 
   private void setIdentityKey(Recipient recipient, String identityKeyValue) {

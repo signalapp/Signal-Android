@@ -72,7 +72,7 @@ public final class GroupsV1MigrationUtil {
       throw new InvalidMigrationStateException();
     }
 
-    switch (GroupManager.v2GroupStatus(context, SignalStore.account().getAci(), gv2MasterKey)) {
+    switch (GroupManager.v2GroupStatus(context, SignalStore.account().requireAci(), gv2MasterKey)) {
       case DOES_NOT_EXIST:
         Log.i(TAG, "Group does not exist on the service.");
 
@@ -186,7 +186,7 @@ public final class GroupsV1MigrationUtil {
 
       Log.i(TAG, "[Local] Applying all changes since V" + decryptedGroup.getRevision());
       try {
-        GroupManager.updateGroupFromServer(context, SignalStore.account().requireAci(), gv1Id.deriveV2MigrationMasterKey(), LATEST, System.currentTimeMillis(), null);
+        GroupManager.updateGroupFromServer(context, gv1Id.deriveV2MigrationMasterKey(), LATEST, System.currentTimeMillis(), null);
       } catch (GroupChangeBusyException | GroupNotAMemberException e) {
         Log.w(TAG, e);
       }

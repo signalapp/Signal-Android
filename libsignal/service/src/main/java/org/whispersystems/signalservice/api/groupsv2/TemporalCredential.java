@@ -8,13 +8,13 @@ public class TemporalCredential {
   private byte[] credential;
 
   @JsonProperty
-  private int redemptionTime;
+  private long redemptionTime;
 
   public byte[] getCredential() {
     return credential;
   }
 
-  public int getRedemptionTime() {
+  public long getRedemptionTime() {
     return redemptionTime;
   }
 }

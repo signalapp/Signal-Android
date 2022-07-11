@@ -6,7 +6,6 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
-import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Util;
@@ -61,18 +60,6 @@ public final class ProfileKeyUtil {
       Log.w(TAG, String.format(Locale.US, "Seen non-null profile key of wrong length %d", decoded.length), e);
       return null;
     }
-  }
-
-  public static @Nullable ProfileKeyCredential profileKeyCredentialOrNull(@Nullable byte[] profileKeyCredential) {
-    if (profileKeyCredential != null) {
-      try {
-        return new ProfileKeyCredential(profileKeyCredential);
-      } catch (InvalidInputException e) {
-        Log.w(TAG, String.format(Locale.US, "Seen non-null profile key credential of wrong length %d", profileKeyCredential.length), e);
-      }
-    }
-
-    return null;
   }
 
   public static @NonNull ProfileKey profileKeyOrThrow(@NonNull byte[] profileKey) {

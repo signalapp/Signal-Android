@@ -122,4 +122,9 @@ final class GroupChangeActionsBuilderChangeSetModifier implements ChangeSetModif
   public void removeDeleteBannedMembers(int i) {
     result.removeDeleteBannedMembers(i);
   }
+
+  @Override
+  public void removePromotePendingPniAciMembers(int i) {
+    result.removePromotePendingPniAciMembers(i);
+  }
 }

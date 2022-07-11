@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 
+import org.signal.core.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
@@ -22,8 +23,8 @@ import org.thoughtcrime.securesms.payments.preferences.model.PayeeParcelable;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ViewUtil;
-import org.signal.core.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
+import org.whispersystems.signalservice.api.util.ExpiringProfileCredentialUtil;
 
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -81,7 +82,7 @@ public class PaymentRecipientSelectionFragment extends LoggingFragment implement
   }
 
   @Override
-  public void onContactDeselected(@NonNull Optional<RecipientId> recipientId, @Nullable String number) { }
+  public void onContactDeselected(@NonNull Optional<RecipientId> recipientId, @Nullable String number) {}
 
   @Override
   public void onSelectionChanged() {
@@ -98,9 +99,9 @@ public class PaymentRecipientSelectionFragment extends LoggingFragment implement
   }
 
   private void createPaymentOrShowWarningDialog(@NonNull Recipient recipient) {
-    if (recipient.hasProfileKeyCredential()) {
+    if (ExpiringProfileCredentialUtil.isValid(recipient.getExpiringProfileKeyCredential())) {
       createPayment(recipient.getId());
-      } else {
+    } else {
       showWarningDialog(recipient.getId());
     }
   }

@@ -169,10 +169,9 @@ public class ApplicationDependencies {
     if (groupsV2Authorization == null) {
       synchronized (LOCK) {
         if (groupsV2Authorization == null) {
-          GroupsV2Authorization.ValueCache aciAuthCache = new GroupsV2AuthorizationMemoryValueCache(SignalStore.groupsV2AciAuthorizationCache());
-          GroupsV2Authorization.ValueCache pniAuthCache = new GroupsV2AuthorizationMemoryValueCache(SignalStore.groupsV2PniAuthorizationCache());
+          GroupsV2Authorization.ValueCache authCache = new GroupsV2AuthorizationMemoryValueCache(SignalStore.groupsV2AciAuthorizationCache());
 
-          groupsV2Authorization = new GroupsV2Authorization(getSignalServiceAccountManager().getGroupsV2Api(), aciAuthCache, pniAuthCache);
+          groupsV2Authorization = new GroupsV2Authorization(getSignalServiceAccountManager().getGroupsV2Api(), authCache);
         }
       }
     }

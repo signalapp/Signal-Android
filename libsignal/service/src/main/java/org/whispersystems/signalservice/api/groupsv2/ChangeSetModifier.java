@@ -44,4 +44,6 @@ public interface ChangeSetModifier {
   void removeAddBannedMembers(int i);
 
   void removeDeleteBannedMembers(int i);
+
+  void removePromotePendingPniAciMembers(int i);
 }

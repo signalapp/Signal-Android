@@ -41,6 +41,7 @@ import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.push.PNI
 import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceIds
 import java.util.UUID
 
 @RunWith(RobolectricTestRunner::class)
@@ -55,6 +56,7 @@ class GroupManagerV2Test_edit {
 
     val selfAci: ACI = ACI.from(UUID.randomUUID())
     val selfPni: PNI = PNI.from(UUID.randomUUID())
+    val serviceIds: ServiceIds = ServiceIds(selfAci, selfPni)
     val otherSid: ServiceId = ServiceId.from(UUID.randomUUID())
     val selfAndOthers: List<DecryptedMember> = listOf(member(selfAci), member(otherSid))
     val others: List<DecryptedMember> = listOf(member(otherSid))
@@ -103,8 +105,7 @@ class GroupManagerV2Test_edit {
       groupsV2Operations,
       groupsV2Authorization,
       groupsV2StateProcessor,
-      selfAci,
-      selfPni,
+      serviceIds,
       groupCandidateHelper,
       sendGroupUpdateHelper
     )
@@ -139,8 +140,7 @@ class GroupManagerV2Test_edit {
         members = listOf(
           member(selfAci, role = Member.Role.ADMINISTRATOR),
           member(otherSid)
-        ),
-        serviceId = selfAci.toString()
+        )
       )
       groupChange(6) {
         source(selfAci)

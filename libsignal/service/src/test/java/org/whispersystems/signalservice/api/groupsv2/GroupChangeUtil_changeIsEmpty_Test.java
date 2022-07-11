@@ -20,7 +20,7 @@ public final class GroupChangeUtil_changeIsEmpty_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(GroupChange.Actions.class);
 
     assertEquals("GroupChangeUtil and its tests need updating to account for new fields on " + GroupChange.Actions.class.getName(),
-                 23, maxFieldFound);
+                 24, maxFieldFound);
   }
 
   @Test
@@ -212,6 +212,15 @@ public final class GroupChangeUtil_changeIsEmpty_Test {
   public void not_empty_with_delete_banned_member_field_23() {
     GroupChange.Actions actions = GroupChange.Actions.newBuilder()
                                                      .addDeleteBannedMembers(GroupChange.Actions.DeleteBannedMemberAction.getDefaultInstance())
+                                                     .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_promote_pending_pni_aci_members_field_24() {
+    GroupChange.Actions actions = GroupChange.Actions.newBuilder()
+                                                     .addPromotePendingPniAciMembers(GroupChange.Actions.PromotePendingPniAciMemberProfileKeyAction.getDefaultInstance())
                                                      .build();
 
     assertFalse(GroupChangeUtil.changeIsEmpty(actions));

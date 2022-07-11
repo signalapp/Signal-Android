@@ -43,7 +43,9 @@ import org.thoughtcrime.securesms.testutil.SystemOutLogger
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api
 import org.whispersystems.signalservice.api.groupsv2.PartialDecryptedGroup
 import org.whispersystems.signalservice.api.push.ACI
+import org.whispersystems.signalservice.api.push.PNI
 import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceIds
 import java.util.UUID
 
 @RunWith(RobolectricTestRunner::class)
@@ -53,6 +55,7 @@ class GroupsV2StateProcessorTest {
   companion object {
     private val masterKey = GroupMasterKey(fromStringCondensed("0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"))
     private val selfAci: ACI = ACI.from(UUID.randomUUID())
+    private val serviceIds: ServiceIds = ServiceIds(selfAci, PNI.from(UUID.randomUUID()))
     private val otherSid: ServiceId = ServiceId.from(UUID.randomUUID())
     private val selfAndOthers: List<DecryptedMember> = listOf(member(selfAci), member(otherSid))
     private val others: List<DecryptedMember> = listOf(member(otherSid))
@@ -80,7 +83,7 @@ class GroupsV2StateProcessorTest {
     groupsV2Authorization = mock(GroupsV2Authorization::class.java)
     profileAndMessageHelper = mock(GroupsV2StateProcessor.ProfileAndMessageHelper::class.java)
 
-    processor = GroupsV2StateProcessor.StateProcessorForGroup(selfAci, ApplicationProvider.getApplicationContext(), groupDatabase, groupsV2API, groupsV2Authorization, masterKey, profileAndMessageHelper)
+    processor = GroupsV2StateProcessor.StateProcessorForGroup(serviceIds, ApplicationProvider.getApplicationContext(), groupDatabase, groupsV2API, groupsV2Authorization, masterKey, profileAndMessageHelper)
   }
 
   @After

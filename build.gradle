@@ -35,8 +35,6 @@ ext {
     MINIMUM_SDK = 19
 
     JAVA_VERSION = JavaVersion.VERSION_1_8
-
-    LIBSIGNAL_CLIENT_VERSION = '0.9.4'
 }
 
 wrapper {

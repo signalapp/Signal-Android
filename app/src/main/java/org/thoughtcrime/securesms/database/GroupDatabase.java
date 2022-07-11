@@ -83,6 +83,9 @@ public class GroupDatabase extends Database {
   private static final String UNMIGRATED_V1_MEMBERS = "former_v1_members";
   private static final String DISTRIBUTION_ID       = "distribution_id";
   private static final String DISPLAY_AS_STORY      = "display_as_story";
+
+  /** Was temporarily used for PNP accept by pni but is no longer needed/updated */
+  @Deprecated
   private static final String AUTH_SERVICE_ID       = "auth_service_id";
 
 
@@ -125,7 +128,7 @@ public class GroupDatabase extends Database {
 
   private static final String[] GROUP_PROJECTION = {
       GROUP_ID, RECIPIENT_ID, TITLE, MEMBERS, UNMIGRATED_V1_MEMBERS, AVATAR_ID, AVATAR_KEY, AVATAR_CONTENT_TYPE, AVATAR_RELAY, AVATAR_DIGEST,
-      TIMESTAMP, ACTIVE, MMS, V2_MASTER_KEY, V2_REVISION, V2_DECRYPTED_GROUP, AUTH_SERVICE_ID
+      TIMESTAMP, ACTIVE, MMS, V2_MASTER_KEY, V2_REVISION, V2_DECRYPTED_GROUP
   };
 
   static final List<String> TYPED_GROUP_PROJECTION = Stream.of(GROUP_PROJECTION).map(columnName -> TABLE_NAME + "." + columnName).toList();
@@ -477,25 +480,23 @@ public class GroupDatabase extends Database {
     if (groupExists(groupId.deriveV2MigrationGroupId())) {
       throw new LegacyGroupInsertException(groupId);
     }
-    create(null, groupId, title, members, avatar, relay, null, null);
+    create(groupId, title, members, avatar, relay, null, null);
   }
 
   public void create(@NonNull GroupId.Mms groupId,
                      @Nullable String title,
                      @NonNull Collection<RecipientId> members)
   {
-    create(null, groupId, Util.isEmpty(title) ? null : title, members, null, null, null, null);
+    create(groupId, Util.isEmpty(title) ? null : title, members, null, null, null, null);
   }
 
-  public GroupId.V2 create(@Nullable ServiceId authServiceId,
-                           @NonNull GroupMasterKey groupMasterKey,
+  public GroupId.V2 create(@NonNull GroupMasterKey groupMasterKey,
                            @NonNull DecryptedGroup groupState)
   {
-    return create(authServiceId, groupMasterKey, groupState, false);
+    return create(groupMasterKey, groupState, false);
   }
 
-  public GroupId.V2 create(@Nullable ServiceId authServiceId,
-                           @NonNull GroupMasterKey groupMasterKey,
+  public GroupId.V2 create(@NonNull GroupMasterKey groupMasterKey,
                            @NonNull DecryptedGroup groupState,
                            boolean force)
   {
@@ -507,7 +508,7 @@ public class GroupDatabase extends Database {
       Log.w(TAG, "Forcing the creation of a group even though we already have a V1 ID!");
     }
 
-    create(authServiceId, groupId, groupState.getTitle(), Collections.emptyList(), null, null, groupMasterKey, groupState);
+    create(groupId, groupState.getTitle(), Collections.emptyList(), null, null, groupMasterKey, groupState);
 
     return groupId;
   }
@@ -537,8 +538,8 @@ public class GroupDatabase extends Database {
 
       if (updated < 1) {
         Log.w(TAG, "No group entry. Creating restore placeholder for " + groupId);
-        create(authServiceId,
-               groupMasterKey,
+        create(
+            groupMasterKey,
                DecryptedGroup.newBuilder()
                              .setRevision(GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION)
                              .build(),
@@ -559,8 +560,7 @@ public class GroupDatabase extends Database {
   /**
    * @param groupMasterKey null for V1, must be non-null for V2 (presence dictates group version).
    */
-  private void create(@Nullable ServiceId authServiceId,
-                      @NonNull GroupId groupId,
+  private void create(@NonNull GroupId groupId,
                       @Nullable String title,
                       @NonNull Collection<RecipientId> memberCollection,
                       @Nullable SignalServiceAttachmentPointer avatar,
@@ -575,7 +575,6 @@ public class GroupDatabase extends Database {
     Collections.sort(members);
 
     ContentValues contentValues = new ContentValues();
-    contentValues.put(AUTH_SERVICE_ID, authServiceId != null ? authServiceId.toString() : null);
     contentValues.put(RECIPIENT_ID, groupRecipientId.serialize());
     contentValues.put(GROUP_ID, groupId.toString());
     contentValues.put(TITLE, title);
@@ -987,13 +986,6 @@ public class GroupDatabase extends Database {
     return result;
   }
 
-  public void setAuthServiceId(@Nullable ServiceId authServiceId, @NonNull GroupId groupId) {
-    ContentValues values = new ContentValues(1);
-    values.put(AUTH_SERVICE_ID, authServiceId == null ? null : authServiceId.toString());
-
-    getWritableDatabase().update(TABLE_NAME, values, GROUP_ID + " = ?", SqlUtil.buildArgs(groupId));
-  }
-
   public static class Reader implements Closeable {
 
     public final Cursor cursor;
@@ -1038,8 +1030,7 @@ public class GroupDatabase extends Database {
                              CursorUtil.requireBlob(cursor, V2_MASTER_KEY),
                              CursorUtil.requireInt(cursor, V2_REVISION),
                              CursorUtil.requireBlob(cursor, V2_DECRYPTED_GROUP),
-                             CursorUtil.getString(cursor, DISTRIBUTION_ID).map(DistributionId::from).orElse(null),
-                             CursorUtil.requireString(cursor, AUTH_SERVICE_ID));
+                             CursorUtil.getString(cursor, DISTRIBUTION_ID).map(DistributionId::from).orElse(null));
     }
 
     @Override
@@ -1065,7 +1056,6 @@ public class GroupDatabase extends Database {
               private final boolean           mms;
     @Nullable private final V2GroupProperties v2GroupProperties;
               private final DistributionId    distributionId;
-    @Nullable private final String            authServiceId;
 
     public GroupRecord(@NonNull GroupId id,
                        @NonNull RecipientId recipientId,
@@ -1082,8 +1072,7 @@ public class GroupDatabase extends Database {
                        @Nullable byte[] groupMasterKeyBytes,
                        int groupRevision,
                        @Nullable byte[] decryptedGroupBytes,
-                       @Nullable DistributionId distributionId,
-                       @Nullable String authServiceId)
+                       @Nullable DistributionId distributionId)
     {
       this.id                = id;
       this.recipientId       = recipientId;
@@ -1096,7 +1085,6 @@ public class GroupDatabase extends Database {
       this.active            = active;
       this.mms               = mms;
       this.distributionId    = distributionId;
-      this.authServiceId     = authServiceId;
 
       V2GroupProperties v2GroupProperties = null;
       if (groupMasterKeyBytes != null && decryptedGroupBytes != null) {
@@ -1284,10 +1272,6 @@ public class GroupDatabase extends Database {
         }
       }
       return false;
-    }
-
-    public @Nullable ServiceId getAuthServiceId() {
-      return ServiceId.parseOrNull(authServiceId);
     }
   }
 

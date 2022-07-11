@@ -4,7 +4,7 @@
 dependencyResolutionManagement {
     versionCatalogs {
         libs {
-            version('libsignal-client', '0.17.0')
+            version('libsignal-client', '0.18.1')
             version('exoplayer', '2.15.0')
             version('androidx-camera', '1.0.0-beta11')
             version('androidx-lifecycle', '2.3.1')

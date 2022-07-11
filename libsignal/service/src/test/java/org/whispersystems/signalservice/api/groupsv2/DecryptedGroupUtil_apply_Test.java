@@ -31,6 +31,7 @@ import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.banne
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.member;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.newProfileKey;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.pendingMember;
+import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.pendingPniAciMember;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.randomProfileKey;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.requestingMember;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.withProfileKey;
@@ -48,7 +49,7 @@ public final class DecryptedGroupUtil_apply_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroupChange.class);
 
     assertEquals("DecryptedGroupUtil and its tests need updating to account for new fields on " + DecryptedGroupChange.class.getName(),
-                 23, maxFieldFound);
+                 24, maxFieldFound);
   }
 
   @Test
@@ -955,6 +956,33 @@ public final class DecryptedGroupUtil_apply_Test {
     assertEquals(DecryptedGroup.newBuilder()
                                .setRevision(11)
                                .addMembers(member1)
+                               .build(),
+                 newGroup);
+  }
+
+  @Test
+  public void promote_pending_member_pni_aci() throws NotAbleToApplyGroupV2ChangeException {
+    ProfileKey             profileKey2  = randomProfileKey();
+    DecryptedMember        member1      = member(UUID.randomUUID());
+    UUID                   pending2Aci  = UUID.randomUUID();
+    UUID                   pending2Pni  = UUID.randomUUID();
+    DecryptedPendingMember pending2     = pendingMember(pending2Pni);
+    DecryptedMember        member2      = pendingPniAciMember(pending2Aci, pending2Pni, profileKey2);
+
+    DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
+                                                                     .setRevision(10)
+                                                                     .addMembers(member1)
+                                                                     .addPendingMembers(pending2)
+                                                                     .build(),
+                                                       DecryptedGroupChange.newBuilder()
+                                                                           .setRevision(11)
+                                                                           .addPromotePendingPniAciMembers(member2)
+                                                                           .build());
+
+    assertEquals(DecryptedGroup.newBuilder()
+                               .setRevision(11)
+                               .addMembers(member1)
+                               .addMembers(member2)
                                .build(),
                  newGroup);
   }

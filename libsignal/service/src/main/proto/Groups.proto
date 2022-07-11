@@ -99,7 +99,9 @@ message GroupChange {
     }
 
     message ModifyMemberProfileKeyAction {
-      bytes presentation = 1;
+      bytes presentation = 1; // Only set when sending to server
+      bytes user_id      = 2; // Only set when receiving from server
+      bytes profile_key  = 3; // Only set when receiving from server
     }
 
     message AddPendingMemberAction {
@@ -111,7 +113,16 @@ message GroupChange {
     }
 
     message PromotePendingMemberAction {
-      bytes presentation = 1;
+      bytes presentation = 1; // Only set when sending to server
+      bytes user_id      = 2; // Only set when receiving from server
+      bytes profile_key  = 3; // Only set when receiving from server
+    }
+
+    message PromotePendingPniAciMemberProfileKeyAction {
+      bytes presentation = 1; // Only set when sending to server
+      bytes userId       = 2; // Only set when receiving from server
+      bytes pni          = 3; // Only set when receiving from server
+      bytes profileKey   = 4; // Only set when receiving from server
     }
 
     message AddRequestingMemberAction {
@@ -194,6 +205,7 @@ message GroupChange {
              ModifyAnnouncementsOnlyAction              modifyAnnouncementsOnly         = 21;
     repeated AddBannedMemberAction                      addBannedMembers                = 22;
     repeated DeleteBannedMemberAction                   deleteBannedMembers             = 23;
+    repeated PromotePendingPniAciMemberProfileKeyAction promotePendingPniAciMembers     = 24;
   }
 
   bytes  actions         = 1;

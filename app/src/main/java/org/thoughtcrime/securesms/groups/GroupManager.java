@@ -177,7 +177,6 @@ public final class GroupManager {
    */
   @WorkerThread
   public static void updateGroupFromServer(@NonNull Context context,
-                                           @NonNull ServiceId authServiceId,
                                            @NonNull GroupMasterKey groupMasterKey,
                                            int revision,
                                            long timestamp,
@@ -185,18 +184,18 @@ public final class GroupManager {
       throws GroupChangeBusyException, IOException, GroupNotAMemberException
   {
     try (GroupManagerV2.GroupUpdater updater = new GroupManagerV2(context).updater(groupMasterKey)) {
-      updater.updateLocalToServerRevision(authServiceId, revision, timestamp, signedGroupChange);
+      updater.updateLocalToServerRevision(revision, timestamp, signedGroupChange);
     }
   }
 
   @WorkerThread
   public static V2GroupServerStatus v2GroupStatus(@NonNull Context context,
-                                                  @NonNull ServiceId authServiceserviceId,
+                                                  @NonNull ServiceId authServiceId,
                                                   @NonNull GroupMasterKey groupMasterKey)
       throws IOException
   {
     try {
-      new GroupManagerV2(context).groupServerQuery(authServiceserviceId, groupMasterKey);
+      new GroupManagerV2(context).groupServerQuery(authServiceId, groupMasterKey);
       return V2GroupServerStatus.FULL_OR_PENDING_MEMBER;
     } catch (GroupNotAMemberException e) {
       return V2GroupServerStatus.NOT_A_MEMBER;

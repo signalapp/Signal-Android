@@ -85,7 +85,6 @@ public final class FeatureFlags {
   private static final String GROUP_CALL_RINGING                = "android.calling.groupCallRinging";
   private static final String DONOR_BADGES                      = "android.donorBadges.6";
   private static final String DONOR_BADGES_DISPLAY              = "android.donorBadges.display.4";
-  private static final String CDSH                              = "android.cdsh";
   private static final String STORIES                           = "android.stories.2";
   private static final String STORIES_TEXT_FUNCTIONS            = "android.stories.text.functions";
   private static final String HARDWARE_AEC_BLOCKLIST_MODELS     = "android.calling.hardwareAecBlockList";
@@ -134,7 +133,6 @@ public final class FeatureFlags {
       SUGGEST_SMS_BLACKLIST,
       MAX_GROUP_CALL_RING_SIZE,
       GROUP_CALL_RINGING,
-      CDSH,
       SENDER_KEY_MAX_AGE,
       DONOR_BADGES,
       DONOR_BADGES_DISPLAY,
@@ -199,7 +197,6 @@ public final class FeatureFlags {
       SENDER_KEY,
       MAX_GROUP_CALL_RING_SIZE,
       GROUP_CALL_RINGING,
-      CDSH,
       SENDER_KEY_MAX_AGE,
       DONOR_BADGES_DISPLAY,
       DONATE_MEGAPHONE,
@@ -468,10 +465,6 @@ public final class FeatureFlags {
    */
   public static boolean displayDonorBadges() {
     return getBoolean(DONOR_BADGES_DISPLAY, true);
-  }
-
-  public static boolean cdsh() {
-    return Environment.IS_STAGING && getBoolean(CDSH, false);
   }
 
   /** A comma-separated list of models that should *not* use hardware AEC for calling. */

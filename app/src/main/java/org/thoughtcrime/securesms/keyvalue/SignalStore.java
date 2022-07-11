@@ -265,10 +265,6 @@ public final class SignalStore {
     return GroupsV2AuthorizationSignalStoreCache.createAciCache(getStore());
   }
 
-  public static @NonNull GroupsV2AuthorizationSignalStoreCache groupsV2PniAuthorizationCache() {
-    return GroupsV2AuthorizationSignalStoreCache.createPniCache(getStore());
-  }
-
   public static @NonNull PreferenceDataStore getPreferenceDataStore() {
     return new SignalPreferenceDataStore(getStore());
   }
