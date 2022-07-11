@@ -1297,7 +1297,7 @@
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
   <string name="ValentinesDayMegaphone_happy_heart_day">Честит ден на 💜!</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
-  <string name="ValentinesDayMegaphone_show_your_affection">Демонстрирайте обич, като станете поддръжник на Signal.</string>
+  <string name="ValentinesDayMegaphone_show_your_affection">Демонстрирайте чувствата си, като станете поддръжник на Signal.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Докоснете тук, за да включите вашето видео</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">За да се обадите на %1$s, Signal се нуждае от достъп до вашата камера</string>
@@ -1414,7 +1414,7 @@
   <string name="RegistrationActivity_rate_limited_to_service">Направихте прекалено много опити за регистриране на този номер. Моля, опитайте отново по-късно.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Неуспешно свързване с услугата. Моля, проверете мрежовата връзка и опитайте отново.</string>
   <string name="RegistrationActivity_non_standard_number_format">Нестандартен формат на номера</string>
-  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Въведеният от вас номер (%1$s) изглежда в нестандартен формат.\n\nДа нямате предвид %2$s?</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Въведеният от вас номер (%1$s) изглежда е в нестандартен формат.\n\nДа нямате предвид %2$s?</string>
   <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android – Формат на телефонен номер</string>
   <string name="RegistrationActivity_call_requested">Поискано повикване</string>
   <plurals name="RegistrationActivity_debug_log_hint">

@@ -273,6 +273,7 @@
   </plurals>
   <!--ConversationFragment-->
   <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">연락처 앱을 찾을 수 없습니다.</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="other">선택한 메시지를 삭제하시겠습니까?</item>
   </plurals>
@@ -1069,6 +1070,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s 님의 메시지를 전달할 수 없습니다.</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s가 자신의 전화번호를 변경하였습니다.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">이 새 기능이 마음에 드시나요? 1회성 기부로 Signal을 지원해 주세요.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s 님이 그룹 통화를 시작했습니다(%2$s).</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 님이 그룹 통화 중입니다(%2$s).</string>
@@ -1977,6 +1979,16 @@
   <string name="HelpFragment__debug_log">디버그 로그:</string>
   <string name="HelpFragment__could_not_upload_logs">로그를 업로드할 수 없습니다.</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">저희가 문제를 해결할 수 있도록 최대한으로 설명해 주세요.</string>
+  <string-array name="HelpFragment__categories_4">
+    <item>\-\- 옵션을 선택하세요 \-\-</item>
+    <item>오류</item>
+    <item>기능 요청</item>
+    <item>질문</item>
+    <item>피드백</item>
+    <item>기타</item>
+    <item>결제(MobileCoin)</item>
+    <item>기부 및 배지</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">이 메시지</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">최근 사용함</string>
@@ -3337,6 +3349,7 @@
   <string name="MultiselectForwardFragment__add_a_message">메시지 추가</string>
   <string name="MultiselectForwardFragment__faster_forwards">빨리감기</string>
   <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">동영상을 30초 클립으로 잘라 여러 스토리로 보냅니다.</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">이제 전달하는 메시지를 바로 보냅니다.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
@@ -3375,7 +3388,7 @@
   <string name="MediaReviewSelectedItem__tap_to_remove">탭하여 제거</string>
   <string name="MediaReviewSelectedItem__tap_to_select">탭하여 선택</string>
   <string name="MediaReviewImagePageFragment__discard">파기</string>
-  <string name="MediaReviewImagePageFragment__discard_changes">변경 내용을 버릴까요?</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">변경 내용을 취소할까요?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">이 사진에 적용한 모든 변경 내용이 손실됩니다.</string>
   <string name="CameraFragment__failed_to_open_camera">카메라를 열지 못했습니다.</string>
   <string name="BadgesOverviewFragment__my_badges">내 배지</string>

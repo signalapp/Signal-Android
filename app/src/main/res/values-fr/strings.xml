@@ -220,10 +220,10 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Cet appareil ne semble pas prendre en charge les actions de numérotation.</string>
   <string name="ConversationActivity_transport_insecure_sms">Texto non sécurisé</string>
   <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
-  <string name="ConversationActivity_transport_insecure_sms_with_sim">SMS non sécurisé (%1$s)</string>
+  <string name="ConversationActivity_transport_insecure_sms_with_sim">Texto non sécurisé (%1$s)</string>
   <string name="ConversationActivity_transport_insecure_mms">Message multimédia non sécurisé</string>
   <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
-  <string name="ConversationActivity_transport_insecure_mms_with_sim">MMS non sécurisé (%1$s)</string>
+  <string name="ConversationActivity_transport_insecure_mms_with_sim">Message multimédia non sécurisé (%1$s)</string>
   <string name="ConversationActivity_transport_signal">Message Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Passons à Signal %1$s</string>
   <string name="ConversationActivity_specify_recipient">Veuillez choisir un contact</string>
@@ -696,7 +696,7 @@
   <string name="AddGroupDetailsFragment__group_creation_failed">Échec de création du groupe.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Réessayez plus tard.</string>
   <!--Displayed when adding group details to an MMS Group-->
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Vous avez sélectionné un contact qui n\'est pas donateur Signal. Les échanges de ce groupe se feront donc par MMS. Le nom personnalisé du groupe, ainsi que les photos, ne seront visibles que par vous.</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Vous avez sélectionné un contact qui ne prend pas en charge les groupes Signal. Les échanges de ce groupe se feront donc par MMS. Le nom personnalisé du groupe, ainsi que les photos, ne seront visibles que par vous.</string>
   <string name="AddGroupDetailsFragment__remove">Supprimer</string>
   <string name="AddGroupDetailsFragment__sms_contact">Contact texto</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Supprimer %1$s de ce groupe ?</string>

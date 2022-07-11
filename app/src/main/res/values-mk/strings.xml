@@ -3968,9 +3968,9 @@
     <item quantity="other">Скриено од %1$d лица</item>
   </plurals>
   <!--Privacy setting title for only sharing your story with specified connections-->
-  <string name="MyStorySettingsFragment__only_share_with">Сподели само со…</string>
+  <string name="MyStorySettingsFragment__only_share_with">Споделете само со…</string>
   <!--Privacy setting description for only sharing your story with specified connections-->
-  <string name="MyStorySettingsFragment__only_share_with_selected_people">Сподели само со избрани лица</string>
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">Споделете само со избрани лица</string>
   <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d личност</item>
@@ -4041,7 +4041,7 @@
   <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
   <string name="ChangeMyStoryMembershipFragment__all_except">Сите освен…</string>
   <!--Title for screen allowing user to only share "My Story" entries with specific people-->
-  <string name="ChangeMyStoryMembershipFragment__only_share_with">Сподели само со…</string>
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">Споделете само со…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Готово</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4201,9 +4201,9 @@
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Поставувања за приказна</string>
   <!--Label for context menu item to remove a group story from contact results-->
-  <string name="ContactSearchItems__remove_story">Отстрани ја приказната</string>
+  <string name="ContactSearchItems__remove_story">Отстранете ја приказната</string>
   <!--Label for context menu item to delete a private story-->
-  <string name="ContactSearchItems__delete_story">Избриши ја приказната</string>
+  <string name="ContactSearchItems__delete_story">Избришете ја приказната</string>
   <!--Dialog title for removing a group story-->
   <string name="ContactSearchMediator__remove_group_story">Дали сакате да ја отстраните приказната на групата?</string>
   <!--Dialog message for removing a group story-->

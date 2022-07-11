@@ -276,6 +276,7 @@
   </plurals>
   <!--ConversationFragment-->
   <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">روابط کی ایپ نہیں ملی۔</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">منتخب شدہ پیغامات حذف کریں؟</item>
     <item quantity="other">منتخب شدہ پیغامات حذف کریں؟</item>
@@ -1128,6 +1129,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s کا پیغام نہیں پہنچایا جاسکا</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s نے اپنا فون نمبر تبدیل کر دیا۔</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">یہ نیا فیچر پسند آیا؟ ایک وقتی عطیے کے ساتھ Signal کی معاونت میں مدد کریں۔</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s نے ایک گروپ کال شروع کی.%2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s گروپ کال میں ہے ·%2$s</string>

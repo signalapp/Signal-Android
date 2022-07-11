@@ -659,7 +659,7 @@
   <string name="AddGroupDetailsFragment__group_creation_failed">ഗ്രൂപ്പ് സൃഷ്ടിക്കൽ പരാജയപ്പെട്ടു.</string>
   <string name="AddGroupDetailsFragment__try_again_later">പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
   <!--Displayed when adding group details to an MMS Group-->
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Signal ഗ്രൂപ്പുകൾ പിന്തുണയ്‌ക്കാത്ത ഒരു കോൺടാക്‌റ്റ് നിങ്ങൾ തിരഞ്ഞെടുത്തു, അതിനാൽ ഈ ഗ്രൂപ്പ് MMS ആയിരിക്കും. കസ്റ്റം MMS ഗ്രൂപ്പ് പേരുകളും ഫോട്ടോകളും നിങ്ങൾക്ക് മാത്രമേ ദൃശ്യമാകൂ.</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Signal ഗ്രൂപ്പുകളെ പിന്തുണയ്‌ക്കാത്ത ഒരു കോൺടാക്‌റ്റ് നിങ്ങൾ തിരഞ്ഞെടുത്തു, അതിനാൽ ഈ ഗ്രൂപ്പ് MMS ആയിരിക്കും. കസ്റ്റം MMS ഗ്രൂപ്പ് പേരുകളും ഫോട്ടോകളും നിങ്ങൾക്ക് മാത്രമേ ദൃശ്യമാകൂ.</string>
   <string name="AddGroupDetailsFragment__remove">നീക്കംചെയ്യൂ</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS കോൺടാക്റ്റ്</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">ഈ ഗ്രൂപ്പിൽ നിന്ന് %1$s-നെ നീക്കംചെയ്യണോ?</string>
@@ -912,7 +912,7 @@
   <string name="NotificationBarManager__incoming_signal_call">ഇൻകമിംഗ് സിഗ്നൽ കോൾ</string>
   <string name="NotificationBarManager__incoming_signal_group_call">Signal ഗ്രൂപ്പ് കോള്‍ വരുന്നു</string>
   <!--Temporary notification shown when starting the calling service-->
-  <string name="NotificationBarManager__starting_signal_call_service">Signal കോൾ സേവനം ആരംഭിക്കൽ</string>
+  <string name="NotificationBarManager__starting_signal_call_service">Signal കോൾ സേവനം ആരംഭിക്കുന്നു</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal കോൾ സേവനം നിർത്തുന്നു</string>
   <string name="NotificationBarManager__decline_call">കോൾ നിരസിക്കുക</string>
   <string name="NotificationBarManager__answer_call">കോൾ സ്വീകരിക്കുക</string>
@@ -1185,7 +1185,7 @@
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
   <plurals name="MessageRequestProfileView_invited">
     <item quantity="one">+%1$d ആളെ ക്ഷണിച്ചു</item>
-    <item quantity="other">+%1$d ആളുകളെ ക്ഷണിച്ചു</item>
+    <item quantity="other">+%1$d പേരെ ക്ഷണിച്ചു</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d അധിക ഗ്രൂപ്പ്</item>
@@ -3632,7 +3632,7 @@
   <!--Gift message view expiry information-->
   <plurals name="GiftMessageView__lasts_for_d_months">
     <item quantity="one">%1$d മാസ കാലാവധിയുണ്ട്</item>
-    <item quantity="other">%1$d മാസ കാലാവധിയുണ്ട്</item>
+    <item quantity="other">%1$d മാസത്തേക്ക് നിലനില്‍ക്കും.</item>
   </plurals>
   <!--Gift badge redeem action label-->
   <string name="GiftMessageView__redeem">റിഡീം ചെയ്യുക</string>
@@ -3893,7 +3893,7 @@
   <!--Message of dialog to confirm deletion of story-->
   <string name="MyStories__this_story_will_be_deleted">നിങ്ങൾക്കും ഇത് ലഭിച്ച എല്ലാവർക്കുമായി ഈ സ്റ്റോറി ഇല്ലാതാക്കപ്പെടും.</string>
   <!--Toast shown when story media cannot be saved-->
-  <string name="MyStories__unable_to_save">സംരക്ഷിക്കാൻ കഴിഞ്ഞില്ല</string>
+  <string name="MyStories__unable_to_save">സംരക്ഷിക്കാനായില്ല</string>
   <!--Displayed at bottom of story viewer when current item has views-->
   <plurals name="StoryViewerFragment__d_views">
     <item quantity="one">%1$d കാഴ്‌ച</item>
@@ -3968,7 +3968,7 @@
   <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d ആൾ</item>
-    <item quantity="other">%1$d ആളുകൾ</item>
+    <item quantity="other">%1$d പേര്‍</item>
   </plurals>
   <!--My story privacy fine print about what the privacy settings are for-->
   <string name="MyStorySettingsFragment__choose_who_can_view_your_story">ആർക്കൊക്കെ നിങ്ങളുടെ സ്റ്റോറി കാണാൻ കഴിയുമെന്ന് തിരഞ്ഞെടുക്കുക. നിങ്ങൾ ഇതിനകം അയച്ചിട്ടുള്ള സ്റ്റോറികളെ മാറ്റങ്ങൾ ബാധിക്കില്ല.</string>
@@ -3983,7 +3983,7 @@
   <!--Signal connections bolded text in the Signal Connections sheet-->
   <string name="SignalConnectionsBottomSheet___signal_connections">Signal കണക്ഷനുകൾ</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">ഇനിപ്പറയുന്ന ഒരു മാർഗ്ഗത്തിലൂടെ വിശ്വസനീയമാണെന്ന് നിങ്ങൾ തിരഞ്ഞെടുത്ത ആളുകളാണ് Signal കണക്ഷനുകൾ:</string>
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">ഇതിലൊന്നിലൂടെ, വിശ്വസനീയരായി നിങ്ങൾ തിരഞ്ഞെടുത്ത ആളുകളാണ് Signal കണക്ഷനുകൾ:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">ഒരു സംഭാഷണം ആരംഭിച്ച്</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4130,7 +4130,7 @@
   <!--Duration and price information-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="one">%1$s · %2$d ദിവസ ദൈർഘ്യം</item>
-    <item quantity="other">%1$s · %2$d ദിവസ ദൈർഘ്യം</item>
+    <item quantity="other">%1$s · %2$d ദിവസം ദൈർഘ്യം</item>
   </plurals>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">ഒരു ഗിഫ്റ്റ് ബാഡ്‍ജ് അയയ്ക്കുക</string>
@@ -4228,7 +4228,7 @@
   <!--Gift expiry expired-->
   <string name="Gifts__expired">കാലഹരണപ്പെട്ടു</string>
   <!--Label indicating that a user can tap to advance to the next post in a story-->
-  <string name="StoryFirstTimeNavigationView__tap_to_advance">അടുത്ത പോസ്റ്റിലേക് പോകാൻ ടാപ്പ് ചെയ്യുക</string>
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">മുന്നോട്ട് പോകാൻ ടാപ്പ് ചെയ്യുക</string>
   <!--Label indicating swipe direction to skip current story-->
   <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">ഒഴിവാക്കാൻ മുകളിലേക്ക് സ്വൈപ്പ് ചെയ്യുക</string>
   <!--Label indicating swipe direction to exit story viewer-->

@@ -3566,7 +3566,7 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="MySupportPreference__processing_transaction">Inachakata muamala…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Imeshindwa kuongeza beji.%1$s</string>
-  <string name="MySupportPreference__please_contact_support">Tafadhali wasiliana na wahudumu wetu.</string>
+  <string name="MySupportPreference__please_contact_support">Tafadhali wasiliana na Msaada.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Beji ya Boost imekwisha muda</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
