@@ -139,6 +139,8 @@ abstract class ExoPlayerPool<T : ExoPlayer>(
     } else {
       Log.d(TAG, "Failed to get an ExoPlayer instance for tag: $tag")
       null
+    }?.apply {
+      configureForVideoPlayback()
     }
   }
 
