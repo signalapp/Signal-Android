@@ -874,7 +874,6 @@ public class PushServiceSocket {
     Single<ServiceResponse<IdentityCheckResponse>> requestSingle = Single.fromCallable(() -> {
       Response response = getServiceConnection(PROFILE_BATCH_CHECK_PATH, "POST", jsonRequestBody(JsonUtil.toJson(request)), Collections.emptyMap(), unidentifiedAccess, false);
       String body = response.body() != null ? response.body().string() : "";
-      Log.e("CODY", "body: " + body);
       return responseMapper.map(response.code(), body, response::header, unidentifiedAccess.isPresent());
     });
 
