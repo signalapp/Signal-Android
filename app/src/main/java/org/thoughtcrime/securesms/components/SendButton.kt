@@ -95,15 +95,10 @@ class SendButton(context: Context, attributeSet: AttributeSet?) : AppCompatImage
 
   fun resetAvailableTransports(isMediaMessage: Boolean) {
     availableSendTypes = MessageSendType.getAllAvailable(context, isMediaMessage)
-
-    if (!availableSendTypes.contains(activeMessageSendType)) {
-      Log.w(TAG, "[resetAvailableTransports] The active send type is no longer available. Unsetting.")
-      setSendType(null)
-    } else {
-      defaultTransportType = MessageSendType.TransportType.SMS
-      defaultSubscriptionId = null
-      onSelectionChanged(newType = selectedSendType, isManualSelection = false)
-    }
+    activeMessageSendType = null
+    defaultTransportType = MessageSendType.TransportType.SMS
+    defaultSubscriptionId = null
+    onSelectionChanged(newType = selectedSendType, isManualSelection = false)
   }
 
   fun disableTransportType(type: MessageSendType.TransportType) {
