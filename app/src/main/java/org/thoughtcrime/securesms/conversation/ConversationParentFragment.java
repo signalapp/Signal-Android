@@ -3178,7 +3178,7 @@ public class ConversationParentFragment extends Fragment
       outgoingMessage = new OutgoingSecureMediaMessage(outgoingMessageCandidate);
       ApplicationDependencies.getTypingStatusSender().onTypingStopped(thread);
     } else {
-      outgoingMessage = outgoingMessageCandidate;
+      outgoingMessage = outgoingMessageCandidate.withExpiry(0);
     }
 
     Permissions.with(this)
@@ -3226,7 +3226,7 @@ public class ConversationParentFragment extends Fragment
       message = new OutgoingEncryptedMessage(recipient.get(), messageBody, expiresIn);
       ApplicationDependencies.getTypingStatusSender().onTypingStopped(thread);
     } else {
-      message = new OutgoingTextMessage(recipient.get(), messageBody, expiresIn, sendType.getSimSubscriptionIdOr(-1));
+      message = new OutgoingTextMessage(recipient.get(), messageBody, 0, sendType.getSimSubscriptionIdOr(-1));
     }
 
     Permissions.with(this)
