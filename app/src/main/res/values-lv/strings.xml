@@ -277,6 +277,7 @@
   </plurals>
   <!--ConversationFragment-->
   <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">Kontakta lietotne nav atrasta.</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="zero">Vai izdzēst izvēlētās ziņas?</item>
     <item quantity="one">Vai izdzēst izvēlēto ziņu?</item>
@@ -1185,6 +1186,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered"> %s ziņu nevarēja piegādāt</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s nomainīja savu telefona numuru.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Jums patīk šī jaunā funkcija? Palīdziet atbalstīt Signal ar vienreizēju ziedojumu.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s sāka grupas zvanu · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ir grupas zvanā · %2$s</string>
@@ -2141,6 +2143,16 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="HelpFragment__debug_log">Atkļūdošanas žurnāls:</string>
   <string name="HelpFragment__could_not_upload_logs">Nebija iespējams augšuplādēt žurnālus</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Lūdzu, esiet pēc iespējas aprakstošāks, lai palīdzētu mums izprast problēmu.</string>
+  <string-array name="HelpFragment__categories_4">
+    <item>\-\- Lūdzu, izvēlieties variantu \-\-</item>
+    <item>Kaut kas nedarbojas</item>
+    <item>Jaunas funkcijas pieprasījums</item>
+    <item>Jautājums</item>
+    <item>Atsauksme</item>
+    <item>Cits</item>
+    <item>Maksājumi (MobileCoin)</item>
+    <item>Ziedojumi un nozīmītes</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Šī ziņa</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nesen lietotie</string>
@@ -3529,7 +3541,9 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="MultiselectForwardFragment__add_a_message">Pievienojiet ziņu</string>
   <string name="MultiselectForwardFragment__faster_forwards">Pārsūtīt ātrāk</string>
   <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">Video tiks sadalīti 30 s garos klipos un nosūtīti kā vairāki stāsti.</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Stāstos nosūtītie video nevar būt garāki par 30 s.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Pārsūtītas ziņas tagad tiek nosūtītas nekavējoties</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="zero">Nosūtīt %1$d ziņas</item>
@@ -3998,6 +4012,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
     <item quantity="one">%1$d atbilde</item>
     <item quantity="other">%1$d atbildes</item>
   </plurals>
+  <!--Used when view receipts are disabled-->
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -4010,6 +4025,8 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="StoryViewerPageFragment__reply_to_group">Atbildēt grupai</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Vēl nav skatījumu</string>
+  <!--Displayed when user has disabled receipts-->
+  <!--Button label displayed when user has disabled receipts-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Vēl nav atbilžu</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4043,12 +4060,23 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Paslēpt stāstu no</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections">Visi Signal draugi</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__share_with_all_connections">Kopīgot ar visiem Signal draugiem</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections_except">Visi Signal draugi, izņemot…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Nerādīt stāstu noteiktām personām</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <plurals name="MyStorySettingsFragment__d_people_excluded">
+    <item quantity="zero">%1$d neiekļautas personas</item>
+    <item quantity="one">%1$d neiekļauta persona</item>
+    <item quantity="other">%1$d neiekļautas personas</item>
+  </plurals>
   <!--Privacy setting title for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with">Kopīgot tikai ar…</string>
   <!--Privacy setting description for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">Kopīgot tikai ar noteiktām personām</string>
   <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="zero">%1$d cilvēki</item>
@@ -4056,6 +4084,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
     <item quantity="other">%1$d cilvēki</item>
   </plurals>
   <!--My story privacy fine print about what the privacy settings are for-->
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Izvēlieties, kas var redzēt jūsu stāstu. Izmaiņas neietekmēs jau nosūtītos stāstus.</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">Atbildes un reakcijas</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -4065,7 +4094,9 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Paslēpt jūsu stāstu no specifiskiem cilvēkiem. Pēc noklusējuma, jūsu stāsts ir kopīgots ar jūsu %1$s</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
+  <string name="SignalConnectionsBottomSheet___signal_connections">Signal draugi</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal draugi ir personas, kurām izvēlējāties uzticēties kādā no šiem veidiem:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">Sarunas sākšanas</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4115,7 +4146,9 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Radās neparedzēta kļūda</string>
   <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <string name="ChangeMyStoryMembershipFragment__all_except">Visi, izņemot…</string>
   <!--Title for screen allowing user to only share "My Story" entries with specific people-->
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">Kopīgot tikai ar…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Darīts</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4276,17 +4309,23 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
     <item quantity="one">Grupas stāsts · %1$d skatītājs</item>
     <item quantity="other">Grupas stāsts · %1$d skatītāji</item>
   </plurals>
+  <!--Label under name for My Story when first sending to my story-->
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Stāsta iestatījumi</string>
   <!--Label for context menu item to remove a group story from contact results-->
+  <string name="ContactSearchItems__remove_story">Noņemt stāstu</string>
   <!--Label for context menu item to delete a private story-->
+  <string name="ContactSearchItems__delete_story">Dzēst stāstu</string>
   <!--Dialog title for removing a group story-->
+  <string name="ContactSearchMediator__remove_group_story">Vai noņemt grupas stāstu?</string>
   <!--Dialog message for removing a group story-->
+  <string name="ContactSearchMediator__this_will_remove">Stāsts tiks noņemts no šī saraksta. Jūs joprojām redzēsiet šīs grupas stāstus.</string>
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">Noņemt</string>
   <!--Dialog title for deleting a private story-->
   <string name="ContactSearchMediator__delete_story">Dzēst stāstu?</string>
   <!--Dialog message for deleting a private story-->
+  <string name="ContactSearchMediator__delete_the_private">Vai dzēst privāto stāstu \"%1$s\"?</string>
   <!--Dialog action item for deleting a private story-->
   <string name="ContactSearchMediator__delete">Dzēst</string>
   <!--Gift expiry days remaining-->
@@ -4310,9 +4349,45 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Beidzies termiņš</string>
   <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">Pieskarieties, lai pārietu uz nākamo stāstu</string>
   <!--Label indicating swipe direction to skip current story-->
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Pavelciet uz augšu, lai izlaistu</string>
   <!--Label indicating swipe direction to exit story viewer-->
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Pavelciet pa labi, lai aizvērtu</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Skaidrs</string>
+  <!--Content description for vertical context menu button in safety number sheet rows-->
+  <!--Sub-line when a user is verified.-->
+  <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__verified">Pārbaudīts</string>
+  <!--Title of safety number changes bottom sheet when showing individual records-->
+  <!--Message of safety number changes bottom sheet when showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <!--Menu action to launch safety number verification screen-->
+  <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Apstiprināt drošības nummuru </string>
+  <!--Menu action to remove user from story-->
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
+  <string name="SafetyNumberBottomSheetFragment__send_anyway">Sūtīt vienalga</string>
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <!--Done button on safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__done">Darīts</string>
+  <!--Title of safety number review fragment-->
+  <!--Message of safety number review fragment-->
+  <!--Section header for 1:1 contacts in review fragment-->
+  <string name="SafetyNumberBucketRowItem__contacts">Kontaktpersonas</string>
+  <!--Context menu label for distribution list headers in review fragment-->
+  <!--Context menu label for 1:1 contacts to remove from send-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove">Noņemt</string>
+  <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Visi Signal draugi</string>
+  <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Visi Signal draugi, izņemot…</string>
+  <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Kopīgot tikai ar…</string>
   <!--EOF-->
 </resources>

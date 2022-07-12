@@ -273,6 +273,7 @@
   </plurals>
   <!--ConversationFragment-->
   <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">Kenalan aplikasi tidak ditemui.</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="other">Padamkan mesej yang dipilih?</item>
   </plurals>
@@ -1070,6 +1071,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Mesej daripada %s tidak dapat disampaikan</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s telah menukar nombor telefon mereka.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Suka ciri baru ini? Bantu menyokong Signal dengan derma sekali.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s telah memulakan panggilan kumpulan · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s berada dalam panggilan kumpulan · %2$s</string>
@@ -1968,6 +1970,16 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="HelpFragment__debug_log">Log Nyahpepijat:</string>
   <string name="HelpFragment__could_not_upload_logs">Tidak dapat memuat naik log</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Tolong terangkan dengan sejelas mungkin untuk bantu kami memahami isu tersebut.</string>
+  <string-array name="HelpFragment__categories_4">
+    <item>\-\- Sila pilih pilihan \-\-</item>
+    <item>Sesuatu Tidak Berfungsi</item>
+    <item>Permintaan Ciri</item>
+    <item>Soalan</item>
+    <item>Maklum Balas</item>
+    <item>Lain-lain</item>
+    <item>Pembayaran (MobileCoin)</item>
+    <item>Derma &amp; Lencana</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Mesej Ini</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Digunakan Baru-baru Ini</string>
@@ -3328,7 +3340,9 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="MultiselectForwardFragment__add_a_message">Tambah mesej</string>
   <string name="MultiselectForwardFragment__faster_forwards">Ciri ajuan lebih pantas</string>
   <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">Video akan dipotong kepada klip 30s dan dihantar sebagai Cerita pelbagai.</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Video yang dihantar ke Cerita tidak boleh panjang daripada 30s.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Mesej dimajukan kini dihantar serta-merta.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="other">Hantar %1$d mesej</item>
@@ -3781,6 +3795,8 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <plurals name="StoryViewerFragment__d_replies">
     <item quantity="other">%1$d balasan</item>
   </plurals>
+  <!--Used when view receipts are disabled-->
+  <string name="StoryViewerPageFragment__views_off">Tontonan dimatikan</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s%2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3793,6 +3809,10 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="StoryViewerPageFragment__reply_to_group">Balas ke kumpulan</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Tiada tontonan lagi</string>
+  <!--Displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Dayakan resit baca untuk lihat siapa yang telah menonton cerita anda.</string>
+  <!--Button label displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__go_to_settings">Pergi ke tetapan</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Tiada balasan lagi</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -3826,17 +3846,27 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Sembunyikan cerita daripada</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections">Semua hubungan Signal</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__share_with_all_connections">Kongsi dengan semua hubungan</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections_except">Semua hubungan Signal kecuali…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Sembunyikan cerita anda daripada orang tertentu</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <plurals name="MyStorySettingsFragment__d_people_excluded">
+    <item quantity="other">%1$d orang dikecualikan</item>
+  </plurals>
   <!--Privacy setting title for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with">Hanya berkongsi dengan…</string>
   <!--Privacy setting description for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">Hanya berkongsi dengan orang tertentu</string>
   <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="other">%1$d orang</item>
   </plurals>
   <!--My story privacy fine print about what the privacy settings are for-->
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Pilih siapa yang boleh lihat cerita anda. Perubahan tidak akan mempengaruhi cerita yang anda telah hantar.</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">Balasan &amp; reaksi</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -3846,7 +3876,9 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Sembunyikan cerita anda daripada orang tertentu. Dengan lalai, cerita anda dikongsikan dengan %1$s anda</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
+  <string name="SignalConnectionsBottomSheet___signal_connections">Hubungan Signal</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Hubungan Signal adalah orang yang anda pilih untuk mempercayai, sama ada dengan:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">Memulakan perbualan</string>
   <!--Signal connections sheet bullet point 2-->
@@ -3896,7 +3928,9 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Ralat yang tidak dijangka berlaku</string>
   <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <string name="ChangeMyStoryMembershipFragment__all_except">Semua kecuali…</string>
   <!--Title for screen allowing user to only share "My Story" entries with specific people-->
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">Hanya berkongsi dengan…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Selesai</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4049,17 +4083,24 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <plurals name="ContactSearchItems__group_story_d_viewers">
     <item quantity="other">Cerita Kumpulan . %1$d penonton</item>
   </plurals>
+  <!--Label under name for My Story when first sending to my story-->
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">Ketik untuk pilih penonton anda</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Tetapan cerita</string>
   <!--Label for context menu item to remove a group story from contact results-->
+  <string name="ContactSearchItems__remove_story">Alih keluar cerita</string>
   <!--Label for context menu item to delete a private story-->
+  <string name="ContactSearchItems__delete_story">Padam cerita</string>
   <!--Dialog title for removing a group story-->
+  <string name="ContactSearchMediator__remove_group_story">Alih keluar cerita kumpulan?</string>
   <!--Dialog message for removing a group story-->
+  <string name="ContactSearchMediator__this_will_remove">Ini akan mengalih keluar cerita daripada senarai ini. Anda masih boleh melihat cerita daripada kumpulan ini.</string>
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">Alih keluar</string>
   <!--Dialog title for deleting a private story-->
   <string name="ContactSearchMediator__delete_story">Padam cerita?</string>
   <!--Dialog message for deleting a private story-->
+  <string name="ContactSearchMediator__delete_the_private">Padam cerita peribadi \"%1$s\"?</string>
   <!--Dialog action item for deleting a private story-->
   <string name="ContactSearchMediator__delete">Padam</string>
   <!--Gift expiry days remaining-->
@@ -4077,9 +4118,60 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Tamat tempoh</string>
   <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">Ketik untuk maju</string>
   <!--Label indicating swipe direction to skip current story-->
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Leret atas untuk langkau</string>
   <!--Label indicating swipe direction to exit story viewer-->
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Leret kanan untuk keluar</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Faham</string>
+  <!--Content description for vertical context menu button in safety number sheet rows-->
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">Buka menu konteks</string>
+  <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s . Disahkan</string>
+  <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__verified">Disahkan</string>
+  <!--Title of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Nombor keselamatan ditukar</string>
+  <!--Message of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">Orang berikut mungkin telah memasang semula Signal atau menukar peranti. Ketik penerima untuk mengesahkan nombor keselamatan baru. Ini adalah pilihan.</string>
+  <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Pemeriksaan nombor keselamatan</string>
+  <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Pemeriksaan nombor keselamatan selesai</string>
+  <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Anda mempunyai %1$d hubungan yang mungkin telah memasang semula Signal atau menukar peranti. Sebelum berkongsi cerita anda dengan mereka, semak nombor keselamatan mereka atau pertimbangkan untuk mengalih keluar mereka daripada cerita anda.</string>
+  <!--Menu action to launch safety number verification screen-->
+  <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Sahkan nombor keselamatan</string>
+  <!--Menu action to remove user from story-->
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">Alih keluar daripada cerita</string>
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
+  <string name="SafetyNumberBottomSheetFragment__send_anyway">Hantar sahaja</string>
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <string name="SafetyNumberBottomSheetFragment__review_connections">Semak hubungan</string>
+  <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Tiada lagi penerima untuk ditunjukkan</string>
+  <!--Done button on safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__done">Selesai</string>
+  <!--Title of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Nombor keselamatan ditukar</string>
+  <!--Message of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d penerima mungkin telah memasang semula Signal atau menukar peranti. Ketik penerima untuk mengesahkan nombor keselamatan. Ini adalah pilihan.</string>
+  <!--Section header for 1:1 contacts in review fragment-->
+  <string name="SafetyNumberBucketRowItem__contacts">Kenalan</string>
+  <!--Context menu label for distribution list headers in review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">Alih keluar semua</string>
+  <!--Context menu label for 1:1 contacts to remove from send-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove">Alih keluar</string>
+  <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Privasi Cerita Saya</string>
+  <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Pilih siapa yang boleh melihat hantaran kepada Cerita Saya. Anda sentiasa boleh membuat perubahan dalam Tetapan.</string>
+  <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Semua hubungan Signal</string>
+  <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Semua hubungan Signal kecuali…</string>
+  <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Hanya berkongsi dengan…</string>
   <!--EOF-->
 </resources>

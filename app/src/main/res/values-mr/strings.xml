@@ -275,6 +275,7 @@
   </plurals>
   <!--ConversationFragment-->
   <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">संपर्क अ‍ॅप आढळले नाही.</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">निवडलेला संदेश हटवायचा?</item>
     <item quantity="other">निवडलेले संदेश हटवायचे?</item>
@@ -1127,6 +1128,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s कडील संदेश डिलिव्हर केला जाऊ शकला नाही</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s यांनी त्यांचा फोन नंबर बदलला.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">हे नवीन वैशिष्ट्य आवडले? एक-वेळ देणगी देऊन सपोर्ट Signal ला मदत करा.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ने गट कॉल चालू केला · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s गट कॉलमध्ये  आहे · %2$s</string>
@@ -2059,6 +2061,16 @@
   <string name="HelpFragment__debug_log">डीबग लॉग:</string>
   <string name="HelpFragment__could_not_upload_logs">लॉग अपलोड करू शकले नाही</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">कृपया जास्तीत जास्त विवरण करून आम्हाला समस्या जाणून घेण्यात मदत करा.</string>
+  <string-array name="HelpFragment__categories_4">
+    <item>\-\- कृपया एक पर्याय निवडा \-\-</item>
+    <item>काहीतरी काम करत नाही</item>
+    <item>वैशिष्ट्य विनंती</item>
+    <item>प्रश्न</item>
+    <item>अभिप्राय</item>
+    <item>इतर</item>
+    <item>पेमेंट्स (मोबाईलकॉईन)</item>
+    <item>देणगी &amp; बॅजेस</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">हा संदेश</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">अलीकडील वापरलेले</string>
@@ -3433,7 +3445,9 @@
   <string name="MultiselectForwardFragment__add_a_message">संदेश जोडा</string>
   <string name="MultiselectForwardFragment__faster_forwards">जलद फॉर्वर्डस्</string>
   <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">व्हिडिओ 30से क्लिप्स मध्ये कापले जातील आणि एकाधिक स्टोरीज म्हणून पाठवले जातील.</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">स्टोरीजला पाठवलेले व्हिडिओ हे 30से पेक्षा मोठे असू नयेत.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">फॉर्वर्ड केलेले संदेश आत्ता विनाविलंब  पाठवले जातील.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">%1$d संदेश पाठवा</item>
@@ -3894,6 +3908,8 @@
     <item quantity="one">%1$d प्रत्त्युत्तर</item>
     <item quantity="other">%1$d प्रत्त्युत्तरे</item>
   </plurals>
+  <!--Used when view receipts are disabled-->
+  <string name="StoryViewerPageFragment__views_off">दृश्ये बंद आहेत</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3906,6 +3922,10 @@
   <string name="StoryViewerPageFragment__reply_to_group">गटाला प्रत्त्युत्तर द्या</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">अद्याप कोणतीही दृश्ये नाहीत</string>
+  <!--Displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">आपल्या स्टोरीज कोणी पाहल्या आहेत ते पाहण्यासाठी रिसिप्टस् वाचा सक्षम करा.</string>
+  <!--Button label displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__go_to_settings">सेटिंग वर जा</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">अद्याप कोणतीही प्रत्युत्तरे नाहीत</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -3939,18 +3959,29 @@
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">यांच्यापासून स्टोरी  लपवा</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections">सर्व Signal कनेक्शन्स</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__share_with_all_connections">सर्व कनेक्शन्ससोबत शेअर करा</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections_except">…सोडून सर्व Signal कनेक्शन्स</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">विशिष्ट लोकांपासून आपली स्टोरी लपवा</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <plurals name="MyStorySettingsFragment__d_people_excluded">
+    <item quantity="one">%1$d व्यक्ती वगळल्या</item>
+    <item quantity="other">%1$d लोक वगळले</item>
+  </plurals>
   <!--Privacy setting title for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with"> फक्त …सोबत शेअर करा</string>
   <!--Privacy setting description for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">निवडलेल्या लोकांसोबत शेअर करा</string>
   <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d व्यक्ति</item>
     <item quantity="other">%1$d लोक</item>
   </plurals>
   <!--My story privacy fine print about what the privacy settings are for-->
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">आपली स्टोरी कोण पाहू शकते ते निवडा. बदलांचा आपण आधीच पाठवलेल्या स्टोरीजवर परिणाम होणार नाही.</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">प्रत्त्युत्तरे &amp; प्रतिक्रिया</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -3960,7 +3991,9 @@
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">विशिष्ट लोकांपासून आपली स्टोरी लपवा. पूर्वनिर्धारितपणे, आपली स्टोरी आपल्या %1$sसह शेअर करा</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
+  <string name="SignalConnectionsBottomSheet___signal_connections">Signal कनेक्शन्स</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal कनेक्शन्स हे आपण विश्वासू म्हणून निवडलेले लोक असतात, एकतर याद्वारे:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">संभाषण सुरू करत आहे</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4010,7 +4043,9 @@
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">अनपेक्षित त्रूटी उद्भवली</string>
   <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <string name="ChangeMyStoryMembershipFragment__all_except">…सोडून सर्व</string>
   <!--Title for screen allowing user to only share "My Story" entries with specific people-->
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">फक्त …सोबत शेअर करा</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">ठीक</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4167,17 +4202,24 @@
     <item quantity="one">गट स्टोरी · %1$d दर्शक</item>
     <item quantity="other">गट स्टोरी· %1$d दर्शक</item>
   </plurals>
+  <!--Label under name for My Story when first sending to my story-->
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">आपले दर्शक निवडण्यासाठी टॅप करा</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">स्टोरी सेटिंग्ज</string>
   <!--Label for context menu item to remove a group story from contact results-->
+  <string name="ContactSearchItems__remove_story">स्टोरी काढून टाका</string>
   <!--Label for context menu item to delete a private story-->
+  <string name="ContactSearchItems__delete_story">स्टोरी हटवा</string>
   <!--Dialog title for removing a group story-->
+  <string name="ContactSearchMediator__remove_group_story">गट स्टोरी काढायची?</string>
   <!--Dialog message for removing a group story-->
+  <string name="ContactSearchMediator__this_will_remove">हे स्टोरीला या यादीतून काढून टाकेल. आपण अद्याप या गटातून स्टोरीज पाहू शकाल.</string>
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">काढा</string>
   <!--Dialog title for deleting a private story-->
   <string name="ContactSearchMediator__delete_story">स्टोरी हटवायची ?</string>
   <!--Dialog message for deleting a private story-->
+  <string name="ContactSearchMediator__delete_the_private">\"%1$s\" खाजगी स्टोरी हटवायची?</string>
   <!--Dialog action item for deleting a private story-->
   <string name="ContactSearchMediator__delete">हटवा</string>
   <!--Gift expiry days remaining-->
@@ -4198,9 +4240,60 @@
   <!--Gift expiry expired-->
   <string name="Gifts__expired">कालबाह्य झालेे</string>
   <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">पुढे जाण्यासाठी टॅप करा</string>
   <!--Label indicating swipe direction to skip current story-->
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">वगळण्यासाठी वर स्वाईप करा</string>
   <!--Label indicating swipe direction to exit story viewer-->
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">बाहेर पडण्यासाठी उजव्या बाजूला स्वाईप करा</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">कळले</string>
+  <!--Content description for vertical context menu button in safety number sheet rows-->
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">संदर्भ मेनू उघडा</string>
+  <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · सत्यापित</string>
+  <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__verified">सत्यापित</string>
+  <!--Title of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">सुरक्षितता नंबर बदल</string>
+  <!--Message of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">खालील लोकांनी Signal ला पुन्हा इन्स्टॉल केले किंवा उपकरणे बदलेली असू शकतात . नवीन सुरक्षितता नंबर ची पुष्टी करण्यास प्राप्तकर्ता वर टॅप करा.</string>
+  <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">सुरक्षितता नंबर तपासणी</string>
+  <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">सुरक्षितता नंबर तपासणी पूर्ण</string>
+  <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">ज्यांनी Signal ला पुन्हा इन्स्टॉल केले आहे किंवा उपकरणे बदललेली आहेत अशी आपणाकडे %1$d कनेक्शन्स आहेत. आपली स्टोरी त्याच्या सोबत शेअर करण्यापूर्वी त्यांचे सुरक्षितता नंबर यांचे पुनरावलोकन करा किंवा त्यांना आपल्या स्टोरी मधून हटवण्याचा विचार करा..</string>
+  <!--Menu action to launch safety number verification screen-->
+  <string name="SafetyNumberBottomSheetFragment__verify_safety_number">सुरक्षितता नंबर सत्यापित करा</string>
+  <!--Menu action to remove user from story-->
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">स्टोरी मधून काढा</string>
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
+  <string name="SafetyNumberBottomSheetFragment__send_anyway">तरीही पाठवा</string>
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <string name="SafetyNumberBottomSheetFragment__review_connections">कनेक्शन्स चे पुनरावलोकन करा</string>
+  <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">दाखवण्यासाठी आणखी प्राप्तकर्ता नाहीत</string>
+  <!--Done button on safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__done">ठीक</string>
+  <!--Title of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">सुरक्षितता नंबर बदल</string>
+  <!--Message of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d प्राप्तकर्त्यांनी Signal ला पुन्हा इन्स्टॉल केलेले किंवा उपकरणे बदलले असू शकते. नवीन सुरक्षितता नंबर ची पुष्टी करण्यासाठी एक प्राप्तकर्ता टॅप करा. हे पर्यायी आहे.</string>
+  <!--Section header for 1:1 contacts in review fragment-->
+  <string name="SafetyNumberBucketRowItem__contacts">संपर्क</string>
+  <!--Context menu label for distribution list headers in review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">सर्व हटवा</string>
+  <!--Context menu label for 1:1 contacts to remove from send-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove">काढा</string>
+  <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">माझी स्टोरी गोपनीयता</string>
+  <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">माझी स्टोरी वरील पोस्टस् कोण पाहू शकते ते निवडा. आपण सेटिंग मध्ये बदल करू शकता.</string>
+  <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">सर्व Signal कनेक्शन्स</string>
+  <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">…सोडून सर्व Signal कनेक्शन्स</string>
+  <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">…सह फक्त शेअर करा</string>
   <!--EOF-->
 </resources>

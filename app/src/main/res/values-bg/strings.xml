@@ -275,6 +275,7 @@
   </plurals>
   <!--ConversationFragment-->
   <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">Приложението за контакти не е намерено.</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Изтриване на избраното съобщение?</item>
     <item quantity="other">Изтриване на избраните съобщения?</item>
@@ -1127,6 +1128,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Съобщение от %s не успя да бъде доставено</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s смени телефонния си номер.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Харесва ли ви тази нова функция? Подкрепете Signal с еднократно дарение.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s започна групово разговор · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s е в групов разговор · %2$s</string>
@@ -1999,7 +2001,7 @@
   <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[За да проверите сигурността на вашето криптиране от край до край с %s, сравнете числата по-горе с тяхното устройство. Можете също така да сканирате кода на другия телефон. <a href="https://signal.org/redirect/safety-numbers">Научете повече.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Натиснете за сканиране</string>
   <string name="verify_display_fragment__successful_match">Успешно съвпадение</string>
-  <string name="verify_display_fragment__failed_to_verify_safety_number">Неуспешно проверка на номера за безопасност</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Неуспешна проверка на номера за безопасност</string>
   <string name="verify_display_fragment__loading">Зареждане…</string>
   <string name="verify_display_fragment__mark_as_verified">Маркирайте, както е потвърдено</string>
   <string name="verify_display_fragment__clear_verification">Изчистване на проверка</string>
@@ -2058,6 +2060,16 @@
   <string name="HelpFragment__debug_log">Дневник за отстраняване на грешки:</string>
   <string name="HelpFragment__could_not_upload_logs">Дневниците не можаха да се качат</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Моля, бъдете възможно най-описателни, за да ни помогнете да разберем проблема.</string>
+  <string-array name="HelpFragment__categories_4">
+    <item>\-\- Моля, изберете опция \-\-</item>
+    <item>Нещо не работи</item>
+    <item>Заявка за функция</item>
+    <item>Въпрос</item>
+    <item>Обратна връзка</item>
+    <item>Друго</item>
+    <item>Плащания (MobileCoin)</item>
+    <item>Дарения и значки</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Това съобщение</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Наскоро използвани</string>
@@ -2299,7 +2311,7 @@
   <string name="PaymentsAllActivityFragment__sent">Изпратен</string>
   <string name="PaymentsAllActivityFragment__received">Получен</string>
   <string name="PaymentsHomeFragment__introducing_payments">Представяме плащания (бета)</string>
-  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Използвайте Сигнал, за да изпращате и получавате MobileCoin – нова дигитална валута с фокус върху поверителността. Активирайте, за да започнете.</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Използвайте Signal, за да изпращате и получавате MobileCoin – нова дигитална валута с фокус върху поверителността. Активирайте, за да започнете.</string>
   <string name="PaymentsHomeFragment__activate_payments">Включете Плащания</string>
   <string name="PaymentsHomeFragment__activating_payments">Включване на плащания…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">Възтановете акаунт за плащания</string>
@@ -2333,7 +2345,7 @@
   <string name="PaymentsHomeFragment__payments_deactivated">Плащанията бяха изключени.</string>
   <string name="PaymentsHomeFragment__payment_failed">Грешка при плащане</string>
   <string name="PaymentsHomeFragment__details">Подробности</string>
-  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Можете да използвате Signal за изпращане и получаване на MobileCoin. Всички плащания се ръководят от Условията за употреба на MobileCoins и Портфейла за MobileCoin. Това е функция в бета версия, така че може да срещнете проблеми и е възможно плащанията или балансите, които евентуално изгубите, да не могат да бъдат възстановени. </string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Можете да използвате Signal за изпращане и получаване на MobileCoin. Всички плащания се ръководят от Условията за употреба на MobileCoins и Портфейла за MobileCoin. Това е функция в бета версия, така че може да срещнете проблеми и плащанията или балансите, които евентуално изгубите, няма да могат да бъдат възстановени.</string>
   <string name="PaymentsHomeFragment__activate">Включи</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Вижте условията на MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">Функцията за плащания в Signal вече не е налична. Пак можете да прехвърляте средства към борса, но вече не можете да изпращате и получавате плащания или да добавяте средства.</string>
@@ -2357,7 +2369,7 @@
   <string name="PaymentsDetailsFragment__s_on_s_at_s">От %1$s на %2$s в %3$s</string>
   <string name="PaymentsDetailsFragment__to">До</string>
   <string name="PaymentsDetailsFragment__from">От</string>
-  <string name="PaymentsDetailsFragment__information">Данните за трансакцията, включително сумата на плащането и часа на трансакцията, са част от Счетоводната книга на MobileCoin.</string>
+  <string name="PaymentsDetailsFragment__information">Данните за трансакцията, включително сумата на плащането и часът на трансакцията, са част от Счетоводната книга на MobileCoin.</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_fee">Такса за почистване на монети</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_information">„Такса за почистване на монети“ се начислява, когато монетите във ваше притежание не могат да се комбинират за завършване на трансакция. Почистването ще ви позволи да продължите да изпращате плащания.</string>
   <string name="PaymentsDetailsFragment__no_details_available">Не са налични други данни за тази трансакция</string>
@@ -2369,10 +2381,10 @@
   <string name="PaymentsTransferFragment__transfer">Прехвърли</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Сканирай QR Код</string>
   <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">До: Сканирайте или въведете адрес на портфейл</string>
-  <string name="PaymentsTransferFragment__you_can_transfer">Можете да прехвърляте MobileCoin, като извършите прехвърляне до адреса на портфейл, предоставен от борсата. Адресът на портфейла е низа от числа и букви, които най-често се намират под QR кода.</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">Можете да прехвърляте MobileCoin, като извършите прехвърляне до адреса на портфейл, предоставен от борсата. Адресът на портфейла е низът от числа и букви и най-често се намира под QR кода.</string>
   <string name="PaymentsTransferFragment__next">Напред</string>
   <string name="PaymentsTransferFragment__invalid_address">Невалиден адрес</string>
-  <string name="PaymentsTransferFragment__check_the_wallet_address">Проверете адреса на портфейл, до който се опитвате да прехвърлите, и опитайте отново.</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">Проверете адреса на портфейла, до който се опитвате да прехвърлите, и опитайте отново.</string>
   <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Не можете да прехвърлите към адреса на своя собствен портфейл в Signal. Въведете адреса на портфейл от акаунта си в поддържана борса.</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">За да сканира QR код, Signal има нужда от достъп до камерата.</string>
   <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal се нуждае от разрешението за „Камера“, за да улови QR код. Отидете в настройките, изберете „Разрешения“ и активирайте „Камера“.</string>
@@ -2400,7 +2412,7 @@
   <string name="CreatePaymentFragment__lt">&lt;</string>
   <string name="CreatePaymentFragment__backspace">Backspace</string>
   <string name="CreatePaymentFragment__add_note">Добавяне на бележка</string>
-  <string name="CreatePaymentFragment__conversions_are_just_estimates">Конверсиите са прогнозни и може да не бъдат точни.</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">Конверсиите са прогнозни и може да не са точни.</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Бележка</string>
   <!--ConfirmPaymentFragment-->
@@ -2420,7 +2432,7 @@
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Този човек не е активирал плащания</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Неуспешна заявка за мрежова такса. За да продължите с това плащане, докоснете „окей“, за да опитате отново.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
-  <string name="CurrencyAmountFormatter_s_at_s">%1$s в %2$s</string>
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s за %2$s</string>
   <!--SetCurrencyFragment-->
   <string name="SetCurrencyFragment__set_currency">Задаване на валута</string>
   <string name="SetCurrencyFragment__all_currencies">Всички валути</string>
@@ -2542,7 +2554,7 @@
   <string name="Insights__title">Статистика</string>
   <string name="InsightsDashboardFragment__title">Статистика</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol автоматично защитава %1$d%% от вашите изходящи съобщения през последните %2$d дни. Разговорите между потребителите на Signal винаги са криптирани от край до край.</string>
-  <string name="InsightsDashboardFragment__spread_the_word">Споделете инфото</string>
+  <string name="InsightsDashboardFragment__spread_the_word">Разпространете мълвата</string>
   <string name="InsightsDashboardFragment__not_enough_data">Няма достатъчно данни</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Процентът ви за статистика се изчислява въз основа на изходящи съобщения през последните %1$d дни, които не са изчезнали или изтрити.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Започнете разговор</string>
@@ -2666,11 +2678,11 @@
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Записах тази парола. Без нея, няма да мога да възстановя архива.</string>
   <string name="registration_activity__restore_backup">Възстановяване на архивно копие</string>
   <string name="registration_activity__transfer_or_restore_account">Прехвърли или възстанови акаунт</string>
-  <string name="registration_activity__transfer_account">Сметка за прехвърляне</string>
+  <string name="registration_activity__transfer_account">Прехвърляне на акаунт</string>
   <string name="registration_activity__skip">Пропусни</string>
   <string name="preferences_chats__chat_backups">Архив на чатовете</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Архивиране на чатове до външно хранилище</string>
-  <string name="preferences_chats__transfer_account">Сметка за прехвърляне</string>
+  <string name="preferences_chats__transfer_account">Прехвърляне на акаунт</string>
   <string name="preferences_chats__transfer_account_to_a_new_android_device">Прехвърляне на акаунта на ново устройство с Android</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Въведете парола за архивното копие</string>
   <string name="RegistrationActivity_restore">Възстановяване</string>
@@ -2803,7 +2815,7 @@
   <string name="DeviceTransferSetup__location_permission">Разрешение за ползване на местоположение</string>
   <string name="DeviceTransferSetup__location_services">Услуги за местоположение</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
-  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">На екрана на WiFi Direct премахнете всички запаметени групи и прекъснете връзката с всички поканени или свързани устройства.</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">На екрана на WiFi Direct, премахнете всички запаметени групи и прекъснете връзката с всички поканени или свързани устройства.</string>
   <string name="DeviceTransferSetup__wifi_direct_screen">Екран на WiFi Direct</string>
   <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Опитайте на двете устройства да изключите Wi-Fi и след това отново да го включите.</string>
   <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Уверете се, че и двете устройства са в режим на прехвърляне.</string>
@@ -2819,7 +2831,7 @@
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Дръжте двете устройства близо едно до друго. Не ги изключвайте и дръжте Signal отворен. Прехвърлянията са криптирани от край до край.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d съобщения досега…</string>
   <!--Filled in with total percentage of messages transferred-->
-  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% съобщения досега…</string>
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% от съобщенията дотук…</string>
   <string name="DeviceTransfer__cancel">Отказ</string>
   <string name="DeviceTransfer__try_again">Опитай отново</string>
   <string name="DeviceTransfer__stop_transfer_question">Прекрати прехвърляне?</string>
@@ -3047,14 +3059,14 @@
   <string name="payment_info_card_adding_funds">Добавяне на средства</string>
   <string name="payment_info_card_you_can_add_funds_for_use_in">Можете да добавите средства за използване в Signal, като изпратите MobileCoin на адреса на портфейла си.</string>
   <string name="payment_info_card_cashing_out">Кешаут</string>
-  <string name="payment_info_card_you_can_cash_out_mobilecoin">Можете да кеширате MobileCoin по всяко време на борса, която поддържа MobileCoin. Просто направете трансфер към акаунта си във въпросната борса.</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">Можете да затворите залог с MobileCoin по всяко време на борса, която поддържа MobileCoin. Просто направете трансфер към акаунта си във въпросната борса.</string>
   <string name="payment_info_card_hide_this_card">Скрий тази карта?</string>
   <string name="payment_info_card_hide">Скрий</string>
   <string name="payment_info_card_record_recovery_phrase">Запишете фразата за възстановяване</string>
   <string name="payment_info_card_your_recovery_phrase_gives_you">Вашата фраза за възстановяване ви дава още един начин да възстановите акаунта си за плащания.</string>
   <string name="payment_info_card_record_your_phrase">Запишете фразата си</string>
   <string name="payment_info_card_update_your_pin">Обновете своя ПИН</string>
-  <string name="payment_info_card_with_a_high_balance">При висок баланс може да е добре да въведете буквено-цифров PIN код, за да защитите акаунта си по-добре.</string>
+  <string name="payment_info_card_with_a_high_balance">При висок баланс е препоръчително да въведете буквено-цифров PIN код, за да защитите акаунта си по-добре.</string>
   <string name="payment_info_card_update_pin">Актуализирайте ПИН</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">Деактивиране на портфейла</string>
@@ -3069,8 +3081,8 @@
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Фраза за възстановяване</string>
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Преглед на фразата за възстановяване</string>
-  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Преглед на фразата за възстановяване</string>
-  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Балансът ви ще се възстанови автоматично при преинсталиране на Signal, ако потвърдите PIN кода на Signal. Можете също така да възстановите баланса си с помощта на фраза за възстановяване, която представлява уникална за вас фраза от %1$d думи. Запишете я и я съхранявайте на сигурно място.</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Въвеждане на фразата за възстановяване</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Балансът ви ще се възстанови автоматично при преинсталиране на Signal, ако потвърдите PIN кода на Signal. Също така можете да възстановите баланса си с помощта на фраза за възстановяване, която представлява уникална за вас фраза от %1$d думи. Запишете я и я съхранявайте на сигурно място.</string>
   <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Вашата фраза за възстановяване е уникална за вас фраза от %1$d думи. Използвайте я, за да възстановите баланса си.</string>
   <string name="PaymentsRecoveryStartFragment__start">Начало</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Въведете ръчно</string>
@@ -3220,7 +3232,7 @@
   <string name="PrivacySettingsFragment__disappearing_messages">Изчезващи съобщения</string>
   <string name="PrivacySettingsFragment__app_security">Сигурност</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Забраняване на автоматично копиране на екрана в списка с често използвани програми и в самата програма.</string>
-  <string name="PrivacySettingsFragment__signal_message_and_calls">Съобщения и повиквания в Signal, повикванията винаги да се предават, и подателят да е запечатан</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Съобщения и повиквания в Signal, повикванията винаги да се предават и запечатан подател</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Таймер по подразбиране за нови чатове</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Настроете таймер за изчезващи съобщения по подразбиране за нови чатове, започнати от вас.</string>
   <!--AdvancedPrivacySettingsFragment-->
@@ -3362,7 +3374,7 @@
   <string name="ConversationSettingsFragment__conversation_muted_forever">Разговорът е заглушен завинаги</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Телефонният номер е копиран в клипборда.</string>
   <string name="ConversationSettingsFragment__phone_number">Телефонен номер</string>
-  <string name="ConversationSettingsFragment__get_badges">Получете значки за профила си, като подкрепяте Signal. Докоснете някоя значка, за да научите повече.</string>
+  <string name="ConversationSettingsFragment__get_badges">Получете значки за профила си, като подкрепите Signal. Докоснете някоя значка, за да научите повече.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Добави членове</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Редактиране на информация за групата</string>
@@ -3432,7 +3444,9 @@
   <string name="MultiselectForwardFragment__add_a_message">Добави съобщение</string>
   <string name="MultiselectForwardFragment__faster_forwards">По-бързи препращания</string>
   <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">Видеоклиповете ще бъдат съкратени до 30-секундни клипове и изпратени като няколко истории.</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Видеоклиповете, изпратени в „Истории“, не могат да бъдат по-дълги от 30 секунди.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Препратените съобщения вече се изпращат незабавно.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">Изпращане на %1$d съобщение</item>
@@ -3456,7 +3470,7 @@
   <string name="MediaReviewFragment__add_a_reply">Добавяне на отговор</string>
   <string name="MediaReviewFragment__send_to">Изпращане до</string>
   <string name="MediaReviewFragment__view_once_message">Съобщение за еднократно гледане</string>
-  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Един или повече елемента бяха твърде големи</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Един или повече елементи бяха твърде големи</string>
   <string name="MediaReviewFragment__one_or_more_items_were_invalid">Един или повече елементи бяха невалидни</string>
   <string name="MediaReviewFragment__too_many_items_selected">Избрани са твърде много елементи</string>
   <string name="ImageEditorHud__cancel">Отказ</string>
@@ -3893,6 +3907,7 @@
     <item quantity="one">%1$d отговор</item>
     <item quantity="other">%1$d отговора</item>
   </plurals>
+  <!--Used when view receipts are disabled-->
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3905,6 +3920,8 @@
   <string name="StoryViewerPageFragment__reply_to_group">Отговор на групата</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Все още няма гледания</string>
+  <!--Displayed when user has disabled receipts-->
+  <!--Button label displayed when user has disabled receipts-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Все още няма отговори</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -3938,18 +3955,29 @@
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Скриване на историята от</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections">Всички връзки в Signal</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__share_with_all_connections">Споделяне с всички връзки</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections_except">Всички връзки в Signal освен…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Скрийте историята си от определени хора</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <plurals name="MyStorySettingsFragment__d_people_excluded">
+    <item quantity="one">%1$d човек е изключен</item>
+    <item quantity="other">%1$d хора са изключени</item>
+  </plurals>
   <!--Privacy setting title for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with">Споделяне само с…</string>
   <!--Privacy setting description for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">Споделяне само с избраните хора</string>
   <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d човек</item>
     <item quantity="other">%1$d души</item>
   </plurals>
   <!--My story privacy fine print about what the privacy settings are for-->
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Изберете кой може да разглежда историята ви. Промените няма да засегнат историите, които вече сте изпратили.</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">Отговори и реакции</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -3959,8 +3987,9 @@
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Скриване на историята ви от конкретни хора. По подразбиране историята ви се споделя с вашите %1$s</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
+  <string name="SignalConnectionsBottomSheet___signal_connections">Signal Връзки</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal Връзки са хора, на които сте посочили, че имате доверие чрез:</string>
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal Връзки са хора, на които сте посочили, че имате доверие, чрез:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">Започване на разговор</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4010,7 +4039,9 @@
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Възникна неочаквана грешка</string>
   <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <string name="ChangeMyStoryMembershipFragment__all_except">Всички освен…</string>
   <!--Title for screen allowing user to only share "My Story" entries with specific people-->
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">Споделяне само с…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Готово</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4167,17 +4198,23 @@
     <item quantity="one">Групова история · %1$d зрител</item>
     <item quantity="other">Групова история · %1$d зрителя</item>
   </plurals>
+  <!--Label under name for My Story when first sending to my story-->
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Настройки за истории</string>
   <!--Label for context menu item to remove a group story from contact results-->
+  <string name="ContactSearchItems__remove_story">Премахване на историята</string>
   <!--Label for context menu item to delete a private story-->
+  <string name="ContactSearchItems__delete_story">Изтриване на историята</string>
   <!--Dialog title for removing a group story-->
+  <string name="ContactSearchMediator__remove_group_story">Премахване на груповата история?</string>
   <!--Dialog message for removing a group story-->
+  <string name="ContactSearchMediator__this_will_remove">Това ще премахне историята от този списък. Пак ще можете да преглеждате историите от тази група.</string>
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">Премахни</string>
   <!--Dialog title for deleting a private story-->
   <string name="ContactSearchMediator__delete_story">Изтриване на историята?</string>
   <!--Dialog message for deleting a private story-->
+  <string name="ContactSearchMediator__delete_the_private">Изтриване на частната история „%1$s“?</string>
   <!--Dialog action item for deleting a private story-->
   <string name="ContactSearchMediator__delete">Изтриване</string>
   <!--Gift expiry days remaining-->
@@ -4198,9 +4235,45 @@
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Изтекло</string>
   <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">Докоснете за придвижване напред</string>
   <!--Label indicating swipe direction to skip current story-->
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Плъзнете нагоре за пропускане</string>
   <!--Label indicating swipe direction to exit story viewer-->
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Плъзнете надясно за изход</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Ясно</string>
+  <!--Content description for vertical context menu button in safety number sheet rows-->
+  <!--Sub-line when a user is verified.-->
+  <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__verified">Потвърдено</string>
+  <!--Title of safety number changes bottom sheet when showing individual records-->
+  <!--Message of safety number changes bottom sheet when showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <!--Menu action to launch safety number verification screen-->
+  <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Проверка на числата за сигурност</string>
+  <!--Menu action to remove user from story-->
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
+  <string name="SafetyNumberBottomSheetFragment__send_anyway">Изпрати все пак</string>
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <!--Done button on safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__done">Готово</string>
+  <!--Title of safety number review fragment-->
+  <!--Message of safety number review fragment-->
+  <!--Section header for 1:1 contacts in review fragment-->
+  <string name="SafetyNumberBucketRowItem__contacts">Контакти</string>
+  <!--Context menu label for distribution list headers in review fragment-->
+  <!--Context menu label for 1:1 contacts to remove from send-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove">Премахни</string>
+  <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Всички връзки в Signal</string>
+  <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Всички връзки в Signal освен…</string>
+  <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Споделяне само с…</string>
   <!--EOF-->
 </resources>

@@ -273,6 +273,7 @@
   </plurals>
   <!--ConversationFragment-->
   <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">找不到联系人应用。</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="other">删除已选消息？</item>
   </plurals>
@@ -1069,6 +1070,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">来自 %s 消息无法送到</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s已更改电话号码</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">喜欢这个新功能吗？请通过单次捐款支持 Signal 吧。</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s发起了群组通话  · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 在群通话中 · %2$s</string>
@@ -1978,6 +1980,16 @@
   <string name="HelpFragment__debug_log">调试日志：</string>
   <string name="HelpFragment__could_not_upload_logs">无法上传日志</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">请尽可能描述一下，以帮助我们理解该问题。</string>
+  <string-array name="HelpFragment__categories_4">
+    <item>\-\- 请选择一个选项 \-\-</item>
+    <item>系统异常</item>
+    <item>功能请求</item>
+    <item>问题</item>
+    <item>反馈</item>
+    <item>其他</item>
+    <item>付款（MobileCoin）</item>
+    <item>捐款和徽章</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">此消息</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使用</string>
@@ -3338,7 +3350,9 @@
   <string name="MultiselectForwardFragment__add_a_message">添加消息</string>
   <string name="MultiselectForwardFragment__faster_forwards">快捷转发</string>
   <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">视频将会被剪成 30 秒的片段并以多个动态发送。</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">发送到动态的视频时长不能超过 30 秒。</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">转发的消息现在将立即发送。</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="other">发送 %1$d 条消息</item>
@@ -3791,6 +3805,7 @@
   <plurals name="StoryViewerFragment__d_replies">
     <item quantity="other">%1$d 个回复</item>
   </plurals>
+  <!--Used when view receipts are disabled-->
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3803,6 +3818,8 @@
   <string name="StoryViewerPageFragment__reply_to_group">回复群组</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">未有浏览</string>
+  <!--Displayed when user has disabled receipts-->
+  <!--Button label displayed when user has disabled receipts-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">未有回复</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -3836,17 +3853,27 @@
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">隐藏动态的对象</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections">所有 Signal 联系人</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__share_with_all_connections">分享给所有联系人</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections_except">所有 Signal 联系人，除了……</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">对特定用户隐藏您的动态</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <plurals name="MyStorySettingsFragment__d_people_excluded">
+    <item quantity="other">已排除 %1$d 人</item>
+  </plurals>
   <!--Privacy setting title for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with">只分享给……</string>
   <!--Privacy setting description for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">只分享给选定的人</string>
   <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="other">%1$d 人</item>
   </plurals>
   <!--My story privacy fine print about what the privacy settings are for-->
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">选择谁可以查看您的动态。此更改不会影响您已发送的动态。</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">回复和反应</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -3856,8 +3883,9 @@
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">对特定用户隐藏您的动态。您的动态默认与%1$s分享</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
+  <string name="SignalConnectionsBottomSheet___signal_connections">Signal 联系人</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal 熟人是您选择信任的人，选择方式有：</string>
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal 联系人是您选择信任的人，选择方式有：</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">开启对话</string>
   <!--Signal connections sheet bullet point 2-->
@@ -3907,7 +3935,9 @@
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">出现意外错误</string>
   <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <string name="ChangeMyStoryMembershipFragment__all_except">所有人，除了……</string>
   <!--Title for screen allowing user to only share "My Story" entries with specific people-->
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">只分享给……</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">完成</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4060,17 +4090,23 @@
   <plurals name="ContactSearchItems__group_story_d_viewers">
     <item quantity="other">群组动态 · %1$d 位访客</item>
   </plurals>
+  <!--Label under name for My Story when first sending to my story-->
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">动态设置</string>
   <!--Label for context menu item to remove a group story from contact results-->
+  <string name="ContactSearchItems__remove_story">移除动态</string>
   <!--Label for context menu item to delete a private story-->
+  <string name="ContactSearchItems__delete_story">删除动态</string>
   <!--Dialog title for removing a group story-->
+  <string name="ContactSearchMediator__remove_group_story">要移除群组动态吗？</string>
   <!--Dialog message for removing a group story-->
+  <string name="ContactSearchMediator__this_will_remove">此操作将会从清单中移除此动态。您仍然可以查看群组的动态。</string>
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">移除</string>
   <!--Dialog title for deleting a private story-->
   <string name="ContactSearchMediator__delete_story">要删除动态吗？</string>
   <!--Dialog message for deleting a private story-->
+  <string name="ContactSearchMediator__delete_the_private">要删除私密动态“%1$s”吗？</string>
   <!--Dialog action item for deleting a private story-->
   <string name="ContactSearchMediator__delete">删除</string>
   <!--Gift expiry days remaining-->
@@ -4088,9 +4124,45 @@
   <!--Gift expiry expired-->
   <string name="Gifts__expired">已过期</string>
   <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">点击前进</string>
   <!--Label indicating swipe direction to skip current story-->
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">上滑跳过</string>
   <!--Label indicating swipe direction to exit story viewer-->
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">右滑退出</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">知道了</string>
+  <!--Content description for vertical context menu button in safety number sheet rows-->
+  <!--Sub-line when a user is verified.-->
+  <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__verified">已验证</string>
+  <!--Title of safety number changes bottom sheet when showing individual records-->
+  <!--Message of safety number changes bottom sheet when showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <!--Menu action to launch safety number verification screen-->
+  <string name="SafetyNumberBottomSheetFragment__verify_safety_number">验证安全代码</string>
+  <!--Menu action to remove user from story-->
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
+  <string name="SafetyNumberBottomSheetFragment__send_anyway">仍要发送</string>
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <!--Done button on safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__done">完成</string>
+  <!--Title of safety number review fragment-->
+  <!--Message of safety number review fragment-->
+  <!--Section header for 1:1 contacts in review fragment-->
+  <string name="SafetyNumberBucketRowItem__contacts">联系人</string>
+  <!--Context menu label for distribution list headers in review fragment-->
+  <!--Context menu label for 1:1 contacts to remove from send-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove">移除</string>
+  <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">所有 Signal 熟人</string>
+  <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">所有 Signal 熟人，除了……</string>
+  <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">只分享给……</string>
   <!--EOF-->
 </resources>

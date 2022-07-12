@@ -277,6 +277,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   </plurals>
   <!--ConversationFragment-->
   <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">Contacten-app niet gevonden.</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Geselecteerd bericht wissen?</item>
     <item quantity="other">Geselecteerde berichten wissen?</item>
@@ -1129,6 +1130,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Een bericht van %s kan niet worden afgeleverd</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s heeft zijn of haar telefoonnummer gewijzigd.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Vind je deze nieuwe functie leuk? Steun Signal met een eenmalige donatie.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s heeft een groepsoproep gestart · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s is in deze groepsoproep aanwezig · %2$s</string>
@@ -2067,6 +2069,16 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="HelpFragment__debug_log">Foutopsporingslog:</string>
   <string name="HelpFragment__could_not_upload_logs">Logs uploaden is mislukt</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Probeer zo beschrijvend mogelijk te zijn om ons te helpen het probleem te begrijpen.</string>
+  <string-array name="HelpFragment__categories_4">
+    <item>\-\- Selecteer een optie \-\-</item>
+    <item>Er werkt iets niet goed</item>
+    <item>Verzoek voor een functie</item>
+    <item>Vraag</item>
+    <item>Feedback</item>
+    <item>Anders</item>
+    <item>Betalingen (MobileCoin)</item>
+    <item>Donaties &amp; badges</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Dit bericht</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recentelijk gebruikt</string>
@@ -3441,7 +3453,9 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="MultiselectForwardFragment__add_a_message">Berichttekst toevoegen</string>
   <string name="MultiselectForwardFragment__faster_forwards">Sneller doorsturen</string>
   <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">Video\'s worden bijgesneden tot clips van 30 seconden en als meerdere Verhalen verstuurd.</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Video\'s die naar Verhalen gestuurd worden kunnen niet langer zijn dan 30 seconden.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Doorgestuurde berichten worden vanaf nu onmiddellijk verzonden.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">%1$d bericht verzenden</item>
@@ -3902,6 +3916,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
     <item quantity="one">%1$d reactie</item>
     <item quantity="other">%1$d reacties</item>
   </plurals>
+  <!--Used when view receipts are disabled-->
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3914,6 +3929,8 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="StoryViewerPageFragment__reply_to_group">Naar de groep reageren</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Nog door niemand gezien</string>
+  <!--Displayed when user has disabled receipts-->
+  <!--Button label displayed when user has disabled receipts-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Nog geen reacties</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -3947,18 +3964,29 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Verberg dit verhaal van</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections">Alle contacten op Signal</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__share_with_all_connections">Deel met alle contacten</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections_except">Alle contacten op Signal behalve…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Verberg je verhaal voor specifieke mensen</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <plurals name="MyStorySettingsFragment__d_people_excluded">
+    <item quantity="one">Voor %1$d persoon verborgen</item>
+    <item quantity="other">Voor %1$d personen verborgen</item>
+  </plurals>
   <!--Privacy setting title for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with">Deel alleen met…</string>
   <!--Privacy setting description for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">Deel alleen met specifieke personen</string>
   <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d persoon</item>
     <item quantity="other">%1$d personen</item>
   </plurals>
   <!--My story privacy fine print about what the privacy settings are for-->
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Kies wie je verhaal kan zien. Wijzigingen hebben geen invloed op verhalen die je al verstuurd hebt.</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">Reacties</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -3968,7 +3996,9 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Met deze optie kun je je verhaal voor specifieke personen verbergen. Je verhaal is standaard zichtbaar voor al je %1$s</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
+  <string name="SignalConnectionsBottomSheet___signal_connections">Signal-contacten</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal-contacten zijn mensen die je vertrouwt, hetzij door:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">Zelf een één-op-één-gesprek met hem of haar te beginnen</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4018,7 +4048,9 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Er is een onverwachte fout opgetreden</string>
   <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <string name="ChangeMyStoryMembershipFragment__all_except">Iedereen behalve…</string>
   <!--Title for screen allowing user to only share "My Story" entries with specific people-->
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">Deel alleen met…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Klaar</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4171,17 +4203,23 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
     <item quantity="one">Groepsverhaal · door %1$d persoon gezien</item>
     <item quantity="other">Groepsverhaal · door %1$d personen gezien</item>
   </plurals>
+  <!--Label under name for My Story when first sending to my story-->
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Verhaalinstellingen</string>
   <!--Label for context menu item to remove a group story from contact results-->
+  <string name="ContactSearchItems__remove_story">Verhaal verwijderen</string>
   <!--Label for context menu item to delete a private story-->
+  <string name="ContactSearchItems__delete_story">Verhaal verwijderen</string>
   <!--Dialog title for removing a group story-->
+  <string name="ContactSearchMediator__remove_group_story">Verhaal verwijderen?</string>
   <!--Dialog message for removing a group story-->
+  <string name="ContactSearchMediator__this_will_remove">Dit verwijdert het verhaal uit deze lijst. Je kunt nog steeds verhalen uit deze groep bekijken.</string>
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">Stickerpakket verwijderen</string>
   <!--Dialog title for deleting a private story-->
   <string name="ContactSearchMediator__delete_story">Verhaal wissen?</string>
   <!--Dialog message for deleting a private story-->
+  <string name="ContactSearchMediator__delete_the_private">Het privéverhaal \"%1$s\" verwijderen?</string>
   <!--Dialog action item for deleting a private story-->
   <string name="ContactSearchMediator__delete">Wissen</string>
   <!--Gift expiry days remaining-->
@@ -4202,9 +4240,45 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Verlopen</string>
   <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">Tik om door te gaan</string>
   <!--Label indicating swipe direction to skip current story-->
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Swipe omhoog om over te slaan</string>
   <!--Label indicating swipe direction to exit story viewer-->
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Swipe naar rechts om terug te gaan</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Begrepen</string>
+  <!--Content description for vertical context menu button in safety number sheet rows-->
+  <!--Sub-line when a user is verified.-->
+  <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__verified">Geverifieerd</string>
+  <!--Title of safety number changes bottom sheet when showing individual records-->
+  <!--Message of safety number changes bottom sheet when showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <!--Menu action to launch safety number verification screen-->
+  <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Veiligheidsnummer verifiëren</string>
+  <!--Menu action to remove user from story-->
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
+  <string name="SafetyNumberBottomSheetFragment__send_anyway">Toch verzenden</string>
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <!--Done button on safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__done">Klaar</string>
+  <!--Title of safety number review fragment-->
+  <!--Message of safety number review fragment-->
+  <!--Section header for 1:1 contacts in review fragment-->
+  <string name="SafetyNumberBucketRowItem__contacts">Contactpersonen</string>
+  <!--Context menu label for distribution list headers in review fragment-->
+  <!--Context menu label for 1:1 contacts to remove from send-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove">Verwijderen</string>
+  <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Alle contacten op Signal</string>
+  <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Alle contacten op Signal behalve…</string>
+  <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Deel alleen met…</string>
   <!--EOF-->
 </resources>

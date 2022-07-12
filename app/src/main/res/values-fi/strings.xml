@@ -3905,6 +3905,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
     <item quantity="one">%1$d vastausta</item>
     <item quantity="other">%1$d vastausta</item>
   </plurals>
+  <!--Used when view receipts are disabled-->
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3917,6 +3918,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="StoryViewerPageFragment__reply_to_group">Vastaa ryhmään</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Ei katselukertoja vielä</string>
+  <!--Displayed when user has disabled receipts-->
+  <!--Button label displayed when user has disabled receipts-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Ei vastauksia vielä</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -3950,11 +3953,11 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Piilota tarina näiltä</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections">Kaikki Signalin yhteystiedot</string>
+  <string name="MyStorySettingsFragment__all_signal_connections">Kaikki Signal-yhteystiedot</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Jaa kaikille yhteystiedoille</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">Kaikki Signalin yhteystiedot paitsi…</string>
+  <string name="MyStorySettingsFragment__all_signal_connections_except">Kaikki Signal-yhteystiedot paitsi…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Piilota tarina tietyiltä henkilöiltä</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -3982,8 +3985,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Piilota tarinasi tietyiltä ihmisiltä. Vakioasetuksena on, että tarinasi jaetaan %1$s</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
-  <string name="SignalConnectionsBottomSheet___signal_connections">Signalin yhteystiedot</string>
+  <string name="SignalConnectionsBottomSheet___signal_connections">Signal-yhteystiedot</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal-yhteystiedot ovat henkilöitä, jotka olet valinnut luotetuiksi jollakin seuraavista tavoista:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">Aloittamalla keskustelun</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4192,6 +4196,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
     <item quantity="one">Ryhmätarina · %1$d katsoja</item>
     <item quantity="other">Ryhmätarina · %1$d katsojaa</item>
   </plurals>
+  <!--Label under name for My Story when first sending to my story-->
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Tarinan asetukset</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4201,7 +4206,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Dialog title for removing a group story-->
   <string name="ContactSearchMediator__remove_group_story">Poistetaanko ryhmätarina?</string>
   <!--Dialog message for removing a group story-->
-  <string name="ContactSearchMediator__this_will_remove">Tämä poistaa tarinan tästä luettelosta. Voit edelleen katsella tämän ryhmän tarinoita.</string>
+  <string name="ContactSearchMediator__this_will_remove">Tämä poistaa tarinan tästä luettelosta. Voit edelleen nähdä tämän ryhmän tarinoita.</string>
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">Poista</string>
   <!--Dialog title for deleting a private story-->
@@ -4235,5 +4240,38 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Poistu sipaisemalla oikealle</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Selvä</string>
+  <!--Content description for vertical context menu button in safety number sheet rows-->
+  <!--Sub-line when a user is verified.-->
+  <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__verified">Vahvistettu</string>
+  <!--Title of safety number changes bottom sheet when showing individual records-->
+  <!--Message of safety number changes bottom sheet when showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <!--Menu action to launch safety number verification screen-->
+  <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Varmenna turvanumero</string>
+  <!--Menu action to remove user from story-->
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
+  <string name="SafetyNumberBottomSheetFragment__send_anyway">Lähetä silti</string>
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <!--Done button on safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__done">Valmis</string>
+  <!--Title of safety number review fragment-->
+  <!--Message of safety number review fragment-->
+  <!--Section header for 1:1 contacts in review fragment-->
+  <string name="SafetyNumberBucketRowItem__contacts">Yhteystiedot</string>
+  <!--Context menu label for distribution list headers in review fragment-->
+  <!--Context menu label for 1:1 contacts to remove from send-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove">Poista</string>
+  <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Kaikki Signalin yhteystiedot</string>
+  <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Kaikki Signalin yhteystiedot paitsi…</string>
+  <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Jaa vain seuraaville…</string>
   <!--EOF-->
 </resources>

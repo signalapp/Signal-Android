@@ -350,7 +350,7 @@
     <item quantity="one">Söhbət arxivləşdirildi</item>
     <item quantity="other">%d danışıq arxivləndi</item>
   </plurals>
-  <string name="ConversationListFragment_undo">Geri al</string>
+  <string name="ConversationListFragment_undo">Geri qaytar</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Söhbət gələnlər qutusuna köçürüldü</item>
     <item quantity="other">%d danışıq gələn qutusuna köçürüldü</item>
@@ -905,7 +905,7 @@
   <string name="Megaphones_appearance">Görünüş</string>
   <string name="Megaphones_add_photo">Foto əlavə et</string>
   <!--Title of a bottom sheet to render messages that all quote a specific message-->
-  <string name="MessageQuotesBottomSheet_replies">Cavab</string>
+  <string name="MessageQuotesBottomSheet_replies">Cavablar</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal zəngi davam edir</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal zəngi edilir</string>
@@ -3593,7 +3593,7 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal-ı istifadə etməyə davam edə bilərsiniz, ancaq tətbiqi dəstəkləmək və nişanınızı təkrar aktiv etmək üçün abunəliyi indi yeniləyin.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Abunəliyi yenilə</string>
   <!--Button label to send user to Google Pay website-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Google Play-ə get</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Google Play-ə keç</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Abunəlik ödənişi emal edilə bilmir</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Signal Dəstəkçi ödənişinizi almaqda çətinlik çəkirik. Ödəniş metodunuzun güncəl olduğuna əmin olun. Əgər deyilsə, Google Play-də yeniləyin. Signal, bir neçə gün sonra ödənişi yenidən emal etməyə çalışacaq.</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Bunu təkrar göstərmə</string>
@@ -3911,6 +3911,7 @@
     <item quantity="one">%1$d cavab</item>
     <item quantity="other">%1$d cavab</item>
   </plurals>
+  <!--Used when view receipts are disabled-->
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3923,6 +3924,8 @@
   <string name="StoryViewerPageFragment__reply_to_group">Qrupa cavab ver</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Hələ ki, baxış yoxdur</string>
+  <!--Displayed when user has disabled receipts-->
+  <!--Button label displayed when user has disabled receipts-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Hələ ki, cavab yoxdur</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -3962,7 +3965,7 @@
   <!--Privacy setting title for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__all_signal_connections_except">Aşağıdakılar xaricində bütün Signal bağlantıları…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Hekayənizi müəyyən insanlardan gizlədin</string>
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Hekayənizi bəzi insanlardan gizlədin</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
   <plurals name="MyStorySettingsFragment__d_people_excluded">
     <item quantity="one">%1$d nəfər istisna olmaqla</item>
@@ -4199,6 +4202,7 @@
     <item quantity="one">Qrup hekayəsi · %1$d baxış</item>
     <item quantity="other">Qrup hekayəsi · %1$d baxış</item>
   </plurals>
+  <!--Label under name for My Story when first sending to my story-->
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Hekayə tənzimləmələri</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4208,7 +4212,7 @@
   <!--Dialog title for removing a group story-->
   <string name="ContactSearchMediator__remove_group_story">Qrup hekayəsi silinsin?</string>
   <!--Dialog message for removing a group story-->
-  <string name="ContactSearchMediator__this_will_remove">Bu addım, hekayəni həmin siyahıdan çıxaracaq. Siz hələ də bu qrupdan gələn hekayələrə baxa biləcəksiniz.</string>
+  <string name="ContactSearchMediator__this_will_remove">Bu addım hekayəni həmin siyahıdan çıxaracaq. Siz hələ də bu qrupdan gələn hekayələrə baxa biləcəksiniz.</string>
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">Çıxart</string>
   <!--Dialog title for deleting a private story-->
@@ -4242,5 +4246,38 @@
   <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Çıxmaq üçün sağa çəkin</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Anladım</string>
+  <!--Content description for vertical context menu button in safety number sheet rows-->
+  <!--Sub-line when a user is verified.-->
+  <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__verified">Təsdiqləndi</string>
+  <!--Title of safety number changes bottom sheet when showing individual records-->
+  <!--Message of safety number changes bottom sheet when showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <!--Menu action to launch safety number verification screen-->
+  <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Güvənlik nömrəsini təsdiqlə</string>
+  <!--Menu action to remove user from story-->
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
+  <string name="SafetyNumberBottomSheetFragment__send_anyway">Yenə də göndər</string>
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <!--Done button on safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__done">Bitdi</string>
+  <!--Title of safety number review fragment-->
+  <!--Message of safety number review fragment-->
+  <!--Section header for 1:1 contacts in review fragment-->
+  <string name="SafetyNumberBucketRowItem__contacts">Əlaqələr</string>
+  <!--Context menu label for distribution list headers in review fragment-->
+  <!--Context menu label for 1:1 contacts to remove from send-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove">Çıxart</string>
+  <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Bütün Signal bağlantıları</string>
+  <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Aşağıdakılar xaricində bütün Signal bağlantıları…</string>
+  <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Yalnız bunlarla paylaşın…</string>
   <!--EOF-->
 </resources>

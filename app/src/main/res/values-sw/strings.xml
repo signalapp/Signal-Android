@@ -775,7 +775,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Imekumbana na hitilafu ya mtandao.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Kiungo hiki cha kikundi hakifanyi kazi</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
-  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Huwezi jiunga kwenye kikundi</string>
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Huwezi kujiunga kwenye kikundi</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
   <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Huwezi kujiunga na kikundi hiki kupitia kiungo cha kikundi kwa sababu admin amekuondoa.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
@@ -3637,13 +3637,13 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
     <item quantity="other">Inadumu kwa miezi %1$d</item>
   </plurals>
   <!--Gift badge redeem action label-->
-  <string name="GiftMessageView__redeem">Pokea </string>
+  <string name="GiftMessageView__redeem">Komboa</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">Tazama</string>
   <!--Gift badge redeeming action label-->
-  <string name="GiftMessageView__redeeming">Pokea…</string>
+  <string name="GiftMessageView__redeeming">Kukomboa…</string>
   <!--Gift badge redeemed label-->
-  <string name="GiftMessageView__redeemed">Imepokelewa</string>
+  <string name="GiftMessageView__redeemed">Kombolewa</string>
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Jaribu njia nyingine ya malipo au wasiliana na benki yako kwa habari zaidi. </string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3906,6 +3906,7 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
     <item quantity="one">Jibu%1$d</item>
     <item quantity="other">Majibu %1$d</item>
   </plurals>
+  <!--Used when view receipts are disabled-->
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3918,12 +3919,14 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="StoryViewerPageFragment__reply_to_group">Jibu kwenye kikundi</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Hakuna watazamaji bado</string>
+  <!--Displayed when user has disabled receipts-->
+  <!--Button label displayed when user has disabled receipts-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Hakuna majibu bado</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
   <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Ame-react kwa stori</string>
   <!--Label for story views tab-->
-  <string name="StoryViewsAndRepliesDialogFragment__views">Kutazamwa</string>
+  <string name="StoryViewsAndRepliesDialogFragment__views">Mitazamo</string>
   <!--Label for story replies tab-->
   <string name="StoryViewsAndRepliesDialogFragment__replies">Majibu</string>
   <!--Description of action for reaction button-->
@@ -4165,21 +4168,21 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <!--Description for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Umemzawadi  %1$s beji. Watakapokubali, watapatiwa hiari ya kuonyesha ama kuficha beji yao.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
-  <string name="ViewReceivedGiftSheet__redeem">Kupokea</string>
+  <string name="ViewReceivedGiftSheet__redeem">Komboa</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">Sio sasa</string>
   <!--Dialog text while redeeming a gift-->
-  <string name="ViewReceivedGiftSheet__redeeming_gift">Kupokea zawadi..</string>
+  <string name="ViewReceivedGiftSheet__redeeming_gift">Kukomboa zawadi…</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
-  <string name="ConversationFragment__you_can_redeem_your_badge_later">Unaweza kupokea beji yako baadae.</string>
+  <string name="ConversationFragment__you_can_redeem_your_badge_later">Unaweza kukomboa beji yako baadae.</string>
   <!--Description text in gift thanks sheet-->
-  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Umemzawadi %1$s beji. Watakapokubali, watapatiwa chaguo la kuionyesha ama kuificha beji yao.</string>
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Umemzawadi %1$s beji. Watakapokubali, watapatiwa chaguo la kuonyesha ama kuficha beji yao.</string>
   <!--Expired gift sheet title-->
   <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Beji yako ya zawadi imekwisha muda</string>
   <!--Expired gift sheet top description text-->
   <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Beji yako ya zawadi imekwisha muda, na haionekani kwenye wasifu wako na wengine. </string>
   <!--Expired gift sheet bottom description text-->
-  <string name="ExpiredGiftSheetConfiguration__to_continue">Ili kuendelea kusaidia teknolojia iliyotengenezwa kwa ajili yako, tafadhali tafakari kuwa Mfadhili wa kila mwezi.</string>
+  <string name="ExpiredGiftSheetConfiguration__to_continue">Ili kuendelea kuunga mkono teknolojia iliyotengenezwa kwa ajili yako, tafadhali tafakari kuwa Mfadhili wa kila mwezi.</string>
   <!--Expired gift sheet make a monthly donation button-->
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Toa mchango wa kila mwezi</string>
   <!--Expired gift sheet not now button-->
@@ -4194,6 +4197,7 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
     <item quantity="one">Stori ya Kikundi . mtazamaji %1$d</item>
     <item quantity="other">Stori ya Kikundi . watazamaji %1$d</item>
   </plurals>
+  <!--Label under name for My Story when first sending to my story-->
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Mipangilio ya stori</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4237,5 +4241,38 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Swipe kulia kutoka</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Nimeelewa</string>
+  <!--Content description for vertical context menu button in safety number sheet rows-->
+  <!--Sub-line when a user is verified.-->
+  <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__verified">Iliyothibitishwa</string>
+  <!--Title of safety number changes bottom sheet when showing individual records-->
+  <!--Message of safety number changes bottom sheet when showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <!--Menu action to launch safety number verification screen-->
+  <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Thibitisha nambari salama</string>
+  <!--Menu action to remove user from story-->
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
+  <string name="SafetyNumberBottomSheetFragment__send_anyway">Tuma tu</string>
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <!--Done button on safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__done">Imekamilika</string>
+  <!--Title of safety number review fragment-->
+  <!--Message of safety number review fragment-->
+  <!--Section header for 1:1 contacts in review fragment-->
+  <string name="SafetyNumberBucketRowItem__contacts">Wawasiliani</string>
+  <!--Context menu label for distribution list headers in review fragment-->
+  <!--Context menu label for 1:1 contacts to remove from send-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove">Ondoa</string>
+  <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Signal connections wote </string>
+  <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Signal connections wote isipokuwa…</string>
+  <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Shirikisha pekee na…</string>
   <!--EOF-->
 </resources>

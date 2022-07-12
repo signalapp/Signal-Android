@@ -283,6 +283,7 @@
   </plurals>
   <!--ConversationFragment-->
   <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">لم يتم العثور على تطبيق جهات الاتصال</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="zero">حذف المختار؟</item>
     <item quantity="one">حذف الرسالة المختارة؟</item>
@@ -1360,6 +1361,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">تعذر توصيل رسالة من %s</string>
   <string name="MessageRecord_s_changed_their_phone_number">لقد تغير رقم هاتف %1$s.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">أتعجبك هذه الميزة الجديدة؟ ادعم Signal بتقديمك تبرعًا لمرة واحدة.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">قام العضو %1$s ببدء مكالمة جماعية · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">العضو %1$s موجود في المكالمة الجماعية · %2$s</string>
@@ -3829,7 +3831,9 @@
   <string name="MultiselectForwardFragment__add_a_message">إضافة نص</string>
   <string name="MultiselectForwardFragment__faster_forwards">إعادة توجيه أسرع</string>
   <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">سَيتم تجزئة الفيديوهات إلى مقاطع من 30 ثانية وإرسالها كعدة قصص.</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">لا يمكن أن تتعدى الفيديوهات المرسلة كقِصص 30 ثانية.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">لقد أُرسِلت اﻵن الرسائل الموجَّهة فورا.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="zero">لم تُرسَل أي رسالة. (%1$d)</item>
@@ -4322,6 +4326,7 @@
     <item quantity="many">%1$d جوابا</item>
     <item quantity="other">%1$d جواب</item>
   </plurals>
+  <!--Used when view receipts are disabled-->
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">‏%1$s‏%2$s‏</string>
   <!--Displayed when viewing a post you sent-->
@@ -4334,6 +4339,8 @@
   <string name="StoryViewerPageFragment__reply_to_group">الردّ على المجموعة</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">لا مشاهدة حاليا</string>
+  <!--Displayed when user has disabled receipts-->
+  <!--Button label displayed when user has disabled receipts-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">لا جواب حاليا</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4367,12 +4374,26 @@
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">إخفاء القصة عن</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections">جميع جهات الاتصال في Signal</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__share_with_all_connections">المشاركة مع جميع جهات الاتصال</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections_except">جميع جهات الاتصال في Signal إلا…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">إخفاء قصتك من أناس مُحددين</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <plurals name="MyStorySettingsFragment__d_people_excluded">
+    <item quantity="zero">%1$d شخصا مستبعدا</item>
+    <item quantity="one">%1$d شخص واحد مستبعد</item>
+    <item quantity="two">%1$d شخصان مستبعدان</item>
+    <item quantity="few">%1$dأشخاص مستبعدين</item>
+    <item quantity="many">%1$d أشخاص مستبعدين</item>
+    <item quantity="other">%1$d أشخاص مستبعدين</item>
+  </plurals>
   <!--Privacy setting title for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with">مشاركة فقط مع…</string>
   <!--Privacy setting description for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">مشاركة مع الأشخاص المختارين فقط</string>
   <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="zero">لا أحد (%1$d)</item>
@@ -4383,6 +4404,7 @@
     <item quantity="other">%1$d فرد</item>
   </plurals>
   <!--My story privacy fine print about what the privacy settings are for-->
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">اختر من يُمكنه رؤية قصتك. لن تؤثر التغييرات على القصص التي أرسلتها من قبل.</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">الإجابات وردود الفعل</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -4392,7 +4414,9 @@
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">إخفاء قصتك عن أفراد محددين. إن قصتك تتم مشاركتها افتراضيا مع %1$s.</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
+  <string name="SignalConnectionsBottomSheet___signal_connections">جهات الاتصال في Signal</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">جهات الاتصال في Signal‬ هم أشخاص اخترت أن تثق بهم سواءً عبر:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">بدء المحادثة معهم</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4442,7 +4466,9 @@
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">حدث خطأ غير متوقع</string>
   <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <string name="ChangeMyStoryMembershipFragment__all_except">الكل إلا…</string>
   <!--Title for screen allowing user to only share "My Story" entries with specific people-->
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">مشاركة فقط مع…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">تمّ</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4615,17 +4641,23 @@
     <item quantity="many">قصة جماعية · %1$d مشاهدين</item>
     <item quantity="other">قصة جماعية · %1$d مشاهدين</item>
   </plurals>
+  <!--Label under name for My Story when first sending to my story-->
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">إعدادات القصص</string>
   <!--Label for context menu item to remove a group story from contact results-->
+  <string name="ContactSearchItems__remove_story">إزالة القصة</string>
   <!--Label for context menu item to delete a private story-->
+  <string name="ContactSearchItems__delete_story">حذف القصة</string>
   <!--Dialog title for removing a group story-->
+  <string name="ContactSearchMediator__remove_group_story">حذف قصة المجموعة؟</string>
   <!--Dialog message for removing a group story-->
+  <string name="ContactSearchMediator__this_will_remove">سَيتسبب هذا في إزالة القصة من هذه اللائحة. يُمكنك مواصلة مشاهدة هذه القِصص من هذه المجموعة. </string>
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">إزالة</string>
   <!--Dialog title for deleting a private story-->
   <string name="ContactSearchMediator__delete_story">أأحذف القصة ؟</string>
   <!--Dialog message for deleting a private story-->
+  <string name="ContactSearchMediator__delete_the_private">حذف القصة الخصوصية \"%1$s\"؟</string>
   <!--Dialog action item for deleting a private story-->
   <string name="ContactSearchMediator__delete">حذف</string>
   <!--Gift expiry days remaining-->
@@ -4658,9 +4690,45 @@
   <!--Gift expiry expired-->
   <string name="Gifts__expired">انتهت الصلاحية</string>
   <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">المس للتقدّم</string>
   <!--Label indicating swipe direction to skip current story-->
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">اسحب للأعلى للتجاهل</string>
   <!--Label indicating swipe direction to exit story viewer-->
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">اسحب لليمين للمُغادرة</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">فهِمت</string>
+  <!--Content description for vertical context menu button in safety number sheet rows-->
+  <!--Sub-line when a user is verified.-->
+  <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__verified">متحقق منه</string>
+  <!--Title of safety number changes bottom sheet when showing individual records-->
+  <!--Message of safety number changes bottom sheet when showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <!--Menu action to launch safety number verification screen-->
+  <string name="SafetyNumberBottomSheetFragment__verify_safety_number">تحقق من رقم اﻷمان</string>
+  <!--Menu action to remove user from story-->
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
+  <string name="SafetyNumberBottomSheetFragment__send_anyway">أرسل على كل حال</string>
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <!--Done button on safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__done">تمّ</string>
+  <!--Title of safety number review fragment-->
+  <!--Message of safety number review fragment-->
+  <!--Section header for 1:1 contacts in review fragment-->
+  <string name="SafetyNumberBucketRowItem__contacts">جهات الاتصال</string>
+  <!--Context menu label for distribution list headers in review fragment-->
+  <!--Context menu label for 1:1 contacts to remove from send-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove">إزالة</string>
+  <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">كل معارف ‫Signal‬</string>
+  <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">كل ‫معارف Signal‬ إلا…</string>
+  <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">مشاركة فقط مع…</string>
   <!--EOF-->
 </resources>

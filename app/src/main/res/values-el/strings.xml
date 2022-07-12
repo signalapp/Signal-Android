@@ -275,6 +275,7 @@
   </plurals>
   <!--ConversationFragment-->
   <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">Δεν βρέθηκε εφαρμογή επαφής.</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Διαγραφή επιλεγμένου μηνύματος;</item>
     <item quantity="other">Διαγραφή επιλεγμένων μηνυμάτων;</item>
@@ -1127,6 +1128,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Ένα μήνυμα από τον/την %s δεν μπόρεσε να παραδοθεί</string>
   <string name="MessageRecord_s_changed_their_phone_number">Ο/Η %1$s άλλαξε τον αριθμό τηλεφώνου του/της.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Απολαμβάνεις τη νέα λειτουργία; Υποστήριξε το Signal με μια μεμονωμένη δωρεά.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">Ο/Η %1$s ξεκίνησε μια ομαδική κλήση · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">Ο/Η %1$s είναι στην ομαδική κλήση · %2$s</string>
@@ -2057,6 +2059,16 @@
   <string name="HelpFragment__debug_log">Αρχείο εντοπισμού σφαλμάτων:</string>
   <string name="HelpFragment__could_not_upload_logs">Δεν μπόρεσαν να ανέβουν τα αρχεία καταγραφής</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Παρακαλούμε να είσαι όσο γίνεται πιο περιγραφικός/ή για να μας βοηθήσεις να καταλάβουμε το πρόβλημα.</string>
+  <string-array name="HelpFragment__categories_4">
+    <item>\-\- Κάνε μια επιλογή \-\-</item>
+    <item>Κάτι δεν λειτουργεί</item>
+    <item>Αίτημα Λειτουργίας</item>
+    <item>Ερώτηση</item>
+    <item>Σχόλια</item>
+    <item>Άλλο</item>
+    <item>Πληρωμές (MobileCoin)</item>
+    <item>Δωρεές και Σήματα</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Αυτό το μήνυμα</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Πρόσφατα χρησιμοποιημένα</string>
@@ -3431,7 +3443,9 @@
   <string name="MultiselectForwardFragment__add_a_message">Προσθήκη μηνύματος</string>
   <string name="MultiselectForwardFragment__faster_forwards">Γρηγορότερες προωθήσεις</string>
   <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">Τα βίντεο θα κόβονται σε κλιπ των 30 δευτερολέπτων και θα στέλνονται ως πολλές Ιστορίες.</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Τα βίντεο που στέλνονται σε Ιστορίες δεν πρέπει να έχουν διάρκεια μεγαλύτερη των 30 δευτερολέπτων.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Πλέον τα προωθημένα μηνύματα στέλνονται αμέσως.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">Αποστολή %1$d μηνύματος</item>
@@ -3892,6 +3906,7 @@
     <item quantity="one">%1$d απάντηση</item>
     <item quantity="other">%1$d απαντήσεις</item>
   </plurals>
+  <!--Used when view receipts are disabled-->
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3904,6 +3919,8 @@
   <string name="StoryViewerPageFragment__reply_to_group">Απάντηση στην ομάδα</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Καμία προβολή ακόμα</string>
+  <!--Displayed when user has disabled receipts-->
+  <!--Button label displayed when user has disabled receipts-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Καμία απάντηση ακόμα</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -3937,18 +3954,29 @@
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Απόκρυψη ιστορίας από</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections">Όλες οι επαφές Signal</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__share_with_all_connections">Κοινοποίηση σε όλες τις επαφές</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections_except">Όλες οι επαφές Signal εκτός από…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Κρύψε την ιστορία σου από συγκεκριμένα άτομα</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <plurals name="MyStorySettingsFragment__d_people_excluded">
+    <item quantity="one">%1$d αποκλεισμένο άτομο</item>
+    <item quantity="other">%1$d αποκλεισμένα άτομα</item>
+  </plurals>
   <!--Privacy setting title for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with">Κοινοποίηση μόνο σε…</string>
   <!--Privacy setting description for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">Κοινοποίηση μόνο σε συγκεκριμένα άτομα</string>
   <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d άτομο</item>
     <item quantity="other">%1$d άτομα</item>
   </plurals>
   <!--My story privacy fine print about what the privacy settings are for-->
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Επίλεξε ποια άτομα μπορούν να δουν την ιστορία σου. Οι αλλαγές δεν επηρεάζουν ιστορίες που έχεις στείλει ήδη.</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">Απαντήσεις &amp; αντιδράσεις</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -3958,7 +3986,9 @@
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Απόκρυψη της ιστορίας σου από συγκεκριμένα άτομα. Η προεπιλογή είναι η ιστορία σου να μοιράζεται με τις %1$s</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
+  <string name="SignalConnectionsBottomSheet___signal_connections">Επαφές Signal</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Οι Επαφές Signal είναι άτομα που έχεις επιλέξει να εμπιστευτείς με κάποιον από τους εξής τρόπους:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">Έχετε ξεκινήσει μια συνομιλία</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4008,7 +4038,9 @@
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Παρουσιάστηκε απρόσμενο σφάλμα</string>
   <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <string name="ChangeMyStoryMembershipFragment__all_except">Όλα εκτός από…</string>
   <!--Title for screen allowing user to only share "My Story" entries with specific people-->
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">Κοινοποίηση μόνο σε…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Τέλος</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4165,17 +4197,23 @@
     <item quantity="one">Ιστορία ομάδας · %1$d θεατής</item>
     <item quantity="other">Ιστορία ομάδας · %1$d θεατές</item>
   </plurals>
+  <!--Label under name for My Story when first sending to my story-->
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Ρυθμίσεις ιστορίας</string>
   <!--Label for context menu item to remove a group story from contact results-->
+  <string name="ContactSearchItems__remove_story">Αφαίρεση ιστορίας</string>
   <!--Label for context menu item to delete a private story-->
+  <string name="ContactSearchItems__delete_story">Διαγραφή ιστορίας</string>
   <!--Dialog title for removing a group story-->
+  <string name="ContactSearchMediator__remove_group_story">Αφαίρεση ιστορίας ομάδας;</string>
   <!--Dialog message for removing a group story-->
+  <string name="ContactSearchMediator__this_will_remove">Με αυτήν την επιλογή, η ιστορία θα αφαιρεθεί από τη λίστα. Θα μπορείτε ακόμη να δείτε ιστορίες από αυτήν την ομάδα.</string>
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">Αφαίρεση</string>
   <!--Dialog title for deleting a private story-->
   <string name="ContactSearchMediator__delete_story">Διαγραφή ιστορίας;</string>
   <!--Dialog message for deleting a private story-->
+  <string name="ContactSearchMediator__delete_the_private">Διαγραφή της ιδιωτικής ιστορίας \"%1$s\";</string>
   <!--Dialog action item for deleting a private story-->
   <string name="ContactSearchMediator__delete">Διαγραφή</string>
   <!--Gift expiry days remaining-->
@@ -4196,9 +4234,45 @@
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Έληξε</string>
   <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">Πάτα για το επόμενο</string>
   <!--Label indicating swipe direction to skip current story-->
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Σύρε για παράλειψη</string>
   <!--Label indicating swipe direction to exit story viewer-->
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Σύρε δεξιά για έξοδο</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Εντάξει</string>
+  <!--Content description for vertical context menu button in safety number sheet rows-->
+  <!--Sub-line when a user is verified.-->
+  <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__verified">Επιβεβαιωμένος</string>
+  <!--Title of safety number changes bottom sheet when showing individual records-->
+  <!--Message of safety number changes bottom sheet when showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <!--Menu action to launch safety number verification screen-->
+  <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Επαλήθευση αριθμού ασφαλείας</string>
+  <!--Menu action to remove user from story-->
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
+  <string name="SafetyNumberBottomSheetFragment__send_anyway">Αποστόλη παρ\' όλα αυτά</string>
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <!--Done button on safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__done">Τέλος</string>
+  <!--Title of safety number review fragment-->
+  <!--Message of safety number review fragment-->
+  <!--Section header for 1:1 contacts in review fragment-->
+  <string name="SafetyNumberBucketRowItem__contacts">Επαφές</string>
+  <!--Context menu label for distribution list headers in review fragment-->
+  <!--Context menu label for 1:1 contacts to remove from send-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove">Αφαίρεση</string>
+  <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Όλες οι επαφές Signal</string>
+  <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Όλες οι επαφές Signal εκτός από…</string>
+  <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Κοινοποίηση μόνο σε…</string>
   <!--EOF-->
 </resources>

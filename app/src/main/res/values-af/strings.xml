@@ -329,7 +329,7 @@
   <!--Dialog title for block group link join requests-->
   <string name="ConversationFragment__block_request">Versper versoek?</string>
   <!--Dialog message for block group link join requests-->
-  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s sal nie via die groepskakel by hierdie groep kan aansluit of versoek om aan te sluit nie. Hulle kan steeds met die hand by die groep gevoeg word.</string>
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s sal nie d.m.v. die groepskakel by hierdie groep kan aansluit of versoek om aan te sluit nie. Hulle kan steeds met die hand by die groep bygevoeg word.</string>
   <!--Dialog confirm block request button-->
   <string name="ConversationFragment__block_request_button">Versper versoek</string>
   <!--Dialog cancel block request button-->
@@ -373,11 +373,11 @@
   </plurals>
   <plurals name="ConversationListFragment_mute_plural">
     <item quantity="one">Skakel klank af</item>
-    <item quantity="other">Skakel klank af</item>
+    <item quantity="other">Demp</item>
   </plurals>
   <plurals name="ConversationListFragment_unmute_plural">
     <item quantity="one">Skakel klank aan</item>
-    <item quantity="other">Skakel klank aan</item>
+    <item quantity="other">Ontdemp</item>
   </plurals>
   <string name="ConversationListFragment_select">Kies</string>
   <plurals name="ConversationListFragment_archive_plural">
@@ -770,7 +770,7 @@
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Jy is reeds ’n lid</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Sluit aan</string>
-  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Vra om aan te sluit</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Versoek om aan te sluit</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Kon nie by groep aansluit nie. Probeer asb. later weer.</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Netwerkfout teëgekom.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Hierdie groepskakel is nie aktief nie.</string>
@@ -1822,7 +1822,7 @@ ontvang!</string>
   <string name="ConversationUpdateItem_view">Bekyk</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Die verdwynboodskaptyd sal op %1$s gestel word wanneer jy ’n boodskap aan hulle stuur.</string>
   <!--Update item button text to show to boost a feature-->
-  <string name="ConversationUpdateItem_donate">Dra by</string>
+  <string name="ConversationUpdateItem_donate">Skenk</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Speel … pouseer</string>
   <string name="audio_view__download_accessibility_description">Laai af</string>
@@ -3878,7 +3878,7 @@ Tik op + om iets by jou storie te voeg.</string>
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Versteek storie</string>
   <!--Message of dialog confirming decision to hide a story-->
-  <string name="StoriesLandingFragment__new_story_updates">Nuwe storiebywerkings van %1$s sal nie meer boaan die sorielys verskyn nie. </string>
+  <string name="StoriesLandingFragment__new_story_updates">Nuwe storiebywerkings van %1$s sal nie meer boaan die storielys verskyn nie. </string>
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">Versteek</string>
   <!--Displayed in Snackbar after story is hidden-->
@@ -3910,6 +3910,7 @@ Tik op + om iets by jou storie te voeg.</string>
     <item quantity="one">%1$d antwoord</item>
     <item quantity="other">%1$d antwoorde</item>
   </plurals>
+  <!--Used when view receipts are disabled-->
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3922,6 +3923,8 @@ Tik op + om iets by jou storie te voeg.</string>
   <string name="StoryViewerPageFragment__reply_to_group">Antwoord aan groep</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Nog geen kykslae nie</string>
+  <!--Displayed when user has disabled receipts-->
+  <!--Button label displayed when user has disabled receipts-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Nog geen antwoorde nie</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4165,9 +4168,9 @@ Tik op + om iets by jou storie te voeg.</string>
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Dankie vir jou ondersteuning!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
-  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Jy het \'n geskenkwapen van %1$s ontvang! Help Signal met bewusmaking deur hierdie kenteken op jou profiel te vertoon.</string>
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Jy het \'n geskenkwapen van %1$s ontvang! Help Signal met bewusmaking deur hierdie wapen op jou profiel te vertoon.</string>
   <!--Description for sheet shown when opening a sent gift-->
-  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Jy het \'n wapen geskenk aan %1$s. Wanneer hulle dit aanvaar, sal hulle \'n keuse gegee word om hulle kenteken te wys of te versteek.</string>
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Jy het \'n wapen geskenk aan %1$s. Wanneer hulle dit aanvaar, sal hulle \'n keuse gegee word om hulle wapen te wys of te versteek.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
   <string name="ViewReceivedGiftSheet__redeem">Los af</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
@@ -4177,7 +4180,7 @@ Tik op + om iets by jou storie te voeg.</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
   <string name="ConversationFragment__you_can_redeem_your_badge_later">Jy kan jou wapen later aflos.</string>
   <!--Description text in gift thanks sheet-->
-  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Jy het \'n wapen geskenk aan %1$s. Wanneer hulle dit aanvaar, sal hulle \'n keuse gegee word om hulle kenteken te wys of te versteek.</string>
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Jy het \'n wapen geskenk aan %1$s. Wanneer hulle dit aanvaar, sal hulle \'n keuse gegee word om hulle wapen te wys of te versteek.</string>
   <!--Expired gift sheet title-->
   <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Jou geskenkwapen het verval</string>
   <!--Expired gift sheet top description text-->
@@ -4198,6 +4201,7 @@ Tik op + om iets by jou storie te voeg.</string>
     <item quantity="one">Groepstorie · %1$d kyker</item>
     <item quantity="other">Groepstorie · %1$d kykers</item>
   </plurals>
+  <!--Label under name for My Story when first sending to my story-->
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Storie-instellings</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4241,5 +4245,38 @@ Tik op + om iets by jou storie te voeg.</string>
   <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Vee na regs om te verlaat</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Ek verstaan</string>
+  <!--Content description for vertical context menu button in safety number sheet rows-->
+  <!--Sub-line when a user is verified.-->
+  <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__verified">Geverifieer</string>
+  <!--Title of safety number changes bottom sheet when showing individual records-->
+  <!--Message of safety number changes bottom sheet when showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <!--Menu action to launch safety number verification screen-->
+  <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Verifieer veiligheidsnommer</string>
+  <!--Menu action to remove user from story-->
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
+  <string name="SafetyNumberBottomSheetFragment__send_anyway">Stuur in elk geval</string>
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <!--Done button on safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__done">Klaar</string>
+  <!--Title of safety number review fragment-->
+  <!--Message of safety number review fragment-->
+  <!--Section header for 1:1 contacts in review fragment-->
+  <string name="SafetyNumberBucketRowItem__contacts">Kontakte</string>
+  <!--Context menu label for distribution list headers in review fragment-->
+  <!--Context menu label for 1:1 contacts to remove from send-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove">Verwyder</string>
+  <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Alle Signal-verbindings</string>
+  <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Alle Signal-verbindings behalwe…</string>
+  <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Deel slegs met…</string>
   <!--EOF-->
 </resources>

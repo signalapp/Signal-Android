@@ -3525,14 +3525,14 @@
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/месец · Се обновува на %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/месец · Истекува на %2$s</string>
   <!--First small text blurb on learn more sheet-->
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal е непрофитен, без огласувачи или инвеститори, одржан само од луѓе кои го користат и ценат. Донирајте месечно и добијте беџ за профилот за да ја споделите својата поддршка.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal е непрофитен, без огласувачи или инвеститори, одржуван само од луѓе кои го користат и ценат. Донирајте месечно и добијте беџ за профилот за да ја споделите својата поддршка.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Зошто да донирате?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal е посветен на развивање технологија за приватност со отворен код која го штити слободното изразување и овозможува сигурна глобална комуникација.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Вашата донација ја поддржува оваа кауза и плаќа за развојот и дејствувањето на апликација која ја користат милиони лица за приватна комуникација. Без реклами. Без тракери. Без зафркавање.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Ви благодариме за Вашата поддршка!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Благодариме за поттикот!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Добивте беџ%s! Прикажете го беџот на вашиот профил за да подигнете свест за донирање на Signal.</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Добивте беџ за поддршка! Прикажите го беџот на вашиот профил за да подигнете свест за донирање на Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Добивте беџ за поддршка! Прикажете го беџот на вашиот профил за да подигнете свест за донирање на Signal.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Можете исто така да</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">Станете месечен поддржувач</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Прикажи на профил</string>
@@ -3910,6 +3910,7 @@
     <item quantity="one">%1$d одговор</item>
     <item quantity="other">%1$d одговори</item>
   </plurals>
+  <!--Used when view receipts are disabled-->
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3922,6 +3923,8 @@
   <string name="StoryViewerPageFragment__reply_to_group">Одговори на групата</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Сè уште нема прегледи</string>
+  <!--Displayed when user has disabled receipts-->
+  <!--Button label displayed when user has disabled receipts-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Сè уште нема одговори</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4198,6 +4201,7 @@
     <item quantity="one">Групна приказна · %1$d гледач</item>
     <item quantity="other">Групна приказна · %1$d гледачи</item>
   </plurals>
+  <!--Label under name for My Story when first sending to my story-->
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Поставувања за приказна</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4241,5 +4245,38 @@
   <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Повлечете надесно за да излезете</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Во ред</string>
+  <!--Content description for vertical context menu button in safety number sheet rows-->
+  <!--Sub-line when a user is verified.-->
+  <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__verified">Проверено</string>
+  <!--Title of safety number changes bottom sheet when showing individual records-->
+  <!--Message of safety number changes bottom sheet when showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <!--Menu action to launch safety number verification screen-->
+  <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Проверка на сигурносен број</string>
+  <!--Menu action to remove user from story-->
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
+  <string name="SafetyNumberBottomSheetFragment__send_anyway">Сепак испрати</string>
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <!--Done button on safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__done">Готово</string>
+  <!--Title of safety number review fragment-->
+  <!--Message of safety number review fragment-->
+  <!--Section header for 1:1 contacts in review fragment-->
+  <string name="SafetyNumberBucketRowItem__contacts">Контакти</string>
+  <!--Context menu label for distribution list headers in review fragment-->
+  <!--Context menu label for 1:1 contacts to remove from send-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove">Отстрани</string>
+  <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Сите Signal врски</string>
+  <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Сите Signal врски освен…</string>
+  <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Споделете само со…</string>
   <!--EOF-->
 </resources>

@@ -369,7 +369,7 @@
   </plurals>
   <plurals name="ConversationListFragment_unpin_plural">
     <item quantity="one">விலக்கு </item>
-    <item quantity="other">விலக்கு</item>
+    <item quantity="other">அவிழ்</item>
   </plurals>
   <plurals name="ConversationListFragment_mute_plural">
     <item quantity="one">முடக்கு</item>
@@ -386,7 +386,7 @@
   </plurals>
   <plurals name="ConversationListFragment_unarchive_plural">
     <item quantity="one">காப்பகமகற்று</item>
-    <item quantity="other">காப்பகமகற்று</item>
+    <item quantity="other">காப்பகம் அகற்று</item>
   </plurals>
   <plurals name="ConversationListFragment_delete_plural">
     <item quantity="one">நீக்கு</item>
@@ -454,7 +454,7 @@
   <string name="BackupsPreferenceFragment__in_progress">செயல்நிலையில் உள்ளது…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$dஇதுவரை…</string>
   <!--Show percentage of completion of backup-->
-  <string name="BackupsPreferenceFragment__s_so_far">இது வரை %1$s%%… </string>
+  <string name="BackupsPreferenceFragment__s_so_far">இதுவரை %1$s%%… </string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">காப்புப்பிரதிகளை உருவாக்க Signal கு வெளிப்புற சேமிப்பக அனுமதி தேவைப்படுகிறது, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகளைத் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து \"சேமிப்பகத்தை\" இயக்கவும்.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">பயன்படுத்தப்படும் வழக்கம் : %s</string>
@@ -1297,7 +1297,7 @@
   <string name="RedPhone_got_it">அறிந்துகொண்டேன் .</string>
   <!--Valentine\'s Day Megaphone-->
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
-  <string name="ValentinesDayMegaphone_happy_heart_day">இனிய 💜 நாள்!</string>
+  <string name="ValentinesDayMegaphone_happy_heart_day">மகிழ்ச்சியான 💜 நாள்!</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
   <string name="ValentinesDayMegaphone_show_your_affection">சிக்னல் காப்பாளராக மாறுவதன் மூலம் உங்கள் அன்பை வெளிப்படுத்துங்கள்.</string>
   <!--WebRtcCallActivity-->
@@ -1311,9 +1311,9 @@
   <!--Title for dialog warning about lacking bluetooth permissions during a call-->
   <string name="WebRtcCallActivity__bluetooth_permission_denied">புளூடூத் அனுமதி மறுக்கப்பட்டது</string>
   <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
-  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">அழைப்பின் போது புளூடூத்தைப் பயன்படுத்த \"அருகிலுள்ள சாதனங்கள்\" அனுமதியை இயக்கவும்.</string>
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">அழைப்பின் போது புளூடூத்தைப் பயன்படுத்த தயவுசெய்து \"அருகிலுள்ள சாதனங்கள்\" அனுமதியை இயக்கவும்.</string>
   <!--Positive action for bluetooth warning dialog to open settings-->
-  <string name="WebRtcCallActivity__open_settings">அமைப்புகளைத் திற</string>
+  <string name="WebRtcCallActivity__open_settings">அமைப்புகளைத் திறக்கவும்</string>
   <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
   <string name="WebRtcCallActivity__not_now">இப்போது இல்லை</string>
   <!--WebRtcCallView-->
@@ -1351,7 +1351,7 @@
   <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s உங்களையும் %2$sஐயும் மற்றும் %3$sஐயும் அழைக்கிறார்</string>
   <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
     <item quantity="one">%1$s உங்களை, %2$s, %3$s, மற்றும் %4$d நபரை அழைக்கிறார்</item>
-    <item quantity="other">%1$s உங்களை, %2$s, %3$s, மற்றும் %4$d நபர்களை அழைக்கிறார்</item>
+    <item quantity="other">%1$s உங்களை அழைக்கிறார், %2$s, %3$s, மற்றும் %4$d நபர்கள்</item>
   </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">வேறு யாரும் இங்கு இல்லை</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s இந்த அழைப்பில் இருக்கிறார்</string>
@@ -1413,12 +1413,12 @@
   <string name="RegistrationActivity_play_services_error">சேவைகளில் பிழை</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play சேவைகள் புதுப்பித்தல் அல்லது தற்காலிகமாக கிடைக்கவில்லை. தயவு செய்து மீண்டும் முயற்சிக்கவும்.</string>
   <string name="RegistrationActivity_terms_and_privacy">விதிமுறைகள் &amp; ஆம்ப்; தனியுரிமைக் கொள்கை</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">நண்பர்களுடன் இணைவதற்கும் செய்திகளை அனுப்புவதற்கும் சிக்னலுக்கு தொடர்புகள் மற்றும் மீடியா அனுமதிகள் தேவை. உங்கள் தொடர்புகள் சிக்னலின் தனிப்பட்ட தொடர்பு கண்டறிதலைப் பயன்படுத்தி பதிவேற்றப்படுகின்றன, அதாவது அவை இறுதியிலிருந்து இறுதி வரை மறையாக்கப்பட்டவை மற்றும் சிக்னல் சேவைக்கு ஒருபோதும் தெரியப்படுவதில்லை.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">நண்பர்களுடன் நீங்கள் இணைவதற்கு சிக்னலுக்கு தொடர்புகளின் அனுமதி தேவை. உங்கள் தொடர்புகள் சிக்னலின் தனிப்பட்ட தொடர்பு கண்டறிதலைப் பயன்படுத்தி பதிவேற்றப்படுகின்றன, அதாவது அவை இறுதியிலிருந்து இறுதி வரை மறையாக்கப்பட்டவை மற்றும் சிக்னல் சேவைக்கு ஒருபோதும் தெரியப்படுவதில்லை.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">உங்கள் நண்பர்களுடன் இணைவதற்கும் செய்திகளை அனுப்புவதற்கும் உதவ சிக்னலுக்கு தொடர்புகள் மற்றும் மீடியா அனுமதிகள் தேவை. உங்கள் தொடர்புகள் சிக்னலின் தனிப்பட்ட தொடர்பு கண்டறிதலைப் பயன்படுத்தி பதிவேற்றப்படுகின்றன, அதாவது அவை முடிவிலிருந்து-முடிவுவரை மறையாக்கப்பட்டவை மற்றும் சிக்னல் சேவைக்கு ஒருபோதும் தெரியப்படுவதில்லை.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">நண்பர்களுடன் நீங்கள் இணைவதற்கு உதவ சிக்னலுக்கு தொடர்புகளின் அனுமதி தேவை. உங்கள் தொடர்புகள் சிக்னலின் தனிப்பட்ட தொடர்பு கண்டறிதலைப் பயன்படுத்தி பதிவேற்றப்படுகின்றன, அதாவது அவை முடிவிலிருந்து-முடிவுவரை மறையாக்கப்பட்டவை மற்றும் சிக்னல் சேவைக்கு ஒருபோதும் தெரியப்படுவதில்லை.</string>
   <string name="RegistrationActivity_rate_limited_to_service">இந்த எண்ணை பதிவு செய்ய நீங்கள் பல முயற்சிகளை செய்துள்ளீர்கள். சிறிது நேரம் கழித்து மீண்டும் முயற்சிக்கவும்.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">சேவையுடன் இணைக்க முடியவில்லை. பிணைய இணைப்பைச் சரிபார்த்து மீண்டும் முயற்சிக்கவும்.</string>
-  <string name="RegistrationActivity_non_standard_number_format">தரமற்ற எண் வடிவம்</string>
-  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">நீங்கள் உள்ளிட்ட எண் (%1$s) தரமற்ற எண் வடிவத்தைக் கொண்டுள்ளது.\n\nநீங்கள் %2$s-ஐ நினைத்தீர்களா?</string>
+  <string name="RegistrationActivity_non_standard_number_format">நான்-ஸ்டாண்டர்ட் எண் வடிவம்</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">நீங்கள் உள்ளிட்ட எண் (%1$s) நான்-ஸ்டாண்டர்ட் எண் வடிவத்தைக் கொண்டுள்ளது.\n\nநீங்கள் %2$s-ஐ நினைத்தீர்களா?</string>
   <string name="RegistrationActivity_signal_android_phone_number_format">சிக்னல் ஆண்ட்ராய்டு - தொலைபேசி எண் வடிவம்</string>
   <string name="RegistrationActivity_call_requested">அழைப்பு கோரப்பட்டது</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -1466,7 +1466,7 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">மேலும்</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">குறியீடு வெற்றிகரமாக சரிபார்க்கப்பட்டது. பின்னர் மீண்டும் நினைவூட்டுவோம்.</string>
+  <string name="SignalPinReminders_well_remind_you_again_later">குறியீடு வெற்றிகரமாக சரிபார்க்கப்பட்டது. நாங்கள் பின்னர் மீண்டும் நினைவூட்டுவோம்.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">குறியீடு வெற்றிகரமாக சரிபார்க்கப்பட்டது. நாளை மீண்டும் உங்களுக்கு நாங்கள் நினைவூட்டுவோம்.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">குறியீடு வெற்றிகரமாக சரிபார்க்கப்பட்டது. சில நாட்களில் மீண்டும் உங்களுக்கு நாங்கள் நினைவூட்டுவோம்.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">குறியீடு வெற்றிகரமாக சரிபார்க்கப்பட்டது. ஒரு வாரத்தில் மீண்டும் உங்களுக்கு நாங்கள் நினைவூட்டுவோம்.</string>
@@ -1626,9 +1626,9 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">இது இந்த செய்தியை நிரந்தரமாக நீக்கும்.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s to %2$s</string>
   <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
-  <string name="MediaPreviewActivity_you_to_s">தங்களிடமிருந்து %1$s-க்கு </string>
+  <string name="MediaPreviewActivity_you_to_s">உங்களிடமிருந்து %1$s-க்கு </string>
   <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
-  <string name="MediaPreviewActivity_s_to_you">%1$s இடமிருந்து தாங்களுக்கு</string>
+  <string name="MediaPreviewActivity_s_to_you">%1$s இடமிருந்து உங்களுக்கு</string>
   <string name="MediaPreviewActivity_media_no_longer_available">இந்த ஊடகம் சேமிப்பகத்தில் இல்லை.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">இந்த மீடியாவைப் பகிரக்கூடிய பயன்பாட்டைக் கண்டுபிடிக்க முடியவில்லை.</string>
   <!--MessageNotifier-->
@@ -1840,14 +1840,14 @@
   <!--Label indicating that a quote is for a reply to a story you created-->
   <string name="QuoteView_your_story">நீங்கள் · ஸ்டோரி</string>
   <!--Label indicating that the story being replied to no longer exists-->
-  <string name="QuoteView_no_longer_available">இனி ஒருபோதும் கிடைக்கப்பெறாது</string>
+  <string name="QuoteView_no_longer_available">இனி கிடைக்காது</string>
   <!--Label for quoted gift-->
   <string name="QuoteView__gift">பரிசு</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">கீழே உருட்டவும்</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
-  <string name="BubbleOptOutTooltip__description">பபிள்ஸ் என்பது ஆண்ட்ராய்டு அம்சமாகும், இதை நீங்கள் சிக்னல் அரட்டைகளுக்கு முடக்கப் பயன்படுத்தலாம்.</string>
+  <string name="BubbleOptOutTooltip__description">பபிள்ஸ் என்பது ஆண்ட்ராய்டு அம்சமாகும், இதை நீங்கள் சிக்னல் சாட்களுக்கு முடக்கப் பயன்படுத்தலாம்.</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">இப்போது இல்லை</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -1948,7 +1948,7 @@
   <string name="message_recipients_list_item__view">காண்க</string>
   <string name="message_recipients_list_item__resend">மீண்டும் அனுப்பு</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
-  <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">அனுப்பட்ட நேரமுத்திரை கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது.</string>
+  <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">அனுப்பப்பட்ட நேரமுத்திரை கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது.</string>
   <!--Displayed when there are no outgoing stories-->
   <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">உங்கள் ஸ்டோரியின் புதுப்பிப்புகள் இங்கே காட்டப்படும்.</string>
   <!--GroupUtil-->
@@ -2000,7 +2000,7 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ஒரு பெயர் அல்லது எண்ணை உள்ளிடவும்</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ %s உடன் உங்கள் இறுதியிலிருந்து இறுதி குறியாக்கத்தின் பாதுகாப்பை சரிபார்க்க, அவர்களின் சாதனத்துடன் மேலிருக்கும் எண்களோடு ஒப்பிடுக. நீங்கள் அவர்களின் தொலைபேசியில் உள்ள குறியீட்டை ஸ்கேன் செய்யலாம். <a href="https://signal.org/redirect/safety-numbers"> மேலும் அறிக.</a>]]></string>
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ %s உடன் உங்கள் முடிவிலிருந்து-முடிவுவரை குறியாக்கத்தின் பாதுகாப்பை சரிபார்க்க, அவர்களின் சாதனத்துடன் மேலிருக்கும் எண்களோடு ஒப்பிடுக. நீங்கள் அவர்களின் தொலைபேசியில் உள்ள குறியீட்டை ஸ்கேன் செய்யலாம். <a href="https://signal.org/redirect/safety-numbers"> மேலும் அறிக.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">ஸ்கேன் செய்ய தட்டவும்</string>
   <string name="verify_display_fragment__successful_match">வெற்றிகரமான இணை</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">பாதுகாப்பு எண்ணைச் சரிபார்க்கத் தவறியது</string>
@@ -2446,7 +2446,7 @@
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d தேர்ந்தெடுக்கப்பட்டது</item>
-    <item quantity="other">%d </item>
+    <item quantity="other">%d தேர்ந்தெடுக்கப்பட்டது</item>
   </plurals>
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->
@@ -3904,6 +3904,7 @@
     <item quantity="one">%1$d பதில்</item>
     <item quantity="other">%1$d பதில்கள்</item>
   </plurals>
+  <!--Used when view receipts are disabled-->
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3916,6 +3917,8 @@
   <string name="StoryViewerPageFragment__reply_to_group">குழுவுக்குப் பதிலளிக்கவும்</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">இன்னும் பார்வைகள் ஏதுமில்லை</string>
+  <!--Displayed when user has disabled receipts-->
+  <!--Button label displayed when user has disabled receipts-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">இன்னும் பதில்கள் ஏதுமில்லை</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4192,6 +4195,7 @@
     <item quantity="one">குழு ஸ்டோரி · %1$d பார்வையாளர்</item>
     <item quantity="other">குழு ஸ்டோரி  · %1$d பார்வையாளர்கள்</item>
   </plurals>
+  <!--Label under name for My Story when first sending to my story-->
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">ஸ்டோரி அமைப்புகள்</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4235,5 +4239,38 @@
   <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">வெளியேற வலதுபுறமாக ஸ்வைப் செய்யவும்</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">அறிந்துகொண்டேன்</string>
+  <!--Content description for vertical context menu button in safety number sheet rows-->
+  <!--Sub-line when a user is verified.-->
+  <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__verified">சரிபார்க்கப்பட்டது</string>
+  <!--Title of safety number changes bottom sheet when showing individual records-->
+  <!--Message of safety number changes bottom sheet when showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <!--Menu action to launch safety number verification screen-->
+  <string name="SafetyNumberBottomSheetFragment__verify_safety_number">பாதுகாப்பு எண்ணைச் சரிபார்க்கவும்</string>
+  <!--Menu action to remove user from story-->
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
+  <string name="SafetyNumberBottomSheetFragment__send_anyway">இருந்தாலும் அனுப்பு</string>
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <!--Done button on safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__done">முடிந்தது</string>
+  <!--Title of safety number review fragment-->
+  <!--Message of safety number review fragment-->
+  <!--Section header for 1:1 contacts in review fragment-->
+  <string name="SafetyNumberBucketRowItem__contacts">தொடர்புகள்</string>
+  <!--Context menu label for distribution list headers in review fragment-->
+  <!--Context menu label for 1:1 contacts to remove from send-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove">நீக்கு</string>
+  <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">அனைத்து சிக்னல் இணைப்புகள்</string>
+  <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">அனைத்து சிக்னல் இணைப்புகளும், இதை தவிர…</string>
+  <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">இவர்களுடன் மட்டும் பகிரவும்…</string>
   <!--EOF-->
 </resources>

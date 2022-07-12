@@ -277,6 +277,7 @@
   </plurals>
   <!--ConversationFragment-->
   <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">Impossible de retrouver l\'application Contacts.</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Supprimer le message sélectionné ?</item>
     <item quantity="many">Supprimer les messages sélectionnés ?</item>
@@ -1185,6 +1186,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Un message de %s n’a pas pu être remis</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s a changé de numéro de téléphone</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Vous aimez cette nouvelle fonction ? Soutenez Signal avec un don ponctuel.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s a lancé un appel de groupe · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s fait partie de l’appel de groupe · %2$s</string>
@@ -2138,6 +2140,16 @@
   <string name="HelpFragment__debug_log">Journal de débogage :</string>
   <string name="HelpFragment__could_not_upload_logs">Impossible de téléverser les journaux</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Veuillez nous donner autant de détails que possible, afin de nous aider à comprendre la situation.</string>
+  <string-array name="HelpFragment__categories_4">
+    <item>\-\- Veuillez sélectionner une option  \-\-</item>
+    <item>Quelque chose ne fonctionne pas</item>
+    <item>Demande de fonction</item>
+    <item>Question</item>
+    <item>Commentaires</item>
+    <item>Autre</item>
+    <item>Paiements (MobileCoin)</item>
+    <item>Dons et macarons</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ce message</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Utilisés récemment</string>
@@ -3530,7 +3542,9 @@ Nouvelle tentative…</string>
   <string name="MultiselectForwardFragment__add_a_message">Ajouter un message</string>
   <string name="MultiselectForwardFragment__faster_forwards">Transferts plus rapides</string>
   <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">Les vidéos seront formatées en clips de 30 sec. et envoyées en plusieurs histoires.</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Les vidéos intégrées dans les histoires ne peuvent pas dépasser 30 sec.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Les messages transférés sont désormais immédiatement envoyés.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">Envoyer %1$d message</item>
@@ -3999,6 +4013,8 @@ Nouvelle tentative…</string>
     <item quantity="many">%1$d réponses</item>
     <item quantity="other">%1$d réponses</item>
   </plurals>
+  <!--Used when view receipts are disabled-->
+  <string name="StoryViewerPageFragment__views_off">Affichage désactivé</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -4011,6 +4027,10 @@ Nouvelle tentative…</string>
   <string name="StoryViewerPageFragment__reply_to_group">Répondre au groupe</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Aucune vue pour le moment</string>
+  <!--Displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Activer les accusés de réception pour savoir qui a consulté vos stories.</string>
+  <!--Button label displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__go_to_settings">Aller dans Réglages</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Aucune réponse pour le moment</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4044,12 +4064,23 @@ Nouvelle tentative…</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Cacher l’histoire pour</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections">Toutes les connexions Signal</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__share_with_all_connections">Partager avec toutes les connexions</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections_except">Toutes les connexions Signal sauf…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Cacher votre histoire de certains contacts</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <plurals name="MyStorySettingsFragment__d_people_excluded">
+    <item quantity="one">%1$d contact exclu</item>
+    <item quantity="many">%1$d contacts exclus</item>
+    <item quantity="other">%1$d contact(s) exclu(s)</item>
+  </plurals>
   <!--Privacy setting title for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with">Partager uniquement avec…</string>
   <!--Privacy setting description for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">Partager uniquement avec les contacts sélectionnés</string>
   <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d personne</item>
@@ -4057,6 +4088,7 @@ Nouvelle tentative…</string>
     <item quantity="other">%1$d personnes</item>
   </plurals>
   <!--My story privacy fine print about what the privacy settings are for-->
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Choisissez qui peut voir votre histoire. Les modifications n\'affecteront pas les histoires déjà postées.</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">Réponses et réactions</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -4066,7 +4098,9 @@ Nouvelle tentative…</string>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Cacher votre histoire pour certaines personnes. Par défaut, votre histoire est partagée avec votre %1$s</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
+  <string name="SignalConnectionsBottomSheet___signal_connections">Connexions Signal</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Les connexions Signal correspondent aux contacts auxquels vous avez choisi de faire confiance, soit par :</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">Engageant une conversation</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4116,7 +4150,9 @@ Nouvelle tentative…</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Une erreur inattendue s\'est produite.</string>
   <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <string name="ChangeMyStoryMembershipFragment__all_except">Tout sauf…</string>
   <!--Title for screen allowing user to only share "My Story" entries with specific people-->
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">Partager uniquement avec…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Terminé</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4277,17 +4313,24 @@ Nouvelle tentative…</string>
     <item quantity="many">Histoire de groupe · %1$d spectateurs</item>
     <item quantity="other">Histoire de groupe · %1$d spectateurs</item>
   </plurals>
+  <!--Label under name for My Story when first sending to my story-->
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">Appuyez pour choisir vos spectateurs</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Paramètres des histoires</string>
   <!--Label for context menu item to remove a group story from contact results-->
+  <string name="ContactSearchItems__remove_story">Supprimer l\'histoire</string>
   <!--Label for context menu item to delete a private story-->
+  <string name="ContactSearchItems__delete_story">Effacer l\'histoire</string>
   <!--Dialog title for removing a group story-->
+  <string name="ContactSearchMediator__remove_group_story">Supprimer l\'histoire de groupe ?</string>
   <!--Dialog message for removing a group story-->
+  <string name="ContactSearchMediator__this_will_remove">Cette action supprimera l\'histoire de cette liste. Vous pourrez toujours consulter les histoires de ce groupe. </string>
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">Supprimer</string>
   <!--Dialog title for deleting a private story-->
   <string name="ContactSearchMediator__delete_story">Supprimer l’histoire ?</string>
   <!--Dialog message for deleting a private story-->
+  <string name="ContactSearchMediator__delete_the_private">Supprimer l\'histoire privée « %1$s » ?</string>
   <!--Dialog action item for deleting a private story-->
   <string name="ContactSearchMediator__delete">Supprimer</string>
   <!--Gift expiry days remaining-->
@@ -4311,9 +4354,60 @@ Nouvelle tentative…</string>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Expiré</string>
   <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">Appuyez pour avancer</string>
   <!--Label indicating swipe direction to skip current story-->
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Balayez vers le haut pour passer</string>
   <!--Label indicating swipe direction to exit story viewer-->
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Balayez vers la droite pour quitter</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Je l’ai</string>
+  <!--Content description for vertical context menu button in safety number sheet rows-->
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">Ouvrir le menu contextuel</string>
+  <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · Vérifié</string>
+  <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__verified">Confirmé</string>
+  <!--Title of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Modification du numéro de sécurité</string>
+  <!--Message of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">Les contacts suivants ont peut-être réinstallé Signal ou changé de périphérique. Appuyez sur le contact pour confirmer le nouveau numéro de sécurité. Facultatif.</string>
+  <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Vérification du numéro de sécurité</string>
+  <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Vérification du numéro de sécurité terminée</string>
+  <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">%1$dde vos contacts a sûrement réinstallé Signal ou changé de périphérique. Avant de partager votre Story avec ces personnes, vérifiez leurs numéros de sécurité ou excluez-le de votre partage.</string>
+  <!--Menu action to launch safety number verification screen-->
+  <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Confirmer le numéro de sécurité</string>
+  <!--Menu action to remove user from story-->
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">Supprimer de la Story</string>
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
+  <string name="SafetyNumberBottomSheetFragment__send_anyway">Envoyer quand même</string>
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <string name="SafetyNumberBottomSheetFragment__review_connections">Contrôler les relations</string>
+  <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Plus de destinataires à afficher</string>
+  <!--Done button on safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__done">Terminé</string>
+  <!--Title of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Modification du numéro de sécurité</string>
+  <!--Message of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d de vos contacts ont sûrement réinstallé Signal ou changé de périphérique. Appuyez sur le contact pour confirmer le nouveau numéro de sécurité. Facultatif.</string>
+  <!--Section header for 1:1 contacts in review fragment-->
+  <string name="SafetyNumberBucketRowItem__contacts">Contacts</string>
+  <!--Context menu label for distribution list headers in review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">Tout supprimer</string>
+  <!--Context menu label for 1:1 contacts to remove from send-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove">Supprimer</string>
+  <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Confidentialité de ma Story</string>
+  <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Choisissez les contacts autorisés à voir votre Story. Vous pouvez modifier ces préférences à tout moment dans Réglages.</string>
+  <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Toutes les relations Signal</string>
+  <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Toutes les relations Signal sauf…</string>
+  <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Partager uniquement avec…</string>
   <!--EOF-->
 </resources>

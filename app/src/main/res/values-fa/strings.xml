@@ -275,6 +275,7 @@
   </plurals>
   <!--ConversationFragment-->
   <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">برنامه مخاطبین یافت نشد.</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">حذف پیام انتخاب شده؟</item>
     <item quantity="other">حذف پیام‌های انتخاب شده؟</item>
@@ -1127,6 +1128,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">یک پیام از %s نتوانست تحویل داده شود</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s شماره‌تلفن خود را تغییر داد.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">این قابلیت جدید را می‌پسندید؟ با یک حمایت مالی یک‌باره از سیگنال پشتیبانی کنید.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s یک تماس گروهی آغاز کرد · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s در تماس گروهی است · %2$s</string>
@@ -2060,6 +2062,16 @@
   <string name="HelpFragment__debug_log">گزارش عیب‌یابی:</string>
   <string name="HelpFragment__could_not_upload_logs">بارگذاری گزارش‌ها موفق نبود</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">توصیف هر چه بهتر شما، به ما در فهم اشکال کمک خواهد کرد.</string>
+  <string-array name="HelpFragment__categories_4">
+    <item>لطفاً یک گزینه انتخاب کنید</item>
+    <item>چیزی خراب شده است</item>
+    <item>درخواست قابلیت</item>
+    <item>سؤال</item>
+    <item>بازخورد</item>
+    <item>سایر</item>
+    <item>پرداخت‌ها (MobileCoin)</item>
+    <item>حمایت‌های مالی و نشان‌ها</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">این پیام</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">به‌تازگی استفاده شده</string>
@@ -3434,7 +3446,9 @@
   <string name="MultiselectForwardFragment__add_a_message">افزودن یک پیام</string>
   <string name="MultiselectForwardFragment__faster_forwards">بازارسال‌های سریع‌تر</string>
   <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">ویدیوها به کلیپ‌های 30 ثانیه‌ای بریده می‌شوند و به صورت استوری‌های متعدد ارسال می‌شوند.</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">ویدئوهای ارسالی به استوری‌ها نمی‌توانند بیشتر از 30 ثانیه باشند.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">پیام‌های بازارسال شده حالا بلافاصله ارسال می‌شوند.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">ارسال %1$d پیام</item>
@@ -3895,6 +3909,8 @@
     <item quantity="one">%1$d پاسخ</item>
     <item quantity="other">%1$d پاسخ</item>
   </plurals>
+  <!--Used when view receipts are disabled-->
+  <string name="StoryViewerPageFragment__views_off">بازدیدها خاموش</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3907,6 +3923,10 @@
   <string name="StoryViewerPageFragment__reply_to_group">پاسخ به گروه</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">هنوز بازدیدی از آن نشده است</string>
+  <!--Displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">رسیدهای خوانده شدن را فعال کنید تا بتوانید ببینید چه کسی از استوری‌های شما بازدید کرده است.</string>
+  <!--Button label displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__go_to_settings">رفتن به تنظیمات </string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">هنوز پاسخی داده نشده است</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -3940,18 +3960,29 @@
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">استوری پنهان شود از</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections">تمام آشنایان در سیگنال</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__share_with_all_connections">اشتراک‌گذاری با تمام آشنایان</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections_except">تمام آشنایان سیگنال به جز…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">استوری خود را از افراد خاصی پنهان کنید</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <plurals name="MyStorySettingsFragment__d_people_excluded">
+    <item quantity="one">%1$d نفر مستثنی شد</item>
+    <item quantity="other">%1$d نفر مستثنی شدند</item>
+  </plurals>
   <!--Privacy setting title for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with">تنها اشتراک‌گذاری شود با…</string>
   <!--Privacy setting description for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">تنها با افراد انتخاب شده اشتراک‌گذاری شود</string>
   <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d نفر</item>
     <item quantity="other">%1$d نفر</item>
   </plurals>
   <!--My story privacy fine print about what the privacy settings are for-->
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">انتخاب کنید چه کسی می‌تواند استوری شما را مشاهده کند. تغییرات روی داستان‌هایی که قبلاً ارسال کرده‌اید تأثیر نمی‌گذارد.</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">پاسخ‌ها و واکنش‌ها</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -3961,7 +3992,9 @@
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">استوری خود را از افراد خاصی پنهان کنید. استوری شما به طور پیش‌فرض با %1$s شما اشتراک‌گذاری می‌شود.</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
+  <string name="SignalConnectionsBottomSheet___signal_connections">آشنایان در سیگنال.</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">آشنایان در سیگنال افرادی هستند که به دلایل زیر تصمیم گرفته‌اید به آن‌ها اعتماد کنید:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">شروع یک مکالمه</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4011,7 +4044,9 @@
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">یک خطای غیرمنتظره رخ داد</string>
   <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <string name="ChangeMyStoryMembershipFragment__all_except">همه به جز…</string>
   <!--Title for screen allowing user to only share "My Story" entries with specific people-->
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">تنها اشتراک‌گذاری شود با…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">تمام</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4168,17 +4203,24 @@
     <item quantity="one">استوری گروهی · %1$d بازدید کننده</item>
     <item quantity="other">استوری گروهی · %1$d بازدید کننده</item>
   </plurals>
+  <!--Label under name for My Story when first sending to my story-->
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">برای انتخاب بازدیدکنندگان خود ضربه بزنید</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">تنظیمات استوری</string>
   <!--Label for context menu item to remove a group story from contact results-->
+  <string name="ContactSearchItems__remove_story">حذف استوری</string>
   <!--Label for context menu item to delete a private story-->
+  <string name="ContactSearchItems__delete_story">حذف استوری</string>
   <!--Dialog title for removing a group story-->
+  <string name="ContactSearchMediator__remove_group_story">حذف استوری گروه؟</string>
   <!--Dialog message for removing a group story-->
+  <string name="ContactSearchMediator__this_will_remove">با این کار این استوری از این لیست حذف می‌شود. همچنان می‌توانید استوری‌های این گروه را مشاهده کنید.</string>
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">حذف</string>
   <!--Dialog title for deleting a private story-->
   <string name="ContactSearchMediator__delete_story">حذف استوری؟</string>
   <!--Dialog message for deleting a private story-->
+  <string name="ContactSearchMediator__delete_the_private">حذف استوری خصوصی \"%1$s\"؟</string>
   <!--Dialog action item for deleting a private story-->
   <string name="ContactSearchMediator__delete">حذف</string>
   <!--Gift expiry days remaining-->
@@ -4199,9 +4241,60 @@
   <!--Gift expiry expired-->
   <string name="Gifts__expired">منقضی شده</string>
   <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">برای پیشروی ضربه بزنید</string>
   <!--Label indicating swipe direction to skip current story-->
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">جهت رد کردن به سمت بالا بکشید</string>
   <!--Label indicating swipe direction to exit story viewer-->
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">برای خروج به سمت راست بکشید</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">فهمیدم</string>
+  <!--Content description for vertical context menu button in safety number sheet rows-->
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">باز کردن منوی زمینه</string>
+  <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · تایید شده</string>
+  <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__verified">تأیید شده</string>
+  <!--Title of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">تغییرات شمارهٔ ایمنی</string>
+  <!--Message of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">ممکن است افراد زیر سیگنال را دوباره نصب کرده باشند یا دستگاه‌شان را تغییر داده باشند. برای تایید شمارهٔ ایمنی جدید روی یکی از گیرنده‌ها ضربه بزنید. انجام این کار انتخابی است.</string>
+  <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">بررسی شمارهٔ ایمنی</string>
+  <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">بررسی شمارهٔ ایمنی کامل شد</string>
+  <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">شما %1$d آشنا دارید که ممکن است سیگنال را دوباره نصب کرده باشند یا دستگاه خود را تغییر داده باشند. قبل از به اشتراک گذاشتن استوری خود با آنها، شماره ایمنی آنها را بررسی کنید یا آنها را از استوری خود حذف کنید.</string>
+  <!--Menu action to launch safety number verification screen-->
+  <string name="SafetyNumberBottomSheetFragment__verify_safety_number">وارسی شمارهٔ ایمنی</string>
+  <!--Menu action to remove user from story-->
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">حذف از استوری</string>
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
+  <string name="SafetyNumberBottomSheetFragment__send_anyway">در هر صورت ارسال کن</string>
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <string name="SafetyNumberBottomSheetFragment__review_connections">حذف آشنایان</string>
+  <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">گیرندۀ دیگری برای نمایش وجود ندارد</string>
+  <!--Done button on safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__done">تمام</string>
+  <!--Title of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">تغییرات شمارهٔ ایمنی</string>
+  <!--Message of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">ممکن است %1$d گیرنده سیگنال را دوباره نصب کرده باشند یا دستگاه‌شان را تغییر داده باشند. برای تایید شمارهٔ ایمنی جدید روی یکی از گیرنده‌ها ضربه بزنید. انجام این کار انتخابی است.</string>
+  <!--Section header for 1:1 contacts in review fragment-->
+  <string name="SafetyNumberBucketRowItem__contacts">مخاطبین</string>
+  <!--Context menu label for distribution list headers in review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">حذف همه</string>
+  <!--Context menu label for 1:1 contacts to remove from send-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove">حذف</string>
+  <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">حریم خصوصی استوری من</string>
+  <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">انتخاب کنید چه کسی می‌تواند پست‌های استوری من را ببیند. همیشه می‌توانید تغییراتی در تنظیمات ایجاد کنید.</string>
+  <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">تمام آشنایان در سیگنال</string>
+  <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">تمام آشنایان سیگنال به جز…</string>
+  <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">تنها اشتراک‌گذاری شود با…</string>
   <!--EOF-->
 </resources>

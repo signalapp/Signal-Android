@@ -2026,6 +2026,16 @@
   <string name="HelpFragment__debug_log">ಡೀಬಗ್ ಲಾಗ್:</string>
   <string name="HelpFragment__could_not_upload_logs">ಲಾಗ್‌ಗಳನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಲಾಗದು</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">ಸಮಸ್ಯೆಯನ್ನು ಅರ್ಥ ಮಾಡಿಕೊಳ್ಳಲು ನಮಗೆ ಸಹಾಯ ಮಾಡುವುದಕ್ಕಾಗಿ ಸಾಧ್ಯವಾದಷ್ಟೂ ವಿವರಣೆ ನೀಡಿ</string>
+  <string-array name="HelpFragment__categories_4">
+    <item>\-\- ದಯವಿಟ್ಟು ಒಂದು ಆಯ್ಕೆ ಆರಿಸಿ \-\-</item>
+    <item>ಏನೋ ಕೆಲಸ ಮಾಡುತ್ತಿಲ್ಲ</item>
+    <item>ಫೀಚರ್ ವಿನಂತಿ</item>
+    <item>ಪ್ರಶ್ನೆ</item>
+    <item>ಫೀಡ್‌ಬ್ಯಾಕ್</item>
+    <item>ಇತರೆ</item>
+    <item>ಪಾವತಿಗಳು (MobileCoin)</item>
+    <item>ದೇಣಿಗೆಗಳು &amp; ಬ್ಯಾಡ್ಜ್‌ಗಳು</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ಈ ಸಂದೇಶ</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">ಇತ್ತೀಚೆಗೆ ಬಳಸಲಾಗಿದೆ</string>
@@ -3336,7 +3346,9 @@
   <!--Displayed when sharing content via the fragment-->
   <string name="MultiselectForwardFragment__share_with">ಜೊತೆ ಹಂಚಿಕೊಳ್ಳಿ </string>
   <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">ವಿಡಿಯೋಗಳನ್ನು 30s ಕ್ಲಿಪ್‌ಗಳಿಗೆ ಟ್ರಿಮ್ ಮಾಡಲಾಗುತ್ತದೆ ಮತ್ತು ಅನೇಕ ಸ್ಟೋರೀಸ್ ಆಗಿ ಕಳುಹಿಸಲಾಗುತ್ತದೆ.</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">ಸ್ಟೋರೀಸ್‌ಗೆ ಕಳುಹಿಸಿದ ವಿಡಿಯೋಗಳು 30s ಗಿಂತ ದೀರ್ಘವಾಗಿರುವಂತಿಲ್ಲ.</string>
   <!--Media V2-->
   <string name="ImageEditorHud__cancel">ರದ್ದುಗೊಳಿಸಿ</string>
   <string name="ImageEditorHud__undo">ರದ್ದುಗೊಳಿಸು</string>
@@ -3552,6 +3564,7 @@
   <!--Toast shown when story media cannot be saved-->
   <!--Displayed at bottom of story viewer when current item has views-->
   <!--Displayed at bottom of story viewer when current item has replies-->
+  <!--Used when view receipts are disabled-->
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3562,6 +3575,8 @@
   <string name="StoryViewerPageFragment__reply">ಉತ್ತರಿಸಿ</string>
   <!--Label for the reply button in story viewer, which will launch the group story replies bottom sheet.-->
   <!--Displayed when a story has no views-->
+  <!--Displayed when user has disabled receipts-->
+  <!--Button label displayed when user has disabled receipts-->
   <!--Displayed when a story has no replies yet-->
   <!--Displayed for each user that reacted to a story when viewing replies-->
   <!--Label for story views tab-->
@@ -3584,20 +3599,33 @@
   <!--Section heading for story visibility-->
   <!--Clickable option for selecting people to hide your story from-->
   <!--Privacy setting title for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections">ಎಲ್ಲಾ Signal ಸಂಪರ್ಕಗಳು</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__share_with_all_connections">ಎಲ್ಲಾ ಸಂಪರ್ಕಗಳೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಿ</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections_except">ಇದರ ಹೊರತಾದ ಎಲ್ಲಾ Signal ಸಂರ್ಕಗಳು…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">ನಿರ್ದಿಷ್ಟ ಜನರಿಂದ ನಿಮ್ಮ ಸ್ಟೋರಿಯನ್ನು ಮರೆಯಾಗಿಸಿ</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <plurals name="MyStorySettingsFragment__d_people_excluded">
+    <item quantity="one">%1$d ಜನರನ್ನು ಹೊರಗಿಡಲಾಗಿದೆ</item>
+    <item quantity="other">%1$d ಜನರನ್ನು ಹೊರಗಿಡಲಾಗಿದೆ</item>
+  </plurals>
   <!--Privacy setting title for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with">ಇವರೊಂದಿಗೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಿ…</string>
   <!--Privacy setting description for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">ಆಯ್ದ ಜನರೊಂದಿಗೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಿ</string>
   <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <!--My story privacy fine print about what the privacy settings are for-->
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">ನಿಮ್ಮ ಸ್ಟೋರಿಯನ್ನು ಯಾರು ನೋಡಬಹುದು ಎಂದು ಆಯ್ಕೆ ಮಾಡಿ. ನೀವು ಈಗಾಗಲೇ ಕಳುಹಿಸಿದ ಸ್ಟೋರೀಸ್ ಮೇಲೆ ಬದಲಾವಣೆಗಳು ಪರಿಣಾಮವಾಗುವುದಿಲ್ಲ.</string>
   <!--Section header for options related to replies and reactions-->
   <!--Switchable option for allowing replies and reactions on your stories-->
   <!--Summary for switchable option allowing replies and reactions on your story-->
   <!--Note about default sharing-->
   <!--Signal connections bolded text in the Signal Connections sheet-->
+  <string name="SignalConnectionsBottomSheet___signal_connections">Signal ಸಂಪರ್ಕಗಳು</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal ಸಂಪರ್ಕಗಳು ಒಂದೋ ಈ ಮೂಲಕ ನೀವು ವಿಶ್ವಾಸಾರ್ಹವೆಂದು ಆರಿಸಿದ ಜನರಾಗಿದ್ದಾರೆ:</string>
   <!--Signal connections sheet bullet point 1-->
   <!--Signal connections sheet bullet point 2-->
   <!--Signal connections sheet bullet point 3-->
@@ -3628,7 +3656,9 @@
   <string name="TextStoryPostSendFragment__search">ಹುಡುಕಿ</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <string name="ChangeMyStoryMembershipFragment__all_except">ಇವರ ಹೊರತಾಗಿ ಎಲ್ಲರೂ…</string>
   <!--Title for screen allowing user to only share "My Story" entries with specific people-->
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">ಇವರೊಂದಿಗೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಿ…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">ಮುಗಿದಿದೆ</string>
   <!--Dialog title for first time adding something to a story-->
@@ -3715,15 +3745,21 @@
   <string name="ExpiredGiftSheetConfiguration__not_now">ಈಗಲ್ಲ</string>
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
+  <!--Label under name for My Story when first sending to my story-->
   <!--Label for context menu item to open story settings-->
   <!--Label for context menu item to remove a group story from contact results-->
+  <string name="ContactSearchItems__remove_story">ಸ್ಟೋರಿ ತೆಗೆದುಹಾಕಿ</string>
   <!--Label for context menu item to delete a private story-->
+  <string name="ContactSearchItems__delete_story">ಸ್ಟೋರಿ ಅಳಿಸಿ</string>
   <!--Dialog title for removing a group story-->
+  <string name="ContactSearchMediator__remove_group_story">ಗ್ರೂಪ್ ಸ್ಟೋರಿ ತೆಗೆಯುವುದೇ?</string>
   <!--Dialog message for removing a group story-->
+  <string name="ContactSearchMediator__this_will_remove">ಇದು ಈ ಪಟ್ಟಿಯಿಂದ ಸ್ಟೋರಿಯನ್ನು ತೆಗೆದುಹಾಕಲಿದೆ. ನಿಮಗೆ ಈಗಲೂ ಈ ಗ್ರೂಪ್‌ನಿಂದ ಸ್ಟೋರೀಸ್ ಅನ್ನು ನೋಡಲು ಸಾಧ್ಯವಾಗಲಿದೆ.</string>
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">ತೆಗೆದುಹಾಕಿ</string>
   <!--Dialog title for deleting a private story-->
   <!--Dialog message for deleting a private story-->
+  <string name="ContactSearchMediator__delete_the_private">ಖಾಸಗಿ ಸ್ಟೋರಿ \"%1$s\" ಅಳಿಸುವುದೇ?</string>
   <!--Dialog action item for deleting a private story-->
   <string name="ContactSearchMediator__delete">ಅಳಿಸು</string>
   <!--Gift expiry days remaining-->
@@ -3731,9 +3767,45 @@
   <!--Gift expiry minutes remaining-->
   <!--Gift expiry expired-->
   <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">ಮುಂದುವರಿಯಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
   <!--Label indicating swipe direction to skip current story-->
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">ಸ್ಕಿಪ್ ಮಾಡಲು ಸ್ವೈಪ್ ಮಾಡಿ</string>
   <!--Label indicating swipe direction to exit story viewer-->
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">ನಿರ್ಗಮಿಸಲು ಬಲಕ್ಕೆ ಸ್ವೈಪ್ ಮಾಡಿ</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">ಅರ್ಥವಾಯಿತು</string>
+  <!--Content description for vertical context menu button in safety number sheet rows-->
+  <!--Sub-line when a user is verified.-->
+  <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__verified">ದೃಢೀಕರಿಸಲಾಗಿದೆ</string>
+  <!--Title of safety number changes bottom sheet when showing individual records-->
+  <!--Message of safety number changes bottom sheet when showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <!--Menu action to launch safety number verification screen-->
+  <string name="SafetyNumberBottomSheetFragment__verify_safety_number">ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ದೃಢೀಕರಿಸಿ</string>
+  <!--Menu action to remove user from story-->
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
+  <string name="SafetyNumberBottomSheetFragment__send_anyway">ಹೇಗಾದರೂ ಕಳುಹಿಸಿ</string>
+  <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <!--Done button on safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__done">ಮುಗಿದಿದೆ</string>
+  <!--Title of safety number review fragment-->
+  <!--Message of safety number review fragment-->
+  <!--Section header for 1:1 contacts in review fragment-->
+  <string name="SafetyNumberBucketRowItem__contacts">ಸಂಪರ್ಕಗಳು</string>
+  <!--Context menu label for distribution list headers in review fragment-->
+  <!--Context menu label for 1:1 contacts to remove from send-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove">ತೆಗೆದುಹಾಕಿ</string>
+  <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">ಎಲ್ಲಾ Signal ಸಂಪರ್ಕಗಳು</string>
+  <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">ಇದರ ಹೊರತಾದ ಎಲ್ಲಾ Signal ಸಂರ್ಕಗಳು…</string>
+  <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">ಇವರೊಂದಿಗೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಿ…</string>
   <!--EOF-->
 </resources>
