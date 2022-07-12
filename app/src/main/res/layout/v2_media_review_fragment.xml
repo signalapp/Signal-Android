@@ -269,7 +269,7 @@
             app:tint="@color/core_white"
             tools:translationY="0dp" />
 
-        e<androidx.appcompat.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/send"
             android:layout_width="36dp"
             android:layout_height="36dp"
