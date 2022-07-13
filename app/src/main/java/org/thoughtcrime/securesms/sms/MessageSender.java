@@ -148,7 +148,7 @@ public class MessageSender {
     MessageDatabase       database        = SignalDatabase.mms();
     List<Long>            messageIds      = new ArrayList<>(messages.size());
     List<Long>            threads         = new ArrayList<>(messages.size());
-    UploadDependencyGraph dependencyGraph = UploadDependencyGraph.EMPTY;
+    UploadDependencyGraph dependencyGraph;
 
     try {
       database.beginTransaction();

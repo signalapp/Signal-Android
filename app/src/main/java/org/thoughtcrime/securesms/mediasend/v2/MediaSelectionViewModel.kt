@@ -336,7 +336,7 @@ class MediaSelectionViewModel(
     }
 
     val filteredPreUploadMedia = if (Stories.isFeatureEnabled()) {
-      media.filterNot { Stories.MediaTransform.getSendRequirements(media) == Stories.MediaTransform.SendRequirements.REQUIRES_CLIP }
+      media.filter { Stories.MediaTransform.canPreUploadMedia(it) }
     } else {
       media
     }

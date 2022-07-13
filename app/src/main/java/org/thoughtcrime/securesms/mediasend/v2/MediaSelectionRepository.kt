@@ -127,7 +127,7 @@ class MediaSelectionRepository(context: Context) {
           )
         }
 
-        val clippedMediaForStories = if (singleContact?.isStory == true || contacts.any { it.isStory }) {
+        val clippedVideosForStories: List<Media> = if (singleContact?.isStory == true || contacts.any { it.isStory }) {
           updatedMedia.filter {
             Stories.MediaTransform.getSendRequirements(it) == Stories.MediaTransform.SendRequirements.REQUIRES_CLIP
           }.map { media ->
@@ -135,12 +135,20 @@ class MediaSelectionRepository(context: Context) {
           }.flatten()
         } else emptyList()
 
+        val lowResImagesForStories: List<Media> = if (singleContact?.isStory == true || contacts.any { it.isStory }) {
+          updatedMedia.filter {
+            Stories.MediaTransform.hasHighQualityTransform(it)
+          }.map {
+            Media.stripTransform(it)
+          }
+        } else emptyList()
+
         uploadRepository.applyMediaUpdates(oldToNewMediaMap, singleRecipient)
         uploadRepository.updateCaptions(updatedMedia)
         uploadRepository.updateDisplayOrder(updatedMedia)
         uploadRepository.getPreUploadResults { uploadResults ->
           if (contacts.isNotEmpty()) {
-            sendMessages(contacts, splitBody, uploadResults, trimmedMentions, isViewOnce, clippedMediaForStories)
+            sendMessages(contacts, splitBody, uploadResults, trimmedMentions, isViewOnce, clippedVideosForStories + lowResImagesForStories)
             uploadRepository.deleteAbandonedAttachments()
             emitter.onComplete()
           } else if (uploadResults.isNotEmpty()) {

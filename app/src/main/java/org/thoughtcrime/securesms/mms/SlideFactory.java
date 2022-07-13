@@ -13,6 +13,7 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.blurhash.BlurHash;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.io.IOException;
@@ -31,25 +32,25 @@ public final class SlideFactory {
   /**
    * Generates a slide from the given parameters.
    *
-   * @param context     Application context
-   * @param contentType The contentType of the given Uri
-   * @param uri         The Uri pointing to the resource to create a slide out of
-   * @param width       (Optional) width, can be 0.
-   * @param height      (Optional) height, can be 0.
+   * @param context             Application context
+   * @param contentType         The contentType of the given Uri
+   * @param uri                 The Uri pointing to the resource to create a slide out of
+   * @param width               (Optional) width, can be 0.
+   * @param height              (Optional) height, can be 0.
+   * @param transformProperties (Optional) transformProperties, can be 0.
    *
    * @return A Slide with all the information we can gather about it.
    */
-  @WorkerThread
-  public static @Nullable Slide getSlide(@NonNull Context context, @Nullable String contentType, @NonNull Uri uri, int width, int height) {
+  public static @Nullable Slide getSlide(@NonNull Context context, @Nullable String contentType, @NonNull Uri uri, int width, int height, @Nullable AttachmentDatabase.TransformProperties transformProperties) {
     MediaType mediaType = MediaType.from(contentType);
 
     try {
       if (PartAuthority.isLocalUri(uri)) {
-        return getManuallyCalculatedSlideInfo(context, mediaType, uri, width, height);
+        return getManuallyCalculatedSlideInfo(context, mediaType, uri, width, height, transformProperties);
       } else {
-        Slide result = getContentResolverSlideInfo(context, mediaType, uri, width, height);
+        Slide result = getContentResolverSlideInfo(context, mediaType, uri, width, height, transformProperties);
 
-        if (result == null) return getManuallyCalculatedSlideInfo(context, mediaType, uri, width, height);
+        if (result == null) return getManuallyCalculatedSlideInfo(context, mediaType, uri, width, height, transformProperties);
         else                return result;
       }
     } catch (IOException e) {
@@ -58,7 +59,14 @@ public final class SlideFactory {
     }
   }
 
-  private static @Nullable Slide getContentResolverSlideInfo(@NonNull Context context, @Nullable MediaType mediaType, @NonNull Uri uri, int width, int height) {
+  private static @Nullable Slide getContentResolverSlideInfo(
+      @NonNull Context context,
+      @Nullable MediaType mediaType,
+      @NonNull Uri uri,
+      int width,
+      int height,
+      @Nullable AttachmentDatabase.TransformProperties transformProperties
+  ) {
     long start = System.currentTimeMillis();
 
     try (Cursor cursor = context.getContentResolver().query(uri, null, null, null, null)) {
@@ -78,14 +86,22 @@ public final class SlideFactory {
         }
 
         Log.d(TAG, "remote slide with size " + fileSize + " took " + (System.currentTimeMillis() - start) + "ms");
-        return mediaType.createSlide(context, uri, fileName, mimeType, null, fileSize, width, height, false);
+        return mediaType.createSlide(context, uri, fileName, mimeType, null, fileSize, width, height, false, transformProperties);
       }
     }
 
     return null;
   }
 
-  private static @NonNull Slide getManuallyCalculatedSlideInfo(@NonNull Context context, @Nullable MediaType mediaType, @NonNull Uri uri, int width, int height) throws IOException {
+  private static @NonNull Slide getManuallyCalculatedSlideInfo(
+      @NonNull Context context,
+      @Nullable MediaType mediaType,
+      @NonNull Uri uri,
+      int width,
+      int height,
+      @Nullable AttachmentDatabase.TransformProperties transformProperties
+  ) throws IOException
+  {
     long     start     = System.currentTimeMillis();
     Long     mediaSize = null;
     String   fileName  = null;
@@ -118,7 +134,7 @@ public final class SlideFactory {
     }
 
     Log.d(TAG, "local slide with size " + mediaSize + " took " + (System.currentTimeMillis() - start) + "ms");
-    return mediaType.createSlide(context, uri, fileName, mimeType, null, mediaSize, width, height, gif);
+    return mediaType.createSlide(context, uri, fileName, mimeType, null, mediaSize, width, height, gif, transformProperties);
   }
 
   public enum MediaType {
@@ -142,17 +158,18 @@ public final class SlideFactory {
                                       @Nullable String   fileName,
                                       @Nullable String   mimeType,
                                       @Nullable BlurHash blurHash,
-                                                long     dataSize,
-                                                int      width,
-                                                int      height,
-                                                boolean  gif)
+                                      long      dataSize,
+                                      int       width,
+                                      int       height,
+                                      boolean   gif,
+                                      @Nullable AttachmentDatabase.TransformProperties transformProperties)
     {
       if (mimeType == null) {
         mimeType = "application/octet-stream";
       }
 
       switch (this) {
-      case IMAGE:    return new ImageSlide(context, uri, dataSize, width, height, blurHash);
+      case IMAGE:    return new ImageSlide(context, uri, mimeType, dataSize, width, height, false, null, blurHash, transformProperties);
       case GIF:      return new GifSlide(context, uri, dataSize, width, height);
       case AUDIO:    return new AudioSlide(context, uri, dataSize, false);
       case VIDEO:    return new VideoSlide(context, uri, dataSize, gif);

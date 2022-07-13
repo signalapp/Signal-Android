@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.components.location.SignalMapView;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.conversation.MessageSendType;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.maps.PlacePickerActivity;
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity;
@@ -316,7 +317,7 @@ public class AttachmentManager {
             }
 
             Log.d(TAG, "remote slide with size " + fileSize + " took " + (System.currentTimeMillis() - start) + "ms");
-            return mediaType.createSlide(context, uri, fileName, mimeType, null, fileSize, width, height, false);
+            return mediaType.createSlide(context, uri, fileName, mimeType, null, fileSize, width, height, false, null);
           }
         } finally {
           if (cursor != null) cursor.close();
@@ -326,17 +327,19 @@ public class AttachmentManager {
       }
 
       private @NonNull Slide getManuallyCalculatedSlideInfo(Uri uri, int width, int height) throws IOException {
-        long     start     = System.currentTimeMillis();
-        Long     mediaSize = null;
-        String   fileName  = null;
-        String   mimeType  = null;
-        boolean  gif       = false;
+        long                                   start               = System.currentTimeMillis();
+        Long                                   mediaSize           = null;
+        String                                 fileName            = null;
+        String                                 mimeType            = null;
+        boolean                                gif                 = false;
+        AttachmentDatabase.TransformProperties transformProperties = null;
 
         if (PartAuthority.isLocalUri(uri)) {
-          mediaSize = PartAuthority.getAttachmentSize(context, uri);
-          fileName  = PartAuthority.getAttachmentFileName(context, uri);
-          mimeType  = PartAuthority.getAttachmentContentType(context, uri);
-          gif       = PartAuthority.getAttachmentIsVideoGif(context, uri);
+          mediaSize           = PartAuthority.getAttachmentSize(context, uri);
+          fileName            = PartAuthority.getAttachmentFileName(context, uri);
+          mimeType            = PartAuthority.getAttachmentContentType(context, uri);
+          gif                 = PartAuthority.getAttachmentIsVideoGif(context, uri);
+          transformProperties = PartAuthority.getAttachmentTransformProperties(uri);
         }
 
         if (mediaSize == null) {
@@ -354,7 +357,7 @@ public class AttachmentManager {
         }
 
         Log.d(TAG, "local slide with size " + mediaSize + " took " + (System.currentTimeMillis() - start) + "ms");
-        return mediaType.createSlide(context, uri, fileName, mimeType, null, mediaSize, width, height, gif);
+        return mediaType.createSlide(context, uri, fileName, mimeType, null, mediaSize, width, height, gif, transformProperties);
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 

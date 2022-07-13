@@ -10,13 +10,15 @@ package org.whispersystems.signalservice.api.messages;
 import org.whispersystems.signalservice.internal.push.http.CancelationSignal;
 import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Optional;
 
 /**
  * Represents a local SignalServiceAttachment to be sent.
  */
-public class SignalServiceAttachmentStream extends SignalServiceAttachment {
+public class SignalServiceAttachmentStream extends SignalServiceAttachment implements Closeable {
 
   private final InputStream                   inputStream;
   private final long                          length;
@@ -150,5 +152,10 @@ public class SignalServiceAttachmentStream extends SignalServiceAttachment {
 
   public Optional<ResumableUploadSpec> getResumableUploadSpec() {
     return resumableUploadSpec;
+  }
+
+  @Override
+  public void close() throws IOException {
+    inputStream.close();
   }
 }

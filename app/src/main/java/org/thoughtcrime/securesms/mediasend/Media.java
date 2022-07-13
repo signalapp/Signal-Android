@@ -7,6 +7,8 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.util.MediaUtil;
+import org.whispersystems.signalservice.api.util.Preconditions;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
 
 import java.io.IOException;
@@ -193,5 +195,22 @@ public class Media implements Parcelable {
                      media.getBucketId(),
                      media.getCaption(),
                      media.getTransformProperties());
+  }
+
+  public static @NonNull Media stripTransform(@NonNull Media media) {
+    Preconditions.checkArgument(MediaUtil.isImageType(media.mimeType));
+
+    return new Media(media.getUri(),
+                     media.getMimeType(),
+                     media.getDate(),
+                     media.getWidth(),
+                     media.getHeight(),
+                     media.getSize(),
+                     media.getDuration(),
+                     media.isBorderless(),
+                     media.isVideoGif(),
+                     media.getBucketId(),
+                     media.getCaption(),
+                     Optional.empty());
   }
 }

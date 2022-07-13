@@ -24,6 +24,11 @@ public class PushMediaConstraints extends MediaConstraints {
   }
 
   @Override
+  public boolean isHighQuality() {
+    return currentConfig == MediaConfig.LEVEL_3;
+  }
+
+  @Override
   public int getImageMaxWidth(Context context) {
     return currentConfig.imageSizeTargets[0];
   }

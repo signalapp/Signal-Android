@@ -1450,17 +1450,11 @@ public class PushServiceSocket {
       connections.add(call);
     }
 
-    try {
-      Response response;
-
-      try {
-        response = call.execute();
-      } catch (IOException e) {
-        throw new PushNetworkException(e);
-      }
-
+    try (Response response = call.execute()) {
       if (response.isSuccessful()) return file.getTransmittedDigest();
       else                         throw new NonSuccessfulResponseCodeException(response.code(), "Response: " + response);
+    } catch (IOException e) {
+      throw new PushNetworkException(e);
     } finally {
       synchronized (connections) {
         connections.remove(call);

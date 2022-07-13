@@ -49,7 +49,6 @@ import org.thoughtcrime.securesms.video.videoconverter.EncodingException;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;

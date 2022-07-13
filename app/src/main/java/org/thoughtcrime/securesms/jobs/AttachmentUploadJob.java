@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResumableUploadResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException;
 import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec;
@@ -142,11 +143,12 @@ public final class AttachmentUploadJob extends BaseJob {
     Log.i(TAG, "Uploading attachment for message " + databaseAttachment.getMmsId() + " with ID " + databaseAttachment.getAttachmentId());
 
     try (NotificationController notification = getNotificationForAttachment(databaseAttachment)) {
-      SignalServiceAttachment        localAttachment  = getAttachmentFor(databaseAttachment, notification, resumableUploadSpec);
-      SignalServiceAttachmentPointer remoteAttachment = messageSender.uploadAttachment(localAttachment.asStream());
-      Attachment                     attachment       = PointerAttachment.forPointer(Optional.of(remoteAttachment), null, databaseAttachment.getFastPreflightId()).get();
+      try (SignalServiceAttachmentStream localAttachment = getAttachmentFor(databaseAttachment, notification, resumableUploadSpec)) {
+        SignalServiceAttachmentPointer remoteAttachment = messageSender.uploadAttachment(localAttachment);
+        Attachment                     attachment       = PointerAttachment.forPointer(Optional.of(remoteAttachment), null, databaseAttachment.getFastPreflightId()).get();
 
-      database.updateAttachmentAfterUpload(databaseAttachment.getAttachmentId(), attachment, remoteAttachment.getUploadTimestamp());
+        database.updateAttachmentAfterUpload(databaseAttachment.getAttachmentId(), attachment, remoteAttachment.getUploadTimestamp());
+      }
     } catch (NonSuccessfulResumableUploadResponseCodeException e) {
       if (e.getCode() == 400) {
         Log.w(TAG, "Failed to upload due to a 400 when getting resumable upload information. Downgrading to attachments v2", e);
@@ -177,9 +179,12 @@ public final class AttachmentUploadJob extends BaseJob {
     return exception instanceof IOException && !(exception instanceof NotPushRegisteredException);
   }
 
-  private @NonNull SignalServiceAttachment getAttachmentFor(Attachment attachment, @Nullable NotificationController notification, @Nullable ResumableUploadSpec resumableUploadSpec) throws InvalidAttachmentException {
+  private @NonNull SignalServiceAttachmentStream getAttachmentFor(Attachment attachment, @Nullable NotificationController notification, @Nullable ResumableUploadSpec resumableUploadSpec) throws InvalidAttachmentException {
+    if (attachment.getUri() == null || attachment.getSize() == 0) {
+      throw new InvalidAttachmentException(new IOException("Assertion failed, outgoing attachment has no data!"));
+    }
+
     try {
-      if (attachment.getUri() == null || attachment.getSize() == 0) throw new IOException("Assertion failed, outgoing attachment has no data!");
       InputStream is = PartAuthority.getAttachmentStream(context, attachment.getUri());
       SignalServiceAttachment.Builder builder = SignalServiceAttachment.newStreamBuilder()
                                                                        .withStream(is)
@@ -208,7 +213,6 @@ public final class AttachmentUploadJob extends BaseJob {
       } else {
         return builder.build();
       }
-
     } catch (IOException ioe) {
       throw new InvalidAttachmentException(ioe);
     }
@@ -218,7 +222,9 @@ public final class AttachmentUploadJob extends BaseJob {
     if (attachment.getBlurHash() != null) return attachment.getBlurHash().getHash();
     if (attachment.getUri() == null) return null;
 
-    return BlurHashEncoder.encode(PartAuthority.getAttachmentStream(context, attachment.getUri()));
+    try (InputStream inputStream = PartAuthority.getAttachmentStream(context, attachment.getUri())) {
+      return BlurHashEncoder.encode(inputStream);
+    }
   }
 
   private @Nullable String getVideoBlurHash(@NonNull Attachment attachment) throws IOException {
