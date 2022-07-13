@@ -19,6 +19,7 @@
     <dimen name="dsl_settings_gutter">24dp</dimen>
     <dimen name="media_overview_toggle_gutter">10dp</dimen>
     <dimen name="wallpaper_selection_gutter">16dp</dimen>
+    <dimen name="safety_number_recipient_row_item_gutter">12dp</dimen>
 
     <dimen name="chat_colors_preview_bubble_max_width">260dp</dimen>
 

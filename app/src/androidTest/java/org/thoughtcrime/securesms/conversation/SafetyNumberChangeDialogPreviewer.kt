@@ -5,6 +5,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.core.util.ThreadUtil
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.database.IdentityDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -20,7 +21,7 @@ import org.thoughtcrime.securesms.testing.SignalActivityRule
 @RunWith(AndroidJUnit4::class)
 class SafetyNumberChangeDialogPreviewer {
 
-  @get:Rule val harness = SignalActivityRule(othersCount = 10)
+  @get:Rule val harness = SignalActivityRule(othersCount = 5)
 
   @Test
   fun testShowLongName() {
@@ -46,7 +47,7 @@ class SafetyNumberChangeDialogPreviewer {
     othersRecipients.forEach { other ->
       SignalDatabase.recipients.setProfileName(other.id, ProfileName.fromParts("My", "Name"))
 
-      harness.setVerified(other, IdentityDatabase.VerifiedStatus.VERIFIED)
+      harness.setVerified(other, IdentityDatabase.VerifiedStatus.DEFAULT)
       harness.changeIdentityKey(other)
     }
 
@@ -61,6 +62,6 @@ class SafetyNumberChangeDialogPreviewer {
     }
 
     // Uncomment to make dialog stay on screen, otherwise will show/dismiss immediately
-    // ThreadUtil.sleep(15000)
+    ThreadUtil.sleep(15000)
   }
 }

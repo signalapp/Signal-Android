@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.safety
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import org.signal.core.util.DimensionUnit
 import org.signal.core.util.or
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
@@ -47,7 +48,6 @@ object SafetyNumberRecipientRowItem {
     private val avatar: AvatarImageView = itemView.findViewById(R.id.safety_number_recipient_avatar)
     private val name: TextView = itemView.findViewById(R.id.safety_number_recipient_name)
     private val identifier: TextView = itemView.findViewById(R.id.safety_number_recipient_identifier)
-    private val menu: View = itemView.findViewById(R.id.safety_number_recipient_menu)
 
     override fun bind(model: Model) {
       avatar.setRecipient(model.recipient)
@@ -62,8 +62,12 @@ object SafetyNumberRecipientRowItem {
 
       identifier.text = subLineText
       identifier.visible = !subLineText.isNullOrBlank()
-      menu.setOnClickListener {
+
+      itemView.setOnClickListener {
+        itemView.isSelected = true
         SignalContextMenu.Builder(itemView, itemView.rootView as ViewGroup)
+          .offsetY(DimensionUnit.DP.toPixels(12f).toInt())
+          .onDismiss { itemView.isSelected = false }
           .show(model.getContextMenuActions(model))
       }
     }

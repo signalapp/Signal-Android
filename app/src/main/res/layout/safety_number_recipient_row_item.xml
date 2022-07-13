@@ -4,22 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/dsl_settings_gutter"
-    android:layout_marginEnd="4dp"
+    android:layout_marginStart="12dp"
+    android:layout_marginEnd="12dp"
+    android:background="@drawable/selectable_list_item_background"
     android:minHeight="64dp">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/safety_number_recipient_avatar"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_marginStart="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/safety_number_recipient_menu"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
         android:contentDescription="@string/SafetyNumberRecipientRowItem__open_context_menu"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
