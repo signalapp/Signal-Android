@@ -4,8 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import org.signal.ringrtc.CallManager
+import org.thoughtcrime.securesms.jobs.StoryOnboardingDownloadJob
 import org.thoughtcrime.securesms.keyvalue.InternalValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.livedata.Store
 
 class InternalSettingsViewModel(private val repository: InternalSettingsRepository) : ViewModel() {
@@ -139,8 +141,16 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     removeSenderKeyMinimium = SignalStore.internalValues().removeSenderKeyMinimum(),
     delayResends = SignalStore.internalValues().delayResends(),
     disableStorageService = SignalStore.internalValues().storageServiceDisabled(),
-    disableStories = SignalStore.storyValues().isFeatureDisabled
+    disableStories = SignalStore.storyValues().isFeatureDisabled,
+    canClearOnboardingState = SignalStore.storyValues().hasDownloadedOnboardingStory && Stories.isFeatureEnabled()
   )
+
+  fun onClearOnboardingState() {
+    SignalStore.storyValues().hasDownloadedOnboardingStory = false
+    SignalStore.storyValues().userHasSeenOnboardingStory = false
+    refresh()
+    StoryOnboardingDownloadJob.enqueueIfNeeded()
+  }
 
   class Factory(private val repository: InternalSettingsRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

@@ -485,6 +485,15 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
           viewModel.toggleStories()
         }
       )
+
+      clickPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_clear_onboarding_state),
+        summary = DSLSettingsText.from(R.string.preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories),
+        isEnabled = state.canClearOnboardingState,
+        onClick = {
+          viewModel.onClearOnboardingState()
+        }
+      )
     }
   }
 
