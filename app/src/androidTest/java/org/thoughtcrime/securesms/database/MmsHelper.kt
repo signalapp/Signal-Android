@@ -5,6 +5,7 @@ import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
+import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import java.util.Optional
 
@@ -25,7 +26,8 @@ object MmsHelper {
     storyType: StoryType = StoryType.NONE,
     parentStoryId: ParentStoryId? = null,
     isStoryReaction: Boolean = false,
-    giftBadge: GiftBadge? = null
+    giftBadge: GiftBadge? = null,
+    secure: Boolean = true
   ): Long {
     val message = OutgoingMediaMessage(
       recipient,
@@ -46,7 +48,9 @@ object MmsHelper {
       emptySet(),
       emptySet(),
       giftBadge
-    )
+    ).let {
+      if (secure) OutgoingSecureMediaMessage(it) else it
+    }
 
     return insert(
       message = message,

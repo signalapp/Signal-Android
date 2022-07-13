@@ -625,6 +625,7 @@ public class ThreadDatabase extends Database {
     }
 
     query += " AND " + ARCHIVED + " = 0";
+    query += " AND " + RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.BLOCKED + " = 0";
 
     if (SignalStore.releaseChannelValues().getReleaseChannelRecipientId() != null) {
       query += " AND " + RECIPIENT_ID + " != " + SignalStore.releaseChannelValues().getReleaseChannelRecipientId().toLong();

@@ -133,7 +133,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     const val GROUP_ID = "group_id"
     const val DISTRIBUTION_LIST_ID = "distribution_list_id"
     const val GROUP_TYPE = "group_type"
-    private const val BLOCKED = "blocked"
+    const val BLOCKED = "blocked"
     private const val MESSAGE_RINGTONE = "message_ringtone"
     private const val MESSAGE_VIBRATE = "message_vibrate"
     private const val CALL_RINGTONE = "call_ringtone"
