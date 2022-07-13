@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.database.model.DistributionListId;
+import org.thoughtcrime.securesms.database.model.ProfileAvatarFileDetails;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -60,7 +61,7 @@ public class RecipientDetails {
   final byte[]                       profileKey;
   final ExpiringProfileKeyCredential expiringProfileKeyCredential;
   final String                       profileAvatar;
-  final boolean                      hasProfileImage;
+  final ProfileAvatarFileDetails     profileAvatarFileDetails;
   final boolean                      profileSharing;
   final long                         lastProfileFetch;
   final boolean                      systemContact;
@@ -123,7 +124,7 @@ public class RecipientDetails {
     this.profileKey                   = record.getProfileKey();
     this.expiringProfileKeyCredential = record.getExpiringProfileKeyCredential();
     this.profileAvatar                = record.getProfileAvatar();
-    this.hasProfileImage              = record.hasProfileImage();
+    this.profileAvatarFileDetails     = record.getProfileAvatarFileDetails();
     this.profileSharing               = record.isProfileSharing();
     this.lastProfileFetch             = record.getLastProfileFetch();
     this.systemContact                = systemContact;
@@ -181,7 +182,7 @@ public class RecipientDetails {
     this.profileKey                   = null;
     this.expiringProfileKeyCredential = null;
     this.profileAvatar                = null;
-    this.hasProfileImage              = false;
+    this.profileAvatarFileDetails     = ProfileAvatarFileDetails.NO_DETAILS;
     this.profileSharing               = false;
     this.lastProfileFetch             = 0;
     this.systemContact                = true;

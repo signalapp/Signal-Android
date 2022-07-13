@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto80dp;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.SystemContactPhoto;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
+import org.thoughtcrime.securesms.database.model.ProfileAvatarFileDetails;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -41,13 +42,15 @@ public final class ConversationShortcutPhoto implements Key {
    */
   private static final long VERSION = 1L;
 
-  private final Recipient recipient;
-  private final String    avatarObject;
+  private final Recipient                recipient;
+  private final String                   avatarObject;
+  private final ProfileAvatarFileDetails profileAvatarFileDetails;
 
   @WorkerThread
   public ConversationShortcutPhoto(@NonNull Recipient recipient) {
-    this.recipient    = recipient.resolve();
-    this.avatarObject = Util.firstNonNull(recipient.getProfileAvatar(), "");
+    this.recipient                = recipient.resolve();
+    this.avatarObject             = Util.firstNonNull(recipient.getProfileAvatar(), "");
+    this.profileAvatarFileDetails = recipient.getProfileAvatarFileDetails();
   }
 
   @Override
@@ -55,7 +58,7 @@ public final class ConversationShortcutPhoto implements Key {
     messageDigest.update(recipient.getDisplayName(ApplicationDependencies.getApplication()).getBytes());
     messageDigest.update(avatarObject.getBytes());
     messageDigest.update(isSystemContactPhoto() ? (byte) 1 : (byte) 0);
-    messageDigest.update(ByteUtil.longToByteArray(getFileLastModified()));
+    messageDigest.update(profileAvatarFileDetails.getDiskCacheKeyBytes());
     messageDigest.update(ByteUtil.longToByteArray(VERSION));
   }
 
@@ -67,20 +70,16 @@ public final class ConversationShortcutPhoto implements Key {
     return Objects.equals(recipient, that.recipient)             &&
            Objects.equals(avatarObject, that.avatarObject)       &&
            isSystemContactPhoto() == that.isSystemContactPhoto() &&
-           getFileLastModified() == that.getFileLastModified();
+           Objects.equals(profileAvatarFileDetails, that.profileAvatarFileDetails);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(recipient, avatarObject, isSystemContactPhoto(), getFileLastModified());
+    return Objects.hash(recipient, avatarObject, isSystemContactPhoto(), profileAvatarFileDetails);
   }
 
   private boolean isSystemContactPhoto() {
     return recipient.getContactPhoto() instanceof SystemContactPhoto;
-  }
-
-  private long getFileLastModified() {
-    return AvatarHelper.getLastModified(ApplicationDependencies.getApplication(), recipient.getId());
   }
 
   public static final class Loader implements ModelLoader<ConversationShortcutPhoto, Bitmap> {

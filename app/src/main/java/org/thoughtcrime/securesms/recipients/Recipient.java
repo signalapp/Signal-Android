@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessM
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.DistributionListId;
+import org.thoughtcrime.securesms.database.model.ProfileAvatarFileDetails;
 import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -110,7 +111,7 @@ public class Recipient {
   private final Uri                          contactUri;
   private final ProfileName                  signalProfileName;
   private final String                       profileAvatar;
-  private final boolean                      hasProfileImage;
+  private final ProfileAvatarFileDetails     profileAvatarFileDetails;
   private final boolean                      profileSharing;
   private final long                         lastProfileFetch;
   private final String                       notificationChannel;
@@ -388,7 +389,7 @@ public class Recipient {
     this.contactUri                   = null;
     this.signalProfileName            = ProfileName.EMPTY;
     this.profileAvatar                = null;
-    this.hasProfileImage              = false;
+    this.profileAvatarFileDetails     = ProfileAvatarFileDetails.NO_DETAILS;
     this.profileSharing               = false;
     this.lastProfileFetch             = 0;
     this.notificationChannel          = null;
@@ -446,7 +447,7 @@ public class Recipient {
     this.contactUri                   = details.contactUri;
     this.signalProfileName            = details.profileName;
     this.profileAvatar                = details.profileAvatar;
-    this.hasProfileImage              = details.hasProfileImage;
+    this.profileAvatarFileDetails     = details.profileAvatarFileDetails;
     this.profileSharing               = details.profileSharing;
     this.lastProfileFetch             = details.lastProfileFetch;
     this.notificationChannel          = details.notificationChannel;
@@ -811,6 +812,10 @@ public class Recipient {
     return profileAvatar;
   }
 
+  public @NonNull ProfileAvatarFileDetails getProfileAvatarFileDetails() {
+    return profileAvatarFileDetails;
+  }
+
   public boolean isProfileSharing() {
     return profileSharing;
   }
@@ -907,7 +912,7 @@ public class Recipient {
     if      (isSelf)                                                                             return null;
     else if (isGroupInternal() && groupAvatarId.isPresent())                                     return new GroupRecordContactPhoto(groupId, groupAvatarId.get());
     else if (systemContactPhoto != null && SignalStore.settings().isPreferSystemContactPhotos()) return new SystemContactPhoto(id, systemContactPhoto, 0);
-    else if (profileAvatar != null && hasProfileImage)                                           return new ProfileContactPhoto(this, profileAvatar);
+    else if (profileAvatar != null && profileAvatarFileDetails.hasFile())                        return new ProfileContactPhoto(this);
     else if (systemContactPhoto != null)                                                         return new SystemContactPhoto(id, systemContactPhoto, 0);
     else                                                                                         return null;
   }
@@ -1263,7 +1268,7 @@ public class Recipient {
            blocked == other.blocked &&
            muteUntil == other.muteUntil &&
            expireMessages == other.expireMessages &&
-           hasProfileImage == other.hasProfileImage &&
+           Objects.equals(profileAvatarFileDetails, other.profileAvatarFileDetails) &&
            profileSharing == other.profileSharing &&
            lastProfileFetch == other.lastProfileFetch &&
            forceSmsSelection == other.forceSmsSelection &&

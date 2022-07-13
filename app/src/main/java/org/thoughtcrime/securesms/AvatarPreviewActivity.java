@@ -92,7 +92,7 @@ public final class AvatarPreviewActivity extends PassphraseRequiredActivity {
     RecipientId recipientId = RecipientId.from(getIntent().getStringExtra(RECIPIENT_ID_EXTRA));
 
     Recipient.live(recipientId).observe(this, recipient -> {
-      ContactPhoto contactPhoto  = recipient.isSelf() ? new ProfileContactPhoto(recipient, recipient.getProfileAvatar())
+      ContactPhoto contactPhoto  = recipient.isSelf() ? new ProfileContactPhoto(recipient)
                                                       : recipient.getContactPhoto();
       FallbackContactPhoto fallbackPhoto = recipient.isSelf() ? new ResourceContactPhoto(R.drawable.ic_profile_outline_40, R.drawable.ic_profile_outline_20, R.drawable.ic_person_large)
                                                               : recipient.getFallbackContactPhoto();

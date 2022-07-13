@@ -65,7 +65,7 @@ public class InsightsRepository implements InsightsDashboardViewModel.Repository
       Recipient self = Recipient.self().resolve();
       String    name = Optional.of(self.getDisplayName(context)).orElse("");
 
-      return new InsightsUserAvatar(new ProfileContactPhoto(self, self.getProfileAvatar()),
+      return new InsightsUserAvatar(new ProfileContactPhoto(self),
                                     self.getAvatarColor(),
                                     new GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40));
     }, avatarConsumer::accept);

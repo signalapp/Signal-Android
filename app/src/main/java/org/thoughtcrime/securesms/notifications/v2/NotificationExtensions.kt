@@ -36,7 +36,7 @@ fun Drawable?.toLargeBitmap(context: Context): Bitmap? {
 }
 
 fun Recipient.getContactDrawable(context: Context): Drawable? {
-  val contactPhoto: ContactPhoto? = if (isSelf) ProfileContactPhoto(this, profileAvatar) else contactPhoto
+  val contactPhoto: ContactPhoto? = if (isSelf) ProfileContactPhoto(this) else contactPhoto
   val fallbackContactPhoto: FallbackContactPhoto = if (isSelf) getFallback(context) else fallbackContactPhoto
   return if (contactPhoto != null) {
     try {

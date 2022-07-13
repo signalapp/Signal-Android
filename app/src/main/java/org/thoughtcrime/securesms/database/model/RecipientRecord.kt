@@ -55,8 +55,7 @@ data class RecipientRecord(
   val signalProfileName: ProfileName,
   @get:JvmName("getProfileAvatar")
   val signalProfileAvatar: String?,
-  @get:JvmName("hasProfileImage")
-  val hasProfileImage: Boolean,
+  val profileAvatarFileDetails: ProfileAvatarFileDetails,
   @get:JvmName("isProfileSharing")
   val profileSharing: Boolean,
   val lastProfileFetch: Long,

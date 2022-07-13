@@ -160,8 +160,7 @@ public final class AvatarImageView extends AppCompatImageView {
   private void setAvatar(@NonNull GlideRequests requestManager, @Nullable Recipient recipient, @NonNull AvatarOptions avatarOptions) {
     if (recipient != null) {
       RecipientContactPhoto photo = (recipient.isSelf() && avatarOptions.useSelfProfileAvatar) ? new RecipientContactPhoto(recipient,
-                                                                                                                           new ProfileContactPhoto(Recipient.self(),
-                                                                                                                                                   Recipient.self().getProfileAvatar()))
+                                                                                                                           new ProfileContactPhoto(Recipient.self()))
                                                                                                : new RecipientContactPhoto(recipient);
 
       boolean    shouldBlur = recipient.shouldBlurAvatar();

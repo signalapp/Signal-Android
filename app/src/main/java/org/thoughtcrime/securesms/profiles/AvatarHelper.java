@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
+import org.thoughtcrime.securesms.database.model.ProfileAvatarFileDetails;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -103,6 +104,14 @@ public class AvatarHelper {
     return avatarFile.exists() && avatarFile.length() > 0;
   }
 
+  public static @NonNull ProfileAvatarFileDetails getAvatarFileDetails(@NonNull Context context, @NonNull RecipientId recipientId) {
+    File avatarFile = getAvatarFile(context, recipientId);
+    if (avatarFile.exists() && avatarFile.length() > 0) {
+      return new ProfileAvatarFileDetails(avatarFile.hashCode(), avatarFile.lastModified());
+    }
+    return ProfileAvatarFileDetails.NO_DETAILS;
+  }
+
   /**
    * Retrieves a stream for an avatar. If there is no avatar, the stream will likely throw an
    * IOException. It is recommended to call {@link #hasAvatar(Context, RecipientId)} first.
@@ -172,19 +181,6 @@ public class AvatarHelper {
     AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
     File             targetFile       = getAvatarFile(context, recipientId, isSyncAvatar);
     return ModernEncryptingPartOutputStream.createFor(attachmentSecret, targetFile, true).second;
-  }
-
-  /**
-   * Returns the timestamp of when the avatar was last modified, or zero if the avatar doesn't exist.
-   */
-  public static long getLastModified(@NonNull Context context, @NonNull RecipientId recipientId) {
-    File file = getAvatarFile(context, recipientId);
-
-    if (file.exists()) {
-      return file.lastModified();
-    } else {
-      return 0;
-    }
   }
 
   /**

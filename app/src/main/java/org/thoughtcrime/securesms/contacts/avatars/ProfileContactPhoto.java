@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.libsignal.protocol.util.ByteUtil;
+import org.thoughtcrime.securesms.database.model.ProfileAvatarFileDetails;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -19,12 +20,14 @@ import java.util.Objects;
 
 public class ProfileContactPhoto implements ContactPhoto {
 
-  private final @NonNull Recipient recipient;
-  private final @NonNull String    avatarObject;
+  private final @NonNull Recipient                recipient;
+  private final @NonNull String                   avatarObject;
+  private final @NonNull ProfileAvatarFileDetails profileAvatarFileDetails;
 
-  public ProfileContactPhoto(@NonNull Recipient recipient, @Nullable String avatarObject) {
-    this.recipient    = recipient;
-    this.avatarObject = avatarObject == null ? "" : avatarObject;
+  public ProfileContactPhoto(@NonNull Recipient recipient) {
+    this.recipient                = recipient;
+    this.avatarObject             = recipient.getProfileAvatar() == null ? "" : recipient.getProfileAvatar();
+    this.profileAvatarFileDetails = recipient.getProfileAvatarFileDetails();
   }
 
   @Override
@@ -46,7 +49,7 @@ public class ProfileContactPhoto implements ContactPhoto {
   public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
     messageDigest.update(recipient.getId().serialize().getBytes());
     messageDigest.update(avatarObject.getBytes());
-    messageDigest.update(ByteUtil.longToByteArray(getFileLastModified()));
+    messageDigest.update(profileAvatarFileDetails.getDiskCacheKeyBytes());
   }
 
   @Override
@@ -55,16 +58,12 @@ public class ProfileContactPhoto implements ContactPhoto {
     if (o == null || getClass() != o.getClass()) return false;
     ProfileContactPhoto that = (ProfileContactPhoto) o;
     return recipient.equals(that.recipient) &&
-        avatarObject.equals(that.avatarObject) &&
-        getFileLastModified() == that.getFileLastModified();
+           avatarObject.equals(that.avatarObject) &&
+           profileAvatarFileDetails.equals(that.profileAvatarFileDetails);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(recipient, avatarObject, getFileLastModified());
-  }
-
-  private long getFileLastModified() {
-    return AvatarHelper.getLastModified(ApplicationDependencies.getApplication(), recipient.getId());
+    return Objects.hash(recipient, avatarObject, profileAvatarFileDetails);
   }
 }

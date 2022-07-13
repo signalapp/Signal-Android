@@ -3609,7 +3609,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       systemContactUri = cursor.requireString(SYSTEM_CONTACT_URI),
       signalProfileName = ProfileName.fromParts(cursor.requireString(PROFILE_GIVEN_NAME), cursor.requireString(PROFILE_FAMILY_NAME)),
       signalProfileAvatar = cursor.requireString(SIGNAL_PROFILE_AVATAR),
-      hasProfileImage = AvatarHelper.hasAvatar(context, recipientId),
+      profileAvatarFileDetails = AvatarHelper.getAvatarFileDetails(context, recipientId),
       profileSharing = cursor.requireBoolean(PROFILE_SHARING),
       lastProfileFetch = cursor.requireLong(LAST_PROFILE_FETCH),
       notificationChannel = cursor.requireString(NOTIFICATION_CHANNEL),

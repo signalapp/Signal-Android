@@ -44,7 +44,7 @@ public final class AvatarUtil {
     ContactPhoto photo;
 
     if (recipient.isSelf()) {
-      photo = new ProfileContactPhoto(Recipient.self(), Recipient.self().getProfileAvatar());
+      photo = new ProfileContactPhoto(Recipient.self());
     } else if (recipient.getContactPhoto() == null) {
       target.setImageDrawable(null);
       target.setBackgroundColor(ContextCompat.getColor(target.getContext(), R.color.black));
@@ -150,7 +150,7 @@ public final class AvatarUtil {
   private static <T> GlideRequest<T> request(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, @NonNull Recipient recipient, boolean loadSelf, int targetSize) {
     final ContactPhoto photo;
     if (Recipient.self().equals(recipient) && loadSelf) {
-      photo = new ProfileContactPhoto(recipient, recipient.getProfileAvatar());
+      photo = new ProfileContactPhoto(recipient);
     } else {
       photo = recipient.getContactPhoto();
     }

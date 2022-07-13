@@ -505,7 +505,7 @@ public class WebRtcCallView extends ConstraintLayout {
         largeLocalRenderNoVideoAvatar.setVisibility(View.VISIBLE);
 
         GlideApp.with(getContext().getApplicationContext())
-                .load(new ProfileContactPhoto(localCallParticipant.getRecipient(), localCallParticipant.getRecipient().getProfileAvatar()))
+                .load(new ProfileContactPhoto(localCallParticipant.getRecipient()))
                 .transform(new CenterCrop(), new BlurTransformation(getContext(), 0.25f, BlurTransformation.MAX_RADIUS))
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(largeLocalRenderNoVideoAvatar);

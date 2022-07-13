@@ -253,7 +253,7 @@ public class CallParticipantView extends ConstraintLayout {
   }
 
   private void setPipAvatar(@NonNull Recipient recipient) {
-    ContactPhoto         contactPhoto  = recipient.isSelf() ? new ProfileContactPhoto(Recipient.self(), Recipient.self().getProfileAvatar())
+    ContactPhoto         contactPhoto  = recipient.isSelf() ? new ProfileContactPhoto(Recipient.self())
                                                             : recipient.getContactPhoto();
     FallbackContactPhoto fallbackPhoto = recipient.getFallbackContactPhoto(FALLBACK_PHOTO_PROVIDER);
 
