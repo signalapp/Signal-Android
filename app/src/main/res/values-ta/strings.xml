@@ -128,7 +128,7 @@
   <string name="CameraContacts__menu_search">தேடல்</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
-  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">தணிக்கைச் சுற்றறிக்கையை முடக்கம் செய்வதா?</string>
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">தணிக்கையை மீறி செயலாற்றுவதை முடக்கம் செய்வதா?</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">சிறந்த அனுபவத்திற்காக நீங்கள் இப்போது சிக்னல் சேவையுடன் நேரடியாக இணையலாம்.</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
@@ -365,7 +365,7 @@
   </plurals>
   <plurals name="ConversationListFragment_pin_plural">
     <item quantity="one">ஒட்டு</item>
-    <item quantity="other">ஒட்டு </item>
+    <item quantity="other">பின்</item>
   </plurals>
   <plurals name="ConversationListFragment_unpin_plural">
     <item quantity="one">விலக்கு </item>
@@ -1311,7 +1311,7 @@
   <!--Title for dialog warning about lacking bluetooth permissions during a call-->
   <string name="WebRtcCallActivity__bluetooth_permission_denied">புளூடூத் அனுமதி மறுக்கப்பட்டது</string>
   <!--Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name-->
-  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">அழைப்பின் போது புளூடூத்தைப் பயன்படுத்த தயவுசெய்து \"அருகிலுள்ள சாதனங்கள்\" அனுமதியை இயக்கவும்.</string>
+  <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">அழைப்பின் போது புளூடூத்தைப் பயன்படுத்த தயவுசெய்து \"அருகிலுள்ள டிவைஸ்கள்\" அனுமதியை இயக்கவும்.</string>
   <!--Positive action for bluetooth warning dialog to open settings-->
   <string name="WebRtcCallActivity__open_settings">அமைப்புகளைத் திறக்கவும்</string>
   <!--Negative aciton for bluetooth warning dialog to dismiss dialog-->
@@ -2877,7 +2877,7 @@
   <string name="RecipientBottomSheet_unblock">தடைநீக்கு </string>
   <string name="RecipientBottomSheet_add_to_contacts">தொடர்புகளுடன் சேர்க்க</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
-  <string name="RecipientBottomSheet_unable_to_open_contacts">தொடர்புகளைத் திறக்கக்கூடிய ஒரு பயன்பாட்டைக் கண்டறிய முடியவில்லை.</string>
+  <string name="RecipientBottomSheet_unable_to_open_contacts">தொடர்புகளைத் திறக்கக்கூடிய ஒரு ஆப்பைக் கண்டறிய முடியவில்லை.</string>
   <string name="RecipientBottomSheet_add_to_a_group">ஒரு குழுவில் சேர்க்கவும்</string>
   <string name="RecipientBottomSheet_add_to_another_group">மற்றொரு குழுவில் சேர்க்கவும்</string>
   <string name="RecipientBottomSheet_view_safety_number">பாதுகாப்பு எண்ணைக் காண்பி</string>
@@ -2987,11 +2987,11 @@
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <string name="DeleteAccountFragment__depending_on_the_number_of_groups">நீங்கள் இருக்கும் குழுக்களின் எண்ணிக்கையைப் பொறுத்து, இது சில நிமிடங்கள் எடுக்கலாம்</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
-  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">பயனர் தரவை நீக்குகிறது மற்றும் பயன்பாட்டை மீட்டமைக்கிறது</string>
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">பயனர் தரவை நீக்குகிறது மற்றும் ஆப்பை மீட்டமைக்கிறது</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
   <string name="DeleteAccountFragment__account_not_deleted">கணக்கு நீக்கப்படவில்லை</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
-  <string name="DeleteAccountFragment__there_was_a_problem">நீக்குதல் செயல்முறையை முடிப்பதில் சிக்கல் ஏற்பட்டது. உங்கள் இணைப்பைச் சரிபார்த்து, மீண்டும் முயற்சிக்கவும்.</string>
+  <string name="DeleteAccountFragment__there_was_a_problem">நீக்குதல் செயல்முறையை முடிப்பதில் சிக்கல் ஏற்பட்டது. உங்கள் நெட்வர்க் இணைப்பைச் சரிபார்த்து, மீண்டும் முயற்சிக்கவும்.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">நாடுகளை தேடு</string>
   <!--CreateGroupActivity-->
@@ -3174,23 +3174,23 @@
   <string name="ChangeNumberVerifyFragment__captcha_required">கேப்ட்சா தேவை</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__change_number">எண்ணை மாற்று</string>
-  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">%1$s-லிருந்து %2$s-க்கு உங்கள் தொலைபேசி எண்ணை மாற்றவிருக்கிறீர்கள்.\n\nதொடர்வதற்கு முன், தயவுசெய்து கீழே உள்ள எண் சரியானதா என்பதைச் சரிபார்க்கவும்.</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">%1$s-லிருந்து %2$s-க்கு உங்கள் தொலைபேசி எண்ணை மாற்ற உள்ளீர்கள்.\n\nதொடர்வதற்கு முன், தயவுசெய்து கீழே உள்ள எண் சரியானதா என்பதைச் சரிபார்க்கவும்.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">எண்ணை தொகுக்க</string>
   <!--ChangeNumberRegistrationLockFragment-->
-  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">சிக்னல் எண்ணை மாற்று - ஆண்ட்ராய்டுக்கான குறியீட்டுக்காக உதவி தேவை (வி2 குறியீடு)</string>
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">சிக்னல் எண்ணை மாற்று - ஆண்ட்ராய்டுக்கான பின் உதவி தேவை (வி2 பின்)</string>
   <!--ChangeNumberPinDiffersFragment-->
-  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">குறியீடுகள் பொருந்தவில்லை</string>
-  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">உங்களின் புதிய எண்ணுடன் தொடர்புடைய குறியீடும், உங்கள் பழைய எண்ணுடன் தொடர்புடைய குறியீடும் வேறுபட்டது. உங்கள் பழைய குறியீட்டை வைத்திருக்க விரும்புகிறீர்களா அல்லது புதுப்பிக்க விரும்புகிறீர்களா?</string>
-  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">பழைய குறியீட்டை வைத்துக்கொள்ளவும்</string>
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">பின்-கள் பொருந்தவில்லை</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">உங்களின் புதிய எண்ணுடன் தொடர்புடைய பின்-னும், உங்கள் பழைய எண்ணுடன் தொடர்புடைய பின்-னும் வேறுபட்டது. உங்கள் பழைய பின்-ஐ வைத்திருக்க விரும்புகிறீர்களா அல்லது புதுப்பிக்க விரும்புகிறீர்களா?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">பழைய பின்-ஐ வைத்துக்கொள்ளவும்</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">பின்னைப் புதுப்பிக்கவும்</string>
-  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">பழைய குறியீட்டை வைத்துக்கொள்கிறீர்களா?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">பழைய பின்-ஐ வைத்துக்கொள்கிறீர்களா?</string>
   <!--ChangeNumberLockActivity-->
   <!--Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app-->
   <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">உங்கள் எண்ணை மாற்ற முயற்சிப்பது போல் தெரிகிறது, ஆனால் அது வெற்றி பெற்றதா என்பதை எங்களால் உறுதிசெய்ய முடியவில்லை.\n\nஇப்போது மீண்டும் சரிபார்க்கிறோம்…</string>
   <!--Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_confirmed">நிலை மாற்றம் உறுதிசெய்யப்பட்டது</string>
   <!--Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
-  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">உங்கள் எண் %1$sஎன்று உறுதிசெய்யப்பட்டது. இது உங்கள் புதிய எண் இல்லை என்றால், தயவுசெய்து எண் மாற்ற செயல்முறையை மீண்டும் தொடங்கவும்.</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">உங்கள் எண் %1$sஎன்று உறுதிசெய்யப்பட்டது. இது உங்கள் புதிய எண் இல்லை என்றால், தயவுசெய்து எண் மாற்றும் செயல்முறையை மீண்டும் தொடங்கவும்.</string>
   <!--Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_unconfirmed">நிலை மாற்றம் உறுதிப்படுத்தப்படவில்லை</string>
   <!--Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow-->
@@ -3438,7 +3438,7 @@
   <!--Displayed when sharing content via the fragment-->
   <string name="MultiselectForwardFragment__share_with">பகிர்</string>
   <string name="MultiselectForwardFragment__add_a_message">கூட்டு ஒரு செய்தி</string>
-  <string name="MultiselectForwardFragment__faster_forwards">வேகமாக முன்னோக்கிகள்</string>
+  <string name="MultiselectForwardFragment__faster_forwards">வேகமான முன்னோக்கிகள்</string>
   <!--Displayed when user selects a video that will be clipped before sharing to a story-->
   <string name="MultiselectForwardFragment__videos_will_be_trimmed">வீடியோக்கள் 30 நொடிகளுக்கான கிளிப்களாக ட்ரிம் செய்யப்பட்டு பல ஸ்டோரீக்களாக அனுப்பப்படும்.</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
@@ -3446,7 +3446,7 @@
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">முன்னனுப்பப்பட்ட செய்திகள் இப்போது உடனடியாக அனுப்பப்படுகின்றன.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">%1$d செய்தி அனுப்பவும்</item>
-    <item quantity="other">%1$d செய்திகள் அனுப்பவும்</item>
+    <item quantity="other">%1$d செய்திகளை அனுப்பவும்</item>
   </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="one">செய்தி அனுப்பப்பட்டது</item>
@@ -3481,7 +3481,8 @@
   <string name="ImageEditorHud__delete">நீக்கு</string>
   <string name="ImageEditorHud__toggle_between_text_styles">உரை நடைகளுக்கு இடையில் மாறவும்</string>
   <string name="MediaCountIndicatorButton__send">அனுப்புக</string>
-  <string name="MediaReviewSelectedItem__tap_to_remove">அகற்ற தட்டவும்</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">அகற்றுவதற்கு தட்டவும்
+</string>
   <string name="MediaReviewSelectedItem__tap_to_select">தேர்ந்தெடுக்க தட்டவும்</string>
   <string name="MediaReviewImagePageFragment__discard">புறந்தள்ளு</string>
   <string name="MediaReviewImagePageFragment__discard_changes">மாற்றங்களைக் கைவிடுவதா?</string>
@@ -3499,11 +3500,11 @@
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">ஒரு காப்பாளராக மாறவும்</string>
   <string name="ImageView__badge">பேட்ஜ்</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal இயக்கப்படுகிறது மக்கள் உன்னைப்போல.</string>
-  <string name="SubscribeFragment__support_technology_that_is_built_for_you">உங்களுக்காக உருவாக்கப்பட்ட  தொழில்நுட்பதை—உங்கள் தரவுக்காக அல்ல—அதைத் தக்கவைக்கும் நபர்களின் சமூகத்தில் சேர்வதன் மூலம் ஆதரிக்கவும்.</string>
-  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">உங்களுக்காக உருவாக்கப்பட்ட தொழில்நுட்பதை—உங்கள் தரவுக்காக அல்ல—சிக்னலைத் தக்கவைக்கும் நபர்களின் சமூகத்தில் சேர்வதன் மூலம் ஆதரிக்கவும்.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">உங்களுக்காக உருவாக்கப்பட்ட  தொழில்நுட்பத்தை—உங்கள் தரவுக்காக அல்ல—அதைத் தக்கவைக்கும் நபர்களின் சமூகத்தில் சேர்வதன் மூலம் ஆதரிக்கவும்.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">உங்களுக்காக உருவாக்கப்பட்ட தொழில்நுட்பத்தை, உங்கள் தரவுக்காக அல்ல, சிக்னலைத் தக்கவைக்கும் சமூகத்தில் சேர்வதன் மூலம் ஆதரிக்கவும்.</string>
   <string name="SubscribeFragment__make_a_recurring_monthly_donation">உங்களுக்காக உருவாக்கப்பட்ட தொழில்நுட்பத்தை ஆதரிக்க சிக்னலுக்கு தொடர்ச்சியான மாதாந்திர நன்கொடையை வழங்குங்கள், உங்கள் தரவு அல்ல.</string>
   <string name="SubscribeFragment__currency">பணம்</string>
-  <string name="SubscribeFragment__more_payment_options">நிறைய கட்டண விருப்பங்கள்</string>
+  <string name="SubscribeFragment__more_payment_options">நிறைய கட்டண விருப்பத்தேர்வுகள்</string>
   <string name="SubscribeFragment__cancel_subscription">சந்தாவை ரத்துசெய்யவும்</string>
   <string name="SubscribeFragment__confirm_cancellation">ரத்து செய்வதை உறுதிசெய்யலாமா?</string>
   <string name="SubscribeFragment__you_wont_be_charged_again">உங்களிடம் மீண்டும் கட்டணம் விதிக்கப்படாது. உங்கள் பில்லிங் காலத்தின் முடிவில் உங்கள் சுயவிவரத்திலிருந்து உங்கள் பேட்ஜ் அகற்றப்படும்.</string>
@@ -3511,7 +3512,7 @@
   <string name="SubscribeFragment__confirm">உறுதிப்படுத்தவும்</string>
   <string name="SubscribeFragment__update_subscription">சந்தாவைப் புதுப்பிக்கவும்</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">உங்கள் சந்தா ரத்துசெய்யப்பட்டது.</string>
-  <string name="SubscribeFragment__update_subscription_question">சந்தாவைப் புதுப்பிப்பு செய்வதா?</string>
+  <string name="SubscribeFragment__update_subscription_question">சந்தாவைப் புதுப்பிக்கவா?</string>
   <string name="SubscribeFragment__update">புதுப்பிக்கப்பட்டது</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">புதிய சந்தா விலையின் முழுத் தொகையும் (%1$s) இன்று உங்களிடம் வசூலிக்கப்படும். உங்கள் சந்தா மாதந்தோறும் புதுப்பிக்கப்படும்.</string>
   <string name="Subscription__s_per_month">%s/மாதம்</string>
@@ -3521,13 +3522,13 @@
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">சிக்னல் என்பது விளம்பரதாரர்கள் அல்லது முதலீட்டாளர்கள் இல்லாத ஒரு இலாப நோக்கமற்ற நிறுவனமாகும், அதைப் பயன்படுத்தும் மற்றும் மதிக்கும் நபர்களால் மட்டுமே நிலைநிறுத்தப்படுகிறது. தொடர்ச்சியான மாதாந்திர நன்கொடையைச் செய்து, உங்கள் ஆதரவைப் பகிர்ந்து கொள்ள சுயவிவரப் பேட்ஜைப் பெறுங்கள்.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">ஏன் நன்கொடை?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">இலவச வெளிப்பாட்டைப் பாதுகாக்கும் மற்றும் பாதுகாப்பான உலகளாவிய தகவல்தொடர்புகளை செயல்படுத்தும் திறந்த மூல தனியுரிமை தொழில்நுட்பத்தை உருவாக்குவதற்கு சிக்னல் கடமைப்பட்டுள்ளது.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">உங்கள் நன்கொடை இந்த காரணத்தை தூண்டுகிறது மற்றும் தனிப்பட்ட தகவல்தொடர்புக்காக லட்சக் கணக்கானவர்கள் பயன்படுத்தும் பயன்பாட்டின் மேம்பாடு மற்றும் செயல்பாடுகளுக்கு பணம் செலுத்துகிறது. விளம்பரங்கள் இல்லை. டிராக்கர்கள் இல்லை. விளையாட்டு இல்லை.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">உங்கள் நன்கொடை இந்த காரணத்தை இயக்குகிறது மற்றும் தனிப்பட்ட தகவல்தொடர்புக்காக லட்சக் கணக்கானவர்கள் பயன்படுத்தும் ஆப்பின் மேம்பாடு மற்றும் செயல்பாடுகளுக்கு பணம் செலுத்துகிறது. விளம்பரங்கள் இல்லை. டிராக்கர்கள் இல்லை. விளையாட்டு இல்லை.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">உங்கள் ஆதரவுக்கு நன்றி!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">பூஸ்ட்டுக்கு நன்றி!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">நீங்கள் %s பேட்ஜ் பெற்றுள்ளீர்கள்! சிக்னலுக்கு நன்கொடை அளிப்பது குறித்த விழிப்புணர்வை உருவாக்க உங்கள் சுயவிவரத்தில் இந்த பேட்ஜைக் காண்பிக்கவும்.</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">ஒரு பூஸ்ட் பேட்ஜைப் பெற்றுள்ளீர்கள்! சிக்னலுக்கு நன்கொடை அளிப்பது குறித்த விழிப்புணர்வை உருவாக்க உங்கள் சுயவிவரத்தில் இந்த பேட்ஜைக் காண்பிக்கவும்.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">நீங்கள் %s பேட்ஜ் பெற்றுள்ளீர்கள்! சிக்னலுக்கு நன்கொடை அளிப்பது குறித்து விழிப்புணர்வை உருவாக்க உங்கள் சுயவிவரத்தில் இந்த பேட்ஜைக் காண்பிக்கவும்.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">ஒரு பூஸ்ட் பேட்ஜைப் பெற்றுள்ளீர்கள்! சிக்னலுக்கு நன்கொடை அளிப்பது குறித்து விழிப்புணர்வை உருவாக்க உங்கள் சுயவிவரத்தில் இந்த பேட்ஜைக் காண்பிக்கவும்.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">நீங்களும்</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">ஒரு மாதாந்திர காப்பாளராகலாம்.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">ஒரு மாதாந்திர காப்பாளர் ஆகவும்.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">சுயவிவரத்தில் காண்பிக்கவும்</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">சிறப்பு பேட்ஜை உருவாக்கவும்</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">முடிந்தது</string>
@@ -3554,9 +3555,9 @@
   <string name="ManageDonationsFragment__gift_a_badge">ஒரு பேட்ஜை பரிசளிக்கவும்</string>
   <string name="BoostFragment__give_signal_a_boost">சிக்னலுக்கு ஒரு பூஸ்ட் கொடுக்கவும்</string>
   <!--Description text in boost sheet-->
-  <string name="BoostFragment__make_a_one_time">ஒரு-முறை நன்கொடை அளித்து, %1$d நாட்களுக்கு ஒரு பூஸ்ட் பேட்ஜைப் பெறுங்கள்.</string>
+  <string name="BoostFragment__make_a_one_time">ஒரு முறைக்கான நன்கொடை அளித்து, %1$d நாட்களுக்கு ஒரு பூஸ்ட் பேட்ஜைப் பெறுங்கள்.</string>
   <string name="Boost__enter_custom_amount">உள்ளிடவும் தனிப்பயன் தொகை</string>
-  <string name="Boost__one_time_contribution">ஒரு முறை பங்களிப்பு</string>
+  <string name="Boost__one_time_contribution">ஒரு முறைக்கான பங்களிப்பு </string>
   <string name="MySupportPreference__add_a_signal_boost">ஒரு சிக்னல் பூஸ்ட்டைச் சேர்க்கவும்</string>
   <string name="MySupportPreference__s_per_month">%1$s/மாதம்</string>
   <string name="MySupportPreference__renews_s">%1$s புதுப்பிக்கப்படுகிறது</string>
@@ -3567,10 +3568,10 @@
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">பூஸ்ட் பேட்ஜ் காலாவதியாகிவிட்டது</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">மாதாந்திர நன்கொடை றது செய்யப்பட்டது</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">மாதாந்திர நன்கொடை ரத்து செய்யப்பட்டது</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">உங்கள் பூஸ்ட் பேட்ஜ் காலாவதியாகிவிட்டது மற்றும் உங்கள் சுயவிவரத்தில் இனி பார்க்க முடியாது.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">ஒரு முறை பங்களிப்புடன் உங்கள் பூஸ்ட் பேட்ஜை இன்னும் 30 நாட்களுக்கு மீண்டும் இயக்கலாம்.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">ஒரு முறைக்கான பங்களிப்புடன் உங்கள் பூஸ்ட் பேட்ஜை இன்னும் 30 நாட்களுக்கு மீண்டும் இயக்கலாம்.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">நீங்கள் தொடர்ந்து சிக்னலைப் பயன்படுத்தலாம், ஆனால் உங்களுக்காக உருவாக்கப்பட்ட தொழில்நுட்பத்தை ஆதரிக்க, மாதாந்திர நன்கொடையை வழங்குவதன் மூலம் ஒரு காப்பாளராக மாறுவதைக் கருத்தில் கொள்ளுங்கள்.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">ஒரு காப்பாளராக மாறவும்</string>
@@ -3582,14 +3583,14 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">உங்கள் கட்டணத்தைச் செயல்படுத்த முடியாததால், உங்கள் தொடர் மாதாந்திர நன்கொடை ரத்துசெய்யப்பட்டது. உங்கள் பேட்ஜ் இனி உங்கள் சுயவிவரத்தில் தெரியப்படாது.</string>
   <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">உங்கள் தொடர் மாதாந்திர நன்கொடை ரத்து செய்யப்பட்டது. %1$s உங்கள் %2$s பேட்ஜ் இனி உங்கள் சுயவிவரத்தில் தெரியப்படாது.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">நீங்கள் தொடர்ந்து சிக்னலைப் பயன்படுத்தலாம், ஆனால் பயன்பாட்டை ஆதரிக்கவும், உங்கள் பேட்ஜை மீண்டும் செயல்படுத்தவும், இப்போதே புதுப்பிக்கவும்.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">நீங்கள் தொடர்ந்து சிக்னலைப் பயன்படுத்தலாம், ஆனால் ஆப்பை ஆதரிக்கவும், உங்கள் பேட்ஜை மீண்டும் செயல்படுத்தவும், இப்போதே புதுப்பிக்கவும்.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">சந்தாவைப் புதுப்பிக்கவும்</string>
   <!--Button label to send user to Google Pay website-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">கூகிள் பே-க்குச் செல்லவும்</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">சந்தா கட்டணத்தைச் செயல்படுத்த முடியவில்லை</string>
-  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">உங்கள் சிக்னல் காப்பாளர் கட்டணத்தைச் சேகரிப்பதில் சிக்கலை எதிர்கொள்கிறோம். உங்கள் கட்டண முறை புதுப்பித்த நிலையில் இருப்பதை உறுதிசெய்யவும். இல்லையெனில், கூகிள் பே-இல் புதுப்பிக்கவும். சிக்னல் சில நாட்களில் கட்டணத்தைச் செயல்படுத்த முயற்சிக்கும்.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">உங்கள் சிக்னல் காப்பாளர் கட்டணத்தைச் சேகரிப்பதில் சிக்கலை எதிர்கொள்கிறோம். உங்கள் கட்டண முறை புதுப்பித்த நிலையில் இருப்பதை உறுதிசெய்யவும். இல்லையெனில், கூகிள் பே-இல் புதுப்பிக்கவும். சில நாட்களில் மறுபடியும் கட்டணத்தைச் செயல்படுத்த சிக்னல் முயற்சிக்கும்.</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">இதை மீண்டும் காட்ட வேண்டாம்</string>
-  <string name="Subscription__please_contact_support_for_more_information">மேலும் தகவலுக்கு உதவி மையத்தை தொடர்பு கொள்ளவும்.</string>
+  <string name="Subscription__please_contact_support_for_more_information">மேலும் தகவலுக்கு தயவுசெய்து உதவி மையத்தை தொடர்பு கொள்ளவும்.</string>
   <string name="Subscription__contact_support">தொடர்பு ஆதரவு</string>
   <string name="Subscription__earn_a_s_badge">ஒரு %1$s பேட்ஜைப் பெறுங்கள்</string>
   <string name="SubscribeFragment__processing_payment">கட்டணத்தை செயலாக்குகிறது…</string>
@@ -3597,25 +3598,25 @@
   <string name="DonationsErrors__error_processing_payment">கட்டணத்தைச் செயல்படுத்துவதில் பிழை</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="DonationsErrors__error_processing_payment_s">கட்டணத்தைச் செயல்படுத்துவதில் பிழை. %1$s</string>
-  <string name="DonationsErrors__your_badge_could_not_be_added">உங்கள் பேட்ஜை உங்கள் கணக்கில் சேர்க்க முடியவில்லை, ஆனால் உங்களிடம் கட்டணம் விதிக்கப்பட்டிருக்கலாம். உதவி மையத்தை தொடர்பு கொள்ளவும்.</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">உங்கள் பேட்ஜை உங்கள் கணக்கில் சேர்க்க முடியவில்லை, ஆனால் உங்களிடம் கட்டணம் விதிக்கப்பட்டிருக்கலாம். தயவுசெய்து உதவி மையத்தை தொடர்பு கொள்ளவும்.</string>
   <string name="DonationsErrors__your_payment">உங்கள் கட்டணத்தைச் செயல்படுத்த முடியவில்லை, மேலும் உங்களிடம் கட்டணம் வசூலிக்கப்படவில்லை. தயவுசெய்து மீண்டும் முயற்சிக்கவும்.</string>
   <string name="DonationsErrors__still_processing">இன்னும் செயலாக்கப்படுகிறது</string>
   <string name="DonationsErrors__couldnt_add_badge">பேட்ஜை சேர்க்க முடியவில்லை</string>
   <!--Displayed when badge credential couldn\'t be verified-->
-  <string name="DonationsErrors__failed_to_validate_badge">பேட்ஜை சரிபார்க்க முடியவில்லை</string>
+  <string name="DonationsErrors__failed_to_validate_badge">பேட்ஜை சரிபார்ப்பது தோல்வியடைந்தது</string>
   <!--Displayed when badge credential couldn\'t be verified-->
-  <string name="DonationsErrors__could_not_validate">சர்வர் பதிலைச் சரிபார்க்க முடியவில்லை. உதவி மையத்தை தொடர்பு கொள்ளவும்.</string>
+  <string name="DonationsErrors__could_not_validate">சர்வர் பதிலைச் சரிபார்க்க முடியவில்லை. தயவுசெய்து உதவி மையத்தை தொடர்பு கொள்ளவும்.</string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
-  <string name="DonationsErrors__failed_to_send_gift_badge">பரிசு பேட்ஜ் அனுப்ப இயலவில்லை</string>
+  <string name="DonationsErrors__failed_to_send_gift_badge">பரிசு பேட்ஜ் அனுப்புவது தோல்வியடைந்தது</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
   <string name="DonationsErrors__could_not_send_gift_badge">பரிசு பேட்ஜை அனுப்ப முடியவில்லை. தயவுசெய்து உதவி மையத்தை தொடர்பு கொள்ளவும்.</string>
-  <string name="DonationsErrors__your_badge_could_not">உங்கள் பேட்ஜை உங்கள் கணக்கில் சேர்க்க முடியவில்லை, ஆனால் உங்களிடம் கட்டணம் விதிக்கப்பட்டிருக்கலாம். உதவி மையத்தை தொடர்பு கொள்ளவும்.</string>
+  <string name="DonationsErrors__your_badge_could_not">உங்கள் பேட்ஜை உங்கள் கணக்கில் சேர்க்க முடியவில்லை, ஆனால் உங்களிடம் கட்டணம் விதிக்கப்பட்டிருக்கலாம். தயவுசெய்து உதவி மையத்தை தொடர்பு கொள்ளவும்.</string>
   <string name="DonationsErrors__your_payment_is_still">உங்கள் கட்டணம் இன்னும் செயல்படுத்தப்படுகிறது. உங்கள் இணைப்பைப் பொறுத்து இதற்கு ஒரு சில நிமிடங்கள் ஆகலாம்.</string>
-  <string name="DonationsErrors__google_pay_unavailable">கூகிள் பே கிடைக்கப்பெறவில்லை</string>
-  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">பயன்பாட்டில் நன்கொடை அளிக்க கூகிள் பே-இல் அமைக்க வேண்டும்.</string>
-  <string name="DonationsErrors__failed_to_cancel_subscription">சந்தாவை ரத்து செய்ய முடியவில்லை</string>
+  <string name="DonationsErrors__google_pay_unavailable">கூகிள் பே கிடைக்கவில்லை</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">ஆப்பில் நன்கொடை அளிக்க கூகிள் பே அமைக்க வேண்டும்.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">சந்தாவை ரத்து செய்வதில் தோல்வி</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">சந்தா ரத்துக்கு இணைய இணைப்பு தேவை.</string>
-  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">உங்கள் டிவைஸ் கூகிள் பே-ஐ ஆதரிக்காததால், பேட்ஜைப் பெற நீங்கள் சப்ஸ்கிரைப் செய்ய முடியாது. எங்கள் இணையதளத்தில் நன்கொடை அளிப்பதன் மூலம் நீங்கள் சிக்னலை ஆதரிக்கலாம்.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">உங்கள் டிவைஸ் கூகிள் பே-ஐ ஆதரிக்காததால், பேட்ஜைப் பெற நீங்கள் சப்ஸ்கிரைப் செய்ய முடியாது. எங்கள் இணையதளத்தில் நன்கொடை அளிப்பதன் மூலம் சிக்னலை நீங்கள் இன்னும் ஆதரிக்கலாம்.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">நெட்வொர்க் பிழை. உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்.</string>
   <string name="NetworkFailure__retry">மீண்டும் முயற்சி செய்</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
@@ -3631,7 +3632,7 @@
   <!--Gift message view expiry information-->
   <plurals name="GiftMessageView__lasts_for_d_months">
     <item quantity="one">%1$d மாதத்திற்கு நீடிக்கும்</item>
-    <item quantity="other">%1$d மாதங்களுங்கு நீடிக்கும்</item>
+    <item quantity="other">%1$d மாதங்களுக்கு நீடிக்கும்</item>
   </plurals>
   <!--Gift badge redeem action label-->
   <string name="GiftMessageView__redeem">மீட்டெடு</string>
@@ -3648,29 +3649,29 @@
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">மேலும் அறிக</string>
   <!--Stripe decline code contact issuer-->
-  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">கூகிள் பே-இல் உங்கள் கட்டண முறை புதுப்பித்த நிலையில் உள்ளதா என்பதைச் சரிபார்த்து, மீண்டும் முயலவும். சிக்கல் தொடர்ந்தால், உங்கள் வங்கியைத் தொடர்புகொள்ளவும்.</string>
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">கூகிள் பே-இல் உங்கள் கட்டண முறை புதுப்பித்த நிலையில் உள்ளதா என்பதைச் சரிபார்த்து, மீண்டும் முயலவும். சிக்கல் தொடர்ந்தால், உங்கள் வங்கியைத் தொடர்பு கொள்ளவும்.</string>
   <!--Stripe decline code purchase not supported-->
   <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">இந்த வகையான வாங்குதலை உங்கள் கார்டு ஆதரிக்கவில்லை. மற்றொரு கட்டண முறையை முயற்சிக்கவும்.</string>
   <!--Stripe decline code your card has expired-->
-  <string name="DeclineCode__your_card_has_expired">உங்கள் கார்டு காலாவதியாகிவிட்டது. கூகிள் பே-இல் உங்கள் கட்டண முறையைப் புதுப்பித்து மீண்டும் முயற்சிக்கவும்.</string>
+  <string name="DeclineCode__your_card_has_expired">உங்கள் கார்டு காலாவதியாகிவிட்டது. கூகிள் பே-இல் உங்கள் கட்டண முறையைப் புதுப்பித்தவுடன் மீண்டும் முயற்சிக்கவும்.</string>
   <!--Stripe decline code go to google pay action label-->
   <string name="DeclineCode__go_to_google_pay">கூகிள் பே-க்குச் செல்லவும்</string>
   <!--Stripe decline code incorrect card number-->
-  <string name="DeclineCode__your_card_number_is_incorrect">உங்கள் அட்டை எண் தவறானது. அதை கூகிள் பே-இல் புதுப்பித்து மீண்டும் முயற்சிக்கவும்.</string>
+  <string name="DeclineCode__your_card_number_is_incorrect">உங்கள் அட்டை எண் தவறானது. அதை கூகிள் பே-இல் புதுப்பித்தவுடன் மீண்டும் முயற்சிக்கவும்.</string>
   <!--Stripe decline code incorrect cvc-->
-  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">உங்கள் கார்டின் சி.வி.சி எண் தவறானது. அதை கூகிள் பே-இல் புதுப்பித்து மீண்டும் முயற்சிக்கவும்.</string>
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">உங்கள் கார்டின் சி.வி.சி எண் தவறானது. அதை கூகிள் பே-இல் புதுப்பித்தவுடன் மீண்டும் முயற்சிக்கவும்.</string>
   <!--Stripe decline code insufficient funds-->
   <string name="DeclineCode__your_card_does_not_have_sufficient_funds">இந்த வாங்குதலை முடிக்க உங்கள் கார்டில் போதுமான நிதி இல்லை. மற்றொரு கட்டண முறையை முயற்சிக்கவும்.</string>
   <!--Stripe decline code incorrect expiration month-->
-  <string name="DeclineCode__the_expiration_month">உங்கள் கட்டண முறையின் காலாவதி மாதம் தவறானது. அதை கூகிள் பே-இல் புதுப்பித்து மீண்டும் முயற்சிக்கவும்.</string>
+  <string name="DeclineCode__the_expiration_month">உங்கள் கட்டண முறையின் காலாவதி மாதம் தவறானது. அதை கூகிள் பே-இல் புதுப்பித்தவுடன் மீண்டும் முயற்சிக்கவும்.</string>
   <!--Stripe decline code incorrect expiration year-->
-  <string name="DeclineCode__the_expiration_year">உங்கள் கட்டண முறையின் காலாவதி வருடம் தவறானது. அதை கூகிள் பே-இல் புதுப்பித்து மீண்டும் முயற்சிக்கவும்.</string>
+  <string name="DeclineCode__the_expiration_year">உங்கள் கட்டண முறையின் காலாவதி வருடம் தவறானது. அதை கூகிள் பே-இல் புதுப்பித்தவுடன் மீண்டும் முயற்சிக்கவும்.</string>
   <!--Stripe decline code issuer not available-->
   <string name="DeclineCode__try_completing_the_payment_again">கட்டணத்தை மீண்டும் முடிக்க முயற்சிக்கவும் அல்லது மேலும் தகவலுக்கு உங்கள் வங்கியைத் தொடர்பு கொள்ளவும்.</string>
   <!--Stripe decline code processing error-->
   <string name="DeclineCode__try_again">மீண்டும் முயற்சிக்கவும் அல்லது மேலும் தகவலுக்கு உங்கள் வங்கியைத் தொடர்பு கொள்ளவும்.</string>
   <!--Title of create notification profile screen-->
-  <string name="EditNotificationProfileFragment__name_your_profile">உங்கள் சுயவிவரத்துக்குப் பெயரிடவும்</string>
+  <string name="EditNotificationProfileFragment__name_your_profile">உங்கள் சுயவிவரத்திற்குப் பெயரிடவும்</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">சுயவிவரப் பெயர்</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
@@ -3702,7 +3703,7 @@
   <!--Description of what the user should be doing with this screen-->
   <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">இந்தச் சுயவிவரம் இயக்கத்தில் இருக்கும் போது நீங்கள் அறிவிப்புகளையும் அழைப்புகளையும் பெற விரும்பும் நபர்களையும் குழுக்களையும் சேர்க்கவும்</string>
   <!--Button text that launches the contact picker to select from-->
-  <string name="AddAllowedMembers__add_people_or_groups">நபர்களையும் குழுக்களையும் சேர்க்கவும்</string>
+  <string name="AddAllowedMembers__add_people_or_groups">நபர்கள் அல்லது குழுக்களைச் சேர்க்கவும்</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">சேர்க்கவும்</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
@@ -3714,19 +3715,19 @@
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
   <string name="NotificationProfilesFragment__on">இயக்கு</string>
   <!--Button use to permanently delete a notification profile-->
-  <string name="NotificationProfileDetails__delete_profile">சுயவிவரத்தை அகற்றவும்</string>
+  <string name="NotificationProfileDetails__delete_profile">சுயவிவரத்தை நீக்கவும்</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
   <string name="NotificationProfileDetails__s_removed">\"%1$s\" அகற்றப்பட்டது.</string>
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">செயல்தவிர்</string>
   <!--Dialog message shown to confirm deleting a profile-->
-  <string name="NotificationProfileDetails__permanently_delete_profile">நிரந்தரமாக சுயவிவரத்தை அகற்றுவதா?</string>
+  <string name="NotificationProfileDetails__permanently_delete_profile">நிரந்தரமாக சுயவிவரத்தை நீக்குவதா?</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">நீக்கு</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
   <string name="NotificationProfileDetails__edit_notification_profile">அறிவிப்பு சுயவிவரத்தைத் திருத்தவும்</string>
   <!--Schedule description if all days are selected-->
-  <string name="NotificationProfileDetails__everyday">தினந்தோரும் </string>
+  <string name="NotificationProfileDetails__everyday">தினந்தோறும் </string>
   <!--Profile status on if it is the active profile-->
   <string name="NotificationProfileDetails__on">இயக்கு</string>
   <!--Profile status on if it is not the active profile-->
@@ -3808,7 +3809,7 @@
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">அனைத்து</string>
   <!--Donation receipts recurring tab label-->
-  <string name="DonationReceiptListFragment__recurring">தொடரும்</string>
+  <string name="DonationReceiptListFragment__recurring">தொடர்ச்சியான</string>
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">ஒரு-முறை</string>
   <!--Donation receipts gift tab label-->
@@ -3822,7 +3823,7 @@
   <!--Donation receipts date paid heading-->
   <string name="DonationReceiptDetailsFragment__date_paid">செலுத்திய தேதி</string>
   <!--Donation receipts share PNG-->
-  <string name="DonationReceiptDetailsFragment__share_receipt">ரசீது பகிரவும்</string>
+  <string name="DonationReceiptDetailsFragment__share_receipt">ரசீதை பகிரவும்</string>
   <!--Donation receipts list end note-->
   <string name="DonationReceiptListFragment__if_you_have">நீங்கள் சிக்னலை மீண்டும் நிறுவியிருந்தால், முந்தைய நன்கொடைகளின் ரசீதுகள் கிடைக்காது.</string>
   <!--Donation receipts document title-->

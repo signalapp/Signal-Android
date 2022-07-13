@@ -4083,11 +4083,11 @@
   <string name="ExpiredGiftSheetConfiguration__not_now">나중에</string>
   <!--Label under name for private stories-->
   <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="other">비공개 스토리 · 볼 수 있는 사람 %1$d명</item>
+    <item quantity="other">비공개 스토리 · %1$d명 조회</item>
   </plurals>
   <!--Label under name for group stories-->
   <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="other">그룹 스토리 · 볼 수 있는 사람%1$d명</item>
+    <item quantity="other">그룹 스토리 · %1$d명 조회</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <!--Label for context menu item to open story settings-->

@@ -275,7 +275,7 @@
   </plurals>
   <!--ConversationFragment-->
   <!--Toast text when contacts activity is not found-->
-  <string name="ConversationFragment__contacts_app_not_found">برنامه مخاطبین یافت نشد.</string>
+  <string name="ConversationFragment__contacts_app_not_found">برنامه «مخاطبان» یافت نشد.</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">حذف پیام انتخاب شده؟</item>
     <item quantity="other">حذف پیام‌های انتخاب شده؟</item>
@@ -1557,11 +1557,11 @@
   <string name="ThreadRecord_video">ویدئو</string>
   <string name="ThreadRecord_chat_session_refreshed">نشست گفتگو تازه‌سازی شد</string>
   <!--Displayed in the notification when the user is sent a gift-->
-  <string name="ThreadRecord__you_received_a_gift">شما یک هدیه دریافت کردید</string>
+  <string name="ThreadRecord__you_received_a_gift">یک هدیه دریافت کردید</string>
   <!--Displayed in the notification when the user sends a gift-->
   <string name="ThreadRecord__you_sent_a_gift">شما یک هدیه فرستادید</string>
   <!--Displayed in the notification when the user has opened a received gift-->
-  <string name="ThreadRecord__you_redeemed_a_gift_badge">شما یک نشان هدیه آزادسازی کردید</string>
+  <string name="ThreadRecord__you_redeemed_a_gift_badge">یک نشان هدیه آزادسازی کردید</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">به‌روزرسانی سیگنال</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">یک نسخهٔ جدید از سیگنال موجود است، برای به‌روزرسانی ضربه بزنید</string>
@@ -2063,7 +2063,7 @@
   <string name="HelpFragment__could_not_upload_logs">بارگذاری گزارش‌ها موفق نبود</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">توصیف هر چه بهتر شما، به ما در فهم اشکال کمک خواهد کرد.</string>
   <string-array name="HelpFragment__categories_4">
-    <item>لطفاً یک گزینه انتخاب کنید</item>
+    <item>\-\-لطفاً یک گزینه انتخاب کنید \-\-</item>
     <item>چیزی خراب شده است</item>
     <item>درخواست قابلیت</item>
     <item>سؤال</item>
@@ -3448,7 +3448,7 @@
   <!--Displayed when user selects a video that will be clipped before sharing to a story-->
   <string name="MultiselectForwardFragment__videos_will_be_trimmed">ویدیوها به کلیپ‌های 30 ثانیه‌ای بریده می‌شوند و به صورت استوری‌های متعدد ارسال می‌شوند.</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
-  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">ویدئوهای ارسالی به استوری‌ها نمی‌توانند بیشتر از 30 ثانیه باشند.</string>
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">ویدیوهای ارسالی به استوری‌ها نمی‌توانند بیشتر از 30 ثانیه باشند.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">پیام‌های بازارسال شده حالا بلافاصله ارسال می‌شوند.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">ارسال %1$d پیام</item>
@@ -3646,7 +3646,7 @@
   <!--Gift badge redeeming action label-->
   <string name="GiftMessageView__redeeming">در حال آزادسازی…</string>
   <!--Gift badge redeemed label-->
-  <string name="GiftMessageView__redeemed">آزادسازی شده</string>
+  <string name="GiftMessageView__redeemed">آزادسازی‌شده</string>
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">یک روش پرداختی دیگر را امتحان کنید یا با بانک خود برای اطلاعات بیشتر تماس بگیرید.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
@@ -3836,7 +3836,7 @@
   <!--Donation receipts amount title-->
   <string name="DonationReceiptDetailsFragment__amount">مبلغ</string>
   <!--Donation receipts thanks-->
-  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">از شما بابت حمایت از سیگنال سپاسگزاریم. مشارکت شما به مأموریت توسعه فناوری حریم خصوصی متن‌باز کمک می‌کند که از آزادی بیان محافظت می‌کند و ارتباطات جهانی ایمن را برای میلیون‌ها نفر در سراسر جهان ممکن می‌کند. اگر مقیم ایالات متحده هستید، لطفاً این رسید را برای سوابق مالیاتی خود نگه دارید. بنیاد فناوری سیگنال یک سازمان غیرانتفاعی در ایالات متحده است که تحت بخش 501c3 قانون درآمد داخلی از مالیات معاف است. شناسه مالیاتی فدرال ما 82–4506840 است.</string>
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">از شما بابت حمایت از سیگنال سپاسگزاریم. مشارکت شما به مأموریت توسعه فناوری حریم خصوصی متن‌باز کمک می‌کند که محافظ آزادی بیان است و ارتباطات جهانی ایمن را برای میلیون‌ها نفر در سراسر جهان ممکن می‌سازد. اگر مقیم ایالات متحده هستید، لطفاً این رسید را در سوابق مالیاتی خود نگه دارید. بنیاد فناوری سیگنال یک سازمان غیرانتفاعی در ایالات متحده است که تحت بخش 501c3 قانون درآمد داخلی از مالیات معاف است. شناسه مالیاتی فدرال ما ‎82–4506840 است.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--Donation reciepts screen empty state title-->
@@ -3975,14 +3975,14 @@
   <!--Privacy setting title for only sharing your story with specified connections-->
   <string name="MyStorySettingsFragment__only_share_with">تنها اشتراک‌گذاری شود با…</string>
   <!--Privacy setting description for only sharing your story with specified connections-->
-  <string name="MyStorySettingsFragment__only_share_with_selected_people">تنها با افراد انتخاب شده اشتراک‌گذاری شود</string>
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">تنها با افراد انتخاب‌شده اشتراک‌گذاری شود</string>
   <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d نفر</item>
     <item quantity="other">%1$d نفر</item>
   </plurals>
   <!--My story privacy fine print about what the privacy settings are for-->
-  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">انتخاب کنید چه کسی می‌تواند استوری شما را مشاهده کند. تغییرات روی داستان‌هایی که قبلاً ارسال کرده‌اید تأثیر نمی‌گذارد.</string>
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">انتخاب کنید چه کسی می‌تواند استوری شما را مشاهده کند. تغییرات روی استوری‌هایی که قبلاً ارسال کرده‌اید تأثیر نمی‌گذارد.</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">پاسخ‌ها و واکنش‌ها</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -4168,7 +4168,7 @@
   <!--Title for sheet shown when opening a redeemed gift-->
   <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s یک هدیه برای شما فرستاد</string>
   <!--Title for sheet shown when opening a sent gift-->
-  <string name="ViewSentGiftBottomSheet__thanks_for_your_support">از پشتیبانی شما سپاسگذاریم!</string>
+  <string name="ViewSentGiftBottomSheet__thanks_for_your_support">از پشتیبانی شما سپاسگزاریم!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
   <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">شما از %1$s یک نشان هدیه دریافت کرده‌اید! با نمایش این نشان روی پروفایل خود، به سیگنال در ایجاد آگاهی کمک کنید.</string>
   <!--Description for sheet shown when opening a sent gift-->
@@ -4212,7 +4212,7 @@
   <!--Label for context menu item to delete a private story-->
   <string name="ContactSearchItems__delete_story">حذف استوری</string>
   <!--Dialog title for removing a group story-->
-  <string name="ContactSearchMediator__remove_group_story">حذف استوری گروه؟</string>
+  <string name="ContactSearchMediator__remove_group_story">استوری گروه حذف شود؟</string>
   <!--Dialog message for removing a group story-->
   <string name="ContactSearchMediator__this_will_remove">با این کار این استوری از این لیست حذف می‌شود. همچنان می‌توانید استوری‌های این گروه را مشاهده کنید.</string>
   <!--Dialog action item for removing a group story-->
@@ -4220,7 +4220,7 @@
   <!--Dialog title for deleting a private story-->
   <string name="ContactSearchMediator__delete_story">حذف استوری؟</string>
   <!--Dialog message for deleting a private story-->
-  <string name="ContactSearchMediator__delete_the_private">حذف استوری خصوصی \"%1$s\"؟</string>
+  <string name="ContactSearchMediator__delete_the_private">استوری خصوصی «%1$s» حذف شود؟</string>
   <!--Dialog action item for deleting a private story-->
   <string name="ContactSearchMediator__delete">حذف</string>
   <!--Gift expiry days remaining-->

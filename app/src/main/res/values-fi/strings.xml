@@ -4212,7 +4212,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Dialog title for deleting a private story-->
   <string name="ContactSearchMediator__delete_story">Poista tarina?</string>
   <!--Dialog message for deleting a private story-->
-  <string name="ContactSearchMediator__delete_the_private">Poistetaanko yksityinen tarina \"%1$s\"?</string>
+  <string name="ContactSearchMediator__delete_the_private">Poistetaanko yksityinen tarina %1$s?</string>
   <!--Dialog action item for deleting a private story-->
   <string name="ContactSearchMediator__delete">Poista</string>
   <!--Gift expiry days remaining-->

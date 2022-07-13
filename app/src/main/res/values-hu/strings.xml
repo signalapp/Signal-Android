@@ -275,6 +275,7 @@
   </plurals>
   <!--ConversationFragment-->
   <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">A Névjegyek alkalmazás nem található.</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Kiválasztott üzenet törlése?</item>
     <item quantity="other">Törlöd a kiválasztott üzeneteket?</item>
@@ -1127,6 +1128,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Egy üzenet %s ismerősödtől nem érkezett meg</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s megváltoztatta a telefonszámát.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Tetszik ez az új funkció? Támogasd a Signal egy egyszeri adománnyal!</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s csoport hívást indított · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s csoporthívásban van · %2$s</string>
@@ -2063,6 +2065,16 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="HelpFragment__debug_log">Hibakeresési napló:</string>
   <string name="HelpFragment__could_not_upload_logs">Nem sikerült feltölteni a naplót</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Hogy megérthessük a problémát, fogalmazz olyan pontosan, amennyire csak lehetséges!</string>
+  <string-array name="HelpFragment__categories_4">
+    <item>\-\- Kérjük, válassz egy opciót \-\-</item>
+    <item>Valami nem működik</item>
+    <item>Funkciókérés</item>
+    <item>Kérdés</item>
+    <item>Visszajelzés</item>
+    <item>Egyéb</item>
+    <item>Fizetések (MobileCoin)</item>
+    <item>Adományok és jelvények</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Jelenlegi üzenet</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nemrég használt</string>
@@ -3437,7 +3449,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MultiselectForwardFragment__add_a_message">Szöveg hozzáadása</string>
   <string name="MultiselectForwardFragment__faster_forwards">Gyorsabb továbbítás</string>
   <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">A videókat levágjuk 30 mp-es klipekre és több Történetként kerülnek elküldésre.</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">A Történetként kirakott videók nem lehetnek 30 mp-nél hosszabbak.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">A továbbított üzenetek azonnal elküldésre kerülnek.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">%1$d üzenet küldése</item>
@@ -3946,18 +3960,29 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Történet elrejtése előlük:</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections">Minden Signal-névjegy</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__share_with_all_connections">Megosztás az összes névjeggyel</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections_except">Minden Signal-névjegy, kivéve…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Rejtsd el a Történeted bizonyos személyek elől</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <plurals name="MyStorySettingsFragment__d_people_excluded">
+    <item quantity="one">Kivéve %1$d személyt</item>
+    <item quantity="other">Kivéve %1$d személyt</item>
+  </plurals>
   <!--Privacy setting title for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with">Megosztás kizárólag a következőkkel…</string>
   <!--Privacy setting description for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">Megosztás csak bizonyos személyekkel</string>
   <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d személy</item>
     <item quantity="other">%1$d személy</item>
   </plurals>
   <!--My story privacy fine print about what the privacy settings are for-->
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Döntsd el, ki láthatja a Történeted. A módosítások nem lesznek hatással a már elküldött Történetekre.</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">Válaszok és reakciók</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -3967,7 +3992,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">A történeteket elrejtheted egyes személyek elől. Alapértelmezetten történeteidet a következők tekinthetik meg: %1$s</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
+  <string name="SignalConnectionsBottomSheet___signal_connections">Signal-névjegyek</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">A Signal-névjegyek olyan személyek, akikkel kapcsolatban úgy döntöttél, hogy megbízol a következők valamelyike által:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">Beszélgetést kezdeményeztél velük</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4017,7 +4044,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Váratlan hiba történt</string>
   <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <string name="ChangeMyStoryMembershipFragment__all_except">Összes, kivéve…</string>
   <!--Title for screen allowing user to only share "My Story" entries with specific people-->
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">Megosztás kizárólag a következőkkel…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Befejezés</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4178,14 +4207,19 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Történet beállításai</string>
   <!--Label for context menu item to remove a group story from contact results-->
+  <string name="ContactSearchItems__remove_story">Történet eltávolítása</string>
   <!--Label for context menu item to delete a private story-->
+  <string name="ContactSearchItems__delete_story">Történet törlése</string>
   <!--Dialog title for removing a group story-->
+  <string name="ContactSearchMediator__remove_group_story">Csoport történet eltávolítása?</string>
   <!--Dialog message for removing a group story-->
+  <string name="ContactSearchMediator__this_will_remove">Ez eltávolítja a Történetet a listából. Továbbra is látni fogod a Történeteket ebből a csoportból.</string>
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">Eltávolítás</string>
   <!--Dialog title for deleting a private story-->
   <string name="ContactSearchMediator__delete_story">Törlöd a történetet?</string>
   <!--Dialog message for deleting a private story-->
+  <string name="ContactSearchMediator__delete_the_private">Törlöd a(z) \"%1$s\" privát Történetet?</string>
   <!--Dialog action item for deleting a private story-->
   <string name="ContactSearchMediator__delete">Törlés</string>
   <!--Gift expiry days remaining-->
@@ -4206,8 +4240,11 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Lejárt</string>
   <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">Koppints a továbblépéshez</string>
   <!--Label indicating swipe direction to skip current story-->
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Az átugráshoz húzz fel</string>
   <!--Label indicating swipe direction to exit story viewer-->
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">A kilépéshez húzz jobbra</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Rendben</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->
@@ -4238,7 +4275,10 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Minden Signal-névjegy</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Minden Signal-névjegy, kivéve…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Megosztás kizárólag a következőkkel…</string>
   <!--EOF-->
 </resources>

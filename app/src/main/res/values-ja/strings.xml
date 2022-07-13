@@ -3847,7 +3847,7 @@
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">すべてのコネクションと共有</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">…を除くすべてのSignalコネクション</string>
+  <string name="MyStorySettingsFragment__all_signal_connections_except">下記を除くすべてのSignalコネクション…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">特定の人に自分のストーリーを隠す</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -3925,7 +3925,7 @@
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">予期せぬエラーが発生しました</string>
   <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
-  <string name="ChangeMyStoryMembershipFragment__all_except">以外はすべて…</string>
+  <string name="ChangeMyStoryMembershipFragment__all_except">下記以外はすべて… </string>
   <!--Title for screen allowing user to only share "My Story" entries with specific people-->
   <string name="ChangeMyStoryMembershipFragment__only_share_with">共有するのは…</string>
   <!--Done button label for hide story from screen-->

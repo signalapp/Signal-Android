@@ -886,7 +886,7 @@
   <string name="MediaSendActivity_add_a_caption">စာတန်းတစ်ခုထည့်ပါ…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">၎င်း၏ ဆိုဒ်အရွယ်အစားသည် အကန့်သတ်ကျော်နေ၍ ၎င်းအရာသည် ဖယ်ရှားခံခဲ့ရပါသည်။</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">အမျိုးအစား မသိသည့်အရာ ဖြစ်သောကြောင့် ၎င်းအရာကို ဖယ်ရှားခဲ့ပါသည်</string>
-  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">အရွယ်အစား ကျော်နေခြင်း  သို့မဟုတ်  အမျိုးအစား မသိခြင်းကြောင့် အရာတစ်ခုကို ဖယ်ရှားခဲ့ပါသည်</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">အရွယ်အစား ကျော်နေခြင်း သို့မဟုတ် အမျိုးအစား မသိခြင်းကြောင့် အရာတစ်ခုကို ဖယ်ရှားခဲ့ပါသည်</string>
   <string name="MediaSendActivity_camera_unavailable">ကင်မရာမရနိုင်ပါ။</string>
   <string name="MediaSendActivity_message_to_s">%s သို့ မက်ဆေ့ချ်ပို့မယ်</string>
   <string name="MediaSendActivity_message">မက်ဆေ့ချ်</string>
@@ -957,7 +957,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s သည် %2$s ကို အက်မင်တစ်ယောက်အဖြစ် ထားလိုက်သည်။</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s သည် သင့်ကို အက်မင်တစ်ယောက်အဖြစ် ထားလိုက်သည်။</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">သင်သည် %1$s ကို အက်မင်အဖြစ်မှ ရုတ်သိမ်းလိုက်သည်။</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s သည် သင်၏ အက်ဒ်မင် လုပ်ပိုင်ခွင့်များကို ရုတ်သိမ်းခဲ့ပါသည်။</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s သည် သင်၏ အက်ဒ်မင် လုပ်ပိုင်ခွင့်များကို ရုပ်သိမ်းခဲ့ပါသည်။</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s သည် %2$sကို အက်မင်အဖြစ်မှ ရုတ်သိမ်းလိုက်သည်။</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s သည် ယခု အက်မင်ဖြစ်သည်။</string>
   <string name="MessageRecord_you_are_now_an_admin">သင်သည် ယခု အက်မင်ဖြစ်သည်။</string>
@@ -1276,11 +1276,11 @@
   <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
     <item quantity="other">%1$s ၊ %2$s နှင့် အခြား %3$d ဦးထံ ဖုန်းခေါ်နေပါသည်</item>
   </plurals>
-  <string name="WebRtcCallView__s_is_calling_you">%1$s သည် သင့်ကို ခေါ်နေပါသည်</string>
-  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s သည် သင်နှင့် %2$s ကို ခေါ်နေပါသည်</string>
-  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s သည် သင်၊ %2$s နှင့် %3$s ကို ခေါ်နေပါသည်</string>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s က သင့်ကို ခေါ်နေပါသည်</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s က သင်နှင့် %2$s ကို ခေါ်နေပါသည်</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s က သင်၊ %2$s နှင့် %3$s ကို ခေါ်နေပါသည်</string>
   <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
-    <item quantity="other">%1$s သည် သင်၊ %2$s ၊ %3$s နှင့် အခြား %4$d ဦးကို ခေါ်နေပါသည်</item>
+    <item quantity="other">%1$s က သင်၊ %2$s ၊ %3$s နှင့် အခြား %4$d ဦးကို ခေါ်နေပါသည်</item>
   </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">အခြား မည်သူမျှ မရှိပါ</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s သည် ၎င်းခေါ်ဆိုမှုထဲတွင် ရှိပါသည်</string>
@@ -2899,7 +2899,7 @@
   <!--Title of error dialog shown when a network error occurs during account deletion-->
   <string name="DeleteAccountFragment__account_not_deleted">အကောင့် မဖျက်ထားပါ</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
-  <string name="DeleteAccountFragment__there_was_a_problem">ဖျက်ပစ်သည့် လုပ်ဆောင်ချက်ကို အပြီးသတ်ရာတွင် ပြဿနာ ရှိနေပါသည်။ သင့်ကွန်ရက်ချိတ်ဆက်မှုကို စစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။</string>
+  <string name="DeleteAccountFragment__there_was_a_problem">ဖျက်ပစ်သည့် စီမံလုပ်ဆောင်ချက်ကို အပြီးသတ်ရာတွင် ပြဿနာ ရှိနေပါသည်။ သင့်ကွန်ရက်ချိတ်ဆက်မှုကို စစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">နိုင်ငံများ ကို ရှာဖွေပါ</string>
   <!--CreateGroupActivity-->
@@ -3080,7 +3080,7 @@
   <string name="ChangeNumberVerifyFragment__captcha_required">Captcha လိုအပ်ပါသည်</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__change_number">နံပါတ်ပြောင်းရန်</string>
-  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">%1$s မှ %2$s သို့ နံပါတ် ပြောင်းပါတော့မည်။\n\nဆက်မလုပ်မီ ဖော်ပြပါ နံပါတ် မှန်ကန်ကြောင်း အတည်ပြုပေးပါ။</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">သင့် ဖုန်းနံပါတ်ကို %1$s မှ %2$s သို့ နံပါတ် ပြောင်းပါတော့မည်။\n\nဆက်မလုပ်မီ ဖော်ပြပါ နံပါတ် မှန်ကန်ကြောင်း အတည်ပြုပေးပါ။</string>
   <string name="ChangeNumberConfirmFragment__edit_number">နံပါတ်ကို ပြင်မယ်</string>
   <!--ChangeNumberRegistrationLockFragment-->
   <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal နံပါတ် ပြောင်းလဲမှု - Android အတွက် PIN (v2 PIN) ဖြင့် အကူအညီ လိုအပ်ပါသည်</string>
@@ -3096,7 +3096,7 @@
   <!--Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_confirmed">ပြောင်းလဲမှု အခြေအနေ အတည်ပြုပြီး</string>
   <!--Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
-  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">သင့်နံပါတ်ကို %1$s အဖြစ် အတည်ပြုထားပါသည်။ သင့်နံပါတ်အသစ် မဟုတ်ပါက နံပါတ်ပြောင်းလဲမှု လုပ်ဆောင်ချက်ကို ပြန်စတင်ပေးပါ။</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">သင့်နံပါတ်ကို %1$s အဖြစ် အတည်ပြုထားပါသည်။ သင့်နံပါတ်အသစ် မဟုတ်ပါက နံပါတ်ပြောင်းလဲမှု စီမံလုပ်ဆောင်ချက်ကို ပြန်စတင်ပေးပါ။</string>
   <!--Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_unconfirmed">ပြောင်းလဲမှု အခြေအနေ အတည်မပြုထား</string>
   <!--Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow-->
@@ -3139,7 +3139,7 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">သင် စတင်ခဲ့သည့် ချက်(တ်)အသစ်များ အားလုံးအတွက် ပျောက်သွားမည့် မက်ဆေ့ချ် ပုံသေတိုင်မာကို သတ်မှတ်ပါ။</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">အခြေအနေ အိုင်ကွန်ကို ပြသရန်</string>
-  <string name="AdvancedPrivacySettingsFragment__show_an_icon">ချိပ်ပိတ်ပေးပို့သူကို သုံး၍ မက်ဆေ့ချ်များ ပေးပို့သည့်အခါ မက်ဆေ့ချ် အသေးစိတ်တွင် အိုင်ကွန်တစ်ခု ပြသပါမည်။</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">ချိပ်ပိတ်ပေးပို့သူကို သုံး၍ မက်ဆေ့ချ်များ ပေးပို့သည့်အခါ မက်ဆေ့ချ် အသေးစိတ်တွင် အိုင်ကွန်တစ်ခု ပြသပါ။</string>
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">ဖွင့်ထားချိန်တွင် သင့်ဘက်မှ စတင်၍ ချက်(တ်)အသစ်၌ ပေးပို့၊ လက်ခံထားသော မက်ဆေ့ချ်အသစ်များကို ကြည့်ပြီးသည့်နောက် ၎င်းတို့သည် ပျောက်သွားပါမည်။</string>
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">ဖွင့်ထားချိန်တွင် ဤချက်(တ်)၌ ပေးပို့၊ လက်ခံထားသော မက်ဆေ့ချ်အသစ်များကို ကြည့်ပြီးသည့်နောက် ၎င်းတို့သည် ပျောက်သွားပါမည်။</string>
@@ -3195,7 +3195,7 @@
   <string name="CustomChatColorCreatorFragmentPage__save">သိမ်းမယ်</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">အရောင် ပြင်ရန်</string>
   <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
-    <item quantity="other">ဤအရောင်ကို ချက်(တ်) %1$d ခုတွင် သုံးထားပါသည်။ ချက်(တ်)များ အားလုံးအတွက် ပြောင်းလဲမှုများကို သိမ်းလိုပါသလား။</item>
+    <item quantity="other">ဤအရောင်ကို ချက်(တ်) %1$d ခုတွင် သုံးထားပါသည်။ ချက်(တ်)များ အားလုံးအတွက် ပြောင်းလဲလိုပါသလား။</item>
   </plurals>
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Top Edge Selector</string>
@@ -3213,7 +3213,7 @@
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">အီမိုဂျိကို အစားထိုးရန် နှိပ်ပါ</string>
   <string name="EditReactionsFragment__reset">ရီဆက်ချမည်</string>
   <string name="EditReactionsFragment_save">သိမ်းမယ်</string>
-  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">နောက်ခံပုံတွင် အရောင်ကို အော်တို ကိုက်ညီမှုလုပ်ရန်</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">နောက်ခံပုံနှင့် အရောင်ကို အော်တို ကိုက်ညီမှုလုပ်ရန်</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Gradient ၏ လားရာကို ပြောင်းရန် ဆွဲယူပါ</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">ပရိုဖိုင် ဓာတ်ပုံ ပေါင်းထည့်ရန်</string>
@@ -3233,7 +3233,7 @@
   <string name="KeyboardPagerFragment_open_gif_search">GIF ရှာဖွေမှုကို ဖွင့်ရန်</string>
   <string name="KeyboardPagerFragment_stickers">စတစ်ကာများ </string>
   <string name="KeyboardPagerFragment_backspace">Backspace</string>
-  <string name="KeyboardPagerFragment_gifs">GIF များ</string>
+  <string name="KeyboardPagerFragment_gifs">GIF</string>
   <string name="KeyboardPagerFragment_search_emoji">အီမိုဂျိ ရှာရန်</string>
   <string name="KeyboardPagerfragment_back_to_emoji">အီမိုဂျိသို့ ပြန်သွားရန်</string>
   <string name="KeyboardPagerfragment_clear_search_entry">ရှာဖွေရန် ဖြည့်သွင်းမှုကို ရှင်းရန်</string>
@@ -3366,8 +3366,8 @@
   <string name="MediaReviewFragment__add_a_reply">ပြန်စာ ပေါင်းထည့်ရန်</string>
   <string name="MediaReviewFragment__send_to">ဖော်ပြပါသို့ ပို့ရန်</string>
   <string name="MediaReviewFragment__view_once_message">မက်ဆေ့ချ်ကို တစ်ကြိမ်ကြည့်ရန်</string>
-  <string name="MediaReviewFragment__one_or_more_items_were_too_large">ဖိုင်တစ်ဖိုင် သို့မဟုတ် တစ်ဖိုင်ထက်ပိုသော ဖိုင်များသည် ကြီးလွန်းနေပါသည်</string>
-  <string name="MediaReviewFragment__one_or_more_items_were_invalid">ဖိုင်တစ်ဖိုင် သို့မဟုတ် တစ်ဖိုင်ထက်ပိုသော ဖိုင်များသည် အကျုံးမဝင်ပါ</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">တစ်ခု သို့မဟုတ် တစ်ခုထက်ပိုသော ဖိုင်များသည် ကြီးလွန်းနေပါသည်</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">တစ်ခု သို့မဟုတ် တစ်ခုထက်ပိုသော ဖိုင်များသည် အကျုံးမဝင်ပါ</string>
   <string name="MediaReviewFragment__too_many_items_selected">ဖိုင်များစွာကို ရွေးထားပါသည်</string>
   <string name="ImageEditorHud__cancel">ပယ်ဖျက်မယ်</string>
   <string name="ImageEditorHud__draw">ရေးဆွဲရန်</string>
@@ -3421,11 +3421,11 @@
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal သည် ကြော်ငြာသူများ သို့မဟုတ် ရင်းနှီးမြှုပ်နှံသူများ မရှိဘဲ ၎င်းကို သုံးစွဲ၊ တန်ဖိုးထားသူများသာလျှင် ပါဝင်အားဖြည့်ထားသည့် အကျိုးအမြတ်မယူသော အဖွဲ့အစည်းဖြစ်ပါသည်။ သင့်ပံ့ပိုးကူညီမှုကို မျှဝေရန် လစဉ် ထပ်တလဲလဲ လှူဒါန်းမှု လုပ်ပြီး ပရိုဖိုင် ဘဲ့ဂျ်ကို ရယူပါ။</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">အဘယ်ကြောင့် လှူဒါန်းရသနည်း။</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal သည် ကမ္ဘာအနှံ့ ဆက်သွယ်ရေးကို လုံခြုံစိတ်ချရစေပြီး လွတ်လပ်စွာ ထုတ်ဖော်ခွင့်ကို ကာကွယ်ပေးသည့် ဖွံ့ဖြိုးဆဲ Open Source Privacy နည်းပညာကို အလေးအနက်ထားပါသည်။</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">သင့်လှူဒါန်းမှုသည် သီးသန့် ဆက်သွယ်ရေးအတွက် လူသန်းပေါင်းများစွာ သုံးစွဲနေသည့် အက်ပ်တစ်ခု၏ လုပ်ငန်းလည်ပတ်နှင့် ဖွံ့ဖြိုးတိုးတက်ရေးအတွက် ပေးဆပ်မှု ဖြစ်ပြီး ဤအကြောင်းကိစ္စအတွက် အားဖြည့်ပေးပါသည်။ ကြော်ငြာများ မရှိ။ ခြေရာခံမှုများ မရှိ။ ကျီစယ်မှု မရှိ။</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">သင့်လှူဒါန်းမှုသည် သီးသန့် ဆက်သွယ်ရေးအတွက် လူသန်းပေါင်းများစွာ သုံးစွဲနေသည့် အက်ပ်တစ်ခု၏ လုပ်ငန်းလည်ပတ်နှင့် ဖွံ့ဖြိုးတိုးတက်ရေးအတွက် အားဖြည့်ပေးသည့် ပေးကမ်းမှုဖြစ်ပါသည်။ ကြော်ငြာများ မရှိ။ ခြေရာခံမှုများ မရှိ။ ကျီစယ်မှု မရှိ။</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">သင့်ပံ့ပိုးကူညီမှုအတွက် ကျေးဇူးတင်ပါသည်။</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Boost အတွက် ကျေးဇူးတင်ပါသည်။</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">သင်သည် %s ဘဲ့ဂျ် ရထားပါသည်။ Signal အတွက် လှူဒါန်းမှုအား နားလည်သဘောပေါက်မှု ဖန်တီးနိုင်ရန် သင့်ပရိုဖိုင်တွင် ဤဘဲ့ဂျ်ကို ပြသပါ။</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">သင်သည် Boost ဘဲ့ဂျ် ရထားပါသည်။ Signal အတွက် လှူဒါန်းမှုအား နားလည်သဘောပေါက်မှု ဖန်တီးနိုင်ရန် သင့်ပရိုဖိုင်တွင် ဤဘဲ့ဂျ်ကို ပြသပါ။</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">သင်သည် %s ဘဲ့ဂျ် ရထားပါသည်။ Signal အတွက် လှူဒါန်းနိုင်ကြောင်းကို သဘောပေါက်မှု ဖန်တီးရန် သင့်ပရိုဖိုင်တွင် ဤဘဲ့ဂျ်ကို ပြသပါ။</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">သင်သည် Boost ဘဲ့ဂျ် ရထားပါသည်။ Signal အတွက် လှူဒါန်းနိုင်ကြောင်းကို သဘောပေါက်မှု ဖန်တီးရန် သင့်ပရိုဖိုင်တွင် ဤဘဲ့ဂျ်ကို ပြသပါ။</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">သင်သည်လည်း</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">လစဉ် ပါဝင်အားဖြည့်သူ ဖြစ်နိုင်ပါသည်။</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">ပရိုဖိုင်တွင် ပြသရန်</string>
@@ -3460,7 +3460,7 @@
   <string name="MySupportPreference__add_a_signal_boost">Signal Boost တစ်ခု ပေါင်းထည့်ရန်</string>
   <string name="MySupportPreference__s_per_month">တစ်လလျှင် %1$s</string>
   <string name="MySupportPreference__renews_s">%1$s တွင် သက်တမ်းတိုးသည်</string>
-  <string name="MySupportPreference__processing_transaction">ငွေအလွှဲအပြောင်း လုပ်ဆောင်နေဆဲ…</string>
+  <string name="MySupportPreference__processing_transaction">ငွေအလွှဲအပြောင်း စီမံလုပ်ဆောင်နေဆဲ…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">ဘဲ့ဂျ်ကို ပေါင်းထည့်၍မရပါ။ %1$s</string>
   <string name="MySupportPreference__please_contact_support">အကူအညီရယူရန် ဆက်သွယ်ပါ။</string>
@@ -3477,11 +3477,11 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Boost ပေါင်းထည့်ရန်</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">သင်သည် အချိန်ကြာမြင့်စွာ အသုံးမပြုခဲ့သဖြင့် သင်၏ ထပ်တလဲလဲ လစဉ် လှူဒါန်းမှုကို အော်တို ပယ်ဖျက်ခဲ့ပါသည်။ သင်၏ %1$s ဘဲ့ဂျ်ကို သင့်ပရိုဖိုင်တွင် မြင်ရတော့မည် မဟုတ်ပါ။</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">သင်သည် အချိန်ကြာမြင့်စွာ အသုံးမပြုခဲ့သဖြင့် သင်၏ လစဉ် ထပ်တလဲလဲ လှူဒါန်းမှုကို အော်တို ပယ်ဖျက်ခဲ့ပါသည်။ သင်၏ %1$s ဘဲ့ဂျ်ကို သင့်ပရိုဖိုင်တွင် မြင်ရတော့မည် မဟုတ်ပါ။</string>
   <!--Copy displayed when badge expires after payment failure-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">သင်၏ ငွေပေးချေမှုကို ကျွန်ုပ်တို့ဘက်မှ စီမံလုပ်ဆောင်နိုင်ခြင်းမရှိသောကြောင့် သင်၏ ထပ်တလဲလဲ လစဉ် လှူဒါန်းမှုကို ပယ်ဖျက်ခဲ့ပါသည်။ သင်၏ ဘဲ့ဂျ်ကို သင့်ပရိုဖိုင်တွင် မြင်ရတော့မည် မဟုတ်ပါ။</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">သင်၏ ငွေပေးချေမှုကို ကျွန်ုပ်တို့ဘက်မှ စီမံလုပ်ဆောင်နိုင်ခြင်းမရှိသောကြောင့် သင်၏ လစဉ် ထပ်တလဲလဲ လှူဒါန်းမှုကို ပယ်ဖျက်ခဲ့ပါသည်။ သင်၏ ဘဲ့ဂျ်ကို သင့်ပရိုဖိုင်တွင် မြင်ရတော့မည် မဟုတ်ပါ။</string>
   <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">သင်၏ ထပ်တလဲလဲ လစဉ် လှူဒါန်းမှုကို ပယ်ဖျက်ခဲ့ပါသည်။ %1$s သင်၏ %2$s ဘဲ့ဂျ်ကို သင့်ပရိုဖိုင်တွင် မြင်ရတော့မည် မဟုတ်ပါ။</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">သင်၏ လစဉ် ထပ်တလဲလဲ လှူဒါန်းမှုကို ပယ်ဖျက်ခဲ့ပါသည်။ %1$s သင်၏ %2$s ဘဲ့ဂျ်ကို သင့်ပရိုဖိုင်တွင် မြင်ရတော့မည် မဟုတ်ပါ။</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal ကို ဆက်သုံးနိုင်သော်လည်း အက်ပ်ကို ပံ့ပိုးရန်နှင့် သင့်ဘဲ့ဂျ်ကို ပြန်လည်သက်ဝင်အောင် လုပ်ဆောင်ရန် ယခု သက်တမ်းတိုးပါ။</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">ပုံမှန်လှူဒါန်းငွေကို သက်တမ်းတိုးရန်</string>
   <!--Button label to send user to Google Pay website-->
@@ -3677,13 +3677,13 @@
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">နောက်ထက်</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
-  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">အစီအစဉ်သည် အနည်းဆုံး တစ်ရက် ဖြစ်ရပါမည်</string>
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">အချိန်ဇယားသည် အနည်းဆုံး တစ်ရက် ဖြစ်ရပါမည်</string>
   <!--Title for final screen shown after completing a profile creation-->
   <string name="NotificationProfileCreated__profile_created">ပရိုဖိုင် ဖန်တီးပြီး</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">ပြီးပါပြီ</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
-  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">စကားပြောဆိုမှု စာရင်းရှိ မီနျူးမှတစ်ဆင့် သင့်ပရိုဖိုင်ကို ကိုယ်တိုင် အဖွင့်၊ အပိတ် လုပ်နိုင်ပါသည်။</string>
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">စကားပြောဆိုမှု စာရင်းရှိ မီနူးမှတစ်ဆင့် သင့်ပရိုဖိုင်ကို ကိုယ်တိုင် အဖွင့်၊ အပိတ် လုပ်နိုင်ပါသည်။</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
   <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">သင့်ပရိုဖိုင်ကို အော်တို ပြုလုပ်ရန် ဆက်တင်တွင် အချိန်ဇယား ပေါင်းထည့်ပါ။</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
@@ -3721,7 +3721,7 @@
   <!--Donation receipts date paid heading-->
   <string name="DonationReceiptDetailsFragment__date_paid">ပေးချေသည့် ရက်စွဲ</string>
   <!--Donation receipts share PNG-->
-  <string name="DonationReceiptDetailsFragment__share_receipt">ပြေစာကို ဝေမျှရန်</string>
+  <string name="DonationReceiptDetailsFragment__share_receipt">ပြေစာကို မျှဝေရန်</string>
   <!--Donation receipts list end note-->
   <string name="DonationReceiptListFragment__if_you_have">Signal ကို ပြန်လည်ထည့်သွင်းထားခြင်းဖြစ်ပါက ယခင် လှူဒါန်းမှုများမှ ပြေစာများကို ရရှိမည် မဟုတ်ပါ။</string>
   <!--Donation receipts document title-->
@@ -3754,7 +3754,7 @@
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">ထပ်ဆင့် ပေးပို့မယ်</string>
   <!--Context menu option to share a story-->
-  <string name="StoriesLandingItem__share">ဝေမျှရန်…</string>
+  <string name="StoriesLandingItem__share">မျှဝေရန်…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">ချက်(တ်)သို့ သွားရန်</string>
   <!--Label when a story is pending sending-->
@@ -3770,7 +3770,7 @@
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">စတိုရီကို ဝှက်မည်လား။</string>
   <!--Message of dialog confirming decision to hide a story-->
-  <string name="StoriesLandingFragment__new_story_updates">စတိုရီ စာရင်း၏ ထိပ်ဆုံးတွင် %1$s မှ စတိုရီ အပ်ဒိတ်အသစ်များ ပေါ်လာတော့မည် မဟုတ်ပါ။</string>
+  <string name="StoriesLandingFragment__new_story_updates">စတိုရီ စာရင်း၏ ထိပ်ဆုံးတွင် %1$s ထံမှ စတိုရီအသစ် အပ်ဒိတ်များ ပေါ်လာတော့မည် မဟုတ်ပါ။</string>
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">ဝှက်ပါ</string>
   <!--Displayed in Snackbar after story is hidden-->
@@ -3788,7 +3788,7 @@
   <!--Title of dialog to confirm deletion of story-->
   <string name="MyStories__delete_story">စတိုရီကို ဖျက်မည်လား။</string>
   <!--Message of dialog to confirm deletion of story-->
-  <string name="MyStories__this_story_will_be_deleted">ဤစတိုရီကို လက်ခံရရှိသူတိုင်းနှင့် သင့်အတွက် ၎င်းကို ဖျက်ပါမည်။</string>
+  <string name="MyStories__this_story_will_be_deleted">ဤစတိုရီကို သင့်အတွက်နှင့် ၎င်းကို လက်ခံရရှိသူတိုင်းအတွက်  ဖျက်ပါမည်။</string>
   <!--Toast shown when story media cannot be saved-->
   <string name="MyStories__unable_to_save">သိမ်း၍ မရနိုင်ပါ</string>
   <!--Displayed at bottom of story viewer when current item has views-->
@@ -3875,7 +3875,7 @@
   <!--Summary for switchable option allowing replies and reactions on your story-->
   <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">သင့်စတိုရီကို ကြည့်နိုင်သူများအား တုံ့ပြန်မှု ပေးရန်နှင့် ပြန်စာပို့ရန် ခွင့်ပြုပါ</string>
   <!--Note about default sharing-->
-  <string name="MyStorySettingsFragment__hide_your_story_from">သင့်စတိုရီကို အချို့သူများအတွက် ဝှက်ပါ။ ပုံသေအားဖြင့် သင့်စတိုရီကို သင့် %1$s နှင့် ဝေမျှပါသည်</string>
+  <string name="MyStorySettingsFragment__hide_your_story_from">သင့်စတိုရီကို အချို့သူများအတွက် ဝှက်ပါ။ ပုံသေအားဖြင့် သင့်စတိုရီကို သင့် %1$s နှင့် မျှဝေပါသည်</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
   <string name="SignalConnectionsBottomSheet___signal_connections">Signal အဆက်အသွယ်များ</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
@@ -3885,7 +3885,7 @@
   <!--Signal connections sheet bullet point 2-->
   <string name="SignalConnectionsBottomSheet__accepting_a_message_request">မက်ဆေ့ချ် တောင်းဆိုချက်ကို လက်ခံခြင်း</string>
   <!--Signal connections sheet bullet point 3-->
-  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">သင့်စနစ်ထဲရှိ အဆက်အသွယ်များတွင် ၎င်းတို့ ရရှိပြီးခြင်း</string>
+  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">သင့်စနစ်ထဲရှိ အဆက်အသွယ်များတွင် ၎င်းတို့ ရှိပြီးခြင်း</string>
   <!--Note at the bottom of the Signal connections sheet-->
   <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">သင့်အဆက်အသွယ်များက သင့်အမည်နှင့် ဓာတ်ပုံကို မြင်နိုင်ပြီး ၎င်းတို့အတွက် မဝှက်ထားပါက \"ကျွန်ုပ်၏ စတိုရီ\" တွင် ပို့စ်များကို မြင်နိုင်ပါသည်။</string>
   <!--Clickable option to add a viewer to a private story-->
@@ -3923,7 +3923,7 @@
   <!--Hint for entering a URL for a text post-->
   <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">ရိုက်ထည့်ပါ သို့မဟုတ် URL ကို ကူးထည့်ပါ</string>
   <!--Displayed prior to the user entering a URL for a text post-->
-  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">သင့်စတိုရီ ကြည့်ရှုသူများနှင့် လင့်ခ် ဝေမျှရန်</string>
+  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">သင့်စတိုရီ ကြည့်ရှုသူများနှင့် လင့်ခ် မျှဝေရန်</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">ရှာဖွေမယ်</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
@@ -3947,7 +3947,7 @@
   <!--Error message dialog button to resend a previously failed story send-->
   <string name="StoryDialogs__send">ပေးပို့မယ်</string>
   <!--Privacy Settings toggle title for stories-->
-  <string name="PrivacySettingsFragment__share_and_view_stories">စတိုရီများကို ဝေမျှပြီး ကြည့်ရှုရန်</string>
+  <string name="PrivacySettingsFragment__share_and_view_stories">စတိုရီများကို မျှဝေကြည့်ရှုရန်</string>
   <!--Privacy Settings toggle summary for stories-->
   <string name="PrivacySettingsFragment__you_will_no_longer_be_able">ဤရွေးချယ်မှုကို ပိတ်ထားချိန်တွင် စတိုရီများ မျှဝေခြင်း သို့မဟုတ် ကြည့်ခြင်းကို လုပ်ဆောင်နိုင်တော့မည် မဟုတ်ပါ။</string>
   <!--New story viewer selection screen title-->
@@ -3981,7 +3981,7 @@
   <!--Choose story type bottom sheet group story title-->
   <string name="ChooseStoryTypeBottomSheet__group_story">အဖွဲ့ စတိုရီ</string>
   <!--Choose story type bottom sheet group story summary-->
-  <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">ရှိပြီးသား အဖွဲ့တွင် ဝေမျှရန်</string>
+  <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">ရှိပြီးသား အဖွဲ့တွင် မျှဝေရန်</string>
   <!--Choose groups bottom sheet title-->
   <string name="ChooseGroupStoryBottomSheet__choose_groups">အဖွဲ့များ ရွေးချယ်ရန်</string>
   <!--Displayed when copying group story reply text to clipboard-->
@@ -4053,7 +4053,7 @@
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">သင့်ပံ့ပိုးကူညီမှုအတွက် ကျေးဇူးတင်ပါသည်။</string>
   <!--Description for sheet shown when opening a redeemed gift-->
-  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">သင်သည် %1$s ထံမှ လက်ဆောင်ဘဲ့ဂျ်ကို လက်ခံရရှိခဲ့ပါသည်။ သင့်ပရိုဖိုင်တွင် ဤဘဲ့ဂျ်ကို ပြသခြင်းဖြင့် Signal အား နားလည်သဘောပေါက်မှု ဖန်တီးနိုင်ရန် ကူညီပေးပါ။</string>
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">သင်သည် %1$s ထံမှ လက်ဆောင်ဘဲ့ဂျ်ကို လက်ခံရရှိခဲ့ပါသည်။ သင့်ပရိုဖိုင်တွင် ဤဘဲ့ဂျ်ကို ပြသခြင်းဖြင့် Signal ကို သဘောပေါက်မှု ဖန်တီးနိုင်ရန် ကူညီပေးပါ။</string>
   <!--Description for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">သင်သည် %1$s ကို ဘဲ့ဂျ်တစ်ခု လက်ဆောင်ပေးထားပါသည်။ ၎င်းတို့ လက်ခံလိုက်သည့်အခါ ၎င်းတို့၏ ဘဲ့ဂျ်ကို ပြသရန် သို့မဟုတ် ဝှက်ထားရန် ရွေးချယ်ခွင့် ရှိပါမည်။</string>
   <!--Primary action for pending gift sheet to redeem badge now-->

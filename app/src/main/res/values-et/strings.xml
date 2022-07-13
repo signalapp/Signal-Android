@@ -700,7 +700,7 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Muuda nime ja pilti</string>
   <string name="ManageGroupActivity_legacy_group">Vana grupp</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">See on vana grupp. Uued funktsioonid, nt grupi administraatorid on saadaval ainult uutes gruppides.</string>
-  <string name="ManageGroupActivity_legacy_group_upgrade">See on vana grupp. Uute funktsioonide, näiteks @mainimised ja administraatorid, kasutamiseks,.</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">See on vana grupp. Uute funktsioonide, näiteks @mainimised ja administraatorid, kasutamiseks,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Seda vana gruppi ei saa uueks grupiks uuendada, sest see on liiga suur. Maksimaalne grupi suurus on %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">uuenda see grupp</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">See on ebaturvaline MMS grupp. Privaatselt vestlemiseks kutsu enda kontaktid Signalit kasutama.</string>

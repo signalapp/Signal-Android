@@ -659,7 +659,7 @@
   <string name="AddGroupDetailsFragment__group_creation_failed">Ha fallat la creació del grup.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Torneu-ho a provar més tard.</string>
   <!--Displayed when adding group details to an MMS Group-->
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Has seleccionat un contacte que no té habilitats els grups a Signal, o sigui que aquest grup serà MMS. Només tu podràs veure els noms personalitzats i les fotos dels grups MMS.</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Has seleccionat un contacte que no té habilitats els grups a Signal, així que aquest grup serà MMS. Només tu podràs veure els noms personalitzats i les fotos dels grups MMS.</string>
   <string name="AddGroupDetailsFragment__remove">Suprimeix</string>
   <string name="AddGroupDetailsFragment__sms_contact">Contacte d\'SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Voleu suprimir %1$s d\'aquest grup?</string>

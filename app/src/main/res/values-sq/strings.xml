@@ -1129,7 +1129,7 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">S\’u dërgua dot një mesazh prej %s</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s ndryshoi numrin e vet të telefonit.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Të pëlqen kjo veçori e re? Ndihmoni në mbështetjen e Signal-it me anë të donacionit të një here të vetme.</string>
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Të pëlqen kjo veçori e re? Jep ndihmën tënde duke e mbështetur Signal me donacionin që bëhet vetëm një herë.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s nisi një thirrje grupi · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s gjendet te thirrja e grupit · %2$s</string>
@@ -2066,14 +2066,14 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="HelpFragment__could_not_upload_logs">S\’u ngarkuan dot regjistra</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Ju lutemi, që të na ndihmoni të kuptojmë problemin, jini sa më përshkrues që të jetë e mundur.</string>
   <string-array name="HelpFragment__categories_4">
-    <item>\-\- Ju lutemi zgjidhni një opsion \-\-</item>
+    <item>\-\- Zgjidh një opsion \-\-</item>
     <item>Diçka nuk po funksionon</item>
-    <item>Veçoria e kërkesave</item>
+    <item>Paraqit kërkesën</item>
     <item>Pyetje</item>
-    <item>Reagime</item>
+    <item>Koment</item>
     <item>Të tjera</item>
-    <item>Pagesat (MobileCoin)</item>
-    <item>Donacionet &amp; Distinktiv</item>
+    <item>Pagesa (MobileCoin)</item>
+    <item>Donacione &amp; Stema</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Këtë Mesazh</string>
@@ -3453,7 +3453,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="MultiselectForwardFragment__add_a_message">Shtoni një mesazh</string>
   <string name="MultiselectForwardFragment__faster_forwards">Përcjellje më të shpejta</string>
   <!--Displayed when user selects a video that will be clipped before sharing to a story-->
-  <string name="MultiselectForwardFragment__videos_will_be_trimmed">Videot do të shkurtohen në klipe prej 30 sekondash dhe do të dërgohen si postime të shumta të përkohshme.</string>
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">Videot do të shkurtohen në klipe 30 sekondëshe dhe do të dërgohen si postime të shumëfishta të përkohshme.</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
   <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Videot e dërguara te postimet e përkohshme nuk mund të jenë më të gjata se 30 sekonda.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Mesazhet e përcjellë tanimë dërgohen menjëherë.</string>
@@ -3966,27 +3966,27 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Privacy setting title for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__all_signal_connections">Të gjitha kontaktet e Signal</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
-  <string name="MyStorySettingsFragment__share_with_all_connections">Shpërndajeni me të gjitha kontaktet</string>
+  <string name="MyStorySettingsFragment__share_with_all_connections">Shpërndaj me të gjitha kontaktet</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__all_signal_connections_except">Të gjitha kontaktet e Signal përveç…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Fshihni postimin tuaj të përkohshëm nga persona të caktuar</string>
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Fshih postimin e përkohshëm nga persona të caktuar</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
   <plurals name="MyStorySettingsFragment__d_people_excluded">
     <item quantity="one">%1$d persona të përjashtuar</item>
     <item quantity="other">%1$dpersona të përjashtuar</item>
   </plurals>
   <!--Privacy setting title for only sharing your story with specified connections-->
-  <string name="MyStorySettingsFragment__only_share_with">Shpërndajeni vetëm me…</string>
+  <string name="MyStorySettingsFragment__only_share_with">Shpërndaj vetëm me…</string>
   <!--Privacy setting description for only sharing your story with specified connections-->
-  <string name="MyStorySettingsFragment__only_share_with_selected_people">Shpërndajeni vetëm me personat e zgjedhur</string>
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">Shpërndaj vetëm me personat e zgjedhur</string>
   <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d person</item>
     <item quantity="other">%1$d persona</item>
   </plurals>
   <!--My story privacy fine print about what the privacy settings are for-->
-  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Zgjidhni kush mund të shikojë postimin tuaj të përkohshëm. Ndryshimet nuk do të ndikojnë në postimet e përkohshëm që tashmë keni dërguar.</string>
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Zgjidh personat që mund ta shohin postimin e përkohshëm. Ndryshimet nuk zbatohen te postimet e përkohshëm që tashmë i ke dërguar.</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">Përgjigje &amp; reagime</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -3996,9 +3996,9 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Fshiheni historinë tuaj për persona të caktuar. Si parazgjedhje, historia juaj ndahet me %1$s tuaj</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
-  <string name="SignalConnectionsBottomSheet___signal_connections">Kontaktet e Signal-it</string>
+  <string name="SignalConnectionsBottomSheet___signal_connections">Kontaktet e Signal</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Kontaktet e Signal-it janë persona që keni zgjedhur t\'u besoni, qoftë nga:</string>
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Kontaktet e Signal janë persona që ke zgjedhur t\'u besosh, qoftë nga:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">Nisjes së një bisede</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4048,9 +4048,9 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Ka ndodhur një gabim i papritur</string>
   <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
-  <string name="ChangeMyStoryMembershipFragment__all_except">Të gjitha përveç…</string>
+  <string name="ChangeMyStoryMembershipFragment__all_except">Të gjithë përveç…</string>
   <!--Title for screen allowing user to only share "My Story" entries with specific people-->
-  <string name="ChangeMyStoryMembershipFragment__only_share_with">Shpërndajeni vetëm me…</string>
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">Shpërndaj vetëm me…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">U bë</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4217,7 +4217,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Dialog title for removing a group story-->
   <string name="ContactSearchMediator__remove_group_story">Të hiqet postimi i përkohshëm i grupit?</string>
   <!--Dialog message for removing a group story-->
-  <string name="ContactSearchMediator__this_will_remove">Kjo do të fshijë postimin e përkohshëm nga lista. Do të jeni ende në gjendje të shikoni postimet e përkohshme nga ky grup.</string>
+  <string name="ContactSearchMediator__this_will_remove">Postimi i përkohshëm do të fshihet nga lista. Postimet e përkohshme të këtij grupi do të mund t\'i shohësh ende.</string>
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">Fshije</string>
   <!--Dialog title for deleting a private story-->
@@ -4244,11 +4244,11 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Skaduar</string>
   <!--Label indicating that a user can tap to advance to the next post in a story-->
-  <string name="StoryFirstTimeNavigationView__tap_to_advance">Klikoni për të avancuar</string>
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">Kliko për të avancuar</string>
   <!--Label indicating swipe direction to skip current story-->
   <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Shfleto lart për të kapërcyer</string>
   <!--Label indicating swipe direction to exit story viewer-->
-  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Shfleto djathtas për të dal</string>
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Shfleto djathtas për të dalë</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">U mor</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->

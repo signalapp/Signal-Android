@@ -222,6 +222,7 @@
   <string name="ConversationActivity_transport_insecure_sms_with_sim">असुरक्षित SMS (%1$s)</string>
   <string name="ConversationActivity_transport_insecure_mms">असुरक्षित MMS</string>
   <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
+  <string name="ConversationActivity_transport_insecure_mms_with_sim">असुरक्षित MMS (%1$s)</string>
   <string name="ConversationActivity_transport_signal">Signal मेसेज</string>
   <string name="ConversationActivity_lets_switch_to_signal">%1$s चलो Signal पर स्विच करें</string>
   <string name="ConversationActivity_specify_recipient">कृपया एक संपर्क चुनें</string>
@@ -324,9 +325,13 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">%s के साथ आपका सुरक्षा नंबर बदल गया है</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%s के साथ आपकी सुरक्षा संख्या बदल गई, संभावना है कि उन्होंने Signal को फिर से इंस्टॉल किया है या डिवाइस को बदल लिया है। नए सुरक्षा नंबर की पुष्टि करने के लिए वेरिफाई पर क्लिक करें। यह वैकल्पिक है।</string>
   <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$s ऑन है</string>
   <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">अनुरोध ब्लॉक करना है?</string>
   <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s लोग ग्रुप लिंक के माध्यम से इस ग्रुप से नहीं जुड़ पाएंगे या जुड़ने हेतु अनुरोध नहीं कर पाएंगे। उन्हें फिर भी मैनुअल तरीके से ग्रुप में जोड़ा जा सकता है।</string>
   <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">अनुरोध ब्लॉक करें</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">रद्द करें</string>
   <!--Message shown after successfully blocking join requests for a user-->
@@ -393,8 +398,11 @@
     <item quantity="other">%d चुना हुआ</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">नोटिफ़िकेशन प्रोफ़ाइल</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">यहाँ अपनी नोटिफ़िकेशन प्रोफ़ाइल को ऑन या ऑफ़ करें।</string>
   <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s ऑन है</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">की विनिमय मेसेज</string>
   <!--ConversationListItemAction-->
@@ -426,8 +434,11 @@
   <string name="RestoreBackupFragment__choose_folder">फोल्डर को चुनो</string>
   <string name="RestoreBackupFragment__not_now">अभी नहीं</string>
   <!--Couldn\'t find the selected backup-->
+  <string name="RestoreBackupFragment__backup_not_found">बैकअप नहीं मिला।</string>
   <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">बैकअप रीड नहीं किया जा सका।</string>
   <!--Backup has an unsupported file extension-->
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">बैकअप के एक्सटेंशन में गड़बड़ है। </string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">बैकअप चैट करें</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">बैकअप एक पासफ्रेस के साथ एनक्रिप्टेड होते हैं और आपके डिवाइस पर स्टोर किए जाते हैं।</string>
@@ -443,6 +454,7 @@
   <string name="BackupsPreferenceFragment__in_progress">प्रगति में</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d अब तक</string>
   <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">अब तक %1$s%%…  </string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">बैकअप बनाने के लिए Signal को बाहरी संग्रहण अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स को जारी रखें, \"अनुमतियां\" चुनें और \"संग्रहण\" सक्षम करें।</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">कस्टम इस्तेमाल: %s</string>
@@ -647,6 +659,7 @@
   <string name="AddGroupDetailsFragment__group_creation_failed">समूह निर्माण विफल रहा।</string>
   <string name="AddGroupDetailsFragment__try_again_later">बाद में पुन: प्रयास करें।</string>
   <!--Displayed when adding group details to an MMS Group-->
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">आपने किसी ऐसे संपर्क को चुना है जो Signal ग्रुप को सपोर्ट नहीं करता है, इसलिए यह ग्रुप, MMS होगा। कस्टम ग्रुप नाम और फ़ोटो केवल आपको दिखेंगे।  </string>
   <string name="AddGroupDetailsFragment__remove">हटा दें </string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS संपर्क</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$sको इस समूह से निकालें?</string>
@@ -726,6 +739,8 @@
   <string name="CustomNotificationsDialogFragment__notification_sound">सूचना ध्वनि</string>
   <string name="CustomNotificationsDialogFragment__vibrate">कांपना</string>
   <!--Button text for customizing notification options-->
+  <string name="CustomNotificationsDialogFragment__customize">कस्टमाइज़ करें</string>
+  <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">ध्वनि व कंपन बदलें</string>
   <string name="CustomNotificationsDialogFragment__call_settings">कॉल सेटिंग</string>
   <string name="CustomNotificationsDialogFragment__ringtone">रिंगटोन</string>
   <string name="CustomNotificationsDialogFragment__enabled">सक्षम</string>
@@ -760,11 +775,13 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">एक नेटवर्क त्रुटि का सामना करना पड़ा|</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">यह समूह लिंक सक्रिय नहीं है </string>
   <!--Title shown when there was an known issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">ग्रुप में शामिल नहीं हो सकते</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
   <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">आप ग्रुप लिंक द्वारा इस ग्रुप में शामिल नहीं हो सकते क्योंकि एक ऐडमिन ने आपको हटा दिया है।</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">यह ग्रुप लिंक अब वैध नहीं रहा।</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">लिंक दोष </string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
   <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">इस लिंक के माध्यम से शामिल होना विफल रहा। बाद में फिर से शामिल होने का प्रयास करें।</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">क्या आप इस ग्रुप में जुड़ना चाहते हैं और इसके मेंबर्स के साथ अपना नाम और फोटो शेयर करना चाहते हैं?</string>
@@ -792,6 +809,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">“%1$s” को ग्रुप में शामिल करना है?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">“%1$s” के अनुरोध को अस्वीकार करना है?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">\"%1$s\" का अनुरोध अस्वीकार करना है? वे फिर से ग्रुप लिंक के माध्यम से शामिल होने के लिए अनुरोध नहीं कर पाएंगे।</string>
   <string name="RequestConfirmationDialog_add">जोड़ें</string>
   <string name="RequestConfirmationDialog_deny">अस्वीकार करें </string>
   <!--ImageEditorHud-->
@@ -893,6 +911,7 @@
   <string name="NotificationBarManager__incoming_signal_call">आने वाली Signal कॉल</string>
   <string name="NotificationBarManager__incoming_signal_group_call">इनकमिंग सिग्नल ग्रूप कॉल</string>
   <!--Temporary notification shown when starting the calling service-->
+  <string name="NotificationBarManager__starting_signal_call_service">Signal कॉल सेवा शुरू की जा रही है</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal कॉल सेवा बंद की जा रही है</string>
   <string name="NotificationBarManager__decline_call">कॉल अस्वीकार करें</string>
   <string name="NotificationBarManager__answer_call">कॉल का उत्तर दें</string>
@@ -1083,6 +1102,10 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">आपने ग्रुप में जुड़ने के लिए अनुरोध भेजा।</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s ने ग्रुप लिंक के माध्यम से जुड़ने का अनुरोध किया।</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="one">ग्रुप लिंक के माध्यम से शामिल होने के लिए %1$s ने अनुरोध किया और अपना अनुरोध रद्द कर दिया। </item>
+    <item quantity="other">ग्रुप लिंक के माध्यम से शामिल होने के लिए %1$s ने अनुरोध किया और %2$d अनुरोध रद्द कर दिए। </item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s को ग्रुप में जुड़ने के आपके अनुरोध को स्वीकार किया।</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s ने %2$s से ग्रुप में जुड़ने के अनुरोध को स्वीकार किया।</string>
@@ -1102,6 +1125,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">आपने %s के साथ अपना सुरक्षा नंबर असत्यापित मार्क करा हुआ है</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">आपने %s के साथ अपना सुरक्षा नंबर किसी और डिवाइस से असत्यापित मार्क करा हुआ है</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s से एक संदेश डिलीवर नहीं किया जा सका</string>
+  <string name="MessageRecord_s_changed_their_phone_number">%1$s ने अपने फ़ोन नंबर बदल दिए।</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
   <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">यह नया फ़ीचर पसंद आया? एक बार दान देकर Signal को सहयोग देने में मदद करें।</string>
   <!--Group Calling update messages-->
@@ -1134,11 +1158,14 @@
   <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s को आपको मेसेज करने देना है और उनके साथ अपना नाम और तस्वीर शेयर करनी है? आप कोई भी मेसेज प्राप्त नहीं करेंगे जब तक आप उन्हें अनब्लॉक नहीं करते।</string>
   <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s को आपको संदेश भेजने दें? जब तक आप उनको अनब्लॉक नहीं करते, तब तक आपको कोई संदेश नहीं मिलेगा।</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s से अपडेट और खबरें पानी हैं? जब तक आप उनकी अनब्लॉक नहीं करते, तब तक आपको कोई अपडेट नहीं मिलेगा।</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">इस ग्रुप के साथ अपना संवाद जारी रखना है और इसके मेंबर्स के साथ अपना नाम और तस्वीर शेयर करनी है?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">नए फ़ीचर्स जैसे कि @mentions और एडमिन को एक्टिवेट करने के लिए इस ग्रुप को अपग्रेड करें। वे मेंबर जिन्होंने इस ग्रुप में अपना नाम और तस्वीर शेयर नहीं की है, उन्हें शामिल होने के लिए आमंत्रित किया जाएगा।</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">इस लेगेसी ग्रुप को अब उपयोग नहीं किया जा सकता क्योंकि यह बहुत बड़ा है। अधिकतम ग्रुप साइज़ है %1$d।</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s के साथ अपना संवाद जारी रखना है और इनके साथ अपना नाम और तस्वीर शेयर करनी है?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">इस ग्रुप में जुड़ना है और इसके मेंबर्स के साथ अपना नाम और तस्वीर शेयर करनी है? उन्हें पता नहीं चलेगा कि आपने उनके मेसेज देख लिए हैं जब तक आप स्वीकार नहीं करते।</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">इस ग्रुप में शामिल होकर अपना नाम और फ़ोटो इसके सदस्यों के साथ साझा करने हैं? जब तक आप स्वीकार नहीं करते, आपको उनके संदेश नहीं दिखेंगे।</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">इस ग्रुप में जुड़ना है? उन्हें पता नहीं चलेगा कि आपने उनके मेसेज देख लिए हैं जब तक आप स्वीकार नहीं करते।</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">इस ग्रुप को अनब्लॉक करना है और इसके मेंबर्स के साथ अपना नाम और तस्वीर शेयर करनी है? आप कोई भी मेसेज प्राप्त नहीं करेंगे जब तक आप उन्हें अनब्लॉक नहीं करते।</string>
   <string name="MessageRequestProfileView_view">देखना</string>
@@ -1150,7 +1177,15 @@
     <item quantity="other">%1$d मेंबर्स</item>
   </plurals>
   <!--Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses.-->
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d सदस्य (%2$s)</item>
+    <item quantity="other">%1$d सदस्य (%2$s)</item>
+  </plurals>
   <!--Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited-->
+  <plurals name="MessageRequestProfileView_invited">
+    <item quantity="one">+%1$d आमंत्रित किए गए</item>
+    <item quantity="other">+%1$d आमंत्रित किए गए</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d अतिरिक्त ग्रुप</item>
     <item quantity="other">%d अतिरिक्त ग्रुप्स</item>
@@ -1260,7 +1295,9 @@
   <string name="RedPhone_got_it">समझ गया </string>
   <!--Valentine\'s Day Megaphone-->
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <string name="ValentinesDayMegaphone_happy_heart_day">हैप्पी 💜 डे!</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
+  <string name="ValentinesDayMegaphone_show_your_affection">Signal सस्टेनर बनकर अपनी चाहत दर्शाएँ। </string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">वीडियो शुरु करने के लिये यहाँ टैप करें</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s को कॉल करने के लिए, Signal को आपके कैमरा तक पहुँच करने की ज़रूरत है</string>
@@ -1750,6 +1787,7 @@
   <string name="ConversationUpdateItem_enable_call_notifications">कॉल सूचनाएं चालू करें</string>
   <string name="ConversationUpdateItem_update_contact">संपर्क जानकारी अपडेट करें </string>
   <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">अनुरोध ब्लॉक करें</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">कोई समूह सामान्य नहीं है। अनुरोधों की सावधानीपूर्वक समीक्षा करें।</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">इस ग्रुप में कोई संपर्क नहीं है। अनुरोधों की सावधानीपूर्वक समीक्षा करें।</string>
   <string name="ConversationUpdateItem_view">देखना</string>
@@ -2072,6 +2110,8 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="preferences__led_color">LED रंग </string>
   <string name="preferences__led_color_unknown">अनजान</string>
   <string name="preferences__pref_led_blink_title">LED ब्लिंक पैटर्न</string>
+  <string name="preferences__customize">कस्टमाइज़ करें</string>
+  <string name="preferences__change_sound_and_vibration">ध्वनि व कंपन बदलें</string>
   <string name="preferences__sound">आवाज़ </string>
   <string name="preferences__silent">म्युट</string>
   <string name="preferences__default">डिफ़ॉल्ट</string>

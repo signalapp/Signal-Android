@@ -3906,6 +3906,7 @@
     <item quantity="other">%1$d જવાબો</item>
   </plurals>
   <!--Used when view receipts are disabled-->
+  <string name="StoryViewerPageFragment__views_off">દ્રશ્યો બંધ છે</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3919,7 +3920,9 @@
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">હજી કોઈ દ્રશ્યો નથી</string>
   <!--Displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">તમારી સ્ટોરી કોણે જોઈ છે તે જોવા પ્રાપ્ત કર્યાની રસીદ સક્ષમ કરો.</string>
   <!--Button label displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__go_to_settings">સેટિંગ્સ પર જાઓ</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">હજી કોઈ જવાબો નથી</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4110,7 +4113,7 @@
   <!--Toasted when the user external share to a text story fails-->
   <string name="TextStoryPostCreationFragment__failed_to_send_story">સ્ટોરી મોકલવામાં નિષ્ફળ</string>
   <!--Displayed in a dialog to let the user select a given users story-->
-  <string name="StoryDialogs__view_story">સ્ટોરી juo</string>
+  <string name="StoryDialogs__view_story">સ્ટોરી જુઓ</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
   <string name="StoryDialogs__view_profile_photo">પ્રોફાઇલ ફોટો જુઓ</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -4197,6 +4200,7 @@
     <item quantity="other">ગ્રુપ સ્ટોરી · %1$d દર્શકો</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">તમારા દર્શકો જોવા ટૅપ કરો</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">સ્ટોરી સેટિંગ્સ</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4241,32 +4245,47 @@
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">ખબર પડી</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">સંદર્ભ મેનૂ ઓપન કરો</string>
   <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · ચકાસાયેલ</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">ચકાસણી</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">સલામતી નંબરના ફેરફારો</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">નીચે દર્શાવેલ લોકોએ Signal ફરીથી ઇન્સ્ટોલ કરેલ અથવા ડિવાઇસ બદલેલ હોઈ શકે છે. નવા સલામતી નંબરની પુષ્ટિ કરવા પ્રાપ્તકર્તા પર ટૅપ કરો. આ વૈકલ્પિક છે.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">સલામતી નંબર તપાસ</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">સલામતી નંબર તપાસ પૂર્ણ</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">તમારા %1$d કનેક્શન એવા છે જેમણે Signal ફરીથી ઇન્સ્ટોલ કરેલ અથવા તેમના ડિવાઇસ બદલેલ હોઈ શકે છે. તેમની સાથે તમારી સ્ટોરી શેર કરતાં પહેલાં તેમના સલામતી નંબરની સમીક્ષા કરો અથવા તેમને તમારી સ્ટોરીમાંથી દૂર કરવાનું વિચારો.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">સલામતી નંબર ચકાસો</string>
   <!--Menu action to remove user from story-->
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">સ્ટોરીમાંથી દૂર કરો</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">કોઈપણ રીતે મોકલો</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <string name="SafetyNumberBottomSheetFragment__review_connections">કનેક્શનની સમીક્ષા કરો</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">હવે કોઈ પ્રાપ્તકર્તા નથી જે બતાવી શકાય</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">થઈ ગયું</string>
   <!--Title of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">સલામતી નંબરના ફેરફારો</string>
   <!--Message of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d પ્રાપ્તકર્તાઓએ Signal ફરીથી ઇન્સ્ટોલ કરેલ અથવા ડિવાઇસ બદલેલ હોઈ શકે છે. નવા સલામતી નંબરની પુષ્ટિ કરવા પ્રાપ્તકર્તા પર ટૅપ કરો. આ વૈકલ્પિક છે.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">સંપર્કો</string>
   <!--Context menu label for distribution list headers in review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">બધાને દૂર કરો</string>
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">દૂર કરો</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">મારી સ્ટોરીની પ્રાઇવસી</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">મારી સ્ટોરી પરની પોસ્ટ કોણ જોઈ શકે તે પસંદ કરો. તમે સેટિંગ્સમાંથી ગમે ત્યારે ફેરફારો કરી શકો છો.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">બધા Signal સંપર્કો</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

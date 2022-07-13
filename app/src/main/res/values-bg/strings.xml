@@ -3522,22 +3522,22 @@
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/месец · Подновява се на %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/месец · Изтича на %2$s</string>
   <!--First small text blurb on learn more sheet-->
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal е организация с нестопанска цел без рекламодатели или инвеститори и се поддържа само от хората, които я използват и ценят. Направете регулярно месечно дарение и получете значка на профила, за да споделите подкрепата си.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal е организация с нестопанска цел, без рекламодатели или инвеститори и се поддържа само от хората, които я използват и ценят. Направете регулярно месечно дарение и получете значка на профила, за да споделите подкрепата си.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Защо да дарите?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal се ангажира да разработва технология за поверителност с отворен код, която защитава свободата на изразяване и позволява сигурна глобална комуникация.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Вашето дарение подпомага тази кауза и плаща за разработването и функционирането на едно приложение, което се използва от милиони хора за частна комуникация. Без реклами. Без следене. Без майтап.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Благодарим ви за подкрепата!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Благодарим за подсилването!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Спечелихте значката %s! Покажете тази значка на профила си, за да привлечете внимание към даряването на средства за Signal.</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Спечелихте значка за подсилване! Покажете тази значка на профила си, за да привлечете внимание към даряването на средства за Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Спечелихте значка „Подсилване“! Покажете тази значка на профила си, за да привлечете внимание към даряването на средства за Signal.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Можете също така да</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">станете ежемесечен поддръжник.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Показване на профила</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Направете представена значка</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Готово</string>
-  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Когато имате повече от една значка, можете да изберете една от тях, която да бъде представена, за да я виждат другите в профила ви.</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Когато имате повече от една значка, можете да изберете една от тях, която да бъде представена в профила ви, за да я виждат другите.</string>
   <string name="BecomeASustainerFragment__get_badges">Получете значки за профила си, като подкрепяте Signal.</string>
-  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal е организация с нестопанска цел без рекламодатели или инвеститори, подкрепяна само от хора като вас.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal е организация с нестопанска цел, без рекламодатели или инвеститори, подкрепяна само от хора като вас.</string>
   <!--Button label for creating a monthly donation-->
   <string name="ManageDonationsFragment__make_a_monthly_donation">Направете месечно дарение</string>
   <!--Heading for more area of manage subscriptions page-->
@@ -3549,7 +3549,7 @@
   <string name="ManageDonationsFragment__manage_subscription">Управление на абонамента</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Разписки за дарения</string>
-  <string name="ManageDonationsFragment__badges">ЗначкиЗначки</string>
+  <string name="ManageDonationsFragment__badges">Значки</string>
   <string name="ManageDonationsFragment__subscription_faq">Често задавани въпроси за абонамент</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Грешка при получаване на абонамент.</string>
   <!--Preference heading for other ways to donate-->
@@ -3564,20 +3564,20 @@
   <string name="MySupportPreference__add_a_signal_boost">Добавяне на подсилване на Signal</string>
   <string name="MySupportPreference__s_per_month">%1$s/месец</string>
   <string name="MySupportPreference__renews_s">Подновява се на %1$s</string>
-  <string name="MySupportPreference__processing_transaction">Обработка на транзакцията…</string>
+  <string name="MySupportPreference__processing_transaction">Обработка на трансакцията…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Неуспешно добавяне на значката. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Моля, свържете се с поддръжката.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Срокът на значката за подсилване е изтекъл</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Срокът на значката „Подсилване“ е изтекъл</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Месечното дарение е отменено</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Срокът на валидност на значката за подсилване е изтекъл и тя вече не се вижда на профила ви.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Срокът на валидност на значката „Подсилване“ е изтекъл и тя вече не се вижда на профила ви.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Можете да активирате значката си за подсилване за още 30 дни с еднократно дарение.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Можете да продължите да използвате Signal, но за да подкрепите технологията, която е създадена за вас, помислете дали да не станете поддръжник чрез ежемесечни дарения.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Станете поддръжникСтанете поддръжник</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Станете поддръжник</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Добавяне на подсилване</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сега</string>
   <!--Copy displayed when badge expires after user inactivity-->
@@ -3596,7 +3596,7 @@
   <string name="Subscription__please_contact_support_for_more_information">Моля, свържете се с отдела за поддръжка за повече информация.</string>
   <string name="Subscription__contact_support">Връзка с отдела за поддръжка</string>
   <string name="Subscription__earn_a_s_badge">Спечелете значка за %1$s</string>
-  <string name="SubscribeFragment__processing_payment">Обработка на плащането…Обработка на плащането…</string>
+  <string name="SubscribeFragment__processing_payment">Обработка на плащането…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Грешка при обработване на плащането</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
@@ -3658,7 +3658,7 @@
   <!--Stripe decline code your card has expired-->
   <string name="DeclineCode__your_card_has_expired">Картата ви е изтекла. Актуализирайте начина си на плащане в Google Pay и опитайте отново.</string>
   <!--Stripe decline code go to google pay action label-->
-  <string name="DeclineCode__go_to_google_pay">Към Google PayКъм Google Pay</string>
+  <string name="DeclineCode__go_to_google_pay">Към Google Pay</string>
   <!--Stripe decline code incorrect card number-->
   <string name="DeclineCode__your_card_number_is_incorrect">Номерът на картата ви е грешен. Актуализирайте го в Google Pay и опитайте отново.</string>
   <!--Stripe decline code incorrect cvc-->
@@ -3816,7 +3816,7 @@
   <!--Donation receipts one-time tab label-->
   <string name="DonationReceiptListFragment__one_time">Еднократно</string>
   <!--Donation receipts gift tab label-->
-  <string name="DonationReceiptListFragment__gift">ПодаръкПодарък</string>
+  <string name="DonationReceiptListFragment__gift">Подарък</string>
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Подсилване</string>
   <!--Donation receipts details title-->
@@ -3834,7 +3834,7 @@
   <!--Donation receipts amount title-->
   <string name="DonationReceiptDetailsFragment__amount">Сума</string>
   <!--Donation receipts thanks-->
-  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Благодарим ви, че подкрепяте Signal. Вашият принос помага за изпълнението на мисията за разработване на технология за поверителност с отворен код, която защитава свободата на изразяване и позволява сигурна глобална комуникация на милиони души по света. Ако сте жител на Съединените щати, моля, запазете тази разписка за данъчните си документи. Фондация Signal Technology Foundation е освободена от данъци организация с нестопанска цел в САЩ съгласно член 501c3 от Данъчния кодекс на САЩ. Нашият федерален данъчен номер е 82-4506840.</string>
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Благодарим ви, че подкрепяте Signal. Вашият принос помага за изпълнението на мисията за разработване на технология за поверителност с отворен код, която защитава свободата на изразяване и позволява сигурна глобална комуникация на милиони хора по света. Ако сте жител на Съединените щати, моля, запазете тази разписка за данъчните си документи. Фондация Signal Technology Foundation е освободена от данъци организация с нестопанска цел в САЩ съгласно член 501c3 от Данъчния кодекс на САЩ. Нашият федерален данъчен номер е 82-4506840.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--Donation reciepts screen empty state title-->
@@ -3983,7 +3983,7 @@
   <!--Switchable option for allowing replies and reactions on your stories-->
   <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Позволяване на отговори и реакции</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
-  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Позволява на хората, които могат да видят историята ви, да реагират и отговарят</string>
+  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Позволете на хората, които могат да видят историята ви, да реагират и отговарят</string>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Скриване на историята ви от конкретни хора. По подразбиране историята ви се споделя с вашите %1$s</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
@@ -4086,7 +4086,7 @@
   <!--Choose story type bottom sheet title-->
   <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Изберете вида история</string>
   <!--Choose story type bottom sheet new story row title-->
-  <string name="ChooseStoryTypeBottomSheet__new_private_story">Нова частна историяНова частна история</string>
+  <string name="ChooseStoryTypeBottomSheet__new_private_story">Нова частна история</string>
   <!--Choose story type bottom sheet new story row summary-->
   <string name="ChooseStoryTypeBottomSheet__visible_only_to">Вижда се само от определени хора</string>
   <!--Choose story type bottom sheet group story title-->
@@ -4116,7 +4116,7 @@
   <!--Displayed in a dialog to let the user select a given users profile photo-->
   <string name="StoryDialogs__view_profile_photo">Вижте профилната снимка</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
-  <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Изключване на заобикалянето на цензура?Изключване на заобикалянето на цензурата?</string>
+  <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Изключване на заобикалянето на цензура?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">Вече можете да се свързвате директно с услугата на Signal за по-добър потребителски опит.</string>
   <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -4143,7 +4143,7 @@
   <!--Headline text on start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__gift_a_badge">Подарете значка</string>
   <!--Description text on start fragment for gifting a badge-->
-  <string name="GiftFlowStartFragment__gift_someone_a_badge">Подарете значка на някого, като направите дарение за Signal от негово име. Той ще получи значка, която ще се показва на профилната му снимка.</string>
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">Подарете значка на някого, като направите дарение за Signal от тяхно име. Те ще получат значка, която ще се показва на профилната им снимка.</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Напред</string>
   <!--Title text on choose recipient page for badge gifting-->
@@ -4177,13 +4177,13 @@
   <!--Snackbar text when user presses "not now" on redemption sheet-->
   <string name="ConversationFragment__you_can_redeem_your_badge_later">Можете да осребрите значката си по-късно.</string>
   <!--Description text in gift thanks sheet-->
-  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Подарихте значка на %1$s. Когато потребителят я приеме, ще получи даден избор дали да покаже или да скрие значката си.</string>
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Подарихте значка на %1$s. Когато потребителят я приеме, ще получи избор дали да я покаже, или скрие.</string>
   <!--Expired gift sheet title-->
   <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Вашата значка за подарък е изтекла</string>
   <!--Expired gift sheet top description text-->
   <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Срокът на вашата значка за подарък е изтекъл и тя вече не се вижда на профила ви.</string>
   <!--Expired gift sheet bottom description text-->
-  <string name="ExpiredGiftSheetConfiguration__to_continue">За да продължите да подкрепяте технологията, която е създадена за вас, моля, помислете дали да не станете месечен поддръжник.</string>
+  <string name="ExpiredGiftSheetConfiguration__to_continue">За да продължите да подкрепяте технология, която е създадена за вас, моля, помислете дали да не станете месечен поддръжник.</string>
   <!--Expired gift sheet make a monthly donation button-->
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Направете месечно дарение</string>
   <!--Expired gift sheet not now button-->
@@ -4191,12 +4191,12 @@
   <!--Label under name for private stories-->
   <plurals name="ContactSearchItems__private_story_d_viewers">
     <item quantity="one">Частна история · %1$d зрител</item>
-    <item quantity="other">Частна история · %1$d зрителя</item>
+    <item quantity="other">Частна история · %1$d зрители</item>
   </plurals>
   <!--Label under name for group stories-->
   <plurals name="ContactSearchItems__group_story_d_viewers">
     <item quantity="one">Групова история · %1$d зрител</item>
-    <item quantity="other">Групова история · %1$d зрителя</item>
+    <item quantity="other">Групова история · %1$d зрители</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <!--Label for context menu item to open story settings-->
@@ -4233,7 +4233,7 @@
     <item quantity="other">Остават %1$d минути</item>
   </plurals>
   <!--Gift expiry expired-->
-  <string name="Gifts__expired">Изтекло</string>
+  <string name="Gifts__expired">Изтекъл</string>
   <!--Label indicating that a user can tap to advance to the next post in a story-->
   <string name="StoryFirstTimeNavigationView__tap_to_advance">Докоснете за придвижване напред</string>
   <!--Label indicating swipe direction to skip current story-->

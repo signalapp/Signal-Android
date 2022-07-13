@@ -3635,9 +3635,9 @@
   <string name="MultiselectForwardFragment__add_a_message">הוסף הודעה</string>
   <string name="MultiselectForwardFragment__faster_forwards">העברות הלאה מהירות יותר</string>
   <!--Displayed when user selects a video that will be clipped before sharing to a story-->
-  <string name="MultiselectForwardFragment__videos_will_be_trimmed">סרטונים יחתכו לקליפים של 30 שניות וישלחו כסטוריז נפרדים.</string>
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">סרטונים ייחתכו לקליפים של 30 שניות וישלחו כסטוריז נפרדים.</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
-  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">סרטונים שנשלחים כסטוריז לא יכולים להיות באורך של מעל 30 שניות.</string>
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">סרטונים שנשלחים כסטוריז לא יכולים להיות יותר מ-30 שניות.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">הודעות מועברות הלאה נשלחות כעת באופן מיידי.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">שלח הודעה %1$d</item>
@@ -4168,7 +4168,7 @@
   <!--Privacy setting title for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__all_signal_connections_except">כל חברי ה-Signal שלך חוץ מ…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">הסתרת הסטורי שלך מאנשים ספציפים</string>
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">הסתרת הסטורי שלך מאנשים ספציפיים</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
   <plurals name="MyStorySettingsFragment__d_people_excluded">
     <item quantity="one">הסטורי מוסתר מאדם %1$d</item>
@@ -4462,7 +4462,7 @@
   <!--Label indicating that a user can tap to advance to the next post in a story-->
   <string name="StoryFirstTimeNavigationView__tap_to_advance">אפשר ללחוץ כדי להתקדם</string>
   <!--Label indicating swipe direction to skip current story-->
-  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">אפשר להחליק כדי לדלג</string>
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">אפשר להחליק מעלה כדי לדלג</string>
   <!--Label indicating swipe direction to exit story viewer-->
   <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">אפשר להחליק ימינה כדי לצאת</string>
   <!--Button label to confirm understanding of story navigation-->

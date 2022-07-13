@@ -708,6 +708,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Denne gruppelenken er ikke aktiv</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Du kan ikke bli med i denne gruppen via lenken fordi en admin fjernet deg fra gruppen.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Denne gruppelenken er ikke lenger gyldig.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
@@ -1668,6 +1669,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Ikke lenger tilgjengelig</string>
   <!--Label for quoted gift-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rull til bunnen</string>
@@ -2154,10 +2156,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="PaymentsHomeFragment__activate">Aktiver</string>
   <string name="PaymentsHomeFragment__payments_not_available">Betalinger i Signal er ikke lenger tilgjengelige. Du kan fortsatt overføre midler til en veksler, men du kan ikke lenger sende eller motta betalinger eller legge til midler.</string>
   <!--PaymentsAddMoneyFragment-->
-  <string name="PaymentsAddMoneyFragment__your_wallet_address">Betalingsadressen din</string>
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">Lommebokadressen din</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopier</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopiert til utklippstavle</string>
-  <string name="PaymentsAddMoneyFragment__to_add_funds">Send MobileCoin til lommeboken din for å overføre penger. Åpne en ny transaksjon fra kontoen din med MobilCoin, og skann QR-koden eller kopier adressen til lommeboken din.</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">Send MobileCoin til lommebokadressen din for å overføre penger. Åpne en ny transaksjon fra kontoen din med MobilCoin, og skann QR-koden eller kopier lommebokadressen din.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Detaljer</string>
   <string name="PaymentsDetailsFragment__status">Status</string>
@@ -2813,13 +2815,13 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">Om MobileCoin</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin er en ny, personvernorientert digital valuta.</string>
-  <string name="payment_info_card_you_can_add_funds_for_use_in">Du kan legge til penger til bruk i Signal ved å sende MobileCoin til kontonummeret ditt.</string>
-  <string name="payment_info_card_cashing_out">Cashing out</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Du kan legge til penger til bruk i Signal ved å sende MobileCoin til lommebokadressen din.</string>
+  <string name="payment_info_card_cashing_out">Løse inn i kontanter</string>
   <string name="payment_info_card_hide">Skjul</string>
   <string name="payment_info_card_record_recovery_phrase">Skriv inn gjenopprettingspassord</string>
   <string name="payment_info_card_your_recovery_phrase_gives_you">Gjenopprettingspassordet ditt gjør det mulig å gjenopprette betalingskontoen din.</string>
   <string name="payment_info_card_update_your_pin">Oppdater PIN-koden din</string>
-  <string name="payment_info_card_with_a_high_balance">Det kan være lurt å velge en sikrere PIN-kode som består av både tall og bokstaver, når du har en høy kontosaldo.</string>
+  <string name="payment_info_card_with_a_high_balance">Når du har en høy kontosaldo kan det være lurt å velge en sikrere PIN-kode som består av både tall og bokstaver.</string>
   <string name="payment_info_card_update_pin">Oppdater PIN</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__your_balance">Din balanse</string>
@@ -2888,6 +2890,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Fotokvalitet</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">Inviter vennene dine</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">Abonnements-ID kopiert til utklippstavlen</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Konto</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Du vil bli spurt sjeldnere over tid</string>
@@ -2898,8 +2901,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--Confirmation button to dismiss number changed dialog-->
   <string name="ChangeNumber__okay">Greit</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Endre telefonnummer</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Telefonnummeret du tastet inn stemmer ikke med kontoen din sitt.</string>
   <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Endre telefonnummer</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__edit_number">Rediger nummer</string>
   <!--ChangeNumberRegistrationLockFragment-->
@@ -3111,7 +3116,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="BadgesOverviewFragment__display_badges_on_profile">Vis merkene på profilen</string>
   <string name="SelectFeaturedBadgeFragment__preview">Forhåndsvisning</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal drives av folk som deg.</string>
-  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Sett opp en månedlig pengegave til Signal for å støtte teknologi som er utviklet for deg, ikke personopplysningene dine.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Sett opp en månedlig pengegave til Signal for å støtte teknologi som er utviklet for deg, ikke opplysningene dine.</string>
   <string name="SubscribeFragment__more_payment_options">Flere betalingsalternativer</string>
   <string name="SubscribeFragment__cancel_subscription">Avslutt abonnementet</string>
   <string name="SubscribeFragment__confirm_cancellation">Bekrefte kanselleringen?</string>
@@ -3156,6 +3161,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--Displayed when badge credential couldn\'t be verified-->
   <!--Displayed as title when some generic error happens during gift badge sending-->
   <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Nettverksfeil. Sjekk nettilkoblingen din og prøv igjen.</string>
   <string name="NetworkFailure__retry">Prøv på nytt</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
@@ -3169,6 +3175,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--Gift badge redeeming action label-->
   <!--Gift badge redeemed label-->
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Prøv en annen betalingsmåte eller ta kontakt med banken din.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">Lær mer</string>
@@ -3182,6 +3189,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--Stripe decline code incorrect expiration month-->
   <!--Stripe decline code incorrect expiration year-->
   <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">Prøv å gjennomføre betalingen igjen eller ta kontakt med banken din for å få mer informasjon.</string>
   <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
   <!--Hint text for create/edit notification profile name-->
@@ -3283,10 +3291,12 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="DonationReceiptDetailsFragment__details">Detaljer</string>
   <!--Donation receipts donation type heading-->
   <!--Donation receipts date paid heading-->
+  <string name="DonationReceiptDetailsFragment__date_paid">Betalingsdato</string>
   <!--Donation receipts share PNG-->
   <!--Donation receipts list end note-->
   <!--Donation receipts document title-->
   <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">Beløp</string>
   <!--Donation receipts thanks-->
   <!--Donation receipt type-->
   <!--Donation reciepts screen empty state title-->
@@ -3342,7 +3352,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--Displayed when user has disabled receipts-->
   <!--Button label displayed when user has disabled receipts-->
   <!--Displayed when a story has no replies yet-->
+  <string name="StoryGroupReplyFragment__no_replies_yet">Ingen svar ennå</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
+  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Reagerte på storyen</string>
   <!--Label for story views tab-->
   <!--Label for story replies tab-->
   <!--Description of action for reaction button-->
@@ -3473,9 +3485,11 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="TurnOffCircumventionMegaphone_turn_off">Skru av</string>
   <!--Conversation Item label for when you react to someone else\'s story-->
   <!--Conversation Item label for reactions to your story-->
+  <string name="ConversationItem__reacted_to_your_story">Reagerte på storyen din</string>
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="StoriesLinkPopup__visit_link">Gå inn på lenken</string>
   <!--Duration and price information-->
   <!--Tagline for gift row items-->
   <!--Headline text on start fragment for gifting a badge-->
@@ -3486,6 +3500,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--Title text on confirm gift page-->
   <!--Heading text specifying who the gift will be sent to-->
   <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Gaven blir sendt i en privat melding til mottakeren. Skriv inn meldingen din nedenfor.</string>
   <!--Text explaining that this gift is a one time donation-->
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Legg til en melding</string>
@@ -3530,6 +3545,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--Gift expiry hours remaining-->
   <!--Gift expiry minutes remaining-->
   <!--Gift expiry expired-->
+  <string name="Gifts__expired">Utløpt</string>
   <!--Label indicating that a user can tap to advance to the next post in a story-->
   <string name="StoryFirstTimeNavigationView__tap_to_advance">Trykk for å gå videre</string>
   <!--Label indicating swipe direction to skip current story-->
