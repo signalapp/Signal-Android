@@ -127,7 +127,7 @@ class SafetyNumberBottomSheetFragment : DSLSettingsBottomSheetFragment(layoutId 
       textPref(
         title = DSLSettingsText.from(
           when {
-            state.isCheckupComplete() && state.hasLargeNumberOfUntrustedRecipients -> ""
+            state.isCheckupComplete() && state.hasLargeNumberOfUntrustedRecipients -> getString(R.string.SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed)
             state.hasLargeNumberOfUntrustedRecipients -> getString(R.string.SafetyNumberBottomSheetFragment__you_have_d_connections, args.untrustedRecipients.size)
             else -> getString(R.string.SafetyNumberBottomSheetFragment__the_following_people)
           },
@@ -137,7 +137,7 @@ class SafetyNumberBottomSheetFragment : DSLSettingsBottomSheetFragment(layoutId 
       )
 
       if (state.isEmpty()) {
-        space(DimensionUnit.DP.toPixels(96f).toInt())
+        space(DimensionUnit.DP.toPixels(48f).toInt())
 
         noPadTextPref(
           title = DSLSettingsText.from(
@@ -147,6 +147,8 @@ class SafetyNumberBottomSheetFragment : DSLSettingsBottomSheetFragment(layoutId 
             DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant))
           )
         )
+
+        space(DimensionUnit.DP.toPixels(48f).toInt())
       }
 
       if (!state.hasLargeNumberOfUntrustedRecipients) {

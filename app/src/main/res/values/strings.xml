@@ -4948,6 +4948,8 @@
     <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Safety number checkup</string>
     <!-- Title of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Safety number checkup complete</string>
+    <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
+    <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">All connections have been reviewed, tap send to continue.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">You have %1$d connections who may have reinstalled Signal or changed devices. Before sharing your story with them review their safety numbers or consider removing them from your story.</string>
     <!-- Menu action to launch safety number verification screen -->
