@@ -32,7 +32,7 @@ class ExpiringStoriesManager(
 
   @WorkerThread
   override fun getNextClosestEvent(): Event? {
-    val oldestTimestamp = mmsDatabase.oldestStorySendTimestamp ?: return null
+    val oldestTimestamp = mmsDatabase.getOldestStorySendTimestamp(SignalStore.storyValues().userHasSeenOnboardingStory) ?: return null
 
     val timeSinceSend = System.currentTimeMillis() - oldestTimestamp
     val delay = (STORY_LIFESPAN - timeSinceSend).coerceAtLeast(0)

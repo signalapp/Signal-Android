@@ -1462,7 +1462,7 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public @Nullable Long getOldestStorySendTimestamp() {
+  public @Nullable Long getOldestStorySendTimestamp(boolean hasSeenReleaseChannelStories) {
     throw new UnsupportedOperationException();
   }
 

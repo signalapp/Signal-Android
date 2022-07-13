@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.database
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -18,6 +19,7 @@ import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.push.PNI
 import org.whispersystems.signalservice.api.push.ServiceId
 import java.util.UUID
+import java.util.concurrent.TimeUnit
 
 @Suppress("ClassName")
 @RunWith(AndroidJUnit4::class)
@@ -30,6 +32,7 @@ class MmsDatabaseTest_stories {
 
   private lateinit var myStory: Recipient
   private lateinit var recipients: List<RecipientId>
+  private lateinit var releaseChannelRecipient: Recipient
 
   @Before
   fun setUp() {
@@ -42,6 +45,9 @@ class MmsDatabaseTest_stories {
 
     myStory = Recipient.resolved(SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.MY_STORY))
     recipients = (0 until 5).map { SignalDatabase.recipients.getOrInsertFromServiceId(ServiceId.from(UUID.randomUUID())) }
+    releaseChannelRecipient = Recipient.resolved(SignalDatabase.recipients.insertReleaseChannelRecipient())
+
+    SignalStore.releaseChannelValues().setReleaseChannelRecipientId(releaseChannelRecipient.id)
   }
 
   @Test
@@ -332,5 +338,42 @@ class MmsDatabaseTest_stories {
 
     // THEN
     assertFalse(result)
+  }
+
+  @Test
+  fun givenNotViewedOnboardingAndOnlyStoryIsOnboardingAndAdded2DaysAgo_whenIGetOldestStoryTimestamp_thenIExpectNull() {
+    // GIVEN
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(releaseChannelRecipient)
+    MmsHelper.insert(
+      recipient = releaseChannelRecipient,
+      sentTimeMillis = System.currentTimeMillis() - TimeUnit.DAYS.toMillis(2),
+      storyType = StoryType.STORY_WITH_REPLIES,
+      threadId = threadId
+    )
+
+    // WHEN
+    val oldestTimestamp = SignalDatabase.mms.getOldestStorySendTimestamp(false)
+
+    // THEN
+    assertNull(oldestTimestamp)
+  }
+
+  @Test
+  fun givenViewedOnboardingAndOnlyStoryIsOnboardingAndAdded2DaysAgo_whenIGetOldestStoryTimestamp_thenIExpectNotNull() {
+    // GIVEN
+    val expected = System.currentTimeMillis() - TimeUnit.DAYS.toMillis(2)
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(releaseChannelRecipient)
+    MmsHelper.insert(
+      recipient = releaseChannelRecipient,
+      sentTimeMillis = expected,
+      storyType = StoryType.STORY_WITH_REPLIES,
+      threadId = threadId
+    )
+
+    // WHEN
+    val oldestTimestamp = SignalDatabase.mms.getOldestStorySendTimestamp(true)
+
+    // THEN
+    assertEquals(expected, oldestTimestamp)
   }
 }
