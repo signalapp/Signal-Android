@@ -8,9 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.children
-import androidx.core.view.marginEnd
 import androidx.core.view.marginLeft
-import androidx.core.view.marginStart
 import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -60,7 +58,7 @@ class MessageQuoteHeaderDecoration(context: Context) : RecyclerView.ItemDecorati
 
     val header: View = LayoutInflater.from(parent.context).inflate(R.layout.message_quote_header_decoration, parent, false)
 
-    val widthSpec = View.MeasureSpec.makeMeasureSpec(parent.width - header.marginStart - header.marginEnd, View.MeasureSpec.EXACTLY)
+    val widthSpec = View.MeasureSpec.makeMeasureSpec(parent.width, View.MeasureSpec.EXACTLY)
     val heightSpec = View.MeasureSpec.makeMeasureSpec(parent.height, View.MeasureSpec.UNSPECIFIED)
 
     val childWidth = ViewGroup.getChildMeasureSpec(
