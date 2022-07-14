@@ -50,7 +50,8 @@ class StoryViewerFragment :
       storyViewerArgs.storyId,
       storyViewerArgs.isFromNotification,
       storyViewerArgs.groupReplyStartPosition,
-      storyViewerArgs.isUnviewedOnly
+      storyViewerArgs.isUnviewedOnly,
+      storyViewerArgs.isFromInfoContextMenuAction
     )
 
     storyPager.adapter = adapter

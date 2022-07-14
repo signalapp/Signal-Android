@@ -78,47 +78,7 @@ class MyStoriesFragment : DSLSettingsFragment(
               MyStoriesItem.Model(
                 distributionStory = conversationMessage,
                 onClick = { it, preview ->
-                  if (it.distributionStory.messageRecord.isOutgoing && it.distributionStory.messageRecord.isFailed) {
-                    if (it.distributionStory.messageRecord.isIdentityMismatchFailure) {
-                      SafetyNumberBottomSheet
-                        .forMessageRecord(requireContext(), it.distributionStory.messageRecord)
-                        .show(childFragmentManager)
-                    } else {
-                      StoryDialogs.resendStory(requireContext()) {
-                        lifecycleDisposable += viewModel.resend(it.distributionStory.messageRecord).subscribe()
-                      }
-                    }
-                  } else {
-                    val recipient = if (it.distributionStory.messageRecord.recipient.isGroup) {
-                      it.distributionStory.messageRecord.recipient
-                    } else {
-                      Recipient.self()
-                    }
-
-                    val record = it.distributionStory.messageRecord as MmsMessageRecord
-                    val blur = record.slideDeck.thumbnailSlide?.placeholderBlur
-                    val (text: StoryTextPostModel?, image: Uri?) = if (record.storyType.isTextStory) {
-                      StoryTextPostModel.parseFrom(record) to null
-                    } else {
-                      null to record.slideDeck.thumbnailSlide?.uri
-                    }
-
-                    val options = ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity(), preview, ViewCompat.getTransitionName(preview) ?: "")
-                    startActivity(
-                      StoryViewerActivity.createIntent(
-                        context = requireContext(),
-                        storyViewerArgs = StoryViewerArgs(
-                          recipientId = recipient.id,
-                          storyId = conversationMessage.messageRecord.id,
-                          isInHiddenStoryMode = recipient.shouldHideStory(),
-                          storyThumbTextModel = text,
-                          storyThumbUri = image,
-                          storyThumbBlur = blur
-                        )
-                      ),
-                      options.toBundle()
-                    )
-                  }
+                  openStoryViewer(it, preview, false)
                 },
                 onLongClick = {
                   Util.copyToClipboard(requireContext(), it.distributionStory.messageRecord.timestamp.toString())
@@ -139,6 +99,9 @@ class MyStoriesFragment : DSLSettingsFragment(
                 },
                 onShareClick = {
                   StoryContextMenu.share(this@MyStoriesFragment, it.distributionStory.messageRecord as MediaMmsMessageRecord)
+                },
+                onInfoClick = { model, preview ->
+                  openStoryViewer(model, preview, true)
                 }
               )
             )
@@ -148,6 +111,51 @@ class MyStoriesFragment : DSLSettingsFragment(
             dividerPref()
           }
         }
+    }
+  }
+
+  private fun openStoryViewer(it: MyStoriesItem.Model, preview: View, isFromInfoContextMenuAction: Boolean) {
+    if (it.distributionStory.messageRecord.isOutgoing && it.distributionStory.messageRecord.isFailed) {
+      if (it.distributionStory.messageRecord.isIdentityMismatchFailure) {
+        SafetyNumberBottomSheet
+          .forMessageRecord(requireContext(), it.distributionStory.messageRecord)
+          .show(childFragmentManager)
+      } else {
+        StoryDialogs.resendStory(requireContext()) {
+          lifecycleDisposable += viewModel.resend(it.distributionStory.messageRecord).subscribe()
+        }
+      }
+    } else {
+      val recipient = if (it.distributionStory.messageRecord.recipient.isGroup) {
+        it.distributionStory.messageRecord.recipient
+      } else {
+        Recipient.self()
+      }
+
+      val record = it.distributionStory.messageRecord as MmsMessageRecord
+      val blur = record.slideDeck.thumbnailSlide?.placeholderBlur
+      val (text: StoryTextPostModel?, image: Uri?) = if (record.storyType.isTextStory) {
+        StoryTextPostModel.parseFrom(record) to null
+      } else {
+        null to record.slideDeck.thumbnailSlide?.uri
+      }
+
+      val options = ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity(), preview, ViewCompat.getTransitionName(preview) ?: "")
+      startActivity(
+        StoryViewerActivity.createIntent(
+          context = requireContext(),
+          storyViewerArgs = StoryViewerArgs(
+            recipientId = recipient.id,
+            storyId = it.distributionStory.messageRecord.id,
+            isInHiddenStoryMode = recipient.shouldHideStory(),
+            storyThumbTextModel = text,
+            storyThumbUri = image,
+            storyThumbBlur = blur,
+            isFromInfoContextMenuAction = isFromInfoContextMenuAction
+          )
+        ),
+        options.toBundle()
+      )
     }
   }
 

@@ -21,6 +21,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.os.bundleOf
 import androidx.core.view.GestureDetectorCompat
 import androidx.core.view.animation.PathInterpolatorCompat
 import androidx.core.view.doOnNextLayout
@@ -58,6 +59,7 @@ import org.thoughtcrime.securesms.stories.StoryVolumeOverlayView
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerViewModel
 import org.thoughtcrime.securesms.stories.viewer.StoryVolumeViewModel
+import org.thoughtcrime.securesms.stories.viewer.info.StoryInfoBottomSheetDialogFragment
 import org.thoughtcrime.securesms.stories.viewer.reply.direct.StoryDirectReplyDialogFragment
 import org.thoughtcrime.securesms.stories.viewer.reply.group.StoryGroupReplyBottomSheetDialogFragment
 import org.thoughtcrime.securesms.stories.viewer.reply.reaction.OnReactionSentView
@@ -86,7 +88,8 @@ class StoryViewerPageFragment :
   MultiselectForwardBottomSheet.Callback,
   StorySlateView.Callback,
   StoryTextPostPreviewFragment.Callback,
-  StoryFirstTimeNavigationView.Callback {
+  StoryFirstTimeNavigationView.Callback,
+  StoryInfoBottomSheetDialogFragment.OnInfoSheetDismissedListener {
 
   private val storyVolumeViewModel: StoryVolumeViewModel by viewModels(ownerProducer = { requireActivity() })
 
@@ -146,6 +149,9 @@ class StoryViewerPageFragment :
 
   private val isUnviewedOnly: Boolean
     get() = requireArguments().getBoolean(ARG_IS_UNVIEWED_ONLY, false)
+
+  private val isFromInfoContextMenuAction: Boolean
+    get() = requireArguments().getBoolean(ARG_IS_FROM_INFO_CONTEXT_MENU_ACTION, false)
 
   @SuppressLint("ClickableViewAccessibility")
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -380,6 +386,8 @@ class StoryViewerPageFragment :
         sharedViewModel.consumeInitialState()
         if (isFromNotification) {
           startReply(isFromNotification = true, groupReplyStartPosition = groupReplyStartPosition)
+        } else if (isFromInfoContextMenuAction && state.selectedPostIndex in state.posts.indices) {
+          showInfo(state.posts[state.selectedPostIndex])
         }
       }
     }
@@ -624,6 +632,11 @@ class StoryViewerPageFragment :
     }
 
     replyFragment.showNow(childFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+  }
+
+  private fun showInfo(storyPost: StoryPost) {
+    viewModel.setIsDisplayingInfoDialog(true)
+    StoryInfoBottomSheetDialogFragment.create(storyPost.id).show(childFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
   }
 
   private fun markViewedIfAble() {
@@ -936,6 +949,9 @@ class StoryViewerPageFragment :
           viewModel.setIsDisplayingDeleteDialog(false)
           viewModel.refresh()
         }
+      },
+      onInfo = {
+        showInfo(it)
       }
     )
   }
@@ -955,16 +971,25 @@ class StoryViewerPageFragment :
     private const val ARG_IS_FROM_NOTIFICATION = "is_from_notification"
     private const val ARG_GROUP_REPLY_START_POSITION = "group_reply_start_position"
     private const val ARG_IS_UNVIEWED_ONLY = "is_unviewed_only"
+    private const val ARG_IS_FROM_INFO_CONTEXT_MENU_ACTION = "is_from_info_context_menu_action"
 
-    fun create(recipientId: RecipientId, initialStoryId: Long, isFromNotification: Boolean, groupReplyStartPosition: Int, isUnviewedOnly: Boolean): Fragment {
+    fun create(
+      recipientId: RecipientId,
+      initialStoryId: Long,
+      isFromNotification: Boolean,
+      groupReplyStartPosition: Int,
+      isUnviewedOnly: Boolean,
+      isFromInfoContextMenuAction: Boolean
+    ): Fragment {
       return StoryViewerPageFragment().apply {
-        arguments = Bundle().apply {
-          putParcelable(ARG_STORY_RECIPIENT_ID, recipientId)
-          putLong(ARG_STORY_ID, initialStoryId)
-          putBoolean(ARG_IS_FROM_NOTIFICATION, isFromNotification)
-          putInt(ARG_GROUP_REPLY_START_POSITION, groupReplyStartPosition)
-          putBoolean(ARG_IS_UNVIEWED_ONLY, isUnviewedOnly)
-        }
+        arguments = bundleOf(
+          ARG_STORY_RECIPIENT_ID to recipientId,
+          ARG_STORY_ID to initialStoryId,
+          ARG_IS_FROM_NOTIFICATION to isFromNotification,
+          ARG_GROUP_REPLY_START_POSITION to groupReplyStartPosition,
+          ARG_IS_UNVIEWED_ONLY to isUnviewedOnly,
+          ARG_IS_FROM_INFO_CONTEXT_MENU_ACTION to isFromInfoContextMenuAction
+        )
       }
     }
   }
@@ -1146,5 +1171,9 @@ class StoryViewerPageFragment :
   override fun onGotItClicked() {
     SignalStore.storyValues().userHasSeenFirstNavView = true
     viewModel.setIsDisplayingFirstTimeNavigation(false)
+  }
+
+  override fun onInfoSheetDismissed() {
+    viewModel.setIsDisplayingInfoDialog(false)
   }
 }

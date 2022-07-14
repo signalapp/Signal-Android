@@ -61,10 +61,9 @@ class StoryViewerPageViewModel(
     disposables.clear()
     disposables += repository.getStoryPostsFor(recipientId, isUnviewedOnly).subscribe { posts ->
       store.update { state ->
-        var isDisplayingInitialState = false
+        val isDisplayingInitialState = state.posts.isEmpty() && posts.isNotEmpty()
         val startIndex = if (state.posts.isEmpty() && initialStoryId > 0) {
           val initialIndex = posts.indexOfFirst { it.id == initialStoryId }
-          isDisplayingInitialState = true
           initialIndex.takeIf { it > -1 } ?: state.selectedPostIndex
         } else if (state.posts.isEmpty()) {
           val initialPost = getNextUnreadPost(posts)
@@ -242,6 +241,10 @@ class StoryViewerPageViewModel(
 
   fun setIsDisplayingFirstTimeNavigation(isDisplayingFirstTimeNavigation: Boolean) {
     storyViewerPlaybackStore.update { it.copy(isDisplayingFirstTimeNavigation = isDisplayingFirstTimeNavigation) }
+  }
+
+  fun setIsDisplayingInfoDialog(isDisplayingInfoDialog: Boolean) {
+    storyViewerPlaybackStore.update { it.copy(isDisplayingInfoDialog = isDisplayingInfoDialog) }
   }
 
   private fun resolveSwipeToReplyState(state: StoryViewerPageState, index: Int): StoryViewerPageState.ReplyState {

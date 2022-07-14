@@ -49,7 +49,8 @@ object StoriesLandingItem {
     val onShareStory: (Model) -> Unit,
     val onGoToChat: (Model) -> Unit,
     val onSave: (Model) -> Unit,
-    val onDeleteStory: (Model) -> Unit
+    val onDeleteStory: (Model) -> Unit,
+    val onInfo: (Model, View) -> Unit
   ) : MappingModel<Model> {
     override fun areItemsTheSame(newItem: Model): Boolean {
       return data.storyRecipient.id == newItem.data.storyRecipient.id
@@ -267,7 +268,7 @@ object StoriesLandingItem {
 
     private fun displayContext(model: Model) {
       itemView.isSelected = true
-      StoryContextMenu.show(context, itemView, model) { itemView.isSelected = false }
+      StoryContextMenu.show(context, itemView, storyPreview, model) { itemView.isSelected = false }
     }
 
     private fun clearGlide() {

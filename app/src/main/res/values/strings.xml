@@ -4553,6 +4553,8 @@
     <string name="StoriesLandingItem__share">Share…</string>
     <!-- Context menu option to go to story chat -->
     <string name="StoriesLandingItem__go_to_chat">Go to chat</string>
+    <!-- Context menu option to go to story info -->
+    <string name="StoriesLandingItem__info">Info</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">Sending…</string>
     <!-- Label when multiple stories are pending sending -->
@@ -4993,6 +4995,19 @@
     <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">All Signal connections except…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Only share with…</string>
+
+    <!-- Story info header sent heading -->
+    <string name="StoryInfoHeader__sent">Sent</string>
+    <!-- Story info header received heading -->
+    <string name="StoryInfoHeader__received">Received</string>
+    <!-- Story info header file size heading -->
+    <string name="StoryInfoHeader__file_size">File size</string>
+    <!-- Story info "Sent to" header -->
+    <string name="StoryInfoBottomSheetDialogFragment__sent_to">Sent to</string>
+    <!-- Story info "Sent from" header -->
+    <string name="StoryInfoBottomSheetDialogFragment__sent_from">Sent from</string>
+    <!-- Story Info context menu label -->
+    <string name="StoryInfoBottomSheetDialogFragment__info">Info</string>
 
     <!-- EOF -->
 

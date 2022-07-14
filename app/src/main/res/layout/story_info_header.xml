@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/dsl_settings_gutter"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp">
+
+    <TextView
+        android:id="@+id/story_info_view_sent_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/StoryInfoHeader__sent"
+        android:textAppearance="@style/Signal.Text.LabelLarge"
+        android:textColor="@color/signal_colorOnSurfaceVariant"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/story_info_view_sent_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:textAppearance="@style/Signal.Text.BodySmall"
+        android:textColor="@color/signal_colorOnSurfaceVariant"
+        app:layout_constraintBottom_toBottomOf="@id/story_info_view_sent_heading"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/story_info_view_sent_heading"
+        app:layout_constraintTop_toTopOf="@id/story_info_view_sent_heading"
+        tools:text="Today 12:30 PM" />
+
+    <TextView
+        android:id="@+id/story_info_view_received_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/StoryInfoHeader__received"
+        android:textAppearance="@style/Signal.Text.LabelLarge"
+        android:textColor="@color/signal_colorOnSurfaceVariant"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/story_info_view_sent_heading" />
+
+    <TextView
+        android:id="@+id/story_info_view_received_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:textAppearance="@style/Signal.Text.BodySmall"
+        android:textColor="@color/signal_colorOnSurfaceVariant"
+        app:layout_constraintBottom_toBottomOf="@id/story_info_view_received_heading"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/story_info_view_received_heading"
+        app:layout_constraintTop_toTopOf="@id/story_info_view_received_heading"
+        tools:text="Today 12:30 PM" />
+
+    <TextView
+        android:id="@+id/story_info_view_file_size_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/StoryInfoHeader__file_size"
+        android:textAppearance="@style/Signal.Text.LabelLarge"
+        android:textColor="@color/signal_colorOnSurfaceVariant"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/story_info_view_received_heading" />
+
+    <TextView
+        android:id="@+id/story_info_view_file_size_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:textAppearance="@style/Signal.Text.BodySmall"
+        android:textColor="@color/signal_colorOnSurfaceVariant"
+        app:layout_constraintBottom_toBottomOf="@id/story_info_view_file_size_heading"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/story_info_view_file_size_heading"
+        app:layout_constraintTop_toTopOf="@id/story_info_view_file_size_heading"
+        tools:text="100 KB" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

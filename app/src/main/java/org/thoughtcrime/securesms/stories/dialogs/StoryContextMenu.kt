@@ -20,7 +20,6 @@ import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.stories.landing.StoriesLandingItem
-import org.thoughtcrime.securesms.stories.my.MyStoriesItem
 import org.thoughtcrime.securesms.stories.viewer.page.StoryPost
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageState
 import org.thoughtcrime.securesms.util.DeleteDialog
@@ -80,6 +79,7 @@ object StoryContextMenu {
   fun show(
     context: Context,
     anchorView: View,
+    previewView: View,
     model: StoriesLandingItem.Model,
     onDismiss: () -> Unit
   ) {
@@ -99,6 +99,7 @@ object StoryContextMenu {
         override fun onDismissed() = onDismiss()
         override fun onDelete() = model.onDeleteStory(model)
         override fun onSave() = model.onSave(model)
+        override fun onInfo() = model.onInfo(model, previewView)
       }
     )
   }
@@ -113,6 +114,7 @@ object StoryContextMenu {
     onGoToChat: (StoryPost) -> Unit,
     onSave: (StoryPost) -> Unit,
     onDelete: (StoryPost) -> Unit,
+    onInfo: (StoryPost) -> Unit,
     onDismiss: () -> Unit
   ) {
     val selectedStory: StoryPost = storyViewerPageState.posts[storyViewerPageState.selectedPostIndex]
@@ -132,32 +134,7 @@ object StoryContextMenu {
         override fun onDismissed() = onDismiss()
         override fun onSave() = onSave(selectedStory)
         override fun onDelete() = onDelete(selectedStory)
-      }
-    )
-  }
-
-  fun show(
-    context: Context,
-    anchorView: View,
-    myStoriesItemModel: MyStoriesItem.Model,
-    onDismiss: () -> Unit
-  ) {
-    show(
-      context = context,
-      anchorView = anchorView,
-      isFromSelf = true,
-      isToGroup = false,
-      isFromReleaseChannel = false,
-      canHide = false,
-      callbacks = object : Callbacks {
-        override fun onHide() = throw NotImplementedError()
-        override fun onUnhide() = throw NotImplementedError()
-        override fun onForward() = myStoriesItemModel.onForwardClick(myStoriesItemModel)
-        override fun onShare() = myStoriesItemModel.onShareClick(myStoriesItemModel)
-        override fun onGoToChat() = throw NotImplementedError()
-        override fun onDismissed() = onDismiss()
-        override fun onSave() = myStoriesItemModel.onSaveClick(myStoriesItemModel)
-        override fun onDelete() = myStoriesItemModel.onDeleteClick(myStoriesItemModel)
+        override fun onInfo() = onInfo(selectedStory)
       }
     )
   }
@@ -219,6 +196,12 @@ object StoryContextMenu {
           }
         )
       }
+
+      add(
+        ActionItem(R.drawable.ic_info_outline_message_details_24, context.getString(R.string.StoriesLandingItem__info)) {
+          callbacks.onInfo()
+        }
+      )
     }
 
     SignalContextMenu.Builder(anchorView, rootView)
@@ -240,5 +223,6 @@ object StoryContextMenu {
     fun onDismissed()
     fun onSave()
     fun onDelete()
+    fun onInfo()
   }
 }

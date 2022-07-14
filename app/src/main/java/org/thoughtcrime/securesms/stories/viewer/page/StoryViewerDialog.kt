@@ -21,6 +21,7 @@ sealed class StoryViewerDialog(val type: Type) {
     FORWARD,
     DELETE,
     CONTEXT_MENU,
-    VIEWS_AND_REPLIES
+    VIEWS_AND_REPLIES,
+    INFO
   }
 }
