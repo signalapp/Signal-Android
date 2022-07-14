@@ -65,6 +65,8 @@ public class MasterSecretUtil {
   private static final String ASYMMETRIC_LOCAL_PUBLIC_DJB   = "asymmetric_master_secret_curve25519_public";
   private static final String ASYMMETRIC_LOCAL_PRIVATE_DJB  = "asymmetric_master_secret_curve25519_private";
 
+  private static SharedPreferences preferences;
+
   public static MasterSecret changeMasterSecretPassphrase(Context context,
                                                           MasterSecret masterSecret,
                                                           String newPassphrase)
@@ -192,17 +194,17 @@ public class MasterSecretUtil {
   }
 
   public static boolean hasAsymmericMasterSecret(Context context) {
-    SharedPreferences settings = context.getSharedPreferences(PREFERENCES_NAME, 0);
+    SharedPreferences settings = getSharedPreferences(context);
     return settings.contains(ASYMMETRIC_LOCAL_PUBLIC_DJB);
   }
 
   public static boolean isPassphraseInitialized(Context context) {
-    SharedPreferences preferences = context.getSharedPreferences(PREFERENCES_NAME, 0);
+    SharedPreferences preferences = getSharedPreferences(context);
     return preferences.getBoolean("passphrase_initialized", false);
   }
 
   private static void save(Context context, String key, int value) {
-    if (!context.getSharedPreferences(PREFERENCES_NAME, 0)
+    if (!getSharedPreferences(context)
                 .edit()
                 .putInt(key, value)
                 .commit())
@@ -212,7 +214,7 @@ public class MasterSecretUtil {
   }
 
   private static void save(Context context, String key, byte[] value) {
-    if (!context.getSharedPreferences(PREFERENCES_NAME, 0)
+    if (!getSharedPreferences(context)
                 .edit()
                 .putString(key, Base64.encodeBytes(value))
                 .commit())
@@ -222,7 +224,7 @@ public class MasterSecretUtil {
   }
 
   private static void save(Context context, String key, boolean value) {
-    if (!context.getSharedPreferences(PREFERENCES_NAME, 0)
+    if (!getSharedPreferences(context)
                 .edit()
                 .putBoolean(key, value)
                 .commit())
@@ -232,7 +234,7 @@ public class MasterSecretUtil {
   }
 
   private static byte[] retrieve(Context context, String key) throws IOException {
-    SharedPreferences settings = context.getSharedPreferences(PREFERENCES_NAME, 0);
+    SharedPreferences settings = getSharedPreferences(context);
     String encodedValue        = settings.getString(key, "");
 
     if (TextUtils.isEmpty(encodedValue)) return null;
@@ -240,7 +242,7 @@ public class MasterSecretUtil {
   }
 
   private static int retrieve(Context context, String key, int defaultValue) throws IOException {
-    SharedPreferences settings = context.getSharedPreferences(PREFERENCES_NAME, 0);
+    SharedPreferences settings = getSharedPreferences(context);
     return settings.getInt(key, defaultValue);
   }
 
@@ -369,5 +371,12 @@ public class MasterSecretUtil {
     System.arraycopy(mac,  0, result, data.length, mac.length);
 
     return result;
+  }
+
+  private static SharedPreferences getSharedPreferences(@NonNull Context context) {
+    if (preferences == null) {
+      preferences = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
+    }
+    return preferences;
   }
 }

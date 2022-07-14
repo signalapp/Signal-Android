@@ -5,13 +5,13 @@ import android.content.SharedPreferences;
 import android.hardware.Camera.CameraInfo;
 import android.net.Uri;
 import android.os.Build;
-import android.preference.PreferenceManager;
 import android.provider.Settings;
 
 import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+import androidx.preference.PreferenceManager;
 
 import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
@@ -220,8 +220,10 @@ public class TextSecurePreferences {
                                                                 MEDIA_DOWNLOAD_WIFI_PREF,
                                                                 MEDIA_DOWNLOAD_ROAMING_PREF};
 
+  private static volatile SharedPreferences preferences = null;
+
   public static long getPreferencesToSaveToBackupCount(@NonNull Context context) {
-    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+    SharedPreferences preferences = getSharedPreferences(context);
     long              count       = 0;
 
     for (String booleanPreference : booleanPreferencesToBackup) {
@@ -246,7 +248,7 @@ public class TextSecurePreferences {
   }
 
   public static List<BackupProtos.SharedPreference> getPreferencesToSaveToBackup(@NonNull Context context) {
-    SharedPreferences                   preferences  = PreferenceManager.getDefaultSharedPreferences(context);
+    SharedPreferences                   preferences  = getSharedPreferences(context);
     List<BackupProtos.SharedPreference> backupProtos = new ArrayList<>();
     String                              defaultFile  = context.getPackageName() + "_preferences";
 
@@ -331,7 +333,7 @@ public class TextSecurePreferences {
 
   public static void clearRegistrationLockV1(@NonNull Context context) {
     //noinspection deprecation
-    PreferenceManager.getDefaultSharedPreferences(context)
+    getSharedPreferences(context)
                      .edit()
                      .remove(REGISTRATION_LOCK_PIN_PREF_V1)
                      .apply();
@@ -1091,47 +1093,47 @@ public class TextSecurePreferences {
   }
 
   public static void setBooleanPreference(Context context, String key, boolean value) {
-    PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(key, value).apply();
+    getSharedPreferences(context).edit().putBoolean(key, value).apply();
   }
 
   public static boolean getBooleanPreference(Context context, String key, boolean defaultValue) {
-    return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(key, defaultValue);
+    return getSharedPreferences(context).getBoolean(key, defaultValue);
   }
 
   public static void setStringPreference(Context context, String key, String value) {
-    PreferenceManager.getDefaultSharedPreferences(context).edit().putString(key, value).apply();
+    getSharedPreferences(context).edit().putString(key, value).apply();
   }
 
   public static String getStringPreference(Context context, String key, String defaultValue) {
-    return PreferenceManager.getDefaultSharedPreferences(context).getString(key, defaultValue);
+    return getSharedPreferences(context).getString(key, defaultValue);
   }
 
   public static int getIntegerPreference(Context context, String key, int defaultValue) {
-    return PreferenceManager.getDefaultSharedPreferences(context).getInt(key, defaultValue);
+    return getSharedPreferences(context).getInt(key, defaultValue);
   }
 
   private static void setIntegerPrefrence(Context context, String key, int value) {
-    PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(key, value).apply();
+    getSharedPreferences(context).edit().putInt(key, value).apply();
   }
 
   private static boolean setIntegerPrefrenceBlocking(Context context, String key, int value) {
-    return PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(key, value).commit();
+    return getSharedPreferences(context).edit().putInt(key, value).commit();
   }
 
   public static long getLongPreference(Context context, String key, long defaultValue) {
-    return PreferenceManager.getDefaultSharedPreferences(context).getLong(key, defaultValue);
+    return getSharedPreferences(context).getLong(key, defaultValue);
   }
 
   private static void setLongPreference(Context context, String key, long value) {
-    PreferenceManager.getDefaultSharedPreferences(context).edit().putLong(key, value).apply();
+    getSharedPreferences(context).edit().putLong(key, value).apply();
   }
 
   private static void removePreference(Context context, String key) {
-    PreferenceManager.getDefaultSharedPreferences(context).edit().remove(key).apply();
+    getSharedPreferences(context).edit().remove(key).apply();
   }
 
   private static Set<String> getStringSetPreference(Context context, String key, Set<String> defaultValues) {
-    final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+    final SharedPreferences prefs = getSharedPreferences(context);
     if (prefs.contains(key)) {
       return prefs.getStringSet(key, Collections.<String>emptySet());
     } else {
@@ -1146,6 +1148,13 @@ public class TextSecurePreferences {
     SignalDatabase.recipients().setProfileKey(self.getId(), newProfileKey);
 
     ApplicationDependencies.getGroupsV2Authorization().clear();
+  }
+
+  private static SharedPreferences getSharedPreferences(Context context) {
+    if (preferences == null) {
+      preferences = PreferenceManager.getDefaultSharedPreferences(context);
+    }
+    return preferences;
   }
 
   // NEVER rename these -- they're persisted by name
