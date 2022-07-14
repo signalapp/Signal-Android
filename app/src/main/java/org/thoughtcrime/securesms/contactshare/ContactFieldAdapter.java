@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.contactshare;
 
 import android.content.Context;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,7 +86,6 @@ class ContactFieldAdapter extends RecyclerView.Adapter<ContactFieldAdapter.Conta
 
     private final TextView  value;
     private final TextView  label;
-    private final ImageView icon;
     private final ImageView avatar;
     private final CheckBox  checkBox;
 
@@ -94,7 +94,6 @@ class ContactFieldAdapter extends RecyclerView.Adapter<ContactFieldAdapter.Conta
 
       value    = itemView.findViewById(R.id.contact_field_value);
       label    = itemView.findViewById(R.id.contact_field_label);
-      icon     = itemView.findViewById(R.id.contact_field_icon);
       avatar   = itemView.findViewById(R.id.contact_field_avatar);
       checkBox = itemView.findViewById(R.id.contact_field_checkbox);
     }
@@ -103,7 +102,7 @@ class ContactFieldAdapter extends RecyclerView.Adapter<ContactFieldAdapter.Conta
       value.setMaxLines(field.maxLines);
       value.setText(field.value);
       label.setText(field.label);
-      icon.setImageResource(field.iconResId);
+      label.setVisibility(TextUtils.isEmpty(field.label) ? View.GONE : View.VISIBLE);
 
       if (field.iconUri != null) {
         avatar.setVisibility(View.VISIBLE);
@@ -118,18 +117,22 @@ class ContactFieldAdapter extends RecyclerView.Adapter<ContactFieldAdapter.Conta
 
       if (selectable) {
         checkBox.setVisibility(View.VISIBLE);
-        checkBox.setOnCheckedChangeListener(null);
         checkBox.setChecked(field.isSelected());
-        checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> field.setSelected(isChecked));
+        itemView.setOnClickListener(unused -> {
+          field.setSelected(!field.isSelected());
+          checkBox.setChecked(field.isSelected());
+        });
         super.itemView.setOnClickListener(v -> checkBox.toggle());
       } else {
         checkBox.setVisibility(View.GONE);
-        checkBox.setOnCheckedChangeListener(null);
+        itemView.setOnClickListener(null);
+        itemView.setClickable(false);
       }
     }
 
     void recycle() {
-      checkBox.setOnCheckedChangeListener(null);
+      itemView.setOnClickListener(null);
+      itemView.setClickable(false);
     }
   }
 

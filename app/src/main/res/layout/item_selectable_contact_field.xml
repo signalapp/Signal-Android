@@ -1,32 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="5dp"
-    android:paddingBottom="5dp"
-    android:gravity="center_vertical">
+    android:background="@drawable/selectable_list_item_background"
+    android:gravity="center_vertical"
+    android:minHeight="56dp"
+    android:orientation="horizontal"
+    android:paddingHorizontal="@dimen/dsl_settings_gutter"
+    android:paddingTop="12dp"
+    android:paddingBottom="12dp">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/contact_field_icon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_margin="16dp"
-        android:tint="@color/grey_600"
-        tools:src="@drawable/ic_phone_right_unlock_solid_24" />
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/contact_field_checkbox"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:background="@drawable/contact_selection_checkbox"
+        android:button="@null"
+        android:clickable="false"
+        android:focusable="false"
+        tools:checked="true" />
 
     <ImageView
         android:id="@+id/contact_field_avatar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="24dp"
+        android:contentDescription="@string/ContactShareEditActivity__avatar"
         android:visibility="gone"
-        tools:src="@drawable/ic_contact_picture" />
+        tools:src="@drawable/ic_contact_picture"
+        tools:visibility="visible" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -34,24 +42,21 @@
             android:id="@+id/contact_field_value"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
             android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@style/Signal.Text.BodyLarge"
             tools:text="(610) 867-5309" />
 
         <TextView
             android:id="@+id/contact_field_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
             android:ellipsize="end"
-            tools:text="Mobile"/>
+            android:maxLines="1"
+            android:textAppearance="@style/Signal.Text.BodyMedium"
+            android:textColor="@color/signal_colorOnSurfaceVariant"
+            tools:text="Mobile" />
 
     </LinearLayout>
-
-    <CheckBox
-        android:id="@+id/contact_field_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"/>
 
 </LinearLayout>

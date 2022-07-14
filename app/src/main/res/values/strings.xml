@@ -217,11 +217,17 @@
     <string name="ContactNameEditActivity_middle_name">Middle name</string>
 
     <!-- ContactShareEditActivity -->
+    <!-- ContactShareEditActivity toolbar title -->
+    <string name="ContactShareEditActivity__send_contact">Send contact</string>
     <string name="ContactShareEditActivity_type_home">Home</string>
     <string name="ContactShareEditActivity_type_mobile">Mobile</string>
     <string name="ContactShareEditActivity_type_work">Work</string>
     <string name="ContactShareEditActivity_type_missing">Other</string>
     <string name="ContactShareEditActivity_invalid_contact">Selected contact was invalid</string>
+    <!-- Content descrption for name edit button on contact share edit activity -->
+    <string name="ContactShareEditActivity__edit_name">Edit name</string>
+    <!-- Content description for user avatar in edit activity -->
+    <string name="ContactShareEditActivity__avatar">Avatar</string>
 
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_sent_tap_for_details">Not sent, tap for details</string>

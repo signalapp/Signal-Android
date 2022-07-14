@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,9 +24,12 @@ import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
+import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.Material3OnScrollHelper;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.thoughtcrime.securesms.contactshare.Contact.Name;
@@ -39,7 +43,7 @@ public class ContactShareEditActivity extends PassphraseRequiredActivity impleme
   private static final String KEY_SEND_BUTTON_COLOR = "send_button_color";
   private static final int    CODE_NAME_EDIT   = 55;
 
-  private final DynamicTheme    dynamicTheme    = new DynamicTheme();
+  private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private ContactShareEditViewModel viewModel;
@@ -79,6 +83,11 @@ public class ContactShareEditActivity extends PassphraseRequiredActivity impleme
     RecyclerView contactList = findViewById(R.id.contact_share_edit_list);
     contactList.setLayoutManager(new LinearLayoutManager(this));
     contactList.getLayoutManager().setAutoMeasureEnabled(true);
+
+    Toolbar toolbar = findViewById(R.id.toolbar);
+    toolbar.setNavigationOnClickListener(unused -> onBackPressed());
+    Material3OnScrollHelper onScrollHelper = new Material3OnScrollHelper(this, Collections.singletonList(toolbar), Collections.emptyList());
+    onScrollHelper.attach(contactList);
 
     ContactShareEditAdapter contactAdapter = new ContactShareEditAdapter(GlideApp.with(this), dynamicLanguage.getCurrentLocale(), this);
     contactList.setAdapter(contactAdapter);
