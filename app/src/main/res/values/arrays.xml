@@ -30,6 +30,7 @@
 <!-- fy --><item>Frysk</item>
 <!-- ga --><item>Gaeilge</item>
 <!-- gl --><item>Galego</item>
+<!-- ka --><item>Georgian ქართული</item>
 <!-- el --><item>Greek ελληνικά</item>
 <!-- gu --><item>Gujarati ગુજરાતી</item>
 <!-- ha --><item>Hausa</item>
@@ -41,6 +42,7 @@
 <!-- it --><item>Italiano</item>
 <!-- ja --><item>Japanese 日本語</item>
 <!-- kn --><item>Kannada ಕನ್ನಡ</item>
+<!-- kk --><item>Kasakh Қазақша</item>
 <!-- km --><item>Khmer ភាសាខ្មែរ</item>
 <!-- sw --><item>Kiswahili</item>
 <!-- ko --><item>Korean 한국어</item>
@@ -113,6 +115,7 @@
       <item>fy</item>
       <item>ga</item>
       <item>gl</item>
+      <item>ka</item>
       <item>el</item>
       <item>gu</item>
       <item>ha</item>
@@ -124,6 +127,7 @@
       <item>it</item>
       <item>ja</item>
       <item>kn</item>
+      <item>kk</item>
       <item>km</item>
       <item>sw</item>
       <item>ko</item>
