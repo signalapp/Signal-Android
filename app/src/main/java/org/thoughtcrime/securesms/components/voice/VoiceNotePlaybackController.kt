@@ -11,17 +11,23 @@ import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.audio.AudioAttributes
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector
 import com.google.android.exoplayer2.util.Util
+import org.signal.core.util.logging.Log
 
 class VoiceNotePlaybackController(
   private val player: SimpleExoPlayer,
   private val voiceNotePlaybackParameters: VoiceNotePlaybackParameters
 ) : MediaSessionConnector.CommandReceiver {
 
+  companion object {
+    private val TAG = Log.tag(VoiceNoteMediaController::class.java)
+  }
+
   @Suppress("deprecation")
   override fun onCommand(p: Player, controlDispatcher: ControlDispatcher, command: String, extras: Bundle?, cb: ResultReceiver?): Boolean {
+    Log.d(TAG, "[onCommand] Received player command $command (extras? ${extras != null})")
+
     if (command == VoiceNotePlaybackService.ACTION_NEXT_PLAYBACK_SPEED) {
       val speed = extras?.getFloat(VoiceNotePlaybackService.ACTION_NEXT_PLAYBACK_SPEED, 1f) ?: 1f
-
       player.playbackParameters = PlaybackParameters(speed)
       voiceNotePlaybackParameters.setSpeed(speed)
       return true
