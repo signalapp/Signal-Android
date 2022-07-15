@@ -39,10 +39,6 @@ public class ContactNameEditViewModel extends ViewModel {
     return new Name(displayName.getValue(), givenName, familyName, prefix, suffix, middleName);
   }
 
-  LiveData<String> getDisplayName() {
-    return displayName;
-  }
-
   void updateGivenName(@NonNull String givenName) {
     this.givenName = givenName;
     displayName.postValue(buildDisplayName());

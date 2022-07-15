@@ -2,19 +2,19 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:theme="?attr/actionBarStyle"
-        android:minHeight="?attr/actionBarSize"
-        android:elevation="4dp"
-        app:navigationIcon="@drawable/ic_check_24_tinted" />
+        android:layout_height="@dimen/signal_m3_toolbar_height"
+        android:minHeight="@dimen/signal_m3_toolbar_height"
+        app:navigationIcon="@drawable/ic_x"
+        app:title="@string/ContactShareEditActivity__edit_name"
+        app:titleTextAppearance="@style/Signal.Text.TitleLarge" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -23,46 +23,83 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="12dp">
+            android:orientation="vertical">
 
-            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-                android:id="@+id/name_edit_display_name"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Signal.TextInputLayout.FilledBox.ContactNameEditor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:textSize="20sp"
-                tools:text="Peter Parker"/>
+                android:layout_marginBottom="16dp"
+                android:minHeight="56dp">
 
-            <org.thoughtcrime.securesms.components.emoji.EmojiEditText
-                android:id="@+id/name_edit_prefix"
+                <org.thoughtcrime.securesms.components.emoji.EmojiEditText
+                    android:id="@+id/name_edit_prefix"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/ContactNameEditActivity_prefix"
+                    android:textAppearance="@style/Signal.Text.BodyLarge" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Signal.TextInputLayout.FilledBox.ContactNameEditor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/ContactNameEditActivity_prefix"/>
+                android:layout_marginBottom="16dp"
+                android:minHeight="56dp">
 
-            <org.thoughtcrime.securesms.components.emoji.EmojiEditText
-                android:id="@+id/name_edit_given_name"
+                <org.thoughtcrime.securesms.components.emoji.EmojiEditText
+                    android:id="@+id/name_edit_given_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/ContactNameEditActivity_given_name"
+                    tools:text="@tools:sample/first_names"
+                    android:textAppearance="@style/Signal.Text.BodyLarge" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Signal.TextInputLayout.FilledBox.ContactNameEditor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/ContactNameEditActivity_given_name"/>
+                android:layout_marginBottom="16dp"
+                android:minHeight="56dp">
 
-            <org.thoughtcrime.securesms.components.emoji.EmojiEditText
-                android:id="@+id/name_edit_middle_name"
+                <org.thoughtcrime.securesms.components.emoji.EmojiEditText
+                    android:id="@+id/name_edit_middle_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/ContactNameEditActivity_middle_name"
+                    android:textAppearance="@style/Signal.Text.BodyLarge" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Signal.TextInputLayout.FilledBox.ContactNameEditor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/ContactNameEditActivity_middle_name"/>
+                android:layout_marginBottom="16dp"
+                android:minHeight="56dp">
 
-            <org.thoughtcrime.securesms.components.emoji.EmojiEditText
-                android:id="@+id/name_edit_family_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/ContactNameEditActivity_family_name"/>
+                <org.thoughtcrime.securesms.components.emoji.EmojiEditText
+                    android:id="@+id/name_edit_family_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/ContactNameEditActivity_family_name"
+                    android:textAppearance="@style/Signal.Text.BodyLarge" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <org.thoughtcrime.securesms.components.emoji.EmojiEditText
-                android:id="@+id/name_edit_suffix"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Signal.TextInputLayout.FilledBox.ContactNameEditor"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/ContactNameEditActivity_suffix"/>
+                android:layout_height="wrap_content">
+
+                <org.thoughtcrime.securesms.components.emoji.EmojiEditText
+                    android:id="@+id/name_edit_suffix"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/ContactNameEditActivity_suffix"
+                    android:textAppearance="@style/Signal.Text.BodyLarge" />
+            </com.google.android.material.textfield.TextInputLayout>
+
 
         </LinearLayout>
 

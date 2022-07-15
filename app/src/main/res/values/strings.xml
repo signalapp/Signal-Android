@@ -210,6 +210,8 @@
     <string name="ContactsDatabase_signal_call_s">Signal Call %s</string>
 
     <!-- ContactNameEditActivity -->
+    <!-- Toolbar title for contact name edit activity -->
+    <string name="ContactNameEditActivity__edit_name">Edit name</string>
     <string name="ContactNameEditActivity_given_name">Given name</string>
     <string name="ContactNameEditActivity_family_name">Family name</string>
     <string name="ContactNameEditActivity_prefix">Prefix</string>
