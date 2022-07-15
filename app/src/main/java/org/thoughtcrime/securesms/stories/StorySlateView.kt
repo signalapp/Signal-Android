@@ -154,12 +154,12 @@ class StorySlateView @JvmOverloads constructor(
     fun onStateChanged(state: State, postId: Long)
   }
 
-  enum class State(val code: Int) {
-    LOADING(0),
-    ERROR(1),
-    RETRY(2),
-    NOT_FOUND(3),
-    HIDDEN(4);
+  enum class State(val code: Int, val hasClickableContent: Boolean) {
+    LOADING(0, false),
+    ERROR(1, true),
+    RETRY(2, true),
+    NOT_FOUND(3, false),
+    HIDDEN(4, false);
 
     fun isValidTransitionTo(newState: State): Boolean {
       if (newState in listOf(HIDDEN, NOT_FOUND)) {
