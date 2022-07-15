@@ -640,8 +640,8 @@ class StoryViewerPageFragment :
   }
 
   private fun markViewedIfAble() {
-    val post = if (viewModel.hasPost()) viewModel.getPost() else null
-    if (post?.content?.transferState == AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
+    val post = viewModel.getPost() ?: return
+    if (post.content.transferState == AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
       if (isResumed) {
         viewModel.markViewed(post)
       }
@@ -707,7 +707,9 @@ class StoryViewerPageFragment :
       }
       AttachmentDatabase.TRANSFER_PROGRESS_FAILED -> {
         storySlate.moveToState(StorySlateView.State.NOT_FOUND, post.id)
+        sharedViewModel.setContentIsReady()
         viewModel.setIsDisplayingSlate(true)
+        markViewedIfAble()
       }
     }
   }
