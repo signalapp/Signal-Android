@@ -4133,6 +4133,7 @@
   <!--Message of safety number changes bottom sheet when showing individual records-->
   <!--Title of safety number changes bottom sheet when not showing individual records-->
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <!--Message of safety number changes bottom sheet when not showing individual records-->
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">စိတ်ချရသောနံပါတ်ကို စစ်ဆေးအတည်ပြုခြင်း</string>

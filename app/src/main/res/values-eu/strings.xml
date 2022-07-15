@@ -3588,45 +3588,98 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Copy displayed when badge expires after user inactivity-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Zure hileroko dohaintza automatikoki bertan behera utzi da, denbora gehiegi egon zarelako inaktibo. Zure %1$s bereizgarria jada ez da ikusgai zure profilean.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Zure hileroko dohaintza bertan behera utzi da, ezin izan dugulako prozesatu ordainketa. Zure bereizgarria jada ez da ikusgai zure profilean.</string>
   <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Hileroko dohaintza bertan behera utzi da .%1$sZure %2$sbereizgarriak profilean ikusgai egoteari utziko dio.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal erabiltzen jarrai dezakezu baina aplikazioa onartzeko eta bereizgarria berriro aktibatzeko, berritu orain.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Eguneratu harpidetza</string>
   <!--Button label to send user to Google Pay website-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Joan Google Play-ra</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Ezin da harpidetzaren ordainketa prozesatu</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Arazoak ditugu Signal sostengatzaile ordainketa kobratzeko. Ziurtatu ordainketa-metodoa eguneratuta dagoela. Hala ez bada, eguneratu Google Pay-n. Signal ordainketa berriro prozesatzen saiatuko da egun batzuk barru.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Ez erakutsi hau berriro</string>
+  <string name="Subscription__please_contact_support_for_more_information">Mesedez, jarri harremanetan laguntzarekin informazio gehiago lortzeko.</string>
   <string name="Subscription__contact_support">Harremanetan jarri laguntza taldearekin</string>
+  <string name="Subscription__earn_a_s_badge">Lortu %1$s bereizgarria</string>
   <string name="SubscribeFragment__processing_payment">Ordainketa prozesatzen…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Errorea ordainketa prozesatzean</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Errorea ordainketa prozesatzean. %1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Zure bereizgarria ezin izan da gehitu zure kontuan, baina baliteke kobratu izana. Mesedez, jarri harremanetan laguntzarekin.</string>
+  <string name="DonationsErrors__your_payment">Ezin izan da prozesatu ordainketa, eta ez zaizu ezer kobratu. Mesedez saiatu berriro.</string>
+  <string name="DonationsErrors__still_processing">Oraindik prozesatzen</string>
+  <string name="DonationsErrors__couldnt_add_badge">Ezin izan da bereizgarria gehitu.</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__failed_to_validate_badge">Ezin izan da baliozkotu bereizgarria</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__could_not_validate">Ezin izan da zerbitzariaren erantzuna balioztatu. Mesedez, jarri harremanetan laguntzarekin.</string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__failed_to_send_gift_badge">Ezin izan da bidali opariaren bereizgarria</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__could_not_send_gift_badge">Ezin izan da opariaren bereizgarria bidali. Mesedez, jarri harremanetan laguntzarekin.</string>
+  <string name="DonationsErrors__your_badge_could_not">Zure bereizgarria ezin izan da gehitu zure kontuan, baina baliteke kobratu izana. Mesedez, jarri harremanetan laguntzarekin.</string>
+  <string name="DonationsErrors__your_payment_is_still">Zure ordainketa prozesatzen ari da oraindik. Minutu batzuk iraun ditzake zure konexioaren arabera.</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay ez dago erabilgarri</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Google Pay konfiguratu behar duzu aplikazioan dohaintza egiteko.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Ezin izan da bertan behera utzi harpidetza</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Harpidetza bertan behera uzteko Interneteko konexioa behar da.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Zure gailuak ez du Google Pay onartzen, beraz, ezin zara harpidetu bereizgarria irabazteko. Hala ere, Signal lagundu dezakezu gure webgunean dohaintza bat eginez.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Sareko errorea. Egiaztatu konexioa eta saiatu berriro.</string>
   <string name="NetworkFailure__retry">Berriro saiatu</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__recipient_verification_failed">Hartzailea egiaztatzeak huts egin du.</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">Jasotzaileak ez du oparirik onartzen.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__could_not_verify_recipient">Ezin izan da hartzailea egiaztatu.</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Mesedez, egiaztatu sareko konexioa eta saiatu berriro.</string>
   <!--Gift message view title-->
+  <string name="GiftMessageView__gift_badge">Opari bereizgarria</string>
   <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="one">Hilabete %1$d irauten du</item>
+    <item quantity="other">%1$dhilabete irauten du</item>
+  </plurals>
   <!--Gift badge redeem action label-->
+  <string name="GiftMessageView__redeem">Berreskuratu</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">Ikusi</string>
   <!--Gift badge redeeming action label-->
+  <string name="GiftMessageView__redeeming">Berreskuratzen…</string>
   <!--Gift badge redeemed label-->
   <string name="GiftMessageView__redeemed">Ordaindua</string>
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Saiatu beste ordainketa-metodo bat edo jarri harremanetan zure bankuarekin informazio gehiago lortzeko.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Egiaztatu ordainketa-metodoa eguneratuta dagoela Google Pay-n eta saiatu berriro.</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">Gehiago jakin</string>
   <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Egiaztatu ordainketa-metodoa eguneratuta dagoela Google Pay-n eta saiatu berriro. Arazoak jarraitzen badu, jarri harremanetan zure bankuarekin.</string>
   <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Zure txartelak ez du erosketa mota hau onartzen. Saiatu beste ordainketa-metodo bat.</string>
   <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">Zure txartela iraungi da. Eguneratu ordainketa-metodoa Google Pay-n eta saiatu berriro.</string>
   <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">Joan Google Play-ra</string>
   <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">Zure txartelaren zenbakia ez da zuzena. Eguneratu Google Pay-n eta saiatu berriro.</string>
   <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">Zure txartelaren zenbakia ez da zuzena. Eguneratu Google Pay-n eta saiatu berriro.</string>
   <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Zure txartelak ez du diru nahikorik erosketa hau burutzeko. Saiatu beste ordainketa-metodo bat.</string>
   <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">Ordainketa-metodoaren iraungitze hilabetea ez da zuzena. Eguneratu Google Pay-n eta saiatu berriro.</string>
   <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">Zure ordainketa-metodoaren iraungitze-urtea ez da zuzena. Eguneratu Google Pay-n eta saiatu berriro.</string>
   <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">Saiatu berriro ordainketa egiten edo jarri harremanetan zure bankuarekin informazio gehiago lortzeko.</string>
   <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">Saiatu berriro edo jarri harremanetan zure bankuarekin informazio gehiago lortzeko.</string>
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">Izena eman zure profilari</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">Profilaren izena</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
@@ -3638,34 +3691,51 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Gorde</string>
   <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">Editatau profil hau</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Dagoeneko badago izen hau duen profil bat</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__work">Lana</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">Lo egin</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">Gidatzen</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">Atsedenaldia</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">Kontzentratu</string>
   <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">Izena izan behar du</string>
   <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">Baimendutako jakinarazpenak</string>
   <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Gehitu profila aktibatuta dagoenean jakinarazpenak eta deiak jaso nahi dituzun pertsonak eta taldeak</string>
   <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">Gehitu pertsonak edo taldeak</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">Gehitu</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Sortu profil bat entzun nahi dituzun pertsonen eta taldeen jakinarazpenak eta deiak jasotzeko.</string>
   <!--Header shown above list of all notification profiles-->
   <string name="NotificationProfilesFragment__profiles">Profilak</string>
   <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">Profil berria</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
   <string name="NotificationProfilesFragment__on">Aktibatuta</string>
   <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">Ezabatu profila</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">\"%1$s\" ezabatua</string>
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">Desegin</string>
   <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">Betiko ezabatu profila?</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">Ezabatu</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">Editatu jakinarazpen-profila</string>
   <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">Egunero</string>
   <!--Profile status on if it is the active profile-->
   <string name="NotificationProfileDetails__on">Aktibatuta</string>
   <!--Profile status on if it is not the active profile-->
@@ -3673,27 +3743,43 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Description of hours for schedule (start to end) times-->
   <string name="NotificationProfileDetails__s_to_s">%1$s tik %2$s ra</string>
   <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">Salbuespenak</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">Baimendu dei guztiak</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">Jakinarazi aipamen guztiengatik</string>
   <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">Ordutegia</string>
   <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
   <string name="NotificationProfileDetails__see_all">Ikusi denak</string>
   <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">Gehitu ordutegi bat</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Konfiguratu ordutegi bat jakinarazpen-profil hau automatikoki gaitzeko.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">Ordutegia</string>
   <!--Label for showing the start time for the schedule-->
   <string name="EditNotificationProfileSchedule__start">Hasi</string>
   <!--Label for showing the end time for the schedule-->
   <string name="EditNotificationProfileSchedule__end">Amaiera</string>
   <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">S</string>
   <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">M</string>
   <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">T</string>
   <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">W</string>
   <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">T</string>
   <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">F</string>
   <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">S</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">Ezarri hasiera ordua</string>
   <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">Ezarri bukaera ordua</string>
   <!--If in edit mode, call to action button text show to save schedule to profile-->
   <string name="EditNotificationProfileSchedule__save">Gorde</string>
   <!--If in create mode, call to action button text to show to skip enabling a schedule-->
@@ -3701,83 +3787,133 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">Hurrengoa</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">Ordutegiak egun bat izan behar du gutxienez</string>
   <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">Profila sortu da</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">Eginda</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Zure profila eskuz aktibatu edo desaktibatu dezakezu txat zerrendako menuaren bidez.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Gehitu programazio bat ezarpenetan zure profila automatizatzeko.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Zure profila automatikoki piztu eta itzaliko da zure ordutegiaren arabera.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <string name="NotificationProfileSelection__new_profile">Profil berria</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">Ordu batez</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">%1$s dataraino</string>
   <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">Ikusi ezarpenak</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">%1$s arte</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">Ezin izan da hautatzailea ireki.</string>
   <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Seinalearen oharrak &amp; Berriak</string>
   <!--Donation receipts activity title-->
   <string name="DonationReceiptListFragment__all_activity">Jarduera guztiak</string>
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">Denak</string>
   <!--Donation receipts recurring tab label-->
+  <string name="DonationReceiptListFragment__recurring">Errepikatzen</string>
   <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">Behin</string>
   <!--Donation receipts gift tab label-->
   <string name="DonationReceiptListFragment__gift">Oparia</string>
   <!--Donation receipts boost row label-->
+  <string name="DonationReceiptListFragment__boost">Bultzada</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Xehetasunak</string>
   <!--Donation receipts donation type heading-->
+  <string name="DonationReceiptDetailsFragment__donation_type">Dohaintza mota</string>
   <!--Donation receipts date paid heading-->
+  <string name="DonationReceiptDetailsFragment__date_paid">Ordainketa data</string>
   <!--Donation receipts share PNG-->
+  <string name="DonationReceiptDetailsFragment__share_receipt">Partekatu ordainagiria</string>
   <!--Donation receipts list end note-->
+  <string name="DonationReceiptListFragment__if_you_have">Signal berriro instalatu baduzu, aurreko dohaintzen ordainagiriak ez dira erabilgarri egongo.</string>
   <!--Donation receipts document title-->
+  <string name="DonationReceiptDetailsFragment__donation_receipt">Dohaintzaren ordainagiria</string>
   <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">Zenbatekoa</string>
   <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Eskerrik asko Signal laguntzeagatik. Zure ekarpenak adierazpen askea babesten duen eta mundu osoko milioika pertsonen komunikazio global segurua ahalbidetzen duen kode irekiko pribatutasun teknologia garatzeko eginkizuna sustatzen laguntzen du. Estatu Batuetako bizilaguna bazara, gorde ordainagiria zure zerga-erregistroetarako. Signal Technology Foundation Estatu Batuetako irabazi-asmorik gabeko zerga-salbuespeneko erakunde bat da, Barne Diru-bilketa Kodearen 501c3 artikuluaren arabera. Gure Zerga-IF Federala 82–4506840 da.</string>
   <!--Donation receipt type-->
+  <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--Donation reciepts screen empty state title-->
+  <string name="DonationReceiptListFragment__no_receipts">Ordainagiririk ez</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Txatak</string>
   <!--Label for Stories tab in home app screen-->
   <string name="ConversationListTabs__stories">Storie-ak</string>
   <!--String for counts above 99 in conversation list tabs-->
+  <string name="ConversationListTabs__99p">99+</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Nire istorioak</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Gehitu storie bat</string>
   <!--Displayed when there are no stories to display-->
+  <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Une honetan ez dago azken eguneratzerik erakusteko. Sakatu + zure istorioari gehitzeko.</string>
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Ezkutatu storie-ak</string>
   <!--Context menu option to unhide a story-->
+  <string name="StoriesLandingItem__unhide_story">Erakutsi storie-a</string>
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">Birbidali</string>
   <!--Context menu option to share a story-->
+  <string name="StoriesLandingItem__share">Partekatu…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Joan txatera</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Bidaltzen…</string>
   <!--Label when multiple stories are pending sending-->
+  <string name="StoriesLandingItem__sending_d">%1$dbidaltzen…</string>
   <!--Label when a story fails to send due to networking-->
   <string name="StoriesLandingItem__send_failed">Bidaltzeak huts egin du</string>
   <!--Label when a story fails to send due to identity mismatch-->
+  <string name="StoriesLandingItem__partially_sent">Partzialki bidalia</string>
   <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">Sakatu berriro saiatzeko</string>
   <!--Title of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__hide_story">Ezkutatu storie-a?</string>
   <!--Message of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__new_story_updates">Istorioen eguneratze berriak %1$stik ez dira storie-n zerrendaren goialdean agertuko.</string>
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">Ezkutatu</string>
   <!--Displayed in Snackbar after story is hidden-->
+  <string name="StoriesLandingFragment__story_hidden">Istorioa ezkutatuta</string>
   <!--Section header for hidden stories-->
   <string name="StoriesLandingFragment__hidden_stories">Ezkutuko storie-ak</string>
   <!--Displayed on each sent story under My Stories-->
+  <plurals name="MyStories__d_views">
+    <item quantity="one">Ikustaldi %1$d</item>
+    <item quantity="other">%1$dikustaldi</item>
+  </plurals>
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">Birbidali</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
+  <string name="MyStories__ss_story">%1$sren storie-a</string>
   <!--Title of dialog to confirm deletion of story-->
+  <string name="MyStories__delete_story">Ezabatu storie-a?</string>
   <!--Message of dialog to confirm deletion of story-->
+  <string name="MyStories__this_story_will_be_deleted">Story hau zuretzat eta jaso duten guztientzat ezabatuko da.</string>
   <!--Toast shown when story media cannot be saved-->
+  <string name="MyStories__unable_to_save">Ezin izan da gorde</string>
   <!--Displayed at bottom of story viewer when current item has views-->
+  <plurals name="StoryViewerFragment__d_views">
+    <item quantity="one">Ikustaldi %1$d</item>
+    <item quantity="other">%1$dikustaldi</item>
+  </plurals>
   <!--Displayed at bottom of story viewer when current item has replies-->
+  <plurals name="StoryViewerFragment__d_replies">
+    <item quantity="one">Erantzun %1$d</item>
+    <item quantity="other">%1$d erantzun</item>
+  </plurals>
   <!--Used when view receipts are disabled-->
+  <string name="StoryViewerPageFragment__views_off">Ikuspegiak desaktibatuta</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s%2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3787,9 +3923,13 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Erantzun</string>
   <!--Label for the reply button in story viewer, which will launch the group story replies bottom sheet.-->
+  <string name="StoryViewerPageFragment__reply_to_group">Taldera erantzun</string>
   <!--Displayed when a story has no views-->
+  <string name="StoryViewsFragment__no_views_yet">Ikustaldirik ez oraindik</string>
   <!--Displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Gaitu irakurtzeko ordainagiriak zure storie-ak nork ikusi dituen ikusteko.</string>
   <!--Button label displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__go_to_settings">Joan ezarpenetara</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Erantzunik ez oraindik</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -3799,20 +3939,29 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Label for story replies tab-->
   <string name="StoryViewsAndRepliesDialogFragment__replies">Erantzunak</string>
   <!--Description of action for reaction button-->
+  <string name="StoryReplyComposer__react_to_this_story">Erreakzionatu story honi</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
+  <string name="StoryReplyComposer__replying_privately_to_s">%1$sri modu pribatuan erantzuten</string>
   <!--Context menu item to privately reply to a story response-->
+  <string name="StoryGroupReplyItem__private_reply">Erantzun pribatua</string>
   <!--Context menu item to copy a story response-->
   <string name="StoryGroupReplyItem__copy">Kopiatu</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Ezabatu</string>
   <!--Story settings page title-->
+  <string name="StorySettingsFragment__story_settings">Story ezarpenak</string>
   <!--Story settings private stories heading-->
+  <string name="StorySettingsFragment__private_stories">Story pribatuak</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Story pribatuak gehitzen dituzun pertsonek soilik ikus ditzakete. Zuk bakarrik ikus dezakezu storie-aren izena.</string>
   <!--Option label for creating a new private story-->
+  <string name="StorySettingsFragment__new_private_story">Story pribatu berria</string>
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Nire istorioa</string>
   <!--Section heading for story visibility-->
+  <string name="MyStorySettingsFragment__who_can_see_this_story">Nork ikus dezake story hau</string>
   <!--Clickable option for selecting people to hide your story from-->
+  <string name="MyStorySettingsFragment__hide_story_from">Ezkutatu storie-a honi:</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__all_signal_connections">Signal-eko konexio guztiak</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
@@ -3831,37 +3980,60 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Privacy setting description for only sharing your story with specified connections-->
   <string name="MyStorySettingsFragment__only_share_with_selected_people">Partekatu hautatutako pertsonekin bakarrik</string>
   <!--Summary of clickable option displaying how many people you have included to send to in your story-->
+  <plurals name="MyStorySettingsFragment__d_people">
+    <item quantity="one">Pertsona %1$d</item>
+    <item quantity="other">%1$d pertsona</item>
+  </plurals>
   <!--My story privacy fine print about what the privacy settings are for-->
   <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Aukeratu nork ikus dezakeen zure istorioa. Aldaketek ez dute eraginik izango dagoeneko bidali dituzun istorioetan.</string>
   <!--Section header for options related to replies and reactions-->
+  <string name="MyStorySettingsFragment__replies_amp_reactions">Erantzunak &amp; erreakzioak</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
+  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Baimendu erantzunak &amp; erreakzioak</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
+  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Utzi zure storie-a ikus dezakeen jendeari erreakzionatzen eta erantzuten</string>
   <!--Note about default sharing-->
+  <string name="MyStorySettingsFragment__hide_your_story_from">Ezkutatu zure istorioa pertsona zehatzei. Lehenespenez, zure istorioa zure %1$s(are)kin partekatzen da</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
   <string name="SignalConnectionsBottomSheet___signal_connections">Signal-eko konexioak</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
   <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal-eko konexioak fidagarri deritzezun pertsonak dira, arrazoi hauengatik:</string>
   <!--Signal connections sheet bullet point 1-->
+  <string name="SignalConnectionsBottomSheet__starting_a_conversation">Elkarrizketa bat hasten</string>
   <!--Signal connections sheet bullet point 2-->
+  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Mezu eskaera onartzen</string>
   <!--Signal connections sheet bullet point 3-->
+  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Zure sistemako kontaktuetan edukitzen</string>
   <!--Note at the bottom of the Signal connections sheet-->
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Zure konexioek zure izena eta argazkia ikus ditzakete, eta \"Nire Story\"-ko argitalpenak ikus ditzakete horiei ezkutatu ezean.</string>
   <!--Clickable option to add a viewer to a private story-->
+  <string name="PrivateStorySettingsFragment__add_viewer">Gehitu ikuslea</string>
   <!--Clickable option to delete a custom story-->
+  <string name="PrivateStorySettingsFragment__delete_private_story">Story pribatua ezabatu</string>
   <!--Dialog title when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__remove_s">%1$sezabatu?</string>
   <!--Dialog message when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Pertsona honek ez du gehiago ikusiko zure storie-a.</string>
   <!--Positive action label when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__remove">Ezabatu</string>
   <!--Dialog title when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__are_you_sure">Ziur zaude?</string>
   <!--Dialog message when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__this_action_cannot">Ekintza hau ezin da desegin.</string>
   <!--Page title for editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__edit_story_name">Editatu storie-aren izena</string>
   <!--Input field hint when editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__story_name">Story izena</string>
   <!--Save button label when editing a private story name-->
   <string name="EditPrivateStoryNameFragment__save">Gorde</string>
   <!--Displayed in text post creator before user enters text-->
+  <string name="TextStoryPostCreationFragment__tap_to_add_text">Ukitu testua gehitzeko</string>
   <!--Button label for changing font when creating a text post-->
+  <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
   <!--Displayed in text post creator when prompting user to enter text-->
   <string name="TextStoryPostTextEntryFragment__add_text">Gehitu testua</string>
   <!--Content description for \'done\' button when adding text to a story post-->
+  <string name="TextStoryPostTextEntryFragment__done_adding_text">Testua gehitzen amaitu da</string>
   <!--Text label for media selection toggle-->
   <string name="MediaSelectionActivity__text">Testua</string>
   <!--Camera label for media selection toggle-->
@@ -3869,9 +4041,11 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Hint for entering a URL for a text post-->
   <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Idatzi edo itsatsi URL bat</string>
   <!--Displayed prior to the user entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Partekatu esteka bat zure storie-aren ikusleekin</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Bilatu</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
+  <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Ustekabeko errore bat gertatu da</string>
   <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
   <string name="ChangeMyStoryMembershipFragment__all_except">Denak hauek izan ezik…</string>
   <!--Title for screen allowing user to only share "My Story" entries with specific people-->
@@ -3879,45 +4053,76 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Eginda</string>
   <!--Dialog title for first time adding something to a story-->
+  <string name="StoryDialogs__add_to_story_q">Gehitu storie-ra?</string>
   <!--Dialog message for first time adding something to a story-->
+  <string name="StoryDialogs__adding_content">Zure storie-ari edukia gehitzeak zure Signal konexioei 24 orduz ikusteko aukera ematen die. Zure storie-a nork ikus dezakeen alda dezakezu Ezarpenak atalean.</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
+  <string name="StoryDialogs__add_to_story">Gehitu storie-ra</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <string name="StoryDialogs__edit_viewers">Editatu ikusleak</string>
   <!--Error message shown when a failure occurs during story send-->
+  <string name="StoryDialogs__story_could_not_be_sent">Ezin izan da storie-a bidali. Egiaztatu konexioa eta saiatu berriro.</string>
   <!--Error message dialog button to resend a previously failed story send-->
   <string name="StoryDialogs__send">Bidali</string>
   <!--Privacy Settings toggle title for stories-->
+  <string name="PrivacySettingsFragment__share_and_view_stories">Partekatu &amp; Ikusi storie-ak</string>
   <!--Privacy Settings toggle summary for stories-->
+  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Aurrerantzean ezingo dituzu e-ak partekatu edo ikusi aukera hau desaktibatuta dagoenean.</string>
   <!--New story viewer selection screen title-->
+  <string name="CreateStoryViewerSelectionFragment__choose_viewers">Aukeratu ikusleak</string>
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">Hurrengoa</string>
   <!--New story viewer selection screen title as recipients are selected-->
+  <plurals name="SelectViewersFragment__d_viewers">
+    <item quantity="one">Ikusle %1$d</item>
+    <item quantity="other">%1$d ikusle</item>
+  </plurals>
   <!--Name story screen title-->
+  <string name="CreateStoryWithViewersFragment__name_story">Izendatu storie-a</string>
   <!--Name story screen label hint-->
+  <string name="CreateStoryWithViewersFragment__story_name_required">Story izena (beharrezkoa)</string>
   <!--Name story screen viewers subheading-->
+  <string name="CreateStoryWithViewersFragment__viewers">Ikusleak</string>
   <!--Name story screen create button label-->
   <string name="CreateStoryWithViewersFragment__create">Sortu</string>
   <!--Name story screen error when save attempted with no label-->
   <string name="CreateStoryWithViewersFragment__this_field_is_required">Eremu hau beharrezkoa da.</string>
   <!--Name story screen error when save attempted but label is duplicate-->
+  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">Dagoeneko bada story bat izen honekin.</string>
   <!--Text for select all action when editing recipients for a story-->
   <string name="BaseStoryRecipientSelectionFragment__select_all">Denak hautatu</string>
   <!--Choose story type bottom sheet title-->
+  <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Aukeratu zure story mota</string>
   <!--Choose story type bottom sheet new story row title-->
+  <string name="ChooseStoryTypeBottomSheet__new_private_story">Story pribatu berria</string>
   <!--Choose story type bottom sheet new story row summary-->
+  <string name="ChooseStoryTypeBottomSheet__visible_only_to">Pertsona zehatzentzat bakarrik ikusgai</string>
   <!--Choose story type bottom sheet group story title-->
+  <string name="ChooseStoryTypeBottomSheet__group_story">Taldeko storie-a</string>
   <!--Choose story type bottom sheet group story summary-->
+  <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Partekatu lehendik dagoen talde batean</string>
   <!--Choose groups bottom sheet title-->
+  <string name="ChooseGroupStoryBottomSheet__choose_groups">Aukeratu taldeak</string>
   <!--Displayed when copying group story reply text to clipboard-->
   <string name="StoryGroupReplyFragment__copied_to_clipboard">Arbelera kopiatuta</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
+  <string name="StoryViewerPageFragment__see_more">…Irakurri gehiago</string>
   <!--Displayed in toast after sending a direct reply-->
+  <string name="StoryDirectReplyDialogFragment__sending_reply">Erantzuna bidaltzen…</string>
   <!--Displayed in the viewer when a story is no longer available-->
+  <string name="StorySlateView__this_story_is_no_longer_available">Story hau jada ez dago erabilgarri.</string>
   <!--Displayed in the viewer when the network is not available-->
+  <string name="StorySlateView__no_internet_connection">Ez dago Interneteko konexiorik</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <string name="StorySlateView__couldnt_load_content">Ezin izan da edukia kargatu</string>
   <!--Toasted when the user externally shares to a text story successfully-->
+  <string name="TextStoryPostCreationFragment__sent_story">Story bidalia</string>
   <!--Toasted when the user external share to a text story fails-->
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">Ezin izan da bidali storie-a</string>
   <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">Bistaratu storie-a</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">Bistaratu profileko argazkia</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Zentsura ekiditeko aukera desaktibatu nahi duzu?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -3927,50 +4132,84 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Desaktibatu</string>
   <!--Conversation Item label for when you react to someone else\'s story-->
+  <string name="ConversationItem__you_reacted_to_s_story">%1$sre storie-ari erreakzionatu diozu</string>
   <!--Conversation Item label for reactions to your story-->
   <string name="ConversationItem__reacted_to_your_story">Zure storie-ari erreakzionatu dio</string>
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Storie-ari erreakzionatu dio</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="ExpandModel__view_more">Ikusi gehiago</string>
   <string name="StoriesLinkPopup__visit_link">Ikusi linka</string>
   <!--Duration and price information-->
+  <plurals name="GiftRowItem_s_dot_d_day_duration">
+    <item quantity="one">%1$s · %2$deguneko iraupena</item>
+    <item quantity="other">%1$s · %2$deguneko iraupena</item>
+  </plurals>
   <!--Tagline for gift row items-->
+  <string name="GiftRowItem__send_a_gift_badge">Opari-berreizgarri bat bidali </string>
   <!--Headline text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_a_badge">Oparitu bereizgarri bat</string>
   <!--Description text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">Eman norbaiti bereizgarri bat haren izenean dohaintza bat eginez Signal-i. Bereizgarri bat jasoko du, profileko argazkian erakuts dezan.</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Hurrengoa</string>
   <!--Title text on choose recipient page for badge gifting-->
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Aukeratu hartzailea</string>
   <!--Title text on confirm gift page-->
+  <string name="GiftFlowConfirmationFragment__confirm_gift">Berretsi oparia</string>
   <!--Heading text specifying who the gift will be sent to-->
   <string name="GiftFlowConfirmationFragment__send_to">Honi bidali</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Zure oparia batetik baterako mezu batean bidaliko zaio hartzaileari. Gehitu zure mezua behean.</string>
   <!--Text explaining that this gift is a one time donation-->
+  <string name="GiftFlowConfirmationFragment__one_time_donation">Aldi bakarreko dohaintza</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Gehitu mezu bat</string>
   <!--Displayed in the dialog while verifying the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__verifying_recipient">Hartzailea egiaztatzen…</string>
   <!--Title for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$sk opari bat bidali dizu</string>
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Eskerrik asko zure laguntzagatik!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">%1$sren opari-bereizgarri bat jaso duzu! Lagundu Signal-i kontzientzia sortzen, bereizgarri hau zure profilean erakutsiz.</string>
   <!--Description for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">%1$si bereizgarri bat oparitu diozu. Onartzen dutenean, bereizgarria erakusteko edo ezkutatzeko aukera izango dute.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
+  <string name="ViewReceivedGiftSheet__redeem">Berreskuratu</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">Orain ez</string>
   <!--Dialog text while redeeming a gift-->
+  <string name="ViewReceivedGiftSheet__redeeming_gift">Oparia trukatzen…</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <string name="ConversationFragment__you_can_redeem_your_badge_later">Zure bereizgarria geroago erabil dezakezu.</string>
   <!--Description text in gift thanks sheet-->
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">%1$si bereizgarri bat oparitu diozu. Onartzen dutenean, bereizgarria erakusteko edo ezkutatzeko aukera izango dute.</string>
   <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Zure opariaren bereizgarria iraungi egin da</string>
   <!--Expired gift sheet top description text-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Zure opariaren bereizgarria iraungi egin da eta jada besteek ez dute ikusiko zure profilean.</string>
   <!--Expired gift sheet bottom description text-->
+  <string name="ExpiredGiftSheetConfiguration__to_continue">Zuretzat eraikitako teknologia onartzen jarraitzeko, kontuan hartu hileroko sostengatzaile bihurtzea.</string>
   <!--Expired gift sheet make a monthly donation button-->
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Egin hileroko dohaintza</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Orain ez</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Story pribatua - ikusle %1$d</item>
+    <item quantity="other">Story pribatua - %1$dikusle</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Tadeko Story - ikusle%1$d</item>
+    <item quantity="other">Tadeko Story - %1$d ikusle</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">Ukitu zure ikusleak aukeratzeko</string>
   <!--Label for context menu item to open story settings-->
+  <string name="ContactSearchItems__story_settings">Story ezarpenak</string>
   <!--Label for context menu item to remove a group story from contact results-->
   <string name="ContactSearchItems__remove_story">Kendu istorioa</string>
   <!--Label for context menu item to delete a private story-->
@@ -3982,13 +4221,26 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">Ezabatu</string>
   <!--Dialog title for deleting a private story-->
+  <string name="ContactSearchMediator__delete_story">Ezabatu storie-a?</string>
   <!--Dialog message for deleting a private story-->
   <string name="ContactSearchMediator__delete_the_private">\"%1$s\" istorio pribatua ezabatu nahi duzu?</string>
   <!--Dialog action item for deleting a private story-->
   <string name="ContactSearchMediator__delete">Ezabatu</string>
   <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">Egun %1$d falta da</item>
+    <item quantity="other">%1$d egun falta dira</item>
+  </plurals>
   <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">Ordu %1$d falta da</item>
+    <item quantity="other">%1$d ordu falta dira</item>
+  </plurals>
   <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">Minutu %1$d falta da</item>
+    <item quantity="other">%1$dminutu falta dira</item>
+  </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Iraungita</string>
   <!--Label indicating that a user can tap to advance to the next post in a story-->
@@ -4000,32 +4252,49 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Ulertuta</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">Ireki laster-menua</string>
   <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · Egiaztatua</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">Egiaztatuta</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Segurtasun zenbaki aldaketak</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">Baliteke pertsona hauek Signal berriro instalatu edo gailuak aldatu izana. Sakatu hartzaile bat segurtasun-zenbaki berria berresteko. Hau hautazkoa da.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Segurtasun-zenbakiaren egiaztapena</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Segurtasun-zenbakiaren egiaztapena osatu da</string>
+  <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Konexio guztiak berrikusi dira, sakatu bidali jarraitzeko.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Signal berriro instalatu edo gailuak aldatu dituzten %1$dkonexio dituzu. Zure storie-a haiekin partekatu aurretik, berrikusi haien segurtasun-zenbakiak edo kontuan hartu zure storie-tik kentzea.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Segurtasun zenbakia baieztatu</string>
   <!--Menu action to remove user from story-->
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">Kendu storie-tik</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">Bidali hala eta guztiz ere</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <string name="SafetyNumberBottomSheetFragment__review_connections">Berrikusi konexioak</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Ez dago hartzaile gehiago erakutsi behar</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">Eginda</string>
   <!--Title of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Segurtasun zenbaki aldaketak</string>
   <!--Message of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">Baliteke %1$d hartzailek Signal berriro instalatu edo gailuak aldatu izana. Sakatu hartzaile bat segurtasun-zenbaki berria berresteko. Hau hautazkoa da.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Kontaktuak</string>
   <!--Context menu label for distribution list headers in review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">Ezabatu dena</string>
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">Ezabatu</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Nire storie-aren pribatutasuna</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Aukeratu nork ikus ditzakeen Nire Storie-ko argitalpenak. Ezarpenetan beti egin ditzakezu aldaketak.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Signal konexio guztiak</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

@@ -995,7 +995,7 @@
   <string name="MessageRecord_s_added_s">%1$s lisas %2$s.</string>
   <string name="MessageRecord_s_added_you">%1$s lisas sind gruppi.</string>
   <string name="MessageRecord_you_joined_the_group">Sa liitusid grupiga.</string>
-  <string name="MessageRecord_s_joined_the_group">%1$s liitusid grupiga.</string>
+  <string name="MessageRecord_s_joined_the_group">%1$s liitus grupiga.</string>
   <!--GV2 member removals-->
   <string name="MessageRecord_you_removed_s">Sa eemaldasid kasutaja %1$s.</string>
   <string name="MessageRecord_s_removed_s">%1$s eemaldas kasutaja %2$s.</string>
@@ -1045,7 +1045,7 @@
     <item quantity="other">%1$d grupiga liitumise kutset tühistati.</item>
   </plurals>
   <!--GV2 invitation acceptance-->
-  <string name="MessageRecord_you_accepted_invite">Sa nõustusin grupiga liitumise kutsega.</string>
+  <string name="MessageRecord_you_accepted_invite">Sa nõustusid grupiga liitumise kutsega.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s nõustus grupiga liitumise kutsega.</string>
   <string name="MessageRecord_you_added_invited_member_s">Sa lisasid kutsutud liikme %1$s.</string>
   <string name="MessageRecord_s_added_invited_member_s">%1$s lisas kustutud liikme %2$s.</string>
@@ -1056,17 +1056,17 @@
   <!--GV2 description change-->
   <string name="MessageRecord_you_changed_the_group_description">Sa muutsid grupi kirjeldust.</string>
   <string name="MessageRecord_s_changed_the_group_description">%1$s muutis grupi kirjeldust..</string>
-  <string name="MessageRecord_the_group_description_has_changed">Grupi kirjeldus on muutunud.</string>
+  <string name="MessageRecord_the_group_description_has_changed">Grupi kirjeldus on muudetud.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Sa muutsid grupi pilti.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s muutis grupi pilti.</string>
   <string name="MessageRecord_the_group_group_avatar_has_been_changed">Grupi pilti on muudetud.</string>
   <!--GV2 attribute access level change-->
-  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Sa muutsid grupi info muutmise tasemeks “%1$s“.</string>
-  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s muutis grupi info muutmise tasemeks “%2$s“.</string>
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Sa muutsid, kes saab grupi infot muuta: “%1$s“.</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s muutis, kes saab grupi infot muuta: “%2$s“.</string>
   <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Grupi info muutjateks on nüüd \"%1$s\".</string>
   <!--GV2 membership access level change-->
-  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Sa muutsid grupi liikmete muutmise tasemeks “%1$s“.</string>
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Sa muutsid, kes saab grupi liikmesust muuta “%1$s“.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s muutis grupi liikmete muutmise tasemeks “%2$s“.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Grupi liikmete muutjateks on nüüd \"%1$s\".</string>
   <!--GV2 announcement group change-->
@@ -4254,6 +4254,7 @@
   <!--Message of safety number changes bottom sheet when showing individual records-->
   <!--Title of safety number changes bottom sheet when not showing individual records-->
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <!--Message of safety number changes bottom sheet when not showing individual records-->
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Kinnita turvanumbrit</string>

@@ -4258,6 +4258,7 @@
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">સલામતી નંબર તપાસ</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">સલામતી નંબર તપાસ પૂર્ણ</string>
+  <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <!--Message of safety number changes bottom sheet when not showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">તમારા %1$d કનેક્શન એવા છે જેમણે Signal ફરીથી ઇન્સ્ટોલ કરેલ અથવા તેમના ડિવાઇસ બદલેલ હોઈ શકે છે. તેમની સાથે તમારી સ્ટોરી શેર કરતાં પહેલાં તેમના સલામતી નંબરની સમીક્ષા કરો અથવા તેમને તમારી સ્ટોરીમાંથી દૂર કરવાનું વિચારો.</string>
   <!--Menu action to launch safety number verification screen-->

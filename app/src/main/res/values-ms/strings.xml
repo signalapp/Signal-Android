@@ -4139,6 +4139,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Pemeriksaan nombor keselamatan</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Pemeriksaan nombor keselamatan selesai</string>
+  <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <!--Message of safety number changes bottom sheet when not showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Anda mempunyai %1$d hubungan yang mungkin telah memasang semula Signal atau menukar peranti. Sebelum berkongsi cerita anda dengan mereka, semak nombor keselamatan mereka atau pertimbangkan untuk mengalih keluar mereka daripada cerita anda.</string>
   <!--Menu action to launch safety number verification screen-->

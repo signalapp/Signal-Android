@@ -1128,7 +1128,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Egy üzenet %s ismerősödtől nem érkezett meg</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s megváltoztatta a telefonszámát.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Tetszik ez az új funkció? Támogasd a Signal egy egyszeri adománnyal!</string>
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Tetszik ez az új funkció? Támogasd a Signalt egy egyszeri adománnyal!</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s csoport hívást indított · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s csoporthívásban van · %2$s</string>
@@ -3449,7 +3449,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MultiselectForwardFragment__add_a_message">Szöveg hozzáadása</string>
   <string name="MultiselectForwardFragment__faster_forwards">Gyorsabb továbbítás</string>
   <!--Displayed when user selects a video that will be clipped before sharing to a story-->
-  <string name="MultiselectForwardFragment__videos_will_be_trimmed">A videókat levágjuk 30 mp-es klipekre és több Történetként kerülnek elküldésre.</string>
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">A videókat levágjuk 30 mp-es klipekre, és több Történetként kerülnek elküldésre.</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
   <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">A Történetként kirakott videók nem lehetnek 30 mp-nél hosszabbak.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">A továbbított üzenetek azonnal elküldésre kerülnek.</string>
@@ -4255,6 +4255,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Message of safety number changes bottom sheet when showing individual records-->
   <!--Title of safety number changes bottom sheet when not showing individual records-->
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <!--Message of safety number changes bottom sheet when not showing individual records-->
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Bizt. szám ellenőrzése</string>

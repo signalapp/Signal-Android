@@ -357,7 +357,7 @@
   </plurals>
   <plurals name="ConversationListFragment_read_plural">
     <item quantity="one">Lees</item>
-    <item quantity="other">Lees</item>
+    <item quantity="other">Gelees</item>
   </plurals>
   <plurals name="ConversationListFragment_unread_plural">
     <item quantity="one">Ongelees</item>
@@ -512,8 +512,8 @@
   <string name="GiphyFragmentPagerAdapter_stickers">Plakkers</string>
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">Voeg lid toe?</string>
-  <string name="AddToGroupActivity_add_s_to_s">Voeg \"%1$s\" by \"%2$s\" by?</string>
-  <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" is by \"%2$s\" bygevoeg.</string>
+  <string name="AddToGroupActivity_add_s_to_s">Voeg \"%1$s\" by \"%2$s\"?</string>
+  <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" is by \"%2$s\" gevoeg.</string>
   <string name="AddToGroupActivity_add_to_group">Voeg toe by groep</string>
   <string name="AddToGroupActivity_add_to_groups">Voeg toe by groepe</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Hierdie persoon kan nie by legaatgroepe gevoeg word nie.</string>
@@ -702,7 +702,7 @@
   <string name="ManageGroupActivity_legacy_group_learn_more">Hierdie groep is ’n Legaatgroep. Funksies soos groepadmins is slegs vir Nuwe Groepe beskikbaar.</string>
   <string name="ManageGroupActivity_legacy_group_upgrade">Hierdie groep is ’n Legaatgroep. Vir toegang tot nuwe funksies soos @vermeldings en admins,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Hierdie Legaatgroep kan nie na ’n Nuwe Groep opgradeer word nie omdat dit te groot is. Die maksimum groepgrootte is %1$d</string>
-  <string name="ManageGroupActivity_upgrade_this_group">gradeer hierdie groep op</string>
+  <string name="ManageGroupActivity_upgrade_this_group">gradeer hierdie groep op.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Hierdie groep is \'n onbeveiligde MMS-groep. Om privaat te klets, nooi jou kontakte na Signal.</string>
   <string name="ManageGroupActivity_invite_now">Nooi nou uit</string>
   <string name="ManageGroupActivity_more">meer</string>
@@ -976,7 +976,7 @@
   <string name="MessageRecord_chat_session_refreshed">Kletssessie het verfris</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">\'n Lid kon nie by die nuwe groep bgevoeg word nie en is genooi om aan te sluit.</item>
-    <item quantity="other">%1$s lede kon nie by die nuwe groep bgevoeg word nie en is genooi om aan te sluit.</item>
+    <item quantity="other">%1$s lede kon nie by die Nuwe Groep bgevoeg word nie en is genooi om aan te sluit.</item>
   </plurals>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
     <item quantity="one">\'n Lid kon nie by die Nuwe Groep bygevoeg word nie en is verwyder.</item>
@@ -1118,7 +1118,7 @@
   <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s het ’n versoek van %2$s om by die groep aan te sluit geweier.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">’n Versoek van %1$s om by die groep aan te sluit is geweier.</string>
   <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Jy het jou versoek om by die groep aan te sluit, gekanselleer.</string>
-  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s het hul versoek gekanselleer om by die groep aan te sluit.</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s het hul versoek om by die groep aan te sluit, gekanselleer.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Jou veiligheidsnommer met %s het verander</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Jy het jou veiligheidsnommer met %s as geverifieer gemerk.</string>
@@ -1155,18 +1155,18 @@
   <string name="MessageRequestBottomView_delete">Skrap</string>
   <string name="MessageRequestBottomView_block">Versper</string>
   <string name="MessageRequestBottomView_unblock">Ontsper</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Laat %1$s aan jou boodskappe stuur, en deel jou naam en foto met hulle? Hulle sal nie weet dat jy hul boodskap gesien het nie tot jy aanvaar.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Laat %1$s toe om vir jou boodskappe stuur, en deel jou naam en foto met hulle? Tot jy aanvaar, sal hulle nie weet dat jy hulle boodskap gesien het nie.</string>
   <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Laat %1$s aan jou boodskappe stuur, en deel jou naam en foto met hulle? Jy sal geen boodskappe ontvang nie tot jy hulle ontsper.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Laat %1$s toe om vir jou boodskappe stuur, en deel jou naam en foto met hulle? Tot jy hulle ontsper, sal jy geen boodskappe ontvang nie.</string>
   <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Laat %1$s aan jou boodskappe stuur? Jy sal geen boodskappe ontvang nie tot jy hulle ontsper.</string>
-  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Wil jy bywerkings en nuus van %1$s kry? Jy sal geen bywerkings ontvang nie tot jy hulle ontsper.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Laat %1$s toe om vir jou boodskappe stuur? Tot jy hulle ontsper, sal jy geen boodskappe ontvang nie.</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Wil jy bywerkings en nuus van %1$s kry? Tot jy hulle ontsper, sal jy geen bywerkings ontvang nie.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Wil jy jou gesprek met hierdie groep voortsit en jou naam en foto met die lede daarvan deel?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Gradeer hierdie groep op om nuwe funksies soos @vermeldings en admins te aktiveer. Lede wat nie hul naam of foto in hierdie groep gedeel het nie, sal genooi word om aan te sluit.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Hierdie Legaatgroep kan nie meer gebruik word nie omdat dit te groot is. Die maksimum groepgrootte is %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Wil jy jou gesprek met %1$s voortsit en jou naam en foto met hulle deel?</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Sluit by hierdie groep aan en deel jou naam en foto met die lede? Hulle sal nie weet dat jy hulle boodskappe gesien het nie tot jy aanvaar.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Sluit by hierdie groep aan en deel jou naam en foto met die lede? Jy sal nie hulle boodskappe sien nie tot jy aanvaar.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Sluit by hierdie groep aan en deel jou naam en foto met die lede? tot jy aanvaar, sal hulle nie weet dat jy hulle boodskappe gesien het nie.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Sluit by hierdie groep aan en deel jou naam en foto met die lede? Tot jy aanvaar, sal jy nie hulle boodskappe sien nie.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Sluit by die groep aan? Totdat jy aanvaar, sal hulle nie weet dat jy hulle boodskappe gesien het nie.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Ontsper hierdie groep en deel jou naam en foto met die lede? Jy sal geen boodskappe ontvang nie tot jy hulle ontsper.</string>
   <string name="MessageRequestProfileView_view">Bekyk</string>
@@ -1213,7 +1213,7 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Jammer, dit is nie \'n geldige toestel-QR-kode vir toestelkoppeling  nie.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Koppel \'n Signal-toestel?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Dit lyk of jy \'n Signal-toestel probeer koppel met gebruik van \'n 3e-party-skandeerder. Vir jou beskerming, skandeer asseblief weer die kode van binne Signal.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal het die Kamera-toestemming nodig om \'n QR-kode te skandeer, maar dit is permanent geweier. Gaan asseblief na die toepassingsinstellings, kies \"Toestemmings\" en aktiveer \"Kamera\".</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal het die Kamera-toestemming nodig om \'n QR-kode te skandeer, maar dit is permanent geweier. Gaan asseblief na die toepassinginstellings, kies \"Toestemmings\" en aktiveer \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Kan nie \'n QR-kode sonder die Kameratoestemming skandeer nie</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Werk nou by</string>
@@ -1239,7 +1239,7 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">PIN verkeerd</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Slaan PIN-invoer oor?</string>
   <string name="PinRestoreEntryFragment_need_help">Hulp nodig?</string>
-  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Jou PIN is ’n kode van %1$d+ numeriese of alfanumeriese karakters wat jy geskep het.\n\nAs jy nie jou PIN kan onthou nie, kan jy ’n nuwe een skep. Jy kan registreer en jou rekening gebruik, maar jy sal sekere gestoorde instellings soos jou profielinligting verloor.</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Jou PIN is ’n kode van %1$d+ numeriese of alfanumeriese karakters wat jy geskep het.\n\nAs jy jou PIN nie kan onthou nie, kan jy ’n nuwe een skep. Jy kan registreer en jou rekening gebruik, maar jy sal sekere gestoorde instellings soos jou profielinligting verloor.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">As jy nie jou PIN kan onthou nie, kan jy ’n nuwe een skep. Jy kan registreer en jou rekening gebruik, maar jy sal sekere gestoorde instellings verloor, bv. jou profielinligting.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Skep nuwe PIN</string>
   <string name="PinRestoreEntryFragment_contact_support">Kontak steundiens</string>
@@ -1258,7 +1258,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Skep nuwe PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Waarskuwing</string>
-  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Indien jy die PIN deaktiveer sal jy alle data verloor wanneer jy Signal herregistreer, tensy jy handmatig \'n rugsteun maak en dit herwin. Jy kan nie Registrasiesluiting aanskakel terwyl die PIN gedeaktiveer is nie.</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Indien jy die PIN deaktiveer, sal jy alle data verloor wanneer jy Signal herregistreer, tensy jy handmatig \'n rugsteun maak en dit herwin. Jy kan nie Registrasiesluiting aanskakel terwyl die PIN gedeaktiveer is nie.</string>
   <string name="PinOptOutDialog_disable_pin">Deaktiveer PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Beoordeel hierdie toepassing</string>
@@ -1418,7 +1418,7 @@ gespesifiseer het
   <string name="RegistrationActivity_rate_limited_to_service">Jy het te veel keer probeer om hierdie nommer te registreer. Probeer gerus later weer.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Kan nie aan diens koppel nie. Kontroleer netwerkverbinding en probeer weer.</string>
   <string name="RegistrationActivity_non_standard_number_format">Niestandaard-nommerformaat</string>
-  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Die nommer wat jy ingesleutel het (%1$s) lyk of dit in \'n niestandaard-formaat is. \n\nHet jy %2$s bedoel?</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Die nommer wat jy ingesleutel het (%1$s), lyk of dit in \'n niestandaard-formaat is. \n\nHet jy %2$s bedoel?</string>
   <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Foonnommerformaat</string>
   <string name="RegistrationActivity_call_requested">Oproep versoek</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -1639,7 +1639,7 @@ ontvang!</string>
   <string name="MessageNotifier_message_delivery_failed">Aflewering van boodkskap het misluk.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Kon nie boodskap aflewer nie.</string>
   <string name="MessageNotifier_error_delivering_message">Fout met die aflewering van boodskap.</string>
-  <string name="MessageNotifier_message_delivery_paused">Aflewering van boodkskap onderbreek.</string>
+  <string name="MessageNotifier_message_delivery_paused">Aflewering van boodskap onderbreek.</string>
   <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Verifieer om te kan aanhou boodskappe stuur op Signal.</string>
   <string name="MessageNotifier_mark_all_as_read">Merk alles as gelees</string>
   <string name="MessageNotifier_mark_read">Merk as gelees</string>
@@ -1714,9 +1714,9 @@ ontvang!</string>
   <string name="UnauthorizedReminder_device_no_longer_registered">Toestel nie meer geregistreer nie</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Jy het waarskynlik jou foonnommer op ’n ander toestel by Signal geregistreer. Tik om te herregistreer.</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Om die oproep te beantwoord, verleen aan Signal toegang tot jou mikrofoon.</string>
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Om die oproep van %s te beantwoord, verleen aan Signal toegang tot jou mikrofoon.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal het Mikrofoon- en Kameratoestemmings nodig om om oproepe te maak en te ontvang, maar dit is permanent geweier. Gaan asseblief na die toepassinginstellings, kies \"Toestemmings\" en aktiveer \"Mikrofoon\" en \"Kamera\".</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Om die oproep te beantwoord, gee Signal toegang tot jou mikrofoon.</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Om die oproep van %s te beantwoord, gee Signal toegang tot jou mikrofoon.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal het Mikrofoon- en Kameratoestemmings nodig om oproepe te maak en te ontvang, maar dit is permanent geweier. Gaan asseblief na die toepassinginstellings, kies \"Toestemmings\" en aktiveer \"Mikrofoon\" en \"Kamera\".</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Op \'n gekoppelde toestel beantwoord.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Op \'n gekoppelde toestel geweier.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Besig op \'n gekoppelde toestel.</string>
@@ -1933,7 +1933,7 @@ ontvang!</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Niks gevind nie</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Wil jy jou bestaande teksboodskappe in Signal se geëngripteerde databasis invoer?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Wil jy jou bestaande teksboodskappe in Signal se geënkripteerde databasis invoer?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Die verstekdatabasis van die stelsel sal op geen wyse gemodifiseer of verander word nie.</string>
   <string name="database_migration_activity__skip">Slaan oor</string>
   <string name="database_migration_activity__import">Voer in</string>
@@ -2198,7 +2198,7 @@ ontvang!</string>
   <string name="preferences__chat_color_and_wallpaper">Kletskleur &amp; amp; muurpapier</string>
   <string name="preferences__disable_pin">Deaktiveer PIN</string>
   <string name="preferences__enable_pin">Aktiveer PIN</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Indien jy die PIN deaktiveer sal jy alle data verloor wanneer jy Signal herregistreer tensy jy met die hand \'n rugsteun maak en dit herwin. Jy kan nie Registrasiesluiting aanskakel terwyl die PIN gedeaktiveer is nie.</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Indien jy die PIN deaktiveer sal jy alle data verloor wanneer jy Signal herregistreer, tensy jy met die hand \'n rugsteun maak en dit herwin. Jy kan nie Registrasiesluiting aanskakel terwyl die PIN gedeaktiveer is nie.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN’s sorg dat inligting wat met Signal geberg word, geënkripteer is sodat jy alleen toegang daartoe het. Jou profiel, instellings en kontakte sal teruggestel word wanneer jy herinstalleer. Jou PIN sal nie benodig word om die toepassing oop te maak nie.</string>
   <string name="preferences__system_default">Stelsel verstek</string>
   <string name="preferences__language">Taal</string>
@@ -2214,7 +2214,7 @@ ontvang!</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Indien leesbewyse gedeaktiveer is, sal jy nie leesbewyse van andere kan sien nie.</string>
   <string name="preferences__typing_indicators">Tikaanduiders</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Indien tikaanduiders gedeaktiveer is, sal jy nie tikaanduiders van andere kan sien nie.</string>
-  <string name="preferences__request_keyboard_to_disable">Versoek toetsbord om verpersoonlikte leer te deaktiveer.</string>
+  <string name="preferences__request_keyboard_to_disable">Versoek toetsbord om verpersoonlikte lêer te deaktiveer.</string>
   <string name="preferences__this_setting_is_not_a_guarantee">Hierdie instelling is nie \'n waarborg nie en jou sleutelbord kan dit moontlik ignoreer.</string>
   <string name="preferences_app_protection__blocked_users">Versperde gebruikers</string>
   <string name="preferences_chats__when_using_mobile_data">Wanneer mobiele data gebruik word</string>
@@ -2233,7 +2233,7 @@ ontvang!</string>
   <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dit sal permanent alle boodskapgeskiedenis en media ouer as %1$s van jou toestel af verwyder.</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Dit sal alle gesprekke permanent tot slegs die %1$s mees onlangse boodskappe besnoei.</string>
   <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dit sal permanent alle boodskapgeskiedenis en media van jou toestel skrap.</string>
-  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Is jy  seker jy wil alle boodskapgeskiedenis skrap?</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Is jy seker jy wil alle boodskapgeskiedenis skrap?</string>
   <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Alle boodskapgeskiedenis sal permanent verwyder word. Hierdie aksie kan nie ongedaan gemaak word nie.</string>
   <string name="preferences_storage__delete_all_now">Skrap alles nou</string>
   <string name="preferences_storage__forever">Vir ewig</string>
@@ -2255,7 +2255,7 @@ ontvang!</string>
   <string name="preferences_data_and_storage__calls">Oproepe</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Gebruik minder data vir oproepe</string>
   <string name="preferences_data_and_storage__never">Nooit</string>
-  <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi en mobiele data</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi en mobiele data</string>
   <string name="preferences_data_and_storage__mobile_data_only">Slegs mobiele data</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Die gebruik van minder data kan oproepe op swak netwerke verbeter.</string>
   <string name="preferences_notifications__messages">Boodksappe</string>
@@ -2325,7 +2325,7 @@ ontvang!</string>
   <string name="PaymentsHomeFragment__send">Stuur</string>
   <string name="PaymentsHomeFragment__sent_s">%1$s gestuur</string>
   <string name="PaymentsHomeFragment__received_s">%1$s ontvang</string>
-  <string name="PaymentsHomeFragment__transfer_to_exchange">Plaas oor na valutaromskakelaar</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">Plaas oor na valuta-omskakelaar</string>
   <string name="PaymentsHomeFragment__currency_conversion">Valuta-omskakeling</string>
   <string name="PaymentsHomeFragment__deactivate_payments">Deaktiveer betalings</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Herwinfrase</string>
@@ -2387,7 +2387,7 @@ ontvang!</string>
   <string name="PaymentsTransferFragment__next">Volgende</string>
   <string name="PaymentsTransferFragment__invalid_address">Ongeldige adres</string>
   <string name="PaymentsTransferFragment__check_the_wallet_address">Gaan die adres na van die beursie waarheen jy probeer oordra en probeer weer.</string>
-  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Jy kan nie na jou eie Signal-beursieadres oorplaas nie. Voer die beursieadres van jou rekening by ’n ondersteunde valutaomskakelaar in.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Jy kan nie na jou eie Signal-beursieadres oorplaas nie. Voer die beursieadres van jou rekening by ’n ondersteunde valuta-omskakelaar in.</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Om \'n QR-kode te skandeer, het Signal toegang tot die kamera nodig.</string>
   <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal het Kamera-toestemming nodig om \'n QR-kode vas te lê. Gaan na die instellings, kies \"Toestemmings\" en aktiveer \"Kamera\".</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Om \'n QR-kode te skandeer, het Signal toegang tot die kamera nodig.</string>
@@ -2702,7 +2702,7 @@ ontvang!</string>
   <string name="BackupDialog_delete_backups">Skrap rugsteunkopieë?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Deaktiveer en skrap alle plaaslike rugsteunkopieë?</string>
   <string name="BackupDialog_delete_backups_statement">Skrap rugsteunkopieë</string>
-  <string name="BackupDialog_to_enable_backups_choose_a_folder">Kies \'n vouer om rugsteun te aktiveer. Rugsteunkopieë sal hierdie ligging gestoor word.</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">Kies \'n vouer om rugsteun te aktiveer. Rugsteunkopieë sal in hierdie ligging gestoor word.</string>
   <string name="BackupDialog_choose_folder">Kies gids</string>
   <string name="BackupDialog_copied_to_clipboard">Na knipbord gekopieer</string>
   <string name="BackupDialog_no_file_picker_available">Geen lêerkieser beskikbaar nie.</string>
@@ -2740,7 +2740,7 @@ ontvang!</string>
   <string name="preferences_app_protection__pin_reminders">PIN-herinnerings</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN’s sorg dat inligting wat met Signal geberg word, geënkripteer is sodat slegs jy toegang daartoe het. Jou profiel, instellings en kontakte sal teruggelaai word sodra jy Signal herinstalleer.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Voeg ekstra sekuriteit by deurdat jou Signal-PIN vereis sal word om jou foonnommer weer by Signal te registreer.</string>
-  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Herinnerings help jou om jou PIN te onthou, aangesien dit kan nie herwin kan word nie. Jy sal mettertyd minder gereeld gevra word.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Herinnerings help jou om jou PIN te onthou, aangesien dit nie herwin kan word nie. Jy sal mettertyd minder gereeld gevra word.</string>
   <string name="preferences_app_protection__turn_off">Skakel af</string>
   <string name="preferences_app_protection__confirm_pin">Bevestig PIN</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">Bevestig jou Signal-PIN</string>
@@ -3936,7 +3936,7 @@ Tik op + om iets by jou storie te voeg.</string>
   <!--Description of action for reaction button-->
   <string name="StoryReplyComposer__react_to_this_story">Reageer op hierdie storie</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
-  <string name="StoryReplyComposer__replying_privately_to_s">Besig om privaat e antwoord op %1$s</string>
+  <string name="StoryReplyComposer__replying_privately_to_s">Besig om privaat te antwoord op %1$s</string>
   <!--Context menu item to privately reply to a story response-->
   <string name="StoryGroupReplyItem__private_reply">Private Antwoord</string>
   <!--Context menu item to copy a story response-->
@@ -3986,19 +3986,19 @@ Tik op + om iets by jou storie te voeg.</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
   <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Laat antwoorde &amp;amp toe; reaksies</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
-  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Laat mense wat na jou storie kan kyk daarop reageer en antwoord</string>
+  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Laat toe dat mense wat na jou storie kan kyk, daarop reageer en antwoord</string>
   <!--Note about default sharing-->
-  <string name="MyStorySettingsFragment__hide_your_story_from">Versteek jou storie vi spesifieke mense. By verstek word jou storie met jou %1$s gedeel</string>
+  <string name="MyStorySettingsFragment__hide_your_story_from">Versteek jou storie vir spesifieke mense. By verstek word jou storie met jou %1$s gedeel</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
   <string name="SignalConnectionsBottomSheet___signal_connections">Signal-verbindings</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
   <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal-verbindings is mense wat jy gekies het om te vertrou, hetsy deur:</string>
   <!--Signal connections sheet bullet point 1-->
-  <string name="SignalConnectionsBottomSheet__starting_a_conversation">Besig om \'n gesprek te begin</string>
+  <string name="SignalConnectionsBottomSheet__starting_a_conversation">\'n Gesprek te begin</string>
   <!--Signal connections sheet bullet point 2-->
-  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Besig om \'n boodskapversoek te aanvaar</string>
+  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">\'n Boodskapversoek te aanvaar</string>
   <!--Signal connections sheet bullet point 3-->
-  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Om hulle in jou stelselkontakte te hê</string>
+  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Hulle in jou stelselkontakte te hê</string>
   <!--Note at the bottom of the Signal connections sheet-->
   <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Jou verbindings kan jou naam en foto sien, en kan plasings in \"My Storie\" sien, tensy jy dit vir hulle versteek.</string>
   <!--Clickable option to add a viewer to a private story-->
@@ -4131,7 +4131,7 @@ Tik op + om iets by jou storie te voeg.</string>
   <!--Conversation Item label for reactions to your story-->
   <string name="ConversationItem__reacted_to_your_story">Het op jou storie gereageer</string>
   <!--Conversation Item label for reactions to an unavailable story-->
-  <string name="ConversationItem__reacted_to_a_story">Het op die storie gereageer</string>
+  <string name="ConversationItem__reacted_to_a_story">Het op \'n storie gereageer</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Sien meer</string>
@@ -4146,7 +4146,7 @@ Tik op + om iets by jou storie te voeg.</string>
   <!--Headline text on start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__gift_a_badge">Gee ’n Wapen as Geskenk</string>
   <!--Description text on start fragment for gifting a badge-->
-  <string name="GiftFlowStartFragment__gift_someone_a_badge">Gee aan iemand \'n wapen as geskenk deur in hulle naam \'n skenking aan Signal te maak. Hulle sal \'n wapen kry om op hulle profielfoto te vertoon.</string>
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">Gee vir iemand \'n wapen as geskenk deur in hulle naam \'n skenking aan Signal te maak. Hulle sal \'n wapen kry om op hulle profielfoto te vertoon.</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Volgende</string>
   <!--Title text on choose recipient page for badge gifting-->
@@ -4164,7 +4164,7 @@ Tik op + om iets by jou storie te voeg.</string>
   <!--Displayed in the dialog while verifying the chosen recipient-->
   <string name="GiftFlowConfirmationFragment__verifying_recipient">Besig om ontvanger te verifieer…</string>
   <!--Title for sheet shown when opening a redeemed gift-->
-  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s het aan jou ’n geskenk gestuur</string>
+  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s het vir jou ’n geskenk gestuur</string>
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Dankie vir jou ondersteuning!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
@@ -4253,6 +4253,7 @@ Tik op + om iets by jou storie te voeg.</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
   <!--Title of safety number changes bottom sheet when not showing individual records-->
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <!--Message of safety number changes bottom sheet when not showing individual records-->
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Verifieer veiligheidsnommer</string>

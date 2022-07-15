@@ -4385,6 +4385,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Provjera sigurnosnog broja</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Provjera sigurnosnog broja je završena</string>
+  <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <!--Message of safety number changes bottom sheet when not showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Imate veze (njih %1$d) koje su možda ponovo instalirale Signal ili su promijenile uređaje. Prije nego podijelite priču s tim osobama, pregledajte njihove sigurnosne brojeve ili razmotrite opciju da ih uklonite iz svoje priče. </string>
   <!--Menu action to launch safety number verification screen-->

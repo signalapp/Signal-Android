@@ -4262,6 +4262,7 @@
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">بررسی شمارهٔ ایمنی</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">بررسی شمارهٔ ایمنی کامل شد</string>
+  <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <!--Message of safety number changes bottom sheet when not showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">شما %1$d آشنا دارید که ممکن است سیگنال را دوباره نصب کرده باشند یا دستگاه خود را تغییر داده باشند. قبل از به اشتراک گذاشتن استوری خود با آنها، شماره ایمنی آنها را بررسی کنید یا آنها را از استوری خود حذف کنید.</string>
   <!--Menu action to launch safety number verification screen-->

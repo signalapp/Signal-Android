@@ -4489,6 +4489,7 @@
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Проверка кода безопасности</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Проверка кода безопасности завершена</string>
+  <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <!--Message of safety number changes bottom sheet when not showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">У вас есть контакты (%1$d), которые, возможно, переустановили Signal или сменили устройства. Прежде чем поделиться с ними своей историей, просмотрите их коды безопасности или подумайте о том, чтобы удалить их из своей истории.</string>
   <!--Menu action to launch safety number verification screen-->

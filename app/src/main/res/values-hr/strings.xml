@@ -1541,7 +1541,7 @@ broj telefona</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN je uspješno provjeren. Podsjetit ćemo vas ponovno sutra.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN je uspješno provjeren. Podsjetit ćemo vas ponovno za nekoliko dana.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN je uspješno provjeren. Podsjetit ćemo vas ponovno za tjedan dana.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN je uspješno provjeren. Podsjetit ćemo vas ponovno za par tjedna.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN je uspješno provjeren. Podsjetit ćemo vas ponovno za nekoliko tjedana.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN je uspješno provjeren. Podsjetit ćemo vas ponovno za mjesec dana.</string>
   <!--Slide-->
   <string name="Slide_image">Slika</string>
@@ -2642,6 +2642,7 @@ broj telefona</string>
   <string name="Insights__title">Uvidi</string>
   <string name="InsightsDashboardFragment__title">Uvidi</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol je automatski zaštitio %1$d %% vaših odlaznih poruka tijekom zadnjih %2$d dana. Razgovori između korisnika Signala uvijek su end-to-end šifrirani.</string>
+  <string name="InsightsDashboardFragment__spread_the_word">Proširite vijest</string>
   <string name="InsightsDashboardFragment__not_enough_data">Nema dovoljno podataka</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Vaš postotak uvida izračunava se na temelju odlaznih poruka u proteklih %1$d dana koje nisu nestale ili bile izbrisane.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Započnite novi razgovor</string>
@@ -2802,6 +2803,7 @@ broj telefona</string>
   <string name="BackupDialog_verify">Potvrdi</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Uspješno ste unijeli lozinku sigurnosne kopije</string>
   <string name="BackupDialog_passphrase_was_not_correct">Lozinka nije točna</string>
+  <string name="LocalBackupJob_creating_signal_backup">Stvaranje sigurnosne kopije Signala…</string>
   <string name="LocalBackupJobApi29_backup_failed">Sigurnosno kopiranje nije uspjelo</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Vaša mapa sigurnosnih kopija je izbrisana ili premještena.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Datoteka vaše sigurnosne kopije prevelika je za pohranu na ovom volumenu.</string>
@@ -2812,6 +2814,7 @@ broj telefona</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Nazovi me \n (Dostupno za %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Kontaktirajte Signalovu podršku</string>
   <string name="RegistrationActivity_code_support_subject">Registracija Signala - Potvrdni kôd za Android</string>
+  <string name="RegistrationActivity_incorrect_code">Pogrešan kôd</string>
   <string name="BackupUtil_never">Nikada</string>
   <string name="BackupUtil_unknown">Nepoznato</string>
   <string name="preferences_app_protection__see_my_phone_number">Prikaži moj broj telefona</string>
@@ -2923,6 +2926,7 @@ broj telefona</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Držite oba uređaja blizu jedan drugog. Ne isključujte nijedan uređaj i držite Signal otvorenim. Prijenosi su end-to-end šifrirani.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d poruka do sada…</string>
   <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">Dosad preneseno: %1$s%% poruka</string>
   <string name="DeviceTransfer__cancel">Poništi</string>
   <string name="DeviceTransfer__try_again">Pokušajte ponovo</string>
   <string name="DeviceTransfer__stop_transfer_question">Zaustavi prijenos?</string>
@@ -2973,6 +2977,7 @@ broj telefona</string>
   <string name="RecipientBottomSheet_unblock">Odblokiraj</string>
   <string name="RecipientBottomSheet_add_to_contacts">Dodaj u kontakte</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">Nije moguće pronaći aplikaciju za otvaranje liste kontakata.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Dodaj u grupu</string>
   <string name="RecipientBottomSheet_add_to_another_group">Dodaj u drugu drugu</string>
   <string name="RecipientBottomSheet_view_safety_number">Prikaži sigurnosni broj</string>
@@ -2987,6 +2992,7 @@ broj telefona</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" će moći uređivati ovu grupu i njene članove</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">Ukloniti %1$s iz grupe?</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Ukloniti %1$s iz grupe? Ta osoba se više neće moći pridružiti putem poveznice grupe.</string>
   <string name="RecipientBottomSheet_remove">Ukloni</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopirano u međuspremnik</string>
   <string name="GroupRecipientListItem_admin">Administrator</string>
@@ -3075,16 +3081,28 @@ broj telefona</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Brisanje lokalnih podataka nije uspjelo. Možete ih ručno izbrisati u postavkama aplikacije.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Otvori postavke aplikacije</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">Napuštanje grupa…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">Brisanje računa…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
+  <string name="DeleteAccountFragment__canceling_your_subscription">Otkazivanje pretplate…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Ovisno o broju grupa kojima pripadate, ovo bi moglo potrajati nekoliko minuta</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Brisanje korisničkih podataka i ponovno postavljanje aplikacije</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">Korisnički račun nije izbrisan</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">Došlo je do problema pri dovršavanju postupka brisanja. Provjerite mrežnu vezu i pokušajte ponovno.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Pretraži države</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Preskoči</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d član</item>
+    <item quantity="few">%1$d člana</item>
+    <item quantity="other">%1$d članova</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Podijeli</string>
   <string name="ShareActivity__send">Pošalji</string>
@@ -3233,27 +3251,52 @@ broj telefona</string>
   <string name="AccountSettingsFragment__account">Račun</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">S vremenom ćete biti sve rjeđe upitani</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Zahtjeva vaš Signal PIN za ponovnu registriraciju vašeg broja telefona na Signal</string>
+  <string name="AccountSettingsFragment__change_phone_number">Promijeniti broj telefona</string>
   <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Upotrijebite ovo za promjenu svog trenutnog telefonskog broja u novi telefonski broj. Ovu promjenu nije moguće poništiti.\n\nPrije nastavka provjerite može li vaš novi broj primati SMS-ove ili pozive.</string>
   <string name="ChangeNumberFragment__continue">Nastavi</string>
   <!--Message shown on dialog after your number has been changed successfully.-->
+  <string name="ChangeNumber__your_phone_number_has_changed_to_s">Vaš novi broj telefona je %1$s</string>
   <!--Confirmation button to dismiss number changed dialog-->
   <string name="ChangeNumber__okay">U redu</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Promijeni broj</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Vaš stari broj telefona</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Stari broj telefona</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Vaš novi broj</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Novi broj telefona</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Broj telefona koji ste unijeli ne podudara se s vašim računima.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Morate navesti pozivni broj države svog starog broja</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Morate navesti svoj stari broj telefona</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Morate navesti pozivni broj države svog novog broja</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Morate navesti svoj novi broj telefona</string>
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">Promijeni broj</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Provjeravanje %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Potrebna je captcha provjera</string>
   <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Promijeni broj</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Promijenit ćete svoj broj mobitela iz %1$s u %2$s.\n\nPrije nego što nastavite, provjerite je li navedeni broj točan.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Uredi broj</string>
   <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Promjena Signal broja - pomoć u vezi PIN-a za Android (v2 PIN)</string>
   <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN se ne podudara</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">PIN povezan s vašim novim brojem razlikuje se od PIN-a povezanog s vašim starim brojem. Želite li zadržati stari PIN ili ga ažurirati?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Zadrži stari PIN</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Ažuriraj PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Zadržati stari PIN?</string>
   <!--ChangeNumberLockActivity-->
   <!--Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Čini se da ste pokušali promijeniti svoj broj, ali nismo uspjeli utvrditi je li promjena bila uspješna.\n\nPonovna provjera u tijeku…</string>
   <!--Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Potvrda uspješne promjene</string>
   <!--Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Vaš broj je potvrđen kao %1$s. Ako ovo nije vaš novi broj, ponovno pokrenite postupak promjene broja.</string>
   <!--Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow-->
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Promjena nije potvrđena</string>
   <!--Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow-->
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Nismo mogli utvrditi status vašeg zahtjeva za promjenu broja.\n\n(Pogreška: %1$s)</string>
   <!--Dialog button to retry confirming the number on the server-->
   <string name="ChangeNumberLockActivity__retry">Pokušajte ponovno</string>
   <!--Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow-->
@@ -3270,11 +3313,16 @@ broj telefona</string>
   <string name="NotificationsSettingsFragment__notify_when">Obavijesti me kada…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakt se pridružio/la Signalu</string>
   <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">Profili za obavijesti</string>
   <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">Profili</string>
   <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Izradite profil za primanje obavijesti samo od ljudi i grupa koje odaberete.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">Profili za obavijesti</string>
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">Izradi profil</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Blokirani</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d kontakata</string>
@@ -3316,6 +3364,8 @@ broj telefona</string>
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 licenca</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Kvaliteta medija</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Kvaliteta poslanih medija</string>
   <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Slanje visokokvalitetnih medija zahtjeva veću potrošnju mobilnih podataka.</string>
   <string name="DataAndStorageSettingsFragment__high">Visoko</string>
   <string name="DataAndStorageSettingsFragment__standard">Standardno</string>
@@ -3405,6 +3455,7 @@ broj telefona</string>
   <string name="ConversationSettingsFragment__muted">Utišano</string>
   <string name="ConversationSettingsFragment__search">Pretraži</string>
   <string name="ConversationSettingsFragment__disappearing_messages">Nestajuće poruke</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">Zvukovi i obavijesti</string>
   <string name="ConversationSettingsFragment__contact_details">Detalji o kontaktu</string>
   <string name="ConversationSettingsFragment__view_safety_number">Prikaži sigurnosni broj</string>
   <string name="ConversationSettingsFragment__block">Blokiraj</string>
@@ -3415,6 +3466,7 @@ broj telefona</string>
   <string name="ConversationSettingsFragment__see_all">Prikaži sve</string>
   <string name="ConversationSettingsFragment__add_members">Dodaj članove</string>
   <string name="ConversationSettingsFragment__permissions">Dozvole</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">Zahtjevi i pozivnice</string>
   <string name="ConversationSettingsFragment__group_link">Poveznica grupe</string>
   <string name="ConversationSettingsFragment__add_as_a_contact">Dodaj kao kontakt</string>
   <string name="ConversationSettingsFragment__unmute">Uključi zvuk</string>
@@ -3422,6 +3474,7 @@ broj telefona</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Razgovor je utišan zauvijek</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefonski broj je kopiran u međuspremnik.</string>
   <string name="ConversationSettingsFragment__phone_number">Broj telefona</string>
+  <string name="ConversationSettingsFragment__get_badges">Osvojite značke za svoj profil podržavajući Signal. Dodirnite značku za više informacija.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Dodaj članove</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Uredi detalje o grupi</string>
@@ -3495,74 +3548,179 @@ broj telefona</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
   <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Videozapisi koji se šalju u Priče ne smiju biti dulji od 30 sekundi.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Proslijeđene poruke sada se šalju odmah.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Pošalji %1$d poruku</item>
+    <item quantity="few">Pošalji %1$d poruke</item>
+    <item quantity="other">Pošalji %1$d poruka</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Poslana poruka</item>
+    <item quantity="few">Poslane poruke</item>
+    <item quantity="other">Poslane poruke</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Poruka nije poslana</item>
+    <item quantity="few">Poruke nisu poslane</item>
+    <item quantity="other">Poruke nisu poslane</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Nije moguće proslijediti ovu poruku jer više nije dostupna.</item>
+    <item quantity="few">Nije moguće proslijediti ove poruke jer više nisu dostupne.</item>
+    <item quantity="other">Nije moguće proslijediti ove poruke jer više nisu dostupne.</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Dosegnut je limit</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Dodaj poruku</string>
+  <string name="MediaReviewFragment__add_a_reply">Dodajte odgovor</string>
+  <string name="MediaReviewFragment__send_to">Poslati</string>
+  <string name="MediaReviewFragment__view_once_message">Jednom vidljiva poruka</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Jedna ili više stavki bile su prevelike</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Jedna ili više stavki bile su nevažeće</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Odabrano je previše stavki</string>
   <string name="ImageEditorHud__cancel">Poništi</string>
   <string name="ImageEditorHud__draw">Crtaj</string>
+  <string name="ImageEditorHud__write_text">Napišite tekst</string>
+  <string name="ImageEditorHud__add_a_sticker">Dodajte naljepnicu</string>
   <string name="ImageEditorHud__blur">Zamuti</string>
+  <string name="ImageEditorHud__done_editing">Završeno uređivanje</string>
+  <string name="ImageEditorHud__clear_all">Poništite sve</string>
   <string name="ImageEditorHud__undo">Poništi</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Prebacivanje između markera i signira</string>
   <string name="ImageEditorHud__delete">Izbriši</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Prebacivanje između stilova teksta</string>
   <string name="MediaCountIndicatorButton__send">Pošalji</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Dodirni za uklanjanje</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Pritisni za odabir slike profila</string>
   <string name="MediaReviewImagePageFragment__discard">Poništi</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Odbaciti promjene?</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Izgubit ćete sve promjene koje ste napravili na ovoj fotografiji.</string>
+  <string name="CameraFragment__failed_to_open_camera">Otvaranje kamere nije uspjelo</string>
+  <string name="BadgesOverviewFragment__my_badges">Moje značke</string>
+  <string name="BadgesOverviewFragment__featured_badge">Istaknuta značka</string>
   <string name="BadgesOverviewFragment__display_badges_on_profile">Prikažite bedževe na svom profilu</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Ažuriranje profila nije uspjelo</string>
+  <string name="BadgeSelectionFragment__select_badges">Odaberite značke</string>
   <string name="SelectFeaturedBadgeFragment__preview">Pregled</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Odaberite značku</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Morate odabrati značku</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Ažuriranje profila nije uspjelo</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Pretplatite se</string>
+  <string name="ImageView__badge">Značka</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal napajaju ljudi poput vas.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Podržite tehnologiju koja je napravljena za vas, ne za vaše podatke, i pridružite se zajednici ljudi koji je održavaju.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Podržite tehnologiju koja je napravljena za vas, ne za vaše podatke, i pridružite se zajednici koja održava Signal.</string>
   <string name="SubscribeFragment__make_a_recurring_monthly_donation">Donirajte mjesečno kako bi podržali Signal i njegovu tehnologiju koja je napravljena za Vas, a ne za Vaše podatke.</string>
+  <string name="SubscribeFragment__currency">Valuta</string>
   <string name="SubscribeFragment__more_payment_options">Više opcija plaćanja</string>
   <string name="SubscribeFragment__cancel_subscription">Otkažite pretplatu</string>
   <string name="SubscribeFragment__confirm_cancellation">Potvrditi otkazivanje?</string>
   <string name="SubscribeFragment__you_wont_be_charged_again">Više vam neće biti naplaćeno. Vaša će značka biti uklonjena s vašeg profila na kraju razdoblja naplate.</string>
   <string name="SubscribeFragment__not_now">Ne sada</string>
   <string name="SubscribeFragment__confirm">Potvrdi</string>
+  <string name="SubscribeFragment__update_subscription">Nadogradnja pretplate</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Vaša pretplata je otkazana.</string>
+  <string name="SubscribeFragment__update_subscription_question">Nadograditi pretplatu?</string>
   <string name="SubscribeFragment__update">Ažuriraj</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Danas će vam se naplatiti puni iznos pretplate (%1$s). Vaša nova pretplata obnavljat će se mjesečno.</string>
+  <string name="Subscription__s_per_month">%s/mjesečno</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/mjesečno · Obnavljanje%2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/mjesečno · Istječe %2$s</string>
   <!--First small text blurb on learn more sheet-->
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal je neprofitna organizacija bez oglasa i investitora koju podržavaju samo ljudi koji ga koriste i cijene. Donirajte na mjesečnoj bazi kako biste dobili svoj bedž profila u znak vaše potpore projektu.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Zašto donirati?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal se zalaže za razvoj tehnologije privatnosti otvorenog koda koja štiti slobodu izražavanja i omogućuje sigurnu globalnu komunikaciju.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Vaša donacija podupire ovaj cilj i financira razvoj i rad aplikacije koju milijuni korisnika koriste za privatnu komunikaciju. Bez reklama. Bez praćenja. Bez šale.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Hvala vam na podršci!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Hvala vam na uplati!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Osvojili ste %s značku! Prikažite je na svom profilu kako biste kako biste potakli druge da doniraju Signalu.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Osvojili ste značku podrške! Prikažite je na svom profilu kako biste kako biste potakli druge da doniraju Signalu.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Možete i</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">postati mjesečni pretplatnik.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Prikaži bedž na svom profilu</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Istakni ovu značku</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Gotovo</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kada imate više od jedne značke, možete odabrati koju želite istaknuti kako bi ju drugi mogli vidjeti na vašem profilu.</string>
+  <string name="BecomeASustainerFragment__get_badges">Osvojite značke za svoj profil podržavajući Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal je neprofitna organizacija bez oglašivača ili investitora, koju podržavaju samo ljudi poput vas.</string>
   <!--Button label for creating a monthly donation-->
+  <string name="ManageDonationsFragment__make_a_monthly_donation">Mjesečna donacija</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">Više</string>
   <!--Heading for receipts area of manage subscriptions page-->
   <string name="ManageDonationsFragment__receipts">Računi</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">Moja pretplata</string>
+  <string name="ManageDonationsFragment__manage_subscription">Upravljanje pretplatom</string>
   <!--Label for Donation Receipts button-->
   <string name="ManageDonationsFragment__donation_receipts">Potvrde o donacijama</string>
   <string name="ManageDonationsFragment__badges">Bedževi</string>
   <string name="ManageDonationsFragment__subscription_faq">Najčešća pitanja</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Pogreška pri aktivaciji pretplate.</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">Druge opcije doniranja</string>
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">Poklonite značku</string>
   <string name="BoostFragment__give_signal_a_boost">Donirajte jednokratnom uplatom</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Donirajte jednokratno i osvojite značku podrške na %1$d dana.</string>
   <string name="Boost__enter_custom_amount">Unesi prilagođeni iznos</string>
+  <string name="Boost__one_time_contribution">Jednokratna donacija</string>
   <string name="MySupportPreference__add_a_signal_boost">Dodaj Signal Boost</string>
+  <string name="MySupportPreference__s_per_month">%1$s/mjesečno</string>
+  <string name="MySupportPreference__renews_s">Obnavlja se %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Obrada transakcije…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Nije moguće dodati značku. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Molimo Vas da kontaktirate podršku</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Značka podrška je istekla</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Mjesečna donacija otkazana</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Značka podrške je istekla i ne prikazuje se više na vašem profilu.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Možete ponovno aktivirati značku podrške na dodatnih 30 dana jednokratnom donacijom.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Možete nastaviti koristiti Signal, ali ako želite podržati aplikaciju koja je napravljena za vas, razmislite o tome da postanete mjesečni pretplatnik.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Postanite pretplatnik</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Dodaj Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne sada</string>
   <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Vaša pretplata je automatski otkazana jer ste dugo bili neaktivni. Vaša %1$sznačka se više ne prikazuje na vašem profilu.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Vaša mjesečna pretplata je otkazana jer nije bilo moguće obraditi uplatu. Vaša značka više se ne prikazuje na vašem profilu.</string>
   <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Vaša mjesečna pretplata je otkazana. %1$s Vaša %2$s značka više se ne prikazuje na vašem profilu.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Možete nastaviti koristiti Signal, ali ako želite podržati aplikaciju i ponovno aktivirati svoju značku, obnovite pretplatu.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Obnovi pretplatu</string>
   <!--Button label to send user to Google Pay website-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Otvori Google Pay</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Plaćanje pretplate nije moguće obraditi</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Imamo problema s naplatom vaše uplate za program Signal pretplatnici. Provjerite je li vaš način plaćanja ažuran. Ako nije, ažurirajte ga u Google Payu. Signal će ponovno pokušati obraditi uplatu za nekoliko dana.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Ne prikazuj ponovno</string>
+  <string name="Subscription__please_contact_support_for_more_information">Kontaktirajte korisničku podršku za više informacija.</string>
   <string name="Subscription__contact_support">Kontaktirajte podršku</string>
+  <string name="Subscription__earn_a_s_badge">Osvojite %1$s značku</string>
   <string name="SubscribeFragment__processing_payment">Obrada uplate…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Pogreška pri obradi plaćanja</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Pogreška pri obradi plaćanja. %1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Vašu značku nije bilo moguće dodati na vaš profil, ali možda vam je naplaćena. Molimo kontaktirajte podršku.</string>
+  <string name="DonationsErrors__your_payment">Vašu transakciju nije bilo moguće obraditi te vam se iznos neće naplatiti. Molimo pokušajte ponovno.</string>
+  <string name="DonationsErrors__still_processing">Obrada u tijeku</string>
+  <string name="DonationsErrors__couldnt_add_badge">Nije moguće dodati značku</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__failed_to_validate_badge">Provjera značke nije uspjela</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__could_not_validate">Nije moguće potvrditi odgovor poslužitelja. Molimo kontaktirajte podršku.</string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__failed_to_send_gift_badge">Slanje značke na poklon nije uspjelo</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__could_not_send_gift_badge">Nije moguće poslati značku. Molimo kontaktirajte podršku.</string>
+  <string name="DonationsErrors__your_badge_could_not">Vašu značku nije bilo moguće dodati na vaš profil, ali možda vam je naplaćena. Molimo kontaktirajte podršku.</string>
   <string name="DonationsErrors__your_payment_is_still">Vaša se uplata još uvijek obrađuje. To može potrajati nekoliko minuta ovisno o vašoj vezi.</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay nije dostupan</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Morate postaviti Google Pay za donacije unutar aplikacije.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Pogreška mreže. Provjerite vezu i pokušajte ponovno.</string>
   <string name="NetworkFailure__retry">Pokušajte ponovno</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
@@ -3587,6 +3745,7 @@ broj telefona</string>
   <!--Stripe decline code purchase not supported-->
   <!--Stripe decline code your card has expired-->
   <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">Otvori Google Pay</string>
   <!--Stripe decline code incorrect card number-->
   <!--Stripe decline code incorrect cvc-->
   <!--Stripe decline code insufficient funds-->
@@ -3622,6 +3781,7 @@ broj telefona</string>
   <string name="SelectRecipientsFragment__add">Dodaj</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
   <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">Profil</string>
   <!--Button that starts the create new notification profile flow-->
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
   <string name="NotificationProfilesFragment__on">Uključeno</string>
@@ -3937,6 +4097,7 @@ broj telefona</string>
   <!--Title text on choose recipient page for badge gifting-->
   <!--Title text on confirm gift page-->
   <!--Heading text specifying who the gift will be sent to-->
+  <string name="GiftFlowConfirmationFragment__send_to">Poslati</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
   <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Vaš poklon bit će poslan primatelju u privatnoj poruci. U nastavku napišite vlastitu poruku.</string>
   <!--Text explaining that this gift is a one time donation-->
@@ -3960,6 +4121,7 @@ broj telefona</string>
   <!--Expired gift sheet top description text-->
   <!--Expired gift sheet bottom description text-->
   <!--Expired gift sheet make a monthly donation button-->
+  <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Mjesečna donacija</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ne sada</string>
   <!--Label under name for private stories-->
@@ -4002,6 +4164,7 @@ broj telefona</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
   <!--Title of safety number changes bottom sheet when not showing individual records-->
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <!--Message of safety number changes bottom sheet when not showing individual records-->
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Potvrdi sigurnosni broj</string>

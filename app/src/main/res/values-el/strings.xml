@@ -275,7 +275,7 @@
   </plurals>
   <!--ConversationFragment-->
   <!--Toast text when contacts activity is not found-->
-  <string name="ConversationFragment__contacts_app_not_found">Δεν βρέθηκε εφαρμογή επαφής.</string>
+  <string name="ConversationFragment__contacts_app_not_found">Δεν βρέθηκε εφαρμογή επαφών.</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Διαγραφή επιλεγμένου μηνύματος;</item>
     <item quantity="other">Διαγραφή επιλεγμένων μηνυμάτων;</item>
@@ -1128,7 +1128,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Ένα μήνυμα από τον/την %s δεν μπόρεσε να παραδοθεί</string>
   <string name="MessageRecord_s_changed_their_phone_number">Ο/Η %1$s άλλαξε τον αριθμό τηλεφώνου του/της.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Απολαμβάνεις τη νέα λειτουργία; Υποστήριξε το Signal με μια μεμονωμένη δωρεά.</string>
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Απολαμβάνεις αυτή τη νέα λειτουργία; Υποστήριξε το Signal με μια μεμονωμένη δωρεά.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">Ο/Η %1$s ξεκίνησε μια ομαδική κλήση · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">Ο/Η %1$s είναι στην ομαδική κλήση · %2$s</string>
@@ -4038,7 +4038,7 @@
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Παρουσιάστηκε απρόσμενο σφάλμα</string>
   <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
-  <string name="ChangeMyStoryMembershipFragment__all_except">Όλα εκτός από…</string>
+  <string name="ChangeMyStoryMembershipFragment__all_except">Όλες εκτός από…</string>
   <!--Title for screen allowing user to only share "My Story" entries with specific people-->
   <string name="ChangeMyStoryMembershipFragment__only_share_with">Κοινοποίηση μόνο σε…</string>
   <!--Done button label for hide story from screen-->
@@ -4207,7 +4207,7 @@
   <!--Dialog title for removing a group story-->
   <string name="ContactSearchMediator__remove_group_story">Αφαίρεση ιστορίας ομάδας;</string>
   <!--Dialog message for removing a group story-->
-  <string name="ContactSearchMediator__this_will_remove">Με αυτήν την επιλογή, η ιστορία θα αφαιρεθεί από τη λίστα. Θα μπορείτε ακόμη να δείτε ιστορίες από αυτήν την ομάδα.</string>
+  <string name="ContactSearchMediator__this_will_remove">Με αυτήν την επιλογή, η ιστορία θα αφαιρεθεί από αυτή τη λίστα. Θα μπορείς ακόμη να δεις ιστορίες από αυτήν την ομάδα.</string>
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">Αφαίρεση</string>
   <!--Dialog title for deleting a private story-->
@@ -4234,7 +4234,7 @@
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Έληξε</string>
   <!--Label indicating that a user can tap to advance to the next post in a story-->
-  <string name="StoryFirstTimeNavigationView__tap_to_advance">Πάτα για το επόμενο</string>
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">Πάτα για συνέχεια</string>
   <!--Label indicating swipe direction to skip current story-->
   <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Σύρε για παράλειψη</string>
   <!--Label indicating swipe direction to exit story viewer-->
@@ -4249,6 +4249,7 @@
   <!--Message of safety number changes bottom sheet when showing individual records-->
   <!--Title of safety number changes bottom sheet when not showing individual records-->
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <!--Message of safety number changes bottom sheet when not showing individual records-->
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Επαλήθευση αριθμού ασφαλείας</string>

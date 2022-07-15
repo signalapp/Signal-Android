@@ -1128,7 +1128,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">இருந்து ஒரு செய்தி %s வழங்க முடியவில்லை</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s அவர்களது தொலைபேசி எண்ணை மாற்றியுள்ளார்.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">இந்த புதிய அம்சம் பிடித்திருக்கிறதா? ஒரு முறை நன்கொடை மூலம் சிக்னலை ஆதரிக்க உதவுங்கள்.</string>
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">இந்த புதிய அம்சம் பிடித்திருக்கிறதா? ஒரு முறைக்கான நன்கொடை மூலம் சிக்னலை ஆதரிக்க உதவுங்கள்.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$sகுழு அழைப்பைத் தொடங்கினார்%2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s குழு அழைப்பில் உள்ளார் %2$s</string>
@@ -2261,9 +2261,9 @@
   <string name="preferences_events__contact_joined_signal">தொடர்பு  Signal இல் இணைந்தது </string>
   <string name="preferences_notifications__priority">முன்னுரிமை</string>
   <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
-  <string name="preferences_communication__category_censorship_circumvention">தணிக்கை புறக்கணிப்பு</string>
+  <string name="preferences_communication__category_censorship_circumvention">தணிக்கையை மீறி செயலாற்றுதல்</string>
   <!--Title of the \'censorship circumvention\' toggle switch-->
-  <string name="preferences_communication__censorship_circumvention">தணிக்கை புறக்கணிப்பு</string>
+  <string name="preferences_communication__censorship_circumvention">தணிக்கையை மீறி செயலாற்றுதல்</string>
   <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">இயக்கப்பட்டால், தணிக்கை தவிர்க்க Signal முயற்சிக்கும். நீங்கள் Signal தணிக்கை செய்யப்பட்ட இடத்தில் இல்லாவிட்டால் இந்த அம்சத்தை இயக்க வேண்டாம்.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
   <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">உங்கள் கணக்கு தொலைபேசி எண்ணின் அடிப்படையில் தணிக்கை சுற்றளவு செயல்படுத்தப்பட்டுள்ளது.</string>
@@ -3853,13 +3853,13 @@
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">ஸ்டோரியை மறைக்கவும்</string>
   <!--Context menu option to unhide a story-->
-  <string name="StoriesLandingItem__unhide_story">ஸ்டோரி மறைநிலை மாற்றவும்</string>
+  <string name="StoriesLandingItem__unhide_story">ஸ்டோரியின் மறைநிலையை மாற்றவும்</string>
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">முன்னனுப்புக</string>
   <!--Context menu option to share a story-->
-  <string name="StoriesLandingItem__share">பகிர்…</string>
+  <string name="StoriesLandingItem__share">பகிரவும்…</string>
   <!--Context menu option to go to story chat-->
-  <string name="StoriesLandingItem__go_to_chat">அரட்டைக்குச் செல் </string>
+  <string name="StoriesLandingItem__go_to_chat">சாட்டிற்குச் செல் </string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">அனுப்புகிறது …</string>
   <!--Label when multiple stories are pending sending-->
@@ -3873,7 +3873,7 @@
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">ஸ்டோரியை மறைப்பதா?</string>
   <!--Message of dialog confirming decision to hide a story-->
-  <string name="StoriesLandingFragment__new_story_updates">%1$s-இருந்து புதிய ஸ்டோரி புதுப்பிப்புகள் இனி ஸ்டோரீக்கள் பட்டியலின் மேலே தோன்றாது.</string>
+  <string name="StoriesLandingFragment__new_story_updates">%1$s-இடமிருந்து புதிய ஸ்டோரி புதுப்பிப்புகள் இனி ஸ்டோரீக்கள் பட்டியலின் மேலே தோன்றாது.</string>
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">மறை</string>
   <!--Displayed in Snackbar after story is hidden-->
@@ -3892,7 +3892,7 @@
   <!--Title of dialog to confirm deletion of story-->
   <string name="MyStories__delete_story">ஸ்டோரியை நீக்குவதா?</string>
   <!--Message of dialog to confirm deletion of story-->
-  <string name="MyStories__this_story_will_be_deleted">உங்களுக்கும் அதைப் பெற்ற அனைவருக்கும் இந்த ஸ்டோரி நீக்கப்படும்.</string>
+  <string name="MyStories__this_story_will_be_deleted">இந்த ஸ்டோரி உங்களுக்கும் அதைப் பெற்ற அனைவருக்கும் நீக்கப்படும்.</string>
   <!--Toast shown when story media cannot be saved-->
   <string name="MyStories__unable_to_save">சேமிக்க இயலவில்லை</string>
   <!--Displayed at bottom of story viewer when current item has views-->
@@ -3917,19 +3917,19 @@
   <!--Label for the reply button in story viewer, which will launch the group story replies bottom sheet.-->
   <string name="StoryViewerPageFragment__reply_to_group">குழுவுக்குப் பதிலளிக்கவும்</string>
   <!--Displayed when a story has no views-->
-  <string name="StoryViewsFragment__no_views_yet">இன்னும் பார்வைகள் ஏதுமில்லை</string>
+  <string name="StoryViewsFragment__no_views_yet">இதுவரை பார்வைகள் ஏதுமில்லை</string>
   <!--Displayed when user has disabled receipts-->
   <!--Button label displayed when user has disabled receipts-->
   <!--Displayed when a story has no replies yet-->
-  <string name="StoryGroupReplyFragment__no_replies_yet">இன்னும் பதில்கள் ஏதுமில்லை</string>
+  <string name="StoryGroupReplyFragment__no_replies_yet">இதுவரை பதில்கள் ஏதுமில்லை</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
   <string name="StoryGroupReactionReplyItem__reacted_to_the_story">ஸ்டோரிக்கு பதிலளிக்கப்பட்டது</string>
   <!--Label for story views tab-->
   <string name="StoryViewsAndRepliesDialogFragment__views">பார்வைகள்</string>
   <!--Label for story replies tab-->
-  <string name="StoryViewsAndRepliesDialogFragment__replies">பதிலகள்</string>
+  <string name="StoryViewsAndRepliesDialogFragment__replies">பதில்கள்</string>
   <!--Description of action for reaction button-->
-  <string name="StoryReplyComposer__react_to_this_story">இந்த ஸ்டோரிக்கு பதிலளி</string>
+  <string name="StoryReplyComposer__react_to_this_story">இந்த ஸ்டோரிக்கு பதிலளிக்கவும்</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
   <string name="StoryReplyComposer__replying_privately_to_s">%1$s-க்கு தனிப்பட்ட முறையில் பதிலளிக்கிறது</string>
   <!--Context menu item to privately reply to a story response-->
@@ -3949,7 +3949,7 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">எனது ஸ்டோரி</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">இந்தக் ஸ்டோரியை யார் பார்க்கலாம்</string>
+  <string name="MyStorySettingsFragment__who_can_see_this_story">இந்த ஸ்டோரியை யார் பார்க்கலாம்</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">-இடமிருந்து ஸ்டோரியை மறைக்கவும்</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -3979,7 +3979,7 @@
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">பதில்கள் &amp;ஆம்ப்; எதிர்வினைகள்</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
-  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">பதில்கள் &amp;ஆம்ப்; எதிர்வினைகளை அனுமதிக்கவும்</string>
+  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">பதில்களை அனுமதிக்கவும் &amp;ஆம்ப்; எதிர்வினைகள்</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
   <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">உங்கள் ஸ்டோரியைப் பார்க்கக்கூடியவர்கள் எதிர்வினையாற்றி பதிலளிக்கட்டும்</string>
   <!--Note about default sharing-->
@@ -3995,13 +3995,13 @@
   <!--Signal connections sheet bullet point 3-->
   <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">உங்கள் அமைப்பு தொடர்புகளில் அவற்றை வைத்திருப்பது</string>
   <!--Note at the bottom of the Signal connections sheet-->
-  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">உங்கள் இணைப்புகளால் உங்கள் பெயரையும் புகைப்படத்தையும் பார்க்க முடியும், மேலும் \"எனது ஸ்டோரி\"க்கான இடுகைகளை நீங்கள் அவர்களிடம் இருந்து மறைக்காதவரை அவர்களால் பார்க்க முடியும்.</string>
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">உங்கள் இணைப்புகளால் உங்கள் பெயரையும் புகைப்படத்தையும் பார்க்க முடியும், மேலும் \"எனது ஸ்டோரி\"-க்கான போஸ்டுகளை நீங்கள் அவர்களிடம் இருந்து மறைக்காதவரை அவர்களால் பார்க்க முடியும்.</string>
   <!--Clickable option to add a viewer to a private story-->
   <string name="PrivateStorySettingsFragment__add_viewer">பார்வையாளரைச் சேர்க்கவும் </string>
   <!--Clickable option to delete a custom story-->
   <string name="PrivateStorySettingsFragment__delete_private_story">தனிப்பட்ட ஸ்டோரியை நீக்கவும்</string>
   <!--Dialog title when attempting to remove someone from a private story-->
-  <string name="PrivateStorySettingsFragment__remove_s">%1$s அகற்றுவதா?</string>
+  <string name="PrivateStorySettingsFragment__remove_s">%1$s-ஐ அகற்றுவதா?</string>
   <!--Dialog message when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__this_person_will_no_longer">இந்த நபர் இனி உங்கள் ஸ்டோரியைப் பார்க்க மாட்டார்.</string>
   <!--Positive action label when attempting to remove someone from a private story-->
@@ -4029,13 +4029,13 @@
   <!--Camera label for media selection toggle-->
   <string name="MediaSelectionActivity__camera">புகைப்பட கருவி</string>
   <!--Hint for entering a URL for a text post-->
-  <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">இணைப்பை உள்ளிடவும் அல்லது ஒட்டவும்</string>
+  <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">இணைப்பை டைப் செய்யவும் அல்லது ஒட்டவும்</string>
   <!--Displayed prior to the user entering a URL for a text post-->
   <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">உங்கள் ஸ்டோரியின் பார்வையாளர்களுடன் ஒரு இணைப்பைப் பகிரவும்</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">தேடு </string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
-  <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">எதிர் பாராத பிழை ஏற்பட்டது</string>
+  <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">எதிர்பாராத பிழை ஏற்பட்டது</string>
   <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
   <string name="ChangeMyStoryMembershipFragment__all_except">அனைத்தும், இது தவிர…</string>
   <!--Title for screen allowing user to only share "My Story" entries with specific people-->
@@ -4045,19 +4045,19 @@
   <!--Dialog title for first time adding something to a story-->
   <string name="StoryDialogs__add_to_story_q">ஸ்டோரியில் சேர்ப்பதா?</string>
   <!--Dialog message for first time adding something to a story-->
-  <string name="StoryDialogs__adding_content">உங்கள் ஸ்டோரியில் உள்ளடக்கத்தைச் சேர்ப்பதன் மூலம் உங்கள் சிக்னல் இணைப்புகளை 24 மணிநேரம் அதைப் பார்க்க அனுமதிக்கிறது. உங்கள் ஸ்டோரியை  யார் பார்க்கலாம் என்பதை அமைப்புகளில் மாற்றலாம்.</string>
+  <string name="StoryDialogs__adding_content">உங்கள் ஸ்டோரியில் பொருளடக்கத்தைச் சேர்ப்பதன் மூலம் உங்கள் சிக்னல் இணைப்புகளை 24 மணிநேரம் அதைப் பார்க்க அனுமதிக்கிறது. உங்கள் ஸ்டோரியை  யார் பார்க்கலாம் என்பதை அமைப்புகளில் மாற்றலாம்.</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <string name="StoryDialogs__add_to_story">ஸ்டோரியில் சேர்க்கவும்</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <string name="StoryDialogs__edit_viewers">பார்வையாளர்களைத் திருத்தவும்</string>
   <!--Error message shown when a failure occurs during story send-->
-  <string name="StoryDialogs__story_could_not_be_sent">ஸ்டோரி அனுப்ப முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயற்சிக்கவும்.</string>
+  <string name="StoryDialogs__story_could_not_be_sent">ஸ்டோரியை அனுப்ப முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயற்சிக்கவும்.</string>
   <!--Error message dialog button to resend a previously failed story send-->
   <string name="StoryDialogs__send">அனுப்புக</string>
   <!--Privacy Settings toggle title for stories-->
-  <string name="PrivacySettingsFragment__share_and_view_stories">பகிர் &amp;ஆம்ப்; ஸ்டோரீக்கள் காணவும்</string>
+  <string name="PrivacySettingsFragment__share_and_view_stories">பகிரவும் &amp;ஆம்ப்; ஸ்டோரீக்களை காணவும்</string>
   <!--Privacy Settings toggle summary for stories-->
-  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">இந்த விருப்பம் முடக்கப்பட்டிருக்கும் போது உங்களால் இனி ஸ்டோரீக்களைப் பகிரவோ பார்க்கவோ முடியாது.</string>
+  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">இந்த விருப்பத்தேர்வு முடக்கப்பட்டிருக்கும் போது உங்களால் இனி ஸ்டோரீக்களைப் பகிரவோ பார்க்கவோ முடியாது.</string>
   <!--New story viewer selection screen title-->
   <string name="CreateStoryViewerSelectionFragment__choose_viewers">பார்வையாளர்களைத் தேர்ந்தெடுக்கவும்</string>
   <!--New story viewer selection action button label-->
@@ -4104,17 +4104,17 @@
   <!--Displayed in the viewer when the network is not available-->
   <string name="StorySlateView__no_internet_connection">இணைய இணைப்பு இல்லை</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
-  <string name="StorySlateView__couldnt_load_content">உள்ளடக்கத்தை ஏற்ற முடியவில்லை</string>
+  <string name="StorySlateView__couldnt_load_content">பொருளடக்கத்தை ஏற்ற முடியவில்லை</string>
   <!--Toasted when the user externally shares to a text story successfully-->
   <string name="TextStoryPostCreationFragment__sent_story">ஸ்டோரி அனுப்பப்பட்டது</string>
   <!--Toasted when the user external share to a text story fails-->
-  <string name="TextStoryPostCreationFragment__failed_to_send_story">ஸ்டோரி அனுப்ப முடியவில்லை</string>
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">ஸ்டோரியை அனுப்புவதில் தோல்வி</string>
   <!--Displayed in a dialog to let the user select a given users story-->
   <string name="StoryDialogs__view_story">ஸ்டோரியைக் காணவும்</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
   <string name="StoryDialogs__view_profile_photo">சுயவிவர புகைப்படத்தைக் காணவும்</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
-  <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">தணிக்கைச் சுற்றறிக்கையை முடக்கம் செய்வதா?</string>
+  <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">தணிக்கையை மீறி செயலாற்றுவதை முடக்கம் செய்வதா?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">சிறந்த அனுபவத்திற்காக நீங்கள் இப்போது சிக்னல் சேவையுடன் நேரடியாக இணையலாம்.</string>
   <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -4124,9 +4124,9 @@
   <!--Conversation Item label for when you react to someone else\'s story-->
   <string name="ConversationItem__you_reacted_to_s_story">%1$s-யின் ஸ்டோரிக்கு நீங்கள் பதிலளித்துள்ளீர்கள்</string>
   <!--Conversation Item label for reactions to your story-->
-  <string name="ConversationItem__reacted_to_your_story">உங்கள் ஸ்டோரிக்குப் பதிலாளித்துள்ளார்</string>
+  <string name="ConversationItem__reacted_to_your_story">உங்கள் ஸ்டோரிக்கு பதிலளித்துள்ளார்</string>
   <!--Conversation Item label for reactions to an unavailable story-->
-  <string name="ConversationItem__reacted_to_a_story">ஒரு ஸ்டோரிக்குப் பதிலளித்துள்ளார்</string>
+  <string name="ConversationItem__reacted_to_a_story">ஒரு ஸ்டோரிக்கு பதிலளித்துள்ளார்</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">மேலும் பார்க்கவும்</string>
@@ -4153,7 +4153,7 @@
   <!--Text explaining that gift will be sent to the chosen recipient-->
   <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">உங்கள் பரிசு பெறுநருக்கு 1 -க்கு 1 செய்தியில் அனுப்பப்படும். உங்கள் சொந்த செய்தியை கீழே சேர்க்கவும்.</string>
   <!--Text explaining that this gift is a one time donation-->
-  <string name="GiftFlowConfirmationFragment__one_time_donation">ஒரு-முறை நன்கொடை</string>
+  <string name="GiftFlowConfirmationFragment__one_time_donation">ஒரு முறைக்கான நன்கொடை</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">கூட்டு ஒரு செய்தி</string>
   <!--Displayed in the dialog while verifying the chosen recipient-->
@@ -4179,7 +4179,7 @@
   <!--Expired gift sheet title-->
   <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">உங்களது பரிசு பேட்ஜ் காலாவதியாகிவிட்டது</string>
   <!--Expired gift sheet top description text-->
-  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">உங்கள் பரிசு பேட்ஜ் காலாவதியானது, இனி உங்கள் சுயவிவரத்தில் உள்ள மற்றவர்களுக்கு அது தெரியப்படாது.</string>
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">உங்கள் பரிசு பேட்ஜ் காலாவதியானது, மற்றும் உங்கள் சுயவிவரத்தில் உள்ள மற்றவர்களுக்கு இனியும் அது தெரியப்படாது.</string>
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">உங்களுக்காக உருவாக்கப்பட்ட தொழில்நுட்பத்தை தொடர்ந்து ஆதரிக்க, மாதாந்திர காப்பாளராக மாற கருத்தில் கொள்ளவும்.</string>
   <!--Expired gift sheet make a monthly donation button-->
@@ -4248,6 +4248,7 @@
   <!--Message of safety number changes bottom sheet when showing individual records-->
   <!--Title of safety number changes bottom sheet when not showing individual records-->
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <!--Message of safety number changes bottom sheet when not showing individual records-->
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">பாதுகாப்பு எண்ணைச் சரிபார்க்கவும்</string>
