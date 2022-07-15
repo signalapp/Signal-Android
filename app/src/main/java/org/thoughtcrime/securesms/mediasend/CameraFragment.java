@@ -53,7 +53,6 @@ public interface CameraFragment {
     void onVideoCaptured(@NonNull FileDescriptor fd);
     void onVideoCaptureError();
     void onGalleryClicked();
-    int getDisplayRotation();
     void onCameraCountButtonClicked();
     @NonNull LiveData<Optional<Media>> getMostRecentMediaItem();
     @NonNull MediaConstraints getMediaConstraints();

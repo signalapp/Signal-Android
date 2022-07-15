@@ -53,6 +53,8 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import java.io.ByteArrayOutputStream;
 import java.util.Optional;
 
+import io.reactivex.rxjava3.disposables.Disposable;
+
 /**
  * Camera capture implemented with the legacy camera API's. Should only be used if sdk < 21.
  */
@@ -71,6 +73,8 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
   private Controller                   controller;
   private OrderEnforcer<Stage>         orderEnforcer;
   private Camera1Controller.Properties properties;
+  private RotationListener             rotationListener;
+  private Disposable                   rotationListenerDisposable;
 
   private final Observer<Optional<Media>> thumbObserver = this::presentRecentItemThumbnail;
   private boolean isThumbAvailable;
@@ -116,6 +120,7 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
     super.onViewCreated(view, savedInstanceState);
     requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
 
+    rotationListener  = new RotationListener(requireContext());
     cameraPreview     = view.findViewById(R.id.camera_preview);
     controlsContainer = view.findViewById(R.id.camera_controls_container);
 
@@ -161,8 +166,16 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
 
     orderEnforcer.run(Stage.SURFACE_AVAILABLE, () -> {
       camera.linkSurface(cameraPreview.getSurfaceTexture());
-      camera.setScreenRotation(controller.getDisplayRotation());
     });
+
+    rotationListenerDisposable = rotationListener.getObservable()
+                                                 .distinctUntilChanged()
+                                                 .filter(rotation -> rotation != RotationListener.Rotation.ROTATION_180)
+                                                 .subscribe(rotation -> {
+                                                   orderEnforcer.run(Stage.SURFACE_AVAILABLE, () -> {
+                                                     camera.setScreenRotation(rotation.getSurfaceRotation());
+                                                   });
+                                                 });
 
     orderEnforcer.run(Stage.CAMERA_PROPERTIES_AVAILABLE, this::updatePreviewScale);
     requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
@@ -171,6 +184,7 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
   @Override
   public void onPause() {
     super.onPause();
+    rotationListenerDisposable.dispose();
     camera.release();
     orderEnforcer.reset();
   }
@@ -232,7 +246,6 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
 
   @Override
   public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
-    orderEnforcer.run(Stage.SURFACE_AVAILABLE, () -> camera.setScreenRotation(controller.getDisplayRotation()));
     orderEnforcer.run(Stage.CAMERA_PROPERTIES_AVAILABLE, this::updatePreviewScale);
   }
 

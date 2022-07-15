@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.mediasend.v2.capture
 
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -140,15 +139,6 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
       captureChildFragment.fadeOutControls {
         navigator.goToGallery(controller)
       }
-    }
-  }
-
-  override fun getDisplayRotation(): Int {
-    return if (Build.VERSION.SDK_INT >= 30) {
-      requireContext().display?.rotation ?: 0
-    } else {
-      @Suppress("DEPRECATION")
-      requireActivity().windowManager.defaultDisplay.rotation
     }
   }
 

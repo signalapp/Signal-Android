@@ -126,11 +126,6 @@ public class AvatarSelectionActivity extends AppCompatActivity implements Camera
   }
 
   @Override
-  public int getDisplayRotation() {
-    return getWindowManager().getDefaultDisplay().getRotation();
-  }
-
-  @Override
   public void onCameraCountButtonClicked() {
     throw new UnsupportedOperationException("Cannot select more than one photo");
   }

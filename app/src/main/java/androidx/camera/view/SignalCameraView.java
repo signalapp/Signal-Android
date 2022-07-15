@@ -67,9 +67,12 @@ import androidx.lifecycle.LiveData;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.mediasend.RotationListener;
 
 import java.io.File;
 import java.util.concurrent.Executor;
+
+import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
  * A {@link View} that displays a preview of the camera with methods {@link
@@ -134,6 +137,10 @@ public final class SignalCameraView extends FrameLayout {
   // BEGIN Custom Signal Code Block
   private Consumer<Throwable> errorConsumer;
   private Throwable           pendingError;
+
+  private RotationListener          rotationListener;
+  private Disposable                rotationDisposable;
+  private RotationListener.Rotation rotation;
   // END Custom Signal Code Block
 
   public SignalCameraView(@NonNull Context context) {
@@ -190,6 +197,7 @@ public final class SignalCameraView extends FrameLayout {
     addView(mPreviewView = new PreviewView(getContext()), 0 /* view position */);
 
     // Begin custom signal code block
+    rotationListener = new RotationListener(context);
     mPreviewView.setImplementationMode(PreviewView.ImplementationMode.COMPATIBLE);
     mCameraModule = new SignalCameraXModule(this, error -> {
       if (errorConsumer != null) {
@@ -314,6 +322,9 @@ public final class SignalCameraView extends FrameLayout {
     DisplayManager dpyMgr =
         (DisplayManager) getContext().getSystemService(Context.DISPLAY_SERVICE);
     dpyMgr.registerDisplayListener(mDisplayListener, new Handler(Looper.getMainLooper()));
+    rotationDisposable = rotationListener.getObservable().distinctUntilChanged().subscribe(rotation -> {
+      this.rotation = rotation;
+    });
   }
 
   @Override
@@ -322,6 +333,7 @@ public final class SignalCameraView extends FrameLayout {
     DisplayManager dpyMgr =
         (DisplayManager) getContext().getSystemService(Context.DISPLAY_SERVICE);
     dpyMgr.unregisterDisplayListener(mDisplayListener);
+    rotationDisposable.dispose();
   }
 
   /**
@@ -368,22 +380,28 @@ public final class SignalCameraView extends FrameLayout {
     super.onLayout(changed, left, top, right, bottom);
   }
 
+  // BEGIN Custom Signal Code Block
   /**
    * @return One of {@link Surface#ROTATION_0}, {@link Surface#ROTATION_90}, {@link
    * Surface#ROTATION_180}, {@link Surface#ROTATION_270}.
    */
   int getDisplaySurfaceRotation() {
-    Display display = getDisplay();
+    if (rotation == null) {
+      Display display = getDisplay();
 
-    // Null when the View is detached. If we were in the middle of a background operation,
-    // better to not NPE. When the background operation finishes, it'll realize that the camera
-    // was closed.
-    if (display == null) {
-      return 0;
+      // Null when the View is detached. If we were in the middle of a background operation,
+      // better to not NPE. When the background operation finishes, it'll realize that the camera
+      // was closed.
+      if (display == null) {
+        return 0;
+      }
+
+      return display.getRotation();
+    } else {
+      return rotation.getSurfaceRotation();
     }
-
-    return display.getRotation();
   }
+  // END Custom Signal Code Block
 
   /**
    * Returns the scale type used to scale the preview.

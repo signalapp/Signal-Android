@@ -70,11 +70,11 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   private static final String TAG              = Log.tag(CameraXFragment.class);
   private static final String IS_VIDEO_ENABLED = "is_video_enabled";
 
-  private SignalCameraView       camera;
-  private ViewGroup              controlsContainer;
-  private Controller             controller;
-  private View                   selfieFlash;
-  private MemoryFileDescriptor   videoFileDescriptor;
+  private SignalCameraView     camera;
+  private ViewGroup            controlsContainer;
+  private Controller           controller;
+  private View                 selfieFlash;
+  private MemoryFileDescriptor videoFileDescriptor;
 
   private final Observer<Optional<Media>> thumbObserver = this::presentRecentItemThumbnail;
   private boolean isThumbAvailable;
