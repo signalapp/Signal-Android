@@ -76,10 +76,12 @@ def selectableVariants = [
         'playProdDebug',
         'playProdSpinner',
         'playProdPerf',
+        'playProdInstrumentation',
         'playProdRelease',
         'playStagingDebug',
         'playStagingSpinner',
         'playStagingPerf',
+        'playStagingInstrumentation',
         'playStagingRelease',
         'websiteProdSpinner',
         'websiteProdRelease',
@@ -91,6 +93,7 @@ android {
 
     flavorDimensions 'distribution', 'environment'
     useLibrary 'org.apache.http.legacy'
+    testBuildType 'instrumentation'
 
     kotlinOptions {
         jvmTarget = "1.8"
@@ -262,6 +265,17 @@ android {
 
             buildConfigField "String", "BUILD_VARIANT_TYPE", "\"Debug\""
         }
+
+        instrumentation {
+            initWith debug
+            isDefault false
+            minifyEnabled false
+            matchingFallbacks = ['debug']
+            applicationIdSuffix ".instrumentation"
+
+            buildConfigField "String", "BUILD_VARIANT_TYPE", "\"Instrumentation\""
+        }
+
         spinner {
             initWith debug
             isDefault false
