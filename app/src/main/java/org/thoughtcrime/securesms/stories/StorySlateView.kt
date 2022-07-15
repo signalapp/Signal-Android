@@ -57,19 +57,15 @@ class StorySlateView @JvmOverloads constructor(
       callback?.onStateChanged(State.HIDDEN, postId)
     }
 
-    if (this.state.isValidTransitionTo(state)) {
-      when (state) {
-        State.LOADING -> moveToProgressState(State.LOADING)
-        State.ERROR -> moveToErrorState()
-        State.RETRY -> moveToProgressState(State.RETRY)
-        State.NOT_FOUND -> moveToNotFoundState()
-        State.HIDDEN -> moveToHiddenState()
-      }
-
-      callback?.onStateChanged(state, postId)
-    } else {
-      Log.d(TAG, "Invalid state transfer: ${this.state} -> $state")
+    when (state) {
+      State.LOADING -> moveToProgressState(State.LOADING)
+      State.ERROR -> moveToErrorState()
+      State.RETRY -> moveToProgressState(State.RETRY)
+      State.NOT_FOUND -> moveToNotFoundState()
+      State.HIDDEN -> moveToHiddenState()
     }
+
+    callback?.onStateChanged(state, postId)
   }
 
   fun setBackground(blur: BlurHash?) {
@@ -160,24 +156,6 @@ class StorySlateView @JvmOverloads constructor(
     RETRY(2, true),
     NOT_FOUND(3, false),
     HIDDEN(4, false);
-
-    fun isValidTransitionTo(newState: State): Boolean {
-      if (newState in listOf(HIDDEN, NOT_FOUND)) {
-        return true
-      }
-
-      if (newState == this) {
-        return true
-      }
-
-      return when (this) {
-        LOADING -> newState == ERROR
-        ERROR -> newState == RETRY
-        RETRY -> newState == ERROR
-        HIDDEN -> newState == LOADING
-        else -> false
-      }
-    }
 
     companion object {
       fun fromCode(code: Int): State {

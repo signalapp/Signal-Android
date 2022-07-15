@@ -123,10 +123,8 @@ object Stories {
   @WorkerThread
   private fun enqueueAttachmentsFromStoryForDownloadSync(record: MmsMessageRecord, ignoreAutoDownloadConstraints: Boolean) {
     SignalDatabase.attachments.getAttachmentsForMessage(record.id).filterNot { it.isSticker }.forEach {
-      if (it.transferState == AttachmentDatabase.TRANSFER_PROGRESS_PENDING) {
-        val job = AttachmentDownloadJob(record.id, it.attachmentId, ignoreAutoDownloadConstraints)
-        ApplicationDependencies.getJobManager().add(job)
-      }
+      val job = AttachmentDownloadJob(record.id, it.attachmentId, ignoreAutoDownloadConstraints)
+      ApplicationDependencies.getJobManager().add(job)
     }
 
     if (record.hasLinkPreview()) {

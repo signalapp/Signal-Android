@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.sms.MessageSender.PreUploadResult
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.MessageUtil
 import java.util.Collections
+import java.util.Optional
 import java.util.concurrent.TimeUnit
 
 private val TAG = Log.tag(MediaSelectionRepository::class.java)
@@ -237,7 +238,7 @@ class MediaSelectionRepository(context: Context) {
     val storyPreUploadMessages: MutableMap<PreUploadResult, MutableList<OutgoingSecureMediaMessage>> = mutableMapOf()
     val storyClipMessages: MutableList<OutgoingSecureMediaMessage> = ArrayList()
     val distributionListPreUploadSentTimestamps: MutableMap<PreUploadResult, Long> = mutableMapOf()
-    val distributionListStoryClipsSentTimestamps: MutableMap<Media, Long> = mutableMapOf()
+    val distributionListStoryClipsSentTimestamps: MutableMap<MediaKey, Long> = mutableMapOf()
 
     for (contact in contacts) {
       val recipient = Recipient.resolved(contact.recipientId)
@@ -304,7 +305,7 @@ class MediaSelectionRepository(context: Context) {
                 recipient,
                 body,
                 listOf(MediaUploadRepository.asAttachment(context, it)),
-                if (recipient.isDistributionList) distributionListStoryClipsSentTimestamps.getOrPut(it) { System.currentTimeMillis() } else System.currentTimeMillis(),
+                if (recipient.isDistributionList) distributionListStoryClipsSentTimestamps.getOrPut(it.asKey()) { System.currentTimeMillis() } else System.currentTimeMillis(),
                 -1,
                 TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong()),
                 isViewOnce,
@@ -357,4 +358,10 @@ class MediaSelectionRepository(context: Context) {
       MessageSender.sendStories(context, storyClipMessages, null, null)
     }
   }
+
+  private fun Media.asKey(): MediaKey {
+    return MediaKey(this, this.transformProperties)
+  }
+
+  data class MediaKey(val media: Media, val mediaTransform: Optional<TransformProperties>)
 }
