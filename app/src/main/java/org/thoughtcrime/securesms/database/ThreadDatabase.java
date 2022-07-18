@@ -25,6 +25,7 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.arch.core.util.Function;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
@@ -516,17 +517,21 @@ public class ThreadDatabase extends Database {
     }
   }
 
-  public long getUnreadThreadCount() {
-    SQLiteDatabase db         = databaseHelper.getSignalReadableDatabase();
-    String[]       projection = SqlUtil.buildArgs("COUNT(*)");
-    String         where      = READ + " != " + ReadStatus.READ.serialize() + " AND " + ARCHIVED + " = 0 AND " + MEANINGFUL_MESSAGES + " != 0";
+  public @NonNull Long getUnreadThreadCount() {
+    return getUnreadThreadIdAggregate(SqlUtil.COUNT, cursor -> CursorUtil.getAggregateOrDefault(cursor, 0L, cursor::getLong));
+  }
 
-    try (Cursor cursor = db.query(TABLE_NAME, projection, where, null, null, null, null)) {
-      if (cursor != null && cursor.moveToFirst()) {
-        return cursor.getLong(0);
-      } else {
-        return 0;
-      }
+  public @Nullable String getUnreadThreadIdList() {
+    return getUnreadThreadIdAggregate(SqlUtil.buildArgs("GROUP_CONCAT(" + ID + ")"),
+                                      cursor -> CursorUtil.getAggregateOrDefault(cursor, null, cursor::getString));
+  }
+
+  private @NonNull <T> T getUnreadThreadIdAggregate(@NonNull String[] aggregator, @NonNull Function<Cursor, T> mapCursorToType) {
+    SQLiteDatabase db    = databaseHelper.getSignalReadableDatabase();
+    String         where = READ + " != " + ReadStatus.READ.serialize() + " AND " + ARCHIVED + " = 0 AND " + MEANINGFUL_MESSAGES + " != 0";
+
+    try (Cursor cursor = db.query(TABLE_NAME, aggregator, where, null, null, null, null)) {
+      return mapCursorToType.apply(cursor);
     }
   }
 

@@ -15,6 +15,9 @@ object SqlUtil {
   /** The maximum number of arguments (i.e. question marks) allowed in a SQL statement.  */
   private const val MAX_QUERY_ARGS = 999
 
+  @JvmField
+  val COUNT = arrayOf("COUNT(*)")
+
   @JvmStatic
   fun tableExists(db: SupportSQLiteDatabase, table: String): Boolean {
     db.query("SELECT name FROM sqlite_master WHERE type=? AND name=?", arrayOf("table", table)).use { cursor ->
