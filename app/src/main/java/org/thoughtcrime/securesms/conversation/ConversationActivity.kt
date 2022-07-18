@@ -37,7 +37,9 @@ open class ConversationActivity : PassphraseRequiredActivity(), ConversationPare
 
   override fun onNewIntent(intent: Intent?) {
     super.onNewIntent(intent)
-    fragment.onNewIntent(intent)
+
+    finish()
+    startActivity(intent)
   }
 
   override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
