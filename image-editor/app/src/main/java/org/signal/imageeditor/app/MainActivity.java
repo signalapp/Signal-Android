@@ -119,7 +119,7 @@ public final class MainActivity extends AppCompatActivity {
 
   private static EditorModel initialModel() {
 
-    EditorModel model = EditorModel.create();
+    EditorModel model = EditorModel.create(0xFF000000);
 
     EditorElement image = new EditorElement(new UrlRenderer("https://cdn.aarp.net/content/dam/aarp/home-and-family/your-home/2018/06/1140-house-inheriting.imgcache.rev68c065601779c5d76b913cf9ec3a977e.jpg"));
     image.getFlags().setSelectable(false).persist();

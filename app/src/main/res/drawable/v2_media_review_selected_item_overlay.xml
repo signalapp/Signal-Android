@@ -4,32 +4,21 @@
         <layer-list>
             <item>
                 <shape android:shape="rectangle">
-                    <size android:width="44dp" android:height="44dp" />
+                    <size android:width="48dp" android:height="48dp" />
                     <solid android:color="@color/transparent_black_40" />
-                    <stroke android:color="@color/core_ultramarine" android:width="2dp"/>
-                    <corners android:radius="10dp" />
-                    <padding android:right="12dp" android:bottom="12dp" android:top="12dp" android:left="12dp" />
+                    <stroke android:width="2dp" android:color="@color/signal_light_colorPrimary" />
+                    <corners android:radius="8dp" />
+                    <padding android:bottom="12dp" android:left="12dp" android:right="12dp" android:top="12dp" />
                 </shape>
             </item>
             <item android:drawable="@drawable/ic_trash_white_24" />
         </layer-list>
     </item>
     <item>
-        <layer-list>
-            <item>
-                <shape android:shape="rectangle">
-                    <size android:width="44dp" android:height="44dp" />
-                    <stroke android:color="@color/core_ultramarine" android:width="2dp"/>
-                    <corners android:radius="10dp" />
-                </shape>
-            </item>
-            <item>
-                <shape android:shape="rectangle">
-                    <size android:width="44dp" android:height="44dp" />
-                    <stroke android:color="@color/core_white" android:width="1.5dp"/>
-                    <corners android:radius="10dp" />
-                </shape>
-            </item>
-        </layer-list>
+        <shape android:shape="rectangle">
+            <size android:width="48dp" android:height="48dp" />
+            <stroke android:width="2dp" android:color="@color/core_white" />
+            <corners android:radius="8dp" />
+        </shape>
     </item>
 </selector>

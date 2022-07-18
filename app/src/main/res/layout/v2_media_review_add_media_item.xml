@@ -6,6 +6,7 @@
     android:layout_height="44dp"
     android:layout_marginStart="8dp"
     android:background="?selectableItemBackgroundBorderless"
+    android:padding="4dp"
     android:scaleType="fitCenter"
     app:layout_constraintBottom_toTopOf="@+id/controls_shade"
     app:layout_constraintStart_toStartOf="parent"

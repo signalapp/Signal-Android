@@ -1,6 +1,7 @@
 package org.signal.imageeditor.core;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
@@ -15,8 +16,11 @@ import android.widget.FrameLayout;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.TypedArrayUtils;
 import androidx.core.view.GestureDetectorCompat;
 
+import org.signal.imageeditor.R;
 import org.signal.imageeditor.core.model.EditorElement;
 import org.signal.imageeditor.core.model.EditorModel;
 import org.signal.imageeditor.core.model.ThumbRenderer;
@@ -44,6 +48,8 @@ import java.util.List;
  * which centers the new item in the current crop area.
  */
 public final class ImageEditorView extends FrameLayout {
+
+  private static final int DEFAULT_BLACKOUT_COLOR = 0xFF000000;
 
   private HiddenEditText editText;
 
@@ -91,22 +97,32 @@ public final class ImageEditorView extends FrameLayout {
 
   public ImageEditorView(Context context) {
     super(context);
-    init();
+    init(null);
   }
 
   public ImageEditorView(Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
-    init();
+    init(attrs);
   }
 
   public ImageEditorView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
-    init();
+    init(attrs);
   }
 
-  private void init() {
+  private void init(@Nullable AttributeSet attributeSet) {
     setWillNotDraw(false);
-    setModel(EditorModel.create());
+
+    final int blackoutColor;
+    if (attributeSet != null) {
+      TypedArray typedArray = getContext().obtainStyledAttributes(attributeSet, R.styleable.ImageEditorView);
+      blackoutColor = typedArray.getColor(R.styleable.ImageEditorView_imageEditorView_blackoutColor, DEFAULT_BLACKOUT_COLOR);
+      typedArray.recycle();
+    } else {
+      blackoutColor = DEFAULT_BLACKOUT_COLOR;
+    }
+
+    setModel(EditorModel.create(blackoutColor));
 
     editText = createAHiddenTextEntryField();
 

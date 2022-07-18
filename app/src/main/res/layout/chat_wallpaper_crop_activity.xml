@@ -23,6 +23,7 @@
         android:id="@+id/image_editor"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:imageEditorView_blackoutColor="@color/signal_colorBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

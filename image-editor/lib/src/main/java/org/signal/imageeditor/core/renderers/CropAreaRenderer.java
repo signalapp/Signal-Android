@@ -7,7 +7,7 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.os.Parcel;
 
-import androidx.annotation.ColorRes;
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
 
@@ -25,7 +25,7 @@ import org.signal.imageeditor.core.RendererContext;
  */
 public final class CropAreaRenderer implements Renderer {
 
-  @ColorRes
+  @ColorInt
   private final int     color;
   private final boolean renderCenterThumbs;
 
@@ -43,7 +43,7 @@ public final class CropAreaRenderer implements Renderer {
     Resources resources = rendererContext.context.getResources();
 
     canvas.clipPath(cropClipPath);
-    canvas.drawColor(ResourcesCompat.getColor(resources, color, null));
+    canvas.drawColor(color);
 
     rendererContext.mapRect(dst, Bounds.FULL_BOUNDS);
 
@@ -91,7 +91,7 @@ public final class CropAreaRenderer implements Renderer {
     rendererContext.restore();
   }
 
-  public CropAreaRenderer(@ColorRes int color, boolean renderCenterThumbs) {
+  public CropAreaRenderer(@ColorInt int color, boolean renderCenterThumbs) {
     this.color              = color;
     this.renderCenterThumbs = renderCenterThumbs;
 

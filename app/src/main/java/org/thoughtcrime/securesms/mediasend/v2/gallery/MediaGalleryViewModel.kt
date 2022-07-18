@@ -47,7 +47,7 @@ class MediaGalleryViewModel(bucketId: String?, bucketTitle: String?, private val
           state.copy(
             bucketId = bucketId, bucketTitle = bucketTitle,
             items = media.map {
-              MediaGallerySelectableItem.FileModel(it, false)
+              MediaGallerySelectableItem.FileModel(it, false, 0)
             }
           )
         }

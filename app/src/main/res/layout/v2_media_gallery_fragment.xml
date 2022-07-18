@@ -3,23 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/core_black">
+    android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/media_gallery_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/core_black"
+        android:layout_height="@dimen/signal_m3_toolbar_height"
+        android:minHeight="@dimen/signal_m3_toolbar_height"
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/v2_media_gallery_fragment_toolbar_menu"
-        app:navigationIcon="@drawable/ic_arrow_left_white_24"
-        app:title="" />
+        app:navigationIcon="@drawable/ic_arrow_left_24"
+        app:title="@string/AttachmentKeyboard_gallery"
+        app:titleTextAppearance="@style/Signal.Text.TitleLarge" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/media_gallery_grid"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:paddingHorizontal="12dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/media_gallery_bottom_bar_barrier"
         app:layout_constraintTop_toBottomOf="@id/media_gallery_toolbar"
@@ -31,7 +32,7 @@
         android:id="@+id/bottom_bar_shade"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/core_black"
+        android:background="@color/signal_colorSurface"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="@id/media_gallery_bottom_bar_barrier" />
 

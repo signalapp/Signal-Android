@@ -78,7 +78,7 @@
         <item name="android:textColor">@color/signal_button_secondary_text_selector</item>
         <item name="background">@color/signal_background_tertiary</item>
         <item name="rippleColor">@color/core_ultramarine</item>
-        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.Button.Rounded</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.Circle</item>
     </style>
 
     <style name="Widget.Signal.Button.Small" parent="Widget.Material3.Button.TonalButton">

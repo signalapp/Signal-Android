@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
-        <shape android:shape="rectangle">
-            <size android:width="36dp" android:height="36dp" />
-            <stroke android:color="@color/core_white" android:width="1.5dp" />
+        <shape android:shape="oval">
+            <size android:width="40dp" android:height="40dp" />
             <corners android:radius="10dp" />
-            <solid android:color="@color/transparent_black_60" />
-            <padding android:bottom="8dp" android:left="8dp" android:right="8dp" android:top="8dp" />
+            <solid android:color="@color/signal_dark_colorSurfaceVariant_92" />
+            <padding android:bottom="9dp" android:left="9dp" android:right="9dp" android:top="9dp" />
         </shape>
     </item>
-    <item android:drawable="@drawable/ic_plus_20" />
+    <item android:drawable="@drawable/ic_add_media_22" />
 </layer-list>

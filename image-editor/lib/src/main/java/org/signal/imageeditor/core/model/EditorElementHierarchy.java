@@ -5,8 +5,10 @@ import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.RectF;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.graphics.ColorUtils;
 
 import org.signal.imageeditor.core.Bounds;
 import org.signal.imageeditor.R;
@@ -53,16 +55,16 @@ import org.signal.imageeditor.core.renderers.TrashRenderer;
  */
 final class EditorElementHierarchy {
 
-  static @NonNull EditorElementHierarchy create() {
-    return new EditorElementHierarchy(createRoot(CropStyle.RECTANGLE));
+  static @NonNull EditorElementHierarchy create(@ColorInt int blackoutColor) {
+    return new EditorElementHierarchy(createRoot(CropStyle.RECTANGLE, blackoutColor));
   }
 
-  static @NonNull EditorElementHierarchy createForCircleEditing() {
-    return new EditorElementHierarchy(createRoot(CropStyle.CIRCLE));
+  static @NonNull EditorElementHierarchy createForCircleEditing(@ColorInt int blackoutColor) {
+    return new EditorElementHierarchy(createRoot(CropStyle.CIRCLE, blackoutColor));
   }
 
-  static @NonNull EditorElementHierarchy createForPinchAndPanCropping() {
-    return new EditorElementHierarchy(createRoot(CropStyle.PINCH_AND_PAN));
+  static @NonNull EditorElementHierarchy createForPinchAndPanCropping(@ColorInt int blackoutColor) {
+    return new EditorElementHierarchy(createRoot(CropStyle.PINCH_AND_PAN, blackoutColor));
   }
 
   static @NonNull EditorElementHierarchy create(@NonNull EditorElement root) {
@@ -116,7 +118,7 @@ final class EditorElementHierarchy {
     PINCH_AND_PAN
   }
 
-  private static @NonNull EditorElement createRoot(@NonNull CropStyle cropStyle) {
+  private static @NonNull EditorElement createRoot(@NonNull CropStyle cropStyle, @ColorInt int blackoutColor) {
     EditorElement root = new EditorElement(null);
 
     EditorElement imageRoot = new EditorElement(null);
@@ -138,7 +140,7 @@ final class EditorElementHierarchy {
     overlay.addElement(selection);
 
     boolean       renderCenterThumbs = cropStyle == CropStyle.RECTANGLE;
-    EditorElement cropEditorElement  = new EditorElement(new CropAreaRenderer(R.color.crop_area_renderer_outer_color, renderCenterThumbs));
+    EditorElement cropEditorElement  = new EditorElement(new CropAreaRenderer(ColorUtils.setAlphaComponent(blackoutColor, 0x7F), renderCenterThumbs));
 
     cropEditorElement.getFlags()
                      .setRotateLocked(true)
@@ -149,7 +151,8 @@ final class EditorElementHierarchy {
 
     imageCrop.addElement(cropEditorElement);
 
-    EditorElement fade = new EditorElement(new FillRenderer(0x66000000), EditorModel.Z_FADE);
+
+    EditorElement fade = new EditorElement(new FillRenderer(ColorUtils.setAlphaComponent(blackoutColor, 0x66)), EditorModel.Z_FADE);
     fade.getFlags()
         .setSelectable(false)
         .setEditable(false)
@@ -165,7 +168,7 @@ final class EditorElementHierarchy {
          .persist();
     cropEditorElement.addElement(trash);
 
-    EditorElement blackout = new EditorElement(new InverseFillRenderer(0xff000000));
+    EditorElement blackout = new EditorElement(new InverseFillRenderer(ColorUtils.setAlphaComponent(blackoutColor, 0xFF)));
 
     blackout.getFlags()
             .setSelectable(false)

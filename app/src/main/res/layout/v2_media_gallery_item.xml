@@ -1,47 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.exoplayer2.ui.AspectRatioFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@color/signal_colorSurfaceVariant"
+    tools:layout_height="95dp"
+    tools:layout_width="95dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/media_gallery_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_height="95dp"
-        tools:layout_width="95dp">
+        android:layout_height="0dp"
+        android:importantForAccessibility="no"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/test_gradient" />
 
-        <ImageView
-            android:id="@+id/media_gallery_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:importantForAccessibility="no"
-            android:scaleType="centerCrop"
-            tools:src="@drawable/test_gradient" />
+    <ImageView
+        android:id="@+id/media_gallery_play_overlay"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:importantForAccessibility="no"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/v2_media_gallery_item_video_overlay" />
 
-        <ImageView
-            android:id="@+id/media_gallery_play_overlay"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:importantForAccessibility="no"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/v2_media_gallery_item_video_overlay" />
+    <TextView
+        android:id="@+id/media_gallery_check"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/media_selection_pill"
+        android:gravity="center"
+        android:minWidth="26dp"
+        android:paddingHorizontal="9.5dp"
+        android:textColor="@color/signal_light_colorNeutral"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="1" />
 
-        <ImageView
-            android:id="@+id/media_gallery_check"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:importantForAccessibility="no"
-            android:scaleType="centerCrop"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/v2_media_check" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</com.google.android.exoplayer2.ui.AspectRatioFrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

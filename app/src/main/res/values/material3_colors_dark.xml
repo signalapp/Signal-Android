@@ -41,4 +41,7 @@
     <color name="signal_dark_colorTransparentInverse5">#F5000000</color>
     <color name="signal_dark_colorNeutralInverse">#E0FFFFFF</color>
     <color name="signal_dark_colorNeutralVariantInverse">#A3FFFFFF</color>
+
+    <color name="signal_dark_colorBackground_92">#EB1B1C1F</color>
+    <color name="signal_dark_colorSurfaceVariant_92">#EB303133</color>
 </resources>

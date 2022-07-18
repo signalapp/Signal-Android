@@ -132,7 +132,7 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     }
 
     viewModel.state.observe(viewLifecycleOwner) { state ->
-      toolbar.title = state.bucketTitle
+      toolbar.title = state.bucketTitle ?: requireContext().getString(R.string.AttachmentKeyboard_gallery)
     }
 
     val galleryItemsWithSelection = LiveDataUtil.combineLatest(
@@ -141,7 +141,7 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     ) { galleryItems, selectedMedia ->
       galleryItems.map {
         if (it is MediaGallerySelectableItem.FileModel) {
-          it.copy(isSelected = selectedMedia.contains(it.media))
+          it.copy(isSelected = selectedMedia.contains(it.media), selectionOneBasedIndex = selectedMedia.indexOf(it.media) + 1)
         } else {
           it
         }

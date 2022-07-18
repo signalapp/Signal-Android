@@ -4,5 +4,5 @@
         android:type="linear"
         android:angle="0"
         android:startColor="@color/transparent"
-        android:endColor="@color/black" />
+        android:endColor="@color/signal_dark_colorBackground" />
 </shape>
