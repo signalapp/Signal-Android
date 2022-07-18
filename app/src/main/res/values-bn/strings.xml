@@ -3907,6 +3907,7 @@
     <item quantity="other">%1$d উত্তর</item>
   </plurals>
   <!--Used when view receipts are disabled-->
+  <string name="StoryViewerPageFragment__views_off">ভিউ বন্ধ</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3920,7 +3921,9 @@
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">এখন পর্যন্ত কোন ভিউ নেই</string>
   <!--Displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">কে আপনার স্টোরি দেখেছে তা দেখতে রিড রিসিপ্ট চালু করুন৷</string>
   <!--Button label displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__go_to_settings">সেটিংস-এ যান</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">এখন পর্যন্ত কোন রিপ্লাই নেই</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4198,6 +4201,7 @@
     <item quantity="other">গ্ৰুপ স্টোরি · %1$d জন দর্শক</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">আপনার ভিউয়ারদের বেছে নিতে ট্যাপ করুন</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">স্টোরি সেটিংস</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4242,33 +4246,49 @@
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">বুঝতে পেরেছি</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">কন্টেক্সট মেন্যু খুলুন</string>
   <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · যাচাইকৃত</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">যাচাই করা হয়েছে</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">নিরাপত্তা নাম্বার পরিবর্তিত হয়</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">নিম্নলিখিত ব্যক্তিরা সম্ভবত Signal পুনরায় ইনস্টল করেছেন বা তাদের ডিভাইস পরিবর্তন করেছেন৷ নতুন নিরাপত্তা নাম্বার নিশ্চিত করতে একজন প্রাপককে ট্যাপ করুন। এটি অপশনাল।</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">নিরাপত্তা নাম্বার চেকআপ</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">নিরাপত্তা নাম্বার চেকআপ সম্পন্ন হয়েছে</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">সকল কানেকশন রিভিউ করা হয়েছে, চালিয়ে যেতে সেন্ড ট্যাপ করুন।</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">আপনার %1$d-টি কানেকশন আছে যারা সম্ভবত সিগন্যাল পুনরায় ইনস্টল করেছে বা ডিভাইস পরিবর্তন করেছেন৷ তাদের সাথে আপনার স্টোরি শেয়ার করার আগে তাদের নিরাপত্তা নাম্বার রিভিউ করুন বা আপনার স্টোরি দেখা থেকে তাদের বাদ দেয়ার কথা বিবেচনা করুন৷</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">নিরাপত্তা নাম্বার যাচাই করুন</string>
   <!--Menu action to remove user from story-->
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">স্টোরি থেকে বাদ দিন</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">যেকোনও উপায়ে পাঠান</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <string name="SafetyNumberBottomSheetFragment__review_connections">কানেকশন রিভিউ করুন</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">দেখানোর মত কোন প্রাপক নেই।</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">শেষ</string>
   <!--Title of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">নিরাপত্তা নাম্বার পরিবর্তিত হয়</string>
   <!--Message of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d প্রাপক সম্ভবত Signal পুনরায় ইনস্টল করেছেন বা ডিভাইস পরিবর্তন করেছেন। নতুন নিরাপত্তা নাম্বার নিশ্চিত করতে প্রাপককে ট্যাপ করুন। এটি অপশনাল।</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">পরিচিতিসমূহ</string>
   <!--Context menu label for distribution list headers in review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">সব মুছুন</string>
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">সরান</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">আমার স্টোরি প্রাইভেসি</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">আমার স্টোরি পোস্টগুলো কে দেখতে পাবেন তা বেছে নিন৷ আপনি সবসময় সেটিংস পরিবর্তন করতে পারেন।</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">সকল Signal কানেকশন</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

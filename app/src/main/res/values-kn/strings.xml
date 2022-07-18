@@ -3565,6 +3565,7 @@
   <!--Displayed at bottom of story viewer when current item has views-->
   <!--Displayed at bottom of story viewer when current item has replies-->
   <!--Used when view receipts are disabled-->
+  <string name="StoryViewerPageFragment__views_off">ವೀಕ್ಷಣೆಗಳು ಆಫ್</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3576,7 +3577,9 @@
   <!--Label for the reply button in story viewer, which will launch the group story replies bottom sheet.-->
   <!--Displayed when a story has no views-->
   <!--Displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">ನಿಮ್ಮ ಸ್ಟೋರೀಸ್ ಯಾರು ವೀಕ್ಷಿಸಿದ್ದಾರೆಂದು ನೋಡಲು ಓದಿದ ರಸೀದಿಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
   <!--Button label displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__go_to_settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಹೋಗಿ</string>
   <!--Displayed when a story has no replies yet-->
   <!--Displayed for each user that reacted to a story when viewing replies-->
   <!--Label for story views tab-->
@@ -3746,6 +3749,7 @@
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
   <!--Label under name for My Story when first sending to my story-->
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">ನಿಮ್ಮ ವೀಕ್ಷಕರನ್ನು ಆರಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
   <!--Label for context menu item to open story settings-->
   <!--Label for context menu item to remove a group story from contact results-->
   <string name="ContactSearchItems__remove_story">ಸ್ಟೋರಿ ತೆಗೆದುಹಾಕಿ</string>
@@ -3775,33 +3779,49 @@
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">ಅರ್ಥವಾಯಿತು</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">ಸಂದರ್ಭ ಮೆನು ತೆರೆಯಿರಿ</string>
   <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · ದೃಢೀಕರಿಸಲಾಗಿದೆ</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">ದೃಢೀಕರಿಸಲಾಗಿದೆ</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ಬದಲಾಗುತ್ತದೆ</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">ಈ ಕೆಳಗಿನ ಜನರು ಮರುಸ್ಥಾಪಿಸಿದ Signal ಅಥವಾ ಬದಲಾದ ಸಾಧನಗಳನ್ನು ಹೊಂದಿರಬಹುದು. ಹೊಸ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಯನ್ನು ದೃಢೀಕರಿಸಲು ಒಬ್ಬ ಸ್ವೀಕೃತಿದಾರರನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ. ಇದು ಐಚ್ಛಿಕವಾಗಿದೆ.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಯ ಪರೀಕ್ಷೆ</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಯ ಪರೀಕ್ಷೆ ಪೂರ್ಣಗೊಂಡಿದೆ</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">ಎಲ್ಲಾ ಸಂಪರ್ಕಗಳನ್ನು ಪರಿಶೀಲಿಸಲಾಗಿದೆ, ಮುಂದುವರಿಸಲು ಕಳುಹಿಸಿ ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">ನೀವು %1$d ಸಂಪರ್ಕಗಳನ್ನು ಹೊಂದಿದ್ದು, ಅವರು Signal ಅನ್ನು ಮರುಸ್ಥಾಪಿಸಿರಬಹುದು ಅಥವಾ ಸಾಧನಗಳನ್ನು ಬದಲಾಯಿಸಿರಬಹುದು. ನಿಮ್ಮ ಸ್ಟೋರಿಯನ್ನು ಅವರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳುವ ಮುನ್ನ ಅವರ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ಅಥವಾ ಅವರನ್ನು ನಿಮ್ಮ ಸ್ಟೋರಿಯಿಂದ ತೆಗೆದುಹಾಕುವುದನ್ನು ಪರಿಗಣಿಸಿ.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ದೃಢೀಕರಿಸಿ</string>
   <!--Menu action to remove user from story-->
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">ಸ್ಟೋರಿಯಿಂದ ತೆಗೆದುಹಾಕಿ</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">ಹೇಗಾದರೂ ಕಳುಹಿಸಿ</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <string name="SafetyNumberBottomSheetFragment__review_connections">ಸಂಪರ್ಕಗಳನ್ನು ಪರಿಶೀಲಿಸಿ</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">ತೋರಿಸಲು ಇನ್ನು ಯಾವುದೇ ಸ್ವೀಕೃತಿದಾರರಿಲ್ಲ</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">ಮುಗಿದಿದೆ</string>
   <!--Title of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ಬದಲಾಗುತ್ತದೆ</string>
   <!--Message of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d ಸ್ವೀಕೃತಿದಾರರು Signal ಅನ್ನು ಮರುಸ್ಥಾಪಿಸಿರಬಹುದು ಅಥವಾ ಸಾಧನಗಳನ್ನು ಬದಲಾಯಿಸಿರಬಹುದು. ಹೊಸ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಯನ್ನು ದೃಢೀಕರಿಲು ಸ್ವೀಕೃತಿದರಾರನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ. ಇದು ಐಚ್ಛಿಕವಾಗಿದೆ.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">ಸಂಪರ್ಕಗಳು</string>
   <!--Context menu label for distribution list headers in review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">ಎಲ್ಲವನ್ನೂ ತೆಗೆದುಹಾಕಿ</string>
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">ತೆಗೆದುಹಾಕಿ</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">ನನ್ನ ಸ್ಟೋರಿ ಗೌಪ್ಯತೆ</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">ನನ್ನ ಸ್ಟೋರಿಯ ಪೋಸ್ಟ್‌ಗಳನ್ನು ಯಾರು ನೋಡಬಹುದು ಎಂಬುದನ್ನು ಆರಿಸಿ. ಸೆಟ್ಟಿಂಗ್‌‍ಗಳು ನಲ್ಲಿ ನೀವು ಯಾವಾಗಲೂ ಬದಲಾಯಿಸಬಹುದು.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">ಎಲ್ಲಾ Signal ಸಂಪರ್ಕಗಳು</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
