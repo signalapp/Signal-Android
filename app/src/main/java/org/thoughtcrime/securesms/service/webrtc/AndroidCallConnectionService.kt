@@ -26,12 +26,17 @@ class AndroidCallConnectionService : ConnectionService() {
     connectionManagerPhoneAccount: PhoneAccountHandle?,
     request: ConnectionRequest
   ): Connection {
-    val (recipientId: RecipientId, callId: Long) = request.getOurExtras()
+    val (recipientId: RecipientId, callId: Long, isVideoCall: Boolean) = request.getOurExtras()
 
     Log.i(TAG, "onCreateIncomingConnection($recipientId)")
     val recipient = Recipient.resolved(recipientId)
     val displayName = recipient.getDisplayName(this)
-    val connection = AndroidCallConnection(applicationContext, recipientId).apply {
+    val connection = AndroidCallConnection(
+      context = applicationContext,
+      recipientId = recipientId,
+      isOutgoing = false,
+      isVideoCall = isVideoCall
+    ).apply {
       setInitializing()
       if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact && recipient.e164.isPresent) {
         setAddress(Uri.fromParts("tel", recipient.e164.get(), null), TelecomManager.PRESENTATION_ALLOWED)
@@ -61,10 +66,15 @@ class AndroidCallConnectionService : ConnectionService() {
     connectionManagerPhoneAccount: PhoneAccountHandle?,
     request: ConnectionRequest
   ): Connection {
-    val (recipientId: RecipientId, callId: Long) = request.getOurExtras()
+    val (recipientId: RecipientId, callId: Long, isVideoCall: Boolean) = request.getOurExtras()
 
     Log.i(TAG, "onCreateOutgoingConnection($recipientId)")
-    val connection = AndroidCallConnection(applicationContext, recipientId, true).apply {
+    val connection = AndroidCallConnection(
+      context = applicationContext,
+      recipientId = recipientId,
+      isOutgoing = true,
+      isVideoCall = isVideoCall
+    ).apply {
       videoState = request.videoState
       extras = request.extras
       setDialing()
@@ -89,6 +99,7 @@ class AndroidCallConnectionService : ConnectionService() {
     private val TAG: String = Log.tag(AndroidCallConnectionService::class.java)
     const val KEY_RECIPIENT_ID = "org.thoughtcrime.securesms.RECIPIENT_ID"
     const val KEY_CALL_ID = "org.thoughtcrime.securesms.CALL_ID"
+    const val KEY_VIDEO_CALL = "org.thoughtcrime.securesms.VIDEO_CALL"
   }
 
   private fun ConnectionRequest.getOurExtras(): ServiceExtras {
@@ -96,9 +107,10 @@ class AndroidCallConnectionService : ConnectionService() {
 
     val recipientId: RecipientId = RecipientId.from(ourExtras.getString(KEY_RECIPIENT_ID)!!)
     val callId: Long = ourExtras.getLong(KEY_CALL_ID)
+    val isVideoCall: Boolean = ourExtras.getBoolean(KEY_VIDEO_CALL, false)
 
-    return ServiceExtras(recipientId, callId)
+    return ServiceExtras(recipientId, callId, isVideoCall)
   }
 
-  private data class ServiceExtras(val recipientId: RecipientId, val callId: Long)
+  private data class ServiceExtras(val recipientId: RecipientId, val callId: Long, val isVideoCall: Boolean)
 }

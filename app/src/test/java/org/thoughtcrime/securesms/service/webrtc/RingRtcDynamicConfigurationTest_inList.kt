@@ -6,7 +6,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-class AudioProcessingMethodSelectorTest_modelInList(
+class RingRtcDynamicConfigurationTest_inList(
   private val model: String,
   private val serializedList: String,
   private val expected: Boolean
@@ -14,7 +14,7 @@ class AudioProcessingMethodSelectorTest_modelInList(
 
   @Test
   fun testModelInList() {
-    val actual = AudioProcessingMethodSelector.modelInList(model, serializedList)
+    val actual = RingRtcDynamicConfiguration.modelInList(model, serializedList)
     assertEquals(expected, actual)
   }
 

@@ -21,6 +21,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
 
 /**
@@ -40,7 +41,7 @@ object AndroidTelecomUtil {
   @JvmStatic
   val telecomSupported: Boolean
     get() {
-      if (Build.VERSION.SDK_INT >= 26 && !systemRejected && !isRestrictedDevice()) {
+      if (Build.VERSION.SDK_INT >= 26 && !systemRejected && isTelecomAllowedForDevice()) {
         if (!accountRegistered) {
           registerPhoneAccount()
         }
@@ -90,6 +91,7 @@ object AndroidTelecomUtil {
         TelecomManager.EXTRA_INCOMING_CALL_EXTRAS to bundleOf(
           AndroidCallConnectionService.KEY_RECIPIENT_ID to recipientId.serialize(),
           AndroidCallConnectionService.KEY_CALL_ID to callId,
+          AndroidCallConnectionService.KEY_VIDEO_CALL to remoteVideoOffer,
           TelecomManager.EXTRA_INCOMING_VIDEO_STATE to if (remoteVideoOffer) VideoProfile.STATE_BIDIRECTIONAL else VideoProfile.STATE_AUDIO_ONLY
         ),
         TelecomManager.EXTRA_INCOMING_VIDEO_STATE to if (remoteVideoOffer) VideoProfile.STATE_BIDIRECTIONAL else VideoProfile.STATE_AUDIO_ONLY
@@ -139,10 +141,11 @@ object AndroidTelecomUtil {
     if (telecomSupported) {
       val telecomBundle = bundleOf(
         TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE to getPhoneAccountHandle(),
-        TelecomManager.EXTRA_START_CALL_WITH_VIDEO_STATE to if (isVideoCall) VideoProfile.STATE_BIDIRECTIONAL else VideoProfile.STATE_AUDIO_ONLY,
+        TelecomManager.EXTRA_START_CALL_WITH_VIDEO_STATE to VideoProfile.STATE_BIDIRECTIONAL,
         TelecomManager.EXTRA_OUTGOING_CALL_EXTRAS to bundleOf(
           AndroidCallConnectionService.KEY_RECIPIENT_ID to recipientId.serialize(),
-          AndroidCallConnectionService.KEY_CALL_ID to callId
+          AndroidCallConnectionService.KEY_CALL_ID to callId,
+          AndroidCallConnectionService.KEY_VIDEO_CALL to isVideoCall
         ),
       )
 
@@ -188,8 +191,11 @@ object AndroidTelecomUtil {
     return SignalAudioManager.AudioDevice.NONE
   }
 
-  private fun isRestrictedDevice(): Boolean {
-    return SignalStore.internalValues().callingDisableTelecom()
+  private fun isTelecomAllowedForDevice(): Boolean {
+    if (FeatureFlags.internalUser()) {
+      return !SignalStore.internalValues().callingDisableTelecom()
+    }
+    return RingRtcDynamicConfiguration.isTelecomAllowedForDevice()
   }
 }
 

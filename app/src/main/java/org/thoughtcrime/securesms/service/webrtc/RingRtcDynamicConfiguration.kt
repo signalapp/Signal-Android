@@ -9,10 +9,10 @@ import org.thoughtcrime.securesms.util.FeatureFlags
 /**
  * Utility class to determine which AEC method RingRTC should use.
  */
-object AudioProcessingMethodSelector {
+object RingRtcDynamicConfiguration {
 
   @JvmStatic
-  fun get(): AudioProcessingMethod {
+  fun getAudioProcessingMethod(): AudioProcessingMethod {
     if (SignalStore.internalValues().callingAudioProcessingMethod() != AudioProcessingMethod.Default) {
       return SignalStore.internalValues().callingAudioProcessingMethod()
     }
@@ -28,6 +28,11 @@ object AudioProcessingMethodSelector {
       Build.VERSION.SDK_INT < 29 -> AudioProcessingMethod.ForceSoftwareAecM
       else -> AudioProcessingMethod.ForceHardware
     }
+  }
+
+  fun isTelecomAllowedForDevice(): Boolean {
+    return modelInList(Build.MANUFACTURER.lowercase(), FeatureFlags.telecomManufacturerAllowList().lowercase()) &&
+      !modelInList(Build.MODEL.lowercase(), FeatureFlags.telecomModelBlockList().lowercase())
   }
 
   private fun isHardwareBlocklisted(): Boolean {

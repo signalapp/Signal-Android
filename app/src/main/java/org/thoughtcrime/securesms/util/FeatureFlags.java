@@ -97,6 +97,8 @@ public final class FeatureFlags {
   private static final String STORIES_AUTO_DOWNLOAD_MAXIMUM     = "android.stories.autoDownloadMaximum";
   private static final String GIFT_BADGES                       = "android.giftBadges.3";
   private static final String USE_QR_LEGACY_SCAN                = "android.qr.legacy_scan";
+  private static final String TELECOM_MANUFACTURER_ALLOWLIST    = "android.calling.telecomAllowList";
+  private static final String TELECOM_MODEL_BLOCKLIST           = "android.calling.telecomModelBlockList";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -146,7 +148,9 @@ public final class FeatureFlags {
       USE_FCM_FOREGROUND_SERVICE,
       STORIES_AUTO_DOWNLOAD_MAXIMUM,
       GIFT_BADGES,
-      USE_QR_LEGACY_SCAN
+      USE_QR_LEGACY_SCAN,
+      TELECOM_MANUFACTURER_ALLOWLIST,
+      TELECOM_MODEL_BLOCKLIST
   );
 
   @VisibleForTesting
@@ -206,7 +210,9 @@ public final class FeatureFlags {
       USE_AEC3,
       PAYMENTS_COUNTRY_BLOCKLIST,
       USE_FCM_FOREGROUND_SERVICE,
-      USE_QR_LEGACY_SCAN
+      USE_QR_LEGACY_SCAN,
+      TELECOM_MANUFACTURER_ALLOWLIST,
+      TELECOM_MODEL_BLOCKLIST
   );
 
   /**
@@ -475,6 +481,16 @@ public final class FeatureFlags {
   /** A comma-separated list of models that should *not* use software AEC for calling. */
   public static @NonNull String softwareAecBlocklistModels() {
     return getString(SOFTWARE_AEC_BLOCKLIST_MODELS, "");
+  }
+
+  /** A comma-separated list of manufacturers that *should* use Telecom for calling. */
+  public static @NonNull String telecomManufacturerAllowList() {
+    return getString(TELECOM_MANUFACTURER_ALLOWLIST, "");
+  }
+
+  /** A comma-separated list of manufacturers that *should* use Telecom for calling. */
+  public static @NonNull String telecomModelBlockList() {
+    return getString(TELECOM_MODEL_BLOCKLIST, "");
   }
 
   /** Whether or not hardware AEC should be used for calling on devices older than API 29. */

@@ -248,6 +248,11 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
       }
 
       return terminate(currentState, activePeer);
+    } else {
+      RemotePeer peerByCallId = currentState.getCallInfoState().getPeerByCallId(callId);
+      if (peerByCallId != null) {
+        webRtcInteractor.terminateCall(peerByCallId.getId());
+      }
     }
 
     return currentState;
