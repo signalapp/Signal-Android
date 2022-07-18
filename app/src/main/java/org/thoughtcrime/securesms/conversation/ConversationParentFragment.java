@@ -454,6 +454,7 @@ public class ConversationParentFragment extends Fragment
   private boolean       isMmsEnabled                  = true;
   private boolean       isSecurityInitialized         = false;
   private boolean       isSearchRequested             = false;
+  private boolean       hasProcessedShareData         = false;
 
   private final LifecycleDisposable disposables          = new LifecycleDisposable();
   private final Debouncer           optionsMenuDebouncer = new Debouncer(50);
@@ -519,6 +520,10 @@ public class ConversationParentFragment extends Fragment
 
     final boolean typingIndicatorsEnabled = TextSecurePreferences.isTypingIndicatorsEnabled(requireContext());
 
+    if (savedInstanceState != null) {
+      hasProcessedShareData = savedInstanceState.getBoolean("SHARED", false);
+    }
+
     initializeReceivers();
     initializeViews(view);
     updateWallpaper(args.getWallpaper());
@@ -549,6 +554,8 @@ public class ConversationParentFragment extends Fragment
 
         initializeProfiles();
         initializeGv1Migration();
+
+        Log.d(TAG, "Initializing data from onViewCreated...");
         initializeDraft(args).addListener(new AssertedSuccessListener<Boolean>() {
           @Override
           public void onSuccess(Boolean loadedDraft) {
@@ -635,10 +642,13 @@ public class ConversationParentFragment extends Fragment
 
     reportShortcutLaunch(viewModel.getArgs().getRecipientId());
     initializeResources(viewModel.getArgs());
+
     initializeSecurity(recipient.get().isRegistered(), isDefaultSms).addListener(new AssertedSuccessListener<Boolean>() {
       @Override
       public void onSuccess(Boolean result) {
         if (getContext() != null) {
+          Log.d(TAG, "Initializing draft from new intent...");
+          hasProcessedShareData = false;
           initializeDraft(viewModel.getArgs());
         }
       }
@@ -886,6 +896,7 @@ public class ConversationParentFragment extends Fragment
 
     outState.putInt(STATE_REACT_WITH_ANY_PAGE, reactWithAnyEmojiStartPage);
     outState.putBoolean(STATE_IS_SEARCH_REQUESTED, isSearchRequested);
+    outState.putBoolean("SHARED", hasProcessedShareData);
   }
 
   @Override
@@ -1657,6 +1668,12 @@ public class ConversationParentFragment extends Fragment
   private ListenableFuture<Boolean> initializeDraft(@NonNull ConversationIntents.Args args) {
     final SettableFuture<Boolean> result = new SettableFuture<>();
 
+    if (hasProcessedShareData) {
+      Log.d(TAG, "Already processed this share data. Skipping.");
+      result.set(false);
+      return result;
+    }
+
     final CharSequence   draftText        = args.getDraftText();
     final Uri            draftMedia       = requireActivity().getIntent().getData();
     final String         draftContentType = requireActivity().getIntent().getType();
@@ -1665,6 +1682,8 @@ public class ConversationParentFragment extends Fragment
     final StickerLocator stickerLocator   = args.getStickerLocator();
     final boolean        borderless       = args.isBorderless();
 
+    hasProcessedShareData = true;
+
     if (stickerLocator != null && draftMedia != null) {
       Log.d(TAG, "Handling shared sticker.");
       sendSticker(stickerLocator, Objects.requireNonNull(draftContentType), draftMedia, 0, true);
@@ -1672,6 +1691,7 @@ public class ConversationParentFragment extends Fragment
     }
 
     if (draftMedia != null && draftContentType != null && borderless) {
+      Log.d(TAG, "Handling borderless draft media with content type " + draftContentType);
       SimpleTask.run(getLifecycle(),
                      () -> getKeyboardImageDetails(draftMedia),
                      details -> sendKeyboardImage(draftMedia, draftContentType, details));
