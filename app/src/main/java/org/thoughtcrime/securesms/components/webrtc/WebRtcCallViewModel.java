@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
+import org.thoughtcrime.securesms.util.NetworkUtil;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
@@ -74,6 +75,7 @@ public class WebRtcCallViewModel extends ViewModel {
   private final Runnable stopOutgoingRingingMode = this::stopOutgoingRingingMode;
 
   private boolean               canDisplayTooltipIfNeeded = true;
+  private boolean               canDisplayPopupIfNeeded   = true;
   private boolean               hasEnabledLocalVideo      = false;
   private boolean               wasInOutgoingRingingMode  = false;
   private long                  callConnectedTime         = -1;
@@ -292,6 +294,13 @@ public class WebRtcCallViewModel extends ViewModel {
       canDisplayTooltipIfNeeded = false;
       events.setValue(new Event.ShowVideoTooltip());
     }
+
+    if (canDisplayPopupIfNeeded && webRtcViewModel.isCellularConnection() && NetworkUtil.isConnectedWifi(ApplicationDependencies.getApplication())) {
+      canDisplayPopupIfNeeded = false;
+      events.setValue(new Event.ShowWifiToCellularPopup());
+    } else if (!webRtcViewModel.isCellularConnection()) {
+      canDisplayPopupIfNeeded = true;
+    }
   }
 
   @MainThread
@@ -479,6 +488,9 @@ public class WebRtcCallViewModel extends ViewModel {
     }
 
     public static class DismissVideoTooltip extends Event {
+    }
+
+    public static class ShowWifiToCellularPopup extends Event {
     }
 
     public static class StartCall extends Event {

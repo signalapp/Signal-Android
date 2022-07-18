@@ -3539,6 +3539,10 @@
     <string name="CallParticipant__you_on_another_device">You (on another device)</string>
     <string name="CallParticipant__s_on_another_device">%1$s (on another device)</string>
 
+    <!-- WifiToCellularPopupWindow -->
+    <!-- Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead. -->
+    <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Weak Wi-Fi. Switched to cellular.</string>
+
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">Deleting your account will:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Enter your phone number</string>

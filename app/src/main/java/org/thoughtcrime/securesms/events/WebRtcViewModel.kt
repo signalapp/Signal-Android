@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
+import org.webrtc.PeerConnection
 
 class WebRtcViewModel(state: WebRtcServiceState) {
 
@@ -103,6 +104,20 @@ class WebRtcViewModel(state: WebRtcServiceState) {
     (if (state.videoState.localSink != null) state.videoState.localSink else BroadcastVideoSink())!!,
     state.localDeviceState.isMicrophoneEnabled
   )
+
+  val isCellularConnection: Boolean = when (state.localDeviceState.networkConnectionType) {
+    PeerConnection.AdapterType.UNKNOWN,
+    PeerConnection.AdapterType.ETHERNET,
+    PeerConnection.AdapterType.WIFI,
+    PeerConnection.AdapterType.VPN,
+    PeerConnection.AdapterType.LOOPBACK,
+    PeerConnection.AdapterType.ADAPTER_TYPE_ANY -> false
+    PeerConnection.AdapterType.CELLULAR,
+    PeerConnection.AdapterType.CELLULAR_2G,
+    PeerConnection.AdapterType.CELLULAR_3G,
+    PeerConnection.AdapterType.CELLULAR_4G,
+    PeerConnection.AdapterType.CELLULAR_5G -> true
+  }
 
   val isRemoteVideoEnabled: Boolean
     get() = remoteParticipants.any(CallParticipant::isVideoEnabled) || groupState.isNotIdle && remoteParticipants.size > 1

@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.VideoState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
+import org.webrtc.PeerConnection;
 import org.webrtc.VideoTrack;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.whispersystems.signalservice.api.push.ServiceId;
@@ -237,6 +238,17 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
     }
 
     return currentState;
+  }
+
+  @Override protected @NonNull WebRtcServiceState handleGroupLocalDeviceStateChanged(@NonNull WebRtcServiceState currentState) {
+    GroupCall                  groupCall = currentState.getCallInfoState().requireGroupCall();
+    PeerConnection.AdapterType type      = groupCall.getLocalDeviceState().getNetworkRoute().getLocalAdapterType();
+
+    return currentState.builder()
+                       .changeLocalDeviceState()
+                       .setNetworkConnectionType(type)
+                       .commit()
+                       .build();
   }
 
   @Override

@@ -130,6 +130,11 @@ public class WebRtcServiceStateBuilder {
       toBuild.setBluetoothPermissionDenied(bluetoothPermissionDenied);
       return this;
     }
+
+    public @NonNull LocalDeviceStateBuilder setNetworkConnectionType(@NonNull PeerConnection.AdapterType type) {
+      toBuild.setNetworkConnectionType(type);
+      return this;
+    }
   }
 
   public class CallSetupStateBuilder {

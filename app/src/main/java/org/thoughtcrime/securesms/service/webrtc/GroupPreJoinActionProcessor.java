@@ -90,6 +90,8 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
   protected @NonNull WebRtcServiceState handleGroupLocalDeviceStateChanged(@NonNull WebRtcServiceState currentState) {
     Log.i(tag, "handleGroupLocalDeviceStateChanged():");
 
+    currentState = super.handleGroupLocalDeviceStateChanged(currentState);
+
     GroupCall                  groupCall = currentState.getCallInfoState().requireGroupCall();
     GroupCall.LocalDeviceState device    = groupCall.getLocalDeviceState();
 
