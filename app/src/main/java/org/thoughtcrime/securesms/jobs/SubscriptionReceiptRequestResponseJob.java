@@ -301,6 +301,8 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       SignalStore.donationsValues().setUnexpectedSubscriptionCancelationTimestamp(timestamp);
       MultiDeviceSubscriptionSyncRequestJob.enqueue();
     } else if (chargeFailure != null) {
+      Log.d(TAG, "Charge failure detected: " + chargeFailure, true);
+
       StripeDeclineCode               declineCode = StripeDeclineCode.Companion.getFromCode(chargeFailure.getOutcomeNetworkReason());
       DonationError.PaymentSetupError paymentSetupError;
 

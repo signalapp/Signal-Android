@@ -9,6 +9,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.annotation.Nullable;
+
 public final class ActiveSubscription {
 
   public static final ActiveSubscription EMPTY = new ActiveSubscription(null, null);
@@ -270,7 +272,7 @@ public final class ActiveSubscription {
      * <p>
      * See: <a href="https://stripe.com/docs/api/charges/object#charge_object-outcome-reason">https://stripe.com/docs/api/charges/object#charge_object-outcome-reason</a>
      */
-    public String getOutcomeNetworkReason() {
+    public @Nullable String getOutcomeNetworkReason() {
       return outcomeNetworkReason;
     }
 
@@ -281,6 +283,15 @@ public final class ActiveSubscription {
      */
     public String getOutcomeType() {
       return outcomeType;
+    }
+
+    @Override public String toString() {
+      return "ChargeFailure{" +
+             "code='" + code + '\'' +
+             ", outcomeNetworkStatus='" + outcomeNetworkStatus + '\'' +
+             ", outcomeNetworkReason='" + outcomeNetworkReason + '\'' +
+             ", outcomeType='" + outcomeType + '\'' +
+             '}';
     }
   }
 }
