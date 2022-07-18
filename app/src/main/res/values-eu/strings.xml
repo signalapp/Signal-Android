@@ -111,7 +111,7 @@
   <string name="BucketedThreadMedia_Medium">Multimedia</string>
   <string name="BucketedThreadMedia_Small">Txikia</string>
   <!--CameraXFragment-->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">Ukitu laburra argazkia ateratzeko, ukitu luzea bideoa grabatzeko</string>
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Sakatu argazki bat ateratzeko; eduki sakatuta bideo bat grabatzeko</string>
   <string name="CameraXFragment_capture_description">Argazkia</string>
   <string name="CameraXFragment_change_camera_description">Aldatu kamera</string>
   <string name="CameraXFragment_open_gallery_description">Ireki galeria</string>
@@ -185,13 +185,13 @@
   <string name="ContactShareEditActivity_type_missing">Besteak</string>
   <string name="ContactShareEditActivity_invalid_contact">Aukeratutako kontaktua baliogabea da</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_sent_tap_for_details">Ez da bidali, ukitu xehetasunak ikusteko.</string>
-  <string name="ConversationItem_error_partially_not_delivered">Partzialki bidalia, ukitu xehetasunetarako</string>
+  <string name="ConversationItem_error_not_sent_tap_for_details">Ez da bidali; sakatu xehetasunak ikusteko.</string>
+  <string name="ConversationItem_error_partially_not_delivered">Partzialki bidalia; sakatu xehetasunak ikusteko</string>
   <string name="ConversationItem_error_network_not_delivered">Bidaltzeak huts egin du</string>
-  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Jaso da gakoaren datu-trukatzearen mezua, tap egin prozesatzeko.</string>
+  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Jaso da gako-trukearen mezua; sakatu hura prozesatzeko.</string>
   <string name="ConversationItem_group_action_left">%1$s taldea utzi du</string>
   <string name="ConversationItem_send_paused">Bidalketa eten egin da</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">Bidalketak huts egin du, ukitu segurtasunik gabeko alternatibarako</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Ezin izan da bidali; sakatu segurtasunik gabeko alternatibarako</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Alternatiba gisa, enkriptatu gabeko SMS mezuak erabili?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Enkriptatu gabeko MMSaz baliatu?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Mezu hau <b>ez</b> da enkriptatuko: hartzailea ez da jada Signal aplikazioaren erabiltzailea.\n\nSegurtasunik gabeko mezua bidali?</string>
@@ -212,7 +212,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Hartzailea SMS edo email baliogabea da!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Mezua hutsik dago!</string>
   <string name="ConversationActivity_group_members">Taldeko kideak</string>
-  <string name="ConversationActivity__tap_here_to_start_a_group_call">Ukitu hemen talde-deia hasteko</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">Sakatu hau talde-dei bat hasteko</string>
   <string name="ConversationActivity_invalid_recipient">Hartzaile baliogabea!</string>
   <string name="ConversationActivity_added_to_home_screen">Hasiera pantailara gehituta</string>
   <string name="ConversationActivity_calls_not_supported">Deiak ez daude onartuta</string>
@@ -316,14 +316,14 @@
   <string name="ConversationFragment_you_already_viewed_this_message">Mezu hau ikusia duzu</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Zuretzako oharrak gehitu ditzakezu solasaldi honetan.\nZure kontuak lotutako gailurik badauka, ohar berriak sinkronizatuko dira.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d taldeko kide izen bera dute.</string>
-  <string name="ConversationFragment__tap_to_review">Ukitu berrikusteko</string>
+  <string name="ConversationFragment__tap_to_review">Sakatu berrikusteko</string>
   <string name="ConversationFragment__review_requests_carefully">Berrikusi eskaerak kontu handiz</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal-ek izen bera duen beste kontaktu bat topatu du.</string>
   <string name="ConversationFragment_contact_us">Harremanetan jarri gurekin</string>
   <string name="ConversationFragment_verify">Baieztatu</string>
   <string name="ConversationFragment_not_now">Orain ez</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">%s erabiltzailearekin duzun segurtasun-zenbakia aldatu egin da.</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%s erabiltzailearekin duzun segurtasun-zenbakia aldatu egin da seguraski Signal berrinstalatu duelako edo gailua aldatu duelako. Sakatu Egiaztatu segurtasun-zenbaki berria egiaztatzeko. Hau hautazkoa da.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%s(r)ekin  duzun segurtasun-zenbakia aldatu egin da, seguruenik Signal berriro instalatu duelako edo gailua aldatu duelako. Sakatu Egiaztatu segurtasun-zenbaki berria egiaztatzeko. Hau hautazkoa da.</string>
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$son</string>
   <!--Dialog title for block group link join requests-->
@@ -449,7 +449,7 @@
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Probatu zure babeskopiaren pasaesaldia eta egiaztatu bat datorrela</string>
   <string name="BackupsPreferenceFragment__turn_on">Aktibatu</string>
   <string name="BackupsPreferenceFragment__turn_off">Desaktibatu</string>
-  <string name="BackupsPreferenceFragment__to_restore_a_backup">Babeskopia bat leheneratzeko, Signlen kopia berri bat instalatu. Aplikazioa ireki, \"Babeskopia leheneratu\" aukeran ukitu eta babeskopiaren fitxategia kokatu.
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Babeskopia bat leheneratzeko, instalatu Signl-en kopia berri bat. Ireki aplikazioa, sakatu \"Leheneratu babeskopia\" eta bilatu babeskopia-fitxategia.
 %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Gehiago jakin</string>
   <string name="BackupsPreferenceFragment__in_progress">Martxan…</string>
@@ -493,7 +493,7 @@
   <string name="DocumentView_unnamed_file">Izenik gabeko fitxategia</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizatu Google Play-ren zerbitzuetarko</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Gailu honek ez dauka Play Services erabiltzerik. Signal irekita ez dagoenean, sistemaren bateria optimizazioek galarazten diote mezuak jasotzea. Ukitu sistemaren bateria optimizazioak desaktibatzeko.</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Gailu honek ez du onartzen Play Services. Signal inaktibo dagoenean mezuak eskuratzea galarazten dioten sistemaren bateria-optimizazioak desgaitzeko, sakatu hau.</string>
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signalen bertsio hau iraungi da. Eguneratu orain mezuak bidali eta jaso ahal izateko.</string>
   <string name="ExpiredBuildReminder_update_now">Eguneratu orain</string>
@@ -819,7 +819,7 @@
   <string name="ImageEditorHud_draw_anywhere_to_blur">Marraztu edonon zirriborrotzeko</string>
   <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Marraztu aurpegi edo area gehiago zirriborrotzeko</string>
   <!--InputPanel-->
-  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Ukitu eta eutsi ahots mezua grabatzeko, jaregin bidaltzeko.</string>
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Eduki sakatuta ahots mezu bat grabatzeko; jaregin bidaltzeko.</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Partekatu</string>
   <string name="InviteActivity_share_with_contacts">Partekatu kontaktuekin</string>
@@ -928,7 +928,7 @@
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia mezua</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS mezu berria deskargatzen</string>
-  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Errorea MMS mezua jaisterakoan, ukitu berriro saiatzeko</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Errore bat gertatu da MMS mezua deskargatzean; sakatu berriro saiatzeko</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">%si bidali</string>
   <string name="MediaPickerActivity__menu_open_camera">Ireki kamera</string>
@@ -948,13 +948,13 @@
     <item quantity="other">Ezin duzu %d elementu baino gehiago partekatu.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Aukeratu hartzaileak</string>
-  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Ukitu hemen mezu hau desagertarazteko behin ikusita.</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Mezua ikusitakoan desager dadin, sakatu hau.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Multimedia fitxategi guztiak</string>
   <string name="MediaRepository__camera">Kamera</string>
   <!--MessageDecryptionUtil-->
   <string name="MessageDecryptionUtil_failed_to_decrypt_message">Ezin izan da desenkriptatu mezua</string>
-  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Arazketa-erregistro bat bidaltzeko, ukitu hau</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Arazketa-erregistro bat bidaltzeko, sakatu hau</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Ezezaguna</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal bertsio zaharregitik jaso da mezu zifratua.  Eskatu igorleari birbidaltzeko mesedez bere Signal egiaztatu ondoren.</string>
@@ -1302,7 +1302,7 @@
   <!--Body text for the Valentine\'s Day donation megaphone.-->
   <string name="ValentinesDayMegaphone_show_your_affection">Erakutsi zure estimua Signal-en sostengatzaile bihurtuta.</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Ukitu hemen bideoa aktibatzeko</string>
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Sakatu hau bideoa aktibatzeko</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s erabiltzaileari deitzeko, Signalek zure kamera erabiltzeko baimena behar du</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Deitzen…</string>
@@ -1486,7 +1486,7 @@ zenbakia (%s) baliogabea da.
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
 </string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Segurtasun zenbaki berria duen mezua jaso da. Ukitu prozesatzeko eta erakusteko.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Segurtasun-zenbaki berria duen mezu bat jaso da. Sakatu hura prozesatzeko eta bistaratzeko.</string>
   <string name="SmsMessageRecord_secure_session_reset">Saio segurua berrezarri duzu.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s berrezarri saio segurua.</string>
   <string name="SmsMessageRecord_duplicate_message">Mezu bikoiztua.</string>
@@ -1512,7 +1512,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">Editatu</string>
   <string name="SubmitDebugLogActivity_done">Eginda</string>
-  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Ukitu lerro bat ezabatzeko</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Lerro bat ezabatzeko, uki ezazu</string>
   <string name="SubmitDebugLogActivity_submit">Bidali</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Errorea arazteko erregistroak bidaltzerakoan</string>
   <string name="SubmitDebugLogActivity_success">Arrakasta!</string>
@@ -1567,7 +1567,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Opari-berreizgarri bat eskatu duzu</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal eguneratu</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signalaren bertsio berria dago, sakatu eguneratzeko</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal-en bertsio berri bat dago; sakatu eguneratzeko</string>
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Mezua bidali?</string>
   <string name="UntrustedSendDialog_send">Bidali</string>
@@ -1715,7 +1715,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Gailua ez dago erregistratuta</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Seguraski zure telefono zenbakia beste gailu baten erregistratu duzulako da. Sakatu berriz erregistratzeko.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Ziurrenik zure telefono-zenbakia beste gailu batean erregistratu duzulako gertatu da hori. Sakatu berriz erregistratzeko.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Deiari erantzuteko, eman Signal-i mikrofonoa atzitzeko baimena.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%s-ren deiari erantzuteko, eman Signali mikrofonoa erabiltzeko baimena.</string>
@@ -1871,13 +1871,13 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Gaitu deien jakinarazpenak.</string>
   <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Gaitu atzeko planoko jarduerak</string>
   <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Itxura ona du denak!</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Deien jakinarazpenak jasotzeko, ukitu hau eta aktibatu \"Erakutsi jakinarazpenak\"</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Deien jakinarazpenak jasotzeko, ukitu hau jakinarazpenak aktibatzeko, eta ziurtatu soinua eta leiho gainerakorrak gaituta daudela.</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Deien jakinarazpenak jasotzeko, ukitu hau eta gaitu atzeko planoko jarduerak \"Bateria\" ataleko ezarpenetan.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Deien jakinarazpenak jasotzeko, sakatu hau eta aktibatu \"Erakutsi jakinarazpenak\"</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Deien jakinarazpenak jasotzeko, sakatu hau jakinarazpenak aktibatzeko, eta ziurtatu soinua eta leiho gainerakorrak gaituta daudela.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Deien jakinarazpenak jasotzeko, sakatu hau eta gaitu atzeko planoko jarduerak \"Bateria\" ataleko ezarpenetan.</string>
   <string name="EnableCallNotificationSettingsDialog__settings">Ezarpenak</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Deien jakinarazpenak jasotzeko, ukitu Ezarpenak eta aktibatu \"Erakutsi jakinarazpenak\"</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Deien jakinarazpenak jasotzeko, ukitu Ezarpenak jakinarazpenak gaitzeko, eta ziurtatu soinua eta leiho gainerakorrak gaituta daudela.</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Deien jakinarazpenak jasotzeko, ukitu Ezarpenak eta gaitu atzeko planoko jarduerak \"Bateria\" ataleko ezarpenetan.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Deien jakinarazpenak jasotzeko, sakatu Ezarpenak eta aktibatu \"Erakutsi jakinarazpenak\"</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Deien jakinarazpenak jasotzeko, sakatu Ezarpenak jakinarazpenak gaitzeko, eta ziurtatu soinua eta leiho gainerakorrak gaituta daudela.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Deien jakinarazpenak jasotzeko, sakatu Ezarpenak eta gaitu atzeko planoko jarduerak \"Bateria\" ataleko ezarpenetan.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Herrialdeak kargatzen…</string>
   <string name="country_selection_fragment__search">Bilatu</string>
@@ -1964,7 +1964,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="prompt_passphrase_activity__unlock">Desblokeatu</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signalek MMS ezarpenak behar ditu media eta taldeko mezuak banatu ahal izateko zure hari-gabeko hornitzailearen bitartez. Zure gailuak ez dauka informazio hau eskuragarri. Hau batzuetan gertatzen da blokeatuta dauden eta beste konfigurazio murrizgarriak dituzten gailuetan.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Medio eta talde mezuak bidaltzeko, ukitu \'Ados\' eta osatu beharrezkoak diren ezarpenak. Zure hornitzailearentzako ezarpenak normalean topa daitezke zure hornitzailearen APNa bilatuz. Bakarrik behin egin beharko duzu hau.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Multimedia-edukiak eta taldeko mezuak bidaltzeko, sakatu \"Ados\" eta osatu beharrezkoak diren ezarpenak. Operadorearen MMS ezarpenak \"zure operadorearen APNa\" bilatuta aurki daitezke, normalean. Behin bakarrik egin beharko duzu hori.</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">Entregarekin erlazionatutako arazoa</string>
   <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Ezin izan zaizu entregatu %s(e)k bidalitako mezu, sticker, erreakzio edo irakurragiri bat. Agian zuzenean bidali nahi izan dizu, edo talde batean.</string>
@@ -2004,7 +2004,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="recipients_panel__to"><small>Izen edo zenbaki bat idatzi</small></string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s(r)ekin trukatzen dituzun mezuak muturretik muturrera enkriptatuta dauden egiaztatzeko, konparatu goiko zenbakiak haren gailuan agertzen direnekin. Haren telefonoko kodea eskanea dezakezu, baita ere. <a href="https://signal.org/redirect/safety-numbers">Informazio gehiago</a>.]]></string>
-  <string name="verify_display_fragment__tap_to_scan">Ukitu eskaneatzeko</string>
+  <string name="verify_display_fragment__tap_to_scan">Sakatu eskaneatzeko</string>
   <string name="verify_display_fragment__successful_match">Konbinazio arrakastatsua</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">Ezin izan da egiaztatu segurtasun-zenbakia</string>
   <string name="verify_display_fragment__loading">Kargatzen…</string>
@@ -2435,7 +2435,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ConfirmPayment__payment_will_continue_processing">Ordainketa prozesatzen jarraituko da</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Hartzaile baliogabea!</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Pertsona honek ez ditu ordainketak aktibatu</string>
-  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Ezin da sareko kuotarik eskatu. Ordainketa honekin jarraitzeko, sakatu ados berriro saiatzeko.</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Ezin da eskatu sareko kuotarik. Ordainketa honekin aurrera egiteko, sakatu ados berriro saiatzeko.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <string name="CurrencyAmountFormatter_s_at_s">%1$s %2$sn</string>
   <!--SetCurrencyFragment-->
@@ -2539,7 +2539,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Arbelarekin konparatu</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_import_title">Importatu sistemaren SMS mezuak</string>
-  <string name="reminder_header_sms_import_text">Ukitu telefonoan diren enkriptatu gabeko SMS mezuak Signal datu-base zifratura kopiatzeko.</string>
+  <string name="reminder_header_sms_import_text">Telefonoko enkriptatu gabeko SMS mezuak Signal-en datu-base enkriptatuan kopiatzeko, sakatu hau.</string>
   <string name="reminder_header_push_title">Aktibatu Signal mezu eta deiak</string>
   <string name="reminder_header_push_text">Berritu zure komunikazio-esperientzia.</string>
   <string name="reminder_header_service_outage_text">Signal arazo teknikoak izaten ari da. Gogor ari gara lanean zerbitzua ahal bezain laster berriro martxan jartzeko.</string>
@@ -2718,7 +2718,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Babeskopiak gordetzeko karpeta ezabatu edo mugitu da.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Zure babeskopia duen fitxategia handiegia da bolumen honetan gordetzeko.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Ez dago leku nahikorik zure babeskopia gordetzeko.</string>
-  <string name="LocalBackupJobApi29_tap_to_manage_backups">Ukitu babeskopiak kudeatzeko.</string>
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">Sakatu babeskopiak kudeatzeko.</string>
   <string name="ProgressPreference_d_messages_so_far">%d mezu orain arte</string>
   <string name="RegistrationActivity_wrong_number">Zenbaki okerra</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Dei iezadazu \n (Hemen topatuko nauzu: %1$02d:%2$02d)</string>
@@ -2777,7 +2777,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Sakatu goiko ezkerreko profileko argazkia Ezarpenak irekitzeko</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_account">Ukitu \"Kontua\"</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">Sakatu \"Kontua\"</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Sakatu \"Transferitu kontua\" eta gero \"Jarraitu\" bi gailuetan</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2827,7 +2827,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="DeviceTransferSetup__go_to_support_page">Joan laguntza orrira</string>
   <string name="DeviceTransferSetup__try_again">Saiatu berriro</string>
   <string name="DeviceTransferSetup__waiting_for_other_device">Beste gailu baten zain</string>
-  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Sakatu Jarraitu beste gailuan transferentzia hasteko.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Transferentzia hasteko, sakatu Jarraitu beste gailuan.</string>
   <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Sakatu Jarraitu beste gailuan…</string>
   <!--NewDeviceTransferFragment-->
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Ezin da Signal-en bertsio berriago batetik transferitu</string>
@@ -2850,7 +2850,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
   <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Deskargatu Signal zure Android gailu berrian</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Sakatu \"Kontua transferitu edo leheneratu\"</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Sakatu \"Transferitu edo leheneratu kontua\"</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
   <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Hautatu \"Transferitu Android gailutik\" eskatzen zaizunean eta gero \"Jarraitu\". Mantendu bi gailuak gertu.</string>
   <string name="OldDeviceTransferInstructions__continue">Jarraitu</string>
@@ -3315,7 +3315,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="Donate2022Q2Megaphone_not_now">Orain ez</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">Pertsonalizatu erreakzioak</string>
-  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Ukitu emoji bat ordezkatzeko</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Emoji bat ordezkatzeko, saka ezazu</string>
   <string name="EditReactionsFragment__reset">Berrabiarazi</string>
   <string name="EditReactionsFragment_save">Gorde</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Auto-k kolorea horma-paperarekin lotzen du</string>
@@ -3379,7 +3379,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ConversationSettingsFragment__conversation_muted_forever">Elkarrizketa isilduta betirako</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefono-zenbakia arbelean kopiatu da.</string>
   <string name="ConversationSettingsFragment__phone_number">Telefono zenbakia</string>
-  <string name="ConversationSettingsFragment__get_badges">Lortu bereizgarriak zure profilerako Signal-en laguntzarekin. Sakatu bereizgarri baten gainean gehiago jakiteko.</string>
+  <string name="ConversationSettingsFragment__get_badges">Lortu profilerako bereizgarriak Signal-i lagunduta. Bereizgarri bati buruzko informazio gehiago lortzeko, saka ezazu.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Gehitu kideak</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Editatu taldeari buruzko informazioa</string>
@@ -3490,8 +3490,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ImageEditorHud__delete">Ezabatu</string>
   <string name="ImageEditorHud__toggle_between_text_styles">Aldatu testu-estiloen artean</string>
   <string name="MediaCountIndicatorButton__send">Bidali</string>
-  <string name="MediaReviewSelectedItem__tap_to_remove">Ukitu ezabatzeko</string>
-  <string name="MediaReviewSelectedItem__tap_to_select">Ukitu aukeratzeko</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Sakatu ezabatzeko</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Sakatu hautatzeko</string>
   <string name="MediaReviewImagePageFragment__discard">Baztertu</string>
   <string name="MediaReviewImagePageFragment__discard_changes">Aldaketak baztertu?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Argazki honetan egin dituzun aldaketak galduko dituzu.</string>
@@ -3856,7 +3856,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Gehitu storie bat</string>
   <!--Displayed when there are no stories to display-->
-  <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Une honetan ez dago azken eguneratzerik erakusteko. Sakatu + zure istorioari gehitzeko.</string>
+  <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Ez dago eguneratze berririk erakusteko. Sakatu + istorioan gehitzeko.</string>
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Ezkutatu storie-ak</string>
   <!--Context menu option to unhide a story-->
@@ -3913,7 +3913,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
     <item quantity="other">%1$d erantzun</item>
   </plurals>
   <!--Used when view receipts are disabled-->
-  <string name="StoryViewerPageFragment__views_off">Ikuspegiak desaktibatuta</string>
+  <string name="StoryViewerPageFragment__views_off">Irakurragiriak desaktibatuta daude</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s%2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3927,7 +3927,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Ikustaldirik ez oraindik</string>
   <!--Displayed when user has disabled receipts-->
-  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Gaitu irakurtzeko ordainagiriak zure storie-ak nork ikusi dituen ikusteko.</string>
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Istorioak nork ikusi dituen jakiteko, gaitu irakurragiriak.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">Joan ezarpenetara</string>
   <!--Displayed when a story has no replies yet-->
@@ -4027,7 +4027,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Save button label when editing a private story name-->
   <string name="EditPrivateStoryNameFragment__save">Gorde</string>
   <!--Displayed in text post creator before user enters text-->
-  <string name="TextStoryPostCreationFragment__tap_to_add_text">Ukitu testua gehitzeko</string>
+  <string name="TextStoryPostCreationFragment__tap_to_add_text">Testua gehitzeko, sakatu</string>
   <!--Button label for changing font when creating a text post-->
   <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
   <!--Displayed in text post creator when prompting user to enter text-->
@@ -4207,7 +4207,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
     <item quantity="other">Tadeko Story - %1$d ikusle</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
-  <string name="ContactSearchItems__tap_to_choose_your_viewers">Ukitu zure ikusleak aukeratzeko</string>
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">Sakatu zure ikusleak aukeratzeko</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Story ezarpenak</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4244,7 +4244,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Iraungita</string>
   <!--Label indicating that a user can tap to advance to the next post in a story-->
-  <string name="StoryFirstTimeNavigationView__tap_to_advance">Ukitu aurrera egiteko</string>
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">Sakatu aurrera egiteko</string>
   <!--Label indicating swipe direction to skip current story-->
   <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Saltatzeko, pasatu hatza</string>
   <!--Label indicating swipe direction to exit story viewer-->
@@ -4254,47 +4254,47 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Content description for vertical context menu button in safety number sheet rows-->
   <string name="SafetyNumberRecipientRowItem__open_context_menu">Ireki laster-menua</string>
   <!--Sub-line when a user is verified.-->
-  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · Egiaztatua</string>
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · Egiaztatuta</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">Egiaztatuta</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Segurtasun zenbaki aldaketak</string>
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Segurtasun-zenbakiaren aldaketak</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__the_following_people">Baliteke pertsona hauek Signal berriro instalatu edo gailuak aldatu izana. Sakatu hartzaile bat segurtasun-zenbaki berria berresteko. Hau hautazkoa da.</string>
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">Baliteke pertsona hauek Signal berriro instalatu edo gailuak aldatu izatea. Sakatu hartzaile bat segurtasun-zenbaki berria berresteko. Hau hautazkoa da.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Segurtasun-zenbakiaren egiaztapena</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
-  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Segurtasun-zenbakiaren egiaztapena osatu da</string>
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Osatu da segurtasun-zenbakiaren egiaztapena</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
-  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Konexio guztiak berrikusi dira, sakatu bidali jarraitzeko.</string>
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Konexio guztiak berrikusi dira. Aurrera egiteko, sakatu Bidali.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Signal berriro instalatu edo gailuak aldatu dituzten %1$dkonexio dituzu. Zure storie-a haiekin partekatu aurretik, berrikusi haien segurtasun-zenbakiak edo kontuan hartu zure storie-tik kentzea.</string>
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Agian Signal berriro instalatu duten edo gailuak aldatu dituzten %1$d konexio dituzu. Istorioa haiekin partekatu aurretik, berrikusi haien segurtasun-zenbakiak edo ken itzazu istoriorik.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Segurtasun zenbakia baieztatu</string>
   <!--Menu action to remove user from story-->
-  <string name="SafetyNumberBottomSheetFragment__remove_from_story">Kendu storie-tik</string>
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">Kendu istoriotik</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">Bidali hala eta guztiz ere</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
   <string name="SafetyNumberBottomSheetFragment__review_connections">Berrikusi konexioak</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
-  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Ez dago hartzaile gehiago erakutsi behar</string>
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Ez dago beste hartzailerik erakusteko</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">Eginda</string>
   <!--Title of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Segurtasun zenbaki aldaketak</string>
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Segurtasun-zenbakiaren aldaketak</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">Baliteke %1$d hartzailek Signal berriro instalatu edo gailuak aldatu izana. Sakatu hartzaile bat segurtasun-zenbaki berria berresteko. Hau hautazkoa da.</string>
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">Baliteke %1$d hartzailek Signal berriro instalatu edo gailuak aldatu izatea. Sakatu hartzaile bat segurtasun-zenbaki berria berresteko. Hau hautazkoa da.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Kontaktuak</string>
   <!--Context menu label for distribution list headers in review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__remove_all">Ezabatu dena</string>
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">Kendu guztiak</string>
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">Ezabatu</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Nire storie-aren pribatutasuna</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Nire istorioen pribatutasuna</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Aukeratu nork ikus ditzakeen Nire Storie-ko argitalpenak. Ezarpenetan beti egin ditzakezu aldaketak.</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Aukeratu nork ikus ditzakeen \"Nire istorioa\" ataleko argitalpenak. Nahi duzunean alda ditzakezu ezarpenak.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Signal konexio guztiak</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

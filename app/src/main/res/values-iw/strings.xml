@@ -4115,6 +4115,7 @@
     <item quantity="other">%1$d תשובות</item>
   </plurals>
   <!--Used when view receipts are disabled-->
+  <string name="StoryViewerPageFragment__views_off">אישורי קריאה מושבתים</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s%2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -4128,7 +4129,9 @@
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">אין צפיות עדין</string>
   <!--Displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">ניתן לאפשר אישורי קריאה כדי לראות מי צפה בסטוריז שלך.</string>
   <!--Button label displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__go_to_settings">מעבר להגדרות</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">אין תשובות עדין</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4418,6 +4421,7 @@
     <item quantity="other">סיפור קבוצתי · %1$d צופים</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">יש ללחוץ כדי לבחור את הצופים שלך</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">הגדרות סיפור</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4468,33 +4472,49 @@
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">הבנתי</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">פתיחת תפריט קונטקסט</string>
   <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s  · מאומת/ת</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">מוודא</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">שינויים במספרי בטיחות</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">יתכן שהאנשים הבאים התקינו מחדש את Signal או החליפו מכשירים. יש ללחוץ על נמען או נמענת כדי לאשר את מספר הבטיחות החדש. זו פעולה אופציונלית — לא חייבים.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">בדיקת מספרי בטיחות</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">בדיקת מספרי בטיחות הושלמה</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">כל חברי ה-Signal נסקרו, יש ללחוץ על שליחה כדי להמשיך.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">יש לך %1$d חברי Signal שיתכן והתקינו מחדש את Signal או החליפו מכשירים. לפני שיתוף הסטורי שלך איתם, כדאי לסקור את מספרי הבטיחות שלהם או לשקול להסיר אותם מהסטורי שלך.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">וודא מספר ביטחון</string>
   <!--Menu action to remove user from story-->
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">הסרה מסטורי</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">שלח בכל זאת</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <string name="SafetyNumberBottomSheetFragment__review_connections">סקירת חברי Signal</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">אין יותר נמענים להציג</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">סיים</string>
   <!--Title of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">שינויים במספרי בטיחות</string>
   <!--Message of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">יתכן ש-%1$d נמענים התקינו מחדש את Signal או החליפו מכשירים. יש ללחוץ על נמען או נמענת כדי לאשר את מספר הבטיחות החדש. זו פעולה אופציונלית — לא חייבים.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">אנשי קשר</string>
   <!--Context menu label for distribution list headers in review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">הסרת הכל</string>
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">הסר</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">פרטיות הסטורי שלי</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">כדאי לבחור מי יראה את הפוסטים ב״סטורי שלי״. גם אחרי שבוחרים. תמיד אפשר לעשות שינויים בהגדרות.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">כל חברי ה-Signal</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

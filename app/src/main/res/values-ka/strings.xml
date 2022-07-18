@@ -63,9 +63,9 @@
   <string name="AttachmentKeyboard_payment">ტრანზაქცია</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">მედიის ასარჩევი აპლიკაცია ვერ მოიძებნა.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal-ს სჭირდება საცავზე წვდომის უფლება, რათა მიაბას სურათები, ვიდეოები ან აუდიო, მაგრამ ის სამუდამოდ უარყოფილი იქნა. გთხოვთ გადახვიდე აპის პარამეტრების მენიუში, აირჩიო \"უფლებები\" და გააქტიურო \"საცავი\".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal-ს სჭირდება კონტაქტებზე წვდომის უფლება, რათა მიაბას საკონტაქტო ინფორმაცია, მაგრამ ის სამუდამოდ უარყოფილი იქნა. გთხოვთ გადახვიდე აპის პარამეტრების მენიუში, აირჩიო \"უფლებები\" და გააქტიურო \"კონტაქტები\".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal-ს სჭირდება ადგილმდებარეობის გამოყენების უფლება, რათა მიაბას ადგილმდებარეობა, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, გადახვიდე აპის პარამეტრების მენიუში, აირჩიო \"უფლებები\" და გააქტიურო\"ადგილმდებარეობა\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">სურათების, ვიდეოების ან აუდიოს მისამაგრებლად Signal-ს მეხსიერებაზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ გადახვიდე აპის პარამეტრების მენიუში, აირჩიო \"უფლებები\" და ჩართო \"მეხსიერება\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">საკონტაქტო ინფორმაციის მისაბმელად Signal-ს კონტაქტებზე წვდომის უფლება სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ გადახვიდე აპის პარამეტრების მენიუში, აირჩიო \"უფლებები\" და ჩართო \"კონტაქტები\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">ადგილმდებარეობის საჩვენებლად Signal-ს ადგილმდებარეობაზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, გადახვიდე აპის პარამეტრების მენიუში, აირჩიო \"უფლებები\" და ჩართო \"ადგილმდებარეობა\".</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">მიმდინარეობს მედია ფაილების ატვირთვა…</string>
   <string name="AttachmentUploadJob_compressing_video_start">მიმდინარეობს ვიდეოს შეკუმშვა…</string>
@@ -227,7 +227,7 @@
   <string name="ConversationActivity_lets_switch_to_signal">მოდი, გადავერთოთ სიგნალზე %1$s</string>
   <string name="ConversationActivity_specify_recipient">გთხოვთ აირჩიო კონტაქტი</string>
   <string name="ConversationActivity_unblock">განბლოკვა</string>
-  <string name="ConversationActivity_attachment_exceeds_size_limits">მიმაგრებული ფაილი აღემატება იმ შეტყობინების ზომების ლიმიტებს, რომლის გაგზავნასაც თქვენ ცდილობთ.</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">მიმაგრებული ფაილი აღემატება იმ შეტყობინების ზომების ლიმიტებს, რომლის გაგზავნასაც შენ ცდილობ.</string>
   <string name="ConversationActivity_unable_to_record_audio">აუდიოს ჩაწერა შეუძლებელია!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">შენ არ შეგიძლია შეტყობინებების გაგზავნა ამ ჯგუფში, რადგან აღარ ხარ მისი წევრი.</string>
   <string name="ConversationActivity_only_s_can_send_messages">მხოლოდ %1$s-ს შეუძლია შეტყობინებების გაგზავნა.</string>
@@ -236,17 +236,17 @@
   <string name="ConversationActivity_cant_start_group_call">ჯგუფური ზარის დაწყება ვერ მოხერხდა</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">მხოლოდ ამ ჯგუფის ადმინებს შეუძლიათ ზარის წამოწყება.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">ამ მოწყობილობაზე არ არის აპი ამ ბმულის დასამუშავებლად.</string>
-  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">თქვენი შეერთების მოთხოვნა იქნა გაგზავნილი ჯგუფის ადმინთან. თქვენ მიიღებთ შეტყობინებას, როდესაც ისინი რამეს მოიმოქმედებენ.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">შენი გაწევრიანების მოთხოვნა იქნა გაგზავნილი ჯგუფის ადმინთან. შენ მიიღებ შეტყობინებას, როდესაც ისინი რამეს მოიმოქმედებენ.</string>
   <string name="ConversationActivity_cancel_request">მოთხოვნის გაუქმება</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">აუდიო შეტყობინებების გასაგზავნად, მიეცი Signal-ს წვდომა შენს მიკროფონზე.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal-ს სჭირდება მიკროფონისუფლება იმისათვის, რომ გააგზავნოს აუდიო შეტყობინებები, მაგრამ იგი იქნა მუდმივად უარყოფილი. გთხოვთ, გადახვიდეთ აპის პარამეტრების მენიუში, აირჩიოთ \"უფლებები\" და ჩართოთ \"მიკროფონი\".</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal-ს სჭირდება მიკროფონის და კამერისუფლება იმისათვის, რომ დარეკოს %s-თან, მაგრამ იგი იქნა მუდმივად უარყოფილი. გთხოვთ, გადახვიდეთ აპის პარამეტრების მენიუში, აირჩიოთ \"უფლებები\" და ჩართოთ \"მიკროფონი\" და \"კამერა\".</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">აუდიო შეტყობინებების გადასაგზავნად Signal-ს მიკროფონზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, გადახვიდე აპის პარამეტრების მენიუში, აირჩიო \"უფლებები\" და ჩართო \"მიკროფონი\".</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">%s-თან დასარეკად Signal-ს მიკროფონსა და კამერაზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, გადახვიდე აპის პარამეტრების მენიუში, აირჩიო \"უფლებები\" და ჩართოთ \"მიკროფონი\" და \"კამერა\".</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">სურათების და ვიდეოების გადასაღებად, მიეცი Signal-ს წვდომა კამერაზე.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal-ს სჭირდება კამერის უფლება იმისათვის, რომ გადაიღოს სურათები და ვიდეოები, მაგრამ იგი იქნა მუდმივად უარყოფილი. გთხოვთ, გადახვიდეთ აპის პარამეტრების მენიუში, აირჩიოთ \"უფლებები\" და ჩართოთ \"კამერა\".</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">სურათების და ვიდეოების გადასაღებლად Signal-ს სჭირდება კამერის გამოყენების ნებართვა </string>
-  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">გააქტიურე მიკროფონი ხმიანი ვიდეოების გადასაღებლად.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">სურათების და ვიდეოების გადასაღებად Signal-ს კამერაზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, გადახვიდე აპის პარამეტრების მენიუში, აირჩიო \"უფლებები\" და ჩართოთ \"კამერა\".</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">სურათების და ვიდეოების გადასაღებლად Signal-ს  კამერაზე წვდომის ნებართვა სჭირდება</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">გააქტიურე მიკროფონზე წვდომის ნებართვა ხმიანი ვიდეოების გადასაღებად.</string>
   <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal-ს სჭირდება მიკროფონის უფლება იმისათვის, რომ გადაიღოს ვიდეოები, მაგრამ იგი იქნა მუდმივად უარყოფილი. გთხოვთ, გადახვიდეთ აპის პარამეტრების მენიუში, აირჩიოთ \"უფლებები\" და ჩართოთ \"მიკროფონი\" და \"კამერა\".</string>
-  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">ვიდეოების გადასაღებად Signal-ს სჭირდება მიკროფონის გამოყენების ნებართვა.</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">ვიდეოების გადასაღებად Signal-ს მიკროფონზე წვდომის ნებართვა სჭირდება.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal-ს არ შეუძლია SMS/MMS შეტყობინებების გაგზავნა, რადგან ის არ არის შენი ძირითადი SMS აპი. გსურს შეცვალო ეს შენს Android პარამეტრებში?</string>
   <string name="ConversationActivity_yes">დიახ</string>
@@ -280,7 +280,7 @@
     <item quantity="one">წავშალო არსებული შეტყობინებები?</item>
     <item quantity="other">წავშალოთ მონიშნული შეტყობინებები?</item>
   </plurals>
-  <string name="ConversationFragment_save_to_sd_card">შევინახოთ საცავში?</string>
+  <string name="ConversationFragment_save_to_sd_card">შევინახოთ მეხსიერებაში?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">ყველა %1$d მედიის მეხსიერებაში შენახვით სხვა აპლიკაციები შეძლებენ მათ ნახვას.\n\nგავაგრძელო?</item>
     <item quantity="other">ყველა %1$d მედიის მეხსიერებაში შენახვით სხვა აპლიკაციები შეძლებენ მათ ნახვას.\n\nგავაგრძელო?</item>
@@ -298,7 +298,7 @@
     <item quantity="one">დანართს ვინახავთ მეხსიერებაში…</item>
     <item quantity="other">ვინახავთ %1$d დანართს მეხსიერებაში…</item>
   </plurals>
-  <string name="ConversationFragment_pending">იტვირთება…</string>
+  <string name="ConversationFragment_pending">მოლოდინის რეჟიმში…</string>
   <string name="ConversationFragment_push">მონაცემები (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
@@ -310,14 +310,14 @@
   <string name="ConversationFragment_quoted_message_not_found">თავდაპირველი შეტყობინების მოძებნა ვერ მოხერხდა</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">თავდაპირველი შეტყობინება აღარაა ხელმისაწვდომი</string>
   <string name="ConversationFragment_failed_to_open_message">შეტყობინების გახსნა ვერ მოხერხდა</string>
-  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">შეგიძლია ნებისმიერ შეტყობინებაზე მარჯვნივ გადასქროლო, რათა სწრაფად უპასუხო</string>
-  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">შეგიძლია ნებისმიერ შეტყობინებაზე მარცხნივ გადასქროლო, რათა სწრაფად უპასუხო</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">შეგიძლია ნებისმიერ შეტყობინებაზე მარჯვნივ გადაწიო, რათა სწრაფად უპასუხო</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">შეგიძლია ნებისმიერ შეტყობინებაზე მარცხნივ გადაწიოო, რათა სწრაფად უპასუხო</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">გამავალი ერთხელ სანახავი მედია ფაილები ავტომატურად წაიშლება მათი გაგზავნის შემდეგ</string>
   <string name="ConversationFragment_you_already_viewed_this_message">უკვე ნახე ეს შეტყობინება</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">შეგიძლია ამ მიმოწერაში ჩანიშვნები დაამატო. თუ შენს ანგარიშზე რაიმე მოწყობილობაა მიბმული, ახალი ჩანიშვნები დასინქრონიზდება.</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">შეგიძლია ამ მიმოწერაში ჩანიშვნები დაამატო. \nთუ შენს ანგარიშზე რაიმე დაკავშირებული მოწყობილობებია, ახალი ჩანიშვნები დასინქრონიზდება.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">ჯგუფში %1$d სეხნიაა.</string>
   <string name="ConversationFragment__tap_to_review">დააჭირე, რათა გადახედო</string>
-  <string name="ConversationFragment__review_requests_carefully">ფრთხილად გადახედე მოთხოვნებს</string>
+  <string name="ConversationFragment__review_requests_carefully">ყურადღებით გადახედე მოთხოვნებს</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal-მა სხვა კონტაქტიც იპოვა იმავე სახელით.</string>
   <string name="ConversationFragment_contact_us">დაგვიკავშირდი</string>
   <string name="ConversationFragment_verify">ვერიფიკაცია</string>
@@ -417,7 +417,7 @@
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">პროფილი</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">პროფილის ფოტოს დაყენებისას შეცდომა მოხდა</string>
-  <string name="CreateProfileActivity_problem_setting_profile">პროფილის დაყენებისას პრობლემას გადავაწყდით</string>
+  <string name="CreateProfileActivity_problem_setting_profile">პროფილის დაყენების პრობლემა</string>
   <string name="CreateProfileActivity_set_up_your_profile">შექმენი შენი პროფილი</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">შენი პროფილი ბოლომდე დაშიფრულია. შენი პროფილი და მასში შეტანილი ცვლილებები თვალსაჩინო იქნება შენი კონტაქტებისთვის, როცა წამოიწყებ ან დაეთანხმები ახალ მიმოწერებს და როცა ახალ ჯგუფებს შეუერთდები.</string>
   <string name="CreateProfileActivity_set_avatar_description">ავატარის დაყენება</string>
@@ -438,10 +438,10 @@
   <!--Couldn\'t read the selected backup-->
   <string name="RestoreBackupFragment__backup_could_not_be_read">სათადარიგო ასლის წაკითხვა ვერ მოხერხდა.</string>
   <!--Backup has an unsupported file extension-->
-  <string name="RestoreBackupFragment__backup_has_a_bad_extension">სათადარიგო ასლს ცუდი გაფართოება აქვს.</string>
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">სათადარიგო ასლს გაუმართავი გაფართოება აქვს.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">ჩატის სათადარიგო ასლები</string>
-  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">სათადარიგო ასლები პაროლ-ფრაზითაა დაცული და შენს მოწყობილობაში ინახება.</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">სათადარიგო ასლები პაროლ-ფრაზითაა დაშიფრული და შენს მოწყობილობაში ინახება.</string>
   <string name="BackupsPreferenceFragment__create_backup">სათადარიგო ასლების შექმნა</string>
   <string name="BackupsPreferenceFragment__last_backup">ბოლო სათადარიგო ასლი: %1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">სათადარიგო ასლების საქაღალდე</string>
@@ -449,13 +449,13 @@
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">გატესტე შენი სათადარიგო ასლების პაროლ-ფრაზა და დარწმუნდი, რომ ის შეესაბამება</string>
   <string name="BackupsPreferenceFragment__turn_on">ჩართვა</string>
   <string name="BackupsPreferenceFragment__turn_off">გამორთვა</string>
-  <string name="BackupsPreferenceFragment__to_restore_a_backup">სათადარიგო ასლის აღსადგენად გადმოწერე დააინსტალირე Signal-ის ახალი ვერსია. გახსენი აპლიკაცია და დააჭირე \"სარეზერვო ასლის აღდგენას\", შემდეგ იპოვე სათადარიგო ფაილი. %1$s</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">სათადარიგო ასლის აღსადგენად გადმოწერე Signal-ის ახალი ვერსია. გახსენი აპლიკაცია და დააჭირე \"სარეზერვო ასლის აღდგენას\", შემდეგ იპოვე სათადარიგო ფაილი. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">გაიგე მეტი</string>
-  <string name="BackupsPreferenceFragment__in_progress">პროგრესშია…</string>
+  <string name="BackupsPreferenceFragment__in_progress">იტვირთება…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d ჯერ…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% ჯერ…</string>
-  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">სათადარიგო ასლების შესაქმნელად Signal-ი საჭიროებს გარე მეხსიერების ნებართვას, მაგრამ ის სამუდამოდ უარყოფილია. გთხოვთ, შეხვიდე აპის პარამეტრებში, აირჩიო „ნებართვები“ და ჩართო „შენახვა“.</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">სათადარიგო ასლების შესაქმნელად Signal-ი საჭიროებს გარე მეხსიერებაზე წვდომის ნებართვას, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, შეხვიდე აპის პარამეტრებში, აირჩიო „ნებართვები“ და ჩართო „შენახვა“.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">გამოიყენება სპეციალური: %s</string>
   <string name="CustomDefaultPreference_using_default">გამოიყენება დეფოლტ: %s</string>
@@ -474,7 +474,7 @@
   <string name="DateUtils_yesterday">გუშინ</string>
   <!--DecryptionFailedDialog-->
   <string name="DecryptionFailedDialog_chat_session_refreshed">ჩატის სესია განახლდა</string>
-  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal-ი ბოლომდე დაშიფვრას იყენებს და ამას შეიძლება ზოგჯერ შენი ჩატის სესიის განახლება დასჭირდეს. ეს არ იმოქმედებს შენი ჩატის უსაფრთხოებაზე, მაგრამ შესაძლოა კონტაქტისგან შეტყობინება გამოგრჩეს, რის შედეგადაც შესაძლოა მისთვის შეტყობინების ხელახლა გამოგზავნის თხოვნა მოგიწიოს.</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal-ი სრულ დაშიფვრას იყენებს, რის გამოც შეიძლება ზოგჯერ შენი ჩატის სესიის განახლება დასჭირდეს. ეს არ იმოქმედებს შენი ჩატის უსაფრთხოებაზე, მაგრამ შესაძლოა ამ კონტაქტისგან შეტყობინება გამოგრჩეს, რის შედეგადაც შესაძლოა მისთვის შეტყობინების ხელახლა გამოგზავნის თხოვნა მოგიწიოს.</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">ჩავხსნა კავშირი \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">ამ მოწყობილობასთან კავშირის ჩახსნის შემდეგ, ის ვეღარ შეძლებს შეტყობინებების გაგზავნასა და მიღებას.</string>
@@ -489,13 +489,13 @@
   <string name="DeviceListItem_last_active_s">ბოლო აქტიური %s</string>
   <string name="DeviceListItem_today">დღეს</string>
   <!--DocumentView-->
-  <string name="DocumentView_unnamed_file">უსახელო საქაღალდე</string>
+  <string name="DocumentView_unnamed_file">უსახელო ფაილი</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">ოპტიმიზაცია გამოტოვებული Play Service-ებისთვის</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ამ მოწყობილობას არ აქვს Play Services-ის მხარდაჭერა. დააჭირე, რათა გამორთო სისტემის ბატარიის ოპტიმიზაცია, რაც ხელს უშლის Signal-ს შეტყობინებების მოძიებაში, როცა აპლიკაციას არ იყენებ.</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ამ მოწყობილობას არ აქვს Play Services-ის მხარდაჭერა. დააჭირე, რათა გამორთო ბატარეის სისტემური ოპტიმიზაცია, რაც ხელს უშლის Signal-ს შეტყობინებების მოძიებაში, როცა აპლიკაციას არ იყენებ.</string>
   <!--ExpiredBuildReminder-->
-  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signal-ის ამ ვერსიას ვადა გაუვიდა. გაანახლე ახლა, რათა გააგზავნო და მიიღო შეტყობინებები.</string>
-  <string name="ExpiredBuildReminder_update_now">განაახლე ახლა</string>
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signal-ის ამ ვერსიას ვადა გაუვიდა. განაახლე ახლავე, რათა გააგზავნო და მიიღო შეტყობინებები.</string>
+  <string name="ExpiredBuildReminder_update_now">განაახლე ახლავე</string>
   <!--PendingGroupJoinRequestsReminder-->
   <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
     <item quantity="one">%d მოლოდინის რეჟიმში მყოფი წევრობის მოთხოვნა.</item>
@@ -516,7 +516,7 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" დამატებულია \"%2$s\"-ში.</string>
   <string name="AddToGroupActivity_add_to_group">დაამატე ჯგუფში</string>
   <string name="AddToGroupActivity_add_to_groups">დაამატე ჯგუფებში</string>
-  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">ამ პიროვნების მემკვიდრეობით ჯგუფებში დამატება შეუძლებელია.</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">ამ პიროვნების მოძველებულ ჯგუფებში დამატება შეუძლებელია.</string>
   <string name="AddToGroupActivity_add">დამატება</string>
   <string name="AddToGroupActivity_add_to_a_group">ჯგუფში დამატება</string>
   <!--ChooseNewAdminActivity-->
@@ -941,7 +941,7 @@
   <string name="MediaSendActivity_message">მიწერა</string>
   <string name="MediaSendActivity_select_recipients">აირჩიე მიმღებები</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal-ს შენს კონტაქტებზე წვდომა სჭირდება, რათა ისინი აჩვენოს.</string>
-  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">შენი კონტაქტების საჩვენებლად Signal-ს კონტაქტებზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ უარყოფილია. გთხოვთ, შეხვიდე აპის პარამეტრებში, აირჩიო „ნებართვები“ და ჩართო „კონტაქტები“.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">შენი კონტაქტების საჩვენებლად Signal-ს კონტაქტებზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, შეხვიდე აპის პარამეტრებში, აირჩიო „ნებართვები“ და ჩართო „კონტაქტები“.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">%d-ზე მეტ ელემენტს ვერ გააზიარებ.</item>
     <item quantity="other">%d-ზე მეტ ელემენტს ვერ გააზიარებ.</item>
@@ -1414,8 +1414,8 @@
   <string name="RegistrationActivity_play_services_error">სერვისების ჩართვის შეცდომა</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">მიმდინარეობს Google Play-ის სერვისები ს განახლება ან ისინი დროებით მიუწვდომელია. გთხოვთ სცადოთ ხელახლა.</string>
   <string name="RegistrationActivity_terms_and_privacy">პირობები &amp; კონფიდენციალურობის პოლიტიკა</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal-ს სჭირდება კონტაქტები და მედია ნებართვები, რათა დაგეხმაროთ მეგობრებთან დაკავშირებასა და შეტყობინებების გაგზავნაში. შენი კონტაქტები აიტვირთება Signal-ის პირადი კონტაქტის აღმოჩენის გამოყენებით, რაც ნიშნავს, რომ ისინი ბოლომდე დაშიფრულია და არასოდეს ჩანს Signal-ის სერვისისთვის.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal-ს კონტაქტებზე წვდომის ნებართვა სჭირდება, რათა დაგეხმაროთ მეგობრებთან დაკავშირებაში. შენი კონტაქტები აიტვირთება Signal-ის პირადი კონტაქტის აღმოჩენის გამოყენებით, რაც ნიშნავს, რომ ისინი ბოლომდე დაშიფრულია და არასოდეს ჩანს Signal-ის სერვისისთვის.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">მეგობრებთან დაკავშირების დასახმარებლად და შეტყობინებების გასაგზავნად, Signal-ს კონტაქტებსა და მედიაზე წვდომის ნებართვა სჭირდება. შენი კონტაქტები იტვირთება Signal-ის პირადი კონტაქტის აღმოჩენის საშუალებით, რაც ნიშნავს, რომ ისინი ბოლომდე დაშიფრულია და არასოდეს ჩანს Signal-ის სერვისისთვის.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">მეგობრებთან დაკავშირების დასახმარებლად Signal-ს კონტაქტებზე წვდომის ნებართვა სჭირდება. შენი კონტაქტები იტვირთება Signal-ის პირადი კონტაქტის აღმოჩენის საშუალებით, რაც ნიშნავს, რომ ისინი ბოლომდე დაშიფრულია და არასოდეს ჩანს Signal-ის სერვისისთვის.</string>
   <string name="RegistrationActivity_rate_limited_to_service">თქვენ მოახდინეთ ძალიან ბევრი მცდელობა ამ ნომრის დარეგისტრირებისთვის. გთხოვთ ხელახლა სცადოთ მოგვიანებით.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">სერვისთან დაკავშირება შეუძლებელია. გთხოვთ, შეამოწმოთ ქსელის კავშირი და ხელახლა სცადოთ.</string>
   <string name="RegistrationActivity_non_standard_number_format">ნომრის არასტანდარტული ფორმატი</string>
@@ -1598,7 +1598,7 @@
   <string name="VerifyIdentityActivity_our_signal_safety_number">ჩვენი Signal-ის უსაფრთხოების ნომერი:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">როგორც ჩანს, არ გაქვს ისეთი აპი, იქ რომ გადააზიარო.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">ბუფერში შესადარებელი უსაფრთხოების ნომერი ვერ მოიძებნა</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal-ს QR კოდის დასასკანერებლად კამერის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ უარყოფილია. გთხოვთ, შეხვიდე აპის პარამეტრებში, აირჩიო „ნებართვები“ და ჩართო „კამერა“.</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">QR კოდის დასასკანერებლად Signal-ს კამერაზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, შეხვიდე აპის პარამეტრებში, აირჩიო „ნებართვები“ და ჩართო „კამერა“.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">QR კოდის სკანირება კამერის ნებართვის გარეშე შეუძლებელია</string>
   <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">%1$s-ის უსაფრთხოების ნომრის სანახავად ჯერ შეტყობინებები უნდა გაცვალოთ.</string>
   <!--ViewOnceMessageActivity-->
@@ -1623,7 +1623,7 @@
   <string name="MediaPreviewActivity_you">შენ</string>
   <string name="MediaPreviewActivity_unssuported_media_type">მედია-ფაილის ტიპი მხარდაუჭერელია</string>
   <string name="MediaPreviewActivity_draft">მონახაზი</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal-ს სჭირდება შენახვის ნებართვა გარე მეხსიერებაში შესანახად, მაგრამ ის სამუდამოდ უარყოფილია. გთხოვთ, შეხვიდე აპის პარამეტრებში, აირჩიო „ნებართვები“ და ჩართო „შენახვა“.</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">გარე მეხსიერებაში შესანახად Signal-ს შენახვის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, შეხვიდე აპის პარამეტრებში, აირჩიო „ნებართვები“ და ჩართო „შენახვა“.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">ნებართვების გარეშე გარე მეხსიერებაში შენახვა შეუძლებელია</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">წავშალოთ შეტყობინება?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">ეს ამ შეტყობინებას სამუდამოდ წაშლის.</string>
@@ -1718,7 +1718,7 @@
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">ზარზე პასუხისთვის მიეცი Signal-ს წვდომა შენს მიკროფონზე.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%s-ის ზარზე პასუხისთვის მიეცი Signal-ს წვდომა შენს მიკროფონზე.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal-ი საჭიროებს მიკროფონისა და კამერის ნებართვებს ზარების განსახორციელებლად ან მისაღებად, მაგრამ ისინი სამუდამოდ უარყოფილია. გთხოვთ, შეხვიდე აპის პარამეტრებში, აირჩიო „ნებართვები“ და ჩართო „მიკროფონი“ და „კამერა“.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">ზარების განსახორციელებლად ან მისაღებად Signal-ს მიკროფონსა და კამერაზე წვდომის ნებართვა სჭირდება, მაგრამ ისინი სამუდამოდ იქნა უარყოფილია. გთხოვთ, შეხვიდე აპის პარამეტრებში, აირჩიო „ნებართვები“ და ჩართო „მიკროფონი“ და „კამერა“.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">ზარი აღებულია დაკავშირებულ მოწყობილობაზე.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">ზარი დაკიდებულია დაკავშირებულ მოწყობილობაზე.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">დაკავებაა დაკავშირებულ მოწყობილობაზე.</string>
@@ -1754,7 +1754,7 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">კონტაქტის ფოტო</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal-ი საჭიროებს კონტაქტებზე წვდომის ნებართვას შენი კონტაქტების საჩვენებლად, მაგრამ ის სამუდამოდ უარყოფილია. გთხოვთ, გადახვიდე აპლიკაციის პარამეტრების მენიუში, აირჩიო „ნებართვები“ და ჩართო „კონტაქტები“.</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">შენი კონტაქტების საჩვენებლად Signal-ს კონტაქტებზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, გადახვიდე აპლიკაციის პარამეტრების მენიუში, აირჩიო „ნებართვები“ და ჩართო „კონტაქტები“.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">შეცდომა კონტაქტების მოძიებისას, შეამოწმე შენი ქსელის კავშირი</string>
   <string name="ContactSelectionListFragment_username_not_found">მომხმარებლის სახელი ვერ მოიძებნა</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" არაა Signal-ის მომხმარებელი. გთხოვთ, გადაამოწმო მომხმარებლის სახელი და თავიდან სცადო.</string>
@@ -2024,7 +2024,12 @@
   <string name="message_details_header_via">-ით</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">მომლოდინე</string>
+  <string name="message_details_recipient_header__sent_to">გაგზავნილია ჩამოთვლილებთან</string>
+  <string name="message_details_recipient_header__sent_from">გამოგზავნილია ჩამოთვლილებისგან</string>
+  <string name="message_details_recipient_header__delivered_to">გაეგზავნათ ჩამოთვლილებს</string>
+  <string name="message_details_recipient_header__read_by">წაიკითხეს ჩამოთვლილებმა</string>
   <string name="message_details_recipient_header__not_sent">არ გაიგზავნა</string>
+  <string name="message_details_recipient_header__viewed">ნახეს ჩამოთვლილებმა</string>
   <string name="message_details_recipient_header__skipped">გამოტოვებული</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">ვერ გაიგზავნა</string>
@@ -2136,7 +2141,7 @@
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">ავტომატურად დალუქე Signal-ი უმოქმედობის გარკვეული დროის ინტერვალის შემდეგ</string>
   <string name="preferences__inactivity_timeout_passphrase">უმოქმედობის ვადის ამოწურვის პაროლ-ფრაზა</string>
   <string name="preferences__inactivity_timeout_interval">უმოქმედობის ვადის ამოწურვის ინტერვალი</string>
-  <string name="preferences__notifications">Notifications</string>
+  <string name="preferences__notifications">შეტყობინებები</string>
   <string name="preferences__led_color">LED ფერი</string>
   <string name="preferences__led_color_unknown">უცნობი</string>
   <string name="preferences__pref_led_blink_title">LED ციმციმის ნიმუში</string>
@@ -2171,7 +2176,7 @@
   <string name="preferences__one_time_donation">ერთჯერადი დონაცია</string>
   <string name="preferences__privacy">კონფიდენციალურობა</string>
   <string name="preferences__mms_user_agent">MMS მომხმარებლის აგენტი</string>
-  <string name="preferences__advanced_mms_access_point_names">მექანიკური MMS პარამეტრები</string>
+  <string name="preferences__advanced_mms_access_point_names">MMS-ის მექანიკური პარამეტრები</string>
   <string name="preferences__mmsc_url">MMSC URL-ი</string>
   <string name="preferences__mms_proxy_host">MMS პროქსი ჰოსტი</string>
   <string name="preferences__mms_proxy_port">MMS პროქსი პორტი</string>
@@ -2187,10 +2192,10 @@
   <string name="preferences__keep_messages">შეტყობინებების შენახვა</string>
   <string name="preferences__clear_message_history">მიმოწერის ისტორიის გასუფთავება</string>
   <string name="preferences__linked_devices">დაკავშირებული მოწყობილობები</string>
-  <string name="preferences__light_theme">ნათელი</string>
-  <string name="preferences__dark_theme">ბნელი</string>
-  <string name="preferences__appearance">ვიზუალი</string>
-  <string name="preferences__theme">Theme</string>
+  <string name="preferences__light_theme">ღია</string>
+  <string name="preferences__dark_theme">მუქი</string>
+  <string name="preferences__appearance">ჩატის ფონი</string>
+  <string name="preferences__theme">აპის ფონი</string>
   <string name="preferences__chat_wallpaper">ჩატის ფონის სურათი</string>
   <string name="preferences__chat_color_and_wallpaper">ჩატის ფერი &amp; ფონის სურათი</string>
   <string name="preferences__disable_pin">პინ-კოდის გამორთვა</string>
@@ -2362,6 +2367,7 @@
   <string name="PaymentsDetailsFragment__payment_complete">ტრანზაქცია დასრულებულია</string>
   <string name="PaymentsDetailsFragment__payment_failed">ტრანზაქცია ვერ მოხერხდა</string>
   <string name="PaymentsDetailsFragment__network_fee">ქსელის საფასური</string>
+  <string name="PaymentsDetailsFragment__sent_by">გამოგზავნეს ჩამოთვლილებმა</string>
   <string name="PaymentsDetailsFragment__sent_to_s">გაგზავნილია %1$s-სთან</string>
   <string name="PaymentsDetailsFragment__you_on_s_at_s">შენ %1$s-ს %2$s-ზე</string>
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s %2$s-ს %3$s-ზე</string>
@@ -2662,7 +2668,7 @@
   <string name="ConversationListFragment_loading">იტვირთება…</string>
   <string name="CallNotificationBuilder_connecting">ვუკავშირდებით…</string>
   <string name="Permissions_permission_required">საჭიროა ნებართვა</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal- SMS-ის გასაგზავნად SMS ნებართვა სჭირდება, მაგრამ ის სამუდამოდ უარყოფილია. გთხოვთ, შეხვიდე აპის პარამეტრებში, აირჩიო „ნებართვები“ და ჩართო „SMS“.</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal-ს SMS გასაგზავნად SMS-ზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, შეხვიდე აპის პარამეტრებში, აირჩიო „ნებართვები“ და ჩართო „SMS“.</string>
   <string name="Permissions_continue">გაგრძელება</string>
   <string name="Permissions_not_now">ახლა არა</string>
   <string name="conversation_activity__enable_signal_messages">Signal-ის შეტყობინებების ჩართვა</string>
@@ -2777,7 +2783,7 @@
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">ვემზადებით ძველ Android მოწყობილობასთან დასაკავშირებლად…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">ერთი წუთით, მალე მზად უნდა იყოს</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">ველოდებით ძველ Android მოწყობილობას, რომ დაუკავშირდეს…</string>
-  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal-ს სჭირდება მდებარეობის ნებართვა შენი ძველი Android მოწყობილობის აღმოსაჩენად და მასთან დასაკავშირებლად.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">შენი ძველი Android მოწყობილობის აღმოსაჩენად და მასთან დასაკავშირებლად, Signal-ს მდებარეობაზე წვდომის ნებართვა სჭირდება.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal-ს სჭირდება მდებარეობის სერვისების ჩართვა შენი ძველი Android მოწყობილობის აღმოსაჩენად და მასთან დასაკავშირებლად.</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal-ს სჭირდება ჩართული Wi-Fi შენი ძველი Android მოწყობილობის აღმოსაჩენად და მასთან დასაკავშირებლად. Wi-Fi უნდა იყოს ჩართული, მაგრამ არ უნდა იყოს დაკავშირებული Wi-Fi ქსელთან.</string>
   <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">ბოდიში, როგორც ჩანს, ამ მოწყობილობას არ აქვს Wi-Fi Direct-ის მხარდაჭერა. Signal-ი Wi-Fi Direct-ს შენი ძველი Android მოწყობილობის აღმოსაჩენად და მასთან დასაკავშირებლად იყენებს. მაინც შეგიძლია აღადგინო სათადარიგო ასლი შენი ანგარიშის აღსადგენად შენი ძველი Android მოწყობილობიდან.</string>
@@ -2785,7 +2791,7 @@
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">შენს ძველ Android მოწყობილობასთან დაკავშირების მცდელობისას მოხდა მოულოდნელი შეცდომა.</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_new_android_device">ვეძებთ ახალ Android მოწყობილობას…</string>
-  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal-ს სჭირდება მდებარეობის ნებართვა შენი ახალი Android მოწყობილობის აღმოსაჩენად და მასთან დასაკავშირებლად.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">შენი ახალი Android მოწყობილობის აღმოსაჩენად და მასთან დასაკავშირებლად Signal-ს მდებარეობაზე წვდომის ნებართვა სჭირდება.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal-ს სჭირდება ჩართული მდებარეობის სერვისები შენი ახალი Android მოწყობილობის აღმოსაჩენად და მასთან დასაკავშირებლად.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal-ს სჭირდება ჩართული Wi-Fi შენი ახალი Android მოწყობილობის აღმოსაჩენად და მასთან დასაკავშირებლად. Wi-Fi უნდა იყოს ჩართული, მაგრამ არ უნდა იყოს დაკავშირებული Wi-Fi ქსელთან.</string>
   <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">ბოდიში, როგორც ჩანს, ამ მოწყობილობას არ აქვს Wi-Fi Direct-ის მხარდაჭერა. Signal-ი Wi-Fi Direct-ს შენი ახალი Android მოწყობილობის აღმოსაჩენად და მასთან დასაკავშირებლად იყენებს. მაინც შეგიძლია აღადგინო სათადარიგო ასლი შენი ანგარიშის აღსადგენად შენი ახალი Android მოწყობილობიდან.</string>
@@ -3042,7 +3048,7 @@
   <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">მეტი ფონის სურათის სანახავად გადასქროლე</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">ფონის სურათის ყველა ჩატისთვის დაყენება</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">ფონის სურათის %1$s-სთვის დაყენება</string>
-  <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">შენი გალერიის სანახავად მეხსიერებაზე წვდომის ნებართვა დაგვჭირდება.</string>
+  <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">შენი გალერეის სანახავად მეხსიერებაზე წვდომის ნებართვა დაგვჭირდება.</string>
   <!--WallpaperImageSelectionActivity-->
   <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">ფონის სურათის სურათის არჩევა</string>
   <!--WallpaperCropActivity-->
@@ -3436,6 +3442,7 @@
   <string name="ShareInterstitialActivity__share">გაზიარება</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">მაღლა ასვლა</string>
+  <string name="MultiselectForwardFragment__forward_to">გაეგზავნოთ ჩამოთვლილებს</string>
   <!--Displayed when sharing content via the fragment-->
   <string name="MultiselectForwardFragment__share_with">გაზიარება</string>
   <string name="MultiselectForwardFragment__add_a_message">შეტყობინების დამატება</string>
@@ -3465,6 +3472,7 @@
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">შეტყობინების დამატება</string>
   <string name="MediaReviewFragment__add_a_reply">პასუხის დამატება</string>
+  <string name="MediaReviewFragment__send_to">გაგეგზავნოთ ჩამოთვლილებს</string>
   <string name="MediaReviewFragment__view_once_message">ერთხელ სანახავი შეტყობინება</string>
   <string name="MediaReviewFragment__one_or_more_items_were_too_large">ერთი ან მეტი ელემენტი ზედმეტად დიდი იყო</string>
   <string name="MediaReviewFragment__one_or_more_items_were_invalid">ერთი ან მეტი ელემენტი არავალიდური იყო</string>
@@ -3904,6 +3912,7 @@
     <item quantity="other">%1$d პასუხი</item>
   </plurals>
   <!--Used when view receipts are disabled-->
+  <string name="StoryViewerPageFragment__views_off">ნახვები გამორთულია</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3917,8 +3926,9 @@
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">ჯერ ნახვები არაა</string>
   <!--Displayed when user has disabled receipts-->
-  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">ჩართე წაკითხვის დადასტურება, რომ ნახო ვინ ნახა შენი Story-ები</string>
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">ჩართე წაკითხვის დადასტურება, რომ გამოგიჩნდეს ვინ ნახა შენი Story-ები.</string>
   <!--Button label displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__go_to_settings">შედი პარამეტრებში</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">ჯერ პასუხები არაა</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4148,6 +4158,7 @@
   <!--Title text on confirm gift page-->
   <string name="GiftFlowConfirmationFragment__confirm_gift">საჩუქრის დადასტურება</string>
   <!--Heading text specifying who the gift will be sent to-->
+  <string name="GiftFlowConfirmationFragment__send_to">გაეგზავნოთ ჩამოთვლილებს</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
   <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">შენი საჩუქარი მიმღებს 1 ერთი შეტყობინების სახით გაეგზავნება. შენი შეტყობინება ქვემოთ დაამატე.</string>
   <!--Text explaining that this gift is a one time donation-->
@@ -4195,6 +4206,7 @@
     <item quantity="other">ჯგუფური Story-ი · %1$d მნახველი</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">დააჭირე შენი მნახველების ასარჩევად</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Story-ის პარამეტრები</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4239,33 +4251,49 @@
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Got it</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">გახსენი კონტექსტური მენიუ</string>
   <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · ვერიფიცირებულია</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">Verified</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">ცვლილებები უსაფრთხოების ნომერში</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">ჩამოთვლილმა ადამიანებმა შეიძლება ხელახლა დააინსტალირეს Signal-ი ან შეცვალეს მოწყობილობები. დააჭირე მიმღებს უსაფრთხოების ახალი ნომრის დასადასტურებლად. ეს არაა სავალდებულო.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">უსაფრთხოების ნომრის შემოწმება</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">უსაფრთხოების ნომრის შემოწმება დასრულებულია</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">ყველა კავშირი განხილულია, გასაგრძელებლად დააჭირე გაგზავნას.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">შენ გყავს %1$d კავშირი, რომელთაც შესაძლოა ხელახლა დააინსტალირეს Signal-ი ან შეცვალეს მოწყობილობები. სანამ მათ შენს Story-ის გაუზიარებდე, გადახედე მათი უსაფრთხოების ნომრებს ან განიხილე შენი Story-იდან მათი წაშლა.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">უსაფრთხოების ნომრის ვერიფიცირება</string>
   <!--Menu action to remove user from story-->
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">Story-იდან წაშლა</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">მაინც გაგზავნა</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <string name="SafetyNumberBottomSheetFragment__review_connections">კავშირების განხილვა</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">მეტი მიმღები ვეღარ მოიძებნა</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">შესრულებულია</string>
   <!--Title of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">ცვლილებები უსაფრთხოების ნომერში</string>
   <!--Message of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d მიმღებმა შესაძლოა ხელახლა დააინსტალირა Signal-ი ან შეცვალა მოწყობილობა. დააჭირე მიმღებს უსაფრთხოების ახალი ნომრის დასადასტურებლად. ეს არაა სავალდებულო.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">კონტაქტები</string>
   <!--Context menu label for distribution list headers in review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">ყველას ამოშლა</string>
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">წაშლა</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">ჩემი Story-ის კონფიდენციალურობა</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">აირჩიე, ვინ შეძლებს My Story-ზე დაპოსტილის ნახვას. პარამეტრებში ცვლილებების შეტანა ყოველთვის შეგიძლია.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">ყველა კონტაქტი Signal-ზე</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

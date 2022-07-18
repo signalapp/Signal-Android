@@ -809,7 +809,7 @@
     <item quantity="other">%d skupnih skupin</item>
   </plurals>
   <plurals name="GroupMemberList_invited">
-    <item quantity="one">%1$s je povabil_a eno osebo</item>
+    <item quantity="one">%1$s je povabil_a 1 osebo</item>
     <item quantity="two">%1$s je povabil_a %2$d osebi</item>
     <item quantity="few">%1$s je povabil_a %2$d osebe</item>
     <item quantity="other">%1$s je povabil_a %2$d oseb</item>
@@ -841,7 +841,7 @@
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Ste prepričani, da želite ponastaviti povezavo do skupine? Uporabiki_ce se več ne bodo mogli_le pridružiti skupini preko sedanje povezave.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">Koda QR</string>
-  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Uporabniki_ce, ki bodo skenrali_le to kodo, se bodo lahko pridružili_le vaši skupini. Odobritev skrbnika_ce skupine bo vseeno potrebna, če imate vklopljeno takšno nastavitev.</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Uporabniki_ce, ki bodo skenirali_le to kodo, se bodo lahko pridružili_le vaši skupini. Odobritev skrbnika_ce skupine bo vseeno potrebna, če imate vklopljeno takšno nastavitev.</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">Deli kodo</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Želite preklicati vabilo, ki ste ga poslali uporabniku_ci %1$s?</string>
@@ -1512,9 +1512,9 @@
   <string name="WebRtcCallView__end_call">Zaključi klic</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
-    <item quantity="one">Na tem klicu · %1$d človek</item>
-    <item quantity="two">Na tem klicu · %1$d človeka</item>
-    <item quantity="few">Na tem klicu · %1$d ljudje</item>
+    <item quantity="one">Na tem klicu · %1$d oseba</item>
+    <item quantity="two">Na tem klicu · %1$d osebi</item>
+    <item quantity="few">Na tem klicu · %1$d osebe</item>
     <item quantity="other">Na tem klicu · %1$d ljudi</item>
   </plurals>
   <!--CallParticipantView-->
@@ -1682,8 +1682,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ThreadRecord_s_is_on_signal">%s uporablja Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Izginjajoča sporočila so izklopljena</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas poteka sporočila je nastavljen na %s</string>
-  <string name="ThreadRecord_safety_number_changed">Varnsotno število je bilo spremenjeno</string>
-  <string name="ThreadRecord_your_safety_number_with_s_has_changed">Varnostno število z uporabnikom_co %s je bilo spremenjeno.</string>
+  <string name="ThreadRecord_safety_number_changed">Varnostna številka je bila spremenjena</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">Varnostna številka z uporabnikom_co %s je bila spremenjena.</string>
   <string name="ThreadRecord_you_marked_verified">Potrdili ste</string>
   <string name="ThreadRecord_you_marked_unverified">Označili ste kot nepotrjeno</string>
   <string name="ThreadRecord_message_could_not_be_processed">Sporočilo ni moglo biti obdelano</string>
@@ -2127,8 +2127,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Za pošiljanje večpredstavnostnih in skupinskih sporočil tapnite \'OK\' in vnesite potrebne podatke. Nastavitve MMS za vašega operaterja lahko najverjetneje najdete z iskanjem po spletu. Podatke morate vnesti samo enkrat.</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">Problem pri dostavi</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Sporočilo, nalepka, reakcija ali obvestilo o prebranem sporočilu uporabnika_ce %s. vam niso mogli biti dostavljeni. Lahko so bili poslani osebno ali prek skupine.</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Sporočilo, nalepka, reakcija ali obvestilo o prebranem sporočilu uporabnika_ce %s vam niso mogli biti dostavljeni.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Sporočilo, nalepka, odziv ali potrdilo o branju uporabnika_ce %s. vam ni bilo mogoče dostaviti. Lahko so bili poslani osebno ali prek skupine.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Sporočilo, nalepka, odziv ali potrdilo o branju uporabnika_ce %s vam ni bilo mogoče dostaviti.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Ime (zahtevano)</string>
   <string name="CreateProfileActivity_last_name_optional">Priimek (neobvezno)</string>
@@ -2209,7 +2209,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="AndroidManifest_remove_photo">Odstrani fotografijo</string>
   <!--Message Requests Megaphone-->
   <string name="MessageRequestsMegaphone__message_requests">Prošnje za pogovor</string>
-  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Uporabniki_ce lahko odslej izbirajo ali želijo sodelovarti v pogovoru ali ne. Profilna imena so tu zato, da prejemnik_ca ve, kdo mu_ji pošilja sporočilo.</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Uporabniki_ce lahko odslej izbirajo ali želijo sodelovati v pogovoru ali ne. Profilna imena so tu zato, da prejemnik_ca ve, kdo mu/ji pošilja sporočilo.</string>
   <string name="MessageRequestsMegaphone__add_profile_name">Dodaj ime profila</string>
   <!--HelpFragment-->
   <string name="HelpFragment__have_you_read_our_faq_yet">Ste že prebrali pogosta vprašanja in odgovore?</string>
@@ -3502,7 +3502,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
   <string name="Donate2022Q2Megaphone_not_now">Ne zdaj</string>
   <!--EditReactionsFragment-->
-  <string name="EditReactionsFragment__customize_reactions">Prilagodi reakcije</string>
+  <string name="EditReactionsFragment__customize_reactions">Prilagodi odzive</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Tapnite za zamenjavo emojija</string>
   <string name="EditReactionsFragment__reset">Ponastavi</string>
   <string name="EditReactionsFragment_save">Shrani</string>
@@ -4117,6 +4117,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
     <item quantity="other">%1$d odgovorov</item>
   </plurals>
   <!--Used when view receipts are disabled-->
+  <string name="StoryViewerPageFragment__views_off">Ogled izklopljen</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -4130,7 +4131,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Brez ogledov</string>
   <!--Displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Omogočite potrdila o branju, da vidite, kdo si je ogledal vaše zgodbe.</string>
   <!--Button label displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__go_to_settings">Pojdite v nastavitve</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Brez odgovorov</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4175,7 +4178,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <plurals name="MyStorySettingsFragment__d_people_excluded">
     <item quantity="one">%1$d oseba izključena</item>
     <item quantity="two">%1$dosebi izključeni</item>
-    <item quantity="few">%1$d ljudje izključeni</item>
+    <item quantity="few">%1$d osebe izključene</item>
     <item quantity="other">%1$d ljudi izključenih</item>
   </plurals>
   <!--Privacy setting title for only sharing your story with specified connections-->
@@ -4192,9 +4195,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--My story privacy fine print about what the privacy settings are for-->
   <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Izberite, kdo lahko vidi vašo Zgodbo. Spremembe ne bodo vplivale na že poslane Zgodbe.</string>
   <!--Section header for options related to replies and reactions-->
-  <string name="MyStorySettingsFragment__replies_amp_reactions">Odgovori &amp; reakcije</string>
+  <string name="MyStorySettingsFragment__replies_amp_reactions">Odgovori &amp; odzivi</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
-  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Dovoli odgovore &amp; reakcije</string>
+  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Dovoli odgovore &amp; odzive</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
   <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Dovoli ljudem, ki lahko vidijo vašo zgodbo, odgovore in reakcije</string>
   <!--Note about default sharing-->
@@ -4420,6 +4423,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
     <item quantity="other">Skupinska zgodba · %1$d gledalcev_k</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">Tapnite za izbiro gledalcev</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Nastavitve zgodbe</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4470,33 +4474,49 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Razumem</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">Odprite meni bližnjic</string>
   <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · Potrjeno</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">Potrjeno</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Spremembe varnostne številke</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">Te osebe so morda znova namestile Signal ali zamenjale napravo. Tapnite na prejemnika, da potrdite novo varnostno številko. Potrditev ni obvezna.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Pregled varnostne številke</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Pregled varnostne številke zaključen</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Vse povezave so bile pregledane, tapnite pošlji za nadaljevanje.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Imate %1$d povezav, ki so morda znova namestile Signal ali zamenjale napravo. Preden z njimi delite svojo Zgodbo, preglejte njihove varnostne številke ali razmislite o njihovi odstranitvi iz ogleda Zgodbe.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Preglej varnostno število</string>
   <!--Menu action to remove user from story-->
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">Odstrani iz Zgodbe</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">Vseeno pošlji</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <string name="SafetyNumberBottomSheetFragment__review_connections">Pregled povezav</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Ni več prejemnikov za prikaz</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">OK</string>
   <!--Title of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Spremembe varnostne številke</string>
   <!--Message of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d prejemnikov je morda znova namestilo Signal ali zamenjalo napravo. Tapnite na prejemnika, da potrdite novo varnostno številko. Potrditev ni obvezna.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Stiki</string>
   <!--Context menu label for distribution list headers in review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">Odstrani vse</string>
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">Odstrani</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Zasebnost Moje zgodbe</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Izberite, kdo lahko vidi objave na Moja zgodba. V nastavitvah lahko to zmeraj spremenite.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Vse Signal povezave</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

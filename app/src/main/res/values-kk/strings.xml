@@ -2024,7 +2024,7 @@
   <string name="message_details_header_via">Құрал</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Күтілуде</string>
-  <string name="message_details_recipient_header__sent_to">Кімге</string>
+  <string name="message_details_recipient_header__sent_to">Кімге жіберілді</string>
   <string name="message_details_recipient_header__sent_from">Кімнен</string>
   <string name="message_details_recipient_header__delivered_to">Кімге жеткізілді</string>
   <string name="message_details_recipient_header__read_by">Оқыған</string>
@@ -2128,7 +2128,7 @@
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter пернесін бассаңыз, мәтіндік хаттар жіберіледі</string>
   <string name="preferences__pref_use_address_book_photos">Мекенжайлар кітабындағы фотосуреттерді қолдану</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">Бар болса, мекенжайлар кітабындағы контакт фотосуреттерін көрсету</string>
-  <string name="preferences__generate_link_previews">Сілтеме нобайын жасау</string>
+  <string name="preferences__generate_link_previews">Сілтеменің шағын көріністерін жасау</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Жіберетін хаттарыңыз үшін сілтеменің шағын көріністерін тікелей веб-сайттардан алыңыз.</string>
   <string name="preferences__choose_identity">Адамды таңдау</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Контактілер тізімінен контакт жазбасын таңдаңыз.</string>
@@ -2791,8 +2791,8 @@
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Ескі Android құрылғыңызға қосылып жатқанда, күтпеген қате пайда болды.</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_new_android_device">Жаңа Android құрылғысы ізделуде…</string>
-  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Жаңа Android құрылғыңызды анықтау және оған қосылу үшін Signal қолданбасын локация рұқсаты керек.</string>
-  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Жаңа Android құрылғыңызды анықтау және оған қосылу үшін Signal қолданбасына локация қызметтері қосылып тұруы керек.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Жаңа Android құрылғыңызды анықтау және оған қосылу үшін Signal қолданбасына геолокацияны пайдалануға рұқсат керек.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Жаңа Android құрылғыңызды анықтау және оған қосылу үшін Signal қолданбасына геолокация қызметтері қосылып тұруы керек.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Жаңа Android құрылғыңызды анықтау және оған қосылу үшін Signal қолданбасына Wi-Fi керек. Wi-Fi керек болғанымен, құрылғы Wi-Fi желісіне жалғанып тұрмауы тиіс.</string>
   <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Кешіріңіз, бұл құрылғыда Wi-Fi Direct жұмыс істемейді екен. Signal қолданбасы Wi-Fi Direct пайдаланып, сіздің жаңа Android құрылғыңызды анықтайды және оған қосылады. Жаңа Android құрылғыңыздағы аккаунтыңызды қалпына келтіру үшін резервтік көшірме жасауыңызға болады.</string>
   <string name="OldDeviceTransferSetup__create_a_backup">Резервтік көшірмені жасау</string>
@@ -2835,7 +2835,7 @@
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Екі құрылғыны бір-біріне жақын ұстаңыз. Құрылғыларды өшірмеңіз және Signal ашық тұруы керек. Тасымалданатын файлдар өтпелі шифрлаумен қорғалған.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d хат тасымалданды…</string>
   <!--Filled in with total percentage of messages transferred-->
-  <string name="DeviceTransfer__s_of_messages_so_far">Хаттардың %1$s%% тасымалданды</string>
+  <string name="DeviceTransfer__s_of_messages_so_far">Хаттардың ішінен %1$s%% хат тасымалданды…</string>
   <string name="DeviceTransfer__cancel">Болдырмау</string>
   <string name="DeviceTransfer__try_again">Қайталап көру</string>
   <string name="DeviceTransfer__stop_transfer_question">Тасымалдауды тоқтату керек пе?</string>
@@ -2890,7 +2890,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">Топқа қосу</string>
   <string name="RecipientBottomSheet_add_to_another_group">Басқа топқа қосу</string>
   <string name="RecipientBottomSheet_view_safety_number">Қауіпсіздік нөмірін көру</string>
-  <string name="RecipientBottomSheet_make_admin">Әкімші жасау</string>
+  <string name="RecipientBottomSheet_make_admin">Әкімші деп тағайындау</string>
   <string name="RecipientBottomSheet_remove_as_admin">Әкімші ретінде өшіру</string>
   <string name="RecipientBottomSheet_remove_from_group">Топтан өшіру</string>
   <string name="RecipientBottomSheet_message_description">Хабарлама</string>
@@ -2910,7 +2910,7 @@
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Ескі &lt;-&gt; жаңа топтар</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Ескі топтар дегеніміз не?</string>
-  <string name="GroupsLearnMore_paragraph_1">Ескі топтар – админдер және егжей-тегжейлі топ жаңалықтары сияқты Жаңа топ функцияларымен үйлеспейтін топтар.</string>
+  <string name="GroupsLearnMore_paragraph_1">Ескі топтар – әкімшілер мен егжей-тегжейлі топ жаңалықтары сияқты Жаңа топ функцияларымен үйлеспейтін топтар.</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Ескі топты жаңарта аламын ба?</string>
   <string name="GroupsLearnMore_paragraph_2">Ескі топтарды Жаңа топтарға ауыстыру қазірше мүмкін емес, бірақ сізде Signal-дың соңғы нұсқасы орнатылып тұрған болса, дәл сол мүшелермен Жаңа топ жасай аласыз.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal болашақта Ескі топтарды жаңарту мүмкіндігін қарастырады.</string>
@@ -2983,7 +2983,7 @@
   <string name="DeleteAccountFragment__no_number">Нөмір көрсетілмеген</string>
   <string name="DeleteAccountFragment__the_phone_number">Сіз енгізген телефон нөмірі аккаунтыңыздағы нөмірмен бірдей емес.</string>
   <string name="DeleteAccountFragment__are_you_sure">Тіркелгіңізді шынымен жойғыңыз келе ме?</string>
-  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Бұл функция Signal аккаунтыңызды жойып, қолданбаны қайта орнатады. Процесс аяқталған соң, қолданба жабылады.</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Бұл функция Signal аккаунтыңызды жойып, қолданбаны қалпына келтіреді. Процесс аяқталған соң, қолданба жабылады.</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">Аккаунт жойылмады. Желі байланысы бар ма?</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Жергілікті дерек жойылмады. Оны жүйенің қолданба параметрлерінен қолмен тазалай аласыз.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Қолданба параметрлерін іске қосу</string>
@@ -3047,14 +3047,14 @@
   <string name="ChatWallpaperPreviewActivity__set_wallpaper">Тұсқағаз орнату</string>
   <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Басқа тұсқағаздарды алдын ала көру үшін свайп жасаңыз</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Тұсқағазды барлық чатқа орнату</string>
-  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">%1$s деген чатқа тұсқағаз орнату</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">%1$s үшін тұсқағаз орнату</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Галереяны көру үшін жадқа кіруге рұқсат керек.</string>
   <!--WallpaperImageSelectionActivity-->
   <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Тұсқағаз суретін таңдау</string>
   <!--WallpaperCropActivity-->
   <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Кішірейту үшін екі саусақты жақындатыңыз, реттеу үшін сүйреңіз.</string>
-  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Барлық чатқа тұсқағаз орнату</string>
-  <string name="WallpaperCropActivity__set_wallpaper_for_s">%s деген чатқа тұсқағаз орнату.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Барлық чатқа тұсқағаз орнатыңыз.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">%s үшін тұсқағаз орнатыңыз.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Тұсқағаз орнату кезінде қате шықты.</string>
   <string name="WallpaperCropActivity__blur_photo">Фотосуретті бұлыңғырлау</string>
   <!--InfoCard-->
@@ -3109,7 +3109,7 @@
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Қалпына келтіру сөйлемі дұрыс емес</string>
   <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Сөйлемді дұрыс енгізіп, қайталап көріңіз.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Буферге көшіру керек пе?</string>
-  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Қалпына келтіру сөйлеміңізді цифрлық тұрғыда сақтағыңыз келсе, ол сенімді бір жерде тұруы керек.</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Қалпына келтіру сөйлеміңізді цифрлық тұрғыда сақтағыңыз келсе, ол сенімді бір жерде сақталғанына көз жеткізіңіз.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Көшірме жасау </string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Қалпына келтіру сөйлемін растау</string>
@@ -3188,7 +3188,7 @@
   <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal нөмірін өзгерту - Android-қа арналған PIN-кодқа (v2 PIN) қатысты көмек керек</string>
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN-кодтар бірдей емес</string>
-  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Жаңа нөміріңізге байланыстырылған PIN-код ескі нөміріңізге байланыстырылған нөмірмен бірдей емес. Ескі PIN-код қала берсін бе әлде жаңарту керек пе?</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Жаңа нөміріңізге байланыстырылған PIN-код ескі нөміріңізге байланыстырылған PIN-кодпен бірдей емес. Ескі PIN-код қала берсін бе әлде жаңарту керек пе?</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Ескі PIN-код қалсын</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">PIN-кодты жаңарту</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Ескі PIN-код қалсын ба?</string>
@@ -3238,7 +3238,7 @@
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Соңғылар тізімінде және қолданбаның ішінде скиншоттарды блоктау</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal хаттары мен қоңыраулары, үнемі ретрансляциялық қоңыраулар және қорғалған жіберуші</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Жаңа чаттарға арналған әдепкі таймер</string>
-  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Сіз бастаған барлық жаңа чат үшін әдепкіде жоғалып кететін хат орнатыңыз.</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Сіз бастаған барлық жаңа чат үшін әдепкі бойынша жоғалып кететін хат таймерін орнатыңыз.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Статус белгішесін көрсету</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Хат қорғалған жіберуші арқылы жеткізілгенде, хат мәліметтерінде белгішені көрсету.</string>
@@ -3375,7 +3375,7 @@
   <string name="ConversationSettingsFragment__add_as_a_contact">Контакт ретінде қосу</string>
   <string name="ConversationSettingsFragment__unmute">Дыбысын шығару</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Әңгіменің дыбысы %1$s дейін өшірілген</string>
-  <string name="ConversationSettingsFragment__conversation_muted_forever">Әңгіменің дыбысы мәңгі өшірілген</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Әңгіменің дыбысы біржола өшірілген</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Телефон нөмірі буферге көшірілді.</string>
   <string name="ConversationSettingsFragment__phone_number">Телефон нөмірі</string>
   <string name="ConversationSettingsFragment__get_badges">Signal-ға қолдау көрсетіп, профиліңізге таңбашалар алыңыз. Таңбашаны басып, толық мәлімет алыңыз.</string>
@@ -3429,8 +3429,7 @@
   <string name="AvatarPickerFragment__edit">Өңдеу</string>
   <string name="AvatarPickerRepository__failed_to_save_avatar">Аватарды сақтау мүмкін болмады</string>
   <!--TextAvatarCreationFragment-->
-  <string name="TextAvatarCreationFragment__preview">Алдын ала қарау
-</string>
+  <string name="TextAvatarCreationFragment__preview">Алдын ала қарау</string>
   <string name="TextAvatarCreationFragment__done">Дайын</string>
   <string name="TextAvatarCreationFragment__text">Мәтін</string>
   <string name="TextAvatarCreationFragment__color">Түс</string>
@@ -3443,7 +3442,7 @@
   <string name="ShareInterstitialActivity__share">Бөлісу</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Жоғары көтерілу</string>
-  <string name="MultiselectForwardFragment__forward_to">Қайта жіберу</string>
+  <string name="MultiselectForwardFragment__forward_to">Басқаға жіберу</string>
   <!--Displayed when sharing content via the fragment-->
   <string name="MultiselectForwardFragment__share_with">Бөлісетін адам</string>
   <string name="MultiselectForwardFragment__add_a_message">Хат қосу</string>
@@ -3452,7 +3451,7 @@
   <string name="MultiselectForwardFragment__videos_will_be_trimmed">Видеолар 30 секундтық клиптерге бөлінеді және бірнеше сторис ретінде жіберіледі.</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
   <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Сториске жіберілетін видеолардың ұзақтығы 30 секундтан аспау керек.</string>
-  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Қайта жіберілген хаттар енді дереу бармайды.</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Басқаға жіберілген хаттар енді дереу кетеді.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">%1$d хат жіберу</item>
     <item quantity="other">%1$d хат жіберу</item>
@@ -3467,7 +3466,7 @@
   </plurals>
   <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
     <item quantity="one">Хатты қайта жіберу мүмкін болмады, себебі ол жоқ.</item>
-    <item quantity="other">Хаттарды қайта жіберу мүмкін болмады, себебі олар жоқ.</item>
+    <item quantity="other">Хаттарды басқаға жіберу мүмкін болмады, себебі олар енді жоқ.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Шекке жетті</string>
   <!--Media V2-->
@@ -3477,7 +3476,7 @@
   <string name="MediaReviewFragment__view_once_message">Бір рет көрінетін хат</string>
   <string name="MediaReviewFragment__one_or_more_items_were_too_large">Бір немесе бірнеше элемент өте үлкен болды</string>
   <string name="MediaReviewFragment__one_or_more_items_were_invalid">Бір немесе бірнеше элемент дұрыс болмады</string>
-  <string name="MediaReviewFragment__too_many_items_selected">Таңдалған элементтердің саны өте көп</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Тым көп элемент таңдалды</string>
   <string name="ImageEditorHud__cancel">Болдырмау</string>
   <string name="ImageEditorHud__draw">Сызу</string>
   <string name="ImageEditorHud__write_text">Мәтін жазу</string>
@@ -3528,12 +3527,11 @@
   <string name="Subscription__s_per_month_dot_expires_s">айына %1$s · %2$s күні мерзімі аяқталады</string>
   <!--First small text blurb on learn more sheet-->
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal – жарнама берушілері немесе инвесторлары жоқ коммерциялық емес жоба. Оны пайдаланатын және бағалайтын адамдардың демеушілігімен жұмыс істейді. Ай сайын демеушілік жасап, профиліңізге таңба алыңыз да, басқалармен бөлісіңіз.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Не үшін демеушілік жасау керек?\"</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Не үшін демеушілік жасау керек?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal әр адам ойын жасырмай айта алатын және әлемнің түкпір-түкпіріндегі адамдармен қауіпсіз сөйлесуге мүмкіндік беретін бастапқы көзі ашық құпия технология әзірлеуді мақсат етеді.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Сіздің демеушілігіңіз осы мақсаттың орындалуына сеп болып, жеке қарым-қатынас орнату үшін миллиондаған адам пайдаланатын қолданбаны әзірлеуге және оның дұрыс жұмыс істеуіне жұмсалады.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Сіздің демеушілігіңіз осы мақсаттың орындалуына себеп болып, жеке қарым-қатынас орнату үшін миллиондаған адам пайдаланатын қолданбаны әзірлеуге және оның дұрыс жұмыс істеуіне жұмсалады. Жарнамасыз. Трекерсіз. Және бұл әзіл емес.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Қолдау көрсеткеніңіз үшін алғысымызды білдіреміз!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Демеуіңізге рақмет!
-</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Демеуіңізге рақмет!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">%s таңба алдыңыз! Осы таңбаны профиліңізде көрсетіп, Signal-ға демеушілік жасауға болатынын көрсетіңіз.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Boost таңбасын алдыңыз! Осы таңбаны профиліңізде көрсетіп, Signal-ға демеушілік жасауға болатынын көрсетіңіз.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Сонымен қатар</string>
@@ -3554,7 +3552,7 @@
   <string name="ManageDonationsFragment__my_subscription">Менің жазылымым</string>
   <string name="ManageDonationsFragment__manage_subscription">Жазылымды басқару</string>
   <!--Label for Donation Receipts button-->
-  <string name="ManageDonationsFragment__donation_receipts">Демекшілік чектері</string>
+  <string name="ManageDonationsFragment__donation_receipts">Демеушілік чектері</string>
   <string name="ManageDonationsFragment__badges">Таңбалар</string>
   <string name="ManageDonationsFragment__subscription_faq">Жазылым туралы жиі қойылатын сұрақтар</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Жазылу кезінде қате шықты.</string>
@@ -3564,9 +3562,9 @@
   <string name="ManageDonationsFragment__gift_a_badge">Таңба сыйлау</string>
   <string name="BoostFragment__give_signal_a_boost">Signal-дың танымалдығын арттыру</string>
   <!--Description text in boost sheet-->
-  <string name="BoostFragment__make_a_one_time">Бір реттеу демеушілік көрсетіп, %1$d күнге Boost таңбасын ұтып алыңыз.</string>
+  <string name="BoostFragment__make_a_one_time">Бір реттік демеушілік жасап, %1$d күнге Boost таңбасын алыңыз.</string>
   <string name="Boost__enter_custom_amount">Реттелмелі сома енгізіңіз</string>
-  <string name="Boost__one_time_contribution">Бір реттік көмек</string>
+  <string name="Boost__one_time_contribution">Бір реттік демеушілік</string>
   <string name="MySupportPreference__add_a_signal_boost">Signal Boost қосу</string>
   <string name="MySupportPreference__s_per_month">айына %1$s</string>
   <string name="MySupportPreference__renews_s">%1$s жаңарады</string>
@@ -3587,7 +3585,7 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Boost қосу</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Кейін</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Ай сайынғы демеушіліктен автоматты түрде бас тартылды, себебі сіз ұзақ уақыт бойы бой көрсетпедіңіз. %1$s таңбасы да профиліңізде көрінбейтін болады.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Ай сайынғы демеушілік автоматты түрде тоқтатылды, себебі сіз ұзақ уақыт бойы қолданбаны пайдаланбадыңыз. %1$s таңбасы да профиліңізде енді көрінбейтін болады.</string>
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Ай сайынғы демеушіліктен бас тартылды, себебі төлеміңізді өңдей алмадық. Таңбаңыз да профиліңізде көрінбейтін болады.</string>
   <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
@@ -3619,7 +3617,7 @@
   <string name="DonationsErrors__failed_to_send_gift_badge">Сыйлық таңба жіберілмеді</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
   <string name="DonationsErrors__could_not_send_gift_badge">Сыйлық таңба жіберілмеді. Қолдау көрсету қызметіне хабарласыңыз.</string>
-  <string name="DonationsErrors__your_badge_could_not">Таңбаңызды аккаунтыңызға қосу мүмкін болмады, бірақ сізден ақы алынған болуы мүмкін. Қолдау көрсету қызметіне хабарласуыңызды сұраймызү.</string>
+  <string name="DonationsErrors__your_badge_could_not">Таңбаңызды аккаунтыңызға қосу мүмкін болмады, бірақ сізден ақы алынған болуы мүмкін. Қолдау көрсету қызметіне хабарласуыңызды сұраймыз.</string>
   <string name="DonationsErrors__your_payment_is_still">Төлеміңіз әлі өңделіп жатыр. Байланыс сапасына байланысты ол бірнеше минут алуы мүмкін.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay қолжетімді емес</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Қолданбаға демеушілік жасау үшін Google Pay орнатып алуыңыз керек.</string>
@@ -3658,13 +3656,13 @@
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">Толық ақпарат</string>
   <!--Stripe decline code contact issuer-->
-  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Төлеу әдісіңіз Google Pay-де жаңартылғанына көз жеткізіп, қайталап көріңіз. Егер мәселе шешілмесе, банкке хабарлассыңыз.</string>
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Төлеу әдісіңіз Google Pay-де жаңартылғанына көз жеткізіп, қайталап көріңіз. Егер мәселе шешілмесе, банкке хабарласыңыз.</string>
   <!--Stripe decline code purchase not supported-->
   <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Картаңызбен мұндай сатып алу транзакциясын орындау мүмкін емес. Басқа төлеу әдісін қолданып көріңіз.</string>
   <!--Stripe decline code your card has expired-->
   <string name="DeclineCode__your_card_has_expired">Картаңыздың мерзімі өтіп кеткен. Google Pay-де төлеу әдісіңізді жаңартыңыз да, қайталап көріңіз.</string>
   <!--Stripe decline code go to google pay action label-->
-  <string name="DeclineCode__go_to_google_pay">Google Pay қызметіне өут</string>
+  <string name="DeclineCode__go_to_google_pay">Google Pay қызметіне өту</string>
   <!--Stripe decline code incorrect card number-->
   <string name="DeclineCode__your_card_number_is_incorrect">Картаңыздың нөмірі дұрыс емес. Google Pay-де жаңартыңыз да, қайталап көріңіз.</string>
   <!--Stripe decline code incorrect cvc-->
@@ -3694,7 +3692,7 @@
   <!--Title of edit notification profile screen-->
   <string name="EditNotificationProfileFragment__edit_this_profile">Осы профильді өзгерту</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
-  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Бұндай профиль бұрыннан бар</string>
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Бұл атау басқа профильде қолданылған</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__work">Жұмыс</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
@@ -3708,7 +3706,7 @@
   <!--Error message shown when attempting to next/save without a profile name-->
   <string name="EditNotificationProfileFragment__profile_must_have_a_name">Атауы болуы керек</string>
   <!--Title for add recipients to notification profile screen in create flow-->
-  <string name="AddAllowedMembers__allowed_notifications">Рұқсат етілген хабарланлырулар</string>
+  <string name="AddAllowedMembers__allowed_notifications">Рұқсат етілген хабарландырулар</string>
   <!--Description of what the user should be doing with this screen-->
   <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Осы профиль қосылып тұрғанда, сіз хабарландырулар мен қоңыраулар алғыңыз келетін адамдарды және топтарды қосыңыз</string>
   <!--Button text that launches the contact picker to select from-->
@@ -4171,7 +4169,7 @@
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Қолдау көрсеткеніңіз үшін рақмет!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
-  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">%1$s сізге сыйлық ретінде таңба жіберді! Бұндай таңбаны профильге қоюға болатынын елге көрсетіп, Signal-ға көмектесіңіз.</string>
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">%1$s сізге сыйлық ретінде таңба жіберді! Бұл таңбаны профильге қойып, Signal танымалдығын арттыруға көмектесіңіз.</string>
   <!--Description for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">%1$s деген кісіге таңба сыйладыңыз. Ол қабылдаған соң, таңбаны көрсетсе де, көрсетпесе де болады.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->

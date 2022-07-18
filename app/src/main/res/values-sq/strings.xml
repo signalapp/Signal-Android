@@ -3917,6 +3917,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
     <item quantity="other">%1$d përgjigje</item>
   </plurals>
   <!--Used when view receipts are disabled-->
+  <string name="StoryViewerPageFragment__views_off">Shikimet u çaktivizuan</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3930,7 +3931,9 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Ende pa parje</string>
   <!--Displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Aktivizo verifikuesin e leximit për të parë se kush i ka parë postimet tuaja të përkohshme.</string>
   <!--Button label displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__go_to_settings">Shko te cilësimet</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Ende pa përgjigje</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4208,6 +4211,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
     <item quantity="other">Story-t e grupit · %1$d shikues</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">Kliko për të zgjedhur shikuesit tuaj</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Rregullime historie</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4252,33 +4256,49 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">U mor</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">Hap menunë e kontekstit</string>
   <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s  · Verifikuar</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">Verifiikuar</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Numri i sigurisë u ndryshua</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">Personat e mëposhtëm mund të kenë riinstaluar Signal ose të kenë ndryshuar pajisje. Kliko një marrës për të konfirmuar numrin e ri të sigurisë. Kjo është opsionale.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Kontrolli i numrit të sigurisë</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Kontrolli i numrit të sigurisë përfundoi</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Të gjitha kontaktet janë shqyrtuar, kliko dërgo për të vazhduar.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Ti ke %1$d kontakte që mund të kenë riinstaluar Signal ose të kenë ndryshuar pajisje. Përpara se të ndani postimin tuaj të përkohshëm me ta, rishikoni numrat e tyre të sigurisë ose merrni në konsideratë heqjen e tyre nga postimi yt i përkohshëm.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Verifiko numër siguri</string>
   <!--Menu action to remove user from story-->
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">Hiq nga postimi i përkohshëm</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">Dërgoje, sido qoftë</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <string name="SafetyNumberBottomSheetFragment__review_connections">Rishikoni kontaktet</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Nuk ka më marrës për të shfaqur</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">U bë</string>
   <!--Title of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Numri i sigurisë u ndryshua</string>
   <!--Message of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$dmarrës mund të kenë riinstaluar Signal ose të kenë ndryshuar pajisje. Kliko një marrës për të konfirmuar numrin e ri të sigurisë. Kjo është opsionale.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Kontaktet</string>
   <!--Context menu label for distribution list headers in review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">Hiqi të gjitha</string>
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">Fshije</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Privatësia e postimit tim të përkohshëm</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Zgjidh se kush mund t\'i shikojë postimet në \"Postimet e  mia të përkohshme\". Ti gjithmonë mund të bësh ndryshime tek cilësimet.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Të gjitha lidhjet e Signalit</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

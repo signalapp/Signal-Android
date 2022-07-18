@@ -633,7 +633,7 @@
   </plurals>
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Pending member requests</string>
-  <string name="RequestingMembersFragment_no_member_requests_to_show">Walang member requests na ipapakita.</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">Walang member requests na ipakikita.</string>
   <string name="RequestingMembersFragment_explanation">Ang mga users sa list na ito\'y sinusubukang mag-join sa group gamit ang group link.</string>
   <string name="RequestingMembersFragment_added_s">Added \"%1$s\"</string>
   <string name="RequestingMembersFragment_denied_s">Denied \"%1$s\"</string>
@@ -3092,7 +3092,7 @@
   <string name="ConversationSettingsFragment__unblock">I-unblock</string>
   <string name="ConversationSettingsFragment__unblock_group">I-unblock ang group</string>
   <string name="ConversationSettingsFragment__add_to_a_group">I-add sa isang group</string>
-  <string name="ConversationSettingsFragment__see_all">Ipakita lahat</string>
+  <string name="ConversationSettingsFragment__see_all">See all</string>
   <string name="ConversationSettingsFragment__add_members">Magdagdag ng mga kasapi</string>
   <string name="ConversationSettingsFragment__group_link">Link ng group</string>
   <string name="ConversationSettingsFragment__unmute">I-unmute</string>
@@ -3358,6 +3358,7 @@
   <!--Displayed at bottom of story viewer when current item has views-->
   <!--Displayed at bottom of story viewer when current item has replies-->
   <!--Used when view receipts are disabled-->
+  <string name="StoryViewerPageFragment__views_off">Views disabled</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3369,7 +3370,9 @@
   <!--Label for the reply button in story viewer, which will launch the group story replies bottom sheet.-->
   <!--Displayed when a story has no views-->
   <!--Displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">I-enable ang read receipts para makita kung sinong nag-view ng stories mo.</string>
   <!--Button label displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__go_to_settings">Go to settings</string>
   <!--Displayed when a story has no replies yet-->
   <!--Displayed for each user that reacted to a story when viewing replies-->
   <!--Label for story views tab-->
@@ -3608,6 +3611,7 @@
     <item quantity="other">Group Story · %1$d viewers</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">I-tap para makapili ng viewers mo</string>
   <!--Label for context menu item to open story settings-->
   <!--Label for context menu item to remove a group story from contact results-->
   <string name="ContactSearchItems__remove_story">I-remove ang story</string>
@@ -3650,33 +3654,49 @@
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Got it</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">Open context menu</string>
   <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s· Verified</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">Beripikado</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Safety number changes</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">Maaaring nag-reinstall ng Signal o nagpalit ng devices ang nabanggit na users sa baba. Mag-tap ng isang recipient para i-confirm ang bagong safety number. Ito ay optional.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Safety number checkup</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Safety number checkup complete</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">All connections have been reviewed, i-tap ang send para magpatuloy.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Mayroon kang %1$d connections na maaaring nag-reinstall ng Signal o nagpalit ng devices. I-review muna ang kanilang safety numbers bago i-share sa kanila ang story mo, o i-consider din na tanggalin sila sa viewers ng story mo.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Beripikahin ang numerong pangkaligtasan</string>
   <!--Menu action to remove user from story-->
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">I-remove mula sa story</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">I-send pa rin</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <string name="SafetyNumberBottomSheetFragment__review_connections">I-review ang connections</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Walang recipients na ipakikita.</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">Tapos na</string>
   <!--Title of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Safety number changes</string>
   <!--Message of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">Maaaring nag-reinstall ng Signal o nagpalit ng devices ang %1$d recipients. Mag-tap ng isang recipient para i-confirm ang bagong safety number. Ito ay optional.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Mga Contacts</string>
   <!--Context menu label for distribution list headers in review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">Remove all</string>
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">Tanggalin</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">My Story Privacy</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Piliin kung sinong makakakita ng posts sa My Story. Pwede mo itong baguhin anytime sa settings.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">All Signal connections</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

@@ -3911,6 +3911,7 @@ Tik op + om iets by jou storie te voeg.</string>
     <item quantity="other">%1$d antwoorde</item>
   </plurals>
   <!--Used when view receipts are disabled-->
+  <string name="StoryViewerPageFragment__views_off">Kykslae afgeskakel</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3924,7 +3925,9 @@ Tik op + om iets by jou storie te voeg.</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Nog geen kykslae nie</string>
   <!--Displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Aktiveer leesbewyse om te sien wie het na jou stories gekyk.</string>
   <!--Button label displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__go_to_settings">Gaan na instellings</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Nog geen antwoorde nie</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -3980,7 +3983,7 @@ Tik op + om iets by jou storie te voeg.</string>
     <item quantity="other">%1$d mense</item>
   </plurals>
   <!--My story privacy fine print about what the privacy settings are for-->
-  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Kies wie na jou storie kan kyk. Veranderinge sal nie stories beïnvloed wat jy reeds gestuur het nie.</string>
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Kies wie na jou storie kan kyk. Veranderinge sal nie stories wat jy reeds gestuur het, beïnvloed nie.</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">Antwoorde &amp; reaksies</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -4202,6 +4205,7 @@ Tik op + om iets by jou storie te voeg.</string>
     <item quantity="other">Groepstorie · %1$d kykers</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">Tik om jou kykers te kies</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Storie-instellings</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4211,7 +4215,7 @@ Tik op + om iets by jou storie te voeg.</string>
   <!--Dialog title for removing a group story-->
   <string name="ContactSearchMediator__remove_group_story">Verwyder groepstorie?</string>
   <!--Dialog message for removing a group story-->
-  <string name="ContactSearchMediator__this_will_remove">Dit sal die storie van hierddie lys af verwyder. Jy sal steeds na stories van hierdie groep kan kyk.</string>
+  <string name="ContactSearchMediator__this_will_remove">Dit sal die storie van hierdie lys af verwyder. Jy sal steeds na stories van hierdie groep kan kyk.</string>
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">Verwyder</string>
   <!--Dialog title for deleting a private story-->
@@ -4246,33 +4250,49 @@ Tik op + om iets by jou storie te voeg.</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Ek verstaan</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">Maak kontekskieslys oop</string>
   <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · Geverifieer</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">Geverifieer</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Veiligheidsnommerveranderinge</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">Die volgende mense het moontlik Signal herinstalleer of van toestelle verander. Tik op \'n ontvanger om die nuwe veiligheidsnommer te bevestig. Dit is opsioneel.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Veiligheidsnommerkontrole</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Veiligheidsnommerkontrole is voltooi</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Alle verbindings is nagegaan, tik stuur om voort te gaan.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Jy het %1$d verbindings wat moontlik Signal herinstalleer of van toestelle verander het. Voordat jy jou storie met hulle deel, gaan hulle veiligheidsnommers na of oorweeg dit om hulle uit jou storie te verwyder.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Verifieer veiligheidsnommer</string>
   <!--Menu action to remove user from story-->
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">Verwyder uit storie</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">Stuur in elk geval</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <string name="SafetyNumberBottomSheetFragment__review_connections">Gaan verbindings na</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Geen verdere ontvangers om te wys nie.</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">Klaar</string>
   <!--Title of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Veiligheidsnommerveranderinge</string>
   <!--Message of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$dontvangers het moontlik Signal herinstalleer of van toestelle verander. Tik op \'n ontvanger om die nuwe veiligheidsnommer te bevestig. Dit is opsioneel.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Kontakte</string>
   <!--Context menu label for distribution list headers in review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">Verwyder almal</string>
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">Verwyder</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">My Storie-privaatheid</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Kies wie plasings in My Storie kan sien. Jy kan altyd veranderinge in instellings maak.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Alle Signal-verbindings</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

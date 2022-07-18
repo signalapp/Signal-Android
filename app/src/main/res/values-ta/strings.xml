@@ -235,7 +235,7 @@
   <string name="ConversationActivity_message_an_admin">ஒரு நிர்வாகிக்கு செய்தி அனுப்புங்கள்</string>
   <string name="ConversationActivity_cant_start_group_call">தொடங்க முடியாது குழு அழைப்பு</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">மட்டும் நிர்வாகிகள் இதனுடைய குழு அழைப்பைத் தொடங்கலாம்.</string>
-  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">உஙகள் சாதனத்தில் இந்த இணைப்பை பெறக்கூடிய  செயலி கிடைப்பில்  இல்லை  .</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">உங்கள் சாதனத்தில் இந்த இணைப்பை பெறக்கூடிய  செயலி கிடைப்பில்  இல்லை.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">குழுவில் சேர உங்கள் கோரிக்கை குழு நிர்வாகிக்கு அனுப்பப்பட்டுள்ளது. அவர்கள் நடவடிக்கை எடுக்கும்போது உங்களுக்கு அறிவிக்கப்படும்.</string>
   <string name="ConversationActivity_cancel_request">கோரிக்கையை ரத்துசெய்</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ஆடியோ செய்திகளை அனுப்ப, உங்கள் மைக்ரோஃபோனுக்கு Signal அணுகலை அனுமதிக்கவும்.</string>
@@ -3906,6 +3906,7 @@
     <item quantity="other">%1$d பதில்கள்</item>
   </plurals>
   <!--Used when view receipts are disabled-->
+  <string name="StoryViewerPageFragment__views_off">பார்வைகள் முடக்கப்பட்டுள்ளன</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3919,7 +3920,9 @@
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">இதுவரை பார்வைகள் ஏதுமில்லை</string>
   <!--Displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">உங்கள் ஸ்டோரீஸ்-ஐ யார் பார்த்தார்கள் என்பதைக் காண, வாசித்ததற்கான அறிவிப்புகளை இயக்கவும்.</string>
   <!--Button label displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__go_to_settings">அமைப்புகளுக்குச் செல்</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">இதுவரை பதில்கள் ஏதுமில்லை</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4197,6 +4200,7 @@
     <item quantity="other">குழு ஸ்டோரி  · %1$d பார்வையாளர்கள்</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">உங்கள் பார்வையாளர்களைத் தேர்ந்தெடுக்க தட்டவும்</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">ஸ்டோரி அமைப்புகள்</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4241,33 +4245,49 @@
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">அறிந்துகொண்டேன்</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">சூழல் மெனுவைத் திறக்கவும்</string>
   <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · சரிபார்க்கப்பட்டது</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">சரிபார்க்கப்பட்டது</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">பாதுகாப்பு எண் மாற்றங்கள்</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">பின்வரும் நபர்கள் சிக்னலை மீண்டும் நிறுவியிருக்கலாம் அல்லது சாதனங்களை மாற்றியிருக்கலாம். புதிய பாதுகாப்பு எண்ணை உறுதிப்படுத்த ஒரு பெறுநரைத் தட்டவும். இது கட்டாயமில்லை.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">பாதுகாப்பு எண் சரிபார்ப்பு</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">பாதுகாப்பு எண் சரிபார்ப்பு முடிந்தது</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">அனைத்து இணைப்புகளும் மதிப்பாய்வு செய்யப்பட்டுள்ளன, தொடர அனுப்பு என்பதைத் தட்டவும்.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">சிக்னலை மீண்டும் நிறுவிய அல்லது சாதனங்களை மாற்றிய %1$d இணைப்புகள் உங்களிடம் உள்ளன. உங்கள் ஸ்டோரியை அவர்களுடன் பகிர்ந்து கொள்வதற்கு முன் அவர்களது பாதுகாப்பு எண்களை மதிப்பாய்வு செய்யவும் அல்லது உங்கள் ஸ்டோரியிலிருந்து அவற்றை அகற்றவும்.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">பாதுகாப்பு எண்ணைச் சரிபார்க்கவும்</string>
   <!--Menu action to remove user from story-->
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">ஸ்டோரியிலிருந்து அகற்று</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">இருந்தாலும் அனுப்பு</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <string name="SafetyNumberBottomSheetFragment__review_connections">இணைப்புகளை மதிப்பாய்வு செய்</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">காட்டுவதற்கு எந்தவொரு பெறுநர்களும் இல்லை</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">முடிந்தது</string>
   <!--Title of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">பாதுகாப்பு எண் மாற்றங்கள்</string>
   <!--Message of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d பெறுநர்கள் சிக்னலை மீண்டும் நிறுவியிருக்கலாம் அல்லது சாதனங்களை மாற்றியிருக்கலாம். புதிய பாதுகாப்பு எண்ணை உறுதிப்படுத்த ஒரு பெறுநரைத் தட்டவும். இது கட்டாயமில்லை.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">தொடர்புகள்</string>
   <!--Context menu label for distribution list headers in review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">அனைத்தையும் நீக்கு</string>
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">நீக்கு</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">எனது ஸ்டோரி தனியுரிமை</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">எனது ஸ்டோரிக்கான போஸ்டுகளை யார் பார்க்கலாம் என்பதைத் தேர்ந்தெடுக்கவும். நீங்கள் எப்போதும் அமைப்புகளில் மாற்றங்களைச் செய்யலாம்.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">அனைத்து சிக்னல் இணைப்புகள்</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

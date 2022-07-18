@@ -2060,7 +2060,7 @@
   <string name="HelpFragment__please_be_as_descriptive_as_possible">કૃપા કરીને સમસ્યાને સમજવામાં અમારી સહાય માટે શક્ય તેટલું વર્ણનાત્મક બનો.</string>
   <string-array name="HelpFragment__categories_4">
     <item>\-\- કૃપા કરીને એક વિકલ્પ પસંદ કરો \-\-</item>
-    <item>કશુંક કામ નથી આપી રહ્યું</item>
+    <item>કશું કામ નથી આપી રહ્યું</item>
     <item>સુવિધા વિનંતી</item>
     <item>પ્રશ્ન</item>
     <item>પ્રતિસાદ</item>
@@ -4259,6 +4259,7 @@
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">સલામતી નંબર તપાસ પૂર્ણ</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">બધા જ કનેક્શનની સમીક્ષા થઈ ચૂકી છે, ચાલુ રાખવા માટે મોકલો પર ટૅપ કરો.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">તમારા %1$d કનેક્શન એવા છે જેમણે Signal ફરીથી ઇન્સ્ટોલ કરેલ અથવા તેમના ડિવાઇસ બદલેલ હોઈ શકે છે. તેમની સાથે તમારી સ્ટોરી શેર કરતાં પહેલાં તેમના સલામતી નંબરની સમીક્ષા કરો અથવા તેમને તમારી સ્ટોરીમાંથી દૂર કરવાનું વિચારો.</string>
   <!--Menu action to launch safety number verification screen-->

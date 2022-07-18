@@ -4515,9 +4515,9 @@
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">Удалить</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Мои настройки приватности историй</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Настройки приватности моих историй</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Выберите, кто может видеть сообщения в Моей истории. Вы всегда можете изменить настройки.</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Выберите тех, кто может видеть сообщения в Моей истории. Вы всегда можете изменить настройки.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Все контакты Signal</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

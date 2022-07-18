@@ -3910,6 +3910,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
     <item quantity="other">%1$d yanıt</item>
   </plurals>
   <!--Used when view receipts are disabled-->
+  <string name="StoryViewerPageFragment__views_off">Görüntüleme kapalı</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3923,7 +3924,9 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Henüz görülme yok</string>
   <!--Displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Hikayelerini kimlerin görüntülediğini görmek için okundu bilgisini etkinleştir.</string>
   <!--Button label displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__go_to_settings">Ayarlara git</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Henüz yanıt yok</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4201,6 +4204,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
     <item quantity="other">Grup Hikayesi · %1$d görüntüleyen</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">İzleyicileri seçmek için dokun</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Hikaye ayarları</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4245,33 +4249,49 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Anladım</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">İçerik menüsünü aç</string>
   <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · Doğrulandı</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">Doğrulandı</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Güvenlik numarası değişiklikleri</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">Aşağıdaki kişiler Signal\'i yeniden yüklemiş veya cihazlarını değiştirmiş olabilirler. Yeni güvenlik numarasını onaylamak için kişilerden birine dokun. Bu işlem isteğe bağlıdır.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Güvenlik numarası kontrolü</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Güvenlik numarası kontrolü tamamlandı</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Tüm bağlantılar gözden geçirildi, devam etmek için gönder butonuna dokun.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Signal\'i yeniden yüklemiş veya cihazlarını değiştirmiş olabilecek %1$d bağlantın var. Hikayeni onlarla paylaşmadan önce güvenlik numaralarını gözden geçirebilir veya bu kişileri hikayenden çıkarmayı göz önünde bulundurabilirsin.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Güvenlik numarasını doğrulayın</string>
   <!--Menu action to remove user from story-->
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">Hikayeden çıkar</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">Yine de gönder</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <string name="SafetyNumberBottomSheetFragment__review_connections">Bağlantıları incele</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Gösterilecek başka kişi yok</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">Tamam</string>
   <!--Title of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Güvenlik numarası değişiklikleri</string>
   <!--Message of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d kişi Signal\'i yeniden yüklemiş veya cihazlarını değiştirmiş olabilir. Yeni güvenlik numarasını onaylamak için kişilerden birine dokun. Bu işlem isteğe bağlıdır.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Kişiler</string>
   <!--Context menu label for distribution list headers in review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">Hepsini çıkar</string>
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">Kaldır</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Hikaye Gizliliğim</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Hikayem\'deki gönderilerini kimlerin görebileceğini seç. Ayarlarda istediğin zaman değişiklik yapabilirsin.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Tüm Signal bağlantıları</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

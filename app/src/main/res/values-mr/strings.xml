@@ -4262,6 +4262,7 @@
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">सुरक्षितता नंबर तपासणी पूर्ण</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">सर्व कनेक्शनचे पुनरावलोकन करण्यात आले आहे, पुढे सुरू ठेवण्यासाठी टॅप करा</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">ज्यांनी Signal ला पुन्हा इन्स्टॉल केले आहे किंवा उपकरणे बदललेली आहेत अशी आपणाकडे %1$d कनेक्शन्स आहेत. आपली स्टोरी त्याच्या सोबत शेअर करण्यापूर्वी त्यांचे सुरक्षितता नंबर यांचे पुनरावलोकन करा किंवा त्यांना आपल्या स्टोरी मधून हटवण्याचा विचार करा..</string>
   <!--Menu action to launch safety number verification screen-->

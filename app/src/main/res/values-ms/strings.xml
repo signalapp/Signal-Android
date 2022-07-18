@@ -3342,7 +3342,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Displayed when user selects a video that will be clipped before sharing to a story-->
   <string name="MultiselectForwardFragment__videos_will_be_trimmed">Video akan dipotong kepada klip 30s dan dihantar sebagai Cerita pelbagai.</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
-  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Video yang dihantar ke Cerita tidak boleh panjang daripada 30s.</string>
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Video yang dihantar ke Cerita tidak boleh melebihi 30s.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Mesej dimajukan kini dihantar serta-merta.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="other">Hantar %1$d mesej</item>
@@ -3878,7 +3878,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
   <string name="SignalConnectionsBottomSheet___signal_connections">Hubungan Signal</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Hubungan Signal adalah orang yang anda pilih untuk mempercayai, sama ada dengan:</string>
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Hubungan Signal adalah orang yang anda pilih untuk dipercayai, sama ada dengan:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">Memulakan perbualan</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4140,6 +4140,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Pemeriksaan nombor keselamatan selesai</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Semua hubungan telah disemak, ketik hantar untuk meneruskan.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Anda mempunyai %1$d hubungan yang mungkin telah memasang semula Signal atau menukar peranti. Sebelum berkongsi cerita anda dengan mereka, semak nombor keselamatan mereka atau pertimbangkan untuk mengalih keluar mereka daripada cerita anda.</string>
   <!--Menu action to launch safety number verification screen-->
