@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.components.recyclerview.GridDividerDecoration
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaRepository
 import org.thoughtcrime.securesms.mediasend.v2.MediaCountIndicatorButton
+import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.Stopwatch
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -74,6 +75,8 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     toolbar.setNavigationOnClickListener {
       onBack()
     }
+
+    Material3OnScrollHelper(requireActivity(), toolbar).attach(galleryRecycler)
 
     if (callbacks.isCameraEnabled()) {
       toolbar.setOnMenuItemClickListener { item ->

@@ -20,7 +20,6 @@
         android:id="@+id/media_gallery_grid"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingHorizontal="12dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/media_gallery_bottom_bar_barrier"
         app:layout_constraintTop_toBottomOf="@id/media_gallery_toolbar"

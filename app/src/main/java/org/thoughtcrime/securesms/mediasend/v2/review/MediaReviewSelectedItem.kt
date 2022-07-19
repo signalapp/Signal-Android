@@ -34,6 +34,7 @@ object MediaReviewSelectedItem {
 
     private val imageView: ImageView = itemView.findViewById(R.id.media_review_selected_image)
     private val playOverlay: ImageView = itemView.findViewById(R.id.media_review_play_overlay)
+    private val trashOverlay: ImageView = itemView.findViewById(R.id.media_review_trash_overlay)
 
     override fun bind(model: Model) {
       Glide.with(imageView)
@@ -42,7 +43,7 @@ object MediaReviewSelectedItem {
         .into(imageView)
 
       playOverlay.visible = MediaUtil.isNonGifVideo(model.media) && !model.isSelected
-      imageView.isSelected = model.isSelected
+      trashOverlay.visible = model.isSelected
 
       itemView.contentDescription = if (model.isSelected) {
         context.getString(R.string.MediaReviewSelectedItem__tap_to_remove)

@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import org.thoughtcrime.securesms.util.visible
+import java.util.concurrent.TimeUnit
 
 typealias OnMediaFolderClicked = (MediaFolder) -> Unit
 typealias OnMediaClicked = (Media, Boolean) -> Unit
@@ -132,6 +133,7 @@ object MediaGallerySelectableItem {
       val end = if (isSelected) 1f else 0f
 
       animator = ValueAnimator.ofFloat(start, end).apply {
+        duration = TimeUnit.MILLISECONDS.toMillis(100L)
         addUpdateListener { animator ->
           val fraction = animator.animatedValue as Float
           updateImageView(fraction)
