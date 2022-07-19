@@ -34,6 +34,9 @@ class HomeDiffUtil(
         if (!sameUsername) return false
         val sameSnippet = oldItem.getDisplayBody(context) == newItem.getDisplayBody(context)
         if (!sameSnippet) return false
+        val sameSendStatus = oldItem.isFailed == newItem.isFailed && oldItem.isDelivered == newItem.isDelivered
+                && oldItem.isSent == newItem.isSent && oldItem.isPending == newItem.isPending
+        if (!sameSendStatus) return false
 
         // all same
         return true

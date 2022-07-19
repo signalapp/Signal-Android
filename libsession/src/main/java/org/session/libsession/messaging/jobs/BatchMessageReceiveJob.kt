@@ -128,19 +128,21 @@ class BatchMessageReceiveJob(
                         }
                         // increment unreads, notify, and update thread
                         val unreadFromMine = messageIds.indexOfLast { (_,fromMe) -> fromMe }
-                        var trueUnreadCount = messageIds.size
+                        var trueUnreadCount = messageIds.filter { (_,fromMe) -> !fromMe }.size
                         if (unreadFromMine >= 0) {
                             trueUnreadCount -= (unreadFromMine + 1)
                             storage.markConversationAsRead(threadId, false)
                         }
-                        storage.incrementUnread(threadId, trueUnreadCount)
+                        if (trueUnreadCount > 0) {
+                            storage.incrementUnread(threadId, trueUnreadCount)
+                        }
                         storage.updateThread(threadId, true)
+                        SSKEnvironment.shared.notificationManager.updateNotification(context, threadId)
                     }
                 }
                 // await all thread processing
                 deferredThreadMap.awaitAll()
             }
-            SSKEnvironment.shared.notificationManager.updateNotification(context)
             if (failures.isEmpty()) {
                 handleSuccess()
             } else {

@@ -8,12 +8,13 @@ import org.thoughtcrime.securesms.ApplicationContext
 class ConversationNotificationDebouncer(private val context: Context) {
     private val threadIDs = mutableSetOf<Long>()
     private val handler = (context.applicationContext as ApplicationContext).conversationListNotificationHandler
-    private val debouncer = Debouncer(handler, 1000)
+    private val debouncer = Debouncer(handler, 100)
 
     companion object {
         @SuppressLint("StaticFieldLeak")
         lateinit var shared: ConversationNotificationDebouncer
 
+        @Synchronized
         fun get(context: Context): ConversationNotificationDebouncer {
             if (::shared.isInitialized) { return shared }
             shared = ConversationNotificationDebouncer(context)
