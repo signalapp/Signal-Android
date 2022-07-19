@@ -328,6 +328,10 @@ import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.Disposable;
+
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 
 /**
@@ -454,13 +458,12 @@ public class ConversationParentFragment extends Fragment
   private boolean       isSecureText;
   private boolean       isDefaultSms;
   private int           reactWithAnyEmojiStartPage    = -1;
-  private boolean       isMmsEnabled                  = true;
   private boolean       isSecurityInitialized         = false;
   private boolean       isSearchRequested             = false;
   private boolean       hasProcessedShareData         = false;
 
-  private final LifecycleDisposable disposables          = new LifecycleDisposable();
-  private final Debouncer           optionsMenuDebouncer = new Debouncer(50);
+  private final LifecycleDisposable disposables               = new LifecycleDisposable();
+  private final Debouncer           optionsMenuDebouncer      = new Debouncer(50);
 
   private IdentityRecordList   identityRecords = new IdentityRecordList(Collections.emptyList());
   private Callback             callback;
@@ -528,8 +531,6 @@ public class ConversationParentFragment extends Fragment
                                .commitNow();
     }
 
-    final boolean typingIndicatorsEnabled = TextSecurePreferences.isTypingIndicatorsEnabled(requireContext());
-
     if (savedInstanceState != null) {
       hasProcessedShareData = savedInstanceState.getBoolean("SHARED", false);
     }
@@ -549,45 +550,14 @@ public class ConversationParentFragment extends Fragment
     initializeEnabledCheck();
     initializePendingRequestsBanner();
     initializeGroupV1MigrationsBanners();
-    initializeSecurity(recipient.get().isRegistered(), isDefaultSms).addListener(new AssertedSuccessListener<Boolean>() {
-      @Override
-      public void onSuccess(Boolean result) {
-        if (getActivity() == null) {
-          Log.w(TAG, "Activity is not attached. Not proceeding with initialization.");
-          return;
-        }
 
-        if (requireActivity().isFinishing()) {
-          Log.w(TAG, "Activity is finishing. Not proceeding with initialization.");
-          return;
-        }
+    Flowable<ConversationSecurityInfo> observableSecurityInfo = viewModel.getConversationState()
+                                                                         .map(ConversationState::getSecurityInfo)
+                                                                         .filter(ConversationSecurityInfo::isInitialized);
 
-        initializeProfiles();
-        initializeGv1Migration();
+    disposables.add(observableSecurityInfo.subscribe(securityInfo -> handleSecurityChange(securityInfo.isPushAvailable(), securityInfo.isDefaultSmsApplication())));
+    disposables.add(viewModel.getConversationSecurityInfo(args.getRecipientId()).firstOrError().subscribe(unused -> onInitialSecurityConfigurationLoaded()));
 
-        Log.d(TAG, "Initializing data from onViewCreated...");
-        initializeDraft(args).addListener(new AssertedSuccessListener<Boolean>() {
-          @Override
-          public void onSuccess(Boolean loadedDraft) {
-            if (loadedDraft != null && loadedDraft) {
-              Log.i(TAG, "Finished loading draft");
-              ThreadUtil.runOnMain(() -> {
-                if (fragment != null && fragment.isResumed()) {
-                  fragment.moveToLastSeen();
-                } else {
-                  Log.w(TAG, "Wanted to move to the last seen position, but the fragment was in an invalid state");
-                }
-              });
-            }
-
-            if (typingIndicatorsEnabled) {
-              composeText.addTextChangedListener(typingTextWatcher);
-            }
-            composeText.setSelection(composeText.length(), composeText.length());
-          }
-        });
-      }
-    });
     initializeInsightObserver();
     initializeActionBar();
 
@@ -616,7 +586,7 @@ public class ConversationParentFragment extends Fragment
     WindowUtil.setLightStatusBarFromTheme(requireActivity());
 
     EventBus.getDefault().register(this);
-    initializeMmsEnabledCheck();
+    viewModel.checkIfMmsIsEnabled();
     initializeIdentityRecords();
     composeText.setMessageSendType(sendButton.getSelectedSendType());
 
@@ -758,7 +728,7 @@ public class ConversationParentFragment extends Fragment
       attachmentManager.setLocation(place, getCurrentMediaConstraints());
       break;
     case SMS_DEFAULT:
-      initializeSecurity(isSecureText, isDefaultSms);
+      viewModel.updateSecurityInfo();
       break;
     case PICK_GIF:
     case MEDIA_SENDER:
@@ -843,6 +813,38 @@ public class ConversationParentFragment extends Fragment
       reactWithAnyEmojiStartPage = savedInstanceState.getInt(STATE_REACT_WITH_ANY_PAGE, -1);
       isSearchRequested          = savedInstanceState.getBoolean(STATE_IS_SEARCH_REQUESTED, false);
     }
+  }
+
+  private void onInitialSecurityConfigurationLoaded() {
+    Log.d(TAG, "Initial security configuration loaded.");
+    if (isDetached()) {
+      Log.w(TAG, "Fragment has become detached. Ignoring configuration call.");
+    }
+
+    initializeProfiles();
+    initializeGv1Migration();
+
+    Log.d(TAG, "Initializing draft from initial security configuration load...");
+    initializeDraft(viewModel.getArgs()).addListener(new AssertedSuccessListener<Boolean>() {
+      @Override
+      public void onSuccess(Boolean loadedDraft) {
+        if (loadedDraft != null && loadedDraft) {
+          Log.i(TAG, "Finished loading draft");
+          ThreadUtil.runOnMain(() -> {
+            if (fragment != null && fragment.isResumed()) {
+              fragment.moveToLastSeen();
+            } else {
+              Log.w(TAG, "Wanted to move to the last seen position, but the fragment was in an invalid state");
+            }
+          });
+        }
+
+        if (TextSecurePreferences.isTypingIndicatorsEnabled(requireContext())) {
+          composeText.addTextChangedListener(typingTextWatcher);
+        }
+        composeText.setSelection(composeText.length(), composeText.length());
+      }
+    });
   }
 
   private void setVisibleThread(long threadId) {
@@ -1489,7 +1491,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void handleAddAttachment() {
-    if (this.isMmsEnabled || isSecureText) {
+    if (viewModel.getConversationStateSnapshot().isMmsEnabled() || isSecureText) {
       viewModel.getRecentMedia().removeObservers(this);
 
       if (attachmentKeyboardStub.resolved() && container.isInputOpen() && container.getCurrentInput() == attachmentKeyboardStub.get()) {
@@ -1598,6 +1600,7 @@ public class ConversationParentFragment extends Fragment
     calculateCharactersRemaining();
     invalidateOptionsMenu();
     setBlockedUserState(recipient.get(), isSecureText, isDefaultSms);
+    onSecurityUpdated();
   }
 
   ///// Initializers
@@ -1643,6 +1646,7 @@ public class ConversationParentFragment extends Fragment
     }
 
     if (draftText != null) {
+      Log.d(TAG, "Handling shared text");
       composeText.setText("");
       composeText.append(draftText);
       result.set(true);
@@ -1654,6 +1658,7 @@ public class ConversationParentFragment extends Fragment
     }
 
     if (draftText == null && draftMedia == null && draftMediaType == null) {
+      Log.d(TAG, "Initializing draft from database");
       return initializeDraftFromDatabase();
     } else {
       updateToggleButtonState();
@@ -1844,60 +1849,6 @@ public class ConversationParentFragment extends Fragment
     return future;
   }
 
-  private ListenableFuture<Boolean> initializeSecurity(final boolean currentSecureText,
-                                                       final boolean currentIsDefaultSms)
-  {
-    final SettableFuture<Boolean> future  = new SettableFuture<>();
-    final Context                 context = requireContext().getApplicationContext();
-
-    handleSecurityChange(currentSecureText || isPushGroupConversation(), currentIsDefaultSms);
-
-    new AsyncTask<Recipient, Void, boolean[]>() {
-      @Override
-      protected boolean[] doInBackground(Recipient... params) {
-        Recipient         recipient       = params[0].resolve();
-        Log.i(TAG, "Resolving registered state...");
-        RegisteredState registeredState;
-
-        if (recipient.isPushGroup()) {
-          Log.i(TAG, "Push group recipient...");
-          registeredState = RegisteredState.REGISTERED;
-        } else {
-          Log.i(TAG, "Checking through resolved recipient");
-          registeredState = recipient.resolve().getRegistered();
-        }
-
-        Log.i(TAG, "Resolved registered state: " + registeredState);
-        boolean signalEnabled = Recipient.self().isRegistered();
-
-        if (registeredState == RegisteredState.UNKNOWN) {
-          try {
-            Log.i(TAG, "Refreshing directory for user: " + recipient.getId().serialize());
-            registeredState = ContactDiscovery.refresh(context, recipient, false);
-          } catch (IOException e) {
-            Log.w(TAG, e);
-          }
-        }
-
-        Log.i(TAG, "Returning registered state...");
-        return new boolean[] {registeredState == RegisteredState.REGISTERED && signalEnabled,
-                              Util.isDefaultSmsProvider(context)};
-      }
-
-      @Override
-      protected void onPostExecute(boolean[] result) {
-        if (result[0] != currentSecureText || result[1] != currentIsDefaultSms) {
-          Log.i(TAG, "onPostExecute() handleSecurityChange: " + result[0] + " , " + result[1]);
-          handleSecurityChange(result[0], result[1]);
-        }
-        future.set(true);
-        onSecurityUpdated();
-      }
-    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, recipient.get());
-
-    return future;
-  }
-
   private void onSecurityUpdated() {
     Log.i(TAG, "onSecurityUpdated()");
     updateReminders();
@@ -1987,22 +1938,6 @@ public class ConversationParentFragment extends Fragment
   private void updateDefaultSubscriptionId(Optional<Integer> defaultSubscriptionId) {
     Log.i(TAG, "updateDefaultSubscriptionId(" + defaultSubscriptionId.orElse(null) + ")");
     sendButton.setDefaultSubscriptionId(defaultSubscriptionId.orElse(null));
-  }
-
-  private void initializeMmsEnabledCheck() {
-    final Context context = requireContext().getApplicationContext();
-
-    new AsyncTask<Void, Void, Boolean>() {
-      @Override
-      protected Boolean doInBackground(Void... params) {
-        return Util.isMmsCapable(context);
-      }
-
-      @Override
-      protected void onPostExecute(Boolean isMmsEnabled) {
-        ConversationParentFragment.this.isMmsEnabled = isMmsEnabled;
-      }
-    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   private ListenableFuture<Boolean> initializeIdentityRecords() {
@@ -2594,7 +2529,6 @@ public class ConversationParentFragment extends Fragment
     updateDefaultSubscriptionId(recipient.getDefaultSubscriptionId());
     updatePaymentsAvailable();
     updateSendButtonColor(sendButton.getSelectedSendType());
-    initializeSecurity(isSecureText, isDefaultSms);
 
     if (searchViewItem == null || !searchViewItem.isActionViewExpanded()) {
       invalidateOptionsMenu();
@@ -2658,7 +2592,7 @@ public class ConversationParentFragment extends Fragment
     securityUpdateReceiver = new BroadcastReceiver() {
       @Override
       public void onReceive(Context context, Intent intent) {
-        initializeSecurity(isSecureText, isDefaultSms);
+        viewModel.updateSecurityInfo();
         calculateCharactersRemaining();
       }
     };
@@ -3024,7 +2958,7 @@ public class ConversationParentFragment extends Fragment
 
       Log.i(TAG, "[sendMessage] recipient: " + recipient.getId() + ", threadId: " + threadId + ",  sendType: " + (sendType.usesSignalTransport() ? "signal" : "sms") + ", isManual: " + sendButton.isManualSelection());
 
-      if ((recipient.isMmsGroup() || recipient.getEmail().isPresent()) && !isMmsEnabled) {
+      if ((recipient.isMmsGroup() || recipient.getEmail().isPresent()) && !viewModel.getConversationStateSnapshot().isMmsEnabled()) {
         handleManualMmsRequired();
       } else if (sendType.usesSignalTransport() && (identityRecords.isUnverified(true) || identityRecords.isUntrusted(true))) {
         handleRecentSafetyNumberChange();

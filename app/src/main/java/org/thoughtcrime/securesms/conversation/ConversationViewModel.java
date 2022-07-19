@@ -17,12 +17,12 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.util.Pair;
 import org.signal.paging.ObservablePagedData;
 import org.signal.paging.PagedData;
 import org.signal.paging.PagingConfig;
 import org.signal.paging.PagingController;
 import org.signal.paging.ProxyPagingController;
-import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.NotificationProfilesRepository;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper;
@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.util.livedata.Store;
+import org.thoughtcrime.securesms.util.rx.RxStore;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 
 import java.util.Collections;
@@ -55,9 +56,12 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.BackpressureStrategy;
+import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.reactivex.rxjava3.subjects.BehaviorSubject;
+import kotlin.Unit;
 
 public class ConversationViewModel extends ViewModel {
 
@@ -88,6 +92,9 @@ public class ConversationViewModel extends ViewModel {
   private final NotificationProfilesRepository        notificationProfilesRepository;
   private final MutableLiveData<String>               searchQuery;
   private final GroupAuthorNameColorHelper            groupAuthorNameColorHelper;
+  private final RxStore<ConversationState>            conversationStateStore;
+  private final CompositeDisposable                   disposables;
+  private final BehaviorSubject<Unit>                 conversationStateTick;
 
   private ConversationIntents.Args args;
   private int                      jumpToPosition;
@@ -113,6 +120,9 @@ public class ConversationViewModel extends ViewModel {
     this.recipientId                    = BehaviorSubject.create();
     this.threadId                       = BehaviorSubject.create();
     this.groupAuthorNameColorHelper     = new GroupAuthorNameColorHelper();
+    this.conversationStateStore         = new RxStore<>(ConversationState.create(), Schedulers.io());
+    this.disposables                    = new CompositeDisposable();
+    this.conversationStateTick          = BehaviorSubject.createDefault(Unit.INSTANCE);
 
     BehaviorSubject<Recipient> recipientCache = BehaviorSubject.create();
 
@@ -121,6 +131,12 @@ public class ConversationViewModel extends ViewModel {
         .distinctUntilChanged()
         .map(Recipient::resolved)
         .subscribe(recipientCache);
+
+    conversationStateStore.update(Observable.combineLatest(recipientId, conversationStateTick, (id, tick) -> id)
+                                            .distinctUntilChanged()
+                                            .switchMap(conversationRepository::getSecurityInfo)
+                                            .toFlowable(BackpressureStrategy.LATEST),
+                                  (securityInfo, state) -> state.withSecurityInfo(securityInfo));
 
     BehaviorSubject<ConversationData> conversationMetadata = BehaviorSubject.create();
 
@@ -270,6 +286,29 @@ public class ConversationViewModel extends ViewModel {
     conversationRepository.markGiftBadgeRevealed(messageId);
   }
 
+  void checkIfMmsIsEnabled() {
+    disposables.add(conversationRepository.checkIfMmsIsEnabled().subscribe(isEnabled -> {
+      conversationStateStore.update(state -> state.withMmsEnabled(true));
+    }));
+  }
+
+  @NonNull Flowable<ConversationState> getConversationState() {
+    return conversationStateStore.getStateFlowable().observeOn(AndroidSchedulers.mainThread());
+  }
+
+  @NonNull Flowable<ConversationSecurityInfo> getConversationSecurityInfo(@NonNull RecipientId recipientId) {
+    return getConversationState().map(ConversationState::getSecurityInfo)
+                                 .filter(info -> info.isInitialized() && Objects.equals(info.getRecipientId(), recipientId));
+  }
+
+  void updateSecurityInfo() {
+    conversationStateTick.onNext(Unit.INSTANCE);
+  }
+
+  @NonNull ConversationState getConversationStateSnapshot() {
+    return conversationStateStore.getState();
+  }
+
   @NonNull LiveData<String> getSearchQuery() {
     return searchQuery;
   }
@@ -372,6 +411,7 @@ public class ConversationViewModel extends ViewModel {
     ApplicationDependencies.getDatabaseObserver().unregisterObserver(conversationObserver);
     ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageUpdateObserver);
     ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageInsertObserver);
+    disposables.clear();
     EventBus.getDefault().unregister(this);
   }
 

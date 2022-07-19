@@ -26,6 +26,10 @@ class LifecycleDisposable : DefaultLifecycleObserver {
     return this
   }
 
+  fun clear() {
+    disposables.clear()
+  }
+
   override fun onDestroy(owner: LifecycleOwner) {
     owner.lifecycle.removeObserver(this)
     disposables.clear()
