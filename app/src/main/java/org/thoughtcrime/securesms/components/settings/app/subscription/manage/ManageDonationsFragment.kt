@@ -242,7 +242,7 @@ class ManageDonationsFragment : DSLSettingsFragment(), ExpiredGiftSheet.Callback
       }
     )
 
-    if (FeatureFlags.giftBadges() && Recipient.self().giftBadgesCapability == Recipient.Capability.SUPPORTED) {
+    if (FeatureFlags.giftBadgeSendSupport() && Recipient.self().giftBadgesCapability == Recipient.Capability.SUPPORTED) {
       clickPref(
         title = DSLSettingsText.from(R.string.ManageDonationsFragment__gift_a_badge),
         icon = DSLSettingsIcon.from(R.drawable.ic_gift_24),

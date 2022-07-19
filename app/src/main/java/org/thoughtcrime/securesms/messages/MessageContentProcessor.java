@@ -1745,7 +1745,7 @@ public final class MessageContentProcessor {
   {
     log(message.getTimestamp(), "Gift message.");
 
-    if (!FeatureFlags.giftBadges()) {
+    if (!FeatureFlags.giftBadgeReceiveSupport()) {
       warn(message.getTimestamp(), "Dropping unsupported gift badge message.");
       return null;
     }

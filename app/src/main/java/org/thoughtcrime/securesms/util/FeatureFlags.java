@@ -95,7 +95,8 @@ public final class FeatureFlags {
   private static final String PHONE_NUMBER_PRIVACY              = "android.pnp";
   private static final String USE_FCM_FOREGROUND_SERVICE        = "android.useFcmForegroundService.3";
   private static final String STORIES_AUTO_DOWNLOAD_MAXIMUM     = "android.stories.autoDownloadMaximum";
-  private static final String GIFT_BADGES                       = "android.giftBadges.3";
+  private static final String GIFT_BADGE_RECEIVE_SUPPORT        = "android.giftBadges.receiving";
+  private static final String GIFT_BADGE_SEND_SUPPORT           = "android.giftBadges.sending";
   private static final String USE_QR_LEGACY_SCAN                = "android.qr.legacy_scan";
   private static final String TELECOM_MANUFACTURER_ALLOWLIST    = "android.calling.telecomAllowList";
   private static final String TELECOM_MODEL_BLOCKLIST           = "android.calling.telecomModelBlockList";
@@ -147,7 +148,8 @@ public final class FeatureFlags {
       PAYMENTS_COUNTRY_BLOCKLIST,
       USE_FCM_FOREGROUND_SERVICE,
       STORIES_AUTO_DOWNLOAD_MAXIMUM,
-      GIFT_BADGES,
+      GIFT_BADGE_RECEIVE_SUPPORT,
+      GIFT_BADGE_SEND_SUPPORT,
       USE_QR_LEGACY_SCAN,
       TELECOM_MANUFACTURER_ALLOWLIST,
       TELECOM_MODEL_BLOCKLIST
@@ -238,7 +240,7 @@ public final class FeatureFlags {
     put(MESSAGE_PROCESSOR_ALARM_INTERVAL, change -> MessageProcessReceiver.startOrUpdateAlarm(ApplicationDependencies.getApplication()));
     put(SENDER_KEY, change -> ApplicationDependencies.getJobManager().add(new RefreshAttributesJob()));
     put(STORIES, change -> ApplicationDependencies.getJobManager().add(new RefreshAttributesJob()));
-    put(GIFT_BADGES, change -> ApplicationDependencies.getJobManager().add(new RefreshAttributesJob()));
+    put(GIFT_BADGE_RECEIVE_SUPPORT, change -> ApplicationDependencies.getJobManager().add(new RefreshAttributesJob()));
   }};
 
   private static final Map<String, Object> REMOTE_VALUES = new TreeMap<>();
@@ -513,13 +515,19 @@ public final class FeatureFlags {
   public static int storiesAutoDownloadMaximum() {
     return getInteger(STORIES_AUTO_DOWNLOAD_MAXIMUM, 2);
   }
+
   /**
-   * Whether or not Gifting Badges should be available on this client.
-   *
-   * NOTE: This feature is under development and should not be enabled on prod. Doing so is solely at your own risk.
+   * Whether or not receiving Gifting Badges should be available on this client.
    */
-  public static boolean giftBadges() {
-    return getBoolean(GIFT_BADGES, Environment.IS_STAGING);
+  public static boolean giftBadgeReceiveSupport() {
+    return getBoolean(GIFT_BADGE_RECEIVE_SUPPORT, Environment.IS_STAGING);
+  }
+
+  /**
+   * Whether or not sending Gifting Badges should be available on this client.
+   */
+  public static boolean giftBadgeSendSupport() {
+    return giftBadgeReceiveSupport() && getBoolean(GIFT_BADGE_SEND_SUPPORT, Environment.IS_STAGING);
   }
 
   public static boolean useQrLegacyScan() {

@@ -20,6 +20,6 @@ public final class AppCapabilities {
    *                       asking if the user has set a Signal PIN or not.
    */
   public static AccountAttributes.Capabilities getCapabilities(boolean storageCapable) {
-    return new AccountAttributes.Capabilities(UUID_CAPABLE, GV2_CAPABLE, storageCapable, GV1_MIGRATION, SENDER_KEY, ANNOUNCEMENT_GROUPS, CHANGE_NUMBER, FeatureFlags.stories(), FeatureFlags.giftBadges());
+    return new AccountAttributes.Capabilities(UUID_CAPABLE, GV2_CAPABLE, storageCapable, GV1_MIGRATION, SENDER_KEY, ANNOUNCEMENT_GROUPS, CHANGE_NUMBER, FeatureFlags.stories(), FeatureFlags.giftBadgeReceiveSupport());
   }
 }
