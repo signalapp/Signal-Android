@@ -369,6 +369,8 @@ public class ConversationParentFragment extends Fragment
   private static final String STATE_REACT_WITH_ANY_PAGE = "STATE_REACT_WITH_ANY_PAGE";
   private static final String STATE_IS_SEARCH_REQUESTED = "STATE_IS_SEARCH_REQUESTED";
 
+  private static final String ARG_INTENT_DATA = "arg.intent.data";
+
   private static final int REQUEST_CODE_SETTINGS = 1000;
 
   private static final int PICK_GALLERY        = 1;
@@ -460,11 +462,19 @@ public class ConversationParentFragment extends Fragment
   private final LifecycleDisposable disposables          = new LifecycleDisposable();
   private final Debouncer           optionsMenuDebouncer = new Debouncer(50);
 
-  private volatile boolean screenInitialized = false;
-
   private IdentityRecordList   identityRecords = new IdentityRecordList(Collections.emptyList());
   private Callback             callback;
   private RecentEmojiPageModel recentEmojis;
+
+  public static ConversationParentFragment create(Intent intent) {
+    ConversationParentFragment fragment = new ConversationParentFragment();
+    Bundle                     bundle   = new Bundle();
+
+    bundle.putAll(ConversationIntents.createParentFragmentArguments(intent));
+    fragment.setArguments(bundle);
+
+    return fragment;
+  }
 
   @Override
   public @NonNull View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -484,7 +494,7 @@ public class ConversationParentFragment extends Fragment
     }
 
     // TODO [alex] LargeScreenSupport -- This check will no longer be valid / necessary
-    if (ConversationIntents.isInvalid(requireActivity().getIntent())) {
+    if (ConversationIntents.isInvalid(requireArguments())) {
       Log.w(TAG, "[onCreate] Missing recipientId!");
       // TODO [greyson] Navigation
       startActivity(MainActivity.clearTop(requireContext()));
@@ -499,8 +509,7 @@ public class ConversationParentFragment extends Fragment
     // TODO [alex] LargeScreenSupport -- Should be removed once we move to multi-pane layout.
     new FullscreenHelper(requireActivity()).showSystemUI();
 
-    // TODO [alex] LargeScreenSupport -- This will need to be built from requireArguments()
-    ConversationIntents.Args args = ConversationIntents.Args.from(requireActivity().getIntent());
+    ConversationIntents.Args args = ConversationIntents.Args.from(requireArguments());
     if (savedInstanceState == null && args.getGiftBadge() != null) {
       GiftThanksSheet.show(getChildFragmentManager(), args.getRecipientId(), args.getGiftBadge());
     }
@@ -575,8 +584,6 @@ public class ConversationParentFragment extends Fragment
               composeText.addTextChangedListener(typingTextWatcher);
             }
             composeText.setSelection(composeText.length(), composeText.length());
-
-            screenInitialized = true;
           }
         });
       }
@@ -598,78 +605,6 @@ public class ConversationParentFragment extends Fragment
     }
 
     sendButton.post(() -> sendButton.triggerSelectedChangedEvent());
-  }
-
-  // TODO [alex] LargeScreenSupport -- This needs to be fed a stream of intents
-  protected void onNewIntent(Intent intent) {
-    Log.i(TAG, "onNewIntent()");
-
-    if (requireActivity().isFinishing()) {
-      Log.w(TAG, "Activity is finishing...");
-      return;
-    }
-
-    if (!screenInitialized) {
-      Log.w(TAG, "Activity is in the middle of initialization. Restarting.");
-      requireActivity().finish();
-      startActivity(intent);
-      return;
-    }
-
-    reactWithAnyEmojiStartPage = -1;
-    if (!Util.isEmpty(composeText) || attachmentManager.isAttachmentPresent() || inputPanel.hasSaveableContent()) {
-      saveDraft();
-      attachmentManager.clear(glideRequests, false);
-      inputPanel.clearQuote();
-      silentlySetComposeText("");
-    }
-
-    if (ConversationIntents.isInvalid(intent)) {
-      Log.w(TAG, "[onNewIntent] Missing recipientId!");
-      // TODO [greyson] Navigation
-      startActivity(MainActivity.clearTop(requireContext()));
-      requireActivity().finish();
-      return;
-    }
-
-    requireActivity().setIntent(intent);
-
-    ConversationIntents.Args args = ConversationIntents.Args.from(intent);
-    // TODO [alex] LargeScreenSupport - Set arguments
-    isSearchRequested = args.isWithSearchOpen();
-
-    viewModel.setArgs(args);
-    setVisibleThread(args.getThreadId());
-
-    reportShortcutLaunch(viewModel.getArgs().getRecipientId());
-    initializeResources(viewModel.getArgs());
-
-    initializeSecurity(recipient.get().isRegistered(), isDefaultSms).addListener(new AssertedSuccessListener<Boolean>() {
-      @Override
-      public void onSuccess(Boolean result) {
-        if (getContext() != null) {
-          Log.d(TAG, "Initializing draft from new intent...");
-          hasProcessedShareData = false;
-          initializeDraft(viewModel.getArgs());
-        }
-      }
-    });
-
-    if (fragment != null) {
-      fragment.onNewIntent();
-    }
-
-    searchNav.setVisibility(View.GONE);
-
-    if (args.isWithSearchOpen()) {
-      if (searchViewItem != null && searchViewItem.expandActionView()) {
-        searchViewModel.onSearchOpened();
-      }
-    } else {
-      searchViewModel.onSearchClosed();
-      viewModel.setSearchQuery(null);
-      inputPanel.setHideForSearch(false);
-    }
   }
 
   @Override
@@ -1598,9 +1533,10 @@ public class ConversationParentFragment extends Fragment
   private void handleManualMmsRequired() {
     Toast.makeText(requireContext(), R.string.MmsDownloader_error_reading_mms_settings, Toast.LENGTH_LONG).show();
 
-    Bundle extras = requireActivity().getIntent().getExtras();
+    Bundle extras = requireArguments();
     Intent intent = new Intent(requireContext(), PromptMmsActivity.class);
-    if (extras != null) intent.putExtras(extras);
+
+    intent.putExtras(extras);
     startActivity(intent);
   }
 
@@ -1676,8 +1612,8 @@ public class ConversationParentFragment extends Fragment
     }
 
     final CharSequence   draftText        = args.getDraftText();
-    final Uri            draftMedia       = requireActivity().getIntent().getData();
-    final String         draftContentType = requireActivity().getIntent().getType();
+    final Uri            draftMedia       = ConversationIntents.getIntentData(requireArguments());
+    final String         draftContentType = ConversationIntents.getIntentType(requireArguments());
     final MediaType      draftMediaType   = MediaType.from(draftContentType);
     final List<Media>    mediaList        = args.getMedia();
     final StickerLocator stickerLocator   = args.getStickerLocator();

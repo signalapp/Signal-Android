@@ -32,14 +32,27 @@ open class ConversationActivity : PassphraseRequiredActivity(), ConversationPare
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     setContentView(R.layout.conversation_parent_fragment_container)
 
-    fragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as ConversationParentFragment
+    if (savedInstanceState == null) {
+      replaceFragment(intent!!)
+    } else {
+      fragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as ConversationParentFragment
+    }
   }
 
   override fun onNewIntent(intent: Intent?) {
     super.onNewIntent(intent)
 
-    finish()
-    startActivity(intent)
+    setIntent(intent)
+    replaceFragment(intent!!)
+  }
+
+  private fun replaceFragment(intent: Intent) {
+    fragment = ConversationParentFragment.create(intent)
+    supportFragmentManager
+      .beginTransaction()
+      .replace(R.id.fragment_container, fragment)
+      .disallowAddToBackStack()
+      .commitNowAllowingStateLoss()
   }
 
   override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.conversation;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,6 +36,8 @@ public class ConversationIntents {
   private static final String EXTRA_FIRST_TIME_IN_SELF_CREATED_GROUP = "first_time_in_group";
   private static final String EXTRA_WITH_SEARCH_OPEN                 = "with_search_open";
   private static final String EXTRA_GIFT_BADGE                       = "gift_badge";
+  private static final String INTENT_DATA                            = "intent_data";
+  private static final String INTENT_TYPE                            = "intent_type";
 
   private ConversationIntents() {
   }
@@ -51,16 +54,35 @@ public class ConversationIntents {
     return new Builder(context, BubbleConversationActivity.class, recipientId, threadId).build();
   }
 
-  static boolean isInvalid(@NonNull Intent intent) {
-    if (isBubbleIntent(intent)) {
-      return intent.getData().getQueryParameter(EXTRA_RECIPIENT) == null;
+  static boolean isInvalid(@NonNull Bundle arguments) {
+    Uri uri = getIntentData(arguments);
+    if (isBubbleIntentUri(uri)) {
+      return uri.getQueryParameter(EXTRA_RECIPIENT) == null;
     } else {
-      return !intent.hasExtra(EXTRA_RECIPIENT);
+      return !arguments.containsKey(EXTRA_RECIPIENT);
     }
   }
 
-  private static boolean isBubbleIntent(@NonNull Intent intent) {
-    return intent.getData() != null && Objects.equals(intent.getData().getAuthority(), BUBBLE_AUTHORITY);
+  static @Nullable Uri getIntentData(@NonNull Bundle bundle) {
+    return bundle.getParcelable(INTENT_DATA);
+  }
+
+  static @Nullable String getIntentType(@NonNull Bundle bundle) {
+    return bundle.getString(INTENT_TYPE);
+  }
+
+  static @NonNull Bundle createParentFragmentArguments(@NonNull Intent intent) {
+    Bundle bundle = new Bundle();
+
+    bundle.putAll(intent.getExtras());
+    bundle.putParcelable(INTENT_DATA, intent.getData());
+    bundle.putString(INTENT_TYPE, intent.getType());
+
+    return bundle;
+  }
+
+  private static boolean isBubbleIntentUri(@Nullable Uri uri) {
+    return uri != null && Objects.equals(uri.getAuthority(), BUBBLE_AUTHORITY);
   }
 
   final static class Args {
@@ -76,10 +98,11 @@ public class ConversationIntents {
     private final boolean          withSearchOpen;
     private final Badge            giftBadge;
 
-    static Args from(@NonNull Intent intent) {
-      if (isBubbleIntent(intent)) {
-        return new Args(RecipientId.from(intent.getData().getQueryParameter(EXTRA_RECIPIENT)),
-                        Long.parseLong(intent.getData().getQueryParameter(EXTRA_THREAD_ID)),
+    static Args from(@NonNull Bundle arguments) {
+      Uri intentDataUri = getIntentData(arguments);
+      if (isBubbleIntentUri(intentDataUri)) {
+        return new Args(RecipientId.from(intentDataUri.getQueryParameter(EXTRA_RECIPIENT)),
+                        Long.parseLong(intentDataUri.getQueryParameter(EXTRA_THREAD_ID)),
                         null,
                         null,
                         null,
@@ -91,17 +114,17 @@ public class ConversationIntents {
                         null);
       }
 
-      return new Args(RecipientId.from(Objects.requireNonNull(intent.getStringExtra(EXTRA_RECIPIENT))),
-                      intent.getLongExtra(EXTRA_THREAD_ID, -1),
-                      intent.getStringExtra(EXTRA_TEXT),
-                      intent.getParcelableArrayListExtra(EXTRA_MEDIA),
-                      intent.getParcelableExtra(EXTRA_STICKER),
-                      intent.getBooleanExtra(EXTRA_BORDERLESS, false),
-                      intent.getIntExtra(EXTRA_DISTRIBUTION_TYPE, ThreadDatabase.DistributionTypes.DEFAULT),
-                      intent.getIntExtra(EXTRA_STARTING_POSITION, -1),
-                      intent.getBooleanExtra(EXTRA_FIRST_TIME_IN_SELF_CREATED_GROUP, false),
-                      intent.getBooleanExtra(EXTRA_WITH_SEARCH_OPEN, false),
-                      intent.getParcelableExtra(EXTRA_GIFT_BADGE));
+      return new Args(RecipientId.from(Objects.requireNonNull(arguments.getString(EXTRA_RECIPIENT))),
+                      arguments.getLong(EXTRA_THREAD_ID, -1),
+                      arguments.getString(EXTRA_TEXT),
+                      arguments.getParcelableArrayList(EXTRA_MEDIA),
+                      arguments.getParcelable(EXTRA_STICKER),
+                      arguments.getBoolean(EXTRA_BORDERLESS, false),
+                      arguments.getInt(EXTRA_DISTRIBUTION_TYPE, ThreadDatabase.DistributionTypes.DEFAULT),
+                      arguments.getInt(EXTRA_STARTING_POSITION, -1),
+                      arguments.getBoolean(EXTRA_FIRST_TIME_IN_SELF_CREATED_GROUP, false),
+                      arguments.getBoolean(EXTRA_WITH_SEARCH_OPEN, false),
+                      arguments.getParcelable(EXTRA_GIFT_BADGE));
     }
 
     private Args(@NonNull RecipientId recipientId,
