@@ -26,6 +26,7 @@ import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
 import android.text.Annotation;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -41,6 +42,7 @@ import android.text.style.URLSpan;
 import android.text.util.Linkify;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.TouchDelegate;
 import android.view.View;
@@ -2149,6 +2151,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       bodyBubble.setOnClickListener(unused -> {
         openGift.invoke(this);
         eventListener.onGiftBadgeRevealed(messageRecord);
+        bodyBubble.performHapticFeedback(Build.VERSION.SDK_INT >= 30 ? HapticFeedbackConstants.CONFIRM
+                                                                     : HapticFeedbackConstants.KEYBOARD_TAP);
       });
       giftViewStub.get().onGiftNotOpened();
     }
@@ -2161,6 +2165,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       bodyBubble.setClickable(false);
       giftViewStub.get().onGiftOpened();
     }
+  }
+
+  @Override
+  public @NonNull AnimationSign getAnimationSign() {
+    return AnimationSign.get(ViewUtil.isLtr(this), messageRecord.isOutgoing());
   }
 
   private class SharedContactEventListener implements SharedContactView.EventListener {

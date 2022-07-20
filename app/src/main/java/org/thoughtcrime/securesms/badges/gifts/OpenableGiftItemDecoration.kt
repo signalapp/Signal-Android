@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Path
 import android.graphics.RectF
 import android.graphics.drawable.Drawable
 import android.provider.Settings
@@ -13,8 +14,10 @@ import android.view.animation.AnticipateInterpolator
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.toRect
+import androidx.core.graphics.withRotation
 import androidx.core.graphics.withSave
 import androidx.core.graphics.withTranslation
+import androidx.core.view.animation.PathInterpolatorCompat
 import androidx.core.view.children
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -191,7 +194,7 @@ class OpenableGiftItemDecoration(context: Context) : RecyclerView.ItemDecoration
       }
 
       private fun getTranslation(progress: Float): Double {
-        val interpolated = INTERPOLATOR.getInterpolation(progress)
+        val interpolated = TRANSLATION_X_INTERPOLATOR.getInterpolation(progress)
         val evaluated = EVALUATOR.evaluate(interpolated, 0f, 360f)
 
         return 0.25f * sin(4 * evaluated * PI / 180f) * 180f / PI
@@ -199,17 +202,60 @@ class OpenableGiftItemDecoration(context: Context) : RecyclerView.ItemDecoration
     }
 
     class OpenAnimationState(openableGift: OpenableGift, startTime: Long) : GiftAnimationState(openableGift, startTime, OPEN_DURATION_MILLIS) {
-      override fun update(canvas: Canvas, projection: Projection, progress: Float, lastFrameProgress: Float, drawBox: (Canvas, Projection) -> Unit, drawBow: (Canvas, Projection) -> Unit) {
-        val interpolatedProgress = INTERPOLATOR.getInterpolation(progress)
-        val evaluatedValue = EVALUATOR.evaluate(interpolatedProgress, 0f, DimensionUnit.DP.toPixels(161f))
 
-        val interpolatedY = TRANSLATION_Y_INTERPOLATOR.getInterpolation(progress)
+      private val bowRotationPath = Path().apply {
+        lineTo(0.13f, -0.75f)
+        lineTo(0.26f, 0f)
+        lineTo(0.73f, -1.375f)
+        lineTo(1f, 1f)
+      }
+
+      private val boxRotationPath = Path().apply {
+        lineTo(0.63f, -1.6f)
+        lineTo(1f, 1f)
+      }
+
+      private val bowRotationInterpolator = PathInterpolatorCompat.create(bowRotationPath)
+
+      private val boxRotationInterpolator = PathInterpolatorCompat.create(boxRotationPath)
+
+      override fun update(canvas: Canvas, projection: Projection, progress: Float, lastFrameProgress: Float, drawBox: (Canvas, Projection) -> Unit, drawBow: (Canvas, Projection) -> Unit) {
+        val sign = openableGift.getAnimationSign().sign
+
+        val boxStartDelay: Float = OPEN_BOX_START_DELAY / duration.toFloat()
+        val boxProgress: Float = max(0f, progress - boxStartDelay) / (1f - boxStartDelay)
+
+        val bowStartDelay: Float = OPEN_BOW_START_DELAY / duration.toFloat()
+        val bowProgress: Float = max(0f, progress - bowStartDelay) / (1f - bowStartDelay)
+
+        val interpolatedX = TRANSLATION_X_INTERPOLATOR.getInterpolation(boxProgress)
+        val evaluatedX = EVALUATOR.evaluate(interpolatedX, 0f, DimensionUnit.DP.toPixels(18f * sign))
+
+        val interpolatedY = TRANSLATION_Y_INTERPOLATOR.getInterpolation(boxProgress)
         val evaluatedY = EVALUATOR.evaluate(interpolatedY, 0f, DimensionUnit.DP.toPixels(355f))
 
-        canvas.translate(evaluatedValue, evaluatedY)
+        val interpolatedBowRotation = bowRotationInterpolator.getInterpolation(bowProgress)
+        val evaluatedBowRotation = EVALUATOR.evaluate(interpolatedBowRotation, 0f, 8f * sign)
 
-        drawBox(canvas, projection)
-        drawBow(canvas, projection)
+        val interpolatedBoxRotation = boxRotationInterpolator.getInterpolation(boxProgress)
+        val evaluatedBoxRotation = EVALUATOR.evaluate(interpolatedBoxRotation, 0f, -5f * sign)
+
+        canvas.withTranslation(evaluatedX, evaluatedY) {
+          canvas.withRotation(
+            degrees = evaluatedBoxRotation,
+            pivotX = projection.x + projection.width / 2f,
+            pivotY = projection.y + projection.height / 2f
+          ) {
+            drawBox(this, projection)
+            canvas.withRotation(
+              degrees = evaluatedBowRotation,
+              pivotX = projection.x + projection.width / 2f,
+              pivotY = projection.y + projection.height / 2f
+            ) {
+              drawBow(this, projection)
+            }
+          }
+        }
       }
     }
 
@@ -249,11 +295,13 @@ class OpenableGiftItemDecoration(context: Context) : RecyclerView.ItemDecoration
 
   companion object {
     private val TRANSLATION_Y_INTERPOLATOR = AnticipateInterpolator(3f)
-    private val INTERPOLATOR = AccelerateDecelerateInterpolator()
+    private val TRANSLATION_X_INTERPOLATOR = AccelerateDecelerateInterpolator()
     private val EVALUATOR = FloatEvaluator()
 
     private const val SHAKE_DURATION_MILLIS = 1000L
-    private const val OPEN_DURATION_MILLIS = 700L
+    private const val OPEN_DURATION_MILLIS = 1400L
+    private const val OPEN_BOX_START_DELAY = 400L
+    private const val OPEN_BOW_START_DELAY = 50L
     private const val ONE_FRAME_RELATIVE_TO_30_FPS_MILLIS = 33
   }
 }
