@@ -193,7 +193,7 @@ public final class Megaphones {
                               }
 
                               controller.onMegaphoneSnooze(Event.PIN_REMINDER);
-                              controller.onMegaphoneToastRequested(context.getString(SignalPinReminders.getReminderString(SignalStore.pinValues().getCurrentInterval())));
+                              controller.onMegaphoneToastRequested(controller.getMegaphoneActivity().getString(SignalPinReminders.getReminderString(SignalStore.pinValues().getCurrentInterval())));
                             }
                           });
                         })
