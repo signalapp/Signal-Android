@@ -55,9 +55,10 @@ class SafetyNumberReviewConnectionsFragment : DSLSettingsFragment(
 
   private fun getConfiguration(state: SafetyNumberBottomSheetState): DSLConfiguration {
     return configure {
+      val recipientCount = state.destinationToRecipientMap.values.flatten().size
       textPref(
         title = DSLSettingsText.from(
-          getString(R.string.SafetyNumberReviewConnectionsFragment__d_recipients_may_have, state.destinationToRecipientMap.values.flatten().size),
+          resources.getQuantityString(R.plurals.SafetyNumberReviewConnectionsFragment__d_recipients_may_have, recipientCount, recipientCount),
           DSLSettingsText.TextAppearanceModifier(R.style.Signal_Text_BodyMedium),
           DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant))
         )
