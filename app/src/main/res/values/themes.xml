@@ -472,6 +472,7 @@
 
     <style name="Widget.Signal.FixedRoundedCorners.Messages" parent="Widget.Signal.FixedRoundedCorners">
         <item name="bottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners.Messages.BottomSheet</item>
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/signal_colorSurface</item>
     </style>
 
     <style name="Widget.Signal.FixedRoundedCorners.Messages.BottomSheet" parent="Widget.Material3.BottomSheet">
