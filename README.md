@@ -21,11 +21,6 @@ https://play.google.com/apps/testing/org.thoughtcrime.securesms
  
 If you're interested in a life of peace and tranquility, stick with the standard releases.
 
-## Contributing Translations
-Interested in helping to translate Signal? Contribute here:
-
-https://www.transifex.com/projects/p/signal-android/
-
 ## Contributing Code
 
 If you're new to the Signal codebase, we recommend going through our issues and picking out a simple bug to fix (check the "easy" label in our issues) in order to get yourself familiar. Also please have a look at the [CONTRIBUTING.md](https://github.com/signalapp/Signal-Android/blob/main/CONTRIBUTING.md), that might answer some of your questions.
