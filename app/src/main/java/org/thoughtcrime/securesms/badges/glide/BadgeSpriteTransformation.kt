@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Rect
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation
+import org.signal.core.util.logging.Log
 import java.security.MessageDigest
 
 /**
@@ -15,7 +16,6 @@ class BadgeSpriteTransformation(
   private val density: String,
   private val isDarkTheme: Boolean
 ) : BitmapTransformation() {
-
   private val id = "BadgeSpriteTransformation(${size.code},$density,$isDarkTheme).$VERSION"
 
   override fun updateDiskCacheKey(messageDigest: MessageDigest) {
@@ -32,11 +32,29 @@ class BadgeSpriteTransformation(
 
   override fun transform(pool: BitmapPool, toTransform: Bitmap, outWidth: Int, outHeight: Int): Bitmap {
     val outBitmap = pool.get(outWidth, outHeight, Bitmap.Config.ARGB_8888)
-    val canvas = Canvas(outBitmap)
     val inBounds = getInBounds(density, size, isDarkTheme)
-    val outBounds = Rect(0, 0, outWidth, outHeight)
+    val outCanvas = Canvas(outBitmap)
 
-    canvas.drawBitmap(toTransform, inBounds, outBounds, null)
+    if (inBounds.width() != outWidth || inBounds.height() != outHeight) {
+      Log.d(TAG, "Bitmap size mismatch, performing filtered scale. (Wanted $outWidth x $outHeight but got ${inBounds.width()} x ${inBounds.height()})")
+
+      val tempBitmap = pool.get(inBounds.width(), inBounds.height(), Bitmap.Config.ARGB_8888)
+      val tempCanvas = Canvas(tempBitmap)
+
+      val tempBounds = Rect(0, 0, inBounds.width(), inBounds.height())
+
+      tempCanvas.drawBitmap(toTransform, inBounds, tempBounds, null)
+      val scaledBitmap = Bitmap.createScaledBitmap(tempBitmap, outWidth, outHeight, true)
+      pool.put(tempBitmap)
+
+      outCanvas.drawBitmap(scaledBitmap, 0f, 0f, null)
+      scaledBitmap.recycle()
+    } else {
+      Log.d(TAG, "Bitmap size match, performing direct draw. ($outWidth x $outHeight)")
+
+      val outBounds = Rect(0, 0, outWidth, outHeight)
+      outCanvas.drawBitmap(toTransform, inBounds, outBounds, null)
+    }
 
     return outBitmap
   }
@@ -148,6 +166,8 @@ class BadgeSpriteTransformation(
 
   companion object {
     private const val VERSION = 3
+
+    private val TAG = Log.tag(BadgeSpriteTransformation::class.java)
 
     private fun getDensity(density: String): Density {
       return Density.values().first { it.density == density }
