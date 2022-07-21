@@ -48,13 +48,19 @@
         app:layout_constraintTop_toBottomOf="@id/media_gallery_image"
         tools:text="Lorem ipsum dolor sit amet" />
 
-    <View
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/media_gallery_image_overlay"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="4dp"
         android:background="?selectableItemBackground"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:importantForAccessibility="no"
+        android:padding="8dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.MediaOverviewItem" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
