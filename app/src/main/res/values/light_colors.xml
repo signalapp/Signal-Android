@@ -208,7 +208,7 @@
     <color name="message_request_bar_background_normal">@color/signal_colorSurface2</color>
     <color name="message_request_bar_denyForeground_normal">@color/signal_colorError</color>
     <color name="message_request_bar_acceptForeground_normal">@color/signal_colorOnSecondaryContainer</color>
-    <color name="message_request_bar_container_background_wallpaper">@color/signal_colorTransparent4</color>
+    <color name="message_request_bar_container_background_wallpaper">@color/wallpaper_bubble_color</color>
     <color name="message_request_bar_background_wallpaper">@color/signal_colorNeutralVariant</color>
     <color name="message_request_bar_denyForeground_wallpaper">@color/signal_colorError</color>
     <color name="message_request_bar_acceptForeground_wallpaper">@color/signal_colorNeutralInverse</color>

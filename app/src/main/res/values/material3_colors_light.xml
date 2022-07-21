@@ -30,7 +30,7 @@
     <color name="signal_light_colorTransparent1">#14FFFFFF</color>
     <color name="signal_light_colorTransparent2">#29FFFFFF</color>
     <color name="signal_light_colorTransparent3">#8FFFFFFF</color>
-    <color name="signal_light_colorTransparent4">#A3FFFFFF</color>
+    <color name="signal_light_colorTransparent4">#B8FFFFFF</color>
     <color name="signal_light_colorTransparent5">#F5FFFFFF</color>
     <color name="signal_light_colorNeutral">#FFFFFF</color>
     <color name="signal_light_colorNeutralVariant">#B8FFFFFF</color>

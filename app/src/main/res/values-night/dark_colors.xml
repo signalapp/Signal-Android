@@ -104,7 +104,7 @@
     <color name="conversation_typing_indicator_foreground_tint_wallpaper">@color/signal_colorNeutralVariantInverse</color>
     <color name="conversation_navigation_wallpaper">#80000000</color>
 
-    <color name="wallpaper_bubble_color">@color/signal_colorTransparentInverse4</color>
+    <color name="wallpaper_bubble_color">#F51A1A1A</color>
 
     <color name="conversation_scroll_to_bottom_foreground_color">@color/signal_colorOnSurfaceVariant</color>
 
@@ -198,7 +198,7 @@
     <color name="message_request_bar_background_normal">@color/signal_colorSurface2</color>
     <color name="message_request_bar_denyForeground_normal">@color/signal_colorError</color>
     <color name="message_request_bar_acceptForeground_normal">@color/signal_colorOnSecondaryContainer</color>
-    <color name="message_request_bar_container_background_wallpaper">@color/signal_colorTransparentInverse4</color>
+    <color name="message_request_bar_container_background_wallpaper">@color/wallpaper_bubble_color</color>
     <color name="message_request_bar_background_wallpaper">@color/signal_light_colorTransparent2</color>
     <color name="message_request_bar_denyForeground_wallpaper">@color/signal_colorError</color>
     <color name="message_request_bar_acceptForeground_wallpaper">@color/signal_colorNeutralInverse</color>
