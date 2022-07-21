@@ -699,10 +699,12 @@ class StoryViewerPageFragment :
       }
       AttachmentDatabase.TRANSFER_PROGRESS_PENDING -> {
         storySlate.moveToState(StorySlateView.State.LOADING, post.id)
+        sharedViewModel.setContentIsReady()
         viewModel.setIsDisplayingSlate(true)
       }
       AttachmentDatabase.TRANSFER_PROGRESS_STARTED -> {
         storySlate.moveToState(StorySlateView.State.LOADING, post.id)
+        sharedViewModel.setContentIsReady()
         viewModel.setIsDisplayingSlate(true)
       }
       AttachmentDatabase.TRANSFER_PROGRESS_FAILED -> {
