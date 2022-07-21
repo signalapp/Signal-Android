@@ -436,8 +436,8 @@ class StoryGroupReplyFragment :
           annotations
         } else {
 
-          val validRecipientIds: Set<String> = recipient.participants
-            .map { r -> MentionAnnotation.idToMentionAnnotationValue(r.id) }
+          val validRecipientIds: Set<String> = recipient.participantIds
+            .map { id -> MentionAnnotation.idToMentionAnnotationValue(id) }
             .toSet()
 
           annotations

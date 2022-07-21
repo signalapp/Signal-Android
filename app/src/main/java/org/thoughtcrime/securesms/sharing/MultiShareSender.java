@@ -17,7 +17,6 @@ import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey;
 import org.thoughtcrime.securesms.conversation.MessageSendType;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
@@ -36,7 +35,6 @@ import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryBackgroundColors;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
-import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.SentMediaQuality;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -57,6 +55,7 @@ import org.thoughtcrime.securesms.util.Util;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -480,10 +479,7 @@ public final class MultiShareSender {
     if (mentions.isEmpty() || !recipient.isPushV2Group() || !recipient.isActiveGroup()) {
       return Collections.emptyList();
     } else {
-      Set<RecipientId> validRecipientIds = recipient.getParticipants()
-                                                    .stream()
-                                                    .map(Recipient::getId)
-                                                    .collect(Collectors.toSet());
+      Set<RecipientId> validRecipientIds = new HashSet<>(recipient.getParticipantIds());
 
       return mentions.stream()
                      .filter(mention -> validRecipientIds.contains(mention.getRecipientId()))

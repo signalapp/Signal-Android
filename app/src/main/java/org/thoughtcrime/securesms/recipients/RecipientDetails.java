@@ -54,7 +54,7 @@ public class RecipientDetails {
   final VibrateState                 callVibrateState;
   final boolean                      blocked;
   final int                          expireMessages;
-  final List<Recipient>              participants;
+  final List<RecipientId>            participantIds;
   final ProfileName                  profileName;
   final Optional<Integer>            defaultSubscriptionId;
   final RegisteredState              registered;
@@ -96,7 +96,7 @@ public class RecipientDetails {
                           boolean isSelf,
                           @NonNull RegisteredState registeredState,
                           @NonNull RecipientRecord record,
-                          @Nullable List<Recipient> participants,
+                          @Nullable List<RecipientId> participantIds,
                           boolean isReleaseChannel)
   {
     this.groupAvatarId                = groupAvatarId;
@@ -117,7 +117,7 @@ public class RecipientDetails {
     this.callVibrateState             = record.getCallVibrateState();
     this.blocked                      = record.isBlocked();
     this.expireMessages               = record.getExpireMessages();
-    this.participants                 = participants == null ? new LinkedList<>() : participants;
+    this.participantIds               = participantIds == null ? new LinkedList<>() : participantIds;
     this.profileName                  = record.getProfileName();
     this.defaultSubscriptionId        = record.getDefaultSubscriptionId();
     this.registered                   = registeredState;
@@ -174,7 +174,7 @@ public class RecipientDetails {
     this.callVibrateState             = VibrateState.DEFAULT;
     this.blocked                      = false;
     this.expireMessages               = 0;
-    this.participants                 = new LinkedList<>();
+    this.participantIds               = new LinkedList<>();
     this.profileName                  = ProfileName.EMPTY;
     this.insightsBannerTier           = InsightsBannerTier.TIER_TWO;
     this.defaultSubscriptionId        = Optional.empty();
@@ -231,7 +231,7 @@ public class RecipientDetails {
     return new RecipientDetails(null, settings.getSystemDisplayName(), Optional.empty(), systemContact, isSelf, registeredState, settings, null, isReleaseChannel);
   }
 
-  public static @NonNull RecipientDetails forDistributionList(String title, @Nullable List<Recipient> members, @NonNull RecipientRecord record) {
+  public static @NonNull RecipientDetails forDistributionList(String title, @Nullable List<RecipientId> members, @NonNull RecipientRecord record) {
     return new RecipientDetails(title, null, Optional.empty(), false, false, record.getRegistered(), record, members, false);
   }
 

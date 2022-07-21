@@ -21,7 +21,6 @@ import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
-import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.io.IOException;
@@ -57,15 +56,15 @@ public class GroupCallUpdateSendJob extends BaseJob {
       throw new AssertionError("We have a recipient, but it's not a V2 Group");
     }
 
-    List<RecipientId> recipients = Stream.of(RecipientUtil.getEligibleForSending(conversationRecipient.getParticipants()))
+    List<RecipientId> recipientIds = Stream.of(RecipientUtil.getEligibleForSending(Recipient.resolvedList(conversationRecipient.getParticipantIds())))
                                          .filterNot(Recipient::isSelf)
                                          .map(Recipient::getId)
                                          .toList();
 
     return new GroupCallUpdateSendJob(recipientId,
                                       eraId,
-                                      recipients,
-                                      recipients.size(),
+                                      recipientIds,
+                                      recipientIds.size(),
                                       new Parameters.Builder()
                                                     .setQueue(conversationRecipient.getId().toQueueKey())
                                                     .setLifespan(TimeUnit.MINUTES.toMillis(5))

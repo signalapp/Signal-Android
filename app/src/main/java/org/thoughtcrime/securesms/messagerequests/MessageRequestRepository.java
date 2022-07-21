@@ -102,7 +102,7 @@ final class MessageRequestRepository {
       }
     } else if (recipient.isPushV1Group()) {
       if (RecipientUtil.isMessageRequestAccepted(context, threadId)) {
-        if (recipient.getParticipants().size() > FeatureFlags.groupLimits().getHardLimit()) {
+        if (recipient.getParticipantIds().size() > FeatureFlags.groupLimits().getHardLimit()) {
           return MessageRequestState.DEPRECATED_GROUP_V1_TOO_LARGE;
         } else {
           return MessageRequestState.DEPRECATED_GROUP_V1;

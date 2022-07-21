@@ -84,7 +84,7 @@ open class ContactSearchPagedDataSourceRepository(
   open fun getGroupStories(): Set<ContactSearchData.Story> {
     return SignalDatabase.groups.groupsToDisplayAsStories.map {
       val recipient = Recipient.resolved(SignalDatabase.recipients.getOrInsertFromGroupId(it))
-      ContactSearchData.Story(recipient, recipient.participants.size)
+      ContactSearchData.Story(recipient, recipient.participantIds.size)
     }.toSet()
   }
 

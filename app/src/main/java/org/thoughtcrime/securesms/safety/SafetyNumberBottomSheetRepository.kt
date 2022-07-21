@@ -187,7 +187,7 @@ class SafetyNumberBottomSheetRepository {
   }
 
   private fun getGroupMemberships(recipient: Recipient, groups: List<Recipient>): List<Recipient> {
-    return groups.filter { it.participants.contains(recipient) }
+    return groups.filter { it.participantIds.contains(recipient.id) }
   }
 
   data class ResolvedIdentity(val recipient: Recipient, val identityRecord: Optional<IdentityRecord>)

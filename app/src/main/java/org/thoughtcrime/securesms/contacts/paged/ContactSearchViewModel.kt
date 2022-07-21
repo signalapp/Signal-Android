@@ -92,7 +92,7 @@ class ContactSearchViewModel(
       state.copy(
         groupStories = state.groupStories + groupStories.map {
           val recipient = Recipient.resolved(it.recipientId)
-          ContactSearchData.Story(recipient, recipient.participants.size)
+          ContactSearchData.Story(recipient, recipient.participantIds.size)
         }
       )
     }

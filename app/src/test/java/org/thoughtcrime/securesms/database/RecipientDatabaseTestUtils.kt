@@ -30,7 +30,7 @@ object RecipientDatabaseTestUtils {
     groupAvatarId: Optional<Long> = Optional.empty(),
     systemContact: Boolean = false,
     isSelf: Boolean = false,
-    participants: List<Recipient> = listOf(),
+    participants: List<RecipientId> = listOf(),
     recipientId: RecipientId = RecipientId.from(Random.nextLong()),
     serviceId: ServiceId? = ServiceId.from(UUID.randomUUID()),
     username: String? = null,

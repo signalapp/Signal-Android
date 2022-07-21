@@ -329,8 +329,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import io.reactivex.rxjava3.core.Flowable;
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.disposables.Disposable;
 
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 
@@ -2359,8 +2357,8 @@ public class ConversationParentFragment extends Fragment
         return annotations;
       }
 
-      Set<String> validRecipientIds = Stream.of(getRecipient().getParticipants())
-                                            .map(r -> MentionAnnotation.idToMentionAnnotationValue(r.getId()))
+      Set<String> validRecipientIds = Stream.of(getRecipient().getParticipantIds())
+                                            .map(id -> MentionAnnotation.idToMentionAnnotationValue(id))
                                             .collect(Collectors.toSet());
 
       return Stream.of(annotations)

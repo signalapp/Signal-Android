@@ -192,7 +192,9 @@ public class ConversationTitleView extends RelativeLayout {
 
   private void setGroupRecipientTitle(@NonNull Recipient recipient) {
     this.title.setText(recipient.getDisplayName(getContext()));
-    this.subtitle.setText(Stream.of(recipient.getParticipants())
+    this.subtitle.setText(Stream.of(recipient.getParticipantIds())
+                                .limit(10)
+                                .map(Recipient::resolved)
                                 .sorted((a, b) -> Boolean.compare(a.isSelf(), b.isSelf()))
                                 .map(r -> r.isSelf() ? getResources().getString(R.string.ConversationTitleView_you)
                                                      : r.getDisplayName(getContext()))

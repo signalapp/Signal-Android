@@ -52,8 +52,8 @@ public final class GroupsV1MigrationUtil {
       throw new InvalidMigrationStateException();
     }
 
-    if (groupRecipient.getParticipants().size() > FeatureFlags.groupLimits().getHardLimit()) {
-      Log.w(TAG, "Too many members! Size: " + groupRecipient.getParticipants().size());
+    if (groupRecipient.getParticipantIds().size() > FeatureFlags.groupLimits().getHardLimit()) {
+      Log.w(TAG, "Too many members! Size: " + groupRecipient.getParticipantIds().size());
       throw new InvalidMigrationStateException();
     }
 
@@ -86,7 +86,7 @@ public final class GroupsV1MigrationUtil {
           throw new InvalidMigrationStateException();
         }
 
-        List<Recipient> registeredMembers = RecipientUtil.getEligibleForSending(groupRecipient.getParticipants());
+        List<Recipient> registeredMembers = RecipientUtil.getEligibleForSending(Recipient.resolvedList(groupRecipient.getParticipantIds()));
 
         if (RecipientUtil.ensureUuidsAreAvailable(context, registeredMembers)) {
           Log.i(TAG, "Newly-discovered UUIDs. Getting fresh recipients.");

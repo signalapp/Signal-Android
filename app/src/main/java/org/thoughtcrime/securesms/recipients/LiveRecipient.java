@@ -152,19 +152,8 @@ public final class LiveRecipient {
       Log.w(TAG, "[Resolve][MAIN] " + getId(), new Throwable());
     }
 
-    Recipient       updated      = fetchAndCacheRecipientFromDisk(getId());
-    List<Recipient> participants = Stream.of(updated.getParticipants())
-                                         .filter(Recipient::isResolving)
-                                         .map(Recipient::getId)
-                                         .map(this::fetchAndCacheRecipientFromDisk)
-                                         .toList();
-
-    for (Recipient participant : participants) {
-      participant.live().set(participant);
-    }
-
+    Recipient updated = fetchAndCacheRecipientFromDisk(getId());
     set(updated);
-
     return updated;
   }
 
@@ -188,16 +177,7 @@ public final class LiveRecipient {
       Log.w(TAG, "[Refresh][MAIN] " + id, new Throwable());
     }
 
-    Recipient       recipient    = fetchAndCacheRecipientFromDisk(id);
-    List<Recipient> participants = Stream.of(recipient.getParticipants())
-                                         .map(Recipient::getId)
-                                         .map(this::fetchAndCacheRecipientFromDisk)
-                                         .toList();
-
-    for (Recipient participant : participants) {
-      participant.live().set(participant);
-    }
-
+    Recipient recipient = fetchAndCacheRecipientFromDisk(id);
     set(recipient);
     refreshForceNotify.postValue(new Object());
   }
@@ -231,9 +211,9 @@ public final class LiveRecipient {
     Optional<GroupRecord> groupRecord = groupDatabase.getGroup(record.getId());
 
     if (groupRecord.isPresent()) {
-      String          title    = groupRecord.get().getTitle();
-      List<Recipient> members  = Stream.of(groupRecord.get().getMembers()).filterNot(RecipientId::isUnknown).map(this::fetchAndCacheRecipientFromDisk).toList();
-      Optional<Long>  avatarId = Optional.empty();
+      String            title    = groupRecord.get().getTitle();
+      List<RecipientId> members  = Stream.of(groupRecord.get().getMembers()).filterNot(RecipientId::isUnknown).toList();
+      Optional<Long>    avatarId = Optional.empty();
 
       if (groupRecord.get().hasAvatar()) {
         avatarId = Optional.of(groupRecord.get().getAvatarId());
@@ -251,8 +231,8 @@ public final class LiveRecipient {
 
     // TODO [stories] We'll have to see what the perf is like for very large distribution lists. We may not be able to support fetching all the members.
     if (groupRecord != null) {
-      String          title    = groupRecord.isUnknown() ? null : groupRecord.getName();
-      List<Recipient> members  = Stream.of(groupRecord.getMembers()).filterNot(RecipientId::isUnknown).map(this::fetchAndCacheRecipientFromDisk).toList();
+      String            title    = groupRecord.isUnknown() ? null : groupRecord.getName();
+      List<RecipientId> members  = Stream.of(groupRecord.getMembers()).filterNot(RecipientId::isUnknown).toList();
 
       return RecipientDetails.forDistributionList(title, members, record);
     }

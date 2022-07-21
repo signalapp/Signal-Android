@@ -59,9 +59,9 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
   public @NonNull List<Conversation> load(int start, int length, @NonNull CancellationSignal cancellationSignal) {
     Stopwatch stopwatch = new Stopwatch("load(" + start + ", " + length + "), " + getClass().getSimpleName());
 
-    List<Conversation> conversations  = new ArrayList<>(length);
-    List<Recipient>  recipients       = new LinkedList<>();
-    Set<RecipientId> needsResolve     = new HashSet<>();
+    List<Conversation> conversations = new ArrayList<>(length);
+    List<Recipient>    recipients    = new LinkedList<>();
+    Set<RecipientId>   needsResolve  = new HashSet<>();
 
     try (ConversationReader reader = new ConversationReader(getCursor(start, length))) {
       ThreadRecord record;
@@ -70,7 +70,7 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
         recipients.add(record.getRecipient());
         needsResolve.add(record.getGroupMessageSender());
 
-        if (!record.getRecipient().isPushV2Group()) {
+        if (!SmsDatabase.Types.isGroupV2(record.getType())) {
           needsResolve.add(record.getRecipient().getId());
         } else if (SmsDatabase.Types.isGroupUpdate(record.getType())) {
           UpdateDescription description = MessageRecord.getGv2ChangeDescription(ApplicationDependencies.getApplication(), record.getBody(), null);

@@ -96,7 +96,7 @@ public class GroupV1MigrationJob extends BaseJob {
       for (ThreadRecord thread : threads) {
         jobManager.add(new GroupV1MigrationJob(thread.getRecipient().getId()));
 
-        needsRefresh.addAll(Stream.of(thread.getRecipient().getParticipants())
+        needsRefresh.addAll(Stream.of(Recipient.resolvedList(thread.getRecipient().getParticipantIds()))
                                   .filter(r -> r.getGroupsV1MigrationCapability() != Recipient.Capability.SUPPORTED)
                                   .map(Recipient::getId)
                                   .toList());

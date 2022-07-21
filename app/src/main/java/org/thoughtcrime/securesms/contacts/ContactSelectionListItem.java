@@ -216,7 +216,7 @@ public class ContactSelectionListItem extends ConstraintLayout implements Recipi
     if (!recipient.isGroup()) {
       throw new AssertionError();
     }
-    int memberCount = recipient.getParticipants().size();
+    int memberCount = recipient.getParticipantIds().size();
     return getContext().getResources().getQuantityString(R.plurals.contact_selection_list_item__number_of_members, memberCount, memberCount);
   }
 

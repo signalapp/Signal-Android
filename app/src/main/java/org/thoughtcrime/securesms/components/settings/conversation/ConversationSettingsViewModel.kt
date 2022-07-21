@@ -381,7 +381,7 @@ sealed class ConversationSettingsViewModel(
     private fun getLegacyGroupState(recipient: Recipient): LegacyGroupPreference.State {
       val showLegacyInfo = recipient.requireGroupId().isV1
 
-      return if (showLegacyInfo && recipient.participants.size > FeatureFlags.groupLimits().hardLimit) {
+      return if (showLegacyInfo && recipient.participantIds.size > FeatureFlags.groupLimits().hardLimit) {
         LegacyGroupPreference.State.TOO_LARGE
       } else if (showLegacyInfo) {
         LegacyGroupPreference.State.UPGRADE

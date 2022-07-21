@@ -72,6 +72,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import static org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBannerTier;
 
+@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 public class Recipient {
 
   private static final String TAG = Log.tag(Recipient.class);
@@ -91,7 +92,7 @@ public class Recipient {
   private final String                       email;
   private final GroupId                      groupId;
   private final DistributionListId           distributionListId;
-  private final List<Recipient>              participants;
+  private final List<RecipientId>            participantIds;
   private final Optional<Long>               groupAvatarId;
   private final boolean                      isSelf;
   private final boolean                      blocked;
@@ -368,7 +369,7 @@ public class Recipient {
     this.email                        = null;
     this.groupId                      = null;
     this.distributionListId           = null;
-    this.participants                 = Collections.emptyList();
+    this.participantIds               = Collections.emptyList();
     this.groupAvatarId                = Optional.empty();
     this.isSelf                       = false;
     this.blocked                      = false;
@@ -426,7 +427,7 @@ public class Recipient {
     this.email                        = details.email;
     this.groupId                      = details.groupId;
     this.distributionListId           = details.distributionListId;
-    this.participants                 = details.participants;
+    this.participantIds               = details.participantIds;
     this.groupAvatarId                = details.groupAvatarId;
     this.isSelf                       = details.isSelf;
     this.blocked                      = details.blocked;
@@ -488,10 +489,12 @@ public class Recipient {
 
   public @Nullable String getGroupName(@NonNull Context context) {
     if (groupId != null && Util.isEmpty(this.groupName)) {
-      List<Recipient> others = participants.stream()
-                                           .filter(r -> !r.isSelf())
-                                           .limit(MAX_MEMBER_NAMES)
-                                           .collect(Collectors.toList());
+      RecipientId     selfId = Recipient.self().getId();
+      List<Recipient> others = participantIds.stream()
+                                             .filter(id -> !id.equals(selfId))
+                                             .limit(MAX_MEMBER_NAMES)
+                                             .map(Recipient::resolved)
+                                             .collect(Collectors.toList());
 
       Map<String, Integer> shortNameCounts = new HashMap<>();
 
@@ -515,7 +518,7 @@ public class Recipient {
         }
       }
 
-      if (participants.stream().anyMatch(Recipient::isSelf)) {
+      if (participantIds.stream().anyMatch(id -> id.equals(selfId))) {
         names.add(context.getString(R.string.Recipient_you));
       }
 
@@ -861,11 +864,12 @@ public class Recipient {
   }
 
   public boolean isActiveGroup() {
-    return Stream.of(getParticipants()).anyMatch(Recipient::isSelf);
+    RecipientId selfId = Recipient.self().getId();
+    return Stream.of(getParticipantIds()).anyMatch(p -> p.equals(selfId));
   }
 
-  public @NonNull List<Recipient> getParticipants() {
-    return new ArrayList<>(participants);
+  public @NonNull List<RecipientId> getParticipantIds() {
+    return new ArrayList<>(participantIds);
   }
 
   public @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted) {
@@ -1277,7 +1281,7 @@ public class Recipient {
            Objects.equals(e164, other.e164) &&
            Objects.equals(email, other.email) &&
            Objects.equals(groupId, other.groupId) &&
-           allContentsAreTheSame(participants, other.participants) &&
+           Objects.equals(participantIds, other.participantIds) &&
            Objects.equals(groupAvatarId, other.groupAvatarId) &&
            messageVibrate == other.messageVibrate &&
            callVibrate == other.callVibrate &&

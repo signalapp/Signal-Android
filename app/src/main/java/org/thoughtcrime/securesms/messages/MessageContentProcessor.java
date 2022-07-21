@@ -963,7 +963,7 @@ public final class MessageContentProcessor {
 
     Recipient threadRecipient = targetThread.getRecipient().resolve();
 
-    if (threadRecipient.isGroup() && !threadRecipient.getParticipants().contains(senderRecipient)) {
+    if (threadRecipient.isGroup() && !threadRecipient.getParticipantIds().contains(senderRecipient.getId())) {
       warn(String.valueOf(content.getTimestamp()), "[handleReaction] Reaction author is not in the group! timestamp: " + reaction.getTargetSentTimestamp() + "  author: " + targetAuthor.getId());
       return null;
     }

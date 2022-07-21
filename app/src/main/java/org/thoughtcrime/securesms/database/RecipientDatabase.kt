@@ -2892,7 +2892,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
    */
   fun getRecipientsForRoutineProfileFetch(lastInteractionThreshold: Long, lastProfileFetchThreshold: Long, limit: Int): List<RecipientId> {
     val threadDatabase = threads
-    val recipientsWithinInteractionThreshold: MutableSet<Recipient> = LinkedHashSet()
+    val recipientsWithinInteractionThreshold: MutableSet<RecipientId> = LinkedHashSet()
 
     threadDatabase.readerFor(threadDatabase.getRecentPushConversationList(-1, false)).use { reader ->
       var record: ThreadRecord? = reader.next
@@ -2900,15 +2900,16 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       while (record != null && record.date > lastInteractionThreshold) {
         val recipient = Recipient.resolved(record.recipient.id)
         if (recipient.isGroup) {
-          recipientsWithinInteractionThreshold.addAll(recipient.participants)
+          recipientsWithinInteractionThreshold.addAll(recipient.participantIds)
         } else {
-          recipientsWithinInteractionThreshold.add(recipient)
+          recipientsWithinInteractionThreshold.add(recipient.id)
         }
         record = reader.next
       }
     }
 
-    return recipientsWithinInteractionThreshold
+    return Recipient.resolvedList(recipientsWithinInteractionThreshold)
+      .asSequence()
       .filterNot { it.isSelf }
       .filter { it.lastProfileFetchTime < lastProfileFetchThreshold }
       .take(limit)
