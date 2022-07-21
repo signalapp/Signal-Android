@@ -521,6 +521,18 @@ public class ThreadDatabase extends Database {
     return getUnreadThreadIdAggregate(SqlUtil.COUNT, cursor -> CursorUtil.getAggregateOrDefault(cursor, 0L, cursor::getLong));
   }
 
+  public long getUnreadMessageCount(long threadId) {
+    SQLiteDatabase db = databaseHelper.getSignalReadableDatabase();
+
+    try (Cursor cursor = db.query(TABLE_NAME, SqlUtil.buildArgs(UNREAD_COUNT), ID_WHERE, SqlUtil.buildArgs(threadId), null, null, null)) {
+      if (cursor.moveToFirst()) {
+        return CursorUtil.requireLong(cursor, UNREAD_COUNT);
+      } else {
+        return 0L;
+      }
+    }
+  }
+
   public @Nullable String getUnreadThreadIdList() {
     return getUnreadThreadIdAggregate(SqlUtil.buildArgs("GROUP_CONCAT(" + ID + ")"),
                                       cursor -> CursorUtil.getAggregateOrDefault(cursor, null, cursor::getString));

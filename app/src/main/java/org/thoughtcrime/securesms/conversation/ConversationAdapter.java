@@ -397,10 +397,8 @@ public class ConversationAdapter
     return recipient.getId().equals(recipientId);
   }
 
-  void onBindLastSeenViewHolder(StickyHeaderViewHolder viewHolder, int position) {
-    int messagePosition = isTypingViewEnabled ? position - 1 : position;
-    int count = messagePosition + 1;
-    viewHolder.setText(viewHolder.itemView.getContext().getResources().getQuantityString(R.plurals.ConversationAdapter_n_unread_messages, count, count));
+  void onBindLastSeenViewHolder(StickyHeaderViewHolder viewHolder, long unreadCount) {
+    viewHolder.setText(viewHolder.itemView.getContext().getResources().getQuantityString(R.plurals.ConversationAdapter_n_unread_messages, (int) unreadCount, (int) unreadCount));
 
     if (hasWallpaper) {
       viewHolder.setBackgroundRes(R.drawable.wallpaper_bubble_background_18);

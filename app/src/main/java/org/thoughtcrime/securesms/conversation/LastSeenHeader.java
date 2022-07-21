@@ -14,12 +14,18 @@ import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 class LastSeenHeader extends StickyHeaderDecoration {
 
   private final ConversationAdapter adapter;
-  private final long                 lastSeenTimestamp;
+  private final long                lastSeenTimestamp;
+
+  private long unreadCount;
 
   LastSeenHeader(ConversationAdapter adapter, long lastSeenTimestamp) {
     super(adapter, false, false, ConversationAdapter.HEADER_TYPE_LAST_SEEN);
-    this.adapter           = adapter;
-    this.lastSeenTimestamp = lastSeenTimestamp;
+    this.adapter               = adapter;
+    this.lastSeenTimestamp     = lastSeenTimestamp;
+  }
+
+  public void setUnreadCount(long unreadCount) {
+    this.unreadCount = unreadCount;
   }
 
   @Override
@@ -42,7 +48,7 @@ class LastSeenHeader extends StickyHeaderDecoration {
   @Override
   protected @NonNull RecyclerView.ViewHolder getHeader(RecyclerView parent, StickyHeaderAdapter stickyAdapter, int position) {
     StickyHeaderViewHolder viewHolder = new StickyHeaderViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.conversation_item_last_seen, parent, false));
-    adapter.onBindLastSeenViewHolder(viewHolder, position);
+    adapter.onBindLastSeenViewHolder(viewHolder, unreadCount);
 
     int widthSpec  = View.MeasureSpec.makeMeasureSpec(parent.getWidth(), View.MeasureSpec.EXACTLY);
     int heightSpec = View.MeasureSpec.makeMeasureSpec(parent.getHeight(), View.MeasureSpec.UNSPECIFIED);

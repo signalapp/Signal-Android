@@ -9,11 +9,14 @@ import androidx.annotation.WorkerThread;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
+import org.thoughtcrime.securesms.database.Database;
+import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewedUpdateJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -160,6 +163,24 @@ class ConversationRepository {
                                           registeredState == RecipientDatabase.RegisteredState.REGISTERED && signalEnabled,
                                           Util.isDefaultSmsProvider(context),
                                           true);
+    }).subscribeOn(Schedulers.io());
+  }
+
+  Observable<ThreadRecord> getThreadRecord(long threadId) {
+    if (threadId == -1L) {
+      return Observable.empty();
+    }
+
+    return Observable.<ThreadRecord>create(emitter -> {
+
+      DatabaseObserver.Observer listener = () -> {
+        emitter.onNext(SignalDatabase.threads().getThreadRecord(threadId));
+      };
+
+      ApplicationDependencies.getDatabaseObserver().registerConversationObserver(threadId, listener);
+      emitter.setCancellable(() -> ApplicationDependencies.getDatabaseObserver().unregisterObserver(listener));
+
+      listener.onChanged();
     }).subscribeOn(Schedulers.io());
   }
 }

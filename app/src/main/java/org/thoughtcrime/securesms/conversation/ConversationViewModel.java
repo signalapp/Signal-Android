@@ -59,6 +59,7 @@ import io.reactivex.rxjava3.core.BackpressureStrategy;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.processors.PublishProcessor;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.reactivex.rxjava3.subjects.BehaviorSubject;
 import kotlin.Unit;
@@ -94,7 +95,9 @@ public class ConversationViewModel extends ViewModel {
   private final GroupAuthorNameColorHelper            groupAuthorNameColorHelper;
   private final RxStore<ConversationState>            conversationStateStore;
   private final CompositeDisposable                   disposables;
-  private final BehaviorSubject<Unit>                 conversationStateTick;
+  private final BehaviorSubject<Unit>          conversationStateTick;
+  private final RxStore<ThreadCountAggregator> threadCountStore;
+  private final PublishProcessor<Long>         markReadRequestPublisher;
 
   private ConversationIntents.Args args;
   private int                      jumpToPosition;
@@ -123,6 +126,8 @@ public class ConversationViewModel extends ViewModel {
     this.conversationStateStore         = new RxStore<>(ConversationState.create(), Schedulers.io());
     this.disposables                    = new CompositeDisposable();
     this.conversationStateTick          = BehaviorSubject.createDefault(Unit.INSTANCE);
+    this.threadCountStore               = new RxStore<>(ThreadCountAggregator.Init.INSTANCE, Schedulers.computation());
+    this.markReadRequestPublisher       = PublishProcessor.create();
 
     BehaviorSubject<Recipient> recipientCache = BehaviorSubject.create();
 
@@ -131,6 +136,11 @@ public class ConversationViewModel extends ViewModel {
         .distinctUntilChanged()
         .map(Recipient::resolved)
         .subscribe(recipientCache);
+
+    disposables.add(threadCountStore.update(
+        threadId.switchMap(conversationRepository::getThreadRecord).toFlowable(BackpressureStrategy.BUFFER),
+        (record, count) -> count.updateWith(record)
+    ));
 
     conversationStateStore.update(Observable.combineLatest(recipientId, conversationStateTick, (id, tick) -> id)
                                             .distinctUntilChanged()
@@ -248,6 +258,10 @@ public class ConversationViewModel extends ViewModel {
     }
   }
 
+  void submitMarkReadRequest(long timestampSince) {
+    markReadRequestPublisher.onNext(timestampSince);
+  }
+
   boolean shouldPlayMessageAnimations() {
     return threadAnimationStateStore.getState().shouldPlayMessageAnimations();
   }
@@ -290,6 +304,16 @@ public class ConversationViewModel extends ViewModel {
     disposables.add(conversationRepository.checkIfMmsIsEnabled().subscribe(isEnabled -> {
       conversationStateStore.update(state -> state.withMmsEnabled(true));
     }));
+  }
+
+  @NonNull Flowable<Long> getMarkReadRequests() {
+    Flowable<ThreadCountAggregator> nonInitialThreadCount = threadCountStore.getStateFlowable().filter(count -> !(count instanceof ThreadCountAggregator.Init)).take(1);
+
+    return Flowable.combineLatest(markReadRequestPublisher.onBackpressureBuffer(), nonInitialThreadCount, (time, count) -> time);
+  }
+
+  @NonNull Flowable<Integer> getThreadUnreadCount() {
+    return threadCountStore.getStateFlowable().map(ThreadCountAggregator::getCount);
   }
 
   @NonNull Flowable<ConversationState> getConversationState() {
